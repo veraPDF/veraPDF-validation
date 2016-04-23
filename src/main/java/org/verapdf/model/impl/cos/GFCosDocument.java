@@ -284,7 +284,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      * link to cross reference table properties
      */
     private List<CosXRef> getXRefs() {
-        return Collections.emptyList();
+        List<CosXRef> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+        list.add(new GFCosXRef(cosDocument.isSubsectionHeaderSpaceSeparated(),
+                               cosDocument.isXrefEOLMarkersComplyPDFA()));
+        return Collections.unmodifiableList(list);
     }
 
     private COSDictionary getCatalog() {
