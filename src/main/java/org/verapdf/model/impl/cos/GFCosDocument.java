@@ -35,9 +35,15 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
     private PDDocument pdDocument;
 
-    private final String header;
-
     private final COSDictionary catalog;
+
+    private final float version;
+    private final long headerOffset;
+    private final String header;
+    private final int headerCommentByte1;
+    private final int headerCommentByte2;
+    private final int headerCommentByte3;
+    private final int headerCommentByte4;
 
     /**
      * Default constructor
@@ -57,7 +63,14 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         this.catalog = this.getCatalog();
         this.flavour = flavour;
 
-        this.header = cosDocument.getHeader();
+        COSHeader cosHeader = cosDocument.getHeader();
+        this.version = cosHeader.getVersion();
+        this.headerOffset = cosHeader.getHeaderOffset();
+        this.header = cosHeader.getHeader();
+        this.headerCommentByte1 = cosHeader.getHeaderCommentByte1();
+        this.headerCommentByte2 = cosHeader.getHeaderCommentByte2();
+        this.headerCommentByte3 = cosHeader.getHeaderCommentByte3();
+        this.headerCommentByte4 = cosHeader.getHeaderCommentByte4();
     }
 
     /**
@@ -73,12 +86,12 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      */
     @Override
     public Double getversion() {
-        return null;
+        return Double.valueOf(this.version);
     }
 
     @Override
     public Long getheaderOffset() {
-        return null;
+        return this.headerOffset;
     }
 
     @Override
@@ -88,22 +101,22 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
     @Override
     public Long getheaderByte1() {
-        return null;
+        return Long.valueOf(this.headerCommentByte1);
     }
 
     @Override
     public Long getheaderByte2() {
-        return null;
+        return Long.valueOf(this.headerCommentByte2);
     }
 
     @Override
     public Long getheaderByte3() {
-        return null;
+        return Long.valueOf(this.headerCommentByte3);
     }
 
     @Override
     public Long getheaderByte4() {
-        return null;
+        return Long.valueOf(this.headerCommentByte4);
     }
 
     /**
