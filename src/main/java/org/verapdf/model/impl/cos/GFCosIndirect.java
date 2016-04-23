@@ -1,6 +1,7 @@
 package org.verapdf.model.impl.cos;
 
 import org.verapdf.cos.COSIndirect;
+import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosObject;
@@ -21,6 +22,8 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
     /** Type name for GFCosBool */
     public static final String COS_INDIRECT_TYPE = "CosIndirect";
 
+    private final boolean isSpacingPDFACompliant;
+
     private final String id;
 
     private final PDDocument document;
@@ -34,6 +37,7 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
         super(indirectObject, COS_INDIRECT_TYPE);
         //TODO : implement id generator
         //this.id = IDGenerator.generateID(indirectObject);
+        this.isSpacingPDFACompliant = getspacingCompliesPDFA(indirectObject.getDirect());
         this.id = "";
         this.document = document;
         this.flavour = flavour;
@@ -70,6 +74,15 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
     @Override
     public Boolean getspacingCompliesPDFA() {
         return false;
+    }
+
+    /**
+     * Get the direct contents of the indirect object
+     */
+    private static boolean getspacingCompliesPDFA(COSObject object) {
+        return object.isEndOfObjectComplyPDFA()
+                && object.isHeaderFormatComplyPDFA()
+                && object.isHeaderOfObjectComplyPDFA();
     }
 
 }
