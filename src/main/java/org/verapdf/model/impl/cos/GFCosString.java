@@ -12,6 +12,8 @@ public class GFCosString extends GFCosObject implements CosString {
 	public static final String COS_STRING_TYPE = "CosString";
 	private final String value;
 	private final boolean isHex;
+	private final boolean containsOnlyHex;
+	private final long hexCount;
 
 	/**
 	 * Default constructor
@@ -21,6 +23,8 @@ public class GFCosString extends GFCosObject implements CosString {
 		super(cosString, COS_STRING_TYPE);
 		this.value = cosString.getLitString();
 		this.isHex = cosString.isHexadecimal();
+		this.containsOnlyHex = cosString.isContainsOnlyHex();
+		this.hexCount = cosString.getHexCount();
 	}
 
 	/**
@@ -44,7 +48,7 @@ public class GFCosString extends GFCosObject implements CosString {
 	 */
 	@Override
 	public Boolean getcontainsOnlyHex() {
-		return false;
+		return this.containsOnlyHex;
 	}
 
 	/**
@@ -52,7 +56,7 @@ public class GFCosString extends GFCosObject implements CosString {
 	 */
 	@Override
 	public Long gethexCount() {
-		return null;
+		return this.hexCount;
 	}
 
 }
