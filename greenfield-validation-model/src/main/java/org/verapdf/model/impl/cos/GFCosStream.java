@@ -1,9 +1,9 @@
 package org.verapdf.model.impl.cos;
 
+import org.verapdf.model.baselayer.Object;
 import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
-import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosFilter;
 import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.pd.PDDocument;

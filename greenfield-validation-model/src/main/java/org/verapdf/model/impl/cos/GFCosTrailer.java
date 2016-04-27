@@ -1,10 +1,10 @@
 package org.verapdf.model.impl.cos;
 
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSIndirect;
-import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosTrailer;
 import org.verapdf.pd.PDDocument;
