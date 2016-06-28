@@ -4,7 +4,7 @@ import org.verapdf.cos.COSInteger;
 import org.verapdf.model.coslayer.CosInteger;
 
 /**
- * Created by Timur on 4/8/2016.
+ * @author Timur Kamalov
  */
 public class GFCosInteger extends GFCosNumber implements CosInteger {
 

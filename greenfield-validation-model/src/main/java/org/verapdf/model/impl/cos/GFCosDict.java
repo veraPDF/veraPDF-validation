@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Timur on 4/10/2016.
+ * @author Timur Kamalov
  */
 public class GFCosDict extends GFCosObject implements CosDict {
 

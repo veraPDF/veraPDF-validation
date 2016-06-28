@@ -4,7 +4,7 @@ import org.verapdf.cos.COSBoolean;
 import org.verapdf.model.coslayer.CosBool;
 
 /**
- * Created by Timur on 4/10/2016.
+ * @author Timur Kamalov
  */
 public class GFCosBool extends GFCosObject implements CosBool {
 

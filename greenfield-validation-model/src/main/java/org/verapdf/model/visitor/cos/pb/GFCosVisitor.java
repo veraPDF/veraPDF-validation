@@ -8,7 +8,7 @@ import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 /**
- * Created by Timur on 4/16/2016.
+ * @author Timur Kamalov
  */
 public class GFCosVisitor implements ICOSVisitor {
 

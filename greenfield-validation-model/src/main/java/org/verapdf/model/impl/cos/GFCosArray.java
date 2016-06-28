@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by Timur on 4/8/2016.
+ * @author Timur Kamalov
  */
 public class GFCosArray extends GFCosObject implements CosArray {
 

@@ -2,6 +2,7 @@ package org.verapdf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosFileSpecification;
 import org.verapdf.model.external.EmbeddedFile;
@@ -23,6 +24,7 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 
 	private final String f;
 	private final String uf;
+	private final String afrelationship;
 
     /**
      * Default constructor
@@ -32,6 +34,7 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
         super(dictionary, COS_FILE_SPECIFICATION_TYPE, document, flavour);
 		this.f = this.baseObject.getStringKey(ASAtom.F);
 		this.uf = this.baseObject.getStringKey(ASAtom.UF);
+		afrelationship = dictionary.getStringKey(new ASAtom("AFRelationship"));
     }
 
 	@Override
@@ -44,10 +47,9 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 		return this.uf;
 	}
 
-	// TODO : implement me
 	@Override
 	public String getAFRelationship() {
-		return null;
+		return afrelationship.equals("") ? null : afrelationship;
 	}
 
 	@Override
@@ -58,8 +60,8 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 		return super.getLinkedObjects(link);
 	}
 
+	// TODO : implement me
 	private List<EmbeddedFile> getEFFile() {
 		return Collections.emptyList();
 	}
-
 }
