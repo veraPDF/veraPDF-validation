@@ -9,7 +9,7 @@ import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 /**
- * Created by Timur on 4/8/2016.
+ * @author Timur Kamalov
  */
 public class GFCosBBox extends GFCosArray implements CosBBox {
 

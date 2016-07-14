@@ -6,7 +6,7 @@ import org.verapdf.cos.COSName;
 import org.verapdf.model.coslayer.CosFilter;
 
 /**
- * Created by Timur on 4/10/2016.
+ * @author Timur Kamalov
  */
 public class GFCosFilter extends GFCosName implements CosFilter {
 
@@ -20,7 +20,7 @@ public class GFCosFilter extends GFCosName implements CosFilter {
 
     public GFCosFilter(final COSName filterName, final COSDictionary decodeParms) {
         super(filterName, COS_FILTER_TYPE);
-        if (filterName.equals(ASAtom.CRYPT)) {
+        if (filterName.equals(COSName.construct(ASAtom.CRYPT))) {
             if (decodeParms == null) {
                 this.decodeParms = IDENTITY;
             } else {

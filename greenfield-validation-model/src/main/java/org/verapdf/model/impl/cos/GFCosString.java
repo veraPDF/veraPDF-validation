@@ -20,7 +20,16 @@ public class GFCosString extends GFCosObject implements CosString {
 	 * @param cosString greenfield COSString
 	 */
 	public GFCosString(COSString cosString) {
-		super(cosString, COS_STRING_TYPE);
+		this(cosString, COS_STRING_TYPE);
+	}
+
+	/**
+	 * Constructor for child classes
+	 * @param cosString is greenfield COSString.
+	 * @param type child class type.
+	 */
+	public GFCosString(COSString cosString, final String type) {
+		super(cosString, type);
 		this.value = cosString.getLitString();
 		this.isHex = cosString.isHexadecimal();
 		this.containsOnlyHex = cosString.isContainsOnlyHex();

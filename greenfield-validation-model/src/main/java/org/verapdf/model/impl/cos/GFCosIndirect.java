@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Timur on 4/10/2016.
+ * @author Timur Kamalov
  */
 public class GFCosIndirect extends GFCosObject implements CosIndirect {
 
@@ -73,7 +73,7 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
      */
     @Override
     public Boolean getspacingCompliesPDFA() {
-        return false;
+        return Boolean.valueOf(this.isSpacingPDFACompliant);
     }
 
     /**
