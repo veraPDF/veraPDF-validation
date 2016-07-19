@@ -10,3 +10,15 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+**/target/**
+/.idea/**
+*.iml
+
+# Eclipse artefacts
+**/.project
+**/.settings
+**/.classpath
+**/bin
+
+# Maven artefacts
+**/pom.xml.versionsBackup
