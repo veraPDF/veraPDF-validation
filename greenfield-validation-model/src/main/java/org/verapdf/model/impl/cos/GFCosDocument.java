@@ -8,14 +8,16 @@ import org.verapdf.model.coslayer.CosDocument;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosTrailer;
 import org.verapdf.model.coslayer.CosXRef;
+import org.verapdf.model.impl.pd.GFPDDocument;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
+/**
+ * @author Timur Kamalov
+ */
 public class GFCosDocument extends GFCosObject implements CosDocument {
 
     private static final Logger LOGGER = Logger.getLogger(GFCosDocument.class);
@@ -23,13 +25,13 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     /** Type name for GFCosDocument */
     public static final String COS_DOCUMENT_TYPE = "CosDocument";
 
-    public static final String TRAILER = "trailer";
-    public static final String XREF = "xref";
-    public static final String INDIRECT_OBJECTS = "indirectObjects";
-    public static final String DOCUMENT = "document";
-    public static final String EMBEDDED_FILES = "EmbeddedFiles";
-    public static final String ID = "ID";
-    public static final String REQUIREMENTS = "Requirements";
+    private static final String TRAILER = "trailer";
+    private static final String XREF = "xref";
+    private static final String INDIRECT_OBJECTS = "indirectObjects";
+    private static final String DOCUMENT = "document";
+    private static final String EMBEDDED_FILES = "EmbeddedFiles";
+    private static final String ID = "ID";
+    private static final String REQUIREMENTS = "Requirements";
 
     private final PDFAFlavour flavour;
 
@@ -37,6 +39,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
     private final COSDictionary catalog;
 
+    private final long indirectObjectCount;
     private final float version;
     private final long headerOffset;
     private final String header;
@@ -44,6 +47,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     private final int headerCommentByte2;
     private final int headerCommentByte3;
     private final int headerCommentByte4;
+    private final boolean isOptionalContentPresent;
 
     /**
      * Default constructor
@@ -64,6 +68,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         this.flavour = flavour;
 
         COSHeader cosHeader = cosDocument.getHeader();
+        this.indirectObjectCount = cosDocument.getObjects().size();
         this.version = cosHeader.getVersion();
         this.headerOffset = cosHeader.getHeaderOffset();
         this.header = cosHeader.getHeader();
@@ -71,6 +76,12 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         this.headerCommentByte2 = cosHeader.getHeaderCommentByte2();
         this.headerCommentByte3 = cosHeader.getHeaderCommentByte3();
         this.headerCommentByte4 = cosHeader.getHeaderCommentByte4();
+        isOptionalContentPresent = parseOptionalContentPresent();
+    }
+
+    private boolean parseOptionalContentPresent() {
+        return this.catalog != null &&
+                this.catalog.getKey(ASAtom.OCPROPERTIES) != COSObject.getEmpty();
     }
 
     /**
@@ -78,7 +89,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      */
     @Override
     public Long getnrIndirects() {
-        return null;
+        return Long.valueOf(this.indirectObjectCount);
     }
 
     /**
@@ -124,9 +135,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      */
     @Override
     public Boolean getisOptionalContentPresent() {
-        return null;
+        return isOptionalContentPresent;
     }
 
+    //TODO: implement me:
     /**
      * EOF must complies PDF/A standard
      */
@@ -135,6 +147,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         return null;
     }
 
+    //TODO: implement me:
     /**
      * @return ID of first page trailer
      */
@@ -143,6 +156,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         return null;
     }
 
+    //TODO: implement me:
     /**
      * @return ID of last document trailer
      */
@@ -151,6 +165,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         return null;
     }
 
+    //TODO: implement me:
     /**
      * @return true if the current document is linearized
      */
@@ -159,6 +174,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         return null;
     }
 
+    //TODO: implement me:
     /**
      * @return true if XMP content matches Info dictionary content
      */
@@ -217,11 +233,16 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     }
 
     /**
-     * @return true if {@code NeedsRendering} entry contains {@code true} value
+     * @return true if {@code NeedsRendering} entry in catalog contains
+     * {@code true} value.
      */
     @Override
     public Boolean getNeedsRendering() {
-        return null;
+        ASAtom needsRendering = new ASAtom("NeedsRendering");
+        if(!catalog.knownKey(needsRendering)) {
+            return Boolean.valueOf(false);
+        }
+        return catalog.getBooleanKey(needsRendering);
     }
 
     @Override
@@ -242,11 +263,28 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         }
     }
 
+    //TODO: implement me: (just finish next method)
     /**
      * @return list of embedded files
      */
     private List<Object> getEmbeddedFiles() {
+        if (this.catalog != null) {
+            COSObject buffer = this.catalog.getKey(ASAtom.NAMES);
+            if (buffer != COSObject.getEmpty()) {
+                COSObject base = buffer.getKey(ASAtom.EMBEDDED_FILES);
+                if (base.getType().equals(COSObjType.COSDictT)) {
+                    List<Object> files = new ArrayList<>();
+                    this.getNamesEmbeddedFiles(files, (COSDictionary) base.get());
+                    return Collections.unmodifiableList(files);
+                }
+            }
+        }
         return Collections.emptyList();
+    }
+
+    private void getNamesEmbeddedFiles(List<Object> files,
+                                       COSDictionary buffer) {
+        //TODO: implement me
     }
 
     /**
@@ -277,7 +315,14 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      * link to the high-level PDF Document structure
      */
     private List<org.verapdf.model.pdlayer.PDDocument> getDocument() {
-        return Collections.emptyList();
+        if(pdDocument != null) {
+            List<org.verapdf.model.pdlayer.PDDocument> list =
+                    new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            list.add(new GFPDDocument(pdDocument, flavour));
+            return Collections.unmodifiableList(list);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     /**

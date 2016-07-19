@@ -4,7 +4,7 @@ import org.verapdf.cos.COSName;
 import org.verapdf.model.coslayer.CosIIFilter;
 
 /**
- * Created by Timur on 4/10/2016.
+ * @author Timur Kamalov
  */
 public class GFCosIIFilter extends GFCosName implements CosIIFilter {
 
