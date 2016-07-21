@@ -6,6 +6,7 @@ import org.verapdf.model.pdlayer.PDDocument;
 import org.verapdf.model.pdlayer.PDPage;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,6 +40,16 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 	}
 
 	private List<PDPage> getPages() {
+		try {
+			List<PDPage> result = new ArrayList<>();
+			List<org.verapdf.pd.PDPage> rawPages = document.getPages();
+			for (org.verapdf.pd.PDPage rawPage : rawPages) {
+				result.add(new GFPDPage(rawPage));
+			}
+			return result;
+		} catch (Exception e) {
+			LOGGER.debug("Error while processing pages.");
+		}
 		return Collections.emptyList();
 	}
 
