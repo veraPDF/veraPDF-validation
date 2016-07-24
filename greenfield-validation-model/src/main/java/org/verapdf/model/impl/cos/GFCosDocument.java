@@ -12,8 +12,10 @@ import org.verapdf.model.impl.pd.GFPDDocument;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Timur Kamalov
@@ -272,7 +274,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
             COSObject buffer = this.catalog.getKey(ASAtom.NAMES);
             if (buffer != COSObject.getEmpty()) {
                 COSObject base = buffer.getKey(ASAtom.EMBEDDED_FILES);
-                if (base.getType().equals(COSObjType.COSDictT)) {
+                if (base.getType().equals(COSObjType.COS_DICT)) {
                     List<Object> files = new ArrayList<>();
                     this.getNamesEmbeddedFiles(files, (COSDictionary) base.get());
                     return Collections.unmodifiableList(files);
