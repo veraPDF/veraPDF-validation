@@ -1,6 +1,9 @@
 package org.verapdf.model.impl.cos;
 
+import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSInteger;
 import org.verapdf.cos.COSNumber;
+import org.verapdf.cos.COSReal;
 import org.verapdf.model.coslayer.CosNumber;
 
 /**
@@ -15,6 +18,15 @@ public class GFCosNumber extends GFCosObject implements CosNumber {
         super(number, type);
         this.longVal = number.getInteger();
         this.doubleVal = number.getReal();
+    }
+
+    public static GFCosNumber fromPDFParserNumber(COSBase number) {
+        if (number instanceof COSInteger) {
+            return new GFCosInteger((COSInteger) number);
+        } else if (number instanceof COSReal) {
+            return new GFCosReal((COSReal) number);
+        }
+        return null;
     }
 
     /**

@@ -2,7 +2,6 @@ package org.verapdf.model.impl.pd;
 
 
 import org.apache.log4j.Logger;
-import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
@@ -57,7 +56,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	private void parseOperators() {
 		try {
-			COSObject contentStream = simplePDDObject.getObject();
+			COSObject contentStream = simplePDObject.getObject();
 			if (!contentStream.empty() && contentStream.get().getType() == COSObjType.COS_STREAM) {
 				PDFStreamParser streamParser = new PDFStreamParser((COSStream) contentStream.get());
 				streamParser.parseTokens();

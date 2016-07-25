@@ -1,7 +1,7 @@
 package org.verapdf.model.impl.pd;
 
-import org.verapdf.model.baselayer.Object;
 import org.apache.log4j.Logger;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDDocument;
 import org.verapdf.model.pdlayer.PDPage;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
@@ -44,7 +44,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 			List<PDPage> result = new ArrayList<>();
 			List<org.verapdf.pd.PDPage> rawPages = document.getPages();
 			for (org.verapdf.pd.PDPage rawPage : rawPages) {
-				result.add(new GFPDPage(rawPage));
+				result.add(new GFPDPage(rawPage, flavour));
 			}
 			return result;
 		} catch (Exception e) {
