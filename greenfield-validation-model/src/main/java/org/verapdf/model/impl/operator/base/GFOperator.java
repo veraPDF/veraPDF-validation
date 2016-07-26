@@ -2,8 +2,10 @@ package org.verapdf.model.impl.operator.base;
 
 import org.verapdf.cos.*;
 import org.verapdf.model.GenericModelObject;
+import org.verapdf.model.coslayer.CosInteger;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.coslayer.CosReal;
+import org.verapdf.model.impl.cos.GFCosInteger;
 import org.verapdf.model.impl.cos.GFCosNumber;
 import org.verapdf.model.impl.cos.GFCosReal;
 import org.verapdf.model.operator.Operator;
@@ -33,6 +35,19 @@ public class GFOperator extends GenericModelObject implements Operator {
 				List<CosNumber> cosNumbers = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				cosNumbers.add(GFCosNumber.fromPDFParserNumber(base));
 				return Collections.unmodifiableList(cosNumbers);
+			}
+		}
+		return Collections.emptyList();
+	}
+
+	protected List<CosInteger> getLastInteger() {
+		if (!this.arguments.isEmpty()) {
+			COSBase number = this.arguments
+					.get(this.arguments.size() - 1);
+			if (number instanceof COSInteger) {
+				List<CosInteger> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+				list.add(new GFCosInteger((COSInteger) number));
+				return Collections.unmodifiableList(list);
 			}
 		}
 		return Collections.emptyList();
