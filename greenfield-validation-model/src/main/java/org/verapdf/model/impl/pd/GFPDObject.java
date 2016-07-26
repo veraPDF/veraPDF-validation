@@ -12,7 +12,7 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 	public static final int MAX_NUMBER_OF_ELEMENTS = 1;
 
 	protected PDDocument document;
-	protected org.verapdf.pd.PDObject simplePDDObject;
+	protected org.verapdf.pd.PDObject simplePDObject;
 
 	public GFPDObject(PDDocument document, final String type) {
 		super(type);
@@ -21,7 +21,7 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 
 	public GFPDObject(org.verapdf.pd.PDObject simplePDObject, final String type) {
 		super(type);
-		this.simplePDDObject = simplePDObject;
+		this.simplePDObject = simplePDObject;
 	}
 
 }

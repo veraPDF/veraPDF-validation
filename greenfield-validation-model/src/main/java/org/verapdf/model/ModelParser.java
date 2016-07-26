@@ -1,19 +1,23 @@
 package org.verapdf.model;
 
 import org.apache.log4j.Logger;
+import org.verapdf.features.FeaturesExtractor;
+import org.verapdf.features.config.FeaturesConfig;
+import org.verapdf.features.tools.FeaturesCollection;
 import org.verapdf.model.impl.cos.GFCosDocument;
 import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.ValidationModelParser;
+import org.verapdf.pdfa.PDFParser;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author Timur Kamalov
  */
-public class ModelParser implements ValidationModelParser, Closeable {
+public class ModelParser implements PDFParser, Closeable {
 
     private static final Logger LOGGER = Logger.getLogger(ModelParser.class);
 
@@ -70,13 +74,23 @@ public class ModelParser implements ValidationModelParser, Closeable {
      *             object
      */
     @Override
-    public org.verapdf.model.baselayer.Object getRoot() throws IOException {
+    public org.verapdf.model.baselayer.Object getRoot() {
         return new GFCosDocument(this.document, this.flavour);
     }
 
     @Override
     public PDFAFlavour getFlavour() {
         return this.flavour;
+    }
+
+    @Override
+    public FeaturesCollection getFeatures(FeaturesConfig config) {
+        return null;
+    }
+
+    @Override
+    public FeaturesCollection getFeatures(FeaturesConfig config, List<FeaturesExtractor> extractors) {
+        return null;
     }
 
     @Override
