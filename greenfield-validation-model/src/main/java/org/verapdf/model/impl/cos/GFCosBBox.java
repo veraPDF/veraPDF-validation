@@ -5,8 +5,6 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSNumber;
 import org.verapdf.model.coslayer.CosBBox;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 /**
  * @author Timur Kamalov
@@ -26,8 +24,8 @@ public class GFCosBBox extends GFCosArray implements CosBBox {
      *
      * @param array greenfield COSArray
      */
-    public GFCosBBox(COSArray array, PDDocument document, PDFAFlavour flavour) {
-        super(array, COS_BBOX_TYPE, document, flavour);
+    public GFCosBBox(COSArray array) {
+        super(array, COS_BBOX_TYPE);
     }
 
     /**

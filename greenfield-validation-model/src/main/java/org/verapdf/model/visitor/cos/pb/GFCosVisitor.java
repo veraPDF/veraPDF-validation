@@ -4,24 +4,17 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.cos.visitor.ICOSVisitor;
 import org.verapdf.model.impl.cos.*;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 /**
  * @author Timur Kamalov
  */
 public class GFCosVisitor implements ICOSVisitor {
 
-    private final PDDocument document;
-    private final PDFAFlavour flavour;
-
-    private GFCosVisitor(PDDocument document, PDFAFlavour flavour) {
-        this.document = document;
-        this.flavour = flavour;
+    private GFCosVisitor() {
     }
 
-    public static GFCosVisitor getInstance(PDDocument document, PDFAFlavour flavour) {
-        return new GFCosVisitor(document, flavour);
+    public static GFCosVisitor getInstance() {
+        return new GFCosVisitor();
     }
 
     /** {@inheritDoc} Create a GFCosArray for corresponding COSArray.
@@ -30,7 +23,7 @@ public class GFCosVisitor implements ICOSVisitor {
      */
     @Override
     public Object visitFromArray(COSArray obj) {
-        return new GFCosArray(obj, document, flavour);
+        return new GFCosArray(obj);
     }
 
     /** {@inheritDoc} Create a GFCosBool for corresponding COSBoolean.
@@ -53,7 +46,7 @@ public class GFCosVisitor implements ICOSVisitor {
     public Object visitFromDictionary(COSDictionary obj) {
         ASAtom type = obj.getNameKey(ASAtom.TYPE);
         boolean isFileSpec = type != null && ASAtom.FILESPEC.equals(type);
-        return isFileSpec ? new GFCosFileSpecification(obj, document, flavour) : new GFCosDict(obj, document, flavour);
+        return isFileSpec ? new GFCosFileSpecification(obj) : new GFCosDict(obj);
     }
 
     /** {@inheritDoc} Create a GFCosDocument for corresponding COSDocument.
@@ -62,7 +55,7 @@ public class GFCosVisitor implements ICOSVisitor {
      */
     @Override
     public Object visitFromDocument(COSDocument obj) {
-        return new GFCosDocument(obj, flavour);
+        return new GFCosDocument(obj);
     }
 
     /** {@inheritDoc} Create a GFCosReal for corresponding COSReal.
@@ -107,7 +100,7 @@ public class GFCosVisitor implements ICOSVisitor {
      */
     @Override
     public Object visitFromStream(COSStream obj) {
-        return new GFCosStream(obj, document, flavour);
+        return new GFCosStream(obj);
     }
 
     /** {@inheritDoc} Create a GFCosString for corresponding COSString.
@@ -124,8 +117,8 @@ public class GFCosVisitor implements ICOSVisitor {
      * @return {@link GFCosIndirect} object
      * @see GFCosIndirect
      */
-    public static Object visitFromIndirect(COSIndirect obj, PDDocument document, PDFAFlavour flavour) {
-        return new GFCosIndirect(obj, document, flavour);
+    public static Object visitFromIndirect(COSIndirect obj) {
+        return new GFCosIndirect(obj);
     }
 
 }

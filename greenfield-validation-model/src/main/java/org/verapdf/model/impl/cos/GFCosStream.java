@@ -1,13 +1,11 @@
 package org.verapdf.model.impl.cos;
 
-import org.verapdf.model.baselayer.Object;
 import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosFilter;
 import org.verapdf.model.coslayer.CosStream;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,8 +37,8 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	 * Default constructor
 	 * @param stream greenfield COSStream
 	 */
-	public GFCosStream(COSStream stream, PDDocument document, PDFAFlavour flavour) {
-		super(stream, COS_STREAM_TYPE, document, flavour);
+	public GFCosStream(COSStream stream) {
+		super(stream, COS_STREAM_TYPE);
 		this.length = parseLength(stream);
 		String fileSpec = stream.getStringKey(ASAtom.F);
 		this.fileSpec = fileSpec.equals("") ? null : fileSpec;
