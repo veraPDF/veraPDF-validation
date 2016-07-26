@@ -2,9 +2,9 @@ package org.verapdf.model.impl.pd;
 
 import org.apache.log4j.Logger;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.pdlayer.PDDocument;
 import org.verapdf.model.pdlayer.PDPage;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,11 +22,8 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 	/** Link name for pages */
 	public static final String PAGES = "pages";
 
-	private final PDFAFlavour flavour;
-
-	public GFPDDocument(org.verapdf.pd.PDDocument document, PDFAFlavour flavour) {
+	public GFPDDocument(org.verapdf.pd.PDDocument document) {
 		super(document, PD_DOCUMENT_TYPE);
-		this.flavour = flavour;
 	}
 
 	@Override
@@ -42,9 +39,9 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 	private List<PDPage> getPages() {
 		try {
 			List<PDPage> result = new ArrayList<>();
-			List<org.verapdf.pd.PDPage> rawPages = document.getPages();
+			List<org.verapdf.pd.PDPage> rawPages = StaticContainers.getDocument().getPages();
 			for (org.verapdf.pd.PDPage rawPage : rawPages) {
-				result.add(new GFPDPage(rawPage, flavour));
+				result.add(new GFPDPage(rawPage));
 			}
 			return result;
 		} catch (Exception e) {

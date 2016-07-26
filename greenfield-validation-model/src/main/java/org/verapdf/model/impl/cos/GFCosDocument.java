@@ -8,9 +8,8 @@ import org.verapdf.model.coslayer.CosDocument;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosTrailer;
 import org.verapdf.model.coslayer.CosXRef;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.pd.GFPDDocument;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,10 +34,6 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     private static final String ID = "ID";
     private static final String REQUIREMENTS = "Requirements";
 
-    private final PDFAFlavour flavour;
-
-    private PDDocument pdDocument;
-
     private final COSDictionary catalog;
 
     private final long indirectObjectCount;
@@ -52,22 +47,12 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     private final boolean isOptionalContentPresent;
 
     /**
-     * Default constructor
-     * @param pdDocument greenfield PDDocument
-     */
-    public GFCosDocument(PDDocument pdDocument, PDFAFlavour flavour) {
-        this(pdDocument.getDocument(), flavour);
-        this.pdDocument = pdDocument;
-    }
-
-    /**
      * Constructor using greenfield COSDocument
      * @param cosDocument greenfield COSDocument
      */
-    public GFCosDocument(COSDocument cosDocument, PDFAFlavour flavour) {
+    public GFCosDocument(COSDocument cosDocument) {
         super(cosDocument, COS_DOCUMENT_TYPE);
         this.catalog = this.getCatalog();
-        this.flavour = flavour;
 
         COSHeader cosHeader = cosDocument.getHeader();
         this.indirectObjectCount = cosDocument.getObjects().size();
@@ -294,7 +279,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      */
     private List<CosTrailer> getTrailer() {
         List<CosTrailer> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-        list.add(new GFCosTrailer((COSDictionary) cosDocument.getTrailer().getObject().get(), this.pdDocument, this.flavour));
+        list.add(new GFCosTrailer((COSDictionary) cosDocument.getTrailer().getObject().get()));
         return Collections.unmodifiableList(list);
     }
 
@@ -306,7 +291,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         List<CosIndirect> list = new ArrayList<>(objects.size());
         for (COSObject object : objects) {
             if (object.isIndirect()) {
-                list.add(new GFCosIndirect((COSIndirect) object.get(), this.pdDocument, this.flavour));
+                list.add(new GFCosIndirect((COSIndirect) object.get()));
             }
             //TODO : check if always indirect
         }
@@ -317,10 +302,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      * link to the high-level PDF Document structure
      */
     private List<org.verapdf.model.pdlayer.PDDocument> getDocument() {
-        if(pdDocument != null) {
+        if(StaticContainers.getDocument() != null) {
             List<org.verapdf.model.pdlayer.PDDocument> list =
                     new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-            list.add(new GFPDDocument(pdDocument, flavour));
+            list.add(new GFPDDocument(StaticContainers.getDocument()));
             return Collections.unmodifiableList(list);
         } else {
             return Collections.emptyList();

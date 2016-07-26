@@ -7,8 +7,6 @@ import org.verapdf.cos.COSIndirect;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.coslayer.CosObject;
 import org.verapdf.model.visitor.cos.pb.GFCosVisitor;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 /**
  * @author Timur Kamalov
@@ -49,12 +47,12 @@ public class GFCosObject extends GenericModelObject implements CosObject {
      * @return object of abstract model implementation, transformed from
      *         {@code base}
      */
-    public static CosObject getFromValue(COSBase base, PDDocument document, PDFAFlavour flavour) {
+    public static CosObject getFromValue(COSBase base) {
         if (base != null) {
-            GFCosVisitor visitor = GFCosVisitor.getInstance(document, flavour);
+            GFCosVisitor visitor = GFCosVisitor.getInstance();
             if (base instanceof COSIndirect) {
                 return (CosObject) GFCosVisitor
-                        .visitFromIndirect((COSIndirect) base, document, flavour);
+                        .visitFromIndirect((COSIndirect) base);
             }
             return (CosObject) base.accept(visitor);
         }

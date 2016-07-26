@@ -3,11 +3,9 @@ package org.verapdf.model.impl.operator.factory;
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
 import org.verapdf.operator.Operator;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for converting raw operators to the veraPDF-library operators
@@ -20,10 +18,10 @@ public final class OperatorFactory {
 
     private static final String MSG_UNEXPECTED_OBJECT_TYPE = "Unexpected type of object in tokens: ";
 
-    public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens, PDDocument document, PDFAFlavour flavour) {
+    public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens) {
         List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
         List<COSBase> arguments = new ArrayList<>();
-        OperatorParser parser = new OperatorParser(document, flavour);
+        OperatorParser parser = new OperatorParser();
 
         for (Object rawToken : rawTokens) {
             if (rawToken instanceof COSBase) {

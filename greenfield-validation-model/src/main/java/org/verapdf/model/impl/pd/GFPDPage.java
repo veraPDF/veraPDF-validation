@@ -3,7 +3,6 @@ package org.verapdf.model.impl.pd;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
 import org.verapdf.model.pdlayer.*;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,15 +42,12 @@ public class GFPDPage extends GFPDObject implements PDPage {
 
     private List<PDContentStream> contentStreams = null;
 
-    private final PDFAFlavour flavour;
-
     /**
      * Default constructor
      * @param pdPage is greenfield parser PDPage.
      */
-    public GFPDPage(org.verapdf.pd.PDPage pdPage, PDFAFlavour flavour) {
+    public GFPDPage(org.verapdf.pd.PDPage pdPage) {
         super(pdPage, PD_PAGE_TYPE);
-        this.flavour = flavour;
     }
 
     @Override
@@ -108,7 +104,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
     private void parseContentStream() {
         this.contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-        GFPDContentStream contentStream = new GFPDContentStream(page.getContent(), this.document, flavour);
+        GFPDContentStream contentStream = new GFPDContentStream(page.getContent());
         contentStreams.add(contentStream);
     }
 

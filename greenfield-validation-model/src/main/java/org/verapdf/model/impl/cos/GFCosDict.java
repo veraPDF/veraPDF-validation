@@ -7,8 +7,6 @@ import org.verapdf.model.coslayer.CosDict;
 import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.coslayer.CosObject;
 import org.verapdf.model.pdlayer.PDMetadata;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,16 +25,13 @@ public class GFCosDict extends GFCosObject implements CosDict {
 
     private final int size;
 
-    protected final PDDocument document;
-    protected final PDFAFlavour flavour;
-
     /**
      * Default constructor
      *
      * @param dictionary greenfield COSDictionary
      */
-    public GFCosDict(COSDictionary dictionary, PDDocument document, PDFAFlavour flavour) {
-        this(dictionary, COS_DICT_TYPE, document, flavour);
+    public GFCosDict(COSDictionary dictionary) {
+        this(dictionary, COS_DICT_TYPE);
     }
 
     /**
@@ -45,11 +40,9 @@ public class GFCosDict extends GFCosObject implements CosDict {
      * @param dictionary greenfield COSDictionary
      * @param type       type of child class
      */
-    protected GFCosDict(COSDictionary dictionary, final String type, final PDDocument document, final PDFAFlavour flavour) {
+    protected GFCosDict(COSDictionary dictionary, final String type) {
         super(dictionary, type);
         this.size = dictionary.size();
-        this.document = document;
-        this.flavour = flavour;
     }
 
     /**
@@ -82,7 +75,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
         for (ASAtom key : this.baseObject.getKeySet()) {
             if (key != null) {
                 COSBase name = COSName.fromValue(key);
-                list.add((CosName) getFromValue(name, this.document, this.flavour));
+                list.add((CosName) getFromValue(name));
             }
         }
         return Collections.unmodifiableList(list);
@@ -95,7 +88,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
         List<CosObject> list = new ArrayList<>(this.baseObject.size());
         for (COSObject value : this.baseObject.getValues()) {
             if (value != null) {
-                list.add(getFromValue(value.get(), this.document, this.flavour));
+                list.add(getFromValue(value.get()));
             }
         }
         return Collections.unmodifiableList(list);

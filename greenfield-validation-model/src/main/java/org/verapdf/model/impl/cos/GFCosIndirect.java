@@ -1,12 +1,10 @@
 package org.verapdf.model.impl.cos;
 
-import org.verapdf.model.baselayer.Object;
 import org.verapdf.cos.COSIndirect;
 import org.verapdf.cos.COSObject;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosObject;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,21 +24,16 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
 
     private final String id;
 
-    private final PDDocument document;
-    private final PDFAFlavour flavour;
-
     /**
      * Default constructor
      * @param indirectObject greenfield COSObject
      */
-    public GFCosIndirect(COSIndirect indirectObject, PDDocument document, PDFAFlavour flavour) {
+    public GFCosIndirect(COSIndirect indirectObject) {
         super(indirectObject, COS_INDIRECT_TYPE);
         //TODO : implement id generator
         //this.id = IDGenerator.generateID(indirectObject);
         this.isSpacingPDFACompliant = getspacingCompliesPDFA(indirectObject.getDirect());
         this.id = "";
-        this.document = document;
-        this.flavour = flavour;
     }
 
     @Override
@@ -63,7 +56,7 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
      */
     private List<CosObject> parseDirectObject() {
         List<CosObject> list = new ArrayList<>();
-        list.add(baseObject != null ? getFromValue(baseObject, this.document, this.flavour) : GFCosNull.getInstance());
+        list.add(baseObject != null ? getFromValue(baseObject) : GFCosNull.getInstance());
         return Collections.unmodifiableList(list);
     }
 
