@@ -38,7 +38,7 @@ public class GFPDICCBased extends GFPDColorSpace implements PDICCBased {
     }
 
     private List<ICCInputProfile> getICCProfile() {
-        ICCProfile iccProfile = ((org.verapdf.pd.colors.PDICCBased) simplePDDObject).getICCProfile();
+        ICCProfile iccProfile = ((org.verapdf.pd.colors.PDICCBased) simplePDObject).getICCProfile();
         if (iccProfile != null) {
             List<ICCInputProfile> profiles = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             profiles.add(new GFICCInputProfile(iccProfile));

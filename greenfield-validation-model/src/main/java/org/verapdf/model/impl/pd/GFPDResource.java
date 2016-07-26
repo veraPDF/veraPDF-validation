@@ -13,6 +13,6 @@ public class GFPDResource extends GFPDObject implements PDResource {
 
     @Override
     public Boolean getisInherited() {
-        return Boolean.valueOf(((org.verapdf.pd.PDResource) simplePDDObject).isInherited());
+        return Boolean.valueOf(((org.verapdf.pd.PDResource) simplePDObject).isInherited());
     }
 }
