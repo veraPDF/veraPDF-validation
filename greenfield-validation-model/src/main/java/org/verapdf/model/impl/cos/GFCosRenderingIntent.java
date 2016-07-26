@@ -17,7 +17,7 @@ public class GFCosRenderingIntent extends GFCosName implements CosRenderingInten
      * @param cosName is rendering intent COSName.
      */
     public GFCosRenderingIntent(COSName cosName) {
-        this(cosName, COS_NAME_TYPE);
+        this(cosName, COS_RENDERING_INTENT_TYPE);
     }
 
     /**
