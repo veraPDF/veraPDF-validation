@@ -2,12 +2,9 @@ package org.verapdf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosFileSpecification;
 import org.verapdf.model.external.EmbeddedFile;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,8 +27,8 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
      * Default constructor
      * @param dictionary greenfield COSDictionary
      */
-    public GFCosFileSpecification(COSDictionary dictionary, PDDocument document, PDFAFlavour flavour) {
-        super(dictionary, COS_FILE_SPECIFICATION_TYPE, document, flavour);
+    public GFCosFileSpecification(COSDictionary dictionary) {
+        super(dictionary, COS_FILE_SPECIFICATION_TYPE);
 		this.f = this.baseObject.getStringKey(ASAtom.F);
 		this.uf = this.baseObject.getStringKey(ASAtom.UF);
 		afrelationship = dictionary.getStringKey(new ASAtom("AFRelationship"));

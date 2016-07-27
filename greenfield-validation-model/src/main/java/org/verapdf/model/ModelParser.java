@@ -1,9 +1,11 @@
 package org.verapdf.model;
 
 import org.apache.log4j.Logger;
+import org.verapdf.core.ModelParsingException;
 import org.verapdf.features.FeaturesExtractor;
 import org.verapdf.features.config.FeaturesConfig;
 import org.verapdf.features.tools.FeaturesCollection;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosDocument;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.PDFParser;
@@ -27,27 +29,29 @@ public class ModelParser implements PDFParser, Closeable {
 
     private final PDFAFlavour flavour;
 
-    private ModelParser(PDDocument document, PDFAFlavour flavour) throws IOException {
-        this.document = document;
-        this.flavour = flavour;
+    private ModelParser(final InputStream docStream, PDFAFlavour flavour) throws IOException {
+        this.document = new PDDocument(docStream);
+        this.flavour = (flavour == PDFAFlavour.AUTO) ? obtainFlavour(this.document) : flavour;
+        initializeStaticContainers(this.document, this.flavour);
     }
 
-    public static ModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour) throws Exception {
-        PDDocument document = new PDDocument(toLoad);
 
-        PDFAFlavour resultFlavour;
-        if (flavour == PDFAFlavour.AUTO) {
-            resultFlavour = obtainFlavour(document);
-        } else if (flavour == PDFAFlavour.NO_FLAVOUR || flavour == null) {
-            resultFlavour = DEFAULT_FLAVOUR;
-        } else {
-            resultFlavour = flavour;
+    public static ModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour) throws ModelParsingException {
+        try {
+            return new ModelParser(toLoad, (flavour == PDFAFlavour.NO_FLAVOUR || flavour == null) ? DEFAULT_FLAVOUR : flavour);
+        } catch (IOException e) {
+            throw new ModelParsingException("Couldn't parse stream", e);
         }
-        return new ModelParser(document, resultFlavour);
     }
 
     private static PDFAFlavour obtainFlavour(PDDocument document) {
         return DEFAULT_FLAVOUR;
+    }
+
+    private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
+        StaticContainers.clearAllContainers();
+        StaticContainers.setDocument(document);
+        StaticContainers.setFlavour(flavour);
     }
 
     /**
@@ -75,7 +79,7 @@ public class ModelParser implements PDFParser, Closeable {
      */
     @Override
     public org.verapdf.model.baselayer.Object getRoot() {
-        return new GFCosDocument(this.document, this.flavour);
+        return new GFCosDocument(this.document.getDocument());
     }
 
     @Override

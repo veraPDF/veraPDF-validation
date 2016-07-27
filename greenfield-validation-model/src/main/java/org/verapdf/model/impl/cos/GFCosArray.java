@@ -5,8 +5,6 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosArray;
 import org.verapdf.model.coslayer.CosObject;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,15 +22,12 @@ public class GFCosArray extends GFCosObject implements CosArray {
     public static final String ELEMENTS = "elements";
     private final int size;
 
-    private final PDDocument document;
-    private final PDFAFlavour flavour;
-
     /**
      * Default constructor
      * @param array greenfield COSArray
      */
-    public GFCosArray(COSArray array, PDDocument document, PDFAFlavour flavour) {
-        this(array, COS_ARRAY_TYPE, document, flavour);
+    public GFCosArray(COSArray array) {
+        this(array, COS_ARRAY_TYPE);
     }
 
     /**
@@ -41,11 +36,9 @@ public class GFCosArray extends GFCosObject implements CosArray {
      * @param array greenfield COSArray
      * @param type type of object
      */
-    public GFCosArray(COSArray array, String type, PDDocument document, PDFAFlavour flavour) {
+    public GFCosArray(COSArray array, String type) {
         super(array, type);
         this.size = array.size();
-        this.document = document;
-        this.flavour = flavour;
     }
 
     /**
@@ -77,7 +70,7 @@ public class GFCosArray extends GFCosObject implements CosArray {
         while (iterator.hasNext()) {
             COSObject object = (COSObject) iterator.next();
             if (object != null && object.get() != null) {
-                list.add(getFromValue(object.get(), this.document, this.flavour));
+                list.add(getFromValue(object.get()));
             }
         }
         return Collections.unmodifiableList(list);

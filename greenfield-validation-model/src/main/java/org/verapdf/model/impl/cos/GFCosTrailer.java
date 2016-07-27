@@ -1,14 +1,12 @@
 package org.verapdf.model.impl.cos;
 
-import org.verapdf.model.baselayer.Object;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSIndirect;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosTrailer;
-import org.verapdf.pd.PDDocument;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,8 +28,8 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 	 * Default constructor
 	 * @param dictionary greenfield COSDictionary
 	 */
-	public GFCosTrailer(COSDictionary dictionary, PDDocument document, PDFAFlavour flavour) {
-		super(dictionary, COS_TRAILER_TYPE, document, flavour);
+	public GFCosTrailer(COSDictionary dictionary) {
+		super(dictionary, COS_TRAILER_TYPE);
 		this.isEncrypted = dictionary.getKey(ASAtom.ENCRYPT).get() != null;
 	}
 
@@ -55,7 +53,7 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 		List<CosIndirect> catalog = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		COSBase base = this.baseObject.getKey(ASAtom.ROOT).get();
 		//TODO : check that always indirect
-		catalog.add(new GFCosIndirect((COSIndirect) base, this.document, this.flavour));
+		catalog.add(new GFCosIndirect((COSIndirect) base));
 		return Collections.unmodifiableList(catalog);
 	}
 
