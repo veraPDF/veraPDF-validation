@@ -179,7 +179,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
             } else {
                 COSBase markInfo = markInfoObject.get();
                 if (markInfo instanceof COSDictionary) {
-                    return markInfo.getBooleanKey(new ASAtom("Marked"));
+                    return markInfo.getBooleanKey(ASAtom.MARKED);
                 } else {
                     LOGGER.warn("MarkedInfo must be a 'COSDictionary' but got: "
                             + markInfoObject.getClass().getSimpleName());
@@ -194,7 +194,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     @Override
     public String getRequirements() {
         if (this.catalog != null) {
-            COSObject reqArrayObject = this.catalog.getKey(new ASAtom(REQUIREMENTS));
+            COSObject reqArrayObject = this.catalog.getKey(ASAtom.REQUIREMENTS);
             if (reqArrayObject != null) {
                 COSBase reqArray = reqArrayObject.get();
                 if (reqArray instanceof COSArray) {
@@ -225,11 +225,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      */
     @Override
     public Boolean getNeedsRendering() {
-        ASAtom needsRendering = new ASAtom("NeedsRendering");
-        if(!catalog.knownKey(needsRendering)) {
+        if(!catalog.knownKey(ASAtom.NEEDS_RENDERING)) {
             return Boolean.valueOf(false);
         }
-        return catalog.getBooleanKey(needsRendering);
+        return catalog.getBooleanKey(ASAtom.NEEDS_RENDERING);
     }
 
     @Override

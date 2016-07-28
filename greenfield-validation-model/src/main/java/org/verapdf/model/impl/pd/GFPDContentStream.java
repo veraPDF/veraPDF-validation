@@ -6,6 +6,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.model.impl.operator.factory.OperatorFactory;
+import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.parser.PDFStreamParser;
@@ -25,10 +26,13 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	public static final String OPERATORS = "operators";
 
+	private PDResourcesHandler resourcesHandler;
+
 	private List<Operator> operators = null;
 
-	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream) {
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler) {
 		super(contentStream, CONTENT_STREAM_TYPE);
+		this.resourcesHandler = resourcesHandler;
 	}
 
 	@Override
@@ -53,7 +57,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				PDFStreamParser streamParser = new PDFStreamParser((COSStream) contentStream.get());
 				streamParser.parseTokens();
 				OperatorFactory operatorFactory = new OperatorFactory();
-				List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens());
+				List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
 
 				this.operators = Collections.unmodifiableList(result);
 			} else {

@@ -2,6 +2,7 @@ package org.verapdf.model.impl.operator.factory;
 
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
+import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.operator.Operator;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public final class OperatorFactory {
 
     private static final String MSG_UNEXPECTED_OBJECT_TYPE = "Unexpected type of object in tokens: ";
 
-    public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens) {
+    public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens, PDResourcesHandler resourcesHandler) {
         List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
         List<COSBase> arguments = new ArrayList<>();
         OperatorParser parser = new OperatorParser();
