@@ -6,6 +6,7 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosUnicodeName;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDSeparation;
@@ -25,19 +26,47 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
 
     public GFPDSeparation(org.verapdf.pd.colors.PDSeparation simplePDObject) {
         super(simplePDObject, SEPARATION_TYPE);
-//        TODO: rewrite it when StaticContainers will be added
-//        if (StaticContainers.separations.containsKey(simplePDObject.getColorantName())) {
-//            StaticContainers.separations.get(simplePDObject.getColorantName()).add(this);
-//        } else {
-//            final List<PBoxPDSeparation> separationList = new ArrayList<>();
-//            separationList.add(this);
-//            StaticContainers.separations.put(simplePDObject.getColorantName(), separationList);
-//        }
+        String name = simplePDObject.getColorantName().getString();
+        if (StaticContainers.separations.containsKey(name)) {
+            StaticContainers.separations.get(name).add(this);
+        } else {
+            final List<GFPDSeparation> separationList = new ArrayList<>();
+            separationList.add(this);
+            StaticContainers.separations.put(name, separationList);
+        }
     }
 
     @Override
     public Boolean getareTintAndAlternateConsistent() {
-        // TODO: rewrite it when StaticContainers will be added
+        String name = ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getColorantName().getString();
+
+        if (StaticContainers.inconsistentSeparations.contains(name)) {
+            return Boolean.FALSE;
+        }
+
+        if (StaticContainers.separations.get(name).size() > 1) {
+            for (GFPDSeparation gfPDSeparation : StaticContainers.separations.get(name)) {
+                if (gfPDSeparation.equals(this)) {
+                    continue;
+                }
+
+                COSObject alternateSpaceToCompare =
+                        ((org.verapdf.pd.colors.PDSeparation) gfPDSeparation.simplePDObject).getAlternate().getObject();
+                COSObject tintTransformToCompare =
+                        ((org.verapdf.pd.colors.PDSeparation) gfPDSeparation.simplePDObject).getTintTransform();
+
+                COSObject alternateSpaceCurrent =
+                        ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getAlternate().getObject();
+                COSObject tintTransformCurrent =
+                        ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getTintTransform();
+
+                if (!alternateSpaceToCompare.equals(alternateSpaceCurrent) || !tintTransformToCompare.equals(tintTransformCurrent)) {
+                    StaticContainers.inconsistentSeparations.add(name);
+                    return Boolean.FALSE;
+                }
+            }
+        }
+
         return Boolean.TRUE;
     }
 
