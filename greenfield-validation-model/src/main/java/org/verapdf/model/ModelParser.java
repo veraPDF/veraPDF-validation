@@ -1,5 +1,7 @@
 package org.verapdf.model;
 
+import com.adobe.xmp.XMPException;
+import com.adobe.xmp.impl.VeraPDFMeta;
 import org.apache.log4j.Logger;
 import org.verapdf.core.ModelParsingException;
 import org.verapdf.features.FeaturesExtractor;
@@ -7,7 +9,9 @@ import org.verapdf.features.config.FeaturesConfig;
 import org.verapdf.features.tools.FeaturesCollection;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosDocument;
+import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.PDMetadata;
 import org.verapdf.pdfa.PDFParser;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
@@ -45,7 +49,24 @@ public class ModelParser implements PDFParser, Closeable {
     }
 
     private static PDFAFlavour obtainFlavour(PDDocument document) {
-        return DEFAULT_FLAVOUR;
+        try {
+            PDCatalog documentCatalog = document.getCatalog();
+            if (documentCatalog == null) {
+                return DEFAULT_FLAVOUR;
+            }
+            PDMetadata metadata = documentCatalog.getMetadata();
+            if (metadata == null) {
+                return DEFAULT_FLAVOUR;
+            }
+            VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(metadata.getStream());
+            Integer identificationPart = veraPDFMeta.getIdentificationPart();
+            String identificationConformance = veraPDFMeta.getIdentificationConformance();
+            PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
+            return pdfaFlavour == PDFAFlavour.NO_FLAVOUR ? DEFAULT_FLAVOUR : pdfaFlavour;
+        } catch (IOException | XMPException e) {
+            LOGGER.debug(e);
+            return DEFAULT_FLAVOUR;
+        }
     }
 
     private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
@@ -58,10 +79,9 @@ public class ModelParser implements PDFParser, Closeable {
      * Get {@code PDDocument} object for current file.
      *
      * @return {@link org.verapdf.pd.PDDocument} object of greenfield
-     *         library.
-     * @throws IOException
-     *             when target file is not pdf or pdf file is not contain root
-     *             object
+     * library.
+     * @throws IOException when target file is not pdf or pdf file is not contain root
+     *                     object
      */
     public PDDocument getPDDocument() throws IOException {
         return this.document;
@@ -72,10 +92,9 @@ public class ModelParser implements PDFParser, Closeable {
      * together with the hierarchy.
      *
      * @return root object representing by
-     *         {@link org.verapdf.model.coslayer.CosDocument}
-     * @throws IOException
-     *             when target file is not pdf or pdf file is not contain root
-     *             object
+     * {@link org.verapdf.model.coslayer.CosDocument}
+     * @throws IOException when target file is not pdf or pdf file is not contain root
+     *                     object
      */
     @Override
     public org.verapdf.model.baselayer.Object getRoot() {
