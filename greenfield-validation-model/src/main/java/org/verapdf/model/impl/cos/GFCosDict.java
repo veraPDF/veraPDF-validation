@@ -6,6 +6,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosDict;
 import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.coslayer.CosObject;
+import org.verapdf.model.impl.pd.GFPDMetadata;
 import org.verapdf.model.pdlayer.PDMetadata;
 
 import java.util.ArrayList;
@@ -99,15 +100,14 @@ public class GFCosDict extends GFCosObject implements CosDict {
      */
     private List<PDMetadata> getMetadata() {
         COSDictionary dictionary = (COSDictionary) this.baseObject;
-        COSBase meta = dictionary.getKey(ASAtom.METADATA).get();
+        COSObject meta = dictionary.getKey(ASAtom.METADATA);
         ASAtom type = dictionary.getNameKey(ASAtom.TYPE);
-        if (meta != null && meta instanceof COSStream
+        if (meta != null && meta.getType() == COSObjType.COS_STREAM
                 && type != ASAtom.CATALOG) {
             ArrayList<PDMetadata> pdMetadatas = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-
-            //TODO : metadata
-
-            return pdMetadatas;
+            org.verapdf.pd.PDMetadata md = new org.verapdf.pd.PDMetadata(meta);
+            pdMetadatas.add(new GFPDMetadata(md, Boolean.FALSE));
+            return Collections.unmodifiableList(pdMetadatas);
         }
 
         return Collections.emptyList();
