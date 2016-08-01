@@ -2,6 +2,7 @@ package org.verapdf.model.impl.pd;
 
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
+import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.*;
 
 import java.util.ArrayList;
@@ -104,7 +105,8 @@ public class GFPDPage extends GFPDObject implements PDPage {
     private void parseContentStream() {
         this.contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-        GFPDContentStream contentStream = new GFPDContentStream(page.getContent());
+        PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
+        GFPDContentStream contentStream = new GFPDContentStream(page.getContent(), resourcesHandler);
         contentStreams.add(contentStream);
     }
 
