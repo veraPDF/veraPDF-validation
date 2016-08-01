@@ -22,6 +22,7 @@ class OperatorParser {
 
 	void parseOperator(List<org.verapdf.model.operator.Operator> operators,
 					   Operator rawOperator, List<COSBase> arguments) {
+
 	}
 
 }
