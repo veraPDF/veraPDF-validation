@@ -5,6 +5,7 @@ import org.verapdf.model.impl.pd.colors.*;
 import org.verapdf.model.impl.pd.patterns.GFPDShadingPattern;
 import org.verapdf.model.impl.pd.patterns.GFPDTilingPattern;
 import org.verapdf.model.pdlayer.PDColorSpace;
+import org.verapdf.pd.PDResources;
 import org.verapdf.pd.colors.*;
 import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.patterns.PDShadingPattern;
@@ -33,15 +34,19 @@ public class ColorSpaceFactory {
 
 	public static PDColorSpace getColorSpace(
 			org.verapdf.pd.colors.PDColorSpace colorSpace) {
-		return getColorSpace(colorSpace, 0, false);
+		return getColorSpace(colorSpace, null, 0, false);
 	}
 
 	public static PDColorSpace getColorSpace(
-			org.verapdf.pd.colors.PDColorSpace colorSpace, int opm, boolean overprintingFlag) {
+			org.verapdf.pd.colors.PDColorSpace colorSpace, PDResources inheritedResources) {
+		return getColorSpace(colorSpace, inheritedResources, 0, false);
+	}
+
+	public static PDColorSpace getColorSpace(
+			org.verapdf.pd.colors.PDColorSpace colorSpace, PDResources inheritedResources, int opm, boolean overprintingFlag) {
 		if (colorSpace == null) {
 			return null;
 		}
-        // TODO: will we do something similar? This code copied from pdfbox based implementation
         if (StaticContainers.cachedColorSpaces.containsKey(colorSpace)) {
             return StaticContainers.cachedColorSpaces.get(colorSpace);
         }
@@ -88,16 +93,16 @@ public class ColorSpaceFactory {
                 StaticContainers.cachedColorSpaces.put(colorSpace, result);
 				return result;
 			case PATTERN:
-				return getPattern((org.verapdf.pd.patterns.PDPattern) colorSpace);
+				return getPattern((org.verapdf.pd.patterns.PDPattern) colorSpace, inheritedResources);
 			default:
 				return null;
 		}
 	}
 
-	private static org.verapdf.model.pdlayer.PDPattern getPattern(org.verapdf.pd.patterns.PDPattern pattern) {
+	private static org.verapdf.model.pdlayer.PDPattern getPattern(org.verapdf.pd.patterns.PDPattern pattern, PDResources inheritedResources) {
 		switch (pattern.getPatternType()) {
 			case PDPattern.TYPE_TILING_PATTERN:
-				return new GFPDTilingPattern((PDTilingPattern) pattern);
+				return new GFPDTilingPattern((PDTilingPattern) pattern, inheritedResources);
 			case PDPattern.TYPE_SHADING_PATTERN:
 				return new GFPDShadingPattern((PDShadingPattern) pattern);
 			default:
