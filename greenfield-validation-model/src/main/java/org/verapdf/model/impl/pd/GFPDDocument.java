@@ -5,7 +5,9 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.pdlayer.PDDocument;
 import org.verapdf.model.pdlayer.PDPage;
+import org.verapdf.model.pdlayer.PDStructTreeRoot;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +23,8 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
 	/** Link name for pages */
 	public static final String PAGES = "pages";
+	/** Link name for annotations structure tree root of document */
+	public static final String STRUCTURE_TREE_ROOT = "StructTreeRoot";
 
 	public GFPDDocument(org.verapdf.pd.PDDocument document) {
 		super(document, PD_DOCUMENT_TYPE);
@@ -31,6 +35,8 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 		switch (link) {
 			case PAGES:
 				return this.getPages();
+			case STRUCTURE_TREE_ROOT:
+				return this.getStructureTreeRoot();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -55,4 +61,17 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 		return Boolean.FALSE;
 	}
 
+	private List<PDStructTreeRoot> getStructureTreeRoot() {
+		try {
+			org.verapdf.pd.PDStructTreeRoot root = document.getStructTreeRoot();
+			if (root != null) {
+				List<PDStructTreeRoot> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+				res.add(new GFPDStructTreeRoot(root));
+				return Collections.unmodifiableList(res);
+			}
+		} catch (IOException e) {
+			LOGGER.debug("Exception during obtaining Structure tree root", e);
+		}
+		return Collections.emptyList();
+	}
 }
