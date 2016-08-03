@@ -21,6 +21,9 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 
 	private final PDResources inheritedResources;
 
+	private List<PDContentStream> contentStreams = null;
+	private boolean containsTransparency = false;
+
 	public GFPDTilingPattern(
 			org.verapdf.pd.patterns.PDTilingPattern simplePDObject, PDResources inheritedResources) {
 		super(simplePDObject, TILING_PATTERN_TYPE);
@@ -37,11 +40,29 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 	}
 
 	private List<PDContentStream> getContentStream() {
+		if (this.contentStreams == null) {
+			parseContentStream();
+		}
+		return this.contentStreams;
+	}
+
+	/**
+	 * @return true if content stream of the pattern contains transparency
+	 */
+	public boolean isContainsTransparency() {
+		if (this.contentStreams == null) {
+			parseContentStream();
+		}
+		return this.containsTransparency;
+	}
+
+	private void parseContentStream() {
 		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		PDResourcesHandler handler = PDResourcesHandler.getInstance(
 				this.inheritedResources, ((org.verapdf.pd.patterns.PDTilingPattern) this.simplePDObject).getResources());
 		GFPDContentStream contentStream = new GFPDContentStream((org.verapdf.pd.PDContentStream) this.simplePDObject, handler);
+		this.containsTransparency |= contentStream.isContainsTransparency();
 		contentStreams.add(contentStream);
-		return contentStreams;
+		this.contentStreams = contentStreams;
 	}
 }

@@ -69,4 +69,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		}
 	}
 
+	public boolean isContainsTransparency() {
+		// TODO: implement me
+		return false;
+	}
 }
