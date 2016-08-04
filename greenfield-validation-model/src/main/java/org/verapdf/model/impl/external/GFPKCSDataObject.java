@@ -7,7 +7,6 @@ import org.verapdf.io.ASMemoryInStream;
 import org.verapdf.model.external.PKCSDataObject;
 import sun.security.pkcs.ContentInfo;
 import sun.security.pkcs.PKCS7;
-import sun.security.pkcs.ParsingException;
 import sun.security.pkcs.SignerInfo;
 import sun.security.x509.AlgorithmId;
 
@@ -27,7 +26,7 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
      */
     public static final String PKCS_DATA_OBJECT_TYPE = "PKCSDataObject";
 
-    protected PKCS7 pkcs7;
+    private PKCS7 pkcs7;
 
     /**
      * @param pkcsData {@link COSString} containing encoded PKCS#7 object.
