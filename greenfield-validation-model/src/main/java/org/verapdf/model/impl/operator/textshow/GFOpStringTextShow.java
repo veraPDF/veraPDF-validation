@@ -4,8 +4,8 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSString;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosString;
+import org.verapdf.model.factory.operators.GraphicState;
 import org.verapdf.model.impl.cos.GFCosString;
-import org.verapdf.model.impl.operator.factory.GraphicState;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 
 import java.util.ArrayList;
