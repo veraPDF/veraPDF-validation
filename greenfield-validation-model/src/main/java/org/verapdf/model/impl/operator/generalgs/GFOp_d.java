@@ -5,7 +5,6 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosArray;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.operator.Op_d;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,11 +22,8 @@ public class GFOp_d extends GFOpGeneralGS implements Op_d {
 	/** Name of link to the dash phase */
     public static final String DASH_PHASE = "dashPhase";
 
-    private final PDFAFlavour flavour;
-
-    public GFOp_d(List<COSBase> arguments, PDFAFlavour flavour) {
+    public GFOp_d(List<COSBase> arguments) {
         super(arguments, OP_D_TYPE);
-        this.flavour = flavour;
     }
 
     @Override

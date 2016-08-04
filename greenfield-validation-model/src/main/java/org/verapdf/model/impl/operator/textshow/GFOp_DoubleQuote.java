@@ -4,8 +4,8 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSNumber;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
+import org.verapdf.model.factory.operators.GraphicState;
 import org.verapdf.model.impl.cos.GFCosNumber;
-import org.verapdf.model.impl.operator.factory.GraphicState;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Op_DoubleQuote;
 
