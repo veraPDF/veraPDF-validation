@@ -3,8 +3,8 @@ package org.verapdf.model.impl.operator.textshow;
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.factory.operators.GraphicState;
 import org.verapdf.model.impl.operator.base.GFOperator;
-import org.verapdf.model.impl.operator.factory.GraphicState;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.OpTextShow;
 import org.verapdf.model.pdlayer.PDColorSpace;
@@ -69,7 +69,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
     }
 
 	//TODO : implement me
-    private List<PBGlyph> getUsedGlyphs() {
+    private List<Object> getUsedGlyphs() {
         return Collections.emptyList();
     }
 

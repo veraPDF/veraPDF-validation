@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.model.impl.operator.factory.OperatorFactory;
+import org.verapdf.model.factory.operators.OperatorFactory;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;

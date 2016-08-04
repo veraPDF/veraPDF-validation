@@ -1,4 +1,4 @@
-package org.verapdf.model.impl.operator.factory;
+package org.verapdf.model.factory.operators;
 
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
