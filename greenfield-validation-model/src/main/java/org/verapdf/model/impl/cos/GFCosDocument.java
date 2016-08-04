@@ -10,6 +10,7 @@ import org.verapdf.model.coslayer.CosTrailer;
 import org.verapdf.model.coslayer.CosXRef;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.pd.GFPDDocument;
+import org.verapdf.model.impl.pd.util.XMPChecker;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -161,13 +162,12 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         return null;
     }
 
-    //TODO: implement me:
     /**
      * @return true if XMP content matches Info dictionary content
      */
     @Override
     public Boolean getdoesInfoMatchXMP() {
-        return null;
+        return XMPChecker.doesInfoMatchXMP(cosDocument);
     }
 
     @Override
