@@ -8,6 +8,7 @@ import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.pd.PDMetadata;
+import org.verapdf.tools.TypeConverter;
 
 import java.io.IOException;
 import java.io.InputStream;
