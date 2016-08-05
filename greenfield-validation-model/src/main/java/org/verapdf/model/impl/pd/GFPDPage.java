@@ -1,7 +1,10 @@
 package org.verapdf.model.impl.pd;
 
+import org.verapdf.cos.COSArray;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
+import org.verapdf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.model.impl.cos.GFCosBBox;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.*;
 
@@ -79,8 +82,13 @@ public class GFPDPage extends GFPDObject implements PDPage {
         }
     }
 
-    //TODO: implement me:
     private List<PDGroup> getGroup() {
+        org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
+        if (group != null) {
+            List<PDGroup> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            res.add(new GFPDGroup(group));
+            return Collections.unmodifiableList(res);
+        }
         return Collections.emptyList();
     }
 
@@ -110,44 +118,56 @@ public class GFPDPage extends GFPDObject implements PDPage {
         contentStreams.add(contentStream);
     }
 
-    //TODO: implement me:
     private List<CosBBox> getMediaBox() {
-        return Collections.emptyList();
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSMediaBox());
     }
 
-    //TODO: implement me:
     private List<CosBBox> getCropBox() {
-        return Collections.emptyList();
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSCropBox());
     }
 
-    //TODO: implement me:
     private List<CosBBox> getBleedBox() {
-        return Collections.emptyList();
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSBleedBox());
     }
 
-    //TODO: implement me:
     private List<CosBBox> getTrimBox() {
-        return Collections.emptyList();
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSTrimBox());
     }
 
-    //TODO: implement me:
     private List<CosBBox> getArtBox() {
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSArtBox());
+    }
+
+    private List<CosBBox> getBBox(COSArray array) {
+        if (array != null) {
+            List<CosBBox> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            res.add(new GFCosBBox(array));
+            return Collections.unmodifiableList(res);
+        }
         return Collections.emptyList();
     }
 
-    //TODO: implement me:
     private List<PDColorSpace> getGroupCS() {
+        org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
+        if (group != null) {
+            org.verapdf.pd.colors.PDColorSpace colorSpace = group.getColorSpace();
+            if (colorSpace != null) {
+                List<PDColorSpace> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                // TODO: check this. Have we add resources here?
+                res.add(ColorSpaceFactory.getColorSpace(colorSpace));
+                return Collections.unmodifiableList(res);
+            }
+        }
         return Collections.emptyList();
     }
 
-    //TODO: implement me:
     /**
      * @return true if the page contains presentation steps
      * (/PresSteps in the page dictionary).
      */
     @Override
     public Boolean getcontainsPresSteps() {
-        return null;
+        return Boolean.valueOf(((org.verapdf.pd.PDPage) simplePDObject).getCOSPresSteps() != null);
     }
 
     //TODO: implement me:
