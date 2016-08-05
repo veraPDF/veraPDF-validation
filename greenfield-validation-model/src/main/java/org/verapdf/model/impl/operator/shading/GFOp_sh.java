@@ -3,9 +3,11 @@ package org.verapdf.model.impl.operator.shading;
 import org.verapdf.cos.COSBase;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.impl.operator.base.GFOperator;
+import org.verapdf.model.impl.pd.patterns.GFPDShading;
 import org.verapdf.model.operator.Op_sh;
 import org.verapdf.model.pdlayer.PDShading;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,9 +22,11 @@ public class GFOp_sh extends GFOperator implements Op_sh {
 	/** Name of link to the shading */
     public static final String SHADING = "shading";
 
-    //TODO : implement me
-    public GFOp_sh(List<COSBase> arguments) {
+    private final org.verapdf.pd.patterns.PDShading rawShading;
+
+    public GFOp_sh(List<COSBase> arguments, org.verapdf.pd.patterns.PDShading rawShading) {
         super(arguments, OP_SH_TYPE);
+        this.rawShading = rawShading;
     }
 
     @Override
@@ -34,7 +38,13 @@ public class GFOp_sh extends GFOperator implements Op_sh {
         return super.getLinkedObjects(link);
     }
 
-    private List<PDShading> getShading() {
+    private List<org.verapdf.model.pdlayer.PDShading> getShading() {
+        if (this.rawShading != null) {
+            List<PDShading> list =
+                    new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            list.add(new GFPDShading(this.rawShading));
+            return Collections.unmodifiableList(list);
+        }
         return Collections.emptyList();
     }
 

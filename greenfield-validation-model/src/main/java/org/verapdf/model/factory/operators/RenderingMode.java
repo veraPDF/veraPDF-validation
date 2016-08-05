@@ -40,4 +40,12 @@ public enum RenderingMode {
         this.value = value;
     }
 
+    public boolean isFill() {
+        return this == FILL || this == FILL_STROKE || this == FILL_CLIP || this == FILL_STROKE_CLIP;
+    }
+
+    public boolean isStroke() {
+        return this == STROKE || this == FILL_STROKE || this == STROKE_CLIP || this == FILL_STROKE_CLIP;
+    }
+
 }

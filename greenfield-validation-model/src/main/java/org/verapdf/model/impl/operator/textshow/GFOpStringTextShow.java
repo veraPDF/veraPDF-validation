@@ -1,6 +1,7 @@
 package org.verapdf.model.impl.operator.textshow;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSString;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosString;
@@ -36,11 +37,9 @@ public abstract class GFOpStringTextShow extends GFOpTextShow {
 
     private List<CosString> getShowString() {
 		if (!this.arguments.isEmpty()) {
-			COSBase base = this.arguments
-					.get(this.arguments.size() - 1);
-			if (base instanceof COSString) {
-				List<CosString> string =
-						new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			COSBase base = this.arguments.get(this.arguments.size() - 1);
+			if (base.getType() == COSObjType.COS_STRING) {
+				List<CosString> string = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				string.add(new GFCosString((COSString) base));
 				return Collections.unmodifiableList(string);
 			}

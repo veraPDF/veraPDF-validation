@@ -2,6 +2,7 @@ package org.verapdf.model.impl.operator.markedcontent;
 
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.impl.cos.GFCosName;
@@ -35,9 +36,8 @@ public class GFOp_MP extends GFOpMarkedContent implements Op_MP {
 	@Override
 	protected List<CosName> getTag() {
 		if (!this.arguments.isEmpty()) {
-			COSBase name = this.arguments
-					.get(this.arguments.size() - 1);
-			if (name instanceof COSName) {
+			COSBase name = this.arguments.get(this.arguments.size() - 1);
+			if (name.getType() == COSObjType.COS_NAME) {
 				List<CosName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(new GFCosName((COSName) name));
 				return Collections.unmodifiableList(list);

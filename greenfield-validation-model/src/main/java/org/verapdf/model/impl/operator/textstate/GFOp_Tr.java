@@ -1,7 +1,7 @@
 package org.verapdf.model.impl.operator.textstate;
 
 import org.verapdf.cos.COSBase;
-import org.verapdf.cos.COSInteger;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.model.operator.Op_Tr;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class GFOp_Tr extends GFOpTextState implements Op_Tr {
     public Long getrenderingMode() {
         if (!this.arguments.isEmpty()) {
             COSBase renderingMode = this.arguments.get(0);
-            if (renderingMode instanceof COSInteger) {
+            if (renderingMode.getType() == COSObjType.COS_INTEGER) {
                 return Long.valueOf((renderingMode).getInteger());
             }
         }

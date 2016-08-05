@@ -2,9 +2,11 @@ package org.verapdf.model.impl.operator.generalgs;
 
 import org.verapdf.cos.COSBase;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.impl.pd.GFPDExtGState;
 import org.verapdf.model.operator.Op_gs;
 import org.verapdf.model.pdlayer.PDExtGState;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,8 +23,11 @@ public class GFOp_gs extends GFOpGeneralGS implements Op_gs {
 	/** Name of link to the extended graphic state */
     public static final String EXT_G_STATE = "extGState";
 
-    public GFOp_gs(List<COSBase> arguments) {
+    private final org.verapdf.pd.PDExtGState extGState;
+
+    public GFOp_gs(List<COSBase> arguments, org.verapdf.pd.PDExtGState extGState) {
         super(arguments, OP_GS_TYPE);
+        this.extGState = extGState;
     }
 
     @Override
@@ -34,6 +39,12 @@ public class GFOp_gs extends GFOpGeneralGS implements Op_gs {
     }
 
     private List<PDExtGState> getExtGState() {
+        if (this.extGState != null) {
+            List<PDExtGState> extGStates = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            extGStates.add(new GFPDExtGState(this.extGState));
+            return Collections.unmodifiableList(extGStates);
+        }
         return Collections.emptyList();
     }
+
 }
