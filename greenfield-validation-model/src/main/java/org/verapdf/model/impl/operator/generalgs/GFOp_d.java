@@ -1,11 +1,15 @@
 package org.verapdf.model.impl.operator.generalgs;
 
+import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosArray;
 import org.verapdf.model.coslayer.CosNumber;
+import org.verapdf.model.impl.cos.GFCosArray;
 import org.verapdf.model.operator.Op_d;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,6 +43,14 @@ public class GFOp_d extends GFOpGeneralGS implements Op_d {
     }
 
     private List<CosArray> getDashArray() {
+        if (this.arguments.size() > 1) {
+            COSBase array = this.arguments.get(this.arguments.size() - 2);
+            if (array.getType() == COSObjType.COS_ARRAY) {
+                List<CosArray> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                list.add(new GFCosArray((COSArray) array));
+                return Collections.unmodifiableList(list);
+            }
+        }
         return Collections.emptyList();
     }
 

@@ -31,7 +31,7 @@ public class GFOperator extends GenericModelObject implements Operator {
 	protected List<CosNumber> getLastNumber() {
 		if (!this.arguments.isEmpty()) {
 			COSBase base = this.arguments.get(this.arguments.size() - 1);
-			if (base instanceof COSNumber) {
+			if (base.getType() == COSObjType.COS_DICT) {
 				List<CosNumber> cosNumbers = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				cosNumbers.add(GFCosNumber.fromPDFParserNumber(base));
 				return Collections.unmodifiableList(cosNumbers);
@@ -42,9 +42,8 @@ public class GFOperator extends GenericModelObject implements Operator {
 
 	protected List<CosInteger> getLastInteger() {
 		if (!this.arguments.isEmpty()) {
-			COSBase number = this.arguments
-					.get(this.arguments.size() - 1);
-			if (number instanceof COSInteger) {
+			COSBase number = this.arguments.get(this.arguments.size() - 1);
+			if (number.getType() == COSObjType.COS_INTEGER) {
 				List<CosInteger> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(new GFCosInteger((COSInteger) number));
 				return Collections.unmodifiableList(list);
@@ -56,9 +55,9 @@ public class GFOperator extends GenericModelObject implements Operator {
 	protected List<CosNumber> getListOfNumbers() {
 		List<CosNumber> list = new ArrayList<>();
 		for (COSBase base : this.arguments) {
-			if (base instanceof COSArray) {
+			if (base.getType() == COSObjType.COS_ARRAY) {
 				addArrayElementsAsNumbers(list, (COSArray) base);
-			} else if (base instanceof COSNumber) {
+			} else if (base.getType() == COSObjType.COS_REAL || base.getType() == COSObjType.COS_INTEGER) {
 				list.add(GFCosNumber.fromPDFParserNumber(base));
 			}
 		}
@@ -67,7 +66,7 @@ public class GFOperator extends GenericModelObject implements Operator {
 
 	private static void addArrayElementsAsReals(List<CosReal> list, COSArray base) {
 		for (COSObject arg : base) {
-			if (arg.get() instanceof COSReal) {
+			if (arg.get().getType() == COSObjType.COS_REAL) {
 				list.add(new GFCosReal((COSReal) arg.get()));
 			}
 		}

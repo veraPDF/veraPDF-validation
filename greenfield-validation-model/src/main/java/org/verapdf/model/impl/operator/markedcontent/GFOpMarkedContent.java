@@ -16,8 +16,6 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Base class for marked content operators
- *
  * @author Timur Kamalov
  */
 public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedContent {
@@ -35,9 +33,8 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
     protected List<CosName> getTag() {
         if (this.arguments.size() > 1) {
-			COSBase name = this.arguments
-					.get(this.arguments.size() - 2);
-			if (name instanceof COSName) {
+			COSBase name = this.arguments.get(this.arguments.size() - 2);
+			if (name.getType() == COSObjType.COS_NAME) {
 				List<CosName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(new GFCosName((COSName) name));
 				return Collections.unmodifiableList(list);
@@ -48,11 +45,9 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
     protected List<CosDict> getPropertiesDict() {
         if (!this.arguments.isEmpty()) {
-			COSBase dict = this.arguments
-					.get(this.arguments.size() - 1);
-			if (dict instanceof COSDictionary) {
-				List<CosDict> list =
-						new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			COSBase dict = this.arguments.get(this.arguments.size() - 1);
+			if (dict.getType() == COSObjType.COS_DICT) {
+				List<CosDict> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(new GFCosDict((COSDictionary) dict));
 				return Collections.unmodifiableList(list);
 			}
@@ -62,11 +57,10 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	protected List<CosLang> getLang() {
 		if (!this.arguments.isEmpty()) {
-			COSBase dict = this.arguments
-					.get(this.arguments.size() - 1);
-			if (dict instanceof COSDictionary) {
+			COSBase dict = this.arguments.get(this.arguments.size() - 1);
+			if (dict.getType() == COSObjType.COS_DICT) {
 				COSObject baseLang = dict.getKey(ASAtom.LANG);
-				if (baseLang != null && !baseLang.empty() && baseLang.get() instanceof COSString) {
+				if (baseLang != null && !baseLang.empty() && baseLang.get().getType() == COSObjType.COS_STRING) {
 					List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 					list.add(new GFCosLang((COSString) baseLang.get()));
 					return Collections.unmodifiableList(list);

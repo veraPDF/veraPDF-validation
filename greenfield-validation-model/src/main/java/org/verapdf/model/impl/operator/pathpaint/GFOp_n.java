@@ -15,7 +15,7 @@ public class GFOp_n extends GFOpPathPaint implements Op_n {
 	public static final String OP_N_TYPE = "Op_n";
 
 	public GFOp_n(List<COSBase> arguments) {
-		super(arguments, null, OP_N_TYPE);
+		super(arguments, null, null, 0, false, false, null, OP_N_TYPE);
 	}
 
 }

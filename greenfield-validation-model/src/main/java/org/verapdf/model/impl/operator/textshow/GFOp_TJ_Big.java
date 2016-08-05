@@ -2,6 +2,7 @@ package org.verapdf.model.impl.operator.textshow;
 
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosArray;
 import org.verapdf.model.factory.operators.GraphicState;
@@ -42,9 +43,8 @@ public class GFOp_TJ_Big extends GFOpTextShow implements Op_TJ_Big {
 		if (!this.arguments.isEmpty()) {
 			COSBase base = this.arguments.get(
 					this.arguments.size() - 1);
-			if (base instanceof COSArray) {
-				List<CosArray> array =
-						new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			if (base.getType() == COSObjType.COS_ARRAY) {
+				List<CosArray> array = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				array.add(new GFCosArray((COSArray) base));
 				return Collections.unmodifiableList(array);
 			}

@@ -62,7 +62,7 @@ class OperatorParser {
 				break;
 			case Operators.GS:
 				//TODO : manage ExtGState
-				processedOperators.add(new GFOp_gs(arguments));
+				processedOperators.add(new GFOp_gs(arguments, null));
 				break;
 			case Operators.I_SETFLAT:
 				processedOperators.add(new GFOp_i(arguments));

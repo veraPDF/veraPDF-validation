@@ -2,6 +2,7 @@ package org.verapdf.model.impl.operator.generalgs;
 
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosRenderingIntent;
 import org.verapdf.model.impl.cos.GFCosRenderingIntent;
@@ -37,7 +38,7 @@ public class GFOp_ri extends GFOpGeneralGS implements Op_ri {
     private List<CosRenderingIntent> getRenderingIntent() {
 		if (!this.arguments.isEmpty()) {
 			COSBase base = this.arguments.get(this.arguments.size() - 1);
-			if (base instanceof COSName) {
+			if (base.getType() == COSObjType.COS_NAME) {
 				List<CosRenderingIntent> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(new GFCosRenderingIntent((COSName) base));
 				return Collections.unmodifiableList(list);

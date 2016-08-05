@@ -32,4 +32,5 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 				return super.getLinkedObjects(link);
 		}
 	}
+
 }

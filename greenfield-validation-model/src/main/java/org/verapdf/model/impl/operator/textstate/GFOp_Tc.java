@@ -31,4 +31,5 @@ public class GFOp_Tc extends GFOpTextState implements Op_Tc {
 	private List<CosNumber> getCharSpacing() {
 		return this.getLastNumber();
 	}
+
 }
