@@ -1,6 +1,8 @@
 package org.verapdf.model.impl.containers;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.model.impl.pd.colors.GFPDSeparation;
+import org.verapdf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
@@ -17,6 +19,9 @@ public class StaticContainers {
 
 	private static PDDocument document;
 	private static PDFAFlavour flavour;
+
+	// TaggedPDF
+	public static TaggedPDFRoleMapHelper roleMapHelper;
 
 	//PBoxPDSeparation
 	public static Map<String, List<GFPDSeparation>> separations = new HashMap<>();
@@ -51,6 +56,16 @@ public class StaticContainers {
 
 	public static void setFlavour(PDFAFlavour flavour) {
 		StaticContainers.flavour = flavour;
+		if (roleMapHelper != null) {
+			roleMapHelper.setFlavour(flavour);
+		}
 	}
 
+	public static TaggedPDFRoleMapHelper getRoleMapHelper() {
+		return roleMapHelper;
+	}
+
+	public static void setRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
+		StaticContainers.roleMapHelper = new TaggedPDFRoleMapHelper(roleMap, StaticContainers.flavour);
+	}
 }
