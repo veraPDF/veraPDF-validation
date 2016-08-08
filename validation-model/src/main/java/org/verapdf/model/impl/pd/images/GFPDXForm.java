@@ -14,7 +14,6 @@ import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDGroup;
 import org.verapdf.model.pdlayer.PDXForm;
-import org.verapdf.pd.PDResources;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,8 +36,8 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private boolean groupContainsTransparency = false;
 	private boolean contentStreamContainsTransparency = false;
 
-	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResources resources) {
-		super(simplePDObject, resources, X_FORM_TYPE);
+	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler) {
+		super(simplePDObject, resourcesHandler, X_FORM_TYPE);
 	}
 
 	@Override
@@ -111,10 +110,8 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	private void parseContentStream() {
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		PDResourcesHandler handler = PDResourcesHandler.getInstance(this.inheritedResources,
-				((org.verapdf.pd.images.PDXForm) simplePDObject).getResources());
 		GFPDContentStream gfContentStream = new GFPDContentStream(
-				(org.verapdf.pd.images.PDXForm) this.simplePDObject, handler);
+				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler);
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		streams.add(gfContentStream);
 		this.contentStreams = streams;
