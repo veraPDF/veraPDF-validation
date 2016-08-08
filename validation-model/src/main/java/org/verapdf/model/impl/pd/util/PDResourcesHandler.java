@@ -5,6 +5,8 @@ import org.verapdf.cos.COSName;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.colors.PDColorSpace;
+import org.verapdf.pd.images.PDXObject;
+import org.verapdf.pd.patterns.PDShading;
 
 /**
  * @author Timur Kamalov
@@ -65,8 +67,38 @@ public class PDResourcesHandler {
 		return null;
 	}
 
+	public PDShading getShading(COSName name) {
+		return getShading(name.getName());
+	}
+
+	public PDShading getShading(ASAtom name) {
+		PDShading shading = this.resources.getShading(name);
+		if (shading != null) {
+			shading.setInherited(inheritedResources);
+			return shading;
+		}
+		return null;
+	}
+
+	public PDXObject getXObject(COSName name) {
+		return getXObject(name.getName());
+	}
+
+	public PDXObject getXObject(ASAtom name) {
+		PDXObject xObject = this.resources.getXObject(name);
+		if (xObject != null) {
+			xObject.setInherited(inheritedResources);
+			return xObject;
+		}
+		return null;
+	}
+
 	public PDExtGState getExtGState(COSName name) {
-		PDExtGState state = this.resources.getExtGState(name.getName());
+		return getExtGState(name);
+	}
+
+	public PDExtGState getExtGState(ASAtom name) {
+		PDExtGState state = this.resources.getExtGState(name);
 		if (state != null) {
 			state.setInherited(inheritedResources);
 			return state;

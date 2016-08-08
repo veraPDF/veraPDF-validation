@@ -2,6 +2,7 @@ package org.verapdf.model.factory.operators;
 
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSName;
+import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceGray;
 
@@ -77,6 +78,25 @@ public class GraphicState implements Cloneable {
 
 	public void setOpm(int opm) {
 		this.opm = opm;
+	}
+
+	public void copyProperties(GraphicState graphicState) {
+		this.fillColorSpace = graphicState.getFillColorSpace();
+		this.strokeColorSpace = graphicState.getStrokeColorSpace();
+		this.renderingMode = graphicState.getRenderingMode();
+		this.fontName = graphicState.getFontName();
+		this.overprintingFlagStroke = graphicState.isOverprintingFlagStroke();
+		this.overprintingFlagNonStroke = graphicState.isOverprintingFlagNonStroke();
+		this.opm = graphicState.getOpm();
+	}
+
+	public void copyPropertiesFormExtGState(PDExtGState extGState) {
+		if (extGState != null) {
+			//TODO : copy font settings
+			this.overprintingFlagStroke = extGState.getStrokingOverprintControl();
+			this.overprintingFlagNonStroke = extGState.getNonStrokingOverprintControl();
+			this.opm = extGState.getOverprintMode();
+		}
 	}
 
 	@Override
