@@ -1,6 +1,10 @@
 package org.verapdf.model.impl.pd.util;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSName;
+import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResources;
+import org.verapdf.pd.colors.PDColorSpace;
 
 /**
  * @author Timur Kamalov
@@ -30,6 +34,44 @@ public class PDResourcesHandler {
 		} else {
 			return new PDResourcesHandler(currentResources, false);
 		}
+	}
+
+	//Used for XObjects
+	public PDResourcesHandler getExtendedResources(PDResources objectResources) {
+		return getInstance(this.resources, objectResources);
+	}
+
+	public PDColorSpace getColorSpace(COSName name) {
+		return getColorSpace(name.getName());
+	}
+
+	public PDColorSpace getColorSpace(ASAtom name) {
+		//TODO : is default color space used
+		PDColorSpace colorSpace = this.resources.getColorSpace(name);
+		colorSpace.setInherited(inheritedResources);
+		return colorSpace;
+	}
+
+	public PDColorSpace getPattern(COSName name) {
+		return getPattern(name.getName());
+	}
+
+	public PDColorSpace getPattern(ASAtom name) {
+		PDColorSpace pattern = this.resources.getPattern(name);
+		if (pattern != null) {
+			pattern.setInherited(inheritedResources);
+			return pattern;
+		}
+		return null;
+	}
+
+	public PDExtGState getExtGState(COSName name) {
+		PDExtGState state = this.resources.getExtGState(name.getName());
+		if (state != null) {
+			state.setInherited(inheritedResources);
+			return state;
+		}
+		return null;
 	}
 
 }
