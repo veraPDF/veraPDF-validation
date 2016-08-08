@@ -10,7 +10,7 @@ jdk:
 branches:
   except:
     - /^v|d\d+\.\d+\.\d+$/
-    - /^jenkins-veraPDF-parser-v|d\\d+\\.\\d+\\.\\d+$/
+    - /^jenkins-veraPDF-validation-v|d\\d+\\.\\d+\\.\\d+$/
 
 notifications:
   slack:
