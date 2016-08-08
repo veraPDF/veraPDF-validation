@@ -11,7 +11,10 @@ import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDAnnot;
 import org.verapdf.model.pdlayer.PDContentStream;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDAnnotation;
+import org.verapdf.pd.PDAppearanceEntry;
+import org.verapdf.pd.PDAppearanceStream;
+import org.verapdf.pd.PDGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,14 +40,14 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final int X_AXIS = 0;
 	public static final int Y_AXIS = 1;
 
-	private final PDResources pageResources;
+	private final PDResourcesHandler resources;
 
 	private List<PDContentStream> appearance = null;
 	private boolean containsTransparency = false;
 
-	public GFPDAnnot(PDAnnotation annot, PDResources pageResources) {
+	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources) {
 		super(annot, ANNOTATION_TYPE);
-		this.pageResources = pageResources;
+		this.resources = pageResources;
 	}
 
 	@Override
@@ -211,7 +214,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	private void addAppearance(List<PDContentStream> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
-			PDResourcesHandler resources = PDResourcesHandler.getInstance(this.pageResources, toAdd.getResources());
+			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
 			GFPDContentStream stream = new GFPDContentStream(toAdd, resources);
 			this.containsTransparency |= stream.isContainsTransparency();
 			PDGroup group = toAdd.getGroup();
