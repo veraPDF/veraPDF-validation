@@ -76,4 +76,18 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 		return Collections.emptyList();
 	}
 
+	public static PDXObject getTypedPDXObject(
+			org.verapdf.pd.images.PDXObject xObject,
+			PDResourcesHandler resources) {
+		ASAtom type = xObject.getType();
+		if (ASAtom.FORM.equals(type)) {
+			return new GFPDXForm((PDXForm) xObject, resources);
+		} else if (ASAtom.IMAGE.equals(type)) {
+			return new GFPDXImage((PDXImage) xObject);
+		} else if (ASAtom.PS.equals(type)) {
+			return new GFPDXObject(xObject);
+		} else {
+			return null;
+		}
+	}
 }
