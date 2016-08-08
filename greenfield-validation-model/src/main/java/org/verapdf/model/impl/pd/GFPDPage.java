@@ -7,6 +7,7 @@ import org.verapdf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.model.impl.cos.GFCosBBox;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.*;
+import org.verapdf.pd.PDAnnotation;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,8 +93,15 @@ public class GFPDPage extends GFPDObject implements PDPage {
         return Collections.emptyList();
     }
 
-    //TODO: implement me:
     private List<PDAnnot> getAnnotations() {
+        List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
+        if (annots.size() > 0) {
+            List<PDAnnot> res = new ArrayList<>(annots.size());
+            for (PDAnnotation annot : annots) {
+                res.add(new GFPDAnnot(annot, ((org.verapdf.pd.PDPage) simplePDObject).getResources()));
+            }
+            return Collections.unmodifiableList(res);
+        }
         return Collections.emptyList();
     }
 
