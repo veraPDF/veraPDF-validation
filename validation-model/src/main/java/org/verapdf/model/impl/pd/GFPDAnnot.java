@@ -7,15 +7,16 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.impl.cos.GFCosNumber;
+import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDAnnot;
 import org.verapdf.model.pdlayer.PDContentStream;
-import org.verapdf.pd.PDAnnotation;
-import org.verapdf.pd.PDResources;
+import org.verapdf.pd.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Maksim Bezrukov
@@ -54,7 +55,17 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public String getAP() {
-		// TODO: implement me
+		COSObject apLocal = ((PDAnnotation) simplePDObject).getCOSAP();
+		if (apLocal != null) {
+			StringBuilder result = new StringBuilder();
+			for (ASAtom key : apLocal.getKeySet()) {
+				result.append(key.getValue());
+				result.append(' ');
+			}
+			//remove last whitespace character
+			return result.length() <= 0 ? result.toString() :
+					result.substring(0, result.length() - 1);
+		}
 		return null;
 	}
 
@@ -70,8 +81,14 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public String getN_type() {
-		// TODO: implement me
-		return null;
+		PDAppearanceEntry normalAppearance = ((PDAnnotation) simplePDObject).getNormalAppearance();
+		if (normalAppearance == null) {
+			return null;
+		} else if (normalAppearance.isSubDictionary()) {
+			return DICT;
+		} else {
+			return STREAM;
+		}
 	}
 
 	@Override
@@ -166,51 +183,40 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<PDContentStream> parseAppearance() {
-		// TODO: implement me
-		/*
-		PDAppearanceDictionary appearanceDictionary = ((PDAnnotation) this.simplePDObject)
-				.getAppearance();
-		if (appearanceDictionary != null) {
-			COSDictionary dictionary = appearanceDictionary.getCOSObject();
-			COSBase normalAppearanceBase = dictionary.getDictionaryObject(COSName.N);
-			COSBase downAppearanceBase = dictionary.getDictionaryObject(COSName.D);
-			COSBase rolloverAppearanceBase = dictionary.getDictionaryObject(COSName.R);
-			if (normalAppearanceBase != null || downAppearanceBase != null || rolloverAppearanceBase != null) {
-				List<PDContentStream> appearances = new ArrayList<>();
-				addContentStreamsFromAppearanceEntry(normalAppearanceBase, appearances);
-				addContentStreamsFromAppearanceEntry(downAppearanceBase, appearances);
-				addContentStreamsFromAppearanceEntry(rolloverAppearanceBase, appearances);
-				return Collections.unmodifiableList(appearances);
-			}
+		PDAppearanceEntry normalAppearance = ((PDAnnotation) simplePDObject).getNormalAppearance();
+		PDAppearanceEntry downAppearance = ((PDAnnotation) simplePDObject).getDownAppearance();
+		PDAppearanceEntry rolloverAppearance = ((PDAnnotation) simplePDObject).getRolloverAppearance();
+		if (normalAppearance != null || downAppearance != null || rolloverAppearance != null) {
+			List<PDContentStream> appearances = new ArrayList<>();
+			addContentStreamsFromAppearanceEntry(normalAppearance, appearances);
+			addContentStreamsFromAppearanceEntry(downAppearance, appearances);
+			addContentStreamsFromAppearanceEntry(rolloverAppearance, appearances);
+			return Collections.unmodifiableList(appearances);
 		}
-		*/
 		return Collections.emptyList();
 	}
 
-	/*
-	private void addContentStreamsFromAppearanceEntry(COSBase appearanceEntry, List<PDContentStream> appearances) {
+	private void addContentStreamsFromAppearanceEntry(PDAppearanceEntry appearanceEntry, List<PDContentStream> appearances) {
 		if (appearanceEntry != null) {
-			PDAppearanceEntry appearance = new PDAppearanceEntry(appearanceEntry);
-			if (appearance.isStream()) {
-				addAppearance(appearances, appearance.getAppearanceStream());
-			} else {
-				Map<COSName, PDAppearanceStream> subDictionary = appearance.getSubDictionary();
+			if (appearanceEntry.isSubDictionary()) {
+				Map<ASAtom, PDAppearanceStream> subDictionary = appearanceEntry.getSubDictionary();
 				for (PDAppearanceStream stream : subDictionary.values()) {
 					addAppearance(appearances, stream);
 				}
+			} else {
+				addAppearance(appearances, appearanceEntry.getAppearanceStream());
 			}
 		}
 	}
 
 	private void addAppearance(List<PDContentStream> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
-			PDInheritableResources resources = PDInheritableResources.getInstance(this.pageResources, toAdd.getResources());
-			PBoxPDContentStream stream = new PBoxPDContentStream(toAdd, resources, this.document, this.flavour);
+			PDResourcesHandler resources = PDResourcesHandler.getInstance(this.pageResources, toAdd.getResources());
+			GFPDContentStream stream = new GFPDContentStream(toAdd, resources);
 			this.containsTransparency |= stream.isContainsTransparency();
-			org.apache.pdfbox.pdmodel.graphics.form.PDGroup group = toAdd.getGroup();
-			this.containsTransparency |= group != null && COSName.TRANSPARENCY.equals(group.getSubType());
+			PDGroup group = toAdd.getGroup();
+			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());
 			list.add(stream);
 		}
 	}
-	*/
 }

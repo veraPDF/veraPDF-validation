@@ -45,7 +45,9 @@ public class GFPDPage extends GFPDObject implements PDPage {
     /** Link name for page group colorspace */
     private static final String GROUP_CS = "groupCS";
 
+    private boolean containsTransparency = false;
     private List<PDContentStream> contentStreams = null;
+    private List<PDAnnot> annotations = null;
 
     /**
      * Default constructor
@@ -94,11 +96,21 @@ public class GFPDPage extends GFPDObject implements PDPage {
     }
 
     private List<PDAnnot> getAnnotations() {
+        if (this.annotations == null) {
+            this.annotations = parseAnnotataions();
+        }
+
+        return this.annotations;
+    }
+
+    private List<PDAnnot> parseAnnotataions() {
         List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
         if (annots.size() > 0) {
             List<PDAnnot> res = new ArrayList<>(annots.size());
             for (PDAnnotation annot : annots) {
-                res.add(new GFPDAnnot(annot, ((org.verapdf.pd.PDPage) simplePDObject).getResources()));
+                GFPDAnnot annotation = new GFPDAnnot(annot, ((org.verapdf.pd.PDPage) simplePDObject).getResources());
+                this.containsTransparency |= annotation.isContainsTransparency();
+                res.add(annotation);
             }
             return Collections.unmodifiableList(res);
         }
@@ -184,6 +196,12 @@ public class GFPDPage extends GFPDObject implements PDPage {
      */
     @Override
     public Boolean getcontainsTransparency() {
-        return null;
+        if (this.contentStreams == null) {
+            parseContentStream();
+        }
+        if (this.annotations == null) {
+            this.annotations = parseAnnotataions();
+        }
+        return this.containsTransparency;
     }
 }
