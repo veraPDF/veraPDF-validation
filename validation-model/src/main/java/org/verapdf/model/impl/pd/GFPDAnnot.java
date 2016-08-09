@@ -2,7 +2,6 @@ package org.verapdf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
-import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
@@ -163,8 +162,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		if (array.size() > 0) {
 			List<CosNumber> color = new ArrayList<>();
 			for (COSObject colorValue : (COSArray) array.get()) {
-				COSObjType type = colorValue.getType();
-				if (type == COSObjType.COS_REAL || type == COSObjType.COS_INTEGER) {
+				if (colorValue.getType().isNumber()) {
 					color.add(GFCosNumber.fromPDFParserNumber(colorValue.get()));
 				}
 			}
