@@ -108,7 +108,9 @@ public class GFPDPage extends GFPDObject implements PDPage {
         if (annots.size() > 0) {
             List<PDAnnot> res = new ArrayList<>(annots.size());
             for (PDAnnotation annot : annots) {
-                GFPDAnnot annotation = new GFPDAnnot(annot, ((org.verapdf.pd.PDPage) simplePDObject).getResources());
+                org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
+                PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
+                GFPDAnnot annotation = new GFPDAnnot(annot, resourcesHandler);
                 this.containsTransparency |= annotation.isContainsTransparency();
                 res.add(annotation);
             }

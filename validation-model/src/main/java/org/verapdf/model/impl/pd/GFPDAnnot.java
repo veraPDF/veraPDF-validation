@@ -7,6 +7,7 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.impl.cos.GFCosNumber;
+import org.verapdf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDAnnot;
@@ -141,7 +142,12 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<PDAction> getA() {
-		// TODO: implement me
+		org.verapdf.pd.actions.PDAction action = ((PDAnnotation) simplePDObject).getA();
+		if (action != null) {
+			List<PDAction> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			res.add(GFPDAction.getAction(action));
+			return Collections.unmodifiableList(res);
+		}
 		return Collections.emptyList();
 	}
 

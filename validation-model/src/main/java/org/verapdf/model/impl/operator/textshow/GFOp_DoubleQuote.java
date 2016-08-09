@@ -1,7 +1,6 @@
 package org.verapdf.model.impl.operator.textshow;
 
 import org.verapdf.cos.COSBase;
-import org.verapdf.cos.COSObjType;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.factory.operators.GraphicState;
@@ -62,7 +61,7 @@ public class GFOp_DoubleQuote extends GFOpStringTextShow implements Op_DoubleQuo
 		if (size >= COUNT_OF_OPERATOR_OPERANDS) {
 			int index = size - COUNT_OF_OPERATOR_OPERANDS + operandNumber;
 			COSBase base = this.arguments.get(index);
-			if (base.getType() == COSObjType.COS_INTEGER || base.getType() == COSObjType.COS_REAL) {
+			if (base.getType().isNumber()) {
 				List<CosNumber> number = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				number.add(GFCosNumber.fromPDFParserNumber(base));
 				return Collections.unmodifiableList(number);

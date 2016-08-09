@@ -1,7 +1,6 @@
 package org.verapdf.model.impl.operator.textposition;
 
 import org.verapdf.cos.COSBase;
-import org.verapdf.cos.COSObjType;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.impl.cos.GFCosNumber;
@@ -43,7 +42,7 @@ public abstract class GFOp_General_Td extends GFOpTextPosition {
 		if (this.arguments.size() > 1) {
 			COSBase number = this.arguments
 					.get(this.arguments.size() - 2);
-			if (number.getType() == COSObjType.COS_INTEGER || number.getType() == COSObjType.COS_REAL) {
+			if (number.getType().isNumber()) {
 				List<CosNumber> offset = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				offset.add(GFCosNumber.fromPDFParserNumber(number));
 				return Collections.unmodifiableList(offset);
