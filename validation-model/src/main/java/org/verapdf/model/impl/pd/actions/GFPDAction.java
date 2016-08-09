@@ -18,6 +18,10 @@ public class GFPDAction extends GFPDObject implements PDAction {
 
 	public static final String NEXT = "Next";
 
+	public static final String NAMED_SUBTYPE = "Named";
+	public static final String GO_TO_SUBTYPE = "GoTo";
+	public static final String GO_TO_R_SUBTYPE = "GoToR";
+
 	public GFPDAction(
 			org.verapdf.pd.actions.PDAction simplePDObject) {
 		this(simplePDObject, ACTION_TYPE);
@@ -71,11 +75,11 @@ public class GFPDAction extends GFPDObject implements PDAction {
 		}
 
 		switch (subtype.getValue()) {
-			case "Named":
+			case NAMED_SUBTYPE:
 				return new GFPDNamedAction(action);
-			case "GoTo":
+			case GO_TO_SUBTYPE:
 				return new GFPDGoToAction(action);
-			case "GoToR":
+			case GO_TO_R_SUBTYPE:
 				return new GFPDGoToRemoteAction(action);
 			default:
 				return new GFPDAction(action);
