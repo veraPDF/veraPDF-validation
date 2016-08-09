@@ -6,9 +6,10 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosDict;
 import org.verapdf.model.impl.cos.GFCosDict;
 import org.verapdf.model.impl.pd.GFPDResource;
+import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.model.pdlayer.PDXObject;
-import org.verapdf.pd.PDResources;
+import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;
 
 import java.util.ArrayList;
@@ -25,16 +26,16 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 	public static final String OPI = "OPI";
 	public static final String S_MASK = "SMask";
 
-	protected final PDResources inheritedResources;
+	protected final PDResourcesHandler resourcesHandler;
 
 	public GFPDXObject(
 			org.verapdf.pd.images.PDXObject simplePDObject) {
 		this(simplePDObject, null, X_OBJECT_TYPE);
 	}
 
-	protected GFPDXObject(org.verapdf.pd.images.PDXObject simplePDObject, PDResources inheritedResources, final String type) {
+	protected GFPDXObject(org.verapdf.pd.images.PDXObject simplePDObject, PDResourcesHandler resourcesHandler, final String type) {
 		super(simplePDObject, type);
-		this.inheritedResources = inheritedResources;
+		this.resourcesHandler = resourcesHandler;
 	}
 
 	@Override
@@ -73,5 +74,20 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 			return Collections.unmodifiableList(res);
 		}
 		return Collections.emptyList();
+	}
+
+	public static PDXObject getTypedPDXObject(
+			org.verapdf.pd.images.PDXObject xObject,
+			PDResourcesHandler resources) {
+		ASAtom type = xObject.getType();
+		if (ASAtom.FORM.equals(type)) {
+			return new GFPDXForm((PDXForm) xObject, resources);
+		} else if (ASAtom.IMAGE.equals(type)) {
+			return new GFPDXImage((PDXImage) xObject);
+		} else if (ASAtom.PS.equals(type)) {
+			return new GFPDXObject(xObject);
+		} else {
+			return null;
+		}
 	}
 }
