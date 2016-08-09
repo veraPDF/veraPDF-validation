@@ -1,9 +1,13 @@
 package org.verapdf.model.impl.pd;
 
+import org.verapdf.cos.COSArray;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
+import org.verapdf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.model.impl.cos.GFCosBBox;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.*;
+import org.verapdf.pd.PDAnnotation;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +45,9 @@ public class GFPDPage extends GFPDObject implements PDPage {
     /** Link name for page group colorspace */
     private static final String GROUP_CS = "groupCS";
 
+    private boolean containsTransparency = false;
     private List<PDContentStream> contentStreams = null;
+    private List<PDAnnot> annotations = null;
 
     /**
      * Default constructor
@@ -79,13 +85,37 @@ public class GFPDPage extends GFPDObject implements PDPage {
         }
     }
 
-    //TODO: implement me:
     private List<PDGroup> getGroup() {
+        org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
+        if (group != null) {
+            List<PDGroup> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            res.add(new GFPDGroup(group));
+            return Collections.unmodifiableList(res);
+        }
         return Collections.emptyList();
     }
 
-    //TODO: implement me:
     private List<PDAnnot> getAnnotations() {
+        if (this.annotations == null) {
+            this.annotations = parseAnnotataions();
+        }
+
+        return this.annotations;
+    }
+
+    private List<PDAnnot> parseAnnotataions() {
+        List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
+        if (annots.size() > 0) {
+            List<PDAnnot> res = new ArrayList<>(annots.size());
+            for (PDAnnotation annot : annots) {
+                org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
+                PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
+                GFPDAnnot annotation = new GFPDAnnot(annot, resourcesHandler);
+                this.containsTransparency |= annotation.isContainsTransparency();
+                res.add(annotation);
+            }
+            return Collections.unmodifiableList(res);
+        }
         return Collections.emptyList();
     }
 
@@ -110,44 +140,56 @@ public class GFPDPage extends GFPDObject implements PDPage {
         contentStreams.add(contentStream);
     }
 
-    //TODO: implement me:
     private List<CosBBox> getMediaBox() {
-        return Collections.emptyList();
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSMediaBox());
     }
 
-    //TODO: implement me:
     private List<CosBBox> getCropBox() {
-        return Collections.emptyList();
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSCropBox());
     }
 
-    //TODO: implement me:
     private List<CosBBox> getBleedBox() {
-        return Collections.emptyList();
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSBleedBox());
     }
 
-    //TODO: implement me:
     private List<CosBBox> getTrimBox() {
-        return Collections.emptyList();
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSTrimBox());
     }
 
-    //TODO: implement me:
     private List<CosBBox> getArtBox() {
+        return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSArtBox());
+    }
+
+    private List<CosBBox> getBBox(COSArray array) {
+        if (array != null) {
+            List<CosBBox> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            res.add(new GFCosBBox(array));
+            return Collections.unmodifiableList(res);
+        }
         return Collections.emptyList();
     }
 
-    //TODO: implement me:
     private List<PDColorSpace> getGroupCS() {
+        org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
+        if (group != null) {
+            org.verapdf.pd.colors.PDColorSpace colorSpace = group.getColorSpace();
+            if (colorSpace != null) {
+                List<PDColorSpace> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                // TODO: check this. Have we add resources here?
+                res.add(ColorSpaceFactory.getColorSpace(colorSpace));
+                return Collections.unmodifiableList(res);
+            }
+        }
         return Collections.emptyList();
     }
 
-    //TODO: implement me:
     /**
      * @return true if the page contains presentation steps
      * (/PresSteps in the page dictionary).
      */
     @Override
     public Boolean getcontainsPresSteps() {
-        return null;
+        return Boolean.valueOf(((org.verapdf.pd.PDPage) simplePDObject).getCOSPresSteps() != null);
     }
 
     //TODO: implement me:
@@ -156,6 +198,12 @@ public class GFPDPage extends GFPDObject implements PDPage {
      */
     @Override
     public Boolean getcontainsTransparency() {
-        return null;
+        if (this.contentStreams == null) {
+            parseContentStream();
+        }
+        if (this.annotations == null) {
+            this.annotations = parseAnnotataions();
+        }
+        return this.containsTransparency;
     }
 }

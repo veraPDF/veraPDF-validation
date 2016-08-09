@@ -57,7 +57,7 @@ public class GFOperator extends GenericModelObject implements Operator {
 		for (COSBase base : this.arguments) {
 			if (base.getType() == COSObjType.COS_ARRAY) {
 				addArrayElementsAsNumbers(list, (COSArray) base);
-			} else if (base.getType() == COSObjType.COS_REAL || base.getType() == COSObjType.COS_INTEGER) {
+			} else if (base.getType().isNumber()) {
 				list.add(GFCosNumber.fromPDFParserNumber(base));
 			}
 		}
