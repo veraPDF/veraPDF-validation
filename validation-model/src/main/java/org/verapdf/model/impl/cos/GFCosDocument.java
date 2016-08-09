@@ -68,13 +68,12 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         this.headerCommentByte2 = cosHeader.getHeaderCommentByte2();
         this.headerCommentByte3 = cosHeader.getHeaderCommentByte3();
         this.headerCommentByte4 = cosHeader.getHeaderCommentByte4();
-        this.isOptionalContentPresent = parseOptionalContentPresent();this.postEOFDataSize = cosDocument.getPostEOFDataSize();
+        this.isOptionalContentPresent = parseOptionalContentPresent();
+        this.postEOFDataSize = cosDocument.getPostEOFDataSize();
         this.isLinearised = cosDocument.getTrailer() != cosDocument
                 .getLastTrailer() && cosDocument.isLinearized();
         this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
         this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
-
-
     }
 
     private boolean parseOptionalContentPresent() {
