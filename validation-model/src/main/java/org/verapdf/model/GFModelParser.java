@@ -23,9 +23,9 @@ import java.util.List;
 /**
  * @author Timur Kamalov
  */
-public class ModelParser implements PDFParser, Closeable {
+public class GFModelParser implements PDFParser, Closeable {
 
-    private static final Logger LOGGER = Logger.getLogger(ModelParser.class);
+    private static final Logger LOGGER = Logger.getLogger(GFModelParser.class);
 
     private static final PDFAFlavour DEFAULT_FLAVOUR = PDFAFlavour.PDFA_1_B;
 
@@ -33,16 +33,16 @@ public class ModelParser implements PDFParser, Closeable {
 
     private final PDFAFlavour flavour;
 
-    private ModelParser(final InputStream docStream, PDFAFlavour flavour) throws IOException {
+    private GFModelParser(final InputStream docStream, PDFAFlavour flavour) throws IOException {
         this.document = new PDDocument(docStream);
         this.flavour = (flavour == PDFAFlavour.AUTO) ? obtainFlavour(this.document) : flavour;
         initializeStaticContainers(this.document, this.flavour);
     }
 
 
-    public static ModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour) throws ModelParsingException {
+    public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour) throws ModelParsingException {
         try {
-            return new ModelParser(toLoad, (flavour == PDFAFlavour.NO_FLAVOUR || flavour == null) ? DEFAULT_FLAVOUR : flavour);
+            return new GFModelParser(toLoad, (flavour == PDFAFlavour.NO_FLAVOUR || flavour == null) ? DEFAULT_FLAVOUR : flavour);
         } catch (IOException e) {
             throw new ModelParsingException("Couldn't parse stream", e);
         }
