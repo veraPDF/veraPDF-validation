@@ -46,6 +46,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     private final int headerCommentByte3;
     private final int headerCommentByte4;
     private final boolean isOptionalContentPresent;
+    private final int postEOFDataSize;
+    private final boolean isLinearised;
+    private final String firstPageID;
+    private final String lastID;
 
     /**
      * Constructor using greenfield COSDocument
@@ -64,7 +68,13 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         this.headerCommentByte2 = cosHeader.getHeaderCommentByte2();
         this.headerCommentByte3 = cosHeader.getHeaderCommentByte3();
         this.headerCommentByte4 = cosHeader.getHeaderCommentByte4();
-        isOptionalContentPresent = parseOptionalContentPresent();
+        this.isOptionalContentPresent = parseOptionalContentPresent();this.postEOFDataSize = cosDocument.getPostEOFDataSize();
+        this.isLinearised = cosDocument.getTrailer() != cosDocument
+                .getLastTrailer() && cosDocument.isLinearized();
+        this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
+        this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
+
+
     }
 
     private boolean parseOptionalContentPresent() {
@@ -126,40 +136,51 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         return isOptionalContentPresent;
     }
 
-    //TODO: implement me:
     /**
      * EOF must complies PDF/A standard
      */
     @Override
     public Long getpostEOFDataSize() {
-        return null;
+        return Long.valueOf(this.postEOFDataSize);
     }
 
-    //TODO: implement me:
     /**
      * @return ID of first page trailer
      */
     @Override
     public String getfirstPageID() {
-        return null;
+        return this.firstPageID;
     }
 
-    //TODO: implement me:
     /**
      * @return ID of last document trailer
      */
     @Override
     public String getlastID() {
+        return this.lastID;
+    }
+
+    private static String getTrailerID(COSObject ids) {
+        if (ids != null && ids.getType() == COSObjType.COS_ARRAY) {
+            COSArray idArray = (COSArray) ids.get();
+            StringBuilder builder = new StringBuilder();
+            for (COSObject id : idArray) {
+                for (byte aByte : ((COSString) id.get()).get().getBytes()) {
+                    builder.append((char) (aByte & 0xFF));
+                }
+            }
+            // need to discard last whitespace
+            return builder.toString();
+        }
         return null;
     }
 
-    //TODO: implement me:
     /**
      * @return true if the current document is linearized
      */
     @Override
     public Boolean getisLinearized() {
-        return null;
+        return this.isLinearised;
     }
 
     /**
