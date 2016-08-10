@@ -2,11 +2,9 @@ package org.verapdf.model.impl.pd;
 
 import org.apache.log4j.Logger;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.impl.containers.StaticContainers;
-import org.verapdf.model.pdlayer.PDDocument;
-import org.verapdf.model.pdlayer.PDMetadata;
-import org.verapdf.model.pdlayer.PDPage;
-import org.verapdf.model.pdlayer.PDStructTreeRoot;
+import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDCatalog;
 
 import java.io.IOException;
@@ -32,9 +30,46 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
      */
     public static final String METADATA = "metadata";
     /**
+     * Link name for all output intents
+     */
+    public static final String OUTPUT_INTENTS = "outputIntents";
+    /**
+     * Link name for acro forms
+     */
+    public static final String ACRO_FORMS = "AcroForm";
+    /**
+     * Link name for additional actions of document
+     */
+    public static final String ACTIONS = "AA";
+    /**
+     * Link name for open action of document
+     */
+    public static final String OPEN_ACTION = "OpenAction";
+    /**
+     * Link name for all outlines of document
+     */
+    public static final String OUTLINES = "Outlines";
+    /**
      * Link name for annotations structure tree root of document
      */
     public static final String STRUCTURE_TREE_ROOT = "StructTreeRoot";
+    /**
+     * Link name for alternate presentation of names tree of document
+     */
+    public static final String ALTERNATE_PRESENTATIONS = "AlternatePresentations";
+    /**
+     * Link name for optional content properties of the document
+     */
+    public static final String OC_PROPERTIES = "OCProperties";
+    /**
+     * Name of link to Lang value from the document catalog dictionary
+     */
+    public static final String LANG = "Lang";
+    /**
+     * Name of link to Perms value
+     */
+    public static final String PERMS = "Perms";
+
 
     private final PDCatalog catalog;
 
@@ -50,17 +85,53 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     }
 
     @Override
+    public Boolean getcontainsAlternatePresentations() {
+        return Boolean.FALSE;
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
+            case OUTLINES:
+                return this.getOutlines();
+            case OPEN_ACTION:
+                return this.getOpenAction();
+            case ACTIONS:
+                return this.getActions();
             case PAGES:
                 return this.getPages();
             case METADATA:
                 return this.getMetadata();
+            case OUTPUT_INTENTS:
+                return this.getOutputIntents();
+            case ACRO_FORMS:
+                return this.getAcroForms();
             case STRUCTURE_TREE_ROOT:
                 return this.getStructureTreeRoot();
+            case OC_PROPERTIES:
+                return this.getOCProperties();
+            case LANG:
+                return this.getLang();
+            case PERMS:
+                return this.getPerms();
             default:
                 return super.getLinkedObjects(link);
         }
+    }
+
+    //TODO : implement me
+    private List<PDOutline> getOutlines() {
+        return Collections.emptyList();
+    }
+
+    //TODO : implement me
+    private List<PDAction> getOpenAction() {
+        return Collections.emptyList();
+    }
+
+    //TODO : implement me
+    private List<PDAction> getActions() {
+        return Collections.emptyList();
     }
 
     private List<PDPage> getPages() {
@@ -77,9 +148,26 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    @Override
-    public Boolean getcontainsAlternatePresentations() {
-        return Boolean.FALSE;
+    private List<PDMetadata> getMetadata() {
+        if (this.catalog != null) {
+            org.verapdf.pd.PDMetadata meta = this.catalog.getMetadata();
+            if (meta != null) {
+                List<PDMetadata> metadata = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                metadata.add(new GFPDMetadata(meta, Boolean.TRUE));
+                return Collections.unmodifiableList(metadata);
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    //TODO : implement me
+    private List<PDOutputIntent> getOutputIntents() {
+        return Collections.emptyList();
+    }
+
+    //TODO : implement me
+    private List<PDAcroForm> getAcroForms() {
+        return Collections.emptyList();
     }
 
     private List<PDStructTreeRoot> getStructureTreeRoot() {
@@ -96,15 +184,19 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    private List<PDMetadata> getMetadata() {
-        if (this.catalog != null) {
-            org.verapdf.pd.PDMetadata meta = this.catalog.getMetadata();
-            if (meta != null) {
-                List<PDMetadata> metadata = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-                metadata.add(new GFPDMetadata(meta, Boolean.TRUE));
-                return Collections.unmodifiableList(metadata);
-            }
-        }
+    //TODO : implement me
+    private List<PDPerms> getPerms() {
         return Collections.emptyList();
     }
+
+    //TODO : implement me
+    private List<PDOCProperties> getOCProperties() {
+        return Collections.emptyList();
+    }
+
+    //TODO : implement me
+    private List<CosLang> getLang() {
+        return Collections.emptyList();
+    }
+
 }
