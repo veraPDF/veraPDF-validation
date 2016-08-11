@@ -53,8 +53,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	private void parseOperators() {
 		try {
 			COSObject contentStream = this.contentStream.getContents();
-			if (!contentStream.empty() && contentStream.get().getType() == COSObjType.COS_STREAM) {
-				PDFStreamParser streamParser = new PDFStreamParser((COSStream) contentStream.get());
+			if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
+				PDFStreamParser streamParser = new PDFStreamParser((COSStream) contentStream.getDirectBase());
 				streamParser.parseTokens();
 				OperatorFactory operatorFactory = new OperatorFactory();
 				List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
