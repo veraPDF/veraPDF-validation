@@ -2,8 +2,10 @@ package org.verapdf.model.impl.pd;
 
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.pdlayer.PDObject;
+import org.verapdf.pd.PDCMap;
 import org.verapdf.pd.PDContentStream;
 import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.PDFont;
 
 /**
  * @author Timur Kamalov
@@ -15,6 +17,8 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 	protected PDDocument document;
 	protected PDContentStream contentStream;
 	protected org.verapdf.pd.PDObject simplePDObject;
+	protected PDFont pdFont;
+	protected PDCMap pdcMap;
 
 	public GFPDObject(PDDocument document, final String type) {
 		super(type);
@@ -31,4 +35,13 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 		this.simplePDObject = simplePDObject;
 	}
 
+	public GFPDObject(PDFont font, final String type) {
+		super(type);
+		this.pdFont = font;
+	}
+
+	public GFPDObject(PDCMap pdcMap, final String type) {
+		super(type);
+		this.pdcMap = pdcMap;
+	}
 }
