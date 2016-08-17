@@ -309,10 +309,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         List<COSObject> objects = cosDocument.getObjects();
         List<CosIndirect> list = new ArrayList<>(objects.size());
         for (COSObject object : objects) {
-            if (object.isIndirect()) {
-                list.add(new GFCosIndirect((COSIndirect) object.get()));
-            }
-            //TODO : check if always indirect
+            list.add(new GFCosIndirect(object));
         }
         return Collections.unmodifiableList(list);
     }
