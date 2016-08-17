@@ -112,13 +112,4 @@ public class GFCosVisitor implements ICOSVisitor {
         return new GFCosString(obj);
     }
 
-    /** Notification of visiting in indirect object. Create a GFCosIndirect for corresponding
-     * COSIndirect.
-     * @return {@link GFCosIndirect} object
-     * @see GFCosIndirect
-     */
-    public static Object visitFromIndirect(COSIndirect obj) {
-        return new GFCosIndirect(obj);
-    }
-
 }

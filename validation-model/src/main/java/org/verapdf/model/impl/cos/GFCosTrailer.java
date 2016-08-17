@@ -1,9 +1,8 @@
 package org.verapdf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSIndirect;
+import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosTrailer;
@@ -50,11 +49,10 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 	}
 
 	private List<CosIndirect> getCatalog() {
-		List<CosIndirect> catalog = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		COSBase base = this.baseObject.getKey(ASAtom.ROOT).get();
-		//TODO : check that always indirect
-		catalog.add(new GFCosIndirect((COSIndirect) base));
-		return Collections.unmodifiableList(catalog);
+		List<CosIndirect> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+		COSObject catalog = this.baseObject.getKey(ASAtom.ROOT);
+		result.add(new GFCosIndirect(catalog));
+		return Collections.unmodifiableList(result);
 	}
 
 }

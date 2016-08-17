@@ -151,11 +151,19 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<CosNumber> getIC() {
-		return this.getNumbersFromArray(((PDAnnotation) simplePDObject).getCOSIC());
+		COSObject ic = ((PDAnnotation) simplePDObject).getCOSIC();
+		if (ic != null) {
+			return this.getNumbersFromArray(ic);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<CosNumber> getC() {
-		return this.getNumbersFromArray(((PDAnnotation) simplePDObject).getCOSC());
+		COSObject c = ((PDAnnotation) simplePDObject).getCOSC();
+		if (c != null) {
+			return this.getNumbersFromArray(c);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<CosNumber> getNumbersFromArray(COSObject array) {
