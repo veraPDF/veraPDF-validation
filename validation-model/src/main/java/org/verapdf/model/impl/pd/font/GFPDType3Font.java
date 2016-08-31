@@ -36,4 +36,12 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     private List<PDContentStream> getCharStrings() {
         return Collections.emptyList(); // TODO: fix
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean getisStandard() {
+        return Boolean.valueOf(false);
+    }
 }

@@ -12,7 +12,6 @@ import org.verapdf.model.pdlayer.PDTrueTypeFont;
 
 /**
  * Represents TrueType font dictionary.
- * //TODO: write doc
  *
  * @author Sergey Shemyakov
  */
@@ -25,6 +24,12 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
         super(font, renderingMode, TRUETYPE_FONT_TYPE);
     }
 
+    /**
+     * @return true if all glyph names in the differences array of the Encoding
+     * dictionary are a part of the Adobe Glyph List and the embedded font
+     * program contains the Microsoft Unicode (3,1 - Platform ID=3,
+     * Encoding ID=1) cmap subtable.
+     */
     @Override
     public Boolean getdifferencesAreUnicodeCompliant() {
         PDFlibFont font = this.pdFont.getFontFile();
@@ -50,5 +55,13 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
         }
 
         return Boolean.valueOf(true);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean getisStandard() {
+        return Boolean.valueOf(false);
     }
 }
