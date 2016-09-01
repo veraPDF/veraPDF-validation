@@ -7,13 +7,14 @@ import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.font.PDFlibFont;
-import org.verapdf.font.cff.CFFCidFont;
+import org.verapdf.font.PDFLibFont;
+import org.verapdf.font.cff.CFFCIDFont;
 import org.verapdf.font.cff.CFFFont;
 import org.verapdf.font.truetype.TrueTypeFont;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.model.factory.operators.RenderingMode;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosStream;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.PDFont;
@@ -40,11 +41,9 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
     public static final String IDENTITY = "Identity";
     public static final String CUSTOM = "Custom";
-    private PDFAFlavour flavour;
 
-    public GFPDCIDFont(PDFont font, RenderingMode renderingMode, PDFAFlavour flavour) {
+    public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
         super(font, renderingMode, CID_FONT_TYPE);
-        this.flavour = flavour;
     }
 
     @Override
@@ -104,7 +103,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 //reverse bit order in bit set (convert to big endian)
                 BitSet bitSet = toBitSetBigEndian(cidSetBytes);
 
-                PDFlibFont cidFont = this.pdFont.getFontFile();
+                PDFLibFont cidFont = this.pdFont.getFontFile();
 
                 for (int i = 1; i < bitSet.size(); i++) {
                     if (bitSet.get(i) && !cidFont.containsCID(i)) {
@@ -112,10 +111,11 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                     }
                 }
 
+                PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (!flavour.equals(PDFAFlavour.PDFA_1_A) || !flavour.equals(PDFAFlavour.PDFA_1_B)) {
                     //on this levels we need to ensure that all glyphs present in font program are described in cid set
                     if (cidFont instanceof CFFFont && ((CFFFont) cidFont).isCIDFont()) {
-                        CFFCidFont cffCidFont = (CFFCidFont) ((CFFFont) cidFont).getFont();
+                        CFFCIDFont cffCidFont = (CFFCIDFont) ((CFFFont) cidFont).getFont();
                         if (bitSet.cardinality() < cffCidFont.getNGlyphs()) {
                             return Boolean.FALSE;
                         }
