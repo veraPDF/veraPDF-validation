@@ -1,6 +1,8 @@
 package org.verapdf.model.impl.pd.font;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.external.CMapFile;
@@ -14,7 +16,6 @@ import java.util.List;
 
 /**
  * Represents CMap dictionary or one of the predefined CMap names.
- * //TODO: write doc
  *
  * @author Sergey Shemyakov
  */
@@ -28,6 +29,9 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
         super(pdcMap, CMAP_TYPE);
     }
 
+    /**
+     * @return name of the CMap (or the value of one of the predefined CMap's).
+     */
     @Override
     public String getCMapName() {
         return this.pdcMap.getCMapName();
@@ -45,6 +49,9 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
         }
     }
 
+    /**
+     * @return link to the embedded CMap file for an non-standard CMap.
+     */
     private List<CMapFile> getEmbeddedFile() {
         if (this.pdcMap.getcMap().getType() == COSObjType.COS_STREAM) {
             List<CMapFile> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
@@ -54,7 +61,16 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
         return Collections.emptyList();
     }
 
+    /**
+     * @return link to the CMap referenced by the key /UseCMap.
+     */
     private List<PDCMap> getUseCMap() {
-        return Collections.emptyList();     // TODO: fix
+        COSObject useCMap = this.pdcMap.getcMap().getKey(ASAtom.USE_CMAP);
+        if (useCMap.empty()) {
+            return Collections.emptyList();
+        }
+        List<PDCMap> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+        list.add(new GFPDCmap(new org.verapdf.pd.PDCMap(useCMap)));
+        return Collections.unmodifiableList(list);
     }
 }

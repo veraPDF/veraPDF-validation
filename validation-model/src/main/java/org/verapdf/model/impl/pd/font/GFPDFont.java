@@ -2,11 +2,14 @@ package org.verapdf.model.impl.pd.font;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.external.FontProgram;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.impl.cos.GFCosUnicodeName;
+import org.verapdf.model.impl.external.GFFontProgram;
+import org.verapdf.model.impl.external.GFTrueTypeFontProgram;
 import org.verapdf.model.impl.pd.GFPDResource;
 import org.verapdf.model.pdlayer.PDFont;
 
@@ -16,7 +19,6 @@ import java.util.List;
 
 /**
  * Instance of this class represent PDF font dictionary.
- * //TODO: write doc
  *
  * @author Sergey Shemyakov
  */
@@ -24,10 +26,6 @@ public class GFPDFont extends GFPDResource implements PDFont {
 
     public static final String FONT_FILE = "fontFile";
     public static final String BASE_FONT = "BaseFont";
-    public static final String TYPE_3 = "Type3";
-    public static final String TRUE_TYPE = "TrueType";
-    public static final String TYPE_1 = "Type1";
-    public static final String CID_FONT_TYPE_2 = "CIDFontType2";
 
     protected final RenderingMode renderingMode;
 
@@ -37,26 +35,44 @@ public class GFPDFont extends GFPDResource implements PDFont {
         this.renderingMode = renderingMode;
     }
 
+    /**
+     * @return font type (Type entry).
+     */
     @Override
     public String getType() {
         return this.pdFont.getType();
     }
 
+    /**
+     * @return font subtype (Subtype entry).
+     */
     @Override
     public String getSubtype() {
         return this.pdFont.getSubtype();
     }
 
+    /**
+     * @return font name defined by BaseFont entry in the font dictionary and
+     * FontName key in the font descriptor.
+     */
     @Override
     public String getfontName() {
         return this.pdFont.getFontName();
     }
 
+    /**
+     * @return true if the font flags in the font descriptor dictionary mark
+     * indicate that the font is symbolic (the entry /Flags has bit 3 set to 1
+     * and bit 6 set to 0).
+     */
     @Override
     public Boolean getisSymbolic() {
         return this.pdFont.isSymbolic();
     }
 
+    /**
+     * @return rendering mode value.
+     */
     @Override
     public Long getrenderingMode() {
         return Long.valueOf(this.renderingMode.getValue());
@@ -74,8 +90,23 @@ public class GFPDFont extends GFPDResource implements PDFont {
         }
     }
 
+    /**
+     * @return embedded font program for Type 1, TrueType or CID Font.
+     */
     private List<FontProgram> getFontFile() {
-        return Collections.emptyList(); // TODO: fix
+        COSName subType =
+                (COSName) this.pdFont.getDictionary().getKey(ASAtom.SUBTYPE).get();
+        if (ASAtom.TRUE_TYPE.equals(subType.get())) {
+            COSStream trueTypeFontFile = (COSStream)
+                    this.pdFont.getFontDescriptor().getKey(ASAtom.FONT_FILE2).get();
+            GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(trueTypeFontFile,
+                    this.pdFont.isSymbolic(),
+                    this.pdFont.getDictionary().getKey(ASAtom.ENCODING));
+            return getFontProgramList(font);
+        } else {
+            GFFontProgram font = new GFFontProgram();
+            return getFontProgramList(font);
+        }
     }
 
     private List<FontProgram> getFontProgramList(FontProgram fontProgram) {
@@ -84,6 +115,9 @@ public class GFPDFont extends GFPDResource implements PDFont {
         return Collections.unmodifiableList(list);
     }
 
+    /**
+     * @return link to the name Object referenced by BaseFont key.
+     */
     private List<CosUnicodeName> getBaseFont() {
         String name = this.pdFont.getName();
         if (name != null) {

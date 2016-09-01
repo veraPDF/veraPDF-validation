@@ -1,11 +1,15 @@
 package org.verapdf.model.impl.pd.font;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSDictionary;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.model.pdlayer.PDCMap;
 import org.verapdf.model.pdlayer.PDType0Font;
+import org.verapdf.pd.PDFont;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,7 +43,16 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
     }
 
     private List<PDCIDFont> getDescendantFonts() {
-        return Collections.emptyList();     // TODO: fix
+        COSDictionary cidFontDict = (COSDictionary)
+                this.pdFont.getDictionary().getKey(ASAtom.DESCENDANT_FONTS).get();
+        if(cidFontDict != null) {
+            PDFont cidFont = new PDFont(cidFontDict);
+            PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode);
+            List<PDCIDFont> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            list.add(pdCIDFont);
+            return Collections.unmodifiableList(list);
+        }
+        return Collections.emptyList();
     }
 
     private List<PDCMap> getEncoding() {
