@@ -56,22 +56,22 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
     public Long getWidths_size() {
         COSDictionary dict = this.pdFont.getDictionary();
         COSObject widths = dict.getKey(ASAtom.WIDTHS);
-        if(widths.empty() || widths.getType() != COSObjType.COS_ARRAY) {
+        if (widths.empty() || widths.getType() != COSObjType.COS_ARRAY) {
             return null;
         }
         return (widths.get()).size().longValue();
     }
 
     /**
-     * @return String representation of the font encoding: 
-     *  null if the /Encoding entry is not present in the font dictionary;
-     *  if /Encoding entry in the font dictionary if of Name type, then
-     *  the value of this entry;
-     *  if /Encoding entry is a dictionary, which does not contain /Differences
-     *  array, then the value of /BaseEncoding entry in this dictionary
-     *  (or null, if /BaseEncoding is also not present);
-     *  the string "Custom", of the /Encoding entry is a dictionary containing
-     *  /Differences key.
+     * @return String representation of the font encoding:
+     * null if the /Encoding entry is not present in the font dictionary;
+     * if /Encoding entry in the font dictionary if of Name type, then
+     * the value of this entry;
+     * if /Encoding entry is a dictionary, which does not contain /Differences
+     * array, then the value of /BaseEncoding entry in this dictionary
+     * (or null, if /BaseEncoding is also not present);
+     * the string "Custom", of the /Encoding entry is a dictionary containing
+     * /Differences key.
      */
     @Override
     public String getEncoding() {

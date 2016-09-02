@@ -2,10 +2,11 @@ package org.verapdf.model.impl.pd.font;
 
 import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.*;
-import org.verapdf.font.truetype.TrueTypePredefined;
+import org.verapdf.cos.COSArray;
+import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.font.truetype.TrueTypePredefined;
 import org.verapdf.font.type1.Type1Font;
 import org.verapdf.io.ASMemoryInStream;
 import org.verapdf.model.factory.operators.RenderingMode;
@@ -13,14 +14,8 @@ import org.verapdf.model.pdlayer.PDType1Font;
 import org.verapdf.parser.COSParser;
 import org.verapdf.pd.PDFont;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Represents Type1 font dictionary.
@@ -76,8 +71,8 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
         if (!(descriptorCharSet.size() == fontProgramCharSet.length)) {
             return Boolean.valueOf(false);
         }
-        for(String glyphName : fontProgramCharSet) {
-            if(!glyphName.equals(NOTDEF_STRING) &&
+        for (String glyphName : fontProgramCharSet) {
+            if (!glyphName.equals(NOTDEF_STRING) &&
                     !descriptorCharSet.contains(glyphName)) {
                 return Boolean.valueOf(false);
             }
@@ -115,10 +110,10 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
      */
     @Override
     public Boolean getisStandard() {
-        if(isStandard != null) {
+        if (isStandard != null) {
             return isStandard;
         }
-        if(!containsDiffs() && !isEmbedded() && isNameStandard()) {
+        if (!containsDiffs() && !isEmbedded() && isNameStandard()) {
             isStandard = Boolean.valueOf(true);
             return isStandard;
         } else {
@@ -189,10 +184,9 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
     }
 
     private boolean isNameStandard() {
-        COSName fontName = (COSName) COSName.construct(
-                this.pdFont.getDictionary().getNameKey(ASAtom.BASE_FONT)).get();
+        ASAtom fontName = this.pdFont.getDictionary().getNameKey(ASAtom.BASE_FONT);
         for (ASAtom standard : STANDARD_FONT_NAMES) {
-            if (standard == fontName.get()) {
+            if (standard == fontName) {
                 return true;
             }
         }
