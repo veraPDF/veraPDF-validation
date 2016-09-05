@@ -58,7 +58,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
      * the CID font descriptor dictionary.
      */
     private List<CosStream> getCIDSet() {
-        COSStream cidSet = this.pdFont.getCIDSet();
+        COSStream cidSet = ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
         if (cidSet != null) {
             List<CosStream> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             list.add(new GFCosStream(cidSet));
@@ -73,7 +73,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
      */
     @Override
     public String getCIDToGIDMap() {
-        COSObject cidToGidObject = this.pdFont.getCIDToGIDMap();
+        COSObject cidToGidObject =
+                ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDToGIDMap();
         if (cidToGidObject.getType() == COSObjType.COS_STREAM) {
             return CUSTOM;
         }
@@ -100,7 +101,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 //reverse bit order in bit set (convert to big endian)
                 BitSet bitSet = toBitSetBigEndian(cidSetBytes);
 
-                FontProgram cidFont = this.pdFont.getFontFile();
+                FontProgram cidFont = this.pdFont.getFontProgram();
 
                 for (int i = 1; i < bitSet.size(); i++) {
                     if (bitSet.get(i) && !cidFont.containsCID(i)) {
@@ -135,7 +136,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         COSDictionary fontDescriptor = this.pdFont.getFontDescriptor();
         COSStream cidSet;
         if (fontDescriptor != null) {
-            cidSet = this.pdFont.getCIDSet();
+            cidSet = ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
             return cidSet;
         }
         return null;

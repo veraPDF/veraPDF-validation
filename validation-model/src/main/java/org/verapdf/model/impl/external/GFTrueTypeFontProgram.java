@@ -1,9 +1,9 @@
 package org.verapdf.model.impl.external;
 
 import org.apache.log4j.Logger;
-import org.verapdf.cos.COSObject;
-import org.verapdf.cos.COSStream;
 import org.verapdf.model.external.TrueTypeFontProgram;
+import org.verapdf.pd.font.FontProgram;
+import org.verapdf.pd.font.opentype.OpenTypeFontProgram;
 
 import java.io.IOException;
 
@@ -24,12 +24,14 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
      */
     public static final String TRUE_TYPE_PROGRAM_TYPE = "TrueTypeFontProgram";
 
-    public GFTrueTypeFontProgram(COSStream trueTypeStream, boolean isSymbolic,
-                                 COSObject encoding) {
+    public GFTrueTypeFontProgram(FontProgram trueTypeFont) {
         super(TRUE_TYPE_PROGRAM_TYPE);
         try {
-            this.trueTypeFont = new org.verapdf.pd.font.truetype.TrueTypeFontProgram(trueTypeStream.getData(
-                    COSStream.FilterFlags.DECODE), isSymbolic, encoding);
+            if (trueTypeFont instanceof OpenTypeFontProgram) {
+                this.trueTypeFont = (org.verapdf.pd.font.truetype.TrueTypeFontProgram)
+                        ((OpenTypeFontProgram) trueTypeFont).getFont();
+            }
+            this.trueTypeFont = (org.verapdf.pd.font.truetype.TrueTypeFontProgram) trueTypeFont;
             this.trueTypeFont.parseFont();
         } catch (IOException e) {
             LOGGER.error("Error in parsing embedded True Type font file");

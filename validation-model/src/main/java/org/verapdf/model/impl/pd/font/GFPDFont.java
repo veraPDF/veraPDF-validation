@@ -2,7 +2,6 @@ package org.verapdf.model.impl.pd.font;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.external.FontProgram;
@@ -82,7 +81,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case FONT_FILE:
-                return this.getFontFile();
+                return this.getFontProgram();
             case BASE_FONT:
                 return this.getBaseFont();
             default:
@@ -93,16 +92,14 @@ public class GFPDFont extends GFPDResource implements PDFont {
     /**
      * @return embedded font program for Type 1, TrueType or CID Font.
      */
-    private List<FontProgram> getFontFile() {
+    private List<FontProgram> getFontProgram() {
         ASAtom subType = this.pdFont.getSubtype();
         if (ASAtom.TRUE_TYPE == subType) {
-            COSStream trueTypeFontFile = this.pdFont.getFontFile2();
-            GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(trueTypeFontFile,
-                    this.pdFont.isSymbolic(),
-                    this.pdFont.getEncoding());
+            GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(
+                    this.pdFont.getFontProgram());
             return getFontProgramList(font);
         } else {
-            GFFontProgram font = new GFFontProgram();
+            GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram());
             return getFontProgramList(font);
         }
     }

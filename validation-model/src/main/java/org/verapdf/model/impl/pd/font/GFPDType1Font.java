@@ -65,7 +65,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
         Set<String> descriptorCharSet = ((org.verapdf.pd.font.type1.PDType1Font)
                 this.pdFont).getDescriptorCharSet();
         String[] fontProgramCharSet =
-                ((Type1FontProgram) this.pdFont.getFontFile()).getEncoding();
+                ((Type1FontProgram) this.pdFont.getFontProgram()).getEncoding();
         if (!(descriptorCharSet.size() == fontProgramCharSet.length)) {
             return Boolean.valueOf(false);
         }
@@ -153,7 +153,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
     }
 
     private boolean isEmbedded() {
-        return this.pdFont.getFontFile() == null;
+        return this.pdFont.getFontProgram() == null;
     }
 
     private boolean isNameStandard() {

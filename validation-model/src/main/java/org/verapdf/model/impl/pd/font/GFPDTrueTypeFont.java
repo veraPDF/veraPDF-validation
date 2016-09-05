@@ -32,7 +32,7 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
      */
     @Override
     public Boolean getdifferencesAreUnicodeCompliant() {
-        FontProgram font = this.pdFont.getFontFile();
+        FontProgram font = this.pdFont.getFontProgram();
         if (!(font instanceof TrueTypeFontProgram)) {
             return Boolean.valueOf(false);
         }
