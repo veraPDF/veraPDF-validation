@@ -9,7 +9,6 @@ import org.verapdf.model.impl.pd.GFPDContentStream;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDType3Font;
-import org.verapdf.pd.PDFont;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.PDType3CharProc;
 
@@ -28,7 +27,8 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     private PDResources resources;
     private Map<ASAtom, PDContentStream> charStrings = null;
 
-    public GFPDType3Font(PDFont font, RenderingMode renderingMode, PDResources resources) {
+    public GFPDType3Font(org.verapdf.pd.font.PDType3Font font,
+                         RenderingMode renderingMode, PDResources resources) {
         super(font, renderingMode, TYPE3_FONT_TYPE);
         this.resources = resources;
     }
@@ -67,8 +67,8 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     }
 
     private void parseCharStrings() {
-        COSDictionary charProcDict = (COSDictionary)
-                this.pdFont.getDictionary().getKey(ASAtom.CHAR_PROCS).get();
+        COSDictionary charProcDict = ((org.verapdf.pd.font.PDType3Font)
+                this.pdFont).getCharProcDict();
         if (charProcDict != null) {
             Set<ASAtom> keySet = charProcDict.getKeySet();
             Map<ASAtom, PDContentStream> map = new HashMap<>(keySet.size());

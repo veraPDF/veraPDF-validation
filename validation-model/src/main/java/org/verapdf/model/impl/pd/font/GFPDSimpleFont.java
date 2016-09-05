@@ -1,7 +1,6 @@
 package org.verapdf.model.impl.pd.font;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.factory.operators.RenderingMode;
@@ -16,7 +15,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
 
     public static final String CUSTOM_ENCODING = "Custom";
 
-    protected GFPDSimpleFont(org.verapdf.pd.PDFont font,
+    protected GFPDSimpleFont(org.verapdf.pd.font.PDFont font,
                              RenderingMode renderingMode, final String type) {
         super(font, renderingMode, type);
     }
@@ -34,8 +33,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
      */
     @Override
     public Long getFirstChar() {
-        COSDictionary dict = this.pdFont.getDictionary();
-        return dict.getIntegerKey(ASAtom.FIRST_CHAR);
+        return this.pdFont.getFirstChar();
     }
 
     /**
@@ -44,8 +42,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
      */
     @Override
     public Long getLastChar() {
-        COSDictionary dict = this.pdFont.getDictionary();
-        return dict.getIntegerKey(ASAtom.LAST_CHAR);
+        return this.pdFont.getLastChar();
     }
 
     /**
@@ -54,8 +51,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
      */
     @Override
     public Long getWidths_size() {
-        COSDictionary dict = this.pdFont.getDictionary();
-        COSObject widths = dict.getKey(ASAtom.WIDTHS);
+        COSObject widths = this.pdFont.getWidths();
         if (widths.empty() || widths.getType() != COSObjType.COS_ARRAY) {
             return null;
         }
@@ -75,8 +71,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
      */
     @Override
     public String getEncoding() {
-        COSDictionary dict = this.pdFont.getDictionary();
-        COSObject encoding = dict.getKey(ASAtom.ENCODING);
+        COSObject encoding = this.pdFont.getEncoding();
         if (encoding == COSObject.getEmpty()) {
             return null;
         }

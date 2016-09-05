@@ -29,8 +29,8 @@ public class GFPDFont extends GFPDResource implements PDFont {
 
     protected final RenderingMode renderingMode;
 
-    protected GFPDFont(org.verapdf.pd.PDFont font, RenderingMode renderingMode,
-                       final String type) {
+    protected GFPDFont(org.verapdf.pd.font.PDFont font,
+                       RenderingMode renderingMode, final String type) {
         super(font, type);
         this.renderingMode = renderingMode;
     }
@@ -48,7 +48,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public String getSubtype() {
-        return this.pdFont.getSubtype();
+        return this.pdFont.getSubtype().getValue();
     }
 
     /**
@@ -57,7 +57,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public String getfontName() {
-        return this.pdFont.getFontName();
+        return this.pdFont.getFontName().getValue();
     }
 
     /**
@@ -94,14 +94,12 @@ public class GFPDFont extends GFPDResource implements PDFont {
      * @return embedded font program for Type 1, TrueType or CID Font.
      */
     private List<FontProgram> getFontFile() {
-        COSName subType =
-                (COSName) this.pdFont.getDictionary().getKey(ASAtom.SUBTYPE).get();
-        if (ASAtom.TRUE_TYPE.equals(subType.get())) {
-            COSStream trueTypeFontFile = (COSStream)
-                    this.pdFont.getFontDescriptor().getKey(ASAtom.FONT_FILE2).get();
+        ASAtom subType = this.pdFont.getSubtype();
+        if (ASAtom.TRUE_TYPE == subType) {
+            COSStream trueTypeFontFile = this.pdFont.getFontFile2();
             GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(trueTypeFontFile,
                     this.pdFont.isSymbolic(),
-                    this.pdFont.getDictionary().getKey(ASAtom.ENCODING));
+                    this.pdFont.getEncoding());
             return getFontProgramList(font);
         } else {
             GFFontProgram font = new GFFontProgram();

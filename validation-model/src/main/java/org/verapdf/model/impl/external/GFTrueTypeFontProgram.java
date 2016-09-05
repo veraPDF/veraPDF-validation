@@ -3,7 +3,6 @@ package org.verapdf.model.impl.external;
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.font.truetype.TrueTypeFont;
 import org.verapdf.model.external.TrueTypeFontProgram;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
 
     private static final Logger LOGGER = Logger.getLogger(GFTrueTypeFontProgram.class);
 
-    private TrueTypeFont trueTypeFont;
+    private org.verapdf.pd.font.truetype.TrueTypeFontProgram trueTypeFont;
 
     /**
      * Type name for GFTrueTypeFontProgram
@@ -29,7 +28,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
                                  COSObject encoding) {
         super(TRUE_TYPE_PROGRAM_TYPE);
         try {
-            this.trueTypeFont = new TrueTypeFont(trueTypeStream.getData(
+            this.trueTypeFont = new org.verapdf.pd.font.truetype.TrueTypeFontProgram(trueTypeStream.getData(
                     COSStream.FilterFlags.DECODE), isSymbolic, encoding);
             this.trueTypeFont.parseFont();
         } catch (IOException e) {

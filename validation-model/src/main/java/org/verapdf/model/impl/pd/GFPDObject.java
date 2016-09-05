@@ -2,10 +2,10 @@ package org.verapdf.model.impl.pd;
 
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.pdlayer.PDObject;
-import org.verapdf.pd.PDCMap;
 import org.verapdf.pd.PDContentStream;
 import org.verapdf.pd.PDDocument;
-import org.verapdf.pd.PDFont;
+import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.font.cmap.PDCMap;
 
 /**
  * @author Timur Kamalov

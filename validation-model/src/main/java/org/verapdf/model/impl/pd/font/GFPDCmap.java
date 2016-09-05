@@ -1,6 +1,5 @@
 package org.verapdf.model.impl.pd.font;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
@@ -25,7 +24,7 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
     public static final String EMBEDDED_FILE = "embeddedFile";
     public static final String USE_C_MAP = "UseCMap";
 
-    public GFPDCmap(org.verapdf.pd.PDCMap pdcMap) {
+    public GFPDCmap(org.verapdf.pd.font.cmap.PDCMap pdcMap) {
         super(pdcMap, CMAP_TYPE);
     }
 
@@ -65,12 +64,12 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
      * @return link to the CMap referenced by the key /UseCMap.
      */
     private List<PDCMap> getUseCMap() {
-        COSObject useCMap = this.pdcMap.getcMap().getKey(ASAtom.USE_CMAP);
+        COSObject useCMap = this.pdcMap.getUseCMap();
         if (useCMap.empty()) {
             return Collections.emptyList();
         }
         List<PDCMap> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-        list.add(new GFPDCmap(new org.verapdf.pd.PDCMap(useCMap)));
+        list.add(new GFPDCmap(new org.verapdf.pd.font.cmap.PDCMap(useCMap)));
         return Collections.unmodifiableList(list);
     }
 }

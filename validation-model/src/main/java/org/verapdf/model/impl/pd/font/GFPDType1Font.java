@@ -1,21 +1,19 @@
 package org.verapdf.model.impl.pd.font;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
-import org.verapdf.font.truetype.TrueTypePredefined;
-import org.verapdf.font.type1.Type1Font;
-import org.verapdf.io.ASMemoryInStream;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.pdlayer.PDType1Font;
-import org.verapdf.parser.COSParser;
-import org.verapdf.pd.PDFont;
+import org.verapdf.pd.font.truetype.TrueTypePredefined;
+import org.verapdf.pd.font.type1.Type1FontProgram;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Represents Type1 font dictionary.
@@ -23,8 +21,6 @@ import java.util.*;
  * @author Sergey Shemyakov
  */
 public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
-
-    private static final Logger LOGGER = Logger.getLogger(GFPDType1Font.class);
 
     public static final String TYPE1_FONT_TYPE = "PDType1Font";
     public static final ASAtom[] STANDARD_FONT_NAMES = {
@@ -46,7 +42,8 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
     private Boolean isStandard = null;
     public static final String NOTDEF_STRING = ".notdef";
 
-    public GFPDType1Font(PDFont pdFont, RenderingMode renderingMode) {
+    public GFPDType1Font(org.verapdf.pd.font.type1.PDType1Font pdFont,
+                         RenderingMode renderingMode) {
         super(pdFont, renderingMode, TYPE1_FONT_TYPE);
     }
 
@@ -65,9 +62,10 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
      */
     @Override
     public Boolean getcharSetListsAllGlyphs() {
-        Set<String> descriptorCharSet = getDescriptorCharSet();
+        Set<String> descriptorCharSet = ((org.verapdf.pd.font.type1.PDType1Font)
+                this.pdFont).getDescriptorCharSet();
         String[] fontProgramCharSet =
-                ((Type1Font) this.pdFont.getFontFile()).getEncoding();
+                ((Type1FontProgram) this.pdFont.getFontFile()).getEncoding();
         if (!(descriptorCharSet.size() == fontProgramCharSet.length)) {
             return Boolean.valueOf(false);
         }
@@ -78,31 +76,6 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
             }
         }
         return Boolean.valueOf(true);
-    }
-
-    private Set<String> getDescriptorCharSet() {
-        String descriptorCharSetString =
-                this.pdFont.getFontDescriptor().getStringKey(ASAtom.CHAR_SET);
-        if (descriptorCharSetString != null) {
-            try {
-                ASMemoryInStream stream =
-                        new ASMemoryInStream(descriptorCharSetString.getBytes());
-                Set<String> descriptorCharSet = new TreeSet<>();
-                COSParser parser = new COSParser(stream);
-                COSObject glyphName = parser.nextObject();
-                while (!glyphName.empty()) {
-                    if (glyphName.getType() == COSObjType.COS_NAME) {
-                        descriptorCharSet.add(glyphName.getString());
-                    }
-                    glyphName = parser.nextObject();
-                }
-                return descriptorCharSet;
-            } catch (IOException ex) {
-                LOGGER.error("Can't parse /CharSet entry in font descriptor");
-                return Collections.emptySet();
-            }
-        }
-        return Collections.emptySet();
     }
 
     /**
