@@ -12,7 +12,7 @@ import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosStream;
 import org.verapdf.model.pdlayer.PDCIDFont;
-import org.verapdf.pd.font.PDFLibFontProgram;
+import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.cff.CFFCIDFontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
@@ -100,7 +100,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 //reverse bit order in bit set (convert to big endian)
                 BitSet bitSet = toBitSetBigEndian(cidSetBytes);
 
-                PDFLibFontProgram cidFont = this.pdFont.getFontFile();
+                FontProgram cidFont = this.pdFont.getFontFile();
 
                 for (int i = 1; i < bitSet.size(); i++) {
                     if (bitSet.get(i) && !cidFont.containsCID(i)) {

@@ -6,7 +6,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.pdlayer.PDTrueTypeFont;
-import org.verapdf.pd.font.PDFLibFontProgram;
+import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.truetype.AdobeGlyphList;
 import org.verapdf.pd.font.truetype.TrueTypeFontProgram;
 
@@ -32,7 +32,7 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
      */
     @Override
     public Boolean getdifferencesAreUnicodeCompliant() {
-        PDFLibFontProgram font = this.pdFont.getFontFile();
+        FontProgram font = this.pdFont.getFontFile();
         if (!(font instanceof TrueTypeFontProgram)) {
             return Boolean.valueOf(false);
         }
