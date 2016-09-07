@@ -112,4 +112,8 @@ public class GFCosVisitor implements ICOSVisitor {
         return new GFCosString(obj);
     }
 
+    public static Object visitFromIndirect(COSIndirect obj) {
+        return new GFCosIndirect(obj);
+    }
+
 }

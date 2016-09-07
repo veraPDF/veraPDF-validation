@@ -12,10 +12,7 @@ import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.pd.GFPDDocument;
 import org.verapdf.model.impl.pd.util.XMPChecker;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Timur Kamalov
@@ -306,10 +303,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      * all indirect objects referred from the xref table
      */
     private List<CosIndirect> getIndirectObjects() {
-        List<COSObject> objects = cosDocument.getObjects();
+        Map<COSKey, COSObject> objects = cosDocument.getObjectsMap();
         List<CosIndirect> list = new ArrayList<>(objects.size());
-        for (COSObject object : objects) {
-            list.add(new GFCosIndirect(object));
+        for (Map.Entry<COSKey, COSObject> entry : objects.entrySet()) {
+            list.add(new GFCosIndirect(entry.getKey(), entry.getValue()));
         }
         return Collections.unmodifiableList(list);
     }
@@ -339,7 +336,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     }
 
     private COSDictionary getCatalog() {
-        COSBase catalogLocal = cosDocument.getTrailer().getRoot().get();
+        COSBase catalogLocal = cosDocument.getTrailer().getRoot().getDirectBase();
         return catalogLocal instanceof COSDictionary ? (COSDictionary) catalogLocal : null;
     }
 

@@ -1,9 +1,12 @@
 package org.verapdf.model.impl.cos;
 
+import org.verapdf.cos.COSIndirect;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosObject;
+import org.verapdf.model.tools.GFIDGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,15 +26,19 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
 
     private final String id;
 
+    public GFCosIndirect(final COSKey key, final COSObject object) {
+        super(object.get(), COS_INDIRECT_TYPE);
+        this.isSpacingPDFACompliant = getspacingCompliesPDFA(object);
+        this.id = GFIDGenerator.generateID(key);
+    }
+
     /**
      * Default constructor
      */
-    public GFCosIndirect(final COSObject object) {
+    public GFCosIndirect(final COSIndirect object) {
         super(object.get(), COS_INDIRECT_TYPE);
-        //TODO : implement id generator
-        this.isSpacingPDFACompliant = getspacingCompliesPDFA(object);
-        this.id = "";
-        //this.id = IDGenerator.generateID(indirectObject);
+        this.isSpacingPDFACompliant = getspacingCompliesPDFA(object.getDirect());
+        this.id = GFIDGenerator.generateID(object.getKey());
     }
 
     @Override
