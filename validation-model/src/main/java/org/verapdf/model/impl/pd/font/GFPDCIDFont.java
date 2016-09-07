@@ -1,23 +1,22 @@
 package org.verapdf.model.impl.pd.font;
 
 import org.apache.log4j.Logger;
-import org.verapdf.as.ASAtom;
 import org.verapdf.as.io.ASInputStream;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.font.PDFLibFont;
-import org.verapdf.font.cff.CFFCIDFont;
-import org.verapdf.font.cff.CFFFont;
-import org.verapdf.font.truetype.TrueTypeFont;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosStream;
 import org.verapdf.model.pdlayer.PDCIDFont;
-import org.verapdf.pd.PDFont;
+import org.verapdf.pd.font.FontProgram;
+import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.font.cff.CFFCIDFontProgram;
+import org.verapdf.pd.font.cff.CFFFontProgram;
+import org.verapdf.pd.font.truetype.TrueTypeFontProgram;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
@@ -59,8 +58,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
      * the CID font descriptor dictionary.
      */
     private List<CosStream> getCIDSet() {
-        COSStream cidSet = (COSStream)
-                this.pdFont.getFontDescriptor().getKey(ASAtom.CID_SET).get();
+        COSStream cidSet = ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
         if (cidSet != null) {
             List<CosStream> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             list.add(new GFCosStream(cidSet));
@@ -75,8 +73,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
      */
     @Override
     public String getCIDToGIDMap() {
-        COSObject cidToGidObject = this.pdFont.getDictionary().getKey(
-                ASAtom.CID_TO_GID_MAP);
+        COSObject cidToGidObject =
+                ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDToGIDMap();
         if (cidToGidObject.getType() == COSObjType.COS_STREAM) {
             return CUSTOM;
         }
@@ -103,7 +101,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 //reverse bit order in bit set (convert to big endian)
                 BitSet bitSet = toBitSetBigEndian(cidSetBytes);
 
-                PDFLibFont cidFont = this.pdFont.getFontFile();
+                FontProgram cidFont = this.pdFont.getFontProgram();
 
                 for (int i = 1; i < bitSet.size(); i++) {
                     if (bitSet.get(i) && !cidFont.containsCID(i)) {
@@ -114,13 +112,13 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (!flavour.equals(PDFAFlavour.PDFA_1_A) || !flavour.equals(PDFAFlavour.PDFA_1_B)) {
                     //on this levels we need to ensure that all glyphs present in font program are described in cid set
-                    if (cidFont instanceof CFFFont && ((CFFFont) cidFont).isCIDFont()) {
-                        CFFCIDFont cffCidFont = (CFFCIDFont) ((CFFFont) cidFont).getFont();
+                    if (cidFont instanceof CFFFontProgram && ((CFFFontProgram) cidFont).isCIDFont()) {
+                        CFFCIDFontProgram cffCidFont = (CFFCIDFontProgram) ((CFFFontProgram) cidFont).getFont();
                         if (bitSet.cardinality() < cffCidFont.getNGlyphs()) {
                             return Boolean.FALSE;
                         }
-                    } else if (cidFont instanceof TrueTypeFont) {
-                        if (bitSet.cardinality() < ((TrueTypeFont) cidFont).getNGlyphs()) {
+                    } else if (cidFont instanceof TrueTypeFontProgram) {
+                        if (bitSet.cardinality() < ((TrueTypeFontProgram) cidFont).getNGlyphs()) {
                             return Boolean.FALSE;
                         }
                     }
@@ -138,7 +136,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         COSDictionary fontDescriptor = this.pdFont.getFontDescriptor();
         COSStream cidSet;
         if (fontDescriptor != null) {
-            cidSet = (COSStream) fontDescriptor.getKey(ASAtom.CID_SET).get();
+            cidSet = ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
             return cidSet;
         }
         return null;
@@ -162,7 +160,6 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 b = b << 1;
             }
         }
-
         return bitSet;
     }
 }

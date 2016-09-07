@@ -1,7 +1,7 @@
 package org.verapdf.model.impl.pd;
 
 import org.verapdf.model.pdlayer.PDResource;
-import org.verapdf.pd.PDFont;
+import org.verapdf.pd.font.PDFont;
 
 /**
  * @author Maksim Bezrukov
