@@ -1,7 +1,9 @@
 package org.verapdf.model.impl.cos;
 
+import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSIndirect;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
@@ -15,6 +17,8 @@ import java.util.List;
  * @author Timur Kamalov
  */
 public class GFCosTrailer extends GFCosDict implements CosTrailer {
+
+	private static final Logger LOGGER = Logger.getLogger(GFCosTrailer.class);
 
 	/** Type name for GFCosTrailer */
 	public static final String COS_TRAILER_TYPE = "CosTrailer";
@@ -51,7 +55,11 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 	private List<CosIndirect> getCatalog() {
 		List<CosIndirect> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		COSObject catalog = this.baseObject.getKey(ASAtom.ROOT);
-		result.add(new GFCosIndirect(catalog));
+		if (catalog.isIndirect()) {
+			result.add(new GFCosIndirect((COSIndirect) catalog.get()));
+		} else {
+			LOGGER.warn("Catalog shall be an indirect reference");
+		}
 		return Collections.unmodifiableList(result);
 	}
 
