@@ -160,8 +160,19 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    //TODO : implement me
     private List<PDOutputIntent> getOutputIntents() {
+        try {
+            List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
+            if (outInts.size() > 0) {
+                List<PDOutputIntent> res = new ArrayList<>(outInts.size());
+                for (org.verapdf.pd.PDOutputIntent outInt : outInts) {
+                    res.add(new GFPDOutputIntent(outInt));
+                }
+                return Collections.unmodifiableList(res);
+            }
+        } catch (IOException e) {
+            LOGGER.debug("Exception during obtaining OutputIntents", e);
+        }
         return Collections.emptyList();
     }
 
