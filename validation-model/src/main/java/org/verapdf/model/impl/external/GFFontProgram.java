@@ -15,12 +15,10 @@ public class GFFontProgram extends GFExternal implements FontProgram {
         super(type);
     }
 
-    /**
-     * This constructor is in fact a dummy. Method getFontFile in PDFont must
-     * return FontProgram, and something is needed for fonts that are not True
-     * Type.
-     */
-    public GFFontProgram() {
+    private org.verapdf.pd.font.FontProgram fontProgram;
+
+    public GFFontProgram(org.verapdf.pd.font.FontProgram fontProgram) {
         super(FONT_PROGRAM_TYPE);
+        this.fontProgram = fontProgram;
     }
 }

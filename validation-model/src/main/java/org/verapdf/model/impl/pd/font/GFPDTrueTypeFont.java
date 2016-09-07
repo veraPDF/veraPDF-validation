@@ -4,15 +4,14 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
-import org.verapdf.font.PDFLibFont;
-import org.verapdf.font.truetype.AdobeGlyphList;
-import org.verapdf.font.truetype.TrueTypeFont;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.pdlayer.PDTrueTypeFont;
+import org.verapdf.pd.font.FontProgram;
+import org.verapdf.pd.font.truetype.AdobeGlyphList;
+import org.verapdf.pd.font.truetype.TrueTypeFontProgram;
 
 /**
  * Represents TrueType font dictionary.
- * //TODO: write doc
  *
  * @author Sergey Shemyakov
  */
@@ -20,21 +19,27 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
 
     public static final String TRUETYPE_FONT_TYPE = "PDTrueTypeFont";
 
-    GFPDTrueTypeFont(org.verapdf.pd.PDFont font,
+    GFPDTrueTypeFont(org.verapdf.pd.font.truetype.PDTrueTypeFont font,
                      RenderingMode renderingMode) {
         super(font, renderingMode, TRUETYPE_FONT_TYPE);
     }
 
+    /**
+     * @return true if all glyph names in the differences array of the Encoding
+     * dictionary are a part of the Adobe Glyph List and the embedded font
+     * program contains the Microsoft Unicode (3,1 - Platform ID=3,
+     * Encoding ID=1) cmap subtable.
+     */
     @Override
     public Boolean getdifferencesAreUnicodeCompliant() {
-        PDFLibFont font = this.pdFont.getFontFile();
-        if (!(font instanceof TrueTypeFont)) {
+        FontProgram font = this.pdFont.getFontProgram();
+        if (!(font instanceof TrueTypeFontProgram)) {
             return Boolean.valueOf(false);
         }
-        if (!((TrueTypeFont) font).isCmapPresent(3, 1)) {
+        if (!((TrueTypeFontProgram) font).isCmapPresent(3, 1)) {
             return Boolean.valueOf(false);
         }
-        COSObject encoding = this.pdFont.getDictionary().getKey(ASAtom.ENCODING);
+        COSObject encoding = this.pdFont.getEncoding();
         if (encoding == COSObject.getEmpty()) {
             return Boolean.valueOf(false);
         }
@@ -50,5 +55,13 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
         }
 
         return Boolean.valueOf(true);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean getisStandard() {
+        return Boolean.valueOf(false);
     }
 }

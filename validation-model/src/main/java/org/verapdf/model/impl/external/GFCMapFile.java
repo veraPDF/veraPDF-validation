@@ -15,7 +15,7 @@ public class GFCMapFile extends GFExternal implements CMapFile {
 
     private static final Logger LOGGER = Logger.getLogger(GFCMapFile.class);
 
-    private org.verapdf.font.cmap.CMapFile cMapFile;
+    private org.verapdf.pd.font.cmap.CMapFile cMapFile;
 
     /**
      * Type name for GFCMapFile
@@ -29,7 +29,7 @@ public class GFCMapFile extends GFExternal implements CMapFile {
      */
     public GFCMapFile(COSStream stream) {
         super(CMAP_FILE_TYPE);
-        this.cMapFile = new org.verapdf.font.cmap.CMapFile(stream);
+        this.cMapFile = new org.verapdf.pd.font.cmap.CMapFile(stream);
     }
 
     /**
