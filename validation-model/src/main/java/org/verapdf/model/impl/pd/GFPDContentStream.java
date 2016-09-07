@@ -51,21 +51,25 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	}
 
 	private void parseOperators() {
-		try {
-			COSObject contentStream = this.contentStream.getContents();
-			if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
-				PDFStreamParser streamParser = new PDFStreamParser((COSStream) contentStream.getDirectBase());
-				streamParser.parseTokens();
-				OperatorFactory operatorFactory = new OperatorFactory();
-				List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
+		if (this.contentStream == null) {
+			this.operators = Collections.emptyList();
+		} else {
+			try {
+				COSObject contentStream = this.contentStream.getContents();
+				if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
+					PDFStreamParser streamParser = new PDFStreamParser((COSStream) contentStream.getDirectBase());
+					streamParser.parseTokens();
+					OperatorFactory operatorFactory = new OperatorFactory();
+					List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
 
-				this.operators = Collections.unmodifiableList(result);
-			} else {
+					this.operators = Collections.unmodifiableList(result);
+				} else {
+					this.operators = Collections.emptyList();
+				}
+			} catch (IOException e) {
+				LOGGER.debug("Error while parsing content stream. " + e.getMessage(), e);
 				this.operators = Collections.emptyList();
 			}
-		} catch (IOException e) {
-			LOGGER.debug("Error while parsing content stream. " + e.getMessage(), e);
-			this.operators = Collections.emptyList();
 		}
 	}
 

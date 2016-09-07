@@ -113,6 +113,10 @@ public class GFCosVisitor implements ICOSVisitor {
     }
 
     public static Object visitFromIndirect(COSIndirect obj) {
+        //for cases when there's an indirect reference to a non-existing object
+        if (obj.getDirect() == null) {
+            return GFCosNull.getInstance();
+        }
         return new GFCosIndirect(obj);
     }
 
