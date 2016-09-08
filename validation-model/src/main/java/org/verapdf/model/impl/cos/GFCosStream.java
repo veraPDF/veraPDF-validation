@@ -168,10 +168,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	}
 
 	private static Long parseLength(final COSStream stream) {
-		COSBase number = stream.getKey(ASAtom.LENGTH).get();
-		if (number.isIndirect()) {
-			number = number.getDirectBase();
-		}
+		COSBase number = stream.getKey(ASAtom.LENGTH).getDirectBase();
 		return number instanceof COSNumber ? number.getInteger() : null;
 	}
 
