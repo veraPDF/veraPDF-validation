@@ -16,17 +16,17 @@ import org.verapdf.pd.patterns.PDTilingPattern;
  */
 public class ColorSpaceFactory {
 
-	public static final String CAL_GRAY = "CalGray";
-	public static final String CAL_RGB = "CalRGB";
-	public static final String DEVICE_CMYK = "DeviceCMYK";
-	public static final String DEVICE_RGB = "DeviceRGB";
-	public static final String DEVICE_GRAY = "DeviceGray";
-	public static final String ICC_BASED = "ICCBased";
-	public static final String LAB = "Lab";
-	public static final String DEVICE_N = "DeviceN";
-	public static final String SEPARATION = "Separation";
-	public static final String INDEXED = "Indexed";
-	public static final String PATTERN = "Pattern";
+	public static final String CAL_GRAY = "/CalGray";
+	public static final String CAL_RGB = "/CalRGB";
+	public static final String DEVICE_CMYK = "/DeviceCMYK";
+	public static final String DEVICE_RGB = "/DeviceRGB";
+	public static final String DEVICE_GRAY = "/DeviceGray";
+	public static final String ICC_BASED = "/ICCBased";
+	public static final String LAB = "/Lab";
+	public static final String DEVICE_N = "/DeviceN";
+	public static final String SEPARATION = "/Separation";
+	public static final String INDEXED = "/Indexed";
+	public static final String PATTERN = "/Pattern";
 
 	private ColorSpaceFactory() {
 		// disable default constructor
