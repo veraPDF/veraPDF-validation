@@ -276,11 +276,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
             if (buffer != COSObject.getEmpty()) {
                 COSObject base = buffer.getKey(ASAtom.EMBEDDED_FILES);
                 if (base != null && base.getType().equals(COSObjType.COS_DICT)) {
-                    if (base.isIndirect()) {
-                        base = base.getDirect();
-                    }
                     List<Object> files = new ArrayList<>();
-                    this.getNamesEmbeddedFiles(files, (COSDictionary) base.get());
+                    this.getNamesEmbeddedFiles(files, (COSDictionary) base.getDirectBase());
                     return Collections.unmodifiableList(files);
                 }
             }
