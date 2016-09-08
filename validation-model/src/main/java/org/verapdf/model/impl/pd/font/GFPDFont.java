@@ -2,6 +2,8 @@ package org.verapdf.model.impl.pd.font;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.external.FontProgram;
@@ -11,6 +13,7 @@ import org.verapdf.model.impl.external.GFFontProgram;
 import org.verapdf.model.impl.external.GFTrueTypeFontProgram;
 import org.verapdf.model.impl.pd.GFPDResource;
 import org.verapdf.model.pdlayer.PDFont;
+import org.verapdf.pd.font.Encoding;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -122,5 +125,17 @@ public class GFPDFont extends GFPDResource implements PDFont {
             return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();
+    }
+
+    public Encoding getEncodingMapping() {
+        COSObject encoding = this.pdFont.getEncoding();
+        if(encoding.getType() == COSObjType.COS_NAME) {
+            return new Encoding(encoding.getName());
+        } else if (encoding.getType() == COSObjType.COS_DICT) {
+            return new Encoding(encoding.getNameKey(ASAtom.BASE_ENCODING),
+                    this.pdFont.getDifferences());
+        } else {
+            return null;
+        }
     }
 }
