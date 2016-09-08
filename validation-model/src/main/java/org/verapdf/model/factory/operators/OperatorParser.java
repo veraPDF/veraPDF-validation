@@ -27,14 +27,14 @@ import org.verapdf.model.impl.operator.textposition.GFOpTextPosition;
 import org.verapdf.model.impl.operator.textposition.GFOp_TD_Big;
 import org.verapdf.model.impl.operator.textposition.GFOp_Td;
 import org.verapdf.model.impl.operator.textposition.GFOp_Tm;
-import org.verapdf.model.impl.operator.textshow.GFOp_DoubleQuote;
-import org.verapdf.model.impl.operator.textshow.GFOp_Quote;
-import org.verapdf.model.impl.operator.textshow.GFOp_TJ_Big;
-import org.verapdf.model.impl.operator.textshow.GFOp_Tj;
+import org.verapdf.model.impl.operator.textshow.*;
 import org.verapdf.model.impl.operator.textstate.*;
 import org.verapdf.model.impl.operator.type3font.GFOp_d0;
 import org.verapdf.model.impl.operator.type3font.GFOp_d1;
 import org.verapdf.model.impl.operator.xobject.GFOp_Do;
+import org.verapdf.model.impl.pd.colors.GFPDColorSpace;
+import org.verapdf.model.impl.pd.font.GFPDFont;
+import org.verapdf.model.impl.pd.images.GFPDXObject;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.Operator;
@@ -60,7 +60,20 @@ class OperatorParser {
 	private final Deque<GraphicState> graphicStateStack = new ArrayDeque<>();
 	private GraphicState graphicState = new GraphicState();
 
+	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
+	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
+
 	OperatorParser() {
+	}
+
+	public TransparencyGraphicsState getTransparencyGraphicState() {
+		TransparencyGraphicsState tgs = new TransparencyGraphicsState();
+		tgs.copyProperties(this.transparencyGraphicState);
+		return tgs;
+	}
+
+	public RenderingMode getGSRenderingMode() {
+		return graphicState.getRenderingMode();
 	}
 
 	void parseOperator(List<org.verapdf.model.operator.Operator> processedOperators, Operator rawOperator,
@@ -72,7 +85,7 @@ class OperatorParser {
 				processedOperators.add(new GFOp_d(arguments));
 				break;
 			case Operators.GS:
-				processExtGState(processedOperators, arguments, resourcesHandler, this.graphicState);
+				processExtGState(processedOperators, arguments, resourcesHandler, this.graphicState, this.transparencyGraphicState);
 				break;
 			case Operators.I_SETFLAT:
 				processedOperators.add(new GFOp_i(arguments));
@@ -202,16 +215,24 @@ class OperatorParser {
 
 			// TEXT SHOW
 			case Operators.TJ_SHOW:
-				processedOperators.add(new GFOp_Tj(arguments, this.graphicState.clone(), resourcesHandler));
+				GFOp_Tj tj = new GFOp_Tj(arguments, this.graphicState.clone(), resourcesHandler);
+				addFontAndColorSpace(tj, this.transparencyGraphicState);
+				processedOperators.add(tj);
 				break;
 			case Operators.TJ_SHOW_POS:
-				processedOperators.add(new GFOp_TJ_Big(arguments, this.graphicState.clone(), resourcesHandler));
+				GFOp_TJ_Big tjBig = new GFOp_TJ_Big(arguments, this.graphicState.clone(), resourcesHandler);
+				addFontAndColorSpace(tjBig, this.transparencyGraphicState);
+				processedOperators.add(tjBig);
 				break;
 			case Operators.QUOTE:
-				processedOperators.add(new GFOp_Quote(arguments, this.graphicState.clone(), resourcesHandler));
+				GFOp_Quote quote = new GFOp_Quote(arguments, this.graphicState.clone(), resourcesHandler);
+				addFontAndColorSpace(quote, this.transparencyGraphicState);
+				processedOperators.add(quote);
 				break;
 			case Operators.DOUBLE_QUOTE:
-				processedOperators.add(new GFOp_DoubleQuote(arguments, this.graphicState.clone(), resourcesHandler));
+				GFOp_DoubleQuote doubleQuote = new GFOp_DoubleQuote(arguments, this.graphicState.clone(), resourcesHandler);
+				addFontAndColorSpace(doubleQuote, this.transparencyGraphicState);
+				processedOperators.add(doubleQuote);
 				break;
 
 			// TEXT STATE
@@ -285,34 +306,54 @@ class OperatorParser {
 
 			// PATH PAINT
 			case Operators.B_CLOSEPATH_FILL_STROKE:
-				processedOperators.add(new GFOp_b_closepath_fill_stroke(arguments, this.graphicState, resourcesHandler));
+				GFOp_b_closepath_fill_stroke b_closepath_fill_stroke = new GFOp_b_closepath_fill_stroke(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(b_closepath_fill_stroke, this.transparencyGraphicState);
+				processedOperators.add(b_closepath_fill_stroke);
 				break;
 			case Operators.B_FILL_STROKE:
-				processedOperators.add(new GFOp_B_fill_stroke(arguments, this.graphicState, resourcesHandler));
+				GFOp_B_fill_stroke b_fill_stroke = new GFOp_B_fill_stroke(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(b_fill_stroke, this.transparencyGraphicState);
+				processedOperators.add(b_fill_stroke);
 				break;
 			case Operators.B_STAR_CLOSEPATH_EOFILL_STROKE:
-				processedOperators.add(new GFOp_bstar_closepath_eofill_stroke(arguments, this.graphicState, resourcesHandler));
+				GFOp_bstar_closepath_eofill_stroke bstar_closepath_eofill_stroke = new GFOp_bstar_closepath_eofill_stroke(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(bstar_closepath_eofill_stroke, this.transparencyGraphicState);
+				processedOperators.add(bstar_closepath_eofill_stroke);
 				break;
 			case Operators.B_STAR_EOFILL_STROKE:
-				processedOperators.add(new GFOp_BStar_eofill_stroke(arguments, this.graphicState, resourcesHandler));
+				GFOp_BStar_eofill_stroke bStar_eofill_stroke = new GFOp_BStar_eofill_stroke(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(bStar_eofill_stroke, this.transparencyGraphicState);
+				processedOperators.add(bStar_eofill_stroke);
 				break;
 			case Operators.F_FILL:
-				processedOperators.add(new GFOp_f_fill(arguments, this.graphicState, resourcesHandler));
+				GFOp_f_fill f_fill = new GFOp_f_fill(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(f_fill, this.transparencyGraphicState);
+				processedOperators.add(f_fill);
 				break;
 			case Operators.F_FILL_OBSOLETE:
-				processedOperators.add(new GFOp_F_fill_obsolete(arguments, this.graphicState, resourcesHandler));
+				GFOp_F_fill_obsolete f_fill_obsolete = new GFOp_F_fill_obsolete(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(f_fill_obsolete, this.transparencyGraphicState);
+				processedOperators.add(f_fill_obsolete);
 				break;
 			case Operators.F_STAR_FILL:
-				processedOperators.add(new GFOp_FStar(arguments, this.graphicState, resourcesHandler));
+				GFOp_FStar fStar = new GFOp_FStar(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(fStar, this.transparencyGraphicState);
+				processedOperators.add(fStar);
 				break;
 			case Operators.N:
-				processedOperators.add(new GFOp_n(arguments));
+				GFOp_n op_n = new GFOp_n(arguments);
+				addColorSpace(op_n, this.transparencyGraphicState);
+				processedOperators.add(op_n);
 				break;
 			case Operators.S_CLOSE_STROKE:
-				processedOperators.add( new GFOp_s_close_stroke(arguments, this.graphicState, resourcesHandler));
+				GFOp_s_close_stroke s_close_stroke = new GFOp_s_close_stroke(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(s_close_stroke, this.transparencyGraphicState);
+				processedOperators.add(s_close_stroke);
 				break;
 			case Operators.S_STROKE:
-				processedOperators.add(new GFOp_S_stroke(arguments, this.graphicState, resourcesHandler));
+				GFOp_S_stroke s_stroke = new GFOp_S_stroke(arguments, this.graphicState, resourcesHandler);
+				addColorSpace(s_stroke, this.transparencyGraphicState);
+				processedOperators.add(s_stroke);
 
 			// SHADING
 			case Operators.SH:
@@ -327,17 +368,27 @@ class OperatorParser {
 				if (!graphicStateStack.isEmpty()) {
 					this.graphicState.copyProperties(this.graphicStateStack.pop());
 				}
+				if (!transparencyGraphicStateStack.isEmpty()) {
+					this.transparencyGraphicState.copyProperties(this.transparencyGraphicStateStack.pop());
+				}
 				processedOperators.add(new GFOp_Q_grestore(arguments));
 				break;
 			case Operators.Q_GSAVE:
 				this.graphicStateStack.push(this.graphicState.clone());
+				this.transparencyGraphicStateStack.push(this.transparencyGraphicState.clone());
 				processedOperators.add(new GFOp_q_gsave(arguments, this.graphicStateStack.size()));
 				break;
 
 			// XOBJECT
 			case Operators.DO:
-				processedOperators.add(new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-													resourcesHandler));
+				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
+						resourcesHandler);
+				List<org.verapdf.model.pdlayer.PDXObject> pdxObjects = op_do.getXObject();
+				if (!pdxObjects.isEmpty()) {
+					GFPDXObject xobj = (GFPDXObject) pdxObjects.get(0);
+					this.transparencyGraphicState.setVeraXObject(xobj);
+				}
+				processedOperators.add(op_do);
 				break;
 
 			default:
@@ -347,9 +398,11 @@ class OperatorParser {
 	}
 
 	private static void processExtGState(List<org.verapdf.model.operator.Operator> processedOperators, List<COSBase> arguments,
-										 PDResourcesHandler resourcesHandler, GraphicState graphicState) {
+										 PDResourcesHandler resourcesHandler, GraphicState graphicState,
+										 TransparencyGraphicsState transparencyGraphicsState) {
 		PDExtGState extGState = resourcesHandler.getExtGState(getLastCOSName(arguments));
 		graphicState.copyPropertiesFormExtGState(extGState);
+		transparencyGraphicsState.copyPropertiesFormExtGState(extGState);
 		processedOperators.add(new GFOp_gs(arguments, extGState));
 	}
 
@@ -400,4 +453,21 @@ class OperatorParser {
 		return null;
 	}
 
+	private static void addFontAndColorSpace(GFOpTextShow op, TransparencyGraphicsState transparencyGraphicsState) {
+		GFPDFont font = (GFPDFont) op.getVeraModelFont();
+		transparencyGraphicsState.setVeraFont(font);
+		byte[] charCodes = op.getCharCodes();
+		transparencyGraphicsState.setCharCodes(charCodes);
+		GFPDColorSpace fillCS = (GFPDColorSpace) op.getVeraModelFillColorSpace();
+		transparencyGraphicsState.setVeraFillColorSpace(fillCS);
+		GFPDColorSpace strokeCS = (GFPDColorSpace) op.getVeraModelStrokeColorSpace();
+		transparencyGraphicsState.setVeraStrokeColorSpace(strokeCS);
+	}
+
+	private static void addColorSpace(GFOpPathPaint op, TransparencyGraphicsState transparencyGraphicsState) {
+		GFPDColorSpace fillCS = (GFPDColorSpace) op.getVeraFillCS();
+		transparencyGraphicsState.setVeraFillColorSpace(fillCS);
+		GFPDColorSpace strokeCS = (GFPDColorSpace) op.getVeraStrokeCS();
+		transparencyGraphicsState.setVeraStrokeColorSpace(strokeCS);
+	}
 }

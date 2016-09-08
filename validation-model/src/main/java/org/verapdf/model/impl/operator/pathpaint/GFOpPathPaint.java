@@ -69,6 +69,20 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 		return this.strokeCS;
 	}
 
+	public org.verapdf.model.pdlayer.PDColorSpace getVeraFillCS() {
+		if (this.fillCS == null) {
+			this.fillCS = getColorSpace(this.rawFillColorSpace, this.overprintingFlagNonStroke);
+		}
+		return this.fillCS.isEmpty() ? null : this.fillCS.get(0);
+	}
+
+	public org.verapdf.model.pdlayer.PDColorSpace getVeraStrokeCS() {
+		if (this.strokeCS == null) {
+			this.strokeCS = getColorSpace(this.rawStrokeColorSpace, this.overprintingFlagStroke);
+		}
+		return this.strokeCS.isEmpty() ? null : this.strokeCS.get(0);
+	}
+
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getColorSpace(PDColorSpace rawColorSpace, boolean op) {
 		org.verapdf.model.pdlayer.PDColorSpace veraColorSpace =
 				ColorSpaceFactory.getColorSpace(rawColorSpace, this.resourcesHandler, this.opm, op);

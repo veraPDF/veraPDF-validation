@@ -14,6 +14,7 @@ import org.verapdf.model.impl.pd.images.GFPDXImage;
 import org.verapdf.model.impl.pd.images.GFPDXObject;
 import org.verapdf.model.impl.pd.patterns.GFPDTilingPattern;
 import org.verapdf.model.pdlayer.PDContentStream;
+import org.verapdf.pd.font.Encoding;
 
 import java.util.Map;
 
@@ -145,7 +146,7 @@ public class TransparencyBehaviour {
         GFPDFont font = graphicState.getVeraFont();
         if (font instanceof GFPDType3Font) {
             GFPDType3Font type3Font = (GFPDType3Font) font;
-            Encoding encoding = type3Font.getEncodingObject();
+            Encoding encoding = type3Font.getEncodingMapping();
             if (encoding != null) {
                 boolean result = false;
                 Map<ASAtom, PDContentStream> charProcStreams = type3Font.getCharProcStreams();

@@ -3,10 +3,12 @@ package org.verapdf.model.factory.operators;
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.tools.TransparencyBehaviour;
+import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.Operator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Class for converting raw operators to the veraPDF-library operators
@@ -22,6 +24,7 @@ public final class OperatorFactory {
     private boolean isLastParsedContainsTransparency = false;
 
     private static final Map<String, TransparencyBehaviour> PAINT_OPERATORS_WITHOUT_TEXT;
+
     static {
         Map<String, TransparencyBehaviour> aMap = new HashMap<>();
         TransparencyBehaviour fill = TransparencyBehaviour.createFillInstance();
@@ -52,6 +55,7 @@ public final class OperatorFactory {
     }));
 
     private static final Map<RenderingMode, TransparencyBehaviour> RENDERING_MODE;
+
     static {
         Map<RenderingMode, TransparencyBehaviour> aMap = new HashMap<>();
         TransparencyBehaviour strokeCSFont = TransparencyBehaviour.createStrokeColorSpaceFontInstance();
@@ -83,17 +87,21 @@ public final class OperatorFactory {
             if (rawToken instanceof COSBase) {
                 arguments.add((COSBase) rawToken);
             } else if (rawToken instanceof Operator) {
-                parser.parseOperator(result, ((Operator) rawToken), arguments);
+                try {
+                    parser.parseOperator(result, ((Operator) rawToken), resourcesHandler, arguments);
 
-                String parsedOperatorType = ((Operator) rawToken).getOperator();
-                TransparencyGraphicsState graphicState = parser.getTransparencyGraphicState();
-                if (PAINT_OPERATORS_WITHOUT_TEXT.containsKey(parsedOperatorType)) {
-                    isLastParsedContainsTransparency |= PAINT_OPERATORS_WITHOUT_TEXT.get(parsedOperatorType).containsTransparency(graphicState);
-                } else {
-                    RenderingMode renderingMode = parser.getGSRenderingMode();
-                    if (PAINT_OPERATORS_TEXT.contains(parsedOperatorType) && RENDERING_MODE.containsKey(renderingMode)) {
-                        isLastParsedContainsTransparency |= RENDERING_MODE.get(renderingMode).containsTransparency(graphicState);
+                    String parsedOperatorType = ((Operator) rawToken).getOperator();
+                    TransparencyGraphicsState graphicState = parser.getTransparencyGraphicState();
+                    if (PAINT_OPERATORS_WITHOUT_TEXT.containsKey(parsedOperatorType)) {
+                        isLastParsedContainsTransparency |= PAINT_OPERATORS_WITHOUT_TEXT.get(parsedOperatorType).containsTransparency(graphicState);
+                    } else {
+                        RenderingMode renderingMode = parser.getGSRenderingMode();
+                        if (PAINT_OPERATORS_TEXT.contains(parsedOperatorType) && RENDERING_MODE.containsKey(renderingMode)) {
+                            isLastParsedContainsTransparency |= RENDERING_MODE.get(renderingMode).containsTransparency(graphicState);
+                        }
                     }
+                } catch (IOException e) {
+                    LOGGER.warn(e);
                 }
 
                 arguments = new ArrayList<>();

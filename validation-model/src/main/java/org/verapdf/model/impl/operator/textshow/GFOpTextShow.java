@@ -1,8 +1,7 @@
 package org.verapdf.model.impl.operator.textshow;
 
 import org.apache.log4j.Logger;
-import org.verapdf.cos.COSBase;
-import org.verapdf.cos.COSName;
+import org.verapdf.cos.*;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.model.factory.fonts.FontFactory;
@@ -14,9 +13,7 @@ import org.verapdf.model.operator.OpTextShow;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.colors.PDColorSpace;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Timur Kamalov
@@ -99,6 +96,13 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		return this.fonts;
     }
 
+	public PDFont getVeraModelFont() {
+		if (this.fonts == null) {
+			this.fonts = parseFont();
+		}
+		return this.fonts.isEmpty() ? null : this.fonts.get(0);
+	}
+
 	//TODO : implement me
     private List<Object> getUsedGlyphs() {
         return Collections.emptyList();
@@ -117,6 +121,20 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		}
 		return this.strokeCS;
     }
+
+	public org.verapdf.model.pdlayer.PDColorSpace getVeraModelFillColorSpace() {
+		if (this.fillCS == null) {
+			this.fillCS = parseFillColorSpace();
+		}
+		return this.fillCS.isEmpty() ? null : this.fillCS.get(0);
+	}
+
+	public org.verapdf.model.pdlayer.PDColorSpace getVeraModelStrokeColorSpace() {
+		if (this.strokeCS == null) {
+			this.strokeCS = parseStrokeColorSpace();
+		}
+		return this.strokeCS.isEmpty() ? null : this.strokeCS.get(0);
+	}
 
 	private List<PDFont> parseFont() {
 		PDFont font = FontFactory.parseFont(getFontFromResources(), renderingMode, this.resourcesHandler);
@@ -160,6 +178,52 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			return null;
 		}
 		return resourcesHandler.getFont(this.fontName);
+	}
+
+	/**
+	 * @return char codes that has been used by this operator
+	 */
+	public byte[] getCharCodes() {
+		List<byte[]> strings = this.getStrings(this.arguments);
+		Set<Byte> resSet = new HashSet<>();
+		for (byte[] string : strings) {
+			for (byte b : string) {
+				resSet.add(b);
+			}
+		}
+		byte[] res = new byte[resSet.size()];
+		int i = 0;
+		for (Byte b : resSet) {
+			res[i++] = b.byteValue();
+		}
+		return res;
+	}
+
+	private List<byte[]> getStrings(List<COSBase> arguments) {
+		if (!arguments.isEmpty()) {
+			List<byte[]> res = new ArrayList<>();
+			COSBase arg = arguments.get(0);
+			if (arg != null) {
+				if (arg.getType() == COSObjType.COS_ARRAY) {
+					this.addArrayElements(res, (COSArray) arg.getDirectBase());
+				} else {
+					if (arg.getType() == COSObjType.COS_STRING) {
+						res.add(arg.getString().getBytes());
+					}
+				}
+			}
+			return res;
+		} else {
+			return Collections.emptyList();
+		}
+	}
+
+	private void addArrayElements(List<byte[]> res, COSArray arg) {
+		for (COSObject element : arg) {
+			if (element != null &&  element.getType() == COSObjType.COS_STRING) {
+				res.add(element.getString().getBytes());
+			}
+		}
 	}
 
 }

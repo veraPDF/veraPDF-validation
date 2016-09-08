@@ -46,7 +46,7 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	/**
 	 * @return XObject object from veraPDF model used in current operator
 	 */
-	protected List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
+	public List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
 		if (this.xObjects == null) {
 			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler);
 			if (typedPDXObject != null) {
