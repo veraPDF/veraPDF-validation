@@ -2,8 +2,10 @@ package org.verapdf.model.impl.operator.textshow;
 
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSName;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.model.factory.fonts.FontFactory;
 import org.verapdf.model.factory.operators.GraphicState;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.impl.operator.base.GFOperator;
@@ -37,6 +39,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private final PDColorSpace rawFillColorSpace;
 	private final PDColorSpace rawStrokeColorSpace;
 
+	private final COSName fontName;
+
 	private final RenderingMode renderingMode;
 
 	private final int opm;
@@ -51,25 +55,25 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 
     protected GFOpTextShow(List<COSBase> arguments, GraphicState state,
 						   PDResourcesHandler resourcesHandler, final String opType) {
-        this(arguments, state.getFillColorSpace(), state.getStrokeColorSpace(), state.getRenderingMode(),
-				state.getOpm(), state.isOverprintingFlagStroke(), state.isOverprintingFlagNonStroke(),
-				resourcesHandler, opType);
+        this(arguments, state.getFillColorSpace(), state.getStrokeColorSpace(), state.getFontName(),
+				state.getRenderingMode(), state.getOpm(), state.isOverprintingFlagStroke(),
+				state.isOverprintingFlagNonStroke(), resourcesHandler, opType);
     }
 
 	protected GFOpTextShow(List<COSBase> arguments,
 						   final PDColorSpace rawFillColorSpace, final PDColorSpace rawStrokeColorSpace,
-						   final RenderingMode renderingMode,
+						   final COSName fontName, final RenderingMode renderingMode,
 						   int opm, boolean overprintingFlagStroke, boolean overprintingFlagNonStroke,
 						   final PDResourcesHandler resourcesHandler, final String operatorType) {
 		super(arguments, operatorType);
 		this.rawFillColorSpace = rawFillColorSpace;
 		this.rawStrokeColorSpace = rawStrokeColorSpace;
+		this.fontName = fontName;
 		this.renderingMode = renderingMode;
 		this.opm = opm;
 		this.overprintingFlagStroke = overprintingFlagStroke;
 		this.overprintingFlagNonStroke = overprintingFlagNonStroke;
 		this.resourcesHandler = resourcesHandler;
-
 	}
 
 	@Override
@@ -114,8 +118,13 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		return this.strokeCS;
     }
 
-	//TODO : implement me
 	private List<PDFont> parseFont() {
+		PDFont font = FontFactory.parseFont(getFontFromResources(), renderingMode, this.resourcesHandler);
+		if (font != null) {
+			List<PDFont> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			result.add(font);
+			return Collections.unmodifiableList(result);
+		}
 		return Collections.emptyList();
 	}
 
@@ -146,5 +155,11 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		return Collections.emptyList();
 	}
 
+	private org.verapdf.pd.font.PDFont getFontFromResources() {
+		if (resourcesHandler == null) {
+			return null;
+		}
+		return resourcesHandler.getFont(this.fontName);
+	}
 
 }

@@ -9,7 +9,6 @@ import org.verapdf.model.impl.pd.GFPDContentStream;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDType3Font;
-import org.verapdf.pd.PDResources;
 import org.verapdf.pd.PDType3CharProc;
 
 import java.util.*;
@@ -24,11 +23,11 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     public static final String TYPE3_FONT_TYPE = "PDType3Font";
 
     public static final String CHAR_STRINGS = "charStrings";
-    private PDResources resources;
+    private PDResourcesHandler resources;
     private Map<ASAtom, PDContentStream> charStrings = null;
 
     public GFPDType3Font(org.verapdf.pd.font.PDType3Font font,
-                         RenderingMode renderingMode, PDResources resources) {
+                         RenderingMode renderingMode, PDResourcesHandler resources) {
         super(font, renderingMode, TYPE3_FONT_TYPE);
         this.resources = resources;
     }
@@ -76,8 +75,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                 PDType3CharProc charProc = new PDType3CharProc((COSStream)
                         charProcDict.getKey(glyphName).get());
                 GFPDContentStream contentStream =
-                        new GFPDContentStream(charProc,
-                                PDResourcesHandler.getInstance(this.resources, true));  //TODO: is true in creating ResourceHandler correct?
+                        new GFPDContentStream(charProc, this.resources);
                 map.put(glyphName, contentStream);
             }
             this.charStrings = Collections.unmodifiableMap(map);
