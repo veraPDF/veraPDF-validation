@@ -63,11 +63,6 @@ class OperatorParser {
 	OperatorParser() {
 	}
 
-	void parseOperator(List<org.verapdf.model.operator.Operator> operators,
-					   Operator rawOperator, List<COSBase> arguments) {
-
-	}
-
 	void parseOperator(List<org.verapdf.model.operator.Operator> processedOperators, Operator rawOperator,
 					   PDResourcesHandler resourcesHandler, List<COSBase> arguments) throws IOException {
 		String operatorName = rawOperator.getOperator();

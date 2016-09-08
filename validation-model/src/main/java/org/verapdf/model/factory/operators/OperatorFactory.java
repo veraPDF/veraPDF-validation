@@ -3,11 +3,10 @@ package org.verapdf.model.factory.operators;
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
-import org.verapdf.model.tools.TransparencyBehaviour;
-import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.Operator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for converting raw operators to the veraPDF-library operators
