@@ -5,6 +5,7 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.operator.Operator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,12 @@ public final class OperatorFactory {
             if (rawToken instanceof COSBase) {
                 arguments.add((COSBase) rawToken);
             } else if (rawToken instanceof Operator) {
-                parser.parseOperator(result, ((Operator) rawToken), arguments);
+                try {
+                    parser.parseOperator(result, ((Operator) rawToken),
+                            resourcesHandler, arguments);
+                } catch (IOException e) {
+                    LOGGER.warn(e);
+                }
                 arguments = new ArrayList<>();
             } else {
                 LOGGER.debug(MSG_UNEXPECTED_OBJECT_TYPE

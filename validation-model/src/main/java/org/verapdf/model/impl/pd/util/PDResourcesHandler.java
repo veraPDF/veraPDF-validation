@@ -5,6 +5,7 @@ import org.verapdf.cos.COSName;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.colors.PDColorSpace;
+import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.patterns.PDShading;
 
@@ -13,34 +14,46 @@ import org.verapdf.pd.patterns.PDShading;
  */
 public class PDResourcesHandler {
 
-	private final PDResources resources;
+	private final PDResources pageResources;
 	private final boolean inheritedResources;
 
-	private PDResourcesHandler(PDResources resources, boolean inheritedResources) {
-		this.resources = resources;
+	private final PDResources objectResources;
+
+	private PDResourcesHandler(PDResources pageResources, boolean inheritedResources) {
+		this.pageResources = pageResources;
 		this.inheritedResources = inheritedResources;
+
+		this.objectResources = null;
 	}
 
-	public static PDResourcesHandler getInstance(PDResources pageResources) {
-		return getInstance(null, pageResources);
+	private PDResourcesHandler(PDResources pageResources, PDResources objectResources) {
+		this.pageResources = pageResources;
+		this.inheritedResources = false;
+
+		this.objectResources = objectResources;
 	}
 
 	public static PDResourcesHandler getInstance(PDResources resources, boolean inheritedResources) {
 		return new PDResourcesHandler(resources, inheritedResources);
 	}
 
-	public static PDResourcesHandler getInstance(PDResources inheritedResources, PDResources currentResources) {
-		boolean isInheritedResources = inheritedResources != null && currentResources == null;
-		if (isInheritedResources) {
-			return new PDResourcesHandler(inheritedResources, true);
-		} else {
-			return new PDResourcesHandler(currentResources, false);
-		}
+	public static PDResourcesHandler getInstance(PDResources pageResources, PDResources objectResources) {
+		return new PDResourcesHandler(pageResources, objectResources);
 	}
 
 	//Used for XObjects
 	public PDResourcesHandler getExtendedResources(PDResources objectResources) {
-		return getInstance(this.resources, objectResources);
+		return getInstance(this.pageResources, objectResources);
+	}
+
+	public PDFont getFont(COSName name) {
+		return getFont(name.getName());
+	}
+
+	public PDFont getFont(ASAtom name) {
+		PDFont font = this.pageResources.getFont(name);
+		font.setInherited(inheritedResources);
+		return font;
 	}
 
 	public PDColorSpace getColorSpace(COSName name) {
@@ -49,7 +62,7 @@ public class PDResourcesHandler {
 
 	public PDColorSpace getColorSpace(ASAtom name) {
 		//TODO : is default color space used
-		PDColorSpace colorSpace = this.resources.getColorSpace(name);
+		PDColorSpace colorSpace = this.pageResources.getColorSpace(name);
 		colorSpace.setInherited(inheritedResources);
 		return colorSpace;
 	}
@@ -59,7 +72,7 @@ public class PDResourcesHandler {
 	}
 
 	public PDColorSpace getPattern(ASAtom name) {
-		PDColorSpace pattern = this.resources.getPattern(name);
+		PDColorSpace pattern = this.pageResources.getPattern(name);
 		if (pattern != null) {
 			pattern.setInherited(inheritedResources);
 			return pattern;
@@ -72,7 +85,7 @@ public class PDResourcesHandler {
 	}
 
 	public PDShading getShading(ASAtom name) {
-		PDShading shading = this.resources.getShading(name);
+		PDShading shading = this.pageResources.getShading(name);
 		if (shading != null) {
 			shading.setInherited(inheritedResources);
 			return shading;
@@ -85,7 +98,7 @@ public class PDResourcesHandler {
 	}
 
 	public PDXObject getXObject(ASAtom name) {
-		PDXObject xObject = this.resources.getXObject(name);
+		PDXObject xObject = this.pageResources.getXObject(name);
 		if (xObject != null) {
 			xObject.setInherited(inheritedResources);
 			return xObject;
@@ -98,7 +111,7 @@ public class PDResourcesHandler {
 	}
 
 	public PDExtGState getExtGState(ASAtom name) {
-		PDExtGState state = this.resources.getExtGState(name);
+		PDExtGState state = this.pageResources.getExtGState(name);
 		if (state != null) {
 			state.setInherited(inheritedResources);
 			return state;
