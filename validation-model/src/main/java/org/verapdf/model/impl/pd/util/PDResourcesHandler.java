@@ -107,7 +107,7 @@ public class PDResourcesHandler {
 	}
 
 	public PDExtGState getExtGState(COSName name) {
-		return getExtGState(name);
+		return getExtGState(name.getName());
 	}
 
 	public PDExtGState getExtGState(ASAtom name) {

@@ -93,9 +93,18 @@ public class GraphicState implements Cloneable {
 	public void copyPropertiesFormExtGState(PDExtGState extGState) {
 		if (extGState != null) {
 			//TODO : copy font settings
-			this.overprintingFlagStroke = extGState.getStrokingOverprintControl();
-			this.overprintingFlagNonStroke = extGState.getNonStrokingOverprintControl();
-			this.opm = extGState.getOverprintMode();
+			Boolean oFS = extGState.getStrokingOverprintControl();
+			if (oFS != null) {
+				this.overprintingFlagStroke = oFS;
+			}
+			Boolean oFNS = extGState.getNonStrokingOverprintControl();
+			if (oFNS != null) {
+				this.overprintingFlagNonStroke = oFNS;
+			}
+			Long opm = extGState.getOverprintMode();
+			if (opm != null) {
+				this.opm = opm.intValue();
+			}
 		}
 	}
 

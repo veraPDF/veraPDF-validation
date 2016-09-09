@@ -137,6 +137,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
         org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
         PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
         GFPDContentStream contentStream = new GFPDContentStream(page.getContent(), resourcesHandler);
+        this.containsTransparency |= contentStream.isContainsTransparency();
         contentStreams.add(contentStream);
     }
 
