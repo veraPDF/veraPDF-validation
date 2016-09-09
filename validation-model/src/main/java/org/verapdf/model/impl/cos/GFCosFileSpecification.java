@@ -31,7 +31,7 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
         super(dictionary, COS_FILE_SPECIFICATION_TYPE);
 		this.f = this.baseObject.getStringKey(ASAtom.F);
 		this.uf = this.baseObject.getStringKey(ASAtom.UF);
-		afrelationship = dictionary.getStringKey(ASAtom.REQUIREMENTS);
+		this.afrelationship = dictionary.getStringKey(ASAtom.AF_RELATIONSHIP);
     }
 
 	@Override
@@ -46,7 +46,7 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 
 	@Override
 	public String getAFRelationship() {
-		return afrelationship.equals("") ? null : afrelationship;
+		return this.afrelationship;
 	}
 
 	@Override
