@@ -29,6 +29,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	private PDResourcesHandler resourcesHandler;
 
 	private List<Operator> operators = null;
+	private boolean containsTransparency = false;
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler) {
 		super(contentStream, CONTENT_STREAM_TYPE);
@@ -61,7 +62,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 					streamParser.parseTokens();
 					OperatorFactory operatorFactory = new OperatorFactory();
 					List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
-
+					this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 					this.operators = Collections.unmodifiableList(result);
 				} else {
 					this.operators = Collections.emptyList();
@@ -74,7 +75,9 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	}
 
 	public boolean isContainsTransparency() {
-		// TODO: implement me
-		return false;
+		if (this.operators == null) {
+			parseOperators();
+		}
+		return containsTransparency;
 	}
 }
