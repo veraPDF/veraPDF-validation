@@ -15,7 +15,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
 
     public static final String CUSTOM_ENCODING = "Custom";
 
-    protected GFPDSimpleFont(org.verapdf.pd.font.PDFont font,
+    protected GFPDSimpleFont(org.verapdf.pd.font.PDSimpleFont font,
                              RenderingMode renderingMode, final String type) {
         super(font, renderingMode, type);
     }
