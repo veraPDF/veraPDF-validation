@@ -191,15 +191,15 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     public Boolean getMarked() {
         if (this.catalog != null) {
             COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
-            if (markInfoObject == null) {
+            if (markInfoObject == null || markInfoObject.empty()) {
                 return Boolean.FALSE;
             } else {
-                COSBase markInfo = markInfoObject.get();
-                if (markInfo instanceof COSDictionary) {
+                COSBase markInfo = markInfoObject.getDirectBase();
+                if (markInfo.getType() == COSObjType.COS_DICT) {
                     return markInfo.getBooleanKey(ASAtom.MARKED);
                 } else {
                     LOGGER.warn("MarkedInfo must be a 'COSDictionary' but got: "
-                            + markInfoObject.getClass().getSimpleName());
+                            + markInfoObject.getType());
                     return Boolean.FALSE;
                 }
             }
@@ -213,8 +213,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         if (this.catalog != null) {
             COSObject reqArrayObject = this.catalog.getKey(ASAtom.REQUIREMENTS);
             if (reqArrayObject != null) {
-                COSBase reqArray = reqArrayObject.get();
-                if (reqArray instanceof COSArray) {
+                COSBase reqArray = reqArrayObject.getDirectBase();
+                if (reqArray.getType() == COSObjType.COS_ARRAY) {
                     return this.getRequirementsString((COSArray) reqArray);
                 }
             }
@@ -226,8 +226,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         String result = "";
         Iterator iterator = reqArray.iterator();
         while (iterator.hasNext()) {
-            COSBase element = (COSBase) iterator.next();
-            if (element instanceof COSDictionary) {
+            COSObject element = (COSObject) iterator.next();
+            COSBase base = element.getDirectBase();
+            if (base.getType() == COSObjType.COS_DICT) {
                 String sKey = element.getStringKey(ASAtom.S);
                 result += sKey;
                 result += " ";
@@ -337,7 +338,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
     private COSDictionary getCatalog() {
         COSBase catalogLocal = cosDocument.getTrailer().getRoot().getDirectBase();
-        return catalogLocal instanceof COSDictionary ? (COSDictionary) catalogLocal : null;
+        return catalogLocal.getType() == COSObjType.COS_DICT ? (COSDictionary) catalogLocal : null;
     }
 
 }
