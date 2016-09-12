@@ -9,10 +9,15 @@ import org.verapdf.model.factory.operators.GraphicState;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.impl.operator.base.GFOperator;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.operator.OpTextShow;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.colors.PDColorSpace;
+import org.verapdf.pd.font.FontProgram;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -104,9 +109,39 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	//TODO : implement me
-    private List<Object> getUsedGlyphs() {
-        return Collections.emptyList();
-    }
+    private List<Glyph> getUsedGlyphs() {
+		org.verapdf.pd.font.PDFont font = getFontFromResources();
+		FontProgram fontProgram = font.getFontProgram();
+
+		List<GFGlyph> res = new ArrayList<>();
+		List<byte[]> strings = this.getStrings(this.arguments);
+		for (byte[] string : strings) {
+			try (InputStream inputStream = new ByteArrayInputStream(string)) {
+				while (inputStream.available() > 0) {
+					int code = font.readCode(inputStream);
+					fontProgram.parseFont();
+					boolean glyphPresent = fontProgram.containsCode(code);
+					boolean widthsConsistent = this.checkWidths(code);
+					GFGlyph glyph;
+					if (font.getSubType().equals(FontFactory.TYPE_0)) {
+						int CID = ((PDType0Font) font).codeToCID(code);
+						glyph = new PBCIDGlyph(glyphPresent, widthsConsistent,
+								font, code, CID, this.state.getRenderingMode().intValue());
+					} else {
+						glyph = new PBGlyph(glyphPresent, widthsConsistent,
+								font, code, this.state.getRenderingMode().intValue());
+					}
+					res.add(glyph);
+				}
+			} catch (IOException e) {
+				LOGGER.debug("Error processing text show operator's string argument : "
+						+ new String(string));
+				LOGGER.info(e);
+			}
+		}
+		return res;
+
+	}
 
     private List<org.verapdf.model.pdlayer.PDColorSpace> getFillColorSpace() {
 		if (this.fillCS == null) {
@@ -178,6 +213,14 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			return null;
 		}
 		return resourcesHandler.getFont(this.fontName);
+	}
+
+	private Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font,
+								FontProgram fontProgram) throws IOException {
+		float expectedWidth = font.getWidths(glyphCode);
+		float foundWidth = font.getWidthFromFont(glyphCode);
+		// consistent is defined to be a difference of no more than 1/1000 unit.
+		return Math.abs(foundWidth - expectedWidth) > 1 ? Boolean.FALSE : Boolean.TRUE;
 	}
 
 	/**
