@@ -65,4 +65,9 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 		super(type);
 		this.pdcMap = pdcMap;
 	}
+
+	@Override
+	public String getID() {
+		return this.id == null ? super.getID() : this.id;
+	}
 }
