@@ -52,7 +52,9 @@ public class PDResourcesHandler {
 
 	public PDFont getFont(ASAtom name) {
 		PDFont font = this.pageResources.getFont(name);
-		font.setInherited(inheritedResources);
+		if (font != null) {
+			font.setInherited(inheritedResources);
+		}
 		return font;
 	}
 
@@ -63,7 +65,9 @@ public class PDResourcesHandler {
 	public PDColorSpace getColorSpace(ASAtom name) {
 		//TODO : is default color space used
 		PDColorSpace colorSpace = this.pageResources.getColorSpace(name);
-		colorSpace.setInherited(inheritedResources);
+		if (colorSpace != null) {
+			colorSpace.setInherited(inheritedResources);
+		}
 		return colorSpace;
 	}
 
