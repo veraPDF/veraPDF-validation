@@ -4,10 +4,13 @@ import org.apache.log4j.Logger;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.pd.font.*;
+
 import java.io.IOException;
 
 /**
- * Created by robaut on 9/10/16.
+ * Represents glyph used in text.
+ *
+ * @author Sergey Shemyakov
  */
 public class GFGlyph extends GenericModelObject implements Glyph {
 
@@ -38,7 +41,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             try {
                 FontProgram pr = font.getFontProgram();
                 pr.parseFont();
-                if (!pr.containsCID(glyphCode)) {
+                if (!pr.containsCode(glyphCode)) {
                     this.name = ".notdef";
                 } else {
                     this.name = null;
