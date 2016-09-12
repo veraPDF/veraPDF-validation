@@ -1,8 +1,10 @@
 package org.verapdf.model.impl.pd.font;
 
+import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSStream;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.impl.pd.GFPDContentStream;
@@ -19,6 +21,8 @@ import java.util.*;
  * @author Sergey Shemyakov
  */
 public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
+
+    private static final Logger LOGGER = Logger.getLogger(GFPDType3Font.class);
 
     public static final String TYPE3_FONT_TYPE = "PDType3Font";
 
@@ -72,11 +76,16 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
             Set<ASAtom> keySet = charProcDict.getKeySet();
             Map<ASAtom, PDContentStream> map = new HashMap<>(keySet.size());
             for (ASAtom glyphName : keySet) {
-                PDType3CharProc charProc = new PDType3CharProc((COSStream)
-                        charProcDict.getKey(glyphName).get());
-                GFPDContentStream contentStream =
-                        new GFPDContentStream(charProc, this.resources);
-                map.put(glyphName, contentStream);
+                COSObject charProcStream = charProcDict.getKey(glyphName);
+                if (!charProcStream.empty() && charProcDict.getType() == COSObjType.COS_DICT) {
+                    PDType3CharProc charProc = new PDType3CharProc(charProcStream);
+                    GFPDContentStream contentStream =
+                            new GFPDContentStream(charProc, this.resources);
+                    map.put(glyphName, contentStream);
+                } else {
+                    //TODO : more details
+                    LOGGER.debug("Invalid entry in the char proc dictionary.");
+                }
             }
             this.charStrings = Collections.unmodifiableMap(map);
         } else {
