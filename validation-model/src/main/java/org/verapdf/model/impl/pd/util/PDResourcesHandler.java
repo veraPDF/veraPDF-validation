@@ -47,7 +47,11 @@ public class PDResourcesHandler {
 	}
 
 	public PDFont getFont(COSName name) {
-		return getFont(name.getName());
+		if (name != null) {
+			return getFont(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDFont getFont(ASAtom name) {
@@ -59,8 +63,12 @@ public class PDResourcesHandler {
 	}
 
 	public PDColorSpace getColorSpace(COSName name) {
-		return getColorSpace(name.getName());
-	}
+		if (name != null) {
+			return getColorSpace(name.getName());
+		} else {
+			return null;
+			}
+		}
 
 	public PDColorSpace getColorSpace(ASAtom name) {
 		//TODO : is default color space used
@@ -72,7 +80,11 @@ public class PDResourcesHandler {
 	}
 
 	public PDColorSpace getPattern(COSName name) {
-		return getPattern(name.getName());
+		if (name != null) {
+			return getPattern(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDColorSpace getPattern(ASAtom name) {
@@ -85,7 +97,11 @@ public class PDResourcesHandler {
 	}
 
 	public PDShading getShading(COSName name) {
-		return getShading(name.getName());
+		if (name != null) {
+			return getShading(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDShading getShading(ASAtom name) {
@@ -98,7 +114,11 @@ public class PDResourcesHandler {
 	}
 
 	public PDXObject getXObject(COSName name) {
-		return getXObject(name.getName());
+		if (name != null) {
+			return getXObject(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDXObject getXObject(ASAtom name) {
@@ -111,7 +131,11 @@ public class PDResourcesHandler {
 	}
 
 	public PDExtGState getExtGState(COSName name) {
-		return getExtGState(name.getName());
+		if (name != null) {
+			return getExtGState(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDExtGState getExtGState(ASAtom name) {
