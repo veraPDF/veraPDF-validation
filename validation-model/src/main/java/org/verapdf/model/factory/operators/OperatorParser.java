@@ -10,6 +10,9 @@ import org.verapdf.cos.COSInteger;
 import org.verapdf.cos.COSName;
 import org.verapdf.model.impl.operator.color.GFOpColor;
 import org.verapdf.model.impl.operator.generalgs.*;
+import org.verapdf.model.impl.operator.inlineimage.GFOp_BI;
+import org.verapdf.model.impl.operator.inlineimage.GFOp_EI;
+import org.verapdf.model.impl.operator.inlineimage.GFOp_ID;
 import org.verapdf.model.impl.operator.markedcontent.*;
 import org.verapdf.model.impl.operator.opclip.GFOp_WStar;
 import org.verapdf.model.impl.operator.opclip.GFOp_W_clip;
@@ -37,6 +40,7 @@ import org.verapdf.model.impl.pd.font.GFPDFont;
 import org.verapdf.model.impl.pd.images.GFPDXObject;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.tools.constants.Operators;
+import org.verapdf.operator.InlineImageOperator;
 import org.verapdf.operator.Operator;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.colors.PDColorSpace;
@@ -46,6 +50,7 @@ import org.verapdf.pd.colors.PDDeviceRGB;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
@@ -270,7 +275,7 @@ class OperatorParser {
 
 			// INLINE IMAGE
 			case Operators.BI:
-				//TODO : deal with inline images
+				processInlineImage(processedOperators, (InlineImageOperator) rawOperator, arguments);
 				break;
 
 			// COMPABILITY
@@ -424,6 +429,16 @@ class OperatorParser {
 			} else {
 				graphicState.setFillColorSpace(resourcesHandler.getPattern(getLastCOSName(arguments)));
 			}
+		}
+	}
+
+	private static void processInlineImage(List<org.verapdf.model.operator.Operator> processedOperators,
+										   InlineImageOperator rawOperator, List<COSBase> arguments) {
+		if (rawOperator.getImageParameters() != null) {
+			arguments.add(rawOperator.getImageParameters());
+			processedOperators.add(new GFOp_BI(new ArrayList<COSBase>()));
+			processedOperators.add(new GFOp_ID(arguments));
+			processedOperators.add(new GFOp_EI(arguments));
 		}
 	}
 
