@@ -9,6 +9,7 @@ import org.verapdf.model.factory.operators.GraphicState;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.impl.operator.base.GFOperator;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.operator.OpTextShow;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.colors.PDColorSpace;
@@ -104,7 +105,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	//TODO : implement me
-    private List<Object> getUsedGlyphs() {
+    private List<Glyph> getUsedGlyphs() {
         return Collections.emptyList();
     }
 
