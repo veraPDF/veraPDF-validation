@@ -37,7 +37,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private boolean contentStreamContainsTransparency = false;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler) {
-		super(simplePDObject, resourcesHandler, X_FORM_TYPE);
+		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 	}
 
 	@Override
