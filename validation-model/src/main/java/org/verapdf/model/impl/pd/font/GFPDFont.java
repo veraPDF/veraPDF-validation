@@ -98,14 +98,18 @@ public class GFPDFont extends GFPDResource implements PDFont {
      * @return embedded font program for Type 1, TrueType or CID Font.
      */
     private List<FontProgram> getFontProgram() {
-        ASAtom subType = this.pdFont.getSubtype();
-        if (ASAtom.TRUE_TYPE == subType) {
-            GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(
-                    this.pdFont.getFontProgram());
-            return getFontProgramList(font);
+        if(this.pdFont.getFontProgram() != null) {
+            ASAtom subType = this.pdFont.getSubtype();
+            if (ASAtom.TRUE_TYPE == subType) {
+                GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(
+                        this.pdFont.getFontProgram());
+                return getFontProgramList(font);
+            } else {
+                GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram());
+                return getFontProgramList(font);
+            }
         } else {
-            GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram());
-            return getFontProgramList(font);
+            return Collections.emptyList();
         }
     }
 
