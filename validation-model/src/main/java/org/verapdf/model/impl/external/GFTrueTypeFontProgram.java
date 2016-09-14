@@ -34,8 +34,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
             this.trueTypeFont = (org.verapdf.pd.font.truetype.TrueTypeFontProgram) trueTypeFont;
             this.trueTypeFont.parseFont();
         } catch (IOException e) {
-            LOGGER.error("Error in parsing embedded True Type font file");
-            e.printStackTrace();
+            LOGGER.error("Error in parsing embedded True Type font file", e);
         }
     }
 

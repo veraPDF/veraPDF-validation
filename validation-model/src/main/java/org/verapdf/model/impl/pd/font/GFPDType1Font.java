@@ -7,6 +7,9 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.pdlayer.PDType1Font;
 import org.verapdf.pd.font.FontProgram;
+import org.verapdf.pd.font.cff.CFFFontProgram;
+import org.verapdf.pd.font.cff.CFFType1FontProgram;
+import org.verapdf.pd.font.opentype.OpenTypeFontProgram;
 import org.verapdf.pd.font.truetype.TrueTypePredefined;
 import org.verapdf.pd.font.type1.Type1FontProgram;
 
@@ -48,9 +51,9 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
     public GFPDType1Font(org.verapdf.pd.font.type1.PDType1Font pdFont,
                          RenderingMode renderingMode) {
         super(pdFont, renderingMode, TYPE1_FONT_TYPE);
-        if(pdFont != null) {
+        if (pdFont != null) {
             FontProgram program = pdFont.getFontProgram();
-            if(program != null) {
+            if (program != null) {
                 try {
                     program.parseFont();
                     this.fontProgramParsed = true;
@@ -77,14 +80,31 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
      */
     @Override
     public Boolean getcharSetListsAllGlyphs() {
-        if(!fontProgramParsed) {
+        if (!fontProgramParsed) {
             return Boolean.valueOf(false);
         }
 
         Set<String> descriptorCharSet = ((org.verapdf.pd.font.type1.PDType1Font)
                 this.pdFont).getDescriptorCharSet();
-        String[] fontProgramCharSet =
-                ((Type1FontProgram) this.pdFont.getFontProgram()).getEncoding();
+        String[] fontProgramCharSet;
+        if (this.pdFont.getFontProgram() instanceof Type1FontProgram) {
+            fontProgramCharSet =
+                    ((Type1FontProgram) this.pdFont.getFontProgram()).getEncoding();
+        } else if (this.pdFont.getFontProgram() instanceof CFFFontProgram) {
+            // Type1 program is contained inside CFF program.
+            fontProgramCharSet = ((CFFType1FontProgram)
+                    ((CFFFontProgram)
+                            this.pdFont.getFontProgram()).getFont()).getEncoding();
+        } else if (this.pdFont.getFontProgram() instanceof OpenTypeFontProgram) {
+            // Type1 program is contained inside CFF program that is contained
+            // inside OpenType program.
+            CFFFontProgram cff = (CFFFontProgram)
+                    ((OpenTypeFontProgram) this.pdFont.getFontProgram()).getFont();
+            fontProgramCharSet = ((CFFType1FontProgram)
+                    (cff.getFont())).getEncoding();
+        } else {
+            fontProgramCharSet = new String[] {};
+        }
         if (!(descriptorCharSet.size() == fontProgramCharSet.length)) {
             return Boolean.valueOf(false);
         }
