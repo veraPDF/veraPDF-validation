@@ -140,7 +140,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
             Map<Integer, String> differences = this.pdFont.getDifferences();
             if (differences != null && differences.size() != 0) {
                 String[] baseEncoding = getBaseEncoding((COSDictionary)
-                        this.pdFont.getDictionary().getKey(ASAtom.ENCODING).get());
+                        this.pdFont.getDictionary().getKey(ASAtom.ENCODING).getDirectBase());
                 if (baseEncoding.length == 0) {
                     return true;
                 }
