@@ -3,6 +3,7 @@ package org.verapdf.model.impl.pd.util;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
 import org.verapdf.pd.PDExtGState;
+import org.verapdf.pd.PDResource;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.PDFont;
@@ -47,76 +48,148 @@ public class PDResourcesHandler {
 	}
 
 	public PDFont getFont(COSName name) {
-		return getFont(name.getName());
+		if (name != null) {
+			return getFont(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDFont getFont(ASAtom name) {
-		PDFont font = this.pageResources.getFont(name);
-		font.setInherited(inheritedResources);
+		PDFont font;
+		if (this.objectResources != null) {
+			font = this.objectResources.getFont(name);
+			if (font == null) {
+				font = this.pageResources.getFont(name);
+				setInherited(font, true);
+			}
+		} else {
+			font = this.pageResources.getFont(name);
+			setInherited(font, inheritedResources);
+		}
 		return font;
 	}
 
 	public PDColorSpace getColorSpace(COSName name) {
-		return getColorSpace(name.getName());
-	}
+		if (name != null) {
+			return getColorSpace(name.getName());
+		} else {
+			return null;
+			}
+		}
 
 	public PDColorSpace getColorSpace(ASAtom name) {
 		//TODO : is default color space used
-		PDColorSpace colorSpace = this.pageResources.getColorSpace(name);
-		colorSpace.setInherited(inheritedResources);
+		PDColorSpace colorSpace;
+		if (this.objectResources != null) {
+			colorSpace = this.objectResources.getColorSpace(name);
+			if (colorSpace == null) {
+				colorSpace = this.pageResources.getColorSpace(name);
+				setInherited(colorSpace, true);
+			}
+		} else {
+			colorSpace = this.pageResources.getColorSpace(name);
+			setInherited(colorSpace, inheritedResources);
+		}
 		return colorSpace;
 	}
 
 	public PDColorSpace getPattern(COSName name) {
-		return getPattern(name.getName());
+		if (name != null) {
+			return getPattern(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDColorSpace getPattern(ASAtom name) {
-		PDColorSpace pattern = this.pageResources.getPattern(name);
-		if (pattern != null) {
-			pattern.setInherited(inheritedResources);
-			return pattern;
+		PDColorSpace pattern;
+		if (this.objectResources != null) {
+			pattern = this.objectResources.getPattern(name);
+			if (pattern == null) {
+				pattern = this.pageResources.getPattern(name);
+				setInherited(pattern, true);
+			}
+		} else {
+			pattern = this.pageResources.getPattern(name);
+			setInherited(pattern, inheritedResources);
 		}
-		return null;
+		return pattern;
 	}
 
 	public PDShading getShading(COSName name) {
-		return getShading(name.getName());
+		if (name != null) {
+			return getShading(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDShading getShading(ASAtom name) {
-		PDShading shading = this.pageResources.getShading(name);
-		if (shading != null) {
-			shading.setInherited(inheritedResources);
-			return shading;
+		PDShading shading;
+		if (this.objectResources != null) {
+			shading = this.objectResources.getShading(name);
+			if (shading == null) {
+				shading = this.pageResources.getShading(name);
+				setInherited(shading, true);
+			}
+		} else {
+			shading = this.pageResources.getShading(name);
+			setInherited(shading, inheritedResources);
 		}
-		return null;
+		return shading;
 	}
 
 	public PDXObject getXObject(COSName name) {
-		return getXObject(name.getName());
+		if (name != null) {
+			return getXObject(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDXObject getXObject(ASAtom name) {
-		PDXObject xObject = this.pageResources.getXObject(name);
-		if (xObject != null) {
-			xObject.setInherited(inheritedResources);
-			return xObject;
+		PDXObject xObject;
+		if (this.objectResources != null) {
+			xObject = this.objectResources.getXObject(name);
+			if (xObject == null) {
+				xObject = this.pageResources.getXObject(name);
+				setInherited(xObject, true);
+			}
+		} else {
+			xObject = this.pageResources.getXObject(name);
+			setInherited(xObject, inheritedResources);
 		}
-		return null;
+		return xObject;
 	}
 
 	public PDExtGState getExtGState(COSName name) {
-		return getExtGState(name.getName());
+		if (name != null) {
+			return getExtGState(name.getName());
+		} else {
+			return null;
+		}
 	}
 
 	public PDExtGState getExtGState(ASAtom name) {
-		PDExtGState state = this.pageResources.getExtGState(name);
-		if (state != null) {
-			state.setInherited(inheritedResources);
-			return state;
+		PDExtGState state;
+		if (this.objectResources != null) {
+			state = this.objectResources.getExtGState(name);
+			if (state == null) {
+				state = this.pageResources.getExtGState(name);
+				setInherited(state, true);
+			}
+		} else {
+			state = this.pageResources.getExtGState(name);
+			setInherited(state, inheritedResources);
 		}
 		return null;
+	}
+
+	public void setInherited(PDResource resource, boolean value) {
+		if (resource != null) {
+			resource.setInherited(value);
+		}
 	}
 
 }

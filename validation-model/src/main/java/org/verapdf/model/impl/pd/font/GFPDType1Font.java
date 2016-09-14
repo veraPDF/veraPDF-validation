@@ -1,17 +1,20 @@
 package org.verapdf.model.impl.pd.font;
 
+import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.pdlayer.PDType1Font;
+import org.verapdf.pd.font.FontProgram;
+import org.verapdf.pd.font.cff.CFFFontProgram;
+import org.verapdf.pd.font.cff.CFFType1FontProgram;
+import org.verapdf.pd.font.opentype.OpenTypeFontProgram;
 import org.verapdf.pd.font.truetype.TrueTypePredefined;
 import org.verapdf.pd.font.type1.Type1FontProgram;
 
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,6 +24,8 @@ import java.util.Set;
  * @author Sergey Shemyakov
  */
 public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
+
+    private static final Logger LOGGER = Logger.getLogger(GFPDType1Font.class);
 
     public static final String TYPE1_FONT_TYPE = "PDType1Font";
     public static final ASAtom[] STANDARD_FONT_NAMES = {
@@ -41,10 +46,23 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
 
     private Boolean isStandard = null;
     public static final String NOTDEF_STRING = ".notdef";
+    private boolean fontProgramParsed;
 
     public GFPDType1Font(org.verapdf.pd.font.type1.PDType1Font pdFont,
                          RenderingMode renderingMode) {
         super(pdFont, renderingMode, TYPE1_FONT_TYPE);
+        if (pdFont != null) {
+            FontProgram program = pdFont.getFontProgram();
+            if (program != null) {
+                try {
+                    program.parseFont();
+                    this.fontProgramParsed = true;
+                } catch (IOException e) {
+                    LOGGER.warn("Can't parse font program of font " + pdFont.getName());
+                    this.fontProgramParsed = false;
+                }
+            }
+        }
     }
 
     /**
@@ -62,10 +80,31 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
      */
     @Override
     public Boolean getcharSetListsAllGlyphs() {
+        if (!fontProgramParsed) {
+            return Boolean.valueOf(false);
+        }
+
         Set<String> descriptorCharSet = ((org.verapdf.pd.font.type1.PDType1Font)
                 this.pdFont).getDescriptorCharSet();
-        String[] fontProgramCharSet =
-                ((Type1FontProgram) this.pdFont.getFontProgram()).getEncoding();
+        String[] fontProgramCharSet;
+        if (this.pdFont.getFontProgram() instanceof Type1FontProgram) {
+            fontProgramCharSet =
+                    ((Type1FontProgram) this.pdFont.getFontProgram()).getEncoding();
+        } else if (this.pdFont.getFontProgram() instanceof CFFFontProgram) {
+            // Type1 program is contained inside CFF program.
+            fontProgramCharSet = ((CFFType1FontProgram)
+                    ((CFFFontProgram)
+                            this.pdFont.getFontProgram()).getFont()).getEncoding();
+        } else if (this.pdFont.getFontProgram() instanceof OpenTypeFontProgram) {
+            // Type1 program is contained inside CFF program that is contained
+            // inside OpenType program.
+            CFFFontProgram cff = (CFFFontProgram)
+                    ((OpenTypeFontProgram) this.pdFont.getFontProgram()).getFont();
+            fontProgramCharSet = ((CFFType1FontProgram)
+                    (cff.getFont())).getEncoding();
+        } else {
+            fontProgramCharSet = new String[] {};
+        }
         if (!(descriptorCharSet.size() == fontProgramCharSet.length)) {
             return Boolean.valueOf(false);
         }
@@ -98,11 +137,10 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
     private boolean containsDiffs() {
         if (this.pdFont.getDictionary().getKey(ASAtom.ENCODING).getType() ==
                 COSObjType.COS_DICT) {
-            Map<Integer, String> differences = getDifferences((COSDictionary)
-                    this.pdFont.getDictionary().getKey(ASAtom.ENCODING).get());
+            Map<Integer, String> differences = this.pdFont.getDifferences();
             if (differences != null && differences.size() != 0) {
                 String[] baseEncoding = getBaseEncoding((COSDictionary)
-                        this.pdFont.getDictionary().getKey(ASAtom.ENCODING).get());
+                        this.pdFont.getDictionary().getKey(ASAtom.ENCODING).getDirectBase());
                 if (baseEncoding.length == 0) {
                     return true;
                 }
@@ -114,23 +152,6 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
             }
         }
         return false;
-    }
-
-    private Map<Integer, String> getDifferences(COSDictionary encoding) {
-        COSArray differences = (COSArray) encoding.getKey(ASAtom.DIFFERENCES).get();
-        if (differences == null) {
-            return null;
-        }
-        Map<Integer, String> res = new HashMap<>();
-        int diffIndex = 0;
-        for (COSObject obj : differences) {
-            if (obj.getType() == COSObjType.COS_INTEGER) {
-                diffIndex = obj.getInteger().intValue();
-            } else if (obj.getType() == COSObjType.COS_NAME && diffIndex != -1) {
-                res.put(diffIndex++, obj.getString());
-            }
-        }
-        return res;
     }
 
     private String[] getBaseEncoding(COSDictionary encoding) {

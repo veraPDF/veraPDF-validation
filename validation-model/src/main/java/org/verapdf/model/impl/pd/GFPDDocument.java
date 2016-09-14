@@ -6,6 +6,7 @@ import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDCatalog;
+import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -200,8 +201,18 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    //TODO : implement me
     private List<PDOCProperties> getOCProperties() {
+        if (this.catalog != null) {
+            PDOptionalContentProperties ocProperties = this.catalog.getOCProperties();
+            if (ocProperties != null) {
+                List<PDOCProperties> result = new ArrayList<>();
+
+                PDOCProperties pdOCProperties = new GFPDOCProperties(ocProperties);
+                result.add(pdOCProperties);
+
+                return result;
+            }
+        }
         return Collections.emptyList();
     }
 

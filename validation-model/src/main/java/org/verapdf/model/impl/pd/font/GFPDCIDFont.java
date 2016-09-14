@@ -41,8 +41,22 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     public static final String IDENTITY = "Identity";
     public static final String CUSTOM = "Custom";
 
+    private boolean fontProgramParsed;
+
     public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
         super(font, renderingMode, CID_FONT_TYPE);
+        if(font != null) {
+            FontProgram program = font.getFontProgram();
+            if(program != null) {
+                try {
+                    program.parseFont();
+                    this.fontProgramParsed = true;
+                } catch (IOException e) {
+                    LOGGER.warn("Can't parse font program of font " + font.getName());
+                    this.fontProgramParsed = false;
+                }
+            }
+        }
     }
 
     @Override
@@ -91,6 +105,10 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
      */
     @Override
     public Boolean getcidSetListsAllGlyphs() {
+        if(!fontProgramParsed) {
+            return Boolean.valueOf(false);
+        }
+
         try {
             COSStream cidSet = getCIDSetStream();
             if (cidSet != null) {
