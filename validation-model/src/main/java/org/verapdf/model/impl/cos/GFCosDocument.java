@@ -212,7 +212,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     public String getRequirements() {
         if (this.catalog != null) {
             COSObject reqArrayObject = this.catalog.getKey(ASAtom.REQUIREMENTS);
-            if (reqArrayObject != null) {
+            if (reqArrayObject != null && !reqArrayObject.empty()) {
                 COSBase reqArray = reqArrayObject.getDirectBase();
                 if (reqArray.getType() == COSObjType.COS_ARRAY) {
                     return this.getRequirementsString((COSArray) reqArray);
@@ -274,9 +274,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
     private List<Object> getEmbeddedFiles() {
         if (this.catalog != null) {
             COSObject buffer = this.catalog.getKey(ASAtom.NAMES);
-            if (buffer != COSObject.getEmpty()) {
+            if (!buffer.empty()) {
                 COSObject base = buffer.getKey(ASAtom.EMBEDDED_FILES);
-                if (base != null && base.getType().equals(COSObjType.COS_DICT)) {
+                if (base != null && !base.empty() && base.getType() == COSObjType.COS_DICT) {
                     List<Object> files = new ArrayList<>();
                     this.getNamesEmbeddedFiles(files, (COSDictionary) base.getDirectBase());
                     return Collections.unmodifiableList(files);

@@ -50,7 +50,8 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public String getSubtype() {
-        return this.pdFont.getSubtype().getValue();
+        ASAtom result = this.pdFont.getSubtype();
+        return result != null ? result.getValue() : null;
     }
 
     /**
@@ -59,7 +60,8 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public String getfontName() {
-        return this.pdFont.getFontName().getValue();
+        ASAtom result = this.pdFont.getFontName();
+        return result != null ? result.getValue() : null;
     }
 
     /**
