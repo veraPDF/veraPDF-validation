@@ -55,7 +55,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
         if (widths.empty() || widths.getType() != COSObjType.COS_ARRAY) {
             return null;
         }
-        return (widths.get()).size().longValue();
+        return (widths.getDirectBase()).size().longValue();
     }
 
     /**
