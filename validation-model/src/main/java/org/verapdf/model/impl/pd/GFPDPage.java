@@ -135,10 +135,12 @@ public class GFPDPage extends GFPDObject implements PDPage {
     private void parseContentStream() {
         this.contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-        PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
-        GFPDContentStream contentStream = new GFPDContentStream(page.getContent(), resourcesHandler);
-        this.containsTransparency |= contentStream.isContainsTransparency();
-        contentStreams.add(contentStream);
+        if (page.getContent() != null) {
+            PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
+            GFPDContentStream contentStream = new GFPDContentStream(page.getContent(), resourcesHandler);
+            this.containsTransparency |= contentStream.isContainsTransparency();
+            contentStreams.add(contentStream);
+        }
     }
 
     private List<CosBBox> getMediaBox() {
