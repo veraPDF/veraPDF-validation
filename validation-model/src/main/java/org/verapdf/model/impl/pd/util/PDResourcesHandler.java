@@ -75,19 +75,24 @@ public class PDResourcesHandler {
 			return getColorSpace(name.getName());
 		} else {
 			return null;
-			}
 		}
+	}
 
 	public PDColorSpace getColorSpace(ASAtom name) {
-		//TODO : is default color space used
 		PDColorSpace colorSpace;
 		if (this.objectResources != null) {
+			if (isDefaultColorSpaceUsed(name)) {
+				return this.objectResources.getDefaultColorSpace(name);
+			}
 			colorSpace = this.objectResources.getColorSpace(name);
 			if (colorSpace == null) {
 				colorSpace = this.pageResources.getColorSpace(name);
 				setInherited(colorSpace, true);
 			}
 		} else {
+			if (isDefaultColorSpaceUsed(name)) {
+				return this.pageResources.getDefaultColorSpace(name);
+			}
 			colorSpace = this.pageResources.getColorSpace(name);
 			setInherited(colorSpace, inheritedResources);
 		}
@@ -190,6 +195,28 @@ public class PDResourcesHandler {
 		if (resource != null) {
 			resource.setInherited(value);
 		}
+	}
+
+	private boolean isDefaultColorSpaceUsed(ASAtom name) {
+		if (this.isDeviceDependent(name)) {
+			if (objectResources != null) {
+				ASAtom value = org.verapdf.factory.colors.ColorSpaceFactory.getDefaultValue(objectResources, name);
+				if (value != null) {
+					return true;
+				}
+			} else {
+				ASAtom value = org.verapdf.factory.colors.ColorSpaceFactory.getDefaultValue(pageResources, name);
+				if (value != null) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean isDeviceDependent(ASAtom name) {
+		return ASAtom.DEVICERGB.equals(name) ||
+				ASAtom.DEVICEGRAY.equals(name) || ASAtom.DEVICECMYK.equals(name);
 	}
 
 }

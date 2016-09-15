@@ -51,7 +51,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		if (this.stream != null) {
 			try {
 				InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE);
-				unfilteredStream.mark(Integer.MAX_VALUE);
 				GFModelParser parser1b = GFModelParser.createModelWithFlavour(unfilteredStream, PDFAFlavour.PDFA_1_B);
 				PDFAValidator validator1b = Validators.createValidator(PDFAFlavour.PDFA_1_B, false, 1);
 				ValidationResult result1b = validator1b.validate(parser1b);
