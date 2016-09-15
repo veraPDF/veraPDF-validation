@@ -65,7 +65,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 				ValidationResult result2b = validator2b.validate(parser2b);
 				parser2b.close();
 				return Boolean.valueOf(result2b.isCompliant());
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				LOGGER.debug("Exception during validation of embedded file", e);
 				return Boolean.FALSE;
 			}
