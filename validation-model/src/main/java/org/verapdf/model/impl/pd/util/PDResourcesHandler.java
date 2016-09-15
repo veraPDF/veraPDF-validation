@@ -183,7 +183,7 @@ public class PDResourcesHandler {
 			state = this.pageResources.getExtGState(name);
 			setInherited(state, inheritedResources);
 		}
-		return null;
+		return state;
 	}
 
 	public void setInherited(PDResource resource, boolean value) {
