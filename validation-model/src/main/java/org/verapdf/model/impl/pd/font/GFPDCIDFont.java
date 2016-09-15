@@ -122,7 +122,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 FontProgram cidFont = this.pdFont.getFontProgram();
 
                 for (int i = 1; i < bitSet.size(); i++) {
-                    if (bitSet.get(i) && !cidFont.containsCID(i)) {
+                    if (bitSet.get(i) && !cidFont.containsCode(i)) {
                         return Boolean.FALSE;
                     }
                 }
