@@ -2,10 +2,13 @@ package org.verapdf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosFileSpecification;
 import org.verapdf.model.external.EmbeddedFile;
+import org.verapdf.model.impl.external.GFEmbeddedFile;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,8 +60,13 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 		return super.getLinkedObjects(link);
 	}
 
-	// TODO : implement me
 	private List<EmbeddedFile> getEFFile() {
+		COSObject efDictionary = this.baseObject.getKey(ASAtom.EF);
+		if (efDictionary != null && efDictionary.getType().isDictionaryBased()) {
+			ArrayList<EmbeddedFile> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFEmbeddedFile((COSDictionary) efDictionary.getDirectBase()));
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
 	}
 }

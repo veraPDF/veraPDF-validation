@@ -4,13 +4,11 @@ import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosDocument;
-import org.verapdf.model.coslayer.CosIndirect;
-import org.verapdf.model.coslayer.CosTrailer;
-import org.verapdf.model.coslayer.CosXRef;
+import org.verapdf.model.coslayer.*;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.pd.GFPDDocument;
 import org.verapdf.model.impl.pd.util.XMPChecker;
+import org.verapdf.pd.PDNameTreeNode;
 
 import java.util.*;
 
@@ -267,18 +265,17 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         }
     }
 
-    //TODO: implement me: (just finish next method)
     /**
      * @return list of embedded files
      */
-    private List<Object> getEmbeddedFiles() {
+    private List<CosFileSpecification> getEmbeddedFiles() {
         if (this.catalog != null) {
             COSObject buffer = this.catalog.getKey(ASAtom.NAMES);
             if (!buffer.empty()) {
                 COSObject base = buffer.getKey(ASAtom.EMBEDDED_FILES);
-                if (base != null && !base.empty() && base.getType() == COSObjType.COS_DICT) {
-                    List<Object> files = new ArrayList<>();
-                    this.getNamesEmbeddedFiles(files, (COSDictionary) base.getDirectBase());
+                if (base != null && base.getType() == COSObjType.COS_DICT) {
+                    List<CosFileSpecification> files = new ArrayList<>();
+                    this.getNamesEmbeddedFiles(files, PDNameTreeNode.create(base));
                     return Collections.unmodifiableList(files);
                 }
             }
@@ -286,9 +283,17 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
         return Collections.emptyList();
     }
 
-    private void getNamesEmbeddedFiles(List<Object> files,
-                                       COSDictionary buffer) {
-        //TODO: implement me
+    private void getNamesEmbeddedFiles(List<CosFileSpecification> files,
+                                       PDNameTreeNode node) {
+        Map<String, COSObject> names = node.getNames();
+        for (COSObject value : names.values()) {
+            if (value != null && value.getType().isDictionaryBased()) {
+                files.add(new GFCosFileSpecification((COSDictionary) value.getDirectBase()));
+            }
+        }
+        for (PDNameTreeNode kid : node.getKids()) {
+            getNamesEmbeddedFiles(files, kid);
+        }
     }
 
     /**
