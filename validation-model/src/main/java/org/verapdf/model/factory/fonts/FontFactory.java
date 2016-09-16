@@ -43,8 +43,10 @@ public class FontFactory {
 		}
 		switch (rawFont.getSubtype().getValue()) {
 			case TYPE_0:
+			case CID_FONT_TYPE_2:
 				return new GFPDType0Font((PDType0Font) rawFont, renderingMode);
 			case TYPE_1:
+			case MM_TYPE_1:
 				return new GFPDType1Font((PDType1Font) rawFont, renderingMode);
 			case TYPE_3: {
 				PDResources fontResources = ((PDType3Font) rawFont).getResources();
