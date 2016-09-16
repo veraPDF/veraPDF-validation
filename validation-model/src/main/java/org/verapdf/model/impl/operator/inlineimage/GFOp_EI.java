@@ -5,6 +5,7 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.impl.pd.images.GFPDInlineImage;
+import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Op_EI;
 import org.verapdf.model.pdlayer.PDInlineImage;
 
@@ -23,8 +24,11 @@ public class GFOp_EI extends GFOpInlineImage implements Op_EI {
 
 	public static final String INLINE_IMAGE = "inlineImage";
 
-	public GFOp_EI(List<COSBase> arguments) {
+	private PDResourcesHandler resourcesHandler;
+
+	public GFOp_EI(List<COSBase> arguments, PDResourcesHandler resourcesHandler) {
 		super(arguments, OP_EI_TYPE);
+		this.resourcesHandler = resourcesHandler;
 	}
 
 	@Override
@@ -38,7 +42,8 @@ public class GFOp_EI extends GFOpInlineImage implements Op_EI {
 	private List<PDInlineImage> getInlineImage() {
 		COSBase parameters = this.arguments.get(0);
 		org.verapdf.pd.images.PDInlineImage inlineImage =
-				new org.verapdf.pd.images.PDInlineImage(new COSObject(parameters));
+				new org.verapdf.pd.images.PDInlineImage(new COSObject(parameters),
+						resourcesHandler.getObjectResources(), resourcesHandler.getPageResources());
 		List<PDInlineImage> inlineImages = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		inlineImages.add(new GFPDInlineImage(inlineImage));
 		return Collections.unmodifiableList(inlineImages);
