@@ -197,6 +197,14 @@ public class PDResourcesHandler {
 		}
 	}
 
+	public PDResources getObjectResources() {
+		return this.objectResources;
+	}
+
+	public PDResources getPageResources() {
+		return this.pageResources;
+	}
+
 	private boolean isDefaultColorSpaceUsed(ASAtom name) {
 		if (this.isDeviceDependent(name)) {
 			if (objectResources != null) {

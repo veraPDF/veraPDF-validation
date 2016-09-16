@@ -102,7 +102,7 @@ public class ColorSpaceFactory {
 	private static org.verapdf.model.pdlayer.PDPattern getPattern(org.verapdf.pd.patterns.PDPattern pattern, PDResourcesHandler resourcesHandler) {
 		switch (pattern.getPatternType()) {
 			case PDPattern.TYPE_TILING_PATTERN:
-				return new GFPDTilingPattern((PDTilingPattern) pattern, resourcesHandler);
+				return new GFPDTilingPattern((PDTilingPattern) pattern, resourcesHandler.getExtendedResources(((PDTilingPattern) pattern).getResources()));
 			case PDPattern.TYPE_SHADING_PATTERN:
 				return new GFPDShadingPattern((PDShadingPattern) pattern);
 			default:
