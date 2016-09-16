@@ -27,6 +27,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
     public static final String FONT_FILE = "fontFile";
     public static final String BASE_FONT = "BaseFont";
 
+    protected boolean fontProgramParsed;
     protected final RenderingMode renderingMode;
 
     protected GFPDFont(org.verapdf.pd.font.PDFont font,
@@ -96,7 +97,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      * @return embedded font program for Type 1, TrueType or CID Font.
      */
     private List<FontProgram> getFontProgram() {
-        if(this.pdFont.getFontProgram() != null) {
+        if(this.pdFont.getFontProgram() != null && this.fontProgramParsed) {
             ASAtom subType = this.pdFont.getSubtype();
             if (ASAtom.TRUE_TYPE == subType) {
                 GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(
