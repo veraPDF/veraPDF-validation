@@ -42,6 +42,7 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 		try {
 			tmp = encoder.encode(CharBuffer.wrap(this.baseObject.getString()));
 		} catch (CharacterCodingException e) {
+			LOGGER.debug(e);
 			return false;
 		}
 
@@ -49,6 +50,7 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 			decoder.decode(tmp);
 			return true;
 		} catch (CharacterCodingException e){
+			LOGGER.debug(e);
 			return false;
 		}
 	}
@@ -64,7 +66,7 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 		try {
 			return new String(bytes, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			LOGGER.warn("Can not transform " + name + " to unicode string.", e);
+			LOGGER.debug("Can not transform " + name + " to unicode string.", e);
 			return null;
 		}
 	}
