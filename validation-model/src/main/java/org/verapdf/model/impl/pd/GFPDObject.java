@@ -3,12 +3,16 @@ package org.verapdf.model.impl.pd;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.GenericModelObject;
+import org.verapdf.model.impl.pd.actions.GFPDAction;
+import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDObject;
 import org.verapdf.model.tools.GFIDGenerator;
 import org.verapdf.pd.PDContentStream;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.cmap.PDCMap;
+
+import java.util.List;
 
 /**
  * @author Timur Kamalov
@@ -64,6 +68,13 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 	public GFPDObject(PDCMap pdcMap, final String type) {
 		super(type);
 		this.pdcMap = pdcMap;
+	}
+
+	protected void addAction(List<PDAction> actions, org.verapdf.pd.actions.PDAction raw) {
+		PDAction action = GFPDAction.getAction(raw);
+		if (action != null) {
+			actions.add(action);
+		}
 	}
 
 	@Override

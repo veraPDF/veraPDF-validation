@@ -8,6 +8,7 @@ import org.verapdf.model.impl.cos.GFCosBBox;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDAnnotation;
+import org.verapdf.pd.actions.PDPageAdditionalActions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,6 +45,8 @@ public class GFPDPage extends GFPDObject implements PDPage {
     private static final String PRESENTATION_STEPS = "PresSteps";
     /** Link name for page group colorspace */
     private static final String GROUP_CS = "groupCS";
+
+    public static final int MAX_NUMBER_OF_ACTIONS = 2;
 
     private boolean containsTransparency = false;
     private List<PDContentStream> contentStreams = null;
@@ -119,11 +122,24 @@ public class GFPDPage extends GFPDObject implements PDPage {
         return Collections.emptyList();
     }
 
-    //TODO: implement me:
     private List<PDAction> getActions() {
+        PDPageAdditionalActions additionalActions =
+                ((org.verapdf.pd.PDPage) this.simplePDObject).getAdditionalActions();
+        if (additionalActions != null) {
+            List<PDAction> actions = new ArrayList<>(MAX_NUMBER_OF_ACTIONS);
+
+            org.verapdf.pd.actions.PDAction raw;
+
+            raw = additionalActions.getC();
+            this.addAction(actions, raw);
+
+            raw = additionalActions.getO();
+            this.addAction(actions, raw);
+
+            return Collections.unmodifiableList(actions);
+        }
         return Collections.emptyList();
     }
-
 
     private List<PDContentStream> getContentStream() {
         if (this.contentStreams == null) {
@@ -195,7 +211,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
         return Boolean.valueOf(((org.verapdf.pd.PDPage) simplePDObject).getCOSPresSteps() != null);
     }
 
-    //TODO: implement me:
     /**
      * @return true if the page contains transparency.
      */
