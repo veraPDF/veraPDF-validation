@@ -41,8 +41,6 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     public static final String IDENTITY = "Identity";
     public static final String CUSTOM = "Custom";
 
-    private boolean fontProgramParsed;
-
     public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
         super(font, renderingMode, CID_FONT_TYPE);
         if(font != null) {

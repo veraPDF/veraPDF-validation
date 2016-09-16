@@ -25,7 +25,6 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
     public static final String TYPE1_FONT_TYPE = "PDType1Font";
 
     public static final String NOTDEF_STRING = ".notdef";
-    private boolean fontProgramParsed;
 
     public GFPDType1Font(org.verapdf.pd.font.type1.PDType1Font pdFont,
                          RenderingMode renderingMode) {
