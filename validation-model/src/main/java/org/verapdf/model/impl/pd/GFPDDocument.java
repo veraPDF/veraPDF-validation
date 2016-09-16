@@ -1,10 +1,16 @@
 package org.verapdf.model.impl.pd;
 
 import org.apache.log4j.Logger;
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSString;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.impl.containers.StaticContainers;
+import org.verapdf.model.impl.cos.GFCosLang;
 import org.verapdf.model.pdlayer.*;
+import org.verapdf.model.tools.OutlinesHelper;
 import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 
@@ -87,6 +93,18 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     @Override
     public Boolean getcontainsAlternatePresentations() {
+        if (this.catalog != null) {
+            COSObject rawCatalog = this.catalog.getObject();
+            if (rawCatalog != null && rawCatalog.getType().isDictionaryBased()) {
+                COSObject namesDictionary = rawCatalog.getKey(ASAtom.NAMES);
+                if (namesDictionary != null && namesDictionary.getType().isDictionaryBased()) {
+                    COSObject alternatePresentations = namesDictionary.getKey(ASAtom.getASAtom("AlternatePresentations"));
+                    if (alternatePresentations != null && !alternatePresentations.empty() && alternatePresentations.getType() != COSObjType.COS_NULL) {
+                        return Boolean.TRUE;
+                    }
+                }
+            }
+        }
         return Boolean.FALSE;
     }
 
@@ -120,9 +138,8 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         }
     }
 
-    //TODO : implement me
     private List<PDOutline> getOutlines() {
-        return Collections.emptyList();
+        return OutlinesHelper.getOutlines(this.catalog);
     }
 
     //TODO : implement me
@@ -196,8 +213,16 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    //TODO : implement me
+    // TODO: uncomment me when PDPerms will be finished
     private List<PDPerms> getPerms() {
+//        if(this.catalog != null) {
+//            COSObject perms = this.catalog.getKey(ASAtom.PERMS);
+//            if (perms != null && perms.getType().isDictionaryBased()) {
+//                List<PDPerms> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+//                list.add(new GFPDPerms(perms));
+//                return Collections.unmodifiableList(list);
+//            }
+//        }
         return Collections.emptyList();
     }
 
@@ -216,8 +241,15 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    //TODO : implement me
     private List<CosLang> getLang() {
+        if (this.catalog != null) {
+            COSObject baseLang = catalog.getKey(ASAtom.LANG);
+            if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
+                List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
+                return Collections.unmodifiableList(list);
+            }
+        }
         return Collections.emptyList();
     }
 
