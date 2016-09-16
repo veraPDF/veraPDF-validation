@@ -33,7 +33,6 @@ public class StaticContainers {
 
 	public static void clearAllContainers() {
 		if (document != null) {
-			document.close();
 			document = null;
 		}
 		flavour = null;
