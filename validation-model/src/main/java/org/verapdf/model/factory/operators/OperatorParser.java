@@ -169,7 +169,7 @@ class OperatorParser {
 			}
 			case Operators.K_FILL: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
-						ASAtom.DEVICECMYK, true);
+						ASAtom.DEVICECMYK, false);
 				processedOperators.add(new GFOpColor(arguments));
 				break;
 			}
@@ -275,7 +275,7 @@ class OperatorParser {
 
 			// INLINE IMAGE
 			case Operators.BI:
-				processInlineImage(processedOperators, (InlineImageOperator) rawOperator, arguments);
+				processInlineImage(processedOperators, (InlineImageOperator) rawOperator, resourcesHandler, arguments);
 				break;
 
 			// COMPABILITY
@@ -413,7 +413,10 @@ class OperatorParser {
 
 	private static void processColorSpace(GraphicState graphicState, PDResourcesHandler resourcesHandler,
 										  PDColorSpace defaultCS, ASAtom name, boolean stroke) {
-		PDColorSpace colorSpace = resourcesHandler == null ?  defaultCS : resourcesHandler.getColorSpace(name);
+		PDColorSpace colorSpace = resourcesHandler.getColorSpace(name);
+		if (colorSpace == null) {
+			colorSpace = defaultCS;
+		}
 		if (stroke) {
 			graphicState.setStrokeColorSpace(colorSpace);
 		} else {
@@ -433,12 +436,13 @@ class OperatorParser {
 	}
 
 	private static void processInlineImage(List<org.verapdf.model.operator.Operator> processedOperators,
-										   InlineImageOperator rawOperator, List<COSBase> arguments) {
+										   InlineImageOperator rawOperator, PDResourcesHandler resourcesHandler,
+										   List<COSBase> arguments) {
 		if (rawOperator.getImageParameters() != null) {
 			arguments.add(rawOperator.getImageParameters());
 			processedOperators.add(new GFOp_BI(new ArrayList<COSBase>()));
 			processedOperators.add(new GFOp_ID(arguments));
-			processedOperators.add(new GFOp_EI(arguments));
+			processedOperators.add(new GFOp_EI(arguments, resourcesHandler));
 		}
 	}
 
