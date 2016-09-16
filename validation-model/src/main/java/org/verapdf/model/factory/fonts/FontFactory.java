@@ -19,7 +19,7 @@ import org.verapdf.pd.font.type1.PDType1Font;
 public class FontFactory {
 
 	/** Type name for {@code Type0} font */
-	public static final String TYPE_0 = "Type0";
+	public static final String TYPE_0 = "CIDFontType0";
 	/** Type name for {@code Type1} font */
 	public static final String TYPE_1 = "Type1";
 	/** Type name for {@code MMType1} font */
