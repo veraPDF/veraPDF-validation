@@ -10,6 +10,7 @@ import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosLang;
 import org.verapdf.model.impl.pd.actions.GFPDAction;
+import org.verapdf.model.impl.pd.signature.GFPDPerms;
 import org.verapdf.model.pdlayer.*;
 import org.verapdf.model.tools.OutlinesHelper;
 import org.verapdf.pd.PDCatalog;
@@ -244,16 +245,15 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    // TODO: uncomment me when PDPerms will be finished
     private List<PDPerms> getPerms() {
-//        if(this.catalog != null) {
-//            COSObject perms = this.catalog.getKey(ASAtom.PERMS);
-//            if (perms != null && perms.getType().isDictionaryBased()) {
-//                List<PDPerms> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-//                list.add(new GFPDPerms(perms));
-//                return Collections.unmodifiableList(list);
-//            }
-//        }
+        if(this.catalog != null) {
+            COSObject perms = this.catalog.getKey(ASAtom.PERMS);
+            if (perms != null && perms.getType().isDictionaryBased()) {
+                List<PDPerms> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                list.add(new GFPDPerms(perms));
+                return Collections.unmodifiableList(list);
+            }
+        }
         return Collections.emptyList();
     }
 
