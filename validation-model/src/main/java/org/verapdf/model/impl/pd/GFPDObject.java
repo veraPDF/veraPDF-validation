@@ -26,6 +26,7 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 	protected org.verapdf.pd.PDObject simplePDObject;
 	protected PDFont pdFont;
 	protected PDCMap pdcMap;
+	protected COSObject simpleCOSObject;
 
 	protected String id;
 
@@ -68,6 +69,11 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 	public GFPDObject(PDCMap pdcMap, final String type) {
 		super(type);
 		this.pdcMap = pdcMap;
+	}
+
+	public GFPDObject(COSObject simpleCOSObject, final String type) {
+		super(type);
+		this.simpleCOSObject = simpleCOSObject;
 	}
 
 	protected void addAction(List<PDAction> actions, org.verapdf.pd.actions.PDAction raw) {
