@@ -31,7 +31,7 @@ public class GFOperator extends GenericModelObject implements Operator {
 	protected List<CosNumber> getLastNumber() {
 		if (!this.arguments.isEmpty()) {
 			COSBase base = this.arguments.get(this.arguments.size() - 1);
-			if (base.getType() == COSObjType.COS_DICT) {
+			if (base.getType().isNumber()) {
 				List<CosNumber> cosNumbers = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				cosNumbers.add(GFCosNumber.fromPDFParserNumber(base));
 				return Collections.unmodifiableList(cosNumbers);
