@@ -15,6 +15,7 @@ import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDAppearanceEntry;
 import org.verapdf.pd.PDAppearanceStream;
 import org.verapdf.pd.PDGroup;
+import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -136,7 +137,43 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<PDAction> getAdditionalActions() {
-		// TODO: implement me;
+		PDAnnotationAdditionalActions additionalActions = ((PDAnnotation) simplePDObject).getAdditionalActions();
+		if (additionalActions != null) {
+			List<PDAction> actions = new ArrayList<>(MAX_COUNT_OF_ACTIONS);
+			org.verapdf.pd.actions.PDAction buffer;
+
+			buffer = additionalActions.getBl();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getD();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getE();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getFo();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getPC();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getPI();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getPO();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getPV();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getU();
+			this.addAction(actions, buffer);
+
+			buffer = additionalActions.getX();
+			this.addAction(actions, buffer);
+
+			return Collections.unmodifiableList(actions);
+		}
 		return Collections.emptyList();
 	}
 
