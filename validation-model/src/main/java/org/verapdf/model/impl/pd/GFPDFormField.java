@@ -4,7 +4,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDFormField;
-import org.verapdf.pd.form.PDFormFieldActions;
+import org.verapdf.pd.actions.PDFormFieldActions;
 
 import java.util.ArrayList;
 import java.util.Collections;
