@@ -3,7 +3,6 @@ package org.verapdf.model.impl.pd.font;
 import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.factory.operators.RenderingMode;
 import org.verapdf.model.pdlayer.PDCIDFont;
@@ -31,6 +30,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
     public GFPDType0Font(org.verapdf.pd.font.PDType0Font font,
                          RenderingMode renderingMode) {
         super(font, renderingMode, TYPE_0_FONT_TYPE);
+        this.fontProgramParsed = true;  // If it can't be parsed, then problem will occur with descendant font.
     }
 
     @Override
@@ -49,12 +49,8 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
      * @return link to the descendant CIDFont.
      */
     private List<PDCIDFont> getDescendantFonts() {
-        COSObject cidFontDictObj =
-                this.pdFont.getDictionary().getKey(ASAtom.DESCENDANT_FONTS).at(0);
-        if (cidFontDictObj == null) {
-            return Collections.emptyList();
-        }
-        COSDictionary cidFontDict = (COSDictionary) cidFontDictObj.getDirectBase();
+        COSDictionary cidFontDict = ((org.verapdf.pd.font.PDType0Font)
+                this.pdFont).getDescendantFont();
         if (cidFontDict != null) {
             org.verapdf.pd.font.PDCIDFont cidFont =
                     new org.verapdf.pd.font.PDCIDFont(cidFontDict);

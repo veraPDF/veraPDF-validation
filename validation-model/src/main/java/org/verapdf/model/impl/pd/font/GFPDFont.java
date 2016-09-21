@@ -93,6 +93,10 @@ public class GFPDFont extends GFPDResource implements PDFont {
         }
     }
 
+    public boolean isFontProgramParsed() {
+        return this.fontProgramParsed;
+    }
+
     /**
      * @return embedded font program for Type 1, TrueType or CID Font.
      */
