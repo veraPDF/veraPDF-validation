@@ -9,9 +9,12 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosLang;
+import org.verapdf.model.impl.pd.actions.GFPDAction;
+import org.verapdf.model.impl.pd.signature.GFPDPerms;
 import org.verapdf.model.pdlayer.*;
 import org.verapdf.model.tools.OutlinesHelper;
 import org.verapdf.pd.PDCatalog;
+import org.verapdf.pd.actions.PDCatalogAdditionalActions;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 
 import java.io.IOException;
@@ -77,6 +80,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
      */
     public static final String PERMS = "Perms";
 
+    public static final int MAX_NUMBER_OF_ACTIONS = 5;
 
     private final PDCatalog catalog;
 
@@ -142,13 +146,41 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return OutlinesHelper.getOutlines(this.catalog);
     }
 
-    //TODO : implement me
     private List<PDAction> getOpenAction() {
-        return Collections.emptyList();
+        List<PDAction> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+        org.verapdf.pd.actions.PDAction action = this.catalog.getOpenAction();
+        if (action != null) {
+            actions.add(GFPDAction.getAction(action));
+        }
+        return Collections.unmodifiableList(actions);
     }
 
-    //TODO : implement me
     private List<PDAction> getActions() {
+        if (this.catalog != null) {
+            PDCatalogAdditionalActions additionalActions = this.catalog.getAdditionalActions();
+            if (additionalActions != null) {
+                List<PDAction> actions = new ArrayList<>(MAX_NUMBER_OF_ACTIONS);
+
+                org.verapdf.pd.actions.PDAction raw;
+
+                raw = additionalActions.getDP();
+                this.addAction(actions, raw);
+
+                raw = additionalActions.getDS();
+                this.addAction(actions, raw);
+
+                raw = additionalActions.getWP();
+                this.addAction(actions, raw);
+
+                raw = additionalActions.getWS();
+                this.addAction(actions, raw);
+
+                raw = additionalActions.getWC();
+                this.addAction(actions, raw);
+
+                return Collections.unmodifiableList(actions);
+            }
+        }
         return Collections.emptyList();
     }
 
@@ -213,16 +245,15 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    // TODO: uncomment me when PDPerms will be finished
     private List<PDPerms> getPerms() {
-//        if(this.catalog != null) {
-//            COSObject perms = this.catalog.getKey(ASAtom.PERMS);
-//            if (perms != null && perms.getType().isDictionaryBased()) {
-//                List<PDPerms> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-//                list.add(new GFPDPerms(perms));
-//                return Collections.unmodifiableList(list);
-//            }
-//        }
+        if(this.catalog != null) {
+            COSObject perms = this.catalog.getKey(ASAtom.PERMS);
+            if (perms != null && perms.getType().isDictionaryBased()) {
+                List<PDPerms> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                list.add(new GFPDPerms(perms));
+                return Collections.unmodifiableList(list);
+            }
+        }
         return Collections.emptyList();
     }
 
