@@ -124,7 +124,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
             return Collections.emptyList();
         }
         FontProgram fontProgram = font.getFontProgram();
-        if (fontProgram == null) {
+        if (fontProgram == null && font.getSubtype() != ASAtom.TYPE3) {
             return Collections.emptyList();
         }
 
@@ -134,20 +134,28 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
             try (InputStream inputStream = new ByteArrayInputStream(string)) {
                 while (inputStream.available() > 0) {
                     int code = font.readCode(inputStream);
-                    fontProgram.parseFont();
-                    boolean glyphPresent = fontProgram.containsCode(code);
-                    boolean widthsConsistent = this.checkWidths(code, font,
-                            fontProgram);
-                    GFGlyph glyph;
-                    if (font.getSubtype() == ASAtom.TYPE0) {
-                        int CID = ((PDType0Font) font).toCID(code);
-                        glyph = new GFCIDGlyph(glyphPresent, widthsConsistent,
-                                font, code, CID, this.renderingMode.getValue());
-                    } else {
-                        glyph = new GFGlyph(glyphPresent, widthsConsistent,
-                                font, code, this.renderingMode.getValue());
+                    if (font.getSubtype() != ASAtom.TYPE3) {
+                        fontProgram.parseFont();
+                        boolean glyphPresent = fontProgram.containsCode(code);
+                        boolean widthsConsistent = this.checkWidths(code, font,
+                                fontProgram);
+                        GFGlyph glyph;
+                        if (font.getSubtype() == ASAtom.TYPE0) {
+                            int CID = ((PDType0Font) font).toCID(code);
+                            glyph = new GFCIDGlyph(glyphPresent, widthsConsistent,
+                                    font, code, CID, this.renderingMode.getValue());
+                        } else {
+                            glyph = new GFGlyph(glyphPresent, widthsConsistent,
+                                    font, code, this.renderingMode.getValue());
+                        }
+                        res.add(glyph);
+                    } else {    // Type3 font
+                        boolean glyphPresent = font.getFirstChar() <= code &&
+                                font.getLastChar() >= code;
+                        boolean widthConsistent = font.getWidth(code) != null;
+                        res.add(new GFGlyph(glyphPresent, widthConsistent,
+                                font, code, this.renderingMode.getValue()));
                     }
-                    res.add(glyph);
                 }
             } catch (IOException e) {
                 LOGGER.debug("Error processing text show operator's string argument : "
@@ -233,7 +241,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 
     private Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font,
                                 FontProgram fontProgram) throws IOException {
-        double expectedWidth = font.getWidth(glyphCode);
+        Double fontWidth = font.getWidth(glyphCode);
+        double expectedWidth = fontWidth == null ? 0 : fontWidth.doubleValue();
         double foundWidth = fontProgram.getWidth(glyphCode);
         // consistent is defined to be a difference of no more than 1/1000 unit.
         return Math.abs(foundWidth - expectedWidth) > 1 ? Boolean.FALSE : Boolean.TRUE;
