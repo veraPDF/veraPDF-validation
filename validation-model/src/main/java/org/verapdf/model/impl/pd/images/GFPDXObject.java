@@ -29,8 +29,8 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 	protected final PDResourcesHandler resourcesHandler;
 
 	public GFPDXObject(
-			org.verapdf.pd.images.PDXObject simplePDObject) {
-		this(simplePDObject, null, X_OBJECT_TYPE);
+			org.verapdf.pd.images.PDXObject simplePDObject, PDResourcesHandler resourcesHandler) {
+		this(simplePDObject, resourcesHandler, X_OBJECT_TYPE);
 	}
 
 	protected GFPDXObject(org.verapdf.pd.images.PDXObject simplePDObject, PDResourcesHandler resourcesHandler, final String type) {
@@ -60,7 +60,7 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 		PDXImage smask = ((org.verapdf.pd.images.PDXObject) simplePDObject).getSMask();
 		if (smask != null) {
 			List<PDSMaskImage> mask = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			mask.add(new GFPDSMaskImage(smask));
+			mask.add(new GFPDSMaskImage(smask, this.resourcesHandler));
 			return Collections.unmodifiableList(mask);
 		}
 		return Collections.emptyList();
@@ -83,9 +83,9 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 		if (ASAtom.FORM.equals(type)) {
 			return new GFPDXForm((PDXForm) xObject, resources);
 		} else if (ASAtom.IMAGE.equals(type)) {
-			return new GFPDXImage((PDXImage) xObject);
+			return new GFPDXImage((PDXImage) xObject, resources);
 		} else if (ASAtom.PS.equals(type)) {
-			return new GFPDXObject(xObject);
+			return new GFPDXObject(xObject, resources);
 		} else {
 			return null;
 		}
