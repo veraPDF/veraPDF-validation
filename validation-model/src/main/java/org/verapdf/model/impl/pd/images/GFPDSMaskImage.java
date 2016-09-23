@@ -1,6 +1,7 @@
 package org.verapdf.model.impl.pd.images;
 
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.pd.images.PDXImage;
 
@@ -14,8 +15,8 @@ public class GFPDSMaskImage extends GFPDXImage implements PDSMaskImage {
 
 	public static final String SMASK_IMAGE_TYPE = "PDSMaskImage";
 
-	public GFPDSMaskImage(PDXImage simplePDObject) {
-		super(simplePDObject, SMASK_IMAGE_TYPE);
+	public GFPDSMaskImage(PDXImage simplePDObject, PDResourcesHandler resourcesHandler) {
+		super(simplePDObject, resourcesHandler, SMASK_IMAGE_TYPE);
 	}
 
 	@Override

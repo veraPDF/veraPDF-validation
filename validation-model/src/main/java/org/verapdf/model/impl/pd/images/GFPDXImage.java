@@ -1,5 +1,6 @@
 package org.verapdf.model.impl.pd.images;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosRenderingIntent;
@@ -7,6 +8,7 @@ import org.verapdf.model.external.JPEG2000;
 import org.verapdf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.model.impl.cos.GFCosRenderingIntent;
 import org.verapdf.model.impl.external.GFJPEG2000;
+import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDXImage;
 
@@ -28,12 +30,12 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	private List<JPEG2000> jpeg2000List = null;
 	private PDColorSpace colorSpaceFromImage = null;
 
-	public GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject) {
-		this(simplePDObject, X_IMAGE_TYPE);
+	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, PDResourcesHandler resourcesHandler) {
+		this(simplePDObject, resourcesHandler, X_IMAGE_TYPE);
 	}
 
-	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, String type) {
-		super(simplePDObject, null, type);
+	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, PDResourcesHandler resourcesHandler, String type) {
+		super(simplePDObject, resourcesHandler, type);
 	}
 
 	@Override
@@ -74,12 +76,22 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 		}
 		org.verapdf.pd.images.PDXImage image = ((org.verapdf.pd.images.PDXImage) simplePDObject);
 		if (!image.getImageMask()) {
-			PDColorSpace buffer = ColorSpaceFactory.getColorSpace(image.getImageCS());
-			if (buffer != null) {
-				List<PDColorSpace> colorSpaces =
-						new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-				colorSpaces.add(buffer);
-				return Collections.unmodifiableList(colorSpaces);
+			List<PDColorSpace> colorSpaces =
+					new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			org.verapdf.pd.colors.PDColorSpace buffer;
+			ASAtom csName = image.getImageCSName();
+			if (csName != null) {
+				buffer = resourcesHandler.getColorSpace(csName);
+				if (buffer != null) {
+					colorSpaces.add(ColorSpaceFactory.getColorSpace(buffer));
+					return Collections.unmodifiableList(colorSpaces);
+				}
+			} else {
+				buffer = image.getImageCS();
+				if (buffer != null) {
+					colorSpaces.add(ColorSpaceFactory.getColorSpace(buffer));
+					return Collections.unmodifiableList(colorSpaces);
+				}
 			}
 		}
 		return Collections.emptyList();
@@ -90,7 +102,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 				((org.verapdf.pd.images.PDXImage) simplePDObject).getAlternates();
 		final List<PDXImage> res = new ArrayList<>(alternates.size());
 		for (org.verapdf.pd.images.PDXImage image : alternates) {
-			res.add(new GFPDXImage(image));
+			res.add(new GFPDXImage(image, this.resourcesHandler));
 		}
 		return res;
 	}
