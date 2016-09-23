@@ -27,10 +27,14 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
     public static final String DESCENDANT_FONTS = "DescendantFonts";
     public static final String ENCODING = "Encoding";
 
+    private PDCIDFont descendantFont;
+
     public GFPDType0Font(org.verapdf.pd.font.PDType0Font font,
                          RenderingMode renderingMode) {
         super(font, renderingMode, TYPE_0_FONT_TYPE);
-        this.fontProgramParsed = true;  // If it can't be parsed, then problem will occur with descendant font.
+        this.descendantFont = this.getDescendantFont();
+        this.fontProgramParsed = this.descendantFont != null &&
+                ((GFPDCIDFont) this.descendantFont).isFontProgramParsed();
     }
 
     @Override
@@ -49,6 +53,15 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
      * @return link to the descendant CIDFont.
      */
     private List<PDCIDFont> getDescendantFonts() {
+        if (this.descendantFont != null) {
+            List<PDCIDFont> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            list.add(descendantFont);
+            return Collections.unmodifiableList(list);
+        }
+        return Collections.emptyList();
+    }
+
+    private PDCIDFont getDescendantFont() {
         COSDictionary cidFontDict = ((org.verapdf.pd.font.PDType0Font)
                 this.pdFont).getDescendantFont();
         if (cidFontDict != null) {
@@ -57,9 +70,9 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
             PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode);
             List<PDCIDFont> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             list.add(pdCIDFont);
-            return Collections.unmodifiableList(list);
+            return null;
         }
-        return Collections.emptyList();
+        return null;
     }
 
     /**
