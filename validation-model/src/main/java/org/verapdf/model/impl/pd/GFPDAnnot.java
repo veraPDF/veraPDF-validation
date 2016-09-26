@@ -5,6 +5,7 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosNumber;
 import org.verapdf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
@@ -265,7 +266,13 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
 			GFPDContentStream stream = new GFPDContentStream(toAdd, resources);
-			this.containsTransparency |= stream.isContainsTransparency();
+			String contentStreamId = stream.getID();
+			if (contentStreamId == null || !StaticContainers.transparencyCheckedSet.contains(contentStreamId)) {
+				this.containsTransparency |= stream.isContainsTransparency();
+			}
+			if (contentStreamId != null) {
+				StaticContainers.transparencyCheckedSet.add(contentStreamId);
+			}
 			PDGroup group = toAdd.getGroup();
 			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());
 			list.add(stream);

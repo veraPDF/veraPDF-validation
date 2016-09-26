@@ -4,6 +4,7 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
 import org.verapdf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosBBox;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.*;
@@ -109,14 +110,26 @@ public class GFPDPage extends GFPDObject implements PDPage {
     private List<PDAnnot> parseAnnotataions() {
         List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
         if (annots.size() > 0) {
+            StaticContainers.transparencyCheckedSet.clear();
+            String id = getID();
+            if (id != null) {
+                StaticContainers.transparencyCheckedSet.add(id);
+            }
             List<PDAnnot> res = new ArrayList<>(annots.size());
             for (PDAnnotation annot : annots) {
                 org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
                 PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
                 GFPDAnnot annotation = new GFPDAnnot(annot, resourcesHandler);
-                this.containsTransparency |= annotation.isContainsTransparency();
+                String annotID = annotation.getID();
+                if (annotID == null || !StaticContainers.transparencyCheckedSet.contains(annotID)) {
+                    this.containsTransparency |= annotation.isContainsTransparency();
+                }
+                if (annotID != null) {
+                    StaticContainers.transparencyCheckedSet.add(annotID);
+                }
                 res.add(annotation);
             }
+            StaticContainers.transparencyCheckedSet.clear();
             return Collections.unmodifiableList(res);
         }
         return Collections.emptyList();
@@ -149,14 +162,26 @@ public class GFPDPage extends GFPDObject implements PDPage {
     }
 
     private void parseContentStream() {
+        StaticContainers.transparencyCheckedSet.clear();
+        String id = getID();
+        if (id != null) {
+            StaticContainers.transparencyCheckedSet.add(id);
+        }
         this.contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
         if (page.getContent() != null) {
             PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
             GFPDContentStream contentStream = new GFPDContentStream(page.getContent(), resourcesHandler);
-            this.containsTransparency |= contentStream.isContainsTransparency();
+            String contentStreamID = contentStream.getID();
+            if (contentStreamID == null || !StaticContainers.transparencyCheckedSet.contains(contentStreamID)) {
+                this.containsTransparency |= contentStream.isContainsTransparency();
+            }
+            if (contentStreamID != null) {
+                StaticContainers.transparencyCheckedSet.add(contentStreamID);
+            }
             contentStreams.add(contentStream);
         }
+        StaticContainers.transparencyCheckedSet.clear();
     }
 
     private List<CosBBox> getMediaBox() {
