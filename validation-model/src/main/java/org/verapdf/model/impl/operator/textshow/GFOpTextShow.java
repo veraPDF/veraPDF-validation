@@ -140,7 +140,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                         boolean widthsConsistent = this.checkWidths(code, font,
                                 fontProgram);
                         GFGlyph glyph;
-                        if (font.getSubtype() == ASAtom.TYPE0) {
+                        if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 ||
+                                font.getSubtype() == ASAtom.CID_FONT_TYPE2) {
                             int CID = ((PDType0Font) font).toCID(code);
                             glyph = new GFCIDGlyph(glyphPresent, widthsConsistent,
                                     font, code, CID, this.renderingMode.getValue());
@@ -156,21 +157,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                         res.add(new GFGlyph(glyphPresent, widthConsistent,
                                 font, code, this.renderingMode.getValue()));
                     }
-                    fontProgram.parseFont();
-                    boolean glyphPresent = fontProgram.containsCode(code);
-                    boolean widthsConsistent = this.checkWidths(code, font,
-                            fontProgram);
-                    GFGlyph glyph;
-                    if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 ||
-                            font.getSubtype() == ASAtom.CID_FONT_TYPE2) {
-                        int CID = ((PDType0Font) font).toCID(code);
-                        glyph = new GFCIDGlyph(glyphPresent, widthsConsistent,
-                                font, code, CID, this.renderingMode.getValue());
-                    } else {
-                        glyph = new GFGlyph(glyphPresent, widthsConsistent,
-                                font, code, this.renderingMode.getValue());
-                    }
-                    res.add(glyph);
                 }
             } catch (IOException e) {
                 LOGGER.debug("Error processing text show operator's string argument : "
