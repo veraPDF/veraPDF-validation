@@ -57,7 +57,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	@Override
 	public String getstandardType() {
-		ASAtom type = ((org.verapdf.pd.PDStructElem) simplePDObject).getType();
+		ASAtom type = ((org.verapdf.pd.PDStructElem) simplePDObject).getStructureType();
 		if (type != null) {
 			return StaticContainers.getRoleMapHelper().getStandartType(type);
 		}
