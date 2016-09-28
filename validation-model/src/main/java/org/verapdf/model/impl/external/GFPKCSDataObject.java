@@ -1,9 +1,9 @@
 package org.verapdf.model.impl.external;
 
 import org.apache.log4j.Logger;
+import org.verapdf.as.io.ASMemoryInStream;
 import org.verapdf.cos.COSString;
 import org.verapdf.cos.filters.COSFilterASCIIHexDecode;
-import org.verapdf.io.ASMemoryInStream;
 import org.verapdf.model.external.PKCSDataObject;
 import sun.security.pkcs.ContentInfo;
 import sun.security.pkcs.PKCS7;
