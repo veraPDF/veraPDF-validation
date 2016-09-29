@@ -2,6 +2,7 @@ package org.verapdf.model.factory.operators;
 
 import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.tools.TransparencyBehaviour;
 import org.verapdf.model.tools.constants.Operators;
@@ -90,14 +91,16 @@ public final class OperatorFactory {
                 try {
                     parser.parseOperator(result, ((Operator) rawToken), resourcesHandler, arguments);
 
-                    String parsedOperatorType = ((Operator) rawToken).getOperator();
-                    TransparencyGraphicsState graphicState = parser.getTransparencyGraphicState();
-                    if (PAINT_OPERATORS_WITHOUT_TEXT.containsKey(parsedOperatorType)) {
-                        isLastParsedContainsTransparency |= PAINT_OPERATORS_WITHOUT_TEXT.get(parsedOperatorType).containsTransparency(graphicState);
-                    } else {
-                        RenderingMode renderingMode = parser.getGSRenderingMode();
-                        if (PAINT_OPERATORS_TEXT.contains(parsedOperatorType) && RENDERING_MODE.containsKey(renderingMode)) {
-                            isLastParsedContainsTransparency |= RENDERING_MODE.get(renderingMode).containsTransparency(graphicState);
+                    if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart().getPartNumber() != 1) {
+                        String parsedOperatorType = ((Operator) rawToken).getOperator();
+                        TransparencyGraphicsState graphicState = parser.getTransparencyGraphicState();
+                        if (PAINT_OPERATORS_WITHOUT_TEXT.containsKey(parsedOperatorType)) {
+                            isLastParsedContainsTransparency |= PAINT_OPERATORS_WITHOUT_TEXT.get(parsedOperatorType).containsTransparency(graphicState);
+                        } else {
+                            RenderingMode renderingMode = parser.getGSRenderingMode();
+                            if (PAINT_OPERATORS_TEXT.contains(parsedOperatorType) && RENDERING_MODE.containsKey(renderingMode)) {
+                                isLastParsedContainsTransparency |= RENDERING_MODE.get(renderingMode).containsTransparency(graphicState);
+                            }
                         }
                     }
                 } catch (IOException e) {
