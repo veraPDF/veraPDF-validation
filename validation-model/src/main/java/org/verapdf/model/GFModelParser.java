@@ -3,10 +3,13 @@ package org.verapdf.model;
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
 import org.apache.log4j.Logger;
+import org.verapdf.core.EncryptedPdfException;
 import org.verapdf.core.ModelParsingException;
+import org.verapdf.exceptions.InvalidPasswordException;
 import org.verapdf.features.FeaturesExtractor;
 import org.verapdf.features.config.FeaturesConfig;
 import org.verapdf.features.tools.FeaturesCollection;
+import org.verapdf.metadata.fixer.entity.PDFDocument;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosDocument;
 import org.verapdf.pd.PDCatalog;
@@ -40,9 +43,11 @@ public class GFModelParser implements PDFParser, Closeable {
     }
 
 
-    public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour) throws ModelParsingException {
+    public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour) throws ModelParsingException, EncryptedPdfException {
         try {
             return new GFModelParser(toLoad, (flavour == PDFAFlavour.NO_FLAVOUR || flavour == null) ? DEFAULT_FLAVOUR : flavour);
+        } catch (InvalidPasswordException excep) {
+            throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
         } catch (IOException e) {
             throw new ModelParsingException("Couldn't parse stream", e);
         }
@@ -104,6 +109,12 @@ public class GFModelParser implements PDFParser, Closeable {
     @Override
     public PDFAFlavour getFlavour() {
         return this.flavour;
+    }
+
+    @Override
+    public PDFDocument getPDFDocument() {
+        // TODO: implement me with metadata fixer
+        return null;
     }
 
     @Override
