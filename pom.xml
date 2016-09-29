@@ -52,8 +52,8 @@
 
     <properties>
         <verapdf.parser.version>[0.1.0,0.2.0)</verapdf.parser.version>
-        <verapdf.pdfmodel.version>[0.21.0,0.22.0)</verapdf.pdfmodel.version>
-        <verapdf.library.version>[0.21.0,0.22.0)</verapdf.library.version>
+        <verapdf.pdfmodel.version>[0.23.0,0.24.0)</verapdf.pdfmodel.version>
+        <verapdf.library.version>[0.23.0,0.24.0)</verapdf.library.version>
     </properties>
 
     <dependencyManagement>
