@@ -4,6 +4,7 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
 import org.verapdf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.cos.GFCosBBox;
 import org.verapdf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.*;
@@ -99,6 +100,9 @@ public class GFPDPage extends GFPDObject implements PDPage {
     }
 
     private List<PDAnnot> getAnnotations() {
+        if (StaticContainers.getFlavour() == null || StaticContainers.getFlavour().getPart().getPartNumber() == 1) {
+            return parseAnnotataions();
+        }
         if (this.annotations == null) {
             this.annotations = parseAnnotataions();
         }
@@ -114,7 +118,9 @@ public class GFPDPage extends GFPDObject implements PDPage {
                 org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
                 PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
                 GFPDAnnot annotation = new GFPDAnnot(annot, resourcesHandler);
-                this.containsTransparency |= annotation.isContainsTransparency();
+                if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart().getPartNumber() != 1) {
+                    this.containsTransparency |= annotation.isContainsTransparency();
+                }
                 res.add(annotation);
             }
             return Collections.unmodifiableList(res);
@@ -142,21 +148,27 @@ public class GFPDPage extends GFPDObject implements PDPage {
     }
 
     private List<PDContentStream> getContentStream() {
+        if (StaticContainers.getFlavour() == null || StaticContainers.getFlavour().getPart().getPartNumber() == 1) {
+            return parseContentStream();
+        }
         if (this.contentStreams == null) {
-            parseContentStream();
+            this.contentStreams = parseContentStream();
         }
         return this.contentStreams;
     }
 
-    private void parseContentStream() {
-        this.contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+    private List<PDContentStream> parseContentStream() {
+        List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
         if (page.getContent() != null) {
             PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
             GFPDContentStream contentStream = new GFPDContentStream(page.getContent(), resourcesHandler);
-            this.containsTransparency |= contentStream.isContainsTransparency();
+            if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart().getPartNumber() != 1) {
+                this.containsTransparency |= contentStream.isContainsTransparency();
+            }
             contentStreams.add(contentStream);
         }
+        return contentStreams;
     }
 
     private List<CosBBox> getMediaBox() {
@@ -216,8 +228,11 @@ public class GFPDPage extends GFPDObject implements PDPage {
      */
     @Override
     public Boolean getcontainsTransparency() {
+        if (StaticContainers.getFlavour() == null || StaticContainers.getFlavour().getPart().getPartNumber() == 1) {
+            throw new IllegalStateException("Contains transparency method mast not be called in case of PDF/A-1 flavours");
+        }
         if (this.contentStreams == null) {
-            parseContentStream();
+            this.contentStreams = parseContentStream();
         }
         if (this.annotations == null) {
             this.annotations = parseAnnotataions();
