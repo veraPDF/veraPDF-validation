@@ -3,6 +3,7 @@ package org.verapdf.model.impl.operator.textshow;
 import org.apache.log4j.Logger;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.operator.Glyph;
+import org.verapdf.model.tools.GFIDGenerator;
 import org.verapdf.pd.font.*;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private static final Logger LOGGER = Logger.getLogger(GFGlyph.class);
 
     public final static String GLYPH_TYPE = "Glyph";
+    private final String id;
 
     private Boolean glyphPresent;
     private Boolean widthsConsistent;
@@ -52,6 +54,8 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         }
         this.toUnicode = font.toUnicode(glyphCode);
+        this.id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
+                font.getName(), glyphCode, renderingMode);
     }
 
     @Override
