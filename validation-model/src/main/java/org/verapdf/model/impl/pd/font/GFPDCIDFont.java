@@ -16,7 +16,7 @@ import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.cff.CFFCIDFontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
-import org.verapdf.pd.font.truetype.TrueTypeFontProgram;
+import org.verapdf.pd.font.truetype.BaseTrueTypeProgram;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
@@ -133,8 +133,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                         if (bitSet.cardinality() < cffCidFont.getNGlyphs()) {
                             return Boolean.FALSE;
                         }
-                    } else if (cidFont instanceof TrueTypeFontProgram) {
-                        if (bitSet.cardinality() < ((TrueTypeFontProgram) cidFont).getNGlyphs()) {
+                    } else if (cidFont instanceof BaseTrueTypeProgram) {
+                        if (bitSet.cardinality() < ((BaseTrueTypeProgram) cidFont).getNGlyphs()) {
                             return Boolean.FALSE;
                         }
                     }
