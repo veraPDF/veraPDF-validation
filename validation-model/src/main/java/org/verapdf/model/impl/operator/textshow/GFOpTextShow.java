@@ -153,7 +153,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                     } else {    // Type3 font
                         boolean glyphPresent = font.getFirstChar() <= code &&
                                 font.getLastChar() >= code;
-                        boolean widthConsistent = font.getWidth(code) != null;
+                        boolean widthConsistent = font.getWidth(code) != null &&
+                                font.getWidth(code) > 0;
                         res.add(new GFGlyph(glyphPresent, widthConsistent,
                                 font, code, this.renderingMode.getValue()));
                     }

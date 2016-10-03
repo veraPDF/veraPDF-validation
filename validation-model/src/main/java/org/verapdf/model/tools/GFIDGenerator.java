@@ -6,6 +6,7 @@ import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.pd.PDOutlineItem;
 import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.font.PDType0Font;
 
 public final class GFIDGenerator {
 
@@ -18,8 +19,20 @@ public final class GFIDGenerator {
 	}
 
 	public static String generateID(PDFont font) {
+		if(font instanceof PDType0Font) {
+			return generateID((PDType0Font) font);
+		}
 		int hashcode = font.getDictionary().hashCode();
 		return String.valueOf(hashcode) + ' ' + font.getName();
+	}
+
+	public static String generateID(PDType0Font font) {
+		int hashcode = font.getType0FontDict().hashCode();
+		return String.valueOf(hashcode) + ' ' + font.getName();
+	}
+
+	public static String generateID(int hashcode, String fontName, int glyphCode, int renderingMode) {
+		return String.valueOf(hashcode) + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode;
 	}
 
 	public static String generateID(PDOutlineItem item) {
