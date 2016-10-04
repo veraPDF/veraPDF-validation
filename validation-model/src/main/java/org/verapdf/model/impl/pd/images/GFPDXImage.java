@@ -2,6 +2,8 @@ package org.verapdf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosRenderingIntent;
 import org.verapdf.model.external.JPEG2000;
@@ -128,6 +130,8 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	 * @return true if current image contains SMask value of type stream or SMaskInData value greater then 0
 	 */
 	public boolean containsTransparency() {
-		return ((org.verapdf.pd.images.PDXImage) this.simplePDObject).getSMaskInData() > 0;
+		COSObject smask = this.simplePDObject.getKey(ASAtom.SMASK);
+		return (smask != null && smask.getType() == COSObjType.COS_STREAM)
+				|| ((org.verapdf.pd.images.PDXImage) this.simplePDObject).getSMaskInData() > 0;
 	}
 }
