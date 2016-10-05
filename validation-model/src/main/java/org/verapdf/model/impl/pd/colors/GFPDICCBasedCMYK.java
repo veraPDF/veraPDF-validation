@@ -27,4 +27,9 @@ public class GFPDICCBasedCMYK extends GFPDICCBased implements PDICCBasedCMYK {
     public Boolean getoverprintFlag() {
         return this.overprintingFlag;
     }
+
+    @Override
+    public String getID() {
+        return super.getID() + " " + this.opm + " " + this.overprintingFlag;
+    }
 }

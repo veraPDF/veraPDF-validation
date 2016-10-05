@@ -204,7 +204,7 @@ public class TransparencyBehaviour {
                     }
                 }
             } else {
-                return true;
+                return !bm.empty() && bm.getType() != COSObjType.COS_NULL;
             }
         }
         return false;
