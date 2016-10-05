@@ -9,8 +9,11 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosObject;
 import org.verapdf.model.impl.cos.GFCosArray;
 import org.verapdf.model.impl.cos.GFCosStream;
+import org.verapdf.model.impl.pd.signature.GFPDSignatureField;
 import org.verapdf.model.pdlayer.PDAcroForm;
 import org.verapdf.model.pdlayer.PDFormField;
+import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.form.PDSignatureField;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,8 +28,9 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
     public static final String FORM_FIELDS = "formFields";
     public static final String XFA = "XFA";
 
-    public GFPDAcroForm(org.verapdf.pd.form.PDAcroForm acroForm) {
+    public GFPDAcroForm(org.verapdf.pd.form.PDAcroForm acroForm, PDDocument document) {
         super(acroForm, ACRO_FORM_TYPE);
+        this.document = document;
     }
 
     @Override
@@ -52,7 +56,11 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
         List<PDFormField> formFields =
                 new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         for (org.verapdf.pd.form.PDFormField field : fields) {
-            formFields.add(GFPDFormField.createTypedFormField(field));
+            if (field instanceof PDSignatureField) {
+                formFields.add(new GFPDSignatureField((PDSignatureField) field, document));
+            } else {
+                formFields.add(GFPDFormField.createTypedFormField(field));
+            }
         }
         return Collections.unmodifiableList(formFields);
     }

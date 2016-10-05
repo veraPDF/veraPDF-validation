@@ -21,7 +21,7 @@ public class GFPDPerms extends GFPDObject implements PDPerms {
     public static final String PERMS_TYPE = "PDPerms";
 
     private static final ASAtom UC3 = ASAtom.getASAtom("UC3");
-    private static final ASAtom DOC_MDP = ASAtom.getASAtom("DocMDP");
+    public static final ASAtom DOC_MDP = ASAtom.getASAtom("DocMDP");
 
     /**
      * @param dictionary is permissions dictionary.

@@ -1,10 +1,15 @@
 package org.verapdf.model.impl.pd.signature;
 
+import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDSigRef;
+import org.verapdf.pd.PDCatalog;
+import org.verapdf.pd.PDDocument;
+
+import java.io.IOException;
 
 /**
  * Represents signature references dictionary referred by /Reference key from
@@ -14,14 +19,17 @@ import org.verapdf.model.pdlayer.PDSigRef;
  */
 public class GFPDSigRef extends GFPDObject implements PDSigRef {
 
+    private static final Logger LOGGER = Logger.getLogger(GFPDSigRef.class);
+
     /** Type name for {@code GFPDSigRef} */
     public static final String SIGNATURE_REFERENCE_TYPE = "PDSigRef";
 
     /**
      * @param dictionary is signature reference dictionary.
      */
-    public GFPDSigRef(COSDictionary dictionary) {
+    public GFPDSigRef(COSDictionary dictionary, PDDocument document) {
         super(new COSObject(dictionary), SIGNATURE_REFERENCE_TYPE);
+        this.document = document;
     }
 
     /**
@@ -45,6 +53,16 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
      */
     @Override
     public Boolean getpermsContainDocMDP() {
-        return null;
+        try {
+            PDCatalog catalog = this.document.getCatalog();
+            COSDictionary perms =
+                    (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
+            if(perms != null) {
+                return perms.knownKey(GFPDPerms.DOC_MDP);
+            }
+        } catch (IOException e) {
+            LOGGER.warn("Can't get catalog from PDDocument");
+        }
+        return Boolean.valueOf(false);
     }
 }

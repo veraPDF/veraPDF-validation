@@ -2,6 +2,7 @@ package org.verapdf.model.impl.pd.signature;
 
 import org.apache.log4j.Logger;
 import org.verapdf.cos.*;
+import org.verapdf.io.SeekableStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.external.PKCSDataObject;
 import org.verapdf.model.impl.external.GFPKCSDataObject;
@@ -80,7 +81,8 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
         }
         List<PDSigRef> list = new ArrayList<>();
         for (COSObject sigRef : reference) {
-            list.add(new GFPDSigRef((COSDictionary) sigRef.get()));
+            list.add(new GFPDSigRef((COSDictionary) sigRef.get(),
+                    this.document));
         }
         return Collections.unmodifiableList(list);
     }
@@ -93,12 +95,15 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     @Override
     public Boolean getdoesByteRangeCoverEntireDocument() {
         try {
-            SignatureParser parser = new SignatureParser(this.document.getPDFSource(),
+            SeekableStream pdfSource = this.document.getPDFSource();
+            long offest = pdfSource.getOffset();
+            SignatureParser parser = new SignatureParser(pdfSource,
                     this.document.getDocument());
             long[] actualByteRange =
                     parser.getByteRangeBySignatureOffset(signatureOffset);
             int[] byteRange = ((org.verapdf.pd.PDSignature) this.simplePDObject).getByteRange();
-            for (int i = 0; i < 3; ++i) {
+            pdfSource.seek(offest);
+            for (int i = 0; i < 4; ++i) {
                 if (byteRange[i] != actualByteRange[i]) {
                     return false;
                 }
