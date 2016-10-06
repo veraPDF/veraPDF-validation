@@ -231,7 +231,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
             org.verapdf.pd.form.PDAcroForm acroForm = document.getAcroForm();
             if (acroForm != null) {
                 List<PDAcroForm> forms = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-                forms.add(new GFPDAcroForm(acroForm, document));
+                forms.add(new GFPDAcroForm(acroForm));
                 return Collections.unmodifiableList(forms);
             }
         } catch (IOException e) {

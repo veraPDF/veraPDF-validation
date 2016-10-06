@@ -5,7 +5,6 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.impl.pd.GFPDFormField;
 import org.verapdf.model.pdlayer.PDSignature;
 import org.verapdf.model.pdlayer.PDSignatureField;
-import org.verapdf.pd.PDDocument;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,10 +22,8 @@ public class GFPDSignatureField extends GFPDFormField implements PDSignatureFiel
 
     public static final String SIGNATURE_DICTIONARY = "V";
 
-    public GFPDSignatureField(org.verapdf.pd.form.PDSignatureField pdSignatureField,
-                              PDDocument document) {
+    public GFPDSignatureField(org.verapdf.pd.form.PDSignatureField pdSignatureField) {
         super(pdSignatureField, SIGNATURE_FIELD_TYPE);
-        this.document = document;
     }
 
     @Override
@@ -50,7 +47,7 @@ public class GFPDSignatureField extends GFPDFormField implements PDSignatureFiel
             List<PDSignature> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             COSObject signatureReference = ((org.verapdf.pd.form.PDSignatureField)
                     this.simplePDObject).getSignatureReference();
-            list.add(new GFPDSignature(signature, document, signatureReference));
+            list.add(new GFPDSignature(signature, signatureReference));
             return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();

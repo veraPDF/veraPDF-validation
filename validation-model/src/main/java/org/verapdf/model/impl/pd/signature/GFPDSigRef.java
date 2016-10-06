@@ -4,10 +4,10 @@ import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObject;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDSigRef;
 import org.verapdf.pd.PDCatalog;
-import org.verapdf.pd.PDDocument;
 
 import java.io.IOException;
 
@@ -27,9 +27,9 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
     /**
      * @param dictionary is signature reference dictionary.
      */
-    public GFPDSigRef(COSDictionary dictionary, PDDocument document) {
+    public GFPDSigRef(COSDictionary dictionary) {
         super(new COSObject(dictionary), SIGNATURE_REFERENCE_TYPE);
-        this.document = document;
+        this.document = StaticContainers.getDocument();
     }
 
     /**
