@@ -28,11 +28,14 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
     public static final String ENCODING = "Encoding";
 
     private PDCIDFont descendantFont;
+    private org.verapdf.pd.font.PDCIDFont cidFont;
 
     public GFPDType0Font(org.verapdf.pd.font.PDType0Font font,
                          RenderingMode renderingMode) {
         super(font, renderingMode, TYPE_0_FONT_TYPE);
         this.descendantFont = this.getDescendantFont();
+        ((org.verapdf.pd.font.PDType0Font) this.pdFont).
+                setFontProgramFromDescendant(this.cidFont);
         this.fontProgramParsed = this.descendantFont != null &&
                 ((GFPDCIDFont) this.descendantFont).isFontProgramParsed();
     }
@@ -69,6 +72,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
                     new org.verapdf.pd.font.PDCIDFont(cidFontDict,
                             ((org.verapdf.pd.font.PDType0Font)
                                     this.pdFont).getCMap().getCMapFile());
+            this.cidFont = cidFont;
             PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode);
             return pdCIDFont;
         }
