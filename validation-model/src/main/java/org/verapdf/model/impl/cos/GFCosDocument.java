@@ -9,6 +9,7 @@ import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.pd.GFPDDocument;
 import org.verapdf.model.impl.pd.util.XMPChecker;
 import org.verapdf.pd.PDNameTreeNode;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.*;
 
@@ -151,7 +152,13 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
      */
     @Override
     public String getlastID() {
-        return this.lastID;
+        if (StaticContainers.getFlavour().getPart().equals(PDFAFlavour.Specification.ISO_19005_1)) {
+            return this.lastID;
+        } else if (this.isLinearised) {
+            return this.firstPageID;
+        } else {
+            return this.lastID;
+        }
     }
 
     private static String getTrailerID(COSObject ids) {
