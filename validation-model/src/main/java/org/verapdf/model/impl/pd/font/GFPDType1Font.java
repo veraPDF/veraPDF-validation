@@ -67,7 +67,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
         String[] fontProgramCharSet;
         if (this.pdFont.getFontProgram() instanceof Type1FontProgram) {
             fontProgramCharSet =
-                    ((Type1FontProgram) this.pdFont.getFontProgram()).getEncoding();
+                    ((Type1FontProgram) this.pdFont.getFontProgram()).getCharSet();
         } else if (this.pdFont.getFontProgram() instanceof CFFFontProgram) {
             // Type1 program is contained inside CFF program.
             fontProgramCharSet = ((CFFType1FontProgram)
