@@ -67,23 +67,24 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
         String[] fontProgramCharSet;
         if (this.pdFont.getFontProgram() instanceof Type1FontProgram) {
             fontProgramCharSet =
-                    ((Type1FontProgram) this.pdFont.getFontProgram()).getEncoding();
+                    ((Type1FontProgram) this.pdFont.getFontProgram()).getCharSet();
         } else if (this.pdFont.getFontProgram() instanceof CFFFontProgram) {
             // Type1 program is contained inside CFF program.
             fontProgramCharSet = ((CFFType1FontProgram)
                     ((CFFFontProgram)
-                            this.pdFont.getFontProgram()).getFont()).getEncoding();
+                            this.pdFont.getFontProgram()).getFont()).getCharSet();
         } else if (this.pdFont.getFontProgram() instanceof OpenTypeFontProgram) {
             // Type1 program is contained inside CFF program that is contained
             // inside OpenType program.
             CFFFontProgram cff = (CFFFontProgram)
                     ((OpenTypeFontProgram) this.pdFont.getFontProgram()).getFont();
             fontProgramCharSet = ((CFFType1FontProgram)
-                    (cff.getFont())).getEncoding();
+                    (cff.getFont())).getCharSet();
         } else {
             fontProgramCharSet = new String[] {};
         }
-        if (!(descriptorCharSet.size() == fontProgramCharSet.length)) {
+        if (!(descriptorCharSet.size() == fontProgramCharSet.length ||
+            descriptorCharSet.size() == fontProgramCharSet.length - 1) ) {
             return Boolean.valueOf(false);
         }
         for (String glyphName : fontProgramCharSet) {

@@ -2,14 +2,15 @@ package org.verapdf.model.impl.pd.signature;
 
 import org.apache.log4j.Logger;
 import org.verapdf.cos.*;
+import org.verapdf.io.SeekableStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.external.PKCSDataObject;
+import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.external.GFPKCSDataObject;
 import org.verapdf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDSigRef;
 import org.verapdf.model.pdlayer.PDSignature;
 import org.verapdf.parser.SignatureParser;
-import org.verapdf.pd.PDDocument;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,13 +35,11 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     protected static COSString contents;
     protected long signatureOffset = -1;
 
-    public GFPDSignature(org.verapdf.pd.PDSignature pdSignature,
-                         PDDocument document, COSObject signatureReference) {
+    public GFPDSignature(org.verapdf.pd.PDSignature pdSignature, COSObject signatureReference) {
         super(pdSignature, SIGNATURE_TYPE);
-        this.document = document;
         if(signatureReference.isIndirect()) {
             COSKey key = signatureReference.getObjectKey();
-            this.signatureOffset = this.document.getDocument().getOffset(key);
+            this.signatureOffset = StaticContainers.getDocument().getDocument().getOffset(key);
         }
         contents = pdSignature.getContents();
     }
@@ -93,12 +92,15 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     @Override
     public Boolean getdoesByteRangeCoverEntireDocument() {
         try {
-            SignatureParser parser = new SignatureParser(this.document.getPDFSource(),
-                    this.document.getDocument());
+            SeekableStream pdfSource = StaticContainers.getDocument().getPDFSource();
+            long offest = pdfSource.getOffset();
+            SignatureParser parser = new SignatureParser(pdfSource,
+                    StaticContainers.getDocument().getDocument());
             long[] actualByteRange =
                     parser.getByteRangeBySignatureOffset(signatureOffset);
             int[] byteRange = ((org.verapdf.pd.PDSignature) this.simplePDObject).getByteRange();
-            for (int i = 0; i < 3; ++i) {
+            pdfSource.seek(offest);
+            for (int i = 0; i < 4; ++i) {
                 if (byteRange[i] != actualByteRange[i]) {
                     return false;
                 }

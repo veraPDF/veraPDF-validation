@@ -47,7 +47,7 @@ public class GFPDSignatureField extends GFPDFormField implements PDSignatureFiel
             List<PDSignature> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             COSObject signatureReference = ((org.verapdf.pd.form.PDSignatureField)
                     this.simplePDObject).getSignatureReference();
-            list.add(new GFPDSignature(signature, document, signatureReference));
+            list.add(new GFPDSignature(signature, signatureReference));
             return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();

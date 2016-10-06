@@ -1,9 +1,7 @@
 package org.verapdf.model.impl.external;
 
 import org.apache.log4j.Logger;
-import org.verapdf.as.io.ASMemoryInStream;
 import org.verapdf.cos.COSString;
-import org.verapdf.cos.filters.COSFilterASCIIHexDecode;
 import org.verapdf.model.external.PKCSDataObject;
 import sun.security.pkcs.ContentInfo;
 import sun.security.pkcs.PKCS7;
@@ -12,7 +10,6 @@ import sun.security.x509.AlgorithmId;
 
 import java.io.IOException;
 import java.security.cert.X509Certificate;
-import java.util.Arrays;
 
 /**
  * @author Sergey Shemyakov
@@ -37,11 +34,7 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
             if (!pkcsData.isHexadecimal()) {
                 pkcs7 = new PKCS7(pkcsData.get().getBytes());
             } else {
-                COSFilterASCIIHexDecode hexDecoder = new COSFilterASCIIHexDecode(
-                        new ASMemoryInStream(pkcsData.get().getBytes()));
-                byte[] decodedData = new byte[pkcsData.get().length()];
-                int read = hexDecoder.read(decodedData, decodedData.length);
-                decodedData = Arrays.copyOf(decodedData, read);
+                byte[] decodedData = pkcsData.get().getBytes("ISO-8859-1");
                 pkcs7 = new PKCS7(decodedData);
             }
         } catch (IOException e) {
