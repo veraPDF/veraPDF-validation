@@ -29,7 +29,6 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
 
     public GFPDAcroForm(org.verapdf.pd.form.PDAcroForm acroForm) {
         super(acroForm, ACRO_FORM_TYPE);
-        this.document = document;
     }
 
     @Override

@@ -29,7 +29,6 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
      */
     public GFPDSigRef(COSDictionary dictionary) {
         super(new COSObject(dictionary), SIGNATURE_REFERENCE_TYPE);
-        this.document = StaticContainers.getDocument();
     }
 
     /**
@@ -54,7 +53,7 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
     @Override
     public Boolean getpermsContainDocMDP() {
         try {
-            PDCatalog catalog = this.document.getCatalog();
+            PDCatalog catalog = StaticContainers.getDocument().getCatalog();
             COSDictionary perms =
                     (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
             if(perms != null) {

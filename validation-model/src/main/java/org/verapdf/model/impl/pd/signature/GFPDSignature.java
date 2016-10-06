@@ -37,10 +37,9 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
 
     public GFPDSignature(org.verapdf.pd.PDSignature pdSignature, COSObject signatureReference) {
         super(pdSignature, SIGNATURE_TYPE);
-        this.document = StaticContainers.getDocument();
         if(signatureReference.isIndirect()) {
             COSKey key = signatureReference.getObjectKey();
-            this.signatureOffset = this.document.getDocument().getOffset(key);
+            this.signatureOffset = StaticContainers.getDocument().getDocument().getOffset(key);
         }
         contents = pdSignature.getContents();
     }
@@ -93,10 +92,10 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     @Override
     public Boolean getdoesByteRangeCoverEntireDocument() {
         try {
-            SeekableStream pdfSource = this.document.getPDFSource();
+            SeekableStream pdfSource = StaticContainers.getDocument().getPDFSource();
             long offest = pdfSource.getOffset();
             SignatureParser parser = new SignatureParser(pdfSource,
-                    this.document.getDocument());
+                    StaticContainers.getDocument().getDocument());
             long[] actualByteRange =
                     parser.getByteRangeBySignatureOffset(signatureOffset);
             int[] byteRange = ((org.verapdf.pd.PDSignature) this.simplePDObject).getByteRange();
