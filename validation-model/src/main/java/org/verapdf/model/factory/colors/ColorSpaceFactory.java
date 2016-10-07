@@ -47,19 +47,18 @@ public class ColorSpaceFactory {
 		if (colorSpace == null) {
 			return null;
 		}
-        if (StaticContainers.cachedColorSpaces.containsKey(colorSpace)) {
-            return StaticContainers.cachedColorSpaces.get(colorSpace);
-        }
+		String uniqueID = getColorSpaceUniqueIdentifier(colorSpace, opm, overprintingFlag);
+		if (StaticContainers.cachedColorSpaces.containsKey(uniqueID)) {
+			return StaticContainers.cachedColorSpaces.get(uniqueID);
+		}
 		PDColorSpace result;
 		switch (colorSpace.getType().toString()) {
 			case CAL_GRAY:
 				result = new GFPDCalGray((PDCalGray) colorSpace);
-                StaticContainers.cachedColorSpaces.put(colorSpace, result);
-				return result;
+				break;
 			case CAL_RGB:
 				result = new GFPDCalRGB((PDCalRGB) colorSpace);
-                StaticContainers.cachedColorSpaces.put(colorSpace, result);
-				return result;
+				break;
 			case DEVICE_CMYK:
 				return GFPDDeviceCMYK.getInstance();
 			case DEVICE_RGB:
@@ -67,36 +66,29 @@ public class ColorSpaceFactory {
 			case DEVICE_GRAY:
 				return GFPDDeviceGray.getInstance();
 			case ICC_BASED:
-				if (colorSpace.getNumberOfComponents() != 4) {
-					result = new GFPDICCBased((PDICCBased) colorSpace);
-                    StaticContainers.cachedColorSpaces.put(colorSpace, result);
-					return result;
-				} else {
-					result = new GFPDICCBasedCMYK((PDICCBased) colorSpace, opm, overprintingFlag);
-                    StaticContainers.cachedColorSpaces.put(colorSpace, result);
-					return result;
-				}
+				result = colorSpace.getNumberOfComponents() != 4 ?
+						new GFPDICCBased((PDICCBased) colorSpace)
+						: new GFPDICCBasedCMYK((PDICCBased) colorSpace, opm, overprintingFlag);
+				break;
 			case LAB:
 				result = new GFPDLab((PDLab) colorSpace);
-                StaticContainers.cachedColorSpaces.put(colorSpace, result);
-				return result;
+				break;
 			case SEPARATION:
 				result = new GFPDSeparation((PDSeparation) colorSpace);
-                StaticContainers.cachedColorSpaces.put(colorSpace, result);
-				return result;
+				break;
 			case INDEXED:
 				result = new GFPDIndexed((PDIndexed) colorSpace);
-                StaticContainers.cachedColorSpaces.put(colorSpace, result);
-				return result;
+				break;
 			case DEVICE_N:
 				result = new GFPDDeviceN((PDDeviceN) colorSpace);
-                StaticContainers.cachedColorSpaces.put(colorSpace, result);
-				return result;
+				break;
 			case PATTERN:
 				return getPattern((org.verapdf.pd.patterns.PDPattern) colorSpace, resourcesHandler);
 			default:
 				return null;
 		}
+		StaticContainers.cachedColorSpaces.put(uniqueID, result);
+		return result;
 	}
 
 	private static org.verapdf.model.pdlayer.PDPattern getPattern(org.verapdf.pd.patterns.PDPattern pattern, PDResourcesHandler resourcesHandler) {
@@ -107,6 +99,14 @@ public class ColorSpaceFactory {
 				return new GFPDShadingPattern((PDShadingPattern) pattern);
 			default:
 				return null;
+		}
+	}
+
+	private static String getColorSpaceUniqueIdentifier(org.verapdf.pd.colors.PDColorSpace base, int opm, boolean overprintFlag) {
+		if (ICC_BASED.equals(base.getType().toString()) && base.getNumberOfComponents() == 4) {
+			return String.valueOf(base.hashCode() + " " + opm + " " + overprintFlag);
+		} else {
+			return String.valueOf(base.hashCode());
 		}
 	}
 }

@@ -10,7 +10,6 @@ import org.verapdf.model.GFModelParser;
 import org.verapdf.model.external.EmbeddedFile;
 import org.verapdf.model.impl.containers.StaticContainers;
 import org.verapdf.model.impl.pd.colors.GFPDSeparation;
-import org.verapdf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.PDFAValidator;
@@ -19,8 +18,6 @@ import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validators.Validators;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -90,7 +87,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private PDFAFlavour flavour;
 	public Map<String, List<GFPDSeparation>> separations;
 	public List<String> inconsistentSeparations;
-	public Map<org.verapdf.pd.colors.PDColorSpace, PDColorSpace> cachedColorSpaces;
+	public Map<String, PDColorSpace> cachedColorSpaces;
 
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
