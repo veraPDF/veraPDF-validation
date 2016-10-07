@@ -121,7 +121,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 
     private List<Glyph> getUsedGlyphs() {
         org.verapdf.pd.font.PDFont font = getFontFromResources();
-        if (font == null) {
+        if (font == null || !font.isSuccessfullyParsed()) {
             return Collections.emptyList();
         }
         FontProgram fontProgram = font.getFontProgram();

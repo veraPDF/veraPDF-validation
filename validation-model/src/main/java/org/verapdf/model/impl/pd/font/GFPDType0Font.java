@@ -38,6 +38,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
                 setFontProgramFromDescendant(this.cidFont);
         this.fontProgramParsed = this.descendantFont != null &&
                 ((GFPDCIDFont) this.descendantFont).isFontProgramParsed();
+        this.pdFont.setSuccessfullyParsed(this.fontProgramParsed);
     }
 
     @Override
