@@ -20,6 +20,7 @@ import org.verapdf.pd.font.PDType0Font;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
@@ -289,10 +290,14 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
     }
 
     private void addArrayElements(List<byte[]> res, COSArray arg) {
-        for (COSObject element : arg) {
-            if (element != null && element.getType() == COSObjType.COS_STRING) {
-                res.add(element.getString().getBytes());
+        try {
+            for (COSObject element : arg) {
+                if (element != null && element.getType() == COSObjType.COS_STRING) {
+                    res.add(element.getString().getBytes("ISO-8859-1"));
+                }
             }
+        } catch (UnsupportedEncodingException e) {
+            LOGGER.debug("Unsupported encoding: ISO-8859-1");
         }
     }
 
