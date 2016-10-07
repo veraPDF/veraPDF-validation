@@ -29,7 +29,7 @@ public class StaticContainers {
 
 	//ColorSpaceFactory
 	//TODO : change key from object reference to something else
-	public static Map<org.verapdf.pd.colors.PDColorSpace, PDColorSpace> cachedColorSpaces = new HashMap<>();
+	public static Map<String, PDColorSpace> cachedColorSpaces = new HashMap<>();
 
 	public static void clearAllContainers() {
 		if (document != null) {
