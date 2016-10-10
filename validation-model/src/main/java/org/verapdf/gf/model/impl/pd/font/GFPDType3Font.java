@@ -83,7 +83,6 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                             new GFPDContentStream(charProc, this.resources);
                     map.put(glyphName, contentStream);
                 } else {
-                    //TODO : more details
                     LOGGER.debug("Invalid entry in the char proc dictionary.");
                 }
             }

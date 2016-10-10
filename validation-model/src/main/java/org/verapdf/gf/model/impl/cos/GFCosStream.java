@@ -129,7 +129,6 @@ public class GFCosStream extends GFCosDict implements CosStream {
 			}
 
 			if (filters.getFilters().size() == 1) {
-				//TODO : check null
 				if (decodeParms instanceof COSArray) {
 					decodeParms = decodeParms.at(0).get();
 				}

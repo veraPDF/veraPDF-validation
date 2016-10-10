@@ -28,7 +28,6 @@ public class StaticContainers {
 	public static List<String> inconsistentSeparations = new ArrayList<>();
 
 	//ColorSpaceFactory
-	//TODO : change key from object reference to something else
 	public static Map<String, PDColorSpace> cachedColorSpaces = new HashMap<>();
 
 	public static void clearAllContainers() {
