@@ -1,4 +1,4 @@
-package org.verapdf.model.impl.pd;
+package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
@@ -7,11 +7,8 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.impl.cos.GFCosArray;
 import org.verapdf.gf.model.impl.cos.GFCosStream;
-import org.verapdf.gf.model.impl.pd.signature.GFPDSignatureField;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosObject;
-import org.verapdf.model.impl.cos.GFCosArray;
-import org.verapdf.model.impl.cos.GFCosStream;
 import org.verapdf.model.pdlayer.PDAcroForm;
 import org.verapdf.model.pdlayer.PDFormField;
 

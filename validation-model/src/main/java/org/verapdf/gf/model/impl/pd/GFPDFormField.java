@@ -1,8 +1,8 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.pd.signature.GFPDSignatureField;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.impl.pd.signature.GFPDSignatureField;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDFormField;
 import org.verapdf.pd.actions.PDFormFieldActions;
