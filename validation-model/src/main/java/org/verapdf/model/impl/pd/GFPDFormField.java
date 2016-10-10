@@ -31,7 +31,7 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     }
 
     public static GFPDFormField createTypedFormField(org.verapdf.pd.form.PDFormField field) {
-        if (field instanceof PDSignatureField) {
+        if (field.getFT() == ASAtom.SIG) {
             return new GFPDSignatureField((PDSignatureField) field);
         } else {
             return new GFPDFormField(field);
