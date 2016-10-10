@@ -2,9 +2,11 @@ package org.verapdf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.impl.pd.signature.GFPDSignatureField;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDFormField;
 import org.verapdf.pd.actions.PDFormFieldActions;
+import org.verapdf.pd.form.PDSignatureField;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,8 +31,11 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     }
 
     public static GFPDFormField createTypedFormField(org.verapdf.pd.form.PDFormField field) {
-        // TODO: add logic for Signature Fields
-        return new GFPDFormField(field);
+        if (field instanceof PDSignatureField) {
+            return new GFPDSignatureField((PDSignatureField) field);
+        } else {
+            return new GFPDFormField(field);
+        }
     }
 
     @Override
