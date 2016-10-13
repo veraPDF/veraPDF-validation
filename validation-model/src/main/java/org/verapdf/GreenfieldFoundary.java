@@ -2,7 +2,7 @@ package org.verapdf;
 
 import org.verapdf.core.EncryptedPdfException;
 import org.verapdf.core.ModelParsingException;
-import org.verapdf.model.GFModelParser;
+import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.pdfa.MetadataFixer;
 import org.verapdf.pdfa.PDFParser;
 import org.verapdf.pdfa.VeraPDFFoundry;
