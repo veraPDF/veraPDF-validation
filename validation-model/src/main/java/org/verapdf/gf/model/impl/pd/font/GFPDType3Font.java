@@ -28,7 +28,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
 
     public static final String CHAR_STRINGS = "charStrings";
     private PDResourcesHandler resources;
-    private Map<ASAtom, PDContentStream> charStrings = null;
+    private Map<String, PDContentStream> charStrings = null;
 
     public GFPDType3Font(org.verapdf.pd.font.PDType3Font font,
                          RenderingMode renderingMode, PDResourcesHandler resources) {
@@ -62,7 +62,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
         return new ArrayList<>(this.charStrings.values());
     }
 
-    public Map<ASAtom, PDContentStream> getCharProcStreams() {
+    public Map<String, PDContentStream> getCharProcStreams() {
         if (this.charStrings == null) {
             parseCharStrings();
         }
@@ -74,14 +74,14 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                 this.pdFont).getCharProcDict();
         if (charProcDict != null) {
             Set<ASAtom> keySet = charProcDict.getKeySet();
-            Map<ASAtom, PDContentStream> map = new HashMap<>(keySet.size());
+            Map<String, PDContentStream> map = new HashMap<>(keySet.size());
             for (ASAtom glyphName : keySet) {
                 COSObject charProcStream = charProcDict.getKey(glyphName);
                 if (!charProcStream.empty() && charProcDict.getType() == COSObjType.COS_DICT) {
                     PDType3CharProc charProc = new PDType3CharProc(charProcStream);
                     GFPDContentStream contentStream =
                             new GFPDContentStream(charProc, this.resources);
-                    map.put(glyphName, contentStream);
+                    map.put(glyphName.getValue(), contentStream);
                 } else {
                     LOGGER.debug("Invalid entry in the char proc dictionary.");
                 }
