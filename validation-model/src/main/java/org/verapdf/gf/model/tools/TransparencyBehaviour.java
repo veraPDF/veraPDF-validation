@@ -149,7 +149,7 @@ public class TransparencyBehaviour {
             Encoding encoding = type3Font.getEncodingMapping();
             if (encoding != null) {
                 boolean result = false;
-                Map<ASAtom, PDContentStream> charProcStreams = type3Font.getCharProcStreams();
+                Map<String, PDContentStream> charProcStreams = type3Font.getCharProcStreams();
                 for (byte glyphCode : graphicState.getCharCodes()) {
                     String glyphName = encoding.getName(glyphCode);
                     GFPDContentStream glyphStream = (GFPDContentStream) charProcStreams.get(glyphName);
