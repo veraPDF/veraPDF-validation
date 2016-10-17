@@ -92,14 +92,13 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
     private List<CosUnicodeName> getColorantNames() {
         List<COSObject> colorants = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getNames();
-        if (colorants != null) {
+        if (!colorants.isEmpty()) {
             ArrayList<CosUnicodeName> list = new ArrayList<>(colorants.size());
-            for (int i = 0; i < colorants.size(); ++i) {
-                COSObject colorant = colorants.get(i);
-                if (colorant.getType() == COSObjType.COS_NAME) {
-                    list.add(new GFCosUnicodeName((COSName) colorant.get()));
-                }
-            }
+			for (COSObject colorant : colorants) {
+				if (colorant.getType() == COSObjType.COS_NAME) {
+					list.add(new GFCosUnicodeName((COSName) colorant.get()));
+				}
+			}
             return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();
