@@ -82,4 +82,9 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     public Long getrenderingMode() {
         return this.renderingMode;
     }
+
+    @Override
+    public String getID() {
+        return this.id;
+    }
 }
