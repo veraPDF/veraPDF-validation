@@ -16,6 +16,7 @@ import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDType0Font;
+import org.verapdf.pd.font.PDType3Font;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -121,13 +122,12 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 
     private List<Glyph> getUsedGlyphs() {
         org.verapdf.pd.font.PDFont font = getFontFromResources();
-        if (font == null || !font.isSuccessfullyParsed()) {
+        if (font == null) {
             return Collections.emptyList();
         }
         FontProgram fontProgram = font.getFontProgram();
-        if (fontProgram == null && font.getSubtype() != ASAtom.TYPE3) {
-            return Collections.emptyList();
-        }
+        boolean fontProgramIsInvalid = (fontProgram == null || !font.isSuccessfullyParsed()) &&
+                font.getSubtype() != ASAtom.TYPE3;
 
         List<Glyph> res = new ArrayList<>();
         List<byte[]> strings = this.getStrings(this.arguments);
@@ -136,10 +136,14 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                 while (inputStream.available() > 0) {
                     int code = font.readCode(inputStream);
                     if (font.getSubtype() != ASAtom.TYPE3) {
-                        fontProgram.parseFont();
-                        boolean glyphPresent = fontProgram.containsCode(code);
-                        boolean widthsConsistent = this.checkWidths(code, font,
-                                fontProgram);
+                        Boolean glyphPresent = null;
+                        Boolean widthsConsistent = null;
+                        if(!fontProgramIsInvalid) {
+                            fontProgram.parseFont();
+                            glyphPresent = fontProgram.containsCode(code);
+                            widthsConsistent = this.checkWidths(code, font,
+                                    fontProgram);
+                        }
                         GFGlyph glyph;
                         if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 ||
                                 font.getSubtype() == ASAtom.CID_FONT_TYPE2) {
@@ -152,8 +156,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                         }
                         res.add(glyph);
                     } else {    // Type3 font
-                        boolean glyphPresent = font.getFirstChar() <= code &&
-                                font.getLastChar() >= code;
+                        boolean glyphPresent =
+                                ((PDType3Font) font).containsCharString(code);
                         boolean widthConsistent = font.getWidth(code) != null &&
                                 font.getWidth(code) > 0;
                         res.add(new GFGlyph(glyphPresent, widthConsistent,
@@ -247,6 +251,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
         Double fontWidth = font.getWidth(glyphCode);
         double expectedWidth = fontWidth == null ? 0 : fontWidth.doubleValue();
         double foundWidth = fontProgram.getWidth(glyphCode);
+        if(foundWidth == -1) {
+            foundWidth = font.getDefaultWidth() == null ? 0 : font.getDefaultWidth();
+        }
         // consistent is defined to be a difference of no more than 1/1000 unit.
         return Math.abs(foundWidth - expectedWidth) > 1 ? Boolean.FALSE : Boolean.TRUE;
     }
@@ -279,7 +286,11 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                     this.addArrayElements(res, (COSArray) arg.getDirectBase());
                 } else {
                     if (arg.getType() == COSObjType.COS_STRING) {
-                        res.add(arg.getString().getBytes());
+                        try {
+                            res.add(arg.getString().getBytes("ISO-8859-1"));
+                        } catch (UnsupportedEncodingException e) {
+                            LOGGER.debug("Unsupported encoding: ISO-8859-1");
+                        }
                     }
                 }
             }

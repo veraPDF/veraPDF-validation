@@ -26,6 +26,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
 
     public static final String FONT_FILE = "fontFile";
     public static final String BASE_FONT = "BaseFont";
+    private static final String TYPE0_STRING = "Type0";
 
     protected boolean fontProgramParsed;
     protected final RenderingMode renderingMode;
@@ -108,8 +109,15 @@ public class GFPDFont extends GFPDResource implements PDFont {
                         this.pdFont.getFontProgram());
                 return getFontProgramList(font);
             } else {
-                GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram());
-                return getFontProgramList(font);
+                if(TYPE0_STRING.equals(this.getSubtype())) {
+                    GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram(),
+                            (GFPDFont) ((GFPDType0Font) this).getLinkedObjects(GFPDType0Font.DESCENDANT_FONTS).get(0));
+                    return getFontProgramList(font);
+                } else {
+                    GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram(),
+                            this);
+                    return getFontProgramList(font);
+                }
             }
         } else {
             return Collections.emptyList();

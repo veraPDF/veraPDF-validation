@@ -42,11 +42,15 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         } else if (font instanceof PDType0Font) {
             try {
                 FontProgram pr = font.getFontProgram();
-                pr.parseFont();
-                if (!pr.containsCode(glyphCode)) {
-                    this.name = ".notdef";
-                } else {
+                if (pr == null) {
                     this.name = null;
+                } else {
+                    pr.parseFont();
+                    if (glyphCode == 0 || !pr.containsCode(glyphCode)) {
+                        this.name = ".notdef";
+                    } else {
+                        this.name = null;
+                    }
                 }
             } catch (IOException e) {
                 LOGGER.debug("Can't convert code to glyph", e);
