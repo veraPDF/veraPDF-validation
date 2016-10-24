@@ -51,7 +51,7 @@
     </modules>
 
     <properties>
-        <verapdf.parser.version>[0.1.0,0.2.0)</verapdf.parser.version>
+        <verapdf.parser.version>0.1.0-SNAPSHOT</verapdf.parser.version>
         <verapdf.pdfmodel.version>[0.25.0,0.26.0)</verapdf.pdfmodel.version>
         <verapdf.library.version>[0.25.0,0.26.0)</verapdf.library.version>
     </properties>

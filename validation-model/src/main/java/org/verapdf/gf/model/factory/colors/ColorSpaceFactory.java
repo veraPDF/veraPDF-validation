@@ -60,11 +60,23 @@ public class ColorSpaceFactory {
 				result = new GFPDCalRGB((PDCalRGB) colorSpace);
 				break;
 			case DEVICE_CMYK:
-				return GFPDDeviceCMYK.getInstance();
+				if (colorSpace.isInherited()) {
+					return GFPDDeviceCMYK.getInheritedInstance();
+				} else {
+					return GFPDDeviceCMYK.getInstance();
+				}
 			case DEVICE_RGB:
-				return GFPDDeviceRGB.getInstance();
+				if (colorSpace.isInherited()) {
+					return GFPDDeviceRGB.getInheritedInstance();
+				} else {
+					return GFPDDeviceRGB.getInstance();
+				}
 			case DEVICE_GRAY:
-				return GFPDDeviceGray.getInstance();
+				if (colorSpace.isInherited()) {
+					return GFPDDeviceGray.getInheritedInstance();
+				} else {
+					return GFPDDeviceGray.getInstance();
+				}
 			case ICC_BASED:
 				result = colorSpace.getNumberOfComponents() != 4 ?
 						new GFPDICCBased((PDICCBased) colorSpace)
