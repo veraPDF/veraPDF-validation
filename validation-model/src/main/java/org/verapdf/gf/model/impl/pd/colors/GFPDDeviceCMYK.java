@@ -9,6 +9,8 @@ public class GFPDDeviceCMYK extends GFPDColorSpace implements PDDeviceCMYK {
 
     private static final PDDeviceCMYK INSTANCE = new GFPDDeviceCMYK(
             org.verapdf.pd.colors.PDDeviceCMYK.INSTANCE);
+    private static final PDDeviceCMYK INHERITED_INSTANCE = new GFPDDeviceCMYK(
+            org.verapdf.pd.colors.PDDeviceCMYK.INHERITED_INSTANCE);
 
     public static final String DEVICE_CMYK_TYPE = "PDDeviceCMYK";
 
@@ -19,5 +21,9 @@ public class GFPDDeviceCMYK extends GFPDColorSpace implements PDDeviceCMYK {
 
     public static PDDeviceCMYK getInstance() {
         return INSTANCE;
+    }
+
+    public static PDDeviceCMYK getInheritedInstance() {
+        return INHERITED_INSTANCE;
     }
 }
