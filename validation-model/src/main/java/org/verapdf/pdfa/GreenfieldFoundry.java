@@ -1,4 +1,6 @@
-package org.verapdf;
+package org.verapdf.pdfa;
+
+import java.io.InputStream;
 
 import org.verapdf.core.EncryptedPdfException;
 import org.verapdf.core.ModelParsingException;
@@ -7,25 +9,14 @@ import org.verapdf.pdfa.MetadataFixer;
 import org.verapdf.pdfa.PDFParser;
 import org.verapdf.pdfa.VeraPDFFoundry;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
-import org.verapdf.pdfa.validators.ReferenceBatchValidator;
-import org.verapdf.processor.ProcessorImpl;
-
-import java.io.InputStream;
 
 /**
  * @author Maksim Bezrukov
  */
-public class GreenfieldFoundary implements VeraPDFFoundry {
-	private static GreenfieldFoundary INSTANCE = new GreenfieldFoundary();
-
-	private GreenfieldFoundary() {
+class GreenfieldFoundry extends AbstractFoundry {
+	private static final VeraPDFFoundry instance = new GreenfieldFoundry();
+	private GreenfieldFoundry() {
 	}
-
-	public static void initialise() {
-		ProcessorImpl.initialise(INSTANCE);
-		ReferenceBatchValidator.initialise(INSTANCE);
-	}
-
 
 	/**
 	 * @see org.verapdf.pdfa.VeraPDFFoundry#newPdfParser(java.io.InputStream)
@@ -51,5 +42,9 @@ public class GreenfieldFoundary implements VeraPDFFoundry {
 	public MetadataFixer newMetadataFixer() {
 		// TODO: implement me with metadata fixer
 		return null;
+	}
+	
+	static VeraPDFFoundry getInstance() {
+		return instance;
 	}
 }

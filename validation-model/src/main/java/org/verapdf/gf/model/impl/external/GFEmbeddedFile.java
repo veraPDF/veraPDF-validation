@@ -15,7 +15,7 @@ import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.PDFAValidator;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
-import org.verapdf.pdfa.validators.Validators;
+import org.verapdf.pdfa.validators.ValidatorFactory;
 
 import java.io.InputStream;
 import java.util.List;
@@ -59,7 +59,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 				saveStaticContainersState();
 				InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE);
 				GFModelParser parser1b = GFModelParser.createModelWithFlavour(unfilteredStream, PDFAFlavour.PDFA_1_B);
-				PDFAValidator validator1b = Validators.createValidator(PDFAFlavour.PDFA_1_B, false, 1);
+				PDFAValidator validator1b = ValidatorFactory.createValidator(PDFAFlavour.PDFA_1_B, false, 1);
 				ValidationResult result1b = validator1b.validate(parser1b);
 				parser1b.close();
 				if (result1b.isCompliant()) {
@@ -68,7 +68,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 				}
 				unfilteredStream.reset();
 				GFModelParser parser2b = GFModelParser.createModelWithFlavour(unfilteredStream, PDFAFlavour.PDFA_2_B);
-				PDFAValidator validator2b = Validators.createValidator(PDFAFlavour.PDFA_2_B, false, 1);
+				PDFAValidator validator2b = ValidatorFactory.createValidator(PDFAFlavour.PDFA_2_B, false, 1);
 				ValidationResult result2b = validator2b.validate(parser2b);
 				parser2b.close();
 				restoreSavedSCState();
