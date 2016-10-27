@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.external;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSString;
 import org.verapdf.model.external.PKCSDataObject;
 import sun.security.pkcs.ContentInfo;
@@ -10,13 +9,15 @@ import sun.security.x509.AlgorithmId;
 
 import java.io.IOException;
 import java.security.cert.X509Certificate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Sergey Shemyakov
  */
 public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPKCSDataObject.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPKCSDataObject.class.getCanonicalName());
 
     /**
      * Type name for {@code PBoxPKCSDataObject}
@@ -38,7 +39,7 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
                 pkcs7 = new PKCS7(decodedData);
             }
         } catch (IOException e) {
-            LOGGER.debug("Passed PKCS7 object can't be read", e);
+            LOGGER.log(Level.FINE, "Passed PKCS7 object can't be read", e);
             pkcs7 = getEmptyPKCS7();
         }
     }

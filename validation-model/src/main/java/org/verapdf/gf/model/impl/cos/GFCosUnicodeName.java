@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.cos;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSName;
 import org.verapdf.model.coslayer.CosUnicodeName;
 
@@ -11,13 +10,15 @@ import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 
-	public static final Logger LOGGER = Logger.getLogger(GFCosUnicodeName.class);
+	public static final Logger LOGGER = Logger.getLogger(GFCosUnicodeName.class.getCanonicalName());
 
 	public static final String COS_UNICODE_NAME_TYPE = "CosUnicodeName";
 
@@ -42,7 +43,7 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 		try {
 			tmp = encoder.encode(CharBuffer.wrap(this.baseObject.getString()));
 		} catch (CharacterCodingException e) {
-			LOGGER.debug(e);
+			LOGGER.log(Level.FINE, e.getMessage(), e);
 			return false;
 		}
 
@@ -50,7 +51,7 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 			decoder.decode(tmp);
 			return true;
 		} catch (CharacterCodingException e){
-			LOGGER.debug(e);
+			LOGGER.log(Level.FINE, e.getMessage(), e);
 			return false;
 		}
 	}
@@ -66,7 +67,7 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 		try {
 			return new String(bytes, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			LOGGER.debug("Can not transform " + name + " to unicode string.", e);
+			LOGGER.log(Level.FINE, "Can not transform " + name + " to unicode string.", e);
 			return null;
 		}
 	}

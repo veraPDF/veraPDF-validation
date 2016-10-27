@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.operator.textshow;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
@@ -23,13 +22,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 
-    private static final Logger LOGGER = Logger.getLogger(GFOpTextShow.class);
+    private static final Logger LOGGER = Logger.getLogger(GFOpTextShow.class.getCanonicalName());
 
     private static final String MSG_PROBLEM_OBTAINING_RESOURCE = "Problem encountered while obtaining resources for ";
 
@@ -165,9 +166,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                     }
                 }
             } catch (IOException e) {
-                LOGGER.debug("Error processing text show operator's string argument : "
+                LOGGER.log(Level.FINE, "Error processing text show operator's string argument : "
                         + new String(string));
-                LOGGER.info(e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
         }
         return res;
@@ -289,7 +290,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                         try {
                             res.add(arg.getString().getBytes("ISO-8859-1"));
                         } catch (UnsupportedEncodingException e) {
-                            LOGGER.debug("Unsupported encoding: ISO-8859-1");
+                            LOGGER.log(Level.FINE, "Unsupported encoding: ISO-8859-1");
                         }
                     }
                 }
@@ -308,7 +309,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
                 }
             }
         } catch (UnsupportedEncodingException e) {
-            LOGGER.debug("Unsupported encoding: ISO-8859-1");
+            LOGGER.log(Level.FINE, "Unsupported encoding: ISO-8859-1");
         }
     }
 

@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd.signature;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.external.GFPKCSDataObject;
@@ -16,13 +15,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Sergey Shemyakov
  */
 public class GFPDSignature extends GFPDObject implements PDSignature {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDSignature.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDSignature.class.getCanonicalName());
 
     /**
      * Type name for {@code PBoxPDSignature}
@@ -107,7 +108,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
             }
             return true;
         } catch (IOException ex) {
-            LOGGER.debug("Can't create parser to process digital signature", ex);
+            LOGGER.log(Level.FINE, "Can't create parser to process digital signature", ex);
             return false;
         }
     }

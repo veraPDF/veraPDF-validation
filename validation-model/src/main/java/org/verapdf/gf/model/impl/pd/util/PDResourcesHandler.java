@@ -6,6 +6,9 @@ import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.colors.PDColorSpace;
+import org.verapdf.pd.colors.PDDeviceCMYK;
+import org.verapdf.pd.colors.PDDeviceGray;
+import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.patterns.PDShading;
@@ -87,14 +90,14 @@ public class PDResourcesHandler {
 			colorSpace = this.objectResources.getColorSpace(name);
 			if (colorSpace == null) {
 				colorSpace = this.pageResources.getColorSpace(name);
-				setInherited(colorSpace, true);
+				colorSpace = setColorSpaceInherited(colorSpace, true);
 			}
 		} else {
 			if (isDefaultColorSpaceUsed(name)) {
 				return this.pageResources.getDefaultColorSpace(name);
 			}
 			colorSpace = this.pageResources.getColorSpace(name);
-			setInherited(colorSpace, inheritedResources);
+			colorSpace = setColorSpaceInherited(colorSpace, inheritedResources);
 		}
 		return colorSpace;
 	}
@@ -189,6 +192,21 @@ public class PDResourcesHandler {
 			setInherited(state, inheritedResources);
 		}
 		return state;
+	}
+
+	public PDColorSpace setColorSpaceInherited(PDColorSpace colorSpace, boolean isInherited) {
+		if (isInherited) {
+			if (colorSpace == PDDeviceCMYK.INSTANCE) {
+				return PDDeviceCMYK.INHERITED_INSTANCE;
+			} else if (colorSpace == PDDeviceRGB.INSTANCE) {
+				return PDDeviceRGB.INHERITED_INSTANCE;
+			} else if (colorSpace == PDDeviceGray.INSTANCE) {
+				return PDDeviceGray.INHERITED_INSTANCE;
+			}
+		}
+		setInherited(colorSpace, isInherited);
+		return colorSpace;
+
 	}
 
 	public void setInherited(PDResource resource, boolean value) {

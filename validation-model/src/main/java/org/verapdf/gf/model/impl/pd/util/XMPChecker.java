@@ -2,7 +2,6 @@ package org.verapdf.gf.model.impl.pd.util;
 
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSObjType;
@@ -16,6 +15,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class matches document information dictionary and xmp metadata by
@@ -37,7 +38,7 @@ import java.util.Map;
  */
 public final class XMPChecker {
 
-    private static final Logger LOGGER = Logger.getLogger(XMPChecker.class);
+    private static final Logger LOGGER = Logger.getLogger(XMPChecker.class.getCanonicalName());
 
     private static final int MAX_REQUIRED_RECORDS = 8;
 
@@ -74,11 +75,11 @@ public final class XMPChecker {
                 return checkMatch(info, properties);
             }
         } catch (IOException e) {
-            LOGGER.debug(
+            LOGGER.log(Level.FINE,
                     "Problems with document parsing or structure. "
                             + e.getMessage(), e);
         } catch (XMPException e) {
-            LOGGER.debug("Problems with XMP parsing. " + e.getMessage(), e);
+            LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage(), e);
         }
 
         return Boolean.FALSE;

@@ -1,12 +1,13 @@
 package org.verapdf.gf.model.impl.operator.textshow;
 
-import org.apache.log4j.Logger;
 import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.pd.font.*;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents glyph used in text.
@@ -15,7 +16,7 @@ import java.io.IOException;
  */
 public class GFGlyph extends GenericModelObject implements Glyph {
 
-    private static final Logger LOGGER = Logger.getLogger(GFGlyph.class);
+    private static final Logger LOGGER = Logger.getLogger(GFGlyph.class.getCanonicalName());
 
     public final static String GLYPH_TYPE = "Glyph";
     private final String id;
@@ -53,7 +54,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                     }
                 }
             } catch (IOException e) {
-                LOGGER.debug("Can't convert code to glyph", e);
+                LOGGER.log(Level.FINE, "Can't convert code to glyph", e);
                 this.name = null;
             }
         }

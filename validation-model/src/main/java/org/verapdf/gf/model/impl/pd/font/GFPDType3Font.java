@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd.font;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
@@ -14,6 +13,8 @@ import org.verapdf.model.pdlayer.PDType3Font;
 import org.verapdf.pd.PDType3CharProc;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents Type3 font dictionary.
@@ -22,7 +23,7 @@ import java.util.*;
  */
 public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDType3Font.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDType3Font.class.getCanonicalName());
 
     public static final String TYPE3_FONT_TYPE = "PDType3Font";
 
@@ -83,7 +84,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                             new GFPDContentStream(charProc, this.resources);
                     map.put(glyphName.getValue(), contentStream);
                 } else {
-                    LOGGER.debug("Invalid entry in the char proc dictionary.");
+                    LOGGER.log(Level.FINE, "Invalid entry in the char proc dictionary.");
                 }
             }
             this.charStrings = Collections.unmodifiableMap(map);

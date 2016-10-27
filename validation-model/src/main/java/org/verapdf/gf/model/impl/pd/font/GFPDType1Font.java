@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd.font;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.model.pdlayer.PDType1Font;
@@ -12,6 +11,8 @@ import org.verapdf.pd.font.type1.Type1FontProgram;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents Type1 font dictionary.
@@ -20,7 +21,7 @@ import java.util.Set;
  */
 public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDType1Font.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDType1Font.class.getCanonicalName());
 
     public static final String TYPE1_FONT_TYPE = "PDType1Font";
 
@@ -37,7 +38,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
                     this.fontProgramParsed = true;
                     this.pdFont.setSuccessfullyParsed(true);
                 } catch (IOException e) {
-                    LOGGER.warn("Can't parse font program of font " + pdFont.getName());
+                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + pdFont.getName());
                     this.fontProgramParsed = false;
                     this.pdFont.setSuccessfullyParsed(false);
                 }
