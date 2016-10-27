@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.cos;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
@@ -12,13 +11,15 @@ import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFCosDocument extends GFCosObject implements CosDocument {
 
-    private static final Logger LOGGER = Logger.getLogger(GFCosDocument.class);
+    private static final Logger LOGGER = Logger.getLogger(GFCosDocument.class.getCanonicalName());
 
     /** Type name for GFCosDocument */
     public static final String COS_DOCUMENT_TYPE = "CosDocument";
@@ -203,7 +204,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
                 if (markInfo.getType() == COSObjType.COS_DICT) {
                     return markInfo.getBooleanKey(ASAtom.MARKED);
                 } else {
-                    LOGGER.warn("MarkedInfo must be a 'COSDictionary' but got: "
+                    LOGGER.log(Level.WARNING, "MarkedInfo must be a 'COSDictionary' but got: "
                             + markInfoObject.getType());
                     return Boolean.FALSE;
                 }

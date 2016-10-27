@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.cos;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.model.baselayer.Object;
@@ -11,13 +10,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFCosStream extends GFCosDict implements CosStream {
 
-	private static final Logger logger = Logger.getLogger(GFCosStream.class);
+	private static final Logger LOGGER = Logger.getLogger(GFCosStream.class.getCanonicalName());
 
 	public static final String FILTERS = "filters";
 
@@ -146,7 +147,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 						decodeParms = decodeParms.at(i).get();
 						result.add(createFilter((COSName) COSName.fromValue(filter), decodeParms));
 					} else {
-						logger.warn("Invalid decodeParms type. Ignoring decodeParms.");
+						LOGGER.log(Level.WARNING, "Invalid decodeParms type. Ignoring decodeParms.");
 					}
 					i++;
 				}
@@ -161,7 +162,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		} else if (decodeParms instanceof COSDictionary) {
 			return new GFCosFilter(filter, (COSDictionary) decodeParms);
 		} else {
-			logger.warn("Invalid decodeParms type. Ignoring decodeParms.");
+			LOGGER.log(Level.WARNING, "Invalid decodeParms type. Ignoring decodeParms.");
 			return new GFCosFilter(filter, null);
 		}
 	}
@@ -185,12 +186,12 @@ public class GFCosStream extends GFCosDict implements CosStream {
 				if (filter instanceof COSName) {
 					filters.append(((COSName) filter).getName()).append(" ");
 				} else {
-					logger.error("Incorrect type for stream filter " +
+					LOGGER.log(Level.SEVERE, "Incorrect type for stream filter " +
 							filter.getClass().getName());
 				}
 			}
 		} else {
-			logger.error("Incorrect type for stream filter " +
+			LOGGER.log(Level.SEVERE, "Incorrect type for stream filter " +
 					base.getClass().getName());
 			return null;
 		}

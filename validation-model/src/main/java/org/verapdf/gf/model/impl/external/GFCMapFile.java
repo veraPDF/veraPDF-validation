@@ -1,10 +1,11 @@
 package org.verapdf.gf.model.impl.external;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSStream;
 import org.verapdf.model.external.CMapFile;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents embedded CMap file.
@@ -13,7 +14,7 @@ import java.io.IOException;
  */
 public class GFCMapFile extends GFExternal implements CMapFile {
 
-    private static final Logger LOGGER = Logger.getLogger(GFCMapFile.class);
+    private static final Logger LOGGER = Logger.getLogger(GFCMapFile.class.getCanonicalName());
 
     private org.verapdf.pd.font.cmap.CMapFile cMapFile;
 
@@ -40,7 +41,7 @@ public class GFCMapFile extends GFExternal implements CMapFile {
         try {
             return new Long(cMapFile.getWMode());
         } catch (IOException e) {
-            LOGGER.error("Error in parsing embedded CMap file");
+            LOGGER.log(Level.SEVERE, "Error in parsing embedded CMap file");
             e.printStackTrace();
             return new Long(-1);
         }

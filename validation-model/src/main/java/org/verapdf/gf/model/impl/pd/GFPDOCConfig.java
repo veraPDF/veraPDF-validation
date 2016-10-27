@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
@@ -8,13 +7,15 @@ import org.verapdf.model.pdlayer.PDOCConfig;
 import org.verapdf.pd.PDObject;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 
-	public static final Logger LOGGER = Logger.getLogger(GFPDOCConfig.class);
+	public static final Logger LOGGER = Logger.getLogger(GFPDOCConfig.class.getCanonicalName());
 
 	public static final String OC_CONFIG_TYPE = "PDOCConfig";
 
@@ -59,14 +60,14 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 							return Boolean.FALSE;
 						}
 					} else {
-						LOGGER.debug("Invalid object type in order array. Ignoring the object.");
+						LOGGER.log(Level.FINE, "Invalid object type in order array. Ignoring the object.");
 					}
 				}
 				if (groupsInOrder < groupNames.size()) {
 					return Boolean.FALSE;
 				}
 			} else {
-				LOGGER.debug("Invalid object type of Order entry. Ignoring the Order entry.");
+				LOGGER.log(Level.FINE, "Invalid object type of Order entry. Ignoring the Order entry.");
 			}
 		}
 		return Boolean.TRUE;
@@ -86,12 +87,12 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 							result = result.concat(event);
 						}
 					} else {
-						LOGGER.debug("Invalid object type in the AS array. Ignoring the object.");
+						LOGGER.log(Level.FINE, "Invalid object type in the AS array. Ignoring the object.");
 					}
 				}
 				return result;
 			} else {
-				LOGGER.debug("Invalid object type of AS entry. Ignoring the entry.");
+				LOGGER.log(Level.FINE, "Invalid object type of AS entry. Ignoring the entry.");
 				return result;
 			}
 		} else {

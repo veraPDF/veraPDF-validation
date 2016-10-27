@@ -3,7 +3,6 @@
  */
 package org.verapdf.gf.model.factory.operators;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSInteger;
@@ -59,7 +58,6 @@ import java.util.List;
  */
 class OperatorParser {
 
-	private static final Logger LOGGER = Logger.getLogger(OperatorParser.class);
 	private static final String MSG_PROBLEM_OBTAINING_RESOURCE = "Problem encountered while obtaining resources for ";
 
 	private final Deque<GraphicState> graphicStateStack = new ArrayDeque<>();

@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.operator.inlineimage;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.images.GFPDInlineImage;
@@ -17,8 +16,6 @@ import java.util.List;
  * @author Timur Kamalov
  */
 public class GFOp_EI extends GFOpInlineImage implements Op_EI {
-
-	private static final Logger LOGGER = Logger.getLogger(GFOp_EI.class);
 
 	public static final String OP_EI_TYPE = "Op_EI";
 
