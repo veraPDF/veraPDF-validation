@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd.font;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
@@ -13,6 +12,8 @@ import org.verapdf.model.pdlayer.PDType0Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents Type0 font dictionary.
@@ -21,7 +22,7 @@ import java.util.List;
  */
 public class GFPDType0Font extends GFPDFont implements PDType0Font {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDType0Font.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDType0Font.class.getCanonicalName());
 
     public static final String TYPE_0_FONT_TYPE = "PDType0Font";
 
@@ -102,11 +103,11 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
     @Override
     public Boolean getareRegistryOrderingCompatible() {
         if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
-            LOGGER.error("CID font dictionary doesn't contain CIDSystemInfo");
+            LOGGER.log(Level.SEVERE, "CID font dictionary doesn't contain CIDSystemInfo");
             return Boolean.valueOf(false);
         }
         if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
-            LOGGER.error("Type 0 font dictionary doesn't contain Encoding");
+            LOGGER.log(Level.SEVERE, "Type 0 font dictionary doesn't contain Encoding");
             return Boolean.valueOf(false);
         }
         return this.isOrderingCompatible() && this.isRegistryCompatible();
@@ -119,11 +120,11 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
     @Override
     public Boolean getisSupplementCompatible() {
         if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
-            LOGGER.error("CID font dictionary doesn't contain CIDSystemInfo");
+            LOGGER.log(Level.SEVERE, "CID font dictionary doesn't contain CIDSystemInfo");
             return Boolean.valueOf(false);
         }
         if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
-            LOGGER.error("Type 0 font dictionary doesn't contain Encoding");
+            LOGGER.log(Level.SEVERE, "Type 0 font dictionary doesn't contain Encoding");
             return Boolean.valueOf(false);
         }
         Long fontSupplement = ((org.verapdf.pd.font.PDType0Font)
@@ -131,7 +132,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
         Long cMapSupplement = ((org.verapdf.pd.font.PDType0Font)
                 this.pdFont).getCMap().getSupplement();
         if (fontSupplement == null) {
-            LOGGER.error("CIDSystemInfo dictionary doesn't contain Supplement entry.");
+            LOGGER.log(Level.SEVERE, "CIDSystemInfo dictionary doesn't contain Supplement entry.");
             return Boolean.valueOf(false);
         }
         return fontSupplement >= cMapSupplement;
@@ -164,7 +165,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
         String cMapRegistry = ((org.verapdf.pd.font.PDType0Font)
                 this.pdFont).getCMap().getRegistry();
         if (fontRegistry == null) {
-            LOGGER.error("CIDSystemInfo dictionary doesn't contain Registry entry.");
+            LOGGER.log(Level.SEVERE, "CIDSystemInfo dictionary doesn't contain Registry entry.");
             return Boolean.valueOf(false);
         }
         return fontRegistry.equals(cMapRegistry);
@@ -176,7 +177,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
         String cMapOrdering = ((org.verapdf.pd.font.PDType0Font)
                 this.pdFont).getCMap().getOrdering();
         if (fontOrdering == null) {
-            LOGGER.error("CIDSystemInfo dictionary doesn't contain Ordering entry.");
+            LOGGER.log(Level.SEVERE, "CIDSystemInfo dictionary doesn't contain Ordering entry.");
             return Boolean.valueOf(false);
         }
         return fontOrdering.equals(cMapOrdering);

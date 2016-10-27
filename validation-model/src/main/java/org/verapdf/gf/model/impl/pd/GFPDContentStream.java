@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.pd;
 
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
@@ -14,13 +13,15 @@ import org.verapdf.parser.PDFStreamParser;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
-	private static final Logger LOGGER = Logger.getLogger(GFPDContentStream.class);
+	private static final Logger LOGGER = Logger.getLogger(GFPDContentStream.class.getCanonicalName());
 
 	public static final String CONTENT_STREAM_TYPE = "PDContentStream";
 
@@ -68,7 +69,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 					this.operators = Collections.emptyList();
 				}
 			} catch (IOException e) {
-				LOGGER.debug("Error while parsing content stream. " + e.getMessage(), e);
+				LOGGER.log(Level.FINE, "Error while parsing content stream. " + e.getMessage(), e);
 				this.operators = Collections.emptyList();
 			}
 		}

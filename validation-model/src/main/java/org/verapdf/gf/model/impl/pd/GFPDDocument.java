@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
@@ -21,13 +20,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFPDDocument extends GFPDObject implements PDDocument {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDDocument.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDDocument.class.getCanonicalName());
 
     public static final String PD_DOCUMENT_TYPE = "PDDocument";
 
@@ -90,7 +91,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         try {
             catalog = document.getCatalog();
         } catch (IOException e) {
-            LOGGER.debug("Can't obtain document catalog");
+            LOGGER.log(Level.FINE, "Can't obtain document catalog");
         }
         this.catalog = catalog;
     }
@@ -193,7 +194,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
             }
             return result;
         } catch (Exception e) {
-            LOGGER.debug("Error while processing pages.");
+            LOGGER.log(Level.FINE, "Error while processing pages.");
         }
         return Collections.emptyList();
     }
@@ -221,7 +222,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
                 return Collections.unmodifiableList(res);
             }
         } catch (IOException e) {
-            LOGGER.debug("Exception during obtaining OutputIntents", e);
+            LOGGER.log(Level.FINE, "Exception during obtaining OutputIntents", e);
         }
         return Collections.emptyList();
     }
@@ -235,7 +236,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
                 return Collections.unmodifiableList(forms);
             }
         } catch (IOException e) {
-            LOGGER.debug("Exception during obtaining AcroForm", e);
+            LOGGER.log(Level.FINE, "Exception during obtaining AcroForm", e);
         }
         return Collections.emptyList();
     }
@@ -249,7 +250,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
                 return Collections.unmodifiableList(res);
             }
         } catch (IOException e) {
-            LOGGER.debug("Exception during obtaining Structure tree root", e);
+            LOGGER.log(Level.FINE, "Exception during obtaining Structure tree root", e);
         }
         return Collections.emptyList();
     }
