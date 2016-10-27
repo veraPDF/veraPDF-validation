@@ -1,17 +1,19 @@
 package org.verapdf.gf.model.impl.cos;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSNumber;
 import org.verapdf.model.coslayer.CosBBox;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFCosBBox extends GFCosArray implements CosBBox {
 
-    private static final Logger LOGGER = Logger.getLogger(GFCosBBox.class);
+    private static final Logger LOGGER = Logger.getLogger(GFCosBBox.class.getCanonicalName());
 
     public static final String COS_BBOX_TYPE = "CosBBox";
     private static final int LEFT_CORNER_POSITION = 0;
@@ -67,11 +69,11 @@ public class GFCosBBox extends GFCosArray implements CosBBox {
             if (base instanceof COSNumber) {
                 return base.getReal();
             } else {
-                LOGGER.warn("In bbox expected number but got "
+                LOGGER.log(Level.WARNING, "In bbox expected number but got "
                         + base.getClass().getSimpleName());
             }
         } else {
-            LOGGER.warn("Expected size of bbox array greater than"
+            LOGGER.log(Level.WARNING, "Expected size of bbox array greater than"
                     + position + "but got " + array.size());
         }
         return null;

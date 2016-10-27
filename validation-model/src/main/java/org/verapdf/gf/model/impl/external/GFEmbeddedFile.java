@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.external;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
@@ -20,13 +19,15 @@ import org.verapdf.pdfa.validators.ValidatorFactory;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
-	private static final Logger LOGGER = Logger.getLogger(GFEmbeddedFile.class);
+	private static final Logger LOGGER = Logger.getLogger(GFEmbeddedFile.class.getCanonicalName());
 
 	/** Type name for {@code PBoxEmbeddedFile} */
 	public static final String EMBEDDED_FILE_TYPE = "EmbeddedFile";
@@ -74,7 +75,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 				restoreSavedSCState();
 				return Boolean.valueOf(result2b.isCompliant());
 			} catch (Throwable e) {
-				LOGGER.debug("Exception during validation of embedded file", e);
+				LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
 				restoreSavedSCState();
 				return Boolean.FALSE;
 			}

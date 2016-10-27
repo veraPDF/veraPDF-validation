@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd.font;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.io.ASInputStream;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
@@ -24,6 +23,8 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents CID Font dictionary.
@@ -32,7 +33,7 @@ import java.util.List;
  */
 public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDCIDFont.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDCIDFont.class.getCanonicalName());
 
     public static final String CID_FONT_TYPE = "PDCIDFont";
 
@@ -51,7 +52,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                     this.fontProgramParsed = true;
                     this.pdFont.setSuccessfullyParsed(true);
                 } catch (IOException e) {
-                    LOGGER.warn("Can't parse font program of font " + font.getName());
+                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + font.getName());
                     this.fontProgramParsed = false;
                     this.pdFont.setSuccessfullyParsed(false);
                 }
@@ -144,7 +145,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
             }
         } catch (IOException e) {
-            LOGGER.debug("Error while parsing embedded font program. " + e.getMessage(), e);
+            LOGGER.log(Level.FINE, "Error while parsing embedded font program. " + e.getMessage(), e);
             return Boolean.FALSE;
         }
         return Boolean.TRUE;
@@ -163,7 +164,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     private byte[] getCIDsFromCIDSet(ASInputStream cidSet, long length) throws IOException {
         byte[] cidSetBytes = new byte[(int) length];
         if (cidSet.read(cidSetBytes) != length) {
-            LOGGER.debug("Did not read necessary number of cid set bytes");
+            LOGGER.log(Level.FINE, "Did not read necessary number of cid set bytes");
         }
         return cidSetBytes;
     }

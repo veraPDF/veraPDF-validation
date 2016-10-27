@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd.signature;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObject;
@@ -10,6 +9,8 @@ import org.verapdf.model.pdlayer.PDSigRef;
 import org.verapdf.pd.PDCatalog;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents signature references dictionary referred by /Reference key from
@@ -19,7 +20,7 @@ import java.io.IOException;
  */
 public class GFPDSigRef extends GFPDObject implements PDSigRef {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDSigRef.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDSigRef.class.getCanonicalName());
 
     /** Type name for {@code GFPDSigRef} */
     public static final String SIGNATURE_REFERENCE_TYPE = "PDSigRef";
@@ -60,7 +61,7 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
                 return perms.knownKey(GFPDPerms.DOC_MDP);
             }
         } catch (IOException e) {
-            LOGGER.warn("Can't get catalog from PDDocument");
+            LOGGER.log(Level.WARNING, "Can't get catalog from PDDocument");
         }
         return Boolean.valueOf(false);
     }

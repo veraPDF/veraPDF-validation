@@ -1,11 +1,12 @@
 package org.verapdf.gf.model.impl.external;
 
-import org.apache.log4j.Logger;
 import org.verapdf.model.external.TrueTypeFontProgram;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.opentype.OpenTypeFontProgram;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Instance of this class represents TrueType font program embedded into PDF
@@ -15,7 +16,7 @@ import java.io.IOException;
  */
 public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFontProgram {
 
-    private static final Logger LOGGER = Logger.getLogger(GFTrueTypeFontProgram.class);
+    private static final Logger LOGGER = Logger.getLogger(GFTrueTypeFontProgram.class.getCanonicalName());
 
     private org.verapdf.pd.font.truetype.TrueTypeFontProgram trueTypeFont;
 
@@ -34,7 +35,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
             this.trueTypeFont = (org.verapdf.pd.font.truetype.TrueTypeFontProgram) trueTypeFont;
             this.trueTypeFont.parseFont();
         } catch (IOException e) {
-            LOGGER.error("Error in parsing embedded True Type font file", e);
+            LOGGER.log(Level.SEVERE, "Error in parsing embedded True Type font file", e);
         }
     }
 

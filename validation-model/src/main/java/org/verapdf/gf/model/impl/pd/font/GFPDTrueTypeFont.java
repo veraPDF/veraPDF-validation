@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd.font;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
@@ -13,6 +12,8 @@ import org.verapdf.pd.font.truetype.AdobeGlyphList;
 import org.verapdf.pd.font.truetype.TrueTypeFontProgram;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents TrueType font dictionary.
@@ -21,7 +22,7 @@ import java.io.IOException;
  */
 public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDTrueTypeFont.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDTrueTypeFont.class.getCanonicalName());
 
     public static final String TRUETYPE_FONT_TYPE = "PDTrueTypeFont";
 
@@ -36,7 +37,7 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
                     this.fontProgramParsed = true;
                     this.pdFont.setSuccessfullyParsed(true);
                 } catch (IOException e) {
-                    LOGGER.warn("Can't parse font program of font " + font.getName());
+                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + font.getName());
                     this.fontProgramParsed = false;
                     this.pdFont.setSuccessfullyParsed(false);
                 }

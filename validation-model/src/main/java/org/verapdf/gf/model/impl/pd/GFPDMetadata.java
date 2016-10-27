@@ -3,7 +3,6 @@ package org.verapdf.gf.model.impl.pd;
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
 import com.adobe.xmp.impl.VeraPDFXMPNode;
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
@@ -21,13 +20,15 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFPDMetadata extends GFPDObject implements PDMetadata {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDMetadata.class);
+    private static final Logger LOGGER = Logger.getLogger(GFPDMetadata.class.getCanonicalName());
 
     public static final String METADATA_TYPE = "PDMetadata";
 
@@ -47,7 +48,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                 this.mainMetadata = null;
             }
         } catch (IOException e) {
-            LOGGER.debug("Can not obtain main metadata");
+            LOGGER.log(Level.FINE, "Can not obtain main metadata");
             this.mainMetadata = null;
         }
     }
@@ -98,7 +99,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                 }
             }
         } catch (XMPException e) {
-            LOGGER.debug("Problems with parsing metadata. " + e.getMessage(), e);
+            LOGGER.log(Level.FINE, "Problems with parsing metadata. " + e.getMessage(), e);
             if (isMainMetadata) {
                 xmp.add(new AXLMainXMPPackage(null, false, flavour));
             } else if (flavour == null || !PDFAFlavour.Specification.ISO_19005_1.equals(flavour.getPart())) {
