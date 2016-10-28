@@ -53,6 +53,12 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	}
 
 	@Override
+	public Boolean getisAssociatedFile() {
+		// TODO: implement me
+		return Boolean.FALSE;
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		if (EF.equals(link)) {
 			return this.getEFFile();
