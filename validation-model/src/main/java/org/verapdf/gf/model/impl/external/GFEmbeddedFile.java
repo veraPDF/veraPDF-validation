@@ -1,13 +1,11 @@
 package org.verapdf.gf.model.impl.external;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
-import org.verapdf.cos.COSStream;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
+import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.pd.PDDocument;
@@ -19,6 +17,7 @@ import org.verapdf.pdfa.validators.Validators;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -86,9 +85,11 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	// We need to save data from StaticContainers before validating embedded documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
+	public TaggedPDFRoleMapHelper roleMapHelper;
 	public Map<String, List<GFPDSeparation>> separations;
 	public List<String> inconsistentSeparations;
 	public Map<String, PDColorSpace> cachedColorSpaces;
+	public static Set<COSKey> fileSpecificationKeys;
 
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
@@ -96,6 +97,8 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.separations = StaticContainers.separations;
 		this.inconsistentSeparations = StaticContainers.inconsistentSeparations;
 		this.cachedColorSpaces = StaticContainers.cachedColorSpaces;
+		this.roleMapHelper = StaticContainers.roleMapHelper;
+		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
 	}
 
 	private void restoreSavedSCState() {
@@ -104,6 +107,8 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.separations = this.separations;
 		StaticContainers.inconsistentSeparations = this.inconsistentSeparations;
 		StaticContainers.cachedColorSpaces = this.cachedColorSpaces;
+		StaticContainers.roleMapHelper = this.roleMapHelper;
+		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
 	}
 
 }
