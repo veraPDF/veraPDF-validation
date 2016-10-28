@@ -12,7 +12,7 @@ public class VeraGreenfieldFoundryProvider implements VeraFoundryProvider {
 
 	@Override
 	public VeraPDFFoundry getInstance() {
-		return GreenfieldFoundry.getInstance();
+		return VeraFoundry.getInstance();
 	}
 
 }

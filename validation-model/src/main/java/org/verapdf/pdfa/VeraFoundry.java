@@ -14,12 +14,15 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 /**
  * @author Maksim Bezrukov
  */
-class GreenfieldFoundry extends AbstractFoundry {
-	private static final URI id = URI.create("http://foundries.verapdf.org#greenfield");
-	private static final ComponentDetails details = Components.detailsFromValues(id, "VeraPDF Greenfield Foundry", "0.1.0");
-	private static final VeraPDFFoundry instance = new GreenfieldFoundry();
+class VeraFoundry extends AbstractFoundry {
+	private static final ReleaseDetails greenfieldDetails = ReleaseDetails.addDetailsFromResource(
+			ReleaseDetails.APPLICATION_PROPERTIES_ROOT + "validation-model." + ReleaseDetails.PROPERTIES_EXT);
+	private static final URI id = URI.create("http://pdfa.verapdf.org/foundry#verapdf");
+	private static final ComponentDetails details = Components.veraDetails(id, "VeraPDF Foundry",
+			greenfieldDetails.getVersion());
+	private static final VeraPDFFoundry instance = new VeraFoundry();
 
-	private GreenfieldFoundry() {
+	private VeraFoundry() {
 		super();
 	}
 
@@ -27,6 +30,7 @@ class GreenfieldFoundry extends AbstractFoundry {
 	public ComponentDetails getDetails() {
 		return details;
 	}
+
 	/**
 	 * @see org.verapdf.pdfa.VeraPDFFoundry#newPdfParser(java.io.InputStream)
 	 */
@@ -52,6 +56,10 @@ class GreenfieldFoundry extends AbstractFoundry {
 	public MetadataFixer newMetadataFixer() {
 		// TODO: implement me with metadata fixer
 		return null;
+	}
+
+	public static ReleaseDetails getReleaseDetails() {
+		return greenfieldDetails;
 	}
 
 	static VeraPDFFoundry getInstance() {
