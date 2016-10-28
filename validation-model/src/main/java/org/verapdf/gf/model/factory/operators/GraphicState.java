@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.factory.operators;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSName;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.colors.PDColorSpace;
@@ -10,8 +9,6 @@ import org.verapdf.pd.colors.PDDeviceGray;
  * @author Timur Kamalov
  */
 public class GraphicState implements Cloneable {
-
-    private static final Logger LOGGER = Logger.getLogger(GraphicState.class);
 
 	private PDColorSpace fillColorSpace = PDDeviceGray.INSTANCE;
 	private PDColorSpace strokeColorSpace = PDDeviceGray.INSTANCE;

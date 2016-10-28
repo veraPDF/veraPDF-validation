@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.factory.operators;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.gf.model.tools.TransparencyBehaviour;
@@ -9,6 +8,8 @@ import org.verapdf.operator.Operator;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class for converting raw operators to the veraPDF-library operators
@@ -17,7 +18,7 @@ import java.util.*;
  */
 public final class OperatorFactory {
 
-	private static final Logger LOGGER = Logger.getLogger(OperatorFactory.class);
+	private static final Logger LOGGER = Logger.getLogger(OperatorFactory.class.getCanonicalName());
 
 	private static final String MSG_UNEXPECTED_OBJECT_TYPE = "Unexpected type of object in tokens: ";
 
@@ -100,12 +101,12 @@ public final class OperatorFactory {
 						}
 					}
 				} catch (IOException e) {
-					LOGGER.warn(e);
+					LOGGER.log(Level.WARNING, e.getMessage(), e);
 				}
 
 				arguments = new ArrayList<>();
 			} else {
-				LOGGER.debug(MSG_UNEXPECTED_OBJECT_TYPE
+				LOGGER.log(Level.FINE, MSG_UNEXPECTED_OBJECT_TYPE
 						+ rawToken.getClass().getName());
 			}
 		}
