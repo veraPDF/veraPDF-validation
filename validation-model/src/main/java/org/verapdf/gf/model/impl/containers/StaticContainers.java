@@ -1,16 +1,14 @@
 package org.verapdf.gf.model.impl.containers;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
 import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Timur Kamalov
@@ -30,14 +28,18 @@ public class StaticContainers {
 	//ColorSpaceFactory
 	public static Map<String, PDColorSpace> cachedColorSpaces = new HashMap<>();
 
+	public static Set<COSKey> fileSpecificationKeys = new HashSet<>();
+
 	public static void clearAllContainers() {
 		if (document != null) {
 			document = null;
 		}
 		flavour = null;
+		roleMapHelper = null;
 		separations.clear();
 		inconsistentSeparations.clear();
 		cachedColorSpaces.clear();
+		fileSpecificationKeys.clear();
 	}
 
 	public static PDDocument getDocument() {

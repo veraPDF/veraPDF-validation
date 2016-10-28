@@ -5,6 +5,7 @@ import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDDocument;
 import org.verapdf.gf.model.impl.pd.util.XMPChecker;
+import org.verapdf.gf.model.tools.FileSpecificationKeysHelper;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.*;
 import org.verapdf.pd.PDNameTreeNode;
@@ -71,6 +72,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
                 .getLastTrailer() && cosDocument.isLinearized();
         this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
         this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
+        if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_3) {
+            FileSpecificationKeysHelper.registerFileSpecificationKeys(cosDocument);
+        }
     }
 
     private boolean parseOptionalContentPresent() {
