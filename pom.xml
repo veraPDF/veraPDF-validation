@@ -1,158 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.verapdf</groupId>
-        <artifactId>verapdf-parent</artifactId>
-        <version>1.0.16</version>
-    </parent>
-
+  <parent>
     <groupId>org.verapdf</groupId>
-    <artifactId>validation</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <artifactId>verapdf-parent</artifactId>
+    <version>1.0.16</version>
+  </parent>
 
-    <name>veraPDF Validation</name>
-    <description>veraPDF validator based on PDF parser.</description>
+  <groupId>org.verapdf</groupId>
+  <artifactId>validation</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <scm>
-      <url>https://github.com/veraPDF/veraPDF-valdation/</url>
-      <connection>scm:git:https://github.com/veraPDF/veraPDF-valdation.git</connection>
-      <developerConnection>scm:git:git@github.com:veraPDF/veraPDF-valdation.git</developerConnection>
-    </scm>
+  <name>veraPDF Validation</name>
+  <description>veraPDF validator based on PDF parser.</description>
 
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <id>vera-dev</id>
-            <name>Vera development</name>
-            <url>http://artifactory.openpreservation.org/artifactory/vera-dev</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>vera-dev</id>
-            <name>Vera development</name>
-            <url>http://artifactory.openpreservation.org/artifactory/vera-dev</url>
-        </pluginRepository>
-    </pluginRepositories>
+  <scm>
+    <url>https://github.com/veraPDF/veraPDF-valdation/</url>
+    <connection>scm:git:https://github.com/veraPDF/veraPDF-valdation.git</connection>
+    <developerConnection>scm:git:git@github.com:veraPDF/veraPDF-valdation.git</developerConnection>
+  </scm>
+
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>vera-dev</id>
+      <name>Vera development</name>
+      <url>http://artifactory.openpreservation.org/artifactory/vera-dev</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>vera-dev</id>
+      <name>Vera development</name>
+      <url>http://artifactory.openpreservation.org/artifactory/vera-dev</url>
+    </pluginRepository>
+  </pluginRepositories>
 
 
-    <modules>
-        <module>validation-model</module>
-    </modules>
+  <modules>
+    <module>validation-model</module>
+  </modules>
 
-    <properties>
-        <verapdf.parser.version>[0.1.0,0.2.0)</verapdf.parser.version>
-        <verapdf.pdfmodel.version>[0.25.0,0.26.0)</verapdf.pdfmodel.version>
-        <verapdf.library.version>[0.25.0,0.26.0)</verapdf.library.version>
-    </properties>
+  <properties>
+    <verapdf.parser.version>[0.1.0,0.2.0)</verapdf.parser.version>
+    <verapdf.pdfmodel.version>[0.25.0,0.26.0)</verapdf.pdfmodel.version>
+    <verapdf.library.version>[0.25.0,0.26.0)</verapdf.library.version>
+  </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- veraPDF Project dependencies -->
-            <dependency>
-                <groupId>org.verapdf</groupId>
-                <artifactId>parser</artifactId>
-                <version>${verapdf.parser.version}</version>
-            </dependency>
+  <dependencyManagement>
+    <dependencies>
+      <!-- veraPDF Project dependencies -->
+      <dependency>
+        <groupId>org.verapdf</groupId>
+        <artifactId>parser</artifactId>
+        <version>${verapdf.parser.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>org.verapdf</groupId>
-                <artifactId>pdf-model</artifactId>
-                <version>${verapdf.pdfmodel.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.verapdf</groupId>
+        <artifactId>pdf-model</artifactId>
+        <version>${verapdf.pdfmodel.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>org.verapdf</groupId>
-                <artifactId>core</artifactId>
-                <version>${verapdf.library.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.verapdf</groupId>
+        <artifactId>core</artifactId>
+        <version>${verapdf.library.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+      </dependency>
 
-        </dependencies>
-    </dependencyManagement>
+    </dependencies>
+  </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
 
-            <plugin>
-              <groupId>org.jacoco</groupId>
-              <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
 
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
 
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>versions-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 
-    <reporting>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>2.4</version>
-          <configuration>
-            <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-            <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-          </configuration>
-          <reportSets>
-            <reportSet>
-              <reports>
-                <report>index</report>
-                <report>dependencies</report>
-                <report>project-team</report>
-                <report>mailing-list</report>
-                <report>cim</report>
-                <report>issue-tracking</report>
-                <report>license</report>
-                <report>scm</report>
-              </reports>
-            </reportSet>
-          </reportSets>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <configuration>
-            <failOnError>false</failOnError>
-            <dependencySourceExcludes>
-              <!-- exclude ONLY commons-cli artifacts -->
-              <dependencySourceExclude>junit:*</dependencySourceExclude>
-              <dependencySourceExclude>org.apache:*</dependencySourceExclude>
-              <dependencySourceExclude>org.junit:*</dependencySourceExclude>
-              <dependencySourceExclude>org.hamcrest.*</dependencySourceExclude>
-              <dependencySourceExclude>org.log4j.*</dependencySourceExclude>
-            </dependencySourceExcludes>
-            <includeDependencySources>true</includeDependencySources>
-            <show>public</show>
-          </configuration>
-        </plugin>
-      </plugins>
-    </reporting>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>index</report>
+              <report>dependencies</report>
+              <report>project-team</report>
+              <report>mailing-list</report>
+              <report>cim</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>scm</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <failOnError>false</failOnError>
+          <dependencySourceExcludes>
+            <!-- exclude ONLY commons-cli artifacts -->
+            <dependencySourceExclude>junit:*</dependencySourceExclude>
+            <dependencySourceExclude>org.apache:*</dependencySourceExclude>
+            <dependencySourceExclude>org.junit:*</dependencySourceExclude>
+            <dependencySourceExclude>org.hamcrest.*</dependencySourceExclude>
+            <dependencySourceExclude>org.log4j.*</dependencySourceExclude>
+          </dependencySourceExcludes>
+          <includeDependencySources>true</includeDependencySources>
+          <show>public</show>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>
