@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.cos;
 
-import org.apache.log4j.Logger;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSIndirect;
@@ -12,9 +11,6 @@ import org.verapdf.model.coslayer.CosObject;
  * @author Timur Kamalov
  */
 public class GFCosObject extends GenericModelObject implements CosObject {
-
-    /** Type name for GFCosObject */
-    private static final Logger LOGGER = Logger.getLogger(GFCosObject.class);
 
     public static final int MAX_NUMBER_OF_ELEMENTS = 1;
 

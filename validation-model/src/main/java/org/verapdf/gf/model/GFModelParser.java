@@ -2,7 +2,6 @@ package org.verapdf.gf.model;
 
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
-import org.apache.log4j.Logger;
 import org.verapdf.core.EncryptedPdfException;
 import org.verapdf.core.ModelParsingException;
 import org.verapdf.exceptions.InvalidPasswordException;
@@ -22,13 +21,15 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFModelParser implements PDFParser, Closeable {
 
-    private static final Logger LOGGER = Logger.getLogger(GFModelParser.class);
+    private static final Logger LOGGER = Logger.getLogger(GFModelParser.class.getCanonicalName());
 
     private static final PDFAFlavour DEFAULT_FLAVOUR = PDFAFlavour.PDFA_1_B;
 
@@ -69,7 +70,7 @@ public class GFModelParser implements PDFParser, Closeable {
             PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
             return pdfaFlavour == PDFAFlavour.NO_FLAVOUR ? DEFAULT_FLAVOUR : pdfaFlavour;
         } catch (IOException | XMPException e) {
-            LOGGER.debug(e);
+            LOGGER.log(Level.FINE, e.getMessage(), e);
             return DEFAULT_FLAVOUR;
         }
     }

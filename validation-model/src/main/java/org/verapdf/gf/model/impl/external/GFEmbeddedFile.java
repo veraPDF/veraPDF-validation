@@ -1,37 +1,38 @@
 package org.verapdf.gf.model.impl.external;
 
-import org.apache.log4j.Logger;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.verapdf.as.ASAtom;
-import org.verapdf.core.EncryptedPdfException;
-import org.verapdf.core.ModelParsingException;
-import org.verapdf.core.ValidationException;
 import org.verapdf.core.VeraPDFException;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
+import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.PDFAValidator;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
-import org.verapdf.pdfa.validators.Validators;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
+import org.verapdf.pdfa.validation.validators.ValidatorFactory;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
-	private static final Logger LOGGER = Logger.getLogger(GFEmbeddedFile.class);
+	private static final Logger LOGGER = Logger.getLogger(GFEmbeddedFile.class.getCanonicalName());
 
 	/** Type name for {@code PBoxEmbeddedFile} */
 	public static final String EMBEDDED_FILE_TYPE = "EmbeddedFile";
@@ -71,7 +72,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 				retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_2_B);
 			}
 		} catch (VeraPDFException | IOException e) {
-			LOGGER.debug("Exception during validation of embedded file", e);
+			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
 		}
 		restoreSavedSCState();
 		return Boolean.valueOf(retVal);
@@ -80,7 +81,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private static boolean isValidPdfaStream(final InputStream toValidate, final PDFAFlavour flavour)
 			throws VeraPDFException {
 		try (GFModelParser parser = GFModelParser.createModelWithFlavour(toValidate, flavour)) {
-			PDFAValidator validator1b = Validators.createValidator(flavour, false, 1);
+			PDFAValidator validator1b = ValidatorFactory.createValidator(flavour, false, 1);
 			ValidationResult result1b = validator1b.validate(parser);
 			parser.close();
 			return result1b.isCompliant();
@@ -91,9 +92,11 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	// documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
+	public TaggedPDFRoleMapHelper roleMapHelper;
 	public Map<String, List<GFPDSeparation>> separations;
 	public List<String> inconsistentSeparations;
 	public Map<String, PDColorSpace> cachedColorSpaces;
+	public static Set<COSKey> fileSpecificationKeys;
 
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
@@ -101,6 +104,8 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.separations = StaticContainers.separations;
 		this.inconsistentSeparations = StaticContainers.inconsistentSeparations;
 		this.cachedColorSpaces = StaticContainers.cachedColorSpaces;
+		this.roleMapHelper = StaticContainers.roleMapHelper;
+		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
 	}
 
 	private void restoreSavedSCState() {
@@ -109,6 +114,8 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.separations = this.separations;
 		StaticContainers.inconsistentSeparations = this.inconsistentSeparations;
 		StaticContainers.cachedColorSpaces = this.cachedColorSpaces;
+		StaticContainers.roleMapHelper = this.roleMapHelper;
+		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
 	}
 
 }

@@ -1,6 +1,5 @@
 package org.verapdf.gf.model.impl.pd;
 
-import org.apache.log4j.Logger;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
@@ -15,13 +14,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 
-	private static final Logger LOGGER = Logger.getLogger(GFPDOCProperties.class);
+	private static final Logger LOGGER = Logger.getLogger(GFPDOCProperties.class.getCanonicalName());
 
 	public static final String OC_PROPERTIES_TYPE = "PDOCProperties";
 
@@ -60,7 +61,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 				return result;
 			}
 		} else {
-			LOGGER.debug("Invalid object type of the default optional configuration dictionary. Returning empty config.");
+			LOGGER.log(Level.FINE, "Invalid object type of the default optional configuration dictionary. Returning empty config.");
 			PDOCConfig config = new GFPDOCConfig(new PDObject(COSDictionary.construct()));
 
 			result.add(config);
@@ -87,7 +88,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 					PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(config), groupNamesList, names.contains(config.getStringKey(ASAtom.NAME)));
 					result.add(pdConfig);
 				} else {
-					LOGGER.debug("Invalid object type of the configuration dictionary. Ignoring config.");
+					LOGGER.log(Level.FINE, "Invalid object type of the configuration dictionary. Ignoring config.");
 				}
 			}
 			return result;

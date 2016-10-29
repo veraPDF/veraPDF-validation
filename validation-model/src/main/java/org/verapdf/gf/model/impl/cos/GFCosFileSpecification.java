@@ -3,6 +3,7 @@ package org.verapdf.gf.model.impl.cos;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.external.GFEmbeddedFile;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosFileSpecification;
@@ -50,6 +51,11 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	@Override
 	public String getAFRelationship() {
 		return this.afrelationship;
+	}
+
+	@Override
+	public Boolean getisAssociatedFile() {
+		return this.baseObject != null && StaticContainers.fileSpecificationKeys.contains(this.baseObject.getKey());
 	}
 
 	@Override
