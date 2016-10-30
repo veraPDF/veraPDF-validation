@@ -36,7 +36,7 @@ class VeraFoundry extends AbstractFoundry {
 	 */
 	@Override
 	public PDFParser newPdfParser(InputStream pdfStream) throws ModelParsingException, EncryptedPdfException {
-		return newPdfParser(pdfStream, PDFAFlavour.AUTO);
+		return newPdfParser(pdfStream, PDFAFlavour.NO_FLAVOUR);
 	}
 
 	/**
