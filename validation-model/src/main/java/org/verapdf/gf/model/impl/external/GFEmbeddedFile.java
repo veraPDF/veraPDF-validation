@@ -1,7 +1,20 @@
 package org.verapdf.gf.model.impl.external;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.*;
+import org.verapdf.core.VeraPDFException;
+import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
@@ -12,14 +25,7 @@ import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.PDFAValidator;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
-import org.verapdf.pdfa.validators.Validators;
-
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.verapdf.pdfa.validation.validators.ValidatorFactory;
 
 /**
  * @author Maksim Bezrukov
@@ -54,35 +60,36 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 	@Override
 	public Boolean getisValidPDFA12() {
-		if (this.stream != null) {
-			try {
-				saveStaticContainersState();
-				InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE);
-				GFModelParser parser1b = GFModelParser.createModelWithFlavour(unfilteredStream, PDFAFlavour.PDFA_1_B);
-				PDFAValidator validator1b = Validators.createValidator(PDFAFlavour.PDFA_1_B, false, 1);
-				ValidationResult result1b = validator1b.validate(parser1b);
-				parser1b.close();
-				if (result1b.isCompliant()) {
-					restoreSavedSCState();
-					return Boolean.TRUE;
-				}
-				unfilteredStream.reset();
-				GFModelParser parser2b = GFModelParser.createModelWithFlavour(unfilteredStream, PDFAFlavour.PDFA_2_B);
-				PDFAValidator validator2b = Validators.createValidator(PDFAFlavour.PDFA_2_B, false, 1);
-				ValidationResult result2b = validator2b.validate(parser2b);
-				parser2b.close();
-				restoreSavedSCState();
-				return Boolean.valueOf(result2b.isCompliant());
-			} catch (Throwable e) {
-				LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
-				restoreSavedSCState();
-				return Boolean.FALSE;
-			}
+		if (this.stream == null) {
+			return Boolean.TRUE;
 		}
-		return Boolean.TRUE;
+		boolean retVal = false;
+		saveStaticContainersState();
+		try (InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE)) {
+			retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_1_B);
+			if (!retVal) {
+				unfilteredStream.reset();
+				retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_2_B);
+			}
+		} catch (VeraPDFException | IOException e) {
+			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
+		}
+		restoreSavedSCState();
+		return Boolean.valueOf(retVal);
 	}
 
-	// We need to save data from StaticContainers before validating embedded documents
+	private static boolean isValidPdfaStream(final InputStream toValidate, final PDFAFlavour flavour)
+			throws VeraPDFException {
+		try (GFModelParser parser = GFModelParser.createModelWithFlavour(toValidate, flavour)) {
+			PDFAValidator validator1b = ValidatorFactory.createValidator(flavour, false, 1);
+			ValidationResult result1b = validator1b.validate(parser);
+			parser.close();
+			return result1b.isCompliant();
+		}
+	}
+
+	// We need to save data from StaticContainers before validating embedded
+	// documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
 	public TaggedPDFRoleMapHelper roleMapHelper;
