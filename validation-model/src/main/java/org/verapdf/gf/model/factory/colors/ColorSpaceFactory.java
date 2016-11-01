@@ -32,18 +32,17 @@ public class ColorSpaceFactory {
 		// disable default constructor
 	}
 
-	public static PDColorSpace getColorSpace(
-			org.verapdf.pd.colors.PDColorSpace colorSpace) {
+	public static PDColorSpace getColorSpace(org.verapdf.pd.colors.PDColorSpace colorSpace) {
 		return getColorSpace(colorSpace, null, 0, false);
 	}
 
-	public static PDColorSpace getColorSpace(
-			org.verapdf.pd.colors.PDColorSpace colorSpace, PDResourcesHandler resourcesHandler) {
+	public static PDColorSpace getColorSpace(org.verapdf.pd.colors.PDColorSpace colorSpace,
+			PDResourcesHandler resourcesHandler) {
 		return getColorSpace(colorSpace, resourcesHandler, 0, false);
 	}
 
-	public static PDColorSpace getColorSpace(
-			org.verapdf.pd.colors.PDColorSpace colorSpace, PDResourcesHandler resourcesHandler, int opm, boolean overprintingFlag) {
+	public static PDColorSpace getColorSpace(org.verapdf.pd.colors.PDColorSpace colorSpace,
+			PDResourcesHandler resourcesHandler, int opm, boolean overprintingFlag) {
 		if (colorSpace == null) {
 			return null;
 		}
@@ -53,72 +52,70 @@ public class ColorSpaceFactory {
 		}
 		PDColorSpace result;
 		switch (colorSpace.getType().toString()) {
-			case CAL_GRAY:
-				result = new GFPDCalGray((PDCalGray) colorSpace);
-				break;
-			case CAL_RGB:
-				result = new GFPDCalRGB((PDCalRGB) colorSpace);
-				break;
-			case DEVICE_CMYK:
-				if (colorSpace.isInherited()) {
-					return GFPDDeviceCMYK.getInheritedInstance();
-				} else {
-					return GFPDDeviceCMYK.getInstance();
-				}
-			case DEVICE_RGB:
-				if (colorSpace.isInherited()) {
-					return GFPDDeviceRGB.getInheritedInstance();
-				} else {
-					return GFPDDeviceRGB.getInstance();
-				}
-			case DEVICE_GRAY:
-				if (colorSpace.isInherited()) {
-					return GFPDDeviceGray.getInheritedInstance();
-				} else {
-					return GFPDDeviceGray.getInstance();
-				}
-			case ICC_BASED:
-				result = colorSpace.getNumberOfComponents() != 4 ?
-						new GFPDICCBased((PDICCBased) colorSpace)
-						: new GFPDICCBasedCMYK((PDICCBased) colorSpace, opm, overprintingFlag);
-				break;
-			case LAB:
-				result = new GFPDLab((PDLab) colorSpace);
-				break;
-			case SEPARATION:
-				result = new GFPDSeparation((PDSeparation) colorSpace);
-				break;
-			case INDEXED:
-				result = new GFPDIndexed((PDIndexed) colorSpace);
-				break;
-			case DEVICE_N:
-				result = new GFPDDeviceN((PDDeviceN) colorSpace);
-				break;
-			case PATTERN:
-				return getPattern((org.verapdf.pd.patterns.PDPattern) colorSpace, resourcesHandler);
-			default:
-				return null;
+		case CAL_GRAY:
+			result = new GFPDCalGray((PDCalGray) colorSpace);
+			break;
+		case CAL_RGB:
+			result = new GFPDCalRGB((PDCalRGB) colorSpace);
+			break;
+		case DEVICE_CMYK:
+			if (colorSpace.isInherited()) {
+				return GFPDDeviceCMYK.getInheritedInstance();
+			}
+			return GFPDDeviceCMYK.getInstance();
+		case DEVICE_RGB:
+			if (colorSpace.isInherited()) {
+				return GFPDDeviceRGB.getInheritedInstance();
+			}
+			return GFPDDeviceRGB.getInstance();
+		case DEVICE_GRAY:
+			if (colorSpace.isInherited()) {
+				return GFPDDeviceGray.getInheritedInstance();
+			}
+			return GFPDDeviceGray.getInstance();
+		case ICC_BASED:
+			result = colorSpace.getNumberOfComponents() != 4 ? new GFPDICCBased((PDICCBased) colorSpace)
+					: new GFPDICCBasedCMYK((PDICCBased) colorSpace, opm, overprintingFlag);
+			break;
+		case LAB:
+			result = new GFPDLab((PDLab) colorSpace);
+			break;
+		case SEPARATION:
+			result = new GFPDSeparation((PDSeparation) colorSpace);
+			break;
+		case INDEXED:
+			result = new GFPDIndexed((PDIndexed) colorSpace);
+			break;
+		case DEVICE_N:
+			result = new GFPDDeviceN((PDDeviceN) colorSpace);
+			break;
+		case PATTERN:
+			return getPattern((org.verapdf.pd.patterns.PDPattern) colorSpace, resourcesHandler);
+		default:
+			return null;
 		}
 		StaticContainers.cachedColorSpaces.put(uniqueID, result);
 		return result;
 	}
 
-	private static org.verapdf.model.pdlayer.PDPattern getPattern(org.verapdf.pd.patterns.PDPattern pattern, PDResourcesHandler resourcesHandler) {
+	private static org.verapdf.model.pdlayer.PDPattern getPattern(org.verapdf.pd.patterns.PDPattern pattern,
+			PDResourcesHandler resourcesHandler) {
 		switch (pattern.getPatternType()) {
-			case PDPattern.TYPE_TILING_PATTERN:
-				return new GFPDTilingPattern((PDTilingPattern) pattern, resourcesHandler.getExtendedResources(((PDTilingPattern) pattern).getResources()));
-			case PDPattern.TYPE_SHADING_PATTERN:
-				return new GFPDShadingPattern((PDShadingPattern) pattern);
-			default:
-				return null;
+		case PDPattern.TYPE_TILING_PATTERN:
+			return new GFPDTilingPattern((PDTilingPattern) pattern,
+					resourcesHandler.getExtendedResources(((PDTilingPattern) pattern).getResources()));
+		case PDPattern.TYPE_SHADING_PATTERN:
+			return new GFPDShadingPattern((PDShadingPattern) pattern);
+		default:
+			return null;
 		}
 	}
 
-	private static String getColorSpaceUniqueIdentifier(org.verapdf.pd.colors.PDColorSpace base, int opm, boolean overprintFlag) {
+	private static String getColorSpaceUniqueIdentifier(org.verapdf.pd.colors.PDColorSpace base, int opm,
+			boolean overprintFlag) {
 		if (ICC_BASED.equals(base.getType().toString()) && base.getNumberOfComponents() == 4) {
 			return String.valueOf(base.hashCode() + " " + opm + " " + overprintFlag);
-		} else {
-			return String.valueOf(base.hashCode());
 		}
+		return String.valueOf(base.hashCode());
 	}
 }

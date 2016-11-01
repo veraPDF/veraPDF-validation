@@ -82,7 +82,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 
 		if (!configs.empty() && configs.getType() == COSObjType.COS_ARRAY) {
 			List<PDOCConfig> result = new ArrayList<>();
-			for (int i = 0; i < configs.size(); i++) {
+			for (int i = 0; i < configs.size().intValue(); i++) {
 				COSObject config = configs.at(i);
 				if (!config.empty() && config.getType() == COSObjType.COS_DICT) {
 					PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(config), groupNamesList, names.contains(config.getStringKey(ASAtom.NAME)));
@@ -92,12 +92,11 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 				}
 			}
 			return result;
-		} else {
-			return Collections.emptyList();
 		}
+		return Collections.emptyList();
 	}
 
-	private List<String> getAllNames(final COSDictionary contentProperties) {
+	private static List<String> getAllNames(final COSDictionary contentProperties) {
 		List<String> result = new ArrayList<>();
 
 		COSObject defaultConfig = contentProperties.getKey(ASAtom.D);
@@ -110,7 +109,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 
 		COSObject configs = contentProperties.getKey(ASAtom.CONFIGS);
 		if (!configs.empty() && configs.getType() == COSObjType.COS_ARRAY) {
-			for (int i = 0; i < configs.size(); i++) {
+			for (int i = 0; i < configs.size().intValue(); i++) {
 				COSObject config = configs.at(i);
 				if (!config.empty() && config.getType() == COSObjType.COS_DICT) {
 					String name = config.getStringKey(ASAtom.NAME);

@@ -48,7 +48,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                 this.mainMetadata = null;
             }
         } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Can not obtain main metadata");
+            LOGGER.log(Level.FINE, "Can not obtain main metadata", e);
             this.mainMetadata = null;
         }
     }

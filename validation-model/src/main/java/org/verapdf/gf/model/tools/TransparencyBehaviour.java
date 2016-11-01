@@ -142,7 +142,7 @@ public class TransparencyBehaviour {
         return false;
     }
 
-    private boolean fontCheck(TransparencyGraphicsState graphicState) {
+    private static boolean fontCheck(TransparencyGraphicsState graphicState) {
         GFPDFont font = graphicState.getVeraFont();
         if (font instanceof GFPDType3Font) {
             GFPDType3Font type3Font = (GFPDType3Font) font;
@@ -179,7 +179,7 @@ public class TransparencyBehaviour {
         return false;
     }
 
-    private boolean baseCheck(TransparencyGraphicsState graphicState) {
+    private static boolean baseCheck(TransparencyGraphicsState graphicState) {
         COSObject sMask = graphicState.getSMask();
         if (sMask != null && sMask.getType().isDictionaryBased()) {
             return true;
@@ -193,16 +193,15 @@ public class TransparencyBehaviour {
                 }
             } else if (bm.getType() == COSObjType.COS_ARRAY) {
                 COSArray bmArray = (COSArray) bm.getDirectBase();
-                if (bmArray.size() != 1) {
+                if (bmArray.size().intValue() != 1) {
                     return true;
-                } else {
-                    COSObject bmValue = bmArray.at(0);
-                    if (bmValue == null
-                            || bmValue.getType() != COSObjType.COS_NAME
-                            || ASAtom.NORMAL.equals(bmValue.getName())) {
-                        return true;
-                    }
                 }
+				COSObject bmValue = bmArray.at(0);
+				if (bmValue == null
+				        || bmValue.getType() != COSObjType.COS_NAME
+				        || ASAtom.NORMAL.equals(bmValue.getName())) {
+				    return true;
+				}
             } else {
                 return !bm.empty() && bm.getType() != COSObjType.COS_NULL;
             }
@@ -210,7 +209,7 @@ public class TransparencyBehaviour {
         return false;
     }
 
-    private boolean xObjectContainsTransparency(GFPDXObject xobj) {
+    private static boolean xObjectContainsTransparency(GFPDXObject xobj) {
         if (xobj instanceof GFPDXForm) {
             return ((GFPDXForm) xobj).containsTransparency();
         } else if (xobj instanceof GFPDXImage) {

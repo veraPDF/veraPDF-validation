@@ -1,9 +1,28 @@
 package org.verapdf.gf.model.tools;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.*;
+import org.verapdf.cos.COSArray;
+import org.verapdf.cos.COSDocument;
+import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDAnnotation;
+import org.verapdf.pd.PDAppearanceEntry;
+import org.verapdf.pd.PDAppearanceStream;
+import org.verapdf.pd.PDCatalog;
+import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.PDExtGState;
+import org.verapdf.pd.PDPage;
+import org.verapdf.pd.PDResources;
+import org.verapdf.pd.PDStructElem;
+import org.verapdf.pd.PDStructTreeNode;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.PDType3Font;
 import org.verapdf.pd.images.PDXForm;
@@ -13,19 +32,11 @@ import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.patterns.PDShadingPattern;
 import org.verapdf.pd.patterns.PDTilingPattern;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * @author Maksim Bezrukov
  */
 public class FileSpecificationKeysHelper {
-
-	private static final Logger LOGGER = Logger
-			.getLogger(FileSpecificationKeysHelper.class.getCanonicalName());
+	private final static Logger LOGGER = Logger.getLogger(FileSpecificationKeysHelper.class.getCanonicalName());
 
 	public static void registerFileSpecificationKeys(COSDocument document) {
 		PDDocument pdDocument = document.getPDDocument();
@@ -120,8 +131,7 @@ public class FileSpecificationKeysHelper {
 	}
 
 	private static void registerDictionaryAFKeys(COSObject dictionary) {
-		if (dictionary == null
-				|| !(dictionary.getType().isDictionaryBased())) {
+		if (dictionary == null || !(dictionary.getType().isDictionaryBased())) {
 			return;
 		}
 		COSObject af = dictionary.getKey(ASAtom.AF);

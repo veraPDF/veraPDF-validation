@@ -49,13 +49,12 @@ public final class GFIDGenerator {
 			if (current != null && current.getKey() != null) {
 				String value = GFIDGenerator.generateID(current.getKey());
 				return "outline " + value;
-			} else {
+			}
 			/*
 				TODO : according to specification entries Next, Prev, First and Parent
 				must be indirect objects, but document can fail specification.
 				How we must resolve this situation?
 			 */
-			}
 		}
 		return null;
 	}

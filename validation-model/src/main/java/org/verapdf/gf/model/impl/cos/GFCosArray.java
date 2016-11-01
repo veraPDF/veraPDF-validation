@@ -38,7 +38,7 @@ public class GFCosArray extends GFCosObject implements CosArray {
      */
     public GFCosArray(COSArray array, String type) {
         super(array, type);
-        this.size = array.size();
+        this.size = array.size().intValue();
     }
 
     /**
@@ -66,7 +66,7 @@ public class GFCosArray extends GFCosObject implements CosArray {
      */
     private List<CosObject> getElements() {
         List<CosObject> list = new ArrayList<>(this.getsize().intValue());
-        Iterator iterator = ((COSArray) this.baseObject).iterator();
+        Iterator<?> iterator = ((COSArray) this.baseObject).iterator();
         while (iterator.hasNext()) {
             COSObject object = (COSObject) iterator.next();
             if (object != null && object.get() != null) {

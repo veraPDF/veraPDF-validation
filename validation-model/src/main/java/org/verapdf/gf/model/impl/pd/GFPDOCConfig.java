@@ -42,21 +42,21 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 		if (!order.empty()) {
 			if (order.getType() == COSObjType.COS_ARRAY) {
 				int groupsInOrder = 0;
-				for (int i = 0; i < order.size(); i++) {
+				for (int i = 0; i < order.size().intValue(); i++) {
 					COSObject element = order.at(i);
 					if (element.getType() == COSObjType.COS_ARRAY) {
-						groupsInOrder += element.size();
-						if (!checkCOSArrayInOrder(element)) {
+						groupsInOrder += element.size().intValue();
+						if (!checkCOSArrayInOrder(element).booleanValue()) {
 							return Boolean.FALSE;
 						}
 					} else if (element.getType() == COSObjType.COS_STRING) {
 						groupsInOrder++;
-						if (!checkCOSStringInOrder(element)) {
+						if (!checkCOSStringInOrder(element).booleanValue()) {
 							return Boolean.FALSE;
 						}
 					} else if (element.getType() == COSObjType.COS_DICT) {
 						groupsInOrder++;
-						if (!checkCOSDictionaryInOrder(element)) {
+						if (!checkCOSDictionaryInOrder(element).booleanValue()) {
 							return Boolean.FALSE;
 						}
 					} else {
@@ -79,7 +79,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 		if (!asArray.empty()) {
 			String result = "";
 			if (asArray.getType() == COSObjType.COS_ARRAY) {
-				for (int i = 0; i < asArray.size(); i++) {
+				for (int i = 0; i < asArray.size().intValue(); i++) {
 					COSObject element = asArray.at(i);
 					if (element.getType() == COSObjType.COS_DICT) {
 						String event = element.getStringKey(ASAtom.EVENT);
@@ -91,18 +91,16 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 					}
 				}
 				return result;
-			} else {
-				LOGGER.log(Level.FINE, "Invalid object type of AS entry. Ignoring the entry.");
-				return result;
 			}
-		} else {
-			return null;
+			LOGGER.log(Level.FINE, "Invalid object type of AS entry. Ignoring the entry.");
+			return result;
 		}
+		return null;
 	}
 
 	@Override
 	public Boolean gethasDuplicateName() {
-		return this.duplicateName;
+		return Boolean.valueOf(this.duplicateName);
 	}
 
 	@Override
@@ -111,14 +109,14 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	}
 
 	private Boolean checkCOSArrayInOrder(COSObject array) {
-		for (int i = 0; i < array.size(); i++) {
+		for (int i = 0; i < array.size().intValue(); i++) {
 			COSObject element = array.at(i);
 			if (element.getType() == COSObjType.COS_STRING) {
-				if (!checkCOSStringInOrder(element)) {
+				if (!checkCOSStringInOrder(element).booleanValue()) {
 					return Boolean.FALSE;
 				}
 			} else if (element.getType() == COSObjType.COS_DICT) {
-				if (!checkCOSDictionaryInOrder(element)) {
+				if (!checkCOSDictionaryInOrder(element).booleanValue()) {
 					return Boolean.FALSE;
 				}
 			}
@@ -127,19 +125,11 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	}
 
 	private Boolean checkCOSStringInOrder(COSObject element) {
-		if (!groupNames.contains((element).getString())) {
-			return Boolean.FALSE;
-		} else {
-			return Boolean.TRUE;
-		}
+		return Boolean.valueOf(!groupNames.contains((element).getString()));
 	}
 
 	private Boolean checkCOSDictionaryInOrder(COSObject element) {
-		if (!groupNames.contains(element.getStringKey(ASAtom.NAME))) {
-			return Boolean.FALSE;
-		} else {
-			return Boolean.TRUE;
-		}
+		return Boolean.valueOf(!groupNames.contains(element.getStringKey(ASAtom.NAME)));
 	}
 
 }

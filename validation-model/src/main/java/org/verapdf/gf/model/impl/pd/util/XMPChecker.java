@@ -151,16 +151,16 @@ public final class XMPChecker {
         return Boolean.valueOf(isXMPBasicMatch);
     }
 
-    private static Boolean checkProperty(COSObject info,
+    private static boolean checkProperty(COSObject info,
                                          Map<ASAtom, Object> properties, ASAtom checksRule) {
         final COSObject item = info.getKey(checksRule);
         if (item == null || item.empty() || item.getType() == COSObjType.COS_NULL) {
-            return Boolean.TRUE;
+            return true;
         } else if (item.getType() == COSObjType.COS_STRING) {
             return checkCOSStringProperty(item, properties,
-                    checksRule);
+                    checksRule).booleanValue();
         }
-        return Boolean.FALSE;
+        return false;
     }
 
     private static Boolean checkCOSStringProperty(COSObject string,
@@ -170,7 +170,7 @@ public final class XMPChecker {
             if (value instanceof String) {
                 return Boolean.valueOf(value.equals(string.getString()));
             } else if (value instanceof List) {
-                List list = (List) value;
+                List<?> list = (List<?>) value;
                 return Boolean.valueOf(list.size() == 1 && list.get(0).equals(string.getString()));
             } else if (value instanceof Calendar) {
                 final Calendar valueDate = TypeConverter.parseDate(string.getString());

@@ -20,49 +20,49 @@ import java.util.logging.Logger;
  */
 public class GFPDSigRef extends GFPDObject implements PDSigRef {
 
-    private static final Logger LOGGER = Logger.getLogger(GFPDSigRef.class.getCanonicalName());
+	private static final Logger LOGGER = Logger.getLogger(GFPDSigRef.class.getCanonicalName());
 
-    /** Type name for {@code GFPDSigRef} */
-    public static final String SIGNATURE_REFERENCE_TYPE = "PDSigRef";
+	/** Type name for {@code GFPDSigRef} */
+	public static final String SIGNATURE_REFERENCE_TYPE = "PDSigRef";
 
-    /**
-     * @param dictionary is signature reference dictionary.
-     */
-    public GFPDSigRef(COSDictionary dictionary) {
-        super(new COSObject(dictionary), SIGNATURE_REFERENCE_TYPE);
-    }
+	/**
+	 * @param dictionary
+	 *            is signature reference dictionary.
+	 */
+	public GFPDSigRef(COSDictionary dictionary) {
+		super(new COSObject(dictionary), SIGNATURE_REFERENCE_TYPE);
+	}
 
-    /**
-     * @return true if any of the entries /DigestLocation, /DigestMethod, or
-     * /DigestValue is present.
-     */
-    @Override
-    public Boolean getcontainsDigestEntries() {
-        COSDictionary dictionary = (COSDictionary) this.simpleCOSObject.get();
-        if(dictionary != null) {
-            return dictionary.knownKey(ASAtom.DIGEST_LOCATION) ||
-                    dictionary.knownKey(ASAtom.DIGEST_METHOD) ||
-                    dictionary.knownKey(ASAtom.DIGEST_VALUE);
-        } else {
-            return Boolean.valueOf(false);
-        }
-    }
+	/**
+	 * @return true if any of the entries /DigestLocation, /DigestMethod, or
+	 *         /DigestValue is present.
+	 */
+	@Override
+	public Boolean getcontainsDigestEntries() {
+		COSDictionary dictionary = (COSDictionary) this.simpleCOSObject.get();
+		if (dictionary != null) {
+			return Boolean.valueOf(dictionary.knownKey(ASAtom.DIGEST_LOCATION).booleanValue()
+					|| dictionary.knownKey(ASAtom.DIGEST_METHOD).booleanValue()
+					|| dictionary.knownKey(ASAtom.DIGEST_VALUE).booleanValue());
+		}
+		return Boolean.FALSE;
+	}
 
-    /**
-     * @return true if the document permissions dictionary contains DocMDP entry.
-     */
-    @Override
-    public Boolean getpermsContainDocMDP() {
-        try {
-            PDCatalog catalog = StaticContainers.getDocument().getCatalog();
-            COSDictionary perms =
-                    (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
-            if(perms != null) {
-                return perms.knownKey(GFPDPerms.DOC_MDP);
-            }
-        } catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Can't get catalog from PDDocument");
-        }
-        return Boolean.valueOf(false);
-    }
+	/**
+	 * @return true if the document permissions dictionary contains DocMDP
+	 *         entry.
+	 */
+	@Override
+	public Boolean getpermsContainDocMDP() {
+		try {
+			PDCatalog catalog = StaticContainers.getDocument().getCatalog();
+			COSDictionary perms = (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
+			if (perms != null) {
+				return perms.knownKey(GFPDPerms.DOC_MDP);
+			}
+		} catch (IOException e) {
+			LOGGER.log(Level.WARNING, "Can't get catalog from PDDocument", e);
+		}
+		return Boolean.valueOf(false);
+	}
 }

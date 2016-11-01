@@ -111,7 +111,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return getDifference(((PDAnnotation) simplePDObject).getRect(), Y_AXIS);
 	}
 
-	private Double getDifference(double[] array, int shift) {
+	private static Double getDifference(double[] array, int shift) {
 		if (array != null && array.length > shift + 2) {
 			return Double.valueOf(array[shift + 2] - array[shift]);
 		}
@@ -190,7 +190,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private List<CosNumber> getIC() {
 		COSObject ic = ((PDAnnotation) simplePDObject).getCOSIC();
 		if (ic != null) {
-			return this.getNumbersFromArray(ic);
+			return GFPDAnnot.getNumbersFromArray(ic);
 		}
 		return Collections.emptyList();
 	}
@@ -198,13 +198,13 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private List<CosNumber> getC() {
 		COSObject c = ((PDAnnotation) simplePDObject).getCOSC();
 		if (c != null) {
-			return this.getNumbersFromArray(c);
+			return GFPDAnnot.getNumbersFromArray(c);
 		}
 		return Collections.emptyList();
 	}
 
-	private List<CosNumber> getNumbersFromArray(COSObject array) {
-		if (array.size() > 0) {
+	private static List<CosNumber> getNumbersFromArray(COSObject array) {
+		if (array.size().intValue() > 0) {
 			List<CosNumber> color = new ArrayList<>();
 			for (COSObject colorValue : (COSArray) array.get()) {
 				if (colorValue.getType().isNumber()) {

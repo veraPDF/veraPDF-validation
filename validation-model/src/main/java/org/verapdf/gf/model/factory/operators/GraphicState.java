@@ -92,11 +92,11 @@ public class GraphicState implements Cloneable {
 			//TODO : copy font settings
 			Boolean oFS = extGState.getStrokingOverprintControl();
 			if (oFS != null) {
-				this.overprintingFlagStroke = oFS;
+				this.overprintingFlagStroke = oFS.booleanValue();
 			}
 			Boolean oFNS = extGState.getNonStrokingOverprintControl();
 			if (oFNS != null) {
-				this.overprintingFlagNonStroke = oFNS;
+				this.overprintingFlagNonStroke = oFNS.booleanValue();
 			}
 			Long opm = extGState.getOverprintMode();
 			if (opm != null) {

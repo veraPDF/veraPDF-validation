@@ -77,9 +77,9 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
      * Get the direct contents of the indirect object
      */
     private static boolean getspacingCompliesPDFA(COSObject object) {
-        return object.isEndOfObjectComplyPDFA()
-                && object.isHeaderFormatComplyPDFA()
-                && object.isHeaderOfObjectComplyPDFA();
+        return object.isEndOfObjectComplyPDFA().booleanValue()
+                && object.isHeaderFormatComplyPDFA().booleanValue()
+                && object.isHeaderOfObjectComplyPDFA().booleanValue();
     }
 
 }

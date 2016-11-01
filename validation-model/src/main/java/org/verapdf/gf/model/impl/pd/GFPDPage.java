@@ -63,10 +63,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 */
 	private static final String ART_BOX = "ArtBox";
 	/**
-	 * Link name for page presentation steps
-	 */
-	private static final String PRESENTATION_STEPS = "PresSteps";
-	/**
 	 * Link name for page group colorspace
 	 */
 	private static final String GROUP_CS = "groupCS";
@@ -138,7 +134,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			List<PDAnnot> res = new ArrayList<>(annots.size());
 			for (PDAnnotation annot : annots) {
 				org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-				PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
+				PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
 				GFPDAnnot annotation = new GFPDAnnot(annot, resourcesHandler);
 				this.containsTransparency |= annotation.isContainsTransparency();
 				res.add(annotation);
@@ -175,15 +171,15 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	}
 
 	private List<PDContentStream> parseContentStream() {
-		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+		List<PDContentStream> pdContentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
 		if (page.getContent() != null) {
-			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
-			GFPDContentStream contentStream = new GFPDContentStream(page.getContent(), resourcesHandler);
-			this.containsTransparency |= contentStream.isContainsTransparency();
-			contentStreams.add(contentStream);
+			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
+			GFPDContentStream pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler);
+			this.containsTransparency |= pdContentStream.isContainsTransparency();
+			pdContentStreams.add(pdContentStream);
 		}
-		return contentStreams;
+		return pdContentStreams;
 	}
 
 	private List<CosBBox> getMediaBox() {
@@ -206,7 +202,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		return getBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSArtBox());
 	}
 
-	private List<CosBBox> getBBox(COSArray array) {
+	private static List<CosBBox> getBBox(COSArray array) {
 		if (array != null) {
 			List<CosBBox> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			res.add(new GFCosBBox(array));
@@ -249,6 +245,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		if (this.annotations == null) {
 			this.annotations = parseAnnotataions();
 		}
-		return this.containsTransparency;
+		return Boolean.valueOf(this.containsTransparency);
 	}
 }

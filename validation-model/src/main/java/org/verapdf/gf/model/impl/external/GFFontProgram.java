@@ -16,8 +16,8 @@ public class GFFontProgram extends GFExternal implements FontProgram {
         super(type);
     }
 
-    private org.verapdf.pd.font.FontProgram fontProgram;
     private String id;
+    private org.verapdf.pd.font.FontProgram fontProgram;
 
     public GFFontProgram(org.verapdf.pd.font.FontProgram fontProgram,
                          GFPDFont font) {

@@ -52,7 +52,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                     this.fontProgramParsed = true;
                     this.pdFont.setSuccessfullyParsed(true);
                 } catch (IOException e) {
-                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + font.getName());
+                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + font.getName(), e);
                     this.fontProgramParsed = false;
                     this.pdFont.setSuccessfullyParsed(false);
                 }
@@ -161,7 +161,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         return null;
     }
 
-    private byte[] getCIDsFromCIDSet(ASInputStream cidSet, long length) throws IOException {
+    private static byte[] getCIDsFromCIDSet(ASInputStream cidSet, long length) throws IOException {
         byte[] cidSetBytes = new byte[(int) length];
         if (cidSet.read(cidSetBytes) != length) {
             LOGGER.log(Level.FINE, "Did not read necessary number of cid set bytes");
@@ -169,7 +169,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         return cidSetBytes;
     }
 
-    private BitSet toBitSetBigEndian(byte[] source) {
+    private static BitSet toBitSetBigEndian(byte[] source) {
         BitSet bitSet = new BitSet(source.length * 8);
         int i = 0;
         for (int j = 0; j < source.length; j++) {

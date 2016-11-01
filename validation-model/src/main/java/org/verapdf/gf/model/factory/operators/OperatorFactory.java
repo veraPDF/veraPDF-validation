@@ -1,15 +1,21 @@
 package org.verapdf.gf.model.factory.operators;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.gf.model.tools.TransparencyBehaviour;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.Operator;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Class for converting raw operators to the veraPDF-library operators
@@ -48,12 +54,8 @@ public final class OperatorFactory {
 		PAINT_OPERATORS_WITHOUT_TEXT = Collections.unmodifiableMap(aMap);
 	}
 
-	private static final Set<String> PAINT_OPERATORS_TEXT = new HashSet<>(Arrays.asList(new String[]{
-			Operators.TJ_SHOW,
-			Operators.QUOTE,
-			Operators.DOUBLE_QUOTE,
-			Operators.TJ_SHOW_POS
-	}));
+	private static final Set<String> PAINT_OPERATORS_TEXT = new HashSet<>(Arrays.asList(
+			new String[] { Operators.TJ_SHOW, Operators.QUOTE, Operators.DOUBLE_QUOTE, Operators.TJ_SHOW_POS }));
 
 	private static final Map<RenderingMode, TransparencyBehaviour> RENDERING_MODE;
 
@@ -72,13 +74,15 @@ public final class OperatorFactory {
 	}
 
 	/**
-	 * @return true if during the last call of parsing method there was any transparency
+	 * @return true if during the last call of parsing method there was any
+	 *         transparency
 	 */
 	public boolean isLastParsedContainsTransparency() {
 		return isLastParsedContainsTransparency;
 	}
 
-	public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens, PDResourcesHandler resourcesHandler) {
+	public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens,
+			PDResourcesHandler resourcesHandler) {
 		List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
 		List<COSBase> arguments = new ArrayList<>();
 		this.isLastParsedContainsTransparency = false;
@@ -88,26 +92,24 @@ public final class OperatorFactory {
 			if (rawToken instanceof COSBase) {
 				arguments.add((COSBase) rawToken);
 			} else if (rawToken instanceof Operator) {
-				try {
-					parser.parseOperator(result, ((Operator) rawToken), resourcesHandler, arguments);
-					String parsedOperatorType = ((Operator) rawToken).getOperator();
-					TransparencyGraphicsState graphicState = parser.getTransparencyGraphicState();
-					if (PAINT_OPERATORS_WITHOUT_TEXT.containsKey(parsedOperatorType)) {
-						isLastParsedContainsTransparency |= PAINT_OPERATORS_WITHOUT_TEXT.get(parsedOperatorType).containsTransparency(graphicState);
-					} else {
-						RenderingMode renderingMode = parser.getGSRenderingMode();
-						if (PAINT_OPERATORS_TEXT.contains(parsedOperatorType) && RENDERING_MODE.containsKey(renderingMode)) {
-							isLastParsedContainsTransparency |= RENDERING_MODE.get(renderingMode).containsTransparency(graphicState);
-						}
+				parser.parseOperator(result, ((Operator) rawToken), resourcesHandler, arguments);
+				String parsedOperatorType = ((Operator) rawToken).getOperator();
+				TransparencyGraphicsState graphicState = parser.getTransparencyGraphicState();
+				if (PAINT_OPERATORS_WITHOUT_TEXT.containsKey(parsedOperatorType)) {
+					isLastParsedContainsTransparency |= PAINT_OPERATORS_WITHOUT_TEXT.get(parsedOperatorType)
+							.containsTransparency(graphicState);
+				} else {
+					RenderingMode renderingMode = parser.getGSRenderingMode();
+					if (PAINT_OPERATORS_TEXT.contains(parsedOperatorType)
+							&& RENDERING_MODE.containsKey(renderingMode)) {
+						isLastParsedContainsTransparency |= RENDERING_MODE.get(renderingMode)
+								.containsTransparency(graphicState);
 					}
-				} catch (IOException e) {
-					LOGGER.log(Level.WARNING, e.getMessage(), e);
 				}
 
 				arguments = new ArrayList<>();
 			} else {
-				LOGGER.log(Level.FINE, MSG_UNEXPECTED_OBJECT_TYPE
-						+ rawToken.getClass().getName());
+				LOGGER.log(Level.FINE, MSG_UNEXPECTED_OBJECT_TYPE + rawToken.getClass().getName());
 			}
 		}
 		return result;

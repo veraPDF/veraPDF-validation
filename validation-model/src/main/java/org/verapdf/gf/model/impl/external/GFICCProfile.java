@@ -56,6 +56,6 @@ public class GFICCProfile extends GFExternal implements org.verapdf.model.extern
 	 */
 	@Override
 	public Boolean getisValid() {
-		return this.iccProfile.isLooksValid();
+		return Boolean.valueOf(this.iccProfile.isLooksValid());
 	}
 }

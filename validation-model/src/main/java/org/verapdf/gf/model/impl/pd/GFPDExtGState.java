@@ -60,7 +60,7 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
         return ((org.verapdf.pd.PDExtGState) simplePDObject).getCA();
     }
 
-    private String getStringProperty(COSObject property) {
+    private static String getStringProperty(COSObject property) {
         if (property == null
                 || property.empty()
                 || property.getType() == COSObjType.COS_NULL) {
@@ -69,9 +69,8 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
 
         if (property.getType() == COSObjType.COS_NAME) {
             return property.getName().getValue();
-        } else {
-            return property.toString();
         }
+		return property.toString();
     }
 
     @Override

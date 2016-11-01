@@ -43,7 +43,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
      */
     protected GFCosDict(COSDictionary dictionary, final String type) {
         super(dictionary, type);
-        this.size = dictionary.size();
+        this.size = dictionary.size().intValue();
     }
 
     /**
@@ -72,7 +72,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
      * Get all keys of the dictionary
      */
     private List<CosName> getKeys() {
-        List<CosName> list = new ArrayList<>(this.baseObject.size());
+        List<CosName> list = new ArrayList<>(this.baseObject.size().intValue());
         for (ASAtom key : this.baseObject.getKeySet()) {
             if (key != null) {
                 COSBase name = COSName.fromValue(key);
@@ -86,7 +86,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
      * Get all values of the dictionary
      */
     private List<CosObject> getValues() {
-        List<CosObject> list = new ArrayList<>(this.baseObject.size());
+        List<CosObject> list = new ArrayList<>(this.baseObject.size().intValue());
         for (COSObject value : this.baseObject.getValues()) {
             if (value != null) {
                 list.add(getFromValue(value.get()));

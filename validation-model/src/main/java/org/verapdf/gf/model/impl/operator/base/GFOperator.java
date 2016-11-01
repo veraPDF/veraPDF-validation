@@ -1,18 +1,20 @@
 package org.verapdf.gf.model.impl.operator.base;
 
-import org.verapdf.cos.*;
-import org.verapdf.gf.model.impl.cos.GFCosInteger;
-import org.verapdf.gf.model.impl.cos.GFCosNumber;
-import org.verapdf.gf.model.impl.cos.GFCosReal;
-import org.verapdf.model.GenericModelObject;
-import org.verapdf.model.coslayer.CosInteger;
-import org.verapdf.model.coslayer.CosNumber;
-import org.verapdf.model.coslayer.CosReal;
-import org.verapdf.model.operator.Operator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.verapdf.cos.COSArray;
+import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSInteger;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.cos.GFCosInteger;
+import org.verapdf.gf.model.impl.cos.GFCosNumber;
+import org.verapdf.model.GenericModelObject;
+import org.verapdf.model.coslayer.CosInteger;
+import org.verapdf.model.coslayer.CosNumber;
+import org.verapdf.model.operator.Operator;
 
 /**
  * @author Timur Kamalov
@@ -62,14 +64,6 @@ public class GFOperator extends GenericModelObject implements Operator {
 			}
 		}
 		return Collections.unmodifiableList(list);
-	}
-
-	private static void addArrayElementsAsReals(List<CosReal> list, COSArray base) {
-		for (COSObject arg : base) {
-			if (arg.get().getType() == COSObjType.COS_REAL) {
-				list.add(new GFCosReal((COSReal) arg.get()));
-			}
-		}
 	}
 
 	private static void addArrayElementsAsNumbers(List<CosNumber> list, COSArray base) {
