@@ -11,6 +11,7 @@ import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.images.PDXObject;
+import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.patterns.PDShading;
 
 /**
@@ -100,15 +101,15 @@ public class PDResourcesHandler {
 		return colorSpace;
 	}
 
-	public PDColorSpace getPattern(COSName name) {
+	public PDPattern getPattern(COSName name) {
 		if (name != null) {
 			return getPattern(name.getName());
 		}
 		return null;
 	}
 
-	public PDColorSpace getPattern(ASAtom name) {
-		PDColorSpace pattern;
+	public PDPattern getPattern(ASAtom name) {
+		PDPattern pattern;
 		if (this.objectResources != null) {
 			pattern = this.objectResources.getPattern(name);
 			if (pattern == null) {
