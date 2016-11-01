@@ -18,7 +18,7 @@ import org.verapdf.gf.model.impl.cos.GFCosDocument;
 import org.verapdf.metadata.fixer.entity.PDFDocument;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDMetadata;
-import org.verapdf.pdfa.PDFParser;
+import org.verapdf.pdfa.PDFAParser;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import com.adobe.xmp.XMPException;
@@ -27,7 +27,7 @@ import com.adobe.xmp.impl.VeraPDFMeta;
 /**
  * @author Timur Kamalov
  */
-public class GFModelParser implements PDFParser, Closeable {
+public class GFModelParser implements PDFAParser, Closeable {
 
 	private static final Logger LOGGER = Logger.getLogger(GFModelParser.class.getCanonicalName());
 
