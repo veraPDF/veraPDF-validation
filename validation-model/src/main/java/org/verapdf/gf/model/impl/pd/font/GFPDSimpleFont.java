@@ -55,7 +55,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
         if (widths.empty() || widths.getType() != COSObjType.COS_ARRAY) {
             return null;
         }
-        return (widths.getDirectBase()).size().longValue();
+        return Long.valueOf((widths.getDirectBase()).size().longValue());
     }
 
     /**
@@ -78,7 +78,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
         if (encoding.getType() == COSObjType.COS_NAME) {
             return encoding.getString();
         }
-        if (encoding.knownKey(ASAtom.DIFFERENCES)) {
+        if (encoding.knownKey(ASAtom.DIFFERENCES).booleanValue()) {
             return CUSTOM_ENCODING;
         }
         COSObject baseEncoding = encoding.getKey(ASAtom.BASE_ENCODING);

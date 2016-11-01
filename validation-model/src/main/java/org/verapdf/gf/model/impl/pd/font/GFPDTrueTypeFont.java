@@ -37,7 +37,7 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
                     this.fontProgramParsed = true;
                     this.pdFont.setSuccessfullyParsed(true);
                 } catch (IOException e) {
-                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + font.getName());
+                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + font.getName(), e);
                     this.fontProgramParsed = false;
                     this.pdFont.setSuccessfullyParsed(false);
                 }

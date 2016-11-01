@@ -38,9 +38,9 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
 
     public GFPDSignature(org.verapdf.pd.PDSignature pdSignature, COSObject signatureReference) {
         super(pdSignature, SIGNATURE_TYPE);
-        if(signatureReference.isIndirect()) {
+        if(signatureReference.isIndirect().booleanValue()) {
             COSKey key = signatureReference.getObjectKey();
-            this.signatureOffset = StaticContainers.getDocument().getDocument().getOffset(key);
+            this.signatureOffset = StaticContainers.getDocument().getDocument().getOffset(key).longValue();
         }
         contents = pdSignature.getContents();
     }
@@ -60,7 +60,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     /**
      * @return DER-encoded PKCS#7 data object representing PDF Signature.
      */
-    private List<PKCSDataObject> getContents() {
+    private static List<PKCSDataObject> getContents() {
         if (contents != null) {
             List<PKCSDataObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             list.add(new GFPKCSDataObject(contents));
@@ -75,7 +75,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     private List<PDSigRef> getSigRefs() {
         COSArray reference = ((org.verapdf.pd.PDSignature)
                 this.simplePDObject).getReference();
-        if (reference == null || reference.size() == 0) {
+        if (reference == null || reference.size().intValue() == 0) {
             return Collections.emptyList();
         }
         List<PDSigRef> list = new ArrayList<>();
@@ -103,13 +103,13 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
             pdfSource.seek(offest);
             for (int i = 0; i < 4; ++i) {
                 if (byteRange[i] != actualByteRange[i]) {
-                    return false;
+                    return Boolean.FALSE;
                 }
             }
-            return true;
+            return Boolean.TRUE;
         } catch (IOException ex) {
             LOGGER.log(Level.FINE, "Can't create parser to process digital signature", ex);
-            return false;
+            return Boolean.FALSE;
         }
     }
 }

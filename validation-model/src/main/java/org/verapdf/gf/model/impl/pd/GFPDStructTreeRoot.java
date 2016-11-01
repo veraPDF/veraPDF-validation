@@ -67,8 +67,7 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 
 		if (!this.children.isEmpty()) {
 			return this.children.get(0).getstandardType();
-		} else {
-			return null;
 		}
+		return null;
 	}
 }

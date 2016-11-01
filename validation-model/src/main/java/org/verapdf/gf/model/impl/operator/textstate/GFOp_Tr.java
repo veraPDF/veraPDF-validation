@@ -23,7 +23,7 @@ public class GFOp_Tr extends GFOpTextState implements Op_Tr {
         if (!this.arguments.isEmpty()) {
             COSBase renderingMode = this.arguments.get(0);
             if (renderingMode.getType() == COSObjType.COS_INTEGER) {
-                return Long.valueOf((renderingMode).getInteger());
+                return renderingMode.getInteger();
             }
         }
         return null;

@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class GFCosFileSpecification extends GFCosDict implements CosFileSpecification {
 
-    /** Type name for GFCosFileSpecification */
-    public static final String COS_FILE_SPECIFICATION_TYPE = "CosFileSpecification";
+	/** Type name for GFCosFileSpecification */
+	public static final String COS_FILE_SPECIFICATION_TYPE = "CosFileSpecification";
 
 	public static final String EF = "EF";
 
@@ -27,16 +27,18 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	private final String uf;
 	private final String afrelationship;
 
-    /**
-     * Default constructor
-     * @param dictionary greenfield COSDictionary
-     */
-    public GFCosFileSpecification(COSDictionary dictionary) {
-        super(dictionary, COS_FILE_SPECIFICATION_TYPE);
+	/**
+	 * Default constructor
+	 * 
+	 * @param dictionary
+	 *            greenfield COSDictionary
+	 */
+	public GFCosFileSpecification(COSDictionary dictionary) {
+		super(dictionary, COS_FILE_SPECIFICATION_TYPE);
 		this.f = this.baseObject.getStringKey(ASAtom.F);
 		this.uf = this.baseObject.getStringKey(ASAtom.UF);
 		this.afrelationship = dictionary.getStringKey(ASAtom.AF_RELATIONSHIP);
-    }
+	}
 
 	@Override
 	public String getF() {
@@ -55,7 +57,8 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 
 	@Override
 	public Boolean getisAssociatedFile() {
-		return this.baseObject != null && StaticContainers.fileSpecificationKeys.contains(this.baseObject.getKey());
+		return Boolean.valueOf(
+				this.baseObject != null && StaticContainers.fileSpecificationKeys.contains(this.baseObject.getKey()));
 	}
 
 	@Override

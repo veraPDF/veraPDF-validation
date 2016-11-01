@@ -32,7 +32,7 @@ public class GFPDOutputIntent extends GFPDObject implements PDOutputIntent {
     @Override
     public String getdestOutputProfileIndirect() {
         COSObject obj = simplePDObject.getKey(ASAtom.DEST_OUTPUT_PROFILE);
-        if (!obj.empty() && obj.isIndirect()) {
+        if (!obj.empty() && obj.isIndirect().booleanValue()) {
             COSKey key = obj.getKey();
             return String.valueOf(key.getNumber() + " " + key.getGeneration());
         }

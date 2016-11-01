@@ -53,9 +53,8 @@ public class PDResourcesHandler {
 	public PDFont getFont(COSName name) {
 		if (name != null) {
 			return getFont(name.getName());
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	public PDFont getFont(ASAtom name) {
@@ -76,9 +75,8 @@ public class PDResourcesHandler {
 	public PDColorSpace getColorSpace(COSName name) {
 		if (name != null) {
 			return getColorSpace(name.getName());
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	public PDColorSpace getColorSpace(ASAtom name) {
@@ -105,9 +103,8 @@ public class PDResourcesHandler {
 	public PDColorSpace getPattern(COSName name) {
 		if (name != null) {
 			return getPattern(name.getName());
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	public PDColorSpace getPattern(ASAtom name) {
@@ -128,9 +125,8 @@ public class PDResourcesHandler {
 	public PDShading getShading(COSName name) {
 		if (name != null) {
 			return getShading(name.getName());
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	public PDShading getShading(ASAtom name) {
@@ -151,9 +147,8 @@ public class PDResourcesHandler {
 	public PDXObject getXObject(COSName name) {
 		if (name != null) {
 			return getXObject(name.getName());
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	public PDXObject getXObject(ASAtom name) {
@@ -174,9 +169,8 @@ public class PDResourcesHandler {
 	public PDExtGState getExtGState(COSName name) {
 		if (name != null) {
 			return getExtGState(name.getName());
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	public PDExtGState getExtGState(ASAtom name) {
@@ -224,7 +218,7 @@ public class PDResourcesHandler {
 	}
 
 	private boolean isDefaultColorSpaceUsed(ASAtom name) {
-		if (this.isDeviceDependent(name)) {
+		if (PDResourcesHandler.isDeviceDependent(name)) {
 			if (objectResources != null) {
 				ASAtom value = org.verapdf.factory.colors.ColorSpaceFactory.getDefaultValue(objectResources, name);
 				if (value != null) {
@@ -240,7 +234,7 @@ public class PDResourcesHandler {
 		return false;
 	}
 
-	private boolean isDeviceDependent(ASAtom name) {
+	private static boolean isDeviceDependent(ASAtom name) {
 		return ASAtom.DEVICERGB.equals(name) ||
 				ASAtom.DEVICEGRAY.equals(name) || ASAtom.DEVICECMYK.equals(name);
 	}

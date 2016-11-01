@@ -56,7 +56,7 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 	private List<CosIndirect> getCatalog() {
 		List<CosIndirect> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		COSObject catalog = this.baseObject.getKey(ASAtom.ROOT);
-		if (catalog.isIndirect()) {
+		if (catalog.isIndirect().booleanValue()) {
 			result.add(new GFCosIndirect((COSIndirect) catalog.get()));
 		} else {
 			LOGGER.log(Level.WARNING, "Catalog shall be an indirect reference");
