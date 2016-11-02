@@ -53,7 +53,7 @@ class VeraFoundry extends AbstractFoundry {
 	 * @see org.verapdf.pdfa.VeraPDFFoundry#newMetadataFixer(org.verapdf.metadata.fixer.utils.FixerConfig)
 	 */
 	@Override
-	public MetadataFixer newMetadataFixer() {
+	public MetadataFixer createMetadataFixer() {
 		// TODO: implement me with metadata fixer
 		return null;
 	}
