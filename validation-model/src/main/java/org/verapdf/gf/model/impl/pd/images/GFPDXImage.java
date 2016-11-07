@@ -31,7 +31,6 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	public static final String JPX_STREAM = "jpxStream";
 
 	private List<JPEG2000> jpeg2000List = null;
-	private PDColorSpace colorSpaceFromImage = null;
 
 	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, PDResourcesHandler resourcesHandler) {
 		this(simplePDObject, resourcesHandler, X_IMAGE_TYPE);

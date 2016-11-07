@@ -46,8 +46,8 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		this.fFilter = parseFilters(stream.getKey(ASAtom.F_FILTER).get());
 		String fDecodeParams = stream.getStringKey(ASAtom.F_DECODE_PARMS);
 		this.fDecodeParams = fDecodeParams == null || fDecodeParams.isEmpty() ? null : fDecodeParams;
-		this.streamKeywordCRLFCompliant = stream.isStreamKeywordCRLFCompliant();
-		this.endstreamKeywordEOLCompliant = stream.isEndstreamKeywordCRLFCompliant();
+		this.streamKeywordCRLFCompliant = stream.isStreamKeywordCRLFCompliant().booleanValue();
+		this.endstreamKeywordEOLCompliant = stream.isEndstreamKeywordCRLFCompliant().booleanValue();
 		this.isLengthCorrect = this.length != null && this.length.equals(stream.getRealStreamSize());
 	}
 
@@ -90,12 +90,12 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	 */
 	@Override
 	public Boolean getstreamKeywordCRLFCompliant() {
-		return this.streamKeywordCRLFCompliant;
+		return Boolean.valueOf(this.streamKeywordCRLFCompliant);
 	}
 
 	@Override
 	public Boolean getendstreamKeywordEOLCompliant() {
-		return this.endstreamKeywordEOLCompliant;
+		return Boolean.valueOf(this.endstreamKeywordEOLCompliant);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	 */
 	@Override
 	public Boolean getisLengthCorrect() {
-		return this.isLengthCorrect;
+		return Boolean.valueOf(this.isLengthCorrect);
 	}
 
 	@Override
@@ -120,40 +120,39 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		COSFilters filters = ((COSStream) this.baseObject).getFilters();
 		if (filters == null || filters.getFilters().isEmpty()) {
 			return Collections.emptyList();
-		} else {
-			List<CosFilter> result = new ArrayList<>();
-
-			COSObject decodeParmsObject = this.baseObject.getKey(ASAtom.DECODE_PARMS);
-			COSBase decodeParms = null;
-			if (decodeParmsObject != null) {
-				decodeParms = decodeParmsObject.get();
-			}
-
-			if (filters.getFilters().size() == 1) {
-				if (decodeParms instanceof COSArray) {
-					decodeParms = decodeParms.at(0).get();
-				}
-				ASAtom filter = filters.getFilters().get(0);
-				COSName filterName = (COSName) COSName.fromValue(filter);
-				result.add(createFilter(filterName, decodeParms));
-			} else if (filters.size() > 1) {
-				List<ASAtom> filtersList = filters.getFilters();
-				int i = 0;
-				for (ASAtom filter : filtersList) {
-					if (decodeParms == null) {
-						result.add(createFilter((COSName) COSName.fromValue(filter), null));
-						//TODO : check this for pdfbox implementation
-					} else if (decodeParms instanceof COSArray && decodeParms.size() > i) {
-						decodeParms = decodeParms.at(i).get();
-						result.add(createFilter((COSName) COSName.fromValue(filter), decodeParms));
-					} else {
-						LOGGER.log(Level.WARNING, "Invalid decodeParms type. Ignoring decodeParms.");
-					}
-					i++;
-				}
-			}
-			return result;
 		}
+		List<CosFilter> result = new ArrayList<>();
+
+		COSObject decodeParmsObject = this.baseObject.getKey(ASAtom.DECODE_PARMS);
+		COSBase decodeParms = null;
+		if (decodeParmsObject != null) {
+			decodeParms = decodeParmsObject.get();
+		}
+
+		if (filters.getFilters().size() == 1) {
+			if (decodeParms instanceof COSArray) {
+				decodeParms = decodeParms.at(0).get();
+			}
+			ASAtom filter = filters.getFilters().get(0);
+			COSName filterName = (COSName) COSName.fromValue(filter);
+			result.add(createFilter(filterName, decodeParms));
+		} else if (filters.size() > 1) {
+			List<ASAtom> filtersList = filters.getFilters();
+			int i = 0;
+			for (ASAtom filter : filtersList) {
+				if (decodeParms == null) {
+					result.add(createFilter((COSName) COSName.fromValue(filter), null));
+					//TODO : check this for pdfbox implementation
+				} else if (decodeParms instanceof COSArray && decodeParms.size().intValue() > i) {
+					decodeParms = decodeParms.at(i).get();
+					result.add(createFilter((COSName) COSName.fromValue(filter), decodeParms));
+				} else {
+					LOGGER.log(Level.WARNING, "Invalid decodeParms type. Ignoring decodeParms.");
+				}
+				i++;
+			}
+		}
+		return result;
 	}
 
 	private static CosFilter createFilter(final COSName filter, final COSBase decodeParms) {
@@ -180,7 +179,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		} else if (base instanceof COSName) {
 			return base.getString();
 		} else if (base instanceof COSArray) {
-			Iterator iterator = ((COSArray) base).iterator();
+			Iterator<?> iterator = ((COSArray) base).iterator();
 			while (iterator.hasNext()) {
 				COSBase filter = (COSBase) iterator.next();
 				if (filter instanceof COSName) {

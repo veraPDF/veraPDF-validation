@@ -38,7 +38,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
                     this.fontProgramParsed = true;
                     this.pdFont.setSuccessfullyParsed(true);
                 } catch (IOException e) {
-                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + pdFont.getName());
+                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + pdFont.getName(), e);
                     this.fontProgramParsed = false;
                     this.pdFont.setSuccessfullyParsed(false);
                 }

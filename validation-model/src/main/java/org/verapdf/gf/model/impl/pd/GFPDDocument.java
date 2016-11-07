@@ -91,7 +91,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         try {
             catalog = document.getCatalog();
         } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Can't obtain document catalog");
+            LOGGER.log(Level.FINE, "Can't obtain document catalog", e);
         }
         this.catalog = catalog;
     }
@@ -123,7 +123,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
             case ACTIONS:
                 return this.getActions();
             case PAGES:
-                return this.getPages();
+                return GFPDDocument.getPages();
             case METADATA:
                 return this.getMetadata();
             case OUTPUT_INTENTS:
@@ -185,7 +185,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    private List<PDPage> getPages() {
+    private static List<PDPage> getPages() {
         try {
             List<PDPage> result = new ArrayList<>();
             List<org.verapdf.pd.PDPage> rawPages = StaticContainers.getDocument().getPages();
@@ -194,7 +194,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
             }
             return result;
         } catch (Exception e) {
-            LOGGER.log(Level.FINE, "Error while processing pages.");
+            LOGGER.log(Level.FINE, "Error while processing pages.", e);
         }
         return Collections.emptyList();
     }

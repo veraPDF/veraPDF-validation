@@ -64,14 +64,13 @@ public class GFCosBBox extends GFCosArray implements CosBBox {
 
     private Double getRequiredValue(final int position) {
         COSArray array = (COSArray) this.baseObject;
-        if (array.size() > position) {
+        if (array.size().intValue() > position) {
             COSBase base = array.at(position).get();
             if (base instanceof COSNumber) {
                 return base.getReal();
-            } else {
-                LOGGER.log(Level.WARNING, "In bbox expected number but got "
-                        + base.getClass().getSimpleName());
             }
+			LOGGER.log(Level.WARNING, "In bbox expected number but got "
+			        + base.getClass().getSimpleName());
         } else {
             LOGGER.log(Level.WARNING, "Expected size of bbox array greater than"
                     + position + "but got " + array.size());

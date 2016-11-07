@@ -17,7 +17,7 @@ public class GFCosBool extends GFCosObject implements CosBool {
 
     private GFCosBool(COSBoolean cosBoolean) {
         super(cosBoolean, COS_BOOLEAN_TYPE);
-        this.value = cosBoolean.getBoolean();
+        this.value = cosBoolean.getBoolean().booleanValue();
     }
 
     /**
@@ -25,7 +25,7 @@ public class GFCosBool extends GFCosObject implements CosBool {
      */
     @Override
     public Boolean getvalue() {
-        return this.value;
+        return Boolean.valueOf(this.value);
     }
 
     /**
@@ -34,7 +34,7 @@ public class GFCosBool extends GFCosObject implements CosBool {
      * @return instance of CosBool
      */
     public static CosBool valueOf(COSBoolean bool) {
-        return bool.getBoolean() ? TRUE : FALSE;
+        return bool.getBoolean().booleanValue() ? TRUE : FALSE;
     }
 
 }

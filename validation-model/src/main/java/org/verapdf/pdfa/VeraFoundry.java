@@ -35,8 +35,8 @@ class VeraFoundry extends AbstractFoundry {
 	 * @see org.verapdf.pdfa.VeraPDFFoundry#newPdfParser(java.io.InputStream)
 	 */
 	@Override
-	public PDFParser newPdfParser(InputStream pdfStream) throws ModelParsingException, EncryptedPdfException {
-		return newPdfParser(pdfStream, PDFAFlavour.NO_FLAVOUR);
+	public PDFAParser createParser(InputStream pdfStream) throws ModelParsingException, EncryptedPdfException {
+		return createParser(pdfStream, PDFAFlavour.NO_FLAVOUR);
 	}
 
 	/**
@@ -44,7 +44,7 @@ class VeraFoundry extends AbstractFoundry {
 	 *      org.verapdf.pdfa.flavours.PDFAFlavour)
 	 */
 	@Override
-	public PDFParser newPdfParser(InputStream pdfStream, PDFAFlavour flavour)
+	public PDFAParser createParser(InputStream pdfStream, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
 		return GFModelParser.createModelWithFlavour(pdfStream, flavour);
 	}
@@ -53,7 +53,7 @@ class VeraFoundry extends AbstractFoundry {
 	 * @see org.verapdf.pdfa.VeraPDFFoundry#newMetadataFixer(org.verapdf.metadata.fixer.utils.FixerConfig)
 	 */
 	@Override
-	public MetadataFixer newMetadataFixer() {
+	public MetadataFixer createMetadataFixer() {
 		// TODO: implement me with metadata fixer
 		return null;
 	}

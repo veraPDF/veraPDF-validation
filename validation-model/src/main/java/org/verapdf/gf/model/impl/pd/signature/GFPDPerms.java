@@ -40,11 +40,11 @@ public class GFPDPerms extends GFPDObject implements PDPerms {
             Set<ASAtom> names = this.simpleCOSObject.get().getKeySet();
             for (ASAtom name : names) {
                 if (name != UC3 && name != DOC_MDP) {
-                    return true;
+                    return Boolean.TRUE;
                 }
             }
         }
-        return false;
+        return Boolean.FALSE;
     }
 
 }

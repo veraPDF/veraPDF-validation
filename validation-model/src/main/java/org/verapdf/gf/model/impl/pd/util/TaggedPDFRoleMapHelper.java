@@ -122,10 +122,9 @@ public class TaggedPDFRoleMapHelper {
 		while (res != null && !visitedTypes.contains(res)) {
 			if (currentStandartTypes.contains(res.getValue())) {
 				return res.getValue();
-			} else {
-				visitedTypes.add(res);
-				res = roleMap.get(res);
 			}
+			visitedTypes.add(res);
+			res = roleMap.get(res);
 		}
 		return null;
 	}

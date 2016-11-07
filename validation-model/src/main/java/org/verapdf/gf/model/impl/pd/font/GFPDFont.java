@@ -71,7 +71,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public Boolean getisSymbolic() {
-        return this.pdFont.isSymbolic();
+        return Boolean.valueOf(this.pdFont.isSymbolic());
     }
 
     /**
@@ -108,23 +108,20 @@ public class GFPDFont extends GFPDResource implements PDFont {
                 GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(
                         this.pdFont.getFontProgram());
                 return getFontProgramList(font);
-            } else {
-                if(TYPE0_STRING.equals(this.getSubtype())) {
-                    GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram(),
-                            (GFPDFont) ((GFPDType0Font) this).getLinkedObjects(GFPDType0Font.DESCENDANT_FONTS).get(0));
-                    return getFontProgramList(font);
-                } else {
-                    GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram(),
-                            this);
-                    return getFontProgramList(font);
-                }
             }
-        } else {
-            return Collections.emptyList();
+			if(TYPE0_STRING.equals(this.getSubtype())) {
+			    GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram(),
+			            (GFPDFont) ((GFPDType0Font) this).getLinkedObjects(GFPDType0Font.DESCENDANT_FONTS).get(0));
+			    return getFontProgramList(font);
+			}
+			GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram(),
+			        this);
+			return getFontProgramList(font);
         }
+		return Collections.emptyList();
     }
 
-    private List<FontProgram> getFontProgramList(FontProgram fontProgram) {
+    private static List<FontProgram> getFontProgramList(FontProgram fontProgram) {
         List<FontProgram> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         list.add(fontProgram);
         return Collections.unmodifiableList(list);

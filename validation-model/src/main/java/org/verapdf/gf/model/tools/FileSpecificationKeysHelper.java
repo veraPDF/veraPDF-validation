@@ -15,7 +15,9 @@ import org.verapdf.pd.patterns.PDTilingPattern;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,9 +25,9 @@ import java.util.logging.Logger;
  * @author Maksim Bezrukov
  */
 public class FileSpecificationKeysHelper {
+	private final static Logger LOGGER = Logger.getLogger(FileSpecificationKeysHelper.class.getCanonicalName());
 
-	private static final Logger LOGGER = Logger
-			.getLogger(FileSpecificationKeysHelper.class.getCanonicalName());
+	private static Set<COSKey> visitedKeys = new HashSet<>();
 
 	public static void registerFileSpecificationKeys(COSDocument document) {
 		PDDocument pdDocument = document.getPDDocument();
@@ -49,6 +51,7 @@ public class FileSpecificationKeysHelper {
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Can not get list of pages", e);
 		}
+		visitedKeys.clear();
 	}
 
 	private static void processStructElements(PDStructTreeNode structureNode) {
@@ -76,7 +79,7 @@ public class FileSpecificationKeysHelper {
 	}
 
 	private static void processXObject(PDXObject xObject) {
-		if (xObject != null) {
+		if (xObject != null && !isKeyVisited(xObject.getObject().getKey())) {
 			registerDictionaryAFKeys(xObject.getObject());
 			if (ASAtom.FORM.equals(xObject.getType())) {
 				parseResources(((PDXForm) xObject).getResources());
@@ -120,8 +123,7 @@ public class FileSpecificationKeysHelper {
 	}
 
 	private static void registerDictionaryAFKeys(COSObject dictionary) {
-		if (dictionary == null
-				|| !(dictionary.getType().isDictionaryBased())) {
+		if (dictionary == null || !(dictionary.getType().isDictionaryBased())) {
 			return;
 		}
 		COSObject af = dictionary.getKey(ASAtom.AF);
@@ -133,20 +135,21 @@ public class FileSpecificationKeysHelper {
 	}
 
 	private static void processExtGState(PDExtGState extGState) {
-		if (extGState == null) {
-			return;
+		if (extGState != null && !isKeyVisited(extGState.getObject().getKey())) {
+			processFont(extGState.getFont());
 		}
-		processFont(extGState.getFont());
 	}
 
 	private static void processFont(PDFont font) {
-		if (font != null && ASAtom.TYPE3.equals(font.getSubtype())) {
+		if (font != null
+				&& !isKeyVisited(font.getObject().getKey())
+				&& ASAtom.TYPE3.equals(font.getSubtype())) {
 			parseResources(((PDType3Font) font).getResources());
 		}
 	}
 
 	private static void processPattern(PDPattern pattern) {
-		if (pattern != null) {
+		if (pattern != null && !isKeyVisited(pattern.getObject().getKey())) {
 			if (pattern.getPatternType() == 1) {
 				parseResources(((PDTilingPattern) pattern).getResources());
 			} else if (pattern.getPatternType() == 2) {
@@ -180,7 +183,6 @@ public class FileSpecificationKeysHelper {
 
 	private static void parseResourcesXObjects(PDResources resources) {
 		for (ASAtom name : resources.getXObjectNames()) {
-
 			PDXObject xObject = resources.getXObject(name);
 			processXObject(xObject);
 
@@ -201,5 +203,13 @@ public class FileSpecificationKeysHelper {
 				StaticContainers.fileSpecificationKeys.add(key);
 			}
 		}
+	}
+
+	private static boolean isKeyVisited(COSKey key) {
+		if (visitedKeys.contains(key)) {
+			return true;
+		}
+		visitedKeys.add(key);
+		return false;
 	}
 }

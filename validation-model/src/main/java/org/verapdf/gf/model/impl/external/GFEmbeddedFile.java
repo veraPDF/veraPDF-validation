@@ -105,7 +105,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.inconsistentSeparations = StaticContainers.inconsistentSeparations;
 		this.cachedColorSpaces = StaticContainers.cachedColorSpaces;
 		this.roleMapHelper = StaticContainers.roleMapHelper;
-		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
+		GFEmbeddedFile.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
 	}
 
 	private void restoreSavedSCState() {
@@ -115,7 +115,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.inconsistentSeparations = this.inconsistentSeparations;
 		StaticContainers.cachedColorSpaces = this.cachedColorSpaces;
 		StaticContainers.roleMapHelper = this.roleMapHelper;
-		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
+		StaticContainers.fileSpecificationKeys = GFEmbeddedFile.fileSpecificationKeys;
 	}
 
 }

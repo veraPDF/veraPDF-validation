@@ -44,15 +44,15 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 			tmp = encoder.encode(CharBuffer.wrap(this.baseObject.getString()));
 		} catch (CharacterCodingException e) {
 			LOGGER.log(Level.FINE, e.getMessage(), e);
-			return false;
+			return Boolean.FALSE;
 		}
 
 		try {
 			decoder.decode(tmp);
-			return true;
+			return Boolean.TRUE;
 		} catch (CharacterCodingException e){
 			LOGGER.log(Level.FINE, e.getMessage(), e);
-			return false;
+			return Boolean.FALSE;
 		}
 	}
 
