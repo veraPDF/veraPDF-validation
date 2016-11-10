@@ -129,7 +129,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	}
 
 	private Boolean checkCOSDictionaryInOrder(COSObject element) {
-		return Boolean.valueOf(!groupNames.contains(element.getStringKey(ASAtom.NAME)));
+		return Boolean.valueOf(groupNames.contains(element.getStringKey(ASAtom.NAME)));
 	}
 
 }
