@@ -198,9 +198,12 @@ public class FileSpecificationKeysHelper {
 
 	private static void addElementKey(COSObject element) {
 		if (element != null) {
-			COSKey key = element.getKey();
-			if (key != null) {
-				StaticContainers.fileSpecificationKeys.add(key);
+			COSBase directBase = element.getDirectBase();
+			if (directBase != null) {
+				COSKey key = directBase.getObjectKey();
+				if (key != null) {
+					StaticContainers.fileSpecificationKeys.add(key);
+				}
 			}
 		}
 	}
