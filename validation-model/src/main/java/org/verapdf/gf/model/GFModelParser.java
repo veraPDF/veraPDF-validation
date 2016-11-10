@@ -1,12 +1,15 @@
 package org.verapdf.gf.model;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.verapdf.ReleaseDetails;
+import org.verapdf.component.ComponentDetails;
+import org.verapdf.component.Components;
 import org.verapdf.core.EncryptedPdfException;
 import org.verapdf.core.ModelParsingException;
 import org.verapdf.exceptions.InvalidPasswordException;
@@ -27,9 +30,13 @@ import com.adobe.xmp.impl.VeraPDFMeta;
 /**
  * @author Timur Kamalov
  */
-public class GFModelParser implements PDFAParser, Closeable {
-
-	private static final Logger LOGGER = Logger.getLogger(GFModelParser.class.getCanonicalName());
+public class GFModelParser implements PDFAParser {
+	private static final ReleaseDetails greenfieldDetails = ReleaseDetails.addDetailsFromResource(
+			ReleaseDetails.APPLICATION_PROPERTIES_ROOT + "validation-model." + ReleaseDetails.PROPERTIES_EXT);
+	private static final URI id = URI.create("http://pdfa.verapdf.org/parser#verapdf");
+	private static final ComponentDetails details = Components.veraDetails(id, "VeraPDF Parser",
+			greenfieldDetails.getVersion());
+	private static final Logger logger = Logger.getLogger(GFModelParser.class.getCanonicalName());
 
 	private PDDocument document;
 
@@ -63,7 +70,7 @@ public class GFModelParser implements PDFAParser, Closeable {
 				return PDFAFlavour.NO_FLAVOUR;
 			}
 		} catch (IOException e) {
-			LOGGER.log(Level.FINE, "Problem parsing metadata from document catalog.", e);
+			logger.log(Level.FINE, "Problem parsing metadata from document catalog.", e);
 			return PDFAFlavour.NO_FLAVOUR;
 		}
 		try (InputStream is = metadata.getStream()) {
@@ -73,7 +80,7 @@ public class GFModelParser implements PDFAParser, Closeable {
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
 			return pdfaFlavour;
 		} catch (IOException | XMPException e) {
-			LOGGER.log(Level.FINE, e.getMessage(), e);
+			logger.log(Level.FINE, e.getMessage(), e);
 			return PDFAFlavour.NO_FLAVOUR;
 		}
 	}
@@ -109,6 +116,11 @@ public class GFModelParser implements PDFAParser, Closeable {
 	@Override
 	public org.verapdf.model.baselayer.Object getRoot() {
 		return new GFCosDocument(this.document.getDocument());
+	}
+
+	@Override
+	public ComponentDetails getDetails() {
+		return details;
 	}
 
 	@Override
