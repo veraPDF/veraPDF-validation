@@ -35,7 +35,7 @@ public class GFModelParser implements PDFAParser {
 			ReleaseDetails.APPLICATION_PROPERTIES_ROOT + "validation-model." + ReleaseDetails.PROPERTIES_EXT);
 	private static final URI id = URI.create("http://pdfa.verapdf.org/parser#verapdf");
 	private static final ComponentDetails details = Components.veraDetails(id, "VeraPDF Parser",
-			greenfieldDetails.getVersion());
+			greenfieldDetails.getVersion(), "veraPDF greenfield PDF parser.");
 	private static final Logger logger = Logger.getLogger(GFModelParser.class.getCanonicalName());
 
 	private PDDocument document;
