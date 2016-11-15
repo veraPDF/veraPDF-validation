@@ -19,7 +19,7 @@ class VeraFoundry extends AbstractFoundry {
 			ReleaseDetails.APPLICATION_PROPERTIES_ROOT + "validation-model." + ReleaseDetails.PROPERTIES_EXT);
 	private static final URI id = URI.create("http://pdfa.verapdf.org/foundry#verapdf");
 	private static final ComponentDetails details = Components.veraDetails(id, "VeraPDF Foundry",
-			greenfieldDetails.getVersion());
+			greenfieldDetails.getVersion(), "veraPDF greenfield foundry instance.");
 	private static final VeraPDFFoundry instance = new VeraFoundry();
 
 	private VeraFoundry() {
