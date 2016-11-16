@@ -16,6 +16,7 @@ import org.verapdf.gf.model.impl.cos.GFCosDocument;
 import org.verapdf.metadata.fixer.entity.PDFDocument;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDMetadata;
+import org.verapdf.pdfa.Foundries;
 import org.verapdf.pdfa.PDFAParser;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
@@ -60,17 +61,18 @@ public class GFModelParser implements PDFAParser {
 
 	private static PDFAFlavour obtainFlavour(PDDocument document) {
 		PDMetadata metadata = null;
+		PDFAFlavour defaultFlavour = Foundries.defaultInstance().defaultFlavour();
 		try {
 			if (document == null || document.getCatalog() == null) {
-				return PDFAFlavour.NO_FLAVOUR;
+				return defaultFlavour;
 			}
 			metadata = document.getCatalog().getMetadata();
 			if (metadata == null) {
-				return PDFAFlavour.NO_FLAVOUR;
+				return defaultFlavour;
 			}
 		} catch (IOException e) {
 			logger.log(Level.FINE, "Problem parsing metadata from document catalog.", e);
-			return PDFAFlavour.NO_FLAVOUR;
+			return defaultFlavour;
 		}
 		try (InputStream is = metadata.getStream()) {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
@@ -80,7 +82,7 @@ public class GFModelParser implements PDFAParser {
 			return pdfaFlavour;
 		} catch (IOException | XMPException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
-			return PDFAFlavour.NO_FLAVOUR;
+			return defaultFlavour;
 		}
 	}
 
