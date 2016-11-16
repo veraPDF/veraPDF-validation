@@ -1,12 +1,7 @@
 package org.verapdf.gf.model;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import com.adobe.xmp.XMPException;
+import com.adobe.xmp.impl.VeraPDFMeta;
 import org.verapdf.ReleaseDetails;
 import org.verapdf.component.ComponentDetails;
 import org.verapdf.component.Components;
@@ -24,8 +19,12 @@ import org.verapdf.pd.PDMetadata;
 import org.verapdf.pdfa.PDFAParser;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
-import com.adobe.xmp.XMPException;
-import com.adobe.xmp.impl.VeraPDFMeta;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
@@ -74,7 +73,7 @@ public class GFModelParser implements PDFAParser {
 			return PDFAFlavour.NO_FLAVOUR;
 		}
 		try (InputStream is = metadata.getStream()) {
-			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(metadata.getStream());
+			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			Integer identificationPart = veraPDFMeta.getIdentificationPart();
 			String identificationConformance = veraPDFMeta.getIdentificationConformance();
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
