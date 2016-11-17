@@ -11,7 +11,7 @@
 
   <groupId>org.verapdf</groupId>
   <artifactId>validation</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>veraPDF Validation</name>
@@ -50,9 +50,9 @@
   </modules>
 
   <properties>
-    <verapdf.parser.version>[0.2.0,0.3.0)</verapdf.parser.version>
-    <verapdf.pdfmodel.version>[0.26.0,0.27.0)</verapdf.pdfmodel.version>
-    <verapdf.library.version>[0.26.0,0.27.0)</verapdf.library.version>
+    <verapdf.parser.version>[0.3.0,0.4.0)</verapdf.parser.version>
+    <verapdf.pdfmodel.version>[0.27.0,0.28.0)</verapdf.pdfmodel.version>
+    <verapdf.library.version>[0.27.0,0.28.0)</verapdf.library.version>
   </properties>
 
   <dependencyManagement>
