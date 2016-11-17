@@ -1,12 +1,7 @@
 package org.verapdf.gf.model;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import com.adobe.xmp.XMPException;
+import com.adobe.xmp.impl.VeraPDFMeta;
 import org.verapdf.ReleaseDetails;
 import org.verapdf.component.ComponentDetails;
 import org.verapdf.component.Components;
@@ -21,11 +16,16 @@ import org.verapdf.gf.model.impl.cos.GFCosDocument;
 import org.verapdf.metadata.fixer.entity.PDFDocument;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDMetadata;
+import org.verapdf.pdfa.Foundries;
 import org.verapdf.pdfa.PDFAParser;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
-import com.adobe.xmp.XMPException;
-import com.adobe.xmp.impl.VeraPDFMeta;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
@@ -35,7 +35,7 @@ public class GFModelParser implements PDFAParser {
 			ReleaseDetails.APPLICATION_PROPERTIES_ROOT + "validation-model." + ReleaseDetails.PROPERTIES_EXT);
 	private static final URI id = URI.create("http://pdfa.verapdf.org/parser#verapdf");
 	private static final ComponentDetails details = Components.veraDetails(id, "VeraPDF Parser",
-			greenfieldDetails.getVersion());
+			greenfieldDetails.getVersion(), "veraPDF greenfield PDF parser.");
 	private static final Logger logger = Logger.getLogger(GFModelParser.class.getCanonicalName());
 
 	private PDDocument document;
@@ -61,27 +61,28 @@ public class GFModelParser implements PDFAParser {
 
 	private static PDFAFlavour obtainFlavour(PDDocument document) {
 		PDMetadata metadata = null;
+		PDFAFlavour defaultFlavour = Foundries.defaultInstance().defaultFlavour();
 		try {
 			if (document == null || document.getCatalog() == null) {
-				return PDFAFlavour.NO_FLAVOUR;
+				return defaultFlavour;
 			}
 			metadata = document.getCatalog().getMetadata();
 			if (metadata == null) {
-				return PDFAFlavour.NO_FLAVOUR;
+				return defaultFlavour;
 			}
 		} catch (IOException e) {
 			logger.log(Level.FINE, "Problem parsing metadata from document catalog.", e);
-			return PDFAFlavour.NO_FLAVOUR;
+			return defaultFlavour;
 		}
 		try (InputStream is = metadata.getStream()) {
-			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(metadata.getStream());
+			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			Integer identificationPart = veraPDFMeta.getIdentificationPart();
 			String identificationConformance = veraPDFMeta.getIdentificationConformance();
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
 			return pdfaFlavour;
 		} catch (IOException | XMPException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
-			return PDFAFlavour.NO_FLAVOUR;
+			return defaultFlavour;
 		}
 	}
 
