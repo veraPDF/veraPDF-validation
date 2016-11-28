@@ -47,6 +47,7 @@
 
   <modules>
     <module>validation-model</module>
+    <module>feature-reporting</module>
   </modules>
 
   <properties>
