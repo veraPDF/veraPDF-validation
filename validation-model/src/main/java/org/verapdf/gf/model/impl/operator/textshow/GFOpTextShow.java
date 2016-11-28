@@ -138,7 +138,11 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 						Boolean widthsConsistent = null;
 						if (!fontProgramIsInvalid) {
 							fontProgram.parseFont();
-							glyphPresent = Boolean.valueOf(fontProgram.containsCode(code));
+							// every font contains notdef glyph. But if we call method
+							// of font program we can't distinguish case of code 0
+							// and glyph that is not present indeed.
+							glyphPresent = code == 0 ? true :
+									Boolean.valueOf(fontProgram.containsCode(code));
 							widthsConsistent = GFOpTextShow.checkWidths(code, font, fontProgram);
 						}
 						GFGlyph glyph;
