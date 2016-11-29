@@ -19,7 +19,6 @@ import java.util.Set;
 public class GFAnnotationFeaturesObject implements IFeaturesObject {
 
 	private static final String ID = "id";
-	private static final int LOCKED_CONTENTS_FLAG = 512;
 
 	private PDAnnotation annot;
 	private String id;
@@ -87,21 +86,18 @@ public class GFAnnotationFeaturesObject implements IFeaturesObject {
 				popup.setAttribute(ID, popupId);
 			}
 
-			//TODO: finish me
-//			GFCreateNodeHelper.addDeviceColorSpaceNode("color", annot.getColor(), root, collection);
-//
-//			GFCreateNodeHelper.addNotEmptyNode("invisible", String.valueOf(annot.isInvisible()), root);
-//			GFCreateNodeHelper.addNotEmptyNode("hidden", String.valueOf(annot.isHidden()), root);
-//			GFCreateNodeHelper.addNotEmptyNode("print", String.valueOf(annot.isPrinted()), root);
-//			GFCreateNodeHelper.addNotEmptyNode("noZoom", String.valueOf(annot.isNoZoom()), root);
-//			GFCreateNodeHelper.addNotEmptyNode("noRotate", String.valueOf(annot.isNoRotate()), root);
-//			GFCreateNodeHelper.addNotEmptyNode("noView", String.valueOf(annot.isNoView()), root);
-//			GFCreateNodeHelper.addNotEmptyNode("readOnly", String.valueOf(annot.isReadOnly()), root);
-//			GFCreateNodeHelper.addNotEmptyNode("locked", String.valueOf(annot.isLocked()), root);
-//			GFCreateNodeHelper.addNotEmptyNode("toggleNoView", String.valueOf(annot.isToggleNoView()), root);
-//
-//			boolean lockedContents = (annot.getAnnotationFlags() & LOCKED_CONTENTS_FLAG) == LOCKED_CONTENTS_FLAG;
-//			GFCreateNodeHelper.addNotEmptyNode("lockedContents", String.valueOf(lockedContents), root);
+			GFCreateNodeHelper.addDeviceColorSpaceNode("color", annot.getColor(), root, collection);
+
+			GFCreateNodeHelper.addNotEmptyNode("invisible", String.valueOf(annot.isInvisible()), root);
+			GFCreateNodeHelper.addNotEmptyNode("hidden", String.valueOf(annot.isHidden()), root);
+			GFCreateNodeHelper.addNotEmptyNode("print", String.valueOf(annot.isPrinted()), root);
+			GFCreateNodeHelper.addNotEmptyNode("noZoom", String.valueOf(annot.isNoZoom()), root);
+			GFCreateNodeHelper.addNotEmptyNode("noRotate", String.valueOf(annot.isNoRotate()), root);
+			GFCreateNodeHelper.addNotEmptyNode("noView", String.valueOf(annot.isNoView()), root);
+			GFCreateNodeHelper.addNotEmptyNode("readOnly", String.valueOf(annot.isReadOnly()), root);
+			GFCreateNodeHelper.addNotEmptyNode("locked", String.valueOf(annot.isLocked()), root);
+			GFCreateNodeHelper.addNotEmptyNode("toggleNoView", String.valueOf(annot.isToggleNoView()), root);
+			GFCreateNodeHelper.addNotEmptyNode("toggleNoView", String.valueOf(annot.isLockedContents()), root);
 
 			collection.addNewFeatureTree(FeatureObjectType.ANNOTATION, root);
 			return root;
