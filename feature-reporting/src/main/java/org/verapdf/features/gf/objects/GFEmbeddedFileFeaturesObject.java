@@ -33,7 +33,7 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 	/**
 	 * Constructs new Embedded File Feature Object
 	 *
-	 * @param embFile pdfbox class represents Embedded File object
+	 * @param embFile class represents Embedded File object
 	 * @param index   page index
 	 */
 	public GFEmbeddedFileFeaturesObject(COSObject embFile, int index) {
