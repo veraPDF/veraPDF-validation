@@ -1,6 +1,7 @@
 package org.verapdf.features.gf.objects;
 
 import org.verapdf.core.FeatureParsingException;
+import org.verapdf.cos.COSString;
 import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
@@ -37,11 +38,15 @@ public class GFDocSecurityFeaturesObject implements IFeaturesObject {
             GFCreateNodeHelper.addNotEmptyNode("version", String.valueOf(encryption.getV()), root);
             GFCreateNodeHelper.addNotEmptyNode("length", String.valueOf(encryption.getLength()), root);
 
-            String ownerKey = encryption.getO().getHexString();
-            GFCreateNodeHelper.addNotEmptyNode("ownerKey", ownerKey, root);
+            COSString ownerKey = encryption.getO();
+            if (ownerKey != null) {
+                GFCreateNodeHelper.addNotEmptyNode("ownerKey", ownerKey.getHexString(), root);
+            }
 
-            String userKey = encryption.getU().getHexString();
-            GFCreateNodeHelper.addNotEmptyNode("userKey", userKey, root);
+            COSString userKey = encryption.getU();
+            if (userKey != null) {
+                GFCreateNodeHelper.addNotEmptyNode("userKey", userKey.getHexString(), root);
+            }
 
             GFCreateNodeHelper.addNotEmptyNode("encryptMetadata", String.valueOf(encryption.isEncryptMetadata()), root);
 

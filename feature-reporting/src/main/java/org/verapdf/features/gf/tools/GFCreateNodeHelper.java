@@ -324,4 +324,8 @@ public final class GFCreateNodeHelper {
 			element.setAttribute("value", String.valueOf(array[i]));
 		}
 	}
+
+	public static String getStringFromASAtom(ASAtom asAtom) {
+		return asAtom == null ? null : asAtom.getValue();
+	}
 }

@@ -67,34 +67,38 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                 root.setAttribute(ID, id);
             }
 
-            GFCreateNodeHelper.addNotEmptyNode("type", font.getSubtype(), root);
+            ASAtom fontSubtype = font.getSubtype();
+            GFCreateNodeHelper.addNotEmptyNode("type", fontSubtype, root);
 
-            if (!(font instanceof PDType3Font)) {
+            if (!(fontSubtype == ASAtom.TYPE3)) {
                 GFCreateNodeHelper.addNotEmptyNode("baseFont", font.getName(), root);
             }
 
-            if (font instanceof PDType0Font) {
+            if (fontSubtype == ASAtom.TYPE0) {
                 GFCreateNodeHelper.parseIDSet(fontChild, "descendantFont", null, root.addChild("descendantFonts"));
                 parseFontDescriptior(this.font.getFontDescriptor(), root, collection);
-            } else if (font instanceof PDSimpleFont) {
+            } else if (fontSubtype == ASAtom.TRUE_TYPE ||
+                    fontSubtype == ASAtom.TYPE1 ||
+                    fontSubtype == ASAtom.MM_TYPE1 ||
+                    fontSubtype == ASAtom.TYPE3) {
                 PDSimpleFont sFont = (PDSimpleFont) font;
 
-                int fc = sFont.getFirstChar().intValue();
-                if (fc != -1) {
-                    root.addChild("firstChar").setValue(String.valueOf(fc));
+                Long fc = sFont.getFirstChar();
+                if (fc != null && fc.longValue() != -1) {
+                    root.addChild("firstChar").setValue(String.valueOf(fc.longValue()));
                 }
-                int lc = sFont.getLastChar().intValue();
-                if (lc != -1) {
-                    root.addChild("lastChar").setValue(String.valueOf(lc));
+                Long lc = sFont.getLastChar();
+                if (lc != null && lc.longValue() != -1) {
+                    root.addChild("lastChar").setValue(String.valueOf(lc.longValue()));
                 }
 
                 parseWidths(sFont.getWidths(), fc, root.addChild("widths"));
 
                 COSObject enc = sFont.getEncoding();
                 if (enc.getType() == COSObjType.COS_NAME) {
-                    GFCreateNodeHelper.addNotEmptyNode("encoding", enc.getName(), root);
+                    GFCreateNodeHelper.addNotEmptyNode("encoding", enc, root);
                 } else if (enc.getType() == COSObjType.COS_DICT) {
-                    ASAtom name = (enc).getNameKey(ASAtom.BASE_ENCODING);
+                    ASAtom name = enc.getNameKey(ASAtom.BASE_ENCODING);
                     if (name != null) {
                         GFCreateNodeHelper.addNotEmptyNode("encoding", name, root);
                     }
@@ -102,7 +106,7 @@ public class GFFontFeaturesObject implements IFeaturesObject {
 
                 parseFontDescriptior(this.font.getFontDescriptor(), root, collection);
 
-                if (sFont instanceof PDType3Font) {
+                if (sFont.getSubtype() == ASAtom.TYPE3) {
                     PDType3Font type3 = (PDType3Font) sFont;
 
                     GFCreateNodeHelper.addBoxFeature("fontBBox", type3.getFontBoundingBox(), root);
@@ -111,19 +115,23 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                     parseResources(root);
                 }
 
-            } else if (font instanceof PDCIDFont) {
+            } else if (fontSubtype == ASAtom.CID_FONT_TYPE0 ||
+                    fontSubtype == ASAtom.CID_FONT_TYPE2) {
                 PDCIDFont cid = (PDCIDFont) font;
                 GFCreateNodeHelper.addNotEmptyNode("type", cid.getSubtype(), root);
                 GFCreateNodeHelper.addNotEmptyNode("baseFont", cid.getName(), root);
                 Double dw = cid.getDefaultWidth();
                 root.addChild("defaultWidth").setValue(String.valueOf(dw));
 
-                if (cid.getCIDSystemInfo() != null) {
+                PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+                if (cidSystemInfo != null) {
                     FeatureTreeNode cidS = root.addChild("cidSystemInfo");
-                    GFCreateNodeHelper.addNotEmptyNode("registry", cid.getCIDSystemInfo().getRegistry(), cidS);
-                    GFCreateNodeHelper.addNotEmptyNode("ordering", cid.getCIDSystemInfo().getOrdering(), cidS);
-                    cidS.addChild("supplement").setValue(String.valueOf(cid.getCIDSystemInfo().getSupplement()));
-
+                    GFCreateNodeHelper.addNotEmptyNode("registry", cidSystemInfo.getRegistry(), cidS);
+                    GFCreateNodeHelper.addNotEmptyNode("ordering", cidSystemInfo.getOrdering(), cidS);
+                    Long supplement = cidSystemInfo.getSupplement();
+                    if (supplement != null) {
+                        cidS.addChild("supplement").setValue(String.valueOf(supplement));
+                    }
                 }
                 parseFontDescriptior(font.getFontDescriptor(), root, collection);
             }
@@ -160,11 +168,12 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                 }
                 builder.metadata(metadata);
 
-                builder.fontName(getStringFromASAtom(descriptor.getFontName()));
+                builder.fontName(GFCreateNodeHelper.getStringFromASAtom(descriptor.getFontName()));
                 builder.fontFamily(descriptor.getFontFamily());
-                builder.fontStretch(getStringFromASAtom(descriptor.getFontStretch()));
+                builder.fontStretch(GFCreateNodeHelper.getStringFromASAtom(descriptor.getFontStretch()));
                 builder.fontWeight(descriptor.getFontWeight());
-                builder.flags(descriptor.getFlags() == null ? null : descriptor.getFlags().intValue());
+                Long flags = descriptor.getFlags();
+                builder.flags(flags == null ? null : flags.intValue());
                 double[] rex = descriptor.getFontBoundingBox();
                 if (rex != null) {
                     List<Double> rect = new ArrayList<>(rex.length);
@@ -216,17 +225,17 @@ public class GFFontFeaturesObject implements IFeaturesObject {
             descriptorNode.addChild("forceBold").setValue(String.valueOf(descriptor.isForceBold()));
             GFCreateNodeHelper.addBoxFeature("fontBBox", descriptor.getFontBoundingBox(), descriptorNode);
 
-            descriptorNode.addChild("italicAngle").setValue(String.valueOf(descriptor.getItalicAngle()));
-            descriptorNode.addChild("ascent").setValue(String.valueOf(descriptor.getAscent()));
-            descriptorNode.addChild("descent").setValue(String.valueOf(descriptor.getDescent()));
-            descriptorNode.addChild("leading").setValue(String.valueOf(descriptor.getLeading()));
-            descriptorNode.addChild("capHeight").setValue(String.valueOf(descriptor.getCapHeight()));
-            descriptorNode.addChild("xHeight").setValue(String.valueOf(descriptor.getXHeight()));
-            descriptorNode.addChild("stemV").setValue(String.valueOf(descriptor.getStemV()));
-            descriptorNode.addChild("stemH").setValue(String.valueOf(descriptor.getStemH()));
-            descriptorNode.addChild("averageWidth").setValue(String.valueOf(descriptor.getAvgWidth()));
-            descriptorNode.addChild("maxWidth").setValue(String.valueOf(descriptor.getMaxWidth()));
-            descriptorNode.addChild("missingWidth").setValue(String.valueOf(descriptor.getMissingWidth()));
+            descriptorNode.addChild("italicAngle").setValue(getStringFromDouble(descriptor.getItalicAngle()));
+            descriptorNode.addChild("ascent").setValue(getStringFromDouble(descriptor.getAscent()));
+            descriptorNode.addChild("descent").setValue(getStringFromDouble(descriptor.getDescent()));
+            descriptorNode.addChild("leading").setValue(getStringFromDouble(descriptor.getLeading()));
+            descriptorNode.addChild("capHeight").setValue(getStringFromDouble(descriptor.getCapHeight()));
+            descriptorNode.addChild("xHeight").setValue(getStringFromDouble(descriptor.getXHeight()));
+            descriptorNode.addChild("stemV").setValue(getStringFromDouble(descriptor.getStemV()));
+            descriptorNode.addChild("stemH").setValue(getStringFromDouble(descriptor.getStemH()));
+            descriptorNode.addChild("averageWidth").setValue(getStringFromDouble(descriptor.getAvgWidth()));
+            descriptorNode.addChild("maxWidth").setValue(getStringFromDouble(descriptor.getMaxWidth()));
+            descriptorNode.addChild("missingWidth").setValue(getStringFromDouble(descriptor.getMissingWidth()));
             GFCreateNodeHelper.addNotEmptyNode("charSet", descriptor.getCharSet(), descriptorNode);
 
             COSStream file = descriptor.getFontFile();
@@ -245,14 +254,19 @@ public class GFFontFeaturesObject implements IFeaturesObject {
         }
     }
 
-    private static void parseWidths(COSObject array, int firstChar,
+    private static void parseWidths(COSObject array, Long firstChar,
                                     FeatureTreeNode parent) throws FeatureParsingException {
-        if (array.getType() == COSObjType.COS_ARRAY) {
-            int fc = firstChar == -1 ? 0 : firstChar;
-            for (int i = 0; i < array.size(); ++i) {
-                FeatureTreeNode element = parent.addChild("width");
-                element.setValue(String.valueOf(array.at(i)));
-                element.setAttribute("char", String.valueOf(i + fc));
+        if (firstChar != null) {
+            if (array.getType() == COSObjType.COS_ARRAY) {
+                int fc = firstChar.intValue() == -1 ? 0 : firstChar.intValue();
+                for (int i = 0; i < array.size(); ++i) {
+                    FeatureTreeNode element = parent.addChild("width");
+                    COSObject arElement = array.at(i);
+                    if (arElement.getType().isNumber()) {
+                        element.setValue(String.valueOf(arElement.getReal()));
+                    }
+                    element.setAttribute("char", String.valueOf(i + fc));
+                }
             }
         }
     }
@@ -278,10 +292,6 @@ public class GFFontFeaturesObject implements IFeaturesObject {
         }
     }
 
-    private String getStringFromASAtom(ASAtom asAtom) {
-        return asAtom == null ? null : asAtom.getValue();
-    }
-
     private Double getDoubleFromDict(ASAtom key, COSObject dict) {
         COSObject res = dict.getKey(key);
         if (!res.getType().isNumber()) {
@@ -289,5 +299,9 @@ public class GFFontFeaturesObject implements IFeaturesObject {
         } else {
             return res.getReal();
         }
+    }
+
+    private static String getStringFromDouble(Double d) {
+        return d == null ? null : getStringFromDouble(d);
     }
 }

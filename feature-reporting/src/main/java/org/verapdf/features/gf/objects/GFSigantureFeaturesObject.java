@@ -35,9 +35,12 @@ public class GFSigantureFeaturesObject implements IFeaturesObject {
 
             GFCreateNodeHelper.addNotEmptyNode("filter", signature.getFilter(), root);
             GFCreateNodeHelper.addNotEmptyNode("subFilter", signature.getSubfilter(), root);
-            GFCreateNodeHelper.addNotEmptyNode("contents", signature.getContents().getHexString(), root);
+            COSString contents = signature.getContents();
+            if (contents != null) {
+                GFCreateNodeHelper.addNotEmptyNode("contents", contents.getHexString(), root);
+            }
             GFCreateNodeHelper.addNotEmptyNode("name", signature.getName(), root);
-            GFCreateNodeHelper.addNotEmptyNode("signDate", signature.getSignDate().toString(), root);
+            GFCreateNodeHelper.createDateNode("signDate", root, signature.getSignDate(), featureExtractionResult);
             GFCreateNodeHelper.addNotEmptyNode("location", signature.getLocation(), root);
             GFCreateNodeHelper.addNotEmptyNode("reason", signature.getReason(), root);
             GFCreateNodeHelper.addNotEmptyNode("contactInfo", signature.getContactInfo(), root);
@@ -53,11 +56,13 @@ public class GFSigantureFeaturesObject implements IFeaturesObject {
     public FeaturesData getData() {
         COSString contents = signature.getContents();
         InputStream stream = contents == null ? null :
-                new ByteArrayInputStream(contents.getHexString().getBytes());
+                new ByteArrayInputStream(contents.get().getBytes());
         return SignatureFeaturesData.newInstance(
-                stream, signature.getFilter().getValue(),
-                signature.getSubfilter().getValue(), signature.getName(),
+                stream, GFCreateNodeHelper.getStringFromASAtom(signature.getFilter()),
+                GFCreateNodeHelper.getStringFromASAtom(signature.getSubfilter()), signature.getName(),
                 signature.getSignDate(), signature.getLocation(),
                 signature.getReason(), signature.getContactInfo());
     }
+
+
 }

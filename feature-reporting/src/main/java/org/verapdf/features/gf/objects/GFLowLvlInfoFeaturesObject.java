@@ -104,10 +104,8 @@ public class GFLowLvlInfoFeaturesObject implements IFeaturesObject {
         Set<ASAtom> res = new HashSet<>();
         for (COSObject base : document.getObjects()) {
             if (base.getType() == COSObjType.COS_STREAM) {
-                COSFilters baseFilters = ((COSStream) base.get()).getFilters();
-                if (baseFilters != null) {
-                    addFilters(res, baseFilters);
-                }
+                COSFilters baseFilters = ((COSStream) base.getDirectBase()).getFilters();
+                addFilters(res, baseFilters);
             }
         }
         return res;
