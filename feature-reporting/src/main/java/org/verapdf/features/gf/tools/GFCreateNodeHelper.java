@@ -2,6 +2,8 @@ package org.verapdf.features.gf.tools;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.core.FeatureParsingException;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.tools.ErrorsHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
@@ -152,6 +154,30 @@ public final class GFCreateNodeHelper {
 	}
 
 	/**
+	 * Creates new node with given name and value if both of this parametrs are
+	 * not null and only in case when value is a COSString or COSName
+	 *
+	 * @param name
+	 *            name of the node
+	 * @param value
+	 *            value of the node
+	 * @param parent
+	 *            parent of the node
+	 * @return generated node
+	 * @throws FeatureParsingException
+	 */
+	public static FeatureTreeNode addNotEmptyNode(String name, COSObject value, FeatureTreeNode parent)
+			throws FeatureParsingException {
+		if (name != null && value != null
+				&& (value.getType() == COSObjType.COS_NAME || value.getType() == COSObjType.COS_STRING)) {
+			FeatureTreeNode node = parent.addChild(name);
+			node.setValue(value.getString());
+			return node;
+		}
+		return null;
+	}
+
+	/**
 	 * Creates new node for device color space
 	 *
 	 * @param name
@@ -289,5 +315,13 @@ public final class GFCreateNodeHelper {
 		}
 
 		return node;
+	}
+
+	public static void parseMatrix(double[] array, FeatureTreeNode parent) throws FeatureParsingException {
+		for (int i = 0; i < array.length; ++i) {
+			FeatureTreeNode element = parent.addChild("element");
+			element.setAttribute("index", String.valueOf(i + 1));
+			element.setAttribute("value", String.valueOf(array[i]));
+		}
 	}
 }
