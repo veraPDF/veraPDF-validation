@@ -6,7 +6,6 @@ import org.verapdf.features.*;
 import org.verapdf.features.gf.tools.GFCreateNodeHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDSignature;
-import org.verapdf.tools.TypeConverter;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -38,7 +37,7 @@ public class GFSigantureFeaturesObject implements IFeaturesObject {
             GFCreateNodeHelper.addNotEmptyNode("subFilter", signature.getSubfilter(), root);
             GFCreateNodeHelper.addNotEmptyNode("contents", signature.getContents().getHexString(), root);
             GFCreateNodeHelper.addNotEmptyNode("name", signature.getName(), root);
-            GFCreateNodeHelper.addNotEmptyNode("signDate", signature.getSignDate(), root);
+            GFCreateNodeHelper.addNotEmptyNode("signDate", signature.getSignDate().toString(), root);
             GFCreateNodeHelper.addNotEmptyNode("location", signature.getLocation(), root);
             GFCreateNodeHelper.addNotEmptyNode("reason", signature.getReason(), root);
             GFCreateNodeHelper.addNotEmptyNode("contactInfo", signature.getContactInfo(), root);
@@ -58,7 +57,7 @@ public class GFSigantureFeaturesObject implements IFeaturesObject {
         return SignatureFeaturesData.newInstance(
                 stream, signature.getFilter().getValue(),
                 signature.getSubfilter().getValue(), signature.getName(),
-                TypeConverter.parseDate(signature.getSignDate()), signature.getLocation(),
+                signature.getSignDate(), signature.getLocation(),
                 signature.getReason(), signature.getContactInfo());
     }
 }

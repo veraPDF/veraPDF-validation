@@ -173,18 +173,19 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                     }
                     builder.fontBBox(rect);
                 }
+                COSObject descriptorDict = descriptor.getObject();
 
                 builder.italicAngle(descriptor.getItalicAngle());
                 builder.ascent(descriptor.getAscent());
                 builder.descent(descriptor.getDescent());
-                builder.leading(descriptor.getLeading());
+                builder.leading(getDoubleFromDict(ASAtom.LEADING, descriptorDict));
                 builder.capHeight(descriptor.getCapHeight());
-                builder.xHeight(descriptor.getXHeight());
+                builder.xHeight(getDoubleFromDict(ASAtom.XHEIGHT, descriptorDict));
                 builder.stemV(descriptor.getStemV());
-                builder.stemH(descriptor.getStemH());
-                builder.avgWidth(descriptor.getAvgWidth());
-                builder.maxWidth(descriptor.getMaxWidth());
-                builder.missingWidth(descriptor.getMissingWidth());
+                builder.stemH(getDoubleFromDict(ASAtom.STEM_H, descriptorDict));
+                builder.avgWidth(getDoubleFromDict(ASAtom.AVG_WIDTH, descriptorDict));
+                builder.maxWidth(getDoubleFromDict(ASAtom.MAX_WIDTH, descriptorDict));
+                builder.missingWidth(getDoubleFromDict(ASAtom.MISSING_WIDTH, descriptorDict));
                 builder.charSet(descriptor.getCharSet());
 
                 return builder.build();
@@ -279,5 +280,14 @@ public class GFFontFeaturesObject implements IFeaturesObject {
 
     private String getStringFromASAtom(ASAtom asAtom) {
         return asAtom == null ? null : asAtom.getValue();
+    }
+
+    private Double getDoubleFromDict(ASAtom key, COSObject dict) {
+        COSObject res = dict.getKey(key);
+        if (!res.getType().isNumber()) {
+            return null;
+        } else {
+            return res.getReal();
+        }
     }
 }
