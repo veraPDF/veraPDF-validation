@@ -38,7 +38,7 @@ public class GFICCProfileFeaturesObject implements IFeaturesObject {
     /**
      * Constructs new icc profile feature object
      *
-     * @param profile COSStream which represents the icc profile for feature report
+     * @param profile ICCProfile which represents the icc profile for feature report
      * @param id      id of the profile
      */
     public GFICCProfileFeaturesObject(ICCProfile profile, String id) {

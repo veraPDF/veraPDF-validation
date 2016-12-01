@@ -20,7 +20,7 @@ public class GFMetadataFeaturesObject implements IFeaturesObject {
     /**
      * Constructs new Metadata Feature Object
      *
-     * @param metadata pdfbox class represents metadata object
+     * @param metadata class represents metadata object
      */
     public GFMetadataFeaturesObject(PDMetadata metadata) {
         this.metadata = metadata;

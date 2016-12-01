@@ -38,7 +38,7 @@ public class GFImageXObjectFeaturesObject implements IFeaturesObject {
     /**
      * Constructs new shading features object
      *
-     * @param imageXObject    PDImageXObject which represents image xobject for feature
+     * @param imageXObject    PDXImage which represents image xobject for feature
      *                        report
      * @param id              id of the object
      * @param colorSpaceChild colorSpace id which contains in this image xobject

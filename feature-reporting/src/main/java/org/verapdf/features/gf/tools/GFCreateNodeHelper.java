@@ -316,4 +316,12 @@ public final class GFCreateNodeHelper {
 
 		return node;
 	}
+
+	public static void parseMatrix(double[] array, FeatureTreeNode parent) throws FeatureParsingException {
+		for (int i = 0; i < array.length; ++i) {
+			FeatureTreeNode element = parent.addChild("element");
+			element.setAttribute("index", String.valueOf(i + 1));
+			element.setAttribute("value", String.valueOf(array[i]));
+		}
+	}
 }

@@ -43,7 +43,7 @@ public class GFInfoDictFeaturesObject implements IFeaturesObject {
     /**
      * Constructs new information dictionary feature object.
      *
-     * @param info pdfbox class represents page object
+     * @param info class represents page object
      */
     public GFInfoDictFeaturesObject(COSObject info) {
         this.info = info;
