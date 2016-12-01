@@ -29,7 +29,7 @@ public class GFAnnotationFeaturesObject implements IFeaturesObject {
 	/**
 	 * Constructs new Annotation Feature Object
 	 *
-	 * @param annot        pdfbox class represents annotation object
+	 * @param annot        class represents annotation object
 	 * @param id           annotation id
 	 * @param popupId      id of the popup annotation
 	 * @param formXObjects set of id of the form XObjects which used in appearance stream of this annotation
