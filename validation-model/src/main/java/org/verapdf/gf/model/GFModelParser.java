@@ -11,6 +11,7 @@ import org.verapdf.exceptions.InvalidPasswordException;
 import org.verapdf.features.AbstractFeaturesExtractor;
 import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureExtractorConfig;
+import org.verapdf.features.gf.GFFeatureParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosDocument;
 import org.verapdf.metadata.fixer.entity.PDFDocument;
@@ -137,12 +138,13 @@ public class GFModelParser implements PDFAParser {
 
 	@Override
 	public FeatureExtractionResult getFeatures(FeatureExtractorConfig config) {
-		return null;
+		return GFFeatureParser.getFeaturesCollection(this.document, config);
 	}
 
 	@Override
-	public FeatureExtractionResult getFeatures(FeatureExtractorConfig config, List<AbstractFeaturesExtractor> extractors) {
-		return null;
+	public FeatureExtractionResult getFeatures(FeatureExtractorConfig config,
+											   List<AbstractFeaturesExtractor> extractors) {
+		return GFFeatureParser.getFeaturesCollection(this.document, extractors, config);
 	}
 
 	@Override
