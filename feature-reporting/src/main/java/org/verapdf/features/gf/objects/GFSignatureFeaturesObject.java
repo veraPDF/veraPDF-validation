@@ -15,11 +15,11 @@ import java.io.InputStream;
  *
  * @author Sergey Shemyakov
  */
-public class GFSigantureFeaturesObject implements IFeaturesObject {
+public class GFSignatureFeaturesObject implements IFeaturesObject {
 
     private PDSignature signature;
 
-    public GFSigantureFeaturesObject(PDSignature signature) {
+    public GFSignatureFeaturesObject(PDSignature signature) {
         this.signature = signature;
     }
 
