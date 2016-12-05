@@ -48,6 +48,7 @@
   <modules>
     <module>validation-model</module>
     <module>feature-reporting</module>
+    <module>metadata-fixer</module>
   </modules>
 
   <properties>
