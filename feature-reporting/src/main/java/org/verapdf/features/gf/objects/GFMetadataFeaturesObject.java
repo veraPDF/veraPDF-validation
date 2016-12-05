@@ -43,7 +43,7 @@ public class GFMetadataFeaturesObject implements IFeaturesObject {
      */
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (metadata != null) {
+        if (metadata != null && !metadata.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("metadata");
             GFCreateNodeHelper.parseMetadata(metadata, "xmpPackage", root, collection);
 
@@ -58,7 +58,7 @@ public class GFMetadataFeaturesObject implements IFeaturesObject {
      */
     @Override
     public FeaturesData getData() {
-        if (metadata != null) {
+        if (metadata != null && !metadata.empty()) {
             InputStream meta = metadata.getStream();
             return MetadataFeaturesData.newInstance(meta);
         }

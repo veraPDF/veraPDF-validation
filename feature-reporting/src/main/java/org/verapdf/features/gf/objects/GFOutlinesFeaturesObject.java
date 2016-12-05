@@ -54,7 +54,7 @@ public class GFOutlinesFeaturesObject implements IFeaturesObject {
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection)
 			throws FeatureParsingException {
-		if (outline != null) {
+		if (outline != null && !outline.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("outlines");
 
 			Set<PDOutlineItem> items = new HashSet<>();
@@ -81,7 +81,7 @@ public class GFOutlinesFeaturesObject implements IFeaturesObject {
 
 	private static void createItem(PDOutlineItem item, FeatureTreeNode root,
 								   FeatureExtractionResult collection, Set<PDOutlineItem> items) throws FeatureParsingException {
-		if (item != null) {
+		if (item != null && !item.empty()) {
 			items.add(item);
 			FeatureTreeNode itemNode = root.addChild("outline");
 

@@ -67,7 +67,7 @@ public class GFInfoDictFeaturesObject implements IFeaturesObject {
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
 
-        if (info != null) {
+        if (info != null && !info.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("informationDict");
 
             addEntry("Title", info.getStringKey(ASAtom.TITLE), root);

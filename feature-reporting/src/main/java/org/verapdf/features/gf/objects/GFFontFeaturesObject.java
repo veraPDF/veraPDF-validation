@@ -61,7 +61,7 @@ public class GFFontFeaturesObject implements IFeaturesObject {
 
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (font != null) {
+        if (font != null && !font.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("font");
             if (id != null) {
                 root.setAttribute(ID, id);
@@ -148,56 +148,58 @@ public class GFFontFeaturesObject implements IFeaturesObject {
      */
     @Override
     public FeaturesData getData() {
-        PDFontDescriptor descriptor = font.getFontDescriptor();
-        if (descriptor != null) {
-            COSStream file = descriptor.getFontFile();
-            if (file == null) {
-                file = descriptor.getFontFile2();
-            }
-            if (file == null) {
-                file = descriptor.getFontFile3();
-            }
-            if (file != null) {
-                FontFeaturesData.Builder builder = new FontFeaturesData.Builder(
-                        file.getData(COSStream.FilterFlags.DECODE));
-
-                InputStream metadata = null;
-                COSObject cosMetadata = file.getKey(ASAtom.METADATA);
-                if (cosMetadata.getType() == COSObjType.COS_STREAM) {
-                    metadata = cosMetadata.getData(COSStream.FilterFlags.DECODE);
+        if (font != null  && !font.empty()) {
+            PDFontDescriptor descriptor = font.getFontDescriptor();
+            if (descriptor != null && !descriptor.empty()) {
+                COSStream file = descriptor.getFontFile();
+                if (file == null) {
+                    file = descriptor.getFontFile2();
                 }
-                builder.metadata(metadata);
+                if (file == null) {
+                    file = descriptor.getFontFile3();
+                }
+                if (file != null) {
+                    FontFeaturesData.Builder builder = new FontFeaturesData.Builder(
+                            file.getData(COSStream.FilterFlags.DECODE));
 
-                builder.fontName(GFCreateNodeHelper.getStringFromASAtom(descriptor.getFontName()));
-                builder.fontFamily(descriptor.getFontFamily());
-                builder.fontStretch(GFCreateNodeHelper.getStringFromASAtom(descriptor.getFontStretch()));
-                builder.fontWeight(descriptor.getFontWeight());
-                Long flags = descriptor.getFlags();
-                builder.flags(flags == null ? null : flags.intValue());
-                double[] rex = descriptor.getFontBoundingBox();
-                if (rex != null) {
-                    List<Double> rect = new ArrayList<>(rex.length);
-                    for (int i = 0; i < rex.length; ++i) {
-                        rect.add(rex[i]);
+                    InputStream metadata = null;
+                    COSObject cosMetadata = file.getKey(ASAtom.METADATA);
+                    if (cosMetadata.getType() == COSObjType.COS_STREAM) {
+                        metadata = cosMetadata.getData(COSStream.FilterFlags.DECODE);
                     }
-                    builder.fontBBox(rect);
+                    builder.metadata(metadata);
+
+                    builder.fontName(GFCreateNodeHelper.getStringFromASAtom(descriptor.getFontName()));
+                    builder.fontFamily(descriptor.getFontFamily());
+                    builder.fontStretch(GFCreateNodeHelper.getStringFromASAtom(descriptor.getFontStretch()));
+                    builder.fontWeight(descriptor.getFontWeight());
+                    Long flags = descriptor.getFlags();
+                    builder.flags(flags == null ? null : flags.intValue());
+                    double[] rex = descriptor.getFontBoundingBox();
+                    if (rex != null) {
+                        List<Double> rect = new ArrayList<>(rex.length);
+                        for (int i = 0; i < rex.length; ++i) {
+                            rect.add(rex[i]);
+                        }
+                        builder.fontBBox(rect);
+                    }
+                    COSObject descriptorDict = descriptor.getObject();
+
+                    builder.italicAngle(descriptor.getItalicAngle());
+                    builder.ascent(descriptor.getAscent());
+                    builder.descent(descriptor.getDescent());
+                    builder.leading(getDoubleFromDict(ASAtom.LEADING, descriptorDict));
+                    builder.capHeight(descriptor.getCapHeight());
+                    builder.xHeight(getDoubleFromDict(ASAtom.XHEIGHT, descriptorDict));
+                    builder.stemV(descriptor.getStemV());
+                    builder.stemH(getDoubleFromDict(ASAtom.STEM_H, descriptorDict));
+                    builder.avgWidth(getDoubleFromDict(ASAtom.AVG_WIDTH, descriptorDict));
+                    builder.maxWidth(getDoubleFromDict(ASAtom.MAX_WIDTH, descriptorDict));
+                    builder.missingWidth(getDoubleFromDict(ASAtom.MISSING_WIDTH, descriptorDict));
+                    builder.charSet(descriptor.getCharSet());
+
+                    return builder.build();
                 }
-                COSObject descriptorDict = descriptor.getObject();
-
-                builder.italicAngle(descriptor.getItalicAngle());
-                builder.ascent(descriptor.getAscent());
-                builder.descent(descriptor.getDescent());
-                builder.leading(getDoubleFromDict(ASAtom.LEADING, descriptorDict));
-                builder.capHeight(descriptor.getCapHeight());
-                builder.xHeight(getDoubleFromDict(ASAtom.XHEIGHT, descriptorDict));
-                builder.stemV(descriptor.getStemV());
-                builder.stemH(getDoubleFromDict(ASAtom.STEM_H, descriptorDict));
-                builder.avgWidth(getDoubleFromDict(ASAtom.AVG_WIDTH, descriptorDict));
-                builder.maxWidth(getDoubleFromDict(ASAtom.MAX_WIDTH, descriptorDict));
-                builder.missingWidth(getDoubleFromDict(ASAtom.MISSING_WIDTH, descriptorDict));
-                builder.charSet(descriptor.getCharSet());
-
-                return builder.build();
             }
         }
         return null;
@@ -207,7 +209,7 @@ public class GFFontFeaturesObject implements IFeaturesObject {
     private static void parseFontDescriptior(PDFontDescriptor descriptor,
                                              FeatureTreeNode root,
                                              FeatureExtractionResult collection) throws FeatureParsingException {
-        if (descriptor != null) {
+        if (descriptor != null && !descriptor.empty()) {
             FeatureTreeNode descriptorNode = root.addChild("fontDescriptor");
 
             GFCreateNodeHelper.addNotEmptyNode("fontName", descriptor.getFontName(), descriptorNode);

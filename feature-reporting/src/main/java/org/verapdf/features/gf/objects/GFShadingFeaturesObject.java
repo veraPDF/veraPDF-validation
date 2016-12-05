@@ -52,7 +52,7 @@ public class GFShadingFeaturesObject implements IFeaturesObject {
 	 */
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-		if (shading != null) {
+		if (shading != null && !shading.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("shading");
 			if (id != null) {
 				root.setAttribute(ID, id);

@@ -31,7 +31,7 @@ public class GFDocSecurityFeaturesObject implements IFeaturesObject {
 
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (encryption != null) {
+        if (encryption != null && !encryption.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("documentSecurity");
             GFCreateNodeHelper.addNotEmptyNode("filter", encryption.getFilter(), root);
             GFCreateNodeHelper.addNotEmptyNode("subFilter", encryption.getSubFilter(), root);

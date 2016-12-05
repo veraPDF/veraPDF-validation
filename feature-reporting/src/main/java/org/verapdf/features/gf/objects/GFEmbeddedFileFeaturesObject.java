@@ -59,7 +59,7 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
 
-		if (embFile != null) {
+		if (embFile != null && !embFile.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("embeddedFile");
 			root.setAttribute("id", "file" + index);
 
@@ -68,7 +68,7 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 			GFCreateNodeHelper.addNotEmptyNode("afRelationship", embFile.getStringKey(ASAtom.AF_RELATIONSHIP), root);
 
 			COSObject ef = getEmbeddedFile();
-			if (ef != null) {
+			if (ef != null && !ef.empty()) {
 				GFCreateNodeHelper.addNotEmptyNode("subtype", ef.getStringKey(ASAtom.SUBTYPE), root);
 
 				GFCreateNodeHelper.addNotEmptyNode("filter", getFilters(ef), root);
@@ -98,7 +98,7 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 	@Override
 	public FeaturesData getData() {
 		COSObject ef = getEmbeddedFile();
-		if (ef == null) {
+		if (ef == null && !ef.empty()) {
 			LOGGER.log(Level.FINE, "Missed embedded file in PDComplexFileSpecification");
 			return null;
 		}
@@ -161,11 +161,13 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 	}
 
 	private COSObject getEmbeddedFile() {
-		COSObject efDict = embFile.getKey(ASAtom.EF);
-		if (efDict != null && efDict.getType() == COSObjType.COS_DICT) {
-			COSObject file = efDict.getKey(ASAtom.F);
-			if (file != null && file.getType() == COSObjType.COS_STREAM) {
-				return file;
+		if (embFile != null && !embFile.empty()){
+			COSObject efDict = embFile.getKey(ASAtom.EF);
+			if (efDict != null && efDict.getType() == COSObjType.COS_DICT) {
+				COSObject file = efDict.getKey(ASAtom.F);
+				if (file != null && file.getType() == COSObjType.COS_STREAM) {
+					return file;
+				}
 			}
 		}
 		return null;

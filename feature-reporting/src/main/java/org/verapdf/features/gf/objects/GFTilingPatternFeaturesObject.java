@@ -74,7 +74,7 @@ public class GFTilingPatternFeaturesObject implements IFeaturesObject {
 	 */
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-		if (tilingPattern != null) {
+		if (tilingPattern != null && !tilingPattern.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("pattern");
 			if (id != null) {
 				root.setAttribute(ID, id);

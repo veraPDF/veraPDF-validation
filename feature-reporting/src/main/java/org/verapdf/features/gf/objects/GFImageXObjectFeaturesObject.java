@@ -77,7 +77,7 @@ public class GFImageXObjectFeaturesObject implements IFeaturesObject {
      */
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (imageXObject != null) {
+        if (imageXObject != null && !imageXObject.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("xobject");
             root.setAttribute("type", "image");
             if (id != null) {
@@ -144,64 +144,67 @@ public class GFImageXObjectFeaturesObject implements IFeaturesObject {
      */
     @Override
     public FeaturesData getData() {
-        InputStream metadata = null;
-        PDMetadata pdMetadata = imageXObject.getMetadata();
-        if (pdMetadata != null) {
-            metadata = pdMetadata.getStream();
-        }
+        if (imageXObject != null && !imageXObject.empty()) {
+            InputStream metadata = null;
+            PDMetadata pdMetadata = imageXObject.getMetadata();
+            if (pdMetadata != null) {
+                metadata = pdMetadata.getStream();
+            }
 
-        List<ImageFeaturesData.Filter> filters = new ArrayList<>();
-        List<ASAtom> atomFilters = imageXObject.getFilters();
-        if (!atomFilters.isEmpty()) {
-            List<ASAtom> filtersNames = new ArrayList<>();
-            List<COSObject> decodeList = getDecodeList(imageXObject.getKey(ASAtom.DECODE_PARMS));
-            for (int i = 0; i < filtersNames.size(); ++i) {
-                ASAtom filterName = filtersNames.get(i);
-                COSObject dic = i < decodeList.size() ? decodeList.get(i) : null;
-                String filterNameValue = filterName.getValue();
-                switch (filterNameValue) {
-                    case "LZWDecode":
-                        filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, createLZWFilterMap(dic),
-                                null));
-                        break;
-                    case "FlateDecode":
-                        filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, createFlatFilterMap(dic),
-                                null));
-                        break;
-                    case "CCITTFaxDecode":
-                        filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, getCCITTFaxFiltersMap(dic), null));
-                        break;
-                    case "DCTDecode":
-                        filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, getDCTFiltersMap(dic), null));
-                        break;
-                    case "JBIG2Decode":
-                        InputStream global = null;
-                        if (dic != null) {
-                            COSObject globals = dic.getKey(ASAtom.JBIG2_GLOBALS);
-                            if (globals.getType() == COSObjType.COS_STREAM) {
-                                global = globals.getData(COSStream.FilterFlags.DECODE);
+            List<ImageFeaturesData.Filter> filters = new ArrayList<>();
+            List<ASAtom> atomFilters = imageXObject.getFilters();
+            if (!atomFilters.isEmpty()) {
+                List<ASAtom> filtersNames = new ArrayList<>();
+                List<COSObject> decodeList = getDecodeList(imageXObject.getKey(ASAtom.DECODE_PARMS));
+                for (int i = 0; i < filtersNames.size(); ++i) {
+                    ASAtom filterName = filtersNames.get(i);
+                    COSObject dic = i < decodeList.size() ? decodeList.get(i) : null;
+                    String filterNameValue = filterName.getValue();
+                    switch (filterNameValue) {
+                        case "LZWDecode":
+                            filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, createLZWFilterMap(dic),
+                                    null));
+                            break;
+                        case "FlateDecode":
+                            filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, createFlatFilterMap(dic),
+                                    null));
+                            break;
+                        case "CCITTFaxDecode":
+                            filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, getCCITTFaxFiltersMap(dic), null));
+                            break;
+                        case "DCTDecode":
+                            filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, getDCTFiltersMap(dic), null));
+                            break;
+                        case "JBIG2Decode":
+                            InputStream global = null;
+                            if (dic != null) {
+                                COSObject globals = dic.getKey(ASAtom.JBIG2_GLOBALS);
+                                if (globals.getType() == COSObjType.COS_STREAM) {
+                                    global = globals.getData(COSStream.FilterFlags.DECODE);
+                                }
                             }
-                        }
-                        filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, new HashMap<String, String>(),
-                                global));
-                        break;
-                    case "Crypt":
-                        if (dic == null || !ASAtom.IDENTITY.equals(dic.getNameKey(ASAtom.NAME))) {
-                            LOGGER.log(Level.FINE, "An Image has a Crypt filter");
-                            return null;
-                        }
-                        //$FALL-THROUGH$
-                    default:
-                        filters.add(
-                                ImageFeaturesData.Filter.newInstance(filterNameValue, new HashMap<String, String>(), null));
+                            filters.add(ImageFeaturesData.Filter.newInstance(filterNameValue, new HashMap<String, String>(),
+                                    global));
+                            break;
+                        case "Crypt":
+                            if (dic == null || !ASAtom.IDENTITY.equals(dic.getNameKey(ASAtom.NAME))) {
+                                LOGGER.log(Level.FINE, "An Image has a Crypt filter");
+                                return null;
+                            }
+                            //$FALL-THROUGH$
+                        default:
+                            filters.add(
+                                    ImageFeaturesData.Filter.newInstance(filterNameValue, new HashMap<String, String>(), null));
+                    }
                 }
             }
+
+            Integer width = getIntegerWithDefault(imageXObject.getWidth(), null);
+            Integer height = getIntegerWithDefault(imageXObject.getHeight(), null);
+
+            return ImageFeaturesData.newInstance(metadata, imageXObject.getObject().getData(), width, height, filters);
         }
-
-        Integer width = getIntegerWithDefault(imageXObject.getWidth(), null);
-        Integer height = getIntegerWithDefault(imageXObject.getHeight(), null);
-
-        return ImageFeaturesData.newInstance(metadata, imageXObject.getObject().getData(), width, height, filters);
+        return null;
     }
 
     private static List<COSObject> getDecodeList(COSObject base) {

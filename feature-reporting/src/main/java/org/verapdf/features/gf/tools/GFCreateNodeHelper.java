@@ -168,7 +168,7 @@ public final class GFCreateNodeHelper {
 	 */
 	public static FeatureTreeNode addNotEmptyNode(String name, COSObject value, FeatureTreeNode parent)
 			throws FeatureParsingException {
-		if (name != null && value != null
+		if (name != null && value != null && !value.empty()
 				&& (value.getType() == COSObjType.COS_NAME || value.getType() == COSObjType.COS_STRING)) {
 			FeatureTreeNode node = parent.addChild(name);
 			node.setValue(value.getString());
@@ -290,7 +290,7 @@ public final class GFCreateNodeHelper {
 	 */
 	public static FeatureTreeNode parseMetadata(PDMetadata metadata, String nodeName, FeatureTreeNode parent,
 												FeatureExtractionResult collection) throws FeatureParsingException {
-		if (metadata == null) {
+		if (metadata == null || metadata.empty()) {
 			return null;
 		}
 		FeatureTreeNode node;
@@ -318,10 +318,12 @@ public final class GFCreateNodeHelper {
 	}
 
 	public static void parseMatrix(double[] array, FeatureTreeNode parent) throws FeatureParsingException {
-		for (int i = 0; i < array.length; ++i) {
-			FeatureTreeNode element = parent.addChild("element");
-			element.setAttribute("index", String.valueOf(i + 1));
-			element.setAttribute("value", String.valueOf(array[i]));
+		if (array != null) {
+			for (int i = 0; i < array.length; ++i) {
+				FeatureTreeNode element = parent.addChild("element");
+				element.setAttribute("index", String.valueOf(i + 1));
+				element.setAttribute("value", String.valueOf(array[i]));
+			}
 		}
 	}
 

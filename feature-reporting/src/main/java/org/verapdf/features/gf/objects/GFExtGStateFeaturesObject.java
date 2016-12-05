@@ -53,7 +53,7 @@ public class GFExtGStateFeaturesObject implements IFeaturesObject {
      */
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (exGState != null) {
+        if (exGState != null && !exGState.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("graphicsState");
 
             if (id != null) {

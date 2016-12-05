@@ -47,7 +47,7 @@ public class GFOutputIntentsFeaturesObject implements IFeaturesObject {
 	 */
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-		if (outInt != null) {
+		if (outInt != null && !outInt.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("outputIntent");
 
 			GFCreateNodeHelper.addNotEmptyNode("subtype", outInt.getSubtype(), root);

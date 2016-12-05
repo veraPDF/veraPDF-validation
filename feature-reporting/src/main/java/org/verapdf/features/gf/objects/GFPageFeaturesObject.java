@@ -88,7 +88,7 @@ public class GFPageFeaturesObject implements IFeaturesObject {
 	 */
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-		if (page != null) {
+		if (page != null && !page.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("page");
 
 			root.setAttribute("orderNumber", Integer.toString(index));

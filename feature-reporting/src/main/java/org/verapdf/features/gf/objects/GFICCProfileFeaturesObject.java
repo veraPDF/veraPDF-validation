@@ -63,7 +63,7 @@ public class GFICCProfileFeaturesObject implements IFeaturesObject {
      */
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (profile != null) {
+        if (profile != null && !profile.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("iccProfile");
 
             if (id != null) {

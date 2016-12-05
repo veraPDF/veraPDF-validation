@@ -46,7 +46,7 @@ public class GFPropertiesDictFeaturesObject implements IFeaturesObject {
      */
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (properties != null) {
+        if (properties != null && !properties.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("propertiesDict");
             if (id != null) {
                 root.setAttribute("id", id);
