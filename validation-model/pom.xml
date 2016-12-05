@@ -29,6 +29,11 @@
       <artifactId>feature-reporting</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.verapdf</groupId>
+      <artifactId>metadata-fixer</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
