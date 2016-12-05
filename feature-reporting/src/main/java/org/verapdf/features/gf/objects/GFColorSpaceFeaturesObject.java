@@ -70,7 +70,7 @@ public class GFColorSpaceFeaturesObject implements IFeaturesObject {
 	 */
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-		if (colorSpace != null) {
+		if (colorSpace != null && !colorSpace.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("colorSpace");
 
 			if (id != null) {

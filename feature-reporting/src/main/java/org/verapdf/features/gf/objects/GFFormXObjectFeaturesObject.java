@@ -80,7 +80,7 @@ public class GFFormXObjectFeaturesObject implements IFeaturesObject {
 	 */
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-		if (formXObject != null) {
+		if (formXObject != null && !formXObject.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("xobject");
 			root.setAttribute("type", "form");
 			if (id != null) {

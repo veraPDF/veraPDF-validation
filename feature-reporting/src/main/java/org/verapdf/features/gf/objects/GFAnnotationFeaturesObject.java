@@ -59,7 +59,7 @@ public class GFAnnotationFeaturesObject implements IFeaturesObject {
 	 */
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-		if (annot != null) {
+		if (annot != null && !annot.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("annotation");
 			if (id != null) {
 				root.setAttribute(ID, id);

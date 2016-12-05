@@ -30,7 +30,7 @@ public class GFSignatureFeaturesObject implements IFeaturesObject {
 
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult featureExtractionResult) throws FeatureParsingException {
-        if (signature != null) {
+        if (signature != null && !signature.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("signature");
 
             GFCreateNodeHelper.addNotEmptyNode("filter", signature.getFilter(), root);

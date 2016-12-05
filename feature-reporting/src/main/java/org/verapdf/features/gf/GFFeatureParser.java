@@ -766,7 +766,7 @@ public final class GFFeatureParser {
 	}
 
 	private String getId(final COSObject base, final FeatureObjectType objType) {
-		if (base == null) {
+		if (base == null || base.empty()) {
 			return null;
 		}
 		long numb = this.processedIDs.size();
