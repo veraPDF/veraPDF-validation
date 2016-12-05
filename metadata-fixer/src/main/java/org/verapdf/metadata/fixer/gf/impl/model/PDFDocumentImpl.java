@@ -2,9 +2,12 @@ package org.verapdf.metadata.fixer.gf.impl.model;
 
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSStream;
 import org.verapdf.cos.COSTrailer;
+import org.verapdf.io.SeekableStream;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
 import org.verapdf.metadata.fixer.entity.Metadata;
 import org.verapdf.metadata.fixer.entity.PDFDocument;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +41,7 @@ public class PDFDocumentImpl implements PDFDocument {
 
 	/**
 	 * Create a new PDFDocumentImpl from the passed InputStream
-	 * 
+	 *
 	 * @param pdfStream
 	 *            an {@link InputStream} to be parsed as a PDF Document.
 	 * @throws IOException
@@ -80,10 +84,8 @@ public class PDFDocumentImpl implements PDFDocument {
 		try {
 			VeraPDFMeta xmp = VeraPDFMeta.parse(meta.getStream());
 			if (xmp != null) {
-				return new MetadataImpl(xmp, meta.getStream());
+				return new MetadataImpl(xmp, meta.getCOSStream());
 			}
-		} catch (IOException e) {
-			LOGGER.log(Level.FINE, "Problems with document parsing or structure. " + e.getMessage(), e);
 		} catch (XMPException e) {
 			LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage(), e);
 		}
@@ -139,7 +141,7 @@ public class PDFDocumentImpl implements PDFDocument {
 				if (isMetaAdd) {
 					this.document.getCatalog().getObject().setNeedToBeUpdated(true);
 				}
-				this.document.saveIncremental(output);
+				this.document.saveTo(output);
 				output.close();
 				builder.status(getStatus(status));
 			} else {
@@ -152,44 +154,45 @@ public class PDFDocumentImpl implements PDFDocument {
 		return builder.build();
 	}
 
-	@Override
-	public int removeFiltersForAllMetadataObjects() {
-		int res = 0;
-		try {
-			List<COSObject> objects = this.document.getDocument().getObjectsByType(COSName.METADATA);
+    @Override
+    public int removeFiltersForAllMetadataObjects() {
+        int res = 0;
+        List<COSObject> objects = this.document.getDocument().getObjectsByType(ASAtom.METADATA);
 
-			List<COSStream> metas = new ArrayList<>();
-			for (COSObject obj : objects) {
-				COSBase base = obj.getObject();
-				if (base instanceof COSStream) {
-					metas.add((COSStream) base);
-				} else {
-					LOGGER.log(Level.FINE, "Founded non-stream Metadata dictionary.");
-				}
-			}
-			for (COSStream stream : metas) {
-				COSBase filters = stream.getFilters();
-				if (filters instanceof COSName || (filters instanceof COSArray && ((COSArray) filters).size() != 0)) {
-					try {
-						stream.setFilters(null);
-						stream.setNeedToBeUpdated(true);
-						++res;
-					} catch (IOException e) {
-						LOGGER.log(Level.FINE, "Problems with unfilter stream.", e);
-					}
-				}
-			}
-		} catch (IOException e) {
-			LOGGER.log(Level.FINE, "Can not obtain Metadata objects", e);
-		}
+        List<COSStream> metas = new ArrayList<>();
+        for (COSObject obj : objects) {
+            if (obj.getType() == COSObjType.COS_STREAM) {
+                metas.add((COSStream) obj.get());
+            } else {
+                LOGGER.log(Level.FINE, "Founded non-stream Metadata dictionary.");
+            }
+        }
+        for (COSStream stream : metas) {
+            if (removeFilters(stream)) {
+                res++;
+            }
+        }
+        isUnfiltered = res > 0;
 
-		isUnfiltered = res > 0;
-
-		return res;
-	}
+        return res;
+    }
 
 	private static MetadataFixerResultImpl.RepairStatus getStatus(final MetadataFixerResultImpl.RepairStatus status) {
 		return status == NO_ACTION ? SUCCESS : status;
 	}
 
+	private static boolean removeFilters(COSStream stream) {
+		if (!stream.getFilters().getFilters().isEmpty()) {
+			try {
+				SeekableStream unfilteredData =
+						SeekableStream.getSeekableStream(stream.getData(COSStream.FilterFlags.DECODE));
+				stream.setData(unfilteredData);
+				stream.setFilters(null);
+				return true;
+			} catch (IOException e) {
+				LOGGER.log(Level.FINE, "Can't decode COSStream contents", e);
+			}
+		}
+		return false;
+	}
 }
