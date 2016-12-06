@@ -2,6 +2,7 @@ package org.verapdf.metadata.fixer.gf.impl.model;
 
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSStream;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
 import org.verapdf.metadata.fixer.entity.Metadata;
@@ -53,7 +54,7 @@ public class MetadataImpl implements Metadata {
             PDFAFlavour flavour) {
         PDFAFlavour.Specification part = flavour.getPart();
         if (part == PDFAFlavour.Specification.ISO_19005_2 || part == PDFAFlavour.Specification.ISO_19005_3) {
-            COSBase filters = this.stream.getFilters();
+            COSBase filters = this.stream.getFilters().getFilters();
             if (filters instanceof COSName && COSName.FLATE_DECODE.equals(filters)) {
                 return;
             } else if (filters instanceof COSArray && ((COSArray) filters).size() == 1 && COSName.FLATE_DECODE.equals(((COSArray) filters).get(0))) {
@@ -67,19 +68,19 @@ public class MetadataImpl implements Metadata {
                 LOGGER.log(Level.FINE, "Problems with setting filter for stream.", e);
             }
         }
-        this.setRequiredDictionaryValue(COSName.METADATA, COSName.TYPE,
+        this.setRequiredDictionaryValue(ASAtom.METADATA, ASAtom.TYPE,
                 resultBuilder);
-        this.setRequiredDictionaryValue(COSName.getPDFName("XML"),
-                COSName.SUBTYPE, resultBuilder);
+        this.setRequiredDictionaryValue(ASAtom.getASAtom("XML"),
+                ASAtom.SUBTYPE, resultBuilder);
     }
 
-    private void setRequiredDictionaryValue(COSName value, COSName key,
+    private void setRequiredDictionaryValue(ASAtom value, ASAtom key,
                                             MetadataFixerResultImpl.Builder resultBuilder) {
-        if (!value.equals(this.stream.getDictionaryObject(key))) {
-            this.stream.setItem(key, value);
+        if (!value.equals(this.stream.getNameKey(key))) {
+            this.stream.setNameKey(key, value);
             this.stream.setNeedToBeUpdated(true);
-            resultBuilder.addFix(value.getName() + " value of " + key.getName()
-                    + " key is set " + "to metadata dictionary");
+            resultBuilder.addFix(value.getValue() + " value of " + key.getValue()
+                    + " key is set to metadata dictionary");
         }
     }
 
