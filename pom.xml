@@ -55,6 +55,7 @@
     <verapdf.parser.version>[0.3.0,0.4.0)</verapdf.parser.version>
     <verapdf.pdfmodel.version>[0.27.0,0.28.0)</verapdf.pdfmodel.version>
     <verapdf.library.version>[0.27.0,0.28.0)</verapdf.library.version>
+    <verapdf.xmp.version>[0.11.100,0.12.0)</verapdf.xmp.version>
   </properties>
 
   <dependencyManagement>
@@ -76,6 +77,12 @@
         <groupId>org.verapdf</groupId>
         <artifactId>core</artifactId>
         <version>${verapdf.library.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.verapdf</groupId>
+        <artifactId>verapdf-xmp-core</artifactId>
+        <version>${verapdf.xmp.version}</version>
       </dependency>
 
     </dependencies>
