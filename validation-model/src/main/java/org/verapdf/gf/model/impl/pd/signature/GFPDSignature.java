@@ -4,7 +4,7 @@ import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.external.GFPKCSDataObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
-import org.verapdf.io.SeekableStream;
+import org.verapdf.io.SeekableInputStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.external.PKCSDataObject;
 import org.verapdf.model.pdlayer.PDSigRef;
@@ -93,7 +93,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     @Override
     public Boolean getdoesByteRangeCoverEntireDocument() {
         try {
-            SeekableStream pdfSource = StaticContainers.getDocument().getPDFSource();
+            SeekableInputStream pdfSource = StaticContainers.getDocument().getPDFSource();
             long offest = pdfSource.getOffset();
             SignatureParser parser = new SignatureParser(pdfSource,
                     StaticContainers.getDocument().getDocument());
