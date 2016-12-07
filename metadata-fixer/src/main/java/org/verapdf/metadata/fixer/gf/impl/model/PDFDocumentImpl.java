@@ -3,11 +3,7 @@ package org.verapdf.metadata.fixer.gf.impl.model;
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
-import org.verapdf.cos.COSStream;
-import org.verapdf.cos.COSTrailer;
-import org.verapdf.io.SeekableStream;
+import org.verapdf.cos.*;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
 import org.verapdf.metadata.fixer.entity.Metadata;
 import org.verapdf.metadata.fixer.entity.PDFDocument;
@@ -168,8 +164,13 @@ public class PDFDocumentImpl implements PDFDocument {
             }
         }
         for (COSStream stream : metas) {
-            if (removeFilters(stream)) {
-                res++;
+            if (stream.getFilters().size() > 0) {
+				try {
+					stream.setFilters(new COSFilters());
+					res++;
+				} catch (IOException e) {
+					LOGGER.log(Level.FINE, "Error when removing filter from stream", e);
+				}
             }
         }
         isUnfiltered = res > 0;
@@ -179,20 +180,5 @@ public class PDFDocumentImpl implements PDFDocument {
 
 	private static MetadataFixerResultImpl.RepairStatus getStatus(final MetadataFixerResultImpl.RepairStatus status) {
 		return status == NO_ACTION ? SUCCESS : status;
-	}
-
-	private static boolean removeFilters(COSStream stream) {
-		if (!stream.getFilters().getFilters().isEmpty()) {
-			try {
-				SeekableStream unfilteredData =
-						SeekableStream.getSeekableStream(stream.getData(COSStream.FilterFlags.DECODE));
-				stream.setData(unfilteredData);
-				stream.setFilters(null);
-				return true;
-			} catch (IOException e) {
-				LOGGER.log(Level.FINE, "Can't decode COSStream contents", e);
-			}
-		}
-		return false;
 	}
 }
