@@ -81,7 +81,7 @@ public class DateConverter {
 	public static String toPDFFormat(String date) {
 		Calendar buffer = TypeConverter.parseDate(date);
 		buffer.setTimeZone(TimeZone.getTimeZone("UTC"));
-		return org.apache.pdfbox.util.DateConverter.toString(buffer);
+		return TypeConverter.getPDFDate(buffer);
 	}
 
 	/**
@@ -91,6 +91,6 @@ public class DateConverter {
 	 * @return PDF string representation of date
 	 */
 	public static String toPDFFormat(Calendar date) {
-		return org.apache.pdfbox.util.DateConverter.toString(date);
+		return TypeConverter.getPDFDate(date);
 	}
 }

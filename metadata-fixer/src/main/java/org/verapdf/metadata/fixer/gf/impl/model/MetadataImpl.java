@@ -6,6 +6,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSFilters;
 import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSStream;
+import org.verapdf.io.InternalInputStream;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
 import org.verapdf.metadata.fixer.entity.Metadata;
 import org.verapdf.metadata.fixer.gf.impl.schemas.AdobePDFSchemaImpl;
@@ -18,6 +19,8 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.MetadataFixerResult;
 import org.verapdf.pdfa.results.MetadataFixerResultImpl;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
@@ -211,8 +214,11 @@ public class MetadataImpl implements Metadata {
         if (!this.stream.isNeedToBeUpdated()) {
             return;
         }
-        try (OutputStream out = this.stream.createUnfilteredStream()) {
+        File temp = File.createTempFile("veraPDFMetadataFixed", ".xml");
+        temp.deleteOnExit();
+        try (OutputStream out = new FileOutputStream(temp)) {
             VeraPDFMeta.serialize(this.metadata, out);
+            this.stream.setData(new InternalInputStream(temp));
         }
     }
 }

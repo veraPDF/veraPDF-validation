@@ -57,8 +57,6 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 	 *
 	 * @param output
 	 *            stream to result file
-	 * @param config
-	 *            configuration for metadata fixer
 	 * @return report of made corrections
 	 */
 	public static MetadataFixerResult fixMetadata(OutputStream output, PDFDocument document, ValidationResult result,
@@ -108,7 +106,7 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 			}
 
 			return getErrorResult("Problems with metadata obtain. No possibility to fix metadata.");
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			LOGGER.log(Level.FINE, "Error while fixing metadata", e);
 			return getErrorResult("Error while fixing metadata: " + e.getMessage());
 		}
@@ -140,6 +138,8 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 			int removedFilters = document.removeFiltersForAllMetadataObjects();
 			if (removedFilters > 0) {
 				resultBuilder.addFix("Metadata streams unfiltered");
+			} else if (removedFilters < 0) {
+				throw new IllegalStateException("Problem while removing filters from metadata streams");
 			}
 		}
 		fixMetadata(resultBuilder, document, flavour);

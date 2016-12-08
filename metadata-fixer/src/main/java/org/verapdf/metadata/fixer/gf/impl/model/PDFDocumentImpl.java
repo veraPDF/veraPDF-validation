@@ -38,10 +38,8 @@ public class PDFDocumentImpl implements PDFDocument {
 	/**
 	 * Create a new PDFDocumentImpl from the passed InputStream
 	 *
-	 * @param pdfStream
-	 *            an {@link InputStream} to be parsed as a PDF Document.
-	 * @throws IOException
-	 *             when there's a problem reading or parsing the file.
+	 * @param pdfStream an {@link InputStream} to be parsed as a PDF Document.
+	 * @throws IOException when there's a problem reading or parsing the file.
 	 */
 	public PDFDocumentImpl(InputStream pdfStream) throws IOException {
 		this(new PDDocument(pdfStream));
@@ -50,7 +48,7 @@ public class PDFDocumentImpl implements PDFDocument {
 	/**
 	 * @param document
 	 */
-	public PDFDocumentImpl(PDDocument document) {
+	public PDFDocumentImpl(PDDocument document) throws IOException {
 		if (document == null) {
 			throw new IllegalArgumentException("Document representation can not be null");
 		}
@@ -59,19 +57,15 @@ public class PDFDocumentImpl implements PDFDocument {
 		this.info = this.getInfo();
 	}
 
-	private MetadataImpl parseMetadata() {
+	private MetadataImpl parseMetadata() throws IOException {
 		PDCatalog catalog = this.document.getCatalog();
 		PDMetadata meta = catalog.getMetadata();
 		if (meta == null) {
-			try (COSStream stream = this.document.getDocument().createCOSStream()) {
-				catalog.setMetadata(new PDMetadata(stream));
-				catalog.getCOSObject().setNeedToBeUpdated(true);
-				VeraPDFMeta xmp = VeraPDFMeta.create();
-				return new MetadataImpl(xmp, stream);
-			} catch (IOException excep) {
-				// TODO Auto-generated catch block
-				excep.printStackTrace();
-			}
+			COSObject stream = COSStream.construct();
+			catalog.setKey(ASAtom.METADATA, stream);
+			catalog.getObject().setNeedToBeUpdated(true);
+			VeraPDFMeta xmp = VeraPDFMeta.create();
+			return new MetadataImpl(xmp, (COSStream) stream.getDirectBase());
 		}
 		return parseMetadata(meta);
 	}
@@ -91,12 +85,12 @@ public class PDFDocumentImpl implements PDFDocument {
 	private InfoDictionaryImpl getInfo() {
 		COSTrailer trailer = this.document.getDocument().getTrailer();
 		COSObject infoDict = trailer.getInfo();
-		return (infoDict != null &&  infoDict.getType() == COSObjType.COS_DICT) ?
+		return (infoDict != null && infoDict.getType() == COSObjType.COS_DICT) ?
 				new InfoDictionaryImpl(infoDict) : null;
 	}
 
 	/**
-	 * {@inheritDoc} Implemented by Apache PDFBox library.
+	 * {@inheritDoc} Implemented by GreenField library.
 	 */
 	@Override
 	public Metadata getMetadata() {
@@ -104,7 +98,7 @@ public class PDFDocumentImpl implements PDFDocument {
 	}
 
 	/**
-	 * {@inheritDoc} Implemented by Apache PDFBox library.
+	 * {@inheritDoc} Implemented by GreenField library.
 	 */
 	@Override
 	public InfoDictionary getInfoDictionary() {
@@ -112,7 +106,7 @@ public class PDFDocumentImpl implements PDFDocument {
 	}
 
 	/**
-	 * {@inheritDoc} Implemented by Apache PDFBox library.
+	 * {@inheritDoc} Implemented by GreenField library.
 	 */
 	@Override
 	public boolean isNeedToBeUpdated() {
@@ -122,11 +116,11 @@ public class PDFDocumentImpl implements PDFDocument {
 	}
 
 	/**
-	 * {@inheritDoc} Implemented by Apache PDFBox library.
+	 * {@inheritDoc} Implemented by GreenField library.
 	 */
 	@Override
 	public MetadataFixerResult saveDocumentIncremental(final MetadataFixerResultImpl.RepairStatus status,
-			OutputStream output) {
+													   OutputStream output) {
 		MetadataFixerResultImpl.Builder builder = new MetadataFixerResultImpl.Builder();
 		try {
 			PDMetadata meta = this.document.getCatalog().getMetadata();
@@ -150,33 +144,34 @@ public class PDFDocumentImpl implements PDFDocument {
 		return builder.build();
 	}
 
-    @Override
-    public int removeFiltersForAllMetadataObjects() {
-        int res = 0;
-        List<COSObject> objects = this.document.getDocument().getObjectsByType(ASAtom.METADATA);
+	@Override
+	public int removeFiltersForAllMetadataObjects() {
+		int res = 0;
+		List<COSObject> objects = this.document.getDocument().getObjectsByType(ASAtom.METADATA);
 
-        List<COSStream> metas = new ArrayList<>();
-        for (COSObject obj : objects) {
-            if (obj.getType() == COSObjType.COS_STREAM) {
-                metas.add((COSStream) obj.get());
-            } else {
-                LOGGER.log(Level.FINE, "Founded non-stream Metadata dictionary.");
-            }
-        }
-        for (COSStream stream : metas) {
-            if (stream.getFilters().size() > 0) {
+		List<COSStream> metas = new ArrayList<>();
+		for (COSObject obj : objects) {
+			if (obj.getType() == COSObjType.COS_STREAM) {
+				metas.add((COSStream) obj.get());
+			} else {
+				LOGGER.log(Level.FINE, "Founded non-stream Metadata dictionary.");
+			}
+		}
+		for (COSStream stream : metas) {
+			if (stream.getFilters().size() > 0) {
 				try {
 					stream.setFilters(new COSFilters());
 					res++;
 				} catch (IOException e) {
 					LOGGER.log(Level.FINE, "Error when removing filter from stream", e);
+					return -1;
 				}
-            }
-        }
-        isUnfiltered = res > 0;
+			}
+		}
+		isUnfiltered = res > 0;
 
-        return res;
-    }
+		return res;
+	}
 
 	private static MetadataFixerResultImpl.RepairStatus getStatus(final MetadataFixerResultImpl.RepairStatus status) {
 		return status == NO_ACTION ? SUCCESS : status;
