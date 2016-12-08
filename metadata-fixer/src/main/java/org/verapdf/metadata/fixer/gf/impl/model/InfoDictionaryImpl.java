@@ -61,7 +61,7 @@ public class InfoDictionaryImpl implements InfoDictionary {
 
 	@Override
 	public String getKeywords() {
-		return this.info.getStringKey(ASAtom.KEYWORDS;
+		return this.info.getStringKey(ASAtom.KEYWORDS);
 	}
 
 	@Override

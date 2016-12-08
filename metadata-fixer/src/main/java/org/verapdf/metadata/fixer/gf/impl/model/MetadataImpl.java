@@ -3,6 +3,8 @@ package org.verapdf.metadata.fixer.gf.impl.model;
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSFilters;
+import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSStream;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
 import org.verapdf.metadata.fixer.entity.Metadata;
@@ -54,14 +56,12 @@ public class MetadataImpl implements Metadata {
             PDFAFlavour flavour) {
         PDFAFlavour.Specification part = flavour.getPart();
         if (part == PDFAFlavour.Specification.ISO_19005_2 || part == PDFAFlavour.Specification.ISO_19005_3) {
-            COSBase filters = this.stream.getFilters().getFilters();
-            if (filters instanceof COSName && COSName.FLATE_DECODE.equals(filters)) {
-                return;
-            } else if (filters instanceof COSArray && ((COSArray) filters).size() == 1 && COSName.FLATE_DECODE.equals(((COSArray) filters).get(0))) {
+            COSFilters filters = this.stream.getFilters();
+            if (filters.size() == 1 && filters.getFilters().get(0) == ASAtom.FLATE_DECODE) {
                 return;
             }
             try {
-                this.stream.setFilters(COSName.FLATE_DECODE);
+                this.stream.setFilters(new COSFilters(COSName.construct(ASAtom.FLATE_DECODE)));
                 this.stream.setNeedToBeUpdated(true);
                 resultBuilder.addFix("Metadata stream filtered with FlateDecode");
             } catch (IOException e) {
