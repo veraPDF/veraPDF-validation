@@ -1,15 +1,16 @@
 package org.verapdf.pdfa;
 
-import java.io.InputStream;
-import java.net.URI;
-
 import org.verapdf.ReleaseDetails;
 import org.verapdf.component.ComponentDetails;
 import org.verapdf.component.Components;
 import org.verapdf.core.EncryptedPdfException;
 import org.verapdf.core.ModelParsingException;
 import org.verapdf.gf.model.GFModelParser;
+import org.verapdf.metadata.fixer.gf.GFMetadataFixerImpl;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+
+import java.io.InputStream;
+import java.net.URI;
 
 /**
  * @author Maksim Bezrukov
@@ -54,8 +55,7 @@ class VeraFoundry extends AbstractFoundry {
 	 */
 	@Override
 	public MetadataFixer createMetadataFixer() {
-		// TODO: implement me with metadata fixer
-		return null;
+		return new GFMetadataFixerImpl();
 	}
 
 	public static ReleaseDetails getReleaseDetails() {
