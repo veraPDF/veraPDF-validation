@@ -263,11 +263,11 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 		if (document.isNeedToBeUpdated() && schema != null) {
 			Calendar time = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 			if (schema.getModificationDate() != null) {
-				doSaveAction(schema, METADATA_MODIFICATION_DATE, DateConverter.toUTCString(time));
+				doSaveAction(schema, METADATA_MODIFICATION_DATE, DateConverter.toPDFFormat(time));
 				resultBuilder.addFix("Set new modification date to metadata");
 			}
 			if (info != null && info.getModificationDate() != null) {
-				doSaveAction(info, METADATA_MODIFICATION_DATE, DateConverter.toPDFFormat(time));
+				doSaveAction(info, METADATA_MODIFICATION_DATE, DateConverter.toUTCString(time));
 				resultBuilder.addFix("Set new modification date to info dictionary");
 			}
 		}

@@ -1,5 +1,8 @@
 package org.verapdf.metadata.fixer.gf.utils;
 
+import com.adobe.xmp.XMPDateTime;
+import com.adobe.xmp.XMPDateTimeFactory;
+import com.adobe.xmp.XMPException;
 import org.verapdf.tools.TypeConverter;
 
 import java.text.SimpleDateFormat;
@@ -79,9 +82,16 @@ public class DateConverter {
 	 * @return PDF string representation of passed date
 	 */
 	public static String toPDFFormat(String date) {
-		Calendar buffer = TypeConverter.parseDate(date);
-		buffer.setTimeZone(TimeZone.getTimeZone("UTC"));
-		return TypeConverter.getPDFDate(buffer);
+		try {
+			XMPDateTime fromISO8601 = XMPDateTimeFactory.createFromISO8601(date);
+			Calendar buffer = fromISO8601.getCalendar();
+			buffer.setTimeZone(TimeZone.getTimeZone("UTC"));
+			return TypeConverter.getPDFDate(buffer);
+		} catch (XMPException e) {
+			// This exception should not be thrown because of logic of metadata fixer should use this method only
+			// with arguments date obtained from DateConverter.toUTCString(Calendar) method
+			throw new IllegalStateException("Problems with parsing utc date", e);
+		}
 	}
 
 	/**
