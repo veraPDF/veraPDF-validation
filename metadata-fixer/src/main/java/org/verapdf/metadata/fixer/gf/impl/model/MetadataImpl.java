@@ -210,17 +210,17 @@ public class MetadataImpl implements Metadata {
 
     @Override
     public void setNeedToBeUpdated(boolean needToBeUpdated) {
-        if (!isStreamCreated) {
-            if (needToBeUpdated) {
-                this.doc.addChangedObject(this.stream);
-            } else {
-                this.doc.removeChangedObject(this.stream);
-            }
-        } else {
+        if (isStreamCreated) {
             if (needToBeUpdated) {
                 this.doc.addObject(this.stream);
             } else {
                 this.doc.removeAddedObject(this.stream);
+            }
+        } else {
+            if (needToBeUpdated) {
+                this.doc.addChangedObject(this.stream);
+            } else {
+                this.doc.removeChangedObject(this.stream);
             }
         }
     }
