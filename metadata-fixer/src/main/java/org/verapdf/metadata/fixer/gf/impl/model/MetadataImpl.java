@@ -34,12 +34,14 @@ public class MetadataImpl implements Metadata {
     private final VeraPDFMeta metadata;
     private final COSObject stream;
     private final COSDocument doc;
+    private boolean isStreamCreated;
 
     /**
      * @param metadata
      * @param stream
      */
-    public MetadataImpl(VeraPDFMeta metadata, COSObject stream, COSDocument doc) {
+    public MetadataImpl(VeraPDFMeta metadata, COSObject stream, COSDocument doc,
+                        boolean isStreamCreated) {
         if (metadata == null) {
             throw new IllegalArgumentException(
                     "Metadata package can not be null");
@@ -51,6 +53,7 @@ public class MetadataImpl implements Metadata {
         this.metadata = metadata;
         this.stream = stream;
         this.doc = doc;
+        this.isStreamCreated = isStreamCreated;
     }
 
     @Override
@@ -59,12 +62,12 @@ public class MetadataImpl implements Metadata {
             PDFAFlavour flavour) {
         PDFAFlavour.Specification part = flavour.getPart();
         if (part == PDFAFlavour.Specification.ISO_19005_2 || part == PDFAFlavour.Specification.ISO_19005_3) {
-            COSFilters filters = ((COSStream) this.stream.get()).getFilters();
+            COSFilters filters = ((COSStream) this.stream.getDirectBase()).getFilters();
             if (filters.size() == 1 && filters.getFilters().get(0) == ASAtom.FLATE_DECODE) {
                 return;
             }
             try {
-                ((COSStream) this.stream.get()).setFilters(new COSFilters(
+                ((COSStream) this.stream.getDirectBase()).setFilters(new COSFilters(
                         COSName.construct(ASAtom.FLATE_DECODE)));
                 this.doc.addChangedObject(stream);
                 resultBuilder.addFix("Metadata stream filtered with FlateDecode");
@@ -207,7 +210,19 @@ public class MetadataImpl implements Metadata {
 
     @Override
     public void setNeedToBeUpdated(boolean needToBeUpdated) {
-        this.doc.addChangedObject(this.stream);
+        if (!isStreamCreated) {
+            if (needToBeUpdated) {
+                this.doc.addChangedObject(this.stream);
+            } else {
+                this.doc.removeChangedObject(this.stream);
+            }
+        } else {
+            if (needToBeUpdated) {
+                this.doc.addObject(this.stream);
+            } else {
+                this.doc.removeAddedObject(this.stream);
+            }
+        }
     }
 
     @Override

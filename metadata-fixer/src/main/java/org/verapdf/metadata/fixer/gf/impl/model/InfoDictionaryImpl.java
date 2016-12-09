@@ -111,6 +111,8 @@ public class InfoDictionaryImpl implements InfoDictionary {
 	public void setNeedToBeUpdated(boolean needToBeUpdated) {
 		if (needToBeUpdated) {
 			this.doc.addChangedObject(info);
+		} else {
+			this.doc.removeChangedObject(info);
 		}
 	}
 

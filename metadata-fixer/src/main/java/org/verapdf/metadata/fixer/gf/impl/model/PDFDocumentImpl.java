@@ -65,7 +65,8 @@ public class PDFDocumentImpl implements PDFDocument {
 			catalog.setKey(ASAtom.METADATA, stream);
 			this.document.getDocument().addObject(stream);
 			VeraPDFMeta xmp = VeraPDFMeta.create();
-			return new MetadataImpl(xmp, stream, this.document.getDocument());
+			return new MetadataImpl(xmp, stream, this.document.getDocument(),
+					true);
 		}
 		return parseMetadata(meta, this.document);
 	}
@@ -74,7 +75,8 @@ public class PDFDocumentImpl implements PDFDocument {
 		try {
 			VeraPDFMeta xmp = VeraPDFMeta.parse(meta.getStream());
 			if (xmp != null) {
-				return new MetadataImpl(xmp, meta.getObject(), document.getDocument());
+				return new MetadataImpl(xmp, meta.getObject(),
+						document.getDocument(), false);
 			}
 		} catch (XMPException e) {
 			LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage(), e);
