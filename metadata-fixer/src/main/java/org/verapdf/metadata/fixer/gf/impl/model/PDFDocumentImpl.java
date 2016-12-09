@@ -63,18 +63,20 @@ public class PDFDocumentImpl implements PDFDocument {
 		if (meta == null) {
 			COSObject stream = COSStream.construct();
 			catalog.setKey(ASAtom.METADATA, stream);
-			catalog.getObject().setNeedToBeUpdated(true);
+			this.document.getDocument().addObject(stream);
 			VeraPDFMeta xmp = VeraPDFMeta.create();
-			return new MetadataImpl(xmp, (COSStream) stream.getDirectBase());
+			return new MetadataImpl(xmp, stream, this.document.getDocument(),
+					true);
 		}
-		return parseMetadata(meta);
+		return parseMetadata(meta, this.document);
 	}
 
-	private static MetadataImpl parseMetadata(PDMetadata meta) {
+	private static MetadataImpl parseMetadata(PDMetadata meta, PDDocument document) {
 		try {
 			VeraPDFMeta xmp = VeraPDFMeta.parse(meta.getStream());
 			if (xmp != null) {
-				return new MetadataImpl(xmp, meta.getCOSStream());
+				return new MetadataImpl(xmp, meta.getObject(),
+						document.getDocument(), false);
 			}
 		} catch (XMPException e) {
 			LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage(), e);
@@ -86,7 +88,7 @@ public class PDFDocumentImpl implements PDFDocument {
 		COSTrailer trailer = this.document.getDocument().getTrailer();
 		COSObject infoDict = trailer.getInfo();
 		return (infoDict != null && infoDict.getType() == COSObjType.COS_DICT) ?
-				new InfoDictionaryImpl(infoDict) : null;
+				new InfoDictionaryImpl(infoDict, this.document.getDocument()) : null;
 	}
 
 	/**
@@ -129,7 +131,8 @@ public class PDFDocumentImpl implements PDFDocument {
 			if (isMetaPresent || isMetaAdd) {
 				this.metadata.updateMetadataStream();
 				if (isMetaAdd) {
-					this.document.getCatalog().getObject().setNeedToBeUpdated(true);
+					this.document.getDocument().addChangedObject(
+							this.document.getCatalog().getObject());
 				}
 				this.document.saveTo(output);
 				output.close();

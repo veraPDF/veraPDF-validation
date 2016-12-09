@@ -1,6 +1,7 @@
 package org.verapdf.metadata.fixer.gf.impl.model;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSObject;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
 import org.verapdf.metadata.fixer.gf.utils.DateConverter;
@@ -11,12 +12,14 @@ import org.verapdf.metadata.fixer.gf.utils.DateConverter;
 public class InfoDictionaryImpl implements InfoDictionary {
 
 	private final COSObject info;
+	private final COSDocument doc;
 
-	public InfoDictionaryImpl(COSObject info) {
-		if (info == null || info.empty()) {
+	public InfoDictionaryImpl(COSObject info, COSDocument doc) {
+		if (info == null || info.empty() || doc == null) {
 			throw new IllegalArgumentException("Info dictionary representation can not be null");
 		}
 		this.info = info;
+		this.doc = doc;
 	}
 
 	@Override
@@ -101,12 +104,16 @@ public class InfoDictionaryImpl implements InfoDictionary {
 
 	@Override
 	public boolean isNeedToBeUpdated() {
-		return this.info.isNeedToBeUpdated();
+		return this.doc.isObjectChanged(this.info);
 	}
 
 	@Override
 	public void setNeedToBeUpdated(boolean needToBeUpdated) {
-		this.info.setNeedToBeUpdated(true);
+		if (needToBeUpdated) {
+			this.doc.addChangedObject(info);
+		} else {
+			this.doc.removeChangedObject(info);
+		}
 	}
 
 }

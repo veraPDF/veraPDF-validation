@@ -3,9 +3,7 @@ package org.verapdf.metadata.fixer.gf.impl.model;
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSFilters;
-import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSStream;
+import org.verapdf.cos.*;
 import org.verapdf.io.InternalInputStream;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
 import org.verapdf.metadata.fixer.entity.Metadata;
@@ -34,23 +32,28 @@ public class MetadataImpl implements Metadata {
     private static final Logger LOGGER = Logger.getLogger(MetadataImpl.class.getCanonicalName());
 
     private final VeraPDFMeta metadata;
-    private final COSStream stream;
+    private final COSObject stream;
+    private final COSDocument doc;
+    private boolean isStreamCreated;
 
     /**
      * @param metadata
      * @param stream
      */
-    public MetadataImpl(VeraPDFMeta metadata, COSStream stream) {
+    public MetadataImpl(VeraPDFMeta metadata, COSObject stream, COSDocument doc,
+                        boolean isStreamCreated) {
         if (metadata == null) {
             throw new IllegalArgumentException(
                     "Metadata package can not be null");
         }
-        if (stream == null) {
+        if (stream.empty() || stream.getType() != COSObjType.COS_STREAM) {
             throw new IllegalArgumentException(
                     "Metadata stream can not be null");
         }
         this.metadata = metadata;
         this.stream = stream;
+        this.doc = doc;
+        this.isStreamCreated = isStreamCreated;
     }
 
     @Override
@@ -59,13 +62,14 @@ public class MetadataImpl implements Metadata {
             PDFAFlavour flavour) {
         PDFAFlavour.Specification part = flavour.getPart();
         if (part == PDFAFlavour.Specification.ISO_19005_2 || part == PDFAFlavour.Specification.ISO_19005_3) {
-            COSFilters filters = this.stream.getFilters();
+            COSFilters filters = ((COSStream) this.stream.getDirectBase()).getFilters();
             if (filters.size() == 1 && filters.getFilters().get(0) == ASAtom.FLATE_DECODE) {
                 return;
             }
             try {
-                this.stream.setFilters(new COSFilters(COSName.construct(ASAtom.FLATE_DECODE)));
-                this.stream.setNeedToBeUpdated(true);
+                ((COSStream) this.stream.getDirectBase()).setFilters(new COSFilters(
+                        COSName.construct(ASAtom.FLATE_DECODE)));
+                this.doc.addChangedObject(stream);
                 resultBuilder.addFix("Metadata stream filtered with FlateDecode");
             } catch (IOException e) {
                 LOGGER.log(Level.FINE, "Problems with setting filter for stream.", e);
@@ -81,7 +85,7 @@ public class MetadataImpl implements Metadata {
                                             MetadataFixerResultImpl.Builder resultBuilder) {
         if (!value.equals(this.stream.getNameKey(key))) {
             this.stream.setNameKey(key, value);
-            this.stream.setNeedToBeUpdated(true);
+            this.doc.addChangedObject(stream);
             resultBuilder.addFix(value.getValue() + " value of " + key.getValue()
                     + " key is set to metadata dictionary");
         }
@@ -201,17 +205,29 @@ public class MetadataImpl implements Metadata {
 
     @Override
     public boolean isNeedToBeUpdated() {
-        return this.stream.isNeedToBeUpdated();
+        return this.doc.isObjectChanged(this.stream);
     }
 
     @Override
     public void setNeedToBeUpdated(boolean needToBeUpdated) {
-        this.stream.setNeedToBeUpdated(true);
+        if (isStreamCreated) {
+            if (needToBeUpdated) {
+                this.doc.addObject(this.stream);
+            } else {
+                this.doc.removeAddedObject(this.stream);
+            }
+        } else {
+            if (needToBeUpdated) {
+                this.doc.addChangedObject(this.stream);
+            } else {
+                this.doc.removeChangedObject(this.stream);
+            }
+        }
     }
 
     @Override
     public void updateMetadataStream() throws IOException, XMPException {
-        if (!this.stream.isNeedToBeUpdated()) {
+        if (!this.doc.isObjectChanged(this.stream)) {
             return;
         }
         File temp = File.createTempFile("veraPDFMetadataFixed", ".xml");
