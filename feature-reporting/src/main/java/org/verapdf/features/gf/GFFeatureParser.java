@@ -753,16 +753,20 @@ public final class GFFeatureParser {
 	}
 
 	private static String checkColorSpaceID(String prevID, PDColorSpace colorSpace) {
-		String id = prevID;
-		ASAtom colorSpaceType = colorSpace.getType();
-		if (colorSpaceType == ASAtom.DEVICEGRAY) {
-			id = DEVICEGRAY_ID;
-		} else if (colorSpaceType == ASAtom.DEVICERGB) {
-			id = DEVICERGB_ID;
-		} else if (colorSpaceType == ASAtom.DEVICECMYK) {
-			id = DEVICECMYK_ID;
+		if (colorSpace != null) {
+			String id = prevID;
+			ASAtom colorSpaceType = colorSpace.getType();
+			if (colorSpaceType == ASAtom.DEVICEGRAY) {
+				id = DEVICEGRAY_ID;
+			} else if (colorSpaceType == ASAtom.DEVICERGB) {
+				id = DEVICERGB_ID;
+			} else if (colorSpaceType == ASAtom.DEVICECMYK) {
+				id = DEVICECMYK_ID;
+			}
+			return id;
+		} else {
+			return null;
 		}
-		return id;
 	}
 
 	private String getId(final COSObject base, final FeatureObjectType objType) {
