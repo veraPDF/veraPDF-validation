@@ -214,7 +214,9 @@ public class GFColorSpaceFeaturesObject implements IFeaturesObject {
 	}
 
 	private static void parseTristimulus(double[] tris, FeatureTreeNode curNode, FeatureExtractionResult collection) {
-		if (tris.length < 3) {
+		if (tris == null) {
+			return;
+		} else if (tris.length < 3) {
 			ErrorsHelper.addErrorIntoCollection(collection, curNode,
 					"Tristimulus value contains less than three elements");
 		} else {
