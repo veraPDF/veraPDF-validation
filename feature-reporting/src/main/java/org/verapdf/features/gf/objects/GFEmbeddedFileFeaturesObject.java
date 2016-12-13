@@ -59,7 +59,7 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 	@Override
 	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
 
-		if (embFile != null && !embFile.empty()) {
+		if (embFile != null && embFile.getType().isDictionaryBased()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("embeddedFile");
 			root.setAttribute("id", "file" + index);
 
