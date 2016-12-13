@@ -2,6 +2,7 @@ package org.verapdf.features.gf.objects;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.core.FeatureParsingException;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
@@ -67,7 +68,7 @@ public class GFInfoDictFeaturesObject implements IFeaturesObject {
     @Override
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
 
-        if (info != null && info.getDirectBase() != null) {
+        if (info != null && info.getType() == COSObjType.COS_DICT) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("informationDict");
 
             addEntry("Title", info.getStringKey(ASAtom.TITLE), root);
