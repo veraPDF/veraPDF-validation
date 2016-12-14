@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.pd.font;
 
 import org.verapdf.as.io.ASInputStream;
-import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
@@ -13,6 +12,7 @@ import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.font.PDFontDescriptor;
 import org.verapdf.pd.font.cff.CFFCIDFontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.font.truetype.BaseTrueTypeProgram;
@@ -154,7 +154,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     }
 
     private COSStream getCIDSetStream() {
-        COSDictionary fontDescriptor = this.pdFont.getFontDescriptor();
+        PDFontDescriptor fontDescriptor = this.pdFont.getFontDescriptor();
         COSStream cidSet;
         if (fontDescriptor != null) {
             cidSet = ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();

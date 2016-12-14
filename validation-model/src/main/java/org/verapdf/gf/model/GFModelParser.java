@@ -11,9 +11,11 @@ import org.verapdf.exceptions.InvalidPasswordException;
 import org.verapdf.features.AbstractFeaturesExtractor;
 import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureExtractorConfig;
+import org.verapdf.features.gf.GFFeatureParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosDocument;
 import org.verapdf.metadata.fixer.entity.PDFDocument;
+import org.verapdf.metadata.fixer.gf.impl.model.PDFDocumentImpl;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDMetadata;
 import org.verapdf.pdfa.Foundries;
@@ -74,13 +76,14 @@ public class GFModelParser implements PDFAParser {
 			logger.log(Level.FINE, "Problem parsing metadata from document catalog.", e);
 			return defaultFlavour;
 		}
-		try (InputStream is = metadata.getStream()) {
+		InputStream is = metadata.getStream();
+		try {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			Integer identificationPart = veraPDFMeta.getIdentificationPart();
 			String identificationConformance = veraPDFMeta.getIdentificationConformance();
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
 			return pdfaFlavour;
-		} catch (IOException | XMPException e) {
+		} catch (XMPException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
 			return defaultFlavour;
 		}
@@ -96,9 +99,8 @@ public class GFModelParser implements PDFAParser {
 	 * Get {@code PDDocument} object for current file.
 	 *
 	 * @return {@link org.verapdf.pd.PDDocument} object of greenfield library.
-	 * @throws IOException
-	 *             when target file is not pdf or pdf file is not contain root
-	 *             object
+	 * @throws IOException when target file is not pdf or pdf file is not contain root
+	 *                     object
 	 */
 	public PDDocument getPDDocument() {
 		return this.document;
@@ -109,10 +111,9 @@ public class GFModelParser implements PDFAParser {
 	 * together with the hierarchy.
 	 *
 	 * @return root object representing by
-	 *         {@link org.verapdf.model.coslayer.CosDocument}
-	 * @throws IOException
-	 *             when target file is not pdf or pdf file is not contain root
-	 *             object
+	 * {@link org.verapdf.model.coslayer.CosDocument}
+	 * @throws IOException when target file is not pdf or pdf file is not contain root
+	 *                     object
 	 */
 	@Override
 	public org.verapdf.model.baselayer.Object getRoot() {
@@ -131,18 +132,18 @@ public class GFModelParser implements PDFAParser {
 
 	@Override
 	public PDFDocument getPDFDocument() {
-		// TODO: implement me with metadata fixer
-		return null;
+		return new PDFDocumentImpl(this.document);
 	}
 
 	@Override
 	public FeatureExtractionResult getFeatures(FeatureExtractorConfig config) {
-		return null;
+		return GFFeatureParser.getFeaturesCollection(this.document, config);
 	}
 
 	@Override
-	public FeatureExtractionResult getFeatures(FeatureExtractorConfig config, List<AbstractFeaturesExtractor> extractors) {
-		return null;
+	public FeatureExtractionResult getFeatures(FeatureExtractorConfig config,
+											   List<AbstractFeaturesExtractor> extractors) {
+		return GFFeatureParser.getFeaturesCollection(this.document, extractors, config);
 	}
 
 	@Override
