@@ -304,6 +304,6 @@ public class GFFontFeaturesObject implements IFeaturesObject {
     }
 
     private static String getStringFromDouble(Double d) {
-        return d == null ? null : getStringFromDouble(d);
+        return d == null ? null : Double.toString(d);
     }
 }
