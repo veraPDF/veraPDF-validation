@@ -1,6 +1,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.pdlayer.PDOCConfig;
@@ -45,7 +46,8 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 				for (int i = 0; i < order.size().intValue(); i++) {
 					COSObject element = order.at(i);
 					if (element.getType() == COSObjType.COS_ARRAY) {
-						groupsInOrder += element.size().intValue();
+						groupsInOrder += getLenghtOfFlattenArray((COSArray)
+								element.getDirectBase());
 						if (!checkCOSArrayInOrder(element).booleanValue()) {
 							return Boolean.FALSE;
 						}
@@ -111,7 +113,11 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	private Boolean checkCOSArrayInOrder(COSObject array) {
 		for (int i = 0; i < array.size().intValue(); i++) {
 			COSObject element = array.at(i);
-			if (element.getType() == COSObjType.COS_STRING) {
+			if (element.getType() == COSObjType.COS_ARRAY) {
+				if (!checkCOSArrayInOrder(element).booleanValue()) {
+					return Boolean.FALSE;
+				}
+			} else if (element.getType() == COSObjType.COS_STRING) {
 				if (!checkCOSStringInOrder(element).booleanValue()) {
 					return Boolean.FALSE;
 				}
@@ -132,4 +138,16 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 		return Boolean.valueOf(groupNames.contains(element.getStringKey(ASAtom.NAME)));
 	}
 
+	private static int getLenghtOfFlattenArray(COSArray array) {
+		int res = 0;
+		for (int i = 0; i < array.size(); i++) {
+			COSObject element = array.at(i);
+			if (element.getType() == COSObjType.COS_ARRAY) {
+				res += getLenghtOfFlattenArray((COSArray) element.getDirectBase());
+			} else {
+				res++;
+			}
+		}
+		return res;
+	}
 }
