@@ -169,7 +169,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			COSArray idArray = (COSArray) ids.get();
 			StringBuilder builder = new StringBuilder();
 			for (COSObject id : idArray) {
-				for (byte aByte : ((COSString) id.get()).get().getBytes()) {
+				for (byte aByte : ((COSString) id.get()).get()) {
 					builder.append((char) (aByte & 0xFF));
 				}
 			}

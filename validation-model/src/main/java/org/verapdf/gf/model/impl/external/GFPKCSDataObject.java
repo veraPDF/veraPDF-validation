@@ -1,17 +1,16 @@
 package org.verapdf.gf.model.impl.external;
 
-import java.io.IOException;
-import java.security.cert.X509Certificate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.verapdf.cos.COSString;
 import org.verapdf.model.external.PKCSDataObject;
-
 import sun.security.pkcs.ContentInfo;
 import sun.security.pkcs.PKCS7;
 import sun.security.pkcs.SignerInfo;
 import sun.security.x509.AlgorithmId;
+
+import java.io.IOException;
+import java.security.cert.X509Certificate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Sergey Shemyakov
@@ -34,9 +33,9 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
         super(PKCS_DATA_OBJECT_TYPE);
         try {
             if (!pkcsData.isHexadecimal()) {
-                pkcs7 = new PKCS7(pkcsData.get().getBytes());
+                pkcs7 = new PKCS7(pkcsData.get());
             } else {
-                byte[] decodedData = pkcsData.get().getBytes("ISO-8859-1");
+                byte[] decodedData = pkcsData.get();
                 pkcs7 = new PKCS7(decodedData);
             }
         } catch (IOException e) {

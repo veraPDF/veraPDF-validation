@@ -10,7 +10,7 @@ public class GFCosString extends GFCosObject implements CosString {
 
 	/** Type name for GFCosString */
 	public static final String COS_STRING_TYPE = "CosString";
-	private final String value;
+	private final byte[] value;
 	private final boolean isHex;
 	private final boolean containsOnlyHex;
 	private final long hexCount;
@@ -30,18 +30,18 @@ public class GFCosString extends GFCosObject implements CosString {
 	 */
 	public GFCosString(COSString cosString, final String type) {
 		super(cosString, type);
-		this.value = cosString.getLitString();
+		this.value = cosString.get();
 		this.isHex = cosString.isHexadecimal();
 		this.containsOnlyHex = cosString.isContainsOnlyHex();
 		this.hexCount = cosString.getHexCount();
 	}
 
 	/**
-	 * Get Unicode string value stored in the PDF object
+	 * Get string value stored in the PDF object
 	 */
 	@Override
 	public String getvalue() {
-		return this.value;
+		return new String(this.value);
 	}
 
 	/**

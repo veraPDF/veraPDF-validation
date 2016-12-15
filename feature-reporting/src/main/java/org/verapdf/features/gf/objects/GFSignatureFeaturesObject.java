@@ -56,7 +56,7 @@ public class GFSignatureFeaturesObject implements IFeaturesObject {
     public FeaturesData getData() {
         COSString contents = signature.getContents();
         InputStream stream = contents == null ? null :
-                new ByteArrayInputStream(contents.get().getBytes());
+                new ByteArrayInputStream(contents.get());
         return SignatureFeaturesData.newInstance(
                 stream, GFCreateNodeHelper.getStringFromASAtom(signature.getFilter()),
                 GFCreateNodeHelper.getStringFromASAtom(signature.getSubfilter()), signature.getName(),
