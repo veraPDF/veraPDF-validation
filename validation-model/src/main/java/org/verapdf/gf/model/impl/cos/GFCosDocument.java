@@ -77,7 +77,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private boolean parseOptionalContentPresent() {
-		return this.catalog != null && this.catalog.getKey(ASAtom.OCPROPERTIES) != COSObject.getEmpty();
+		return this.catalog != null && !(this.catalog.getKey(ASAtom.OCPROPERTIES).empty());
 	}
 
 	/**
