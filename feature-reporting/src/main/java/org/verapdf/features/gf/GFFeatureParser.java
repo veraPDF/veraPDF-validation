@@ -38,7 +38,7 @@ import java.util.logging.Logger;
  */
 public final class GFFeatureParser {
 	private static final EnumSet<FeatureObjectType> XOBJECTS = EnumSet.of(FeatureObjectType.FORM_XOBJECT,
-			FeatureObjectType.IMAGE_XOBJECT, FeatureObjectType.POSTSCRIPT_XOBJECT, FeatureObjectType.FAILED_XOBJECT);
+			FeatureObjectType.IMAGE_XOBJECT, FeatureObjectType.POSTSCRIPT_XOBJECT);
 	private static final Logger LOGGER = Logger.getLogger(GFFeatureParser.class.getCanonicalName());
 	private static final String ID = "id";
 	private static final String DEVICEGRAY_ID = "devgray";
@@ -334,13 +334,13 @@ public final class GFFeatureParser {
 	}
 
 	private void xobjectCreationProblem(final String nodeID, String errorMessage) {
-		creationProblem(nodeID, errorMessage, FeatureObjectType.FAILED_XOBJECT, false);
+		creationProblem(nodeID, errorMessage, FeatureObjectType.FORM_XOBJECT, false);
 	}
 
 	private void creationProblem(final String nodeID, final String errorMessage, final FeatureObjectType type, final boolean isTypeError) {
 		if (config.isFeatureEnabled(type)) {
 			if (!isTypeError) {
-				FeatureTreeNode node = FeatureTreeNode.createRootNode(type.getNodeName());
+				FeatureTreeNode node = createNodeWithType(type);
 				if (nodeID != null) {
 					node.setAttribute(ID, nodeID);
 				}
@@ -352,6 +352,16 @@ public final class GFFeatureParser {
 
 			}
 		}
+	}
+
+	private FeatureTreeNode createNodeWithType(FeatureObjectType type) {
+		if (type == FeatureObjectType.FORM_XOBJECT) {
+			FeatureTreeNode res = FeatureTreeNode.createRootNode("xobject");
+			res.setAttribute("type", "form");
+			return res;
+		}
+
+		return FeatureTreeNode.createRootNode(type.getNodeName());
 	}
 
 	private Set<String> parseColorSpaceFromResources(PDResources resources) {
