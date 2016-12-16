@@ -77,7 +77,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private boolean parseOptionalContentPresent() {
-		return this.catalog != null && this.catalog.getKey(ASAtom.OCPROPERTIES) != COSObject.getEmpty();
+		return this.catalog != null && !(this.catalog.getKey(ASAtom.OCPROPERTIES).empty());
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			COSArray idArray = (COSArray) ids.get();
 			StringBuilder builder = new StringBuilder();
 			for (COSObject id : idArray) {
-				for (byte aByte : ((COSString) id.get()).get().getBytes()) {
+				for (byte aByte : ((COSString) id.get()).get()) {
 					builder.append((char) (aByte & 0xFF));
 				}
 			}

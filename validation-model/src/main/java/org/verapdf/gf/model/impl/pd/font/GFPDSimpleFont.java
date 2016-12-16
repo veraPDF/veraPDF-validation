@@ -72,7 +72,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
     @Override
     public String getEncoding() {
         COSObject encoding = this.pdFont.getEncoding();
-        if (encoding == COSObject.getEmpty()) {
+        if (encoding.empty()) {
             return null;
         }
         if (encoding.getType() == COSObjType.COS_NAME) {
@@ -82,7 +82,7 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
             return CUSTOM_ENCODING;
         }
         COSObject baseEncoding = encoding.getKey(ASAtom.BASE_ENCODING);
-        if (baseEncoding == COSObject.getEmpty()) {
+        if (baseEncoding.empty()) {
             return null;
         }
         return baseEncoding.getString();

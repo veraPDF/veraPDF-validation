@@ -101,7 +101,7 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
         COSObject name = ((org.verapdf.pd.colors.PDSeparation) this.simplePDObject).getColorantName();
         if (name.getType() == COSObjType.COS_NAME) {
             List<CosUnicodeName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-            list.add(new GFCosUnicodeName((COSName) name.get()));
+            list.add(new GFCosUnicodeName((COSName) name.getDirectBase()));
             return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();

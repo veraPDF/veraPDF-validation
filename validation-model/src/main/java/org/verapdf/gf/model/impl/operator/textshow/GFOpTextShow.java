@@ -20,7 +20,6 @@ import org.verapdf.pd.font.PDType3Font;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -281,11 +280,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 					GFOpTextShow.addArrayElements(res, (COSArray) arg.getDirectBase());
 				} else {
 					if (arg.getType() == COSObjType.COS_STRING) {
-						try {
-							res.add(arg.getString().getBytes("ISO-8859-1"));
-						} catch (UnsupportedEncodingException e) {
-							LOGGER.log(Level.FINE, "Unsupported encoding: ISO-8859-1", e);
-						}
+						res.add(((COSString) (arg)).get());
 					}
 				}
 			}
@@ -295,14 +290,10 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private static void addArrayElements(List<byte[]> res, COSArray arg) {
-		try {
-			for (COSObject element : arg) {
-				if (element != null && element.getType() == COSObjType.COS_STRING) {
-					res.add(element.getString().getBytes("ISO-8859-1"));
-				}
+		for (COSObject element : arg) {
+			if (element != null && element.getType() == COSObjType.COS_STRING) {
+				res.add(((COSString) element.get()).get());
 			}
-		} catch (UnsupportedEncodingException e) {
-			LOGGER.log(Level.FINE, "Unsupported encoding: ISO-8859-1", e);
 		}
 	}
 
