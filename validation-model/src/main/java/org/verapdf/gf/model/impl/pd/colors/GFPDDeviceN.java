@@ -95,7 +95,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 			ArrayList<CosUnicodeName> list = new ArrayList<>(colorants.size());
 			for (COSObject colorant : colorants) {
 				if (colorant.getType() == COSObjType.COS_NAME) {
-					list.add(new GFCosUnicodeName((COSName) colorant.get()));
+					list.add(new GFCosUnicodeName((COSName) colorant.getDirectBase()));
 				}
 			}
 			return Collections.unmodifiableList(list);

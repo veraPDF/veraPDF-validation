@@ -280,7 +280,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 					GFOpTextShow.addArrayElements(res, (COSArray) arg.getDirectBase());
 				} else {
 					if (arg.getType() == COSObjType.COS_STRING) {
-						res.add(((COSString) (arg)).get());
+						res.add(((COSString) (arg.getDirectBase())).get());
 					}
 				}
 			}
@@ -292,7 +292,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private static void addArrayElements(List<byte[]> res, COSArray arg) {
 		for (COSObject element : arg) {
 			if (element != null && element.getType() == COSObjType.COS_STRING) {
-				res.add(((COSString) element.get()).get());
+				res.add(((COSString) element.getDirectBase()).get());
 			}
 		}
 	}
