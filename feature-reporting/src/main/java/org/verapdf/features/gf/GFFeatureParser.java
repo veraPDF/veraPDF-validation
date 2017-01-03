@@ -212,7 +212,7 @@ public final class GFFeatureParser {
 
 			reporter.report(GFFeaturesObjectCreator.createPageFeaturesObject(page, thumbID, annotsId, extGStateChild,
 					colorSpaceChild, patternChild, shadingChild, xobjectChild, fontChild, propertiesChild,
-					page.getPageNumber()));
+					page.getPageNumber() + 1));
 		}
 	}
 
