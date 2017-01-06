@@ -1,6 +1,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 
+import org.verapdf.as.io.ASInputStream;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
@@ -59,12 +60,18 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 			try {
 				COSObject contentStream = this.contentStream.getContents();
 				if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
-					PDFStreamParser streamParser = new PDFStreamParser((COSStream) contentStream.getDirectBase());
-					streamParser.parseTokens();
-					OperatorFactory operatorFactory = new OperatorFactory();
-					List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
-					this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
-					this.operators = Collections.unmodifiableList(result);
+					ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE);
+					PDFStreamParser streamParser = new PDFStreamParser(opStream);
+					opStream.close();
+					try {
+						streamParser.parseTokens();
+						OperatorFactory operatorFactory = new OperatorFactory();
+						List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
+						this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
+						this.operators = Collections.unmodifiableList(result);
+					} finally {
+						streamParser.closeInputStream();
+					}
 				} else {
 					this.operators = Collections.emptyList();
 				}

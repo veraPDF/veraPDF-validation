@@ -82,8 +82,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
     private List<XMPPackage> getXMPPackage() {
         List<XMPPackage> xmp = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         PDFAFlavour flavour = StaticContainers.getFlavour();
-        try {
-            InputStream stream = ((org.verapdf.pd.PDMetadata) this.simplePDObject).getStream();
+        try (InputStream stream = ((org.verapdf.pd.PDMetadata) this.simplePDObject).getStream()) {
             if (stream != null) {
                 VeraPDFMeta metadata = VeraPDFMeta.parse(stream);
                 if (isMainMetadata) {
@@ -98,7 +97,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                     xmp.add(new AXLXMPPackage(metadata, true, mainExtensionNode, flavour));
                 }
             }
-        } catch (XMPException e) {
+        } catch (XMPException | IOException e) {
             LOGGER.log(Level.FINE, "Problems with parsing metadata. " + e.getMessage(), e);
             if (isMainMetadata) {
                 xmp.add(new AXLMainXMPPackage(null, false, flavour));

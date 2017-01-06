@@ -76,14 +76,16 @@ public class GFModelParser implements PDFAParser {
 			logger.log(Level.FINE, "Problem parsing metadata from document catalog.", e);
 			return defaultFlavour;
 		}
-		InputStream is = metadata.getStream();
-		try {
+		try (InputStream is = metadata.getStream()) {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			Integer identificationPart = veraPDFMeta.getIdentificationPart();
 			String identificationConformance = veraPDFMeta.getIdentificationConformance();
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
 			return pdfaFlavour;
 		} catch (XMPException e) {
+			logger.log(Level.FINE, e.getMessage(), e);
+			return defaultFlavour;
+		} catch (IOException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
 			return defaultFlavour;
 		}
