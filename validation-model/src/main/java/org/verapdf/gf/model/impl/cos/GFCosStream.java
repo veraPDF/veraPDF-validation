@@ -143,7 +143,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 				if (decodeParms == null) {
 					result.add(createFilter((COSName) COSName.fromValue(filter), null));
 					//TODO : check this for pdfbox implementation
-				} else if (decodeParms instanceof COSArray && decodeParms.size().intValue() > i) {
+				} else if (decodeParms.getType() == COSObjType.COS_ARRAY && decodeParms.size().intValue() > i) {
 					decodeParms = decodeParms.at(i).get();
 					result.add(createFilter((COSName) COSName.fromValue(filter), decodeParms));
 				} else {

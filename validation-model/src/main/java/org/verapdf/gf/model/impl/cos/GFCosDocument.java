@@ -166,10 +166,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	private static String getTrailerID(COSObject ids) {
 		if (ids != null && ids.getType() == COSObjType.COS_ARRAY) {
-			COSArray idArray = (COSArray) ids.get();
+			COSArray idArray = (COSArray) ids.getDirectBase();
 			StringBuilder builder = new StringBuilder();
 			for (COSObject id : idArray) {
-				for (byte aByte : ((COSString) id.get()).get()) {
+				for (byte aByte : ((COSString) id.getDirectBase()).get()) {
 					builder.append((char) (aByte & 0xFF));
 				}
 			}
@@ -307,7 +307,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	private List<CosTrailer> getTrailer() {
 		List<CosTrailer> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		list.add(new GFCosTrailer((COSDictionary) cosDocument.getTrailer().getObject().get()));
+		list.add(new GFCosTrailer((COSDictionary) cosDocument.getTrailer().getObject().getDirectBase()));
 		return Collections.unmodifiableList(list);
 	}
 
