@@ -60,9 +60,9 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 			COSBase dict = this.arguments.get(this.arguments.size() - 1);
 			if (dict.getType() == COSObjType.COS_DICT) {
 				COSObject baseLang = dict.getKey(ASAtom.LANG);
-				if (baseLang != null && !baseLang.empty() && baseLang.get().getType() == COSObjType.COS_STRING) {
+				if (baseLang != null && !baseLang.empty() && baseLang.getType() == COSObjType.COS_STRING) {
 					List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-					list.add(new GFCosLang((COSString) baseLang.get()));
+					list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
 					return Collections.unmodifiableList(list);
 				}
 			}

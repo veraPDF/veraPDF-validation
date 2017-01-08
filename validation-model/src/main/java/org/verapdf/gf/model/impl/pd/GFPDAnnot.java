@@ -206,7 +206,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private static List<CosNumber> getNumbersFromArray(COSObject array) {
 		if (array.size().intValue() > 0) {
 			List<CosNumber> color = new ArrayList<>();
-			for (COSObject colorValue : (COSArray) array.get()) {
+			for (COSObject colorValue : (COSArray) array.getDirectBase()) {
 				if (colorValue.getType().isNumber()) {
 					color.add(GFCosNumber.fromPDFParserNumber(colorValue.get()));
 				}

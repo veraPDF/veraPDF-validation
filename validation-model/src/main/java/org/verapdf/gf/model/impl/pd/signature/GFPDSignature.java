@@ -80,7 +80,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
         }
         List<PDSigRef> list = new ArrayList<>();
         for (COSObject sigRef : reference) {
-            list.add(new GFPDSigRef((COSDictionary) sigRef.get()));
+            list.add(new GFPDSigRef((COSDictionary) sigRef.getDirectBase()));
         }
         return Collections.unmodifiableList(list);
     }

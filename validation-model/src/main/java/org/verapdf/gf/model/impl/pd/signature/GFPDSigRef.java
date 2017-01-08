@@ -39,7 +39,7 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
 	 */
 	@Override
 	public Boolean getcontainsDigestEntries() {
-		COSDictionary dictionary = (COSDictionary) this.simpleCOSObject.get();
+		COSDictionary dictionary = (COSDictionary) this.simpleCOSObject.getDirectBase();
 		if (dictionary != null) {
 			return Boolean.valueOf(dictionary.knownKey(ASAtom.DIGEST_LOCATION).booleanValue()
 					|| dictionary.knownKey(ASAtom.DIGEST_METHOD).booleanValue()
