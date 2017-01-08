@@ -46,6 +46,10 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         super(font, renderingMode, CID_FONT_TYPE);
         if(font != null) {
             FontProgram program = font.getFontProgram();
+            if (program != null) {
+                StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
+                        program.getFontProgramResource());
+            }
             if(program != null) {
                 try {
                     if (!program.isAttemptedParsing()) {

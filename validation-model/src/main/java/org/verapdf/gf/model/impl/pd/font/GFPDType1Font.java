@@ -2,6 +2,7 @@ package org.verapdf.gf.model.impl.pd.font;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.model.pdlayer.PDType1Font;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
@@ -32,6 +33,10 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
         super(pdFont, renderingMode, TYPE1_FONT_TYPE);
         if (pdFont != null) {
             FontProgram program = pdFont.getFontProgram();
+            if (program != null) {
+                StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
+                        program.getFontProgramResource());
+            }
             if (program != null) {
                 try {
                     if (!program.isAttemptedParsing()) {

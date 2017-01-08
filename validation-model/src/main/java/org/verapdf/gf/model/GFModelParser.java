@@ -45,9 +45,14 @@ public class GFModelParser implements PDFAParser {
 	private final PDFAFlavour flavour;
 
 	private GFModelParser(final InputStream docStream, PDFAFlavour flavour) throws IOException {
-		this.document = new PDDocument(docStream);
-		this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
-		initializeStaticContainers(this.document, this.flavour);
+		try {
+			this.document = new PDDocument(docStream);
+			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
+			initializeStaticContainers(this.document, this.flavour);
+		} catch (Throwable t) {
+			this.close();
+			throw t;
+		}
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
