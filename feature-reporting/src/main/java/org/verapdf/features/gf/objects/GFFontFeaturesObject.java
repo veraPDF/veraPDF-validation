@@ -215,7 +215,7 @@ public class GFFontFeaturesObject implements IFeaturesObject {
             GFCreateNodeHelper.addNotEmptyNode("fontName", descriptor.getFontName(), descriptorNode);
             GFCreateNodeHelper.addNotEmptyNode("fontFamily", descriptor.getFontFamily(), descriptorNode);
             GFCreateNodeHelper.addNotEmptyNode("fontStretch", descriptor.getFontStretch(), descriptorNode);
-            descriptorNode.addChild("fontWeight").setValue(String.valueOf(descriptor.getFontWeight()));
+            GFCreateNodeHelper.addNotEmptyNode("fontWeight", getStringFromDouble(descriptor.getFontWeight()), descriptorNode);
             descriptorNode.addChild("fixedPitch").setValue(String.valueOf(descriptor.isFixedPitch()));
             descriptorNode.addChild("serif").setValue(String.valueOf(descriptor.isSerif()));
             descriptorNode.addChild("symbolic").setValue(String.valueOf(descriptor.isSymbolic()));
@@ -227,17 +227,17 @@ public class GFFontFeaturesObject implements IFeaturesObject {
             descriptorNode.addChild("forceBold").setValue(String.valueOf(descriptor.isForceBold()));
             GFCreateNodeHelper.addBoxFeature("fontBBox", descriptor.getFontBoundingBox(), descriptorNode);
 
-            descriptorNode.addChild("italicAngle").setValue(getStringFromDouble(descriptor.getItalicAngle()));
-            descriptorNode.addChild("ascent").setValue(getStringFromDouble(descriptor.getAscent()));
-            descriptorNode.addChild("descent").setValue(getStringFromDouble(descriptor.getDescent()));
-            descriptorNode.addChild("leading").setValue(getStringFromDouble(descriptor.getLeading()));
-            descriptorNode.addChild("capHeight").setValue(getStringFromDouble(descriptor.getCapHeight()));
-            descriptorNode.addChild("xHeight").setValue(getStringFromDouble(descriptor.getXHeight()));
-            descriptorNode.addChild("stemV").setValue(getStringFromDouble(descriptor.getStemV()));
-            descriptorNode.addChild("stemH").setValue(getStringFromDouble(descriptor.getStemH()));
-            descriptorNode.addChild("averageWidth").setValue(getStringFromDouble(descriptor.getAvgWidth()));
-            descriptorNode.addChild("maxWidth").setValue(getStringFromDouble(descriptor.getMaxWidth()));
-            descriptorNode.addChild("missingWidth").setValue(getStringFromDouble(descriptor.getMissingWidth()));
+            GFCreateNodeHelper.addNotEmptyNode("italicAngle", getStringFromDouble(descriptor.getItalicAngle()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("ascent", getStringFromDouble(descriptor.getAscent()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("descent", getStringFromDouble(descriptor.getDescent()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("leading", getStringFromDouble(descriptor.getLeading()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("capHeight", getStringFromDouble(descriptor.getCapHeight()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("xHeight", getStringFromDouble(descriptor.getXHeight()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("stemV", getStringFromDouble(descriptor.getStemV()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("stemH", getStringFromDouble(descriptor.getStemH()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("averageWidth", getStringFromDouble(descriptor.getAvgWidth()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("maxWidth", getStringFromDouble(descriptor.getMaxWidth()), descriptorNode);
+            GFCreateNodeHelper.addNotEmptyNode("missingWidth", getStringFromDouble(descriptor.getMissingWidth()), descriptorNode);
             GFCreateNodeHelper.addNotEmptyNode("charSet", descriptor.getCharSet(), descriptorNode);
 
             COSStream file = descriptor.getFontFile();
