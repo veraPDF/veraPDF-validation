@@ -6,6 +6,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.OperatorFactory;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;
@@ -70,6 +71,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 						this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 						this.operators = Collections.unmodifiableList(result);
 					} finally {
+						StaticContainers.getDocument().getDocument().getResourceHandler().addAll(
+								streamParser.getImageDataStreams());
 						streamParser.closeInputStream();
 					}
 				} else {
