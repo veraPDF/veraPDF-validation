@@ -783,17 +783,28 @@ public final class GFFeatureParser {
 		if (base == null || base.empty()) {
 			return null;
 		}
+		COSKey key = getObjectKey(base);
 		long numb = this.processedIDs.size();
-		COSObject item = base;
 		String type = "Dir";
-
-		while (item.isIndirect()) {
-			numb = item.getKey().getNumber();
+		if (key != null) {
+			numb = key.getNumber();
 			type = "Indir";
-			item = item.getDirect();
 		}
-
 		return objType.getIdPrefix() + type + numb;
+	}
+
+	private COSKey getObjectKey(final COSObject base) {
+		COSKey res = null;
+		if (base.isIndirect()) {
+			COSObject item = base;
+			while (item.isIndirect()) {
+				res = item.getObjectKey();
+				item = base.getDirect();
+			}
+		} else {
+			res = base.getObjectKey();
+		}
+		return res;
 	}
 
 	private boolean checkIDBeforeProcess(String id) {
