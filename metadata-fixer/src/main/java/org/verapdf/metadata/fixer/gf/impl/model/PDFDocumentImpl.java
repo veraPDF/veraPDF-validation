@@ -166,7 +166,7 @@ public class PDFDocumentImpl implements PDFDocument {
 				builder.status(status);
 			}
 		} catch (Exception e) {
-			LOGGER.log(Level.INFO, e.getMessage(), e);
+			LOGGER.log(Level.FINE, e.getMessage(), e);
 			builder.status(FIX_ERROR).addFix("Problems with document save. " + e.getMessage());
 		}
 		return builder.build();

@@ -61,7 +61,7 @@ public class GFCMapFile extends GFExternal implements CMapFile {
         try {
             return new Long(cMapFile.getWMode());
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Error in parsing embedded CMap file");
+            LOGGER.log(Level.FINE, "Error in parsing embedded CMap file");
             e.printStackTrace();
             return new Long(-1);
         }

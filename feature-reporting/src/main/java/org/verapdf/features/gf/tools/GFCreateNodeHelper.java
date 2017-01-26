@@ -315,8 +315,7 @@ public final class GFCreateNodeHelper {
 		}
 		FeatureTreeNode node;
 		node = parent.addMetadataChild(nodeName);
-		try {
-			InputStream stream = metadata.getStream();
+		try (InputStream stream = metadata.getStream()) {
 			if (stream != null) {
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
 				byte[] buffer = new byte[1024];
