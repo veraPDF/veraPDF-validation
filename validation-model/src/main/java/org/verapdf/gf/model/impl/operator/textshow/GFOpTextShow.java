@@ -26,6 +26,7 @@ import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.factory.fonts.FontFactory;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
@@ -36,6 +37,7 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDType0Font;
 import org.verapdf.pd.font.PDType3Font;
+import org.verapdf.pd.font.cff.CFFFontProgram;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -143,6 +145,10 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			return Collections.emptyList();
 		}
 		FontProgram fontProgram = font.getFontProgram();
+		if (fontProgram instanceof CFFFontProgram) {
+			StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
+					fontProgram.getFontProgramResource());
+		}
 		boolean fontProgramIsInvalid = (fontProgram == null || !font.isSuccessfullyParsed())
 				&& font.getSubtype() != ASAtom.TYPE3;
 
@@ -182,8 +188,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 					}
 				}
 			} catch (IOException e) {
-				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string));
-				LOGGER.log(Level.INFO, e.getMessage(), e);
+				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
 			}
 		}
 		return res;

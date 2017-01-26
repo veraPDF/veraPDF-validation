@@ -81,19 +81,19 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 			try {
 				COSObject contentStream = this.contentStream.getContents();
 				if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
-					ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE);
-					PDFStreamParser streamParser = new PDFStreamParser(opStream);
-					opStream.close();
-					try {
-						streamParser.parseTokens();
-						OperatorFactory operatorFactory = new OperatorFactory();
-						List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
-						this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
-						this.operators = Collections.unmodifiableList(result);
-					} finally {
-						StaticContainers.getDocument().getDocument().getResourceHandler().addAll(
-								streamParser.getImageDataStreams());
-						streamParser.closeInputStream();
+					try (ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
+						PDFStreamParser streamParser = new PDFStreamParser(opStream);
+						try {
+							streamParser.parseTokens();
+							OperatorFactory operatorFactory = new OperatorFactory();
+							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
+							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
+							this.operators = Collections.unmodifiableList(result);
+						} finally {
+							streamParser.closeInputStream();
+							StaticContainers.getDocument().getDocument().getResourceHandler().addAll(
+									streamParser.getImageDataStreams());
+						}
 					}
 				} else {
 					this.operators = Collections.emptyList();

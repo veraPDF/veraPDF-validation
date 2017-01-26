@@ -167,8 +167,7 @@ public class GFColorSpaceFeaturesObject implements IFeaturesObject {
 		}
 
 		FeatureTreeNode lookup = root.addChild("lookup");
-		try {
-			InputStream stream = index.getLookup();
+		try (InputStream stream = index.getLookup()) {
 			byte[] lookupData = GFCreateNodeHelper.inputStreamToByteArray(stream);
 			if (lookupData != null) {
 				lookup.setValue(DatatypeConverter.printHexBinary(lookupData));

@@ -73,7 +73,8 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 			COSObject defaultConfig = contentProperties.getKey(ASAtom.D);
 			if (!defaultConfig.empty() && defaultConfig.getType() == COSObjType.COS_DICT) {
 				String[] groupNames = ((PDOptionalContentProperties) this.simplePDObject).getGroupNames();
-				List<String> groupNamesList = Arrays.asList(groupNames);
+				List<String> groupNamesList = Arrays.asList(groupNames == null ?
+						new String[]{} : groupNames);
 
 				PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(defaultConfig), groupNamesList, false);
 
@@ -96,7 +97,8 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 
 		List<String> names = getAllNames((COSDictionary) contentProperties.getDirectBase());
 		String[] groupNames = ((PDOptionalContentProperties) this.simplePDObject).getGroupNames();
-		List<String> groupNamesList = Arrays.asList(groupNames);
+		List<String> groupNamesList = Arrays.asList(groupNames == null ?
+				new String[]{} : groupNames);
 
 		COSObject configs = contentProperties.getKey(ASAtom.CONFIGS);
 

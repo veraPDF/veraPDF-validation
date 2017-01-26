@@ -20,6 +20,7 @@
  */
 package org.verapdf.features.gf.objects;
 
+import org.verapdf.as.io.ASInputStream;
 import org.verapdf.core.FeatureParsingException;
 import org.verapdf.cos.COSStream;
 import org.verapdf.external.ICCProfile;
@@ -131,8 +132,8 @@ public class GFICCProfileFeaturesObject implements IFeaturesObject {
     }
 
     private void parseProfileHeader(FeatureTreeNode root, FeatureExtractionResult collection) throws FeatureParsingException {
-        try {
-            byte[] profileBytes = GFCreateNodeHelper.inputStreamToByteArray(profile.getObject().getData(COSStream.FilterFlags.DECODE));
+        try (ASInputStream iccData = profile.getObject().getData(COSStream.FilterFlags.DECODE)) {
+            byte[] profileBytes = GFCreateNodeHelper.inputStreamToByteArray(iccData);
 
             if (profileBytes.length < HEADER_SIZE) {
                 ErrorsHelper.addErrorIntoCollection(collection,

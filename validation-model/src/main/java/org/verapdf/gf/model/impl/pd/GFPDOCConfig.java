@@ -21,13 +21,15 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.pdlayer.PDOCConfig;
 import org.verapdf.pd.PDObject;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,45 +49,33 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 
 	public GFPDOCConfig(PDObject simplePDObject) {
 		super(simplePDObject, OC_CONFIG_TYPE);
-		this.groupNames = null;
+		this.groupNames = Collections.emptyList();
 		this.duplicateName = false;
 	}
 
 	public GFPDOCConfig(PDObject simplePDObject, List<String> groupNames, boolean duplicateName) {
 		super(simplePDObject, OC_CONFIG_TYPE);
-		this.groupNames = groupNames;
+		this.groupNames = groupNames == null ? Collections.<String>emptyList() : groupNames;
 		this.duplicateName = duplicateName;
 	}
 
 	@Override
 	public Boolean getdoesOrderContainAllOCGs() {
+		Set<String> groupNamesSet = new TreeSet<>(groupNames);
 		COSObject order = this.simplePDObject.getKey(ASAtom.ORDER);
 		if (!order.empty()) {
 			if (order.getType() == COSObjType.COS_ARRAY) {
-				int groupsInOrder = 0;
 				for (int i = 0; i < order.size().intValue(); i++) {
 					COSObject element = order.at(i);
 					if (element.getType() == COSObjType.COS_ARRAY) {
-						groupsInOrder += getLenghtOfFlattenArray((COSArray)
-								element.getDirectBase());
-						if (!checkCOSArrayInOrder(element).booleanValue()) {
-							return Boolean.FALSE;
-						}
-					} else if (element.getType() == COSObjType.COS_STRING) {
-						groupsInOrder++;
-						if (!checkCOSStringInOrder(element).booleanValue()) {
-							return Boolean.FALSE;
-						}
+						processCOSArrayInOrder(element, groupNamesSet);
 					} else if (element.getType() == COSObjType.COS_DICT) {
-						groupsInOrder++;
-						if (!checkCOSDictionaryInOrder(element).booleanValue()) {
-							return Boolean.FALSE;
-						}
+						processCOSDictionaryInOrder(element, groupNamesSet);
 					} else {
 						LOGGER.log(Level.FINE, "Invalid object type in order array. Ignoring the object.");
 					}
 				}
-				if (groupsInOrder < groupNames.size()) {
+				if (!groupNamesSet.isEmpty()) {
 					return Boolean.FALSE;
 				}
 			} else {
@@ -130,44 +120,18 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 		return this.simplePDObject.getObject().getStringKey(ASAtom.NAME);
 	}
 
-	private Boolean checkCOSArrayInOrder(COSObject array) {
+	private void processCOSArrayInOrder(COSObject array, Set<String> groupNames) {
 		for (int i = 0; i < array.size().intValue(); i++) {
 			COSObject element = array.at(i);
 			if (element.getType() == COSObjType.COS_ARRAY) {
-				if (!checkCOSArrayInOrder(element).booleanValue()) {
-					return Boolean.FALSE;
-				}
-			} else if (element.getType() == COSObjType.COS_STRING) {
-				if (!checkCOSStringInOrder(element).booleanValue()) {
-					return Boolean.FALSE;
-				}
+				processCOSArrayInOrder(element, groupNames);
 			} else if (element.getType() == COSObjType.COS_DICT) {
-				if (!checkCOSDictionaryInOrder(element).booleanValue()) {
-					return Boolean.FALSE;
-				}
+				processCOSDictionaryInOrder(element, groupNames);
 			}
 		}
-		return Boolean.TRUE;
 	}
 
-	private Boolean checkCOSStringInOrder(COSObject element) {
-		return Boolean.valueOf(!groupNames.contains((element).getString()));
-	}
-
-	private Boolean checkCOSDictionaryInOrder(COSObject element) {
-		return Boolean.valueOf(groupNames.contains(element.getStringKey(ASAtom.NAME)));
-	}
-
-	private static int getLenghtOfFlattenArray(COSArray array) {
-		int res = 0;
-		for (int i = 0; i < array.size(); i++) {
-			COSObject element = array.at(i);
-			if (element.getType() == COSObjType.COS_ARRAY) {
-				res += getLenghtOfFlattenArray((COSArray) element.getDirectBase());
-			} else {
-				res++;
-			}
-		}
-		return res;
+	private void processCOSDictionaryInOrder(COSObject element, Set<String> groupNames) {
+		groupNames.remove(element.getStringKey(ASAtom.NAME));
 	}
 }

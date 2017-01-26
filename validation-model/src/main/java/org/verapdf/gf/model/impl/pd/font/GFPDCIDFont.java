@@ -78,7 +78,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                     this.fontProgramParsed = program.isSuccessfulParsing();
                     this.pdFont.setSuccessfullyParsed(program.isSuccessfulParsing());
                 } catch (IOException e) {
-                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + font.getName(), e);
+                    LOGGER.log(Level.FINE, "Can't parse font program of font " + font.getName(), e);
                     this.fontProgramParsed = false;
                     this.pdFont.setSuccessfullyParsed(false);
                 }
