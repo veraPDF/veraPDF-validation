@@ -367,7 +367,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	private COSDictionary getCatalog() {
 		COSBase catalogLocal = cosDocument.getTrailer().getRoot().getDirectBase();
-		return catalogLocal.getType() == COSObjType.COS_DICT ? (COSDictionary) catalogLocal : null;
+		if (catalogLocal != null && catalogLocal.getType() == COSObjType.COS_DICT) {
+			return (COSDictionary) catalogLocal;
+		}
+		return null;
 	}
 
 }

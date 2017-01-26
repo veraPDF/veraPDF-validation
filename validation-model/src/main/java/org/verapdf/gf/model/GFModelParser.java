@@ -42,6 +42,7 @@ import org.verapdf.pdfa.Foundries;
 import org.verapdf.pdfa.PDFAParser;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -75,10 +76,32 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
+	private GFModelParser(final File pdfFile, PDFAFlavour flavour) throws IOException {
+		try {
+			this.document = new PDDocument(pdfFile.getAbsolutePath());
+			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
+			initializeStaticContainers(this.document, this.flavour);
+		} catch (Throwable t) {
+			this.close();
+			throw t;
+		}
+	}
+
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
 		try {
 			return new GFModelParser(toLoad, flavour);
+		} catch (InvalidPasswordException excep) {
+			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
+		} catch (IOException e) {
+			throw new ModelParsingException("Couldn't parse stream", e);
+		}
+	}
+
+	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour)
+			throws ModelParsingException, EncryptedPdfException {
+		try {
+			return new GFModelParser(pdfFile, flavour);
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
