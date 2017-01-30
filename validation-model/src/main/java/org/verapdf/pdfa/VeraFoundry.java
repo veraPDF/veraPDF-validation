@@ -29,6 +29,7 @@ import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.metadata.fixer.gf.GFMetadataFixerImpl;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
+import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 
@@ -68,6 +69,21 @@ class VeraFoundry extends AbstractFoundry {
 	public PDFAParser createParser(InputStream pdfStream, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
 		return GFModelParser.createModelWithFlavour(pdfStream, flavour);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour)
+			throws ModelParsingException, EncryptedPdfException {
+		return GFModelParser.createModelWithFlavour(file, pdfaFlavour);
+	}
+
+	@Override
+	public PDFAParser createParser(File file)
+			throws ModelParsingException, EncryptedPdfException {
+		return createParser(file, PDFAFlavour.NO_FLAVOUR);
 	}
 
 	/**

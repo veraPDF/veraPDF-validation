@@ -78,8 +78,8 @@ public final class XMPChecker {
             return Boolean.TRUE;
         }
 
-        try {
-            InputStream metadataStream = getMetadataStream(document);
+        try (InputStream metadataStream = getMetadataStream(document)) {
+
             if (metadataStream != null) {
                 VeraPDFMeta metadata = VeraPDFMeta.parse(metadataStream);
 
