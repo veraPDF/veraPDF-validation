@@ -198,7 +198,10 @@ public class GFColorSpaceFeaturesObject implements IFeaturesObject {
 			PDCalRGB calRGB = (PDCalRGB) cie;
 			FeatureTreeNode gamma = root.addChild("gamma");
 			double[] gammaValue = calRGB.getGamma();
-			if (gammaValue.length < 3) {
+			if (gammaValue == null) {
+				ErrorsHelper.addErrorIntoCollection(collection, gamma,
+						"Gamma value is not present");
+			} else if (gammaValue.length < 3) {
 				ErrorsHelper.addErrorIntoCollection(collection, gamma,
 						"Gamma value contains less than three elements");
 			} else {
