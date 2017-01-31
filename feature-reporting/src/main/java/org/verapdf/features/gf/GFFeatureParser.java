@@ -200,12 +200,13 @@ public final class GFFeatureParser {
 			annotsId = config.isFeatureEnabled(FeatureObjectType.ANNOTATION) ? annotsId : null;
 
 			String thumbID = null;
+			PDResources resources = page.getResources();
 			COSObject thumb = page.getKey(ASAtom.getASAtom("Thumb"));
 			if (thumb != null) {
 				thumbID = getId(thumb, FeatureObjectType.IMAGE_XOBJECT);
 				if (checkIDBeforeProcess(thumbID)) {
 					if (thumb.getType() == COSObjType.COS_STREAM) {
-						PDXImage img = new PDXImage(thumb);
+						PDXImage img = new PDXImage(thumb, resources);
 						parseImageXObject(img, thumbID);
 					} else {
 						xobjectCreationProblem(thumbID, "Thumb is not a stream");
@@ -214,7 +215,6 @@ public final class GFFeatureParser {
 			}
 			thumbID = config.isAnyFeatureEnabled(XOBJECTS) ? thumbID : null;
 
-			PDResources resources = page.getResources();
 			Set<String> extGStateChild = config.isFeatureEnabled(FeatureObjectType.EXT_G_STATE)
 					? parseExGStateFromResource(resources) : null;
 			Set<String> colorSpaceChild = config.isFeatureEnabled(FeatureObjectType.COLORSPACE)
