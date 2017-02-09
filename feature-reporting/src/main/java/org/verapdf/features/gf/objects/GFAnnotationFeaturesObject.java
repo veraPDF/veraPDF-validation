@@ -117,7 +117,7 @@ public class GFAnnotationFeaturesObject implements IFeaturesObject {
 			GFCreateNodeHelper.addNotEmptyNode("readOnly", String.valueOf(annot.isReadOnly()), root);
 			GFCreateNodeHelper.addNotEmptyNode("locked", String.valueOf(annot.isLocked()), root);
 			GFCreateNodeHelper.addNotEmptyNode("toggleNoView", String.valueOf(annot.isToggleNoView()), root);
-			GFCreateNodeHelper.addNotEmptyNode("toggleNoView", String.valueOf(annot.isLockedContents()), root);
+			GFCreateNodeHelper.addNotEmptyNode("lockedContents", String.valueOf(annot.isLockedContents()), root);
 
 			collection.addNewFeatureTree(FeatureObjectType.ANNOTATION, root);
 			return root;
