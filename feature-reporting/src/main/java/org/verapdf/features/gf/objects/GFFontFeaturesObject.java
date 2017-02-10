@@ -138,8 +138,6 @@ public class GFFontFeaturesObject implements IFeaturesObject {
             } else if (fontSubtype == ASAtom.CID_FONT_TYPE0 ||
                     fontSubtype == ASAtom.CID_FONT_TYPE2) {
                 PDCIDFont cid = (PDCIDFont) font;
-                GFCreateNodeHelper.addNotEmptyNode("type", cid.getSubtype(), root);
-                GFCreateNodeHelper.addNotEmptyNode("baseFont", cid.getName(), root);
                 Double dw = cid.getDefaultWidth();
                 root.addChild("defaultWidth").setValue(String.valueOf(dw));
 
