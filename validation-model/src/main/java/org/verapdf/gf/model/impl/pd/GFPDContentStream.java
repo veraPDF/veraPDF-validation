@@ -91,8 +91,11 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							this.operators = Collections.unmodifiableList(result);
 						} finally {
 							streamParser.closeInputStream();
-							StaticContainers.getDocument().getDocument().getResourceHandler().addAll(
-									streamParser.getImageDataStreams());
+							if (StaticContainers.getDocument() != null &&
+									StaticContainers.getDocument().getDocument() != null) {
+								StaticContainers.getDocument().getDocument().getResourceHandler().addAll(
+										streamParser.getImageDataStreams());
+							}
 						}
 					}
 				} else {
