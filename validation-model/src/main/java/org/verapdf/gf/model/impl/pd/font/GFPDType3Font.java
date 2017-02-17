@@ -30,6 +30,7 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDType3Font;
+import org.verapdf.pd.PDResources;
 import org.verapdf.pd.PDType3CharProc;
 
 import java.util.*;
@@ -100,8 +101,10 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                 COSObject charProcStream = charProcDict.getKey(glyphName);
                 if (!charProcStream.empty() && charProcDict.getType() == COSObjType.COS_DICT) {
                     PDType3CharProc charProc = new PDType3CharProc(charProcStream);
+                    PDResourcesHandler glyphResources = getResourcesFromCharProcs(charProcStream);
                     GFPDContentStream contentStream =
-                            new GFPDContentStream(charProc, this.resources);
+                            new GFPDContentStream(charProc, glyphResources == null ?
+                                    this.resources : glyphResources);
                     map.put(glyphName.getValue(), contentStream);
                 } else {
                     LOGGER.log(Level.FINE, "Invalid entry in the char proc dictionary.");
@@ -111,5 +114,13 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
         } else {
             this.charStrings = Collections.emptyMap();
         }
+    }
+
+    private PDResourcesHandler getResourcesFromCharProcs(COSObject charProcs) {
+        if (!charProcs.knownKey(ASAtom.RESOURCES)) {
+            return null;
+        }
+        PDResources res = new PDResources(charProcs.getKey(ASAtom.RESOURCES));
+        return PDResourcesHandler.getInstance(this.resources.getPageResources(), res);
     }
 }

@@ -719,7 +719,8 @@ public final class GFFeatureParser {
 			if (descendantFontsBase != null) {
 				String descendantID = getId(descendantFontsBase, FeatureObjectType.FONT);
 				if (checkIDBeforeProcess(descendantID)) {
-					parseFont((PDCIDFont) font, descendantID);
+					parseFont(new PDCIDFont((COSDictionary) descendantFontsBase.getDirectBase(),
+							type0.getCMap().getCMapFile()), descendantID);
 				}
 				Set<String> descendant = null;
 				if (config.isFeatureEnabled(FeatureObjectType.FONT)) {

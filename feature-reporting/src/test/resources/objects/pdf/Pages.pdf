@@ -1,0 +1,153 @@
+%PDF-1.4
+%цдья
+1 0 obj
+<<
+/Pages 2 0 R
+/Type /Catalog
+>>
+endobj
+2 0 obj
+<<
+/Count 7
+/Kids [3 0 R 4 0 R 5 0 R]
+/MediaBox [0 0 500 550]
+/CropBox [50 50 450 500]
+/Type /Pages
+>>
+endobj
+3 0 obj
+<<
+/Count 2
+/Kids [6 0 R 7 0 R]
+/MediaBox [0 0 350 350]
+/Parent 2 0 R
+/Rotate 90
+/Type /Pages
+>>
+endobj
+4 0 obj
+<<
+/Count 3
+/Kids [8 0 R 9 0 R]
+/CropBox [0 0 510 510]
+/Parent 2 0 R
+/Type /Pages
+>>
+endobj
+5 0 obj
+<<
+/Count 2
+/Kids [10 0 R 11 0 R]
+/Parent 2 0 R
+/Rotate 180
+/Type /Pages
+>>
+endobj
+6 0 obj
+<<
+/MediaBox [0 0 612 792]
+/CropBox [0 0 610 790]
+/BleedBox [10 10 602 782]
+/TrimBox [20 20 592 772]
+/ArtBox [50 50 562 742]
+/Parent 3 0 R
+/Resources <<>>
+/Type /Page
+>>
+endobj
+7 0 obj
+<<
+/Parent 3 0 R
+/CropBox [1 1 349 349]
+/BleedBox [10 10 320 315]
+/ArtBox [50 50 250 250]
+/Resources <<>>
+/Type /Page
+>>
+endobj
+8 0 obj
+<<
+/Count 2
+/Kids [12 0 R 13 0 R]
+/MediaBox [0 0 1000.536 1000.536]
+/CropBox [10 10 900 900]
+/Parent 4 0 R
+/Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Parent 4 0 R
+/BleedBox [10 10 490 490]
+/TrimBox [20 20 480 480]
+/ArtBox [50 50 200.365 215.958]
+/Resources <<>>
+/Type /Page
+>>
+endobj
+10 0 obj
+<<
+/Parent 5 0 R
+/Resources <<>>
+/Type /Page
+>>
+endobj
+11 0 obj
+<<
+/MediaBox [1.09 23.08965 350.63 356.4258]
+/CropBox [5 35 330 335]
+/BleedBox [10 10 250 334]
+/TrimBox [20 20 225 325]
+/ArtBox [50 50 150 150]
+/Parent 5 0 R
+/Rotate 0
+/Resources <<>>
+/Type /Page
+>>
+endobj
+12 0 obj
+<<
+/Parent 8 0 R
+/Rotate 270
+/Resources <<>>
+/Type /Page
+>>
+endobj
+13 0 obj
+<<
+/Parent 8 0 R
+/BleedBox [50 50 602 782]
+/TrimBox [70 83 592 772]
+/ArtBox [91 100.36 562 742]
+/Rotate 90
+/Resources <<>>
+/Type /Page
+>>
+endobj
+
+xref
+0 14
+0000000000 65535 f
+0000000015 00000 n
+0000000064 00000 n
+0000000182 00000 n
+0000000294 00000 n
+0000000394 00000 n
+0000000485 00000 n
+0000000670 00000 n
+0000000806 00000 n
+0000000944 00000 n
+0000001090 00000 n
+0000001154 00000 n
+0000001369 00000 n
+0000001445 00000 n
+
+trailer
+<<
+/Size 14
+/Root 1 0 R
+/ID [<A276ECA7EBAC8F2B51FB96720A694BD0> <A276ECA7EBAC8F2B51FB96720A694BD0>]
+>>
+startxref
+1602
+%%EOF

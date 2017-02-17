@@ -141,7 +141,7 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                     fontSubtype == ASAtom.CID_FONT_TYPE2) {
                 PDCIDFont cid = (PDCIDFont) font;
                 Double dw = cid.getDefaultWidth();
-                root.addChild("defaultWidth").setValue(String.valueOf(dw));
+                root.addChild("defaultWidth").setValue(String.valueOf(dw.intValue()));
 
                 PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
                 if (cidSystemInfo != null) {
