@@ -1,0 +1,204 @@
+%PDF-1.4
+%öäüß
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+/OutputIntents []
+>>
+endobj
+2 0 obj
+<<
+/Count 1
+/Kids [3 0 R]
+/Type /Pages
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/MediaBox [0 0 500 500]
+/Parent 2 0 R
+/Resources <<
+/XObject 4 0 R
+>>
+>>
+endobj
+4 0 obj
+<<
+/X0 5 0 R
+/GRPX0 6 0 R
+/PSX0 7 0 R
+/PSX1 17 0 R
+/PSX2 19 0 R
+/RFX0 8 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /XObject
+/Subtype /Form
+/BBox [0 0 480 592.3]
+/Length 36>>
+stream
+q
+0.0 0.5 0.0 rg
+50 300 50 50 re
+f
+Q
+endstream
+endobj
+6 0 obj
+<<
+/Type /XObject
+/Subtype /Form
+/BBox [10 8.5 963.54 1000]
+/Group 9 0 R
+/Matrix [1 1 0 1 1 0]
+/Metadata 10 0 R
+/Resources <<
+>>
+/Length 44>>
+stream
+q
+/CS0 CS
+1.0 0.0 0.0 SCN
+50 50 50 50 re
+S
+Q
+endstream
+endobj
+7 0 obj
+<<
+/Type /XObject
+/Subtype /PS
+/BBox [0 0 1000 1000]
+/Length 74/Resources <<
+>>
+>>
+stream
+newpath
+100 200 moveto
+200 250 lineto
+100 300 lineto
+2 setlinewidth
+stroke
+endstream
+endobj
+8 0 obj
+<<
+/Type /XObject
+/Subtype /Form
+/BBox [0 0 1000 1000]
+/Length 0/Ref 11 0 R
+>>
+stream
+
+endstream
+endobj
+9 0 obj
+<<
+/Type /Group
+/S /Transparency
+>>
+endobj
+10 0 obj
+<<
+/Type /Metadata
+/Subtype /XML
+/Length 397>>
+stream
+<?xpacket begin='' id='W5M0MpCehiHzreSzNTczkc9d'?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:about="">
+		  <dc:creator>
+			<rdf:Seq>
+			  <rdf:li>SomeCreator</rdf:li>
+			</rdf:Seq>
+		  </dc:creator>
+	  </rdf:Description>
+	</rdf:RDF>
+</x:xmpmeta>
+<?xpacket end='w'?>
+endstream
+endobj
+11 0 obj
+<<
+/F (/HardDisk/ArtFiles/Figure1.pdf)
+/Page 1
+>>
+endobj
+17 0 obj
+<<
+/Type /XObject
+/Subtype /Form
+/BBox [0 0 0 0]
+/Length 0/Resources <<>>
+/Name /X
+/PS 18 0 R
+>>
+stream
+
+endstream
+endobj
+18 0 obj
+<<
+/Subtype /PS
+/Length 74>>
+stream
+newpath
+100 200 moveto
+200 250 lineto
+100 300 lineto
+2 setlinewidth
+stroke
+endstream
+endobj
+19 0 obj
+<<
+/Type /XObject
+/Subtype /Form
+/BBox [0 0 250 250]
+/Length 3/Resources <<>>
+/Name /X
+/Subtype2 /PS
+>>
+stream
+q
+Q
+endstream
+endobj
+
+xref
+0 20
+0000000000 65535 f
+0000000015 00000 n
+0000000082 00000 n
+0000000139 00000 n
+0000000242 00000 n
+0000000336 00000 n
+0000000475 00000 n
+0000000696 00000 n
+0000000888 00000 n
+0000001002 00000 n
+0000001053 00000 n
+0000001533 00000 n
+0000000000 00000 f
+0000000000 00000 f
+0000000000 00000 f
+0000000000 00000 f
+0000000000 00000 f
+0000001599 00000 n
+0000001730 00000 n
+0000001867 00000 n
+
+trailer
+<<
+/Size 20
+/Root 1 0 R
+/ID [<D6CF927DCF82444068EB69A594F807> <713CE394E6092149CFE4DDD670CE068F>]
+>>
+startxref
+2011
+%%EOF

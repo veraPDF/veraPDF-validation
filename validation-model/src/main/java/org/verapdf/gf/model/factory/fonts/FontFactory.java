@@ -39,7 +39,7 @@ import org.verapdf.pd.font.type1.PDType1Font;
 public class FontFactory {
 
 	/** Type name for {@code Type0} font */
-	public static final String CID_FONT_TYPE_0 = "CIDFontType0";
+	public static final String TYPE_0 = "Type0";
 	/** Type name for {@code Type1} font */
 	public static final String TYPE_1 = "Type1";
 	/** Type name for {@code MMType1} font */
@@ -62,8 +62,7 @@ public class FontFactory {
 			return null;
 		}
 		switch (rawFont.getSubtype().getValue()) {
-			case CID_FONT_TYPE_0:
-			case CID_FONT_TYPE_2:
+			case TYPE_0:
 				return new GFPDType0Font((PDType0Font) rawFont, renderingMode);
 			case TYPE_1:
 			case MM_TYPE_1:

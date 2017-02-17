@@ -124,7 +124,9 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                     }
                 }
 
-                parseFontDescriptior(this.font.getFontDescriptor(), root, collection);
+                if (this.font.getSubtype() != ASAtom.TYPE3) {
+                    parseFontDescriptior(this.font.getFontDescriptor(), root, collection);
+                }
 
                 if (sFont.getSubtype() == ASAtom.TYPE3) {
                     PDType3Font type3 = (PDType3Font) sFont;
@@ -138,10 +140,8 @@ public class GFFontFeaturesObject implements IFeaturesObject {
             } else if (fontSubtype == ASAtom.CID_FONT_TYPE0 ||
                     fontSubtype == ASAtom.CID_FONT_TYPE2) {
                 PDCIDFont cid = (PDCIDFont) font;
-                GFCreateNodeHelper.addNotEmptyNode("type", cid.getSubtype(), root);
-                GFCreateNodeHelper.addNotEmptyNode("baseFont", cid.getName(), root);
                 Double dw = cid.getDefaultWidth();
-                root.addChild("defaultWidth").setValue(String.valueOf(dw));
+                root.addChild("defaultWidth").setValue(String.valueOf(dw.intValue()));
 
                 PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
                 if (cidSystemInfo != null) {
@@ -285,7 +285,7 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                     FeatureTreeNode element = parent.addChild("width");
                     COSObject arElement = array.at(i);
                     if (arElement.getType().isNumber()) {
-                        element.setValue(String.valueOf(arElement.getReal()));
+                        element.setValue(String.valueOf(arElement.getInteger()));
                     }
                     element.setAttribute("char", String.valueOf(i + fc));
                 }

@@ -24,7 +24,6 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.external.ICCProfile;
 import org.verapdf.factory.colors.ColorSpaceFactory;
-import org.verapdf.factory.fonts.PDFontFactory;
 import org.verapdf.features.*;
 import org.verapdf.features.tools.ErrorsHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
@@ -32,6 +31,7 @@ import org.verapdf.pd.*;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDICCBased;
 import org.verapdf.pd.encryption.StandardSecurityHandler;
+import org.verapdf.pd.font.PDCIDFont;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.PDType0Font;
 import org.verapdf.pd.font.PDType3Font;
@@ -719,7 +719,8 @@ public final class GFFeatureParser {
 			if (descendantFontsBase != null) {
 				String descendantID = getId(descendantFontsBase, FeatureObjectType.FONT);
 				if (checkIDBeforeProcess(descendantID)) {
-					parseFont(PDFontFactory.getPDFont(descendantFontsBase), descendantID);
+					parseFont(new PDCIDFont((COSDictionary) descendantFontsBase.getDirectBase(),
+							type0.getCMap().getCMapFile()), descendantID);
 				}
 				Set<String> descendant = null;
 				if (config.isFeatureEnabled(FeatureObjectType.FONT)) {
