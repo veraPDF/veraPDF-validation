@@ -33,9 +33,6 @@ import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.PDFontDescriptor;
-import org.verapdf.pd.font.cff.CFFCIDFontProgram;
-import org.verapdf.pd.font.cff.CFFFontProgram;
-import org.verapdf.pd.font.truetype.BaseTrueTypeProgram;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
@@ -157,18 +154,12 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (!flavour.equals(PDFAFlavour.PDFA_1_A) || !flavour.equals(PDFAFlavour.PDFA_1_B)) {
                     //on this levels we need to ensure that all glyphs present in font program are described in cid set
-                    if (cidFont instanceof CFFFontProgram && ((CFFFontProgram) cidFont).isCIDFont()) {
-                        CFFCIDFontProgram cffCidFont = (CFFCIDFontProgram) ((CFFFontProgram) cidFont).getFont();
-                        if (bitSet.cardinality() < cffCidFont.getNGlyphs()) {
-                            return Boolean.FALSE;
-                        }
-                    } else if (cidFont instanceof BaseTrueTypeProgram) {
-                        if (bitSet.cardinality() < ((BaseTrueTypeProgram) cidFont).getNGlyphs()) {
+                    for (int i = 1; i < bitSet.size(); ++i) {
+                        if (!bitSet.get(i) && cidFont.containsCode(i)) {
                             return Boolean.FALSE;
                         }
                     }
                 }
-
             }
         } catch (IOException e) {
             LOGGER.log(Level.FINE, "Error while parsing embedded font program. " + e.getMessage(), e);
