@@ -24,6 +24,7 @@ import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSObject;
 import org.verapdf.external.ICCProfile;
 import org.verapdf.features.gf.objects.*;
+import org.verapdf.features.objects.LowLvlInfoFeaturesObject;
 import org.verapdf.pd.*;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.encryption.PDEncryption;
@@ -77,13 +78,14 @@ public final class GFFeaturesObjectCreator {
 	}
 
 	/**
-	 * Creates new GFLowLvlInfoFeaturesObject
+	 * Creates new LowLvlInfoFeaturesObject
 	 *
 	 * @param document COSDocument class from greenfield, which represents a document for feature report
-	 * @return created GFLowLvlInfoFeaturesObject
+	 * @return created LowLvlInfoFeaturesObject
 	 */
-	public static GFLowLvlInfoFeaturesObject createLowLvlInfoFeaturesObject(COSDocument document) {
-		return new GFLowLvlInfoFeaturesObject(document);
+	public static LowLvlInfoFeaturesObject createLowLvlInfoFeaturesObject(COSDocument document) {
+		GFLowLvlInfoFeaturesObjectAdapter adapter = new GFLowLvlInfoFeaturesObjectAdapter(document);
+		return new LowLvlInfoFeaturesObject(adapter);
 	}
 
 	/**
