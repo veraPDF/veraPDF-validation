@@ -26,7 +26,7 @@ import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
 import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.encryption.AccessPermissions;
 import org.verapdf.pd.encryption.PDEncryption;
@@ -53,33 +53,33 @@ public class GFDocSecurityFeaturesObject implements IFeaturesObject {
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
         if (encryption != null && !encryption.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("documentSecurity");
-            GFCreateNodeHelper.addNotEmptyNode("filter", encryption.getFilter(), root);
-            GFCreateNodeHelper.addNotEmptyNode("subFilter", encryption.getSubFilter(), root);
-            GFCreateNodeHelper.addNotEmptyNode("version", String.valueOf(encryption.getV()), root);
-            GFCreateNodeHelper.addNotEmptyNode("length", String.valueOf(encryption.getLength()), root);
+            GFAdapterHelper.addNotEmptyNode("filter", encryption.getFilter(), root);
+            GFAdapterHelper.addNotEmptyNode("subFilter", encryption.getSubFilter(), root);
+            GFAdapterHelper.addNotEmptyNode("version", String.valueOf(encryption.getV()), root);
+            GFAdapterHelper.addNotEmptyNode("length", String.valueOf(encryption.getLength()), root);
 
             COSString ownerKey = encryption.getO();
             if (ownerKey != null) {
-                GFCreateNodeHelper.addNotEmptyNode("ownerKey", ownerKey.getHexString(), root);
+                GFAdapterHelper.addNotEmptyNode("ownerKey", ownerKey.getHexString(), root);
             }
 
             COSString userKey = encryption.getU();
             if (userKey != null) {
-                GFCreateNodeHelper.addNotEmptyNode("userKey", userKey.getHexString(), root);
+                GFAdapterHelper.addNotEmptyNode("userKey", userKey.getHexString(), root);
             }
 
-            GFCreateNodeHelper.addNotEmptyNode("encryptMetadata", String.valueOf(encryption.isEncryptMetadata()), root);
+            GFAdapterHelper.addNotEmptyNode("encryptMetadata", String.valueOf(encryption.isEncryptMetadata()), root);
 
             AccessPermissions accessPermissions = encryption.getUserPermissions();
             if (accessPermissions != null) {
-                GFCreateNodeHelper.addNotEmptyNode("printAllowed", String.valueOf(accessPermissions.canPrint()), root);
-                GFCreateNodeHelper.addNotEmptyNode("printDegradedAllowed", String.valueOf(accessPermissions.canPrintDegraded()), root);
-                GFCreateNodeHelper.addNotEmptyNode("changesAllowed", String.valueOf(accessPermissions.canModify()), root);
-                GFCreateNodeHelper.addNotEmptyNode("modifyAnnotationsAllowed", String.valueOf(accessPermissions.canModifyAnnotations()), root);
-                GFCreateNodeHelper.addNotEmptyNode("fillingSigningAllowed", String.valueOf(accessPermissions.canFillInForm()), root);
-                GFCreateNodeHelper.addNotEmptyNode("documentAssemblyAllowed", String.valueOf(accessPermissions.canAssembleDocument()), root);
-                GFCreateNodeHelper.addNotEmptyNode("extractContentAllowed", String.valueOf(accessPermissions.canExtractContent()), root);
-                GFCreateNodeHelper.addNotEmptyNode("extractAccessibilityAllowed", String.valueOf(accessPermissions.canExtractForAccessibility()), root);
+                GFAdapterHelper.addNotEmptyNode("printAllowed", String.valueOf(accessPermissions.canPrint()), root);
+                GFAdapterHelper.addNotEmptyNode("printDegradedAllowed", String.valueOf(accessPermissions.canPrintDegraded()), root);
+                GFAdapterHelper.addNotEmptyNode("changesAllowed", String.valueOf(accessPermissions.canModify()), root);
+                GFAdapterHelper.addNotEmptyNode("modifyAnnotationsAllowed", String.valueOf(accessPermissions.canModifyAnnotations()), root);
+                GFAdapterHelper.addNotEmptyNode("fillingSigningAllowed", String.valueOf(accessPermissions.canFillInForm()), root);
+                GFAdapterHelper.addNotEmptyNode("documentAssemblyAllowed", String.valueOf(accessPermissions.canAssembleDocument()), root);
+                GFAdapterHelper.addNotEmptyNode("extractContentAllowed", String.valueOf(accessPermissions.canExtractContent()), root);
+                GFAdapterHelper.addNotEmptyNode("extractAccessibilityAllowed", String.valueOf(accessPermissions.canExtractForAccessibility()), root);
             }
 
             collection.addNewFeatureTree(FeatureObjectType.DOCUMENT_SECURITY, root);

@@ -48,16 +48,16 @@ import java.util.logging.Logger;
  *
  * @author Maksim Bezrukov
  */
-public final class GFCreateNodeHelper {
+public final class GFAdapterHelper {
 
-	private static final Logger LOGGER = Logger.getLogger(GFCreateNodeHelper.class.getCanonicalName());
+	private static final Logger LOGGER = Logger.getLogger(GFAdapterHelper.class.getCanonicalName());
 
 	private static final String LLX = "llx";
 	private static final String LLY = "lly";
 	private static final String URX = "urx";
 	private static final String URY = "ury";
 
-	private GFCreateNodeHelper() {
+	private GFAdapterHelper() {
 	}
 
 	private static String getXMLFormat(Calendar calendar) throws DatatypeConfigurationException {
@@ -348,5 +348,13 @@ public final class GFCreateNodeHelper {
 
 	public static String getStringFromASAtom(ASAtom asAtom) {
 		return asAtom == null ? null : asAtom.getValue();
+	}
+
+	public static String getStringFromCOSObject(COSObject object) {
+		if (object != null && !object.empty()
+				&& (object.getType() == COSObjType.COS_NAME || object.getType() == COSObjType.COS_STRING)) {
+			return object.getString();
+		}
+		return null;
 	}
 }

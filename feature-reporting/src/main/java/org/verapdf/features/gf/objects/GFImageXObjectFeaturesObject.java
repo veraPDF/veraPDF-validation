@@ -26,8 +26,11 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.features.*;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.FeatureExtractionResult;
+import org.verapdf.features.FeatureObjectType;
+import org.verapdf.features.FeaturesData;
+import org.verapdf.features.ImageFeaturesData;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDMetadata;
 import org.verapdf.pd.images.PDXImage;
@@ -105,11 +108,11 @@ public class GFImageXObjectFeaturesObject implements IFeaturesObject {
             }
             Long width = imageXObject.getWidth();
             if (width != null) {
-                GFCreateNodeHelper.addNotEmptyNode("width", String.valueOf(width.longValue()), root);
+                GFAdapterHelper.addNotEmptyNode("width", String.valueOf(width.longValue()), root);
             }
             Long height = imageXObject.getHeight();
             if (height != null) {
-                GFCreateNodeHelper.addNotEmptyNode("height", String.valueOf(height.longValue()), root);
+                GFAdapterHelper.addNotEmptyNode("height", String.valueOf(height.longValue()), root);
             }
 
             if (colorSpaceChild != null) {
@@ -119,7 +122,7 @@ public class GFImageXObjectFeaturesObject implements IFeaturesObject {
 
             Long bitsPerComponent = imageXObject.getBitsPerComponent();
             if (bitsPerComponent != null) {
-                GFCreateNodeHelper.addNotEmptyNode("bitsPerComponent", String.valueOf(bitsPerComponent.longValue()), root);
+                GFAdapterHelper.addNotEmptyNode("bitsPerComponent", String.valueOf(bitsPerComponent.longValue()), root);
             }
 
             root.addChild("imageMask").setValue(String.valueOf(imageXObject.getImageMask()));
@@ -129,8 +132,8 @@ public class GFImageXObjectFeaturesObject implements IFeaturesObject {
                 mask.setAttribute(ID, maskChild);
             }
 
-            GFCreateNodeHelper.addNotEmptyNode("interpolate", String.valueOf(imageXObject.isInterpolate()), root);
-            GFCreateNodeHelper.parseIDSet(alternatesChild, "alternate", "alternates", root);
+            GFAdapterHelper.addNotEmptyNode("interpolate", String.valueOf(imageXObject.isInterpolate()), root);
+            GFAdapterHelper.parseIDSet(alternatesChild, "alternate", "alternates", root);
             if (sMaskChild != null) {
                 FeatureTreeNode mask = root.addChild("sMask");
                 mask.setAttribute(ID, sMaskChild);
@@ -138,18 +141,18 @@ public class GFImageXObjectFeaturesObject implements IFeaturesObject {
 
             Long struct = imageXObject.getStructParent();
             if (struct != null) {
-                GFCreateNodeHelper.addNotEmptyNode("structParent", String.valueOf(struct.longValue()), root);
+                GFAdapterHelper.addNotEmptyNode("structParent", String.valueOf(struct.longValue()), root);
             }
 
             List<ASAtom> filtersList = imageXObject.getFilters();
             if (!filtersList.isEmpty()) {
                 FeatureTreeNode filters = root.addChild("filters");
                 for (ASAtom name : filtersList) {
-                    GFCreateNodeHelper.addNotEmptyNode("filter", name.getValue(), filters);
+                    GFAdapterHelper.addNotEmptyNode("filter", name.getValue(), filters);
                 }
             }
 
-            GFCreateNodeHelper.parseMetadata(imageXObject.getMetadata(), "metadata", root, collection);
+            GFAdapterHelper.parseMetadata(imageXObject.getMetadata(), "metadata", root, collection);
 
             collection.addNewFeatureTree(FeatureObjectType.IMAGE_XOBJECT, root);
             return root;

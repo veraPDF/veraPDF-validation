@@ -22,8 +22,11 @@ package org.verapdf.features.gf.objects;
 
 import org.verapdf.core.FeatureParsingException;
 import org.verapdf.cos.COSString;
-import org.verapdf.features.*;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.FeatureExtractionResult;
+import org.verapdf.features.FeatureObjectType;
+import org.verapdf.features.FeaturesData;
+import org.verapdf.features.SignatureFeaturesData;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDSignature;
 
@@ -53,17 +56,17 @@ public class GFSignatureFeaturesObject implements IFeaturesObject {
         if (signature != null && !signature.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("signature");
 
-            GFCreateNodeHelper.addNotEmptyNode("filter", signature.getFilter(), root);
-            GFCreateNodeHelper.addNotEmptyNode("subFilter", signature.getSubfilter(), root);
+            GFAdapterHelper.addNotEmptyNode("filter", signature.getFilter(), root);
+            GFAdapterHelper.addNotEmptyNode("subFilter", signature.getSubfilter(), root);
             COSString contents = signature.getContents();
             if (contents != null) {
-                GFCreateNodeHelper.addNotEmptyNode("contents", contents.getHexString(), root);
+                GFAdapterHelper.addNotEmptyNode("contents", contents.getHexString(), root);
             }
-            GFCreateNodeHelper.addNotEmptyNode("name", signature.getName(), root);
-            GFCreateNodeHelper.createDateNode("signDate", root, signature.getSignDate(), featureExtractionResult);
-            GFCreateNodeHelper.addNotEmptyNode("location", signature.getLocation(), root);
-            GFCreateNodeHelper.addNotEmptyNode("reason", signature.getReason(), root);
-            GFCreateNodeHelper.addNotEmptyNode("contactInfo", signature.getContactInfo(), root);
+            GFAdapterHelper.addNotEmptyNode("name", signature.getName(), root);
+            GFAdapterHelper.createDateNode("signDate", root, signature.getSignDate(), featureExtractionResult);
+            GFAdapterHelper.addNotEmptyNode("location", signature.getLocation(), root);
+            GFAdapterHelper.addNotEmptyNode("reason", signature.getReason(), root);
+            GFAdapterHelper.addNotEmptyNode("contactInfo", signature.getContactInfo(), root);
 
             featureExtractionResult.addNewFeatureTree(FeatureObjectType.SIGNATURE, root);
 
@@ -78,8 +81,8 @@ public class GFSignatureFeaturesObject implements IFeaturesObject {
         InputStream stream = contents == null ? null :
                 new ByteArrayInputStream(contents.get());
         return SignatureFeaturesData.newInstance(
-                stream, GFCreateNodeHelper.getStringFromASAtom(signature.getFilter()),
-                GFCreateNodeHelper.getStringFromASAtom(signature.getSubfilter()), signature.getName(),
+                stream, GFAdapterHelper.getStringFromASAtom(signature.getFilter()),
+                GFAdapterHelper.getStringFromASAtom(signature.getSubfilter()), signature.getName(),
                 signature.getSignDate(), signature.getLocation(),
                 signature.getReason(), signature.getContactInfo());
     }

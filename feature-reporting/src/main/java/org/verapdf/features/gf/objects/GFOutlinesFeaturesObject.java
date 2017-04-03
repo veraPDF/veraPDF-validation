@@ -26,7 +26,7 @@ import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
 import org.verapdf.features.IFeaturesObject;
 import org.verapdf.features.gf.tools.ColorComponent;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.ErrorsHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDOutlineDictionary;
@@ -105,7 +105,7 @@ public class GFOutlinesFeaturesObject implements IFeaturesObject {
 			items.add(item);
 			FeatureTreeNode itemNode = root.addChild("outline");
 
-			GFCreateNodeHelper.addNotEmptyNode("title", item.getTitle(), itemNode);
+			GFAdapterHelper.addNotEmptyNode("title", item.getTitle(), itemNode);
 
 			FeatureTreeNode color = itemNode.addChild("color");
 			double[] clr = item.getColor();

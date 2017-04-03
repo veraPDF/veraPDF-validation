@@ -28,7 +28,7 @@ import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
 import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.tools.TypeConverter;
 
@@ -101,7 +101,7 @@ public class GFInfoDictFeaturesObject implements IFeaturesObject {
             String crDate = info.getStringKey(ASAtom.CREATION_DATE);
             if (crDate != null) {
                 Calendar crDateCal = TypeConverter.parseDate(crDate);
-                FeatureTreeNode creationDate = GFCreateNodeHelper.createDateNode(ENTRY, root, crDateCal, collection);
+                FeatureTreeNode creationDate = GFAdapterHelper.createDateNode(ENTRY, root, crDateCal, collection);
                 if (creationDate != null) {
                     creationDate.setAttribute(KEY, "CreationDate");
                 }
@@ -110,7 +110,7 @@ public class GFInfoDictFeaturesObject implements IFeaturesObject {
             String mdDate = info.getStringKey(ASAtom.MOD_DATE);
             if (mdDate != null) {
                 Calendar mdDateCal = TypeConverter.parseDate(mdDate);
-                FeatureTreeNode modDate = GFCreateNodeHelper.createDateNode(ENTRY, root, mdDateCal, collection);
+                FeatureTreeNode modDate = GFAdapterHelper.createDateNode(ENTRY, root, mdDateCal, collection);
                 if (modDate != null) {
                     modDate.setAttribute(KEY, "ModDate");
                 }

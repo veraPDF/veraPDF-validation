@@ -25,8 +25,11 @@ import org.verapdf.core.FeatureParsingException;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.features.*;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.FeatureExtractionResult;
+import org.verapdf.features.FeatureObjectType;
+import org.verapdf.features.FeaturesData;
+import org.verapdf.features.FontFeaturesData;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDMetadata;
 import org.verapdf.pd.font.*;
@@ -88,14 +91,14 @@ public class GFFontFeaturesObject implements IFeaturesObject {
             }
 
             ASAtom fontSubtype = font.getSubtype();
-            GFCreateNodeHelper.addNotEmptyNode("type", fontSubtype, root);
+            GFAdapterHelper.addNotEmptyNode("type", fontSubtype, root);
 
             if (!(fontSubtype == ASAtom.TYPE3)) {
-                GFCreateNodeHelper.addNotEmptyNode("baseFont", font.getName(), root);
+                GFAdapterHelper.addNotEmptyNode("baseFont", font.getName(), root);
             }
 
             if (fontSubtype == ASAtom.TYPE0) {
-                GFCreateNodeHelper.parseIDSet(fontChild, "descendantFont", null, root.addChild("descendantFonts"));
+                GFAdapterHelper.parseIDSet(fontChild, "descendantFont", null, root.addChild("descendantFonts"));
                 parseFontDescriptior(this.font.getFontDescriptor(), root, collection);
             } else if (fontSubtype == ASAtom.TRUE_TYPE ||
                     fontSubtype == ASAtom.TYPE1 ||
@@ -116,11 +119,11 @@ public class GFFontFeaturesObject implements IFeaturesObject {
 
                 COSObject enc = sFont.getEncoding();
                 if (enc.getType() == COSObjType.COS_NAME) {
-                    GFCreateNodeHelper.addNotEmptyNode("encoding", enc, root);
+                    GFAdapterHelper.addNotEmptyNode("encoding", enc, root);
                 } else if (enc.getType() == COSObjType.COS_DICT) {
                     ASAtom name = enc.getNameKey(ASAtom.BASE_ENCODING);
                     if (name != null) {
-                        GFCreateNodeHelper.addNotEmptyNode("encoding", name, root);
+                        GFAdapterHelper.addNotEmptyNode("encoding", name, root);
                     }
                 }
 
@@ -131,8 +134,8 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                 if (sFont.getSubtype() == ASAtom.TYPE3) {
                     PDType3Font type3 = (PDType3Font) sFont;
 
-                    GFCreateNodeHelper.addBoxFeature("fontBBox", type3.getFontBoundingBox(), root);
-                    GFCreateNodeHelper.parseMatrix(type3.getFontMatrix(), root.addChild("fontMatrix"));
+                    GFAdapterHelper.addBoxFeature("fontBBox", type3.getFontBoundingBox(), root);
+                    GFAdapterHelper.parseMatrix(type3.getFontMatrix(), root.addChild("fontMatrix"));
 
                     parseResources(root);
                 }
@@ -146,8 +149,8 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                 PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
                 if (cidSystemInfo != null) {
                     FeatureTreeNode cidS = root.addChild("cidSystemInfo");
-                    GFCreateNodeHelper.addNotEmptyNode("registry", cidSystemInfo.getRegistry(), cidS);
-                    GFCreateNodeHelper.addNotEmptyNode("ordering", cidSystemInfo.getOrdering(), cidS);
+                    GFAdapterHelper.addNotEmptyNode("registry", cidSystemInfo.getRegistry(), cidS);
+                    GFAdapterHelper.addNotEmptyNode("ordering", cidSystemInfo.getOrdering(), cidS);
                     Long supplement = cidSystemInfo.getSupplement();
                     if (supplement != null) {
                         cidS.addChild("supplement").setValue(String.valueOf(supplement));
@@ -189,9 +192,9 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                     }
                     builder.metadata(metadata);
 
-                    builder.fontName(GFCreateNodeHelper.getStringFromASAtom(descriptor.getFontName()));
+                    builder.fontName(GFAdapterHelper.getStringFromASAtom(descriptor.getFontName()));
                     builder.fontFamily(descriptor.getFontFamily());
-                    builder.fontStretch(GFCreateNodeHelper.getStringFromASAtom(descriptor.getFontStretch()));
+                    builder.fontStretch(GFAdapterHelper.getStringFromASAtom(descriptor.getFontStretch()));
                     builder.fontWeight(descriptor.getFontWeight());
                     Long flags = descriptor.getFlags();
                     builder.flags(flags == null ? null : flags.intValue());
@@ -232,10 +235,10 @@ public class GFFontFeaturesObject implements IFeaturesObject {
         if (descriptor != null && !descriptor.empty()) {
             FeatureTreeNode descriptorNode = root.addChild("fontDescriptor");
 
-            GFCreateNodeHelper.addNotEmptyNode("fontName", descriptor.getFontName(), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("fontFamily", descriptor.getFontFamily(), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("fontStretch", descriptor.getFontStretch(), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("fontWeight", getStringFromDouble(descriptor.getFontWeight()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("fontName", descriptor.getFontName(), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("fontFamily", descriptor.getFontFamily(), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("fontStretch", descriptor.getFontStretch(), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("fontWeight", getStringFromDouble(descriptor.getFontWeight()), descriptorNode);
             descriptorNode.addChild("fixedPitch").setValue(String.valueOf(descriptor.isFixedPitch()));
             descriptorNode.addChild("serif").setValue(String.valueOf(descriptor.isSerif()));
             descriptorNode.addChild("symbolic").setValue(String.valueOf(descriptor.isSymbolic()));
@@ -245,20 +248,20 @@ public class GFFontFeaturesObject implements IFeaturesObject {
             descriptorNode.addChild("allCap").setValue(String.valueOf(descriptor.isAllCap()));
             descriptorNode.addChild("smallCap").setValue(String.valueOf(descriptor.isScript()));
             descriptorNode.addChild("forceBold").setValue(String.valueOf(descriptor.isForceBold()));
-            GFCreateNodeHelper.addBoxFeature("fontBBox", descriptor.getFontBoundingBox(), descriptorNode);
+            GFAdapterHelper.addBoxFeature("fontBBox", descriptor.getFontBoundingBox(), descriptorNode);
 
-            GFCreateNodeHelper.addNotEmptyNode("italicAngle", getStringFromDouble(descriptor.getItalicAngle()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("ascent", getStringFromDouble(descriptor.getAscent()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("descent", getStringFromDouble(descriptor.getDescent()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("leading", getStringFromDouble(descriptor.getLeading()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("capHeight", getStringFromDouble(descriptor.getCapHeight()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("xHeight", getStringFromDouble(descriptor.getXHeight()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("stemV", getStringFromDouble(descriptor.getStemV()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("stemH", getStringFromDouble(descriptor.getStemH()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("averageWidth", getStringFromDouble(descriptor.getAvgWidth()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("maxWidth", getStringFromDouble(descriptor.getMaxWidth()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("missingWidth", getStringFromDouble(descriptor.getMissingWidth()), descriptorNode);
-            GFCreateNodeHelper.addNotEmptyNode("charSet", descriptor.getCharSet(), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("italicAngle", getStringFromDouble(descriptor.getItalicAngle()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("ascent", getStringFromDouble(descriptor.getAscent()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("descent", getStringFromDouble(descriptor.getDescent()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("leading", getStringFromDouble(descriptor.getLeading()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("capHeight", getStringFromDouble(descriptor.getCapHeight()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("xHeight", getStringFromDouble(descriptor.getXHeight()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("stemV", getStringFromDouble(descriptor.getStemV()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("stemH", getStringFromDouble(descriptor.getStemH()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("averageWidth", getStringFromDouble(descriptor.getAvgWidth()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("maxWidth", getStringFromDouble(descriptor.getMaxWidth()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("missingWidth", getStringFromDouble(descriptor.getMissingWidth()), descriptorNode);
+            GFAdapterHelper.addNotEmptyNode("charSet", descriptor.getCharSet(), descriptorNode);
 
             COSStream file = descriptor.getFontFile();
             if (file == null) {
@@ -271,7 +274,7 @@ public class GFFontFeaturesObject implements IFeaturesObject {
             descriptorNode.addChild("embedded").setValue(String.valueOf(file != null));
             if (file != null) {
                 PDMetadata fontProgramMetadata = new PDMetadata(file.getKey(ASAtom.METADATA));
-                GFCreateNodeHelper.parseMetadata(fontProgramMetadata, "embeddedFileMetadata", descriptorNode, collection);
+                GFAdapterHelper.parseMetadata(fontProgramMetadata, "embeddedFileMetadata", descriptorNode, collection);
             }
         }
     }
@@ -304,13 +307,13 @@ public class GFFontFeaturesObject implements IFeaturesObject {
                 (propertiesChild != null && !propertiesChild.isEmpty())) {
             FeatureTreeNode resources = root.addChild("resources");
 
-            GFCreateNodeHelper.parseIDSet(extGStateChild, "graphicsState", "graphicsStates", resources);
-            GFCreateNodeHelper.parseIDSet(colorSpaceChild, "colorSpace", "colorSpaces", resources);
-            GFCreateNodeHelper.parseIDSet(patternChild, "pattern", "patterns", resources);
-            GFCreateNodeHelper.parseIDSet(shadingChild, "shading", "shadings", resources);
-            GFCreateNodeHelper.parseIDSet(xobjectChild, "xobject", "xobjects", resources);
-            GFCreateNodeHelper.parseIDSet(fontChild, "font", "fonts", resources);
-            GFCreateNodeHelper.parseIDSet(propertiesChild, "propertiesDict", "propertiesDicts", resources);
+            GFAdapterHelper.parseIDSet(extGStateChild, "graphicsState", "graphicsStates", resources);
+            GFAdapterHelper.parseIDSet(colorSpaceChild, "colorSpace", "colorSpaces", resources);
+            GFAdapterHelper.parseIDSet(patternChild, "pattern", "patterns", resources);
+            GFAdapterHelper.parseIDSet(shadingChild, "shading", "shadings", resources);
+            GFAdapterHelper.parseIDSet(xobjectChild, "xobject", "xobjects", resources);
+            GFAdapterHelper.parseIDSet(fontChild, "font", "fonts", resources);
+            GFAdapterHelper.parseIDSet(propertiesChild, "propertiesDict", "propertiesDicts", resources);
         }
     }
 

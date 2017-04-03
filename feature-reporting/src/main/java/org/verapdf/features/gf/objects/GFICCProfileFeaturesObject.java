@@ -24,8 +24,11 @@ import org.verapdf.as.io.ASInputStream;
 import org.verapdf.core.FeatureParsingException;
 import org.verapdf.cos.COSStream;
 import org.verapdf.external.ICCProfile;
-import org.verapdf.features.*;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.FeatureExtractionResult;
+import org.verapdf.features.FeatureObjectType;
+import org.verapdf.features.FeaturesData;
+import org.verapdf.features.ICCProfileFeaturesData;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.ErrorsHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDMetadata;
@@ -94,7 +97,7 @@ public class GFICCProfileFeaturesObject implements IFeaturesObject {
             parseProfileHeader(root, collection);
             PDMetadata meta = profile.getMetadata();
             if (meta != null) {
-                GFCreateNodeHelper.parseMetadata(meta, "metadata", root, collection);
+                GFAdapterHelper.parseMetadata(meta, "metadata", root, collection);
             }
 
             collection.addNewFeatureTree(FeatureObjectType.ICCPROFILE, root);
@@ -133,24 +136,24 @@ public class GFICCProfileFeaturesObject implements IFeaturesObject {
 
     private void parseProfileHeader(FeatureTreeNode root, FeatureExtractionResult collection) throws FeatureParsingException {
         try (ASInputStream iccData = profile.getObject().getData(COSStream.FilterFlags.DECODE)) {
-            byte[] profileBytes = GFCreateNodeHelper.inputStreamToByteArray(iccData);
+            byte[] profileBytes = GFAdapterHelper.inputStreamToByteArray(iccData);
 
             if (profileBytes.length < HEADER_SIZE) {
                 ErrorsHelper.addErrorIntoCollection(collection,
                         root,
                         "ICCProfile contains less than " + HEADER_SIZE + " bytes");
             } else {
-                GFCreateNodeHelper.addNotEmptyNode("version", getVersion(profileBytes), root);
-                GFCreateNodeHelper.addNotEmptyNode("cmmType", profile.getCMMType(), root);
-                GFCreateNodeHelper.addNotEmptyNode("dataColorSpace", profile.getColorSpace(), root);
-                GFCreateNodeHelper.addNotEmptyNode("creator", profile.getCreator(), root);
-                GFCreateNodeHelper.createDateNode("creationDate", root, profile.getCreationDate(), collection);
-                GFCreateNodeHelper.addNotEmptyNode("defaultRenderingIntent", profile.getRenderingIntent(), root);
-                GFCreateNodeHelper.addNotEmptyNode("copyright", profile.getCopyright(), root);
-                GFCreateNodeHelper.addNotEmptyNode("description", profile.getDescription(), root);
-                GFCreateNodeHelper.addNotEmptyNode("profileId", profile.getProfileID(), root);
-                GFCreateNodeHelper.addNotEmptyNode("deviceModel", profile.getDeviceModel(), root);
-                GFCreateNodeHelper.addNotEmptyNode("deviceManufacturer", profile.getDeviceManufacturer(), root);
+                GFAdapterHelper.addNotEmptyNode("version", getVersion(profileBytes), root);
+                GFAdapterHelper.addNotEmptyNode("cmmType", profile.getCMMType(), root);
+                GFAdapterHelper.addNotEmptyNode("dataColorSpace", profile.getColorSpace(), root);
+                GFAdapterHelper.addNotEmptyNode("creator", profile.getCreator(), root);
+                GFAdapterHelper.createDateNode("creationDate", root, profile.getCreationDate(), collection);
+                GFAdapterHelper.addNotEmptyNode("defaultRenderingIntent", profile.getRenderingIntent(), root);
+                GFAdapterHelper.addNotEmptyNode("copyright", profile.getCopyright(), root);
+                GFAdapterHelper.addNotEmptyNode("description", profile.getDescription(), root);
+                GFAdapterHelper.addNotEmptyNode("profileId", profile.getProfileID(), root);
+                GFAdapterHelper.addNotEmptyNode("deviceModel", profile.getDeviceModel(), root);
+                GFAdapterHelper.addNotEmptyNode("deviceManufacturer", profile.getDeviceManufacturer(), root);
             }
 
         } catch (IOException e) {

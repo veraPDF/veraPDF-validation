@@ -21,8 +21,11 @@
 package org.verapdf.features.gf.objects;
 
 import org.verapdf.core.FeatureParsingException;
-import org.verapdf.features.*;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.FeatureExtractionResult;
+import org.verapdf.features.FeatureObjectType;
+import org.verapdf.features.FeaturesData;
+import org.verapdf.features.MetadataFeaturesData;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDMetadata;
 
@@ -65,7 +68,7 @@ public class GFMetadataFeaturesObject implements IFeaturesObject {
     public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
         if (metadata != null && !metadata.empty()) {
             FeatureTreeNode root = FeatureTreeNode.createRootNode("metadata");
-            GFCreateNodeHelper.parseMetadata(metadata, "xmpPackage", root, collection);
+            GFAdapterHelper.parseMetadata(metadata, "xmpPackage", root, collection);
 
             collection.addNewFeatureTree(FeatureObjectType.METADATA, root);
             return root;

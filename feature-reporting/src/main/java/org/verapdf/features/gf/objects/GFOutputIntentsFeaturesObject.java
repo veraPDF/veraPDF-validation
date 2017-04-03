@@ -25,7 +25,7 @@ import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
 import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDOutputIntent;
 
@@ -70,11 +70,11 @@ public class GFOutputIntentsFeaturesObject implements IFeaturesObject {
 		if (outInt != null && !outInt.empty()) {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("outputIntent");
 
-			GFCreateNodeHelper.addNotEmptyNode("subtype", outInt.getSubtype(), root);
-			GFCreateNodeHelper.addNotEmptyNode("outputCondition", outInt.getOutputCondition(), root);
-			GFCreateNodeHelper.addNotEmptyNode("outputConditionIdentifier", outInt.getOutputConditionIdentifier(), root);
-			GFCreateNodeHelper.addNotEmptyNode("registryName", outInt.getRegistryName(), root);
-			GFCreateNodeHelper.addNotEmptyNode("info", outInt.getInfo(), root);
+			GFAdapterHelper.addNotEmptyNode("subtype", outInt.getSubtype(), root);
+			GFAdapterHelper.addNotEmptyNode("outputCondition", outInt.getOutputCondition(), root);
+			GFAdapterHelper.addNotEmptyNode("outputConditionIdentifier", outInt.getOutputConditionIdentifier(), root);
+			GFAdapterHelper.addNotEmptyNode("registryName", outInt.getRegistryName(), root);
+			GFAdapterHelper.addNotEmptyNode("info", outInt.getInfo(), root);
 
 			if (iccProfileID != null) {
 				FeatureTreeNode destOutInt = root.addChild("destOutputIntent");

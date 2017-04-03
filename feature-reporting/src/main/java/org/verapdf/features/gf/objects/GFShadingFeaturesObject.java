@@ -25,7 +25,7 @@ import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
 import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.patterns.PDShading;
 
@@ -85,7 +85,7 @@ public class GFShadingFeaturesObject implements IFeaturesObject {
 				shadingClr.setAttribute(ID, colorSpaceChild);
 			}
 
-			GFCreateNodeHelper.addBoxFeature("bbox", shading.getBBox(), root);
+			GFAdapterHelper.addBoxFeature("bbox", shading.getBBox(), root);
 
 			root.addChild("antiAlias").setValue(String.valueOf(shading.getAntiAlias()));
 

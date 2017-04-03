@@ -26,8 +26,11 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.features.*;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.EmbeddedFileFeaturesData;
+import org.verapdf.features.FeatureExtractionResult;
+import org.verapdf.features.FeatureObjectType;
+import org.verapdf.features.FeaturesData;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.tools.TypeConverter;
 
@@ -83,25 +86,25 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 			FeatureTreeNode root = FeatureTreeNode.createRootNode("embeddedFile");
 			root.setAttribute("id", "file" + index);
 
-			GFCreateNodeHelper.addNotEmptyNode("fileName", getFilename(), root);
-			GFCreateNodeHelper.addNotEmptyNode("description", embFile.getStringKey(ASAtom.DESC), root);
-			GFCreateNodeHelper.addNotEmptyNode("afRelationship", embFile.getStringKey(ASAtom.AF_RELATIONSHIP), root);
+			GFAdapterHelper.addNotEmptyNode("fileName", getFilename(), root);
+			GFAdapterHelper.addNotEmptyNode("description", embFile.getStringKey(ASAtom.DESC), root);
+			GFAdapterHelper.addNotEmptyNode("afRelationship", embFile.getStringKey(ASAtom.AF_RELATIONSHIP), root);
 
 			COSObject ef = getEmbeddedFile();
 			if (ef != null && !ef.empty()) {
-				GFCreateNodeHelper.addNotEmptyNode("subtype", ef.getStringKey(ASAtom.SUBTYPE), root);
+				GFAdapterHelper.addNotEmptyNode("subtype", ef.getStringKey(ASAtom.SUBTYPE), root);
 
-				GFCreateNodeHelper.addNotEmptyNode("filter", getFilters(ef), root);
+				GFAdapterHelper.addNotEmptyNode("filter", getFilters(ef), root);
 
 				COSObject paramsObj = ef.getKey(ASAtom.PARAMS);
 				if (paramsObj != null && !paramsObj.empty()) {
 					Params params = new Params(paramsObj);
-					GFCreateNodeHelper.createDateNode(CREATION_DATE, root, params.getCreationDate(), collection);
-					GFCreateNodeHelper.createDateNode(MOD_DATE, root, params.getModDate(), collection);
-					GFCreateNodeHelper.addNotEmptyNode("checkSum", params.getCheckSum(), root);
+					GFAdapterHelper.createDateNode(CREATION_DATE, root, params.getCreationDate(), collection);
+					GFAdapterHelper.createDateNode(MOD_DATE, root, params.getModDate(), collection);
+					GFAdapterHelper.addNotEmptyNode("checkSum", params.getCheckSum(), root);
 					Long size = params.getSize();
 					if (size != null) {
-						GFCreateNodeHelper.addNotEmptyNode("size", String.valueOf(size.longValue()), root);
+						GFAdapterHelper.addNotEmptyNode("size", String.valueOf(size.longValue()), root);
 					}
 				}
 			}

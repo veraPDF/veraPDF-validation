@@ -27,7 +27,7 @@ import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
 import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 
 /**
@@ -74,7 +74,7 @@ public class GFPropertiesDictFeaturesObject implements IFeaturesObject {
 
             ASAtom type = properties.getNameKey(ASAtom.TYPE);
             if (type != null) {
-                GFCreateNodeHelper.addNotEmptyNode("type", type.getValue(), root);
+                GFAdapterHelper.addNotEmptyNode("type", type.getValue(), root);
             }
 
             collection.addNewFeatureTree(FeatureObjectType.PROPERTIES, root);

@@ -25,7 +25,7 @@ import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
 import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDPage;
 
@@ -113,11 +113,11 @@ public class GFPageFeaturesObject implements IFeaturesObject {
 
 			root.setAttribute("orderNumber", Integer.toString(index));
 
-			GFCreateNodeHelper.addBoxFeature("mediaBox", page.getMediaBox(), root);
-			GFCreateNodeHelper.addBoxFeature("cropBox", page.getCropBox(), root);
-			GFCreateNodeHelper.addBoxFeature("trimBox", page.getTrimBox(), root);
-			GFCreateNodeHelper.addBoxFeature("bleedBox", page.getBleedBox(), root);
-			GFCreateNodeHelper.addBoxFeature("artBox", page.getArtBox(), root);
+			GFAdapterHelper.addBoxFeature("mediaBox", page.getMediaBox(), root);
+			GFAdapterHelper.addBoxFeature("cropBox", page.getCropBox(), root);
+			GFAdapterHelper.addBoxFeature("trimBox", page.getTrimBox(), root);
+			GFAdapterHelper.addBoxFeature("bleedBox", page.getBleedBox(), root);
+			GFAdapterHelper.addBoxFeature("artBox", page.getArtBox(), root);
 
 			Long rotation = page.getRotation();
 			if (rotation != null) {
@@ -134,9 +134,9 @@ public class GFPageFeaturesObject implements IFeaturesObject {
 				thumbNode.setAttribute(ID, thumb);
 			}
 
-			GFCreateNodeHelper.parseMetadata(page.getMetadata(), "metadata", root, collection);
+			GFAdapterHelper.parseMetadata(page.getMetadata(), "metadata", root, collection);
 
-			GFCreateNodeHelper.parseIDSet(annotsId, "annotation", "annotations", root);
+			GFAdapterHelper.parseIDSet(annotsId, "annotation", "annotations", root);
 
 			parseResources(root);
 
@@ -166,13 +166,13 @@ public class GFPageFeaturesObject implements IFeaturesObject {
 				(propertiesChild != null && !propertiesChild.isEmpty())) {
 			FeatureTreeNode resources = root.addChild("resources");
 
-			GFCreateNodeHelper.parseIDSet(extGStateChild, "graphicsState", "graphicsStates", resources);
-			GFCreateNodeHelper.parseIDSet(colorSpaceChild, "colorSpace", "colorSpaces", resources);
-			GFCreateNodeHelper.parseIDSet(patternChild, "pattern", "patterns", resources);
-			GFCreateNodeHelper.parseIDSet(shadingChild, "shading", "shadings", resources);
-			GFCreateNodeHelper.parseIDSet(xobjectChild, "xobject", "xobjects", resources);
-			GFCreateNodeHelper.parseIDSet(fontChild, "font", "fonts", resources);
-			GFCreateNodeHelper.parseIDSet(propertiesChild, "propertiesDict", "propertiesDicts", resources);
+			GFAdapterHelper.parseIDSet(extGStateChild, "graphicsState", "graphicsStates", resources);
+			GFAdapterHelper.parseIDSet(colorSpaceChild, "colorSpace", "colorSpaces", resources);
+			GFAdapterHelper.parseIDSet(patternChild, "pattern", "patterns", resources);
+			GFAdapterHelper.parseIDSet(shadingChild, "shading", "shadings", resources);
+			GFAdapterHelper.parseIDSet(xobjectChild, "xobject", "xobjects", resources);
+			GFAdapterHelper.parseIDSet(fontChild, "font", "fonts", resources);
+			GFAdapterHelper.parseIDSet(propertiesChild, "propertiesDict", "propertiesDicts", resources);
 		}
 	}
 }

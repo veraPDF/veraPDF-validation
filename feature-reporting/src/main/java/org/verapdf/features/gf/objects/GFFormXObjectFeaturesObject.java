@@ -26,7 +26,7 @@ import org.verapdf.features.FeatureExtractionResult;
 import org.verapdf.features.FeatureObjectType;
 import org.verapdf.features.FeaturesData;
 import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFCreateNodeHelper;
+import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
 import org.verapdf.pd.PDGroup;
 import org.verapdf.pd.images.PDXForm;
@@ -107,15 +107,15 @@ public class GFFormXObjectFeaturesObject implements IFeaturesObject {
 				root.setAttribute(ID, id);
 			}
 
-			GFCreateNodeHelper.addBoxFeature("bbox", formXObject.getBBox(), root);
-			GFCreateNodeHelper.parseMatrix(formXObject.getMatrix(), root.addChild("matrix"));
+			GFAdapterHelper.addBoxFeature("bbox", formXObject.getBBox(), root);
+			GFAdapterHelper.parseMatrix(formXObject.getMatrix(), root.addChild("matrix"));
 
 			PDGroup group = formXObject.getGroup();
 			if (group != null) {
 				FeatureTreeNode groupNode = root.addChild("group");
 				ASAtom groupSubtype = group.getSubtype();
 				if (groupSubtype != null) {
-					GFCreateNodeHelper.addNotEmptyNode("subtype", groupSubtype, groupNode);
+					GFAdapterHelper.addNotEmptyNode("subtype", groupSubtype, groupNode);
 					if (ASAtom.TRANSPARENCY.equals(groupSubtype)) {
 						if (groupColorSpaceChild != null) {
 							FeatureTreeNode clr = groupNode.addChild("colorSpace");
@@ -133,7 +133,7 @@ public class GFFormXObjectFeaturesObject implements IFeaturesObject {
 				root.addChild("structParents").setValue(String.valueOf(structParents));
 			}
 
-			GFCreateNodeHelper.parseMetadata(formXObject.getMetadata(), "metadata", root, collection);
+			GFAdapterHelper.parseMetadata(formXObject.getMetadata(), "metadata", root, collection);
 
 			parseResources(root);
 
@@ -163,13 +163,13 @@ public class GFFormXObjectFeaturesObject implements IFeaturesObject {
 				(propertiesChild != null && !propertiesChild.isEmpty())) {
 			FeatureTreeNode resources = root.addChild("resources");
 
-			GFCreateNodeHelper.parseIDSet(extGStateChild, "graphicsState", "graphicsStates", resources);
-			GFCreateNodeHelper.parseIDSet(colorSpaceChild, "colorSpace", "colorSpaces", resources);
-			GFCreateNodeHelper.parseIDSet(patternChild, "pattern", "patterns", resources);
-			GFCreateNodeHelper.parseIDSet(shadingChild, "shading", "shadings", resources);
-			GFCreateNodeHelper.parseIDSet(xobjectChild, "xobject", "xobjects", resources);
-			GFCreateNodeHelper.parseIDSet(fontChild, "font", "fonts", resources);
-			GFCreateNodeHelper.parseIDSet(propertiesChild, "propertiesDict", "propertiesDicts", resources);
+			GFAdapterHelper.parseIDSet(extGStateChild, "graphicsState", "graphicsStates", resources);
+			GFAdapterHelper.parseIDSet(colorSpaceChild, "colorSpace", "colorSpaces", resources);
+			GFAdapterHelper.parseIDSet(patternChild, "pattern", "patterns", resources);
+			GFAdapterHelper.parseIDSet(shadingChild, "shading", "shadings", resources);
+			GFAdapterHelper.parseIDSet(xobjectChild, "xobject", "xobjects", resources);
+			GFAdapterHelper.parseIDSet(fontChild, "font", "fonts", resources);
+			GFAdapterHelper.parseIDSet(propertiesChild, "propertiesDict", "propertiesDicts", resources);
 		}
 	}
 }
