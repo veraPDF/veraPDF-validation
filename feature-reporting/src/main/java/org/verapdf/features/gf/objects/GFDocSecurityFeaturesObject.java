@@ -20,23 +20,20 @@
  */
 package org.verapdf.features.gf.objects;
 
-import org.verapdf.core.FeatureParsingException;
 import org.verapdf.cos.COSString;
-import org.verapdf.features.FeatureExtractionResult;
-import org.verapdf.features.FeatureObjectType;
-import org.verapdf.features.FeaturesData;
-import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFAdapterHelper;
-import org.verapdf.features.tools.FeatureTreeNode;
+import org.verapdf.features.objects.DocSecurityFeaturesObjectAdapter;
 import org.verapdf.pd.encryption.AccessPermissions;
 import org.verapdf.pd.encryption.PDEncryption;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Features object for document security.
  *
  * @author Sergey Shemyakov
  */
-public class GFDocSecurityFeaturesObject implements IFeaturesObject {
+public class GFDocSecurityFeaturesObject implements DocSecurityFeaturesObjectAdapter {
 
     private PDEncryption encryption;
 
@@ -45,54 +42,131 @@ public class GFDocSecurityFeaturesObject implements IFeaturesObject {
     }
 
     @Override
-    public FeatureObjectType getType() {
-        return FeatureObjectType.DOCUMENT_SECURITY;
+    public String getFilter() {
+        return encryption == null || encryption.empty() ? null : encryption.getFilter().getValue();
     }
 
     @Override
-    public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (encryption != null && !encryption.empty()) {
-            FeatureTreeNode root = FeatureTreeNode.createRootNode("documentSecurity");
-            GFAdapterHelper.addNotEmptyNode("filter", encryption.getFilter(), root);
-            GFAdapterHelper.addNotEmptyNode("subFilter", encryption.getSubFilter(), root);
-            GFAdapterHelper.addNotEmptyNode("version", String.valueOf(encryption.getV()), root);
-            GFAdapterHelper.addNotEmptyNode("length", String.valueOf(encryption.getLength()), root);
+    public String getSubFilter() {
+        return encryption == null || encryption.empty() ? null : encryption.getSubFilter().getValue();
+    }
 
+    @Override
+    public int getVersion() {
+        return encryption == null || encryption.empty() ? 0 : encryption.getV();
+    }
+
+    @Override
+    public int getLength() {
+        return encryption == null || encryption.empty() ? 0 : encryption.getLength();
+    }
+
+    @Override
+    public String getHexEncodedOwnerKey() {
+        if (encryption != null && !encryption.empty()) {
             COSString ownerKey = encryption.getO();
             if (ownerKey != null) {
-                GFAdapterHelper.addNotEmptyNode("ownerKey", ownerKey.getHexString(), root);
+                return ownerKey.getHexString();
             }
-
-            COSString userKey = encryption.getU();
-            if (userKey != null) {
-                GFAdapterHelper.addNotEmptyNode("userKey", userKey.getHexString(), root);
-            }
-
-            GFAdapterHelper.addNotEmptyNode("encryptMetadata", String.valueOf(encryption.isEncryptMetadata()), root);
-
-            AccessPermissions accessPermissions = encryption.getUserPermissions();
-            if (accessPermissions != null) {
-                GFAdapterHelper.addNotEmptyNode("printAllowed", String.valueOf(accessPermissions.canPrint()), root);
-                GFAdapterHelper.addNotEmptyNode("printDegradedAllowed", String.valueOf(accessPermissions.canPrintDegraded()), root);
-                GFAdapterHelper.addNotEmptyNode("changesAllowed", String.valueOf(accessPermissions.canModify()), root);
-                GFAdapterHelper.addNotEmptyNode("modifyAnnotationsAllowed", String.valueOf(accessPermissions.canModifyAnnotations()), root);
-                GFAdapterHelper.addNotEmptyNode("fillingSigningAllowed", String.valueOf(accessPermissions.canFillInForm()), root);
-                GFAdapterHelper.addNotEmptyNode("documentAssemblyAllowed", String.valueOf(accessPermissions.canAssembleDocument()), root);
-                GFAdapterHelper.addNotEmptyNode("extractContentAllowed", String.valueOf(accessPermissions.canExtractContent()), root);
-                GFAdapterHelper.addNotEmptyNode("extractAccessibilityAllowed", String.valueOf(accessPermissions.canExtractForAccessibility()), root);
-            }
-
-            collection.addNewFeatureTree(FeatureObjectType.DOCUMENT_SECURITY, root);
-            return root;
         }
         return null;
     }
 
-    /**
-     * @return null
-     */
     @Override
-    public FeaturesData getData() {
+    public String getHexEncodedUserKey() {
+        if (encryption != null && !encryption.empty()) {
+            COSString userKey = encryption.getU();
+            if (userKey != null) {
+                return userKey.getHexString();
+            }
+        }
         return null;
+    }
+
+    @Override
+    public boolean isEncryptMetadata() {
+        return (encryption == null || encryption.empty()) || encryption.isEncryptMetadata();
+    }
+
+    @Override
+    public boolean isUserPermissionsPresent() {
+        return encryption != null && !encryption.empty() && encryption.getUserPermissions() != null;
+    }
+
+    @Override
+    public boolean isPrintAllowed() {
+        if (encryption != null && !encryption.empty()) {
+            AccessPermissions perm = encryption.getUserPermissions();
+            return perm == null || perm.canPrint();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isPrintDegradedAllowed() {
+        if (encryption != null && !encryption.empty()) {
+            AccessPermissions perm = encryption.getUserPermissions();
+            return perm == null || perm.canPrintDegraded();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isChangesAllowed() {
+        if (encryption != null && !encryption.empty()) {
+            AccessPermissions perm = encryption.getUserPermissions();
+            return perm == null || perm.canModify();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isModifyAnnotationsAllowed() {
+        if (encryption != null && !encryption.empty()) {
+            AccessPermissions perm = encryption.getUserPermissions();
+            return perm == null || perm.canModifyAnnotations();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isFillingSigningAllowed() {
+        if (encryption != null && !encryption.empty()) {
+            AccessPermissions perm = encryption.getUserPermissions();
+            return perm == null || perm.canFillInForm();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isDocumentAssemblyAllowed() {
+        if (encryption != null && !encryption.empty()) {
+            AccessPermissions perm = encryption.getUserPermissions();
+            return perm == null || perm.canAssembleDocument();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isExtractContentAllowed() {
+        if (encryption != null && !encryption.empty()) {
+            AccessPermissions perm = encryption.getUserPermissions();
+            return perm == null || perm.canExtractContent();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isExtractAccessibilityAllowed() {
+        if (encryption != null && !encryption.empty()) {
+            AccessPermissions perm = encryption.getUserPermissions();
+            return perm == null || perm.canExtractForAccessibility();
+        }
+        return true;
+    }
+
+    @Override
+    public List<String> getErrors() {
+        return Collections.emptyList();
     }
 }

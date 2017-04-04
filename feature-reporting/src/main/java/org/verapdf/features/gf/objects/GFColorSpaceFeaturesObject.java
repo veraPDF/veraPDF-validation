@@ -70,7 +70,7 @@ public class GFColorSpaceFeaturesObject implements ColorSpaceFeaturesObjectAdapt
 		init(colorSpace);
 	}
 
-	public void init(PDColorSpace colorSpace) {
+	private void init(PDColorSpace colorSpace) {
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.INDEXED.equals(colorSpaceType)) {
 			PDIndexed index = (PDIndexed) colorSpace;

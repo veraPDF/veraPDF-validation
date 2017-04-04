@@ -21,36 +21,28 @@
 package org.verapdf.features.gf.objects;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.core.FeatureParsingException;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.features.EmbeddedFileFeaturesData;
-import org.verapdf.features.FeatureExtractionResult;
-import org.verapdf.features.FeatureObjectType;
-import org.verapdf.features.FeaturesData;
-import org.verapdf.features.gf.tools.GFAdapterHelper;
-import org.verapdf.features.tools.FeatureTreeNode;
+import org.verapdf.features.objects.EmbeddedFileFeaturesObjectAdapter;
 import org.verapdf.tools.TypeConverter;
 
+import java.io.InputStream;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Feature object for embedded file
  *
  * @author Maksim Bezrukov
  */
-public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
-
-	private static final Logger LOGGER = Logger.getLogger(GFEmbeddedFileFeaturesObject.class.getCanonicalName());
-
-	private static final String CREATION_DATE = "creationDate";
-	private static final String MOD_DATE = "modDate";
+public class GFEmbeddedFileFeaturesObject implements EmbeddedFileFeaturesObjectAdapter {
 
 	private COSObject embFile;
+	private Params params;
+	private COSObject cosEmbFile;
 	private int index;
 
 	/**
@@ -62,125 +54,14 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 	public GFEmbeddedFileFeaturesObject(COSObject embFile, int index) {
 		this.embFile = embFile;
 		this.index = index;
-	}
-
-	/**
-	 * @return EMBEDDED_FILE instance of the FeaturesObjectTypesEnum enumeration
-	 */
-	@Override
-	public FeatureObjectType getType() {
-		return FeatureObjectType.EMBEDDED_FILE;
-	}
-
-	/**
-	 * Reports all features from the object into the collection
-	 *
-	 * @param collection collection for feature report
-	 * @return FeatureTreeNode class which represents a root node of the constructed collection tree
-	 * @throws FeatureParsingException occurs when wrong features tree node constructs
-	 */
-	@Override
-	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-
-		if (embFile != null && embFile.getType().isDictionaryBased()) {
-			FeatureTreeNode root = FeatureTreeNode.createRootNode("embeddedFile");
-			root.setAttribute("id", "file" + index);
-
-			GFAdapterHelper.addNotEmptyNode("fileName", getFilename(), root);
-			GFAdapterHelper.addNotEmptyNode("description", embFile.getStringKey(ASAtom.DESC), root);
-			GFAdapterHelper.addNotEmptyNode("afRelationship", embFile.getStringKey(ASAtom.AF_RELATIONSHIP), root);
-
-			COSObject ef = getEmbeddedFile();
-			if (ef != null && !ef.empty()) {
-				GFAdapterHelper.addNotEmptyNode("subtype", ef.getStringKey(ASAtom.SUBTYPE), root);
-
-				GFAdapterHelper.addNotEmptyNode("filter", getFilters(ef), root);
-
-				COSObject paramsObj = ef.getKey(ASAtom.PARAMS);
-				if (paramsObj != null && !paramsObj.empty()) {
-					Params params = new Params(paramsObj);
-					GFAdapterHelper.createDateNode(CREATION_DATE, root, params.getCreationDate(), collection);
-					GFAdapterHelper.createDateNode(MOD_DATE, root, params.getModDate(), collection);
-					GFAdapterHelper.addNotEmptyNode("checkSum", params.getCheckSum(), root);
-					Long size = params.getSize();
-					if (size != null) {
-						GFAdapterHelper.addNotEmptyNode("size", String.valueOf(size.longValue()), root);
-					}
-				}
-			}
-
-			collection.addNewFeatureTree(FeatureObjectType.EMBEDDED_FILE, root);
-			return root;
-		}
-		return null;
-	}
-
-	/**
-	 * @return null if it can not get embedded file stream and features data of the embedded file in other case.
-	 */
-	@Override
-	public FeaturesData getData() {
-		COSObject ef = getEmbeddedFile();
-		if (ef == null && !ef.empty()) {
-			LOGGER.log(Level.FINE, "Missed embedded file in PDComplexFileSpecification");
-			return null;
-		}
-
-		EmbeddedFileFeaturesData.Builder builder = new EmbeddedFileFeaturesData.Builder(ef.getData(COSStream.FilterFlags.DECODE));
-
-		builder.name(getFilename());
-		builder.description(embFile.getStringKey(ASAtom.DESC));
-		builder.afRelationship(embFile.getStringKey(ASAtom.AF_RELATIONSHIP));
-
-		builder.subtype(ef.getStringKey(ASAtom.SUBTYPE));
-		COSObject paramsObj = ef.getKey(ASAtom.PARAMS);
-		if (paramsObj != null && !paramsObj.empty()) {
-			Params params = new Params(paramsObj);
-			builder.creationDate(params.getCreationDate());
-			builder.modDate(params.getModDate());
-			builder.checkSum(params.getCheckSum());
-			Long size = params.getSize();
-			if (size != null) {
-				builder.size(Integer.valueOf(size.intValue()));
+		this.cosEmbFile = getEmbeddedFile();
+		if (this.cosEmbFile != null) {
+			COSObject paramsObj = this.cosEmbFile.getKey(ASAtom.PARAMS);
+			if (paramsObj != null && !paramsObj.empty()) {
+				this.params = new Params(paramsObj);
 			}
 		}
-		return builder.build();
-	}
 
-	private static String getFilters(COSObject ef) {
-		COSObject filter = ef.getKey(ASAtom.FILTER);
-		if (filter != null && !filter.empty()) {
-			if (filter.getType() == COSObjType.COS_NAME) {
-				return filter.getString();
-			} else if (filter.getType() == COSObjType.COS_ARRAY) {
-				StringBuilder builder = new StringBuilder();
-				for (COSObject elem : (COSArray) filter.getDirectBase()) {
-					String elemValue = elem.getString();
-					if (elemValue != null) {
-						builder.append(elemValue).append(" ");
-					}
-				}
-				return builder.toString().trim();
-			}
-		}
-		return null;
-	}
-
-	private String getFilename() {
-		String filename = embFile.getStringKey(ASAtom.UF);
-		if (filename == null) {
-			filename = embFile.getStringKey(ASAtom.DOS);
-		}
-		if (filename == null) {
-			filename = embFile.getStringKey(ASAtom.MAC);
-		}
-		if (filename == null) {
-			filename = embFile.getStringKey(ASAtom.UNIX);
-		}
-		if (filename == null) {
-			filename = embFile.getStringKey(ASAtom.F);
-		}
-		return filename;
 	}
 
 	private COSObject getEmbeddedFile() {
@@ -194,6 +75,108 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public int getIndex() {
+		return this.index;
+	}
+
+	@Override
+	public String getFileName() {
+		if (embFile != null && embFile.getType().isDictionaryBased()) {
+			String filename = embFile.getStringKey(ASAtom.UF);
+			if (filename == null) {
+				filename = embFile.getStringKey(ASAtom.DOS);
+			}
+			if (filename == null) {
+				filename = embFile.getStringKey(ASAtom.MAC);
+			}
+			if (filename == null) {
+				filename = embFile.getStringKey(ASAtom.UNIX);
+			}
+			if (filename == null) {
+				filename = embFile.getStringKey(ASAtom.F);
+			}
+			return filename;
+		}
+		return null;
+	}
+
+	@Override
+	public String getDescription() {
+		if (embFile != null && embFile.getType().isDictionaryBased()) {
+			return embFile.getStringKey(ASAtom.DESC);
+		}
+		return null;
+	}
+
+	@Override
+	public String getAFRelationship() {
+		if (embFile != null && embFile.getType().isDictionaryBased()) {
+			return embFile.getStringKey(ASAtom.AF_RELATIONSHIP);
+		}
+		return null;
+	}
+
+	@Override
+	public String getSubtype() {
+		if (this.cosEmbFile != null && this.cosEmbFile.getType().isDictionaryBased()) {
+			return this.cosEmbFile.getStringKey(ASAtom.SUBTYPE);
+		}
+		return null;
+	}
+
+	@Override
+	public String getFilter() {
+		if (cosEmbFile != null && cosEmbFile.getType().isDictionaryBased()) {
+			COSObject filter = cosEmbFile.getKey(ASAtom.FILTER);
+			if (filter != null && !filter.empty()) {
+				if (filter.getType() == COSObjType.COS_NAME) {
+					return filter.getString();
+				} else if (filter.getType() == COSObjType.COS_ARRAY) {
+					StringBuilder builder = new StringBuilder();
+					for (COSObject elem : (COSArray) filter.getDirectBase()) {
+						String elemValue = elem.getString();
+						if (elemValue != null) {
+							builder.append(elemValue).append(" ");
+						}
+					}
+					return builder.toString().trim();
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Calendar getCreationDate() {
+		return this.params == null ? null : this.params.getCreationDate();
+	}
+
+	@Override
+	public Calendar getModDate() {
+		return this.params == null ? null : this.params.getModDate();
+	}
+
+	@Override
+	public String getCheckSum() {
+		return this.params == null ? null : this.params.getCheckSum();
+	}
+
+	@Override
+	public Long getSize() {
+		return this.params == null ? null : this.params.getSize();
+	}
+
+	@Override
+	public InputStream getData() {
+		return this.cosEmbFile == null || this.cosEmbFile.empty() ? null : this.cosEmbFile.getData(COSStream.FilterFlags.DECODE);
+	}
+
+	@Override
+	public List<String> getErrors() {
+		return Collections.emptyList();
 	}
 
 	private class Params {
@@ -229,4 +212,6 @@ public class GFEmbeddedFileFeaturesObject implements IFeaturesObject {
 			return null;
 		}
 	}
+
+
 }
