@@ -2,16 +2,16 @@
  * This file is part of feature-reporting, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
- *
+ * <p>
  * feature-reporting is free software: you can redistribute it and/or modify
  * it under the terms of either:
- *
+ * <p>
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
  * along with feature-reporting as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
- *
+ * <p>
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
  * feature-reporting as the LICENSE.MPL file in the root of the source tree.
@@ -21,24 +21,22 @@
 package org.verapdf.features.gf.objects;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.core.FeatureParsingException;
-import org.verapdf.features.FeatureExtractionResult;
-import org.verapdf.features.FeatureObjectType;
-import org.verapdf.features.FeaturesData;
-import org.verapdf.features.IFeaturesObject;
-import org.verapdf.features.gf.tools.GFAdapterHelper;
-import org.verapdf.features.tools.FeatureTreeNode;
+import org.verapdf.features.objects.FormXObjectFeaturesObjectAdapter;
 import org.verapdf.pd.PDGroup;
+import org.verapdf.pd.PDMetadata;
 import org.verapdf.pd.images.PDXForm;
 
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
- * Feature object for form xobjects
+ * Feature object adapter for form xobjects
  *
  * @author Maksim Bezrukov
  */
-public class GFFormXObjectFeaturesObject implements IFeaturesObject {
+public class GFFormXObjectFeaturesObject implements FormXObjectFeaturesObjectAdapter {
 
 	private static final String ID = "id";
 
@@ -83,93 +81,132 @@ public class GFFormXObjectFeaturesObject implements IFeaturesObject {
 		this.propertiesChild = propertiesChild;
 	}
 
-	/**
-	 * @return FORM_XOBJECT instance of the FeaturesObjectTypesEnum enumeration
-	 */
 	@Override
-	public FeatureObjectType getType() {
-		return FeatureObjectType.FORM_XOBJECT;
+	public String getId() {
+		return this.id;
 	}
 
-	/**
-	 * Reports featurereport into collection
-	 *
-	 * @param collection collection for feature report
-	 * @return FeatureTreeNode class which represents a root node of the constructed collection tree
-	 * @throws FeatureParsingException occurs when wrong features tree node constructs
-	 */
 	@Override
-	public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
+	public InputStream getMetadataStream() {
 		if (formXObject != null && !formXObject.empty()) {
-			FeatureTreeNode root = FeatureTreeNode.createRootNode("xobject");
-			root.setAttribute("type", "form");
-			if (id != null) {
-				root.setAttribute(ID, id);
-			}
+			PDMetadata metadata = formXObject.getMetadata();
+			return metadata.getStream();
+		}
+		return null;
+	}
 
-			GFAdapterHelper.addBoxFeature("bbox", formXObject.getBBox(), root);
-			GFAdapterHelper.parseMatrix(formXObject.getMatrix(), root.addChild("matrix"));
+	@Override
+	public String getGroupColorSpaceChild() {
+		return this.groupColorSpaceChild;
+	}
 
+	@Override
+	public Set<String> getExtGStateChild() {
+		return this.extGStateChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.extGStateChild);
+	}
+
+	@Override
+	public Set<String> getColorSpaceChild() {
+		return this.colorSpaceChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.colorSpaceChild);
+	}
+
+	@Override
+	public Set<String> getPatternChild() {
+		return this.patternChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.patternChild);
+	}
+
+	@Override
+	public Set<String> getShadingChild() {
+		return this.shadingChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.shadingChild);
+	}
+
+	@Override
+	public Set<String> getXObjectChild() {
+		return this.extGStateChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.extGStateChild);
+	}
+
+	@Override
+	public Set<String> getFontChild() {
+		return this.fontChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.fontChild);
+	}
+
+	@Override
+	public Set<String> getPropertiesChild() {
+		return this.propertiesChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.propertiesChild);
+	}
+
+	@Override
+	public double[] getBBox() {
+		if (formXObject != null && !formXObject.empty()) {
+			return formXObject.getBBox();
+		}
+		return null;
+	}
+
+	@Override
+	public double[] getMatrix() {
+		if (formXObject != null && !formXObject.empty()) {
+			return formXObject.getMatrix();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean isGroupPresent() {
+		return formXObject != null && !formXObject.empty() && formXObject.getGroup() != null;
+	}
+
+	@Override
+	public String getGroupSubtype() {
+		if (formXObject != null && !formXObject.empty()) {
 			PDGroup group = formXObject.getGroup();
 			if (group != null) {
-				FeatureTreeNode groupNode = root.addChild("group");
-				ASAtom groupSubtype = group.getSubtype();
-				if (groupSubtype != null) {
-					GFAdapterHelper.addNotEmptyNode("subtype", groupSubtype, groupNode);
-					if (ASAtom.TRANSPARENCY.equals(groupSubtype)) {
-						if (groupColorSpaceChild != null) {
-							FeatureTreeNode clr = groupNode.addChild("colorSpace");
-							clr.setAttribute(ID, groupColorSpaceChild);
-						}
-						groupNode.addChild("isolated").setValue(String.valueOf(group.isIsolated()));
-						groupNode.addChild("knockout").setValue(String.valueOf(group.isKnockout()));
-					}
-
-				}
+				ASAtom subtype = group.getSubtype();
+				return subtype == null ? null : subtype.getValue();
 			}
-
-			Long structParents = formXObject.getStructParents();
-			if (structParents != null) {
-				root.addChild("structParents").setValue(String.valueOf(structParents));
-			}
-
-			GFAdapterHelper.parseMetadata(formXObject.getMetadata(), "metadata", root, collection);
-
-			parseResources(root);
-
-			collection.addNewFeatureTree(FeatureObjectType.FORM_XOBJECT, root);
-			return root;
 		}
-
 		return null;
 	}
 
-	/**
-	 * @return null
-	 */
 	@Override
-	public FeaturesData getData() {
+	public boolean isTransparencyGroupIsolated() {
+		if (formXObject != null && !formXObject.empty()) {
+			PDGroup group = formXObject.getGroup();
+			if (group != null) {
+				return group.isIsolated();
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean isTransparencyGroupKnockout() {
+		if (formXObject != null && !formXObject.empty()) {
+			PDGroup group = formXObject.getGroup();
+			if (group != null) {
+				return group.isKnockout();
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public Long getStructParents() {
+		if (formXObject != null && !formXObject.empty()) {
+			return formXObject.getStructParents();
+		}
 		return null;
 	}
 
-	private void parseResources(FeatureTreeNode root) throws FeatureParsingException {
-
-		if ((extGStateChild != null && !extGStateChild.isEmpty()) ||
-				(colorSpaceChild != null && !colorSpaceChild.isEmpty()) ||
-				(patternChild != null && !patternChild.isEmpty()) ||
-				(shadingChild != null && !shadingChild.isEmpty()) ||
-				(xobjectChild != null && !xobjectChild.isEmpty()) ||
-				(fontChild != null && !fontChild.isEmpty()) ||
-				(propertiesChild != null && !propertiesChild.isEmpty())) {
-			FeatureTreeNode resources = root.addChild("resources");
-
-			GFAdapterHelper.parseIDSet(extGStateChild, "graphicsState", "graphicsStates", resources);
-			GFAdapterHelper.parseIDSet(colorSpaceChild, "colorSpace", "colorSpaces", resources);
-			GFAdapterHelper.parseIDSet(patternChild, "pattern", "patterns", resources);
-			GFAdapterHelper.parseIDSet(shadingChild, "shading", "shadings", resources);
-			GFAdapterHelper.parseIDSet(xobjectChild, "xobject", "xobjects", resources);
-			GFAdapterHelper.parseIDSet(fontChild, "font", "fonts", resources);
-			GFAdapterHelper.parseIDSet(propertiesChild, "propertiesDict", "propertiesDicts", resources);
-		}
+	@Override
+	public List<String> getErrors() {
+		return Collections.emptyList();
 	}
 }

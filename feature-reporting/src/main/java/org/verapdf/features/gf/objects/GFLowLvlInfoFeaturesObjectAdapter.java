@@ -27,7 +27,7 @@ import org.verapdf.features.objects.LowLvlInfoFeaturesObjectAdapter;
 import java.util.*;
 
 /**
- * Feature object for low level info part of the features report
+ * Feature object adapter for low level info part of the features report
  *
  * @author Sergey Shemyakov
  */
@@ -55,7 +55,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     private List<String> errors;
 
     /**
-     * Constructs new low level info feature object.
+     * Constructs new low level info feature object adapter.
      *
      * @param document pdfbox class represents document object
      */

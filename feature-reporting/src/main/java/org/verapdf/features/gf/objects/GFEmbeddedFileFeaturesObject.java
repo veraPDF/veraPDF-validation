@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Feature object for embedded file
+ * Feature object adapter for embedded file
  *
  * @author Maksim Bezrukov
  */
@@ -46,7 +46,7 @@ public class GFEmbeddedFileFeaturesObject implements EmbeddedFileFeaturesObjectA
 	private int index;
 
 	/**
-	 * Constructs new Embedded File Feature Object
+	 * Constructs new Embedded File Feature Object Adapter
 	 *
 	 * @param embFile class represents Embedded File object
 	 * @param index   page index

@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Feature object for annotation
+ * Feature object adapter for annotation
  *
  * @author Maksim Bezrukov
  */
@@ -41,7 +41,7 @@ public class GFAnnotationFeaturesObject implements AnnotationFeaturesObjectAdapt
 	private PDAnnotation annot;
 
 	/**
-	 * Constructs new Annotation Feature Object
+	 * Constructs new Annotation Feature Object Adapter
 	 *
 	 * @param annot        class represents annotation object
 	 * @param id           annotation id

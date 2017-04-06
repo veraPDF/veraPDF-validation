@@ -21,21 +21,17 @@
 package org.verapdf.features.gf.objects;
 
 import org.verapdf.as.io.ASInputStream;
-import org.verapdf.core.FeatureParsingException;
 import org.verapdf.cos.COSStream;
 import org.verapdf.external.ICCProfile;
-import org.verapdf.features.FeatureExtractionResult;
-import org.verapdf.features.FeatureObjectType;
-import org.verapdf.features.FeaturesData;
-import org.verapdf.features.ICCProfileFeaturesData;
 import org.verapdf.features.gf.tools.GFAdapterHelper;
-import org.verapdf.features.tools.ErrorsHelper;
-import org.verapdf.features.tools.FeatureTreeNode;
+import org.verapdf.features.objects.ICCProfileFeaturesObjectAdapter;
 import org.verapdf.pd.PDMetadata;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +41,7 @@ import java.util.logging.Logger;
  *
  * @author Maksim Bezrukov
  */
-public class GFICCProfileFeaturesObject implements IFeaturesObject {
+public class GFICCProfileFeaturesObject implements ICCProfileFeaturesObjectAdapter {
 
     private static final Logger LOGGER = Logger.getLogger(GFICCProfileFeaturesObject.class.getCanonicalName());
 
@@ -58,6 +54,18 @@ public class GFICCProfileFeaturesObject implements IFeaturesObject {
 
     private ICCProfile profile;
     private String id;
+    private String version;
+    private String cmmType;
+    private String dataColorSpace;
+    private String creator;
+    private Calendar creationDate;
+    private String defaultRenderingIntent;
+    private String copyright;
+    private String description;
+    private String profileID;
+    private String deviceModel;
+    private String deviceManufacturer;
+    private List<String> errors;
 
     /**
      * Constructs new icc profile feature object
@@ -68,99 +76,35 @@ public class GFICCProfileFeaturesObject implements IFeaturesObject {
     public GFICCProfileFeaturesObject(ICCProfile profile, String id) {
         this.profile = profile;
         this.id = id;
+        init();
     }
 
-    /**
-     * @return ICCPROFILE instance of the FeaturesObjectTypesEnum enumeration
-     */
-    @Override
-    public FeatureObjectType getType() {
-        return FeatureObjectType.ICCPROFILE;
-    }
-
-    /**
-     * Reports all features from the object into the collection
-     *
-     * @param collection collection for feature report
-     * @return FeatureTreeNode class which represents a root node of the constructed collection tree
-     * @throws FeatureParsingException occurs when wrong features tree node constructs
-     */
-    @Override
-    public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
+    private void init() {
         if (profile != null && !profile.empty()) {
-            FeatureTreeNode root = FeatureTreeNode.createRootNode("iccProfile");
+            try (ASInputStream iccData = profile.getObject().getData(COSStream.FilterFlags.DECODE)) {
+                errors = new ArrayList<>();
+                byte[] profileBytes = GFAdapterHelper.inputStreamToByteArray(iccData);
 
-            if (id != null) {
-                root.setAttribute(ID, id);
+                if (profileBytes.length < HEADER_SIZE) {
+                    errors.add("ICCProfile contains less than " + HEADER_SIZE + " bytes");
+                } else {
+                    this.version = getVersion(profileBytes);
+                    this.cmmType = profile.getCMMType();
+                    this.dataColorSpace = profile.getColorSpace();
+                    this.creator = profile.getCreator();
+                    this.creationDate = profile.getCreationDate();
+                    this.defaultRenderingIntent = profile.getRenderingIntent();
+                    this.copyright = profile.getCopyright();
+                    this.description = profile.getDescription();
+                    this.profileID = profile.getProfileID();
+                    this.deviceModel = profile.getDeviceModel();
+                    this.deviceManufacturer = profile.getDeviceManufacturer();
+                }
+
+            } catch (IOException e) {
+                LOGGER.log(Level.FINE, "Reading byte array from InputStream error", e);
+                errors.add(e.getMessage());
             }
-
-            parseProfileHeader(root, collection);
-            PDMetadata meta = profile.getMetadata();
-            if (meta != null) {
-                GFAdapterHelper.parseMetadata(meta, "metadata", root, collection);
-            }
-
-            collection.addNewFeatureTree(FeatureObjectType.ICCPROFILE, root);
-            return root;
-        }
-        return null;
-    }
-
-    /**
-     * @return null if it can not get iccProfile stream and features data of the profile in other case.
-     */
-    @Override
-    public FeaturesData getData() {
-        InputStream stream = profile.getObject().getData(COSStream.FilterFlags.DECODE);
-        InputStream metadata = null;
-        PDMetadata meta = profile.getMetadata();
-        if (meta != null) {
-            metadata = meta.getStream();
-        }
-
-        Integer n = null;
-        Long profileN = profile.getNumberOfColorants();
-        if (profileN != null) {
-            n = profileN.intValue();
-        }
-        List<Double> range = null;
-        double[] profileRange = profile.getRange();
-        if (profileRange != null) {
-            range = new ArrayList<>(profileRange.length);
-            for (double value : profileRange) {
-                range.add(value);
-            }
-        }
-        return ICCProfileFeaturesData.newInstance(metadata, stream, n, range);
-    }
-
-    private void parseProfileHeader(FeatureTreeNode root, FeatureExtractionResult collection) throws FeatureParsingException {
-        try (ASInputStream iccData = profile.getObject().getData(COSStream.FilterFlags.DECODE)) {
-            byte[] profileBytes = GFAdapterHelper.inputStreamToByteArray(iccData);
-
-            if (profileBytes.length < HEADER_SIZE) {
-                ErrorsHelper.addErrorIntoCollection(collection,
-                        root,
-                        "ICCProfile contains less than " + HEADER_SIZE + " bytes");
-            } else {
-                GFAdapterHelper.addNotEmptyNode("version", getVersion(profileBytes), root);
-                GFAdapterHelper.addNotEmptyNode("cmmType", profile.getCMMType(), root);
-                GFAdapterHelper.addNotEmptyNode("dataColorSpace", profile.getColorSpace(), root);
-                GFAdapterHelper.addNotEmptyNode("creator", profile.getCreator(), root);
-                GFAdapterHelper.createDateNode("creationDate", root, profile.getCreationDate(), collection);
-                GFAdapterHelper.addNotEmptyNode("defaultRenderingIntent", profile.getRenderingIntent(), root);
-                GFAdapterHelper.addNotEmptyNode("copyright", profile.getCopyright(), root);
-                GFAdapterHelper.addNotEmptyNode("description", profile.getDescription(), root);
-                GFAdapterHelper.addNotEmptyNode("profileId", profile.getProfileID(), root);
-                GFAdapterHelper.addNotEmptyNode("deviceModel", profile.getDeviceModel(), root);
-                GFAdapterHelper.addNotEmptyNode("deviceManufacturer", profile.getDeviceManufacturer(), root);
-            }
-
-        } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Reading byte array from InputStream error", e);
-            ErrorsHelper.addErrorIntoCollection(collection,
-                    root,
-                    e.getMessage());
         }
     }
 
@@ -173,5 +117,113 @@ public class GFICCProfileFeaturesObject implements IFeaturesObject {
         builder.append(header[VERSION_BYTE] & FF_FLAG).append(".");
         builder.append((header[SUBVERSION_BYTE] & FF_FLAG) >>> REQUIRED_LENGTH);
         return builder.toString();
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String getVersion() {
+        return version;
+    }
+
+    @Override
+    public String getCMMType() {
+        return cmmType;
+    }
+
+    @Override
+    public String getDataColorSpace() {
+        return dataColorSpace;
+    }
+
+    @Override
+    public String getCreator() {
+        return creator;
+    }
+
+    @Override
+    public Calendar getCreationDate() {
+        return creationDate;
+    }
+
+    @Override
+    public String getDefaultRenderingIntent() {
+        return defaultRenderingIntent;
+    }
+
+    @Override
+    public String getCopyright() {
+        return copyright;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String getProfileID() {
+        return profileID;
+    }
+
+    @Override
+    public String getDeviceModel() {
+        return deviceModel;
+    }
+
+    @Override
+    public String getDeviceManufacturer() {
+        return deviceManufacturer;
+    }
+
+    @Override
+    public List<String> getErrors() {
+        return errors == null ? Collections.<String>emptyList() : Collections.unmodifiableList(errors);
+    }
+
+    @Override
+    public InputStream getMetadataStream() {
+        if (profile != null && !profile.empty()) {
+            PDMetadata meta = profile.getMetadata();
+            if (meta != null) {
+                return meta.getStream();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public InputStream getData() {
+        if (profile != null && !profile.empty()) {
+            return profile.getObject().getData(COSStream.FilterFlags.DECODE);
+        }
+        return null;
+    }
+
+    @Override
+    public Integer getN() {
+        if (profile != null && !profile.empty()) {
+            Long n = profile.getNumberOfColorants();
+            return n == null ? null : n.intValue();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Double> getRange() {
+        if (profile != null && !profile.empty()) {
+            List<Double> range = new ArrayList<>();
+            double[] profileRange = profile.getRange();
+            if (profileRange != null) {
+                for (double value : profileRange) {
+                    range.add(value);
+                }
+            }
+            return Collections.unmodifiableList(range);
+        }
+        return Collections.emptyList();
     }
 }

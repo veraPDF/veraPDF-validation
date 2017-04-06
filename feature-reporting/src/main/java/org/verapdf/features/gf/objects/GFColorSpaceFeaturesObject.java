@@ -36,7 +36,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Features object for ColorSpace
+ * Features object adapter for ColorSpace
  *
  * @author Maksim Bezrukov
  */

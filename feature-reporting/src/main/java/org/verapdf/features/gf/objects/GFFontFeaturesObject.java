@@ -2,16 +2,16 @@
  * This file is part of feature-reporting, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
- *
+ * <p>
  * feature-reporting is free software: you can redistribute it and/or modify
  * it under the terms of either:
- *
+ * <p>
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
  * along with feature-reporting as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
- *
+ * <p>
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
  * feature-reporting as the LICENSE.MPL file in the root of the source tree.
@@ -21,312 +21,411 @@
 package org.verapdf.features.gf.objects;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.core.FeatureParsingException;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
-import org.verapdf.features.FeatureExtractionResult;
-import org.verapdf.features.FeatureObjectType;
-import org.verapdf.features.FeaturesData;
-import org.verapdf.features.FontFeaturesData;
-import org.verapdf.features.gf.tools.GFAdapterHelper;
-import org.verapdf.features.tools.FeatureTreeNode;
+import org.verapdf.features.objects.FontFeaturesObjectAdapter;
 import org.verapdf.pd.PDMetadata;
-import org.verapdf.pd.font.*;
+import org.verapdf.pd.font.PDCIDFont;
+import org.verapdf.pd.font.PDCIDSystemInfo;
+import org.verapdf.pd.font.PDFontDescriptor;
+import org.verapdf.pd.font.PDType3Font;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
 /**
- * Feature object for fonts.
+ * Feature object adapter for fonts.
  *
  * @author Sergey Shemyakov
  */
-public class GFFontFeaturesObject implements IFeaturesObject {
+public class GFFontFeaturesObject implements FontFeaturesObjectAdapter {
 
-    private static final Logger LOGGER = Logger
-            .getLogger(GFFontFeaturesObject.class.getCanonicalName());
+	private org.verapdf.pd.font.PDFont font;
+	private String id;
+	private Set<String> extGStateChild;
+	private Set<String> colorSpaceChild;
+	private Set<String> patternChild;
+	private Set<String> shadingChild;
+	private Set<String> xobjectChild;
+	private Set<String> fontChild;
+	private Set<String> propertiesChild;
+	private FontDescriptorAdapter fontDescriptorAdapter;
 
-    private static final String ID = "id";
+	public GFFontFeaturesObject(org.verapdf.pd.font.PDFont font, String id, Set<String>
+			extGStateChild, Set<String> colorSpaceChild, Set<String> patternChild,
+								Set<String> shadingChild, Set<String> xobjectChild,
+								Set<String> fontChild, Set<String> propertiesChild) {
+		this.font = font;
+		this.id = id;
+		this.extGStateChild = extGStateChild;
+		this.colorSpaceChild = colorSpaceChild;
+		this.patternChild = patternChild;
+		this.shadingChild = shadingChild;
+		this.xobjectChild = xobjectChild;
+		this.fontChild = fontChild;
+		this.propertiesChild = propertiesChild;
+		PDFontDescriptor descriptor = this.font.getFontDescriptor();
+		this.fontDescriptorAdapter = descriptor != null && !descriptor.empty() ?
+				new GFFontDescriptorAdapter(descriptor) : null;
+	}
 
-    private org.verapdf.pd.font.PDFont font;
-    private String id;
-    private Set<String> extGStateChild;
-    private Set<String> colorSpaceChild;
-    private Set<String> patternChild;
-    private Set<String> shadingChild;
-    private Set<String> xobjectChild;
-    private Set<String> fontChild;
-    private Set<String> propertiesChild;
+	@Override
+	public String getId() {
+		return this.id;
+	}
 
-    public GFFontFeaturesObject(org.verapdf.pd.font.PDFont font, String id, Set<String>
-            extGStateChild, Set<String> colorSpaceChild, Set<String> patternChild,
-                                Set<String> shadingChild, Set<String> xobjectChild,
-                                Set<String> fontChild, Set<String> propertiesChild) {
-        this.font = font;
-        this.id = id;
-        this.extGStateChild = extGStateChild;
-        this.colorSpaceChild = colorSpaceChild;
-        this.patternChild = patternChild;
-        this.shadingChild = shadingChild;
-        this.xobjectChild = xobjectChild;
-        this.fontChild = fontChild;
-        this.propertiesChild = propertiesChild;
-    }
+	@Override
+	public Set<String> getExtGStateChild() {
+		return this.extGStateChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.extGStateChild);
+	}
 
-    @Override
-    public FeatureObjectType getType() {
-        return FeatureObjectType.FONT;
-    }
+	@Override
+	public Set<String> getColorSpaceChild() {
+		return this.colorSpaceChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.colorSpaceChild);
+	}
 
-    @Override
-    public FeatureTreeNode reportFeatures(FeatureExtractionResult collection) throws FeatureParsingException {
-        if (font != null && !font.empty()) {
-            FeatureTreeNode root = FeatureTreeNode.createRootNode("font");
-            if (id != null) {
-                root.setAttribute(ID, id);
-            }
+	@Override
+	public Set<String> getPatternChild() {
+		return this.patternChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.patternChild);
+	}
 
-            ASAtom fontSubtype = font.getSubtype();
-            GFAdapterHelper.addNotEmptyNode("type", fontSubtype, root);
+	@Override
+	public Set<String> getShadingChild() {
+		return this.shadingChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.shadingChild);
+	}
 
-            if (!(fontSubtype == ASAtom.TYPE3)) {
-                GFAdapterHelper.addNotEmptyNode("baseFont", font.getName(), root);
-            }
+	@Override
+	public Set<String> getXObjectChild() {
+		return this.xobjectChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.xobjectChild);
+	}
 
-            if (fontSubtype == ASAtom.TYPE0) {
-                GFAdapterHelper.parseIDSet(fontChild, "descendantFont", null, root.addChild("descendantFonts"));
-                parseFontDescriptior(this.font.getFontDescriptor(), root, collection);
-            } else if (fontSubtype == ASAtom.TRUE_TYPE ||
-                    fontSubtype == ASAtom.TYPE1 ||
-                    fontSubtype == ASAtom.MM_TYPE1 ||
-                    fontSubtype == ASAtom.TYPE3) {
-                PDSimpleFont sFont = (PDSimpleFont) font;
+	@Override
+	public Set<String> getFontChild() {
+		return this.fontChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.fontChild);
+	}
 
-                Long fc = sFont.getFirstChar();
-                if (fc != null && fc.longValue() != -1) {
-                    root.addChild("firstChar").setValue(String.valueOf(fc.longValue()));
-                }
-                Long lc = sFont.getLastChar();
-                if (lc != null && lc.longValue() != -1) {
-                    root.addChild("lastChar").setValue(String.valueOf(lc.longValue()));
-                }
+	@Override
+	public Set<String> getPropertiesChild() {
+		return this.propertiesChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.propertiesChild);
+	}
 
-                parseWidths(sFont.getWidths(), fc, root.addChild("widths"));
+	@Override
+	public String getType() {
+		ASAtom subtype = font.getSubtype();
+		return subtype == null ? null : subtype.getValue();
+	}
 
-                COSObject enc = sFont.getEncoding();
-                if (enc.getType() == COSObjType.COS_NAME) {
-                    GFAdapterHelper.addNotEmptyNode("encoding", enc, root);
-                } else if (enc.getType() == COSObjType.COS_DICT) {
-                    ASAtom name = enc.getNameKey(ASAtom.BASE_ENCODING);
-                    if (name != null) {
-                        GFAdapterHelper.addNotEmptyNode("encoding", name, root);
-                    }
-                }
+	@Override
+	public String getBaseFont() {
+		return font.getName();
+	}
 
-                if (this.font.getSubtype() != ASAtom.TYPE3) {
-                    parseFontDescriptior(this.font.getFontDescriptor(), root, collection);
-                }
+	@Override
+	public Long getFirstChar() {
+		return font.getFirstChar();
+	}
 
-                if (sFont.getSubtype() == ASAtom.TYPE3) {
-                    PDType3Font type3 = (PDType3Font) sFont;
+	@Override
+	public Long getLastChar() {
+		return font.getLastChar();
+	}
 
-                    GFAdapterHelper.addBoxFeature("fontBBox", type3.getFontBoundingBox(), root);
-                    GFAdapterHelper.parseMatrix(type3.getFontMatrix(), root.addChild("fontMatrix"));
+	@Override
+	public List<Long> getWidth() {
+		COSObject widths = font.getWidths();
+		if (widths != null && widths.getType() == COSObjType.COS_ARRAY) {
+			List<Long> res = new ArrayList<>(widths.size());
+			for (int i = 0; i < widths.size(); ++i) {
+				COSObject arElement = widths.at(i);
+				if (arElement.getType().isNumber()) {
+					res.add(arElement.getInteger());
+				}
+			}
+			return Collections.unmodifiableList(res);
+		}
+		return Collections.emptyList();
+	}
 
-                    parseResources(root);
-                }
+	@Override
+	public String getEncoding() {
+		COSObject enc = font.getEncoding();
+		if (enc.getType() == COSObjType.COS_NAME) {
+			return enc.getString();
+		} else if (enc.getType() == COSObjType.COS_DICT) {
+			ASAtom name = enc.getNameKey(ASAtom.BASE_ENCODING);
+			return name == null ? null : name.getValue();
+		}
+		return null;
+	}
 
-            } else if (fontSubtype == ASAtom.CID_FONT_TYPE0 ||
-                    fontSubtype == ASAtom.CID_FONT_TYPE2) {
-                PDCIDFont cid = (PDCIDFont) font;
-                Double dw = cid.getDefaultWidth();
-                root.addChild("defaultWidth").setValue(String.valueOf(dw.intValue()));
+	@Override
+	public double[] getBoundingBox() {
+		if (font.getSubtype() == ASAtom.TYPE3) {
+			PDType3Font type3 = (PDType3Font) font;
+			return type3.getFontBoundingBox();
+		}
+		return null;
+	}
 
-                PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
-                if (cidSystemInfo != null) {
-                    FeatureTreeNode cidS = root.addChild("cidSystemInfo");
-                    GFAdapterHelper.addNotEmptyNode("registry", cidSystemInfo.getRegistry(), cidS);
-                    GFAdapterHelper.addNotEmptyNode("ordering", cidSystemInfo.getOrdering(), cidS);
-                    Long supplement = cidSystemInfo.getSupplement();
-                    if (supplement != null) {
-                        cidS.addChild("supplement").setValue(String.valueOf(supplement));
-                    }
-                }
-                parseFontDescriptior(font.getFontDescriptor(), root, collection);
-            }
+	@Override
+	public double[] getMatrix() {
+		if (font.getSubtype() == ASAtom.TYPE3) {
+			PDType3Font type3 = (PDType3Font) font;
+			return type3.getFontMatrix();
+		}
+		return null;
+	}
 
-            collection.addNewFeatureTree(FeatureObjectType.FONT, root);
-            return root;
-        }
+	@Override
+	public boolean isCIDSystemInfoPresent() {
+		ASAtom subtype = font.getSubtype();
+		if (subtype == ASAtom.CID_FONT_TYPE0 ||
+				subtype == ASAtom.CID_FONT_TYPE2) {
+			PDCIDFont cid = (PDCIDFont) font;
+			PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+			return cidSystemInfo != null;
+		}
+		return false;
+	}
 
-        return null;
-    }
+	@Override
+	public Double getDefaultWidth() {
+		return font.getDefaultWidth();
+	}
 
-    /**
-     * @return null if it can not get font file stream and features data of the font file and descriptor in other case.
-     */
-    @Override
-    public FeaturesData getData() {
-        if (font != null  && !font.empty()) {
-            PDFontDescriptor descriptor = font.getFontDescriptor();
-            if (descriptor != null && !descriptor.empty()) {
-                COSStream file = descriptor.getFontFile();
-                if (file == null) {
-                    file = descriptor.getFontFile2();
-                }
-                if (file == null) {
-                    file = descriptor.getFontFile3();
-                }
-                if (file != null) {
-                    FontFeaturesData.Builder builder = new FontFeaturesData.Builder(
-                            file.getData(COSStream.FilterFlags.DECODE));
+	@Override
+	public String getCIDSysInfoRegistry() {
+		ASAtom subtype = font.getSubtype();
+		if (subtype == ASAtom.CID_FONT_TYPE0 ||
+				subtype == ASAtom.CID_FONT_TYPE2) {
+			PDCIDFont cid = (PDCIDFont) font;
+			PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+			if (cidSystemInfo != null) {
+				return cidSystemInfo.getRegistry();
+			}
+		}
+		return null;
+	}
 
-                    InputStream metadata = null;
-                    COSObject cosMetadata = file.getKey(ASAtom.METADATA);
-                    if (cosMetadata.getType() == COSObjType.COS_STREAM) {
-                        metadata = cosMetadata.getData(COSStream.FilterFlags.DECODE);
-                    }
-                    builder.metadata(metadata);
+	@Override
+	public String getCIDSysInfoOrdering() {
+		ASAtom subtype = font.getSubtype();
+		if (subtype == ASAtom.CID_FONT_TYPE0 ||
+				subtype == ASAtom.CID_FONT_TYPE2) {
+			PDCIDFont cid = (PDCIDFont) font;
+			PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+			if (cidSystemInfo != null) {
+				return cidSystemInfo.getOrdering();
+			}
+		}
+		return null;
+	}
 
-                    builder.fontName(GFAdapterHelper.getStringFromASAtom(descriptor.getFontName()));
-                    builder.fontFamily(descriptor.getFontFamily());
-                    builder.fontStretch(GFAdapterHelper.getStringFromASAtom(descriptor.getFontStretch()));
-                    builder.fontWeight(descriptor.getFontWeight());
-                    Long flags = descriptor.getFlags();
-                    builder.flags(flags == null ? null : flags.intValue());
-                    double[] rex = descriptor.getFontBoundingBox();
-                    if (rex != null) {
-                        List<Double> rect = new ArrayList<>(rex.length);
-                        for (int i = 0; i < rex.length; ++i) {
-                            rect.add(rex[i]);
-                        }
-                        builder.fontBBox(rect);
-                    }
-                    COSObject descriptorDict = descriptor.getObject();
+	@Override
+	public Long getCIDSysInfoSupplement() {
+		ASAtom subtype = font.getSubtype();
+		if (subtype == ASAtom.CID_FONT_TYPE0 ||
+				subtype == ASAtom.CID_FONT_TYPE2) {
+			PDCIDFont cid = (PDCIDFont) font;
+			PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+			if (cidSystemInfo != null) {
+				return cidSystemInfo.getSupplement();
+			}
+		}
+		return null;
+	}
 
-                    builder.italicAngle(descriptor.getItalicAngle());
-                    builder.ascent(descriptor.getAscent());
-                    builder.descent(descriptor.getDescent());
-                    builder.leading(getDoubleFromDict(ASAtom.LEADING, descriptorDict));
-                    builder.capHeight(descriptor.getCapHeight());
-                    builder.xHeight(getDoubleFromDict(ASAtom.XHEIGHT, descriptorDict));
-                    builder.stemV(descriptor.getStemV());
-                    builder.stemH(getDoubleFromDict(ASAtom.STEM_H, descriptorDict));
-                    builder.avgWidth(getDoubleFromDict(ASAtom.AVG_WIDTH, descriptorDict));
-                    builder.maxWidth(getDoubleFromDict(ASAtom.MAX_WIDTH, descriptorDict));
-                    builder.missingWidth(getDoubleFromDict(ASAtom.MISSING_WIDTH, descriptorDict));
-                    builder.charSet(descriptor.getCharSet());
+	@Override
+	public FontDescriptorAdapter getFontDescriptor() {
+		return this.fontDescriptorAdapter;
+	}
 
-                    return builder.build();
-                }
-            }
-        }
-        return null;
-    }
+	@Override
+	public List<String> getErrors() {
+		return Collections.emptyList();
+	}
 
+	private static class GFFontDescriptorAdapter implements FontDescriptorAdapter {
 
-    private static void parseFontDescriptior(PDFontDescriptor descriptor,
-                                             FeatureTreeNode root,
-                                             FeatureExtractionResult collection) throws FeatureParsingException {
-        if (descriptor != null && !descriptor.empty()) {
-            FeatureTreeNode descriptorNode = root.addChild("fontDescriptor");
+		private PDFontDescriptor descriptor;
+		private COSStream file;
+		private PDMetadata metadata;
 
-            GFAdapterHelper.addNotEmptyNode("fontName", descriptor.getFontName(), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("fontFamily", descriptor.getFontFamily(), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("fontStretch", descriptor.getFontStretch(), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("fontWeight", getStringFromDouble(descriptor.getFontWeight()), descriptorNode);
-            descriptorNode.addChild("fixedPitch").setValue(String.valueOf(descriptor.isFixedPitch()));
-            descriptorNode.addChild("serif").setValue(String.valueOf(descriptor.isSerif()));
-            descriptorNode.addChild("symbolic").setValue(String.valueOf(descriptor.isSymbolic()));
-            descriptorNode.addChild("script").setValue(String.valueOf(descriptor.isScript()));
-            descriptorNode.addChild("nonsymbolic").setValue(String.valueOf(descriptor.isNonsymbolic()));
-            descriptorNode.addChild("italic").setValue(String.valueOf(descriptor.isItalic()));
-            descriptorNode.addChild("allCap").setValue(String.valueOf(descriptor.isAllCap()));
-            descriptorNode.addChild("smallCap").setValue(String.valueOf(descriptor.isScript()));
-            descriptorNode.addChild("forceBold").setValue(String.valueOf(descriptor.isForceBold()));
-            GFAdapterHelper.addBoxFeature("fontBBox", descriptor.getFontBoundingBox(), descriptorNode);
+		GFFontDescriptorAdapter(PDFontDescriptor descriptor) {
+			this.descriptor = descriptor;
+			this.file = descriptor.getFontFile();
+			if (this.file == null) {
+				this.file = descriptor.getFontFile2();
+			}
+			if (this.file == null) {
+				this.file = descriptor.getFontFile3();
+			}
+			if (file != null) {
+				this.metadata = new PDMetadata(file.getKey(ASAtom.METADATA));
+			}
+		}
 
-            GFAdapterHelper.addNotEmptyNode("italicAngle", getStringFromDouble(descriptor.getItalicAngle()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("ascent", getStringFromDouble(descriptor.getAscent()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("descent", getStringFromDouble(descriptor.getDescent()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("leading", getStringFromDouble(descriptor.getLeading()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("capHeight", getStringFromDouble(descriptor.getCapHeight()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("xHeight", getStringFromDouble(descriptor.getXHeight()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("stemV", getStringFromDouble(descriptor.getStemV()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("stemH", getStringFromDouble(descriptor.getStemH()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("averageWidth", getStringFromDouble(descriptor.getAvgWidth()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("maxWidth", getStringFromDouble(descriptor.getMaxWidth()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("missingWidth", getStringFromDouble(descriptor.getMissingWidth()), descriptorNode);
-            GFAdapterHelper.addNotEmptyNode("charSet", descriptor.getCharSet(), descriptorNode);
+		@Override
+		public String getFontName() {
+			ASAtom fontName = descriptor.getFontName();
+			return fontName == null ? null : fontName.getValue();
+		}
 
-            COSStream file = descriptor.getFontFile();
-            if (file == null) {
-                file = descriptor.getFontFile2();
-            }
-            if (file == null) {
-                file = descriptor.getFontFile3();
-            }
+		@Override
+		public String getFontFamily() {
+			return descriptor.getFontFamily();
+		}
 
-            descriptorNode.addChild("embedded").setValue(String.valueOf(file != null));
-            if (file != null) {
-                PDMetadata fontProgramMetadata = new PDMetadata(file.getKey(ASAtom.METADATA));
-                GFAdapterHelper.parseMetadata(fontProgramMetadata, "embeddedFileMetadata", descriptorNode, collection);
-            }
-        }
-    }
+		@Override
+		public String getFontStretch() {
+			ASAtom fontStretch = descriptor.getFontStretch();
+			return fontStretch == null ? null : fontStretch.getValue();
+		}
 
-    private static void parseWidths(COSObject array, Long firstChar,
-                                    FeatureTreeNode parent) throws FeatureParsingException {
-        if (firstChar != null) {
-            if (array.getType() == COSObjType.COS_ARRAY) {
-                int fc = firstChar.intValue() == -1 ? 0 : firstChar.intValue();
-                for (int i = 0; i < array.size(); ++i) {
-                    FeatureTreeNode element = parent.addChild("width");
-                    COSObject arElement = array.at(i);
-                    if (arElement.getType().isNumber()) {
-                        element.setValue(String.valueOf(arElement.getInteger()));
-                    }
-                    element.setAttribute("char", String.valueOf(i + fc));
-                }
-            }
-        }
-    }
+		@Override
+		public Double getFontWeight() {
+			return descriptor.getFontWeight();
+		}
 
-    private void parseResources(FeatureTreeNode root) throws FeatureParsingException {
+		@Override
+		public boolean isFixedPitch() {
+			return descriptor.isFixedPitch();
+		}
 
-        if ((extGStateChild != null && !extGStateChild.isEmpty()) ||
-                (colorSpaceChild != null && !colorSpaceChild.isEmpty()) ||
-                (patternChild != null && !patternChild.isEmpty()) ||
-                (shadingChild != null && !shadingChild.isEmpty()) ||
-                (xobjectChild != null && !xobjectChild.isEmpty()) ||
-                (fontChild != null && !fontChild.isEmpty()) ||
-                (propertiesChild != null && !propertiesChild.isEmpty())) {
-            FeatureTreeNode resources = root.addChild("resources");
+		@Override
+		public boolean isSerif() {
+			return descriptor.isSerif();
+		}
 
-            GFAdapterHelper.parseIDSet(extGStateChild, "graphicsState", "graphicsStates", resources);
-            GFAdapterHelper.parseIDSet(colorSpaceChild, "colorSpace", "colorSpaces", resources);
-            GFAdapterHelper.parseIDSet(patternChild, "pattern", "patterns", resources);
-            GFAdapterHelper.parseIDSet(shadingChild, "shading", "shadings", resources);
-            GFAdapterHelper.parseIDSet(xobjectChild, "xobject", "xobjects", resources);
-            GFAdapterHelper.parseIDSet(fontChild, "font", "fonts", resources);
-            GFAdapterHelper.parseIDSet(propertiesChild, "propertiesDict", "propertiesDicts", resources);
-        }
-    }
+		@Override
+		public boolean isSymbolic() {
+			return descriptor.isSymbolic();
+		}
 
-    private Double getDoubleFromDict(ASAtom key, COSObject dict) {
-        COSObject res = dict.getKey(key);
-        if (!res.getType().isNumber()) {
-            return null;
-        } else {
-            return res.getReal();
-        }
-    }
+		@Override
+		public boolean isScript() {
+			return descriptor.isScript();
+		}
 
-    private static String getStringFromDouble(Double d) {
-        return d == null ? null : Double.toString(d);
-    }
+		@Override
+		public boolean isNonSymbolic() {
+			return descriptor.isNonsymbolic();
+		}
+
+		@Override
+		public boolean isItalic() {
+			return descriptor.isItalic();
+		}
+
+		@Override
+		public boolean isAllcap() {
+			return descriptor.isAllCap();
+		}
+
+		@Override
+		public boolean isSmallCap() {
+			return descriptor.isSmallCap();
+		}
+
+		@Override
+		public boolean isForceBold() {
+			return descriptor.isForceBold();
+		}
+
+		@Override
+		public double[] getFontBoundingBox() {
+			return descriptor.getFontBoundingBox();
+		}
+
+		@Override
+		public Double getItalicAngle() {
+			return descriptor.getItalicAngle();
+		}
+
+		@Override
+		public Double getAscent() {
+			return descriptor.getAscent();
+		}
+
+		@Override
+		public Double getDescent() {
+			return descriptor.getDescent();
+		}
+
+		@Override
+		public Double getLeading() {
+			return descriptor.getLeading();
+		}
+
+		@Override
+		public Double getCapHeight() {
+			return descriptor.getCapHeight();
+		}
+
+		@Override
+		public Double getXHeight() {
+			return descriptor.getXHeight();
+		}
+
+		@Override
+		public Double getStemV() {
+			return descriptor.getStemV();
+		}
+
+		@Override
+		public Double getStemH() {
+			return descriptor.getStemH();
+		}
+
+		@Override
+		public Double getAverageWidth() {
+			return descriptor.getAvgWidth();
+		}
+
+		@Override
+		public Double getMaxWidth() {
+			return descriptor.getMaxWidth();
+		}
+
+		@Override
+		public Double getMissingWidth() {
+			return descriptor.getMissingWidth();
+		}
+
+		@Override
+		public String getCharSet() {
+			return descriptor.getCharSet();
+		}
+
+		@Override
+		public boolean isEmbedded() {
+			return this.file != null;
+		}
+
+		@Override
+		public Long getFlags() {
+			return descriptor.getFlags();
+		}
+
+		@Override
+		public InputStream getMetadataStream() {
+			return metadata == null ? null : metadata.getStream();
+		}
+
+		@Override
+		public InputStream getData() {
+			return file == null ? null : file.getData(COSStream.FilterFlags.DECODE);
+		}
+	}
 }

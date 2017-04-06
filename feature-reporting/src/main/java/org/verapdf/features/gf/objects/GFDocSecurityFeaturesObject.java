@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Features object for document security.
+ * Features object adapter for document security.
  *
  * @author Sergey Shemyakov
  */
