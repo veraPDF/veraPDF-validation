@@ -42,7 +42,7 @@ import java.util.Set;
  *
  * @author Sergey Shemyakov
  */
-public class GFFontFeaturesObject implements FontFeaturesObjectAdapter {
+public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 
 	private org.verapdf.pd.font.PDFont font;
 	private String id;
@@ -55,10 +55,10 @@ public class GFFontFeaturesObject implements FontFeaturesObjectAdapter {
 	private Set<String> propertiesChild;
 	private FontDescriptorAdapter fontDescriptorAdapter;
 
-	public GFFontFeaturesObject(org.verapdf.pd.font.PDFont font, String id, Set<String>
+	public GFFontFeaturesObjectAdapter(org.verapdf.pd.font.PDFont font, String id, Set<String>
 			extGStateChild, Set<String> colorSpaceChild, Set<String> patternChild,
-								Set<String> shadingChild, Set<String> xobjectChild,
-								Set<String> fontChild, Set<String> propertiesChild) {
+									   Set<String> shadingChild, Set<String> xobjectChild,
+									   Set<String> fontChild, Set<String> propertiesChild) {
 		this.font = font;
 		this.id = id;
 		this.extGStateChild = extGStateChild;
@@ -68,9 +68,11 @@ public class GFFontFeaturesObject implements FontFeaturesObjectAdapter {
 		this.xobjectChild = xobjectChild;
 		this.fontChild = fontChild;
 		this.propertiesChild = propertiesChild;
-		PDFontDescriptor descriptor = this.font.getFontDescriptor();
-		this.fontDescriptorAdapter = descriptor != null && !descriptor.empty() ?
-				new GFFontDescriptorAdapter(descriptor) : null;
+		if (font != null && !font.empty()) {
+			PDFontDescriptor descriptor = this.font.getFontDescriptor();
+			this.fontDescriptorAdapter = descriptor != null && !descriptor.empty() ?
+					new GFFontDescriptorAdapter(descriptor) : null;
+		}
 	}
 
 	@Override
@@ -122,97 +124,124 @@ public class GFFontFeaturesObject implements FontFeaturesObjectAdapter {
 
 	@Override
 	public String getType() {
-		ASAtom subtype = font.getSubtype();
-		return subtype == null ? null : subtype.getValue();
+		if (font != null && !font.empty()) {
+			ASAtom subtype = font.getSubtype();
+			return subtype == null ? null : subtype.getValue();
+		}
+		return null;
 	}
 
 	@Override
 	public String getBaseFont() {
-		return font.getName();
+		if (font != null && !font.empty()) {
+			return font.getName();
+		}
+		return null;
 	}
 
 	@Override
 	public Long getFirstChar() {
-		return font.getFirstChar();
+		if (font != null && !font.empty()) {
+			return font.getFirstChar();
+		}
+		return null;
 	}
 
 	@Override
 	public Long getLastChar() {
-		return font.getLastChar();
+		if (font != null && !font.empty()) {
+			return font.getLastChar();
+		}
+		return null;
 	}
 
 	@Override
 	public List<Long> getWidth() {
-		COSObject widths = font.getWidths();
-		if (widths != null && widths.getType() == COSObjType.COS_ARRAY) {
-			List<Long> res = new ArrayList<>(widths.size());
-			for (int i = 0; i < widths.size(); ++i) {
-				COSObject arElement = widths.at(i);
-				if (arElement.getType().isNumber()) {
-					res.add(arElement.getInteger());
+		if (font != null && !font.empty()) {
+			COSObject widths = font.getWidths();
+			if (widths != null && widths.getType() == COSObjType.COS_ARRAY) {
+				List<Long> res = new ArrayList<>(widths.size());
+				for (int i = 0; i < widths.size(); ++i) {
+					COSObject arElement = widths.at(i);
+					if (arElement.getType().isNumber()) {
+						res.add(arElement.getInteger());
+					}
 				}
+				return Collections.unmodifiableList(res);
 			}
-			return Collections.unmodifiableList(res);
 		}
 		return Collections.emptyList();
 	}
 
 	@Override
 	public String getEncoding() {
-		COSObject enc = font.getEncoding();
-		if (enc.getType() == COSObjType.COS_NAME) {
-			return enc.getString();
-		} else if (enc.getType() == COSObjType.COS_DICT) {
-			ASAtom name = enc.getNameKey(ASAtom.BASE_ENCODING);
-			return name == null ? null : name.getValue();
+		if (font != null && !font.empty()) {
+			COSObject enc = font.getEncoding();
+			if (enc.getType() == COSObjType.COS_NAME) {
+				return enc.getString();
+			} else if (enc.getType() == COSObjType.COS_DICT) {
+				ASAtom name = enc.getNameKey(ASAtom.BASE_ENCODING);
+				return name == null ? null : name.getValue();
+			}
 		}
 		return null;
 	}
 
 	@Override
 	public double[] getBoundingBox() {
-		if (font.getSubtype() == ASAtom.TYPE3) {
-			PDType3Font type3 = (PDType3Font) font;
-			return type3.getFontBoundingBox();
+		if (font != null && !font.empty()) {
+			if (font.getSubtype() == ASAtom.TYPE3) {
+				PDType3Font type3 = (PDType3Font) font;
+				return type3.getFontBoundingBox();
+			}
 		}
 		return null;
 	}
 
 	@Override
 	public double[] getMatrix() {
-		if (font.getSubtype() == ASAtom.TYPE3) {
-			PDType3Font type3 = (PDType3Font) font;
-			return type3.getFontMatrix();
+		if (font != null && !font.empty()) {
+			if (font.getSubtype() == ASAtom.TYPE3) {
+				PDType3Font type3 = (PDType3Font) font;
+				return type3.getFontMatrix();
+			}
 		}
 		return null;
 	}
 
 	@Override
 	public boolean isCIDSystemInfoPresent() {
-		ASAtom subtype = font.getSubtype();
-		if (subtype == ASAtom.CID_FONT_TYPE0 ||
-				subtype == ASAtom.CID_FONT_TYPE2) {
-			PDCIDFont cid = (PDCIDFont) font;
-			PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
-			return cidSystemInfo != null;
+		if (font != null && !font.empty()) {
+			ASAtom subtype = font.getSubtype();
+			if (subtype == ASAtom.CID_FONT_TYPE0 ||
+					subtype == ASAtom.CID_FONT_TYPE2) {
+				PDCIDFont cid = (PDCIDFont) font;
+				PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+				return cidSystemInfo != null;
+			}
 		}
 		return false;
 	}
 
 	@Override
 	public Double getDefaultWidth() {
-		return font.getDefaultWidth();
+		if (font != null && !font.empty()) {
+			return font.getDefaultWidth();
+		}
+		return null;
 	}
 
 	@Override
 	public String getCIDSysInfoRegistry() {
-		ASAtom subtype = font.getSubtype();
-		if (subtype == ASAtom.CID_FONT_TYPE0 ||
-				subtype == ASAtom.CID_FONT_TYPE2) {
-			PDCIDFont cid = (PDCIDFont) font;
-			PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
-			if (cidSystemInfo != null) {
-				return cidSystemInfo.getRegistry();
+		if (font != null && !font.empty()) {
+			ASAtom subtype = font.getSubtype();
+			if (subtype == ASAtom.CID_FONT_TYPE0 ||
+					subtype == ASAtom.CID_FONT_TYPE2) {
+				PDCIDFont cid = (PDCIDFont) font;
+				PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+				if (cidSystemInfo != null) {
+					return cidSystemInfo.getRegistry();
+				}
 			}
 		}
 		return null;
@@ -220,13 +249,15 @@ public class GFFontFeaturesObject implements FontFeaturesObjectAdapter {
 
 	@Override
 	public String getCIDSysInfoOrdering() {
-		ASAtom subtype = font.getSubtype();
-		if (subtype == ASAtom.CID_FONT_TYPE0 ||
-				subtype == ASAtom.CID_FONT_TYPE2) {
-			PDCIDFont cid = (PDCIDFont) font;
-			PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
-			if (cidSystemInfo != null) {
-				return cidSystemInfo.getOrdering();
+		if (font != null && !font.empty()) {
+			ASAtom subtype = font.getSubtype();
+			if (subtype == ASAtom.CID_FONT_TYPE0 ||
+					subtype == ASAtom.CID_FONT_TYPE2) {
+				PDCIDFont cid = (PDCIDFont) font;
+				PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+				if (cidSystemInfo != null) {
+					return cidSystemInfo.getOrdering();
+				}
 			}
 		}
 		return null;
@@ -234,13 +265,15 @@ public class GFFontFeaturesObject implements FontFeaturesObjectAdapter {
 
 	@Override
 	public Long getCIDSysInfoSupplement() {
-		ASAtom subtype = font.getSubtype();
-		if (subtype == ASAtom.CID_FONT_TYPE0 ||
-				subtype == ASAtom.CID_FONT_TYPE2) {
-			PDCIDFont cid = (PDCIDFont) font;
-			PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
-			if (cidSystemInfo != null) {
-				return cidSystemInfo.getSupplement();
+		if (font != null && !font.empty()) {
+			ASAtom subtype = font.getSubtype();
+			if (subtype == ASAtom.CID_FONT_TYPE0 ||
+					subtype == ASAtom.CID_FONT_TYPE2) {
+				PDCIDFont cid = (PDCIDFont) font;
+				PDCIDSystemInfo cidSystemInfo = cid.getCIDSystemInfo();
+				if (cidSystemInfo != null) {
+					return cidSystemInfo.getSupplement();
+				}
 			}
 		}
 		return null;

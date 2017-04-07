@@ -33,11 +33,11 @@ import java.util.List;
  *
  * @author Sergey Shemyakov
  */
-public class GFDocSecurityFeaturesObject implements DocSecurityFeaturesObjectAdapter {
+public class GFDocSecurityFeaturesObjectAdapter implements DocSecurityFeaturesObjectAdapter {
 
     private PDEncryption encryption;
 
-    public GFDocSecurityFeaturesObject(PDEncryption encryption) {
+    public GFDocSecurityFeaturesObjectAdapter(PDEncryption encryption) {
         this.encryption = encryption;
     }
 
