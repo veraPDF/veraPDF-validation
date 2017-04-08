@@ -216,7 +216,7 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
 
         @Override
         public Long getCCITTRows() {
-            return base.getIntegerKey(ASAtom.A.ROWS);
+            return base.getIntegerKey(ASAtom.ROWS);
         }
 
         @Override
