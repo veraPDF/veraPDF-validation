@@ -94,7 +94,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public String getFamily() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		return GFAdapterHelper.getStringFromASAtom(colorSpace.getType());
@@ -112,7 +112,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public double[] getWhitePoint() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
@@ -127,7 +127,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public double[] getBlackPoint() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
@@ -142,7 +142,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public Double getCalGrayGamma() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
@@ -155,7 +155,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public double[] getCalRGBGamma() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
@@ -168,7 +168,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public double[] getMatrix() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
@@ -191,7 +191,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public int getNumberOfComponents() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return 0;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
@@ -204,7 +204,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public Long getHival() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
@@ -222,7 +222,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public String getColorantName() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
@@ -235,7 +235,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public List<String> getColorantNames() {
-		if (colorSpace == null) {
+		if (colorSpace == null || colorSpace.empty()) {
 			return null;
 		}
 		ASAtom colorSpaceType = colorSpace.getType();
