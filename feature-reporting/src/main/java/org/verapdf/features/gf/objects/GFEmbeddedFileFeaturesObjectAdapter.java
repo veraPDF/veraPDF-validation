@@ -38,7 +38,7 @@ import java.util.List;
  *
  * @author Maksim Bezrukov
  */
-public class GFEmbeddedFileFeaturesObject implements EmbeddedFileFeaturesObjectAdapter {
+public class GFEmbeddedFileFeaturesObjectAdapter implements EmbeddedFileFeaturesObjectAdapter {
 
 	private COSObject embFile;
 	private Params params;
@@ -51,7 +51,7 @@ public class GFEmbeddedFileFeaturesObject implements EmbeddedFileFeaturesObjectA
 	 * @param embFile class represents Embedded File object
 	 * @param index   page index
 	 */
-	public GFEmbeddedFileFeaturesObject(COSObject embFile, int index) {
+	public GFEmbeddedFileFeaturesObjectAdapter(COSObject embFile, int index) {
 		this.embFile = embFile;
 		this.index = index;
 		this.cosEmbFile = getEmbeddedFile();

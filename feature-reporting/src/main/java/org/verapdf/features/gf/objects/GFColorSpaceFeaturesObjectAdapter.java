@@ -40,9 +40,9 @@ import java.util.logging.Logger;
  *
  * @author Maksim Bezrukov
  */
-public class GFColorSpaceFeaturesObject implements ColorSpaceFeaturesObjectAdapter {
+public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObjectAdapter {
 
-	private static final Logger LOGGER = Logger.getLogger(GFColorSpaceFeaturesObject.class.getCanonicalName());
+	private static final Logger LOGGER = Logger.getLogger(GFColorSpaceFeaturesObjectAdapter.class.getCanonicalName());
 
 	private PDColorSpace colorSpace;
 	private String id;
@@ -59,10 +59,10 @@ public class GFColorSpaceFeaturesObject implements ColorSpaceFeaturesObjectAdapt
 	 * @param iccProfileChild id of the iccprofile child
 	 * @param colorSpaceChild id of the colorspace child
 	 */
-	public GFColorSpaceFeaturesObject(PDColorSpace colorSpace,
-									  String id,
-									  String iccProfileChild,
-									  String colorSpaceChild) {
+	public GFColorSpaceFeaturesObjectAdapter(PDColorSpace colorSpace,
+											 String id,
+											 String iccProfileChild,
+											 String colorSpaceChild) {
 		this.colorSpace = colorSpace;
 		this.id = id;
 		this.iccProfileChild = iccProfileChild;

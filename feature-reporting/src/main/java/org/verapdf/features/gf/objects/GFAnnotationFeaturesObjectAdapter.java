@@ -33,7 +33,7 @@ import java.util.Set;
  *
  * @author Maksim Bezrukov
  */
-public class GFAnnotationFeaturesObject implements AnnotationFeaturesObjectAdapter {
+public class GFAnnotationFeaturesObjectAdapter implements AnnotationFeaturesObjectAdapter {
 
 	private String id;
 	private String popupId;
@@ -48,8 +48,8 @@ public class GFAnnotationFeaturesObject implements AnnotationFeaturesObjectAdapt
 	 * @param popupId      id of the popup annotation
 	 * @param formXObjects set of id of the form XObjects which used in appearance stream of this annotation
 	 */
-	public GFAnnotationFeaturesObject(PDAnnotation annot, String id,
-									  String popupId, Set<String> formXObjects) {
+	public GFAnnotationFeaturesObjectAdapter(PDAnnotation annot, String id,
+											 String popupId, Set<String> formXObjects) {
 		this.id = id;
 		this.popupId = popupId;
 		this.formXObjects = formXObjects;

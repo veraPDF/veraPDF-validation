@@ -31,7 +31,7 @@ import java.util.List;
  *
  * @author Maksim Bezrukov
  */
-public class GFExtGStateFeaturesObject implements ExtGStateFeaturesObjectAdapter {
+public class GFExtGStateFeaturesObjectAdapter implements ExtGStateFeaturesObjectAdapter {
 
     private PDExtGState exGState;
     private String id;
@@ -44,9 +44,9 @@ public class GFExtGStateFeaturesObject implements ExtGStateFeaturesObjectAdapter
      * @param id               id of the object
      * @param fontChildID      id of the font child
      */
-    public GFExtGStateFeaturesObject(PDExtGState exGState,
-                                     String id,
-                                     String fontChildID) {
+    public GFExtGStateFeaturesObjectAdapter(PDExtGState exGState,
+                                            String id,
+                                            String fontChildID) {
         this.exGState = exGState;
         this.id = id;
         this.fontChildID = fontChildID;

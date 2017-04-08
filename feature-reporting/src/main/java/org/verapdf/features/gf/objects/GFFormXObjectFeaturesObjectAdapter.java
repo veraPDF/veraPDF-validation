@@ -36,7 +36,7 @@ import java.util.Set;
  *
  * @author Maksim Bezrukov
  */
-public class GFFormXObjectFeaturesObject implements FormXObjectFeaturesObjectAdapter {
+public class GFFormXObjectFeaturesObjectAdapter implements FormXObjectFeaturesObjectAdapter {
 
 	private static final String ID = "id";
 
@@ -65,10 +65,10 @@ public class GFFormXObjectFeaturesObject implements FormXObjectFeaturesObjectAda
 	 * @param fontChild            set of font id which contains in resource dictionary of this pattern
 	 * @param propertiesChild      set of properties id which contains in resource dictionary of this xobject
 	 */
-	public GFFormXObjectFeaturesObject(PDXForm formXObject, String id, String groupColorSpaceChild,
-									   Set<String> extGStateChild, Set<String> colorSpaceChild, Set<String> patternChild,
-									   Set<String> shadingChild, Set<String> xobjectChild, Set<String> fontChild,
-									   Set<String> propertiesChild) {
+	public GFFormXObjectFeaturesObjectAdapter(PDXForm formXObject, String id, String groupColorSpaceChild,
+											  Set<String> extGStateChild, Set<String> colorSpaceChild, Set<String> patternChild,
+											  Set<String> shadingChild, Set<String> xobjectChild, Set<String> fontChild,
+											  Set<String> propertiesChild) {
 		this.formXObject = formXObject;
 		this.id = id;
 		this.groupColorSpaceChild = groupColorSpaceChild;

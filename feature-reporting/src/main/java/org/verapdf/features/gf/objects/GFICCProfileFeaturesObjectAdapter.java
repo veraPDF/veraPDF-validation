@@ -41,9 +41,9 @@ import java.util.logging.Logger;
  *
  * @author Maksim Bezrukov
  */
-public class GFICCProfileFeaturesObject implements ICCProfileFeaturesObjectAdapter {
+public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObjectAdapter {
 
-    private static final Logger LOGGER = Logger.getLogger(GFICCProfileFeaturesObject.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(GFICCProfileFeaturesObjectAdapter.class.getCanonicalName());
 
     private static final String ID = "id";
     private static final int HEADER_SIZE = 128;
@@ -73,7 +73,7 @@ public class GFICCProfileFeaturesObject implements ICCProfileFeaturesObjectAdapt
      * @param profile ICCProfile which represents the icc profile for feature report
      * @param id      id of the profile
      */
-    public GFICCProfileFeaturesObject(ICCProfile profile, String id) {
+    public GFICCProfileFeaturesObjectAdapter(ICCProfile profile, String id) {
         this.profile = profile;
         this.id = id;
         init();

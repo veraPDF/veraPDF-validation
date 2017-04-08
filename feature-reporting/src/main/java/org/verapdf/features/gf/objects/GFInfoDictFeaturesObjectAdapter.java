@@ -33,7 +33,7 @@ import java.util.*;
  *
  * @author Maksim Bezrukov
  */
-public class GFInfoDictFeaturesObject implements InfoDictFeaturesObjectAdapter {
+public class GFInfoDictFeaturesObjectAdapter implements InfoDictFeaturesObjectAdapter {
 
     private static final ASAtom[] predefinedKeys = {
             ASAtom.TITLE,
@@ -54,7 +54,7 @@ public class GFInfoDictFeaturesObject implements InfoDictFeaturesObjectAdapter {
      *
      * @param info class represents page object
      */
-    public GFInfoDictFeaturesObject(COSObject info) {
+    public GFInfoDictFeaturesObjectAdapter(COSObject info) {
         this.info = info;
     }
 
