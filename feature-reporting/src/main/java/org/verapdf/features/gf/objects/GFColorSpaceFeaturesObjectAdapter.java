@@ -94,6 +94,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public String getFamily() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		return GFAdapterHelper.getStringFromASAtom(colorSpace.getType());
 	}
 
@@ -109,6 +112,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public double[] getWhitePoint() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.CALGRAY.equals(colorSpaceType)
 				|| ASAtom.CALRGB.equals(colorSpaceType)
@@ -121,6 +127,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public double[] getBlackPoint() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.CALGRAY.equals(colorSpaceType)
 				|| ASAtom.CALRGB.equals(colorSpaceType)
@@ -133,6 +142,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public Double getCalGrayGamma() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.CALGRAY.equals(colorSpaceType)) {
 			PDCalGray calGray = (PDCalGray) colorSpace;
@@ -143,6 +155,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public double[] getCalRGBGamma() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.CALRGB.equals(colorSpaceType)) {
 			PDCalRGB calRGB = (PDCalRGB) colorSpace;
@@ -153,6 +168,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public double[] getMatrix() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.CALRGB.equals(colorSpaceType)) {
 			PDCalRGB calRGB = (PDCalRGB) colorSpace;
@@ -173,6 +191,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public int getNumberOfComponents() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return 0;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.ICCBASED.equals(colorSpaceType)) {
 			PDICCBased iccBased = (PDICCBased) colorSpace;
@@ -183,6 +204,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public Long getHival() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.INDEXED.equals(colorSpaceType)) {
 			PDIndexed indexed = (PDIndexed) colorSpace;
@@ -198,6 +222,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public String getColorantName() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.SEPARATION.equals(colorSpaceType)) {
 			PDSeparation separation = (PDSeparation) colorSpace;
@@ -208,6 +235,9 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public List<String> getColorantNames() {
+		if (colorSpace == null || colorSpace.empty()) {
+			return null;
+		}
 		ASAtom colorSpaceType = colorSpace.getType();
 		if (ASAtom.DEVICEN.equals(colorSpaceType)) {
 			PDDeviceN deviceN = (PDDeviceN) colorSpace;

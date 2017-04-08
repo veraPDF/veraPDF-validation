@@ -295,11 +295,11 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFImageXObjectFeaturesObject
 	 */
 	public static GFImageXObjectFeaturesObject createImageXObjectFeaturesObject(PDXImage imageXObject,
-																				String id,
-																				String colorSpaceChild,
-																				String maskChild,
-																				String sMaskChild,
-																				Set<String> alternatesChild) {
+                                                                                       String id,
+                                                                                       String colorSpaceChild,
+                                                                                       String maskChild,
+                                                                                       String sMaskChild,
+                                                                                       Set<String> alternatesChild) {
 		return new GFImageXObjectFeaturesObject(imageXObject, id, colorSpaceChild, maskChild, sMaskChild, alternatesChild);
 	}
 

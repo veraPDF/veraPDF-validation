@@ -73,82 +73,82 @@ public class GFAnnotationFeaturesObjectAdapter implements AnnotationFeaturesObje
 
 	@Override
 	public String getSubtype() {
-		return GFAdapterHelper.getStringFromASAtom(annot.getSubtype());
+		return annot == null || annot.empty() ? null : GFAdapterHelper.getStringFromASAtom(annot.getSubtype());
 	}
 
 	@Override
 	public double[] getRectangle() {
-		return annot.getRect();
+		return annot == null || annot.empty() ? null : annot.getRect();
 	}
 
 	@Override
 	public String getContents() {
-		return annot.getContents();
+		return annot == null || annot.empty() ? null : annot.getContents();
 	}
 
 	@Override
 	public String getAnnotationName() {
-		return annot.getAnnotationName();
+		return annot == null || annot.empty() ? null : annot.getAnnotationName();
 	}
 
 	@Override
 	public String getModifiedDate() {
-		return annot.getModDate();
+		return annot == null || annot.empty() ? null : annot.getModDate();
 	}
 
 	@Override
 	public double[] getColor() {
-		return annot.getColor();
+		return annot == null || annot.empty() ? null : annot.getColor();
 	}
 
 	@Override
 	public boolean isInvisible() {
-		return annot.isInvisible();
+		return annot == null || annot.empty() ? false : annot.isInvisible();
 	}
 
 	@Override
 	public boolean isHidden() {
-		return annot.isHidden();
+		return annot == null || annot.empty() ? false : annot.isHidden();
 	}
 
 	@Override
 	public boolean isPrinted() {
-		return annot.isPrinted();
+		return annot == null || annot.empty() ? false : annot.isPrinted();
 	}
 
 	@Override
 	public boolean isNoZoom() {
-		return annot.isNoZoom();
+		return annot == null || annot.empty() ? false : annot.isNoZoom();
 	}
 
 	@Override
 	public boolean isNoRotate() {
-		return annot.isNoRotate();
+		return annot == null || annot.empty() ? false : annot.isNoRotate();
 	}
 
 	@Override
 	public boolean isNoView() {
-		return annot.isNoView();
+		return annot == null || annot.empty() ? false : annot.isNoView();
 	}
 
 	@Override
 	public boolean isReadOnly() {
-		return annot.isReadOnly();
+		return annot == null || annot.empty() ? false : annot.isReadOnly();
 	}
 
 	@Override
 	public boolean isLocked() {
-		return annot.isLocked();
+		return annot == null || annot.empty() ? false : annot.isLocked();
 	}
 
 	@Override
 	public boolean isToggleNoView() {
-		return annot.isToggleNoView();
+		return annot == null || annot.empty() ? false : annot.isToggleNoView();
 	}
 
 	@Override
 	public boolean isLockedContents() {
-		return annot.isLockedContents();
+		return annot == null || annot.empty() ? false : annot.isLockedContents();
 	}
 
 	@Override
