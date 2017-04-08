@@ -294,13 +294,14 @@ public final class GFFeaturesObjectCreator {
 	 * @param alternatesChild set of image xobject ids which contains in this image xobject as alternates
 	 * @return created GFImageXObjectFeaturesObject
 	 */
-	public static GFImageXObjectFeaturesObject createImageXObjectFeaturesObject(PDXImage imageXObject,
+	public static ImageXObjectFeaturesObject createImageXObjectFeaturesObject(PDXImage imageXObject,
                                                                                        String id,
                                                                                        String colorSpaceChild,
                                                                                        String maskChild,
                                                                                        String sMaskChild,
                                                                                        Set<String> alternatesChild) {
-		return new GFImageXObjectFeaturesObject(imageXObject, id, colorSpaceChild, maskChild, sMaskChild, alternatesChild);
+		GFImageXObjectFeaturesObjectAdapter adapter = new GFImageXObjectFeaturesObjectAdapter(imageXObject, id, colorSpaceChild, maskChild, sMaskChild, alternatesChild);
+		return new ImageXObjectFeaturesObject(adapter);
 	}
 
 	/**
