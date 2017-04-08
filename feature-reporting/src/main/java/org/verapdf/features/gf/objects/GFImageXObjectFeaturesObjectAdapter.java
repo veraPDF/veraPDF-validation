@@ -138,7 +138,7 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
             }
             return res;
         }
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
