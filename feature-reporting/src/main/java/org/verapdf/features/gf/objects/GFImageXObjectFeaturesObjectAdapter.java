@@ -26,6 +26,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.features.objects.ImageXObjectFeaturesObjectAdapter;
+import org.verapdf.pd.PDMetadata;
 import org.verapdf.pd.images.PDXImage;
 
 import java.io.InputStream;
@@ -137,13 +138,14 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
             }
             return res;
         }
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public InputStream getMetadata() {
         if (imageXObject != null && !imageXObject.empty()) {
-            return imageXObject.getMetadata().getStream();
+            PDMetadata metadata = imageXObject.getMetadata();
+            return metadata == null ? null : metadata.getStream();
         }
         return null;
     }
@@ -214,7 +216,7 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
 
         @Override
         public Long getCCITTRows() {
-            return base.getIntegerKey(ASAtom.A.ROWS);
+            return base.getIntegerKey(ASAtom.ROWS);
         }
 
         @Override

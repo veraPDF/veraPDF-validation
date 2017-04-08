@@ -117,7 +117,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
 
     @Override
     public String getModificationId() {
-        return this.getModificationId();
+        return this.modificationId;
     }
 
     @Override

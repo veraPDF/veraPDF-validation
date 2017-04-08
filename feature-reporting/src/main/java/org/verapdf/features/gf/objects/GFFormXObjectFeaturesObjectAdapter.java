@@ -90,7 +90,7 @@ public class GFFormXObjectFeaturesObjectAdapter implements FormXObjectFeaturesOb
 	public InputStream getMetadataStream() {
 		if (formXObject != null && !formXObject.empty()) {
 			PDMetadata metadata = formXObject.getMetadata();
-			return metadata.getStream();
+			return metadata == null ? null : metadata.getStream();
 		}
 		return null;
 	}

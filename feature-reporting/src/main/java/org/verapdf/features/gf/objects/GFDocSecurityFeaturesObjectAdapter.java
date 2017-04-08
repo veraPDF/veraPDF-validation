@@ -20,6 +20,7 @@
  */
 package org.verapdf.features.gf.objects;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSString;
 import org.verapdf.features.objects.DocSecurityFeaturesObjectAdapter;
 import org.verapdf.pd.encryption.AccessPermissions;
@@ -43,12 +44,20 @@ public class GFDocSecurityFeaturesObjectAdapter implements DocSecurityFeaturesOb
 
     @Override
     public String getFilter() {
-        return encryption == null || encryption.empty() ? null : encryption.getFilter().getValue();
+        if (encryption == null || encryption.empty()) {
+            return null;
+        }
+        ASAtom filter = encryption.getFilter();
+        return filter == null ? null : filter.getValue();
     }
 
     @Override
     public String getSubFilter() {
-        return encryption == null || encryption.empty() ? null : encryption.getSubFilter().getValue();
+        if (encryption == null || encryption.empty()) {
+            return null;
+        }
+        ASAtom subFilter = encryption.getSubFilter();
+        return subFilter == null ? null : subFilter.getValue();
     }
 
     @Override
