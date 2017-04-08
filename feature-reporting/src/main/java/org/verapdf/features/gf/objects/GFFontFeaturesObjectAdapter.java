@@ -453,12 +453,12 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 
 		@Override
 		public InputStream getMetadataStream() {
-			return metadata == null ? null : metadata.getStream();
+			return metadata == null || metadata.empty() ? null : metadata.getStream();
 		}
 
 		@Override
 		public InputStream getData() {
-			return file == null ? null : file.getData(COSStream.FilterFlags.DECODE);
+			return file == null || metadata.empty() ? null : file.getData(COSStream.FilterFlags.DECODE);
 		}
 	}
 }
