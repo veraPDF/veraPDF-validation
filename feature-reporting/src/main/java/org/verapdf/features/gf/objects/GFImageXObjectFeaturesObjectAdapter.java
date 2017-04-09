@@ -115,7 +115,8 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
 
     @Override
     public Set<String> getAlternatesChild() {
-        return this.alternatesChild;
+        return this.alternatesChild == null ?
+                Collections.<String>emptySet() : Collections.unmodifiableSet(this.alternatesChild);
     }
 
     @Override
@@ -136,7 +137,7 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
             for (ASAtom filter : atomFilters) {
                 res.add(filter.getValue());
             }
-            return res;
+            return Collections.unmodifiableList(res);
         }
         return Collections.emptyList();
     }
@@ -176,7 +177,7 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
                     }
                 }
             }
-            return res;
+            return Collections.unmodifiableList(res);
         }
         return Collections.emptyList();
     }
@@ -186,11 +187,11 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
         return Collections.emptyList();
     }
 
-    public class GFStreamFilterAdapter implements StreamFilterAdapter{
+    private class GFStreamFilterAdapter implements StreamFilterAdapter{
 
         COSObject base;
 
-        public GFStreamFilterAdapter(COSObject base) {
+        GFStreamFilterAdapter(COSObject base) {
             this.base = base == null ? COSObject.getEmpty() : base;
         }
 
