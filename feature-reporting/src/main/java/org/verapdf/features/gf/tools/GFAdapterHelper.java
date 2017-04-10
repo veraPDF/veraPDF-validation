@@ -27,7 +27,6 @@ import org.verapdf.cos.COSObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Logger;
 
 /**
  * Helps in creating similar nodes in different features objects
@@ -35,13 +34,6 @@ import java.util.logging.Logger;
  * @author Maksim Bezrukov
  */
 public final class GFAdapterHelper {
-
-	private static final Logger LOGGER = Logger.getLogger(GFAdapterHelper.class.getCanonicalName());
-
-	private static final String LLX = "llx";
-	private static final String LLY = "lly";
-	private static final String URX = "urx";
-	private static final String URY = "ury";
 
 	private GFAdapterHelper() {
 	}
