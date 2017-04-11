@@ -76,7 +76,7 @@
   <properties>
     <verapdf.parser.version>[1.3.0,1.4.0)</verapdf.parser.version>
     <verapdf.pdfmodel.version>[1.3.0,1.4.0)</verapdf.pdfmodel.version>
-    <verapdf.library.version>[1.3.0,1.4.0)</verapdf.library.version>
+    <verapdf.library.version>[1.3.0, 1.4.0)</verapdf.library.version>
     <verapdf.xmp.version>[0.11.0,0.12.0)</verapdf.xmp.version>
   </properties>
 

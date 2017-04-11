@@ -24,6 +24,7 @@ import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSObject;
 import org.verapdf.external.ICCProfile;
 import org.verapdf.features.gf.objects.*;
+import org.verapdf.features.objects.*;
 import org.verapdf.pd.*;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.encryption.PDEncryption;
@@ -47,97 +48,105 @@ public final class GFFeaturesObjectCreator {
 	}
 
 	/**
-	 * Creates new GFInfoDictFeaturesObject
+	 * Creates new GFInfoDictFeaturesObjectAdapter
 	 *
 	 * @param info COSObject class from greenfield, which represents a document info dictionary for feature report
-	 * @return created GFInfoDictFeaturesObject
+	 * @return created GFInfoDictFeaturesObjectAdapter
 	 */
-	public static GFInfoDictFeaturesObject createInfoDictFeaturesObject(COSObject info) {
-		return new GFInfoDictFeaturesObject(info);
+	public static InfoDictFeaturesObject createInfoDictFeaturesObject(COSObject info) {
+		GFInfoDictFeaturesObjectAdapter adapter = new GFInfoDictFeaturesObjectAdapter(info);
+		return new InfoDictFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFMetadataFeaturesObject
+	 * Creates new GFMetadataFeaturesObjectAdapter
 	 *
 	 * @param metadata PDMetadata class from greenfield, which represents a metadata for feature report
-	 * @return created GFMetadataFeaturesObject
+	 * @return created GFMetadataFeaturesObjectAdapter
 	 */
-	public static GFMetadataFeaturesObject createMetadataFeaturesObject(PDMetadata metadata) {
-		return new GFMetadataFeaturesObject(metadata);
+	public static MetadataFeaturesObject createMetadataFeaturesObject(PDMetadata metadata) {
+		GFMetadataFeaturesObjectAdapter adapter = new GFMetadataFeaturesObjectAdapter(metadata);
+		return new MetadataFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFDocSecurityFeaturesObject
+	 * Creates new GFDocSecurityFeaturesObjectAdapter
 	 *
 	 * @param encryption PDEncryption class from greenfield, which represents an encryption for feature report
-	 * @return created GFDocSecurityFeaturesObject
+	 * @return created GFDocSecurityFeaturesObjectAdapter
 	 */
-	public static GFDocSecurityFeaturesObject createDocSecurityFeaturesObject(PDEncryption encryption) {
-		return new GFDocSecurityFeaturesObject(encryption);
+	public static DocSecurityFeaturesObject createDocSecurityFeaturesObject(PDEncryption encryption) {
+		GFDocSecurityFeaturesObjectAdapter adapter = new GFDocSecurityFeaturesObjectAdapter(encryption);
+		return new DocSecurityFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFLowLvlInfoFeaturesObject
+	 * Creates new LowLvlInfoFeaturesObject
 	 *
 	 * @param document COSDocument class from greenfield, which represents a document for feature report
-	 * @return created GFLowLvlInfoFeaturesObject
+	 * @return created LowLvlInfoFeaturesObject
 	 */
-	public static GFLowLvlInfoFeaturesObject createLowLvlInfoFeaturesObject(COSDocument document) {
-		return new GFLowLvlInfoFeaturesObject(document);
+	public static LowLvlInfoFeaturesObject createLowLvlInfoFeaturesObject(COSDocument document) {
+		GFLowLvlInfoFeaturesObjectAdapter adapter = new GFLowLvlInfoFeaturesObjectAdapter(document);
+		return new LowLvlInfoFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFEmbeddedFileFeaturesObject
+	 * Creates new GFEmbeddedFileFeaturesObjectAdapter
 	 *
 	 * @param embFile COSObject class from greenfield, which represents a file specification with embedded
 	 *                file for feature report
-	 * @return created GFEmbeddedFileFeaturesObject
+	 * @return created GFEmbeddedFileFeaturesObjectAdapter
 	 */
-	public static GFEmbeddedFileFeaturesObject createEmbeddedFileFeaturesObject(COSObject embFile,
-																				int index) {
-		return new GFEmbeddedFileFeaturesObject(embFile, index);
+	public static EmbeddedFileFeaturesObject createEmbeddedFileFeaturesObject(COSObject embFile,
+																			  int index) {
+		GFEmbeddedFileFeaturesObjectAdapter adapter = new GFEmbeddedFileFeaturesObjectAdapter(embFile, index);
+		return new EmbeddedFileFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFOutputIntentsFeaturesObject
+	 * Creates new GFOutputIntentsFeaturesObjectAdapter
 	 *
 	 * @param outInt       PDOutputIntent class from greenfield, which represents an outputIntent for feature report
 	 * @param iccProfileID id of the icc profile which use in this outputIntent
-	 * @return created GFOutputIntentsFeaturesObject
+	 * @return created GFOutputIntentsFeaturesObjectAdapter
 	 */
-	public static GFOutputIntentsFeaturesObject createOutputIntentFeaturesObject(PDOutputIntent outInt,
-																				 String iccProfileID) {
-		return new GFOutputIntentsFeaturesObject(outInt, iccProfileID);
+	public static OutputIntentFeaturesObject createOutputIntentFeaturesObject(PDOutputIntent outInt,
+																						String iccProfileID) {
+		GFOutputIntentsFeaturesObjectAdapter adapter = new GFOutputIntentsFeaturesObjectAdapter(outInt, iccProfileID);
+		return new OutputIntentFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFOutlinesFeaturesObject
+	 * Creates new GFOutlinesFeaturesObjectAdapter
 	 *
 	 * @param outlines PDPage class from greenfield, which represents a page for feature report
-	 * @return created GFOutlinesFeaturesObject
+	 * @return created GFOutlinesFeaturesObjectAdapter
 	 */
-	public static GFOutlinesFeaturesObject createOutlinesFeaturesObject(PDOutlineDictionary outlines) {
-		return new GFOutlinesFeaturesObject(outlines);
+	public static OutlinesFeaturesObject createOutlinesFeaturesObject(PDOutlineDictionary outlines) {
+		GFOutlinesFeaturesObjectAdapter adapter = new GFOutlinesFeaturesObjectAdapter(outlines);
+		return new OutlinesFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFAnnotationFeaturesObject
+	 * Creates new GFAnnotationFeaturesObjectAdapter
 	 *
 	 * @param annot        PDAnnotation class from greenfield, which represents an annotation for feature report
 	 * @param id           page id
 	 * @param popupId      id of the popup annotation for this annotation
 	 * @param formXObjects set of id of the form XObjects which used in appearance stream of this annotation
-	 * @return created GFAnnotationFeaturesObject
+	 * @return created GFAnnotationFeaturesObjectAdapter
 	 */
-	public static GFAnnotationFeaturesObject createAnnotFeaturesObject(PDAnnotation annot,
-																	   String id,
-																	   String popupId,
-																	   Set<String> formXObjects) {
-		return new GFAnnotationFeaturesObject(annot, id, popupId, formXObjects);
+	public static AnnotationFeaturesObject createAnnotFeaturesObject(PDAnnotation annot,
+																			  String id,
+																			  String popupId,
+																			  Set<String> formXObjects) {
+		GFAnnotationFeaturesObjectAdapter adapter = new GFAnnotationFeaturesObjectAdapter(annot, id, popupId, formXObjects);
+		return new AnnotationFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFPageFeaturesObject
+	 * Creates new GFPageFeaturesObjectAdapter
 	 *
 	 * @param page            greenfield class represents page object
 	 * @param thumb           thumbnail image id
@@ -150,67 +159,71 @@ public final class GFFeaturesObjectCreator {
 	 * @param fontChild       set of font id which contains in resource dictionary of this page
 	 * @param propertiesChild set of properties id which contains in resource dictionary of this page
 	 * @param index           page index
-	 * @return created GFPageFeaturesObject
+	 * @return created GFPageFeaturesObjectAdapter
 	 */
-	public static GFPageFeaturesObject createPageFeaturesObject(PDPage page,
-																String thumb,
-																Set<String> annotsId,
-																Set<String> extGStateChild,
-																Set<String> colorSpaceChild,
-																Set<String> patternChild,
-																Set<String> shadingChild,
-																Set<String> xobjectChild,
-																Set<String> fontChild,
-																Set<String> propertiesChild,
-																int index) {
-		return new GFPageFeaturesObject(page, thumb, annotsId, extGStateChild,
+	public static PageFeaturesObject createPageFeaturesObject(PDPage page,
+																	   String thumb,
+																	   Set<String> annotsId,
+																	   Set<String> extGStateChild,
+																	   Set<String> colorSpaceChild,
+																	   Set<String> patternChild,
+																	   Set<String> shadingChild,
+																	   Set<String> xobjectChild,
+																	   Set<String> fontChild,
+																	   Set<String> propertiesChild,
+																	   int index) {
+		GFPageFeaturesObjectAdapter adapter = new GFPageFeaturesObjectAdapter(page, thumb, annotsId, extGStateChild,
 				colorSpaceChild, patternChild, shadingChild, xobjectChild,
 				fontChild, propertiesChild, index);
+		return new PageFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFICCProfileFeaturesObject
+	 * Creates new GFICCProfileFeaturesObjectAdapter
 	 *
 	 * @param profile   ICCProfile which represents the icc profile for feature report
 	 * @param id        id of the profile
-	 * @return created GFICCProfileFeaturesObject
+	 * @return created GFICCProfileFeaturesObjectAdapter
 	 */
-	public static GFICCProfileFeaturesObject createICCProfileFeaturesObject(ICCProfile profile, String id) {
-		return new GFICCProfileFeaturesObject(profile, id);
+	public static ICCProfileFeaturesObject createICCProfileFeaturesObject(ICCProfile profile, String id) {
+		GFICCProfileFeaturesObjectAdapter adapter = new GFICCProfileFeaturesObjectAdapter(profile, id);
+		return new ICCProfileFeaturesObject(adapter);
 	}
 
 	/**
-	 * Creates new GFExtGStateFeaturesObject
+	 * Creates new GFExtGStateFeaturesObjectAdapter
 	 *
 	 * @param exGState         PDExtGState which represents extended graphics state for feature report
 	 * @param id               id of the object
 	 * @param fontChildID      id of the font child
-	 * @return created GFExtGStateFeaturesObject
+	 * @return created GFExtGStateFeaturesObjectAdapter
 	 */
-	public static GFExtGStateFeaturesObject createExtGStateFeaturesObject(PDExtGState exGState,
-																		  String id,
-																		  String fontChildID) {
-		return new GFExtGStateFeaturesObject(exGState, id, fontChildID);
+	public static ExtGStateFeaturesObject createExtGStateFeaturesObject(PDExtGState exGState,
+																				 String id,
+																				 String fontChildID) {
+		GFExtGStateFeaturesObjectAdapter adapter = new GFExtGStateFeaturesObjectAdapter(exGState, id, fontChildID);
+		return new ExtGStateFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFColorSpaceFeaturesObject
+	 * Constructs new GFColorSpaceFeaturesObjectAdapter
 	 *
 	 * @param colorSpace        PDColorSpace which represents colorspace for feature report
 	 * @param id                id of the object
 	 * @param iccProfileChild   id of the iccprofile child
 	 * @param colorSpaceChild   id of the colorspace child
-	 * @return created GFColorSpaceFeaturesObject
+	 * @return created GFColorSpaceFeaturesObjectAdapter
 	 */
-	public static GFColorSpaceFeaturesObject createColorSpaceFeaturesObject(PDColorSpace colorSpace,
-																			String id,
-																			String iccProfileChild,
-																			String colorSpaceChild) {
-		return new GFColorSpaceFeaturesObject(colorSpace, id, iccProfileChild, colorSpaceChild);
+	public static ColorSpaceFeaturesObject createColorSpaceFeaturesObject(PDColorSpace colorSpace,
+																				   String id,
+																				   String iccProfileChild,
+																				   String colorSpaceChild) {
+		GFColorSpaceFeaturesObjectAdapter adapter = new GFColorSpaceFeaturesObjectAdapter(colorSpace, id, iccProfileChild, colorSpaceChild);
+		return new ColorSpaceFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFTilingPatternFeaturesObject
+	 * Constructs new GFTilingPatternFeaturesObjectAdapter
 	 *
 	 * @param tilingPattern   PDTilingPattern which represents tilling pattern for feature report
 	 * @param id              id of the object
@@ -221,9 +234,9 @@ public final class GFFeaturesObjectCreator {
 	 * @param xobjectChild    set of XObject id which contains in resource dictionary of this pattern
 	 * @param fontChild       set of font id which contains in resource dictionary of this pattern
 	 * @param propertiesChild set of properties id which contains in resource dictionary of this pattern
-	 * @return created GFTilingPatternFeaturesObject
+	 * @return created GFTilingPatternFeaturesObjectAdapter
 	 */
-	public static GFTilingPatternFeaturesObject createTilingPatternFeaturesObject(PDTilingPattern tilingPattern,
+	public static TilingPatternFeaturesObject createTilingPatternFeaturesObject(PDTilingPattern tilingPattern,
 																				  String id,
 																				  Set<String> extGStateChild,
 																				  Set<String> colorSpaceChild,
@@ -232,37 +245,42 @@ public final class GFFeaturesObjectCreator {
 																				  Set<String> xobjectChild,
 																				  Set<String> fontChild,
 																				  Set<String> propertiesChild) {
-		return new GFTilingPatternFeaturesObject(tilingPattern, id, extGStateChild, colorSpaceChild, patternChild, shadingChild, xobjectChild, fontChild, propertiesChild);
+		GFTilingPatternFeaturesObjectAdapter adapter = new GFTilingPatternFeaturesObjectAdapter(tilingPattern, id,
+				extGStateChild, colorSpaceChild, patternChild,
+				shadingChild, xobjectChild, fontChild, propertiesChild);
+		return new TilingPatternFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFShadingPatternFeaturesObject
+	 * Constructs new GFShadingPatternFeaturesObjectAdapter
 	 *
 	 * @param shadingPattern PDShadingPattern which represents shading pattern for feature report
 	 * @param id             id of the object
 	 * @param extGStateChild external graphics state id which contains in this shading pattern
 	 * @param shadingChild   shading id which contains in this shading pattern
-	 * @return created GFShadingPatternFeaturesObject
+	 * @return created GFShadingPatternFeaturesObjectAdapter
 	 */
-	public static GFShadingPatternFeaturesObject createShadingPatternFeaturesObject(PDShadingPattern shadingPattern,
+	public static ShadingPatternFeaturesObject createShadingPatternFeaturesObject(PDShadingPattern shadingPattern,
 																					String id,
 																					String shadingChild,
 																					String extGStateChild) {
-		return new GFShadingPatternFeaturesObject(shadingPattern, id, shadingChild, extGStateChild);
+		GFShadingPatternFeaturesObjectAdapter adapter = new GFShadingPatternFeaturesObjectAdapter(shadingPattern, id, shadingChild, extGStateChild);
+		return new ShadingPatternFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFShadingFeaturesObject
+	 * Constructs new GFShadingFeaturesObjectAdapter
 	 *
 	 * @param shading         PDShading which represents shading for feature report
 	 * @param id              id of the object
 	 * @param colorSpaceChild colorSpace id which contains in this shading pattern
-	 * @return created GFShadingFeaturesObject
+	 * @return created GFShadingFeaturesObjectAdapter
 	 */
-	public static GFShadingFeaturesObject createShadingFeaturesObject(PDShading shading,
-																	  String id,
-																	  String colorSpaceChild) {
-		return new GFShadingFeaturesObject(shading, id, colorSpaceChild);
+	public static ShadingFeaturesObject createShadingFeaturesObject(PDShading shading,
+																			 String id,
+																			 String colorSpaceChild) {
+		GFShadingFeaturesObjectAdapter adapter = new GFShadingFeaturesObjectAdapter(shading, id, colorSpaceChild);
+		return new ShadingFeaturesObject(adapter);
 	}
 
 	/**
@@ -276,17 +294,18 @@ public final class GFFeaturesObjectCreator {
 	 * @param alternatesChild set of image xobject ids which contains in this image xobject as alternates
 	 * @return created GFImageXObjectFeaturesObject
 	 */
-	public static GFImageXObjectFeaturesObject createImageXObjectFeaturesObject(PDXImage imageXObject,
-																				String id,
-																				String colorSpaceChild,
-																				String maskChild,
-																				String sMaskChild,
-																				Set<String> alternatesChild) {
-		return new GFImageXObjectFeaturesObject(imageXObject, id, colorSpaceChild, maskChild, sMaskChild, alternatesChild);
+	public static ImageXObjectFeaturesObject createImageXObjectFeaturesObject(PDXImage imageXObject,
+                                                                                       String id,
+                                                                                       String colorSpaceChild,
+                                                                                       String maskChild,
+                                                                                       String sMaskChild,
+                                                                                       Set<String> alternatesChild) {
+		GFImageXObjectFeaturesObjectAdapter adapter = new GFImageXObjectFeaturesObjectAdapter(imageXObject, id, colorSpaceChild, maskChild, sMaskChild, alternatesChild);
+		return new ImageXObjectFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFFormXObjectFeaturesObject
+	 * Constructs new GFFormXObjectFeaturesObjectAdapter
 	 *
 	 * @param formXObject      PDXForm which represents form xobject for feature report
 	 * @param id               id of the object
@@ -298,23 +317,27 @@ public final class GFFeaturesObjectCreator {
 	 * @param xobjectChild     set of XObject id which contains in resource dictionary of this xobject
 	 * @param fontChild        set of font id which contains in resource dictionary of this pattern
 	 * @param propertiesChild  set of properties id which contains in resource dictionary of this xobject
-	 * @return created GFFormXObjectFeaturesObject
+	 * @return created GFFormXObjectFeaturesObjectAdapter
 	 */
-	public static GFFormXObjectFeaturesObject createFormXObjectFeaturesObject(PDXForm formXObject,
-																			  String id,
-																			  String groupChild,
-																			  Set<String> extGStateChild,
-																			  Set<String> colorSpaceChild,
-																			  Set<String> patternChild,
-																			  Set<String> shadingChild,
-																			  Set<String> xobjectChild,
-																			  Set<String> fontChild,
-																			  Set<String> propertiesChild) {
-		return new GFFormXObjectFeaturesObject(formXObject, id, groupChild, extGStateChild, colorSpaceChild, patternChild, shadingChild, xobjectChild, fontChild, propertiesChild);
+	public static FormXObjectFeaturesObject createFormXObjectFeaturesObject(PDXForm formXObject,
+																					 String id,
+																					 String groupChild,
+																					 Set<String> extGStateChild,
+																					 Set<String> colorSpaceChild,
+																					 Set<String> patternChild,
+																					 Set<String> shadingChild,
+																					 Set<String> xobjectChild,
+																					 Set<String> fontChild,
+																					 Set<String> propertiesChild) {
+		GFFormXObjectFeaturesObjectAdapter adapter = new GFFormXObjectFeaturesObjectAdapter(formXObject, id,
+				groupChild, extGStateChild, colorSpaceChild,
+				patternChild, shadingChild, xobjectChild,
+				fontChild, propertiesChild);
+		return new FormXObjectFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFFontFeaturesObject
+	 * Constructs new GFFontFeaturesObjectAdapter
 	 *
 	 * @param fontLike        PDFont which represents font for feature report
 	 * @param id              id of the object
@@ -325,49 +348,55 @@ public final class GFFeaturesObjectCreator {
 	 * @param xobjectChild    set of XObject id which contains in resource dictionary of this font
 	 * @param fontChild       set of font id which contains in resource dictionary of this font
 	 * @param propertiesChild set of properties id which contains in resource dictionary of this font
-	 * @return created GFFontFeaturesObject
+	 * @return created GFFontFeaturesObjectAdapter
 	 */
-	public static GFFontFeaturesObject createFontFeaturesObject(PDFont fontLike,
-																String id,
-																Set<String> extGStateChild,
-																Set<String> colorSpaceChild,
-																Set<String> patternChild,
-																Set<String> shadingChild,
-																Set<String> xobjectChild,
-																Set<String> fontChild,
-																Set<String> propertiesChild) {
-		return new GFFontFeaturesObject(fontLike, id, extGStateChild, colorSpaceChild, patternChild, shadingChild, xobjectChild, fontChild, propertiesChild);
+	public static FontFeaturesObject createFontFeaturesObject(PDFont fontLike,
+																	   String id,
+																	   Set<String> extGStateChild,
+																	   Set<String> colorSpaceChild,
+																	   Set<String> patternChild,
+																	   Set<String> shadingChild,
+																	   Set<String> xobjectChild,
+																	   Set<String> fontChild,
+																	   Set<String> propertiesChild) {
+		GFFontFeaturesObjectAdapter adapter = new GFFontFeaturesObjectAdapter(fontLike, id,
+				extGStateChild, colorSpaceChild, patternChild,
+				shadingChild, xobjectChild, fontChild, propertiesChild);
+		return new FontFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFPropertiesDictFeaturesObject
+	 * Constructs new GFPropertiesDictFeaturesObjectAdapter
 	 *
 	 * @param properties    COSObject which represents properties for feature report
 	 * @param id            id of the object
-	 * @return created GFPropertiesDictFeaturesObject
+	 * @return created GFPropertiesDictFeaturesObjectAdapter
 	 */
-	public static GFPropertiesDictFeaturesObject createPropertiesDictFeaturesObject(COSObject properties,
-																					String id) {
-		return new GFPropertiesDictFeaturesObject(properties, id);
+	public static PropertiesDictFeaturesObject createPropertiesDictFeaturesObject(COSObject properties,
+																						   String id) {
+		GFPropertiesDictFeaturesObjectAdapter adapter = new GFPropertiesDictFeaturesObjectAdapter(properties, id);
+		return new PropertiesDictFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFPostScriptXObjectFeaturesObject
+	 * Constructs new GFPostScriptXObjectFeaturesObjectAdapter
 	 *
 	 * @param id            id of the object
-	 * @return created GFPostScriptXObjectFeaturesObject
+	 * @return created GFPostScriptXObjectFeaturesObjectAdapter
 	 */
-	public static GFPostScriptXObjectFeaturesObject createPostScriptXObjectFeaturesObject(String id) {
-		return new GFPostScriptXObjectFeaturesObject(id);
+	public static PostScriptFeaturesObject createPostScriptXObjectFeaturesObject(String id) {
+		GFPostScriptXObjectFeaturesObjectAdapter adapter = new GFPostScriptXObjectFeaturesObjectAdapter(id);
+		return new PostScriptFeaturesObject(adapter);
 	}
 
 	/**
-	 * Constructs new GFSignatureFeaturesObject
+	 * Constructs new GFSignatureFeaturesObjectAdapter
 	 *
 	 * @param signature greenfield signature object
-	 * @return created GFSignatureFeaturesObject
+	 * @return created GFSignatureFeaturesObjectAdapter
 	 */
-	public static GFSignatureFeaturesObject createSignatureFeaturesObject(PDSignature signature) {
-		return new GFSignatureFeaturesObject(signature);
+	public static SignatureFeaturesObject createSignatureFeaturesObject(PDSignature signature) {
+		GFSignatureFeaturesObjectAdapter adapter = new GFSignatureFeaturesObjectAdapter(signature);
+		return new SignatureFeaturesObject(adapter);
 	}
 }

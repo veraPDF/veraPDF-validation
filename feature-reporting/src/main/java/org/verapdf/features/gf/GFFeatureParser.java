@@ -337,22 +337,6 @@ public final class GFFeatureParser {
 		return null;
 	}
 
-	private void fontCreationProblem(final String nodeID, String errorMessage) {
-		creationProblem(nodeID, errorMessage, FeatureObjectType.FONT, false);
-	}
-
-	private void patternCreationProblem(final String nodeID, String errorMessage) {
-		creationProblem(nodeID, errorMessage, FeatureObjectType.PATTERN, false);
-	}
-
-	private void colorSpaceCreationProblem(final String nodeID, String errorMessage) {
-		creationProblem(nodeID, errorMessage, FeatureObjectType.COLORSPACE, false);
-	}
-
-	private void shadingCreationProblem(final String nodeID, String errorMessage) {
-		creationProblem(nodeID, errorMessage, FeatureObjectType.SHADING, false);
-	}
-
 	private void xobjectCreationProblem(final String nodeID, String errorMessage) {
 		creationProblem(nodeID, errorMessage, FeatureObjectType.FORM_XOBJECT, false);
 	}
@@ -369,7 +353,6 @@ public final class GFFeatureParser {
 			} else {
 				String id = ErrorsHelper.addErrorIntoCollection(reporter.getCollection(), null, errorMessage);
 				reporter.getCollection().addNewError(type, id);
-
 			}
 		}
 	}
