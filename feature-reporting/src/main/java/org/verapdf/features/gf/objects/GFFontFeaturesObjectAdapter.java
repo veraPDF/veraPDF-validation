@@ -198,11 +198,9 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 
 	@Override
 	public double[] getMatrix() {
-		if (font != null && !font.empty()) {
-			if (font.getSubtype() == ASAtom.TYPE3) {
-				PDType3Font type3 = (PDType3Font) font;
-				return type3.getFontMatrix();
-			}
+		if (font != null && !font.empty() && font.getSubtype() == ASAtom.TYPE3) {
+			PDType3Font type3 = (PDType3Font) font;
+			return type3.getFontMatrix();
 		}
 		return null;
 	}
