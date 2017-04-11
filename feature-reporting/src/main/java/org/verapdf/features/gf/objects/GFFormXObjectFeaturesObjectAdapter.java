@@ -38,8 +38,6 @@ import java.util.Set;
  */
 public class GFFormXObjectFeaturesObjectAdapter implements FormXObjectFeaturesObjectAdapter {
 
-	private static final String ID = "id";
-
 	private PDXForm formXObject;
 	private String id;
 	private String groupColorSpaceChild;
@@ -126,8 +124,8 @@ public class GFFormXObjectFeaturesObjectAdapter implements FormXObjectFeaturesOb
 
 	@Override
 	public Set<String> getXObjectChild() {
-		return this.extGStateChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.extGStateChild);
+		return this.xobjectChild == null ?
+				Collections.<String>emptySet() : Collections.unmodifiableSet(this.xobjectChild);
 	}
 
 	@Override

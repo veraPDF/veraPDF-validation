@@ -189,7 +189,7 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
 
     private class GFStreamFilterAdapter implements StreamFilterAdapter{
 
-        COSObject base;
+        private COSObject base;
 
         GFStreamFilterAdapter(COSObject base) {
             this.base = base == null ? COSObject.getEmpty() : base;

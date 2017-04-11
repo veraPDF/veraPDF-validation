@@ -189,11 +189,9 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 
 	@Override
 	public double[] getBoundingBox() {
-		if (font != null && !font.empty()) {
-			if (font.getSubtype() == ASAtom.TYPE3) {
-				PDType3Font type3 = (PDType3Font) font;
-				return type3.getFontBoundingBox();
-			}
+		if (font != null && !font.empty() && font.getSubtype() == ASAtom.TYPE3) {
+			PDType3Font type3 = (PDType3Font) font;
+			return type3.getFontBoundingBox();
 		}
 		return null;
 	}

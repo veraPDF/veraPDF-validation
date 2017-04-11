@@ -45,7 +45,6 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
 
     private static final Logger LOGGER = Logger.getLogger(GFICCProfileFeaturesObjectAdapter.class.getCanonicalName());
 
-    private static final String ID = "id";
     private static final int HEADER_SIZE = 128;
     private static final int FF_FLAG = 0xFF;
     private static final int REQUIRED_LENGTH = 4;
