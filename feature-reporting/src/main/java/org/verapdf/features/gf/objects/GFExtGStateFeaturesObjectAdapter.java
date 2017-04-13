@@ -96,6 +96,11 @@ public class GFExtGStateFeaturesObjectAdapter implements ExtGStateFeaturesObject
     }
 
     @Override
+    public boolean isPDFObjectPresent() {
+        return exGState != null && !exGState.empty();
+    }
+
+    @Override
     public List<String> getErrors() {
         return Collections.emptyList();
     }

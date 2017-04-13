@@ -160,6 +160,11 @@ public class GFTilingPatternFeaturesObjectAdapter implements TilingPatternFeatur
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return tilingPattern != null && !tilingPattern.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.emptyList();
 	}

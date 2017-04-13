@@ -48,6 +48,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
         filtersAbbreviations = Collections.unmodifiableMap(filtersAbbreviationsTemp);
     }
 
+    private boolean isPresent;
     private int indirectObjectsNumber;
     private String creationId;
     private String modificationId;
@@ -64,6 +65,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     }
 
     private void init(COSDocument document) {
+        this.isPresent = document != null;
         if (document != null) {
             if (document.getObjects() != null) {
                 this.indirectObjectsNumber = document.getObjects().size();
@@ -123,6 +125,11 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     @Override
     public Set<String> getFilters() {
         return this.filters == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(this.filters);
+    }
+
+    @Override
+    public boolean isPDFObjectPresent() {
+        return this.isPresent;
     }
 
     @Override

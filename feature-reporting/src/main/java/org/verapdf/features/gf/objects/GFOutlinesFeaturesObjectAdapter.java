@@ -78,6 +78,11 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return outline != null && !outline.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.emptyList();
 	}

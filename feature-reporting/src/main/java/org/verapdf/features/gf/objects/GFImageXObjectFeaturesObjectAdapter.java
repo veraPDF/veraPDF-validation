@@ -183,6 +183,11 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
     }
 
     @Override
+    public boolean isPDFObjectPresent() {
+        return imageXObject != null && !imageXObject.empty();
+    }
+
+    @Override
     public List<String> getErrors() {
         return Collections.emptyList();
     }

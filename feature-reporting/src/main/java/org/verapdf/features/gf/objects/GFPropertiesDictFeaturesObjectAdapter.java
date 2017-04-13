@@ -32,6 +32,7 @@ import java.util.List;
  */
 public class GFPropertiesDictFeaturesObjectAdapter implements PropertiesDictFeaturesObjectAdapter {
 
+    private boolean isPresent;
     private String type;
     private String id;
 
@@ -43,6 +44,7 @@ public class GFPropertiesDictFeaturesObjectAdapter implements PropertiesDictFeat
      */
     public GFPropertiesDictFeaturesObjectAdapter(COSObject properties, String id) {
         this.id = id;
+        this.isPresent = properties != null && !properties.empty();
         if (properties != null && !properties.empty()) {
             ASAtom astype = properties.getNameKey(ASAtom.TYPE);
             if (astype != null) {
@@ -59,6 +61,11 @@ public class GFPropertiesDictFeaturesObjectAdapter implements PropertiesDictFeat
     @Override
     public String getID() {
         return id;
+    }
+
+    @Override
+    public boolean isPDFObjectPresent() {
+        return false;
     }
 
     @Override

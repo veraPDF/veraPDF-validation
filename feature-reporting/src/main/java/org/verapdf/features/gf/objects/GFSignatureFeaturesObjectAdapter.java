@@ -125,6 +125,11 @@ public class GFSignatureFeaturesObjectAdapter implements SignatureFeaturesObject
     }
 
     @Override
+    public boolean isPDFObjectPresent() {
+        return signature != null && !signature.empty();
+    }
+
+    @Override
     public List<String> getErrors() {
         return Collections.emptyList();
     }

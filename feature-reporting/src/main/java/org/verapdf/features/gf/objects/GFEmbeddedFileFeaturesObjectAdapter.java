@@ -175,6 +175,11 @@ public class GFEmbeddedFileFeaturesObjectAdapter implements EmbeddedFileFeatures
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return embFile != null && !embFile.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.emptyList();
 	}

@@ -281,6 +281,11 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return font != null && !font.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.emptyList();
 	}
