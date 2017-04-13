@@ -65,7 +65,7 @@ public class GFPropertiesDictFeaturesObjectAdapter implements PropertiesDictFeat
 
     @Override
     public boolean isPDFObjectPresent() {
-        return false;
+        return isPresent;
     }
 
     @Override
