@@ -54,6 +54,11 @@ public class GFMetadataFeaturesObjectAdapter implements MetadataFeaturesObjectAd
     }
 
     @Override
+    public boolean isPDFObjectPresent() {
+        return this.metadata != null && !metadata.empty();
+    }
+
+    @Override
     public List<String> getErrors() {
         return Collections.emptyList();
     }

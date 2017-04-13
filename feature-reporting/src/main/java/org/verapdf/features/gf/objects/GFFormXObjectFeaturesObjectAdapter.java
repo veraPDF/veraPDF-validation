@@ -204,6 +204,11 @@ public class GFFormXObjectFeaturesObjectAdapter implements FormXObjectFeaturesOb
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return formXObject != null && !formXObject.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.emptyList();
 	}

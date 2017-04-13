@@ -252,6 +252,11 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return colorSpace != null && !colorSpace.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return this.errors == null ? Collections.<String>emptyList() : Collections.unmodifiableList(this.errors);
 	}

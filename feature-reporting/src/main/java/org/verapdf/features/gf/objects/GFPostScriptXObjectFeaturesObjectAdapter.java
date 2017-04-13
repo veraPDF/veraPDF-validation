@@ -49,6 +49,11 @@ public class GFPostScriptXObjectFeaturesObjectAdapter implements PostScriptFeatu
     }
 
     @Override
+    public boolean isPDFObjectPresent() {
+        return true;
+    }
+
+    @Override
     public List<String> getErrors() {
         return Collections.emptyList();
     }

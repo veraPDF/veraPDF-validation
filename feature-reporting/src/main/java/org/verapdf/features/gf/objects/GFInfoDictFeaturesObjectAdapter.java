@@ -118,6 +118,11 @@ public class GFInfoDictFeaturesObjectAdapter implements InfoDictFeaturesObjectAd
     }
 
     @Override
+    public boolean isPDFObjectPresent() {
+        return info != null && !info.empty();
+    }
+
+    @Override
     public List<String> getErrors() {
         return Collections.emptyList();
     }

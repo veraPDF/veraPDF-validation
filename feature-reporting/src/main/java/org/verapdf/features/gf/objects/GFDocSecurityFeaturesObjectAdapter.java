@@ -175,6 +175,11 @@ public class GFDocSecurityFeaturesObjectAdapter implements DocSecurityFeaturesOb
     }
 
     @Override
+    public boolean isPDFObjectPresent() {
+        return encryption != null && !encryption.empty();
+    }
+
+    @Override
     public List<String> getErrors() {
         return Collections.emptyList();
     }

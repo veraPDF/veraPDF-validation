@@ -152,6 +152,11 @@ public class GFAnnotationFeaturesObjectAdapter implements AnnotationFeaturesObje
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return annot != null && !annot.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.<String>emptyList();
 	}

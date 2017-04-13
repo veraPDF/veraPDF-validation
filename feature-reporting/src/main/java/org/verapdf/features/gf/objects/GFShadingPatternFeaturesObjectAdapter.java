@@ -77,6 +77,11 @@ public class GFShadingPatternFeaturesObjectAdapter implements ShadingPatternFeat
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return shadingPattern != null && !shadingPattern.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.emptyList();
 	}

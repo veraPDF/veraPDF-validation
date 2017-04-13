@@ -179,6 +179,11 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
     }
 
     @Override
+    public boolean isPDFObjectPresent() {
+        return profile != null && !profile.empty();
+    }
+
+    @Override
     public List<String> getErrors() {
         return errors == null ? Collections.<String>emptyList() : Collections.unmodifiableList(errors);
     }
@@ -219,6 +224,14 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
             if (profileRange != null) {
                 for (double value : profileRange) {
                     range.add(value);
+                }
+            } else {
+                Integer n = getN();
+                if (n != null) {
+                    for (int i = 0; i < n.intValue(); ++i) {
+                        range.add(Double.valueOf(0.));
+                        range.add(Double.valueOf(1.));
+                    }
                 }
             }
             return Collections.unmodifiableList(range);

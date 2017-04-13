@@ -205,6 +205,11 @@ public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return page != null && !page.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.emptyList();
 	}

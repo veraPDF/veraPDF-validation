@@ -93,6 +93,11 @@ public class GFOutputIntentsFeaturesObjectAdapter implements OutputIntentFeature
 	}
 
 	@Override
+	public boolean isPDFObjectPresent() {
+		return outInt != null && !outInt.empty();
+	}
+
+	@Override
 	public List<String> getErrors() {
 		return Collections.emptyList();
 	}
