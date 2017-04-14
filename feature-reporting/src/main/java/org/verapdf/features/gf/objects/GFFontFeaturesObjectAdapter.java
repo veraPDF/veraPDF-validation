@@ -32,7 +32,6 @@ import org.verapdf.pd.font.PDFontDescriptor;
 import org.verapdf.pd.font.PDType3Font;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -153,24 +152,6 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 			return font.getLastChar();
 		}
 		return null;
-	}
-
-	@Override
-	public List<Long> getWidth() {
-		if (font != null && !font.empty()) {
-			COSObject widths = font.getWidths();
-			if (widths != null && widths.getType() == COSObjType.COS_ARRAY) {
-				List<Long> res = new ArrayList<>(widths.size());
-				for (int i = 0; i < widths.size(); ++i) {
-					COSObject arElement = widths.at(i);
-					if (arElement.getType().isNumber()) {
-						res.add(arElement.getInteger());
-					}
-				}
-				return Collections.unmodifiableList(res);
-			}
-		}
-		return Collections.emptyList();
 	}
 
 	@Override
