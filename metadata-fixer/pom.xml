@@ -28,10 +28,13 @@
     <parent>
         <artifactId>validation</artifactId>
         <groupId>org.verapdf</groupId>
-        <version>1.3.0</version>
+        <version>1.4.0</version>
     </parent>
 
     <artifactId>metadata-fixer</artifactId>
+
+    <name>veraPDF Metadata Fixer</name>
+    <description>veraPDF PDF/A metadata fixer implementation based on PDF parser.</description>
 
     <dependencies>
         <dependency>
