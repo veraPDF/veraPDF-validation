@@ -62,7 +62,7 @@ public class TaggedPDFRoleMapHelper {
 		//Standart structure types for list elements PDF 1.4 and PDF 1.7
 		tempSet.add("L");
 		tempSet.add("LI");
-		tempSet.add("LbI");
+		tempSet.add("Lbl");
 		tempSet.add("LBody");
 
 		//Standart structure types for table elements PDF 1.4 and PDF 1.7
