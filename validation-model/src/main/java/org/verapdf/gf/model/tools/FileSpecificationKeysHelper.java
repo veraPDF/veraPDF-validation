@@ -32,6 +32,8 @@ import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.patterns.PDShadingPattern;
 import org.verapdf.pd.patterns.PDTilingPattern;
+import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.pd.structure.PDStructTreeNode;
 
 import java.io.IOException;
 import java.util.ArrayList;

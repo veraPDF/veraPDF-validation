@@ -47,7 +47,7 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	 *
 	 * @param treeRoot structure tree root implementation
 	 */
-	public GFPDStructTreeRoot(org.verapdf.pd.PDStructTreeRoot treeRoot) {
+	public GFPDStructTreeRoot(org.verapdf.pd.structure.PDStructTreeRoot treeRoot) {
 		super(treeRoot, STRUCT_TREE_ROOT_TYPE);
 		StaticContainers.setRoleMapHelper(treeRoot.getRoleMap());
 	}
@@ -68,10 +68,10 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	}
 
 	private List<PDStructElem> parseChildren() {
-		List<org.verapdf.pd.PDStructElem> elements = ((org.verapdf.pd.PDStructTreeRoot) simplePDObject).getChildren();
+		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getChildren();
 		if (!elements.isEmpty()) {
 			List<PDStructElem> res = new ArrayList<>(elements.size());
-			for (org.verapdf.pd.PDStructElem element : elements) {
+			for (org.verapdf.pd.structure.PDStructElem element : elements) {
 				res.add(new GFPDStructElem(element));
 			}
 			return Collections.unmodifiableList(res);
