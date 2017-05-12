@@ -76,6 +76,12 @@ public class FileSpecificationKeysHelper {
 		visitedKeys.clear();
 	}
 
+	public static void registerFileSpecificationKeys(COSArray array) {
+		for (COSObject element : array) {
+			addElementKey(element);
+		}
+	}
+
 	private static void processStructElements(PDStructTreeNode structureNode) {
 		if (structureNode != null) {
 			for (PDStructElem obj : structureNode.getChildren()) {
@@ -150,9 +156,7 @@ public class FileSpecificationKeysHelper {
 		}
 		COSObject af = dictionary.getKey(ASAtom.AF);
 		if (af != null && af.getType() == COSObjType.COS_ARRAY) {
-			for (COSObject element : (COSArray) af.getDirectBase()) {
-				addElementKey(element);
-			}
+			registerFileSpecificationKeys((COSArray) af.getDirectBase());
 		}
 	}
 
