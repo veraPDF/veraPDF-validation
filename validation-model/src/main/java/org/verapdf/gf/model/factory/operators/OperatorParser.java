@@ -25,6 +25,7 @@ package org.verapdf.gf.model.factory.operators;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
+import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.color.GFOpColor;
 import org.verapdf.gf.model.impl.operator.color.GFOpSetColor;
