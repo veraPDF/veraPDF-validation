@@ -32,6 +32,8 @@ import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.patterns.PDShadingPattern;
 import org.verapdf.pd.patterns.PDTilingPattern;
+import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.pd.structure.PDStructTreeNode;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,9 +76,15 @@ public class FileSpecificationKeysHelper {
 		visitedKeys.clear();
 	}
 
-	private static void processStructElements(org.verapdf.pd.structure.PDStructTreeNode structureNode) {
+	public static void registerFileSpecificationKeys(COSArray array) {
+		for (COSObject element : array) {
+			addElementKey(element);
+		}
+	}
+
+	private static void processStructElements(PDStructTreeNode structureNode) {
 		if (structureNode != null) {
-			for (org.verapdf.pd.structure.PDStructElem obj : structureNode.getChildren()) {
+			for (PDStructElem obj : structureNode.getChildren()) {
 				registerDictionaryAFKeys(obj.getObject());
 				processStructElements(obj);
 			}
@@ -148,9 +156,7 @@ public class FileSpecificationKeysHelper {
 		}
 		COSObject af = dictionary.getKey(ASAtom.AF);
 		if (af != null && af.getType() == COSObjType.COS_ARRAY) {
-			for (COSObject element : (COSArray) af.getDirectBase()) {
-				addElementKey(element);
-			}
+			registerFileSpecificationKeys((COSArray) af.getDirectBase());
 		}
 	}
 
