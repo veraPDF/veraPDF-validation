@@ -263,7 +263,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     private List<PDStructTreeRoot> getStructureTreeRoot() {
         try {
-            org.verapdf.pd.PDStructTreeRoot root = document.getStructTreeRoot();
+            org.verapdf.pd.structure.PDStructTreeRoot root = document.getStructTreeRoot();
             if (root != null) {
                 List<PDStructTreeRoot> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
                 res.add(new GFPDStructTreeRoot(root));

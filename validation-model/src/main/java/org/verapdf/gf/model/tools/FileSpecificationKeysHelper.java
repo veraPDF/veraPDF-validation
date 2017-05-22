@@ -74,9 +74,9 @@ public class FileSpecificationKeysHelper {
 		visitedKeys.clear();
 	}
 
-	private static void processStructElements(PDStructTreeNode structureNode) {
+	private static void processStructElements(org.verapdf.pd.structure.PDStructTreeNode structureNode) {
 		if (structureNode != null) {
-			for (PDStructElem obj : structureNode.getChildren()) {
+			for (org.verapdf.pd.structure.PDStructElem obj : structureNode.getChildren()) {
 				registerDictionaryAFKeys(obj.getObject());
 				processStructElements(obj);
 			}
