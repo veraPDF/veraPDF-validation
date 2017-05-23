@@ -81,7 +81,7 @@ public class MetadataImpl implements Metadata {
             MetadataFixerResultImpl.Builder resultBuilder,
             PDFAFlavour flavour) {
         PDFAFlavour.Specification part = flavour.getPart();
-        if (part == PDFAFlavour.Specification.ISO_19005_2 || part == PDFAFlavour.Specification.ISO_19005_3) {
+        if (part != PDFAFlavour.Specification.ISO_19005_1) {
             COSFilters filters = ((COSStream) this.stream.getDirectBase()).getFilters();
             if (filters.size() == 1 && filters.getFilters().get(0) == ASAtom.FLATE_DECODE) {
                 return;

@@ -133,7 +133,9 @@ class OperatorParser {
 				processedOperators.add(new GFOp_BMC(arguments));
 				break;
 			case Operators.BDC:
-				if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_3) {
+				PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
+				if (specification == PDFAFlavour.Specification.ISO_19005_3
+						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 					checkAFKey(arguments, resourcesHandler);
 				}
 				processedOperators.add(new GFOp_BDC(arguments));
