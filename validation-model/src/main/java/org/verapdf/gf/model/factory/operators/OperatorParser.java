@@ -25,8 +25,10 @@ package org.verapdf.gf.model.factory.operators;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
+import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.color.GFOpColor;
+import org.verapdf.gf.model.impl.operator.color.GFOpSetColor;
 import org.verapdf.gf.model.impl.operator.generalgs.*;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_BI;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
@@ -160,62 +162,62 @@ class OperatorParser {
 			case Operators.G_STROKE: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
 						ASAtom.DEVICEGRAY, true);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.G_FILL: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
 						ASAtom.DEVICEGRAY, false);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.RG_STROKE: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
 						ASAtom.DEVICERGB, true);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.RG_FILL: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
 						ASAtom.DEVICERGB, false);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.K_STROKE: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
 						ASAtom.DEVICECMYK, true);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.K_FILL: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
 						ASAtom.DEVICECMYK, false);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.CS_STROKE:
 				this.graphicState.setStrokeColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments)));
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			case Operators.CS_FILL:
 				this.graphicState.setFillColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments)));
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			case Operators.SCN_STROKE:
 				processPatternColorSpace(arguments, this.graphicState, resourcesHandler,
 										this.graphicState.getStrokeColorSpace(), true);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			case Operators.SCN_FILL:
 				processPatternColorSpace(arguments, this.graphicState, resourcesHandler,
 						this.graphicState.getFillColorSpace(), false);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			case Operators.SC_STROKE:
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(new GFOpSetColor(arguments));
 				break;
 			case Operators.SC_FILL:
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(new GFOpSetColor(arguments));
 				break;
 
 			// TEXT OBJECT
@@ -420,6 +422,22 @@ class OperatorParser {
 				processedOperators.add(new GFOp_Undefined(arguments));
 				break;
 		}
+	}
+
+	private static GFOpColor getStrokeColorOperator(List<COSBase> arguments,
+													PDResourcesHandler resourcesHandler,
+													GraphicState graphicState) {
+		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+				graphicState.getStrokeColorSpace(), resourcesHandler);
+		return new GFOpColor(arguments, colorSpace);
+	}
+
+	private static GFOpColor getFillColorOperator(List<COSBase> arguments,
+													PDResourcesHandler resourcesHandler,
+													GraphicState graphicState) {
+		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+				graphicState.getFillColorSpace(), resourcesHandler);
+		return new GFOpColor(arguments, colorSpace);
 	}
 
 	private static void processExtGState(List<org.verapdf.model.operator.Operator> processedOperators, List<COSBase> arguments,
