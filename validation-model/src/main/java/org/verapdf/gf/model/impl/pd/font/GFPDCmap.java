@@ -28,6 +28,7 @@ import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.external.CMapFile;
 import org.verapdf.model.pdlayer.PDCMap;
+import org.verapdf.model.pdlayer.PDReferencedCMap;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,6 +47,10 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
 
     public GFPDCmap(org.verapdf.pd.font.cmap.PDCMap pdcMap) {
         super(pdcMap, CMAP_TYPE);
+    }
+
+    public GFPDCmap(org.verapdf.pd.font.cmap.PDCMap pdcMap, String type) {
+        super(pdcMap, type);
     }
 
     /**
@@ -83,13 +88,13 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
     /**
      * @return link to the CMap referenced by the key /UseCMap.
      */
-    private List<PDCMap> getUseCMap() {
+    private List<PDReferencedCMap> getUseCMap() {
         COSObject useCMap = this.pdcMap.getUseCMap();
         if (useCMap.empty()) {
             return Collections.emptyList();
         }
-        List<PDCMap> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-        list.add(new GFPDCmap(new org.verapdf.pd.font.cmap.PDCMap(useCMap)));
+        List<PDReferencedCMap> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+        list.add(new GFPDReferencedCMap(new org.verapdf.pd.font.cmap.PDCMap(useCMap)));
         return Collections.unmodifiableList(list);
     }
 }
