@@ -74,9 +74,9 @@
   </modules>
 
   <properties>
-    <verapdf.parser.version>[1.5.0,1.6.0)</verapdf.parser.version>
-    <verapdf.pdfmodel.version>[1.5.0,1.6.0)</verapdf.pdfmodel.version>
-    <verapdf.library.version>[1.5.0,1.6.0)</verapdf.library.version>
+    <verapdf.parser.version>1.5.0-SNAPSHOT</verapdf.parser.version>
+    <verapdf.pdfmodel.version>1.5.0-SNAPSHOT</verapdf.pdfmodel.version>
+    <verapdf.library.version>1.5.0-SNAPSHOT</verapdf.library.version>
     <verapdf.xmp.version>[0.12.0,0.13.0)</verapdf.xmp.version>
   </properties>
 
