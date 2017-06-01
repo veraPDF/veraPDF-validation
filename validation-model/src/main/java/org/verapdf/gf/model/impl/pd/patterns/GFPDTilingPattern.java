@@ -75,9 +75,11 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 		return this.containsTransparency;
 	}
 
+	//TODO: check if isIsolated should be always false
 	private void parseContentStream() {
 		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		GFPDContentStream contentStream = new GFPDContentStream((org.verapdf.pd.PDContentStream) this.simplePDObject, this.resourcesHandler);
+		GFPDContentStream contentStream = new GFPDContentStream((org.verapdf.pd.PDContentStream) this.simplePDObject,
+				this.resourcesHandler, false);
 		this.containsTransparency |= contentStream.isContainsTransparency();
 		contentStreams.add(contentStream);
 		this.contentStreams = contentStreams;

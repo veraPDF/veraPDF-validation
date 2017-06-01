@@ -281,10 +281,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		}
 	}
 
+	//TODO: check if isIsolated should be always false
 	private void addAppearance(List<PDContentStream> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
-			GFPDContentStream stream = new GFPDContentStream(toAdd, resources);
+			GFPDContentStream stream = new GFPDContentStream(toAdd, resources, false);
 			this.containsTransparency |= stream.isContainsTransparency();
 			PDGroup group = toAdd.getGroup();
 			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());

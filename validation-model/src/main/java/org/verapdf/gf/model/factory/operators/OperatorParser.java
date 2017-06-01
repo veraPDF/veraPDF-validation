@@ -82,12 +82,14 @@ import java.util.List;
 class OperatorParser {
 
 	private final Deque<GraphicState> graphicStateStack = new ArrayDeque<>();
-	private GraphicState graphicState = new GraphicState();
+	private GraphicState graphicState;
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
 	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 
-	OperatorParser() {
+
+	OperatorParser(boolean isIsolatedContentStream) {
+		this.graphicState = new GraphicState(isIsolatedContentStream);
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {

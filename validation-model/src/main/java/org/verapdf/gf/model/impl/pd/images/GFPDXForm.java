@@ -128,10 +128,11 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		}
 	}
 
+	//TODO: check if isIsolated should be always false
 	private void parseContentStream() {
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		GFPDContentStream gfContentStream = new GFPDContentStream(
-				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler);
+				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler, false);
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		streams.add(gfContentStream);
 		this.contentStreams = streams;
