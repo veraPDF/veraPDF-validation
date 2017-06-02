@@ -104,7 +104,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                     PDResourcesHandler glyphResources = getResourcesFromCharProcs(charProcStream);
                     GFPDContentStream contentStream =
                             new GFPDContentStream(charProc, glyphResources == null ?
-                                    this.resources : glyphResources, true);
+                                    this.resources : glyphResources, false);
                     map.put(glyphName.getValue(), contentStream);
                 } else {
                     LOGGER.log(Level.FINE, "Invalid entry in the char proc dictionary.");

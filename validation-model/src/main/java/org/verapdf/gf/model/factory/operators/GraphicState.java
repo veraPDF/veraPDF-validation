@@ -41,7 +41,7 @@ public class GraphicState implements Cloneable {
 
 	public GraphicState(boolean isIsolatedContentStream) {
 		this.isIsolatedContentStream = isIsolatedContentStream;
-	    if (!isIsolatedContentStream) {
+	    if (isIsolatedContentStream) {
             fillColorSpace = PDDeviceGray.INSTANCE;
             strokeColorSpace = PDDeviceGray.INSTANCE;
         } else {
