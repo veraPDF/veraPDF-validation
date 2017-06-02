@@ -20,22 +20,15 @@
  */
 package org.verapdf.gf.model.factory.operators;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.gf.model.tools.TransparencyBehaviour;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.Operator;
+
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class for converting raw operators to the veraPDF-library operators
@@ -102,11 +95,11 @@ public final class OperatorFactory {
 	}
 
 	public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens,
-			PDResourcesHandler resourcesHandler) {
+			PDResourcesHandler resourcesHandler, boolean isIsolatedContentStream) {
 		List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
 		List<COSBase> arguments = new ArrayList<>();
 		this.isLastParsedContainsTransparency = false;
-		OperatorParser parser = new OperatorParser();
+		OperatorParser parser = new OperatorParser(isIsolatedContentStream);
 
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {
