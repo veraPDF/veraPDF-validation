@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.util;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObject;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.PDResources;
@@ -207,6 +208,28 @@ public class PDResourcesHandler {
 			setInherited(state, inheritedResources);
 		}
 		return state;
+	}
+
+	public PDResource getProperties(COSName name) {
+		if (name != null) {
+			return getProperties(name.getName());
+		}
+		return null;
+	}
+
+	public PDResource getProperties(ASAtom name) {
+		PDResource res;
+		if (this.objectResources != null) {
+			res = this.objectResources.getProperties(name);
+			if (res == null) {
+				res = this.pageResources.getProperties(name);
+				setInherited(res, true);
+			}
+		} else {
+			res = this.pageResources.getProperties(name);
+			setInherited(res, inheritedResources);
+		}
+		return res;
 	}
 
 	public PDColorSpace setColorSpaceInherited(PDColorSpace colorSpace, boolean isInherited) {

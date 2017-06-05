@@ -24,10 +24,11 @@
 package org.verapdf.gf.model.factory.operators;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSBase;
-import org.verapdf.cos.COSInteger;
-import org.verapdf.cos.COSName;
+import org.verapdf.cos.*;
+import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.color.GFOpColor;
+import org.verapdf.gf.model.impl.operator.color.GFOpSetColor;
 import org.verapdf.gf.model.impl.operator.generalgs.*;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_BI;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
@@ -58,14 +59,17 @@ import org.verapdf.gf.model.impl.pd.colors.GFPDColorSpace;
 import org.verapdf.gf.model.impl.pd.font.GFPDFont;
 import org.verapdf.gf.model.impl.pd.images.GFPDXObject;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.gf.model.tools.FileSpecificationKeysHelper;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.InlineImageOperator;
 import org.verapdf.operator.Operator;
 import org.verapdf.pd.PDExtGState;
+import org.verapdf.pd.PDResource;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -78,12 +82,14 @@ import java.util.List;
 class OperatorParser {
 
 	private final Deque<GraphicState> graphicStateStack = new ArrayDeque<>();
-	private GraphicState graphicState = new GraphicState();
+	private GraphicState graphicState;
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
 	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 
-	OperatorParser() {
+
+	OperatorParser(boolean isIsolatedContentStream) {
+		this.graphicState = new GraphicState(isIsolatedContentStream);
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -131,6 +137,9 @@ class OperatorParser {
 				processedOperators.add(new GFOp_BMC(arguments));
 				break;
 			case Operators.BDC:
+				if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_3) {
+					checkAFKey(arguments, resourcesHandler);
+				}
 				processedOperators.add(new GFOp_BDC(arguments));
 				break;
 			case Operators.EMC:
@@ -155,62 +164,62 @@ class OperatorParser {
 			case Operators.G_STROKE: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
 						ASAtom.DEVICEGRAY, true);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.G_FILL: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
 						ASAtom.DEVICEGRAY, false);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.RG_STROKE: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
 						ASAtom.DEVICERGB, true);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.RG_FILL: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
 						ASAtom.DEVICERGB, false);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.K_STROKE: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
 						ASAtom.DEVICECMYK, true);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.K_FILL: {
 				processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
 						ASAtom.DEVICECMYK, false);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			}
 			case Operators.CS_STROKE:
 				this.graphicState.setStrokeColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments)));
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			case Operators.CS_FILL:
 				this.graphicState.setFillColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments)));
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			case Operators.SCN_STROKE:
 				processPatternColorSpace(arguments, this.graphicState, resourcesHandler,
 										this.graphicState.getStrokeColorSpace(), true);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			case Operators.SCN_FILL:
 				processPatternColorSpace(arguments, this.graphicState, resourcesHandler,
 						this.graphicState.getFillColorSpace(), false);
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
 				break;
 			case Operators.SC_STROKE:
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(new GFOpSetColor(arguments));
 				break;
 			case Operators.SC_FILL:
-				processedOperators.add(new GFOpColor(arguments));
+				processedOperators.add(new GFOpSetColor(arguments));
 				break;
 
 			// TEXT OBJECT
@@ -417,6 +426,22 @@ class OperatorParser {
 		}
 	}
 
+	private static GFOpColor getStrokeColorOperator(List<COSBase> arguments,
+													PDResourcesHandler resourcesHandler,
+													GraphicState graphicState) {
+		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+				graphicState.getStrokeColorSpace(), resourcesHandler);
+		return new GFOpColor(arguments, colorSpace);
+	}
+
+	private static GFOpColor getFillColorOperator(List<COSBase> arguments,
+													PDResourcesHandler resourcesHandler,
+													GraphicState graphicState) {
+		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+				graphicState.getFillColorSpace(), resourcesHandler);
+		return new GFOpColor(arguments, colorSpace);
+	}
+
 	private static void processExtGState(List<org.verapdf.model.operator.Operator> processedOperators, List<COSBase> arguments,
 										 PDResourcesHandler resourcesHandler, GraphicState graphicState,
 										 TransparencyGraphicsState transparencyGraphicsState) {
@@ -503,5 +528,33 @@ class OperatorParser {
 		transparencyGraphicsState.setVeraFillColorSpace(fillCS);
 		GFPDColorSpace strokeCS = (GFPDColorSpace) op.getVeraStrokeCS();
 		transparencyGraphicsState.setVeraStrokeColorSpace(strokeCS);
+	}
+
+	private static void checkAFKey(List<COSBase> arguments, PDResourcesHandler resourcesHandler) {
+		int argumentsSize = arguments.size();
+		if (argumentsSize > 1) {
+			COSBase tag = arguments.get(argumentsSize - 2);
+			COSBase propKey = arguments.get(argumentsSize - 1);
+			if (isMarkedContentAFKeyAndValueTypeCorrect(tag, propKey)) {
+				PDResource properties = resourcesHandler.getProperties(propKey.getName());
+				if (properties != null) {
+					COSObject cosProperties = properties.getObject();
+					if (cosProperties != null && cosProperties.getType() == COSObjType.COS_ARRAY) {
+						FileSpecificationKeysHelper.registerFileSpecificationKeys((COSArray) cosProperties.getDirectBase());
+					}
+				}
+			}
+		}
+	}
+
+	private static boolean isMarkedContentAFKeyAndValueTypeCorrect(COSBase tag, COSBase propKey) {
+		if (tag == null || propKey == null) {
+			return false;
+		} else if (tag.getType() != COSObjType.COS_NAME || propKey.getType() != COSObjType.COS_NAME) {
+			return false;
+		} else if (ASAtom.AF != tag.getName()) {
+			return false;
+		}
+		return true;
 	}
 }

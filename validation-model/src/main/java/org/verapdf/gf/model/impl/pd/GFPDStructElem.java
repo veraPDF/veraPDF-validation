@@ -30,6 +30,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
+import org.verapdf.pd.structure.StructureType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,7 +63,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	 *
 	 * @param structElemDictionary dictionary of structure element
 	 */
-	public GFPDStructElem(org.verapdf.pd.PDStructElem structElemDictionary) {
+	public GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
 		super(structElemDictionary, STRUCTURE_ELEMENT_TYPE);
 	}
 
@@ -71,15 +72,15 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	 */
 	@Override
 	public String getType() {
-		ASAtom type = ((org.verapdf.pd.PDStructElem) simplePDObject).getType();
+		ASAtom type = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getType();
 		return type == null ? null : type.getValue();
 	}
 
 	@Override
 	public String getstandardType() {
-		ASAtom type = ((org.verapdf.pd.PDStructElem) simplePDObject).getStructureType();
+		StructureType type = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructureType();
 		if (type != null) {
-			return StaticContainers.getRoleMapHelper().getStandartType(type);
+			return StaticContainers.getRoleMapHelper().getStandartType(type.getType());
 		}
 		return null;
 	}
@@ -99,10 +100,10 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	private List<PDStructElem> getChildren() {
-		List<org.verapdf.pd.PDStructElem> elements = ((org.verapdf.pd.PDStructElem) simplePDObject).getChildren();
+		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getChildren();
 		if (!elements.isEmpty()) {
 			List<PDStructElem> res = new ArrayList<>(elements.size());
-			for (org.verapdf.pd.PDStructElem element : elements) {
+			for (org.verapdf.pd.structure.PDStructElem element : elements) {
 				res.add(new GFPDStructElem(element));
 			}
 			return Collections.unmodifiableList(res);
@@ -111,7 +112,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	private List<CosUnicodeName> getStructureType() {
-		COSName type = ((org.verapdf.pd.PDStructElem) this.simplePDObject).getCOSStructureType();
+		COSName type = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getCOSStructureType();
 		if (type != null) {
 			List<CosUnicodeName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosUnicodeName(type));
@@ -121,7 +122,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	private List<CosLang> getLang() {
-		COSString baseLang = ((org.verapdf.pd.PDStructElem) this.simplePDObject).getLang();
+		COSString baseLang = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getLang();
 		if (baseLang != null) {
 			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosLang(baseLang));

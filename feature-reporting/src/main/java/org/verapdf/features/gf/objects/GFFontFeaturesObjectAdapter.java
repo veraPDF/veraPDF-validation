@@ -440,7 +440,7 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 
 		@Override
 		public InputStream getData() {
-			return file == null || metadata.empty() ? null : file.getData(COSStream.FilterFlags.DECODE);
+			return file == null ? null : file.getData(COSStream.FilterFlags.DECODE);
 		}
 	}
 }

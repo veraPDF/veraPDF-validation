@@ -53,10 +53,13 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	private List<Operator> operators = null;
 	private boolean containsTransparency = false;
+	private boolean isIsolated;
 
-	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler) {
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
+							 PDResourcesHandler resourcesHandler, boolean isIsolated) {
 		super(contentStream, CONTENT_STREAM_TYPE);
 		this.resourcesHandler = resourcesHandler;
+		this.isIsolated = isIsolated;
 	}
 
 	@Override
@@ -86,7 +89,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 						try {
 							streamParser.parseTokens();
 							OperatorFactory operatorFactory = new OperatorFactory();
-							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(), resourcesHandler);
+							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(),
+									resourcesHandler, isIsolated);
 							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 							this.operators = Collections.unmodifiableList(result);
 						} finally {
