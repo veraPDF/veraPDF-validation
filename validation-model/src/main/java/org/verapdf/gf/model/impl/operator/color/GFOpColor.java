@@ -22,8 +22,12 @@ package org.verapdf.gf.model.impl.operator.color;
 
 import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.OpColor;
+import org.verapdf.model.pdlayer.PDColorSpace;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,9 +37,31 @@ public class GFOpColor extends GFOperator implements OpColor {
 
 	/** Type name for {@code GFOpColor} */
     public static final String OP_COLOR_TYPE = "OpColor";
+    public static final String COLOR_SPACE = "colorSpace";
 
-    public GFOpColor(List<COSBase> arguments) {
+    private PDColorSpace colorSpace;
+
+    public GFOpColor(List<COSBase> arguments, PDColorSpace colorSpace) {
         super(arguments, OP_COLOR_TYPE);
+        this.colorSpace = colorSpace;
     }
 
+    @Override
+    public List<? extends Object> getLinkedObjects(String link) {
+        switch (link) {
+            case COLOR_SPACE:
+                return getColorSpace();
+            default:
+                return super.getLinkedObjects(link);
+        }
+    }
+
+    private List<PDColorSpace> getColorSpace() {
+        if (this.colorSpace != null) {
+            List<PDColorSpace> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            res.add(colorSpace);
+            return Collections.unmodifiableList(res);
+        }
+        return Collections.emptyList();
+    }
 }

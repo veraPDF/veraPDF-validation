@@ -40,7 +40,7 @@ public class GFCosFilter extends GFCosName implements CosFilter {
 
     public GFCosFilter(final COSName filterName, final COSDictionary decodeParms) {
         super(filterName, COS_FILTER_TYPE);
-        if (filterName.equals(COSName.construct(ASAtom.CRYPT))) {
+        if (filterName.getName() == ASAtom.CRYPT) {
             if (decodeParms == null) {
                 this.decodeParms = IDENTITY;
             } else {

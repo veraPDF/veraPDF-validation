@@ -36,9 +36,18 @@ public class GraphicState implements Cloneable {
 	private COSName fontName;
 	private boolean overprintingFlagStroke = false;
 	private boolean overprintingFlagNonStroke = false;
+	private boolean isIsolatedContentStream;
 	private int opm = 0;
 
-	public GraphicState() {
+	public GraphicState(boolean isIsolatedContentStream) {
+		this.isIsolatedContentStream = isIsolatedContentStream;
+	    if (isIsolatedContentStream) {
+            fillColorSpace = PDDeviceGray.INSTANCE;
+            strokeColorSpace = PDDeviceGray.INSTANCE;
+        } else {
+	        fillColorSpace = null;
+	        strokeColorSpace = null;
+        }
 	}
 
 	public PDColorSpace getFillColorSpace() {
@@ -127,7 +136,7 @@ public class GraphicState implements Cloneable {
 
 	@Override
 	protected GraphicState clone() {
-		GraphicState clone = new GraphicState();
+		GraphicState clone = new GraphicState(this.isIsolatedContentStream);
 		clone.fillColorSpace = this.fillColorSpace;
 		clone.strokeColorSpace = this.strokeColorSpace;
 		clone.renderingMode = this.renderingMode;
