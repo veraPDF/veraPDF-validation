@@ -171,7 +171,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 							widthsConsistent = GFOpTextShow.checkWidths(code, font, fontProgram);
 						}
 						GFGlyph glyph;
-						if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2) {
+						if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
+								font.getSubtype() == ASAtom.TYPE0) {
 							int CID = ((PDType0Font) font).toCID(code);
 							glyph = new GFCIDGlyph(glyphPresent, widthsConsistent, font, code, CID,
 									this.renderingMode.getValue());
