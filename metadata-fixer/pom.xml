@@ -28,7 +28,7 @@
     <parent>
         <artifactId>validation</artifactId>
         <groupId>org.verapdf</groupId>
-        <version>1.6.0</version>
+        <version>1.7.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>metadata-fixer</artifactId>
