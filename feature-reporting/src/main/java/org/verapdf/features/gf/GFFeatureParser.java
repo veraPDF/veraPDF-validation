@@ -202,7 +202,7 @@ public final class GFFeatureParser {
 
 	private void reportOutlinesActions(PDOutlineItem outline) {
 		if (outline != null) {
-			reportAction(outline.getAction(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
+			reportAction(outline.getAction(), ActionFeaturesObjectAdapter.Location.OUTLINES);
 			reportOutlinesActions(outline.getFirst());
 			reportOutlinesActions(outline.getNext());
 		}
