@@ -146,11 +146,15 @@ public final class GFFeatureParser {
 
 	private void getCatalogFeatures(PDCatalog catalog) throws IOException {
 		reporter.report(GFFeaturesObjectCreator.createMetadataFeaturesObject(catalog.getMetadata()));
-		reporter.report(GFFeaturesObjectCreator.createOutlinesFeaturesObject(catalog.getOutlines()));
+		PDOutlineDictionary outlines = catalog.getOutlines();
+		reporter.report(GFFeaturesObjectCreator.createOutlinesFeaturesObject(outlines));
 
 		PDNamesDictionary namesDictionary = catalog.getNamesDictionary();
 
 		if (config.isFeatureEnabled(FeatureObjectType.ACTION)) {
+			if (outlines != null) {
+				reportOutlinesActions(outlines.getFirst());
+			}
 			reportAction(catalog.getOpenAction(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
 			PDCatalogAdditionalActions additionalActions = catalog.getAdditionalActions();
 			if (additionalActions != null) {
@@ -193,6 +197,14 @@ public final class GFFeatureParser {
 		PDPageTree pageTree = catalog.getPageTree();
 		if (pageTree != null) {
 			getPageTreeFeatures(pageTree, catalog.getPageLabels());
+		}
+	}
+
+	private void reportOutlinesActions(PDOutlineItem outline) {
+		if (outline != null) {
+			reportAction(outline.getAction(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
+			reportOutlinesActions(outline.getFirst());
+			reportOutlinesActions(outline.getNext());
 		}
 	}
 
