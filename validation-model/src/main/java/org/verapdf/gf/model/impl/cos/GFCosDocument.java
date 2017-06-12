@@ -91,7 +91,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		this.isLinearised = cosDocument.getTrailer() != cosDocument.getLastTrailer() && cosDocument.isLinearized();
 		this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
 		this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
-		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_3) {
+		PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
+		if (specification == PDFAFlavour.Specification.ISO_19005_3
+				|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 			FileSpecificationKeysHelper.registerFileSpecificationKeys(cosDocument);
 		}
 	}
@@ -175,7 +177,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public String getlastID() {
-		if (StaticContainers.getFlavour().getPart().equals(PDFAFlavour.Specification.ISO_19005_1)) {
+		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
 			return this.lastID;
 		} else if (this.isLinearised) {
 			return this.firstPageID;

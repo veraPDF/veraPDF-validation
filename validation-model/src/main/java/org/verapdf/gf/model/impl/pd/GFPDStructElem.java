@@ -31,6 +31,7 @@ import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,9 +79,16 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	@Override
 	public String getstandardType() {
-		StructureType type = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructureType();
-		if (type != null) {
-			return StaticContainers.getRoleMapHelper().getStandartType(type.getType());
+		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_4) {
+			StructureType defaultStructureType = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getDefaultStructureType();
+			if (defaultStructureType != null) {
+				return defaultStructureType.getType().getValue();
+			}
+		} else {
+			StructureType type = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructureType();
+			if (type != null) {
+				return StaticContainers.getRoleMapHelper().getStandartType(type.getType());
+			}
 		}
 		return null;
 	}

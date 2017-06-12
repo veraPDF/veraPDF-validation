@@ -128,7 +128,14 @@ public class GFModelParser implements PDFAParser {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			Integer identificationPart = veraPDFMeta.getIdentificationPart();
 			String identificationConformance = veraPDFMeta.getIdentificationConformance();
+			if (identificationConformance == null) {
+				identificationConformance = "";
+			}
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
+			// TODO: remove that logic after adding PDF/A-4 validation profile
+			if (pdfaFlavour == PDFAFlavour.PDFA_4) {
+				return defaultFlavour;
+			}
 			return pdfaFlavour;
 		} catch (XMPException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
