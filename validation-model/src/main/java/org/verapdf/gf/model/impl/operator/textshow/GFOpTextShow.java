@@ -80,6 +80,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private final int opm;
 	private final boolean overprintingFlagStroke;
 	private final boolean overprintingFlagNonStroke;
+	private final GraphicState inheritedGraphicState;
 
 	private final PDResourcesHandler resourcesHandler;
 
@@ -89,24 +90,16 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 
 	protected GFOpTextShow(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
 			final String opType) {
-		this(arguments, state.getFillColorSpace(), state.getStrokeColorSpace(), state.getFontName(),
-				state.getRenderingMode(), state.getOpm(), state.isOverprintingFlagStroke(),
-				state.isOverprintingFlagNonStroke(), resourcesHandler, opType);
-	}
-
-	protected GFOpTextShow(List<COSBase> arguments, final PDColorSpace rawFillColorSpace,
-			final PDColorSpace rawStrokeColorSpace, final COSName fontName, final RenderingMode renderingMode, int opm,
-			boolean overprintingFlagStroke, boolean overprintingFlagNonStroke,
-			final PDResourcesHandler resourcesHandler, final String operatorType) {
-		super(arguments, operatorType);
-		this.rawFillColorSpace = rawFillColorSpace;
-		this.rawStrokeColorSpace = rawStrokeColorSpace;
-		this.fontName = fontName;
-		this.renderingMode = renderingMode;
-		this.opm = opm;
-		this.overprintingFlagStroke = overprintingFlagStroke;
-		this.overprintingFlagNonStroke = overprintingFlagNonStroke;
+		super(arguments, opType);
+		this.rawFillColorSpace = state.getFillColorSpace();
+		this.rawStrokeColorSpace = state.getStrokeColorSpace();
+		this.fontName = state.getFontName();
+		this.renderingMode = state.getRenderingMode();
+		this.opm = state.getOpm();
+		this.overprintingFlagStroke = state.isOverprintingFlagStroke();
+		this.overprintingFlagNonStroke = state.isOverprintingFlagNonStroke();
 		this.resourcesHandler = resourcesHandler;
+		this.inheritedGraphicState = state;
 	}
 
 	@Override
@@ -225,7 +218,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<PDFont> parseFont() {
-		PDFont font = FontFactory.parseFont(getFontFromResources(), renderingMode, this.resourcesHandler);
+		PDFont font = FontFactory.parseFont(getFontFromResources(), renderingMode,
+				this.resourcesHandler, this.inheritedGraphicState);
 		if (font != null) {
 			List<PDFont> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			result.add(font);

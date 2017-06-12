@@ -23,6 +23,7 @@ package org.verapdf.gf.model.impl.pd.images;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSStream;
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.cos.GFCosDict;
 import org.verapdf.gf.model.impl.cos.GFCosStream;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
@@ -55,9 +56,12 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private List<PDGroup> groups = null;
 	private boolean groupContainsTransparency = false;
 	private boolean contentStreamContainsTransparency = false;
+	private final GraphicState inheritedGraphicState;
 
-	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler) {
+	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
+					 GraphicState inheritedGraphicState) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
+		this.inheritedGraphicState = inheritedGraphicState;
 	}
 
 	@Override
@@ -131,7 +135,8 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private void parseContentStream() {
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		GFPDContentStream gfContentStream = new GFPDContentStream(
-				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler, false);
+				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
+				this.inheritedGraphicState);
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		streams.add(gfContentStream);
 		this.contentStreams = streams;

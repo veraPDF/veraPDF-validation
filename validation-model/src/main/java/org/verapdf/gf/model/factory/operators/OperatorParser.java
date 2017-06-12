@@ -88,8 +88,12 @@ class OperatorParser {
 	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 
 
-	OperatorParser(boolean isIsolatedContentStream) {
-		this.graphicState = new GraphicState(isIsolatedContentStream);
+	OperatorParser(GraphicState inheritedGraphicState) {
+		if (inheritedGraphicState == null) {
+			this.graphicState = new GraphicState();
+		} else {
+			this.graphicState = inheritedGraphicState;
+		}
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -411,7 +415,7 @@ class OperatorParser {
 			// XOBJECT
 			case Operators.DO:
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-						resourcesHandler);
+						resourcesHandler, this.graphicState.clone());
 				List<org.verapdf.model.pdlayer.PDXObject> pdxObjects = op_do.getXObject();
 				if (!pdxObjects.isEmpty()) {
 					GFPDXObject xobj = (GFPDXObject) pdxObjects.get(0);
