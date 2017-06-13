@@ -95,11 +95,11 @@ public final class OperatorFactory {
 	}
 
 	public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens,
-			PDResourcesHandler resourcesHandler, boolean isIsolatedContentStream) {
+			PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState) {
 		List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
 		List<COSBase> arguments = new ArrayList<>();
 		this.isLastParsedContainsTransparency = false;
-		OperatorParser parser = new OperatorParser(isIsolatedContentStream);
+		OperatorParser parser = new OperatorParser(inheritedGraphicState);
 
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {

@@ -25,6 +25,7 @@ import org.verapdf.as.io.ASInputStream;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.OperatorFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -53,13 +54,14 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	private List<Operator> operators = null;
 	private boolean containsTransparency = false;
-	private boolean isIsolated;
+	private final GraphicState inheritedGraphicState;
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
-							 PDResourcesHandler resourcesHandler, boolean isIsolated) {
+							 PDResourcesHandler resourcesHandler,
+							 GraphicState inheritedGraphicState) {
 		super(contentStream, CONTENT_STREAM_TYPE);
 		this.resourcesHandler = resourcesHandler;
-		this.isIsolated = isIsolated;
+		this.inheritedGraphicState = inheritedGraphicState;
 	}
 
 	@Override
@@ -90,7 +92,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							streamParser.parseTokens();
 							OperatorFactory operatorFactory = new OperatorFactory();
 							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(),
-									resourcesHandler, isIsolated);
+									resourcesHandler, inheritedGraphicState);
 							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 							this.operators = Collections.unmodifiableList(result);
 						} finally {

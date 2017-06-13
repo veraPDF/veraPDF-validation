@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.factory.fonts;
 
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.pd.font.GFPDTrueTypeFont;
 import org.verapdf.gf.model.impl.pd.font.GFPDType0Font;
@@ -57,7 +58,8 @@ public class FontFactory {
 	}
 
 	public static PDFont parseFont(org.verapdf.pd.font.PDFont rawFont,
-								   RenderingMode renderingMode, PDResourcesHandler resources) {
+								   RenderingMode renderingMode, PDResourcesHandler resources,
+								   GraphicState inheritedGraphicState) {
 		if (rawFont == null) {
 			return null;
 		}
@@ -70,7 +72,8 @@ public class FontFactory {
 			case TYPE_3: {
 				PDResources fontResources = ((PDType3Font) rawFont).getResources();
 				PDResourcesHandler pdResources = resources.getExtendedResources(fontResources);
-				return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources);
+				return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources,
+						inheritedGraphicState);
 			}
 			case TRUE_TYPE:
 				return new GFPDTrueTypeFont((PDTrueTypeFont) rawFont, renderingMode);

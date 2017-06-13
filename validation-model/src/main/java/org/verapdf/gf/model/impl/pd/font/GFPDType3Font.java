@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -51,11 +52,14 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     public static final String CHAR_STRINGS = "charStrings";
     private PDResourcesHandler resources;
     private Map<String, PDContentStream> charStrings = null;
+    private final GraphicState inheritedGraphicState;
 
     public GFPDType3Font(org.verapdf.pd.font.PDType3Font font,
-                         RenderingMode renderingMode, PDResourcesHandler resources) {
+                         RenderingMode renderingMode, PDResourcesHandler resources,
+                         GraphicState inheritedGraphicState) {
         super(font, renderingMode, TYPE3_FONT_TYPE);
         this.resources = resources;
+        this.inheritedGraphicState = inheritedGraphicState;
     }
 
     /**
@@ -104,7 +108,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                     PDResourcesHandler glyphResources = getResourcesFromCharProcs(charProcStream);
                     GFPDContentStream contentStream =
                             new GFPDContentStream(charProc, glyphResources == null ?
-                                    this.resources : glyphResources, false);
+                                    this.resources : glyphResources, inheritedGraphicState);
                     map.put(glyphName.getValue(), contentStream);
                 } else {
                     LOGGER.log(Level.FINE, "Invalid entry in the char proc dictionary.");
