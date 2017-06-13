@@ -245,7 +245,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getColorSpace(org.verapdf.pd.colors.PDColorSpace rawColorSpace,
 			boolean op) {
 		org.verapdf.model.pdlayer.PDColorSpace veraColorSpace = ColorSpaceFactory.getColorSpace(rawColorSpace,
-				this.resourcesHandler, this.opm, op);
+				this.resourcesHandler, this.opm, op, inheritedGraphicState);
 		if (veraColorSpace != null) {
 			List<org.verapdf.model.pdlayer.PDColorSpace> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(veraColorSpace);

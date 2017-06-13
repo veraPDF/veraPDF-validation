@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.patterns;
 
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
@@ -42,11 +43,14 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 
 	private List<PDContentStream> contentStreams = null;
 	private boolean containsTransparency = false;
+	private final GraphicState inheritedGraphicState;
 
 	public GFPDTilingPattern(
-			org.verapdf.pd.patterns.PDTilingPattern simplePDObject, PDResourcesHandler resourcesHandler) {
+			org.verapdf.pd.patterns.PDTilingPattern simplePDObject, PDResourcesHandler resourcesHandler,
+			GraphicState inheritedGraphicState) {
 		super(simplePDObject, TILING_PATTERN_TYPE);
 		this.resourcesHandler = resourcesHandler;
+		this.inheritedGraphicState = inheritedGraphicState;
 	}
 
 	@Override
@@ -79,7 +83,7 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.patterns.PDTilingPattern pattern = (org.verapdf.pd.patterns.PDTilingPattern) this.simplePDObject;
 		GFPDContentStream contentStream = new GFPDContentStream(pattern,
-				this.resourcesHandler, null);	// TODO
+				this.resourcesHandler, inheritedGraphicState);
 		this.containsTransparency |= contentStream.isContainsTransparency();
 		contentStreams.add(contentStream);
 		this.contentStreams = contentStreams;

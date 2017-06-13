@@ -436,7 +436,7 @@ class OperatorParser {
 													PDResourcesHandler resourcesHandler,
 													GraphicState graphicState) {
 		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
-				graphicState.getStrokeColorSpace(), resourcesHandler);
+				graphicState.getStrokeColorSpace(), resourcesHandler, graphicState);
 		return new GFOpColor(arguments, colorSpace);
 	}
 
@@ -444,7 +444,7 @@ class OperatorParser {
 													PDResourcesHandler resourcesHandler,
 													GraphicState graphicState) {
 		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
-				graphicState.getFillColorSpace(), resourcesHandler);
+				graphicState.getFillColorSpace(), resourcesHandler, graphicState);
 		return new GFOpColor(arguments, colorSpace);
 	}
 
