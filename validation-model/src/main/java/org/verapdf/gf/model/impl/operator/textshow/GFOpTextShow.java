@@ -160,8 +160,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 							// of font program we can't distinguish case of code 0
 							// and glyph that is not present indeed.
 							glyphPresent = code == 0 ? true :
-									Boolean.valueOf(fontProgram.containsCode(code));
-							widthsConsistent = GFOpTextShow.checkWidths(code, font, fontProgram);
+									Boolean.valueOf(font.glyphIsPresent(code));
+							widthsConsistent = GFOpTextShow.checkWidths(code, font);
 						}
 						GFGlyph glyph;
 						if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
@@ -261,10 +261,10 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		return resourcesHandler.getFont(this.fontName);
 	}
 
-	private static Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font, FontProgram fontProgram) {
+	private static Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font) {
 		Double fontWidth = font.getWidth(glyphCode);
 		double expectedWidth = fontWidth == null ? 0 : fontWidth.doubleValue();
-		double foundWidth = fontProgram.getWidth(glyphCode);
+		double foundWidth = font.getWidthFromProgram(glyphCode);
 		if (foundWidth == -1) {
 			foundWidth = font.getDefaultWidth() == null ? 0 : font.getDefaultWidth().doubleValue();
 		}

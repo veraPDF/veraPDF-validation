@@ -67,7 +67,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                     this.name = null;
                 } else {
                     pr.parseFont();
-                    if (glyphCode == 0 || !pr.containsCode(glyphCode)) {
+                    if (glyphCode == 0 || !font.glyphIsPresent(glyphCode)) {
                         this.name = ".notdef";
                     } else {
                         this.name = null;
