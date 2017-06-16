@@ -51,13 +51,17 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	public static final String JPX_STREAM = "jpxStream";
 
 	private List<JPEG2000> jpeg2000List = null;
+	private org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
 
-	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, PDResourcesHandler resourcesHandler) {
-		this(simplePDObject, resourcesHandler, X_IMAGE_TYPE);
+	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, PDResourcesHandler resourcesHandler,
+						 org.verapdf.pd.colors.PDColorSpace inheritedFillCS) {
+		this(simplePDObject, resourcesHandler, inheritedFillCS, X_IMAGE_TYPE);
 	}
 
-	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, PDResourcesHandler resourcesHandler, String type) {
+	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, PDResourcesHandler resourcesHandler,
+						 org.verapdf.pd.colors.PDColorSpace inheritedFillCS, String type) {
 		super(simplePDObject, resourcesHandler, type);
+		this.inheritedFillCS = inheritedFillCS;
 	}
 
 	@Override
@@ -115,7 +119,13 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 					return Collections.unmodifiableList(colorSpaces);
 				}
 			}
-		}
+		} else if (this.inheritedFillCS != null) {
+			// for image mask we return current fill color space
+			List<PDColorSpace> colorSpaces =
+					new ArrayList<>(GFPDObject.MAX_NUMBER_OF_ELEMENTS);
+			colorSpaces.add(ColorSpaceFactory.getColorSpace(this.inheritedFillCS));
+			return Collections.unmodifiableList(colorSpaces);
+ 		}
 		return Collections.emptyList();
 	}
 
@@ -124,7 +134,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 				((org.verapdf.pd.images.PDXImage) simplePDObject).getAlternates();
 		final List<PDXImage> res = new ArrayList<>(alternates.size());
 		for (org.verapdf.pd.images.PDXImage image : alternates) {
-			res.add(new GFPDXImage(image, this.resourcesHandler));
+			res.add(new GFPDXImage(image, this.resourcesHandler, this.inheritedFillCS));
 		}
 		return res;
 	}

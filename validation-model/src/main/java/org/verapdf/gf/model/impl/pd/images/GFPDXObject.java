@@ -104,7 +104,8 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 		if (ASAtom.FORM.equals(type)) {
 			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState);
 		} else if (ASAtom.IMAGE.equals(type)) {
-			return new GFPDXImage((PDXImage) xObject, resources);
+			return new GFPDXImage((PDXImage) xObject, resources,
+					inheritedGraphicState.getFillColorSpace());
 		} else if (ASAtom.PS.equals(type)) {
 			return new GFPDXObject(xObject, resources);
 		} else {

@@ -36,7 +36,7 @@ public class GFPDSMaskImage extends GFPDXImage implements PDSMaskImage {
 	public static final String SMASK_IMAGE_TYPE = "PDSMaskImage";
 
 	public GFPDSMaskImage(PDXImage simplePDObject, PDResourcesHandler resourcesHandler) {
-		super(simplePDObject, resourcesHandler, SMASK_IMAGE_TYPE);
+		super(simplePDObject, resourcesHandler, null, SMASK_IMAGE_TYPE);
 	}
 
 	@Override
