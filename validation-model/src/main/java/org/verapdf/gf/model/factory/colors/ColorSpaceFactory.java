@@ -66,7 +66,7 @@ public class ColorSpaceFactory {
 			PDResourcesHandler resourcesHandler, int opm, boolean overprintingFlag,
 											 GraphicState inheritedGraphicSpace) {
 		if (colorSpace == null) {
-			return null;
+			return new GFPDEmptyColorSpace();
 		}
 		String uniqueID = getColorSpaceUniqueIdentifier(colorSpace, opm, overprintingFlag);
 		if (StaticContainers.cachedColorSpaces.containsKey(uniqueID)) {

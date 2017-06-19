@@ -28,6 +28,8 @@ import org.verapdf.pd.font.PDFont;
  */
 public class GFPDResource extends GFPDObject implements PDResource {
 
+    public static final String RESOURCE_TYPE = "PDResource";
+
     protected GFPDResource(org.verapdf.pd.PDResource simplePDObject, final String type) {
         super(simplePDObject, type);
     }
@@ -43,7 +45,7 @@ public class GFPDResource extends GFPDObject implements PDResource {
         } else if (this.pdFont != null) {
             return Boolean.valueOf(this.pdFont.isInherited());
         }
-        return Boolean.FALSE;
+        return Boolean.TRUE;
     }
 
 }

@@ -83,7 +83,9 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 	public GFPDObject(PDFont font, final String type) {
 		super(type);
 		this.pdFont = font;
-		this.id = GFIDGenerator.generateID(font);
+		if (font != null) {
+			this.id = GFIDGenerator.generateID(font);
+		}
 	}
 
 	public GFPDObject(PDCMap pdcMap, final String type) {

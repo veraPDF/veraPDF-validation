@@ -22,10 +22,7 @@ package org.verapdf.gf.model.factory.fonts;
 
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
-import org.verapdf.gf.model.impl.pd.font.GFPDTrueTypeFont;
-import org.verapdf.gf.model.impl.pd.font.GFPDType0Font;
-import org.verapdf.gf.model.impl.pd.font.GFPDType1Font;
-import org.verapdf.gf.model.impl.pd.font.GFPDType3Font;
+import org.verapdf.gf.model.impl.pd.font.*;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.PDResources;
@@ -61,7 +58,7 @@ public class FontFactory {
 								   RenderingMode renderingMode, PDResourcesHandler resources,
 								   GraphicState inheritedGraphicState) {
 		if (rawFont == null) {
-			return null;
+			return new GFPDEmptyFont();
 		}
 		switch (rawFont.getSubtype().getValue()) {
 			case TYPE_0:
