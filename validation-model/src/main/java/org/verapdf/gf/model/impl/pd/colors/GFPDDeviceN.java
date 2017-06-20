@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.colors;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
@@ -32,10 +33,7 @@ import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDDeviceN;
 import org.verapdf.model.pdlayer.PDSeparation;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Maksim Bezrukov
@@ -59,16 +57,37 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 		COSObject attributes = simplePDObject.getAttributes();
 		if (attributes != null && attributes.getType() == COSObjType.COS_DICT) {
 			COSObject colorantsDict = attributes.getKey(ASAtom.COLORANTS);
+			List<COSObject> colorantsArray = simplePDObject.getNames();
+			Set<ASAtom> componentNames = new TreeSet<>();
 			if (colorantsDict != null && colorantsDict.getType() == COSObjType.COS_DICT) {
-				List<COSObject> colorantsArray = simplePDObject.getNames();
-				return GFPDDeviceN.areColorantsPresent(colorantsDict, colorantsArray);
+				componentNames.addAll(colorantsDict.getKeySet());
+			}
+			COSArray components = getProcessComponents(attributes);
+			if (components != null) {
+				for (COSObject component : components) {
+					if (component.getType() == COSObjType.COS_NAME) {
+						componentNames.add(component.getName());
+					}
+				}
+				return GFPDDeviceN.areColorantsPresent(componentNames, colorantsArray);
 			}
 		}
 		return false;
 	}
 
-	private static boolean areColorantsPresent(COSObject colorantsDict, List<COSObject> colorantsArray) {
-		Set<ASAtom> colorantDictionaryEntries = colorantsDict.getKeySet();
+	private static COSArray getProcessComponents(COSObject attributes) {
+		COSObject process = attributes.getKey(ASAtom.PROCESS);
+		if (!process.empty()) {
+			COSObject components = process.getKey(ASAtom.COMPONENTS);
+			if (!components.empty()) {
+				return (COSArray) components.get();
+			}
+		}
+		return null;
+	}
+
+	private static boolean areColorantsPresent(Set<ASAtom> colorantDictionaryEntries,
+											   List<COSObject> colorantsArray) {
 		for (int i = 0; i < colorantsArray.size(); ++i) {
 			COSObject object = colorantsArray.get(i);
 			if (object != null && !isNone(object) &&
