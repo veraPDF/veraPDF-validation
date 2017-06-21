@@ -36,6 +36,7 @@ import org.verapdf.pd.PDAppearanceEntry;
 import org.verapdf.pd.PDAppearanceStream;
 import org.verapdf.pd.PDGroup;
 import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -284,7 +285,8 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private void addAppearance(List<PDContentStream> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
-			GFPDContentStream stream = new GFPDContentStream(toAdd, resources, null);
+			GFPDContentStream stream = new GFPDContentStream(toAdd, resources, null,
+					new StructureElementAccessObject(this.simpleCOSObject));
 			this.containsTransparency |= stream.isContainsTransparency();
 			PDGroup group = toAdd.getGroup();
 			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());

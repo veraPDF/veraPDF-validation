@@ -26,6 +26,7 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDTilingPattern;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,7 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.patterns.PDTilingPattern pattern = (org.verapdf.pd.patterns.PDTilingPattern) this.simplePDObject;
 		GFPDContentStream contentStream = new GFPDContentStream(pattern,
-				this.resourcesHandler, inheritedGraphicState);
+				this.resourcesHandler, inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject));
 		this.containsTransparency |= contentStream.isContainsTransparency();
 		contentStreams.add(contentStream);
 		this.contentStreams = contentStreams;

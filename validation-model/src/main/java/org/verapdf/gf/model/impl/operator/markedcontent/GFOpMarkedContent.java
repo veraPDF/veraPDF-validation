@@ -76,18 +76,46 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
     }
 
 	protected List<CosLang> getLang() {
+    	COSObject lang = getAttribute(ASAtom.LANG, COSObjType.COS_STRING);
+    	if (lang != null) {
+			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosLang((COSString) lang.getDirectBase()));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	/**
+	 * Checks if attribute dict contains ActualText key and returns it's value.
+	 *
+	 * @return ActualText value or null if it is not present.
+	 */
+	COSString getActualText() {
+		COSObject actualText = getAttribute(ASAtom.ACTUAL_TEXT, COSObjType.COS_STRING);
+		return actualText == null ? null : (COSString) actualText.get();
+	}
+
+	/**
+	 * Checks if attribute dict contains MCID key and returns it's value.
+	 *
+	 * @return MCID value or value if it is not present.
+	 */
+	Long getMCID() {
+		COSObject mcid = getAttribute(ASAtom.MCID, COSObjType.COS_INTEGER);
+		return mcid == null ? null : mcid.getInteger();
+	}
+
+	private COSObject getAttribute(ASAtom attributeName, COSObjType expectedType) {
 		if (!this.arguments.isEmpty()) {
 			COSBase dict = this.arguments.get(this.arguments.size() - 1);
 			if (dict.getType() == COSObjType.COS_DICT) {
-				COSObject baseLang = dict.getKey(ASAtom.LANG);
-				if (baseLang != null && !baseLang.empty() && baseLang.getType() == COSObjType.COS_STRING) {
-					List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-					list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
-					return Collections.unmodifiableList(list);
+				COSObject res = dict.getKey(attributeName);
+				if (res != null && !res.empty() && res.getType() == expectedType) {
+					return res;
 				}
 			}
 		}
-		return Collections.emptyList();
+		return null;
 	}
 
 }

@@ -28,8 +28,6 @@ import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDSigRef;
 import org.verapdf.pd.PDCatalog;
 
-import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -74,14 +72,10 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
 	 */
 	@Override
 	public Boolean getpermsContainDocMDP() {
-		try {
-			PDCatalog catalog = StaticContainers.getDocument().getCatalog();
-			COSDictionary perms = (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
-			if (perms != null) {
-				return perms.knownKey(GFPDPerms.DOC_MDP);
-			}
-		} catch (IOException e) {
-			LOGGER.log(Level.WARNING, "Can't get catalog from PDDocument", e);
+		PDCatalog catalog = StaticContainers.getDocument().getCatalog();
+		COSDictionary perms = (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
+		if (perms != null) {
+			return perms.knownKey(GFPDPerms.DOC_MDP);
 		}
 		return Boolean.valueOf(false);
 	}

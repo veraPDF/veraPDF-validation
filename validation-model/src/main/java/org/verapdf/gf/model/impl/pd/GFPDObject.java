@@ -73,6 +73,7 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 		this.simplePDObject = simplePDObject;
 
 		if (simplePDObject != null && !simplePDObject.getObject().empty()) {
+			this.simpleCOSObject = simplePDObject.getObject();
 			COSKey key = simplePDObject.getObject().getObjectKey();
 			id = key != null ?
 					key.getNumber() + " " + key.getGeneration() + " obj " + this.getObjectType()

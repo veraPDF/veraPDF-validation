@@ -24,10 +24,12 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.operator.Op_DoubleQuote;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,8 +55,9 @@ public class GFOp_DoubleQuote extends GFOpStringTextShow implements Op_DoubleQuo
 	/** Number of operands */
 	public static final int COUNT_OF_OPERATOR_OPERANDS = 3;
 
-	public GFOp_DoubleQuote(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler) {
-		super(arguments, state, resourcesHandler, OP_DOUBLIE_QUOTE_TYPE);
+	public GFOp_DoubleQuote(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
+							GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+		super(arguments, state, resourcesHandler, OP_DOUBLIE_QUOTE_TYPE, markedContent, structureElementAccessObject);
 	}
 
 	@Override

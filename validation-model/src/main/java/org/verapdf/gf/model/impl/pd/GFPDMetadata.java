@@ -61,14 +61,9 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
     public GFPDMetadata(org.verapdf.pd.PDMetadata simplePDObject, Boolean isMainMetadata) {
         super(simplePDObject, METADATA_TYPE);
         this.isMainMetadata = isMainMetadata.booleanValue();
-        try {
-            if (StaticContainers.getDocument()!= null && StaticContainers.getDocument().getCatalog() != null && StaticContainers.getDocument().getCatalog().getMetadata() != null) {
-                this.mainMetadata = StaticContainers.getDocument().getCatalog().getMetadata();
-            } else {
-                this.mainMetadata = null;
-            }
-        } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Can not obtain main metadata", e);
+        if (StaticContainers.getDocument()!= null && StaticContainers.getDocument().getCatalog() != null && StaticContainers.getDocument().getCatalog().getMetadata() != null) {
+            this.mainMetadata = StaticContainers.getDocument().getCatalog().getMetadata();
+        } else {
             this.mainMetadata = null;
         }
     }

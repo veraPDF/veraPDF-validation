@@ -20,8 +20,10 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.model.operator.CIDGlyph;
 import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 /**
  * Represents glyph in the composite font.
@@ -35,9 +37,10 @@ public class GFCIDGlyph extends GFGlyph implements CIDGlyph {
     private int cid;
 
     public GFCIDGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font,
-                      int glyphCode, int cid, int renderingMode) {
+                      int glyphCode, int cid, int renderingMode,
+                      GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
         super(glyphPresent, widthsConsistent, font, glyphCode, CID_GLYPH_TYPE,
-                renderingMode);
+                renderingMode, markedContent, structureElementAccessObject);
         this.cid = cid;
     }
 

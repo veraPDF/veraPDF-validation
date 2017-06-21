@@ -28,6 +28,7 @@ import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Glyph;
@@ -38,6 +39,7 @@ import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDType0Font;
 import org.verapdf.pd.font.PDType3Font;
 import org.verapdf.pd.font.cff.CFFFontProgram;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -83,13 +85,16 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private final GraphicState inheritedGraphicState;
 
 	private final PDResourcesHandler resourcesHandler;
+	private final GFOpMarkedContent markedContent;
+	private final StructureElementAccessObject structureElementAccessObject;
 
 	private List<PDFont> fonts = null;
 	private List<org.verapdf.model.pdlayer.PDColorSpace> fillCS = null;
 	private List<org.verapdf.model.pdlayer.PDColorSpace> strokeCS = null;
 
 	protected GFOpTextShow(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
-			final String opType) {
+						   final String opType, GFOpMarkedContent markedContent,
+						   StructureElementAccessObject structureElementAccessObject) {
 		super(arguments, opType);
 		this.rawFillColorSpace = state.getFillColorSpace();
 		this.rawStrokeColorSpace = state.getStrokeColorSpace();
@@ -99,7 +104,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		this.overprintingFlagStroke = state.isOverprintingFlagStroke();
 		this.overprintingFlagNonStroke = state.isOverprintingFlagNonStroke();
 		this.resourcesHandler = resourcesHandler;
+		this.markedContent = markedContent;
 		this.inheritedGraphicState = state;
+		this.structureElementAccessObject = structureElementAccessObject;
 	}
 
 	@Override
@@ -168,17 +175,17 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 								font.getSubtype() == ASAtom.TYPE0) {
 							int CID = ((PDType0Font) font).toCID(code);
 							glyph = new GFCIDGlyph(glyphPresent, widthsConsistent, font, code, CID,
-									this.renderingMode.getValue());
+									this.renderingMode.getValue(), markedContent, structureElementAccessObject);
 						} else {
 							glyph = new GFGlyph(glyphPresent, widthsConsistent, font, code,
-									this.renderingMode.getValue());
+									this.renderingMode.getValue(), markedContent, structureElementAccessObject);
 						}
 						res.add(glyph);
 					} else { // Type3 font
 						boolean glyphPresent = ((PDType3Font) font).containsCharString(code);
 						boolean widthConsistent = font.getWidth(code) != null && font.getWidth(code).doubleValue() > 0;
 						res.add(new GFGlyph(Boolean.valueOf(glyphPresent), Boolean.valueOf(widthConsistent), font, code,
-								this.renderingMode.getValue()));
+								this.renderingMode.getValue(), markedContent, structureElementAccessObject));
 					}
 				}
 			} catch (IOException e) {

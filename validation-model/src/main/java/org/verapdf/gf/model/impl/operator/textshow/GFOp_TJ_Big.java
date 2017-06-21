@@ -25,10 +25,12 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.cos.GFCosArray;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosArray;
 import org.verapdf.model.operator.Op_TJ_Big;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,8 +48,9 @@ public class GFOp_TJ_Big extends GFOpTextShow implements Op_TJ_Big {
     public static final String SPECIAL_STRINGS = "specialStrings";
 
     public GFOp_TJ_Big(List<COSBase> arguments, GraphicState state,
-                       PDResourcesHandler resourcesHandler) {
-        super(arguments, state, resourcesHandler, OP_TJ_BIG_TYPE);
+                       PDResourcesHandler resourcesHandler, GFOpMarkedContent markedContent,
+                       StructureElementAccessObject structureElementAccessObject) {
+        super(arguments, state, resourcesHandler, OP_TJ_BIG_TYPE, markedContent, structureElementAccessObject);
     }
 
     @Override

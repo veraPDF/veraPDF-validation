@@ -20,10 +20,13 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
+import org.verapdf.gf.model.impl.operator.markedcontent.MarkedContentHelper;
 import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.pd.font.*;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -46,16 +49,23 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private String name;
     private String toUnicode;
     private Long renderingMode;
+    private GFOpMarkedContent markedContent;
+    private StructureElementAccessObject structureElementAccessObject;
 
-    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, int renderingMode) {
-        this(glyphPresent, widthsConsistent, font, glyphCode, GLYPH_TYPE, renderingMode);
+    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, int renderingMode,
+                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        this(glyphPresent, widthsConsistent, font, glyphCode, GLYPH_TYPE,
+                renderingMode, markedContent, structureElementAccessObject);
     }
 
-    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, String type, int renderingMode) {
+    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, String type, int renderingMode,
+                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
         super(type);
         this.glyphPresent = glyphPresent;
         this.widthsConsistent = widthsConsistent;
         this.renderingMode = Long.valueOf(renderingMode);
+        this.markedContent = markedContent;
+        this.structureElementAccessObject = structureElementAccessObject;
 
         if (font instanceof PDSimpleFont) {
             Encoding encoding = font.getEncodingMapping();
@@ -111,5 +121,17 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     @Override
     public String getID() {
         return this.id;
+    }
+
+    @Override
+    public Boolean getisInPUA() {
+        if (this.toUnicode != null) {
+            char unicode = this.toUnicode.charAt(0);
+            if (unicode >= 0xE000 && unicode <= 0xF8FF) {
+                return MarkedContentHelper.containsActualText(markedContent,
+                        structureElementAccessObject);
+            }
+        }
+        return Boolean.FALSE;
     }
 }

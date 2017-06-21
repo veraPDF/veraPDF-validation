@@ -25,9 +25,11 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.cos.GFCosString;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosString;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,8 +44,9 @@ public abstract class GFOpStringTextShow extends GFOpTextShow {
     public static final String SHOW_STRING = "showString";
 
     protected GFOpStringTextShow(List<COSBase> arguments, GraphicState state,
-                                 PDResourcesHandler resources, final String opType) {
-        super(arguments, state, resources, opType);
+                                 PDResourcesHandler resources, final String opType,
+                                 GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        super(arguments, state, resources, opType, markedContent, structureElementAccessObject);
     }
 
     @Override
