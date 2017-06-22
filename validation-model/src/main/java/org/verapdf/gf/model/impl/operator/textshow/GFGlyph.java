@@ -124,7 +124,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     }
 
     @Override
-    public Boolean getisInPUA() {
+    public Boolean getnoValidUnicode() {
         if (this.toUnicode != null) {
             char unicode = this.toUnicode.charAt(0);
             if (unicode >= 0xE000 && unicode <= 0xF8FF) {
