@@ -95,7 +95,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 	private List<PDOCConfig> getConfigs() {
 		COSObject contentProperties = this.simplePDObject.getObject();
 
-		List<String> names = getAllNames((COSDictionary) contentProperties.getDirectBase());
+		List<String> names = getDName((COSDictionary) contentProperties.getDirectBase());
 		String[] groupNames = ((PDOptionalContentProperties) this.simplePDObject).getGroupNames();
 		List<String> groupNamesList = Arrays.asList(groupNames == null ?
 				new String[]{} : groupNames);
@@ -108,6 +108,10 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 				COSObject config = configs.at(i);
 				if (!config.empty() && config.getType() == COSObjType.COS_DICT) {
 					PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(config), groupNamesList, names.contains(config.getStringKey(ASAtom.NAME)));
+					String name = pdConfig.getName();
+					if (name != null) {
+						names.add(name);
+					}
 					result.add(pdConfig);
 				} else {
 					LOGGER.log(Level.FINE, "Invalid object type of the configuration dictionary. Ignoring config.");
@@ -118,7 +122,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 		return Collections.emptyList();
 	}
 
-	private static List<String> getAllNames(final COSDictionary contentProperties) {
+	private static List<String> getDName(final COSDictionary contentProperties) {
 		List<String> result = new ArrayList<>();
 
 		COSObject defaultConfig = contentProperties.getKey(ASAtom.D);
@@ -126,19 +130,6 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 			String name = defaultConfig.getStringKey(ASAtom.NAME);
 			if (name != null) {
 				result.add(name);
-			}
-		}
-
-		COSObject configs = contentProperties.getKey(ASAtom.CONFIGS);
-		if (!configs.empty() && configs.getType() == COSObjType.COS_ARRAY) {
-			for (int i = 0; i < configs.size().intValue(); i++) {
-				COSObject config = configs.at(i);
-				if (!config.empty() && config.getType() == COSObjType.COS_DICT) {
-					String name = config.getStringKey(ASAtom.NAME);
-					if (name != null) {
-						result.add(name);
-					}
-				}
 			}
 		}
 
