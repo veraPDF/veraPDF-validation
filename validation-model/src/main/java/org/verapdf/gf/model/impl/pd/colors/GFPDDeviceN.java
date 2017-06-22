@@ -69,8 +69,8 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 						componentNames.add(component.getName());
 					}
 				}
-				return GFPDDeviceN.areColorantsPresent(componentNames, colorantsArray);
 			}
+			return GFPDDeviceN.areColorantsPresent(componentNames, colorantsArray);
 		}
 		return false;
 	}
