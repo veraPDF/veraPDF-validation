@@ -243,6 +243,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 				COSBase reqArray = reqArrayObject.getDirectBase();
 				if (reqArray.getType() == COSObjType.COS_ARRAY) {
 					return GFCosDocument.getRequirementsString((COSArray) reqArray);
+				} else if (reqArray.getType() == COSObjType.COS_DICT) {
+					return GFCosDocument.getRequirementsString((COSDictionary) reqArray);
 				}
 			}
 		}
@@ -256,12 +258,15 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			COSObject element = iterator.next();
 			COSBase base = element.getDirectBase();
 			if (base.getType() == COSObjType.COS_DICT) {
-				String sKey = element.getStringKey(ASAtom.S);
-				result += sKey;
+				result += getRequirementsString((COSDictionary) base);
 				result += " ";
 			}
 		}
 		return result;
+	}
+
+	private static String getRequirementsString(COSDictionary reqDict) {
+		return reqDict.getStringKey(ASAtom.S);
 	}
 
 	/**
