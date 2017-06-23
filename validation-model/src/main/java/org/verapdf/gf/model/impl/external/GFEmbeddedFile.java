@@ -20,21 +20,9 @@
  */
 package org.verapdf.gf.model.impl.external;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.verapdf.as.ASAtom;
 import org.verapdf.core.VeraPDFException;
-import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSKey;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
-import org.verapdf.cos.COSStream;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
@@ -46,6 +34,14 @@ import org.verapdf.pdfa.PDFAValidator;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.validators.ValidatorFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
@@ -62,6 +58,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	public GFEmbeddedFile(COSDictionary dictionary) {
 		super(EMBEDDED_FILE_TYPE);
 		COSObject baseStream = dictionary.getKey(ASAtom.F);
+		if (baseStream == null || baseStream.getType() != COSObjType.COS_STREAM) {
+			baseStream = dictionary.getKey(ASAtom.UF);
+		}
 		if (baseStream != null && baseStream.getType() == COSObjType.COS_STREAM) {
 			this.stream = (COSStream) baseStream.getDirectBase();
 		} else {
