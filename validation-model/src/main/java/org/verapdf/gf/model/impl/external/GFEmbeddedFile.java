@@ -22,7 +22,8 @@ package org.verapdf.gf.model.impl.external;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.core.VeraPDFException;
-import org.verapdf.cos.*;
+import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
@@ -55,17 +56,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 	private final COSStream stream;
 
-	public GFEmbeddedFile(COSDictionary dictionary) {
+	public GFEmbeddedFile(COSStream stream) {
 		super(EMBEDDED_FILE_TYPE);
-		COSObject baseStream = dictionary.getKey(ASAtom.F);
-		if (baseStream == null || baseStream.getType() != COSObjType.COS_STREAM) {
-			baseStream = dictionary.getKey(ASAtom.UF);
-		}
-		if (baseStream != null && baseStream.getType() == COSObjType.COS_STREAM) {
-			this.stream = (COSStream) baseStream.getDirectBase();
-		} else {
-			this.stream = null;
-		}
+		this.stream = stream;
 	}
 
 	@Override
