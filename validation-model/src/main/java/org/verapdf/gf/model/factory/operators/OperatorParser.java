@@ -77,6 +77,8 @@ import java.util.Deque;
 import java.util.List;
 
 /**
+ * Main class that processes operators.
+ *
  * @author Timur Kamalov
  */
 class OperatorParser {
