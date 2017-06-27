@@ -42,6 +42,10 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private static final Logger LOGGER = Logger.getLogger(GFGlyph.class.getCanonicalName());
 
     public final static String GLYPH_TYPE = "Glyph";
+
+    private static final int UNICODE_PRIVATE_USE_AREA_BEGINNING = 0xE000;
+    private static final int UNICODE_PRIVATE_USE_AREA_ENDING = 0xF8FF;
+
     private final String id;
 
     private Boolean glyphPresent;
@@ -89,6 +93,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         }
         this.toUnicode = font.toUnicode(glyphCode);
+        getactualTextPresent();
         this.id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
                 font.getName(), glyphCode, renderingMode);
     }
@@ -124,14 +129,19 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     }
 
     @Override
-    public Boolean getnoValidUnicode() {
-        if (this.toUnicode != null) {
+    public Boolean getunicodePUA() {
+        for (int i = 0; i < toUnicode.length(); ++i) {
             char unicode = this.toUnicode.charAt(0);
-            if (unicode >= 0xE000 && unicode <= 0xF8FF) {
-                return MarkedContentHelper.containsActualText(markedContent,
-                        structureElementAccessObject);
+            if (unicode >= UNICODE_PRIVATE_USE_AREA_BEGINNING &&
+                    unicode <= UNICODE_PRIVATE_USE_AREA_ENDING) {
+                return true;
             }
         }
-        return Boolean.FALSE;
+        return false;
+    }
+
+    @Override
+    public Boolean getactualTextPresent() {
+        return MarkedContentHelper.containsActualText(markedContent, structureElementAccessObject);
     }
 }

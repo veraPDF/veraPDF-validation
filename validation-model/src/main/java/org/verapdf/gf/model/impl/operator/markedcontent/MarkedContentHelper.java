@@ -15,19 +15,21 @@ public class MarkedContentHelper {
 
     public static boolean containsActualText(GFOpMarkedContent markedContent,
                                              StructureElementAccessObject accessObject) {
-        if (markedContent.getActualText() != null) {
-            return true;
-        }
+        if (markedContent != null) {
+            if (markedContent.getActualText() != null) {
+                return true;
+            }
 
-        Long mcid = markedContent.getMCID();
-        PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
-        if (structTreeRoot != null) {
-            PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-            COSObject structureElement = accessObject.getStructureElement(parentTreeRoot, mcid);
-            if (structureElement != null && !structureElement.empty()) {
-                COSObject actualText = structureElement.getKey(ASAtom.ACTUAL_TEXT);
-                return actualText != null && !actualText.empty() &&
-                        actualText.getType() == COSObjType.COS_STRING;
+            Long mcid = markedContent.getMCID();
+            PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+            if (structTreeRoot != null) {
+                PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+                COSObject structureElement = accessObject.getStructureElement(parentTreeRoot, mcid);
+                if (structureElement != null && !structureElement.empty()) {
+                    COSObject actualText = structureElement.getKey(ASAtom.ACTUAL_TEXT);
+                    return actualText != null && !actualText.empty() &&
+                            actualText.getType() == COSObjType.COS_STRING;
+                }
             }
         }
         return false;
