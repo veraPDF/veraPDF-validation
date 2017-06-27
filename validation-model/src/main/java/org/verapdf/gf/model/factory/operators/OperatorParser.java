@@ -449,7 +449,8 @@ class OperatorParser {
 													PDResourcesHandler resourcesHandler,
 													GraphicState graphicState) {
 		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
-				graphicState.getStrokeColorSpace(), resourcesHandler, graphicState);
+				graphicState.getStrokeColorSpace(), resourcesHandler, graphicState.getOpm(),
+				graphicState.isOverprintingFlagStroke(), graphicState);
 		return new GFOpColor(arguments, colorSpace);
 	}
 
@@ -457,7 +458,8 @@ class OperatorParser {
 													PDResourcesHandler resourcesHandler,
 													GraphicState graphicState) {
 		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
-				graphicState.getFillColorSpace(), resourcesHandler, graphicState);
+				graphicState.getFillColorSpace(), resourcesHandler, graphicState.getOpm(),
+				graphicState.isOverprintingFlagNonStroke(), graphicState);
 		return new GFOpColor(arguments, colorSpace);
 	}
 
