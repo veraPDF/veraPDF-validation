@@ -20,14 +20,19 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSName;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.model.pdlayer.PDStructTreeRoot;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Maksim Bezrukov
@@ -39,6 +44,9 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 
 	/** Link name for {@code K} key */
 	public static final String CHILDREN = "K";
+
+	/** Link name for {@code roleMapNames} key */
+	public static final String ROLE_MAP_NAMES = "roleMapNames";
 
 	private List<PDStructElem> children = null;
 
@@ -54,10 +62,14 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
-		if (CHILDREN.equals(link)) {
-			return this.getChildren();
+		switch (link) {
+			case CHILDREN:
+				return this.getChildren();
+			case ROLE_MAP_NAMES:
+				return getRoleMapNames();
+			default:
+				return super.getLinkedObjects(link);
 		}
-		return super.getLinkedObjects(link);
 	}
 
 	private List<PDStructElem> getChildren() {
@@ -75,6 +87,22 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 				res.add(new GFPDStructElem(element));
 			}
 			return Collections.unmodifiableList(res);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<CosUnicodeName> getRoleMapNames() {
+		if (this.simplePDObject != null) {
+			Map<ASAtom, ASAtom> roleMap = ((org.verapdf.pd.structure.PDStructTreeRoot)
+					simplePDObject).getRoleMap();
+			if (roleMap != null) {
+				List<CosUnicodeName> res = new ArrayList<>();
+				for (Map.Entry<ASAtom, ASAtom> entry : roleMap.entrySet()) {
+					res.add(new GFCosUnicodeName((COSName) COSName.construct(entry.getKey()).get()));
+					res.add(new GFCosUnicodeName((COSName) COSName.construct(entry.getValue()).get()));
+				}
+				return res;
+			}
 		}
 		return Collections.emptyList();
 	}

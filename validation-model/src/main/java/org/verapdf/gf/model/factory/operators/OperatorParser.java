@@ -75,6 +75,8 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 import java.util.*;
 
 /**
+ * Main class that processes operators.
+ *
  * @author Timur Kamalov
  */
 class OperatorParser {
