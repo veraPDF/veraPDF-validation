@@ -22,8 +22,10 @@ package org.verapdf.gf.model.impl.operator.textshow;
 
 import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.factory.operators.GraphicState;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Op_Quote;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.List;
 
@@ -35,8 +37,9 @@ public class GFOp_Quote extends GFOpStringTextShow implements Op_Quote {
 	/** Type name for {@code GFOp_Quote} */
     public static final String OP_QUOTE_TYPE = "Op_Quote";
 
-    public GFOp_Quote(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler) {
-        super(arguments, state, resourcesHandler, OP_QUOTE_TYPE);
+    public GFOp_Quote(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
+                      GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        super(arguments, state, resourcesHandler, OP_QUOTE_TYPE, markedContent, structureElementAccessObject);
     }
 
 }

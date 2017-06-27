@@ -110,18 +110,13 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private static PDFAFlavour obtainFlavour(PDDocument document) {
-		PDMetadata metadata = null;
+		PDMetadata metadata;
 		PDFAFlavour defaultFlavour = Foundries.defaultInstance().defaultFlavour();
-		try {
-			if (document == null || document.getCatalog() == null) {
-				return defaultFlavour;
-			}
-			metadata = document.getCatalog().getMetadata();
-			if (metadata == null) {
-				return defaultFlavour;
-			}
-		} catch (IOException e) {
-			logger.log(Level.FINE, "Problem parsing metadata from document catalog.", e);
+		if (document == null || document.getCatalog() == null) {
+			return defaultFlavour;
+		}
+		metadata = document.getCatalog().getMetadata();
+		if (metadata == null) {
 			return defaultFlavour;
 		}
 		try (InputStream is = metadata.getStream()) {

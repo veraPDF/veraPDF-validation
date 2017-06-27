@@ -33,6 +33,7 @@ import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDType3Font;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.PDType3CharProc;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -108,7 +109,8 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                     PDResourcesHandler glyphResources = getResourcesFromCharProcs(charProcStream);
                     GFPDContentStream contentStream =
                             new GFPDContentStream(charProc, glyphResources == null ?
-                                    this.resources : glyphResources, inheritedGraphicState);
+                                    this.resources : glyphResources, inheritedGraphicState,
+                                    new StructureElementAccessObject(this.simpleCOSObject));
                     map.put(glyphName.getValue(), contentStream);
                 } else {
                     LOGGER.log(Level.FINE, "Invalid entry in the char proc dictionary.");

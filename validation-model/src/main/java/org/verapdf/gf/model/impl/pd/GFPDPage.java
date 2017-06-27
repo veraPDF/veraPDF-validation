@@ -29,6 +29,7 @@ import org.verapdf.model.coslayer.CosBBox;
 import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.actions.PDPageAdditionalActions;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -195,7 +196,8 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
 		if (page.getContent() != null) {
 			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
-			GFPDContentStream pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null);
+			GFPDContentStream pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
+					new StructureElementAccessObject(this.simpleCOSObject));
 			this.containsTransparency |= pdContentStream.isContainsTransparency();
 			pdContentStreams.add(pdContentStream);
 		}

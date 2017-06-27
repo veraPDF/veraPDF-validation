@@ -35,6 +35,7 @@ import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDGroup;
 import org.verapdf.model.pdlayer.PDXForm;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -136,7 +137,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		GFPDContentStream gfContentStream = new GFPDContentStream(
 				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
-				this.inheritedGraphicState);
+				this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject));
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		streams.add(gfContentStream);
 		this.contentStreams = streams;

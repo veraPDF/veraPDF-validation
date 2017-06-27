@@ -36,7 +36,6 @@ import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.actions.PDCatalogAdditionalActions;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -107,12 +106,8 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     public GFPDDocument(org.verapdf.pd.PDDocument document) {
         super(document, PD_DOCUMENT_TYPE);
-        PDCatalog catalog = null;
-        try {
-            catalog = document.getCatalog();
-        } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Can't obtain document catalog", e);
-        }
+        PDCatalog catalog;
+        catalog = document.getCatalog();
         this.catalog = catalog;
     }
 
@@ -232,45 +227,33 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     }
 
     private List<PDOutputIntent> getOutputIntents() {
-        try {
-            List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
-            if (outInts.size() > 0) {
-                List<PDOutputIntent> res = new ArrayList<>(outInts.size());
-                for (org.verapdf.pd.PDOutputIntent outInt : outInts) {
-                    res.add(new GFPDOutputIntent(outInt));
-                }
-                return Collections.unmodifiableList(res);
+        List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
+        if (outInts.size() > 0) {
+            List<PDOutputIntent> res = new ArrayList<>(outInts.size());
+            for (org.verapdf.pd.PDOutputIntent outInt : outInts) {
+                res.add(new GFPDOutputIntent(outInt));
             }
-        } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Exception during obtaining OutputIntents", e);
+            return Collections.unmodifiableList(res);
         }
         return Collections.emptyList();
     }
 
     private List<PDAcroForm> getAcroForms() {
-        try {
-            org.verapdf.pd.form.PDAcroForm acroForm = document.getAcroForm();
-            if (acroForm != null) {
-                List<PDAcroForm> forms = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-                forms.add(new GFPDAcroForm(acroForm));
-                return Collections.unmodifiableList(forms);
-            }
-        } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Exception during obtaining AcroForm", e);
+        org.verapdf.pd.form.PDAcroForm acroForm = document.getAcroForm();
+        if (acroForm != null) {
+            List<PDAcroForm> forms = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            forms.add(new GFPDAcroForm(acroForm));
+            return Collections.unmodifiableList(forms);
         }
         return Collections.emptyList();
     }
 
     private List<PDStructTreeRoot> getStructureTreeRoot() {
-        try {
-            org.verapdf.pd.structure.PDStructTreeRoot root = document.getStructTreeRoot();
-            if (root != null) {
-                List<PDStructTreeRoot> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-                res.add(new GFPDStructTreeRoot(root));
-                return Collections.unmodifiableList(res);
-            }
-        } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Exception during obtaining Structure tree root", e);
+        org.verapdf.pd.structure.PDStructTreeRoot root = document.getStructTreeRoot();
+        if (root != null) {
+            List<PDStructTreeRoot> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            res.add(new GFPDStructTreeRoot(root));
+            return Collections.unmodifiableList(res);
         }
         return Collections.emptyList();
     }

@@ -20,10 +20,13 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
+import org.verapdf.gf.model.impl.operator.markedcontent.MarkedContentHelper;
 import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.pd.font.*;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -39,6 +42,10 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private static final Logger LOGGER = Logger.getLogger(GFGlyph.class.getCanonicalName());
 
     public final static String GLYPH_TYPE = "Glyph";
+
+    private static final int UNICODE_PRIVATE_USE_AREA_BEGINNING = 0xE000;
+    private static final int UNICODE_PRIVATE_USE_AREA_ENDING = 0xF8FF;
+
     private final String id;
 
     private Boolean glyphPresent;
@@ -46,16 +53,23 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private String name;
     private String toUnicode;
     private Long renderingMode;
+    private GFOpMarkedContent markedContent;
+    private StructureElementAccessObject structureElementAccessObject;
 
-    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, int renderingMode) {
-        this(glyphPresent, widthsConsistent, font, glyphCode, GLYPH_TYPE, renderingMode);
+    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, int renderingMode,
+                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        this(glyphPresent, widthsConsistent, font, glyphCode, GLYPH_TYPE,
+                renderingMode, markedContent, structureElementAccessObject);
     }
 
-    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, String type, int renderingMode) {
+    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, String type, int renderingMode,
+                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
         super(type);
         this.glyphPresent = glyphPresent;
         this.widthsConsistent = widthsConsistent;
         this.renderingMode = Long.valueOf(renderingMode);
+        this.markedContent = markedContent;
+        this.structureElementAccessObject = structureElementAccessObject;
 
         if (font instanceof PDSimpleFont) {
             Encoding encoding = font.getEncodingMapping();
@@ -79,6 +93,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         }
         this.toUnicode = font.toUnicode(glyphCode);
+        getactualTextPresent();
         this.id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
                 font.getName(), glyphCode, renderingMode);
     }
@@ -111,5 +126,22 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     @Override
     public String getID() {
         return this.id;
+    }
+
+    @Override
+    public Boolean getunicodePUA() {
+        for (int i = 0; i < toUnicode.length(); ++i) {
+            char unicode = this.toUnicode.charAt(0);
+            if (unicode >= UNICODE_PRIVATE_USE_AREA_BEGINNING &&
+                    unicode <= UNICODE_PRIVATE_USE_AREA_ENDING) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean getactualTextPresent() {
+        return MarkedContentHelper.containsActualText(markedContent, structureElementAccessObject);
     }
 }

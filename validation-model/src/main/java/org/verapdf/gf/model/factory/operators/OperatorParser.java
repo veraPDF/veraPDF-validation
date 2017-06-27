@@ -69,12 +69,10 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * Main class that processes operators.
@@ -87,15 +85,19 @@ class OperatorParser {
 	private GraphicState graphicState;
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
+	private Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
+	private StructureElementAccessObject structureElementAccessObject;
 	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 
 
-	OperatorParser(GraphicState inheritedGraphicState) {
+	OperatorParser(GraphicState inheritedGraphicState,
+				   StructureElementAccessObject structureElementAccessObject) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState();
 		} else {
 			this.graphicState = inheritedGraphicState;
 		}
+		this.structureElementAccessObject = structureElementAccessObject;
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -140,7 +142,9 @@ class OperatorParser {
 
 			// MARKED CONTENT
 			case Operators.BMC:
-				processedOperators.add(new GFOp_BMC(arguments));
+				GFOp_BMC bmcOp = new GFOp_BMC(arguments);
+				processedOperators.add(bmcOp);
+				this.markedContentStack.push(bmcOp);
 				break;
 			case Operators.BDC:
 				PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
@@ -148,10 +152,13 @@ class OperatorParser {
 						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 					checkAFKey(arguments, resourcesHandler);
 				}
-				processedOperators.add(new GFOp_BDC(arguments));
+				GFOp_BDC bdcOp = new GFOp_BDC(arguments);
+				processedOperators.add(bdcOp);
+				this.markedContentStack.push(bdcOp);
 				break;
 			case Operators.EMC:
 				processedOperators.add(new GFOp_EMC(arguments));
+				this.markedContentStack.pop();
 				break;
 			case Operators.MP:
 				processedOperators.add(new GFOp_MP(arguments));
@@ -252,22 +259,26 @@ class OperatorParser {
 
 			// TEXT SHOW
 			case Operators.TJ_SHOW:
-				GFOp_Tj tj = new GFOp_Tj(arguments, this.graphicState.clone(), resourcesHandler);
+				GFOp_Tj tj = new GFOp_Tj(arguments, this.graphicState.clone(),
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
 				addFontAndColorSpace(tj, this.transparencyGraphicState);
 				processedOperators.add(tj);
 				break;
 			case Operators.TJ_SHOW_POS:
-				GFOp_TJ_Big tjBig = new GFOp_TJ_Big(arguments, this.graphicState.clone(), resourcesHandler);
+				GFOp_TJ_Big tjBig = new GFOp_TJ_Big(arguments, this.graphicState.clone(),
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
 				addFontAndColorSpace(tjBig, this.transparencyGraphicState);
 				processedOperators.add(tjBig);
 				break;
 			case Operators.QUOTE:
-				GFOp_Quote quote = new GFOp_Quote(arguments, this.graphicState.clone(), resourcesHandler);
+				GFOp_Quote quote = new GFOp_Quote(arguments, this.graphicState.clone(),
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
 				addFontAndColorSpace(quote, this.transparencyGraphicState);
 				processedOperators.add(quote);
 				break;
 			case Operators.DOUBLE_QUOTE:
-				GFOp_DoubleQuote doubleQuote = new GFOp_DoubleQuote(arguments, this.graphicState.clone(), resourcesHandler);
+				GFOp_DoubleQuote doubleQuote = new GFOp_DoubleQuote(arguments, this.graphicState.clone(),
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
 				addFontAndColorSpace(doubleQuote, this.transparencyGraphicState);
 				processedOperators.add(doubleQuote);
 				break;
@@ -564,5 +575,12 @@ class OperatorParser {
 			return false;
 		}
 		return true;
+	}
+
+	private GFOpMarkedContent getCurrentMarkedContent() {
+		if (this.markedContentStack.empty()) {
+			return null;
+		}
+		return this.markedContentStack.firstElement();
 	}
 }
