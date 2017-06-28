@@ -74,4 +74,9 @@ public class GFCMapFile extends GFExternal implements CMapFile {
     public Long getdictWMode() {
         return new Long(cMapFile.getDictWMode());
     }
+
+    @Override
+    public Long getmaximalCID() {
+        return new Long(this.cMapFile.getMaxCID());
+    }
 }
