@@ -126,7 +126,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		if (group != null) {
 			this.groupContainsTransparency = ASAtom.TRANSPARENCY.equals(group.getSubtype());
 			List<PDGroup> groups = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			groups.add(new GFPDGroup(group));
+			groups.add(new GFPDGroup(group, resourcesHandler.getObjectResources()));
 			this.groups = Collections.unmodifiableList(groups);
 		} else {
 			this.groups = Collections.emptyList();

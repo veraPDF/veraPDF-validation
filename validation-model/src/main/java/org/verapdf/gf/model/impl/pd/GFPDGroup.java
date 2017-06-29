@@ -25,6 +25,7 @@ import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDGroup;
+import org.verapdf.pd.PDResources;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,9 +39,11 @@ public class GFPDGroup extends GFPDObject implements PDGroup {
 	public static final String GROUP_TYPE = "PDGroup";
 
 	public static final String COLOR_SPACE = "colorSpace";
+	private final PDResources inheritedResources;
 
-	public GFPDGroup(org.verapdf.pd.PDGroup simplePDObject) {
+	public GFPDGroup(org.verapdf.pd.PDGroup simplePDObject, PDResources inheritedResources) {
 		super(simplePDObject, GROUP_TYPE);
+		this.inheritedResources = inheritedResources;
 	}
 
 	@Override
@@ -59,7 +62,8 @@ public class GFPDGroup extends GFPDObject implements PDGroup {
 
 	private List<PDColorSpace> getColorSpace() {
 		org.verapdf.pd.colors.PDColorSpace pbColorSpace =
-				((org.verapdf.pd.PDGroup) this.simplePDObject).getColorSpace();
+				((org.verapdf.pd.PDGroup) this.simplePDObject).getColorSpace(
+						inheritedResources);
 		if (pbColorSpace != null) {
 			PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(pbColorSpace);
 			List<PDColorSpace> colorSpaces = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);

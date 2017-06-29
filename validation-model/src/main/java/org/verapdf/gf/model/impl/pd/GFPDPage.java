@@ -21,7 +21,6 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.cos.COSArray;
-import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.cos.GFCosBBox;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
@@ -83,10 +82,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 * Link name for page art box
 	 */
 	private static final String ART_BOX = "ArtBox";
-	/**
-	 * Link name for page group colorspace
-	 */
-	private static final String GROUP_CS = "groupCS";
 
 	public static final int MAX_NUMBER_OF_ACTIONS = 2;
 
@@ -124,8 +119,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
 				return this.getTrimBox();
 			case ART_BOX:
 				return this.getArtBox();
-			case GROUP_CS:
-				return this.getGroupCS();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -135,7 +128,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
 		if (group != null) {
 			List<PDGroup> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			res.add(new GFPDGroup(group));
+			org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
+			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(),
+					page.isInheritedResources().booleanValue());
+			res.add(new GFPDGroup(group, resourcesHandler.getPageResources()));
 			return Collections.unmodifiableList(res);
 		}
 		return Collections.emptyList();
@@ -229,20 +225,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			List<CosBBox> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			res.add(new GFCosBBox(array));
 			return Collections.unmodifiableList(res);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<PDColorSpace> getGroupCS() {
-		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
-		if (group != null) {
-			org.verapdf.pd.colors.PDColorSpace colorSpace = group.getColorSpace();
-			if (colorSpace != null) {
-				List<PDColorSpace> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-				// TODO: check this. Have we add resources here?
-				res.add(ColorSpaceFactory.getColorSpace(colorSpace));
-				return Collections.unmodifiableList(res);
-			}
 		}
 		return Collections.emptyList();
 	}
