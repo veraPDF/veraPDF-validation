@@ -60,8 +60,8 @@ public class GFPDGroup extends GFPDObject implements PDGroup {
 	private List<PDColorSpace> getColorSpace() {
 		org.verapdf.pd.colors.PDColorSpace pbColorSpace =
 				((org.verapdf.pd.PDGroup) this.simplePDObject).getColorSpace();
-		PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(pbColorSpace);
-		if (colorSpace != null) {
+		if (pbColorSpace != null) {
+			PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(pbColorSpace);
 			List<PDColorSpace> colorSpaces = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			colorSpaces.add(colorSpace);
 			return Collections.unmodifiableList(colorSpaces);

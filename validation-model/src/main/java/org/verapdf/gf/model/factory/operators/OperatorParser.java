@@ -448,18 +448,18 @@ class OperatorParser {
 	private static GFOpColor getStrokeColorOperator(List<COSBase> arguments,
 													PDResourcesHandler resourcesHandler,
 													GraphicState graphicState) {
+		// OP and opm are not passed to color space factory: color space is being specified (not used yet)
 		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
-				graphicState.getStrokeColorSpace(), resourcesHandler, graphicState.getOpm(),
-				graphicState.isOverprintingFlagStroke(), graphicState);
+				graphicState.getStrokeColorSpace(), resourcesHandler, graphicState);
 		return new GFOpColor(arguments, colorSpace);
 	}
 
 	private static GFOpColor getFillColorOperator(List<COSBase> arguments,
 													PDResourcesHandler resourcesHandler,
 													GraphicState graphicState) {
+		// op and opm are not passed to color space factory: color space is being specified (not used yet)
 		org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
-				graphicState.getFillColorSpace(), resourcesHandler, graphicState.getOpm(),
-				graphicState.isOverprintingFlagNonStroke(), graphicState);
+				graphicState.getFillColorSpace(), resourcesHandler, graphicState);
 		return new GFOpColor(arguments, colorSpace);
 	}
 
