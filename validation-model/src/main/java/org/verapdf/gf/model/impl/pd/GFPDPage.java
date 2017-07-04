@@ -236,7 +236,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	private List<PDColorSpace> getGroupCS() {
 		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
 		if (group != null) {
-			org.verapdf.pd.colors.PDColorSpace colorSpace = group.getColorSpace();
+			org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
+			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(),
+					page.isInheritedResources().booleanValue());
+			org.verapdf.pd.colors.PDColorSpace colorSpace = group.getColorSpace(resourcesHandler.getPageResources());
 			if (colorSpace != null) {
 				List<PDColorSpace> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				// TODO: check this. Have we add resources here?
