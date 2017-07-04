@@ -43,8 +43,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     public final static String GLYPH_TYPE = "Glyph";
 
-    private static final int UNICODE_PRIVATE_USE_AREA_BEGINNING = 0xE000;
-    private static final int UNICODE_PRIVATE_USE_AREA_ENDING = 0xF8FF;
+    private static final int[] UNICODE_PRIVATE_USE_AREA_ARRAY = {0xE000, 0xF8FF, 0xF0000, 0xFFFFD, 0x100000, 0x10FFFD};
 
     private final String id;
 
@@ -131,9 +130,13 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     @Override
     public Boolean getunicodePUA() {
         for (int i = 0; i < toUnicode.length(); ++i) {
-            char unicode = this.toUnicode.charAt(0);
-            if (unicode >= UNICODE_PRIVATE_USE_AREA_BEGINNING &&
-                    unicode <= UNICODE_PRIVATE_USE_AREA_ENDING) {
+            int unicode = this.toUnicode.codePointAt(0);
+            if ((unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[0] &&
+                    unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[1]) ||
+                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[2] &&
+                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[3]) ||
+                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[4] &&
+                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[5])){
                 return true;
             }
         }

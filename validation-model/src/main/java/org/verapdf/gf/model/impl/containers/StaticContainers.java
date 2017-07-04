@@ -76,9 +76,6 @@ public class StaticContainers {
 
 	public static void setFlavour(PDFAFlavour flavour) {
 		StaticContainers.flavour = flavour;
-		if (roleMapHelper != null) {
-			roleMapHelper.setFlavour(flavour);
-		}
 	}
 
 	public static TaggedPDFRoleMapHelper getRoleMapHelper() {
@@ -86,6 +83,6 @@ public class StaticContainers {
 	}
 
 	public static void setRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
-		StaticContainers.roleMapHelper = new TaggedPDFRoleMapHelper(roleMap, StaticContainers.flavour);
+		StaticContainers.roleMapHelper = new TaggedPDFRoleMapHelper(roleMap);
 	}
 }

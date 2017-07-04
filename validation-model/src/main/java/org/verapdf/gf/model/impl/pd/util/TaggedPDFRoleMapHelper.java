@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.util;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.*;
@@ -109,22 +110,13 @@ public class TaggedPDFRoleMapHelper {
 	}
 
 	private Map<ASAtom, ASAtom> roleMap;
-	private Set<String> currentStandartTypes;
 
 	/**
 	 * Creates new TaggedPDFRoleMapHelper
 	 * @param roleMap role map from PDF
-	 * @param flavour current pdfa flavour
 	 */
-	public TaggedPDFRoleMapHelper(Map<ASAtom, ASAtom> roleMap, PDFAFlavour flavour) {
+	public TaggedPDFRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
 		this.roleMap = roleMap == null ? Collections.<ASAtom, ASAtom>emptyMap() : new HashMap<>(roleMap);
-		setFlavour(flavour);
-	}
-
-	public void setFlavour(PDFAFlavour flavour) {
-		this.currentStandartTypes = flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1 ?
-				Collections.unmodifiableSet(PDF_1_4_STANDART_ROLE_TYPES) :
-				Collections.unmodifiableSet(PDF_1_7_STANDART_ROLE_TYPES);
 	}
 
 	/**
@@ -133,19 +125,36 @@ public class TaggedPDFRoleMapHelper {
 	 * @return standart type for the given one or null in cases when there is
 	 * no standart for the given or there is a cycle of the custom types
 	 */
-	public String getStandartType(ASAtom type) {
+	public String getStandardType(ASAtom type) {
 		if (type == null) {
 			return null;
 		}
+		Set<String> currentStandardTypes;
+		boolean isFastStop;
+		PDFAFlavour flavour = StaticContainers.getFlavour();
+		if (flavour != null && flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+			currentStandardTypes = PDF_1_4_STANDART_ROLE_TYPES;
+			isFastStop = true;
+		} else {
+			currentStandardTypes = PDF_1_7_STANDART_ROLE_TYPES;
+			isFastStop = false;
+		}
+		return getSandartType(type, currentStandardTypes, isFastStop);
+	}
+
+	private String getSandartType(ASAtom type, Set<String> currentStandardTypes, boolean isFastStop) {
 		Set<ASAtom> visitedTypes = new HashSet<>();
 		ASAtom res = type;
 		while (res != null && !visitedTypes.contains(res)) {
-			if (currentStandartTypes.contains(res.getValue())) {
+			visitedTypes.add(res);
+			ASAtom next = roleMap.get(res);
+			boolean isStop = isFastStop || next == null;
+			if (isStop && currentStandardTypes.contains(res.getValue())) {
 				return res.getValue();
 			}
-			visitedTypes.add(res);
-			res = roleMap.get(res);
+			res = next;
 		}
+
 		return null;
 	}
 }
