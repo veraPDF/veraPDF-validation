@@ -129,6 +129,9 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     @Override
     public Boolean getunicodePUA() {
+        if (toUnicode == null) {
+            return false;
+        }
         for (int i = 0; i < toUnicode.length(); ++i) {
             int unicode = this.toUnicode.codePointAt(0);
             if ((unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[0] &&
