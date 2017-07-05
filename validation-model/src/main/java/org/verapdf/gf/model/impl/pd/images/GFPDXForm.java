@@ -122,11 +122,12 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	}
 
 	private void initializeGroups() {
-		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.images.PDXForm) this.simplePDObject).getGroup();
+		org.verapdf.pd.images.PDXForm form = (org.verapdf.pd.images.PDXForm) this.simplePDObject;
+		org.verapdf.pd.PDGroup group = form.getGroup();
 		if (group != null) {
 			this.groupContainsTransparency = ASAtom.TRANSPARENCY.equals(group.getSubtype());
 			List<PDGroup> groups = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			groups.add(new GFPDGroup(group));
+			groups.add(new GFPDGroup(group, resourcesHandler.getObjectResources()));
 			this.groups = Collections.unmodifiableList(groups);
 		} else {
 			this.groups = Collections.emptyList();

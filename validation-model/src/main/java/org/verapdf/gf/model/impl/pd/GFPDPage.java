@@ -21,7 +21,6 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.cos.COSArray;
-import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.cos.GFCosBBox;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
@@ -83,10 +82,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 * Link name for page art box
 	 */
 	private static final String ART_BOX = "ArtBox";
-	/**
-	 * Link name for page group colorspace
-	 */
-	private static final String GROUP_CS = "groupCS";
 
 	public static final int MAX_NUMBER_OF_ACTIONS = 2;
 
@@ -124,18 +119,19 @@ public class GFPDPage extends GFPDObject implements PDPage {
 				return this.getTrimBox();
 			case ART_BOX:
 				return this.getArtBox();
-			case GROUP_CS:
-				return this.getGroupCS();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
 	private List<PDGroup> getGroup() {
-		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
+		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
+		org.verapdf.pd.PDGroup group = page.getGroup();
 		if (group != null) {
 			List<PDGroup> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			res.add(new GFPDGroup(group));
+			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(),
+					page.isInheritedResources().booleanValue());
+			res.add(new GFPDGroup(group, resourcesHandler.getPageResources()));
 			return Collections.unmodifiableList(res);
 		}
 		return Collections.emptyList();
@@ -233,23 +229,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		return Collections.emptyList();
 	}
 
-	private List<PDColorSpace> getGroupCS() {
-		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) simplePDObject).getGroup();
-		if (group != null) {
-			org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(),
-					page.isInheritedResources().booleanValue());
-			org.verapdf.pd.colors.PDColorSpace colorSpace = group.getColorSpace(resourcesHandler.getPageResources());
-			if (colorSpace != null) {
-				List<PDColorSpace> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-				// TODO: check this. Have we add resources here?
-				res.add(ColorSpaceFactory.getColorSpace(colorSpace));
-				return Collections.unmodifiableList(res);
-			}
-		}
-		return Collections.emptyList();
-	}
-
 	/**
 	 * @return true if the page contains presentation steps
 	 * (/PresSteps in the page dictionary).
@@ -271,5 +250,14 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			this.annotations = parseAnnotataions();
 		}
 		return Boolean.valueOf(this.containsTransparency);
+	}
+
+	/**
+	 * @return true if the page contains group which contains color space
+	 */
+	@Override
+	public Boolean getcontainsGroupCS() {
+		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) this.simplePDObject).getGroup();
+		return Boolean.valueOf(group != null && group.getColorSpace() != null);
 	}
 }
