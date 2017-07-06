@@ -158,7 +158,9 @@ class OperatorParser {
 				break;
 			case Operators.EMC:
 				processedOperators.add(new GFOp_EMC(arguments));
-				this.markedContentStack.pop();
+				if (!this.markedContentStack.empty()) {
+					this.markedContentStack.pop();
+				}
 				break;
 			case Operators.MP:
 				processedOperators.add(new GFOp_MP(arguments));
