@@ -20,6 +20,9 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.pd.PDHalftone;
 
 /**
@@ -35,11 +38,21 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
 
     @Override
     public Long getHalftoneType() {
-        return ((PDHalftone) simplePDObject).getHalftoneType();
+        PDHalftone halftone = (PDHalftone) this.simplePDObject;
+        COSObject object = halftone.getObject();
+        if (object.getType() == COSObjType.COS_NAME && object.getName() == ASAtom.getASAtom("Default")) {
+            return Long.valueOf(1L);
+        }
+        return halftone.getHalftoneType();
     }
 
     @Override
     public String getHalftoneName() {
-        return ((PDHalftone) simplePDObject).getHalftoneName();
+        PDHalftone halftone = (PDHalftone) this.simplePDObject;
+        COSObject object = halftone.getObject();
+        if (object.getType() == COSObjType.COS_NAME && object.getName() == ASAtom.DEFAULT) {
+            return null;
+        }
+        return halftone.getHalftoneName();
     }
 }
