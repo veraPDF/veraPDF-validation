@@ -40,7 +40,7 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
     public Long getHalftoneType() {
         PDHalftone halftone = (PDHalftone) this.simplePDObject;
         COSObject object = halftone.getObject();
-        if (object.getType() == COSObjType.COS_NAME && object.getName() == ASAtom.getASAtom("Default")) {
+        if (object.getType() == COSObjType.COS_NAME && object.getName() == ASAtom.DEFAULT) {
             return Long.valueOf(1L);
         }
         return halftone.getHalftoneType();
