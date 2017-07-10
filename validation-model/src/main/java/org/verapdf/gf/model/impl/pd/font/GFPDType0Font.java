@@ -147,8 +147,12 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 				.getIntegerKey(ASAtom.SUPPLEMENT);
 		Long cMapSupplement = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getSupplement();
 		if (fontSupplement == null) {
-			LOGGER.log(Level.FINE, "CIDSystemInfo dictionary doesn't contain Supplement entry.");
-			return Boolean.valueOf(false);
+			LOGGER.log(Level.FINE, "Font's CIDSystemInfo dictionary doesn't contain Supplement entry.");
+			fontSupplement = 0L;
+		}
+		if (cMapSupplement == null) {
+			LOGGER.log(Level.FINE, "CMap's CIDSystemInfo dictionary missing or doesn't contain Supplement entry.");
+			cMapSupplement = 0L;
 		}
 		return Boolean.valueOf(fontSupplement.longValue() >= cMapSupplement.longValue());
 	}
