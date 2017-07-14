@@ -39,15 +39,11 @@ import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFPDDocument extends GFPDObject implements PDDocument {
-
-    private static final Logger LOGGER = Logger.getLogger(GFPDDocument.class.getCanonicalName());
 
     public static final String PD_DOCUMENT_TYPE = "PDDocument";
 
@@ -200,19 +196,14 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    private static List<PDPage> getPages() {
-        try {
-            List<PDPage> result = new ArrayList<>();
-            List<org.verapdf.pd.PDPage> rawPages = StaticContainers.getDocument().getPages();
-            for (org.verapdf.pd.PDPage rawPage : rawPages) {
-                result.add(new GFPDPage(rawPage));
-            }
-            return result;
-        } catch (Exception e) {
-            LOGGER.log(Level.FINE, "Error while processing pages.", e);
-        }
-        return Collections.emptyList();
-    }
+	private static List<PDPage> getPages() {
+		List<PDPage> result = new ArrayList<>();
+		List<org.verapdf.pd.PDPage> rawPages = StaticContainers.getDocument().getPages();
+		for (org.verapdf.pd.PDPage rawPage : rawPages) {
+			result.add(new GFPDPage(rawPage));
+		}
+		return Collections.unmodifiableList(result);
+	}
 
     private List<PDMetadata> getMetadata() {
         if (this.catalog != null) {
