@@ -101,20 +101,19 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
     }
 
     private List<org.verapdf.model.pdlayer.PDHalftone> getHalftones() {
+        Long halftoneType = getHalftoneType();
+        if (halftoneType == null || halftoneType != 5L) {
+            return Collections.emptyList();
+        }
         List<org.verapdf.model.pdlayer.PDHalftone> halftones = new ArrayList<>();
         COSObject object = this.simplePDObject.getObject();
         if (object != null && object.getType().isDictionaryBased()) {
             for (ASAtom key : object.getKeySet()) {
                 COSObject value = object.getKey(key);
                 if (value.getType().isDictionaryBased()) {
-                    COSObject dictType = value.getKey(ASAtom.TYPE);
-                    if (dictType != null
-                            && dictType.getType() == COSObjType.COS_NAME
-                            && dictType.getName() == ASAtom.getASAtom("Halftone")) {
-                        PDHalftone halftone = new PDHalftone(value);
-                        GFPDHalftone gfPDHalftone = new GFPDHalftone(halftone, key);
-                        halftones.add(gfPDHalftone);
-                    }
+                    PDHalftone halftone = new PDHalftone(value);
+                    GFPDHalftone gfPDHalftone = new GFPDHalftone(halftone, key);
+                    halftones.add(gfPDHalftone);
                 }
             }
         }
