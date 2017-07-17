@@ -95,8 +95,9 @@ class OperatorParser {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState();
 		} else {
-			this.graphicState = inheritedGraphicState;
+			this.graphicState = inheritedGraphicState.clone();
 		}
+		this.graphicState.setInitialGraphicState(this.graphicState);
 		this.structureElementAccessObject = structureElementAccessObject;
 	}
 
