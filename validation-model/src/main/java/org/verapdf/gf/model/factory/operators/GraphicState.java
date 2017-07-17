@@ -37,10 +37,9 @@ public class GraphicState implements Cloneable {
 	private boolean overprintingFlagStroke = false;
 	private boolean overprintingFlagNonStroke = false;
 	private int opm = 0;
+	private GraphicState initialGraphicState = null;
 
 	public GraphicState() {
-		fillColorSpace = PDDeviceGray.INSTANCE;
-		strokeColorSpace = PDDeviceGray.INSTANCE;
 	}
 
 	public PDColorSpace getFillColorSpace() {
@@ -99,6 +98,14 @@ public class GraphicState implements Cloneable {
 		this.opm = opm;
 	}
 
+	public GraphicState getInitialGraphicState() {
+		return initialGraphicState;
+	}
+
+	public void setInitialGraphicState(GraphicState initialGraphicState) {
+		this.initialGraphicState = initialGraphicState.clone();
+	}
+
 	public void copyProperties(GraphicState graphicState) {
 		this.fillColorSpace = graphicState.getFillColorSpace();
 		this.strokeColorSpace = graphicState.getStrokeColorSpace();
@@ -107,6 +114,7 @@ public class GraphicState implements Cloneable {
 		this.overprintingFlagStroke = graphicState.isOverprintingFlagStroke();
 		this.overprintingFlagNonStroke = graphicState.isOverprintingFlagNonStroke();
 		this.opm = graphicState.getOpm();
+		this.initialGraphicState = graphicState.getInitialGraphicState();
 	}
 
 	public void copyPropertiesFormExtGState(PDExtGState extGState) {
@@ -137,6 +145,7 @@ public class GraphicState implements Cloneable {
 		clone.overprintingFlagStroke = this.overprintingFlagStroke;
 		clone.overprintingFlagNonStroke = this.overprintingFlagNonStroke;
 		clone.opm = this.opm;
+		clone.initialGraphicState = this.initialGraphicState;
 		return clone;
 	}
 
