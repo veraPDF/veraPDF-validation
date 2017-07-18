@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd;
 
 
 import org.verapdf.as.io.ASInputStream;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
@@ -90,6 +91,18 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 			try {
 				COSObject contentStream = this.contentStream.getContents();
 				if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
+					COSKey key = contentStream.getObjectKey();
+					if (key != null) {
+						if (StaticContainers.transparencyVisitedContentStreams.contains(key)) {
+							LOGGER.log(Level.FINE, "Parsing content stream loop");
+							StaticContainers.validPDF = false;
+							this.containsTransparency = false;
+							this.operators = Collections.emptyList();
+							return;
+						} else {
+							StaticContainers.transparencyVisitedContentStreams.add(key);
+						}
+					}
 					try (ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
 						PDFStreamParser streamParser = new PDFStreamParser(opStream);
 						try {
@@ -113,6 +126,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error while parsing content stream. " + e.getMessage(), e);
+				StaticContainers.validPDF = false;
 				this.operators = Collections.emptyList();
 			}
 		}

@@ -190,9 +190,10 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
+				StaticContainers.validPDF = false;
 			}
 		}
-		return res;
+		return Collections.unmodifiableList(res);
 
 	}
 

@@ -108,7 +108,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	public Map<String, List<GFPDSeparation>> separations;
 	public List<String> inconsistentSeparations;
 	public Map<String, PDColorSpace> cachedColorSpaces;
-	public static Set<COSKey> fileSpecificationKeys;
+	public Set<COSKey> fileSpecificationKeys;
+	public Set<COSKey> transparencyVisitedContentStreams;
+	public boolean validPDF;
 
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
@@ -117,7 +119,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.inconsistentSeparations = StaticContainers.inconsistentSeparations;
 		this.cachedColorSpaces = StaticContainers.cachedColorSpaces;
 		this.roleMapHelper = StaticContainers.roleMapHelper;
-		GFEmbeddedFile.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
+		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
+		this.transparencyVisitedContentStreams = StaticContainers.transparencyVisitedContentStreams;
+		this.validPDF = StaticContainers.validPDF;
 	}
 
 	private void restoreSavedSCState() {
@@ -127,7 +131,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.inconsistentSeparations = this.inconsistentSeparations;
 		StaticContainers.cachedColorSpaces = this.cachedColorSpaces;
 		StaticContainers.roleMapHelper = this.roleMapHelper;
-		StaticContainers.fileSpecificationKeys = GFEmbeddedFile.fileSpecificationKeys;
+		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
+		StaticContainers.transparencyVisitedContentStreams = this.transparencyVisitedContentStreams;
+		StaticContainers.validPDF = this.validPDF;
 	}
 
 }

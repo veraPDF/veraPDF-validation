@@ -50,6 +50,9 @@ public class StaticContainers {
 
 	public static Set<COSKey> fileSpecificationKeys = new HashSet<>();
 
+	public static Set<COSKey> transparencyVisitedContentStreams = new HashSet<>();
+	public static boolean validPDF  = true;
+
 	public static void clearAllContainers() {
 		if (document != null) {
 			document = null;
@@ -60,6 +63,8 @@ public class StaticContainers {
 		inconsistentSeparations.clear();
 		cachedColorSpaces.clear();
 		fileSpecificationKeys.clear();
+		transparencyVisitedContentStreams.clear();
+		validPDF = true;
 	}
 
 	public static PDDocument getDocument() {

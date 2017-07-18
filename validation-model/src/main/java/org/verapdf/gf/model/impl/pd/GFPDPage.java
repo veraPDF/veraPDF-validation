@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.cos.COSArray;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosBBox;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
@@ -146,6 +147,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	}
 
 	private List<PDAnnot> parseAnnotataions() {
+		StaticContainers.transparencyVisitedContentStreams.clear();
 		List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
 		if (annots.size() > 0) {
 			List<PDAnnot> res = new ArrayList<>(annots.size());
@@ -188,6 +190,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	}
 
 	private List<PDContentStream> parseContentStream() {
+		StaticContainers.transparencyVisitedContentStreams.clear();
 		List<PDContentStream> pdContentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
 		if (page.getContent() != null) {
