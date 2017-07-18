@@ -98,7 +98,7 @@ public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 		this.index = index;
 		if (this.page != null && !this.page.empty()) {
 			COSObject transition = page.getKey(ASAtom.TRANS);
-			if (transition != null) {
+			if (transition != null && !transition.empty()) {
 				if (transition.getType() == COSObjType.COS_DICT) {
 					ASAtom style = transition.getNameKey(ASAtom.S);
 					this.transitionStyle = style == null ? "R" : style.getValue();
