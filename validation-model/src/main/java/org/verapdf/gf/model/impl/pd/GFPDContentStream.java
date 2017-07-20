@@ -100,7 +100,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							this.operators = Collections.emptyList();
 							return;
 						} else {
-							StaticContainers.transparencyVisitedContentStreams.add(key);
+							StaticContainers.transparencyVisitedContentStreams.push(key);
 						}
 					}
 					try (ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
@@ -120,6 +120,9 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 										streamParser.getImageDataStreams());
 							}
 						}
+					}
+					if (StaticContainers.transparencyVisitedContentStreams.peek().equals(key)) {
+						StaticContainers.transparencyVisitedContentStreams.pop();
 					}
 				} else {
 					this.operators = Collections.emptyList();

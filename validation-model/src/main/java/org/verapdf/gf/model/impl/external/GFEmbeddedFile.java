@@ -41,6 +41,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -109,7 +110,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	public List<String> inconsistentSeparations;
 	public Map<String, PDColorSpace> cachedColorSpaces;
 	public Set<COSKey> fileSpecificationKeys;
-	public Set<COSKey> transparencyVisitedContentStreams;
+	public Stack<COSKey> transparencyVisitedContentStreams;
 	public boolean validPDF;
 
 	private void saveStaticContainersState() {

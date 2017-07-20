@@ -50,7 +50,7 @@ public class StaticContainers {
 
 	public static Set<COSKey> fileSpecificationKeys = new HashSet<>();
 
-	public static Set<COSKey> transparencyVisitedContentStreams = new HashSet<>();
+	public static Stack<COSKey> transparencyVisitedContentStreams = new Stack<>();
 	public static boolean validPDF  = true;
 
 	public static void clearAllContainers() {
