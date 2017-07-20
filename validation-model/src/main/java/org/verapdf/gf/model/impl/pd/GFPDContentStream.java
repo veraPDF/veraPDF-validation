@@ -121,7 +121,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							}
 						}
 					}
-					if (StaticContainers.transparencyVisitedContentStreams.peek().equals(key)) {
+					if (!StaticContainers.transparencyVisitedContentStreams.empty() &&
+							StaticContainers.transparencyVisitedContentStreams.peek().equals(key)) {
 						StaticContainers.transparencyVisitedContentStreams.pop();
 					}
 				} else {
