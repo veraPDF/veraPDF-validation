@@ -133,7 +133,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             return false;
         }
         for (int i = 0; i < toUnicode.length(); ++i) {
-            int unicode = this.toUnicode.codePointAt(0);
+            int unicode = this.toUnicode.codePointAt(i);
             if ((unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[0] &&
                     unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[1]) ||
                     (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[2] &&
