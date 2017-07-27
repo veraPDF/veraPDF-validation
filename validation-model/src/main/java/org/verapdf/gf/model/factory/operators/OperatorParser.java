@@ -143,7 +143,7 @@ class OperatorParser {
 
 			// MARKED CONTENT
 			case Operators.BMC:
-				GFOp_BMC bmcOp = new GFOp_BMC(arguments);
+				GFOp_BMC bmcOp = new GFOp_BMC(arguments, resourcesHandler);
 				processedOperators.add(bmcOp);
 				this.markedContentStack.push(bmcOp);
 				break;
@@ -153,7 +153,7 @@ class OperatorParser {
 						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 					checkAFKey(arguments, resourcesHandler);
 				}
-				GFOp_BDC bdcOp = new GFOp_BDC(arguments);
+				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler);
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
 				break;
@@ -167,7 +167,7 @@ class OperatorParser {
 				processedOperators.add(new GFOp_MP(arguments));
 				break;
 			case Operators.DP:
-				processedOperators.add(new GFOp_DP(arguments));
+				processedOperators.add(new GFOp_DP(arguments, resourcesHandler));
 				break;
 
 			// CLIP

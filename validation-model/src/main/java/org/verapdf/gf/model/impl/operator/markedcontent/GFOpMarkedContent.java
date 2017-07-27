@@ -26,10 +26,12 @@ import org.verapdf.gf.model.impl.cos.GFCosDict;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosName;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
+import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.coslayer.CosDict;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.operator.OpMarkedContent;
+import org.verapdf.pd.PDResource;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,9 +49,30 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	/** Name of link to Lang value from the properties dictionary */
 	public static final String LANG = "Lang";
 
-    public GFOpMarkedContent(List<COSBase> arguments, final String opType) {
+	private COSDictionary propertiesDict;
+
+    public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources) {
         super(arguments, opType);
+		initializePropertiesDict(resources);
     }
+
+	private void initializePropertiesDict(PDResourcesHandler resources) {
+		if (!this.arguments.isEmpty()) {
+			COSBase lastArg = this.arguments.get(this.arguments.size() - 1);
+			COSObjType lastArgType = lastArg.getType();
+			if (lastArgType == COSObjType.COS_DICT) {
+				this.propertiesDict = (COSDictionary) lastArg;
+			} else if (lastArgType == COSObjType.COS_NAME) {
+				PDResource properties = resources.getProperties(lastArg.getName());
+				if (properties != null) {
+					COSBase cosProperties = properties.getObject().getDirectBase();
+					if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
+						this.propertiesDict = (COSDictionary) cosProperties;
+					}
+				}
+			}
+		}
+	}
 
     protected List<CosName> getTag() {
         if (this.arguments.size() > 1) {
@@ -64,14 +87,11 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
     }
 
     protected List<CosDict> getPropertiesDict() {
-        if (!this.arguments.isEmpty()) {
-			COSBase dict = this.arguments.get(this.arguments.size() - 1);
-			if (dict.getType() == COSObjType.COS_DICT) {
-				List<CosDict> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-				list.add(new GFCosDict((COSDictionary) dict));
-				return Collections.unmodifiableList(list);
-			}
-        }
+		if (this.propertiesDict != null) {
+			List<CosDict> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosDict(this.propertiesDict));
+			return Collections.unmodifiableList(list);
+		}
         return Collections.emptyList();
     }
 
@@ -106,13 +126,10 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	}
 
 	private COSObject getAttribute(ASAtom attributeName, COSObjType expectedType) {
-		if (!this.arguments.isEmpty()) {
-			COSBase dict = this.arguments.get(this.arguments.size() - 1);
-			if (dict.getType() == COSObjType.COS_DICT) {
-				COSObject res = dict.getKey(attributeName);
-				if (res != null && !res.empty() && res.getType() == expectedType) {
-					return res;
-				}
+		if (this.propertiesDict != null) {
+			COSObject res = this.propertiesDict.getKey(attributeName);
+			if (res != null && !res.empty() && res.getType() == expectedType) {
+				return res;
 			}
 		}
 		return null;
