@@ -36,10 +36,7 @@ import org.verapdf.pd.font.PDFontDescriptor;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -137,8 +134,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
             COSStream cidSet = getCIDSetStream();
             if (cidSet != null) {
                 ASInputStream stream = cidSet.getData(COSStream.FilterFlags.DECODE);
-                long length = cidSet.getLength();
-                byte[] cidSetBytes = getCIDsFromCIDSet(stream, length);
+                byte[] cidSetBytes = getCIDsFromCIDSet(stream);
 
                 //reverse bit order in bit set (convert to big endian)
                 BitSet bitSet = toBitSetBigEndian(cidSetBytes);
@@ -178,12 +174,10 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         return null;
     }
 
-    private static byte[] getCIDsFromCIDSet(ASInputStream cidSet, long length) throws IOException {
-        byte[] cidSetBytes = new byte[(int) length];
-        if (cidSet.read(cidSetBytes) != length) {
-            LOGGER.log(Level.FINE, "Did not read necessary number of cid set bytes");
-        }
-        return cidSetBytes;
+    private static byte[] getCIDsFromCIDSet(ASInputStream cidSet) throws IOException {
+        byte[] cidSetBytes = new byte[2048];
+        int read = cidSet.read(cidSetBytes);
+        return Arrays.copyOf(cidSetBytes, read);
     }
 
     private static BitSet toBitSetBigEndian(byte[] source) {
