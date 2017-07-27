@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.operator.markedcontent;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_DP;
 
@@ -34,8 +35,8 @@ public class GFOp_DP extends GFOpMarkedContent implements Op_DP {
 	/** Type name for {@code GFOp_DP} */
     public static final String OP_DP_TYPE = "Op_DP";
 
-    public GFOp_DP(List<COSBase> arguments) {
-        super(arguments, OP_DP_TYPE);
+    public GFOp_DP(List<COSBase> arguments, PDResourcesHandler resources) {
+        super(arguments, OP_DP_TYPE, resources);
     }
 
 	@Override
