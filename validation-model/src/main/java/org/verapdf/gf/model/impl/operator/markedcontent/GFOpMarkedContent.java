@@ -62,7 +62,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 			COSObjType lastArgType = lastArg.getType();
 			if (lastArgType == COSObjType.COS_DICT) {
 				this.propertiesDict = (COSDictionary) lastArg;
-			} else if (lastArgType == COSObjType.COS_NAME) {
+			} else if (lastArgType == COSObjType.COS_NAME && resources != null) {
 				PDResource properties = resources.getProperties(lastArg.getName());
 				if (properties != null) {
 					COSBase cosProperties = properties.getObject().getDirectBase();
