@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosBBox;
@@ -262,5 +263,11 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	public Boolean getcontainsGroupCS() {
 		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) this.simplePDObject).getGroup();
 		return Boolean.valueOf(group != null && group.getColorSpace() != null);
+	}
+
+	@Override
+	public Boolean getcontainsAA() {
+		return this.simplePDObject == null ? Boolean.valueOf(false) :
+				this.simplePDObject.knownKey(ASAtom.AA);
 	}
 }

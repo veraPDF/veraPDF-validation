@@ -130,6 +130,11 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     }
 
     @Override
+    public Boolean getcontainsAA() {
+        return this.catalog != null && this.catalog.knownKey(ASAtom.AA);
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case OUTLINES:
