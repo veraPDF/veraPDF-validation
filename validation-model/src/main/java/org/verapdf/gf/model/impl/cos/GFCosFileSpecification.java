@@ -84,6 +84,11 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	}
 
 	@Override
+	public Boolean getcontainsEF() {
+		return baseObject != null && this.baseObject.knownKey(ASAtom.EF);
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		if (EF.equals(link)) {
 			return this.getEFFile();

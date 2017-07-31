@@ -282,6 +282,17 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	@Override
+	public Boolean getcontainsEmbeddedFiles() {
+		if (catalog != null) {
+			COSObject names = this.catalog.getKey(ASAtom.NAMES);
+			if (names.getType() == COSObjType.COS_DICT) {
+				return names.knownKey(ASAtom.EMBEDDED_FILES);
+			 }
+		}
+		return Boolean.valueOf(false);
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 		case TRAILER:

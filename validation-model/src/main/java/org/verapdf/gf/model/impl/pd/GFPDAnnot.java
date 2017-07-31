@@ -132,6 +132,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return getDifference(((PDAnnotation) simplePDObject).getRect(), Y_AXIS);
 	}
 
+	@Override
+	public Boolean getcontainsAA() {
+		return this.simplePDObject.knownKey(ASAtom.AA);
+	}
+
 	private static Double getDifference(double[] array, int shift) {
 		if (array != null && array.length > shift + 2) {
 			return Double.valueOf(array[shift + 2] - array[shift]);

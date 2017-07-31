@@ -64,6 +64,11 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     }
 
     @Override
+    public Boolean getcontainsAA() {
+        return this.simplePDObject.knownKey(ASAtom.AA);
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         if (ADDITIONAL_ACTION.equals(link)) {
             return this.getAdditionalAction();

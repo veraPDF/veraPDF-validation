@@ -21,17 +21,11 @@
 package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.GraphicState;
-import org.verapdf.gf.model.impl.cos.GFCosDict;
-import org.verapdf.gf.model.impl.cos.GFCosStream;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.GFPDGroup;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosDict;
-import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDGroup;
 import org.verapdf.model.pdlayer.PDXForm;
@@ -49,8 +43,6 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	public static final String X_FORM_TYPE = "PDXForm";
 
 	public static final String GROUP = "Group";
-	public static final String PS = "PS";
-	public static final String REF = "Ref";
 	public static final String CONTENT_STREAM = "contentStream";
 
 	private List<PDContentStream> contentStreams = null;
@@ -76,10 +68,6 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		switch (link) {
 			case GROUP:
 				return this.getGroup();
-			case PS:
-				return this.getPS();
-			case REF:
-				return this.getREF();
 			case CONTENT_STREAM:
 				return this.getContentStream();
 			default:
@@ -94,24 +82,15 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		return this.groups;
 	}
 
-	private List<CosStream> getPS() {
-		COSStream ps = ((org.verapdf.pd.images.PDXForm) this.simplePDObject).getPS();
-		if (ps != null) {
-			List<CosStream> postScript = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			postScript.add(new GFCosStream(ps));
-			return Collections.unmodifiableList(postScript);
-		}
-		return Collections.emptyList();
+	@Override
+	public Boolean getcontainsPS() {
+		// See 7.11.5 in PDF 1.2 specification
+		return this.simplePDObject.knownKey(ASAtom.PS);
 	}
 
-	private List<CosDict> getREF() {
-		COSDictionary ref = ((org.verapdf.pd.images.PDXForm) this.simplePDObject).getRef();
-		if (ref != null) {
-			List<CosDict> postScript = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			postScript.add(new GFCosDict(ref));
-			return Collections.unmodifiableList(postScript);
-		}
-		return Collections.emptyList();
+	@Override
+	public Boolean getcontainsRef() {
+		return this.simplePDObject.knownKey(ASAtom.REF);
 	}
 
 	private List<PDContentStream> getContentStream() {
