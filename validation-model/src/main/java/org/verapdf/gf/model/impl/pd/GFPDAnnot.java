@@ -145,6 +145,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	@Override
+	public Boolean getcontainsA() {
+		return this.simplePDObject.knownKey(ASAtom.A);
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case ADDITIONAL_ACTION:

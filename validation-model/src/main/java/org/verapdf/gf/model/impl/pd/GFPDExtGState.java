@@ -20,13 +20,15 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
-import org.verapdf.cos.*;
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSNumber;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
-import org.verapdf.gf.model.impl.cos.GFCosObject;
 import org.verapdf.gf.model.impl.cos.GFCosRenderingIntent;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosNumber;
-import org.verapdf.model.coslayer.CosObject;
 import org.verapdf.model.coslayer.CosRenderingIntent;
 import org.verapdf.model.pdlayer.PDExtGState;
 import org.verapdf.model.pdlayer.PDHalftone;
@@ -44,7 +46,6 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
     public static final String RI = "RI";
     public static final String FONT_SIZE = "fontSize";
     public static final String HALFTONE = "HT";
-    public static final String HALFTONE_PHASE = "HTP";
 
     public GFPDExtGState(org.verapdf.pd.PDExtGState state) {
         super(state, EXT_G_STATE_TYPE);
@@ -94,6 +95,11 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
     }
 
     @Override
+    public Boolean getcontainsHTP() {
+        return this.simplePDObject.knownKey(ASAtom.HTP);
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case RI:
@@ -102,8 +108,6 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
                 return this.getFontSize();
             case HALFTONE:
                 return this.getHalftone();
-            case HALFTONE_PHASE:
-                return this.getHalftonePhase();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -137,18 +141,6 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
         if (halftone != null) {
             List<PDHalftone> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             list.add(new GFPDHalftone(halftone));
-            return Collections.unmodifiableList(list);
-        }
-        return Collections.emptyList();
-    }
-
-    private List<CosObject> getHalftonePhase() {
-        COSObject halftonePhase = ((org.verapdf.pd.PDExtGState) this.simplePDObject).getHalftonePhase();
-        COSBase base = halftonePhase == null ? null : halftonePhase.get();
-        CosObject value = GFCosObject.getFromValue(base);
-        if (value != null) {
-            List<CosObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-            list.add(value);
             return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();

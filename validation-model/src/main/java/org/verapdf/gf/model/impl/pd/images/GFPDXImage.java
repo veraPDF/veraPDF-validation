@@ -70,6 +70,11 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	}
 
 	@Override
+	public Boolean getcontainsAlternates() {
+		return simplePDObject.knownKey(ASAtom.ALTERNATES);
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case INTENT:
