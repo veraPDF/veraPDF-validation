@@ -21,14 +21,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSArray;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
-import org.verapdf.cos.COSStream;
-import org.verapdf.gf.model.impl.cos.GFCosArray;
-import org.verapdf.gf.model.impl.cos.GFCosStream;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosObject;
 import org.verapdf.model.pdlayer.PDAcroForm;
 import org.verapdf.model.pdlayer.PDFormField;
 
@@ -43,7 +36,6 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
     public static final String ACRO_FORM_TYPE = "PDAcroForm";
 
     public static final String FORM_FIELDS = "formFields";
-    public static final String XFA = "XFA";
 
     public GFPDAcroForm(org.verapdf.pd.form.PDAcroForm acroForm) {
         super(acroForm, ACRO_FORM_TYPE);
@@ -55,12 +47,15 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
     }
 
     @Override
+    public Boolean getcontainsXFA() {
+        return this.simplePDObject.knownKey(ASAtom.XFA);
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case FORM_FIELDS:
                 return this.getFormFields();
-            case XFA:
-                return this.getXFA();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -77,22 +72,4 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
         return Collections.unmodifiableList(formFields);
     }
 
-    private List<CosObject> getXFA() {
-        org.verapdf.pd.form.PDAcroForm form =
-                (org.verapdf.pd.form.PDAcroForm) this.simplePDObject;
-        COSObject value = form.getKey(ASAtom.XFA);
-        if (value != null) {
-            boolean isStream = value.getType() == COSObjType.COS_STREAM;
-            if (isStream || value.getType() == COSObjType.COS_ARRAY) {
-                ArrayList<CosObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-                if (isStream) {
-                    list.add(new GFCosStream((COSStream) value.getDirectBase()));
-                } else {
-                    list.add(new GFCosArray((COSArray) value.getDirectBase()));
-                }
-                return Collections.unmodifiableList(list);
-            }
-        }
-        return Collections.emptyList();
-    }
 }

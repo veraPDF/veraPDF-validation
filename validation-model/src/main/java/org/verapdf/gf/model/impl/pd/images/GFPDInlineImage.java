@@ -72,6 +72,11 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 	}
 
 	@Override
+	public Boolean getcontainsAlternates() {
+		return simplePDObject.knownKey(ASAtom.ALTERNATES);
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case GFPDXImage.INTENT:
