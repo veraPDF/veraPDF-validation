@@ -32,6 +32,7 @@ import org.verapdf.pd.font.type1.Type1FontProgram;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,7 +95,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
 
         Set<String> descriptorCharSet = ((org.verapdf.pd.font.type1.PDType1Font)
                 this.pdFont).getDescriptorCharSet();
-        String[] fontProgramCharSet;
+        Set<String> fontProgramCharSet;
         if (this.pdFont.getFontProgram() instanceof Type1FontProgram) {
             fontProgramCharSet =
                     ((Type1FontProgram) this.pdFont.getFontProgram()).getCharSet();
@@ -111,10 +112,10 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
             fontProgramCharSet = ((CFFType1FontProgram)
                     (cff.getFont())).getCharSet();
         } else {
-            fontProgramCharSet = new String[] {};
+            fontProgramCharSet = new TreeSet<>();
         }
-        if (!(descriptorCharSet.size() == fontProgramCharSet.length ||
-            descriptorCharSet.size() == fontProgramCharSet.length - 1) ) {
+        if (!(descriptorCharSet.size() == fontProgramCharSet.size() ||
+            descriptorCharSet.size() == fontProgramCharSet.size() - 1) ) {
             return Boolean.valueOf(false);
         }
         for (String glyphName : fontProgramCharSet) {
@@ -123,6 +124,13 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
                 return Boolean.valueOf(false);
             }
         }
+
+        for (String glyphName : descriptorCharSet) {
+            if (!glyphName.equals(NOTDEF_STRING) && !fontProgramCharSet.contains(glyphName)) {
+                return Boolean.valueOf(false);
+            }
+        }
+
         return Boolean.valueOf(true);
     }
 
