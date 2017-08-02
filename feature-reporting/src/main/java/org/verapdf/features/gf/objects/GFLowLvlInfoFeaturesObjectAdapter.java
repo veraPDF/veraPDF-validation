@@ -51,6 +51,8 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     }
 
     private boolean isPresent;
+    private double headerVersion;
+    private String catalogVersion;
     private int indirectObjectsNumber;
     private String creationId;
     private String modificationId;
@@ -70,6 +72,10 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     private void init(COSDocument document) {
         this.isPresent = document != null;
         if (document != null) {
+            COSHeader documentHeader = document.getHeader();
+            if (documentHeader != null) {
+                this.headerVersion = documentHeader.getVersion();
+            }
             if (document.getObjects() != null) {
                 this.indirectObjectsNumber = document.getObjects().size();
             }
@@ -87,6 +93,8 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
             if (pdDocument != null) {
                 PDCatalog catalog = pdDocument.getCatalog();
                 if (catalog != null) {
+                    ASAtom nameKey = catalog.getNameKey(ASAtom.VERSION);
+                    this.catalogVersion = nameKey == null ? null : nameKey.getValue();
                     this.isTagged = catalog.getStructTreeRoot() != null;
                 }
             }
@@ -115,6 +123,16 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
                 res.add(atom.getValue());
             }
         }
+    }
+
+    @Override
+    public double getHeaderVersion() {
+        return this.headerVersion;
+    }
+
+    @Override
+    public String getCatalogVersion() {
+        return this.catalogVersion;
     }
 
     @Override
