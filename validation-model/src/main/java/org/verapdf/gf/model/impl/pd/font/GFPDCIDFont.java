@@ -33,6 +33,9 @@ import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.PDFontDescriptor;
+import org.verapdf.pd.font.cff.CFFCIDFontProgram;
+import org.verapdf.pd.font.cff.CFFFontProgram;
+import org.verapdf.pd.font.truetype.CIDFontType2Program;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
@@ -150,8 +153,19 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
                     //on this levels we need to ensure that all glyphs present in font program are described in cid set
-                    for (int i = 1; i < bitSet.size(); ++i) {
-                        if (!bitSet.get(i) && cidFont.containsCID(i)) {
+                    List<Integer> fontCIDs;
+                    if (cidFont instanceof CIDFontType2Program) {
+                        fontCIDs = ((CIDFontType2Program) cidFont).getCIDList();
+                    } else if (cidFont instanceof CFFFontProgram) {
+                        fontCIDs = ((CFFFontProgram) cidFont).getCIDList();
+                    } else if (cidFont instanceof CFFCIDFontProgram) {
+                        fontCIDs = ((CFFCIDFontProgram) cidFont).getCIDList();
+                    } else {
+                        fontCIDs = Collections.emptyList();
+                        throw new RuntimeException("Unimplemented cid font " + cidFont.getClass().getCanonicalName());  // TODO: remove
+                    }
+                    for (int i = 0; i < fontCIDs.size(); ++i) {
+                        if (!bitSet.get(fontCIDs.get(i))) {
                             return Boolean.FALSE;
                         }
                     }
