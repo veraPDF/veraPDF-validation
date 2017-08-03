@@ -21,8 +21,12 @@
 package org.verapdf.gf.model.impl.operator.color;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.gf.model.impl.cos.GFCosName;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.operator.OpColor;
 import org.verapdf.model.pdlayer.PDColorSpace;
 
@@ -33,11 +37,12 @@ import java.util.List;
 /**
  * @author Timur Kamalov
  */
-public class GFOpColor extends GFOperator implements OpColor {
+public class GFOpColor extends GFOpSetColor implements OpColor {
 
 	/** Type name for {@code GFOpColor} */
     public static final String OP_COLOR_TYPE = "OpColor";
     public static final String COLOR_SPACE = "colorSpace";
+    public static final String PATTERN_NAME = "patternName";
 
     private PDColorSpace colorSpace;
 
@@ -51,9 +56,24 @@ public class GFOpColor extends GFOperator implements OpColor {
         switch (link) {
             case COLOR_SPACE:
                 return getColorSpace();
+            case PATTERN_NAME:
+                return getPatternName();
             default:
                 return super.getLinkedObjects(link);
         }
+    }
+
+    private List<CosName> getPatternName() {
+        int size = this.arguments.size();
+        if (size > 0) {
+            COSBase cosBase = this.arguments.get(size - 1);
+            if (cosBase.getType() == COSObjType.COS_NAME) {
+                List<CosName> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                res.add(new GFCosName((COSName) cosBase));
+                return Collections.unmodifiableList(res);
+            }
+        }
+        return Collections.emptyList();
     }
 
     private List<PDColorSpace> getColorSpace() {
