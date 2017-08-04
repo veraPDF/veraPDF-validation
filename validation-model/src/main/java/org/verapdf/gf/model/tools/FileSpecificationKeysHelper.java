@@ -25,7 +25,7 @@ import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.pd.*;
 import org.verapdf.pd.font.PDFont;
-import org.verapdf.pd.font.PDType3Font;
+import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;
 import org.verapdf.pd.images.PDXObject;

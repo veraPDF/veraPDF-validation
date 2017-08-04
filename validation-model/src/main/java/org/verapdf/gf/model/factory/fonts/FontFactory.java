@@ -27,9 +27,9 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.font.PDType0Font;
-import org.verapdf.pd.font.PDType3Font;
 import org.verapdf.pd.font.truetype.PDTrueTypeFont;
 import org.verapdf.pd.font.type1.PDType1Font;
+import org.verapdf.pd.font.type3.PDType3Font;
 
 /**
  * @author Timur Kamalov
