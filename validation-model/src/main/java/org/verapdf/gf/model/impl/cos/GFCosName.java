@@ -46,7 +46,7 @@ public class GFCosName extends GFCosObject implements CosName {
      * @param cosName greenfield COSName
      * @param type child class type
      */
-    public GFCosName(COSName cosName, final String type) {
+    protected GFCosName(COSName cosName, final String type) {
         super(cosName, type);
         this.internalRepresentation = cosName.getString();
     }
