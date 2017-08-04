@@ -162,7 +162,6 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                         fontCIDs = ((CFFCIDFontProgram) cidFont).getCIDList();
                     } else {
                         fontCIDs = Collections.emptyList();
-                        throw new RuntimeException("Unimplemented cid font " + cidFont.getClass().getCanonicalName());  // TODO: remove
                     }
                     for (int i = 0; i < fontCIDs.size(); ++i) {
                         if (!bitSet.get(fontCIDs.get(i))) {
