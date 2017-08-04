@@ -191,7 +191,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     private static byte[] getCIDsFromCIDSet(ASInputStream cidSet) throws IOException {
         byte[] cidSetBytes = new byte[2048];
         int read = cidSet.read(cidSetBytes);
-        return Arrays.copyOf(cidSetBytes, read);
+        return read == -1 ? new byte[0] : Arrays.copyOf(cidSetBytes, read);
     }
 
     private static BitSet toBitSetBigEndian(byte[] source) {
