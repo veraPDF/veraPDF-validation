@@ -37,8 +37,8 @@ import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDType0Font;
-import org.verapdf.pd.font.PDType3Font;
 import org.verapdf.pd.font.cff.CFFFontProgram;
+import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.ByteArrayInputStream;
@@ -183,7 +183,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 						res.add(glyph);
 					} else { // Type3 font
 						boolean glyphPresent = ((PDType3Font) font).containsCharString(code);
-						boolean widthConsistent = font.getWidth(code) != null && font.getWidth(code).doubleValue() > 0;
+						boolean widthConsistent = checkWidths(code, font);
 						res.add(new GFGlyph(Boolean.valueOf(glyphPresent), Boolean.valueOf(widthConsistent), font, code,
 								this.renderingMode.getValue(), markedContent, structureElementAccessObject));
 					}

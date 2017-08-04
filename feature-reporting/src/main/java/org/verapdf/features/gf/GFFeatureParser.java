@@ -36,7 +36,7 @@ import org.verapdf.pd.encryption.StandardSecurityHandler;
 import org.verapdf.pd.font.PDCIDFont;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.PDType0Font;
-import org.verapdf.pd.font.PDType3Font;
+import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.form.PDAcroForm;
 import org.verapdf.pd.form.PDFormField;
 import org.verapdf.pd.form.PDSignatureField;
