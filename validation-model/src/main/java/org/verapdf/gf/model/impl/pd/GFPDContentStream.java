@@ -113,7 +113,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 							this.operators = Collections.unmodifiableList(result);
 						} finally {
-							streamParser.closeInputStream();
+							streamParser.close();
 							if (StaticContainers.getDocument() != null &&
 									StaticContainers.getDocument().getDocument() != null) {
 								StaticContainers.getDocument().getDocument().getResourceHandler().addAll(

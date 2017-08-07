@@ -29,7 +29,7 @@ import org.verapdf.pd.PDMetadata;
 import org.verapdf.pd.font.PDCIDFont;
 import org.verapdf.pd.font.PDCIDSystemInfo;
 import org.verapdf.pd.font.PDFontDescriptor;
-import org.verapdf.pd.font.PDType3Font;
+import org.verapdf.pd.font.type3.PDType3Font;
 
 import java.io.InputStream;
 import java.util.Collections;
