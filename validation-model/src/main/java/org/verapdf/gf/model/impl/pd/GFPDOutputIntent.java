@@ -21,8 +21,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSKey;
-import org.verapdf.cos.COSObject;
+import org.verapdf.cos.*;
 import org.verapdf.external.ICCProfile;
 import org.verapdf.gf.model.impl.external.GFICCOutputProfile;
 import org.verapdf.model.baselayer.Object;
@@ -54,6 +53,20 @@ public class GFPDOutputIntent extends GFPDObject implements PDOutputIntent {
             return String.valueOf(key.getNumber() + " " + key.getGeneration());
         }
         return null;
+    }
+
+    @Override
+    public String getS() {
+        org.verapdf.pd.PDOutputIntent outInt =
+                (org.verapdf.pd.PDOutputIntent) simplePDObject;
+        return outInt.getSubtype();
+    }
+
+    @Override
+    public String getOutputConditionIdentifier() {
+        org.verapdf.pd.PDOutputIntent outInt =
+                (org.verapdf.pd.PDOutputIntent) simplePDObject;
+        return outInt.getOutputConditionIdentifier();
     }
 
     @Override
