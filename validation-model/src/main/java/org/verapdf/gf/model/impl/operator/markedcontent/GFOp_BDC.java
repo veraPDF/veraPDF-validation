@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.operator.markedcontent;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_BDC;
 
@@ -34,8 +35,8 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 	/** Type name for {@code GFOp_BDC} */
     public static final String OP_BDC_TYPE = "Op_BDC";
 
-    public GFOp_BDC(List<COSBase> arguments) {
-        super(arguments, OP_BDC_TYPE);
+    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources) {
+        super(arguments, OP_BDC_TYPE, resources);
     }
 
 	@Override

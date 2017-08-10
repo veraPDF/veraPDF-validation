@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.images;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.cos.GFCosIIFilter;
@@ -63,6 +64,16 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 	public Boolean getisInherited() {
 		return Boolean.valueOf(((org.verapdf.pd.images.PDInlineImage) this.simplePDObject)
 				.isInherited());
+	}
+
+	@Override
+	public Boolean getcontainsOPI() {
+		return this.simplePDObject.knownKey(ASAtom.OPI);
+	}
+
+	@Override
+	public Boolean getcontainsAlternates() {
+		return simplePDObject.knownKey(ASAtom.ALTERNATES);
 	}
 
 	@Override

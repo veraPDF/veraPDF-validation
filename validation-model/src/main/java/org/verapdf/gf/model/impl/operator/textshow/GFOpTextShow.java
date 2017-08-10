@@ -28,6 +28,7 @@ import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Glyph;
@@ -36,8 +37,9 @@ import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDType0Font;
-import org.verapdf.pd.font.PDType3Font;
 import org.verapdf.pd.font.cff.CFFFontProgram;
+import org.verapdf.pd.font.type3.PDType3Font;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -80,33 +82,31 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private final int opm;
 	private final boolean overprintingFlagStroke;
 	private final boolean overprintingFlagNonStroke;
+	private final GraphicState inheritedGraphicState;
 
 	private final PDResourcesHandler resourcesHandler;
+	private final GFOpMarkedContent markedContent;
+	private final StructureElementAccessObject structureElementAccessObject;
 
 	private List<PDFont> fonts = null;
 	private List<org.verapdf.model.pdlayer.PDColorSpace> fillCS = null;
 	private List<org.verapdf.model.pdlayer.PDColorSpace> strokeCS = null;
 
 	protected GFOpTextShow(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
-			final String opType) {
-		this(arguments, state.getFillColorSpace(), state.getStrokeColorSpace(), state.getFontName(),
-				state.getRenderingMode(), state.getOpm(), state.isOverprintingFlagStroke(),
-				state.isOverprintingFlagNonStroke(), resourcesHandler, opType);
-	}
-
-	protected GFOpTextShow(List<COSBase> arguments, final PDColorSpace rawFillColorSpace,
-			final PDColorSpace rawStrokeColorSpace, final COSName fontName, final RenderingMode renderingMode, int opm,
-			boolean overprintingFlagStroke, boolean overprintingFlagNonStroke,
-			final PDResourcesHandler resourcesHandler, final String operatorType) {
-		super(arguments, operatorType);
-		this.rawFillColorSpace = rawFillColorSpace;
-		this.rawStrokeColorSpace = rawStrokeColorSpace;
-		this.fontName = fontName;
-		this.renderingMode = renderingMode;
-		this.opm = opm;
-		this.overprintingFlagStroke = overprintingFlagStroke;
-		this.overprintingFlagNonStroke = overprintingFlagNonStroke;
+						   final String opType, GFOpMarkedContent markedContent,
+						   StructureElementAccessObject structureElementAccessObject) {
+		super(arguments, opType);
+		this.rawFillColorSpace = state.getFillColorSpace();
+		this.rawStrokeColorSpace = state.getStrokeColorSpace();
+		this.fontName = state.getFontName();
+		this.renderingMode = state.getRenderingMode();
+		this.opm = state.getOpm();
+		this.overprintingFlagStroke = state.isOverprintingFlagStroke();
+		this.overprintingFlagNonStroke = state.isOverprintingFlagNonStroke();
 		this.resourcesHandler = resourcesHandler;
+		this.markedContent = markedContent;
+		this.inheritedGraphicState = state;
+		this.structureElementAccessObject = structureElementAccessObject;
 	}
 
 	@Override
@@ -167,32 +167,33 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 							// of font program we can't distinguish case of code 0
 							// and glyph that is not present indeed.
 							glyphPresent = code == 0 ? true :
-									Boolean.valueOf(fontProgram.containsCode(code));
-							widthsConsistent = GFOpTextShow.checkWidths(code, font, fontProgram);
+									Boolean.valueOf(font.glyphIsPresent(code));
+							widthsConsistent = GFOpTextShow.checkWidths(code, font);
 						}
 						GFGlyph glyph;
 						if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
 								font.getSubtype() == ASAtom.TYPE0) {
 							int CID = ((PDType0Font) font).toCID(code);
 							glyph = new GFCIDGlyph(glyphPresent, widthsConsistent, font, code, CID,
-									this.renderingMode.getValue());
+									this.renderingMode.getValue(), markedContent, structureElementAccessObject);
 						} else {
 							glyph = new GFGlyph(glyphPresent, widthsConsistent, font, code,
-									this.renderingMode.getValue());
+									this.renderingMode.getValue(), markedContent, structureElementAccessObject);
 						}
 						res.add(glyph);
 					} else { // Type3 font
 						boolean glyphPresent = ((PDType3Font) font).containsCharString(code);
-						boolean widthConsistent = font.getWidth(code) != null && font.getWidth(code).doubleValue() > 0;
+						boolean widthConsistent = checkWidths(code, font);
 						res.add(new GFGlyph(Boolean.valueOf(glyphPresent), Boolean.valueOf(widthConsistent), font, code,
-								this.renderingMode.getValue()));
+								this.renderingMode.getValue(), markedContent, structureElementAccessObject));
 					}
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
+				StaticContainers.validPDF = false;
 			}
 		}
-		return res;
+		return Collections.unmodifiableList(res);
 
 	}
 
@@ -225,7 +226,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<PDFont> parseFont() {
-		PDFont font = FontFactory.parseFont(getFontFromResources(), renderingMode, this.resourcesHandler);
+		PDFont font = FontFactory.parseFont(getFontFromResources(), renderingMode,
+				this.resourcesHandler, this.inheritedGraphicState);
 		if (font != null) {
 			List<PDFont> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			result.add(font);
@@ -251,7 +253,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getColorSpace(org.verapdf.pd.colors.PDColorSpace rawColorSpace,
 			boolean op) {
 		org.verapdf.model.pdlayer.PDColorSpace veraColorSpace = ColorSpaceFactory.getColorSpace(rawColorSpace,
-				this.resourcesHandler, this.opm, op);
+				this.resourcesHandler, this.opm, op, inheritedGraphicState);
 		if (veraColorSpace != null) {
 			List<org.verapdf.model.pdlayer.PDColorSpace> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(veraColorSpace);
@@ -267,10 +269,10 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		return resourcesHandler.getFont(this.fontName);
 	}
 
-	private static Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font, FontProgram fontProgram) {
+	private static Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font) {
 		Double fontWidth = font.getWidth(glyphCode);
 		double expectedWidth = fontWidth == null ? 0 : fontWidth.doubleValue();
-		double foundWidth = fontProgram.getWidth(glyphCode);
+		double foundWidth = font.getWidthFromProgram(glyphCode);
 		if (foundWidth == -1) {
 			foundWidth = font.getDefaultWidth() == null ? 0 : font.getDefaultWidth().doubleValue();
 		}

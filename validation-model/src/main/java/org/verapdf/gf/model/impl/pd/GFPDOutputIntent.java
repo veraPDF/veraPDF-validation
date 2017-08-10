@@ -21,13 +21,10 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSKey;
-import org.verapdf.cos.COSObject;
+import org.verapdf.cos.*;
 import org.verapdf.external.ICCProfile;
-import org.verapdf.gf.model.impl.cos.GFCosObject;
 import org.verapdf.gf.model.impl.external.GFICCOutputProfile;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosObject;
 import org.verapdf.model.external.ICCOutputProfile;
 import org.verapdf.model.pdlayer.PDOutputIntent;
 
@@ -43,7 +40,6 @@ public class GFPDOutputIntent extends GFPDObject implements PDOutputIntent {
     public static final String OUTPUT_INTENT_TYPE = "PDOutputIntent";
 
     public static final String DEST_PROFILE = "destProfile";
-    public static final String DEST_OUTPUT_PROFILE_REF = "DestOutputProfileRef";
 
     public GFPDOutputIntent(org.verapdf.pd.PDOutputIntent simplePDObject) {
         super(simplePDObject, OUTPUT_INTENT_TYPE);
@@ -60,12 +56,29 @@ public class GFPDOutputIntent extends GFPDObject implements PDOutputIntent {
     }
 
     @Override
+    public String getS() {
+        org.verapdf.pd.PDOutputIntent outInt =
+                (org.verapdf.pd.PDOutputIntent) simplePDObject;
+        return outInt.getSubtype();
+    }
+
+    @Override
+    public String getOutputConditionIdentifier() {
+        org.verapdf.pd.PDOutputIntent outInt =
+                (org.verapdf.pd.PDOutputIntent) simplePDObject;
+        return outInt.getOutputConditionIdentifier();
+    }
+
+    @Override
+    public Boolean getcontainsDestOutputProfileRef() {
+        return this.simplePDObject.knownKey(ASAtom.DEST_OUTPUT_PROFILE_REF);
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case DEST_PROFILE:
                 return this.getDestProfile();
-            case DEST_OUTPUT_PROFILE_REF:
-                return this.getDestOutputProfileRef();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -78,17 +91,6 @@ public class GFPDOutputIntent extends GFPDObject implements PDOutputIntent {
             String subtype = ((org.verapdf.pd.PDOutputIntent) simplePDObject).getSubtype();
             profile.add(new GFICCOutputProfile(iccProfile, subtype));
             return Collections.unmodifiableList(profile);
-        }
-        return Collections.emptyList();
-    }
-
-    private List<CosObject> getDestOutputProfileRef() {
-        COSObject ref = ((org.verapdf.pd.PDOutputIntent) simplePDObject).getCOSDestOutputProfileRef();
-        CosObject value = ref == null ? null : GFCosObject.getFromValue(ref.get());
-        if (value != null) {
-            ArrayList<CosObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-            list.add(value);
-            return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();
     }

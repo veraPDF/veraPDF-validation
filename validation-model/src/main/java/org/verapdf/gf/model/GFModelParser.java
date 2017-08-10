@@ -110,25 +110,27 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private static PDFAFlavour obtainFlavour(PDDocument document) {
-		PDMetadata metadata = null;
+		PDMetadata metadata;
 		PDFAFlavour defaultFlavour = Foundries.defaultInstance().defaultFlavour();
-		try {
-			if (document == null || document.getCatalog() == null) {
-				return defaultFlavour;
-			}
-			metadata = document.getCatalog().getMetadata();
-			if (metadata == null) {
-				return defaultFlavour;
-			}
-		} catch (IOException e) {
-			logger.log(Level.FINE, "Problem parsing metadata from document catalog.", e);
+		if (document == null || document.getCatalog() == null) {
+			return defaultFlavour;
+		}
+		metadata = document.getCatalog().getMetadata();
+		if (metadata == null) {
 			return defaultFlavour;
 		}
 		try (InputStream is = metadata.getStream()) {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			Integer identificationPart = veraPDFMeta.getIdentificationPart();
 			String identificationConformance = veraPDFMeta.getIdentificationConformance();
+			if (identificationConformance == null) {
+				identificationConformance = "";
+			}
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
+			// TODO: remove that logic after adding PDF/A-4 validation profile
+			if (pdfaFlavour == PDFAFlavour.PDFA_4) {
+				return defaultFlavour;
+			}
 			return pdfaFlavour;
 		} catch (XMPException e) {
 			logger.log(Level.FINE, e.getMessage(), e);

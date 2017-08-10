@@ -78,22 +78,17 @@ public class PDFDocumentImpl implements PDFDocument {
 	}
 
 	private MetadataImpl parseMetadata() {
-		try {
-			PDCatalog catalog = this.document.getCatalog();
-			PDMetadata meta = catalog.getMetadata();
-			if (meta == null) {
-				COSObject stream = COSStream.construct();
-				catalog.setKey(ASAtom.METADATA, stream);
-				this.document.getDocument().addObject(stream);
-				VeraPDFMeta xmp = VeraPDFMeta.create();
-				return new MetadataImpl(xmp, stream, this.document.getDocument(),
-						true);
-			}
-			return parseMetadata(meta, this.document);
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Can not obtain document catalog", e);
-			return null;
+		PDCatalog catalog = this.document.getCatalog();
+		PDMetadata meta = catalog.getMetadata();
+		if (meta == null) {
+			COSObject stream = COSStream.construct();
+			catalog.setKey(ASAtom.METADATA, stream);
+			this.document.getDocument().addObject(stream);
+			VeraPDFMeta xmp = VeraPDFMeta.create();
+			return new MetadataImpl(xmp, stream, this.document.getDocument(),
+					true);
 		}
+		return parseMetadata(meta, this.document);
 	}
 
 	private static MetadataImpl parseMetadata(PDMetadata meta, PDDocument document) {

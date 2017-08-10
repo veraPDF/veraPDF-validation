@@ -20,11 +20,16 @@
  */
 package org.verapdf.features.gf.objects;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.features.objects.PageFeaturesObjectAdapter;
 import org.verapdf.pd.PDMetadata;
 import org.verapdf.pd.PDPage;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +42,7 @@ import java.util.Set;
 public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 
 	private PDPage page;
+	private String label;
 	private String thumb;
 	private Set<String> annotsId;
 	private Set<String> extGStateChild;
@@ -47,6 +53,9 @@ public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 	private Set<String> fontChild;
 	private Set<String> propertiesChild;
 	private int index;
+
+	private String transitionStyle;
+	private List<String> errors;
 
 	/**
 	 * Constructs new Page Feature Object
@@ -64,6 +73,7 @@ public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 	 * @param index           page index
 	 */
 	public GFPageFeaturesObjectAdapter(PDPage page,
+									   String label,
 									   String thumb,
 									   Set<String> annotsId,
 									   Set<String> extGStateChild,
@@ -75,6 +85,7 @@ public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 									   Set<String> propertiesChild,
 									   int index) {
 		this.page = page;
+		this.label = label;
 		this.thumb = thumb;
 		this.annotsId = annotsId;
 		this.extGStateChild = extGStateChild;
@@ -85,6 +96,18 @@ public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 		this.fontChild = fontChild;
 		this.propertiesChild = propertiesChild;
 		this.index = index;
+		if (this.page != null && !this.page.empty()) {
+			COSObject transition = page.getKey(ASAtom.TRANS);
+			if (transition != null && !transition.empty()) {
+				if (transition.getType() == COSObjType.COS_DICT) {
+					ASAtom style = transition.getNameKey(ASAtom.S);
+					this.transitionStyle = style == null ? "R" : style.getValue();
+				} else {
+					this.errors = new ArrayList<>();
+					this.errors.add("Page dictionary contains /Trans key but its value's type is not a dictionary");
+				}
+			}
+		}
 	}
 
 	@Override
@@ -135,6 +158,16 @@ public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 	@Override
 	public int getIndex() {
 		return index;
+	}
+
+	@Override
+	public String getLabel() {
+		return this.label;
+	}
+
+	@Override
+	public String getTransitionStyle() {
+		return this.transitionStyle;
 	}
 
 	@Override
@@ -211,6 +244,9 @@ public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 
 	@Override
 	public List<String> getErrors() {
+		if (this.errors != null) {
+			return Collections.unmodifiableList(this.errors);
+		}
 		return Collections.emptyList();
 	}
 }

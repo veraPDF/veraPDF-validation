@@ -23,6 +23,8 @@ package org.verapdf.features.gf.objects;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.features.objects.LowLvlInfoFeaturesObjectAdapter;
+import org.verapdf.pd.PDCatalog;
+import org.verapdf.pd.PDDocument;
 
 import java.util.*;
 
@@ -49,9 +51,12 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     }
 
     private boolean isPresent;
+    private double headerVersion;
+    private String catalogVersion;
     private int indirectObjectsNumber;
     private String creationId;
     private String modificationId;
+    private boolean isTagged = false;
     private Set<String> filters;
     private List<String> errors;
 
@@ -67,6 +72,10 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     private void init(COSDocument document) {
         this.isPresent = document != null;
         if (document != null) {
+            COSHeader documentHeader = document.getHeader();
+            if (documentHeader != null) {
+                this.headerVersion = documentHeader.getVersion();
+            }
             if (document.getObjects() != null) {
                 this.indirectObjectsNumber = document.getObjects().size();
             }
@@ -78,6 +87,15 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
                 if (ids.size() != 2 || this.creationId == null || this.modificationId == null) {
                     this.errors = new ArrayList<>();
                     this.errors.add("Document's ID must be an array of two not null elements");
+                }
+            }
+            PDDocument pdDocument = document.getPDDocument();
+            if (pdDocument != null) {
+                PDCatalog catalog = pdDocument.getCatalog();
+                if (catalog != null) {
+                    ASAtom nameKey = catalog.getNameKey(ASAtom.VERSION);
+                    this.catalogVersion = nameKey == null ? null : nameKey.getValue();
+                    this.isTagged = catalog.getStructTreeRoot() != null;
                 }
             }
             this.filters = getAllFilters(document);
@@ -108,6 +126,16 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     }
 
     @Override
+    public double getHeaderVersion() {
+        return this.headerVersion;
+    }
+
+    @Override
+    public String getCatalogVersion() {
+        return this.catalogVersion;
+    }
+
+    @Override
     public int getIndirectObjectsNumber() {
         return this.indirectObjectsNumber;
     }
@@ -120,6 +148,11 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     @Override
     public String getModificationId() {
         return this.modificationId;
+    }
+
+    @Override
+    public boolean isTagged() {
+        return this.isTagged;
     }
 
     @Override

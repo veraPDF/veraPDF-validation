@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.operator.xobject;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.pd.images.GFPDXObject;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -47,12 +48,14 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 
     private final org.verapdf.pd.images.PDXObject pbXObject;
 	private final PDResourcesHandler resourcesHandler;
+	private final GraphicState inheritedGraphicState;
 
     public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pbXObject,
-				   PDResourcesHandler resourcesHandler) {
+				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState) {
         super(arguments, OP_DO_TYPE);
         this.pbXObject = pbXObject;
 		this.resourcesHandler = resourcesHandler;
+		this.inheritedGraphicState = inheritedGraphicState;
     }
 
     @Override
@@ -68,7 +71,8 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	 */
 	public List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
 		if (this.xObjects == null) {
-			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler);
+			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler,
+					inheritedGraphicState);
 			if (typedPDXObject != null) {
 				List<PDXObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(typedPDXObject);

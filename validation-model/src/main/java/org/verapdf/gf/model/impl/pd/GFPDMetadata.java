@@ -61,14 +61,9 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
     public GFPDMetadata(org.verapdf.pd.PDMetadata simplePDObject, Boolean isMainMetadata) {
         super(simplePDObject, METADATA_TYPE);
         this.isMainMetadata = isMainMetadata.booleanValue();
-        try {
-            if (StaticContainers.getDocument()!= null && StaticContainers.getDocument().getCatalog() != null && StaticContainers.getDocument().getCatalog().getMetadata() != null) {
-                this.mainMetadata = StaticContainers.getDocument().getCatalog().getMetadata();
-            } else {
-                this.mainMetadata = null;
-            }
-        } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Can not obtain main metadata", e);
+        if (StaticContainers.getDocument()!= null && StaticContainers.getDocument().getCatalog() != null && StaticContainers.getDocument().getCatalog().getMetadata() != null) {
+            this.mainMetadata = StaticContainers.getDocument().getCatalog().getMetadata();
+        } else {
             this.mainMetadata = null;
         }
     }
@@ -107,7 +102,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                 VeraPDFMeta metadata = VeraPDFMeta.parse(stream);
                 if (isMainMetadata) {
                     xmp.add(new AXLMainXMPPackage(metadata, true, flavour));
-                } else if (flavour == null || !PDFAFlavour.Specification.ISO_19005_1.equals(flavour.getPart())) {
+                } else if (flavour == null || flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
                     VeraPDFXMPNode mainExtensionNode = null;
                     try (InputStream mainStream = mainMetadata.getStream()) {
                         if (mainStream != null) {
@@ -122,7 +117,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
             LOGGER.log(Level.FINE, "Problems with parsing metadata. " + e.getMessage(), e);
             if (isMainMetadata) {
                 xmp.add(new AXLMainXMPPackage(null, false, flavour));
-            } else if (flavour == null || !PDFAFlavour.Specification.ISO_19005_1.equals(flavour.getPart())) {
+            } else if (flavour == null || flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
                 xmp.add(new AXLXMPPackage(null, false, null, flavour));
             }
         }

@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -31,7 +32,8 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDType3Font;
 import org.verapdf.pd.PDResources;
-import org.verapdf.pd.PDType3CharProc;
+import org.verapdf.pd.font.type3.PDType3CharProc;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -51,11 +53,14 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     public static final String CHAR_STRINGS = "charStrings";
     private PDResourcesHandler resources;
     private Map<String, PDContentStream> charStrings = null;
+    private final GraphicState inheritedGraphicState;
 
-    public GFPDType3Font(org.verapdf.pd.font.PDType3Font font,
-                         RenderingMode renderingMode, PDResourcesHandler resources) {
+    public GFPDType3Font(org.verapdf.pd.font.type3.PDType3Font font,
+                         RenderingMode renderingMode, PDResourcesHandler resources,
+                         GraphicState inheritedGraphicState) {
         super(font, renderingMode, TYPE3_FONT_TYPE);
         this.resources = resources;
+        this.inheritedGraphicState = inheritedGraphicState;
     }
 
     /**
@@ -92,7 +97,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     }
 
     private void parseCharStrings() {
-        COSDictionary charProcDict = ((org.verapdf.pd.font.PDType3Font)
+        COSDictionary charProcDict = ((org.verapdf.pd.font.type3.PDType3Font)
                 this.pdFont).getCharProcDict();
         if (charProcDict != null) {
             Set<ASAtom> keySet = charProcDict.getKeySet();
@@ -104,7 +109,8 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                     PDResourcesHandler glyphResources = getResourcesFromCharProcs(charProcStream);
                     GFPDContentStream contentStream =
                             new GFPDContentStream(charProc, glyphResources == null ?
-                                    this.resources : glyphResources, false);
+                                    this.resources : glyphResources, inheritedGraphicState,
+                                    new StructureElementAccessObject(this.simpleCOSObject));
                     map.put(glyphName.getValue(), contentStream);
                 } else {
                     LOGGER.log(Level.FINE, "Invalid entry in the char proc dictionary.");

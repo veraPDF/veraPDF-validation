@@ -20,18 +20,16 @@
  */
 package org.verapdf.gf.model.factory.fonts;
 
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
-import org.verapdf.gf.model.impl.pd.font.GFPDTrueTypeFont;
-import org.verapdf.gf.model.impl.pd.font.GFPDType0Font;
-import org.verapdf.gf.model.impl.pd.font.GFPDType1Font;
-import org.verapdf.gf.model.impl.pd.font.GFPDType3Font;
+import org.verapdf.gf.model.impl.pd.font.*;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.font.PDType0Font;
-import org.verapdf.pd.font.PDType3Font;
 import org.verapdf.pd.font.truetype.PDTrueTypeFont;
 import org.verapdf.pd.font.type1.PDType1Font;
+import org.verapdf.pd.font.type3.PDType3Font;
 
 /**
  * @author Timur Kamalov
@@ -57,9 +55,10 @@ public class FontFactory {
 	}
 
 	public static PDFont parseFont(org.verapdf.pd.font.PDFont rawFont,
-								   RenderingMode renderingMode, PDResourcesHandler resources) {
+								   RenderingMode renderingMode, PDResourcesHandler resources,
+								   GraphicState inheritedGraphicState) {
 		if (rawFont == null) {
-			return null;
+			return new GFPDEmptyFont();
 		}
 		switch (rawFont.getSubtype().getValue()) {
 			case TYPE_0:
@@ -70,7 +69,8 @@ public class FontFactory {
 			case TYPE_3: {
 				PDResources fontResources = ((PDType3Font) rawFont).getResources();
 				PDResourcesHandler pdResources = resources.getExtendedResources(fontResources);
-				return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources);
+				return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources,
+						inheritedGraphicState);
 			}
 			case TRUE_TYPE:
 				return new GFPDTrueTypeFont((PDTrueTypeFont) rawFont, renderingMode);

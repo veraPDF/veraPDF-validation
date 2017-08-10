@@ -20,20 +20,9 @@
  */
 package org.verapdf.gf.model.impl.external;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.verapdf.as.ASAtom;
 import org.verapdf.core.VeraPDFException;
-import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSKey;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
@@ -47,6 +36,15 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.validators.ValidatorFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * @author Maksim Bezrukov
  */
@@ -59,14 +57,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 	private final COSStream stream;
 
-	public GFEmbeddedFile(COSDictionary dictionary) {
+	public GFEmbeddedFile(COSStream stream) {
 		super(EMBEDDED_FILE_TYPE);
-		COSObject baseStream = dictionary.getKey(ASAtom.F);
-		if (baseStream != null && baseStream.getType() == COSObjType.COS_STREAM) {
-			this.stream = (COSStream) baseStream.getDirectBase();
-		} else {
-			this.stream = null;
-		}
+		this.stream = stream;
 	}
 
 	@Override
@@ -116,7 +109,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	public Map<String, List<GFPDSeparation>> separations;
 	public List<String> inconsistentSeparations;
 	public Map<String, PDColorSpace> cachedColorSpaces;
-	public static Set<COSKey> fileSpecificationKeys;
+	public Set<COSKey> fileSpecificationKeys;
+	public Stack<COSKey> transparencyVisitedContentStreams;
+	public boolean validPDF;
 
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
@@ -125,7 +120,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.inconsistentSeparations = StaticContainers.inconsistentSeparations;
 		this.cachedColorSpaces = StaticContainers.cachedColorSpaces;
 		this.roleMapHelper = StaticContainers.roleMapHelper;
-		GFEmbeddedFile.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
+		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
+		this.transparencyVisitedContentStreams = StaticContainers.transparencyVisitedContentStreams;
+		this.validPDF = StaticContainers.validPDF;
 	}
 
 	private void restoreSavedSCState() {
@@ -135,7 +132,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.inconsistentSeparations = this.inconsistentSeparations;
 		StaticContainers.cachedColorSpaces = this.cachedColorSpaces;
 		StaticContainers.roleMapHelper = this.roleMapHelper;
-		StaticContainers.fileSpecificationKeys = GFEmbeddedFile.fileSpecificationKeys;
+		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
+		StaticContainers.transparencyVisitedContentStreams = this.transparencyVisitedContentStreams;
+		StaticContainers.validPDF = this.validPDF;
 	}
 
 }

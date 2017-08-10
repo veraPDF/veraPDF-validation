@@ -25,7 +25,7 @@ import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.pd.*;
 import org.verapdf.pd.font.PDFont;
-import org.verapdf.pd.font.PDType3Font;
+import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;
 import org.verapdf.pd.images.PDXObject;
@@ -35,12 +35,10 @@ import org.verapdf.pd.patterns.PDTilingPattern;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pd.structure.PDStructTreeNode;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -56,22 +54,14 @@ public class FileSpecificationKeysHelper {
 		if (pdDocument == null) {
 			return;
 		}
-		try {
-			PDCatalog catalog = pdDocument.getCatalog();
-			if (catalog != null) {
-				registerDictionaryAFKeys(catalog.getObject());
-				processStructElements(catalog.getStructTreeRoot());
-			}
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Can not get document catalog", e);
+		PDCatalog catalog = pdDocument.getCatalog();
+		if (catalog != null) {
+			registerDictionaryAFKeys(catalog.getObject());
+			processStructElements(catalog.getStructTreeRoot());
 		}
-		try {
-			List<PDPage> pages = pdDocument.getPages();
-			for (PDPage page : pages) {
-				processPage(page);
-			}
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Can not get list of pages", e);
+		List<PDPage> pages = pdDocument.getPages();
+		for (PDPage page : pages) {
+			processPage(page);
 		}
 		visitedKeys.clear();
 	}

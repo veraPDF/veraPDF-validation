@@ -51,6 +51,7 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 	private final boolean overprintingFlagNonStroke;
 
 	private final PDResourcesHandler resourcesHandler;
+	private final GraphicState inheritedGraphicState;
 
 	private List<org.verapdf.model.pdlayer.PDColorSpace> fillCS = null;
 	private List<org.verapdf.model.pdlayer.PDColorSpace> strokeCS = null;
@@ -59,13 +60,14 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 							final PDResourcesHandler resourcesHandler, final String operatorType) {
 		this(arguments, state.getFillColorSpace(), state.getStrokeColorSpace(),
 				state.getOpm(), state.isOverprintingFlagStroke(), state.isOverprintingFlagNonStroke(),
-				resourcesHandler, operatorType);
+				resourcesHandler, operatorType, state);
     }
 
 	protected GFOpPathPaint(List<COSBase> arguments,
 							final PDColorSpace rawFillColorSpace, final PDColorSpace rawStrokeColorSpace,
 							int opm, boolean overprintingFlagStroke, boolean overprintingFlagNonStroke,
-							final PDResourcesHandler resourcesHandler, final String operatorType) {
+							final PDResourcesHandler resourcesHandler, final String operatorType,
+							GraphicState inheritedGraphicState) {
 		super(arguments, operatorType);
 		this.rawFillColorSpace = rawFillColorSpace;
 		this.rawStrokeColorSpace = rawStrokeColorSpace;
@@ -73,6 +75,7 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 		this.overprintingFlagStroke = overprintingFlagStroke;
 		this.overprintingFlagNonStroke = overprintingFlagNonStroke;
 		this.resourcesHandler = resourcesHandler;
+		this.inheritedGraphicState = inheritedGraphicState;
 	}
 
 	protected List<org.verapdf.model.pdlayer.PDColorSpace> getFillCS() {
@@ -105,7 +108,7 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getColorSpace(PDColorSpace rawColorSpace, boolean op) {
 		org.verapdf.model.pdlayer.PDColorSpace veraColorSpace =
-				ColorSpaceFactory.getColorSpace(rawColorSpace, this.resourcesHandler, this.opm, op);
+				ColorSpaceFactory.getColorSpace(rawColorSpace, this.resourcesHandler, this.opm, op, inheritedGraphicState);
 		if (veraColorSpace != null) {
 			List<org.verapdf.model.pdlayer.PDColorSpace> list =	new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(veraColorSpace);

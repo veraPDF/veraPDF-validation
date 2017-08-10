@@ -20,7 +20,15 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.pd.PDHalftone;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Maksim Bezrukov
@@ -29,17 +37,86 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
 
     public static final String HALFTONE_TYPE = "PDHalftone";
 
+    private static final String HALFTONES = "halftones";
+
+    private final ASAtom colorantName;
+
     public GFPDHalftone(PDHalftone dict) {
+        this(dict, null);
+    }
+
+    public GFPDHalftone(PDHalftone dict, ASAtom colorantName) {
         super(dict, HALFTONE_TYPE);
+        this.colorantName = colorantName;
     }
 
     @Override
     public Long getHalftoneType() {
-        return ((PDHalftone) simplePDObject).getHalftoneType();
+        PDHalftone halftone = (PDHalftone) this.simplePDObject;
+        COSObject object = halftone.getObject();
+        if (object.getType() == COSObjType.COS_NAME && object.getName() == ASAtom.DEFAULT) {
+            return Long.valueOf(1L);
+        }
+        return halftone.getHalftoneType();
     }
 
     @Override
     public String getHalftoneName() {
-        return ((PDHalftone) simplePDObject).getHalftoneName();
+        PDHalftone halftone = (PDHalftone) this.simplePDObject;
+        COSObject object = halftone.getObject();
+        if (object.getType() == COSObjType.COS_NAME && object.getName() == ASAtom.DEFAULT) {
+            return null;
+        }
+        return halftone.getHalftoneName();
+    }
+
+    @Override
+    public String getcolorantName() {
+        return this.colorantName == null ? null : this.colorantName.getValue();
+    }
+
+    @Override
+    public String getTransferFunction() {
+        COSObject tf = this.simplePDObject.getKey(ASAtom.getASAtom("TransferFunction"));
+        if (tf == null
+                || tf.empty()
+                || tf.getType() == COSObjType.COS_NULL) {
+            return null;
+        }
+
+        if (tf.getType() == COSObjType.COS_NAME) {
+            return tf.getName().getValue();
+        }
+        return tf.toString();
+    }
+
+    @Override
+    public List<? extends Object> getLinkedObjects(String link) {
+        switch (link) {
+            case HALFTONES:
+                return this.getHalftones();
+            default:
+                return super.getLinkedObjects(link);
+        }
+    }
+
+    private List<org.verapdf.model.pdlayer.PDHalftone> getHalftones() {
+        Long halftoneType = getHalftoneType();
+        if (halftoneType == null || halftoneType != 5L) {
+            return Collections.emptyList();
+        }
+        List<org.verapdf.model.pdlayer.PDHalftone> halftones = new ArrayList<>();
+        COSObject object = this.simplePDObject.getObject();
+        if (object != null && object.getType().isDictionaryBased()) {
+            for (ASAtom key : object.getKeySet()) {
+                COSObject value = object.getKey(key);
+                if (value.getType().isDictionaryBased()) {
+                    PDHalftone halftone = new PDHalftone(value);
+                    GFPDHalftone gfPDHalftone = new GFPDHalftone(halftone, key);
+                    halftones.add(gfPDHalftone);
+                }
+            }
+        }
+        return Collections.unmodifiableList(halftones);
     }
 }

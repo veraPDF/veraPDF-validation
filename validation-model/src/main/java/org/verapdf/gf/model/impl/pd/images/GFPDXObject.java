@@ -21,12 +21,10 @@
 package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSDictionary;
-import org.verapdf.gf.model.impl.cos.GFCosDict;
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.pd.GFPDResource;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosDict;
 import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.pd.images.PDXForm;
@@ -65,12 +63,15 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 	}
 
 	@Override
+	public Boolean getcontainsOPI() {
+		return this.simplePDObject.knownKey(ASAtom.OPI);
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case S_MASK:
 				return this.getSMask();
-			case OPI:
-				return this.getOPI();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -86,24 +87,15 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 		return Collections.emptyList();
 	}
 
-	protected List<CosDict> getOPI() {
-		COSDictionary opi = ((org.verapdf.pd.images.PDXObject) simplePDObject).getOPI();
-		if (opi != null) {
-			List<CosDict> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			res.add(new GFCosDict(opi));
-			return Collections.unmodifiableList(res);
-		}
-		return Collections.emptyList();
-	}
-
 	public static PDXObject getTypedPDXObject(
 			org.verapdf.pd.images.PDXObject xObject,
-			PDResourcesHandler resources) {
+			PDResourcesHandler resources, GraphicState inheritedGraphicState) {
 		ASAtom type = xObject.getType();
 		if (ASAtom.FORM.equals(type)) {
-			return new GFPDXForm((PDXForm) xObject, resources);
+			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState);
 		} else if (ASAtom.IMAGE.equals(type)) {
-			return new GFPDXImage((PDXImage) xObject, resources);
+			return new GFPDXImage((PDXImage) xObject, resources,
+					inheritedGraphicState.getFillColorSpace());
 		} else if (ASAtom.PS.equals(type)) {
 			return new GFPDXObject(xObject, resources);
 		} else {

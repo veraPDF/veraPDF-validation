@@ -91,7 +91,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		this.isLinearised = cosDocument.getTrailer() != cosDocument.getLastTrailer() && cosDocument.isLinearized();
 		this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
 		this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
-		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_3) {
+		PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
+		if (specification == PDFAFlavour.Specification.ISO_19005_3
+				|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 			FileSpecificationKeysHelper.registerFileSpecificationKeys(cosDocument);
 		}
 	}
@@ -175,7 +177,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public String getlastID() {
-		if (StaticContainers.getFlavour().getPart().equals(PDFAFlavour.Specification.ISO_19005_1)) {
+		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
 			return this.lastID;
 		} else if (this.isLinearised) {
 			return this.firstPageID;
@@ -241,6 +243,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 				COSBase reqArray = reqArrayObject.getDirectBase();
 				if (reqArray.getType() == COSObjType.COS_ARRAY) {
 					return GFCosDocument.getRequirementsString((COSArray) reqArray);
+				} else if (reqArray.getType() == COSObjType.COS_DICT) {
+					return GFCosDocument.getRequirementsString((COSDictionary) reqArray);
 				}
 			}
 		}
@@ -254,12 +258,15 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			COSObject element = iterator.next();
 			COSBase base = element.getDirectBase();
 			if (base.getType() == COSObjType.COS_DICT) {
-				String sKey = element.getStringKey(ASAtom.S);
-				result += sKey;
+				result += getRequirementsString((COSDictionary) base);
 				result += " ";
 			}
 		}
 		return result;
+	}
+
+	private static String getRequirementsString(COSDictionary reqDict) {
+		return reqDict.getStringKey(ASAtom.S);
 	}
 
 	/**
@@ -272,6 +279,17 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			return Boolean.valueOf(false);
 		}
 		return catalog.getBooleanKey(ASAtom.NEEDS_RENDERING);
+	}
+
+	@Override
+	public Boolean getcontainsEmbeddedFiles() {
+		if (catalog != null) {
+			COSObject names = this.catalog.getKey(ASAtom.NAMES);
+			if (names.getType() == COSObjType.COS_DICT) {
+				return names.knownKey(ASAtom.EMBEDDED_FILES);
+			 }
+		}
+		return Boolean.valueOf(false);
 	}
 
 	@Override

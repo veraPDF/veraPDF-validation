@@ -22,8 +22,10 @@ package org.verapdf.gf.model.impl.operator.textshow;
 
 import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.factory.operators.GraphicState;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Op_Tj;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.List;
 
@@ -36,7 +38,8 @@ public class GFOp_Tj extends GFOpStringTextShow implements Op_Tj {
     public static final String OP_TJ_TYPE = "Op_Tj";
 
     public GFOp_Tj(List<COSBase> arguments, GraphicState state,
-                   PDResourcesHandler resourcesHandler) {
-        super(arguments, state, resourcesHandler, OP_TJ_TYPE);
+                   PDResourcesHandler resourcesHandler, GFOpMarkedContent markedContent,
+                   StructureElementAccessObject structureElementAccessObject) {
+        super(arguments, state, resourcesHandler, OP_TJ_TYPE, markedContent, structureElementAccessObject);
     }
 }

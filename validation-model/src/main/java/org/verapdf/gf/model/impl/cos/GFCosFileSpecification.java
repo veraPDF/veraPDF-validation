@@ -22,7 +22,9 @@ package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSEmbeddedFileDict;
 import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.external.GFEmbeddedFile;
 import org.verapdf.model.baselayer.Object;
@@ -82,6 +84,11 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	}
 
 	@Override
+	public Boolean getcontainsEF() {
+		return baseObject != null && this.baseObject.knownKey(ASAtom.EF);
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		if (EF.equals(link)) {
 			return this.getEFFile();
@@ -92,8 +99,12 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	private List<EmbeddedFile> getEFFile() {
 		COSObject efDictionary = this.baseObject.getKey(ASAtom.EF);
 		if (efDictionary != null && efDictionary.getType().isDictionaryBased()) {
-			ArrayList<EmbeddedFile> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFEmbeddedFile((COSDictionary) efDictionary.getDirectBase()));
+			COSEmbeddedFileDict embeddedFileDict = new
+					COSEmbeddedFileDict((COSDictionary) efDictionary.getDirectBase());
+			ArrayList<EmbeddedFile> list = new ArrayList<>();
+			for (COSStream embeddedFileStream : embeddedFileDict.getEmbeddedFileStreams()) {
+				list.add(new GFEmbeddedFile(embeddedFileStream));
+			}
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

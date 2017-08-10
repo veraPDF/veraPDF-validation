@@ -33,13 +33,13 @@ import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.PDFontDescriptor;
+import org.verapdf.pd.font.cff.CFFCIDFontProgram;
+import org.verapdf.pd.font.cff.CFFFontProgram;
+import org.verapdf.pd.font.truetype.CIDFontType2Program;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -137,8 +137,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
             COSStream cidSet = getCIDSetStream();
             if (cidSet != null) {
                 ASInputStream stream = cidSet.getData(COSStream.FilterFlags.DECODE);
-                long length = cidSet.getLength();
-                byte[] cidSetBytes = getCIDsFromCIDSet(stream, length);
+                byte[] cidSetBytes = getCIDsFromCIDSet(stream);
 
                 //reverse bit order in bit set (convert to big endian)
                 BitSet bitSet = toBitSetBigEndian(cidSetBytes);
@@ -146,16 +145,26 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 FontProgram cidFont = this.pdFont.getFontProgram();
 
                 for (int i = 1; i < bitSet.size(); i++) {
-                    if (bitSet.get(i) && !cidFont.containsCode(i)) {
+                    if (bitSet.get(i) && !cidFont.containsCID(i)) {
                         return Boolean.FALSE;
                     }
                 }
 
                 PDFAFlavour flavour = StaticContainers.getFlavour();
-                if (!flavour.equals(PDFAFlavour.PDFA_1_A) || !flavour.equals(PDFAFlavour.PDFA_1_B)) {
+                if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
                     //on this levels we need to ensure that all glyphs present in font program are described in cid set
-                    for (int i = 1; i < bitSet.size(); ++i) {
-                        if (!bitSet.get(i) && cidFont.containsCode(i)) {
+                    List<Integer> fontCIDs;
+                    if (cidFont instanceof CIDFontType2Program) {
+                        fontCIDs = ((CIDFontType2Program) cidFont).getCIDList();
+                    } else if (cidFont instanceof CFFFontProgram) {
+                        fontCIDs = ((CFFFontProgram) cidFont).getCIDList();
+                    } else if (cidFont instanceof CFFCIDFontProgram) {
+                        fontCIDs = ((CFFCIDFontProgram) cidFont).getCIDList();
+                    } else {
+                        fontCIDs = Collections.emptyList();
+                    }
+                    for (int i = 0; i < fontCIDs.size(); ++i) {
+                        if (!bitSet.get(fontCIDs.get(i))) {
                             return Boolean.FALSE;
                         }
                     }
@@ -178,12 +187,10 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         return null;
     }
 
-    private static byte[] getCIDsFromCIDSet(ASInputStream cidSet, long length) throws IOException {
-        byte[] cidSetBytes = new byte[(int) length];
-        if (cidSet.read(cidSetBytes) != length) {
-            LOGGER.log(Level.FINE, "Did not read necessary number of cid set bytes");
-        }
-        return cidSetBytes;
+    private static byte[] getCIDsFromCIDSet(ASInputStream cidSet) throws IOException {
+        byte[] cidSetBytes = new byte[2048];
+        int read = cidSet.read(cidSetBytes);
+        return read == -1 ? new byte[0] : Arrays.copyOf(cidSetBytes, read);
     }
 
     private static BitSet toBitSetBigEndian(byte[] source) {

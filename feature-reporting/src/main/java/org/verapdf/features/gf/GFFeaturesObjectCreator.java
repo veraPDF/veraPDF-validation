@@ -26,9 +26,11 @@ import org.verapdf.external.ICCProfile;
 import org.verapdf.features.gf.objects.*;
 import org.verapdf.features.objects.*;
 import org.verapdf.pd.*;
+import org.verapdf.pd.actions.PDAction;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.encryption.PDEncryption;
 import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.form.PDFormField;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;
 import org.verapdf.pd.patterns.PDShading;
@@ -112,7 +114,7 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFOutputIntentsFeaturesObjectAdapter
 	 */
 	public static OutputIntentFeaturesObject createOutputIntentFeaturesObject(PDOutputIntent outInt,
-																						String iccProfileID) {
+																			  String iccProfileID) {
 		GFOutputIntentsFeaturesObjectAdapter adapter = new GFOutputIntentsFeaturesObjectAdapter(outInt, iccProfileID);
 		return new OutputIntentFeaturesObject(adapter);
 	}
@@ -138,9 +140,9 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFAnnotationFeaturesObjectAdapter
 	 */
 	public static AnnotationFeaturesObject createAnnotFeaturesObject(PDAnnotation annot,
-																			  String id,
-																			  String popupId,
-																			  Set<String> formXObjects) {
+																	 String id,
+																	 String popupId,
+																	 Set<String> formXObjects) {
 		GFAnnotationFeaturesObjectAdapter adapter = new GFAnnotationFeaturesObjectAdapter(annot, id, popupId, formXObjects);
 		return new AnnotationFeaturesObject(adapter);
 	}
@@ -162,17 +164,18 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFPageFeaturesObjectAdapter
 	 */
 	public static PageFeaturesObject createPageFeaturesObject(PDPage page,
-																	   String thumb,
-																	   Set<String> annotsId,
-																	   Set<String> extGStateChild,
-																	   Set<String> colorSpaceChild,
-																	   Set<String> patternChild,
-																	   Set<String> shadingChild,
-																	   Set<String> xobjectChild,
-																	   Set<String> fontChild,
-																	   Set<String> propertiesChild,
-																	   int index) {
-		GFPageFeaturesObjectAdapter adapter = new GFPageFeaturesObjectAdapter(page, thumb, annotsId, extGStateChild,
+															  String label,
+															  String thumb,
+															  Set<String> annotsId,
+															  Set<String> extGStateChild,
+															  Set<String> colorSpaceChild,
+															  Set<String> patternChild,
+															  Set<String> shadingChild,
+															  Set<String> xobjectChild,
+															  Set<String> fontChild,
+															  Set<String> propertiesChild,
+															  int index) {
+		GFPageFeaturesObjectAdapter adapter = new GFPageFeaturesObjectAdapter(page, label, thumb, annotsId, extGStateChild,
 				colorSpaceChild, patternChild, shadingChild, xobjectChild,
 				fontChild, propertiesChild, index);
 		return new PageFeaturesObject(adapter);
@@ -199,8 +202,8 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFExtGStateFeaturesObjectAdapter
 	 */
 	public static ExtGStateFeaturesObject createExtGStateFeaturesObject(PDExtGState exGState,
-																				 String id,
-																				 String fontChildID) {
+																		String id,
+																		String fontChildID) {
 		GFExtGStateFeaturesObjectAdapter adapter = new GFExtGStateFeaturesObjectAdapter(exGState, id, fontChildID);
 		return new ExtGStateFeaturesObject(adapter);
 	}
@@ -215,9 +218,9 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFColorSpaceFeaturesObjectAdapter
 	 */
 	public static ColorSpaceFeaturesObject createColorSpaceFeaturesObject(PDColorSpace colorSpace,
-																				   String id,
-																				   String iccProfileChild,
-																				   String colorSpaceChild) {
+																		  String id,
+																		  String iccProfileChild,
+																		  String colorSpaceChild) {
 		GFColorSpaceFeaturesObjectAdapter adapter = new GFColorSpaceFeaturesObjectAdapter(colorSpace, id, iccProfileChild, colorSpaceChild);
 		return new ColorSpaceFeaturesObject(adapter);
 	}
@@ -237,14 +240,14 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFTilingPatternFeaturesObjectAdapter
 	 */
 	public static TilingPatternFeaturesObject createTilingPatternFeaturesObject(PDTilingPattern tilingPattern,
-																				  String id,
-																				  Set<String> extGStateChild,
-																				  Set<String> colorSpaceChild,
-																				  Set<String> patternChild,
-																				  Set<String> shadingChild,
-																				  Set<String> xobjectChild,
-																				  Set<String> fontChild,
-																				  Set<String> propertiesChild) {
+																				String id,
+																				Set<String> extGStateChild,
+																				Set<String> colorSpaceChild,
+																				Set<String> patternChild,
+																				Set<String> shadingChild,
+																				Set<String> xobjectChild,
+																				Set<String> fontChild,
+																				Set<String> propertiesChild) {
 		GFTilingPatternFeaturesObjectAdapter adapter = new GFTilingPatternFeaturesObjectAdapter(tilingPattern, id,
 				extGStateChild, colorSpaceChild, patternChild,
 				shadingChild, xobjectChild, fontChild, propertiesChild);
@@ -261,9 +264,9 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFShadingPatternFeaturesObjectAdapter
 	 */
 	public static ShadingPatternFeaturesObject createShadingPatternFeaturesObject(PDShadingPattern shadingPattern,
-																					String id,
-																					String shadingChild,
-																					String extGStateChild) {
+																				  String id,
+																				  String shadingChild,
+																				  String extGStateChild) {
 		GFShadingPatternFeaturesObjectAdapter adapter = new GFShadingPatternFeaturesObjectAdapter(shadingPattern, id, shadingChild, extGStateChild);
 		return new ShadingPatternFeaturesObject(adapter);
 	}
@@ -277,8 +280,8 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFShadingFeaturesObjectAdapter
 	 */
 	public static ShadingFeaturesObject createShadingFeaturesObject(PDShading shading,
-																			 String id,
-																			 String colorSpaceChild) {
+																	String id,
+																	String colorSpaceChild) {
 		GFShadingFeaturesObjectAdapter adapter = new GFShadingFeaturesObjectAdapter(shading, id, colorSpaceChild);
 		return new ShadingFeaturesObject(adapter);
 	}
@@ -295,11 +298,11 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFImageXObjectFeaturesObject
 	 */
 	public static ImageXObjectFeaturesObject createImageXObjectFeaturesObject(PDXImage imageXObject,
-                                                                                       String id,
-                                                                                       String colorSpaceChild,
-                                                                                       String maskChild,
-                                                                                       String sMaskChild,
-                                                                                       Set<String> alternatesChild) {
+																			  String id,
+																			  String colorSpaceChild,
+																			  String maskChild,
+																			  String sMaskChild,
+																			  Set<String> alternatesChild) {
 		GFImageXObjectFeaturesObjectAdapter adapter = new GFImageXObjectFeaturesObjectAdapter(imageXObject, id, colorSpaceChild, maskChild, sMaskChild, alternatesChild);
 		return new ImageXObjectFeaturesObject(adapter);
 	}
@@ -320,15 +323,15 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFFormXObjectFeaturesObjectAdapter
 	 */
 	public static FormXObjectFeaturesObject createFormXObjectFeaturesObject(PDXForm formXObject,
-																					 String id,
-																					 String groupChild,
-																					 Set<String> extGStateChild,
-																					 Set<String> colorSpaceChild,
-																					 Set<String> patternChild,
-																					 Set<String> shadingChild,
-																					 Set<String> xobjectChild,
-																					 Set<String> fontChild,
-																					 Set<String> propertiesChild) {
+																			String id,
+																			String groupChild,
+																			Set<String> extGStateChild,
+																			Set<String> colorSpaceChild,
+																			Set<String> patternChild,
+																			Set<String> shadingChild,
+																			Set<String> xobjectChild,
+																			Set<String> fontChild,
+																			Set<String> propertiesChild) {
 		GFFormXObjectFeaturesObjectAdapter adapter = new GFFormXObjectFeaturesObjectAdapter(formXObject, id,
 				groupChild, extGStateChild, colorSpaceChild,
 				patternChild, shadingChild, xobjectChild,
@@ -351,14 +354,14 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFFontFeaturesObjectAdapter
 	 */
 	public static FontFeaturesObject createFontFeaturesObject(PDFont fontLike,
-																	   String id,
-																	   Set<String> extGStateChild,
-																	   Set<String> colorSpaceChild,
-																	   Set<String> patternChild,
-																	   Set<String> shadingChild,
-																	   Set<String> xobjectChild,
-																	   Set<String> fontChild,
-																	   Set<String> propertiesChild) {
+															  String id,
+															  Set<String> extGStateChild,
+															  Set<String> colorSpaceChild,
+															  Set<String> patternChild,
+															  Set<String> shadingChild,
+															  Set<String> xobjectChild,
+															  Set<String> fontChild,
+															  Set<String> propertiesChild) {
 		GFFontFeaturesObjectAdapter adapter = new GFFontFeaturesObjectAdapter(fontLike, id,
 				extGStateChild, colorSpaceChild, patternChild,
 				shadingChild, xobjectChild, fontChild, propertiesChild);
@@ -373,7 +376,7 @@ public final class GFFeaturesObjectCreator {
 	 * @return created GFPropertiesDictFeaturesObjectAdapter
 	 */
 	public static PropertiesDictFeaturesObject createPropertiesDictFeaturesObject(COSObject properties,
-																						   String id) {
+																				  String id) {
 		GFPropertiesDictFeaturesObjectAdapter adapter = new GFPropertiesDictFeaturesObjectAdapter(properties, id);
 		return new PropertiesDictFeaturesObject(adapter);
 	}
@@ -398,5 +401,16 @@ public final class GFFeaturesObjectCreator {
 	public static SignatureFeaturesObject createSignatureFeaturesObject(PDSignature signature) {
 		GFSignatureFeaturesObjectAdapter adapter = new GFSignatureFeaturesObjectAdapter(signature);
 		return new SignatureFeaturesObject(adapter);
+	}
+
+	public static ActionFeaturesObject createActionFeaturesObject(PDAction action,
+																  ActionFeaturesObjectAdapter.Location location) {
+		GFActionFeaturesObjectAdapter adapter = new GFActionFeaturesObjectAdapter(action, location);
+		return new ActionFeaturesObject(adapter);
+	}
+
+	public static InteractiveFormFieldFeaturesObject createInteractiveFormFieldFeaturesObject(PDFormField formField) {
+		GFInteractiveFormFieldFeaturesObjectAdapter adapter = new GFInteractiveFormFieldFeaturesObjectAdapter(formField);
+		return new InteractiveFormFieldFeaturesObject(adapter);
 	}
 }

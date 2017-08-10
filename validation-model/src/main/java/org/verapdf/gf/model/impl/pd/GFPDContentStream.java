@@ -22,15 +22,18 @@ package org.verapdf.gf.model.impl.pd;
 
 
 import org.verapdf.as.io.ASInputStream;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
+import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.OperatorFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.parser.PDFStreamParser;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -53,13 +56,17 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	private List<Operator> operators = null;
 	private boolean containsTransparency = false;
-	private boolean isIsolated;
+	private final GraphicState inheritedGraphicState;
+	private final StructureElementAccessObject structureElementAccessObject;
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
-							 PDResourcesHandler resourcesHandler, boolean isIsolated) {
+							 PDResourcesHandler resourcesHandler,
+							 GraphicState inheritedGraphicState,
+							 StructureElementAccessObject structureElementAccessObject) {
 		super(contentStream, CONTENT_STREAM_TYPE);
 		this.resourcesHandler = resourcesHandler;
-		this.isIsolated = isIsolated;
+		this.inheritedGraphicState = inheritedGraphicState;
+		this.structureElementAccessObject = structureElementAccessObject;
 	}
 
 	@Override
@@ -84,17 +91,29 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 			try {
 				COSObject contentStream = this.contentStream.getContents();
 				if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
+					COSKey key = contentStream.getObjectKey();
+					if (key != null) {
+						if (StaticContainers.transparencyVisitedContentStreams.contains(key)) {
+							LOGGER.log(Level.FINE, "Parsing content stream loop");
+							StaticContainers.validPDF = false;
+							this.containsTransparency = false;
+							this.operators = Collections.emptyList();
+							return;
+						} else {
+							StaticContainers.transparencyVisitedContentStreams.push(key);
+						}
+					}
 					try (ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
 						PDFStreamParser streamParser = new PDFStreamParser(opStream);
 						try {
 							streamParser.parseTokens();
 							OperatorFactory operatorFactory = new OperatorFactory();
 							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(),
-									resourcesHandler, isIsolated);
+									resourcesHandler, inheritedGraphicState, structureElementAccessObject);
 							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 							this.operators = Collections.unmodifiableList(result);
 						} finally {
-							streamParser.closeInputStream();
+							streamParser.close();
 							if (StaticContainers.getDocument() != null &&
 									StaticContainers.getDocument().getDocument() != null) {
 								StaticContainers.getDocument().getDocument().getResourceHandler().addAll(
@@ -102,11 +121,15 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							}
 						}
 					}
+					if (key != null && StaticContainers.transparencyVisitedContentStreams.peek().equals(key)) {
+						StaticContainers.transparencyVisitedContentStreams.pop();
+					}
 				} else {
 					this.operators = Collections.emptyList();
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error while parsing content stream. " + e.getMessage(), e);
+				StaticContainers.validPDF = false;
 				this.operators = Collections.emptyList();
 			}
 		}

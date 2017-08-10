@@ -50,6 +50,9 @@ public class StaticContainers {
 
 	public static Set<COSKey> fileSpecificationKeys = new HashSet<>();
 
+	public static Stack<COSKey> transparencyVisitedContentStreams = new Stack<>();
+	public static boolean validPDF  = true;
+
 	public static void clearAllContainers() {
 		if (document != null) {
 			document = null;
@@ -60,6 +63,8 @@ public class StaticContainers {
 		inconsistentSeparations.clear();
 		cachedColorSpaces.clear();
 		fileSpecificationKeys.clear();
+		transparencyVisitedContentStreams.clear();
+		validPDF = true;
 	}
 
 	public static PDDocument getDocument() {
@@ -76,9 +81,6 @@ public class StaticContainers {
 
 	public static void setFlavour(PDFAFlavour flavour) {
 		StaticContainers.flavour = flavour;
-		if (roleMapHelper != null) {
-			roleMapHelper.setFlavour(flavour);
-		}
 	}
 
 	public static TaggedPDFRoleMapHelper getRoleMapHelper() {
@@ -86,6 +88,6 @@ public class StaticContainers {
 	}
 
 	public static void setRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
-		StaticContainers.roleMapHelper = new TaggedPDFRoleMapHelper(roleMap, StaticContainers.flavour);
+		StaticContainers.roleMapHelper = new TaggedPDFRoleMapHelper(roleMap);
 	}
 }
