@@ -136,8 +136,10 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         try {
             COSStream cidSet = getCIDSetStream();
             if (cidSet != null) {
-                ASInputStream stream = cidSet.getData(COSStream.FilterFlags.DECODE);
-                byte[] cidSetBytes = getCIDsFromCIDSet(stream);
+                byte[] cidSetBytes;
+                try (ASInputStream stream = cidSet.getData(COSStream.FilterFlags.DECODE)) {
+                    cidSetBytes = getCIDsFromCIDSet(stream);
+                }
 
                 //reverse bit order in bit set (convert to big endian)
                 BitSet bitSet = toBitSetBigEndian(cidSetBytes);
