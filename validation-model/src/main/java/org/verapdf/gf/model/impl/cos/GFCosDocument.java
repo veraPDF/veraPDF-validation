@@ -191,8 +191,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			COSArray idArray = (COSArray) ids.getDirectBase();
 			StringBuilder builder = new StringBuilder();
 			for (COSObject id : idArray) {
-				for (byte aByte : ((COSString) id.getDirectBase()).get()) {
-					builder.append((char) (aByte & 0xFF));
+				if (id.getType() == COSObjType.COS_STRING) {
+					for (byte aByte : ((COSString) id.getDirectBase()).get()) {
+						builder.append((char) (aByte & 0xFF));
+					}
 				}
 			}
 			// need to discard last whitespace
