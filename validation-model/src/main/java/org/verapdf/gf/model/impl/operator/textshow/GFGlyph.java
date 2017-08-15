@@ -20,13 +20,16 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.MarkedContentHelper;
 import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.pd.font.*;
+import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -91,7 +94,12 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 this.name = null;
             }
         }
-        this.toUnicode = font.toUnicode(glyphCode);
+        if (font instanceof PDType3Font && StaticContainers.getFlavour().getPart() ==
+                PDFAFlavour.Specification.ISO_19005_1) {
+            this.toUnicode = font.cMapToUnicode(glyphCode);
+        } else {
+            this.toUnicode = font.toUnicode(glyphCode);
+        }
         getactualTextPresent();
         this.id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
                 font.getName(), glyphCode, renderingMode);
