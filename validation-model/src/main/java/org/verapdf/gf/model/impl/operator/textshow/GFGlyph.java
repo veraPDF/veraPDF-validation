@@ -94,9 +94,12 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 this.name = null;
             }
         }
-        if (font instanceof PDType3Font && StaticContainers.getFlavour().getPart() ==
-                PDFAFlavour.Specification.ISO_19005_1) {
-            this.toUnicode = font.cMapToUnicode(glyphCode);
+        if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+            if (font instanceof PDType3Font) {
+                this.toUnicode = font.cMapToUnicode(glyphCode);
+            } else if (font instanceof org.verapdf.pd.font.type1.PDType1Font) {
+                this.toUnicode = ((org.verapdf.pd.font.type1.PDType1Font) font).toUnicodePDFA1(glyphCode);
+            }
         } else {
             this.toUnicode = font.toUnicode(glyphCode);
         }
