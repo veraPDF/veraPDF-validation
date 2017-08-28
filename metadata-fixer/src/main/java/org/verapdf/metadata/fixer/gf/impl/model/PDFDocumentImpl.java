@@ -177,7 +177,7 @@ public class PDFDocumentImpl implements PDFDocument {
 			if (obj.getType() == COSObjType.COS_STREAM) {
 				metas.add((COSStream) obj.getDirectBase());
 			} else {
-				LOGGER.log(Level.FINE, "Founded non-stream Metadata dictionary.");
+				LOGGER.log(Level.SEVERE, "Found non-stream Metadata dictionary.");
 			}
 		}
 		for (COSStream stream : metas) {

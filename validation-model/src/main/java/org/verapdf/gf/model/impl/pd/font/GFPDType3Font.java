@@ -113,7 +113,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                                     new StructureElementAccessObject(this.simpleCOSObject));
                     map.put(glyphName.getValue(), contentStream);
                 } else {
-                    LOGGER.log(Level.FINE, "Invalid entry in the char proc dictionary.");
+                    LOGGER.log(Level.SEVERE, "Invalid entry in the char proc dictionary, dictionary is expected.");
                 }
             }
             this.charStrings = Collections.unmodifiableMap(map);
