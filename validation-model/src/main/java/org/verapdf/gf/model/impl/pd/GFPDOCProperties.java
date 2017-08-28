@@ -82,7 +82,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 				return result;
 			}
 		} else {
-			LOGGER.log(Level.FINE, "Invalid object type of the default optional configuration dictionary. Returning empty config.");
+			LOGGER.log(Level.SEVERE, "Invalid object type of the default optional configuration dictionary. Returning empty config.");
 			PDOCConfig config = new GFPDOCConfig(new PDObject(COSDictionary.construct()));
 
 			result.add(config);
@@ -114,7 +114,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 					}
 					result.add(pdConfig);
 				} else {
-					LOGGER.log(Level.FINE, "Invalid object type of the configuration dictionary. Ignoring config.");
+					LOGGER.log(Level.SEVERE, "Invalid object type of the configuration dictionary. Ignoring config.");
 				}
 			}
 			return result;

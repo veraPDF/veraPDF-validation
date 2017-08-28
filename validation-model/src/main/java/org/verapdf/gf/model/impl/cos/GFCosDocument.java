@@ -195,6 +195,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 					for (byte aByte : ((COSString) id.getDirectBase()).get()) {
 						builder.append((char) (aByte & 0xFF));
 					}
+				} else {
+					LOGGER.log(Level.SEVERE, "Value of ID key is not a string. Ignoring ID");
 				}
 			}
 			// need to discard last whitespace
