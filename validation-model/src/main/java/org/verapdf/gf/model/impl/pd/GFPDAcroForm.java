@@ -21,6 +21,8 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDAcroForm;
 import org.verapdf.model.pdlayer.PDFormField;
@@ -28,11 +30,16 @@ import org.verapdf.model.pdlayer.PDFormField;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
+
+    private static final Logger LOGGER = Logger.getLogger(GFPDAcroForm.class.getCanonicalName());
+
     public static final String ACRO_FORM_TYPE = "PDAcroForm";
 
     public static final String FORM_FIELDS = "formFields";
@@ -43,7 +50,17 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
 
     @Override
     public Boolean getNeedAppearances() {
-        return ((org.verapdf.pd.form.PDAcroForm) simplePDObject).getNeedAppearances();
+        COSObject cosNeedAppearances = ((org.verapdf.pd.form.PDAcroForm)
+                simplePDObject).getNeedAppearances();
+        if (cosNeedAppearances.getType() == COSObjType.COS_BOOLEAN) {
+            return cosNeedAppearances.getBoolean();
+        } else if (cosNeedAppearances.empty()) {
+            return null;
+        } else {
+            LOGGER.log(Level.SEVERE, "Value of NeedAppearances key is not a boolean. Ignoring NeedAppearances");
+            // value that fails the check
+            return true;
+        }
     }
 
     @Override
