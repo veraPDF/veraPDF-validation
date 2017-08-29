@@ -115,9 +115,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	public boolean validPDF;
 
 	// StaticResources have to be saved too
-	private static Map<String, CMap> cMapCache;
-	private static Map<COSKey, PDStructureNameSpace> structureNameSpaceCache;
-	private static Map<COSKey, FontProgram> cachedFonts;
+	private Map<String, CMap> cMapCache;
+	private Map<COSKey, PDStructureNameSpace> structureNameSpaceCache;
+	private Map<COSKey, FontProgram> cachedFonts;
 
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
