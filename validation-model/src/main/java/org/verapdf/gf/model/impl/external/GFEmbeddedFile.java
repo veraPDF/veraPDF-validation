@@ -31,17 +31,18 @@ import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.font.FontProgram;
+import org.verapdf.pd.font.cmap.CMap;
+import org.verapdf.pd.structure.PDStructureNameSpace;
 import org.verapdf.pdfa.PDFAValidator;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.validators.ValidatorFactory;
+import org.verapdf.tools.StaticResources;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -113,6 +114,11 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	public Stack<COSKey> transparencyVisitedContentStreams;
 	public boolean validPDF;
 
+	// StaticResources have to be saved too
+	private static Map<String, CMap> cMapCache;
+	private static Map<COSKey, PDStructureNameSpace> structureNameSpaceCache;
+	private static Map<COSKey, FontProgram> cachedFonts;
+
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
 		this.flavour = StaticContainers.getFlavour();
@@ -123,6 +129,10 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
 		this.transparencyVisitedContentStreams = StaticContainers.transparencyVisitedContentStreams;
 		this.validPDF = StaticContainers.validPDF;
+
+		this.cMapCache = new HashMap<>(StaticResources.cMapCache);
+		this.structureNameSpaceCache = new HashMap<>(StaticResources.structureNameSpaceCache);
+		this.cachedFonts = new HashMap<>(StaticResources.cachedFonts);
 	}
 
 	private void restoreSavedSCState() {
@@ -135,6 +145,10 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
 		StaticContainers.transparencyVisitedContentStreams = this.transparencyVisitedContentStreams;
 		StaticContainers.validPDF = this.validPDF;
+
+		StaticResources.cMapCache = this.cMapCache;
+		StaticResources.structureNameSpaceCache = this.structureNameSpaceCache;
+		StaticResources.cachedFonts = this.cachedFonts;
 	}
 
 }

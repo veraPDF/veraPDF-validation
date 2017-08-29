@@ -59,11 +59,11 @@ public class StaticContainers {
 		}
 		flavour = null;
 		roleMapHelper = null;
-		separations.clear();
-		inconsistentSeparations.clear();
-		cachedColorSpaces.clear();
-		fileSpecificationKeys.clear();
-		transparencyVisitedContentStreams.clear();
+		separations = new HashMap<>();
+		inconsistentSeparations = new ArrayList<>();
+		cachedColorSpaces = new HashMap<>();
+		fileSpecificationKeys = new HashSet<>();
+		transparencyVisitedContentStreams = new Stack<>();
 		validPDF = true;
 	}
 
