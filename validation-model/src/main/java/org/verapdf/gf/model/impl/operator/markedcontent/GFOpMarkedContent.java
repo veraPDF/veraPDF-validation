@@ -110,7 +110,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	 *
 	 * @return ActualText value or null if it is not present.
 	 */
-	COSString getActualText() {
+	public COSString getActualText() {
 		COSObject actualText = getAttribute(ASAtom.ACTUAL_TEXT, COSObjType.COS_STRING);
 		return actualText == null ? null : (COSString) actualText.get();
 	}
@@ -120,9 +120,14 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	 *
 	 * @return MCID value or value if it is not present.
 	 */
-	Long getMCID() {
+	public Long getMCID() {
 		COSObject mcid = getAttribute(ASAtom.MCID, COSObjType.COS_INTEGER);
 		return mcid == null ? null : mcid.getInteger();
+	}
+
+	@Override
+	public String getID() {
+		return propertiesDict == null ? "" : String.valueOf(propertiesDict.hashCode());
 	}
 
 	private COSObject getAttribute(ASAtom attributeName, COSObjType expectedType) {
