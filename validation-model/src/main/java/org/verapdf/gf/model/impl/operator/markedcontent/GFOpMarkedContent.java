@@ -125,11 +125,6 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		return mcid == null ? null : mcid.getInteger();
 	}
 
-	@Override
-	public String getID() {
-		return propertiesDict == null ? "" : String.valueOf(propertiesDict.hashCode());
-	}
-
 	private COSObject getAttribute(ASAtom attributeName, COSObjType expectedType) {
 		if (this.propertiesDict != null) {
 			COSObject res = this.propertiesDict.getKey(attributeName);
@@ -140,4 +135,8 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		return null;
 	}
 
+	@Override
+	public int hashCode() {
+		return propertiesDict == null ? 0 : propertiesDict.hashCode();
+	}
 }

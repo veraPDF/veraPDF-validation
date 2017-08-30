@@ -56,11 +56,11 @@ public final class GFIDGenerator {
 	public static String generateID(int hashcode, String fontName, int glyphCode, int renderingMode,
 									GFOpMarkedContent markedContent,
 									StructureElementAccessObject structureElementAccessObject) {
-		String markedContentID = markedContent == null ? "" : markedContent.getID();
+		String markedContentID = markedContent == null ? "" : String.valueOf(markedContent.hashCode());
 		String structureElementAccessID = structureElementAccessObject == null ? "" :
 				String.valueOf(structureElementAccessObject.hashCode());
-		return String.valueOf(hashcode) + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode +
-				markedContentID + structureElementAccessID;
+		return String.valueOf(hashcode) + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode + ' ' +
+				markedContentID + ' ' + structureElementAccessID;
 	}
 
 	public static String generateID(PDOutlineItem item) {
