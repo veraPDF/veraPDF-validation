@@ -2,16 +2,16 @@
  * This file is part of validation-model, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
- *
+ * <p>
  * validation-model is free software: you can redistribute it and/or modify
  * it under the terms of either:
- *
+ * <p>
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
  * along with validation-model as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
- *
+ * <p>
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
  * validation-model as the LICENSE.MPL file in the root of the source tree.
@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.MarkedContentHelper;
@@ -58,17 +59,24 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private GFOpMarkedContent markedContent;
     private StructureElementAccessObject structureElementAccessObject;
 
-    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, int renderingMode,
+    protected GFGlyph(PDFont font, int glyphCode, int renderingMode, String id,
                    GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        this(glyphPresent, widthsConsistent, font, glyphCode, GLYPH_TYPE,
-                renderingMode, markedContent, structureElementAccessObject);
+        this(font, glyphCode, GLYPH_TYPE, renderingMode, id, markedContent, structureElementAccessObject);
     }
 
-    public GFGlyph(Boolean glyphPresent, Boolean widthsConsistent, PDFont font, int glyphCode, String type, int renderingMode,
+    protected GFGlyph(PDFont font, int glyphCode, String type, int renderingMode, String id,
                    GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
         super(type);
-        this.glyphPresent = glyphPresent;
-        this.widthsConsistent = widthsConsistent;
+
+        FontProgram fontProgram = font.getFontProgram();
+        boolean fontProgramIsInvalid = (fontProgram == null || !font.isSuccessfullyParsed())
+                && font.getSubtype() != ASAtom.TYPE3;
+
+        if (font.getSubtype() != ASAtom.TYPE3) {
+            initForNotType3(fontProgramIsInvalid, fontProgram, font, glyphCode);
+        } else {
+            initForType3(font, glyphCode);
+        }
         this.renderingMode = Long.valueOf(renderingMode);
         this.markedContent = markedContent;
         this.structureElementAccessObject = structureElementAccessObject;
@@ -104,8 +112,61 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             this.toUnicode = font.toUnicode(glyphCode);
         }
         getactualTextPresent();
-        this.id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
-                font.getName(), glyphCode, renderingMode);
+        this.id = id;
+    }
+
+    public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode,
+                                 GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        return getGlyph(font, glyphCode, GLYPH_TYPE, renderingMode, markedContent, structureElementAccessObject);
+    }
+
+    public static Glyph getGlyph(PDFont font, int glyphCode, String type, int renderingMode,
+                                 GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        String id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
+                font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject);
+        Glyph cachedGlyph = StaticContainers.cachedGlyphs.get(id);
+        if (cachedGlyph == null) {
+            cachedGlyph = new GFGlyph(font, glyphCode, type, renderingMode, id,
+                    markedContent, structureElementAccessObject);
+            StaticContainers.cachedGlyphs.put(id, cachedGlyph);
+        }
+        return cachedGlyph;
+    }
+
+    private void initForType3(PDFont font, int glyphCode) {
+        glyphPresent = ((PDType3Font) font).containsCharString(glyphCode);
+        this.widthsConsistent = checkWidths(glyphCode, font);
+    }
+
+    private void initForNotType3(boolean fontProgramIsInvalid, FontProgram fontProgram,
+                                 PDFont font, int glyphCode) {
+        try {
+            glyphPresent = null;
+            widthsConsistent = null;
+            if (!fontProgramIsInvalid) {
+                fontProgram.parseFont();
+                // every font contains notdef glyph. But if we call method
+                // of font program we can't distinguish case of code 0
+                // and glyph that is not present indeed.
+                glyphPresent = glyphCode == 0 ? true :
+                        Boolean.valueOf(font.glyphIsPresent(glyphCode));
+                widthsConsistent = checkWidths(glyphCode, font);
+            }
+        } catch (IOException e) {
+            LOGGER.log(Level.FINE, "Error in parsing font program", e);
+            StaticContainers.validPDF = false;
+        }
+    }
+
+    private static Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font) {
+        Double fontWidth = font.getWidth(glyphCode);
+        double expectedWidth = fontWidth == null ? 0 : fontWidth.doubleValue();
+        double foundWidth = font.getWidthFromProgram(glyphCode);
+        if (foundWidth == -1) {
+            foundWidth = font.getDefaultWidth() == null ? 0 : font.getDefaultWidth().doubleValue();
+        }
+        // consistent is defined to be a difference of no more than 1/1000 unit.
+        return Math.abs(foundWidth - expectedWidth) > 1 ? Boolean.FALSE : Boolean.TRUE;
     }
 
     @Override
@@ -150,7 +211,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                     (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[2] &&
                             unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[3]) ||
                     (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[4] &&
-                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[5])){
+                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[5])) {
                 return true;
             }
         }

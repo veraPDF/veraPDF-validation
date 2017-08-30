@@ -36,9 +36,7 @@ import org.verapdf.model.operator.OpTextShow;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
-import org.verapdf.pd.font.PDType0Font;
 import org.verapdf.pd.font.cff.CFFFontProgram;
-import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.ByteArrayInputStream;
@@ -149,8 +147,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
 					fontProgram.getFontProgramResource());
 		}
-		boolean fontProgramIsInvalid = (fontProgram == null || !font.isSuccessfullyParsed())
-				&& font.getSubtype() != ASAtom.TYPE3;
 
 		List<Glyph> res = new ArrayList<>();
 		List<byte[]> strings = GFOpTextShow.getStrings(this.arguments);
@@ -158,35 +154,16 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			try (InputStream inputStream = new ByteArrayInputStream(string)) {
 				while (inputStream.available() > 0) {
 					int code = font.readCode(inputStream);
-					if (font.getSubtype() != ASAtom.TYPE3) {
-						Boolean glyphPresent = null;
-						Boolean widthsConsistent = null;
-						if (!fontProgramIsInvalid) {
-							fontProgram.parseFont();
-							// every font contains notdef glyph. But if we call method
-							// of font program we can't distinguish case of code 0
-							// and glyph that is not present indeed.
-							glyphPresent = code == 0 ? true :
-									Boolean.valueOf(font.glyphIsPresent(code));
-							widthsConsistent = GFOpTextShow.checkWidths(code, font);
-						}
-						GFGlyph glyph;
+					Glyph glyph;
 						if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
 								font.getSubtype() == ASAtom.TYPE0) {
-							int CID = ((PDType0Font) font).toCID(code);
-							glyph = new GFCIDGlyph(glyphPresent, widthsConsistent, font, code, CID,
-									this.renderingMode.getValue(), markedContent, structureElementAccessObject);
+							glyph = GFCIDGlyph.getGlyph(font, code, this.renderingMode.getValue(),
+									markedContent, structureElementAccessObject);
 						} else {
-							glyph = new GFGlyph(glyphPresent, widthsConsistent, font, code,
+							glyph = GFGlyph.getGlyph(font, code,
 									this.renderingMode.getValue(), markedContent, structureElementAccessObject);
 						}
 						res.add(glyph);
-					} else { // Type3 font
-						boolean glyphPresent = ((PDType3Font) font).containsCharString(code);
-						boolean widthConsistent = checkWidths(code, font);
-						res.add(new GFGlyph(Boolean.valueOf(glyphPresent), Boolean.valueOf(widthConsistent), font, code,
-								this.renderingMode.getValue(), markedContent, structureElementAccessObject));
-					}
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
@@ -267,17 +244,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			return null;
 		}
 		return resourcesHandler.getFont(this.fontName);
-	}
-
-	private static Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font) {
-		Double fontWidth = font.getWidth(glyphCode);
-		double expectedWidth = fontWidth == null ? 0 : fontWidth.doubleValue();
-		double foundWidth = font.getWidthFromProgram(glyphCode);
-		if (foundWidth == -1) {
-			foundWidth = font.getDefaultWidth() == null ? 0 : font.getDefaultWidth().doubleValue();
-		}
-		// consistent is defined to be a difference of no more than 1/1000 unit.
-		return Math.abs(foundWidth - expectedWidth) > 1 ? Boolean.FALSE : Boolean.TRUE;
 	}
 
 	/**

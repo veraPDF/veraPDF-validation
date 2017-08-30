@@ -24,9 +24,11 @@ package org.verapdf.gf.model.tools;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.pd.PDOutlineItem;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.PDType0Font;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 public final class GFIDGenerator {
 
@@ -51,8 +53,14 @@ public final class GFIDGenerator {
 		return String.valueOf(hashcode) + ' ' + font.getName();
 	}
 
-	public static String generateID(int hashcode, String fontName, int glyphCode, int renderingMode) {
-		return String.valueOf(hashcode) + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode;
+	public static String generateID(int hashcode, String fontName, int glyphCode, int renderingMode,
+									GFOpMarkedContent markedContent,
+									StructureElementAccessObject structureElementAccessObject) {
+		String markedContentID = markedContent == null ? "" : markedContent.getID();
+		String structureElementAccessID = structureElementAccessObject == null ? "" :
+				String.valueOf(structureElementAccessObject.hashCode());
+		return String.valueOf(hashcode) + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode +
+				markedContentID + structureElementAccessID;
 	}
 
 	public static String generateID(PDOutlineItem item) {

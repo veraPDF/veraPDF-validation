@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
 import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
+import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
@@ -53,6 +54,8 @@ public class StaticContainers {
 	public static Stack<COSKey> transparencyVisitedContentStreams = new Stack<>();
 	public static boolean validPDF  = true;
 
+	public static Map<String, Glyph> cachedGlyphs = new HashMap<>();
+
 	public static void clearAllContainers() {
 		if (document != null) {
 			document = null;
@@ -64,6 +67,7 @@ public class StaticContainers {
 		cachedColorSpaces = new HashMap<>();
 		fileSpecificationKeys = new HashSet<>();
 		transparencyVisitedContentStreams = new Stack<>();
+		cachedGlyphs = new HashMap<>();
 		validPDF = true;
 	}
 
