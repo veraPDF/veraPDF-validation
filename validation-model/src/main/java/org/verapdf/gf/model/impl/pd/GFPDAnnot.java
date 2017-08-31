@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
+import org.verapdf.cos.COSInteger;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
@@ -243,8 +244,12 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 				}
 			}
 			return Collections.unmodifiableList(color);
+		} else {
+			// Array size is 0 but it is present
+			List<CosNumber> res = new ArrayList<>(1);
+			res.add(GFCosNumber.fromPDFParserNumber(COSInteger.construct(0).getDirectBase()));
+			return res;
 		}
-		return Collections.emptyList();
 	}
 
 	/**
