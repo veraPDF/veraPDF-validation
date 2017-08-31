@@ -26,6 +26,7 @@ import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
 import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
+import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
@@ -49,6 +50,9 @@ public class StaticContainers {
 	//ColorSpaceFactory
 	public static Map<String, PDColorSpace> cachedColorSpaces = new HashMap<>();
 
+	//FontFactory
+	public static Map<String, PDFont> cachedFonts = new HashMap<>();
+
 	public static Set<COSKey> fileSpecificationKeys = new HashSet<>();
 
 	public static Stack<COSKey> transparencyVisitedContentStreams = new Stack<>();
@@ -65,6 +69,7 @@ public class StaticContainers {
 		separations = new HashMap<>();
 		inconsistentSeparations = new ArrayList<>();
 		cachedColorSpaces = new HashMap<>();
+		cachedFonts = new HashMap<>();
 		fileSpecificationKeys = new HashSet<>();
 		transparencyVisitedContentStreams = new Stack<>();
 		cachedGlyphs = new HashMap<>();

@@ -24,6 +24,7 @@ package org.verapdf.gf.model.tools;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.pd.PDOutlineItem;
 import org.verapdf.pd.font.PDFont;
@@ -61,6 +62,11 @@ public final class GFIDGenerator {
 				String.valueOf(structureElementAccessObject.hashCode());
 		return String.valueOf(hashcode) + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode + ' ' +
 				markedContentID + ' ' + structureElementAccessID;
+	}
+
+	public static String generateID(PDFont rawFont, RenderingMode renderingMode) {
+		String fontID = generateID(rawFont);
+		return fontID + renderingMode.getValue();
 	}
 
 	public static String generateID(PDOutlineItem item) {
