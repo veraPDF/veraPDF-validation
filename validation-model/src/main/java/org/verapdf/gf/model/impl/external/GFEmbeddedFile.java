@@ -29,7 +29,9 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
 import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
+import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
+import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cmap.CMap;
@@ -106,13 +108,15 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	// documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
-	public TaggedPDFRoleMapHelper roleMapHelper;
-	public Map<String, List<GFPDSeparation>> separations;
-	public List<String> inconsistentSeparations;
-	public Map<String, PDColorSpace> cachedColorSpaces;
-	public Set<COSKey> fileSpecificationKeys;
-	public Stack<COSKey> transparencyVisitedContentStreams;
-	public boolean validPDF;
+	private TaggedPDFRoleMapHelper roleMapHelper;
+	private Map<String, List<GFPDSeparation>> separations;
+	private List<String> inconsistentSeparations;
+	private Map<String, PDColorSpace> cachedColorSpaces;
+	private Set<COSKey> fileSpecificationKeys;
+	private Stack<COSKey> transparencyVisitedContentStreams;
+	private Map<String, PDFont> cachedPDFonts;
+	private Map<String, Glyph> cachedGlyphs;
+	private boolean validPDF;
 
 	// StaticResources have to be saved too
 	private Map<String, CMap> cMapCache;
@@ -125,10 +129,12 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.separations = StaticContainers.separations;
 		this.inconsistentSeparations = StaticContainers.inconsistentSeparations;
 		this.cachedColorSpaces = StaticContainers.cachedColorSpaces;
+		this.cachedPDFonts = StaticContainers.cachedFonts;
 		this.roleMapHelper = StaticContainers.roleMapHelper;
 		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
 		this.transparencyVisitedContentStreams = StaticContainers.transparencyVisitedContentStreams;
 		this.validPDF = StaticContainers.validPDF;
+		this.cachedGlyphs = StaticContainers.cachedGlyphs;
 
 		this.cMapCache = new HashMap<>(StaticResources.cMapCache);
 		this.structureNameSpaceCache = new HashMap<>(StaticResources.structureNameSpaceCache);
@@ -141,10 +147,12 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.separations = this.separations;
 		StaticContainers.inconsistentSeparations = this.inconsistentSeparations;
 		StaticContainers.cachedColorSpaces = this.cachedColorSpaces;
+		StaticContainers.cachedFonts = this.cachedPDFonts;
 		StaticContainers.roleMapHelper = this.roleMapHelper;
 		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
 		StaticContainers.transparencyVisitedContentStreams = this.transparencyVisitedContentStreams;
 		StaticContainers.validPDF = this.validPDF;
+		StaticContainers.cachedGlyphs = this.cachedGlyphs;
 
 		StaticResources.cMapCache = this.cMapCache;
 		StaticResources.structureNameSpaceCache = this.structureNameSpaceCache;

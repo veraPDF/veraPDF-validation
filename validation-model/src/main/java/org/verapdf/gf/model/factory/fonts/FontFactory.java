@@ -62,7 +62,7 @@ public class FontFactory {
 		if (rawFont == null) {
 			return new GFPDEmptyFont();
 		}
-		if (rawFont.getSubtype().getValue().equals(TYPE_3)) {
+		if (TYPE_3.equals(rawFont.getSubtype().getValue())) {
 			PDResources fontResources = ((PDType3Font) rawFont).getResources();
 			PDResourcesHandler pdResources = resources.getExtendedResources(fontResources);
 			return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources,
