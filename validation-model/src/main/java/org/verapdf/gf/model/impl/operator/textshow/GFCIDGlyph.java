@@ -20,11 +20,8 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.operator.CIDGlyph;
-import org.verapdf.model.operator.Glyph;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.PDType0Font;
 import org.verapdf.pd.structure.StructureElementAccessObject;
@@ -40,24 +37,10 @@ public class GFCIDGlyph extends GFGlyph implements CIDGlyph {
 
     private int cid;
 
-    private GFCIDGlyph(PDFont font, int glyphCode, int renderingMode, String id,
+    protected GFCIDGlyph(PDFont font, int glyphCode, int renderingMode, String id,
                       GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
         super(font, glyphCode, CID_GLYPH_TYPE, renderingMode, id, markedContent, structureElementAccessObject);
         this.cid = ((PDType0Font) font).toCID(glyphCode);
-    }
-
-    public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode,
-                                 GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        String id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
-                font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject);
-
-        Glyph cachedGlyph = StaticContainers.cachedGlyphs.get(id);
-        if (cachedGlyph == null) {
-            cachedGlyph = new GFCIDGlyph(font, glyphCode, renderingMode, id,
-                    markedContent, structureElementAccessObject);
-            StaticContainers.cachedGlyphs.put(id, cachedGlyph);
-        }
-        return cachedGlyph;
     }
 
     @Override

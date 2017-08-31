@@ -20,7 +20,6 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.factory.fonts.FontFactory;
@@ -155,14 +154,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 				while (inputStream.available() > 0) {
 					int code = font.readCode(inputStream);
 					Glyph glyph;
-						if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
-								font.getSubtype() == ASAtom.TYPE0) {
-							glyph = GFCIDGlyph.getGlyph(font, code, this.renderingMode.getValue(),
-									markedContent, structureElementAccessObject);
-						} else {
-							glyph = GFGlyph.getGlyph(font, code,
-									this.renderingMode.getValue(), markedContent, structureElementAccessObject);
-						}
+					glyph = GFGlyph.getGlyph(font, code, this.renderingMode.getValue(),
+							markedContent, structureElementAccessObject);
 						res.add(glyph);
 				}
 			} catch (IOException e) {
