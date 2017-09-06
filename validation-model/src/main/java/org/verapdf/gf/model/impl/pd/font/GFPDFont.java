@@ -80,8 +80,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public String getfontName() {
-        ASAtom result = this.pdFont.getFontName();
-        return result != null ? result.getValue() : null;
+        return this.pdFont.getName();
     }
 
     /**
