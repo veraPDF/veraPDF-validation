@@ -23,8 +23,8 @@ package org.verapdf.metadata.fixer.gf.impl.model;
 import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
 import org.verapdf.as.ASAtom;
+import org.verapdf.as.io.ASMemoryInStream;
 import org.verapdf.cos.*;
-import org.verapdf.io.InternalInputStream;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
 import org.verapdf.metadata.fixer.entity.Metadata;
 import org.verapdf.metadata.fixer.gf.impl.schemas.AdobePDFSchemaImpl;
@@ -37,10 +37,10 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.MetadataFixerResult;
 import org.verapdf.pdfa.results.MetadataFixerResultImpl;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -250,11 +250,12 @@ public class MetadataImpl implements Metadata {
         if (!this.doc.isObjectChanged(this.stream)) {
             return;
         }
-        File temp = File.createTempFile("veraPDFMetadataFixed", ".xml");
-        temp.deleteOnExit();
-        try (OutputStream out = new FileOutputStream(temp)) {
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             VeraPDFMeta.serialize(this.metadata, out);
-            this.stream.setData(new InternalInputStream(temp));
+            byte[] buf = out.toByteArray();
+            try (InputStream inStream = new ByteArrayInputStream(buf)) {
+                this.stream.setData(new ASMemoryInStream(inStream));
+            }
         }
     }
 }
