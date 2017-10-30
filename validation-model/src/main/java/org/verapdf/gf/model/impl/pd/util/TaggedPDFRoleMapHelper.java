@@ -139,22 +139,25 @@ public class TaggedPDFRoleMapHelper {
 			currentStandardTypes = PDF_1_7_STANDART_ROLE_TYPES;
 			isFastStop = false;
 		}
-		return getSandartType(type, currentStandardTypes, isFastStop);
+		return getStandardType(type, currentStandardTypes, isFastStop);
 	}
 
-	private String getSandartType(ASAtom type, Set<String> currentStandardTypes, boolean isFastStop) {
+	private String getStandardType(ASAtom type, Set<String> currentStandardTypes, boolean isFastStop) {
 		Set<ASAtom> visitedTypes = new HashSet<>();
-		ASAtom res = type;
-		while (res != null && !visitedTypes.contains(res)) {
-			visitedTypes.add(res);
-			ASAtom next = roleMap.get(res);
-			boolean isStop = isFastStop || next == null;
-			if (isStop && currentStandardTypes.contains(res.getValue())) {
-				return res.getValue();
-			}
-			res = next;
+		visitedTypes.add(type);
+		ASAtom res = roleMap.get(type);
+		String typeValue = type.getValue();
+		if ((isFastStop || res == null || visitedTypes.contains(res)) && currentStandardTypes.contains(typeValue)) {
+			return typeValue;
 		}
-
+		while (res != null && !visitedTypes.contains(res)) {
+			String resValue = res.getValue();
+			if (currentStandardTypes.contains(resValue)) {
+				return resValue;
+			}
+			visitedTypes.add(res);
+			res = roleMap.get(res);
+		}
 		return null;
 	}
 }
