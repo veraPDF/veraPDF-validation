@@ -121,10 +121,14 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
                     parser.getByteRangeBySignatureOffset(signatureOffset);
             int[] byteRange = ((org.verapdf.pd.PDSignature) this.simplePDObject).getByteRange();
             pdfSource.seek(offest);
-            for (int i = 0; i < 4; ++i) {
+            for (int i = 0; i < 3; ++i) {
                 if (byteRange[i] != actualByteRange[i]) {
                     return Boolean.FALSE;
                 }
+            }
+            int floating = parser.getFloatingBytesNumberForLastByteRangeObtained();
+            if (byteRange[3] < actualByteRange[3] - floating || byteRange[3] > actualByteRange[3]) {
+                return Boolean.FALSE;
             }
             return Boolean.TRUE;
         } catch (IOException ex) {
