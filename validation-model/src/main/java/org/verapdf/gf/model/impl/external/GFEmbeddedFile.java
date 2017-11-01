@@ -121,7 +121,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	// StaticResources have to be saved too
 	private Map<String, CMap> cMapCache;
 	private Map<COSKey, PDStructureNameSpace> structureNameSpaceCache;
-	private Map<COSKey, FontProgram> cachedFonts;
+	private Map<String, FontProgram> cachedFonts;
 
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
