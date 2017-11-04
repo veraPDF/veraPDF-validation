@@ -24,7 +24,7 @@ public class MarkedContentHelper {
             PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
             if (structTreeRoot != null) {
                 PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-                COSObject structureElement = accessObject.getStructureElement(parentTreeRoot, mcid);
+                COSObject structureElement = parentTreeRoot == null ? null : accessObject.getStructureElement(parentTreeRoot, mcid);
                 if (structureElement != null && !structureElement.empty()) {
                     COSObject actualText = structureElement.getKey(ASAtom.ACTUAL_TEXT);
                     return actualText != null && !actualText.empty() &&
