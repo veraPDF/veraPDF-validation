@@ -21,8 +21,8 @@
 package org.verapdf.gf.model.impl.pd.util;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObject;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.PDResources;
@@ -39,6 +39,8 @@ import org.verapdf.pd.patterns.PDShading;
  * @author Timur Kamalov
  */
 public class PDResourcesHandler {
+
+	public static final PDResourcesHandler EMPTY = PDResourcesHandler.getInstance(new PDResources(COSDictionary.construct()), false);
 
 	private final PDResources pageResources;
 	private final boolean inheritedResources;

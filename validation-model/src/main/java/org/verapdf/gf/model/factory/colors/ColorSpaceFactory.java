@@ -54,7 +54,7 @@ public class ColorSpaceFactory {
 	}
 
 	public static PDColorSpace getColorSpace(org.verapdf.pd.colors.PDColorSpace colorSpace) {
-		return getColorSpace(colorSpace, null, 0, false, null);
+		return getColorSpace(colorSpace, PDResourcesHandler.EMPTY, 0, false, null);
 	}
 
 	public static PDColorSpace getColorSpace(org.verapdf.pd.colors.PDColorSpace colorSpace,
