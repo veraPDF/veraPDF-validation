@@ -68,6 +68,11 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 	}
 
 	@Override
+	public Boolean getcontainsSMask() {
+		return this.simplePDObject.knownKey(ASAtom.SMASK);
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case S_MASK:
