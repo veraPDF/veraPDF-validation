@@ -105,13 +105,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         }
         if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
-            if (font instanceof org.verapdf.pd.font.type1.PDType1Font) {
-                this.toUnicode = ((org.verapdf.pd.font.type1.PDType1Font) font).toUnicodePDFA1(glyphCode);
-            } else if (!isToUnicodeRequired(font)) {
-                this.toUnicode = "";
-            } else {
-                this.toUnicode = font.cMapToUnicode(glyphCode);
-            }
+            this.toUnicode = getToUnicodePDFA1(font, glyphCode);
         } else {
             this.toUnicode = font.toUnicode(glyphCode);
         }
@@ -138,30 +132,14 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         return cachedGlyph;
     }
 
-    private boolean isToUnicodeRequired(PDFont font) {
-        COSObject cosEncoding = font.getEncoding();
-        if (!cosEncoding.empty() && cosEncoding.getType() == COSObjType.COS_NAME) {
-            ASAtom name = cosEncoding.getName();
-            if (name == ASAtom.MAC_ROMAN_ENCODING
-                    || name == ASAtom.MAC_EXPERT_ENCODING
-                    || name == ASAtom.WIN_ANSI_ENCODING) {
-                return false;
-            }
+    private String getToUnicodePDFA1(PDFont font, int glyphCode) {
+        if (font instanceof PDType3Font) {
+            return font.cMapToUnicode(glyphCode);
+        } else if (font instanceof org.verapdf.pd.font.type1.PDType1Font) {
+            return ((org.verapdf.pd.font.type1.PDType1Font) font).toUnicodePDFA1(glyphCode);
+        } else {
+            return font.toUnicode(glyphCode);
         }
-
-        if (font instanceof PDType0Font) {
-            PDCIDSystemInfo cidSystemInfo = ((PDType0Font) font).getCIDSystemInfo();
-            if (cidSystemInfo != null) {
-                String registry = cidSystemInfo.getRegistry();
-                if ("Adobe".equals(registry)) {
-                    String ordering = cidSystemInfo.getOrdering();
-                    if ("Japan1".equals(ordering) || "CNS1".equals(ordering) || "Korea1".equals(ordering) || "GB1".equals(ordering)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
     }
 
     private void initForType3(PDFont font, int glyphCode) {
