@@ -21,8 +21,6 @@
 package org.verapdf.gf.model.impl.operator.textshow;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.MarkedContentHelper;
