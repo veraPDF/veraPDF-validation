@@ -107,7 +107,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
             if (font instanceof org.verapdf.pd.font.type1.PDType1Font) {
                 this.toUnicode = ((org.verapdf.pd.font.type1.PDType1Font) font).toUnicodePDFA1(glyphCode);
-            } else if (!isUnicodeRequired(font)) {
+            } else if (!isToUnicodeRequired(font)) {
                 this.toUnicode = "";
             } else {
                 this.toUnicode = font.cMapToUnicode(glyphCode);
@@ -119,7 +119,26 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         this.id = id;
     }
 
-    private boolean isUnicodeRequired(PDFont font) {
+    public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode,
+                                 GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        String id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
+                font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject);
+        Glyph cachedGlyph = StaticContainers.cachedGlyphs.get(id);
+        if (cachedGlyph == null) {
+            if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
+                    font.getSubtype() == ASAtom.TYPE0) {
+                cachedGlyph = new GFCIDGlyph(font, glyphCode, renderingMode, id,
+                        markedContent, structureElementAccessObject);
+            } else {
+                cachedGlyph = new GFGlyph(font, glyphCode, GLYPH_TYPE, renderingMode, id,
+                        markedContent, structureElementAccessObject);
+            }
+            StaticContainers.cachedGlyphs.put(id, cachedGlyph);
+        }
+        return cachedGlyph;
+    }
+
+    private boolean isToUnicodeRequired(PDFont font) {
         COSObject cosEncoding = font.getEncoding();
         if (!cosEncoding.empty() && cosEncoding.getType() == COSObjType.COS_NAME) {
             ASAtom name = cosEncoding.getName();
@@ -143,25 +162,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         }
         return true;
-    }
-
-    public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode,
-                                 GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        String id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
-                font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject);
-        Glyph cachedGlyph = StaticContainers.cachedGlyphs.get(id);
-        if (cachedGlyph == null) {
-            if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
-                    font.getSubtype() == ASAtom.TYPE0) {
-                cachedGlyph = new GFCIDGlyph(font, glyphCode, renderingMode, id,
-                        markedContent, structureElementAccessObject);
-            } else {
-                cachedGlyph = new GFGlyph(font, glyphCode, GLYPH_TYPE, renderingMode, id,
-                        markedContent, structureElementAccessObject);
-            }
-            StaticContainers.cachedGlyphs.put(id, cachedGlyph);
-        }
-        return cachedGlyph;
     }
 
     private void initForType3(PDFont font, int glyphCode) {
