@@ -21,6 +21,8 @@
 package org.verapdf.gf.model.impl.operator.textshow;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.MarkedContentHelper;
@@ -103,16 +105,44 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         }
         if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
-            if (font instanceof PDType3Font) {
-                this.toUnicode = font.cMapToUnicode(glyphCode);
-            } else if (font instanceof org.verapdf.pd.font.type1.PDType1Font) {
+            if (font instanceof org.verapdf.pd.font.type1.PDType1Font) {
                 this.toUnicode = ((org.verapdf.pd.font.type1.PDType1Font) font).toUnicodePDFA1(glyphCode);
+            } else if (!isUnicodeRequired(font)) {
+                this.toUnicode = "";
+            } else {
+                this.toUnicode = font.cMapToUnicode(glyphCode);
             }
         } else {
             this.toUnicode = font.toUnicode(glyphCode);
         }
         getactualTextPresent();
         this.id = id;
+    }
+
+    private boolean isUnicodeRequired(PDFont font) {
+        COSObject cosEncoding = font.getEncoding();
+        if (!cosEncoding.empty() && cosEncoding.getType() == COSObjType.COS_NAME) {
+            ASAtom name = cosEncoding.getName();
+            if (name == ASAtom.MAC_ROMAN_ENCODING
+                    || name == ASAtom.MAC_EXPERT_ENCODING
+                    || name == ASAtom.WIN_ANSI_ENCODING) {
+                return false;
+            }
+        }
+
+        if (font instanceof PDType0Font) {
+            PDCIDSystemInfo cidSystemInfo = ((PDType0Font) font).getCIDSystemInfo();
+            if (cidSystemInfo != null) {
+                String registry = cidSystemInfo.getRegistry();
+                if ("Adobe".equals(registry)) {
+                    String ordering = cidSystemInfo.getOrdering();
+                    if ("Japan1".equals(ordering) || "CNS1".equals(ordering) || "Korea1".equals(ordering) || "GB1".equals(ordering)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode,
