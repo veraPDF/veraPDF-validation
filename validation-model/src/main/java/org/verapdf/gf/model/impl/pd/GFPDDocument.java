@@ -126,7 +126,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     @Override
     public Boolean getvalidPDF() {
-        return Boolean.valueOf(StaticContainers.validPDF);
+        return Boolean.valueOf(StaticContainers.getValidPDF());
     }
 
     @Override

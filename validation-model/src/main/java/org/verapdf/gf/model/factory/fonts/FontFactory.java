@@ -69,7 +69,7 @@ public class FontFactory {
 					inheritedGraphicState);
 		}
 		String id = GFIDGenerator.generateID(rawFont, renderingMode);
-		PDFont res = StaticContainers.cachedFonts.get(id);
+		PDFont res = StaticContainers.getCachedFonts().get(id);
 		if (res == null) {
 			switch (rawFont.getSubtype().getValue()) {
 				case TYPE_0:
@@ -85,7 +85,7 @@ public class FontFactory {
 				default:
 					res = null;
 			}
-			StaticContainers.cachedFonts.put(id, res);
+			StaticContainers.getCachedFonts().put(id, res);
 		}
 		return res;
 	}

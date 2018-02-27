@@ -47,12 +47,12 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
     public GFPDSeparation(org.verapdf.pd.colors.PDSeparation simplePDObject) {
         super(simplePDObject, SEPARATION_TYPE);
         String name = simplePDObject.getColorantName().getString();
-        if (StaticContainers.separations.containsKey(name)) {
-            StaticContainers.separations.get(name).add(this);
+        if (StaticContainers.getSeparations().containsKey(name)) {
+            StaticContainers.getSeparations().get(name).add(this);
         } else {
             final List<GFPDSeparation> separationList = new ArrayList<>();
             separationList.add(this);
-            StaticContainers.separations.put(name, separationList);
+            StaticContainers.getSeparations().put(name, separationList);
         }
     }
 
@@ -60,12 +60,12 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
     public Boolean getareTintAndAlternateConsistent() {
         String name = ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getColorantName().getString();
 
-        if (StaticContainers.inconsistentSeparations.contains(name)) {
+        if (StaticContainers.getInconsistentSeparations().contains(name)) {
             return Boolean.FALSE;
         }
 
-        if (StaticContainers.separations.get(name).size() > 1) {
-            for (GFPDSeparation gfPDSeparation : StaticContainers.separations.get(name)) {
+        if (StaticContainers.getSeparations().get(name).size() > 1) {
+            for (GFPDSeparation gfPDSeparation : StaticContainers.getSeparations().get(name)) {
                 if (gfPDSeparation.equals(this)) {
                     continue;
                 }
@@ -81,7 +81,7 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
                         ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getTintTransform();
 
                 if (!alternateSpaceToCompare.equals(alternateSpaceCurrent) || !tintTransformToCompare.equals(tintTransformCurrent)) {
-                    StaticContainers.inconsistentSeparations.add(name);
+                    StaticContainers.getInconsistentSeparations().add(name);
                     return Boolean.FALSE;
                 }
             }
