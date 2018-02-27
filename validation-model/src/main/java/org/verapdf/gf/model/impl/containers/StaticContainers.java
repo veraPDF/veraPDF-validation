@@ -37,11 +37,11 @@ import java.util.*;
  */
 public class StaticContainers {
 
-	private static ThreadLocal<PDDocument> document;
-	private static ThreadLocal<PDFAFlavour> flavour;
+	private static ThreadLocal<PDDocument> document = new ThreadLocal<>();
+	private static ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
 
 	// TaggedPDF
-	private static ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper;
+	private static ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
 
 	//PBoxPDSeparation
 	private static ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
