@@ -75,8 +75,8 @@ public class StaticContainers {
 		if (document != null) {
 			document = null;
 		}
-		flavour = null;
-		roleMapHelper = null;
+		flavour.set(null);
+		roleMapHelper.set(null);
 		separations.set(new HashMap<>());
 		inconsistentSeparations.set(new ArrayList<>());
 		cachedColorSpaces.set(new HashMap<>());
