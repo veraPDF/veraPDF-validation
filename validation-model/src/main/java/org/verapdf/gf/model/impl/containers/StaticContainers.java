@@ -72,8 +72,8 @@ public class StaticContainers {
 	}
 
 	public static void clearAllContainers() {
-		if (document != null) {
-			document = null;
+		if (document.get() != null) {
+			document.set(null);
 		}
 		flavour.set(null);
 		roleMapHelper.set(null);
