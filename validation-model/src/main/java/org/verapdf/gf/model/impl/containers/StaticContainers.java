@@ -61,6 +61,13 @@ public class StaticContainers {
 	private static ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
 
 	static {
+		separations.set(new HashMap<>());
+		inconsistentSeparations.set(new ArrayList<>());
+		cachedColorSpaces.set(new HashMap<>());
+		cachedFonts.set(new HashMap<>());
+		fileSpecificationKeys.set(new HashSet<>());
+		transparencyVisitedContentStreams.set(new Stack<>());
+
 		validPDF.set(true);
 	}
 
