@@ -60,17 +60,6 @@ public class StaticContainers {
 
 	private static ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
 
-	static {
-		separations.set(new HashMap<>());
-		inconsistentSeparations.set(new ArrayList<>());
-		cachedColorSpaces.set(new HashMap<>());
-		cachedFonts.set(new HashMap<>());
-		fileSpecificationKeys.set(new HashSet<>());
-		transparencyVisitedContentStreams.set(new Stack<>());
-
-		validPDF.set(true);
-	}
-
 	public static void clearAllContainers() {
 		if (document.get() != null) {
 			document.set(null);
@@ -117,6 +106,7 @@ public class StaticContainers {
 	}
 
 	public static Map<String, List<GFPDSeparation>> getSeparations() {
+		checkForNull(separations, new HashMap<String, List<GFPDSeparation>>());
 		return separations.get();
 	}
 
@@ -125,6 +115,7 @@ public class StaticContainers {
 	}
 
 	public static List<String> getInconsistentSeparations() {
+		checkForNull(inconsistentSeparations, new ArrayList<String>());
 		return inconsistentSeparations.get();
 	}
 
@@ -133,6 +124,7 @@ public class StaticContainers {
 	}
 
 	public static Map<String, PDColorSpace> getCachedColorSpaces() {
+		checkForNull(cachedColorSpaces, new HashMap<String, PDColorSpace>());
 		return cachedColorSpaces.get();
 	}
 
@@ -141,6 +133,7 @@ public class StaticContainers {
 	}
 
 	public static Map<String, PDFont> getCachedFonts() {
+		checkForNull(cachedFonts, new HashMap<String, PDFont>());
 		return cachedFonts.get();
 	}
 
@@ -149,6 +142,7 @@ public class StaticContainers {
 	}
 
 	public static Set<COSKey> getFileSpecificationKeys() {
+		checkForNull(fileSpecificationKeys, new HashSet<COSKey>());
 		return fileSpecificationKeys.get();
 	}
 
@@ -157,6 +151,7 @@ public class StaticContainers {
 	}
 
 	public static Stack<COSKey> getTransparencyVisitedContentStreams() {
+		checkForNull(transparencyVisitedContentStreams, new Stack<COSKey>());
 		return transparencyVisitedContentStreams.get();
 	}
 
@@ -173,10 +168,17 @@ public class StaticContainers {
 	}
 
 	public static Map<String, Glyph> getCachedGlyphs() {
+		checkForNull(cachedGlyphs, new HashMap<String, Glyph>());
 		return cachedGlyphs.get();
 	}
 
 	public static void setCachedGlyphs(Map<String, Glyph> cachedGlyphs) {
 		StaticContainers.cachedGlyphs.set(cachedGlyphs);
+	}
+
+	private static void checkForNull(ThreadLocal variable, Object object) {
+		if (variable.get() == null) {
+			variable.set(object);
+		}
 	}
 }
