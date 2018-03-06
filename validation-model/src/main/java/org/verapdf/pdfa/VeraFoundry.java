@@ -94,6 +94,11 @@ class VeraFoundry extends AbstractFoundry {
 		return new GFMetadataFixerImpl();
 	}
 
+	@Override
+	public String getParserId() {
+		return "GreenField";
+	}
+
 	public static ReleaseDetails getReleaseDetails() {
 		return greenfieldDetails;
 	}
