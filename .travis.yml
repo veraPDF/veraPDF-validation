@@ -4,7 +4,6 @@ dist: trusty
 
 jdk:
   - openjdk8
-#  - oraclejdk7
   - oraclejdk8
 
 branches:
@@ -19,6 +18,17 @@ notifications:
 before_install:
   - sudo apt-get install jq
   - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
+  - wget https://github.com/veraPDF/veraPDF-parser/archive/test/thread-safety.tar.gz -O /tmp/parser.tar.gz
+  - wget https://github.com/veraPDF/veraPDF-library/archive/test/thread-safety.tar.gz -O /tmp/library.tar.gz
+  - cd /tmp
+  - tar -xzvf parser.tar.gz
+  - cd ./veraPDF-parser-test-thread-safety
+  - mvn clean install
+  - cd /tmp
+  - tar -xzvf library.tar.gz
+  - cd ./veraPDF-library-test-thread-safety
+  - mvn clean install
+
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
