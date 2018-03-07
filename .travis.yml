@@ -28,7 +28,7 @@ before_install:
   - tar -xzvf library.tar.gz
   - cd ./veraPDF-library-test-thread-safety
   - mvn clean install
-  - cd ~/veraPDF/veraPDF-validation
+  - cd "$TRAVIS_BUILD_DIR"
 
 
 after_success:
