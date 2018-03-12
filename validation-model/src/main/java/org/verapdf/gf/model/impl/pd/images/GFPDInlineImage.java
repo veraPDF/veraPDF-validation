@@ -25,6 +25,7 @@ import org.verapdf.cos.COSName;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.cos.GFCosIIFilter;
 import org.verapdf.gf.model.impl.cos.GFCosRenderingIntent;
+import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.gf.model.impl.pd.GFPDResource;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIIFilter;
@@ -45,8 +46,12 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 
 	public static final String INLINE_IMAGE_TYPE = "PDInlineImage";
 
-	public GFPDInlineImage(org.verapdf.pd.images.PDInlineImage simplePDObject) {
+	private org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
+
+	public GFPDInlineImage(org.verapdf.pd.images.PDInlineImage simplePDObject,
+						   org.verapdf.pd.colors.PDColorSpace inheritedFillCS) {
 		super(simplePDObject, INLINE_IMAGE_TYPE);
+		this.inheritedFillCS = inheritedFillCS;
 	}
 
 	@Override
@@ -114,13 +119,21 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 	}
 
 	private List<PDColorSpace> getImageCS() {
-		PDColorSpace buffer = ColorSpaceFactory
-				.getColorSpace(((org.verapdf.pd.images.PDInlineImage) this.simplePDObject)
-						.getImageCS());
-		if (buffer != null) {
+		if (!((org.verapdf.pd.images.PDInlineImage) this.simplePDObject).getImageMask()) {
+			PDColorSpace buffer = ColorSpaceFactory
+					.getColorSpace(((org.verapdf.pd.images.PDInlineImage) this.simplePDObject)
+							.getImageCS());
+			if (buffer != null) {
+				List<PDColorSpace> colorSpaces =
+						new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+				colorSpaces.add(buffer);
+				return Collections.unmodifiableList(colorSpaces);
+			}
+		} else if (this.inheritedFillCS != null) {
+			// for image mask we return current fill color space
 			List<PDColorSpace> colorSpaces =
-					new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			colorSpaces.add(buffer);
+					new ArrayList<>(GFPDObject.MAX_NUMBER_OF_ELEMENTS);
+			colorSpaces.add(ColorSpaceFactory.getColorSpace(this.inheritedFillCS));
 			return Collections.unmodifiableList(colorSpaces);
 		}
 		return Collections.emptyList();
