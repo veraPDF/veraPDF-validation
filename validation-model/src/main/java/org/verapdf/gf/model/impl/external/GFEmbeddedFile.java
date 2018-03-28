@@ -135,10 +135,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
 		this.validPDF = StaticContainers.getValidPDF();
 		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
-
-		this.cMapCache = new HashMap<>(StaticResources.getCMapCache());
+		this.cMapCache = new HashMap<>(StaticResources.getcMapCache());
 		this.structureNameSpaceCache = new HashMap<>(StaticResources.getStructureNameSpaceCache());
-		this.cachedFonts = new HashMap<>(StaticResources.getFontProgramCache());
+		this.cachedFonts = new HashMap<>(StaticResources.getCachedFonts());
 	}
 
 	private void restoreSavedSCState() {
@@ -153,10 +152,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
 		StaticContainers.setValidPDF(this.validPDF);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
-
-		StaticResources.setCMapCache(this.cMapCache);
+		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
-		StaticResources.setFontProgramCache(this.cachedFonts);
+		StaticResources.setCachedFonts(this.cachedFonts);
 	}
 
 }
