@@ -42,10 +42,13 @@ public class GFOp_EI extends GFOpInlineImage implements Op_EI {
 	public static final String INLINE_IMAGE = "inlineImage";
 
 	private PDResourcesHandler resourcesHandler;
+	private org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
 
-	public GFOp_EI(List<COSBase> arguments, PDResourcesHandler resourcesHandler) {
+	public GFOp_EI(List<COSBase> arguments, PDResourcesHandler resourcesHandler,
+				   org.verapdf.pd.colors.PDColorSpace inheritedFillCS) {
 		super(arguments, OP_EI_TYPE);
 		this.resourcesHandler = resourcesHandler;
+		this.inheritedFillCS = inheritedFillCS;
 	}
 
 	@Override
@@ -62,7 +65,7 @@ public class GFOp_EI extends GFOpInlineImage implements Op_EI {
 				new org.verapdf.pd.images.PDInlineImage(new COSObject(parameters),
 						resourcesHandler.getObjectResources(), resourcesHandler.getPageResources());
 		List<PDInlineImage> inlineImages = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		inlineImages.add(new GFPDInlineImage(inlineImage));
+		inlineImages.add(new GFPDInlineImage(inlineImage, this.inheritedFillCS));
 		return Collections.unmodifiableList(inlineImages);
 	}
 
