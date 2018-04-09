@@ -2,16 +2,16 @@
  * This file is part of validation-model, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
- *
+ * <p>
  * validation-model is free software: you can redistribute it and/or modify
  * it under the terms of either:
- *
+ * <p>
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
  * along with validation-model as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
- *
+ * <p>
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
  * validation-model as the LICENSE.MPL file in the root of the source tree.
@@ -56,14 +56,12 @@ public class StaticContainers {
 	private static ThreadLocal<Set<COSKey>> fileSpecificationKeys = new ThreadLocal<>();
 
 	private static ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
-	private static ThreadLocal<Boolean> validPDF  = new ThreadLocal<>();
+	private static ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
 
 	private static ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
-		if (document.get() != null) {
-			document.set(null);
-		}
+		document.set(null);
 		flavour.set(null);
 		roleMapHelper.set(null);
 		separations.set(new HashMap<>());
@@ -106,7 +104,9 @@ public class StaticContainers {
 	}
 
 	public static Map<String, List<GFPDSeparation>> getSeparations() {
-		checkForNull(separations, new HashMap<String, List<GFPDSeparation>>());
+		if (separations.get() == null) {
+			separations.set(new HashMap<>());
+		}
 		return separations.get();
 	}
 
@@ -115,7 +115,9 @@ public class StaticContainers {
 	}
 
 	public static List<String> getInconsistentSeparations() {
-		checkForNull(inconsistentSeparations, new ArrayList<String>());
+		if (inconsistentSeparations.get() == null) {
+			inconsistentSeparations.set(new ArrayList<>());
+		}
 		return inconsistentSeparations.get();
 	}
 
@@ -124,7 +126,9 @@ public class StaticContainers {
 	}
 
 	public static Map<String, PDColorSpace> getCachedColorSpaces() {
-		checkForNull(cachedColorSpaces, new HashMap<String, PDColorSpace>());
+		if (cachedColorSpaces.get() == null) {
+			cachedColorSpaces.set(new HashMap<>());
+		}
 		return cachedColorSpaces.get();
 	}
 
@@ -133,7 +137,9 @@ public class StaticContainers {
 	}
 
 	public static Map<String, PDFont> getCachedFonts() {
-		checkForNull(cachedFonts, new HashMap<String, PDFont>());
+		if (cachedFonts.get() == null) {
+			cachedFonts.set(new HashMap<>());
+		}
 		return cachedFonts.get();
 	}
 
@@ -142,7 +148,9 @@ public class StaticContainers {
 	}
 
 	public static Set<COSKey> getFileSpecificationKeys() {
-		checkForNull(fileSpecificationKeys, new HashSet<COSKey>());
+		if (fileSpecificationKeys.get() == null) {
+			fileSpecificationKeys.set(new HashSet<>());
+		}
 		return fileSpecificationKeys.get();
 	}
 
@@ -151,7 +159,9 @@ public class StaticContainers {
 	}
 
 	public static Stack<COSKey> getTransparencyVisitedContentStreams() {
-		checkForNull(transparencyVisitedContentStreams, new Stack<COSKey>());
+		if (transparencyVisitedContentStreams.get() == null) {
+			transparencyVisitedContentStreams.set(new Stack<>());
+		}
 		return transparencyVisitedContentStreams.get();
 	}
 
@@ -168,17 +178,13 @@ public class StaticContainers {
 	}
 
 	public static Map<String, Glyph> getCachedGlyphs() {
-		checkForNull(cachedGlyphs, new HashMap<String, Glyph>());
+		if (cachedGlyphs.get() == null) {
+			cachedGlyphs.set(new HashMap<>());
+		}
 		return cachedGlyphs.get();
 	}
 
 	public static void setCachedGlyphs(Map<String, Glyph> cachedGlyphs) {
 		StaticContainers.cachedGlyphs.set(cachedGlyphs);
-	}
-
-	private static void checkForNull(ThreadLocal variable, Object object) {
-		if (variable.get() == null) {
-			variable.set(object);
-		}
 	}
 }
