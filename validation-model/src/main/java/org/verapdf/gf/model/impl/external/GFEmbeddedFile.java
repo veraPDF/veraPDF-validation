@@ -160,5 +160,4 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
 	}
-
 }

@@ -321,7 +321,11 @@ class OperatorParser {
 
 			// INLINE IMAGE
 			case Operators.BI:
-				processInlineImage(processedOperators, (InlineImageOperator) rawOperator, resourcesHandler, arguments);
+				processInlineImage(processedOperators,
+						(InlineImageOperator) rawOperator,
+						resourcesHandler,
+						arguments,
+						this.graphicState.getFillColorSpace());
 				break;
 
 			// COMPABILITY
@@ -501,12 +505,13 @@ class OperatorParser {
 
 	private static void processInlineImage(List<org.verapdf.model.operator.Operator> processedOperators,
 										   InlineImageOperator rawOperator, PDResourcesHandler resourcesHandler,
-										   List<COSBase> arguments) {
+										   List<COSBase> arguments,
+										   org.verapdf.pd.colors.PDColorSpace inheritedFillCS) {
 		if (rawOperator.getImageParameters() != null) {
 			arguments.add(rawOperator.getImageParameters());
 			processedOperators.add(new GFOp_BI(new ArrayList<COSBase>()));
 			processedOperators.add(new GFOp_ID(arguments));
-			processedOperators.add(new GFOp_EI(arguments, resourcesHandler));
+			processedOperators.add(new GFOp_EI(arguments, resourcesHandler, inheritedFillCS));
 		}
 	}
 
