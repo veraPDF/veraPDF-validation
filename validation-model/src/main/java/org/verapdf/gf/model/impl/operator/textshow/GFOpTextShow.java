@@ -37,6 +37,7 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import sun.security.krb5.SCDynamicStoreConfig;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -160,7 +161,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
-				StaticContainers.validPDF = false;
+				StaticContainers.setValidPDF(false);
 			}
 		}
 		return Collections.unmodifiableList(res);

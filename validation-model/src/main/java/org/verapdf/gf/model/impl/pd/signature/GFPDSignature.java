@@ -127,10 +127,11 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
                 }
             }
             int floating = parser.getFloatingBytesNumberForLastByteRangeObtained();
-            if (byteRange[3] < actualByteRange[3] - floating || byteRange[3] > actualByteRange[3]) {
-                return Boolean.FALSE;
+            if (parser.isStreamEnd()) {
+                return byteRange[3] == actualByteRange[3];
+            } else {
+                return byteRange[3] >= actualByteRange[3] - floating && byteRange[3] <= actualByteRange[3];
             }
-            return Boolean.TRUE;
         } catch (IOException ex) {
             LOGGER.log(Level.FINE, "Can't create parser to process digital signature", ex);
             return Boolean.FALSE;

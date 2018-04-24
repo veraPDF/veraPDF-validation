@@ -93,14 +93,14 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
 					COSKey key = contentStream.getObjectKey();
 					if (key != null) {
-						if (StaticContainers.transparencyVisitedContentStreams.contains(key)) {
+						if (StaticContainers.getTransparencyVisitedContentStreams().contains(key)) {
 							LOGGER.log(Level.FINE, "Parsing content stream loop");
-							StaticContainers.validPDF = false;
+							StaticContainers.setValidPDF(false);
 							this.containsTransparency = false;
 							this.operators = Collections.emptyList();
 							return;
 						} else {
-							StaticContainers.transparencyVisitedContentStreams.push(key);
+							StaticContainers.getTransparencyVisitedContentStreams().push(key);
 						}
 					}
 					try (ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
@@ -121,15 +121,15 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							}
 						}
 					}
-					if (key != null && StaticContainers.transparencyVisitedContentStreams.peek().equals(key)) {
-						StaticContainers.transparencyVisitedContentStreams.pop();
+					if (key != null && StaticContainers.getTransparencyVisitedContentStreams().peek().equals(key)) {
+						StaticContainers.getTransparencyVisitedContentStreams().pop();
 					}
 				} else {
 					this.operators = Collections.emptyList();
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error while parsing content stream. " + e.getMessage(), e);
-				StaticContainers.validPDF = false;
+				StaticContainers.setValidPDF(false);
 				this.operators = Collections.emptyList();
 			}
 		}
