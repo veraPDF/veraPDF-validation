@@ -115,7 +115,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                                  GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
         String id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
                 font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject);
-        Glyph cachedGlyph = StaticContainers.cachedGlyphs.get(id);
+        Glyph cachedGlyph = StaticContainers.getCachedGlyphs().get(id);
         if (cachedGlyph == null) {
             if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
                     font.getSubtype() == ASAtom.TYPE0) {
@@ -125,7 +125,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 cachedGlyph = new GFGlyph(font, glyphCode, GLYPH_TYPE, renderingMode, id,
                         markedContent, structureElementAccessObject);
             }
-            StaticContainers.cachedGlyphs.put(id, cachedGlyph);
+            StaticContainers.getCachedGlyphs().put(id, cachedGlyph);
         }
         return cachedGlyph;
     }
@@ -161,7 +161,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         } catch (IOException e) {
             LOGGER.log(Level.FINE, "Error in parsing font program", e);
-            StaticContainers.validPDF = false;
+            StaticContainers.setValidPDF(false);
         }
     }
 

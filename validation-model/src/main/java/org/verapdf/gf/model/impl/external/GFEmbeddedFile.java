@@ -126,37 +126,38 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
 		this.flavour = StaticContainers.getFlavour();
-		this.separations = StaticContainers.separations;
-		this.inconsistentSeparations = StaticContainers.inconsistentSeparations;
-		this.cachedColorSpaces = StaticContainers.cachedColorSpaces;
-		this.cachedPDFonts = StaticContainers.cachedFonts;
-		this.roleMapHelper = StaticContainers.roleMapHelper;
-		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
-		this.transparencyVisitedContentStreams = StaticContainers.transparencyVisitedContentStreams;
-		this.validPDF = StaticContainers.validPDF;
-		this.cachedGlyphs = StaticContainers.cachedGlyphs;
+		this.separations = StaticContainers.getSeparations();
+		this.inconsistentSeparations = StaticContainers.getInconsistentSeparations();
+		this.cachedColorSpaces = StaticContainers.getCachedColorSpaces();
+		this.cachedPDFonts = StaticContainers.getCachedFonts();
+		this.roleMapHelper = StaticContainers.getRoleMapHelper();
+		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
+		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
+		this.validPDF = StaticContainers.getValidPDF();
+		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
 
-		this.cMapCache = new HashMap<>(StaticResources.cMapCache);
-		this.structureNameSpaceCache = new HashMap<>(StaticResources.structureNameSpaceCache);
-		this.cachedFonts = new HashMap<>(StaticResources.cachedFonts);
+		this.cMapCache = new HashMap<>(StaticResources.getcMapCache());
+
+		this.structureNameSpaceCache = new HashMap<>(StaticResources.getStructureNameSpaceCache());
+
+		this.cachedFonts = new HashMap<>(StaticResources.getCachedFonts());
 	}
 
 	private void restoreSavedSCState() {
 		StaticContainers.setDocument(this.document);
 		StaticContainers.setFlavour(this.flavour);
-		StaticContainers.separations = this.separations;
-		StaticContainers.inconsistentSeparations = this.inconsistentSeparations;
-		StaticContainers.cachedColorSpaces = this.cachedColorSpaces;
-		StaticContainers.cachedFonts = this.cachedPDFonts;
-		StaticContainers.roleMapHelper = this.roleMapHelper;
-		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
-		StaticContainers.transparencyVisitedContentStreams = this.transparencyVisitedContentStreams;
-		StaticContainers.validPDF = this.validPDF;
-		StaticContainers.cachedGlyphs = this.cachedGlyphs;
+		StaticContainers.setSeparations(this.separations);
+		StaticContainers.setInconsistentSeparations(this.inconsistentSeparations);
+		StaticContainers.setCachedColorSpaces(this.cachedColorSpaces);
+		StaticContainers.setCachedFonts(this.cachedPDFonts);
+		StaticContainers.setRoleMapHelper(this.roleMapHelper);
+		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
+		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
+		StaticContainers.setValidPDF(this.validPDF);
+		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
 
-		StaticResources.cMapCache = this.cMapCache;
-		StaticResources.structureNameSpaceCache = this.structureNameSpaceCache;
-		StaticResources.cachedFonts = this.cachedFonts;
+		StaticResources.setcMapCache(this.cMapCache);
+		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
+		StaticResources.setCachedFonts(this.cachedFonts);
 	}
-
 }
