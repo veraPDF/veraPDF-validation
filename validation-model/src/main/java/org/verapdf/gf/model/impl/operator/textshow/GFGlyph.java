@@ -130,7 +130,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         return cachedGlyph;
     }
 
-    private String getToUnicodePDFA1(PDFont font, int glyphCode) {
+    private static String getToUnicodePDFA1(PDFont font, int glyphCode) {
         if (font instanceof PDType3Font) {
             return font.cMapToUnicode(glyphCode);
         } else if (font instanceof org.verapdf.pd.font.type1.PDType1Font) {
@@ -141,23 +141,23 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     }
 
     private void initForType3(PDFont font, int glyphCode) {
-        glyphPresent = ((PDType3Font) font).containsCharString(glyphCode);
+        this.glyphPresent = Boolean.valueOf(((PDType3Font) font).containsCharString(glyphCode));
         this.widthsConsistent = checkWidths(glyphCode, font);
     }
 
     private void initForNotType3(boolean fontProgramIsInvalid, FontProgram fontProgram,
                                  PDFont font, int glyphCode) {
         try {
-            glyphPresent = null;
-            widthsConsistent = null;
+            this.glyphPresent = null;
+            this.widthsConsistent = null;
             if (!fontProgramIsInvalid) {
                 fontProgram.parseFont();
                 // every font contains notdef glyph. But if we call method
                 // of font program we can't distinguish case of code 0
                 // and glyph that is not present indeed.
-                glyphPresent = glyphCode == 0 ? true :
+                this.glyphPresent = glyphCode == 0 ? Boolean.TRUE :
                         Boolean.valueOf(font.glyphIsPresent(glyphCode));
-                widthsConsistent = checkWidths(glyphCode, font);
+                this.widthsConsistent = checkWidths(glyphCode, font);
             }
         } catch (IOException e) {
             LOGGER.log(Level.FINE, "Error in parsing font program", e);
@@ -208,25 +208,24 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     @Override
     public Boolean getunicodePUA() {
-        if (toUnicode == null) {
-            return false;
-        }
-        for (int i = 0; i < toUnicode.length(); ++i) {
-            int unicode = this.toUnicode.codePointAt(i);
-            if ((unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[0] &&
-                    unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[1]) ||
-                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[2] &&
-                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[3]) ||
-                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[4] &&
-                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[5])) {
-                return true;
+        if (this.toUnicode != null) {
+            for (int i = 0; i < this.toUnicode.length(); ++i) {
+                int unicode = this.toUnicode.codePointAt(i);
+                if ((unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[0] &&
+                        unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[1]) ||
+                        (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[2] &&
+                                unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[3]) ||
+                        (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[4] &&
+                                unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[5])) {
+                    return Boolean.TRUE;
+                }
             }
         }
-        return false;
+        return Boolean.FALSE;
     }
 
     @Override
     public Boolean getactualTextPresent() {
-        return MarkedContentHelper.containsActualText(markedContent, structureElementAccessObject);
+        return Boolean.valueOf(MarkedContentHelper.containsActualText(this.markedContent, this.structureElementAccessObject));
     }
 }

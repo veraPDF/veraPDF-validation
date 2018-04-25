@@ -83,7 +83,7 @@ public class FontFactory {
 					res = new GFPDTrueTypeFont((PDTrueTypeFont) rawFont, renderingMode);
 					break;
 				default:
-					res = null;
+					break;
 			}
 			StaticContainers.getCachedFonts().put(id, res);
 		}

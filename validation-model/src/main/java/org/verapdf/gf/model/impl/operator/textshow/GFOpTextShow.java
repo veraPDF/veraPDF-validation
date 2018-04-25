@@ -20,7 +20,23 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
-import org.verapdf.cos.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.verapdf.cos.COSArray;
+import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.factory.fonts.FontFactory;
 import org.verapdf.gf.model.factory.operators.GraphicState;
@@ -37,14 +53,6 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.structure.StructureElementAccessObject;
-import sun.security.krb5.SCDynamicStoreConfig;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov

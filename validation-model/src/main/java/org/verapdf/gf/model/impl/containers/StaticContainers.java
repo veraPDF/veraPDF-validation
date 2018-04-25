@@ -71,7 +71,7 @@ public class StaticContainers {
 		fileSpecificationKeys.set(new HashSet<>());
 		transparencyVisitedContentStreams.set(new Stack<>());
 		cachedGlyphs.set(new HashMap<>());
-		validPDF.set(true);
+		validPDF.set(Boolean.TRUE);
 	}
 
 	public static PDDocument getDocument() {
@@ -170,11 +170,11 @@ public class StaticContainers {
 	}
 
 	public static boolean getValidPDF() {
-		return validPDF.get();
+		return validPDF.get().booleanValue();
 	}
 
 	public static void setValidPDF(boolean validPDF) {
-		StaticContainers.validPDF.set(validPDF);
+		StaticContainers.validPDF.set(Boolean.valueOf(validPDF));
 	}
 
 	public static Map<String, Glyph> getCachedGlyphs() {

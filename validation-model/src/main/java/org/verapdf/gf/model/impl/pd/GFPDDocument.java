@@ -131,7 +131,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     @Override
     public Boolean getcontainsAA() {
-        return this.catalog != null && this.catalog.getObject().getType().isDictionaryBased() && this.catalog.knownKey(ASAtom.AA);
+        return Boolean.valueOf(this.catalog != null && this.catalog.getObject().getType().isDictionaryBased() && this.catalog.knownKey(ASAtom.AA));
     }
 
     @Override

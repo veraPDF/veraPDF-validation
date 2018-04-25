@@ -73,17 +73,17 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 
 	@Override
 	public Boolean getcontainsOPI() {
-		return this.simplePDObject.knownKey(ASAtom.OPI);
+		return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.OPI));
 	}
 
 	@Override
 	public Boolean getcontainsSMask() {
-		return this.simplePDObject.knownKey(ASAtom.SMASK);
+		return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.SMASK));
 	}
 
 	@Override
 	public Boolean getcontainsAlternates() {
-		return simplePDObject.knownKey(ASAtom.ALTERNATES);
+		return Boolean.valueOf(simplePDObject.knownKey(ASAtom.ALTERNATES));
 	}
 
 	@Override

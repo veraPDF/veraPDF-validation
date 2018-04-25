@@ -23,8 +23,6 @@ package org.verapdf.gf.model.impl.external;
 import org.verapdf.cos.COSStream;
 import org.verapdf.model.external.CMapFile;
 
-import java.util.logging.Logger;
-
 /**
  * This class represents embedded CMap file.
  *
@@ -32,7 +30,6 @@ import java.util.logging.Logger;
  */
 public class GFCMapFile extends GFExternal implements CMapFile {
 
-    private static final Logger LOGGER = Logger.getLogger(GFCMapFile.class.getCanonicalName());
 
     private org.verapdf.pd.font.cmap.CMapFile cMapFile;
 

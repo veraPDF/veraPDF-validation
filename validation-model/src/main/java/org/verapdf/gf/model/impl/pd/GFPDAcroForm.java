@@ -59,13 +59,13 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
         } else {
             LOGGER.log(Level.SEVERE, "Value of NeedAppearances key is not a boolean. Ignoring NeedAppearances");
             // value that fails the check
-            return true;
+            return Boolean.TRUE;
         }
     }
 
     @Override
     public Boolean getcontainsXFA() {
-        return this.simplePDObject.knownKey(ASAtom.XFA);
+        return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.XFA));
     }
 
     @Override

@@ -66,7 +66,7 @@ public class GFExtGStateFeaturesObjectAdapter implements ExtGStateFeaturesObject
     public Boolean getTransparency() {
         if (exGState != null && !exGState.empty()) {
             Boolean res = exGState.getAlphaSourceFlag();
-            return res == null ? null : !res.booleanValue();
+            return res == null ? null : Boolean.valueOf(!res.booleanValue());
         }
         return null;
     }

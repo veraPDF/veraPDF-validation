@@ -85,7 +85,7 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 
 	@Override
 	public Boolean getcontainsEF() {
-		return baseObject != null && this.baseObject.knownKey(ASAtom.EF);
+		return Boolean.valueOf(baseObject != null && this.baseObject.knownKey(ASAtom.EF).booleanValue());
 	}
 
 	@Override

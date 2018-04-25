@@ -83,10 +83,11 @@ public class FeatureTester {
     }
 
     private static Set<String> loadTreeNodeSetForType(String type) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(DIR_PATH + "results/" + type + ".txt"));
         Set<String> res = new HashSet<>();
-        while (scanner.hasNext()) {
-            res.add(scanner.nextLine().replace("\\r", "\r"));
+        try (Scanner scanner = new Scanner(new File(DIR_PATH + "results/" + type + ".txt"))) {
+            while (scanner.hasNext()) {
+                res.add(scanner.nextLine().replace("\\r", "\r"));
+            }
         }
         return res;
     }

@@ -135,7 +135,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public Boolean getcontainsAA() {
-		return this.simplePDObject.knownKey(ASAtom.AA);
+		return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.AA));
 	}
 
 	private static Double getDifference(double[] array, int shift) {
@@ -147,7 +147,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public Boolean getcontainsA() {
-		return this.simplePDObject.knownKey(ASAtom.A);
+		return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.A));
 	}
 
 	@Override
@@ -244,12 +244,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 				}
 			}
 			return Collections.unmodifiableList(color);
-		} else {
-			// Array size is 0 but it is present
-			List<CosNumber> res = new ArrayList<>(1);
-			res.add(GFCosNumber.fromPDFParserNumber(COSInteger.construct(0).getDirectBase()));
-			return res;
 		}
+		// Array size is 0 but it is present
+		List<CosNumber> res = new ArrayList<>(1);
+		res.add(GFCosNumber.fromPDFParserNumber(COSInteger.construct(0).getDirectBase()));
+		return res;
 	}
 
 	/**

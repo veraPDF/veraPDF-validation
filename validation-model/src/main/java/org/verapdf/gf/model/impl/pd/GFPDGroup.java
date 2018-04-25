@@ -45,7 +45,7 @@ public class GFPDGroup extends GFPDObject implements PDGroup {
 	public GFPDGroup(org.verapdf.pd.PDGroup simplePDObject, PDResources resources) {
 		super(simplePDObject, GROUP_TYPE);
 		this.resources = resources;
-		this.contextDependent = true;
+		this.contextDependent = Boolean.TRUE;
 	}
 
 	@Override

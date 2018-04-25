@@ -39,13 +39,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
 public class FileSpecificationKeysHelper {
-	private final static Logger LOGGER = Logger.getLogger(FileSpecificationKeysHelper.class.getCanonicalName());
 
 	private static Set<COSKey> visitedKeys = new HashSet<>();
 

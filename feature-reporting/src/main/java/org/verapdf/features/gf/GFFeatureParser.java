@@ -20,16 +20,52 @@
  */
 package org.verapdf.features.gf;
 
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.*;
+import org.verapdf.cos.COSArray;
+import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSDocument;
+import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSTrailer;
 import org.verapdf.external.ICCProfile;
 import org.verapdf.factory.colors.ColorSpaceFactory;
-import org.verapdf.features.*;
+import org.verapdf.features.AbstractFeaturesExtractor;
+import org.verapdf.features.FeatureExtractionResult;
+import org.verapdf.features.FeatureExtractorConfig;
+import org.verapdf.features.FeatureObjectType;
+import org.verapdf.features.FeaturesReporter;
 import org.verapdf.features.objects.ActionFeaturesObjectAdapter;
 import org.verapdf.features.tools.ErrorsHelper;
 import org.verapdf.features.tools.FeatureTreeNode;
-import org.verapdf.pd.*;
-import org.verapdf.pd.actions.*;
+import org.verapdf.pd.PDAnnotation;
+import org.verapdf.pd.PDAppearanceEntry;
+import org.verapdf.pd.PDAppearanceStream;
+import org.verapdf.pd.PDCatalog;
+import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.PDExtGState;
+import org.verapdf.pd.PDGroup;
+import org.verapdf.pd.PDNameTreeNode;
+import org.verapdf.pd.PDNamesDictionary;
+import org.verapdf.pd.PDNavigationNode;
+import org.verapdf.pd.PDOutlineDictionary;
+import org.verapdf.pd.PDOutlineItem;
+import org.verapdf.pd.PDOutputIntent;
+import org.verapdf.pd.PDPage;
+import org.verapdf.pd.PDPageTree;
+import org.verapdf.pd.PDResources;
+import org.verapdf.pd.PDSignature;
+import org.verapdf.pd.actions.PDAction;
+import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
+import org.verapdf.pd.actions.PDCatalogAdditionalActions;
+import org.verapdf.pd.actions.PDFormFieldActions;
+import org.verapdf.pd.actions.PDPageAdditionalActions;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDICCBased;
 import org.verapdf.pd.encryption.StandardSecurityHandler;
@@ -49,11 +85,6 @@ import org.verapdf.pd.patterns.PDShadingPattern;
 import org.verapdf.pd.patterns.PDTilingPattern;
 import org.verapdf.tools.PageLabels;
 
-import java.io.IOException;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * Parses GreenField PDDocument to generate features collection
  *
@@ -62,7 +93,6 @@ import java.util.logging.Logger;
 public final class GFFeatureParser {
 	private static final EnumSet<FeatureObjectType> XOBJECTS = EnumSet.of(FeatureObjectType.FORM_XOBJECT,
 			FeatureObjectType.IMAGE_XOBJECT, FeatureObjectType.POSTSCRIPT_XOBJECT);
-	private static final Logger LOGGER = Logger.getLogger(GFFeatureParser.class.getCanonicalName());
 	private static final String ID = "id";
 	private static final String DEVICEGRAY_ID = "devgray";
 	private static final String DEVICERGB_ID = "devrgb";
@@ -131,20 +161,16 @@ public final class GFFeatureParser {
 			reporter.report(GFFeaturesObjectCreator.createDocSecurityFeaturesObject(standardSecurityHandler.getPdEncryption()));
 		}
 
-		try {
-			PDCatalog catalog = document.getCatalog();
-			if (catalog != null) {
-				getCatalogFeatures(catalog);
-			}
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Problem in parsing document catalog", e);
+		PDCatalog catalog = document.getCatalog();
+		if (catalog != null) {
+			getCatalogFeatures(catalog);
 		}
 
 		reporter.report(GFFeaturesObjectCreator.createLowLvlInfoFeaturesObject(cosDocument));
 
 	}
 
-	private void getCatalogFeatures(PDCatalog catalog) throws IOException {
+	private void getCatalogFeatures(PDCatalog catalog) {
 		reporter.report(GFFeaturesObjectCreator.createMetadataFeaturesObject(catalog.getMetadata()));
 		PDOutlineDictionary outlines = catalog.getOutlines();
 		reporter.report(GFFeaturesObjectCreator.createOutlinesFeaturesObject(outlines));
@@ -488,7 +514,7 @@ public final class GFFeatureParser {
 		}
 	}
 
-	private FeatureTreeNode createNodeWithType(FeatureObjectType type) {
+	private static FeatureTreeNode createNodeWithType(FeatureObjectType type) {
 		if (type == FeatureObjectType.FORM_XOBJECT) {
 			FeatureTreeNode res = FeatureTreeNode.createRootNode("xobject");
 			res.setAttribute("type", "form");
@@ -898,8 +924,9 @@ public final class GFFeatureParser {
 	}
 
 	private static String checkColorSpaceID(String prevID, PDColorSpace colorSpace) {
+		String id = null;
 		if (colorSpace != null) {
-			String id = prevID;
+			id = prevID;
 			ASAtom colorSpaceType = colorSpace.getType();
 			if (colorSpaceType == ASAtom.DEVICEGRAY) {
 				id = DEVICEGRAY_ID;
@@ -908,10 +935,8 @@ public final class GFFeatureParser {
 			} else if (colorSpaceType == ASAtom.DEVICECMYK) {
 				id = DEVICECMYK_ID;
 			}
-			return id;
-		} else {
-			return null;
 		}
+		return id;
 	}
 
 	private String getId(final COSObject base, final FeatureObjectType objType) {
@@ -928,11 +953,11 @@ public final class GFFeatureParser {
 		return objType.getIdPrefix() + type + numb;
 	}
 
-	private COSKey getObjectKey(final COSObject base) {
+	private static COSKey getObjectKey(final COSObject base) {
 		COSKey res = null;
-		if (base.isIndirect()) {
+		if (base.isIndirect().booleanValue()) {
 			COSObject item = base;
-			while (item.isIndirect()) {
+			while (item.isIndirect().booleanValue()) {
 				res = item.getObjectKey();
 				item = base.getDirect();
 			}

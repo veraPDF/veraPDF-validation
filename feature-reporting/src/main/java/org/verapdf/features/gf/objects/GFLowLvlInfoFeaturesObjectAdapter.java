@@ -84,7 +84,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
                 this.creationId = ids.at(0).getString();
                 this.modificationId = ids.at(1).getString();
 
-                if (ids.size() != 2 || this.creationId == null || this.modificationId == null) {
+                if (ids.size().intValue() != 2 || this.creationId == null || this.modificationId == null) {
                     this.errors = new ArrayList<>();
                     this.errors.add("Document's ID must be an array of two not null elements");
                 }
@@ -102,7 +102,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
         }
     }
 
-    private Set<String> getAllFilters(COSDocument document) {
+    private static Set<String> getAllFilters(COSDocument document) {
         Set<String> res = new HashSet<>();
         for (COSObject base : document.getObjects()) {
             if (base.getType() == COSObjType.COS_STREAM) {

@@ -166,7 +166,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                         fontCIDs = Collections.emptyList();
                     }
                     for (int i = 0; i < fontCIDs.size(); ++i) {
-                        if (!bitSet.get(fontCIDs.get(i))) {
+                        if (!bitSet.get(fontCIDs.get(i).intValue())) {
                             return Boolean.FALSE;
                         }
                     }

@@ -267,7 +267,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 
 	@Override
 	public Boolean getcontainsAA() {
-		return this.simplePDObject == null ? Boolean.valueOf(false) :
-				this.simplePDObject.knownKey(ASAtom.AA);
+		return Boolean.valueOf(this.simplePDObject == null ? false :
+				this.simplePDObject.knownKey(ASAtom.AA));
 	}
 }

@@ -71,7 +71,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 
 	@Override
 	public Boolean getcontainsAlternates() {
-		return simplePDObject.knownKey(ASAtom.ALTERNATES);
+		return Boolean.valueOf(simplePDObject.knownKey(ASAtom.ALTERNATES));
 	}
 
 	@Override

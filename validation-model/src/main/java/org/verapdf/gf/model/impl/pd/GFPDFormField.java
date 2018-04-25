@@ -65,7 +65,7 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
 
     @Override
     public Boolean getcontainsAA() {
-        return this.simplePDObject.knownKey(ASAtom.AA);
+        return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.AA));
     }
 
     @Override

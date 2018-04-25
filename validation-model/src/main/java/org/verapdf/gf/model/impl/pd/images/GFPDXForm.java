@@ -85,12 +85,12 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	@Override
 	public Boolean getcontainsPS() {
 		// See 7.11.5 in PDF 1.2 specification
-		return this.simplePDObject.knownKey(ASAtom.PS);
+		return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.PS));
 	}
 
 	@Override
 	public Boolean getcontainsRef() {
-		return this.simplePDObject.knownKey(ASAtom.REF);
+		return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.REF));
 	}
 
 	private List<PDContentStream> getContentStream() {

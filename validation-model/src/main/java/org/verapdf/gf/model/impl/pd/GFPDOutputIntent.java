@@ -71,7 +71,7 @@ public class GFPDOutputIntent extends GFPDObject implements PDOutputIntent {
 
     @Override
     public Boolean getcontainsDestOutputProfileRef() {
-        return this.simplePDObject.knownKey(ASAtom.DEST_OUTPUT_PROFILE_REF);
+        return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.DEST_OUTPUT_PROFILE_REF));
     }
 
     @Override

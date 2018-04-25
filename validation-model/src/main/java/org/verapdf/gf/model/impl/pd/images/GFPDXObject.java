@@ -64,12 +64,12 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 
 	@Override
 	public Boolean getcontainsOPI() {
-		return this.simplePDObject.knownKey(ASAtom.OPI);
+		return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.OPI));
 	}
 
 	@Override
 	public Boolean getcontainsSMask() {
-		return this.simplePDObject.knownKey(ASAtom.SMASK);
+		return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.SMASK));
 	}
 
 	@Override

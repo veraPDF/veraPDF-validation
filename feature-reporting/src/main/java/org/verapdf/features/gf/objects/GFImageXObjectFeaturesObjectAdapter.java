@@ -207,12 +207,12 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
 
         @Override
         public boolean getCCITTEndOfLine() {
-            return base.getBooleanKey(ASAtom.COLORS);
+            return base.getBooleanKey(ASAtom.COLORS).booleanValue();
         }
 
         @Override
         public boolean getCCITTEncodedByteAlign() {
-            return base.getBooleanKey(ASAtom.BITS_PER_COMPONENT);
+            return base.getBooleanKey(ASAtom.BITS_PER_COMPONENT).booleanValue();
         }
 
         @Override
@@ -227,12 +227,12 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
 
         @Override
         public boolean getCCITTEndOfBlock() {
-            return base.getBooleanKey(ASAtom.getASAtom("EndOfBlock"));
+            return base.getBooleanKey(ASAtom.getASAtom("EndOfBlock")).booleanValue();
         }
 
         @Override
         public boolean getCCITTBlackIs1() {
-            return base.getBooleanKey(ASAtom.BLACK_IS_1);
+            return base.getBooleanKey(ASAtom.BLACK_IS_1).booleanValue();
         }
 
         @Override

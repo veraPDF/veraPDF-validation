@@ -85,7 +85,7 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
             return null;
         } else {
             LOGGER.log(Level.SEVERE, "Value of ca key is not a number. Ignoring ca");
-            return 2.0; // check is failed
+            return Double.valueOf(2.0); // check is failed
         }
     }
 
@@ -98,7 +98,7 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
             return null;
         } else {
             LOGGER.log(Level.SEVERE, "Value of CA key is not a number. Ignoring CA");
-            return 2.0; // check is failed
+            return Double.valueOf(2.0); // check is failed
         }
     }
 
@@ -117,7 +117,7 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
 
     @Override
     public Boolean getcontainsHTP() {
-        return this.simplePDObject.knownKey(ASAtom.HTP);
+        return Boolean.valueOf(this.simplePDObject.knownKey(ASAtom.HTP));
     }
 
     @Override

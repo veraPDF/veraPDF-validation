@@ -28,8 +28,6 @@ import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDSigRef;
 import org.verapdf.pd.PDCatalog;
 
-import java.util.logging.Logger;
-
 /**
  * Represents signature references dictionary referred by /Reference key from
  * the signature dictionary.
@@ -37,8 +35,6 @@ import java.util.logging.Logger;
  * @author Sergey Shemyakov
  */
 public class GFPDSigRef extends GFPDObject implements PDSigRef {
-
-	private static final Logger LOGGER = Logger.getLogger(GFPDSigRef.class.getCanonicalName());
 
 	/** Type name for {@code GFPDSigRef} */
 	public static final String SIGNATURE_REFERENCE_TYPE = "PDSigRef";

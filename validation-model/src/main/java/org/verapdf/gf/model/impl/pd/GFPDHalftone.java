@@ -102,7 +102,7 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
 
     private List<org.verapdf.model.pdlayer.PDHalftone> getHalftones() {
         Long halftoneType = getHalftoneType();
-        if (halftoneType == null || halftoneType != 5L) {
+        if (halftoneType == null || halftoneType.longValue() != 5L) {
             return Collections.emptyList();
         }
         List<org.verapdf.model.pdlayer.PDHalftone> halftones = new ArrayList<>();

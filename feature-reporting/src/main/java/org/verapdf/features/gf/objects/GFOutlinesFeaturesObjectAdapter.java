@@ -74,12 +74,12 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 
 	@Override
 	public List<OutlineFeaturesObjectAdapter> getChildren() {
-		return getChildren(outline);
+		return getChildren(this.outline);
 	}
 
 	@Override
 	public boolean isPDFObjectPresent() {
-		return outline != null && !outline.empty();
+		return this.outline != null && !this.outline.empty();
 	}
 
 	@Override
@@ -97,11 +97,11 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 
 		@Override
 		public Integer getKeyNumber() {
-			if (outline != null && !outline.empty()) {
-				COSObject cosObject = outline.getObject();
+			if (this.outline != null && !this.outline.empty()) {
+				COSObject cosObject = this.outline.getObject();
 				COSKey objectKey = cosObject.getObjectKey();
 				if (objectKey != null) {
-					return objectKey.getNumber();
+					return Integer.valueOf(objectKey.getNumber());
 				}
 			}
 			return null;
@@ -109,33 +109,33 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 
 		@Override
 		public String getTitle() {
-			if (outline != null && !outline.empty()) {
-				return outline.getTitle();
+			if (this.outline != null && !this.outline.empty()) {
+				return this.outline.getTitle();
 			}
 			return null;
 		}
 
 		@Override
 		public double[] getColor() {
-			if (outline != null && !outline.empty()) {
-				return outline.getColor();
+			if (this.outline != null && !this.outline.empty()) {
+				return this.outline.getColor();
 			}
 			return null;
 		}
 
 		@Override
 		public boolean isItalic() {
-			return outline != null && !outline.empty() && outline.isItalic();
+			return this.outline != null && !this.outline.empty() && this.outline.isItalic();
 		}
 
 		@Override
 		public boolean isBold() {
-			return outline != null && !outline.empty() && outline.isBold();
+			return this.outline != null && !this.outline.empty() && this.outline.isBold();
 		}
 
 		@Override
 		public List<OutlineFeaturesObjectAdapter> getChildren() {
-			return GFOutlinesFeaturesObjectAdapter.getChildren(outline);
+			return GFOutlinesFeaturesObjectAdapter.getChildren(this.outline);
 		}
 	}
 }

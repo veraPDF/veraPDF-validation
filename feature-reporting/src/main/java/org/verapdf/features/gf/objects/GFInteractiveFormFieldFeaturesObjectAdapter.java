@@ -39,21 +39,20 @@ public class GFInteractiveFormFieldFeaturesObjectAdapter implements InteractiveF
 		COSObject value = this.formField.getV();
 		if (value == null || value.empty()) {
 			return null;
-		} else {
-			COSObjType type = value.getType();
-			switch (type) {
-				case COS_BOOLEAN:
-					return String.valueOf(value.getBoolean());
-				case COS_STRING:
-				case COS_NAME:
-					return value.getString();
-				case COS_INTEGER:
-					return String.valueOf(value.getInteger());
-				case COS_REAL:
-					return String.valueOf(value.getReal());
-				default:
-					return valueMap.containsKey(type) ? valueMap.get(type) : null;
-			}
+		}
+		COSObjType type = value.getType();
+		switch (type) {
+			case COS_BOOLEAN:
+				return String.valueOf(value.getBoolean());
+			case COS_STRING:
+			case COS_NAME:
+				return value.getString();
+			case COS_INTEGER:
+				return String.valueOf(value.getInteger());
+			case COS_REAL:
+				return String.valueOf(value.getReal());
+			default:
+				return valueMap.containsKey(type) ? valueMap.get(type) : null;
 		}
 	}
 

@@ -20,19 +20,18 @@
  */
 package org.verapdf.features.gf.objects;
 
-import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
-import org.verapdf.features.objects.PageFeaturesObjectAdapter;
-import org.verapdf.pd.PDMetadata;
-import org.verapdf.pd.PDPage;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.features.objects.PageFeaturesObjectAdapter;
+import org.verapdf.pd.PDMetadata;
+import org.verapdf.pd.PDPage;
 
 /**
  * Feature object adapter for page

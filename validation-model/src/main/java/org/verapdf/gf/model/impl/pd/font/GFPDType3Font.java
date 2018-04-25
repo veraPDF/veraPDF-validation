@@ -123,7 +123,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     }
 
     private PDResourcesHandler getResourcesFromCharProcs(COSObject charProcs) {
-        if (!charProcs.knownKey(ASAtom.RESOURCES)) {
+        if (!charProcs.knownKey(ASAtom.RESOURCES).booleanValue()) {
             return null;
         }
         PDResources res = new PDResources(charProcs.getKey(ASAtom.RESOURCES));

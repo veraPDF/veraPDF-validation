@@ -79,30 +79,30 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
     }
 
     private void init() {
-        if (profile != null && !profile.empty()) {
-            try (ASInputStream iccData = profile.getObject().getData(COSStream.FilterFlags.DECODE)) {
-                errors = new ArrayList<>();
+        if (this.profile != null && !this.profile.empty()) {
+            try (ASInputStream iccData = this.profile.getObject().getData(COSStream.FilterFlags.DECODE)) {
+                this.errors = new ArrayList<>();
                 byte[] profileBytes = GFAdapterHelper.inputStreamToByteArray(iccData);
 
                 if (profileBytes.length < HEADER_SIZE) {
-                    errors.add("ICCProfile contains less than " + HEADER_SIZE + " bytes");
+                    this.errors.add("ICCProfile contains less than " + HEADER_SIZE + " bytes");
                 } else {
                     this.version = getVersion(profileBytes);
-                    this.cmmType = profile.getCMMType();
-                    this.dataColorSpace = profile.getColorSpace();
-                    this.creator = profile.getCreator();
-                    this.creationDate = profile.getCreationDate();
-                    this.defaultRenderingIntent = profile.getRenderingIntent();
-                    this.copyright = profile.getCopyright();
-                    this.description = profile.getDescription();
-                    this.profileID = profile.getProfileID();
-                    this.deviceModel = profile.getDeviceModel();
-                    this.deviceManufacturer = profile.getDeviceManufacturer();
+                    this.cmmType = this.profile.getCMMType();
+                    this.dataColorSpace = this.profile.getColorSpace();
+                    this.creator = this.profile.getCreator();
+                    this.creationDate = this.profile.getCreationDate();
+                    this.defaultRenderingIntent = this.profile.getRenderingIntent();
+                    this.copyright = this.profile.getCopyright();
+                    this.description = this.profile.getDescription();
+                    this.profileID = this.profile.getProfileID();
+                    this.deviceModel = this.profile.getDeviceModel();
+                    this.deviceManufacturer = this.profile.getDeviceManufacturer();
                 }
 
             } catch (IOException e) {
                 LOGGER.log(Level.FINE, "Reading byte array from InputStream error", e);
-                errors.add(e.getMessage());
+                this.errors.add(e.getMessage());
             }
         }
     }
@@ -120,78 +120,78 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
 
     @Override
     public String getId() {
-        return id;
+        return this.id;
     }
 
     @Override
     public String getVersion() {
-        return version;
+        return this.version;
     }
 
     @Override
     public String getCMMType() {
-        return cmmType;
+        return this.cmmType;
     }
 
     @Override
     public String getDataColorSpace() {
-        return dataColorSpace;
+        return this.dataColorSpace;
     }
 
     @Override
     public String getCreator() {
-        return creator;
+        return this.creator;
     }
 
     @Override
     public Calendar getCreationDate() {
-        return creationDate;
+        return this.creationDate;
     }
 
     @Override
     public String getDefaultRenderingIntent() {
-        return defaultRenderingIntent;
+        return this.defaultRenderingIntent;
     }
 
     @Override
     public String getCopyright() {
-        return copyright;
+        return this.copyright;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     @Override
     public String getProfileID() {
-        return profileID;
+        return this.profileID;
     }
 
     @Override
     public String getDeviceModel() {
-        return deviceModel;
+        return this.deviceModel;
     }
 
     @Override
     public String getDeviceManufacturer() {
-        return deviceManufacturer;
+        return this.deviceManufacturer;
     }
 
     @Override
     public boolean isPDFObjectPresent() {
-        return profile != null && !profile.empty();
+        return this.profile != null && !this.profile.empty();
     }
 
     @Override
     public List<String> getErrors() {
-        return errors == null ? Collections.<String>emptyList() : Collections.unmodifiableList(errors);
+        return this.errors == null ? Collections.<String>emptyList() : Collections.unmodifiableList(this.errors);
     }
 
     @Override
     public InputStream getMetadataStream() {
-        if (profile != null && !profile.empty()) {
-            PDMetadata meta = profile.getMetadata();
+        if (this.profile != null && !this.profile.empty()) {
+            PDMetadata meta = this.profile.getMetadata();
             if (meta != null) {
                 return meta.getStream();
             }
@@ -201,29 +201,29 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
 
     @Override
     public InputStream getData() {
-        if (profile != null && !profile.empty()) {
-            return profile.getObject().getData(COSStream.FilterFlags.DECODE);
+        if (this.profile != null && !this.profile.empty()) {
+            return this.profile.getObject().getData(COSStream.FilterFlags.DECODE);
         }
         return null;
     }
 
     @Override
     public Integer getN() {
-        if (profile != null && !profile.empty()) {
-            Long n = profile.getNumberOfColorants();
-            return n == null ? null : n.intValue();
+        if (this.profile != null && !this.profile.empty()) {
+            Long n = this.profile.getNumberOfColorants();
+            return n == null ? null : Integer.valueOf(n.intValue());
         }
         return null;
     }
 
     @Override
     public List<Double> getRange() {
-        if (profile != null && !profile.empty()) {
+        if (this.profile != null && !this.profile.empty()) {
             List<Double> range = new ArrayList<>();
-            double[] profileRange = profile.getRange();
+            double[] profileRange = this.profile.getRange();
             if (profileRange != null) {
                 for (double value : profileRange) {
-                    range.add(value);
+                    range.add(Double.valueOf(value));
                 }
             } else {
                 Integer n = getN();

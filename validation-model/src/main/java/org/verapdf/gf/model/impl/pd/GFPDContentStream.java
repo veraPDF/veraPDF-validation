@@ -99,9 +99,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							this.containsTransparency = false;
 							this.operators = Collections.emptyList();
 							return;
-						} else {
-							StaticContainers.getTransparencyVisitedContentStreams().push(key);
 						}
+						StaticContainers.getTransparencyVisitedContentStreams().push(key);
 					}
 					try (ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
 						PDFStreamParser streamParser = new PDFStreamParser(opStream);
