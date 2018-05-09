@@ -1,4 +1,4 @@
-veraPDF-valdation
+veraPDF-validation
 ==================
 *Greenfield PDF/A validation, feature reporting and metadata repair developed for veraPDF*
 
@@ -8,6 +8,11 @@ veraPDF-valdation
 [![Maven Central](https://img.shields.io/maven-central/v/org.verapdf/validation.svg)](http://repo1.maven.org/maven2/org/verapdf/validation/ "Maven central")
 [![CodeCov Coverage](https://img.shields.io/codecov/c/github/veraPDF/veraPDF-validation.svg)](https://codecov.io/gh/veraPDF/veraPDF-validation/ "CodeCov coverage")
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1d81323d73c04d2794032b6d6770a6ef)](https://www.codacy.com/app/veraPDF/veraPDF-validation?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=veraPDF/veraPDF-validation&amp;utm_campaign=Badge_Grade "Codacy grade")
+
+[![GitHub issues](https://img.shields.io/github/issues/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/issues "Open issues on GitHub")
+[![GitHub issues](https://img.shields.io/github/issues-closed/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/issues-closed "Open issues on GitHub")
+[![GitHub issues](https://img.shields.io/github/issues-pr/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/issues-pr "Open issues on GitHub")
+[![GitHub issues](https://img.shields.io/github/issues-pr-closed/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/issues-pr-closed "Open issues on GitHub")
 
 Licensing
 ---------

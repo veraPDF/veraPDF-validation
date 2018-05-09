@@ -23,8 +23,6 @@ package org.verapdf.gf.model.impl.external;
 import org.verapdf.cos.COSStream;
 import org.verapdf.model.external.CMapFile;
 
-import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -58,13 +56,7 @@ public class GFCMapFile extends GFExternal implements CMapFile {
      */
     @Override
     public Long getWMode() {
-        try {
-            return new Long(cMapFile.getWMode());
-        } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Error in parsing embedded CMap file");
-            e.printStackTrace();
-            return new Long(-1);
-        }
+        return new Long(cMapFile.getWMode());
     }
 
     /**

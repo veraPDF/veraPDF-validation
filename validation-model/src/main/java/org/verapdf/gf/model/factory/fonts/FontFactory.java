@@ -22,8 +22,10 @@ package org.verapdf.gf.model.factory.fonts;
 
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.font.*;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.font.PDType0Font;
@@ -60,23 +62,32 @@ public class FontFactory {
 		if (rawFont == null) {
 			return new GFPDEmptyFont();
 		}
-		switch (rawFont.getSubtype().getValue()) {
-			case TYPE_0:
-				return new GFPDType0Font((PDType0Font) rawFont, renderingMode);
-			case TYPE_1:
-			case MM_TYPE_1:
-				return new GFPDType1Font((PDType1Font) rawFont, renderingMode);
-			case TYPE_3: {
-				PDResources fontResources = ((PDType3Font) rawFont).getResources();
-				PDResourcesHandler pdResources = resources.getExtendedResources(fontResources);
-				return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources,
-						inheritedGraphicState);
-			}
-			case TRUE_TYPE:
-				return new GFPDTrueTypeFont((PDTrueTypeFont) rawFont, renderingMode);
-			default:
-				return null;
+		if (TYPE_3.equals(rawFont.getSubtype().getValue())) {
+			PDResources fontResources = ((PDType3Font) rawFont).getResources();
+			PDResourcesHandler pdResources = resources.getExtendedResources(fontResources);
+			return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources,
+					inheritedGraphicState);
 		}
+		String id = GFIDGenerator.generateID(rawFont, renderingMode);
+		PDFont res = StaticContainers.getCachedFonts().get(id);
+		if (res == null) {
+			switch (rawFont.getSubtype().getValue()) {
+				case TYPE_0:
+					res =  new GFPDType0Font((PDType0Font) rawFont, renderingMode);
+					break;
+				case TYPE_1:
+				case MM_TYPE_1:
+					res = new GFPDType1Font((PDType1Font) rawFont, renderingMode);
+					break;
+				case TRUE_TYPE:
+					res = new GFPDTrueTypeFont((PDTrueTypeFont) rawFont, renderingMode);
+					break;
+				default:
+					res = null;
+			}
+			StaticContainers.getCachedFonts().put(id, res);
+		}
+		return res;
 	}
 
 }

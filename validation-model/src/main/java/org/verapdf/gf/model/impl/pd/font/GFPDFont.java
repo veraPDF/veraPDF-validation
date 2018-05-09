@@ -80,8 +80,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public String getfontName() {
-        ASAtom result = this.pdFont.getFontName();
-        return result != null ? result.getValue() : null;
+        return this.pdFont.getName();
     }
 
     /**
@@ -133,19 +132,20 @@ public class GFPDFont extends GFPDResource implements PDFont {
      * @return embedded font program for Type 1, TrueType or CID Font.
      */
     private List<FontProgram> getFontProgram() {
-        if(this.pdFont.getFontProgram() != null && this.fontProgramParsed) {
+        org.verapdf.pd.font.FontProgram fontProgram = this.pdFont.getFontProgram();
+        if(fontProgram != null && this.fontProgramParsed) {
             ASAtom subType = this.pdFont.getSubtype();
             if (ASAtom.TRUE_TYPE == subType) {
                 GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(
-                        this.pdFont.getFontProgram());
+                        fontProgram);
                 return getFontProgramList(font);
             }
 			if(TYPE0_STRING.equals(this.getSubtype())) {
-			    GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram(),
+			    GFFontProgram font = new GFFontProgram(fontProgram,
 			            (GFPDFont) ((GFPDType0Font) this).getLinkedObjects(GFPDType0Font.DESCENDANT_FONTS).get(0));
 			    return getFontProgramList(font);
 			}
-			GFFontProgram font = new GFFontProgram(this.pdFont.getFontProgram(),
+			GFFontProgram font = new GFFontProgram(fontProgram,
 			        this);
 			return getFontProgramList(font);
         }

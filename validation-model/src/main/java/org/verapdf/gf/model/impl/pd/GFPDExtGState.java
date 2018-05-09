@@ -36,11 +36,16 @@ import org.verapdf.model.pdlayer.PDHalftone;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFPDExtGState extends GFPDResource implements PDExtGState {
+
+    Logger LOGGER = Logger.getLogger(GFPDExtGState.class.getCanonicalName());
+
     public static final String EXT_G_STATE_TYPE = "PDExtGState";
 
     public static final String RI = "RI";
@@ -73,12 +78,28 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
 
     @Override
     public Double getca() {
-        return ((org.verapdf.pd.PDExtGState) simplePDObject).getCA_NS();
+        COSObject ca = ((org.verapdf.pd.PDExtGState) simplePDObject).getCA_NS();
+        if (ca.getType().isNumber()) {
+            return ca.getReal();
+        } else if (ca.empty()) {
+            return null;
+        } else {
+            LOGGER.log(Level.SEVERE, "Value of ca key is not a number. Ignoring ca");
+            return 2.0; // check is failed
+        }
     }
 
     @Override
     public Double getCA() {
-        return ((org.verapdf.pd.PDExtGState) simplePDObject).getCA();
+        COSObject ca = ((org.verapdf.pd.PDExtGState) simplePDObject).getCA();
+        if (ca.getType().isNumber()) {
+            return ca.getReal();
+        } else if (ca.empty()) {
+            return null;
+        } else {
+            LOGGER.log(Level.SEVERE, "Value of CA key is not a number. Ignoring CA");
+            return 2.0; // check is failed
+        }
     }
 
     private static String getStringProperty(COSObject property) {

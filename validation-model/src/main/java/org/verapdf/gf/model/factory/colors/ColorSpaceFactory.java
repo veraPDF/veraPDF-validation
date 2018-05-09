@@ -54,7 +54,7 @@ public class ColorSpaceFactory {
 	}
 
 	public static PDColorSpace getColorSpace(org.verapdf.pd.colors.PDColorSpace colorSpace) {
-		return getColorSpace(colorSpace, null, 0, false, null);
+		return getColorSpace(colorSpace, PDResourcesHandler.EMPTY, 0, false, null);
 	}
 
 	public static PDColorSpace getColorSpace(org.verapdf.pd.colors.PDColorSpace colorSpace,
@@ -69,8 +69,8 @@ public class ColorSpaceFactory {
 			return new GFPDEmptyColorSpace();
 		}
 		String uniqueID = getColorSpaceUniqueIdentifier(colorSpace, opm, overprintingFlag);
-		if (StaticContainers.cachedColorSpaces.containsKey(uniqueID)) {
-			return StaticContainers.cachedColorSpaces.get(uniqueID);
+		if (StaticContainers.getCachedColorSpaces().containsKey(uniqueID)) {
+			return StaticContainers.getCachedColorSpaces().get(uniqueID);
 		}
 		PDColorSpace result;
 		switch (colorSpace.getType().toString()) {
@@ -117,7 +117,7 @@ public class ColorSpaceFactory {
 		default:
 			return null;
 		}
-		StaticContainers.cachedColorSpaces.put(uniqueID, result);
+		StaticContainers.getCachedColorSpaces().put(uniqueID, result);
 		return result;
 	}
 

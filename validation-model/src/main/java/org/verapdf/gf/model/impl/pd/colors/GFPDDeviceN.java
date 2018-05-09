@@ -46,6 +46,17 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 	public static final String COLORANT_NAMES = "colorantNames";
 	public static final String COLORANTS = "Colorants";
 
+	public static final Set<ASAtom> IGNORED_COLORANTS;
+
+	static {
+		Set<ASAtom> tempIgnore = new HashSet<>();
+		tempIgnore.add(ASAtom.getASAtom("Cyan"));
+		tempIgnore.add(ASAtom.getASAtom("Magenta"));
+		tempIgnore.add(ASAtom.getASAtom("Yellow"));
+		tempIgnore.add(ASAtom.getASAtom("Black"));
+		IGNORED_COLORANTS = Collections.unmodifiableSet(tempIgnore);
+	}
+
 	private final boolean areColorantsPresent;
 
 	public GFPDDeviceN(org.verapdf.pd.colors.PDDeviceN simplePDObject) {
@@ -90,7 +101,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 											   List<COSObject> colorantsArray) {
 		for (int i = 0; i < colorantsArray.size(); ++i) {
 			COSObject object = colorantsArray.get(i);
-			if (object != null && !isNone(object) &&
+			if (object != null && !isNone(object) && !IGNORED_COLORANTS.contains(object.getName()) &&
 					!colorantDictionaryEntries.contains(object.getName())) {
 				return false;
 			}

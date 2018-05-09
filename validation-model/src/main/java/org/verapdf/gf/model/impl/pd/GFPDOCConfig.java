@@ -72,14 +72,14 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 					} else if (element.getType() == COSObjType.COS_DICT) {
 						processCOSDictionaryInOrder(element, groupNamesSet);
 					} else {
-						LOGGER.log(Level.FINE, "Invalid object type in order array. Ignoring the object.");
+						LOGGER.log(Level.SEVERE, "Invalid object type in order array. Ignoring the object.");
 					}
 				}
 				if (!groupNamesSet.isEmpty()) {
 					return Boolean.FALSE;
 				}
 			} else {
-				LOGGER.log(Level.FINE, "Invalid object type of Order entry. Ignoring the Order entry.");
+				LOGGER.log(Level.SEVERE, "Invalid object type of Order entry. Ignoring the Order entry.");
 			}
 		}
 		return Boolean.TRUE;
@@ -104,7 +104,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 				}
 				return result;
 			}
-			LOGGER.log(Level.FINE, "Invalid object type of AS entry. Ignoring the entry.");
+			LOGGER.log(Level.SEVERE, "Invalid object type of AS entry. Ignoring the entry.");
 			return result;
 		}
 		return null;

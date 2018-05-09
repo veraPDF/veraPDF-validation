@@ -29,19 +29,22 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
 import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
+import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
+import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.font.FontProgram;
+import org.verapdf.pd.font.cmap.CMap;
+import org.verapdf.pd.structure.PDStructureNameSpace;
 import org.verapdf.pdfa.PDFAValidator;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.validators.ValidatorFactory;
+import org.verapdf.tools.StaticResources;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -105,36 +108,56 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	// documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
-	public TaggedPDFRoleMapHelper roleMapHelper;
-	public Map<String, List<GFPDSeparation>> separations;
-	public List<String> inconsistentSeparations;
-	public Map<String, PDColorSpace> cachedColorSpaces;
-	public Set<COSKey> fileSpecificationKeys;
-	public Stack<COSKey> transparencyVisitedContentStreams;
-	public boolean validPDF;
+	private TaggedPDFRoleMapHelper roleMapHelper;
+	private Map<String, List<GFPDSeparation>> separations;
+	private List<String> inconsistentSeparations;
+	private Map<String, PDColorSpace> cachedColorSpaces;
+	private Set<COSKey> fileSpecificationKeys;
+	private Stack<COSKey> transparencyVisitedContentStreams;
+	private Map<String, PDFont> cachedPDFonts;
+	private Map<String, Glyph> cachedGlyphs;
+	private boolean validPDF;
+
+	// StaticResources have to be saved too
+	private Map<String, CMap> cMapCache;
+	private Map<COSKey, PDStructureNameSpace> structureNameSpaceCache;
+	private Map<String, FontProgram> cachedFonts;
 
 	private void saveStaticContainersState() {
 		this.document = StaticContainers.getDocument();
 		this.flavour = StaticContainers.getFlavour();
-		this.separations = StaticContainers.separations;
-		this.inconsistentSeparations = StaticContainers.inconsistentSeparations;
-		this.cachedColorSpaces = StaticContainers.cachedColorSpaces;
-		this.roleMapHelper = StaticContainers.roleMapHelper;
-		this.fileSpecificationKeys = StaticContainers.fileSpecificationKeys;
-		this.transparencyVisitedContentStreams = StaticContainers.transparencyVisitedContentStreams;
-		this.validPDF = StaticContainers.validPDF;
+		this.separations = StaticContainers.getSeparations();
+		this.inconsistentSeparations = StaticContainers.getInconsistentSeparations();
+		this.cachedColorSpaces = StaticContainers.getCachedColorSpaces();
+		this.cachedPDFonts = StaticContainers.getCachedFonts();
+		this.roleMapHelper = StaticContainers.getRoleMapHelper();
+		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
+		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
+		this.validPDF = StaticContainers.getValidPDF();
+		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
+
+		this.cMapCache = new HashMap<>(StaticResources.getcMapCache());
+
+		this.structureNameSpaceCache = new HashMap<>(StaticResources.getStructureNameSpaceCache());
+
+		this.cachedFonts = new HashMap<>(StaticResources.getCachedFonts());
 	}
 
 	private void restoreSavedSCState() {
 		StaticContainers.setDocument(this.document);
 		StaticContainers.setFlavour(this.flavour);
-		StaticContainers.separations = this.separations;
-		StaticContainers.inconsistentSeparations = this.inconsistentSeparations;
-		StaticContainers.cachedColorSpaces = this.cachedColorSpaces;
-		StaticContainers.roleMapHelper = this.roleMapHelper;
-		StaticContainers.fileSpecificationKeys = this.fileSpecificationKeys;
-		StaticContainers.transparencyVisitedContentStreams = this.transparencyVisitedContentStreams;
-		StaticContainers.validPDF = this.validPDF;
-	}
+		StaticContainers.setSeparations(this.separations);
+		StaticContainers.setInconsistentSeparations(this.inconsistentSeparations);
+		StaticContainers.setCachedColorSpaces(this.cachedColorSpaces);
+		StaticContainers.setCachedFonts(this.cachedPDFonts);
+		StaticContainers.setRoleMapHelper(this.roleMapHelper);
+		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
+		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
+		StaticContainers.setValidPDF(this.validPDF);
+		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
 
+		StaticResources.setcMapCache(this.cMapCache);
+		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
+		StaticResources.setCachedFonts(this.cachedFonts);
+	}
 }
