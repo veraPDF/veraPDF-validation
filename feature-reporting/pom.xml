@@ -29,7 +29,7 @@
     <parent>
         <artifactId>validation</artifactId>
         <groupId>org.verapdf</groupId>
-        <version>1.11.0-SNAPSHOT</version>
+        <version>1.13.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>feature-reporting</artifactId>
@@ -46,6 +46,12 @@
         <dependency>
             <groupId>org.verapdf</groupId>
             <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
