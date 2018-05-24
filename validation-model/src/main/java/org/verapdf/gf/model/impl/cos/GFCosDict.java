@@ -21,7 +21,10 @@
 package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.*;
+import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDMetadata;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosDict;
@@ -122,7 +125,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
         COSDictionary dictionary = (COSDictionary) this.baseObject;
         COSObject meta = dictionary.getKey(ASAtom.METADATA);
         ASAtom type = dictionary.getNameKey(ASAtom.TYPE);
-        if (meta != null && meta.getType() == COSObjType.COS_STREAM
+        if (GFPDMetadata.isMetadataObject(meta)
                 && type != ASAtom.CATALOG) {
             ArrayList<PDMetadata> pdMetadatas = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             org.verapdf.pd.PDMetadata md = new org.verapdf.pd.PDMetadata(meta);
