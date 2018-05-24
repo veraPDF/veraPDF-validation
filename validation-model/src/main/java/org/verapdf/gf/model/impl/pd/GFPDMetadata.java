@@ -24,6 +24,8 @@ import com.adobe.xmp.XMPException;
 import com.adobe.xmp.impl.VeraPDFMeta;
 import com.adobe.xmp.impl.VeraPDFXMPNode;
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosStream;
@@ -132,5 +134,12 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
             return Collections.unmodifiableList(streams);
         }
         return Collections.emptyList();
+    }
+
+    public static boolean isMetadataObject(COSObject obj) {
+        return obj != null
+                && obj.getType() == COSObjType.COS_STREAM
+                && obj.getNameKey(ASAtom.TYPE) == ASAtom.METADATA
+                && obj.getNameKey(ASAtom.SUBTYPE) == ASAtom.getASAtom("XML");
     }
 }
