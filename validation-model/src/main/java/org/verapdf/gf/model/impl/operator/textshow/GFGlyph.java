@@ -87,7 +87,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         } else if (font instanceof PDType0Font) {
             try {
                 FontProgram pr = font.getFontProgram();
-                if (pr == null) {
+                if (pr == null || !pr.isSuccessfulParsing()) {
                     this.name = null;
                 } else {
                     pr.parseFont();
