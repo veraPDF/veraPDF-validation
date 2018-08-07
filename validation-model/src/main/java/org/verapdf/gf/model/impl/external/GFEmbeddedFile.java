@@ -136,11 +136,14 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.validPDF = StaticContainers.getValidPDF();
 		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
 
-		this.cMapCache = new HashMap<>(StaticResources.getcMapCache());
+		Map<String, CMap> cMaps = StaticResources.getcMapCache();
+		this.cMapCache = cMaps == null ? null : new HashMap<>(cMaps);
 
-		this.structureNameSpaceCache = new HashMap<>(StaticResources.getStructureNameSpaceCache());
+		Map<COSKey, PDStructureNameSpace> structureNameSpaceMap = StaticResources.getStructureNameSpaceCache();
+		this.structureNameSpaceCache = structureNameSpaceMap == null ? null : new HashMap<>(structureNameSpaceMap);
 
-		this.cachedFonts = new HashMap<>(StaticResources.getCachedFonts());
+		Map<String, FontProgram> cachedFonts = StaticResources.getCachedFonts();
+		this.cachedFonts = cachedFonts == null ? null : new HashMap<>(cachedFonts);
 	}
 
 	private void restoreSavedSCState() {
