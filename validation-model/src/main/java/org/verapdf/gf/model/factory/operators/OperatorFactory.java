@@ -101,7 +101,7 @@ public final class OperatorFactory {
 		List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
 		List<COSBase> arguments = new ArrayList<>();
 		this.isLastParsedContainsTransparency = false;
-		OperatorParser parser = new OperatorParser(inheritedGraphicState, structureElementAccessObject);
+		OperatorParser parser = new OperatorParser(inheritedGraphicState, structureElementAccessObject, resourcesHandler);
 
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {
