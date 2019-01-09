@@ -55,15 +55,8 @@ public class GFPDGoToAction extends GFPDAction implements PDGoToAction {
 		return super.getLinkedObjects(link);
 	}
 
-	private List<CosReal> getD() {
+	private List<CosNumber> getD() {
 		List<COSNumber> numbers = ((PDAction) simplePDObject).getCOSArrayD();
-		if (!numbers.isEmpty()) {
-			List<CosReal> result = new ArrayList<>(numbers.size());
-			for (COSNumber number : numbers) {
-				result.add(new GFCosReal(number));
-			}
-			return Collections.unmodifiableList(result);
-		}
-		return Collections.emptyList();
+		return ( numbers.isEmpty() ? Collections.emptyList() : Collections.unmodifiableList(numbers) ); 
 	}
 }
