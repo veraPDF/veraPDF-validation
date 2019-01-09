@@ -91,9 +91,10 @@ class OperatorParser {
 
 
 	OperatorParser(GraphicState inheritedGraphicState,
-				   StructureElementAccessObject structureElementAccessObject) {
+				   StructureElementAccessObject structureElementAccessObject,
+				   PDResourcesHandler resourcesHandler) {
 		if (inheritedGraphicState == null) {
-			this.graphicState = new GraphicState();
+			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
 			this.graphicState = inheritedGraphicState.clone();
 		}
@@ -295,7 +296,7 @@ class OperatorParser {
 				processedOperators.add(new GFOp_Tr(arguments));
 				break;
 			case Operators.TF:
-				this.graphicState.setFontName(getFirstCOSName(arguments));
+				this.graphicState.setFont(resourcesHandler.getFont(getFirstCOSName(arguments)));
 				processedOperators.add(new GFOp_Tf(arguments));
 				break;
 			case Operators.TC:
