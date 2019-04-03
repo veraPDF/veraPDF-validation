@@ -51,7 +51,12 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 			GraphicState inheritedGraphicState) {
 		super(simplePDObject, TILING_PATTERN_TYPE);
 		this.resourcesHandler = resourcesHandler;
-		this.inheritedGraphicState = inheritedGraphicState == null ? null : inheritedGraphicState.getInitialGraphicState();
+		this.inheritedGraphicState = inheritedGraphicState == null
+		                             ? new GraphicState(resourcesHandler)
+		                             : inheritedGraphicState.getInitialGraphicState();
+		if (simplePDObject.isUncolored()) {
+			this.inheritedGraphicState.disableColorOperators();
+		}
 	}
 
 	@Override

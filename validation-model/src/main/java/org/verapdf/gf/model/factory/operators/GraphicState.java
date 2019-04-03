@@ -39,6 +39,7 @@ public class GraphicState implements Cloneable {
 	private boolean overprintingFlagNonStroke = false;
 	private int opm = 0;
 	private GraphicState initialGraphicState = null;
+	private boolean processColorOperators = true;
 
 	private GraphicState() {
 	}
@@ -112,6 +113,15 @@ public class GraphicState implements Cloneable {
 		this.initialGraphicState = initialGraphicState.clone();
 	}
 
+	public boolean isProcessColorOperators() {
+		return processColorOperators;
+	}
+
+	public void disableColorOperators() {
+		this.processColorOperators = false;
+	}
+
+
 	public void copyProperties(GraphicState graphicState) {
 		this.fillColorSpace = graphicState.getFillColorSpace();
 		this.strokeColorSpace = graphicState.getStrokeColorSpace();
@@ -121,6 +131,7 @@ public class GraphicState implements Cloneable {
 		this.overprintingFlagNonStroke = graphicState.isOverprintingFlagNonStroke();
 		this.opm = graphicState.getOpm();
 		this.initialGraphicState = graphicState.getInitialGraphicState();
+		this.processColorOperators = graphicState.isProcessColorOperators();
 	}
 
 	public void copyPropertiesFormExtGState(PDExtGState extGState) {
@@ -152,6 +163,7 @@ public class GraphicState implements Cloneable {
 		clone.overprintingFlagNonStroke = this.overprintingFlagNonStroke;
 		clone.opm = this.opm;
 		clone.initialGraphicState = this.initialGraphicState;
+		clone.processColorOperators = this.processColorOperators;
 		return clone;
 	}
 
