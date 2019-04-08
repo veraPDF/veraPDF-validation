@@ -146,6 +146,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
                 FontProgram cidFont = this.pdFont.getFontProgram();
 
+                // we skip i = 0 which corresponds to .notdef glyph
                 for (int i = 1; i < bitSet.size(); i++) {
                     if (bitSet.get(i) && !cidFont.containsCID(i)) {
                         return Boolean.FALSE;
@@ -166,7 +167,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                         fontCIDs = Collections.emptyList();
                     }
                     for (int i = 0; i < fontCIDs.size(); ++i) {
-                        if (!bitSet.get(fontCIDs.get(i))) {
+                        int cid = fontCIDs.get(i);
+                        if (cid != 0 && !bitSet.get(cid)) {
                             return Boolean.FALSE;
                         }
                     }

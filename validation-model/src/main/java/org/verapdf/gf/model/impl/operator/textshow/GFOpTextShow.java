@@ -37,7 +37,6 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.structure.StructureElementAccessObject;
-import sun.security.krb5.SCDynamicStoreConfig;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -73,7 +72,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private final PDColorSpace rawFillColorSpace;
 	private final PDColorSpace rawStrokeColorSpace;
 
-	private final COSName fontName;
+	private final org.verapdf.pd.font.PDFont font;
 
 	private final RenderingMode renderingMode;
 
@@ -96,7 +95,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		super(arguments, opType);
 		this.rawFillColorSpace = state.getFillColorSpace();
 		this.rawStrokeColorSpace = state.getStrokeColorSpace();
-		this.fontName = state.getFontName();
+		this.font = state.getFont();
 		this.renderingMode = state.getRenderingMode();
 		this.opm = state.getOpm();
 		this.overprintingFlagStroke = state.isOverprintingFlagStroke();
@@ -138,7 +137,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<Glyph> getUsedGlyphs() {
-		org.verapdf.pd.font.PDFont font = getFontFromResources();
 		if (font == null) {
 			return Collections.emptyList();
 		}
@@ -197,7 +195,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<PDFont> parseFont() {
-		PDFont font = FontFactory.parseFont(getFontFromResources(), renderingMode,
+		PDFont font = FontFactory.parseFont(this.font, renderingMode,
 				this.resourcesHandler, this.inheritedGraphicState);
 		if (font != null) {
 			List<PDFont> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
@@ -231,13 +229,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.pd.font.PDFont getFontFromResources() {
-		if (resourcesHandler == null) {
-			return null;
-		}
-		return resourcesHandler.getFont(this.fontName);
 	}
 
 	/**
