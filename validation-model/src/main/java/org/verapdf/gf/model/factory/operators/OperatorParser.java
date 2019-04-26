@@ -69,6 +69,7 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
+import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
@@ -520,10 +521,14 @@ class OperatorParser {
 												 PDResourcesHandler resourcesHandler, boolean stroke) {
 		PDColorSpace colorSpace = stroke ? graphicState.getStrokeColorSpace() : graphicState.getFillColorSpace();
 		if (colorSpace != null && ASAtom.PATTERN == colorSpace.getType()) {
+			PDColorSpace underlyingColorSpace = ((PDPattern) colorSpace).getUnderlyingColorSpace();
+			PDPattern pattern = resourcesHandler.getPattern(getLastCOSName(arguments));
 			if (stroke) {
-				graphicState.setStrokeColorSpace(resourcesHandler.getPattern(getLastCOSName(arguments)));
+				graphicState.setStrokeLastPatternUnderlyingColorSpace(underlyingColorSpace);
+				graphicState.setStrokeColorSpace(pattern);
 			} else {
-				graphicState.setFillColorSpace(resourcesHandler.getPattern(getLastCOSName(arguments)));
+				graphicState.setFillLastPatternUnderlyingColorSpace(underlyingColorSpace);
+				graphicState.setFillColorSpace(pattern);
 			}
 		}
 	}

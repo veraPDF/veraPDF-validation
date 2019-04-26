@@ -26,6 +26,7 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDTilingPattern;
+import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
@@ -51,9 +52,19 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 			GraphicState inheritedGraphicState) {
 		super(simplePDObject, TILING_PATTERN_TYPE);
 		this.resourcesHandler = resourcesHandler;
-		this.inheritedGraphicState = inheritedGraphicState == null
-		                             ? new GraphicState(resourcesHandler)
-		                             : inheritedGraphicState.getInitialGraphicState();
+		if (inheritedGraphicState == null) {
+			this.inheritedGraphicState = new GraphicState(resourcesHandler);
+		} else {
+			this.inheritedGraphicState = inheritedGraphicState.getInitialGraphicState();
+			PDColorSpace fillUnderlyingCS = inheritedGraphicState.getFillLastPatternUnderlyingColorSpace();
+			if (fillUnderlyingCS != null) {
+				this.inheritedGraphicState.setFillColorSpace(fillUnderlyingCS);
+			}
+			PDColorSpace strokeUnderlyingCS = inheritedGraphicState.getStrokeLastPatternUnderlyingColorSpace();
+			if (strokeUnderlyingCS != null) {
+				this.inheritedGraphicState.setStrokeColorSpace(strokeUnderlyingCS);
+			}
+		}
 		if (simplePDObject.isUncolored()) {
 			this.inheritedGraphicState.disableColorOperators();
 		}
@@ -89,7 +100,7 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.patterns.PDTilingPattern pattern = (org.verapdf.pd.patterns.PDTilingPattern) this.simplePDObject;
 		GFPDContentStream contentStream = new GFPDContentStream(pattern,
-				this.resourcesHandler, inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject));
+		                                                        this.resourcesHandler, inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject));
 		this.containsTransparency |= contentStream.isContainsTransparency();
 		contentStreams.add(contentStream);
 		this.contentStreams = contentStreams;

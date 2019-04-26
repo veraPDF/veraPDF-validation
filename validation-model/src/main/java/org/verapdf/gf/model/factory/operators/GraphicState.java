@@ -33,6 +33,8 @@ public class GraphicState implements Cloneable {
 
 	private PDColorSpace fillColorSpace;
 	private PDColorSpace strokeColorSpace;
+	private PDColorSpace fillLastPatternUnderlyingColorSpace = null;
+	private PDColorSpace strokeLastPatternUnderlyingColorSpace = null;
 	private RenderingMode renderingMode = RenderingMode.FILL;
 	private PDFont font;
 	private boolean overprintingFlagStroke = false;
@@ -63,6 +65,22 @@ public class GraphicState implements Cloneable {
 
 	public void setStrokeColorSpace(PDColorSpace strokeColorSpace) {
 		this.strokeColorSpace = strokeColorSpace;
+	}
+
+	public PDColorSpace getFillLastPatternUnderlyingColorSpace() {
+		return fillLastPatternUnderlyingColorSpace;
+	}
+
+	public void setFillLastPatternUnderlyingColorSpace(PDColorSpace fillLastPatternUnderlyingColorSpace) {
+		this.fillLastPatternUnderlyingColorSpace = fillLastPatternUnderlyingColorSpace;
+	}
+
+	public PDColorSpace getStrokeLastPatternUnderlyingColorSpace() {
+		return strokeLastPatternUnderlyingColorSpace;
+	}
+
+	public void setStrokeLastPatternUnderlyingColorSpace(PDColorSpace strokeLastPatternUnderlyingColorSpace) {
+		this.strokeLastPatternUnderlyingColorSpace = strokeLastPatternUnderlyingColorSpace;
 	}
 
 	public RenderingMode getRenderingMode() {
@@ -125,6 +143,8 @@ public class GraphicState implements Cloneable {
 	public void copyProperties(GraphicState graphicState) {
 		this.fillColorSpace = graphicState.getFillColorSpace();
 		this.strokeColorSpace = graphicState.getStrokeColorSpace();
+		this.fillLastPatternUnderlyingColorSpace = graphicState.getFillLastPatternUnderlyingColorSpace();
+		this.strokeLastPatternUnderlyingColorSpace = graphicState.getStrokeLastPatternUnderlyingColorSpace();
 		this.renderingMode = graphicState.getRenderingMode();
 		this.font = graphicState.getFont();
 		this.overprintingFlagStroke = graphicState.isOverprintingFlagStroke();
@@ -157,6 +177,8 @@ public class GraphicState implements Cloneable {
 		GraphicState clone = new GraphicState();
 		clone.fillColorSpace = this.fillColorSpace;
 		clone.strokeColorSpace = this.strokeColorSpace;
+		clone.fillLastPatternUnderlyingColorSpace = this.fillLastPatternUnderlyingColorSpace;
+		clone.strokeLastPatternUnderlyingColorSpace = this.strokeLastPatternUnderlyingColorSpace;
 		clone.renderingMode = this.renderingMode;
 		clone.font = this.font;
 		clone.overprintingFlagStroke = this.overprintingFlagStroke;
