@@ -188,10 +188,10 @@ public final class XMPChecker {
         final Object value = properties.get(checksRule);
         if (value != null) {
             if (value instanceof String) {
-                return Boolean.valueOf(value.equals(string.getString()));
+                return Boolean.valueOf(checkStringsIgnoreInfoTrailingZero(value, string.getString()));
             } else if (value instanceof List) {
                 List<?> list = (List<?>) value;
-                return Boolean.valueOf(list.size() == 1 && list.get(0).equals(string.getString()));
+                return Boolean.valueOf(list.size() == 1 && checkStringsIgnoreInfoTrailingZero(list.get(0), string.getString()));
             } else if (value instanceof Calendar) {
                 final Calendar valueDate = TypeConverter.parseDate(string.getString());
                 return Boolean.valueOf(valueDate != null
@@ -199,5 +199,12 @@ public final class XMPChecker {
             }
         }
         return Boolean.FALSE;
+    }
+
+    private static boolean checkStringsIgnoreInfoTrailingZero(Object fromXMP, String fromInfo) {
+        if (fromInfo != null && fromInfo.endsWith("\0")) {
+            fromInfo = fromInfo.substring(0, fromInfo.length() - 1);
+        }
+        return fromXMP.equals(fromInfo);
     }
 }
