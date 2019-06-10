@@ -45,6 +45,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 	public static final String ALTERNATE = "alternate";
 	public static final String COLORANT_NAMES = "colorantNames";
 	public static final String COLORANTS = "Colorants";
+	public static final String PROCESS_COLOR = "processColor";
 
 	public static final Set<ASAtom> IGNORED_COLORANTS;
 
@@ -69,7 +70,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 		if (attributes != null && attributes.getType() == COSObjType.COS_DICT) {
 			COSObject colorantsDict = attributes.getKey(ASAtom.COLORANTS);
 			List<COSObject> colorantsArray = simplePDObject.getNames();
-			Set<ASAtom> componentNames = new TreeSet<>();
+			Set<ASAtom> componentNames = new HashSet<>();
 			if (colorantsDict != null && colorantsDict.getType() == COSObjType.COS_DICT) {
 				componentNames.addAll(colorantsDict.getKeySet());
 			}
@@ -98,11 +99,11 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 	}
 
 	private static boolean areColorantsPresent(Set<ASAtom> colorantDictionaryEntries,
-											   List<COSObject> colorantsArray) {
+	                                           List<COSObject> colorantsArray) {
 		for (int i = 0; i < colorantsArray.size(); ++i) {
 			COSObject object = colorantsArray.get(i);
 			if (object != null && !isNone(object) && !IGNORED_COLORANTS.contains(object.getName()) &&
-					!colorantDictionaryEntries.contains(object.getName())) {
+			    !colorantDictionaryEntries.contains(object.getName())) {
 				return false;
 			}
 		}
@@ -127,9 +128,31 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 				return this.getColorantNames();
 			case COLORANTS:
 				return this.getColorants();
+			case PROCESS_COLOR:
+				return this.getProcessColor();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<PDColorSpace> getProcessColor() {
+		COSObject attributes = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getAttributes();
+		if (isNullOrNotDictionary(attributes)) {
+			return Collections.emptyList();
+		}
+		COSObject processDict = attributes.getKey(ASAtom.PROCESS);
+		if (isNullOrNotDictionary(processDict)) {
+			return Collections.emptyList();
+		}
+		COSObject cs = processDict.getKey(ASAtom.COLORSPACE);
+		org.verapdf.pd.colors.PDColorSpace colorSpace = org.verapdf.factory.colors.ColorSpaceFactory
+				.getColorSpace(cs);
+
+		if (colorSpace == null) {
+			return Collections.emptyList();
+		}
+
+		return Collections.singletonList(ColorSpaceFactory.getColorSpace(colorSpace));
 	}
 
 	private List<PDColorSpace> getAlternate() {
@@ -179,5 +202,9 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 			}
 		}
 		return Collections.unmodifiableList(list);
+	}
+
+	private boolean isNullOrNotDictionary(COSObject toCheck) {
+		return toCheck == null || toCheck.getType() != COSObjType.COS_DICT;
 	}
 }

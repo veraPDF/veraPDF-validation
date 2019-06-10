@@ -32,10 +32,14 @@ import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.patterns.PDShadingPattern;
 import org.verapdf.pd.patterns.PDTilingPattern;
 
+import java.util.logging.Logger;
+
 /**
  * @author Maksim Bezrukov
  */
 public class ColorSpaceFactory {
+
+	private static final Logger LOGGER = Logger.getLogger(ColorSpaceFactory.class.getCanonicalName());
 
 	public static final String CAL_GRAY = "/CalGray";
 	public static final String CAL_RGB = "/CalRGB";
@@ -66,6 +70,7 @@ public class ColorSpaceFactory {
 			PDResourcesHandler resourcesHandler, int opm, boolean overprintingFlag,
 											 GraphicState inheritedGraphicSpace) {
 		if (colorSpace == null) {
+			LOGGER.warning("Invalid ColorSpace object");
 			return new GFPDEmptyColorSpace();
 		}
 		String uniqueID = getColorSpaceUniqueIdentifier(colorSpace, opm, overprintingFlag);
