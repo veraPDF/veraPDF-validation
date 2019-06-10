@@ -74,6 +74,7 @@ import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.*;
+import java.util.logging.*;
 
 /**
  * Main class that processes operators.
@@ -81,6 +82,8 @@ import java.util.*;
  * @author Timur Kamalov
  */
 class OperatorParser {
+
+	private static final Logger LOGGER = Logger.getLogger(OperatorParser.class.getName());
 
 	private final Deque<GraphicState> graphicStateStack = new ArrayDeque<>();
 	private GraphicState graphicState;
@@ -90,6 +93,7 @@ class OperatorParser {
 	private StructureElementAccessObject structureElementAccessObject;
 	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 
+	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
 				   StructureElementAccessObject structureElementAccessObject,
@@ -264,7 +268,11 @@ class OperatorParser {
 
 			// TEXT OBJECT
 			case Operators.ET:
+				insideText = false;
+				processedOperators.add(new GFOpTextObject(arguments));
+				break;
 			case Operators.BT:
+				insideText = true;
 				processedOperators.add(new GFOpTextObject(arguments));
 				break;
 
@@ -442,9 +450,15 @@ class OperatorParser {
 
 			// SPECIAL GS
 			case Operators.CM_CONCAT:
+				if (insideText) {
+					LOGGER.log(Level.WARNING, "Special graphics state operator (cm) inside Text object");
+				}
 				processedOperators.add(new GFOp_cm(arguments));
 				break;
 			case Operators.Q_GRESTORE:
+				if (insideText) {
+					LOGGER.log(Level.WARNING, "Special graphics state operator (Q) inside Text object");
+				}
 				if (!graphicStateStack.isEmpty()) {
 					this.graphicState.copyProperties(this.graphicStateStack.pop());
 				}
@@ -454,6 +468,9 @@ class OperatorParser {
 				processedOperators.add(new GFOp_Q_grestore(arguments));
 				break;
 			case Operators.Q_GSAVE:
+				if (insideText) {
+					LOGGER.log(Level.WARNING, "Special graphics state operator (q) inside Text object");
+				}
 				this.graphicStateStack.push(this.graphicState.clone());
 				this.transparencyGraphicStateStack.push(this.transparencyGraphicState.clone());
 				processedOperators.add(new GFOp_q_gsave(arguments, this.graphicStateStack.size()));
