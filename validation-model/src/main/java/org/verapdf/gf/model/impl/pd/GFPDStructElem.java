@@ -36,6 +36,8 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author Maksim Bezrukov
@@ -75,6 +77,15 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public String getType() {
 		ASAtom type = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getType();
 		return type == null ? null : type.getValue();
+	}
+
+	@Override
+	public String getkidsStandardTypes() {
+		return this.getChildren()
+		           .stream()
+		           .map(PDStructElem::getstandardType)
+		           .filter(Objects::nonNull)
+		           .collect(Collectors.joining("&"));
 	}
 
 	@Override
