@@ -71,6 +71,10 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	 */
 	public GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
 		super(structElemDictionary, STRUCTURE_ELEMENT_TYPE);
+		ASAtom subtype = this.simplePDObject.getNameKey(ASAtom.S);
+		if (subtype != null) {
+			this.id = super.getID() + " " + subtype.getValue();
+		}
 	}
 
 	/**
