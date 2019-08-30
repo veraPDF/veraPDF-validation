@@ -29,7 +29,7 @@
     <parent>
         <artifactId>validation</artifactId>
         <groupId>org.verapdf</groupId>
-        <version>1.13.0-SNAPSHOT</version>
+        <version>1.15.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>feature-reporting</artifactId>
@@ -58,7 +58,7 @@
         <dependency>
           <groupId>com.sun.xml.bind</groupId>
           <artifactId>jaxb-impl</artifactId>
-          <version>2.3.1</version>
+          <version>2.3.2</version>
         </dependency>
 
         <dependency>
