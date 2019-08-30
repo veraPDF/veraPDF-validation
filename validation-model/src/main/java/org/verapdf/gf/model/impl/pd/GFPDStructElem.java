@@ -22,6 +22,8 @@ package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
@@ -32,10 +34,13 @@ import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author Maksim Bezrukov
@@ -66,6 +71,10 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	 */
 	public GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
 		super(structElemDictionary, STRUCTURE_ELEMENT_TYPE);
+		ASAtom subtype = this.simplePDObject.getNameKey(ASAtom.S);
+		if (subtype != null) {
+			this.id = super.getID() + " " + subtype.getValue();
+		}
 	}
 
 	/**
@@ -75,6 +84,35 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public String getType() {
 		ASAtom type = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getType();
 		return type == null ? null : type.getValue();
+	}
+
+	@Override
+	public String getkidsStandardTypes() {
+		return this.getChildren()
+		           .stream()
+		           .map(PDStructElem::getstandardType)
+		           .filter(Objects::nonNull)
+		           .collect(Collectors.joining("&"));
+	}
+
+	@Override
+	public Boolean gethasContentItems() {
+		COSObject children = this.simplePDObject.getKey(ASAtom.K);
+		if (children == null) {
+			return false;
+		}
+		if (TaggedPDFHelper.isContentItem(children)) {
+			return true;
+		}
+		if (children.getType() == COSObjType.COS_ARRAY && children.size().intValue() > 0) {
+			for (int i = 0; i < children.size().intValue(); ++i) {
+				COSObject elem = children.at(i);
+				if (TaggedPDFHelper.isContentItem(elem)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override
