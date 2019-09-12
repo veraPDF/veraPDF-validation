@@ -218,7 +218,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     private List<PDMetadata> getMetadata() {
         if (this.catalog != null) {
             org.verapdf.pd.PDMetadata meta = this.catalog.getMetadata();
-            if (meta != null) {
+            if (meta != null && GFPDMetadata.isMetadataObject(meta.getObject())) {
                 List<PDMetadata> metadata = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
                 metadata.add(new GFPDMetadata(meta, Boolean.TRUE));
                 return Collections.unmodifiableList(metadata);

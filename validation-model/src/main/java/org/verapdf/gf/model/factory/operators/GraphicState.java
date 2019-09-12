@@ -20,26 +20,35 @@
  */
 package org.verapdf.gf.model.factory.operators;
 
-import org.verapdf.cos.COSName;
+import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.colors.PDColorSpace;
-import org.verapdf.pd.colors.PDDeviceGray;
+import org.verapdf.pd.font.PDFont;
 
 /**
  * @author Timur Kamalov
  */
 public class GraphicState implements Cloneable {
 
-	private PDColorSpace fillColorSpace = PDDeviceGray.INSTANCE;
-	private PDColorSpace strokeColorSpace = PDDeviceGray.INSTANCE;
+	private PDColorSpace fillColorSpace;
+	private PDColorSpace strokeColorSpace;
+	private PDColorSpace fillLastPatternUnderlyingColorSpace = null;
+	private PDColorSpace strokeLastPatternUnderlyingColorSpace = null;
 	private RenderingMode renderingMode = RenderingMode.FILL;
-	private COSName fontName;
+	private PDFont font;
 	private boolean overprintingFlagStroke = false;
 	private boolean overprintingFlagNonStroke = false;
 	private int opm = 0;
 	private GraphicState initialGraphicState = null;
+	private boolean processColorOperators = true;
 
-	public GraphicState() {
+	private GraphicState() {
+	}
+
+	public GraphicState(PDResourcesHandler resourcesHandler) {
+		this.fillColorSpace = resourcesHandler.getColorSpace(ASAtom.DEVICEGRAY);
+		this.strokeColorSpace = resourcesHandler.getColorSpace(ASAtom.DEVICEGRAY);
 	}
 
 	public PDColorSpace getFillColorSpace() {
@@ -58,6 +67,22 @@ public class GraphicState implements Cloneable {
 		this.strokeColorSpace = strokeColorSpace;
 	}
 
+	public PDColorSpace getFillLastPatternUnderlyingColorSpace() {
+		return fillLastPatternUnderlyingColorSpace;
+	}
+
+	public void setFillLastPatternUnderlyingColorSpace(PDColorSpace fillLastPatternUnderlyingColorSpace) {
+		this.fillLastPatternUnderlyingColorSpace = fillLastPatternUnderlyingColorSpace;
+	}
+
+	public PDColorSpace getStrokeLastPatternUnderlyingColorSpace() {
+		return strokeLastPatternUnderlyingColorSpace;
+	}
+
+	public void setStrokeLastPatternUnderlyingColorSpace(PDColorSpace strokeLastPatternUnderlyingColorSpace) {
+		this.strokeLastPatternUnderlyingColorSpace = strokeLastPatternUnderlyingColorSpace;
+	}
+
 	public RenderingMode getRenderingMode() {
 		return renderingMode;
 	}
@@ -66,12 +91,12 @@ public class GraphicState implements Cloneable {
 		this.renderingMode = renderingMode;
 	}
 
-	public COSName getFontName() {
-		return fontName;
+	public PDFont getFont() {
+		return font;
 	}
 
-	public void setFontName(COSName fontName) {
-		this.fontName = fontName;
+	public void setFont(PDFont font) {
+		this.font = font;
 	}
 
 	public boolean isOverprintingFlagStroke() {
@@ -106,15 +131,27 @@ public class GraphicState implements Cloneable {
 		this.initialGraphicState = initialGraphicState.clone();
 	}
 
+	public boolean isProcessColorOperators() {
+		return processColorOperators;
+	}
+
+	public void disableColorOperators() {
+		this.processColorOperators = false;
+	}
+
+
 	public void copyProperties(GraphicState graphicState) {
 		this.fillColorSpace = graphicState.getFillColorSpace();
 		this.strokeColorSpace = graphicState.getStrokeColorSpace();
+		this.fillLastPatternUnderlyingColorSpace = graphicState.getFillLastPatternUnderlyingColorSpace();
+		this.strokeLastPatternUnderlyingColorSpace = graphicState.getStrokeLastPatternUnderlyingColorSpace();
 		this.renderingMode = graphicState.getRenderingMode();
-		this.fontName = graphicState.getFontName();
+		this.font = graphicState.getFont();
 		this.overprintingFlagStroke = graphicState.isOverprintingFlagStroke();
 		this.overprintingFlagNonStroke = graphicState.isOverprintingFlagNonStroke();
 		this.opm = graphicState.getOpm();
 		this.initialGraphicState = graphicState.getInitialGraphicState();
+		this.processColorOperators = graphicState.isProcessColorOperators();
 	}
 
 	public void copyPropertiesFormExtGState(PDExtGState extGState) {
@@ -140,12 +177,15 @@ public class GraphicState implements Cloneable {
 		GraphicState clone = new GraphicState();
 		clone.fillColorSpace = this.fillColorSpace;
 		clone.strokeColorSpace = this.strokeColorSpace;
+		clone.fillLastPatternUnderlyingColorSpace = this.fillLastPatternUnderlyingColorSpace;
+		clone.strokeLastPatternUnderlyingColorSpace = this.strokeLastPatternUnderlyingColorSpace;
 		clone.renderingMode = this.renderingMode;
-		clone.fontName = this.fontName;
+		clone.font = this.font;
 		clone.overprintingFlagStroke = this.overprintingFlagStroke;
 		clone.overprintingFlagNonStroke = this.overprintingFlagNonStroke;
 		clone.opm = this.opm;
 		clone.initialGraphicState = this.initialGraphicState;
+		clone.processColorOperators = this.processColorOperators;
 		return clone;
 	}
 

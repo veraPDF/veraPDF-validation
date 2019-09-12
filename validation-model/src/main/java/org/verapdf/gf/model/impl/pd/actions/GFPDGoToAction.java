@@ -21,9 +21,9 @@
 package org.verapdf.gf.model.impl.pd.actions;
 
 import org.verapdf.cos.COSNumber;
-import org.verapdf.gf.model.impl.cos.GFCosReal;
+import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosReal;
+import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.pdlayer.PDGoToAction;
 import org.verapdf.pd.actions.PDAction;
 
@@ -55,12 +55,12 @@ public class GFPDGoToAction extends GFPDAction implements PDGoToAction {
 		return super.getLinkedObjects(link);
 	}
 
-	private List<CosReal> getD() {
+	private List<CosNumber> getD() {
 		List<COSNumber> numbers = ((PDAction) simplePDObject).getCOSArrayD();
 		if (!numbers.isEmpty()) {
-			List<CosReal> result = new ArrayList<>(numbers.size());
+			List<CosNumber> result = new ArrayList<>(numbers.size());
 			for (COSNumber number : numbers) {
-				result.add(new GFCosReal(number));
+				result.add(GFCosNumber.fromPDFParserNumber(number));
 			}
 			return Collections.unmodifiableList(result);
 		}

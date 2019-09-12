@@ -69,10 +69,12 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
+import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.*;
+import java.util.logging.*;
 
 /**
  * Main class that processes operators.
@@ -80,6 +82,8 @@ import java.util.*;
  * @author Timur Kamalov
  */
 class OperatorParser {
+
+	private static final Logger LOGGER = Logger.getLogger(OperatorParser.class.getName());
 
 	private final Deque<GraphicState> graphicStateStack = new ArrayDeque<>();
 	private GraphicState graphicState;
@@ -89,11 +93,13 @@ class OperatorParser {
 	private StructureElementAccessObject structureElementAccessObject;
 	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 
+	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
-				   StructureElementAccessObject structureElementAccessObject) {
+				   StructureElementAccessObject structureElementAccessObject,
+				   PDResourcesHandler resourcesHandler) {
 		if (inheritedGraphicState == null) {
-			this.graphicState = new GraphicState();
+			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
 			this.graphicState = inheritedGraphicState.clone();
 		}
@@ -135,7 +141,9 @@ class OperatorParser {
 				processedOperators.add(new GFOp_M_miter_limit(arguments));
 				break;
 			case Operators.RI:
-				processedOperators.add(new GFOp_ri(arguments));
+				if (this.graphicState.isProcessColorOperators()) {
+					processedOperators.add(new GFOp_ri(arguments));
+				}
 				break;
 			case Operators.W_LINE_WIDTH:
 				processedOperators.add(new GFOp_w_line_width(arguments));
@@ -180,69 +188,91 @@ class OperatorParser {
 
 			// COLOR
 			case Operators.G_STROKE: {
-				processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
-						ASAtom.DEVICEGRAY, true);
-				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
+					                  ASAtom.DEVICEGRAY, true);
+					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			}
 			case Operators.G_FILL: {
-				processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
-						ASAtom.DEVICEGRAY, false);
-				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
+					                  ASAtom.DEVICEGRAY, false);
+					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			}
 			case Operators.RG_STROKE: {
-				processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
-						ASAtom.DEVICERGB, true);
-				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
+					                  ASAtom.DEVICERGB, true);
+					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			}
 			case Operators.RG_FILL: {
-				processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
-						ASAtom.DEVICERGB, false);
-				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
+					                  ASAtom.DEVICERGB, false);
+					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			}
 			case Operators.K_STROKE: {
-				processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
-						ASAtom.DEVICECMYK, true);
-				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
+					                  ASAtom.DEVICECMYK, true);
+					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			}
 			case Operators.K_FILL: {
-				processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
-						ASAtom.DEVICECMYK, false);
-				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
+					                  ASAtom.DEVICECMYK, false);
+					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			}
 			case Operators.CS_STROKE:
-				this.graphicState.setStrokeColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments)));
-				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					this.graphicState.setStrokeColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments)));
+					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			case Operators.CS_FILL:
-				this.graphicState.setFillColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments)));
-				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					this.graphicState.setFillColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments)));
+					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			case Operators.SCN_STROKE:
-				processPatternColorSpace(arguments, this.graphicState, resourcesHandler,
-										this.graphicState.getStrokeColorSpace(), true);
-				processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					processPatternColorSpace(arguments, this.graphicState, resourcesHandler, true);
+					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			case Operators.SCN_FILL:
-				processPatternColorSpace(arguments, this.graphicState, resourcesHandler,
-						this.graphicState.getFillColorSpace(), false);
-				processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				if (this.graphicState.isProcessColorOperators()) {
+					processPatternColorSpace(arguments, this.graphicState, resourcesHandler,false);
+					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+				}
 				break;
 			case Operators.SC_STROKE:
-				processedOperators.add(new GFOpSetColor(arguments));
-				break;
 			case Operators.SC_FILL:
-				processedOperators.add(new GFOpSetColor(arguments));
+				if (this.graphicState.isProcessColorOperators()) {
+					processedOperators.add(new GFOpSetColor(arguments));
+				}
 				break;
 
 			// TEXT OBJECT
 			case Operators.ET:
+				insideText = false;
+				processedOperators.add(new GFOpTextObject(arguments));
+				break;
 			case Operators.BT:
+				insideText = true;
 				processedOperators.add(new GFOpTextObject(arguments));
 				break;
 
@@ -295,7 +325,7 @@ class OperatorParser {
 				processedOperators.add(new GFOp_Tr(arguments));
 				break;
 			case Operators.TF:
-				this.graphicState.setFontName(getFirstCOSName(arguments));
+				this.graphicState.setFont(resourcesHandler.getFont(getFirstCOSName(arguments)));
 				processedOperators.add(new GFOp_Tf(arguments));
 				break;
 			case Operators.TC:
@@ -317,6 +347,7 @@ class OperatorParser {
 				break;
 			case Operators.D1:
 				processedOperators.add(new GFOp_d1(arguments));
+				this.graphicState.disableColorOperators();
 				break;
 
 			// INLINE IMAGE
@@ -325,7 +356,7 @@ class OperatorParser {
 						(InlineImageOperator) rawOperator,
 						resourcesHandler,
 						arguments,
-						this.graphicState.getFillColorSpace());
+						this.graphicState);
 				break;
 
 			// COMPABILITY
@@ -412,14 +443,22 @@ class OperatorParser {
 
 			// SHADING
 			case Operators.SH:
-				processedOperators.add(new GFOp_sh(arguments, resourcesHandler.getShading(getLastCOSName(arguments))));
+				if (this.graphicState.isProcessColorOperators()) {
+					processedOperators.add(new GFOp_sh(arguments, resourcesHandler.getShading(getLastCOSName(arguments))));
+				}
 				break;
 
 			// SPECIAL GS
 			case Operators.CM_CONCAT:
+				if (insideText) {
+					LOGGER.log(Level.WARNING, "Special graphics state operator (cm) inside Text object");
+				}
 				processedOperators.add(new GFOp_cm(arguments));
 				break;
 			case Operators.Q_GRESTORE:
+				if (insideText) {
+					LOGGER.log(Level.WARNING, "Special graphics state operator (Q) inside Text object");
+				}
 				if (!graphicStateStack.isEmpty()) {
 					this.graphicState.copyProperties(this.graphicStateStack.pop());
 				}
@@ -429,6 +468,9 @@ class OperatorParser {
 				processedOperators.add(new GFOp_Q_grestore(arguments));
 				break;
 			case Operators.Q_GSAVE:
+				if (insideText) {
+					LOGGER.log(Level.WARNING, "Special graphics state operator (q) inside Text object");
+				}
 				this.graphicStateStack.push(this.graphicState.clone());
 				this.transparencyGraphicStateStack.push(this.transparencyGraphicState.clone());
 				processedOperators.add(new GFOp_q_gsave(arguments, this.graphicStateStack.size()));
@@ -493,12 +535,17 @@ class OperatorParser {
 	}
 
 	private static void processPatternColorSpace(List<COSBase> arguments, GraphicState graphicState,
-												 PDResourcesHandler resourcesHandler, PDColorSpace colorSpace, boolean stroke) {
+												 PDResourcesHandler resourcesHandler, boolean stroke) {
+		PDColorSpace colorSpace = stroke ? graphicState.getStrokeColorSpace() : graphicState.getFillColorSpace();
 		if (colorSpace != null && ASAtom.PATTERN == colorSpace.getType()) {
+			PDColorSpace underlyingColorSpace = ((PDPattern) colorSpace).getUnderlyingColorSpace();
+			PDPattern pattern = resourcesHandler.getPattern(getLastCOSName(arguments));
 			if (stroke) {
-				graphicState.setStrokeColorSpace(resourcesHandler.getPattern(getLastCOSName(arguments)));
+				graphicState.setStrokeLastPatternUnderlyingColorSpace(underlyingColorSpace);
+				graphicState.setStrokeColorSpace(pattern);
 			} else {
-				graphicState.setFillColorSpace(resourcesHandler.getPattern(getLastCOSName(arguments)));
+				graphicState.setFillLastPatternUnderlyingColorSpace(underlyingColorSpace);
+				graphicState.setFillColorSpace(pattern);
 			}
 		}
 	}
@@ -506,12 +553,15 @@ class OperatorParser {
 	private static void processInlineImage(List<org.verapdf.model.operator.Operator> processedOperators,
 										   InlineImageOperator rawOperator, PDResourcesHandler resourcesHandler,
 										   List<COSBase> arguments,
-										   org.verapdf.pd.colors.PDColorSpace inheritedFillCS) {
-		if (rawOperator.getImageParameters() != null) {
-			arguments.add(rawOperator.getImageParameters());
+										   GraphicState gs) {
+		COSDictionary imageParameters = rawOperator.getImageParameters();
+		if (imageParameters != null
+		    && (gs.isProcessColorOperators() || Boolean.TRUE.equals(imageParameters.getBooleanKey(ASAtom.IM)))) {
+
+			arguments.add(imageParameters);
 			processedOperators.add(new GFOp_BI(new ArrayList<COSBase>()));
 			processedOperators.add(new GFOp_ID(arguments));
-			processedOperators.add(new GFOp_EI(arguments, resourcesHandler, inheritedFillCS));
+			processedOperators.add(new GFOp_EI(arguments, resourcesHandler, gs.getFillColorSpace()));
 		}
 	}
 
