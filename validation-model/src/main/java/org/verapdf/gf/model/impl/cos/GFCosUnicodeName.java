@@ -58,7 +58,6 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 			StandardCharsets.UTF_8.newDecoder().decode(tmp);
 			return Boolean.TRUE;
 		} catch (CharacterCodingException e){
-			LOGGER.log(Level.FINE, e.getMessage(), e);
 			return Boolean.FALSE;
 		}
 	}
