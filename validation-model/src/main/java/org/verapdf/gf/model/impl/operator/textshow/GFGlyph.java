@@ -28,6 +28,7 @@ import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.pd.font.*;
+import org.verapdf.pd.font.truetype.PDTrueTypeFont;
 import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
@@ -84,6 +85,9 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         if (font instanceof PDSimpleFont) {
             Encoding encoding = font.getEncodingMapping();
             this.name = encoding == null ? null : encoding.getName(glyphCode);
+            if (this.name == null && glyphCode == 0 && font instanceof PDTrueTypeFont) {
+                this.name = ".notdef";
+            }
         } else if (font instanceof PDType0Font) {
             try {
                 FontProgram pr = font.getFontProgram();
