@@ -26,10 +26,13 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEGeneral;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.model.pdlayer.PDStructTreeRoot;
+import org.verapdf.pd.structure.StructureType;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.*;
@@ -110,11 +113,12 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	}
 
 	private List<PDStructElem> parseChildren() {
-		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getChildren();
+		List<org.verapdf.pd.structure.PDStructElem> elements =
+				((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getChildren();
 		if (!elements.isEmpty()) {
 			List<PDStructElem> res = new ArrayList<>(elements.size());
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				res.add(new GFPDStructElem(element));
+				res.add(GFSEGeneral.createTypedStructElem(element));
 			}
 			return Collections.unmodifiableList(res);
 		}
