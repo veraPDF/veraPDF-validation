@@ -190,6 +190,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		if (ids != null && ids.getType() == COSObjType.COS_ARRAY) {
 			COSArray idArray = (COSArray) ids.getDirectBase();
 			StringBuilder builder = new StringBuilder();
+			if (idArray.size() != 2) {
+				LOGGER.log(Level.WARNING,"Value of ID is not an array of two byte strings");
+			}
 			for (COSObject id : idArray) {
 				if (id.getType() == COSObjType.COS_STRING) {
 					for (byte aByte : ((COSString) id.getDirectBase()).get()) {
