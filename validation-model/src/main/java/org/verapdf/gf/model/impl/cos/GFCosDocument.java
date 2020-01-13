@@ -189,6 +189,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	private static String getTrailerID(COSObject ids) {
 		if (ids != null && ids.getType() == COSObjType.COS_ARRAY) {
 			COSArray idArray = (COSArray) ids.getDirectBase();
+			if (idArray.size() != 2) {
+				LOGGER.log(Level.WARNING, "Value of ID is not an array of two byte strings");
+			}
 			StringBuilder builder = new StringBuilder();
 			for (COSObject id : idArray) {
 				if (id.getType() == COSObjType.COS_STRING) {
