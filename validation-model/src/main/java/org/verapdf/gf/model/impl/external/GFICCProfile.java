@@ -21,17 +21,23 @@
 package org.verapdf.gf.model.impl.external;
 
 import org.verapdf.external.ICCProfile;
+import org.verapdf.pd.colors.PDColorSpace;
+
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFICCProfile extends GFExternal implements org.verapdf.model.external.ICCProfile {
 
+	private static final Logger LOGGER = Logger.getLogger(GFICCProfile.class.getCanonicalName());
+
 	private final ICCProfile iccProfile;
 
 	protected GFICCProfile(ICCProfile iccProfile, String type) {
 		super(type);
 		this.iccProfile = iccProfile;
+		checkAlternateComponentsNumber();
 	}
 
 	/**
@@ -79,5 +85,12 @@ public class GFICCProfile extends GFExternal implements org.verapdf.model.extern
 	@Override
 	public Boolean getisValid() {
 		return Boolean.valueOf(this.iccProfile.isLooksValid());
+	}
+
+	private void checkAlternateComponentsNumber() {
+		PDColorSpace alternate = this.iccProfile.getAlternate();
+		if (alternate != null && alternate.getNumberOfComponents() != getN()) {
+			LOGGER.warning("Alternate color space does not match the number of components in the ICC profile");
+		}
 	}
 }
