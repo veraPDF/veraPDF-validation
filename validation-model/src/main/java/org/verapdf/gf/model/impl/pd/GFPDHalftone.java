@@ -23,8 +23,11 @@ package org.verapdf.gf.model.impl.pd;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.factory.functions.FunctionFactory;
+import org.verapdf.gf.model.impl.pd.functions.GFPDFunction;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.pd.PDHalftone;
+import org.verapdf.pd.function.PDFunction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,6 +41,7 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
     public static final String HALFTONE_TYPE = "PDHalftone";
 
     private static final String HALFTONES = "halftones";
+    private static final String CUSTOM_FUNCTION = "customFunction";
 
     private final ASAtom colorantName;
 
@@ -71,13 +75,8 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
     }
 
     @Override
-    public String getcolorantName() {
-        return this.colorantName == null ? null : this.colorantName.getValue();
-    }
-
-    @Override
     public String getTransferFunction() {
-        COSObject tf = this.simplePDObject.getKey(ASAtom.getASAtom("TransferFunction"));
+        COSObject tf = this.simplePDObject.getKey(ASAtom.TRANSFER_FUNCTION);
         if (tf == null
                 || tf.empty()
                 || tf.getType() == COSObjType.COS_NULL) {
@@ -91,10 +90,17 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
     }
 
     @Override
+    public String getcolorantName() {
+        return this.colorantName == null ? null : this.colorantName.getValue();
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case HALFTONES:
                 return this.getHalftones();
+            case CUSTOM_FUNCTION:
+                return this.getCustomFunction();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -118,5 +124,13 @@ public class GFPDHalftone extends GFPDObject implements org.verapdf.model.pdlaye
             }
         }
         return Collections.unmodifiableList(halftones);
+    }
+    private List<GFPDFunction> getCustomFunction() {
+        PDFunction transferFunction = ((PDHalftone) this.simplePDObject).getCustomTransferFunction();
+        if (transferFunction == null) {
+            return Collections.emptyList();
+        }
+        GFPDFunction gfpdFunction = FunctionFactory.createFunction(transferFunction);
+        return Collections.singletonList(gfpdFunction);
     }
 }

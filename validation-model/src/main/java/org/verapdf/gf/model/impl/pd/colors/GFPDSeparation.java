@@ -24,12 +24,15 @@ import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.gf.model.factory.functions.FunctionFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
+import org.verapdf.gf.model.impl.pd.functions.GFPDFunction;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDSeparation;
+import org.verapdf.pd.function.PDFunction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +44,7 @@ import java.util.List;
 public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
     public static final String SEPARATION_TYPE = "PDSeparation";
 
+    public static final String TINT_TRANSFORM = "tintTransform";
     public static final String ALTERNATE = "alternate";
     public static final String COLORANT_NAME = "colorantName";
 
@@ -73,12 +77,12 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
                 COSObject alternateSpaceToCompare =
                         ((org.verapdf.pd.colors.PDSeparation) gfPDSeparation.simplePDObject).getAlternate().getObject();
                 COSObject tintTransformToCompare =
-                        ((org.verapdf.pd.colors.PDSeparation) gfPDSeparation.simplePDObject).getTintTransform();
+                        ((org.verapdf.pd.colors.PDSeparation) gfPDSeparation.simplePDObject).getCosTintTransform();
 
                 COSObject alternateSpaceCurrent =
                         ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getAlternate().getObject();
                 COSObject tintTransformCurrent =
-                        ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getTintTransform();
+                        ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getCosTintTransform();
 
                 if (!alternateSpaceToCompare.equals(alternateSpaceCurrent) || !tintTransformToCompare.equals(tintTransformCurrent)) {
                     StaticContainers.getInconsistentSeparations().add(name);
@@ -97,6 +101,8 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
                 return this.getAlternate();
             case COLORANT_NAME:
                 return this.getColorantName();
+            case TINT_TRANSFORM:
+                return this.getTintTransform();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -125,5 +131,14 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
             return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();
+    }
+
+    private List<GFPDFunction> getTintTransform() {
+        PDFunction pdFunction = ((org.verapdf.pd.colors.PDSeparation) this.simplePDObject).getTintTransform();
+        if (pdFunction == null) {
+            return Collections.emptyList();
+        }
+        GFPDFunction gfpdFunction = FunctionFactory.createFunction(pdFunction);
+        return Collections.singletonList(gfpdFunction);
     }
 }
