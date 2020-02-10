@@ -25,28 +25,32 @@ import org.verapdf.gf.model.impl.external.GFICCInputProfile;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.external.ICCInputProfile;
 import org.verapdf.model.pdlayer.PDICCBased;
+import org.verapdf.pd.colors.PDColorSpace;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFPDICCBased extends GFPDColorSpace implements PDICCBased {
 
+    private static final Logger LOGGER = Logger.getLogger(GFPDICCBased.class.getCanonicalName());
+
     public static final String ICC_BASED_TYPE = "PDICCBased";
 
     public static final String ICC_PROFILE = "iccProfile";
 
-    public GFPDICCBased(
-            org.verapdf.pd.colors.PDICCBased simplePDObject) {
+    public GFPDICCBased(org.verapdf.pd.colors.PDICCBased simplePDObject) {
         super(simplePDObject, ICC_BASED_TYPE);
+        checkAlternateComponentsNumber();
     }
 
-    protected GFPDICCBased(
-            org.verapdf.pd.colors.PDICCBased simplePDObject, String type) {
+    protected GFPDICCBased(org.verapdf.pd.colors.PDICCBased simplePDObject, String type) {
         super(simplePDObject, type);
+        checkAlternateComponentsNumber();
     }
 
     @Override
@@ -65,5 +69,14 @@ public class GFPDICCBased extends GFPDColorSpace implements PDICCBased {
             return Collections.unmodifiableList(profiles);
         }
         return Collections.emptyList();
+    }
+
+    private void checkAlternateComponentsNumber() {
+        org.verapdf.pd.colors.PDICCBased colorSpace = ((org.verapdf.pd.colors.PDICCBased) simplePDObject);
+        PDColorSpace alternate = colorSpace.getAlternate();
+        if (alternate != null && colorSpace.getNumberOfComponents() != alternate.getNumberOfComponents()) {
+            LOGGER.warning("Alternate color space does not match the number of components in the ICC profile");
+        }
+
     }
 }
