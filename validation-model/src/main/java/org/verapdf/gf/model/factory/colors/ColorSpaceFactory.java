@@ -70,7 +70,7 @@ public class ColorSpaceFactory {
 			PDResourcesHandler resourcesHandler, int opm, boolean overprintingFlag,
 											 GraphicState inheritedGraphicSpace) {
 		if (colorSpace == null) {
-			LOGGER.warning("Invalid ColorSpace object");
+//			LOGGER.warning("Invalid ColorSpace object");
 			return new GFPDEmptyColorSpace();
 		}
 		String uniqueID = getColorSpaceUniqueIdentifier(colorSpace, opm, overprintingFlag);
