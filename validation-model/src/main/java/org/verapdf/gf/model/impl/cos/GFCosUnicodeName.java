@@ -25,11 +25,8 @@ import org.verapdf.model.coslayer.CosUnicodeName;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.charset.CharacterCodingException;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetDecoder;
-import java.nio.charset.CharsetEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,24 +51,13 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 	/**
 	 * @return true if name is valid UTF-8 string
 	 */
-	// TODO : check implementation
 	@Override
 	public Boolean getisValidUtf8() {
-		CharsetDecoder decoder = Charset.forName("UTF-8").newDecoder();
-		CharsetEncoder encoder = Charset.forName("Windows-1252").newEncoder();
-		ByteBuffer tmp;
+		ByteBuffer tmp = ByteBuffer.wrap(this.baseObject.getString().getBytes(StandardCharsets.ISO_8859_1));
 		try {
-			tmp = encoder.encode(CharBuffer.wrap(this.baseObject.getString()));
-		} catch (CharacterCodingException e) {
-			LOGGER.log(Level.FINE, e.getMessage(), e);
-			return Boolean.FALSE;
-		}
-
-		try {
-			decoder.decode(tmp);
+			StandardCharsets.UTF_8.newDecoder().decode(tmp);
 			return Boolean.TRUE;
 		} catch (CharacterCodingException e){
-			LOGGER.log(Level.FINE, e.getMessage(), e);
 			return Boolean.FALSE;
 		}
 	}
