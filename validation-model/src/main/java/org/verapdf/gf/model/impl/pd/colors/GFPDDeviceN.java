@@ -21,17 +21,17 @@
 package org.verapdf.gf.model.impl.pd.colors;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSArray;
-import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.gf.model.factory.functions.FunctionFactory;
+import org.verapdf.gf.model.impl.pd.functions.GFPDFunction;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDDeviceN;
 import org.verapdf.model.pdlayer.PDSeparation;
+import org.verapdf.pd.function.PDFunction;
 
 import java.util.*;
 
@@ -42,6 +42,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
 	public static final String DEVICE_N_TYPE = "PDDeviceN";
 
+	public static final String TINT_TRANSFORM = "tintTransform";
 	public static final String ALTERNATE = "alternate";
 	public static final String COLORANT_NAMES = "colorantNames";
 	public static final String COLORANTS = "Colorants";
@@ -130,6 +131,8 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 				return this.getColorants();
 			case PROCESS_COLOR:
 				return this.getProcessColor();
+			case TINT_TRANSFORM:
+				return this.getTintTransform();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -202,6 +205,14 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 			}
 		}
 		return Collections.unmodifiableList(list);
+	}
+	private List<GFPDFunction> getTintTransform() {
+		PDFunction pdFunction = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getTintTransform();
+		if (pdFunction == null) {
+			return Collections.emptyList();
+		}
+		GFPDFunction gfpdFunction = FunctionFactory.createFunction(pdFunction);
+		return Collections.singletonList(gfpdFunction);
 	}
 
 	private boolean isNullOrNotDictionary(COSObject toCheck) {
