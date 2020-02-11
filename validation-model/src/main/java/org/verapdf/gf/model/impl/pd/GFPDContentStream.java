@@ -90,7 +90,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		} else {
 			try {
 				COSObject contentStream = this.contentStream.getContents();
-				if (!contentStream.empty() && contentStream.getType() == COSObjType.COS_STREAM) {
+				if (contentStream.getType() == COSObjType.COS_STREAM || contentStream.getType() == COSObjType.COS_ARRAY) {
 					COSKey key = contentStream.getObjectKey();
 					if (key != null) {
 						if (StaticContainers.getTransparencyVisitedContentStreams().contains(key)) {
