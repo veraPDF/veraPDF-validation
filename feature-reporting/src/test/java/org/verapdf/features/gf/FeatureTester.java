@@ -65,7 +65,7 @@ public class FeatureTester {
         FeatureExtractionResult extractionResult = extractFeatures(type);
         Set<String> obtainedNodeSet = getFeatureTreeNodesStringList(extractionResult,
                 FILE_NAME_TYPE_MAP.get(type));
-        Assert.assertEquals(obtainedNodeSet, loadTreeNodeSetForType(type));
+        Assert.assertEquals(loadTreeNodeSetForType(type), obtainedNodeSet);
     }
 
     private static FeatureExtractionResult extractFeatures(String type)
