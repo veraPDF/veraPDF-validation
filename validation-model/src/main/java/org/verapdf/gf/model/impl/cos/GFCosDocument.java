@@ -243,6 +243,42 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	@Override
+	public Boolean getDisplayDocTitle() {
+		if (this.catalog != null) {
+			COSObject viewerPrefObject = this.catalog.getKey(ASAtom.VIEWER_PREFERENCES);
+			if (viewerPrefObject == null || viewerPrefObject.empty()) {
+				return null;
+			}
+			COSBase viewerPref = viewerPrefObject.getDirectBase();
+			if (viewerPref.getType() == COSObjType.COS_DICT) {
+				return viewerPref.getBooleanKey(ASAtom.DISPLAY_DOC_TITLE);
+			}
+			LOGGER.log(Level.WARNING,
+					"viewerPref must be a 'COSDictionary' but got: " + viewerPrefObject.getType());
+			return null;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getSuspects() {
+		if (this.catalog != null) {
+			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
+			if (markInfoObject == null || markInfoObject.empty()) {
+				return null;
+			}
+			COSBase markInfo = markInfoObject.getDirectBase();
+			if (markInfo.getType() == COSObjType.COS_DICT) {
+				return markInfo.getBooleanKey(ASAtom.SUSPECTS);
+			}
+			LOGGER.log(Level.WARNING,
+					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
+			return null;
+		}
+		return null;
+	}
+
+	@Override
 	public String getRequirements() {
 		if (this.catalog != null) {
 			COSObject reqArrayObject = this.catalog.getKey(ASAtom.REQUIREMENTS);
