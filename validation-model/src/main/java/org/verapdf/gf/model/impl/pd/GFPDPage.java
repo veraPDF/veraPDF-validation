@@ -270,4 +270,9 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		return this.simplePDObject == null ? Boolean.valueOf(false) :
 				this.simplePDObject.knownKey(ASAtom.AA);
 	}
+
+	@Override
+	public String getTabs() {
+		return this.simplePDObject == null ? null: this.simplePDObject.getStringKey(ASAtom.TABS);
+	}
 }
