@@ -21,32 +21,38 @@
 package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.cos.COSString;
-import org.verapdf.model.coslayer.CosLang;
+import org.verapdf.model.coslayer.CosTextString;
 
 /**
- * Lang type.
- * @author Sergey Shemyakov
+ * @author Maxim Plushchov
  */
-public class GFCosLang extends GFCosTextString implements CosLang {
+public class GFCosTextString extends GFCosString implements CosTextString {
 
-    /** Type name for GFCosLang */
-    public static final String COS_LANG_TYPE = "CosLang";
+    /** Type name for GFCosTextString */
+    public static final String COS_TEXT_STRING_TYPE = "CosTextString";
+    private final String unicodeValue;
 
     /**
      * Default constructor
-     * @param cosString is Lang object COSString.
+     * @param cosString is COSTextString object COSString.
      */
-    public GFCosLang(COSString cosString) {
-        this(cosString, COS_LANG_TYPE);
+    public GFCosTextString(COSString cosString) {
+        this(cosString, COS_TEXT_STRING_TYPE);
     }
 
     /**
      * Constructor for child classes
-     * @param cosString is Lang COSString.
+     * @param cosString is COSString.
      * @param type child class type.
      */
-    public GFCosLang(COSString cosString, final String type) {
+    public GFCosTextString(COSString cosString, final String type) {
         super(cosString, type);
+        this.unicodeValue = cosString.getString();
+    }
+
+    @Override
+    public String getunicodeValue() {
+        return this.unicodeValue;
     }
 
 }
