@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.model.selayer.SEFigure;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
@@ -30,5 +31,15 @@ public class GFSEFigure extends GFSEGeneral implements SEFigure {
 
     public GFSEFigure(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.FIGURE, FIGURE_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    @Override
+    public String getActualText() {
+        return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.ACTUAL_TEXT);
+    }
+
+    @Override
+    public String getAlt() {
+        return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.ALT);
     }
 }

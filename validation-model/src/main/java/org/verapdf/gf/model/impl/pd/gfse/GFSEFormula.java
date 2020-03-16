@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.model.selayer.SEFormula;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
@@ -30,5 +31,10 @@ public class GFSEFormula extends GFSEGeneral implements SEFormula {
 
     public GFSEFormula(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.FORMULA, FORMULA_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    @Override
+    public String getAlt() {
+        return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.ALT);
     }
 }
