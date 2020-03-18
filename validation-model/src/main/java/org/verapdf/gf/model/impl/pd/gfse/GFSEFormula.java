@@ -32,9 +32,4 @@ public class GFSEFormula extends GFSEGeneral implements SEFormula {
     public GFSEFormula(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.FORMULA, FORMULA_STRUCTURE_ELEMENT_TYPE);
     }
-
-    @Override
-    public String getAlt() {
-        return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.ALT);
-    }
 }
