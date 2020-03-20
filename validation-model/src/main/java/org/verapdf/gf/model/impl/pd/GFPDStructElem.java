@@ -125,6 +125,21 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		return getStructureElementStandardType((org.verapdf.pd.structure.PDStructElem)simplePDObject);
 	}
 
+	@Override
+	public String getAlt() {
+		return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.ALT);
+	}
+
+	@Override
+	public String getActualText() {
+		return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.ACTUAL_TEXT);
+	}
+
+	@Override
+	public String getE() {
+		return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.E);
+	}
+
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
 		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_4) {
 			StructureType defaultStructureType = pdStructElem.getDefaultStructureType();
