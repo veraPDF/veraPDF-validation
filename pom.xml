@@ -74,9 +74,9 @@
   </modules>
 
   <properties>
-    <verapdf.parser.version>[1.16.0-RC1,1.17.0)</verapdf.parser.version>
-    <verapdf.pdfmodel.version>[1.16.0-RC1,1.17.0)</verapdf.pdfmodel.version>
-    <verapdf.library.version>[1.16.0-RC1,1.17.0)</verapdf.library.version>
+    <verapdf.parser.version>[1.17.0,1.18.0-RC)</verapdf.parser.version>
+    <verapdf.pdfmodel.version>[1.17.0,1.18.0-RC)</verapdf.pdfmodel.version>
+    <verapdf.library.version>[1.17.0,1.18.0-RC)</verapdf.library.version>
   </properties>
 
   <dependencyManagement>
