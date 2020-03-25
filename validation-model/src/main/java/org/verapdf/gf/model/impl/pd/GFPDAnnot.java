@@ -24,6 +24,8 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSInteger;
 import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -37,6 +39,8 @@ import org.verapdf.pd.PDAppearanceEntry;
 import org.verapdf.pd.PDAppearanceStream;
 import org.verapdf.pd.PDGroup;
 import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
@@ -136,6 +140,24 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	@Override
 	public Boolean getcontainsAA() {
 		return this.simplePDObject.knownKey(ASAtom.AA);
+	}
+
+	@Override
+	public String getstructParentType() {
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structParent = parentTreeRoot.getObject(((PDAnnotation) simplePDObject).getStructParent());
+			if (structParent != null && structParent.getType() == COSObjType.COS_DICT) {
+				return structParent.getStringKey(ASAtom.S);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public String getContents() {
+		return ((PDAnnotation) simplePDObject).getContents();
 	}
 
 	private static Double getDifference(double[] array, int shift) {

@@ -29,15 +29,23 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.OperatorFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_EMC;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEMarkedContent;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEUnmarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;
+import org.verapdf.model.selayer.SEContentItem;
 import org.verapdf.parser.PDFStreamParser;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,6 +59,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	public static final String CONTENT_STREAM_TYPE = "PDContentStream";
 
 	public static final String OPERATORS = "operators";
+
+	public static final String CONTENT = "content";
 
 	private PDResourcesHandler resourcesHandler;
 
@@ -71,10 +81,46 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
-		if (OPERATORS.equals(link)) {
-			return this.getOperators();
+		switch (link) {
+			case OPERATORS:
+				return this.getOperators();
+			case CONTENT:
+				return this.getContentItem();
+			default:
+				return super.getLinkedObjects(link);
 		}
-		return super.getLinkedObjects(link);
+	}
+
+	private List<SEContentItem> getContentItem() {
+		if (this.operators == null) {
+			parseOperators();
+		}
+		int unmarkedContentIndex = 0;
+		int markedContentIndex = -1;
+		Stack<Integer> markedContentStack = new Stack<>();
+		List<SEContentItem> list = new ArrayList<>();
+		for (int i = 0; i < operators.size(); i++) {
+			String type = operators.get(i).getObjectType();
+			if (type.equals(GFOp_BDC.OP_BDC_TYPE) || type.equals(GFOp_BMC.OP_BMC_TYPE)) {
+				if (markedContentStack.empty() && i != markedContentIndex + 1) {
+					list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, i)));
+				}
+				markedContentStack.push(i);
+			} else if (type.equals(GFOp_EMC.OP_EMC_TYPE)) {
+				if (!markedContentStack.empty()) {
+					markedContentIndex = markedContentStack.pop();
+					if (markedContentStack.empty()) {
+						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1)));
+						markedContentIndex = i;
+						unmarkedContentIndex = i + 1;
+					}
+				}
+			}
+		}
+		if (unmarkedContentIndex != operators.size()) {
+			list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, operators.size() - 1)));
+		}
+		return Collections.unmodifiableList(list);
 	}
 
 	private List<Operator> getOperators() {
