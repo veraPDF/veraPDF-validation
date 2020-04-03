@@ -60,6 +60,9 @@ public class StaticContainers {
 
 	private static ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
 
+	//SENote
+	private static ThreadLocal<Set<String>> noteIDSet = new ThreadLocal<>();
+
 	public static void clearAllContainers() {
 		document.set(null);
 		flavour.set(null);
@@ -71,6 +74,7 @@ public class StaticContainers {
 		fileSpecificationKeys.set(new HashSet<>());
 		transparencyVisitedContentStreams.set(new Stack<>());
 		cachedGlyphs.set(new HashMap<>());
+		noteIDSet.set(new HashSet<>());
 		validPDF.set(true);
 	}
 
@@ -156,6 +160,17 @@ public class StaticContainers {
 
 	public static void setFileSpecificationKeys(Set<COSKey> fileSpecificationKeys) {
 		StaticContainers.fileSpecificationKeys.set(fileSpecificationKeys);
+	}
+
+	public static Set<String> getNoteIDSet() {
+		if (noteIDSet.get() == null) {
+			noteIDSet.set(new HashSet<>());
+		}
+		return noteIDSet.get();
+	}
+
+	public static void setNoteIDSet(Set<String> noteIDSet) {
+		StaticContainers.noteIDSet.set(noteIDSet);
 	}
 
 	public static Stack<COSKey> getTransparencyVisitedContentStreams() {

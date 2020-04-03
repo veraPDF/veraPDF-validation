@@ -112,6 +112,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Map<String, List<GFPDSeparation>> separations;
 	private List<String> inconsistentSeparations;
 	private Map<String, PDColorSpace> cachedColorSpaces;
+	private Set<String> noteIDSet;
 	private Set<COSKey> fileSpecificationKeys;
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
@@ -132,6 +133,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.cachedPDFonts = StaticContainers.getCachedFonts();
 		this.roleMapHelper = StaticContainers.getRoleMapHelper();
 		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
+		this.noteIDSet = StaticContainers.getNoteIDSet();
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
 		this.validPDF = StaticContainers.getValidPDF();
 		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
@@ -155,6 +157,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setCachedFonts(this.cachedPDFonts);
 		StaticContainers.setRoleMapHelper(this.roleMapHelper);
 		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
+		StaticContainers.setNoteIDSet(this.noteIDSet);
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
 		StaticContainers.setValidPDF(this.validPDF);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
