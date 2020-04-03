@@ -20,15 +20,38 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.model.selayer.SENote;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class GFSENote extends GFSEGeneral implements SENote {
 
     public static final String NOTE_STRUCTURE_ELEMENT_TYPE = "SENote";
 
+    public String noteID;
+
+    public boolean hasDuplicateNoteID;
+
     public GFSENote(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.NOTE, NOTE_STRUCTURE_ELEMENT_TYPE);
+        noteID = this.simplePDObject == null ? null : simplePDObject.getStringKey(ASAtom.ID);
+        if (noteID != null) {
+            hasDuplicateNoteID = !StaticContainers.getNoteIDSet().add(noteID);
+        }
+    }
+
+    @Override
+    public String getnoteID() {
+        return noteID;
+    }
+
+    @Override
+    public Boolean gethasDuplicateNoteID() {
+        return hasDuplicateNoteID;
     }
 }
