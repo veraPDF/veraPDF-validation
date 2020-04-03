@@ -35,6 +35,7 @@ import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.ArrayList;
@@ -101,6 +102,34 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	@Override
+	public Boolean gethasCorrectNumberedHeadings() {
+		List<Integer> list =
+				this.getChildren()
+				.stream()
+				.map(PDStructElem::getstandardType)
+				.filter(obj -> obj.matches(TaggedPDFConstants.HN_REGEXP))
+				.map(obj -> new Integer(obj.substring(1)))
+				.collect(Collectors.toList());
+		int lastNestingLevel = 0;
+		for (int nestingLevel : list) {
+			if (nestingLevel > lastNestingLevel + 1) {
+				return false;
+			}
+			lastNestingLevel = nestingLevel;
+		}
+		return true;
+	}
+
+	@Override
+	public String getparentStandardType() {
+		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();
+		if (parent != null) {
+			return getStructureElementStandardType(parent);
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean gethasContentItems() {
 		COSObject children = this.simplePDObject.getKey(ASAtom.K);
 		if (children == null) {
@@ -126,18 +155,28 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	@Override
+	public Boolean getisRemappedStandardType() {
+		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
+		if (type != null && TaggedPDFHelper.isStandardType(type)) {
+			String actualType = type.getType().getValue();
+			return !actualType.equals(getStructureElementStandardType((org.verapdf.pd.structure.PDStructElem)simplePDObject));
+		}
+		return false;
+	}
+
+	@Override
 	public String getAlt() {
-		return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.ALT);
+		return ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getAlternateDescription();
 	}
 
 	@Override
 	public String getActualText() {
-		return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.ACTUAL_TEXT);
+		return ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getActualText();
 	}
 
 	@Override
 	public String getE() {
-		return this.simplePDObject == null ? null : this.simplePDObject.getStringKey(ASAtom.E);
+		return ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getExpandedAbbreviation();
 	}
 
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){

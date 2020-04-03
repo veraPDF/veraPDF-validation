@@ -169,6 +169,8 @@ class OperatorParser {
 				processedOperators.add(new GFOp_EMC(arguments));
 				if (!this.markedContentStack.empty()) {
 					this.markedContentStack.pop();
+				} else {
+					LOGGER.log(Level.WARNING, "Operator (EMC) not inside marked content");
 				}
 				break;
 			case Operators.MP:
