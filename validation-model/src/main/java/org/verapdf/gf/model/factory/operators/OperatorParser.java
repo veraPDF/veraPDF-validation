@@ -161,7 +161,7 @@ class OperatorParser {
 						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 					checkAFKey(arguments, resourcesHandler);
 				}
-				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler);
+				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, structureElementAccessObject);
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
 				break;
@@ -328,6 +328,12 @@ class OperatorParser {
 				break;
 			case Operators.TF:
 				this.graphicState.setFont(resourcesHandler.getFont(getFirstCOSName(arguments)));
+				COSNumber scaleFactor = (COSNumber)arguments.get(1);
+				if (scaleFactor.getType() == COSObjType.COS_INTEGER) {
+					this.graphicState.setScaleFactor(((COSInteger)scaleFactor).getReal());
+				} else if(scaleFactor.getType() == COSObjType.COS_REAL) {
+					this.graphicState.setScaleFactor(((COSReal)scaleFactor).get());
+				}
 				processedOperators.add(new GFOp_Tf(arguments));
 				break;
 			case Operators.TC:
