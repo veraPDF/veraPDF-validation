@@ -273,6 +273,6 @@ public class GFPDPage extends GFPDObject implements PDPage {
 
 	@Override
 	public String getTabs() {
-		return this.simplePDObject == null ? null: this.simplePDObject.getStringKey(ASAtom.TABS);
+		return ((org.verapdf.pd.PDPage)this.simplePDObject).getTabs();
 	}
 }
