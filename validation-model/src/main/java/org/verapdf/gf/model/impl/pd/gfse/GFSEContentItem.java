@@ -82,7 +82,7 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
                 if (!markedContentStack.empty()) {
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
-                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1)));
+                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), ((GFSEMarkedContent)this).gettag()));
                         markedContentIndex = i;
                     }
                 }

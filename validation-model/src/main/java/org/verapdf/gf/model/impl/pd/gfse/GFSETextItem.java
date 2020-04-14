@@ -51,8 +51,9 @@ public class GFSETextItem extends GFSEContentItem implements SETextItem {
 
     @Override
     public String getsuspectRole() {
-        if (getscaleFactor() >= 14) {
-            return "Heading";
+        if ((opTextShow.getPrevScaleFactor() != null && opTextShow.getScaleFactor() > opTextShow.getPrevScaleFactor())
+            || (opTextShow.getNextScaleFactor() != null && opTextShow.getScaleFactor() > opTextShow.getNextScaleFactor())) {
+            return "H";
         }
         return "P";
     }

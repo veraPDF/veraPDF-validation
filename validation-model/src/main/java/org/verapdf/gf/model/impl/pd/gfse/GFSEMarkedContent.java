@@ -37,6 +37,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
     public static final String MARKED_CONTENT_TYPE = "SEMarkedContent";
 
     private GFOpMarkedContent operator;
+    String parentTag;
 
     public GFSEMarkedContent() {
         super(MARKED_CONTENT_TYPE);
@@ -46,10 +47,11 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
         super(objectType);
     }
 
-    public GFSEMarkedContent(List<Operator> operators) {
+    public GFSEMarkedContent(List<Operator> operators, String parentTag) {
         super(MARKED_CONTENT_TYPE);
         this.operators = operators.subList(1, operators.size() - 1);
-        operator = (GFOpMarkedContent)operators.get(0);
+        this.operator = (GFOpMarkedContent)operators.get(0);
+        this.parentTag = parentTag;
     }
 
     @Override
@@ -69,6 +71,11 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
             }
         }
         return null;
+    }
+
+    @Override
+    public String getparentTag() {
+        return parentTag;
     }
 
 }

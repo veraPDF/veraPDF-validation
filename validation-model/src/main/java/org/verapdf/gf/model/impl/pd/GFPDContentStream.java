@@ -32,6 +32,9 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_EMC;
+import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
+import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
+import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEMarkedContent;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEUnmarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -95,6 +98,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		if (this.operators == null) {
 			parseOperators();
 		}
+		getNextScaleFactors();
 		int unmarkedContentIndex = 0;
 		int markedContentIndex = -1;
 		Stack<Integer> markedContentStack = new Stack<>();
@@ -110,7 +114,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				if (!markedContentStack.empty()) {
 					markedContentIndex = markedContentStack.pop();
 					if (markedContentStack.empty()) {
-						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1)));
+						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), null));
 						markedContentIndex = i;
 						unmarkedContentIndex = i + 1;
 					}
@@ -187,4 +191,16 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		}
 		return containsTransparency;
 	}
+
+	private void getNextScaleFactors() {
+		Double scaleFactor = null;
+		for(int i = operators.size() - 1; i >= 0; i--) {
+			Operator operator = operators.get(i);
+			if(operator.getObjectType().equals(GFOp_Tj.OP_TJ_TYPE) || operator.getObjectType().equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
+				((GFOpTextShow)operator).setNextScaleFactor(scaleFactor);
+				scaleFactor = ((GFOpTextShow)operator).getScaleFactor();
+			}
+		}
+	}
+
 }
