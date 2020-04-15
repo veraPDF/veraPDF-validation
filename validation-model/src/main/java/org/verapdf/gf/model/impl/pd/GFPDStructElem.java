@@ -94,28 +94,23 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	@Override
 	public String getkidsStandardTypes() {
-		return this.getChildren()
-		           .stream()
-		           .map(PDStructElem::getstandardType)
-		           .filter(Objects::nonNull)
-		           .collect(Collectors.joining("&"));
+		return this.getChildrenStandardTypes()
+				.stream()
+				.filter(Objects::nonNull)
+				.collect(Collectors.joining("&"));
 	}
 
 	@Override
 	public Boolean gethasCorrectNumberedHeadings() {
-		List<Integer> list =
-				this.getChildren()
-				.stream()
-				.map(PDStructElem::getstandardType)
-				.filter(obj -> obj.matches(TaggedPDFConstants.HN_REGEXP))
-				.map(obj -> new Integer(obj.substring(1)))
-				.collect(Collectors.toList());
 		int lastNestingLevel = 0;
-		for (int nestingLevel : list) {
-			if (nestingLevel > lastNestingLevel + 1) {
-				return false;
+		for (String childrenType : this.getChildrenStandardTypes()) {
+			if (childrenType != null && childrenType.matches(TaggedPDFConstants.HN_REGEXP)) {
+				int nestingLevel = new Integer(childrenType.substring(1));
+				if (nestingLevel > lastNestingLevel + 1) {
+					return false;
+				}
+				lastNestingLevel = nestingLevel;
 			}
-			lastNestingLevel = nestingLevel;
 		}
 		return true;
 	}
@@ -206,6 +201,18 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<String> getChildrenStandardTypes() {
+		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getChildren();
+		if (!elements.isEmpty()) {
+			List<String> res = new ArrayList<>(elements.size());
+			for (org.verapdf.pd.structure.PDStructElem element : elements) {
+				res.add(getStructureElementStandardType(element));
+			}
+			return Collections.unmodifiableList(res);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<PDStructElem> getChildren() {
