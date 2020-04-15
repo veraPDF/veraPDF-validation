@@ -20,9 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.model.pdlayer.PDEncryption;
-import org.verapdf.pd.PDObject;
 
 /**
  * @author Maxim Plushchov

@@ -265,7 +265,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
 			if (markInfoObject == null || markInfoObject.empty()) {
-				return false;
+				return null;
 			}
 			COSBase markInfo = markInfoObject.getDirectBase();
 			if (markInfo.getType() == COSObjType.COS_DICT) {
@@ -273,9 +273,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			}
 			LOGGER.log(Level.WARNING,
 					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
-			return false;
+			return null;
 		}
-		return false;
+		return null;
 	}
 
 	@Override
