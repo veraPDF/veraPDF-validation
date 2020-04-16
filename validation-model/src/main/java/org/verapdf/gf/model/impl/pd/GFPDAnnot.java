@@ -24,12 +24,15 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSInteger;
 import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDAnnot;
@@ -62,6 +65,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final String IC = "IC";
 	public static final String A = "A";
 	public static final String ADDITIONAL_ACTION = "AA";
+	public static final String LANG = "Lang";
 
 	public static final int MAX_COUNT_OF_ACTIONS = 10;
 	public static final int X_AXIS = 0;
@@ -155,6 +159,23 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return null;
 	}
 
+	private List<CosLang> getLang() {
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot.getObject(((PDAnnotation)this.simplePDObject).getStructParent());
+			if (structureElement != null) {
+				COSObject baseLang = structureElement.getKey(ASAtom.LANG);
+				if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
+					List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+					list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
+					return Collections.unmodifiableList(list);
+				}
+			}
+		}
+		return Collections.emptyList();
+	}
+
 	@Override
 	public String getContents() {
 		return ((PDAnnotation) simplePDObject).getContents();
@@ -185,6 +206,8 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 				return this.getC();
 			case APPEARANCE:
 				return this.getAppearance();
+			case LANG:
+				return this.getLang();
 			default:
 				return super.getLinkedObjects(link);
 		}
