@@ -51,10 +51,13 @@ public class GFSETextItem extends GFSEContentItem implements SETextItem {
 
     @Override
     public String getsuspectRole() {
-        if ((opTextShow.getPrevScaleFactor() != null && opTextShow.getScaleFactor() > opTextShow.getPrevScaleFactor())
-            || (opTextShow.getNextScaleFactor() != null && opTextShow.getScaleFactor() > opTextShow.getNextScaleFactor())) {
-            return "H";
+        if (opTextShow.getScaleFactor() != null) {
+            if ((opTextShow.getPrevScaleFactor() != null && opTextShow.getScaleFactor() > opTextShow.getPrevScaleFactor())
+                    || (opTextShow.getNextScaleFactor() != null && opTextShow.getScaleFactor() > opTextShow.getNextScaleFactor())) {
+                return "H";
+            }
+            return "P";
         }
-        return "P";
+        return null;
     }
 }

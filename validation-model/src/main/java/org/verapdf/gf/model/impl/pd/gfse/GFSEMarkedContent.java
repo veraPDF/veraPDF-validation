@@ -37,7 +37,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
     public static final String MARKED_CONTENT_TYPE = "SEMarkedContent";
 
     private GFOpMarkedContent operator;
-    String parentTag;
+    private String parentTag;
 
     public GFSEMarkedContent() {
         super(MARKED_CONTENT_TYPE);

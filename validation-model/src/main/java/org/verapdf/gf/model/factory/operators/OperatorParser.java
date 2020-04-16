@@ -328,11 +328,12 @@ class OperatorParser {
 				break;
 			case Operators.TF:
 				this.graphicState.setFont(resourcesHandler.getFont(getFirstCOSName(arguments)));
-				COSNumber scaleFactor = (COSNumber)arguments.get(1);
-				if (scaleFactor.getType() == COSObjType.COS_INTEGER) {
-					this.graphicState.setScaleFactor(((COSInteger)scaleFactor).getReal());
-				} else if(scaleFactor.getType() == COSObjType.COS_REAL) {
-					this.graphicState.setScaleFactor(((COSReal)scaleFactor).get());
+				if(arguments.size() > 1) {
+					COSBase scaleFactor = arguments.get(1);
+					if(scaleFactor.getType() == COSObjType.COS_REAL || scaleFactor.getType() == COSObjType.COS_INTEGER) {
+						this.graphicState.setPrevScaleFactor(this.graphicState.getScaleFactor());
+						this.graphicState.setScaleFactor(((COSNumber)scaleFactor).getReal());
+					}
 				}
 				processedOperators.add(new GFOp_Tf(arguments));
 				break;
