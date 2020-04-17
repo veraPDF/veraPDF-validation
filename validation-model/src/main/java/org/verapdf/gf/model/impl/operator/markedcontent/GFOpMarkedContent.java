@@ -74,7 +74,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		}
 	}
 
-    protected List<CosName> getTag() {
+    public List<CosName> getTag() {
         if (this.arguments.size() > 1) {
 			COSBase name = this.arguments.get(this.arguments.size() - 2);
 			if (name.getType() == COSObjType.COS_NAME) {
