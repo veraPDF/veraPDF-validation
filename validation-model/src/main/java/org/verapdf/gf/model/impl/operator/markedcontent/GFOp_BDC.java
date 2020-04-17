@@ -24,6 +24,7 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_BDC;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.List;
 
@@ -34,9 +35,12 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 
 	/** Type name for {@code GFOp_BDC} */
     public static final String OP_BDC_TYPE = "Op_BDC";
+	public final StructureElementAccessObject structureElementAccessObject;
 
-    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources) {
+
+    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources, StructureElementAccessObject structureElementAccessObject) {
         super(arguments, OP_BDC_TYPE, resources);
+		this.structureElementAccessObject = structureElementAccessObject;
     }
 
 	@Override
