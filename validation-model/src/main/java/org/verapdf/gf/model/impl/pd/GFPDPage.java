@@ -85,6 +85,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 */
 	private static final String ART_BOX = "ArtBox";
 
+	public static final String PORTRAIT_ORIENTATION = "Portrait";
+	public static final String LANDSCAPE_ORIENTATION = "Landscape";
+	public static final String SQUARE_ORIENTATION = "Square";
+
 	public static final int MAX_NUMBER_OF_ACTIONS = 2;
 
 	private boolean containsTransparency = false;
@@ -274,5 +278,20 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	@Override
 	public String getTabs() {
 		return ((org.verapdf.pd.PDPage)this.simplePDObject).getTabs();
+	}
+
+	@Override
+	public String getorientation() {
+		CosBBox mediaBox = new GFCosBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSMediaBox());
+		double height = mediaBox.gettop() - mediaBox.getbottom();
+		double width = mediaBox.getright() - mediaBox.getleft();
+		long rotation = ((org.verapdf.pd.PDPage) simplePDObject).getRotation();
+		if ((height > width && rotation % 180 == 0) || (height < width && rotation % 180 == 90)) {
+			return PORTRAIT_ORIENTATION;
+		}
+		if ((height < width && rotation % 180 == 0) || (height > width && rotation % 180 == 90)) {
+			return LANDSCAPE_ORIENTATION;
+		}
+		return SQUARE_ORIENTATION;
 	}
 }
