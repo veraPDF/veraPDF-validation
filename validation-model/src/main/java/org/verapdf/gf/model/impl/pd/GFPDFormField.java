@@ -21,12 +21,20 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSString;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.pd.signature.GFPDSignatureField;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDFormField;
 import org.verapdf.pd.actions.PDFormFieldActions;
 import org.verapdf.pd.form.PDSignatureField;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,6 +47,8 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     public static final String FORM_FIELD_TYPE = "PDFormField";
 
     public static final String ADDITIONAL_ACTION = "AA";
+
+    public static final String LANG = "Lang";
 
     public static final int MAX_NUMBER_OF_ACTIONS = 4;
 
@@ -68,12 +78,38 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
         return this.simplePDObject.knownKey(ASAtom.AA);
     }
 
+    private List<CosLang> getLang() {
+        PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+        if (structTreeRoot != null) {
+            PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+            COSObject structureElement = parentTreeRoot.getObject(((org.verapdf.pd.form.PDFormField)this.simplePDObject).getStructParent());
+            if (structureElement != null) {
+                COSObject baseLang = structureElement.getKey(ASAtom.LANG);
+                if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
+                    List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                    list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
+                    return Collections.unmodifiableList(list);
+                }
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public String getTU() {
+        return ((org.verapdf.pd.form.PDFormField)this.simplePDObject).getTU();
+    }
+
     @Override
     public List<? extends Object> getLinkedObjects(String link) {
-        if (ADDITIONAL_ACTION.equals(link)) {
-            return this.getAdditionalAction();
+        switch (link) {
+            case ADDITIONAL_ACTION:
+                return this.getAdditionalAction();
+            case LANG:
+                return this.getLang();
+            default:
+                return super.getLinkedObjects(link);
         }
-        return super.getLinkedObjects(link);
     }
 
     private List<PDAction> getAdditionalAction() {

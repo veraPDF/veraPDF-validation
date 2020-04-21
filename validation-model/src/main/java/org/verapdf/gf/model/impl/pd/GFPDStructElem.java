@@ -174,6 +174,12 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		return ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getExpandedAbbreviation();
 	}
 
+	@Override
+	public Boolean getcircularMappingExist() {
+		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
+		return type != null ? StaticContainers.getRoleMapHelper().circularMappingExist(type.getType()) : null;
+	}
+
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
 		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_4) {
 			StructureType defaultStructureType = pdStructElem.getDefaultStructureType();

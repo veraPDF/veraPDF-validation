@@ -32,8 +32,8 @@ import java.util.*;
 public class TaggedPDFRoleMapHelper {
 
 	//TODO Move both sets into the parser level
-	private static Set<String> PDF_1_4_STANDART_ROLE_TYPES;
-	private static Set<String> PDF_1_7_STANDART_ROLE_TYPES;
+	private static Set<String> PDF_1_4_STANDARD_ROLE_TYPES;
+	private static Set<String> PDF_1_7_STANDARD_ROLE_TYPES;
 
 	static {
 		Set<String> tempSet = new HashSet<>();
@@ -87,7 +87,7 @@ public class TaggedPDFRoleMapHelper {
 		tempSet.add("Formula");
 		tempSet.add("Form");
 
-		PDF_1_4_STANDART_ROLE_TYPES = new HashSet<>(tempSet);
+		PDF_1_4_STANDARD_ROLE_TYPES = new HashSet<>(tempSet);
 
 		//Standard structure types for table elements PDF 1.7
 		tempSet.add("THead");
@@ -107,7 +107,7 @@ public class TaggedPDFRoleMapHelper {
 		tempSet.add("WT");
 		tempSet.add("WP");
 
-		PDF_1_7_STANDART_ROLE_TYPES = new HashSet<>(tempSet);
+		PDF_1_7_STANDARD_ROLE_TYPES = new HashSet<>(tempSet);
 	}
 
 	private Map<ASAtom, ASAtom> roleMap;
@@ -134,10 +134,10 @@ public class TaggedPDFRoleMapHelper {
 		boolean isFastStop;
 		PDFAFlavour flavour = StaticContainers.getFlavour();
 		if (flavour != null && flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
-			currentStandardTypes = PDF_1_4_STANDART_ROLE_TYPES;
+			currentStandardTypes = PDF_1_4_STANDARD_ROLE_TYPES;
 			isFastStop = true;
 		} else {
-			currentStandardTypes = PDF_1_7_STANDART_ROLE_TYPES;
+			currentStandardTypes = PDF_1_7_STANDARD_ROLE_TYPES;
 			isFastStop = false;
 		}
 		return getStandardType(type, currentStandardTypes, isFastStop);
@@ -160,5 +160,22 @@ public class TaggedPDFRoleMapHelper {
 			res = roleMap.get(res);
 		}
 		return null;
+	}
+
+	public Boolean circularMappingExist(ASAtom type) {
+		if (type == null) {
+			return null;
+		}
+		Set<ASAtom> visitedTypes = new HashSet<>();
+		visitedTypes.add(type);
+		ASAtom res = roleMap.get(type);
+		while (res != null) {
+			if(visitedTypes.contains(res)) {
+				return true;
+			}
+			visitedTypes.add(res);
+			res = roleMap.get(res);
+		}
+		return false;
 	}
 }
