@@ -114,7 +114,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				if (!markedContentStack.empty()) {
 					markedContentIndex = markedContentStack.pop();
 					if (markedContentStack.empty()) {
-						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), null));
+						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1)));
 						markedContentIndex = i;
 						unmarkedContentIndex = i + 1;
 					}
