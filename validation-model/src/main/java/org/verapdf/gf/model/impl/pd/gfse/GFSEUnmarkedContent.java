@@ -20,25 +20,48 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
+import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
+import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Operator;
+import org.verapdf.model.selayer.SEContentItem;
 import org.verapdf.model.selayer.SEUnmarkedContent;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedContent {
 
     public static final String UNMARKED_CONTENT_TYPE = "SEUnmarkedContent";
 
-    public GFSEUnmarkedContent() {
-        super(UNMARKED_CONTENT_TYPE);
-    }
-
-    protected GFSEUnmarkedContent(String objectType) {
-        super(objectType);
-    }
-
     public GFSEUnmarkedContent(List<Operator> operators) {
         super(UNMARKED_CONTENT_TYPE, operators);
+    }
+
+    @Override
+    public List<? extends Object> getLinkedObjects(String link) {
+        switch (link) {
+            case CONTENT_ITEM:
+                return this.getContentItem();
+            default:
+                return super.getLinkedObjects(link);
+        }
+    }
+
+    private List<SEContentItem> getContentItem() {
+        if (operators == null) {
+            return Collections.emptyList();
+        }
+        List<SEContentItem> list = new ArrayList<>();
+        for (Operator operator : operators) {
+            String type = operator.getObjectType();
+            if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
+                list.add(new GFSETextItem((GFOpTextShow)operator));
+            }
+        }
+        return Collections.unmodifiableList(list);
     }
 
 }
