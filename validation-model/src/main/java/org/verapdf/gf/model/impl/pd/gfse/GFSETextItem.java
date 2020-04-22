@@ -34,9 +34,9 @@ public class GFSETextItem extends GFSEContentItem implements SETextItem {
         this.opTextShow = opTextShow;
     }
 
-    protected GFSETextItem(GFOpTextShow opTextShow, String objectType) {
-        super(objectType);
-        this.opTextShow = opTextShow;
+    public GFSETextItem(GFOpTextShow opTextShow, Long parentMCID) {
+        this(opTextShow);
+        this.parentMCID = parentMCID;
     }
 
     @Override
