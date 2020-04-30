@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
@@ -46,6 +47,8 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     public static final String MARKED_CONTENT_TYPE = "SEMarkedContent";
 
+    public static final String LANG = "Lang";
+
     private GFOpMarkedContent operator;
     private String parentTag;
 
@@ -66,6 +69,8 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
         switch (link) {
             case CONTENT_ITEM:
                 return this.getContentItem();
+            case LANG:
+                return this.operator.getLang();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -119,6 +124,24 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
     @Override
     public String getparentTag() {
         return parentTag;
+    }
+
+    @Override
+    public String getE() {
+        COSString E = operator.getActualText();
+        return E != null ? E.toString() : null;
+    }
+
+    @Override
+    public String getAlt() {
+        COSString Alt = operator.getActualText();
+        return Alt != null ? Alt.toString() : null;
+    }
+
+    @Override
+    public String getActualText() {
+        COSString ActualText = operator.getActualText();
+        return ActualText != null ? ActualText.toString() : null;
     }
 
 }
