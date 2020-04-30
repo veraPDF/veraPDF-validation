@@ -95,7 +95,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
         return Collections.emptyList();
     }
 
-	protected List<CosLang> getLang() {
+	public List<CosLang> getLang() {
     	COSObject lang = getAttribute(ASAtom.LANG, COSObjType.COS_STRING);
     	if (lang != null) {
 			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
@@ -112,6 +112,16 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	 */
 	public COSString getActualText() {
 		COSObject actualText = getAttribute(ASAtom.ACTUAL_TEXT, COSObjType.COS_STRING);
+		return actualText == null ? null : (COSString) actualText.get();
+	}
+
+	public COSString getE() {
+		COSObject actualText = getAttribute(ASAtom.E, COSObjType.COS_STRING);
+		return actualText == null ? null : (COSString) actualText.get();
+	}
+
+	public COSString getAlt() {
+		COSObject actualText = getAttribute(ASAtom.ALT, COSObjType.COS_STRING);
 		return actualText == null ? null : (COSString) actualText.get();
 	}
 
