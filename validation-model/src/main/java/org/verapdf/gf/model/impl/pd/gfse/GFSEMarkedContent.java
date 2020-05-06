@@ -128,13 +128,13 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     @Override
     public String getE() {
-        COSString E = operator.getActualText();
+        COSString E = operator.getE();
         return E != null ? E.toString() : null;
     }
 
     @Override
     public String getAlt() {
-        COSString Alt = operator.getActualText();
+        COSString Alt = operator.getAlt();
         return Alt != null ? Alt.toString() : null;
     }
 
