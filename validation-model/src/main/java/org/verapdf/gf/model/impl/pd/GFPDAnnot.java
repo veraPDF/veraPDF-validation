@@ -203,35 +203,13 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	@Override
-	public Boolean getisRectangleOutsideCropBox() {
-		Long pageRotation = page.getRotation();
-		Double pageScaling = page.getScaling();
+	public Boolean getisOutsideCropBox() {
 		CosBBox cropBox = new GFCosBBox(page.getCOSCropBox());
 		double[] rectangle = ((PDAnnotation)simplePDObject).getRect();
 		double top = rectangle[3];
 		double left = rectangle[0];
-		boolean noRotate = ((PDAnnotation)simplePDObject).isNoRotate();
-		boolean noZoom = ((PDAnnotation)simplePDObject).isNoZoom();
-		if (!noZoom || pageScaling == null) {
-			pageScaling = 1.0;
-		}
-		if (!noRotate || pageRotation % 360 == 0) {
-			return pageScaling*cropBox.getbottom() >= top || pageScaling*cropBox.getleft() >= left + getwidth()
-					|| pageScaling*cropBox.gettop() <= top - getheight() || pageScaling*cropBox.getright() <= left;
-		}
-		if (pageRotation % 360 == 90) {
-			return pageScaling*cropBox.getbottom() >= top + getwidth() || pageScaling*cropBox.getleft() >= left + getheight()
-					|| pageScaling*cropBox.gettop() <= top || pageScaling*cropBox.getright() <= left;
-		}
-		if (pageRotation % 360 == 180) {
-			return pageScaling*cropBox.getbottom() >= top  + getheight() || pageScaling*cropBox.getleft() >= left
-					|| pageScaling*cropBox.gettop() <= top || pageScaling*cropBox.getright() <= left - getwidth();
-		}
-		if (pageRotation % 360 == 270) {
-			return pageScaling*cropBox.getbottom() >= top || pageScaling*cropBox.getleft() >= left
-					|| pageScaling*cropBox.gettop() <= top - getwidth() || pageScaling*cropBox.getright() <= left - getheight();
-		}
-		return null;
+		return cropBox.getbottom() >= top || cropBox.getleft() >= left + getwidth()
+			|| cropBox.gettop() <= top - getheight() || cropBox.getright() <= left;
 	}
 
 	private static Double getDifference(double[] array, int shift) {

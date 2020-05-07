@@ -20,18 +20,9 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
-import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSArray;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
 import org.verapdf.model.selayer.SETH;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class GFSETH extends GFSEGeneral implements SETH {
 
@@ -39,47 +30,5 @@ public class GFSETH extends GFSEGeneral implements SETH {
 
     public GFSETH(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TH, TH_STRUCTURE_ELEMENT_TYPE);
-    }
-
-    @Override
-    public String getTHID() {
-        return simplePDObject.getStringKey(ASAtom.ID);
-    }
-
-    @Override
-    public String getScope() {
-        COSObject A = simplePDObject.getKey(ASAtom.A);
-        if (A != null && A.getType() == COSObjType.COS_ARRAY) {
-            for (COSObject object : (COSArray)A.getDirectBase()) {
-                if (object.getStringKey(ASAtom.O).equals("Table")) {
-                    return object.getStringKey(ASAtom.SCOPE);
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public String getHeaders() {
-        COSObject A = simplePDObject.getKey(ASAtom.A);
-        if (A != null && A.getType() == COSObjType.COS_ARRAY) {
-            for (COSObject object : (COSArray)A.getDirectBase()) {
-                if (object.getStringKey(ASAtom.O).equals("Table")) {
-                    COSObject Headers = object.getKey(ASAtom.HEADERS);
-                    if (Headers != null && Headers.getType() == COSObjType.COS_ARRAY) {
-                        List<String> list = new LinkedList<>();
-                        for (COSObject elem : (COSArray)Headers.getDirectBase()) {
-                            if (elem.getType() == COSObjType.COS_STRING) {
-                                list.add(elem.getString());
-                            }
-                        }
-                        return list.stream()
-                                .filter(Objects::nonNull)
-                                .collect(Collectors.joining(" "));
-                    }
-                }
-            }
-        }
-        return null;
     }
 }
