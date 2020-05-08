@@ -122,7 +122,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 			}
 		}
 		if (unmarkedContentIndex != operators.size()) {
-			list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, operators.size() - 1)));
+			list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, operators.size())));
 		}
 		return Collections.unmodifiableList(list);
 	}

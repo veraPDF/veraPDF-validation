@@ -27,16 +27,19 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.cos.GFCosBBox;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosBBox;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDAnnot;
 import org.verapdf.model.pdlayer.PDContentStream;
+import org.verapdf.pd.PDPage;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDAppearanceEntry;
 import org.verapdf.pd.PDAppearanceStream;
@@ -72,13 +75,15 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final int Y_AXIS = 1;
 
 	private final PDResourcesHandler resources;
+	private final PDPage page;
 
 	private List<PDContentStream> appearance = null;
 	private boolean containsTransparency = false;
 
-	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources) {
+	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, ANNOTATION_TYPE);
 		this.resources = pageResources;
+		this.page = page;
 	}
 
 	@Override
@@ -179,6 +184,32 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	@Override
 	public String getContents() {
 		return ((PDAnnotation) simplePDObject).getContents();
+	}
+
+	@Override
+	public String getAlt() {
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot.getObject(this.simplePDObject.getIntegerKey(ASAtom.STRUCT_PARENT));
+			if (structureElement != null) {
+				COSObject baseAlt = structureElement.getKey(ASAtom.ALT);
+				if (baseAlt != null && baseAlt.getType() == COSObjType.COS_STRING) {
+					return baseAlt.getDirectBase().toString();
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getisOutsideCropBox() {
+		CosBBox cropBox = new GFCosBBox(page.getCOSCropBox());
+		double[] rectangle = ((PDAnnotation)simplePDObject).getRect();
+		double top = rectangle[3];
+		double left = rectangle[0];
+		return cropBox.getbottom() >= top || cropBox.getleft() >= left + getwidth()
+			|| cropBox.gettop() <= top - getheight() || cropBox.getright() <= left;
 	}
 
 	private static Double getDifference(double[] array, int shift) {
