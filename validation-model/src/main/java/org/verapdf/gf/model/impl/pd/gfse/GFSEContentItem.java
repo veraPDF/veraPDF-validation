@@ -46,6 +46,11 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
     }
 
     @Override
+    public String getExtraContext() {
+        return parentMCID != null ? "mcid:" + parentMCID : null;
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case CONTENT_ITEM:
