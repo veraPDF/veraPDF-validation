@@ -204,7 +204,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public Boolean getisOutsideCropBox() {
-		CosBBox cropBox = new GFCosBBox(page.getCOSCropBox());
+		COSArray cropBoxArray = page.getCOSCropBox();
+		if (cropBoxArray == null) {
+			cropBoxArray = page.getCOSMediaBox();
+		}
+		CosBBox cropBox = new GFCosBBox(cropBoxArray);
 		double[] rectangle = ((PDAnnotation)simplePDObject).getRect();
 		double top = rectangle[3];
 		double left = rectangle[0];
