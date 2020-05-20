@@ -103,6 +103,12 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
     }
 
     @Override
+    public String getExtraContext() {
+        Long mcid = operator.getMCID();
+        return mcid != null ?  "mcid:" + mcid : parentMCID != null ? "mcid:" + parentMCID : null;
+    }
+
+    @Override
     public String gettag() {
         return operator.getTag().get(0).getinternalRepresentation();
     }
