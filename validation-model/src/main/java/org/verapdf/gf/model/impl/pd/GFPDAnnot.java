@@ -154,11 +154,12 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	@Override
 	public String getstructParentType() {
 		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
-		if (structTreeRoot != null) {
+		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
+		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-			COSObject structParent = parentTreeRoot.getObject(((PDAnnotation) simplePDObject).getStructParent());
-			if (structParent != null && structParent.getType() == COSObjType.COS_DICT) {
-				return structParent.getStringKey(ASAtom.S);
+			COSObject structureElement = parentTreeRoot.getObject(structParent);
+			if (structureElement != null && structureElement.getType() == COSObjType.COS_DICT) {
+				return structureElement.getStringKey(ASAtom.S);
 			}
 		}
 		return null;
@@ -166,9 +167,10 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	private List<CosLang> getLang() {
 		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
-		if (structTreeRoot != null) {
+		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
+		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-			COSObject structureElement = parentTreeRoot.getObject(((PDAnnotation)this.simplePDObject).getStructParent());
+			COSObject structureElement = parentTreeRoot.getObject(structParent);
 			if (structureElement != null) {
 				COSObject baseLang = structureElement.getKey(ASAtom.LANG);
 				if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
@@ -189,9 +191,10 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	@Override
 	public String getAlt() {
 		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
-		if (structTreeRoot != null) {
+		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
+		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-			COSObject structureElement = parentTreeRoot.getObject(this.simplePDObject.getIntegerKey(ASAtom.STRUCT_PARENT));
+			COSObject structureElement = parentTreeRoot.getObject(structParent);
 			if (structureElement != null) {
 				COSObject baseAlt = structureElement.getKey(ASAtom.ALT);
 				if (baseAlt != null && baseAlt.getType() == COSObjType.COS_STRING) {

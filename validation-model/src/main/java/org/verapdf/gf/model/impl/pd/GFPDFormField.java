@@ -80,9 +80,10 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
 
     private List<CosLang> getLang() {
         PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
-        if (structTreeRoot != null) {
+        Long structParent = ((org.verapdf.pd.form.PDFormField)this.simplePDObject).getStructParent();
+        if (structTreeRoot != null && structParent != null) {
             PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-            COSObject structureElement = parentTreeRoot.getObject(((org.verapdf.pd.form.PDFormField)this.simplePDObject).getStructParent());
+            COSObject structureElement = parentTreeRoot.getObject(structParent);
             if (structureElement != null) {
                 COSObject baseLang = structureElement.getKey(ASAtom.LANG);
                 if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
