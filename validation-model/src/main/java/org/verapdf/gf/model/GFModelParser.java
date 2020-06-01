@@ -61,6 +61,8 @@ public class GFModelParser implements PDFAParser {
 			greenfieldDetails.getVersion(), "veraPDF greenfield PDF parser.");
 	private static final Logger logger = Logger.getLogger(GFModelParser.class.getCanonicalName());
 
+	private static final String PDFUA_PREFIX = "ua";
+
 	private PDDocument document;
 
 	private final PDFAFlavour flavour;
@@ -123,10 +125,17 @@ public class GFModelParser implements PDFAParser {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			Integer identificationPart = veraPDFMeta.getIdentificationPart();
 			String identificationConformance = veraPDFMeta.getIdentificationConformance();
+			String prefix = "";
+			if (identificationPart == null && identificationConformance == null) {
+				identificationPart = veraPDFMeta.getUAIdentificationPart();
+				if (identificationPart != null) {
+					prefix = PDFUA_PREFIX;
+				}
+			}
 			if (identificationConformance == null) {
 				identificationConformance = "";
 			}
-			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
+			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(prefix + identificationPart + identificationConformance);
 			// TODO: remove that logic after updating NO_FLAVOUR into base pdf validation flavour
 			if (pdfaFlavour == PDFAFlavour.NO_FLAVOUR) {
 				return defaultFlavour;
