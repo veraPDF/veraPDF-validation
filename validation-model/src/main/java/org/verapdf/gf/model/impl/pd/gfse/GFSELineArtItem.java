@@ -20,26 +20,23 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
-import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.model.selayer.SEHn;
-import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
+import org.verapdf.model.selayer.SELineArtItem;
 
-public class GFSEHn extends GFSEGeneral implements SEHn {
+public class GFSELineArtItem extends GFSEContentItem implements SELineArtItem {
 
-    public static final String HN_STRUCTURE_ELEMENT_TYPE = "SEHn";
+    public static final String LINE_ART_ITEM_TYPE = "SELineArtItem";
 
-    public GFSEHn(PDStructElem structElemDictionary, String standardType) {
-        super(structElemDictionary, standardType, HN_STRUCTURE_ELEMENT_TYPE);
+    GFOpPathPaint opPathPaint;
+
+    public GFSELineArtItem(GFOpPathPaint opPathPaint) {
+        super(LINE_ART_ITEM_TYPE);
+        this.opPathPaint = opPathPaint;
     }
 
-    @Override
-    public Boolean gethasCorrectNestingLevel() {
-        int nestingLevel = new Integer(getstandardType().substring(1));
-        if (nestingLevel > StaticContainers.getLastHeadingNestingLevel() + 1) {
-            StaticContainers.setLastHeadingNestingLevel(nestingLevel);
-            return false;
-        }
-        StaticContainers.setLastHeadingNestingLevel(nestingLevel);
-        return true;
+    public GFSELineArtItem(GFOpPathPaint opPathPaint, Long parentMCID) {
+        this(opPathPaint);
+        this.parentMCID = parentMCID;
     }
+
 }
