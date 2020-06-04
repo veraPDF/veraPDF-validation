@@ -63,6 +63,8 @@ public class StaticContainers {
 	//SENote
 	private static ThreadLocal<Set<String>> noteIDSet = new ThreadLocal<>();
 
+	private static ThreadLocal<Integer> lastHeadingNestingLevel = new ThreadLocal<>();
+
 	public static void clearAllContainers() {
 		document.set(null);
 		flavour.set(null);
@@ -76,6 +78,7 @@ public class StaticContainers {
 		cachedGlyphs.set(new HashMap<>());
 		noteIDSet.set(new HashSet<>());
 		validPDF.set(true);
+		lastHeadingNestingLevel.set(0);
 	}
 
 	public static PDDocument getDocument() {
@@ -189,6 +192,14 @@ public class StaticContainers {
 
 	public static void setValidPDF(boolean validPDF) {
 		StaticContainers.validPDF.set(validPDF);
+	}
+
+	public static Integer getLastHeadingNestingLevel() {
+		return lastHeadingNestingLevel.get();
+	}
+
+	public static void setLastHeadingNestingLevel(Integer lastHeadingNestingLevel) {
+		StaticContainers.lastHeadingNestingLevel.set(lastHeadingNestingLevel);
 	}
 
 	public static Map<String, Glyph> getCachedGlyphs() {
