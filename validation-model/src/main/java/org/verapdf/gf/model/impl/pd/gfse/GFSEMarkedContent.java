@@ -28,6 +28,9 @@ import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_EMC;
+import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
+import org.verapdf.gf.model.impl.operator.pathpaint.GFOp_n;
+import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
 import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
 import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
@@ -50,7 +53,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
     public static final String LANG = "Lang";
 
     private GFOpMarkedContent operator;
-    private String parentTag;
+    private GFSEMarkedContent parentMarkedContentSequence;
 
     public GFSEMarkedContent(List<Operator> operators) {
         super(MARKED_CONTENT_TYPE);
@@ -58,10 +61,10 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
         this.operator = (GFOpMarkedContent)operators.get(0);
     }
 
-    public GFSEMarkedContent(List<Operator> operators, String parentTag, Long parentMCID) {
+    public GFSEMarkedContent(List<Operator> operators, GFSEMarkedContent parentMarkedContentSequence) {
         this(operators);
-        this.parentTag = parentTag;
-        this.parentMCID = parentMCID;
+        this.parentMarkedContentSequence = parentMarkedContentSequence;
+        this.parentMCID = parentMarkedContentSequence.getMCID();
     }
 
     @Override
@@ -84,19 +87,23 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
         Stack<Integer> markedContentStack = new Stack<>();
         List<SEContentItem> list = new ArrayList<>();
         for (int i = 0; i < operators.size(); i++) {
-            String type = operators.get(i).getObjectType();
+            Operator op = operators.get(i);
+            String type = op.getObjectType();
             if (type.equals(GFOp_BDC.OP_BDC_TYPE) || type.equals(GFOp_BMC.OP_BMC_TYPE)) {
                 markedContentStack.push(i);
             } else if (type.equals(GFOp_EMC.OP_EMC_TYPE)) {
                 if (!markedContentStack.empty()) {
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
-                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), gettag(), operator.getMCID()));
+                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), this));
                     }
                 }
-            }
-            if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
-                list.add(new GFSETextItem((GFOpTextShow)operators.get(i), operator.getMCID()));
+            } else if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
+                list.add(new GFSETextItem((GFOpTextShow)op, operator.getMCID()));
+            } else if (op instanceof GFOp_sh) {
+                list.add(new GFSEShadingItem((GFOp_sh)op, operator.getMCID()));
+            } else if (op instanceof GFOpPathPaint && !(op instanceof GFOp_n)) {
+                list.add(new GFSELineArtItem((GFOpPathPaint)op, operator.getMCID()));
             }
         }
         return Collections.unmodifiableList(list);
@@ -127,9 +134,18 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
         return null;
     }
 
+    public Long getMCID() {
+        return operator.getMCID();
+    }
+
     @Override
     public String getparentTag() {
-        return parentTag;
+        return parentMarkedContentSequence != null ? parentMarkedContentSequence.gettag() : null;
+    }
+
+    @Override
+    public String getparentStructureTag() {
+        return parentMarkedContentSequence != null ? parentMarkedContentSequence.getstructureTag() : null;
     }
 
     @Override

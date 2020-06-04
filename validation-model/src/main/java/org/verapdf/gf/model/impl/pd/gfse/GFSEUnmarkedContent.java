@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
 import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
 import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
@@ -59,6 +60,9 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
             String type = operator.getObjectType();
             if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
                 list.add(new GFSETextItem((GFOpTextShow)operator));
+            }
+            if (type.equals(GFOp_sh.OP_SH_TYPE)) {
+                list.add(new GFSEShadingItem((GFOp_sh)operator));
             }
         }
         return Collections.unmodifiableList(list);

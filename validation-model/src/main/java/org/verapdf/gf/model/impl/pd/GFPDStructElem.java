@@ -101,21 +101,6 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	@Override
-	public Boolean gethasCorrectNumberedHeadings() {
-		int lastNestingLevel = 0;
-		for (String childrenType : this.getChildrenStandardTypes()) {
-			if (childrenType != null && childrenType.matches(TaggedPDFConstants.HN_REGEXP)) {
-				int nestingLevel = new Integer(childrenType.substring(1));
-				if (nestingLevel > lastNestingLevel + 1) {
-					return false;
-				}
-				lastNestingLevel = nestingLevel;
-			}
-		}
-		return true;
-	}
-
-	@Override
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();
 		if (parent != null) {
