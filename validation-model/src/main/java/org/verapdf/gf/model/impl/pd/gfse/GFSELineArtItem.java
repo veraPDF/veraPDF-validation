@@ -20,10 +20,11 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
 import org.verapdf.model.selayer.SELineArtItem;
 
-public class GFSELineArtItem extends GFSEContentItem implements SELineArtItem {
+public class GFSELineArtItem extends GFSESimpleContentItem implements SELineArtItem {
 
     public static final String LINE_ART_ITEM_TYPE = "SELineArtItem";
 
@@ -34,9 +35,9 @@ public class GFSELineArtItem extends GFSEContentItem implements SELineArtItem {
         this.opPathPaint = opPathPaint;
     }
 
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, Long parentMCID) {
-        this(opPathPaint);
-        this.parentMCID = parentMCID;
+    public GFSELineArtItem(GFOpPathPaint opPathPaint, GFOpMarkedContent parentMarkedContentOperator) {
+        super(LINE_ART_ITEM_TYPE, parentMarkedContentOperator);
+        this.opPathPaint = opPathPaint;
     }
 
 }

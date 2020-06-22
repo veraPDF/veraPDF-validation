@@ -151,7 +151,7 @@ class OperatorParser {
 
 			// MARKED CONTENT
 			case Operators.BMC:
-				GFOp_BMC bmcOp = new GFOp_BMC(arguments, resourcesHandler);
+				GFOp_BMC bmcOp = new GFOp_BMC(arguments, resourcesHandler, getCurrentMarkedContent());
 				processedOperators.add(bmcOp);
 				this.markedContentStack.push(bmcOp);
 				break;
@@ -161,7 +161,7 @@ class OperatorParser {
 						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 					checkAFKey(arguments, resourcesHandler);
 				}
-				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, structureElementAccessObject);
+				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
 				break;

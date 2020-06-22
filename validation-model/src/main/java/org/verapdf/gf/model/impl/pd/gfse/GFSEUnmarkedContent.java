@@ -20,12 +20,18 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
+import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
+import org.verapdf.gf.model.impl.operator.pathpaint.GFOp_n;
 import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
 import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
 import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
+import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Operator;
+import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.model.selayer.SEContentItem;
 import org.verapdf.model.selayer.SEUnmarkedContent;
 
@@ -38,7 +44,8 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
     public static final String UNMARKED_CONTENT_TYPE = "SEUnmarkedContent";
 
     public GFSEUnmarkedContent(List<Operator> operators) {
-        super(UNMARKED_CONTENT_TYPE, operators);
+        super(UNMARKED_CONTENT_TYPE);
+        this.operators = operators;
     }
 
     @Override
@@ -60,9 +67,17 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
             String type = operator.getObjectType();
             if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
                 list.add(new GFSETextItem((GFOpTextShow)operator));
-            }
-            if (type.equals(GFOp_sh.OP_SH_TYPE)) {
+            } else if (operator instanceof GFOp_sh) {
                 list.add(new GFSEShadingItem((GFOp_sh)operator));
+            } else if (operator instanceof GFOpPathPaint && !(operator instanceof GFOp_n)) {
+                list.add(new GFSELineArtItem((GFOpPathPaint)operator));
+            } else if (operator instanceof GFOp_EI) {
+                list.add(new GFSEImageItem((GFOp_EI)operator));
+            } else if (operator instanceof GFOp_Do) {
+                List<PDXObject> xObjects = ((GFOp_Do)operator).getXObject();
+                if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
+                    list.add(new GFSEImageItem((GFOp_Do)operator));
+                }
             }
         }
         return Collections.unmodifiableList(list);

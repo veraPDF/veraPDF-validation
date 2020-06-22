@@ -20,6 +20,8 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Operator;
@@ -33,16 +35,18 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
     public static final String CONTENT_ITEM = "contentItem";
 
     protected Long parentMCID;
+    protected GFOpMarkedContent parentMarkedContentOperator;
 
     List<Operator> operators;
 
-    public GFSEContentItem(String objectType, List<Operator> operators) {
+    public GFSEContentItem(String objectType) {
         super(objectType);
-        this.operators = operators;
     }
 
-    protected GFSEContentItem(String objectType) {
+    public GFSEContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator) {
         super(objectType);
+        this.parentMarkedContentOperator = parentMarkedContentOperator;
+        this.parentMCID = parentMarkedContentOperator != null ? parentMarkedContentOperator.getMCID() : null;
     }
 
     @Override
@@ -62,6 +66,28 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
 
     @Override
     public String getsuspectRole() {
+        return null;
+    }
+
+    @Override
+    public String getparentsTags() {
+        if (parentMarkedContentOperator != null) {
+            return parentMarkedContentOperator.getParentsTags();
+        }
+        return "";
+    }
+
+    @Override
+    public String getparentStructureTag() {
+        if (parentMarkedContentOperator != null) {
+            if (parentMarkedContentOperator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+                String structTag = ((GFOp_BDC)parentMarkedContentOperator).getstructureTag();
+                if (structTag != null) {
+                    return structTag;
+                }
+                return parentMarkedContentOperator.getParentStructureTag();
+            }
+        }
         return null;
     }
 
