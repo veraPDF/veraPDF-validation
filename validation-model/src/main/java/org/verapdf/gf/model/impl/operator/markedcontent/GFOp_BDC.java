@@ -20,10 +20,15 @@
  */
 package org.verapdf.gf.model.impl.operator.markedcontent;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_BDC;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.List;
@@ -38,8 +43,8 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 	public final StructureElementAccessObject structureElementAccessObject;
 
 
-    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources, StructureElementAccessObject structureElementAccessObject) {
-        super(arguments, OP_BDC_TYPE, resources);
+    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources, GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        super(arguments, OP_BDC_TYPE, resources, markedContent);
 		this.structureElementAccessObject = structureElementAccessObject;
     }
 
@@ -56,6 +61,32 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	public String getstructureTag() {
+		Long mcid = getMCID();
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null && mcid != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
+			if (structureElement != null && !structureElement.empty()) {
+				return structureElement.getStringKey(ASAtom.S);
+			}
+		}
+		return null;
+	}
+
+	public String getstructParentLang() {
+		Long mcid = getMCID();
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null && mcid != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
+			if (structureElement != null && !structureElement.empty()) {
+				return structureElement.getStringKey(ASAtom.LANG);
+			}
+		}
+		return null;
 	}
 
 }

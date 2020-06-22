@@ -206,7 +206,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		return Collections.emptyList();
 	}
 
-	private List<PDStructElem> getChildren() {
+	public List<PDStructElem> getChildren() {
 		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getChildren();
 		if (!elements.isEmpty()) {
 			List<PDStructElem> res = new ArrayList<>(elements.size());

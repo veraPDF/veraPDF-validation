@@ -20,9 +20,15 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETable;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
+
+import java.util.List;
+import java.util.Stack;
+import java.util.Set;
+import java.util.HashSet;
 
 public class GFSETable extends GFSEGeneral implements SETable {
 
@@ -30,5 +36,61 @@ public class GFSETable extends GFSEGeneral implements SETable {
 
     public GFSETable(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TABLE, TABLE_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    // This logic checks that all TH have Scope attribute or TD reference to TH ID using Headers
+    @Override
+    public Boolean getuseHeadersAndIdOrScope() {
+        Stack<org.verapdf.model.pdlayer.PDStructElem> stack = new Stack<>();
+        Boolean hasScope = true;
+        Boolean hasID = true;
+        Set<String> idSet = new HashSet<>();
+        Set<String> headersSet = new HashSet<>();
+        stack.push(this);
+        while (!stack.empty()) {
+            org.verapdf.model.pdlayer.PDStructElem elem = stack.pop();
+            String type = elem.getstandardType();
+            if (TaggedPDFConstants.TD.equals(type)) {
+                List<String> list = ((GFSETD)elem).getHeaders();
+                if (list != null) {
+                    headersSet.addAll(list);
+                }
+            } else if (TaggedPDFConstants.TH.equals(type)) {
+                List<String> list = ((GFSETH)elem).getHeaders();
+                if (list != null) {
+                    headersSet.addAll(list);
+                }
+                String id = ((GFSETH)elem).getTHID();
+                if (id == null) {
+                    hasID = false;
+                } else {
+                    idSet.add(id);
+                }
+                if (((GFSETH)elem).getScope() == null) {
+                    hasScope = false;
+                }
+            }
+            List<org.verapdf.model.pdlayer.PDStructElem> list = ((GFPDStructElem)elem).getChildren();
+            for (org.verapdf.model.pdlayer.PDStructElem  el : list) {
+                stack.push(el);
+            }
+        }
+        if (hasScope) {
+            return true;
+        }
+        if (!hasID) {
+            return false;
+        }
+        for (String headers : headersSet) {
+            if(!idSet.contains(headers)) {
+                return false;
+            }
+        }
+        for (String id : idSet) {
+            if(!headersSet.contains(id)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

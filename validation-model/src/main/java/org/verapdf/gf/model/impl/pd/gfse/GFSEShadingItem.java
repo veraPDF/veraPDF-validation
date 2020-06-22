@@ -20,10 +20,11 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
 import org.verapdf.model.selayer.SEShadingItem;
 
-public class GFSEShadingItem extends GFSEContentItem implements SEShadingItem {
+public class GFSEShadingItem extends GFSESimpleContentItem implements SEShadingItem {
 
     public static final String SHADING_ITEM_TYPE = "SEShadingItem";
 
@@ -34,9 +35,10 @@ public class GFSEShadingItem extends GFSEContentItem implements SEShadingItem {
         this.op_sh = op_sh;
     }
 
-    public GFSEShadingItem(GFOp_sh op_sh, Long parentMCID) {
-        this(op_sh);
-        this.parentMCID = parentMCID;
+    public GFSEShadingItem(GFOp_sh op_sh, GFOpMarkedContent parentMarkedContentOperator) {
+        super(SHADING_ITEM_TYPE, parentMarkedContentOperator);
+        this.op_sh = op_sh;
+
     }
 
 }

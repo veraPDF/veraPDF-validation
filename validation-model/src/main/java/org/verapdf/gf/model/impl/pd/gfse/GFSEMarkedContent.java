@@ -21,9 +21,8 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
@@ -34,12 +33,14 @@ import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
 import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
 import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
+import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosLang;
+import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.operator.Operator;
+import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.model.selayer.SEContentItem;
 import org.verapdf.model.selayer.SEMarkedContent;
-import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.pd.structure.PDStructTreeRoot;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,18 +54,15 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
     public static final String LANG = "Lang";
 
     private GFOpMarkedContent operator;
-    private GFSEMarkedContent parentMarkedContentSequence;
 
     public GFSEMarkedContent(List<Operator> operators) {
-        super(MARKED_CONTENT_TYPE);
-        this.operators = operators.subList(1, operators.size() - 1);
-        this.operator = (GFOpMarkedContent)operators.get(0);
+        this(operators, null);
     }
 
-    public GFSEMarkedContent(List<Operator> operators, GFSEMarkedContent parentMarkedContentSequence) {
-        this(operators);
-        this.parentMarkedContentSequence = parentMarkedContentSequence;
-        this.parentMCID = parentMarkedContentSequence.getMCID();
+    public GFSEMarkedContent(List<Operator> operators, GFOpMarkedContent parentMarkedContentOperator) {
+        super(MARKED_CONTENT_TYPE, parentMarkedContentOperator);
+        this.operators = operators.subList(1, operators.size() - 1);
+        this.operator = (GFOpMarkedContent)operators.get(0);
     }
 
     @Override
@@ -73,7 +71,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
             case CONTENT_ITEM:
                 return this.getContentItem();
             case LANG:
-                return this.operator.getLang();
+                return this.getLang();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -95,18 +93,36 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
                 if (!markedContentStack.empty()) {
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
-                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), this));
+                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), this.operator));
                     }
                 }
-            } else if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
-                list.add(new GFSETextItem((GFOpTextShow)op, operator.getMCID()));
-            } else if (op instanceof GFOp_sh) {
-                list.add(new GFSEShadingItem((GFOp_sh)op, operator.getMCID()));
-            } else if (op instanceof GFOpPathPaint && !(op instanceof GFOp_n)) {
-                list.add(new GFSELineArtItem((GFOpPathPaint)op, operator.getMCID()));
+            }
+            if (markedContentStack.empty()) {
+                if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
+                    list.add(new GFSETextItem((GFOpTextShow)op, this.operator));
+                } else if (op instanceof GFOp_sh) {
+                    list.add(new GFSEShadingItem((GFOp_sh)op, this.operator));
+                } else if (op instanceof GFOpPathPaint && !(op instanceof GFOp_n)) {
+                    list.add(new GFSELineArtItem((GFOpPathPaint)op, this.operator));
+                } else if (op instanceof GFOp_EI) {
+                    list.add(new GFSEImageItem((GFOp_EI)op, this.operator));
+                } else if (op instanceof GFOp_Do) {
+                    List<PDXObject> xObjects = ((GFOp_Do)op).getXObject();
+                    if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
+                        list.add(new GFSEImageItem((GFOp_Do)op, this.operator));
+                    }
+                }
             }
         }
         return Collections.unmodifiableList(list);
+    }
+
+    public List<CosLang> getLang() {
+        List<CosLang> lang = operator.getLang();
+        if (lang.size() != 0) {
+            return lang;
+        }
+        return operator.getParentLang();
     }
 
     @Override
@@ -117,35 +133,21 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     @Override
     public String gettag() {
-        return operator.getTag().get(0).getinternalRepresentation();
-    }
-
-    @Override
-    public String getstructureTag() {
-        Long mcid = operator.getMCID();
-        PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
-        if (structTreeRoot != null && mcid != null && operator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
-            PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-            COSObject structureElement = parentTreeRoot == null ? null : ((GFOp_BDC)operator).structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
-            if (structureElement != null && !structureElement.empty()) {
-                return structureElement.getStringKey(ASAtom.S);
-            }
+        List<CosName> tag = operator.getTag();
+        if (tag != null && tag.size() != 0) {
+            return tag.get(0).getinternalRepresentation();
         }
         return null;
     }
 
-    public Long getMCID() {
-        return operator.getMCID();
-    }
-
     @Override
-    public String getparentTag() {
-        return parentMarkedContentSequence != null ? parentMarkedContentSequence.gettag() : null;
-    }
-
-    @Override
-    public String getparentStructureTag() {
-        return parentMarkedContentSequence != null ? parentMarkedContentSequence.getstructureTag() : null;
+    public String getstructureTag() {
+        if (operator != null) {
+            if (operator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+               return ((GFOp_BDC)operator).getstructureTag();
+            }
+        }
+        return null;
     }
 
     @Override
