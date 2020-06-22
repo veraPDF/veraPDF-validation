@@ -20,23 +20,27 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
+import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.selayer.SETextItem;
 
-public class GFSETextItem extends GFSEContentItem implements SETextItem {
+import java.util.List;
+
+public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     public static final String TEXT_ITEM_TYPE = "SETextItem";
 
     private GFOpTextShow opTextShow;
 
     public GFSETextItem(GFOpTextShow opTextShow) {
-        super(TEXT_ITEM_TYPE);
-        this.opTextShow = opTextShow;
+        this(opTextShow, null);
     }
 
-    public GFSETextItem(GFOpTextShow opTextShow, Long parentMCID) {
-        this(opTextShow);
-        this.parentMCID = parentMCID;
+    public GFSETextItem(GFOpTextShow opTextShow, GFOpMarkedContent parentMarkedContentOperator) {
+        super(TEXT_ITEM_TYPE, parentMarkedContentOperator);
+        this.opTextShow = opTextShow;
     }
 
     @Override
@@ -57,6 +61,23 @@ public class GFSETextItem extends GFSEContentItem implements SETextItem {
                 return "H";
             }
             return "P";
+        }
+        return null;
+    }
+
+    @Override
+    public String getLang() {
+        if (parentMarkedContentOperator != null) {
+            List<CosLang> lang =  parentMarkedContentOperator.getLang();
+            if (lang == null || lang.size() == 0) {
+                lang = parentMarkedContentOperator.getParentLang();
+            }
+            if (lang != null && lang.size() != 0) {
+                return lang.get(0).getunicodeValue();
+            }
+            if (parentMarkedContentOperator != null && parentMarkedContentOperator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+                return ((GFOp_BDC)parentMarkedContentOperator).getstructParentLang();
+            }
         }
         return null;
     }

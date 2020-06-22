@@ -18,23 +18,26 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.operator.markedcontent;
+package org.verapdf.gf.model.impl.pd.gfse;
 
-import org.verapdf.cos.COSBase;
-import org.verapdf.model.operator.Op_EMC;
+import org.verapdf.gf.model.impl.operator.base.GFOperator;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
+import org.verapdf.model.selayer.SEImageItem;
 
-import java.util.List;
+public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
 
-/**
- * @author Timur Kamalov
- */
-public class GFOp_EMC extends GFOpMarkedContent implements Op_EMC {
+    public static final String IMAGE_ITEM_TYPE = "SEImageItem";
 
-	/** Type name for {@code GFOp_EMC} */
-    public static final String OP_EMC_TYPE = "Op_EMC";
+    GFOperator operator;
 
-    public GFOp_EMC(List<COSBase> arguments) {
-        super(arguments, OP_EMC_TYPE, null, null);
+    public GFSEImageItem(GFOperator operator) {
+        super(IMAGE_ITEM_TYPE);
+        this.operator = operator;
+    }
+
+    public GFSEImageItem(GFOperator operator, GFOpMarkedContent parentMarkedContentOperator) {
+        super(IMAGE_ITEM_TYPE, parentMarkedContentOperator);
+        this.operator = operator;
     }
 
 }

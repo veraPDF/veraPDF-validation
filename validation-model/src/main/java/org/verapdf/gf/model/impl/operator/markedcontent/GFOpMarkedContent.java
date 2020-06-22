@@ -50,11 +50,13 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	public static final String LANG = "Lang";
 
 	private COSDictionary propertiesDict;
+	private final GFOpMarkedContent markedContent;
 
-    public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources) {
+	public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources, GFOpMarkedContent markedContent) {
         super(arguments, opType);
 		initializePropertiesDict(resources);
-    }
+		this.markedContent = markedContent;
+	}
 
 	private void initializePropertiesDict(PDResourcesHandler resources) {
 		if (!this.arguments.isEmpty()) {
@@ -103,6 +105,42 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	public String getParentsTags() {
+		List<CosName> tagList = getTag();
+		String tag = "";
+		if (tagList.size() != 0) {
+			tag = tagList.get(0).getinternalRepresentation();
+		}
+		String parentsTags = "";
+		if (markedContent != null) {
+			parentsTags = markedContent.getParentsTags();
+		}
+		if ("".equals(tag)) {
+			return parentsTags;
+		}
+		if ("".equals(parentsTags)) {
+			return tag;
+		}
+		return parentsTags + "&" + tag;
+	}
+
+	public List<CosLang> getParentLang() {
+		return markedContent != null ? markedContent.getLang() : Collections.emptyList();
+	}
+
+	public String getParentStructureTag() {
+		if (markedContent != null) {
+			if (markedContent.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+				String structTag = ((GFOp_BDC)markedContent).getstructureTag();
+				if (structTag != null) {
+					return structTag;
+				}
+			}
+			return markedContent.getParentStructureTag();
+		}
+		return null;
 	}
 
 	/**
