@@ -137,6 +137,15 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	@Override
+	public String getTU() {
+		COSObject parent = ((PDAnnotation) simplePDObject).getParent();
+		if (parent != null) {
+			return parent.getStringKey(ASAtom.TU);
+		}
+		return ((PDAnnotation) simplePDObject).getTU();
+	}
+
+	@Override
 	public Double getwidth() {
 		return getDifference(((PDAnnotation) simplePDObject).getRect(), X_AXIS);
 	}
