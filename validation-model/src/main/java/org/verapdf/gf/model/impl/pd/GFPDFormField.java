@@ -83,7 +83,7 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
         Long structParent = ((org.verapdf.pd.form.PDFormField)this.simplePDObject).getStructParent();
         if (structTreeRoot != null && structParent != null) {
             PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-            COSObject structureElement = parentTreeRoot.getObject(structParent);
+            COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
             if (structureElement != null) {
                 COSObject baseLang = structureElement.getKey(ASAtom.LANG);
                 if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
