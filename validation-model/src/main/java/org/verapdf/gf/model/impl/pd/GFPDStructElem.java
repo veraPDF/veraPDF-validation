@@ -69,7 +69,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		super(structElemDictionary, type);
 		ASAtom subtype = this.simplePDObject.getNameKey(ASAtom.S);
 		if (subtype != null) {
-			this.id = super.getID() + " " + subtype.getValue();
+			this.id = (super.getID() != null ? super.getID() : "0 0 obj") + " " + subtype.getValue();
 		}
 	}
 
