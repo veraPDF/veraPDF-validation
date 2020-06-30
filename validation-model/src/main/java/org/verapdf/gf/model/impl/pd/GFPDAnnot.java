@@ -166,7 +166,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
 		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-			COSObject structureElement = parentTreeRoot.getObject(structParent);
+			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
 			if (structureElement != null && structureElement.getType() == COSObjType.COS_DICT) {
 				return structureElement.getStringKey(ASAtom.S);
 			}
@@ -179,7 +179,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
 		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-			COSObject structureElement = parentTreeRoot.getObject(structParent);
+			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
 			if (structureElement != null) {
 				COSObject baseLang = structureElement.getKey(ASAtom.LANG);
 				if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
@@ -203,7 +203,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
 		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-			COSObject structureElement = parentTreeRoot.getObject(structParent);
+			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
 			if (structureElement != null) {
 				COSObject baseAlt = structureElement.getKey(ASAtom.ALT);
 				if (baseAlt != null && baseAlt.getType() == COSObjType.COS_STRING) {
@@ -218,8 +218,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public Boolean getisOutsideCropBox() {
 		double[] cropBox = page.getCropBox();
 		double[] rectangle = ((PDAnnotation)simplePDObject).getRect();
-		return cropBox[1] >= rectangle[3] || cropBox[0] >= rectangle[2]
-			|| cropBox[3] <= rectangle[1] || cropBox[2] <= rectangle[0];
+		if (rectangle != null && rectangle.length >= 4) {
+			return cropBox[1] >= rectangle[3] || cropBox[0] >= rectangle[2]
+					|| cropBox[3] <= rectangle[1] || cropBox[2] <= rectangle[0];
+		}
+		return null;
 	}
 
 	private static Double getDifference(double[] array, int shift) {
