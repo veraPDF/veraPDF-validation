@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.pd.util.TableHelper;
 import org.verapdf.model.selayer.SETH;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
@@ -61,6 +62,14 @@ public class GFSETH extends GFSEGeneral implements SETH {
             }
         }
         return null;
+    }
+
+    public Long getColSpan() {
+        return TableHelper.getColSpan(simplePDObject);
+    }
+
+    public Long getRowSpan() {
+        return TableHelper.getRowSpan(simplePDObject);
     }
 
     protected List<String> getHeaders() {
