@@ -55,12 +55,12 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     private GFOpMarkedContent operator;
 
-    public GFSEMarkedContent(List<Operator> operators) {
-        this(operators, null);
+    public GFSEMarkedContent(List<Operator> operators, String parentStructureTag) {
+        this(operators, null, parentStructureTag);
     }
 
-    public GFSEMarkedContent(List<Operator> operators, GFOpMarkedContent parentMarkedContentOperator) {
-        super(MARKED_CONTENT_TYPE, parentMarkedContentOperator);
+    public GFSEMarkedContent(List<Operator> operators, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
+        super(MARKED_CONTENT_TYPE, parentMarkedContentOperator, parentStructureTag);
         this.operators = operators.subList(1, operators.size() - 1);
         this.operator = (GFOpMarkedContent)operators.get(0);
     }
@@ -93,23 +93,23 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
                 if (!markedContentStack.empty()) {
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
-                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), this.operator));
+                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), this.operator, parentStructureTag));
                     }
                 }
             }
             if (markedContentStack.empty()) {
                 if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
-                    list.add(new GFSETextItem((GFOpTextShow)op, this.operator));
+                    list.add(new GFSETextItem((GFOpTextShow)op, this.operator, parentStructureTag));
                 } else if (op instanceof GFOp_sh) {
-                    list.add(new GFSEShadingItem((GFOp_sh)op, this.operator));
+                    list.add(new GFSEShadingItem((GFOp_sh)op, this.operator, parentStructureTag));
                 } else if (op instanceof GFOpPathPaint && !(op instanceof GFOp_n)) {
-                    list.add(new GFSELineArtItem((GFOpPathPaint)op, this.operator));
+                    list.add(new GFSELineArtItem((GFOpPathPaint)op, this.operator, parentStructureTag));
                 } else if (op instanceof GFOp_EI) {
-                    list.add(new GFSEImageItem((GFOp_EI)op, this.operator));
+                    list.add(new GFSEImageItem((GFOp_EI)op, this.operator, parentStructureTag));
                 } else if (op instanceof GFOp_Do) {
                     List<PDXObject> xObjects = ((GFOp_Do)op).getXObject();
                     if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
-                        list.add(new GFSEImageItem((GFOp_Do)op, this.operator));
+                        list.add(new GFSEImageItem((GFOp_Do)op, this.operator, parentStructureTag));
                     }
                 }
             }

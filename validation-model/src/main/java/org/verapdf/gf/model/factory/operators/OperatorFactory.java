@@ -97,11 +97,11 @@ public final class OperatorFactory {
 
 	public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens,
 																		 PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
-																		 StructureElementAccessObject structureElementAccessObject) {
+																		 StructureElementAccessObject structureElementAccessObject, String parentStructureTag) {
 		List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
 		List<COSBase> arguments = new ArrayList<>();
 		this.isLastParsedContainsTransparency = false;
-		OperatorParser parser = new OperatorParser(inheritedGraphicState, structureElementAccessObject, resourcesHandler);
+		OperatorParser parser = new OperatorParser(inheritedGraphicState, structureElementAccessObject, resourcesHandler, parentStructureTag);
 
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {

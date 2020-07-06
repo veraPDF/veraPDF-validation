@@ -34,12 +34,12 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     private GFOpTextShow opTextShow;
 
-    public GFSETextItem(GFOpTextShow opTextShow) {
-        this(opTextShow, null);
+    public GFSETextItem(GFOpTextShow opTextShow, String parentStructureTag) {
+        this(opTextShow, null, parentStructureTag);
     }
 
-    public GFSETextItem(GFOpTextShow opTextShow, GFOpMarkedContent parentMarkedContentOperator) {
-        super(TEXT_ITEM_TYPE, parentMarkedContentOperator);
+    public GFSETextItem(GFOpTextShow opTextShow, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
+        super(TEXT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag);
         this.opTextShow = opTextShow;
     }
 
