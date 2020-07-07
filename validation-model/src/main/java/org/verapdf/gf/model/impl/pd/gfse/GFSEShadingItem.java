@@ -30,13 +30,13 @@ public class GFSEShadingItem extends GFSESimpleContentItem implements SEShadingI
 
     private GFOp_sh op_sh;
 
-    public GFSEShadingItem(GFOp_sh op_sh) {
-        super(SHADING_ITEM_TYPE);
+    public GFSEShadingItem(GFOp_sh op_sh, String parentStructureTag) {
+        super(SHADING_ITEM_TYPE, parentStructureTag);
         this.op_sh = op_sh;
     }
 
-    public GFSEShadingItem(GFOp_sh op_sh, GFOpMarkedContent parentMarkedContentOperator) {
-        super(SHADING_ITEM_TYPE, parentMarkedContentOperator);
+    public GFSEShadingItem(GFOp_sh op_sh, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
+        super(SHADING_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag);
         this.op_sh = op_sh;
 
     }

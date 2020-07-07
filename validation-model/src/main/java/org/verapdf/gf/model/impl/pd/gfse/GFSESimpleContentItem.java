@@ -26,11 +26,11 @@ import org.verapdf.model.selayer.SESimpleContentItem;
 public class GFSESimpleContentItem extends GFSEContentItem implements SESimpleContentItem {
 
 
-    public GFSESimpleContentItem(String objectType) {
-        super(objectType);
+    public GFSESimpleContentItem(String objectType, String parentStructureTag) {
+        super(objectType, parentStructureTag);
     }
 
-    public GFSESimpleContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator) {
-        super(objectType, parentMarkedContentOperator);
+    public GFSESimpleContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
+        super(objectType, parentMarkedContentOperator, parentStructureTag);
     }
 }
