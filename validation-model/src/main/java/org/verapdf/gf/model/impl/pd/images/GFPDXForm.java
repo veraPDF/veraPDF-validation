@@ -50,11 +50,16 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private boolean groupContainsTransparency = false;
 	private boolean contentStreamContainsTransparency = false;
 	private final GraphicState inheritedGraphicState;
+	private final StructureElementAccessObject structureElementAccessObject;
+	private final String parentStructureTag;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
-					 GraphicState inheritedGraphicState) {
+					 GraphicState inheritedGraphicState, StructureElementAccessObject structureElementAccessObject,
+					 String parentStructureTag) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
+		this.structureElementAccessObject = structureElementAccessObject;
+		this.parentStructureTag = parentStructureTag;
 	}
 
 	@Override
@@ -117,7 +122,8 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		GFPDContentStream gfContentStream = new GFPDContentStream(
 				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
-				this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject));
+				this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
+				structureElementAccessObject, parentStructureTag);
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		streams.add(gfContentStream);
 		this.contentStreams = streams;

@@ -92,12 +92,14 @@ class OperatorParser {
 	private Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
 	private StructureElementAccessObject structureElementAccessObject;
 	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
+	private final String parentStructureTag;
 
 	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
 				   StructureElementAccessObject structureElementAccessObject,
-				   PDResourcesHandler resourcesHandler) {
+				   PDResourcesHandler resourcesHandler,
+				   String parentStructureTag) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -105,6 +107,7 @@ class OperatorParser {
 		}
 		this.graphicState.setInitialGraphicState(this.graphicState);
 		this.structureElementAccessObject = structureElementAccessObject;
+		this.parentStructureTag = parentStructureTag;
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -488,7 +491,7 @@ class OperatorParser {
 			// XOBJECT
 			case Operators.DO:
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-						resourcesHandler, this.graphicState.clone());
+						resourcesHandler, this.graphicState.clone(), structureElementAccessObject, parentStructureTag);
 				List<org.verapdf.model.pdlayer.PDXObject> pdxObjects = op_do.getXObject();
 				if (!pdxObjects.isEmpty()) {
 					GFPDXObject xobj = (GFPDXObject) pdxObjects.get(0);

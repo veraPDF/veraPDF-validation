@@ -29,6 +29,7 @@ import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -94,10 +95,11 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 
 	public static PDXObject getTypedPDXObject(
 			org.verapdf.pd.images.PDXObject xObject,
-			PDResourcesHandler resources, GraphicState inheritedGraphicState) {
+			PDResourcesHandler resources, GraphicState inheritedGraphicState,
+			StructureElementAccessObject structureElementAccessObject, String parentStructureTag) {
 		ASAtom type = xObject.getType();
 		if (ASAtom.FORM.equals(type)) {
-			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState);
+			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState, structureElementAccessObject, parentStructureTag);
 		} else if (ASAtom.IMAGE.equals(type)) {
 			return new GFPDXImage((PDXImage) xObject, resources,
 					inheritedGraphicState.getFillColorSpace());
