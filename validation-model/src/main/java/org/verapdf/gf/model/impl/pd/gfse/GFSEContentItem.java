@@ -38,15 +38,18 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
     protected GFOpMarkedContent parentMarkedContentOperator;
 
     List<Operator> operators;
+    protected String parentStructureTag;
 
-    public GFSEContentItem(String objectType) {
+    public GFSEContentItem(String objectType, String parentStructureTag) {
         super(objectType);
+        this.parentStructureTag = parentStructureTag;
     }
 
-    public GFSEContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator) {
+    public GFSEContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
         super(objectType);
         this.parentMarkedContentOperator = parentMarkedContentOperator;
         this.parentMCID = parentMarkedContentOperator != null ? parentMarkedContentOperator.getMCID() : null;
+        this.parentStructureTag = parentStructureTag;
     }
 
     @Override
@@ -82,13 +85,15 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
         if (parentMarkedContentOperator != null) {
             if (parentMarkedContentOperator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
                 String structTag = ((GFOp_BDC)parentMarkedContentOperator).getstructureTag();
+                if (structTag == null) {
+                    structTag = parentMarkedContentOperator.getParentStructureTag();
+                }
                 if (structTag != null) {
                     return structTag;
                 }
-                return parentMarkedContentOperator.getParentStructureTag();
             }
         }
-        return null;
+        return parentStructureTag;
     }
 
 }

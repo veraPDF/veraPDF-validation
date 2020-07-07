@@ -30,13 +30,13 @@ public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem 
 
     GFOperator operator;
 
-    public GFSEImageItem(GFOperator operator) {
-        super(IMAGE_ITEM_TYPE);
+    public GFSEImageItem(GFOperator operator, String parentStructureTag) {
+        super(IMAGE_ITEM_TYPE, parentStructureTag);
         this.operator = operator;
     }
 
-    public GFSEImageItem(GFOperator operator, GFOpMarkedContent parentMarkedContentOperator) {
-        super(IMAGE_ITEM_TYPE, parentMarkedContentOperator);
+    public GFSEImageItem(GFOperator operator, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
+        super(IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag);
         this.operator = operator;
     }
 
