@@ -25,6 +25,8 @@ import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
+import org.verapdf.cos.COSKey;
+import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
@@ -41,6 +43,8 @@ import org.verapdf.tools.TaggedPDFHelper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -230,6 +234,23 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	private List<CosLang> getLang() {
 		COSString baseLang = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getLang();
+		Set<COSKey> keys = new HashSet<>();
+		COSKey key = this.simplePDObject.getObject().getObjectKey();
+		if (key != null) {
+			keys.add(key);
+		}
+		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getParent();
+		while (baseLang == null && parent != null) {
+			key = parent.getObject().getObjectKey();
+			if (keys.contains(key)) {
+				throw new LoopedException("Struct tree loop found");
+			}
+			if (key != null) {
+				keys.add(key);
+			}
+			baseLang = parent.getLang();
+			parent = parent.getParent();
+		}
 		if (baseLang != null) {
 			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosLang(baseLang));
