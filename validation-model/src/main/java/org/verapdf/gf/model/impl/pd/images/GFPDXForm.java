@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.GFPDGroup;
+import org.verapdf.gf.model.impl.pd.GFPDSemanticContentStream;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
@@ -120,7 +121,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	private void parseContentStream() {
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		GFPDContentStream gfContentStream = new GFPDContentStream(
+		GFPDContentStream gfContentStream = new GFPDSemanticContentStream(
 				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 				this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
 				structureElementAccessObject, parentStructureTag);
