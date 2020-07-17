@@ -389,7 +389,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private void addAppearance(List<PDContentStream> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
-			GFPDContentStream stream = new GFPDContentStream(toAdd, resources, null,
+			GFPDContentStream stream = new GFPDSemanticContentStream(toAdd, resources, null,
 					new StructureElementAccessObject(this.simpleCOSObject));
 			this.containsTransparency |= stream.isContainsTransparency();
 			PDGroup group = toAdd.getGroup();

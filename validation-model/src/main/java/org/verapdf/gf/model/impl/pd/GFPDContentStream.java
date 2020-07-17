@@ -30,28 +30,17 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.OperatorFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_EMC;
-import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
-import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
-import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEMarkedContent;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEUnmarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;
-import org.verapdf.model.selayer.SEContentItem;
 import org.verapdf.parser.PDFStreamParser;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,21 +55,26 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	public static final String OPERATORS = "operators";
 
-	public static final String CONTENT = "content";
-
 	private PDResourcesHandler resourcesHandler;
 
-	private List<Operator> operators = null;
+	protected List<Operator> operators = null;
 	private boolean containsTransparency = false;
 	private final GraphicState inheritedGraphicState;
 	private final StructureElementAccessObject structureElementAccessObject;
-	private String parentStructureTag;
+	protected String parentStructureTag;
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
 							 PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject) {
-		super(contentStream, CONTENT_STREAM_TYPE);
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, CONTENT_STREAM_TYPE);
+	}
+
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
+							 PDResourcesHandler resourcesHandler,
+							 GraphicState inheritedGraphicState,
+							 StructureElementAccessObject structureElementAccessObject, final String type) {
+		super(contentStream, type);
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.structureElementAccessObject = structureElementAccessObject;
@@ -91,8 +85,9 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							 PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject,
-							 StructureElementAccessObject parentStructureElementAccessObject, String parentStructureTag) {
-		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject);
+							 StructureElementAccessObject parentStructureElementAccessObject, String parentStructureTag,
+							 final String type) {
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, type);
 		if (this.parentStructureTag == null) {
 			this.parentStructureTag = getParentStructureTag(parentStructureElementAccessObject);
 		}
@@ -106,44 +101,9 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		switch (link) {
 			case OPERATORS:
 				return this.getOperators();
-			case CONTENT:
-				return this.getContentItem();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<SEContentItem> getContentItem() {
-		if (this.operators == null) {
-			parseOperators();
-		}
-		getNextScaleFactors();
-		int unmarkedContentIndex = 0;
-		int markedContentIndex = -1;
-		Stack<Integer> markedContentStack = new Stack<>();
-		List<SEContentItem> list = new ArrayList<>();
-		for (int i = 0; i < operators.size(); i++) {
-			String type = operators.get(i).getObjectType();
-			if (type.equals(GFOp_BDC.OP_BDC_TYPE) || type.equals(GFOp_BMC.OP_BMC_TYPE)) {
-				if (markedContentStack.empty() && i != markedContentIndex + 1) {
-					list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, i), parentStructureTag));
-				}
-				markedContentStack.push(i);
-			} else if (type.equals(GFOp_EMC.OP_EMC_TYPE)) {
-				if (!markedContentStack.empty()) {
-					markedContentIndex = markedContentStack.pop();
-					if (markedContentStack.empty()) {
-						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), parentStructureTag));
-						markedContentIndex = i;
-						unmarkedContentIndex = i + 1;
-					}
-				}
-			}
-		}
-		if (unmarkedContentIndex != operators.size()) {
-			list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, operators.size()), parentStructureTag));
-		}
-		return Collections.unmodifiableList(list);
 	}
 
 	private List<Operator> getOperators() {
@@ -153,7 +113,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		return this.operators;
 	}
 
-	private void parseOperators() {
+	protected void parseOperators() {
 		if (this.contentStream == null) {
 			this.operators = Collections.emptyList();
 		} else {
@@ -209,17 +169,6 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 			parseOperators();
 		}
 		return containsTransparency;
-	}
-
-	private void getNextScaleFactors() {
-		Double scaleFactor = null;
-		for(int i = operators.size() - 1; i >= 0; i--) {
-			Operator operator = operators.get(i);
-			if(operator.getObjectType().equals(GFOp_Tj.OP_TJ_TYPE) || operator.getObjectType().equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
-				((GFOpTextShow)operator).setNextScaleFactor(scaleFactor);
-				scaleFactor = ((GFOpTextShow)operator).getScaleFactor();
-			}
-		}
 	}
 
 	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject) {
