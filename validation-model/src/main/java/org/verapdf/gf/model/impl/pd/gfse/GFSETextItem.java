@@ -67,18 +67,19 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     @Override
     public String getLang() {
-        if (parentMarkedContentOperator != null) {
-            List<CosLang> lang =  parentMarkedContentOperator.getLang();
-            if (lang == null || lang.size() == 0) {
-                lang = parentMarkedContentOperator.getParentLang();
-            }
-            if (lang != null && lang.size() != 0) {
-                return lang.get(0).getunicodeValue();
-            }
-            if (parentMarkedContentOperator != null && parentMarkedContentOperator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
-                return ((GFOp_BDC)parentMarkedContentOperator).getstructParentLang();
+        if (parentMarkedContentOperator == null) {
+            return null;
+        }
+        List<CosLang> lang =  parentMarkedContentOperator.getLang();
+        if (lang != null && lang.size() != 0) {
+            return lang.get(0).getunicodeValue();
+        }
+        if (parentMarkedContentOperator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+            String structParentLang = ((GFOp_BDC)parentMarkedContentOperator).getstructParentLang();
+            if (structParentLang != null) {
+                return structParentLang;
             }
         }
-        return null;
+        return parentMarkedContentOperator.getParentLang();
     }
 }
