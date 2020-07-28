@@ -83,16 +83,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
      */
     @Override
     public Boolean getcmap30Present() {
-    	return Boolean.valueOf(this.trueTypeFont.isCmapPresent(3, 0));
+    	return this.trueTypeFont.isCmapPresent(3, 0);
     }
 
-    @Override
-    public Boolean getcmap31Present() {
-        return Boolean.valueOf(this.trueTypeFont.isCmapPresent(3, 1));
-    }
-
-    @Override
-    public Boolean getcmap10Present() {
-        return Boolean.valueOf(this.trueTypeFont.isCmapPresent(1, 0));
-    }
 }
