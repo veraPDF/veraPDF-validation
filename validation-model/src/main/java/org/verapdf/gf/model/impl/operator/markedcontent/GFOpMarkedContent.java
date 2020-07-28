@@ -126,8 +126,21 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		return parentsTags + "&" + tag;
 	}
 
-	public List<CosLang> getParentLang() {
-		return markedContent != null ? markedContent.getLang() : Collections.emptyList();
+	public String getParentLang() {
+		if (markedContent == null) {
+			return null;
+		}
+		List<CosLang> lang =  markedContent.getLang();
+		if (lang != null && lang.size() != 0) {
+			return lang.get(0).getunicodeValue();
+		}
+		if (markedContent.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+			String structParentLang = ((GFOp_BDC)markedContent).getstructParentLang();
+			if (structParentLang != null) {
+				return structParentLang;
+			}
+		}
+		return markedContent.getParentLang();
 	}
 
 	public String getParentStructureTag() {

@@ -118,10 +118,11 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
     }
 
     public List<CosLang> getLang() {
-        List<CosLang> lang = operator.getLang();
-        if (lang.size() != 0) {
-            return lang;
-        }
+        return operator.getLang();
+    }
+
+    @Override
+    public String getinheritedLang() {
         return operator.getParentLang();
     }
 
