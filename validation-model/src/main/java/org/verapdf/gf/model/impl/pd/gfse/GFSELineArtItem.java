@@ -25,19 +25,23 @@ import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
 import org.verapdf.model.selayer.SELineArtItem;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
+/**
+ * @author Maxim Plushchov
+ */
 public class GFSELineArtItem extends GFSESimpleContentItem implements SELineArtItem {
 
     public static final String LINE_ART_ITEM_TYPE = "SELineArtItem";
 
     GFOpPathPaint opPathPaint;
 
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, String structParentTag) {
-        super(LINE_ART_ITEM_TYPE, structParentTag);
+    public GFSELineArtItem(GFOpPathPaint opPathPaint, String structParentTag, String parentsTags) {
+        super(LINE_ART_ITEM_TYPE, structParentTag, parentsTags);
         this.opPathPaint = opPathPaint;
     }
 
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, GFOpMarkedContent parentMarkedContentOperator, String structParentTag) {
-        super(LINE_ART_ITEM_TYPE, parentMarkedContentOperator, structParentTag);
+    public GFSELineArtItem(GFOpPathPaint opPathPaint, GFOpMarkedContent parentMarkedContentOperator,
+                           String structParentTag, String parentsTags) {
+        super(LINE_ART_ITEM_TYPE, parentMarkedContentOperator, structParentTag, parentsTags);
         this.opPathPaint = opPathPaint;
     }
 

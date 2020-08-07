@@ -39,12 +39,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Maxim Plushchov
+ */
 public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedContent {
 
     public static final String UNMARKED_CONTENT_TYPE = "SEUnmarkedContent";
 
-    public GFSEUnmarkedContent(List<Operator> operators, String parentStructureTag) {
-        super(UNMARKED_CONTENT_TYPE, parentStructureTag);
+    public GFSEUnmarkedContent(List<Operator> operators, String parentStructureTag, String parentsTags) {
+        super(UNMARKED_CONTENT_TYPE, parentStructureTag, parentsTags);
         this.operators = operators;
     }
 
@@ -66,17 +69,17 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
         for (Operator operator : operators) {
             String type = operator.getObjectType();
             if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
-                list.add(new GFSETextItem((GFOpTextShow)operator, parentStructureTag));
+                list.add(new GFSETextItem((GFOpTextShow)operator, parentStructureTag, parentsTags));
             } else if (operator instanceof GFOp_sh) {
-                list.add(new GFSEShadingItem((GFOp_sh)operator, parentStructureTag));
+                list.add(new GFSEShadingItem((GFOp_sh)operator, parentStructureTag, parentsTags));
             } else if (operator instanceof GFOpPathPaint && !(operator instanceof GFOp_n)) {
-                list.add(new GFSELineArtItem((GFOpPathPaint)operator, parentStructureTag));
+                list.add(new GFSELineArtItem((GFOpPathPaint)operator, parentStructureTag, parentsTags));
             } else if (operator instanceof GFOp_EI) {
-                list.add(new GFSEImageItem((GFOp_EI)operator, parentStructureTag));
+                list.add(new GFSEImageItem((GFOp_EI)operator, parentStructureTag, parentsTags));
             } else if (operator instanceof GFOp_Do) {
                 List<PDXObject> xObjects = ((GFOp_Do)operator).getXObject();
                 if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
-                    list.add(new GFSEImageItem((GFOp_Do)operator, parentStructureTag));
+                    list.add(new GFSEImageItem((GFOp_Do)operator, parentStructureTag, parentsTags));
                 }
             }
         }

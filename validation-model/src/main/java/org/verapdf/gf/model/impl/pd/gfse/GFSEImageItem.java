@@ -24,19 +24,23 @@ import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.model.selayer.SEImageItem;
 
+/**
+ * @author Maxim Plushchov
+ */
 public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
 
     public static final String IMAGE_ITEM_TYPE = "SEImageItem";
 
     GFOperator operator;
 
-    public GFSEImageItem(GFOperator operator, String parentStructureTag) {
-        super(IMAGE_ITEM_TYPE, parentStructureTag);
+    public GFSEImageItem(GFOperator operator, String parentStructureTag, String parentsTags) {
+        super(IMAGE_ITEM_TYPE, parentStructureTag, parentsTags);
         this.operator = operator;
     }
 
-    public GFSEImageItem(GFOperator operator, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
-        super(IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag);
+    public GFSEImageItem(GFOperator operator, GFOpMarkedContent parentMarkedContentOperator,
+                         String parentStructureTag, String parentsTags) {
+        super(IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
         this.operator = operator;
     }
 
