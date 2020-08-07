@@ -22,11 +22,9 @@ package org.verapdf.gf.model.impl.pd.actions;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDMediaClip;
 import org.verapdf.model.pdlayer.PDRenditionAction;
-import org.verapdf.pd.PDObject;
 import org.verapdf.pd.actions.PDAction;
 
 import java.util.ArrayList;

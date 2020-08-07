@@ -113,6 +113,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private List<String> inconsistentSeparations;
 	private Map<String, PDColorSpace> cachedColorSpaces;
 	private Set<String> noteIDSet;
+	private Set<COSKey> xFormKeysSet;
 	private Set<COSKey> fileSpecificationKeys;
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
@@ -135,6 +136,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.roleMapHelper = StaticContainers.getRoleMapHelper();
 		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
 		this.noteIDSet = StaticContainers.getNoteIDSet();
+		this.xFormKeysSet = StaticContainers.getXFormKeysSet();
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
 		this.validPDF = StaticContainers.getValidPDF();
 		this.lastHeadingNestingLevel = StaticContainers.getLastHeadingNestingLevel();
@@ -160,6 +162,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setRoleMapHelper(this.roleMapHelper);
 		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
 		StaticContainers.setNoteIDSet(this.noteIDSet);
+		StaticContainers.setXFormKeysSet(this.xFormKeysSet);
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
 		StaticContainers.setValidPDF(this.validPDF);
 		StaticContainers.setLastHeadingNestingLevel(this.lastHeadingNestingLevel);

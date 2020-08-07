@@ -20,9 +20,6 @@
  */
 package org.verapdf.gf.model.impl.pd.actions;
 
-import org.verapdf.cos.COSArray;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDMediaClip;
 
