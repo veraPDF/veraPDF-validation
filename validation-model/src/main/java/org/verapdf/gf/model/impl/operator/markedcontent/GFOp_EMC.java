@@ -34,7 +34,7 @@ public class GFOp_EMC extends GFOpMarkedContent implements Op_EMC {
     public static final String OP_EMC_TYPE = "Op_EMC";
 
     public GFOp_EMC(List<COSBase> arguments) {
-        super(arguments, OP_EMC_TYPE, null, null);
+        super(arguments, OP_EMC_TYPE, null, null, "");
     }
 
 }

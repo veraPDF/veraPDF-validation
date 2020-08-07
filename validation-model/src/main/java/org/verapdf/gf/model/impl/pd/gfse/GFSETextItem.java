@@ -28,18 +28,22 @@ import org.verapdf.model.selayer.SETextItem;
 
 import java.util.List;
 
+/**
+ * @author Maxim Plushchov
+ */
 public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     public static final String TEXT_ITEM_TYPE = "SETextItem";
 
     private GFOpTextShow opTextShow;
 
-    public GFSETextItem(GFOpTextShow opTextShow, String parentStructureTag) {
-        this(opTextShow, null, parentStructureTag);
+    public GFSETextItem(GFOpTextShow opTextShow, String parentStructureTag, String parentsTags) {
+        this(opTextShow, null, parentStructureTag, parentsTags);
     }
 
-    public GFSETextItem(GFOpTextShow opTextShow, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
-        super(TEXT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag);
+    public GFSETextItem(GFOpTextShow opTextShow, GFOpMarkedContent parentMarkedContentOperator,
+                        String parentStructureTag, String parentsTags) {
+        super(TEXT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
         this.opTextShow = opTextShow;
     }
 

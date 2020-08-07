@@ -32,6 +32,9 @@ import org.verapdf.model.selayer.SEContentItem;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Maxim Plushchov
+ */
 public class GFSEContentItem extends GenericModelObject implements SEContentItem {
 
     public static final String CONTENT_ITEM = "contentItem";
@@ -41,17 +44,21 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
 
     List<Operator> operators;
     protected String parentStructureTag;
+    protected String parentsTags;
 
-    public GFSEContentItem(String objectType, String parentStructureTag) {
+    public GFSEContentItem(String objectType, String parentStructureTag, String parentsTags) {
         super(objectType);
         this.parentStructureTag = parentStructureTag;
+        this.parentsTags = parentsTags;
     }
 
-    public GFSEContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
+    public GFSEContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag,
+                           String parentsTags) {
         super(objectType);
         this.parentMarkedContentOperator = parentMarkedContentOperator;
         this.parentMCID = parentMarkedContentOperator != null ? parentMarkedContentOperator.getMCID() : null;
         this.parentStructureTag = parentStructureTag;
+        this.parentsTags = parentsTags;
     }
 
     @Override
@@ -79,7 +86,7 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
         if (parentMarkedContentOperator != null) {
             return parentMarkedContentOperator.getParentsTags();
         }
-        return "";
+        return parentsTags;
     }
 
     @Override

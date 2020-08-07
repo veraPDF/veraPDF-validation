@@ -51,11 +51,14 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	private COSDictionary propertiesDict;
 	private final GFOpMarkedContent markedContent;
+	private String parentsTags;
 
-	public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources, GFOpMarkedContent markedContent) {
+	public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources,
+							 GFOpMarkedContent markedContent, String parentsTags) {
         super(arguments, opType);
 		initializePropertiesDict(resources);
 		this.markedContent = markedContent;
+		this.parentsTags = parentsTags;
 	}
 
 	private void initializePropertiesDict(PDResourcesHandler resources) {
@@ -117,10 +120,15 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		if (markedContent != null) {
 			parentsTags = markedContent.getParentsTags();
 		}
-		if ("".equals(tag)) {
+		if (parentsTags.isEmpty()) {
+			parentsTags = this.parentsTags;
+		} else if (!this.parentsTags.isEmpty()) {
+			parentsTags = this.parentsTags + "&" + parentsTags;
+		}
+		if (tag.isEmpty()) {
 			return parentsTags;
 		}
-		if ("".equals(parentsTags)) {
+		if (parentsTags.isEmpty()) {
 			return tag;
 		}
 		return parentsTags + "&" + tag;

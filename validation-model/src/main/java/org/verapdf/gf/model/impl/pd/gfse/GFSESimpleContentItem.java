@@ -23,14 +23,17 @@ package org.verapdf.gf.model.impl.pd.gfse;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.model.selayer.SESimpleContentItem;
 
+/**
+ * @author Maxim Plushchov
+ */
 public class GFSESimpleContentItem extends GFSEContentItem implements SESimpleContentItem {
 
-
-    public GFSESimpleContentItem(String objectType, String parentStructureTag) {
-        super(objectType, parentStructureTag);
+    public GFSESimpleContentItem(String objectType, String parentStructureTag, String parentsTags) {
+        super(objectType, parentStructureTag, parentsTags);
     }
 
-    public GFSESimpleContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag) {
-        super(objectType, parentMarkedContentOperator, parentStructureTag);
+    public GFSESimpleContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator,
+                                 String parentStructureTag, String parentsTags) {
+        super(objectType, parentMarkedContentOperator, parentStructureTag, parentsTags);
     }
 }

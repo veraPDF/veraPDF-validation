@@ -47,8 +47,9 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 	public final StructureElementAccessObject structureElementAccessObject;
 
 
-    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources, GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        super(arguments, OP_BDC_TYPE, resources, markedContent);
+    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources, GFOpMarkedContent markedContent,
+					StructureElementAccessObject structureElementAccessObject, String parentsTags) {
+        super(arguments, OP_BDC_TYPE, resources, markedContent, parentsTags);
 		this.structureElementAccessObject = structureElementAccessObject;
     }
 
