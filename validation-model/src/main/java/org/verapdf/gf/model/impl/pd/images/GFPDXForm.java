@@ -21,7 +21,9 @@
 package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.factory.operators.GraphicState;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.GFPDGroup;
 import org.verapdf.gf.model.impl.pd.GFPDSemanticContentStream;
@@ -97,6 +99,27 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	@Override
 	public Boolean getcontainsRef() {
 		return this.simplePDObject.knownKey(ASAtom.REF);
+	}
+
+	@Override
+	public Boolean getisUniqueSemanticParent() {
+		if (!this.simplePDObject.knownKey(ASAtom.STRUCT_PARENTS)) {
+			return true;
+		}
+		COSKey key = this.simplePDObject.getObject().getKey();
+		if (key == null) {
+			return true;
+		}
+		if (StaticContainers.getXFormKeysSet().contains(key)) {
+			return false;
+		}
+		StaticContainers.getXFormKeysSet().add(key);
+		return true;
+	}
+
+	@Override
+	public String getID() {
+		return null;
 	}
 
 	private List<PDContentStream> getContentStream() {
