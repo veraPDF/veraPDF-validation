@@ -70,6 +70,8 @@ import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.patterns.PDPattern;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
@@ -93,13 +95,14 @@ class OperatorParser {
 	private StructureElementAccessObject structureElementAccessObject;
 	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 	private final String parentStructureTag;
+	private final String parentsTags;
 
 	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
 				   StructureElementAccessObject structureElementAccessObject,
 				   PDResourcesHandler resourcesHandler,
-				   String parentStructureTag) {
+				   String parentStructureTag, String parentsTags) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -108,6 +111,7 @@ class OperatorParser {
 		this.graphicState.setInitialGraphicState(this.graphicState);
 		this.structureElementAccessObject = structureElementAccessObject;
 		this.parentStructureTag = parentStructureTag;
+		this.parentsTags = parentsTags;
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -154,7 +158,7 @@ class OperatorParser {
 
 			// MARKED CONTENT
 			case Operators.BMC:
-				GFOp_BMC bmcOp = new GFOp_BMC(arguments, resourcesHandler, getCurrentMarkedContent());
+				GFOp_BMC bmcOp = new GFOp_BMC(arguments, resourcesHandler, getCurrentMarkedContent(), parentsTags);
 				processedOperators.add(bmcOp);
 				this.markedContentStack.push(bmcOp);
 				break;
@@ -164,7 +168,7 @@ class OperatorParser {
 						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 					checkAFKey(arguments, resourcesHandler);
 				}
-				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags);
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
 				break;
@@ -490,8 +494,18 @@ class OperatorParser {
 
 			// XOBJECT
 			case Operators.DO:
+				Long mcid = null;
+				String parentsTags = "";
+				if (!markedContentStack.empty()) {
+					mcid = markedContentStack.peek().getMCID();
+					parentsTags = markedContentStack.peek().getParentsTags();
+				}
+				String parentStructureTag = getParentStructureTag(structureElementAccessObject, mcid);
+				if (parentStructureTag == null) {
+					parentStructureTag = this.parentStructureTag;
+				}
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-						resourcesHandler, this.graphicState.clone(), structureElementAccessObject, parentStructureTag);
+						resourcesHandler, this.graphicState.clone(), parentStructureTag, parentsTags);
 				List<org.verapdf.model.pdlayer.PDXObject> pdxObjects = op_do.getXObject();
 				if (!pdxObjects.isEmpty()) {
 					GFPDXObject xobj = (GFPDXObject) pdxObjects.get(0);
@@ -654,5 +668,17 @@ class OperatorParser {
 			return null;
 		}
 		return this.markedContentStack.firstElement();
+	}
+
+	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject, Long mcid) {
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
+			if (structureElement != null && !structureElement.empty()) {
+				return structureElement.getStringKey(ASAtom.S);
+			}
+		}
+		return null;
 	}
 }

@@ -62,6 +62,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	private final GraphicState inheritedGraphicState;
 	private final StructureElementAccessObject structureElementAccessObject;
 	protected String parentStructureTag;
+	protected String parentsTags;
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
 							 PDResourcesHandler resourcesHandler,
@@ -78,22 +79,20 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.structureElementAccessObject = structureElementAccessObject;
-		this.parentStructureTag = getParentStructureTag(structureElementAccessObject);
+		parentsTags = "";
 	}
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
 							 PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject,
-							 StructureElementAccessObject parentStructureElementAccessObject, String parentStructureTag,
-							 final String type) {
+							 String parentStructureTag, String parentsTags, final String type) {
 		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, type);
-		if (this.parentStructureTag == null) {
-			this.parentStructureTag = getParentStructureTag(parentStructureElementAccessObject);
-		}
+		this.parentStructureTag = getParentStructureTag(structureElementAccessObject);
 		if (this.parentStructureTag == null) {
 			this.parentStructureTag = parentStructureTag;
 		}
+		this.parentsTags = parentsTags;
 	}
 
 	@Override
@@ -138,7 +137,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							streamParser.parseTokens();
 							OperatorFactory operatorFactory = new OperatorFactory();
 							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(),
-									resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructureTag);
+									resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructureTag, parentsTags);
 							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 							this.operators = Collections.unmodifiableList(result);
 						} finally {

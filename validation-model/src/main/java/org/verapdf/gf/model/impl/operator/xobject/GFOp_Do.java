@@ -50,19 +50,18 @@ public class GFOp_Do extends GFOperator implements Op_Do {
     private final org.verapdf.pd.images.PDXObject pbXObject;
 	private final PDResourcesHandler resourcesHandler;
 	private final GraphicState inheritedGraphicState;
-	private final StructureElementAccessObject structureElementAccessObject;
 	private final String parentStructureTag;
+	private final String parentsTags;
 
 	public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pbXObject,
 				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
-				   StructureElementAccessObject structureElementAccessObject,
-				   String parentStructureTag) {
+				   String parentStructureTag, String parentsTags) {
         super(arguments, OP_DO_TYPE);
         this.pbXObject = pbXObject;
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
-		this.structureElementAccessObject = structureElementAccessObject;
 		this.parentStructureTag = parentStructureTag;
+		this.parentsTags = parentsTags;
     }
 
     @Override
@@ -82,7 +81,7 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 				return Collections.emptyList();
 			}
 			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler,
-					inheritedGraphicState, this.structureElementAccessObject, this.parentStructureTag);
+					inheritedGraphicState, 				   this.parentStructureTag, this.parentsTags);
 			if (typedPDXObject != null) {
 				List<PDXObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(typedPDXObject);
