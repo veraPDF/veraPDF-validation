@@ -86,4 +86,22 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
     	return this.trueTypeFont.isCmapPresent(3, 0);
     }
 
+    /**
+     * @return true if the font program contains the Microsoft Symbol
+     * (3,1 – Platform ID=3, Encoding ID=1) cmap subtable.
+     */
+    @Override
+    public Boolean getcmap31Present() {
+        return Boolean.valueOf(this.trueTypeFont.isCmapPresent(3, 1));
+    }
+
+    /**
+     * @return true if the font program contains the Microsoft Symbol
+     * (1,0 – Platform ID=1, Encoding ID=0) cmap subtable.
+     */
+    @Override
+    public Boolean getcmap10Present() {
+        return Boolean.valueOf(this.trueTypeFont.isCmapPresent(1, 0));
+    }
+
 }
