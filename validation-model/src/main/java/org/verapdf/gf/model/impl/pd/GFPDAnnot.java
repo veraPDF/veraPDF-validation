@@ -46,6 +46,7 @@ import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -387,9 +388,16 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private void addAppearance(List<PDContentStream> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
-			GFPDContentStream stream = new GFPDSemanticContentStream(toAdd, resources, null,
-					new StructureElementAccessObject(this.simpleCOSObject));
-			this.containsTransparency |= stream.isContainsTransparency();
+			List<CosLang> annotLang = getLang();
+			GFPDContentStream stream;
+			if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
+				stream = new GFPDContentStream(toAdd, resources, null,
+						new StructureElementAccessObject(this.simpleCOSObject), getstructParentType(), "");
+			} else {
+				stream = new GFPDSemanticContentStream(toAdd, resources, null,
+						new StructureElementAccessObject(this.simpleCOSObject), getstructParentType(), "",
+						annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue());
+			}
 			PDGroup group = toAdd.getGroup();
 			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());
 			list.add(stream);
