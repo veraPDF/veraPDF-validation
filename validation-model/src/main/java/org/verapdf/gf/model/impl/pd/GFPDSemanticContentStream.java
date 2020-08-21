@@ -50,6 +50,8 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 
 	public static final String SEMANTIC_CONTENT_STREAM_TYPE = "PDSemanticContentStream";
 
+	private String defaultLang;
+
 	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream,
                                      PDResourcesHandler resourcesHandler,
                                      GraphicState inheritedGraphicState,
@@ -64,7 +66,17 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
                                      String parentStructureTag, String parentsTags) {
 		super(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructureTag,
 				parentsTags, SEMANTIC_CONTENT_STREAM_TYPE);
-}
+	}
+
+	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream,
+									 PDResourcesHandler resourcesHandler,
+									 GraphicState inheritedGraphicState,
+									 StructureElementAccessObject structureElementAccessObject,
+									 String parentStructureTag, String parentsTags, String defaultLang) {
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructureTag,
+				parentsTags);
+		this.defaultLang = defaultLang;
+	}
 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
@@ -89,16 +101,16 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 			String type = operators.get(i).getObjectType();
 			if (type.equals(GFOp_BDC.OP_BDC_TYPE) || type.equals(GFOp_BMC.OP_BMC_TYPE)) {
 				if (markedContentStack.empty() && i != markedContentIndex + 1) {
-					list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, i),
-							parentStructureTag, parentsTags));
+					list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, i), parentStructureTag,
+							parentsTags, defaultLang));
 				}
 				markedContentStack.push(i);
 			} else if (type.equals(GFOp_EMC.OP_EMC_TYPE)) {
 				if (!markedContentStack.empty()) {
 					markedContentIndex = markedContentStack.pop();
 					if (markedContentStack.empty()) {
-						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1),
-								parentStructureTag, parentsTags));
+						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), parentStructureTag,
+								parentsTags, defaultLang));
 						markedContentIndex = i;
 						unmarkedContentIndex = i + 1;
 					}
@@ -107,7 +119,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 		}
 		if (unmarkedContentIndex != operators.size()) {
 			list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, operators.size()),
-					parentStructureTag, parentsTags));
+					parentStructureTag, parentsTags, defaultLang));
 		}
 		return Collections.unmodifiableList(list);
 	}
