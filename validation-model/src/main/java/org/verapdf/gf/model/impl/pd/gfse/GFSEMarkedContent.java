@@ -56,17 +56,20 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     public static final String LANG = "Lang";
 
+    private String defaultLang;
+
     private GFOpMarkedContent operator;
 
-    public GFSEMarkedContent(List<Operator> operators, String parentStructureTag, String parentsTags) {
-        this(operators, null, parentStructureTag, parentsTags);
+    public GFSEMarkedContent(List<Operator> operators, String parentStructureTag, String parentsTags, String defaultLang) {
+        this(operators, null, parentStructureTag, parentsTags, defaultLang);
     }
 
     public GFSEMarkedContent(List<Operator> operators, GFOpMarkedContent parentMarkedContentOperator,
-                             String parentStructureTag, String parentsTags) {
+                             String parentStructureTag, String parentsTags, String defaultLang) {
         super(MARKED_CONTENT_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
         this.operators = operators.subList(1, operators.size() - 1);
         this.operator = (GFOpMarkedContent)operators.get(0);
+        this.defaultLang = defaultLang;
     }
 
     @Override
@@ -98,13 +101,13 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
                         list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), this.operator,
-                                parentStructureTag, parentsTags));
+                                parentStructureTag, parentsTags, defaultLang));
                     }
                 }
             }
             if (markedContentStack.empty()) {
                 if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
-                    list.add(new GFSETextItem((GFOpTextShow)op, this.operator, parentStructureTag, parentsTags));
+                    list.add(new GFSETextItem((GFOpTextShow)op, this.operator, parentStructureTag, parentsTags, defaultLang));
                 } else if (op instanceof GFOp_sh) {
                     list.add(new GFSEShadingItem((GFOp_sh)op, this.operator, parentStructureTag, parentsTags));
                 } else if (op instanceof GFOpPathPaint && !(op instanceof GFOp_n)) {
@@ -128,7 +131,8 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     @Override
     public String getinheritedLang() {
-        return operator.getParentLang();
+        String inheritedlang =  operator.getParentLang();
+        return inheritedlang != null ? inheritedlang : defaultLang;
     }
 
     @Override

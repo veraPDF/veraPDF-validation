@@ -74,6 +74,15 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
 							 PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
+							 StructureElementAccessObject structureElementAccessObject,
+							 String parentStructureTag, String parentsTags) {
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject,
+				parentStructureTag, parentsTags, CONTENT_STREAM_TYPE);
+	}
+
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
+							 PDResourcesHandler resourcesHandler,
+							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject, final String type) {
 		super(contentStream, type);
 		this.resourcesHandler = resourcesHandler;
