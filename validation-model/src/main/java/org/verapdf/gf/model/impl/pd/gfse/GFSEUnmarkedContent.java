@@ -46,8 +46,11 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
 
     public static final String UNMARKED_CONTENT_TYPE = "SEUnmarkedContent";
 
-    public GFSEUnmarkedContent(List<Operator> operators, String parentStructureTag, String parentsTags) {
+    private String defaultLang;
+
+    public GFSEUnmarkedContent(List<Operator> operators, String parentStructureTag, String parentsTags, String defaultLang) {
         super(UNMARKED_CONTENT_TYPE, parentStructureTag, parentsTags);
+        this.defaultLang = defaultLang;
         this.operators = operators;
     }
 
@@ -69,7 +72,7 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
         for (Operator operator : operators) {
             String type = operator.getObjectType();
             if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
-                list.add(new GFSETextItem((GFOpTextShow)operator, parentStructureTag, parentsTags));
+                list.add(new GFSETextItem((GFOpTextShow)operator, parentStructureTag, parentsTags, defaultLang));
             } else if (operator instanceof GFOp_sh) {
                 list.add(new GFSEShadingItem((GFOp_sh)operator, parentStructureTag, parentsTags));
             } else if (operator instanceof GFOpPathPaint && !(operator instanceof GFOp_n)) {

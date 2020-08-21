@@ -36,15 +36,17 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
     public static final String TEXT_ITEM_TYPE = "SETextItem";
 
     private GFOpTextShow opTextShow;
+    private String defaultLang;
 
-    public GFSETextItem(GFOpTextShow opTextShow, String parentStructureTag, String parentsTags) {
-        this(opTextShow, null, parentStructureTag, parentsTags);
+    public GFSETextItem(GFOpTextShow opTextShow, String parentStructureTag, String parentsTags, String defaultLang) {
+        this(opTextShow, null, parentStructureTag, parentsTags, defaultLang);
     }
 
     public GFSETextItem(GFOpTextShow opTextShow, GFOpMarkedContent parentMarkedContentOperator,
-                        String parentStructureTag, String parentsTags) {
+                        String parentStructureTag, String parentsTags, String defaultLang) {
         super(TEXT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
         this.opTextShow = opTextShow;
+        this.defaultLang = defaultLang;
     }
 
     @Override
@@ -84,6 +86,7 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
                 return structParentLang;
             }
         }
-        return parentMarkedContentOperator.getParentLang();
+        String parentLang = parentMarkedContentOperator.getParentLang();
+        return parentLang != null ? parentLang : this.defaultLang;
     }
 }
