@@ -54,8 +54,8 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState) {
         super(arguments, OP_DO_TYPE);
         this.pbXObject = pbXObject;
-		this.resourcesHandler = resourcesHandler;
-		this.inheritedGraphicState = inheritedGraphicState;
+        this.resourcesHandler = resourcesHandler;
+        this.inheritedGraphicState = inheritedGraphicState;
     }
 
     @Override
@@ -71,6 +71,9 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	 */
 	public List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
 		if (this.xObjects == null) {
+			if (this.pbXObject == null) {
+				return Collections.emptyList();
+			}
 			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler,
 					inheritedGraphicState);
 			if (typedPDXObject != null) {
