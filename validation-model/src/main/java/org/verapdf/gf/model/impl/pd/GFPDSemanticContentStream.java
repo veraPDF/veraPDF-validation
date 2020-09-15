@@ -99,13 +99,13 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 		List<SEContentItem> list = new ArrayList<>();
 		for (int i = 0; i < operators.size(); i++) {
 			String type = operators.get(i).getObjectType();
-			if (type.equals(GFOp_BDC.OP_BDC_TYPE) || type.equals(GFOp_BMC.OP_BMC_TYPE)) {
+			if (GFOp_BDC.OP_BDC_TYPE.equals(type) || GFOp_BMC.OP_BMC_TYPE.equals(type)) {
 				if (markedContentStack.empty() && i != markedContentIndex + 1) {
 					list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, i), parentStructureTag,
 							parentsTags, defaultLang));
 				}
 				markedContentStack.push(i);
-			} else if (type.equals(GFOp_EMC.OP_EMC_TYPE)) {
+			} else if (GFOp_EMC.OP_EMC_TYPE.equals(type)) {
 				if (!markedContentStack.empty()) {
 					markedContentIndex = markedContentStack.pop();
 					if (markedContentStack.empty()) {
@@ -128,7 +128,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 		Double scaleFactor = null;
 		for(int i = operators.size() - 1; i >= 0; i--) {
 			Operator operator = operators.get(i);
-			if(operator.getObjectType().equals(GFOp_Tj.OP_TJ_TYPE) || operator.getObjectType().equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
+			if(GFOp_Tj.OP_TJ_TYPE.equals(operator.getObjectType()) || GFOp_TJ_Big.OP_TJ_BIG_TYPE.equals(operator.getObjectType())) {
 				((GFOpTextShow)operator).setNextScaleFactor(scaleFactor);
 				scaleFactor = ((GFOpTextShow)operator).getScaleFactor();
 			}

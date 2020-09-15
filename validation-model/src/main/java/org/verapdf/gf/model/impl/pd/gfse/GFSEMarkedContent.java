@@ -94,9 +94,9 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
         for (int i = 0; i < operators.size(); i++) {
             Operator op = operators.get(i);
             String type = op.getObjectType();
-            if (type.equals(GFOp_BDC.OP_BDC_TYPE) || type.equals(GFOp_BMC.OP_BMC_TYPE)) {
+            if (GFOp_BDC.OP_BDC_TYPE.equals(type) || GFOp_BMC.OP_BMC_TYPE.equals(type)) {
                 markedContentStack.push(i);
-            } else if (type.equals(GFOp_EMC.OP_EMC_TYPE)) {
+            } else if (GFOp_EMC.OP_EMC_TYPE.equals(type)) {
                 if (!markedContentStack.empty()) {
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
@@ -106,7 +106,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
                 }
             }
             if (markedContentStack.empty()) {
-                if (type.equals(GFOp_Tj.OP_TJ_TYPE) || type.equals(GFOp_TJ_Big.OP_TJ_BIG_TYPE)) {
+                if (GFOp_Tj.OP_TJ_TYPE.equals(type) || GFOp_TJ_Big.OP_TJ_BIG_TYPE.equals(type)) {
                     list.add(new GFSETextItem((GFOpTextShow)op, this.operator, parentStructureTag, parentsTags, defaultLang));
                 } else if (op instanceof GFOp_sh) {
                     list.add(new GFSEShadingItem((GFOp_sh)op, this.operator, parentStructureTag, parentsTags));
@@ -153,7 +153,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
     @Override
     public String getstructureTag() {
         if (operator != null) {
-            if (operator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+            if (GFOp_BDC.OP_BDC_TYPE.equals(operator.getObjectType())) {
                return ((GFOp_BDC)operator).getstructureTag();
             }
         }
