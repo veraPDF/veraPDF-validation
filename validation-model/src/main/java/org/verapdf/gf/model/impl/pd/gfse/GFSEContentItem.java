@@ -92,7 +92,7 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
     @Override
     public String getparentStructureTag() {
         if (parentMarkedContentOperator != null) {
-            if (parentMarkedContentOperator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+            if (GFOp_BDC.OP_BDC_TYPE.equals(parentMarkedContentOperator.getObjectType())) {
                 String structTag = ((GFOp_BDC)parentMarkedContentOperator).getstructureTag();
                 if (structTag == null) {
                     structTag = parentMarkedContentOperator.getParentStructureTag();
