@@ -30,6 +30,11 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
+import org.verapdf.gf.model.impl.pd.annotations.GFPD3DAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.GFPDLinkAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.GFPDPrinterMarkAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.GFPDTrapNetAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.GFPDWidgetAnnot;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
@@ -68,6 +73,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final String A = "A";
 	public static final String ADDITIONAL_ACTION = "AA";
 	public static final String LANG = "Lang";
+	public static final String LINK = "Link";
+	public static final String PRINTER_MARK = "PrinterMark";
+	public static final String WIDGET = "Widget";
+	public static final String TRAP_NET = "TrapNet";
+	public static final String TYPE_3D = "3D";
 
 	public static final int MAX_COUNT_OF_ACTIONS = 10;
 	public static final int X_AXIS = 0;
@@ -80,7 +90,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private boolean containsTransparency = false;
 
 	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
-		super(annot, ANNOTATION_TYPE);
+		this(annot, pageResources, page, ANNOTATION_TYPE);
+	}
+
+	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page, String type) {
+		super(annot, type);
 		this.resources = pageResources;
 		this.page = page;
 	}
@@ -133,15 +147,6 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public String getFT() {
 		ASAtom ft = ((PDAnnotation) simplePDObject).getFT();
 		return ft == null ? null : ft.getValue();
-	}
-
-	@Override
-	public String getTU() {
-		COSObject parent = ((PDAnnotation) simplePDObject).getParent();
-		if (parent != null) {
-			return parent.getStringKey(ASAtom.TU);
-		}
-		return ((PDAnnotation) simplePDObject).getTU();
 	}
 
 	@Override
@@ -401,6 +406,28 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			PDGroup group = toAdd.getGroup();
 			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());
 			list.add(stream);
+		}
+	}
+
+	public static GFPDAnnot createAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
+		ASAtom subtype = annot.getSubtype();
+		if (subtype == null) {
+			return new GFPDAnnot(annot, pageResources, page);
+		}
+		String subtypeString = subtype.getValue();
+		switch (subtypeString) {
+			case WIDGET:
+				return new GFPDWidgetAnnot(annot, pageResources, page);
+			case TYPE_3D:
+				return new GFPD3DAnnot(annot, pageResources, page);
+			case TRAP_NET:
+				return new GFPDTrapNetAnnot(annot, pageResources, page);
+			case LINK:
+				return new GFPDLinkAnnot(annot, pageResources, page);
+			case PRINTER_MARK:
+				return new GFPDPrinterMarkAnnot(annot, pageResources, page);
+			default:
+				return new GFPDAnnot(annot, pageResources, page);
 		}
 	}
 }

@@ -234,6 +234,17 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	private List<CosLang> getLang() {
 		COSString baseLang = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getLang();
+		if (baseLang != null) {
+			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosLang(baseLang));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public String getparentLang() {
+		COSString baseLang = null;
 		Set<COSKey> keys = new HashSet<>();
 		COSKey key = this.simplePDObject.getObject().getObjectKey();
 		if (key != null) {
@@ -252,10 +263,8 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 			parent = parent.getParent();
 		}
 		if (baseLang != null) {
-			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFCosLang(baseLang));
-			return Collections.unmodifiableList(list);
+			return baseLang.getString();
 		}
-		return Collections.emptyList();
+		return null;
 	}
 }

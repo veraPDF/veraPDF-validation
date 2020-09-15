@@ -80,7 +80,7 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
         if (lang != null && lang.size() != 0) {
             return lang.get(0).getunicodeValue();
         }
-        if (parentMarkedContentOperator.getObjectType().equals(GFOp_BDC.OP_BDC_TYPE)) {
+        if (GFOp_BDC.OP_BDC_TYPE.equals(parentMarkedContentOperator.getObjectType())) {
             String structParentLang = ((GFOp_BDC)parentMarkedContentOperator).getstructParentLang();
             if (structParentLang != null) {
                 return structParentLang;
