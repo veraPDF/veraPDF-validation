@@ -58,10 +58,10 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 				   String parentStructureTag, String parentsTags) {
         super(arguments, OP_DO_TYPE);
         this.pbXObject = pbXObject;
-		this.resourcesHandler = resourcesHandler;
-		this.inheritedGraphicState = inheritedGraphicState;
-		this.parentStructureTag = parentStructureTag;
-		this.parentsTags = parentsTags;
+        this.resourcesHandler = resourcesHandler;
+        this.inheritedGraphicState = inheritedGraphicState;
+        this.parentStructureTag = parentStructureTag;
+        this.parentsTags = parentsTags;
     }
 
     @Override
@@ -77,6 +77,9 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	 */
 	public List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
 		if (this.xObjects == null) {
+			if (this.pbXObject == null) {
+				return Collections.emptyList();
+			}
 			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler,
 					inheritedGraphicState, 				   this.parentStructureTag, this.parentsTags);
 			if (typedPDXObject != null) {

@@ -35,11 +35,14 @@ import org.verapdf.pd.structure.StructureElementAccessObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFPDXObject extends GFPDResource implements PDXObject {
+
+	private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(GFPDXObject.class.getCanonicalName());
 
 	public static final String X_OBJECT_TYPE = "PDXObject";
 
@@ -97,6 +100,10 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 	public static PDXObject getTypedPDXObject(
 			org.verapdf.pd.images.PDXObject xObject,
 			PDResourcesHandler resources, GraphicState inheritedGraphicState, String parentStructureTag, String parentsTags) {
+		if (xObject == null) {
+			LOGGER.log(Level.SEVERE, "Named Resource is undefined");
+			return null;
+		}
 		ASAtom type = xObject.getType();
 		if (ASAtom.FORM.equals(type)) {
 			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState, parentStructureTag, parentsTags);

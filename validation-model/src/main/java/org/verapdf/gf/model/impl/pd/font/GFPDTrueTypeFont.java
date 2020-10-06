@@ -89,7 +89,7 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
         COSObject encoding = this.pdFont.getEncoding();
         if (!encoding.empty() && encoding.getType() != COSObjType.COS_NAME) {
             COSObject differences = encoding.getKey(ASAtom.DIFFERENCES);
-            if (!differences.empty()) {
+            if (!differences.empty() && differences.getType() == COSObjType.COS_ARRAY) {
                 for (COSObject diff : (COSArray) differences.getDirectBase()) {
                     if (diff.getType() == COSObjType.COS_NAME &&
                             !AdobeGlyphList.contains(diff.getString())) {
