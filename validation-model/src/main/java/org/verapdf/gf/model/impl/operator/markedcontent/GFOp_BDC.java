@@ -20,12 +20,22 @@
  */
 package org.verapdf.gf.model.impl.operator.markedcontent;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSObject;
+import org.verapdf.exceptions.LoopedException;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_BDC;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * @author Timur Kamalov
@@ -34,9 +44,13 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 
 	/** Type name for {@code GFOp_BDC} */
     public static final String OP_BDC_TYPE = "Op_BDC";
+	public final StructureElementAccessObject structureElementAccessObject;
 
-    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources) {
-        super(arguments, OP_BDC_TYPE, resources);
+
+    public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources, GFOpMarkedContent markedContent,
+					StructureElementAccessObject structureElementAccessObject, String parentsTags) {
+        super(arguments, OP_BDC_TYPE, resources, markedContent, parentsTags);
+		this.structureElementAccessObject = structureElementAccessObject;
     }
 
 	@Override
@@ -52,6 +66,50 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	public String getstructureTag() {
+		Long mcid = getMCID();
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null && mcid != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
+			if (structureElement != null && !structureElement.empty()) {
+				return structureElement.getStringKey(ASAtom.S);
+			}
+		}
+		return null;
+	}
+
+	public String getstructParentLang() {
+		Long mcid = getMCID();
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot == null || mcid == null) {
+			return null;
+		}
+		PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+		if (parentTreeRoot == null ) {
+			return null;
+		}
+		COSObject structureElement = structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
+		if (structureElement == null || structureElement.empty()) {
+			return null;
+		}
+		String baseLang = structureElement.getStringKey(ASAtom.LANG);
+		COSObject parent = structureElement.getKey(ASAtom.P);
+		Set<COSKey> keys = new HashSet<>();
+		while (baseLang == null && parent != null) {
+			COSKey key = parent.getObjectKey();
+			if (keys.contains(key)) {
+				throw new LoopedException("Struct tree loop found");
+			}
+			if (key != null) {
+				keys.add(key);
+			}
+			baseLang = parent.getStringKey(ASAtom.LANG);
+			parent = parent.getKey(ASAtom.P);
+		}
+		return baseLang;
 	}
 
 }

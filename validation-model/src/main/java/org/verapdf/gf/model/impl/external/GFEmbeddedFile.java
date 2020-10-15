@@ -112,11 +112,14 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Map<String, List<GFPDSeparation>> separations;
 	private List<String> inconsistentSeparations;
 	private Map<String, PDColorSpace> cachedColorSpaces;
+	private Set<String> noteIDSet;
+	private Set<COSKey> xFormKeysSet;
 	private Set<COSKey> fileSpecificationKeys;
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
 	private Map<String, Glyph> cachedGlyphs;
 	private boolean validPDF;
+	private Integer lastHeadingNestingLevel;
 
 	// StaticResources have to be saved too
 	private Map<String, CMap> cMapCache;
@@ -132,8 +135,11 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.cachedPDFonts = StaticContainers.getCachedFonts();
 		this.roleMapHelper = StaticContainers.getRoleMapHelper();
 		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
+		this.noteIDSet = StaticContainers.getNoteIDSet();
+		this.xFormKeysSet = StaticContainers.getXFormKeysSet();
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
 		this.validPDF = StaticContainers.getValidPDF();
+		this.lastHeadingNestingLevel = StaticContainers.getLastHeadingNestingLevel();
 		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
 
 		Map<String, CMap> cMaps = StaticResources.getcMapCache();
@@ -155,8 +161,11 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setCachedFonts(this.cachedPDFonts);
 		StaticContainers.setRoleMapHelper(this.roleMapHelper);
 		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
+		StaticContainers.setNoteIDSet(this.noteIDSet);
+		StaticContainers.setXFormKeysSet(this.xFormKeysSet);
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
 		StaticContainers.setValidPDF(this.validPDF);
+		StaticContainers.setLastHeadingNestingLevel(this.lastHeadingNestingLevel);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
 
 		StaticResources.setcMapCache(this.cMapCache);

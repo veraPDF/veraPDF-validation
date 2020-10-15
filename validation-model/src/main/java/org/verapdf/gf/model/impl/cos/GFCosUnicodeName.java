@@ -68,14 +68,7 @@ public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
 	// TODO : check implementation
 	@Override
 	public String getunicodeValue() {
-		String name = this.baseObject.getString();
-		byte[] bytes = name.getBytes();
-		try {
-			return new String(bytes, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			LOGGER.log(Level.FINE, "Can not transform " + name + " to unicode string.", e);
-			return null;
-		}
+		return ((COSName)this.baseObject).getUnicodeValue();
 	}
 
 }

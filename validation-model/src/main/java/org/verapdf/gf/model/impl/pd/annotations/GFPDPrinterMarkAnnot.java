@@ -18,23 +18,23 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.operator.markedcontent;
+package org.verapdf.gf.model.impl.pd.annotations;
 
-import org.verapdf.cos.COSBase;
-import org.verapdf.model.operator.Op_EMC;
-
-import java.util.List;
+import org.verapdf.gf.model.impl.pd.GFPDAnnot;
+import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.pdlayer.PDPrinterMarkAnnot;
+import org.verapdf.pd.PDAnnotation;
+import org.verapdf.pd.PDPage;
 
 /**
- * @author Timur Kamalov
+ * @author Maxim Plushchov
  */
-public class GFOp_EMC extends GFOpMarkedContent implements Op_EMC {
+public class GFPDPrinterMarkAnnot extends GFPDAnnot implements PDPrinterMarkAnnot {
 
-	/** Type name for {@code GFOp_EMC} */
-    public static final String OP_EMC_TYPE = "Op_EMC";
+	public static final String PRINTER_MARK_ANNOTATION_TYPE = "PDPrinterMarkAnnot";
 
-    public GFOp_EMC(List<COSBase> arguments) {
-        super(arguments, OP_EMC_TYPE, null, null, "");
-    }
+	public GFPDPrinterMarkAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
+		super(annot, pageResources, page, PRINTER_MARK_ANNOTATION_TYPE);
+	}
 
 }

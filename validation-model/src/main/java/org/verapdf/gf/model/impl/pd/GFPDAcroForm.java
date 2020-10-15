@@ -20,13 +20,23 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import com.adobe.xmp.impl.ByteBuffer;
 import org.verapdf.as.ASAtom;
+import org.verapdf.as.io.ASInputStream;
+import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDAcroForm;
 import org.verapdf.model.pdlayer.PDFormField;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,6 +53,12 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
     public static final String ACRO_FORM_TYPE = "PDAcroForm";
 
     public static final String FORM_FIELDS = "formFields";
+
+    public static final String XDP = "xdp:xdp";
+    public static final String CONFIG = "config";
+    public static final String ACROBAT = "acrobat";
+    public static final String ACROBAT7 = "acrobat7";
+    public static final String DYNAMIC_RENDER = "dynamicRender";
 
     public GFPDAcroForm(org.verapdf.pd.form.PDAcroForm acroForm) {
         super(acroForm, ACRO_FORM_TYPE);
@@ -66,6 +82,62 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
     @Override
     public Boolean getcontainsXFA() {
         return this.simplePDObject.knownKey(ASAtom.XFA);
+    }
+
+    @Override
+    public String getdynamicRender() {
+        COSObject object = this.simplePDObject.getKey(ASAtom.XFA);
+        if (object == null) {
+            return null;
+        }
+        if (object.getType() == COSObjType.COS_ARRAY) {
+            COSArray array = (COSArray)object.getDirectBase();
+            COSObject afterConfig = null;
+            for (int i = 0; i < array.size() - 1; i++) {
+                COSObject element = array.at(i);
+                if (element.getType() == COSObjType.COS_STRING && CONFIG.equals(element.getDirectBase().getString())) {
+                    afterConfig = array.at(i + 1);
+                    break;
+                }
+            }
+            object = afterConfig;
+        }
+        if (object.getType() == COSObjType.COS_STREAM) {
+            try (ASInputStream asInputStream = object.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
+                DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                builder.setErrorHandler(null);
+                Document doc = builder.parse(new InputSource(new ByteBuffer(asInputStream).getByteStream()));
+                Node configParent = getProperty(doc, XDP);
+                if (configParent == null) {
+                    configParent = doc;
+                }
+                Node config = getProperty(configParent,CONFIG);
+                Node acrobat = getProperty(config, ACROBAT);
+                Node acrobat7 = getProperty(acrobat, ACROBAT7);
+                Node dynamicRender = getProperty(acrobat7, DYNAMIC_RENDER);
+                if (dynamicRender != null) {
+                    return dynamicRender.getChildNodes().item(0).getNodeValue();
+                }
+            } catch (Exception e) {
+                LOGGER.log(Level.WARNING, "Problems with parsing XFA");
+                return null;
+            }
+        }
+        return null;
+    }
+
+    private Node getProperty(Node parent, String propertyName) {
+        if (parent == null) {
+            return null;
+        }
+        NodeList childNodes = parent.getChildNodes();
+        for(int i = 0; i < childNodes.getLength(); i++) {
+            Node item = childNodes.item(i);
+            if (propertyName.equals(item.getNodeName())){
+                return item;
+            }
+        }
+        return null;
     }
 
     @Override

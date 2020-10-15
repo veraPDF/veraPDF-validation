@@ -41,7 +41,7 @@ public class GFOp_MP extends GFOpMarkedContent implements Op_MP {
     public static final String OP_MP_TYPE = "Op_MP";
 
     public GFOp_MP(List<COSBase> arguments) {
-        super(arguments, OP_MP_TYPE, null);
+        super(arguments, OP_MP_TYPE, null, null, "");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class GFOp_MP extends GFOpMarkedContent implements Op_MP {
     }
 
 	@Override
-	protected List<CosName> getTag() {
+	public List<CosName> getTag() {
 		if (!this.arguments.isEmpty()) {
 			COSBase name = this.arguments.get(this.arguments.size() - 1);
 			if (name.getType() == COSObjType.COS_NAME) {

@@ -50,11 +50,16 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	public static final String LANG = "Lang";
 
 	private COSDictionary propertiesDict;
+	private final GFOpMarkedContent markedContent;
+	private String parentsTags;
 
-    public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources) {
+	public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources,
+							 GFOpMarkedContent markedContent, String parentsTags) {
         super(arguments, opType);
 		initializePropertiesDict(resources);
-    }
+		this.markedContent = markedContent;
+		this.parentsTags = parentsTags;
+	}
 
 	private void initializePropertiesDict(PDResourcesHandler resources) {
 		if (!this.arguments.isEmpty()) {
@@ -74,7 +79,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		}
 	}
 
-    protected List<CosName> getTag() {
+    public List<CosName> getTag() {
         if (this.arguments.size() > 1) {
 			COSBase name = this.arguments.get(this.arguments.size() - 2);
 			if (name.getType() == COSObjType.COS_NAME) {
@@ -95,7 +100,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
         return Collections.emptyList();
     }
 
-	protected List<CosLang> getLang() {
+	public List<CosLang> getLang() {
     	COSObject lang = getAttribute(ASAtom.LANG, COSObjType.COS_STRING);
     	if (lang != null) {
 			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
@@ -105,6 +110,60 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		return Collections.emptyList();
 	}
 
+	public String getParentsTags() {
+		List<CosName> tagList = getTag();
+		String tag = "";
+		if (tagList.size() != 0) {
+			tag = tagList.get(0).getinternalRepresentation();
+		}
+		String parentsTags = "";
+		if (markedContent != null) {
+			parentsTags = markedContent.getParentsTags();
+		}
+		if (parentsTags.isEmpty()) {
+			parentsTags = this.parentsTags;
+		} else if (!this.parentsTags.isEmpty()) {
+			parentsTags = this.parentsTags + "&" + parentsTags;
+		}
+		if (tag.isEmpty()) {
+			return parentsTags;
+		}
+		if (parentsTags.isEmpty()) {
+			return tag;
+		}
+		return parentsTags + "&" + tag;
+	}
+
+	public String getParentLang() {
+		if (markedContent == null) {
+			return null;
+		}
+		List<CosLang> lang =  markedContent.getLang();
+		if (lang != null && lang.size() != 0) {
+			return lang.get(0).getunicodeValue();
+		}
+		if (GFOp_BDC.OP_BDC_TYPE.equals(markedContent.getObjectType())) {
+			String structParentLang = ((GFOp_BDC)markedContent).getstructParentLang();
+			if (structParentLang != null) {
+				return structParentLang;
+			}
+		}
+		return markedContent.getParentLang();
+	}
+
+	public String getParentStructureTag() {
+		if (markedContent != null) {
+			if (GFOp_BDC.OP_BDC_TYPE.equals(markedContent.getObjectType())) {
+				String structTag = ((GFOp_BDC)markedContent).getstructureTag();
+				if (structTag != null) {
+					return structTag;
+				}
+			}
+			return markedContent.getParentStructureTag();
+		}
+		return null;
+	}
+
 	/**
 	 * Checks if attribute dict contains ActualText key and returns it's value.
 	 *
@@ -112,6 +171,16 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	 */
 	public COSString getActualText() {
 		COSObject actualText = getAttribute(ASAtom.ACTUAL_TEXT, COSObjType.COS_STRING);
+		return actualText == null ? null : (COSString) actualText.get();
+	}
+
+	public COSString getE() {
+		COSObject actualText = getAttribute(ASAtom.E, COSObjType.COS_STRING);
+		return actualText == null ? null : (COSString) actualText.get();
+	}
+
+	public COSString getAlt() {
+		COSObject actualText = getAttribute(ASAtom.ALT, COSObjType.COS_STRING);
 		return actualText == null ? null : (COSString) actualText.get();
 	}
 

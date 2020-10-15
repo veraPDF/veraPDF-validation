@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.as.io.ASInputStream;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
@@ -33,6 +34,8 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.parser.PDFStreamParser;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.IOException;
@@ -54,27 +57,61 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	private PDResourcesHandler resourcesHandler;
 
-	private List<Operator> operators = null;
+	protected List<Operator> operators = null;
 	private boolean containsTransparency = false;
 	private final GraphicState inheritedGraphicState;
 	private final StructureElementAccessObject structureElementAccessObject;
+	protected String parentStructureTag;
+	protected String parentsTags;
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
 							 PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject) {
-		super(contentStream, CONTENT_STREAM_TYPE);
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, CONTENT_STREAM_TYPE);
+	}
+
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
+							 PDResourcesHandler resourcesHandler,
+							 GraphicState inheritedGraphicState,
+							 StructureElementAccessObject structureElementAccessObject,
+							 String parentStructureTag, String parentsTags) {
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject,
+				parentStructureTag, parentsTags, CONTENT_STREAM_TYPE);
+	}
+
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
+							 PDResourcesHandler resourcesHandler,
+							 GraphicState inheritedGraphicState,
+							 StructureElementAccessObject structureElementAccessObject, final String type) {
+		super(contentStream, type);
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.structureElementAccessObject = structureElementAccessObject;
+		parentsTags = "";
+	}
+
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
+							 PDResourcesHandler resourcesHandler,
+							 GraphicState inheritedGraphicState,
+							 StructureElementAccessObject structureElementAccessObject,
+							 String parentStructureTag, String parentsTags, final String type) {
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, type);
+		this.parentStructureTag = getParentStructureTag(structureElementAccessObject);
+		if (this.parentStructureTag == null) {
+			this.parentStructureTag = parentStructureTag;
+		}
+		this.parentsTags = parentsTags;
 	}
 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
-		if (OPERATORS.equals(link)) {
-			return this.getOperators();
+		switch (link) {
+			case OPERATORS:
+				return this.getOperators();
+			default:
+				return super.getLinkedObjects(link);
 		}
-		return super.getLinkedObjects(link);
 	}
 
 	private List<Operator> getOperators() {
@@ -84,7 +121,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		return this.operators;
 	}
 
-	private void parseOperators() {
+	protected void parseOperators() {
 		if (this.contentStream == null) {
 			this.operators = Collections.emptyList();
 		} else {
@@ -109,7 +146,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							streamParser.parseTokens();
 							OperatorFactory operatorFactory = new OperatorFactory();
 							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(),
-									resourcesHandler, inheritedGraphicState, structureElementAccessObject);
+									resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructureTag, parentsTags);
 							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 							this.operators = Collections.unmodifiableList(result);
 						} finally {
@@ -141,4 +178,17 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		}
 		return containsTransparency;
 	}
+
+	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject) {
+		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, null);
+			if (structureElement != null && !structureElement.empty()) {
+				return structureElement.getStringKey(ASAtom.S);
+			}
+		}
+		return null;
+	}
+
 }

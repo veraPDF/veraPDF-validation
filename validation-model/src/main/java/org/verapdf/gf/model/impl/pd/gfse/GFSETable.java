@@ -20,9 +20,16 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETable;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
+
+import java.util.List;
+import java.util.Stack;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class GFSETable extends GFSEGeneral implements SETable {
 
@@ -30,5 +37,156 @@ public class GFSETable extends GFSEGeneral implements SETable {
 
     public GFSETable(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TABLE, TABLE_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    // This logic checks that all TH have Scope attribute or TD reference to TH ID using Headers
+    @Override
+    public Boolean getuseHeadersAndIdOrScope() {
+        Stack<org.verapdf.model.pdlayer.PDStructElem> stack = new Stack<>();
+        Boolean hasScope = true;
+        Boolean hasID = true;
+        Set<String> idSet = new HashSet<>();
+        Set<String> headersSet = new HashSet<>();
+        stack.push(this);
+        while (!stack.empty()) {
+            org.verapdf.model.pdlayer.PDStructElem elem = stack.pop();
+            String type = elem.getstandardType();
+            if (TaggedPDFConstants.TD.equals(type)) {
+                List<String> list = ((GFSETD)elem).getHeaders();
+                if (list != null) {
+                    headersSet.addAll(list);
+                }
+            } else if (TaggedPDFConstants.TH.equals(type)) {
+                List<String> list = ((GFSETH)elem).getHeaders();
+                if (list != null) {
+                    headersSet.addAll(list);
+                }
+                String id = ((GFSETH)elem).getTHID();
+                if (id == null || id.isEmpty()) {
+                    hasID = false;
+                } else {
+                    idSet.add(id);
+                }
+                if (((GFSETH)elem).getScope() == null) {
+                    hasScope = false;
+                }
+            }
+            List<org.verapdf.model.pdlayer.PDStructElem> list = ((GFPDStructElem)elem).getChildren();
+            for (org.verapdf.model.pdlayer.PDStructElem  el : list) {
+                stack.push(el);
+            }
+        }
+        if (hasScope) {
+            return true;
+        }
+        if (!hasID) {
+            return false;
+        }
+        for (String headers : headersSet) {
+            if(!idSet.contains(headers)) {
+                return false;
+            }
+        }
+        for (String id : idSet) {
+            if(!headersSet.contains(id)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean getisRegular() {
+        List<org.verapdf.model.pdlayer.PDStructElem> listTR = getTR();
+        int rowNum = listTR.size();
+        int columnNum = getColumnNum((GFPDStructElem)listTR.get(0));
+        boolean cells[][] = new boolean[rowNum][columnNum];
+        for (int i = 0; i < rowNum; i++) {
+            int j = 0;
+            for (org.verapdf.model.pdlayer.PDStructElem elem : ((GFPDStructElem)listTR.get(i)).getChildren()) {
+                String type = elem.getstandardType();
+                long colSpan;
+                long rowSpan;
+                if (TaggedPDFConstants.TH.equals(type)) {
+                    colSpan = ((GFSETH)elem).getColSpan();
+                    rowSpan = ((GFSETH)elem).getRowSpan();
+                } else if (TaggedPDFConstants.TD.equals(type)) {
+                    colSpan = ((GFSETD)elem).getColSpan();
+                    rowSpan = ((GFSETD)elem).getRowSpan();
+                } else {
+                    continue;
+                }
+
+                while (j < columnNum && cells[i][j]) {
+                    ++j;
+                }
+                if (j >= columnNum) {
+                    return false;
+                }
+                if (i + rowSpan > rowNum || j + colSpan > columnNum) {
+                    return false;
+                }
+                if (!checkRegular(cells, rowSpan, colSpan, i, j)) {
+                    return false;
+                }
+                j += colSpan;
+            }
+        }
+        for (int i = 0; i < rowNum; i++) {
+            for(int j = 0; j < columnNum; j++) {
+                if (!cells[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private List<org.verapdf.model.pdlayer.PDStructElem> getTR() {
+        List<org.verapdf.model.pdlayer.PDStructElem> listTR = new LinkedList<>();
+        for(org.verapdf.model.pdlayer.PDStructElem elem : getChildren()) {
+            String type = elem.getstandardType();
+            if (!addTRtoList(listTR, elem) && TaggedPDFConstants.THEAD.equals(type) ||
+                    TaggedPDFConstants.TBODY.equals(type) || TaggedPDFConstants.TFOOT.equals(type)) {
+                for(org.verapdf.model.pdlayer.PDStructElem child : ((GFPDStructElem)elem).getChildren()) {
+                    addTRtoList(listTR, child);
+                }
+            }
+        }
+        return listTR;
+    }
+
+    private boolean addTRtoList(List<org.verapdf.model.pdlayer.PDStructElem> listTR, org.verapdf.model.pdlayer.PDStructElem elem) {
+        if (TaggedPDFConstants.TR.equals(elem.getstandardType())) {
+            listTR.add(elem);
+            return true;
+        }
+        return false;
+    }
+
+    private Integer getColumnNum(GFPDStructElem firstTR) {
+        int columnNum = 0;
+        for (org.verapdf.model.pdlayer.PDStructElem elem : firstTR.getChildren()) {
+            String type = elem.getstandardType();
+            if (TaggedPDFConstants.TH.equals(type)) {
+                columnNum += ((GFSETH)elem).getColSpan();
+            }
+            if (TaggedPDFConstants.TD.equals(type)) {
+                columnNum += ((GFSETD)elem).getColSpan();
+            }
+        }
+        return columnNum;
+    }
+
+    private Boolean checkRegular(boolean cells[][], long rowSpan, long colSpan, int i, int j) {
+        for(int k = 0; k < rowSpan; k++) {
+            for (int l = 0; l < colSpan; l++) {
+                if (cells[i + k][j + l]) {
+                    return false;
+                }
+                cells[i + k][j + l] = true;
+            }
+        }
+        return true;
     }
 }

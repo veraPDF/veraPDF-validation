@@ -18,23 +18,36 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.operator.markedcontent;
+package org.verapdf.gf.model.impl.pd.actions;
 
-import org.verapdf.cos.COSBase;
-import org.verapdf.model.operator.Op_EMC;
+import org.verapdf.gf.model.impl.pd.GFPDObject;
+import org.verapdf.model.pdlayer.PDMediaClip;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
- * @author Timur Kamalov
+ * @author Maxim Plushchov
  */
-public class GFOp_EMC extends GFOpMarkedContent implements Op_EMC {
+public class GFPDMediaClip extends GFPDObject implements PDMediaClip {
 
-	/** Type name for {@code GFOp_EMC} */
-    public static final String OP_EMC_TYPE = "Op_EMC";
+    public static final String MEDIA_CLIP_TYPE = "PDMediaClip";
 
-    public GFOp_EMC(List<COSBase> arguments) {
-        super(arguments, OP_EMC_TYPE, null, null, "");
+    public GFPDMediaClip(org.verapdf.pd.actions.PDMediaClip simplePDObject) {
+        super(simplePDObject, MEDIA_CLIP_TYPE);
     }
 
+    @Override
+    public String getCT() {
+        return ((org.verapdf.pd.actions.PDMediaClip)simplePDObject).getContentType();
+    }
+
+    @Override
+    public String getAlt() {
+        List<String> list = ((org.verapdf.pd.actions.PDMediaClip)simplePDObject).getAlternateDescription();
+        return list.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.joining(" "));
+    }
 }

@@ -20,26 +20,28 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
-import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.model.selayer.SEHn;
-import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.gf.model.impl.operator.base.GFOperator;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
+import org.verapdf.model.selayer.SEImageItem;
 
-public class GFSEHn extends GFSEGeneral implements SEHn {
+/**
+ * @author Maxim Plushchov
+ */
+public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
 
-    public static final String HN_STRUCTURE_ELEMENT_TYPE = "SEHn";
+    public static final String IMAGE_ITEM_TYPE = "SEImageItem";
 
-    public GFSEHn(PDStructElem structElemDictionary, String standardType) {
-        super(structElemDictionary, standardType, HN_STRUCTURE_ELEMENT_TYPE);
+    GFOperator operator;
+
+    public GFSEImageItem(GFOperator operator, String parentStructureTag, String parentsTags) {
+        super(IMAGE_ITEM_TYPE, parentStructureTag, parentsTags);
+        this.operator = operator;
     }
 
-    @Override
-    public Boolean gethasCorrectNestingLevel() {
-        int nestingLevel = new Integer(getstandardType().substring(1));
-        if (nestingLevel > StaticContainers.getLastHeadingNestingLevel() + 1) {
-            StaticContainers.setLastHeadingNestingLevel(nestingLevel);
-            return false;
-        }
-        StaticContainers.setLastHeadingNestingLevel(nestingLevel);
-        return true;
+    public GFSEImageItem(GFOperator operator, GFOpMarkedContent parentMarkedContentOperator,
+                         String parentStructureTag, String parentsTags) {
+        super(IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+        this.operator = operator;
     }
+
 }

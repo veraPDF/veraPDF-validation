@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.factory.operators.GraphicState;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.GFPDResource;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
@@ -29,6 +30,7 @@ import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;
+import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,14 +99,14 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 
 	public static PDXObject getTypedPDXObject(
 			org.verapdf.pd.images.PDXObject xObject,
-			PDResourcesHandler resources, GraphicState inheritedGraphicState) {
+			PDResourcesHandler resources, GraphicState inheritedGraphicState, String parentStructureTag, String parentsTags) {
 		if (xObject == null) {
 			LOGGER.log(Level.SEVERE, "Named Resource is undefined");
 			return null;
 		}
 		ASAtom type = xObject.getType();
 		if (ASAtom.FORM.equals(type)) {
-			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState);
+			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState, parentStructureTag, parentsTags);
 		} else if (ASAtom.IMAGE.equals(type)) {
 			return new GFPDXImage((PDXImage) xObject, resources,
 					inheritedGraphicState.getFillColorSpace());

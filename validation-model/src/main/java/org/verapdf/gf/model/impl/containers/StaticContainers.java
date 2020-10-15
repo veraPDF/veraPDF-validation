@@ -60,6 +60,14 @@ public class StaticContainers {
 
 	private static ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
 
+	//SENote
+	private static ThreadLocal<Set<String>> noteIDSet = new ThreadLocal<>();
+
+	private static ThreadLocal<Integer> lastHeadingNestingLevel = new ThreadLocal<>();
+
+	//PDXForm
+	private static ThreadLocal<Set<COSKey>> xFormKeysSet = new ThreadLocal<>();
+
 	public static void clearAllContainers() {
 		document.set(null);
 		flavour.set(null);
@@ -71,7 +79,10 @@ public class StaticContainers {
 		fileSpecificationKeys.set(new HashSet<>());
 		transparencyVisitedContentStreams.set(new Stack<>());
 		cachedGlyphs.set(new HashMap<>());
+		noteIDSet.set(new HashSet<>());
 		validPDF.set(true);
+		lastHeadingNestingLevel.set(0);
+		xFormKeysSet.set(new HashSet<>());
 	}
 
 	public static PDDocument getDocument() {
@@ -158,6 +169,28 @@ public class StaticContainers {
 		StaticContainers.fileSpecificationKeys.set(fileSpecificationKeys);
 	}
 
+	public static Set<String> getNoteIDSet() {
+		if (noteIDSet.get() == null) {
+			noteIDSet.set(new HashSet<>());
+		}
+		return noteIDSet.get();
+	}
+
+	public static void setNoteIDSet(Set<String> noteIDSet) {
+		StaticContainers.noteIDSet.set(noteIDSet);
+	}
+
+	public static Set<COSKey> getXFormKeysSet() {
+		if (xFormKeysSet.get() == null) {
+			xFormKeysSet.set(new HashSet<>());
+		}
+		return xFormKeysSet.get();
+	}
+
+	public static void setXFormKeysSet(Set<COSKey> xFormKeysSet) {
+		StaticContainers.xFormKeysSet.set(xFormKeysSet);
+	}
+
 	public static Stack<COSKey> getTransparencyVisitedContentStreams() {
 		if (transparencyVisitedContentStreams.get() == null) {
 			transparencyVisitedContentStreams.set(new Stack<>());
@@ -175,6 +208,14 @@ public class StaticContainers {
 
 	public static void setValidPDF(boolean validPDF) {
 		StaticContainers.validPDF.set(validPDF);
+	}
+
+	public static Integer getLastHeadingNestingLevel() {
+		return lastHeadingNestingLevel.get();
+	}
+
+	public static void setLastHeadingNestingLevel(Integer lastHeadingNestingLevel) {
+		StaticContainers.lastHeadingNestingLevel.set(lastHeadingNestingLevel);
 	}
 
 	public static Map<String, Glyph> getCachedGlyphs() {

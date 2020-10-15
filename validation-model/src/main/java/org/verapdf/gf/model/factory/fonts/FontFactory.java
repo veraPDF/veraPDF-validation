@@ -73,7 +73,7 @@ public class FontFactory {
 		if (res == null) {
 			switch (rawFont.getSubtype().getValue()) {
 				case TYPE_0:
-					res =  new GFPDType0Font((PDType0Font) rawFont, renderingMode);
+					res = new GFPDType0Font((PDType0Font) rawFont, renderingMode);
 					break;
 				case TYPE_1:
 				case MM_TYPE_1:

@@ -42,8 +42,8 @@ public class GFOp_BMC extends GFOpMarkedContent implements Op_BMC {
 	/** Type name for {@code GFOp_BMC} */
     public static final String OP_BMC_TYPE = "Op_BMC";
 
-    public GFOp_BMC(List<COSBase> arguments, PDResourcesHandler resources) {
-        super(arguments, OP_BMC_TYPE, resources);
+    public GFOp_BMC(List<COSBase> arguments, PDResourcesHandler resources, GFOpMarkedContent markedContent, String parentsTags) {
+        super(arguments, OP_BMC_TYPE, resources, markedContent, parentsTags);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class GFOp_BMC extends GFOpMarkedContent implements Op_BMC {
     }
 
 	@Override
-	protected List<CosName> getTag() {
+	public List<CosName> getTag() {
 		if (!this.arguments.isEmpty()) {
 			COSBase name = this.arguments.get(this.arguments.size() - 1);
 			if (name.getType() == COSObjType.COS_NAME) {

@@ -21,15 +21,19 @@
 package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.factory.operators.GraphicState;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.GFPDGroup;
+import org.verapdf.gf.model.impl.pd.GFPDSemanticContentStream;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDGroup;
 import org.verapdf.model.pdlayer.PDXForm;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,11 +54,16 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private boolean groupContainsTransparency = false;
 	private boolean contentStreamContainsTransparency = false;
 	private final GraphicState inheritedGraphicState;
+	private final String parentStructureTag;
+	private final String parentsTags;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
-					 GraphicState inheritedGraphicState) {
+					 GraphicState inheritedGraphicState,
+					 String parentStructureTag, String parentsTags) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
+		this.parentStructureTag = parentStructureTag;
+		this.parentsTags = parentsTags;
 	}
 
 	@Override
@@ -93,6 +102,27 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		return this.simplePDObject.knownKey(ASAtom.REF);
 	}
 
+	@Override
+	public Boolean getisUniqueSemanticParent() {
+		if (!this.simplePDObject.knownKey(ASAtom.STRUCT_PARENTS)) {
+			return true;
+		}
+		COSKey key = this.simplePDObject.getObject().getKey();
+		if (key == null) {
+			return true;
+		}
+		if (StaticContainers.getXFormKeysSet().contains(key)) {
+			return false;
+		}
+		StaticContainers.getXFormKeysSet().add(key);
+		return true;
+	}
+
+	@Override
+	public String getID() {
+		return null;
+	}
+
 	private List<PDContentStream> getContentStream() {
 		if (this.contentStreams == null) {
 			parseContentStream();
@@ -115,9 +145,18 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	private void parseContentStream() {
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		GFPDContentStream gfContentStream = new GFPDContentStream(
-				(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
-				this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject));
+		GFPDContentStream gfContentStream;
+		if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
+			gfContentStream = new GFPDContentStream(
+					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
+					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
+					parentStructureTag, parentsTags);
+		} else {
+			gfContentStream = new GFPDSemanticContentStream(
+					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
+					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
+					parentStructureTag, parentsTags);
+		}
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		streams.add(gfContentStream);
 		this.contentStreams = streams;

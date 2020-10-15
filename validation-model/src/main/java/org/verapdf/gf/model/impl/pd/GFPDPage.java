@@ -31,6 +31,7 @@ import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.actions.PDPageAdditionalActions;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,6 +85,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 * Link name for page art box
 	 */
 	private static final String ART_BOX = "ArtBox";
+
+	public static final String PORTRAIT_ORIENTATION = "Portrait";
+	public static final String LANDSCAPE_ORIENTATION = "Landscape";
+	public static final String SQUARE_ORIENTATION = "Square";
 
 	public static final int MAX_NUMBER_OF_ACTIONS = 2;
 
@@ -155,7 +160,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			for (PDAnnotation annot : annots) {
 				org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
 				PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
-				GFPDAnnot annotation = new GFPDAnnot(annot, resourcesHandler);
+				GFPDAnnot annotation = GFPDAnnot.createAnnot(annot, resourcesHandler, page);
 				this.containsTransparency |= annotation.isContainsTransparency();
 				res.add(annotation);
 			}
@@ -194,10 +199,16 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		StaticContainers.getTransparencyVisitedContentStreams().clear();
 		List<PDContentStream> pdContentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
+		GFPDContentStream pdContentStream;
 		if (page.getContent() != null) {
 			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
-			GFPDContentStream pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
-					new StructureElementAccessObject(this.simpleCOSObject));
+			if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
+				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
+						new StructureElementAccessObject(this.simpleCOSObject));
+			} else {
+				pdContentStream = new GFPDSemanticContentStream(page.getContent(), resourcesHandler, null,
+						new StructureElementAccessObject(this.simpleCOSObject));
+			}
 			this.containsTransparency |= pdContentStream.isContainsTransparency();
 			pdContentStreams.add(pdContentStream);
 		}
@@ -269,5 +280,25 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	public Boolean getcontainsAA() {
 		return this.simplePDObject == null ? Boolean.valueOf(false) :
 				this.simplePDObject.knownKey(ASAtom.AA);
+	}
+
+	@Override
+	public String getTabs() {
+		return ((org.verapdf.pd.PDPage)this.simplePDObject).getTabs();
+	}
+
+	@Override
+	public String getorientation() {
+		CosBBox mediaBox = new GFCosBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSMediaBox());
+		double height = mediaBox.gettop() - mediaBox.getbottom();
+		double width = mediaBox.getright() - mediaBox.getleft();
+		long rotation = ((org.verapdf.pd.PDPage) simplePDObject).getRotation();
+		if ((height > width && rotation % 180 == 0) || (height < width && rotation % 180 == 90)) {
+			return PORTRAIT_ORIENTATION;
+		}
+		if ((height < width && rotation % 180 == 0) || (height > width && rotation % 180 == 90)) {
+			return LANDSCAPE_ORIENTATION;
+		}
+		return SQUARE_ORIENTATION;
 	}
 }

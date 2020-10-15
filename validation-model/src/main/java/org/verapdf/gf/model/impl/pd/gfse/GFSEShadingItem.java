@@ -20,26 +20,29 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
-import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.model.selayer.SEHn;
-import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
+import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
+import org.verapdf.model.selayer.SEShadingItem;
 
-public class GFSEHn extends GFSEGeneral implements SEHn {
+/**
+ * @author Maxim Plushchov
+ */
+public class GFSEShadingItem extends GFSESimpleContentItem implements SEShadingItem {
 
-    public static final String HN_STRUCTURE_ELEMENT_TYPE = "SEHn";
+    public static final String SHADING_ITEM_TYPE = "SEShadingItem";
 
-    public GFSEHn(PDStructElem structElemDictionary, String standardType) {
-        super(structElemDictionary, standardType, HN_STRUCTURE_ELEMENT_TYPE);
+    private GFOp_sh op_sh;
+
+    public GFSEShadingItem(GFOp_sh op_sh, String parentStructureTag, String parentsTags) {
+        super(SHADING_ITEM_TYPE, parentStructureTag, parentsTags);
+        this.op_sh = op_sh;
     }
 
-    @Override
-    public Boolean gethasCorrectNestingLevel() {
-        int nestingLevel = new Integer(getstandardType().substring(1));
-        if (nestingLevel > StaticContainers.getLastHeadingNestingLevel() + 1) {
-            StaticContainers.setLastHeadingNestingLevel(nestingLevel);
-            return false;
-        }
-        StaticContainers.setLastHeadingNestingLevel(nestingLevel);
-        return true;
+    public GFSEShadingItem(GFOp_sh op_sh, GFOpMarkedContent parentMarkedContentOperator,
+                           String parentStructureTag, String parentsTags) {
+        super(SHADING_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+        this.op_sh = op_sh;
+
     }
+
 }

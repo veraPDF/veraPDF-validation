@@ -20,9 +20,18 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSArray;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.pd.util.TableHelper;
 import org.verapdf.model.selayer.SETH;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class GFSETH extends GFSEGeneral implements SETH {
 
@@ -30,5 +39,70 @@ public class GFSETH extends GFSEGeneral implements SETH {
 
     public GFSETH(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TH, TH_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    protected String getTHID() {
+        return simplePDObject.getStringKey(ASAtom.ID);
+    }
+
+    protected String getScope() {
+        COSObject A = simplePDObject.getKey(ASAtom.A);
+        if (A != null) {
+            if (A.getType() == COSObjType.COS_ARRAY) {
+                for (COSObject object : (COSArray)A.getDirectBase()) {
+                    if (object.getType() == COSObjType.COS_DICT && TaggedPDFConstants.TABLE.equals(object.getStringKey(ASAtom.O))) {
+                        String scope = object.getStringKey(ASAtom.SCOPE);
+                        if (scope != null) {
+                            return scope;
+                        }
+                    }
+                }
+            } else if (A.getType() == COSObjType.COS_DICT && TaggedPDFConstants.TABLE.equals(A.getStringKey(ASAtom.O))) {
+                return A.getStringKey(ASAtom.SCOPE);
+            }
+        }
+        return null;
+    }
+
+    public Long getColSpan() {
+        return TableHelper.getColSpan(simplePDObject);
+    }
+
+    public Long getRowSpan() {
+        return TableHelper.getRowSpan(simplePDObject);
+    }
+
+    protected List<String> getHeaders() {
+        COSObject A = simplePDObject.getKey(ASAtom.A);
+        if (A != null) {
+            if (A.getType() == COSObjType.COS_ARRAY) {
+                for (COSObject object : (COSArray)A.getDirectBase()) {
+                    if (object.getType() == COSObjType.COS_DICT && TaggedPDFConstants.TABLE.equals(object.getStringKey(ASAtom.O))) {
+                        COSObject Headers = object.getKey(ASAtom.HEADERS);
+                        if (Headers != null && Headers.getType() == COSObjType.COS_ARRAY) {
+                            List<String> list = new LinkedList<>();
+                            for (COSObject elem : (COSArray)Headers.getDirectBase()) {
+                                if (elem.getType() == COSObjType.COS_STRING) {
+                                    list.add(elem.getString());
+                                }
+                            }
+                            return list;
+                        }
+                    }
+                }
+            } else if (A.getType() == COSObjType.COS_DICT && TaggedPDFConstants.TABLE.equals(A.getStringKey(ASAtom.O))) {
+                COSObject Headers = A.getKey(ASAtom.HEADERS);
+                if (Headers != null && Headers.getType() == COSObjType.COS_ARRAY) {
+                    List<String> list = new LinkedList<>();
+                    for (COSObject elem : (COSArray)Headers.getDirectBase()) {
+                        if (elem.getType() == COSObjType.COS_STRING) {
+                            list.add(elem.getString());
+                        }
+                    }
+                    return list;
+                }
+            }
+        }
+        return Collections.emptyList();
     }
 }
