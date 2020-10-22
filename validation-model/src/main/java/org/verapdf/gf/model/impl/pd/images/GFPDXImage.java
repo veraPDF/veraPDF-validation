@@ -109,19 +109,25 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 		if (!image.getImageMask()) {
 			List<PDColorSpace> colorSpaces =
 					new ArrayList<>(GFPDObject.MAX_NUMBER_OF_ELEMENTS);
-			org.verapdf.pd.colors.PDColorSpace buffer;
+			org.verapdf.pd.colors.PDColorSpace colorSpace;
 			ASAtom csName = image.getImageCSName();
 			if (csName != null) {
-				buffer = resourcesHandler.getColorSpace(csName);
-				if (buffer != null) {
-					colorSpaces.add(ColorSpaceFactory.getColorSpace(buffer));
+				colorSpace = resourcesHandler.getColorSpace(csName);
+				if (colorSpace != null) {
+					colorSpaces.add(ColorSpaceFactory.getColorSpace(colorSpace));
 					return Collections.unmodifiableList(colorSpaces);
 				}
 			} else {
-				buffer = image.getImageCS();
-				if (buffer != null) {
-					colorSpaces.add(ColorSpaceFactory.getColorSpace(buffer));
-					return Collections.unmodifiableList(colorSpaces);
+				colorSpace = image.getImageCS();
+				if (colorSpace != null) {
+					colorSpace = resourcesHandler.getColorSpace(colorSpace.getType());
+					if (colorSpace == null) {
+						colorSpace = image.getImageCS();
+					}
+ 					if (colorSpace != null) {
+						colorSpaces.add(ColorSpaceFactory.getColorSpace(colorSpace));
+						return Collections.unmodifiableList(colorSpaces);
+					}
 				}
 			}
 		} else if (this.inheritedFillCS != null) {
