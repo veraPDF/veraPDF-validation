@@ -93,7 +93,7 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 				return this.getIntent();
 			case GFPDXImage.IMAGE_CS:
 				return this.getImageCS();
-			case GFPDXObject.S_MASK:
+			case GFPDXImage.S_MASK:
 			case GFPDXObject.OPI:
 			case GFPDXImage.ALTERNATES:
 			case GFPDXImage.JPX_STREAM:

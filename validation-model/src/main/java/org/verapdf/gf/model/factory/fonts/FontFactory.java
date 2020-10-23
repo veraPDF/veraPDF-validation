@@ -56,17 +56,15 @@ public class FontFactory {
 		// Disable default constructor
 	}
 
-	public static PDFont parseFont(org.verapdf.pd.font.PDFont rawFont,
-								   RenderingMode renderingMode, PDResourcesHandler resources,
-								   GraphicState inheritedGraphicState) {
+	public static PDFont parseFont(org.verapdf.pd.font.PDFont rawFont, RenderingMode renderingMode,
+								   PDResourcesHandler resources, GraphicState inheritedGraphicState) {
 		if (rawFont == null) {
 			return new GFPDEmptyFont();
 		}
 		if (TYPE_3.equals(rawFont.getSubtype().getValue())) {
 			PDResources fontResources = ((PDType3Font) rawFont).getResources();
 			PDResourcesHandler pdResources = resources.getExtendedResources(fontResources);
-			return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources,
-					inheritedGraphicState);
+			return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources, inheritedGraphicState);
 		}
 		String id = GFIDGenerator.generateID(rawFont, renderingMode);
 		PDFont res = StaticContainers.getCachedFonts().get(id);

@@ -70,8 +70,7 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
         }
         List<SEContentItem> list = new ArrayList<>();
         for (Operator operator : operators) {
-            String type = operator.getObjectType();
-            if (GFOp_Tj.OP_TJ_TYPE.equals(type) || GFOp_TJ_Big.OP_TJ_BIG_TYPE.equals(type)) {
+            if (operator instanceof GFOpTextShow) {
                 list.add(new GFSETextItem((GFOpTextShow)operator, parentStructureTag, parentsTags, defaultLang));
             } else if (operator instanceof GFOp_sh) {
                 list.add(new GFSEShadingItem((GFOp_sh)operator, parentStructureTag, parentsTags));

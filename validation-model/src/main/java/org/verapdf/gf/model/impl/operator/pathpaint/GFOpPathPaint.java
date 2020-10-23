@@ -60,14 +60,14 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 							final PDResourcesHandler resourcesHandler, final String operatorType) {
 		this(arguments, state.getFillColorSpace(), state.getStrokeColorSpace(),
 				state.getOpm(), state.isOverprintingFlagStroke(), state.isOverprintingFlagNonStroke(),
-				resourcesHandler, operatorType, state);
+				resourcesHandler, state, operatorType);
     }
 
 	protected GFOpPathPaint(List<COSBase> arguments,
 							final PDColorSpace rawFillColorSpace, final PDColorSpace rawStrokeColorSpace,
 							int opm, boolean overprintingFlagStroke, boolean overprintingFlagNonStroke,
-							final PDResourcesHandler resourcesHandler, final String operatorType,
-							GraphicState inheritedGraphicState) {
+							final PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
+							final String operatorType) {
 		super(arguments, operatorType);
 		this.rawFillColorSpace = rawFillColorSpace;
 		this.rawStrokeColorSpace = rawStrokeColorSpace;
