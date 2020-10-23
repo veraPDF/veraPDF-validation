@@ -58,6 +58,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
     public static final String IDENTITY = "Identity";
     public static final String CUSTOM = "Custom";
+    public static final int maxSize = 16384;
+    public static final int bufferSize = 2048;
 
     public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
         super(font, renderingMode, CID_FONT_TYPE);
@@ -192,9 +194,23 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     }
 
     private static byte[] getCIDsFromCIDSet(ASInputStream cidSet) throws IOException {
-        byte[] cidSetBytes = new byte[2048];
-        int read = cidSet.read(cidSetBytes);
-        return read == -1 ? new byte[0] : Arrays.copyOf(cidSetBytes, read);
+        byte[] cidSetBytes = new byte[maxSize];
+        byte[] temp = new byte[bufferSize];
+        int size = 0;
+        int read = cidSet.read(temp, bufferSize);
+        while (read != -1) {
+            if (size + read >= maxSize) {
+                System.arraycopy(temp, 0, cidSetBytes, size, maxSize - size);
+                return cidSetBytes;
+            }
+            System.arraycopy(temp, 0, cidSetBytes, size, read);
+            size += read;
+            if (read < bufferSize) {
+                return Arrays.copyOf(cidSetBytes, size);
+            }
+            read = cidSet.read(temp, bufferSize);
+        }
+        return Arrays.copyOf(cidSetBytes, size);
     }
 
     private static BitSet toBitSetBigEndian(byte[] source) {
