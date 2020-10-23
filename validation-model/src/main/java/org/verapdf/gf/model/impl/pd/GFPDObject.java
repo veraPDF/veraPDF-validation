@@ -62,7 +62,9 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 		COSObject simpleObject = ((org.verapdf.pd.PDObject) contentStream).getObject();
 		if (simpleObject != null && !simpleObject.empty()) {
 			COSKey key = simpleObject.getObjectKey();
-			id = (key != null ? key.getNumber() + " " + key.getGeneration() : "0 0") + " obj " + this.getObjectType();
+			id = key != null ?
+					key.getNumber() + " " + key.getGeneration() + " obj " + this.getObjectType()
+					: super.getID();
 		}
 	}
 
@@ -73,7 +75,9 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 		if (simplePDObject != null && !simplePDObject.getObject().empty()) {
 			this.simpleCOSObject = simplePDObject.getObject();
 			COSKey key = simplePDObject.getObject().getObjectKey();
-			id = (key != null ? key.getNumber() + " " + key.getGeneration() : "0 0") + " obj " + this.getObjectType();
+			id = key != null ?
+					key.getNumber() + " " + key.getGeneration() + " obj " + this.getObjectType()
+					: super.getID();
 		}
 	}
 
@@ -93,7 +97,9 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 		if (simplePDObject != null && !simplePDObject.getObject().empty()) {
 			this.simpleCOSObject = simplePDObject.getObject();
 			COSKey key = simplePDObject.getObject().getObjectKey();
-			id = (key != null ? key.getNumber() + " " + key.getGeneration() : "0 0") + " obj " + this.getObjectType();
+			id = key != null ?
+					key.getNumber() + " " + key.getGeneration() + " obj " + this.getObjectType()
+					: super.getID();
 		}
 	}
 

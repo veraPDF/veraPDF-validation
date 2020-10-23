@@ -54,7 +54,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	private final COSDictionary catalog;
 
 	private final long indirectObjectCount;
-	private final float version;
+	private final float headerVersion;
 	private final long headerOffset;
 	private final String header;
 	private final int headerCommentByte1;
@@ -79,7 +79,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 		COSHeader cosHeader = cosDocument.getHeader();
 		this.indirectObjectCount = cosDocument.getObjects().size();
-		this.version = cosHeader.getVersion();
+		this.headerVersion = cosHeader.getVersion();
 		this.headerOffset = cosHeader.getHeaderOffset();
 		this.header = cosHeader.getHeader();
 		this.headerCommentByte1 = cosHeader.getHeaderCommentByte1();
@@ -114,8 +114,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 * @return version of pdf document
 	 */
 	@Override
-	public Double getversion() {
-		return Double.valueOf(this.version);
+	public Double getheaderVersion() {
+		return Double.valueOf(this.headerVersion);
 	}
 
 	@Override

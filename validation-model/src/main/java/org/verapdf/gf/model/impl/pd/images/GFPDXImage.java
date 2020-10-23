@@ -33,6 +33,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosRenderingIntent;
 import org.verapdf.model.external.JPEG2000;
 import org.verapdf.model.pdlayer.PDColorSpace;
+import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.model.pdlayer.PDXImage;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	public static final String ALTERNATES = "Alternates";
 	public static final String INTENT = "Intent";
 	public static final String JPX_STREAM = "jpxStream";
+	public static final String S_MASK = "SMask";
 
 	private List<JPEG2000> jpeg2000List = null;
 	private org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
@@ -85,9 +87,21 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 				return this.getAlternates();
 			case JPX_STREAM:
 				return this.getJPXStream();
+			case S_MASK:
+				return this.getSMask();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	protected List<PDSMaskImage> getSMask() {
+		org.verapdf.pd.images.PDXImage smask = ((org.verapdf.pd.images.PDXObject) simplePDObject).getSMask();
+		if (smask != null) {
+			List<PDSMaskImage> mask = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			mask.add(new GFPDSMaskImage(smask, this.resourcesHandler));
+			return Collections.unmodifiableList(mask);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<CosRenderingIntent> getIntent() {

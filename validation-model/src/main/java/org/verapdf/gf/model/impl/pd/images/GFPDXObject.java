@@ -22,19 +22,12 @@ package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.factory.operators.GraphicState;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.pd.GFPDResource;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
-import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;
-import org.verapdf.pd.structure.StructureElementAccessObject;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -47,7 +40,6 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 	public static final String X_OBJECT_TYPE = "PDXObject";
 
 	public static final String OPI = "OPI";
-	public static final String S_MASK = "SMask";
 
 	protected final PDResourcesHandler resourcesHandler;
 
@@ -77,26 +69,6 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 		return this.simplePDObject.knownKey(ASAtom.SMASK);
 	}
 
-	@Override
-	public List<? extends Object> getLinkedObjects(String link) {
-		switch (link) {
-			case S_MASK:
-				return this.getSMask();
-			default:
-				return super.getLinkedObjects(link);
-		}
-	}
-
-	protected List<PDSMaskImage> getSMask() {
-		PDXImage smask = ((org.verapdf.pd.images.PDXObject) simplePDObject).getSMask();
-		if (smask != null) {
-			List<PDSMaskImage> mask = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			mask.add(new GFPDSMaskImage(smask, this.resourcesHandler));
-			return Collections.unmodifiableList(mask);
-		}
-		return Collections.emptyList();
-	}
-
 	public static PDXObject getTypedPDXObject(
 			org.verapdf.pd.images.PDXObject xObject,
 			PDResourcesHandler resources, GraphicState inheritedGraphicState, String parentStructureTag, String parentsTags) {
@@ -104,8 +76,7 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 		if (ASAtom.FORM.equals(type)) {
 			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState, parentStructureTag, parentsTags);
 		} else if (ASAtom.IMAGE.equals(type)) {
-			return new GFPDXImage((PDXImage) xObject, resources,
-					inheritedGraphicState.getFillColorSpace());
+			return new GFPDXImage((PDXImage) xObject, resources, inheritedGraphicState.getFillColorSpace());
 		} else if (ASAtom.PS.equals(type)) {
 			return new GFPDXObject(xObject, resources);
 		} else {

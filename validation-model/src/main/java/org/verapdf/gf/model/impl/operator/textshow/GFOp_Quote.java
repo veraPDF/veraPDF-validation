@@ -39,7 +39,7 @@ public class GFOp_Quote extends GFOpStringTextShow implements Op_Quote {
 
     public GFOp_Quote(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
                       GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        super(arguments, state, resourcesHandler, OP_QUOTE_TYPE, markedContent, structureElementAccessObject);
+        super(arguments, state, resourcesHandler, markedContent, structureElementAccessObject, OP_QUOTE_TYPE);
     }
 
 }

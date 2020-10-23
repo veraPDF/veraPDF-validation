@@ -50,7 +50,7 @@ public class GFOp_TJ_Big extends GFOpTextShow implements Op_TJ_Big {
     public GFOp_TJ_Big(List<COSBase> arguments, GraphicState state,
                        PDResourcesHandler resourcesHandler, GFOpMarkedContent markedContent,
                        StructureElementAccessObject structureElementAccessObject) {
-        super(arguments, state, resourcesHandler, OP_TJ_BIG_TYPE, markedContent, structureElementAccessObject);
+        super(arguments, state, resourcesHandler, markedContent, structureElementAccessObject, OP_TJ_BIG_TYPE);
     }
 
     @Override
