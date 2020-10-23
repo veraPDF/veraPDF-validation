@@ -93,8 +93,8 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private List<org.verapdf.model.pdlayer.PDColorSpace> strokeCS = null;
 
 	protected GFOpTextShow(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
-						   final String opType, GFOpMarkedContent markedContent,
-						   StructureElementAccessObject structureElementAccessObject) {
+						   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject,
+						   final String opType) {
 		super(arguments, opType);
 		this.rawFillColorSpace = state.getFillColorSpace();
 		this.rawStrokeColorSpace = state.getStrokeColorSpace();

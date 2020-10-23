@@ -28,7 +28,6 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_Do;
 import org.verapdf.model.pdlayer.PDXObject;
-import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -77,11 +76,8 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	 */
 	public List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
 		if (this.xObjects == null) {
-			if (this.pbXObject == null) {
-				return Collections.emptyList();
-			}
 			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler,
-					inheritedGraphicState, 				   this.parentStructureTag, this.parentsTags);
+					inheritedGraphicState, this.parentStructureTag, this.parentsTags);
 			if (typedPDXObject != null) {
 				List<PDXObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(typedPDXObject);

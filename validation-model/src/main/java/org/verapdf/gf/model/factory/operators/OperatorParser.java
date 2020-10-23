@@ -101,8 +101,7 @@ class OperatorParser {
 
 	OperatorParser(GraphicState inheritedGraphicState,
 				   StructureElementAccessObject structureElementAccessObject,
-				   PDResourcesHandler resourcesHandler,
-				   String parentStructureTag, String parentsTags) {
+				   PDResourcesHandler resourcesHandler, String parentStructureTag, String parentsTags) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {

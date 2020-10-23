@@ -40,6 +40,6 @@ public class GFOp_Tj extends GFOpStringTextShow implements Op_Tj {
     public GFOp_Tj(List<COSBase> arguments, GraphicState state,
                    PDResourcesHandler resourcesHandler, GFOpMarkedContent markedContent,
                    StructureElementAccessObject structureElementAccessObject) {
-        super(arguments, state, resourcesHandler, OP_TJ_TYPE, markedContent, structureElementAccessObject);
+        super(arguments, state, resourcesHandler, markedContent, structureElementAccessObject, OP_TJ_TYPE);
     }
 }

@@ -99,8 +99,8 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 	private void parseContentStream() {
 		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.patterns.PDTilingPattern pattern = (org.verapdf.pd.patterns.PDTilingPattern) this.simplePDObject;
-		GFPDContentStream contentStream = new GFPDContentStream(pattern,
-		                                                        this.resourcesHandler, inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject));
+		GFPDContentStream contentStream = new GFPDContentStream(pattern, this.resourcesHandler, inheritedGraphicState,
+				new StructureElementAccessObject(this.simpleCOSObject));
 		this.containsTransparency |= contentStream.isContainsTransparency();
 		contentStreams.add(contentStream);
 		this.contentStreams = contentStreams;
