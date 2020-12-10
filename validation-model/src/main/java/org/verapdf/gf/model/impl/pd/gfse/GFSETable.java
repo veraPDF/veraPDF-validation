@@ -45,6 +45,7 @@ public class GFSETable extends GFSEGeneral implements SETable {
         Stack<org.verapdf.model.pdlayer.PDStructElem> stack = new Stack<>();
         Boolean hasScope = true;
         Boolean hasID = true;
+        Boolean hasHeaders = true;
         Set<String> idSet = new HashSet<>();
         Set<String> headersSet = new HashSet<>();
         stack.push(this);
@@ -53,14 +54,12 @@ public class GFSETable extends GFSEGeneral implements SETable {
             String type = elem.getstandardType();
             if (TaggedPDFConstants.TD.equals(type)) {
                 List<String> list = ((GFSETD)elem).getHeaders();
-                if (list != null) {
+                if (list != null && !list.isEmpty()) {
                     headersSet.addAll(list);
+                } else {
+                    hasHeaders = false;
                 }
             } else if (TaggedPDFConstants.TH.equals(type)) {
-                List<String> list = ((GFSETH)elem).getHeaders();
-                if (list != null) {
-                    headersSet.addAll(list);
-                }
                 String id = ((GFSETH)elem).getTHID();
                 if (id == null || id.isEmpty()) {
                     hasID = false;
@@ -79,16 +78,11 @@ public class GFSETable extends GFSEGeneral implements SETable {
         if (hasScope) {
             return true;
         }
-        if (!hasID) {
+        if (!hasID || !hasHeaders) {
             return false;
         }
         for (String headers : headersSet) {
             if (!idSet.contains(headers)) {
-                return false;
-            }
-        }
-        for (String id : idSet) {
-            if (!headersSet.contains(id)) {
                 return false;
             }
         }
@@ -170,8 +164,7 @@ public class GFSETable extends GFSEGeneral implements SETable {
             String type = elem.getstandardType();
             if (TaggedPDFConstants.TH.equals(type)) {
                 columnNum += ((GFSETH)elem).getColSpan();
-            }
-            if (TaggedPDFConstants.TD.equals(type)) {
+            } else if (TaggedPDFConstants.TD.equals(type)) {
                 columnNum += ((GFSETD)elem).getColSpan();
             }
         }
