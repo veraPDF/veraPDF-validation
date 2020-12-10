@@ -95,7 +95,6 @@ public class StaticContainers {
 	}
 
 	public static void setRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
-		StaticContainers.roleMapHelper = new ThreadLocal<>();
 		roleMapHelper.set(new TaggedPDFRoleMapHelper(roleMap));
 	}
 
