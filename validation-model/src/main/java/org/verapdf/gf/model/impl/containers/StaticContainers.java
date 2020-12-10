@@ -37,28 +37,28 @@ import java.util.*;
  */
 public class StaticContainers {
 
-	private static ThreadLocal<PDDocument> document = new ThreadLocal<>();
-	private static ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
+	private static final ThreadLocal<PDDocument> document = new ThreadLocal<>();
+	private static final ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
 
 	// TaggedPDF
-	private static ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
+	private static final ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
 
 	//PBoxPDSeparation
-	private static ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
-	private static ThreadLocal<List<String>> inconsistentSeparations = new ThreadLocal<>();
+	private static final ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
+	private static final ThreadLocal<List<String>> inconsistentSeparations = new ThreadLocal<>();
 
 	//ColorSpaceFactory
-	private static ThreadLocal<Map<String, PDColorSpace>> cachedColorSpaces = new ThreadLocal<>();
+	private static final ThreadLocal<Map<String, PDColorSpace>> cachedColorSpaces = new ThreadLocal<>();
 
 	//FontFactory
-	private static ThreadLocal<Map<String, PDFont>> cachedFonts = new ThreadLocal<>();
+	private static final ThreadLocal<Map<String, PDFont>> cachedFonts = new ThreadLocal<>();
 
-	private static ThreadLocal<Set<COSKey>> fileSpecificationKeys = new ThreadLocal<>();
+	private static final ThreadLocal<Set<COSKey>> fileSpecificationKeys = new ThreadLocal<>();
 
-	private static ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
-	private static ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
+	private static final ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
+	private static final ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
 
-	private static ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
+	private static final ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
 		document.set(null);
