@@ -61,12 +61,12 @@ public class StaticContainers {
 	private static final ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
 
 	//SENote
-	private static ThreadLocal<Set<String>> noteIDSet = new ThreadLocal<>();
+	private static final ThreadLocal<Set<String>> noteIDSet = new ThreadLocal<>();
 
-	private static ThreadLocal<Integer> lastHeadingNestingLevel = new ThreadLocal<>();
+	private static final ThreadLocal<Integer> lastHeadingNestingLevel = new ThreadLocal<>();
 
 	//PDXForm
-	private static ThreadLocal<Set<COSKey>> xFormKeysSet = new ThreadLocal<>();
+	private static final ThreadLocal<Set<COSKey>> xFormKeysSet = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
 		document.set(null);
