@@ -31,8 +31,6 @@ import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
 import org.verapdf.gf.model.impl.operator.pathpaint.GFOp_n;
 import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
-import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
-import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
 import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
@@ -106,7 +104,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
                 }
             }
             if (markedContentStack.empty()) {
-                if (GFOp_Tj.OP_TJ_TYPE.equals(type) || GFOp_TJ_Big.OP_TJ_BIG_TYPE.equals(type)) {
+                if (op instanceof GFOpTextShow) {
                     list.add(new GFSETextItem((GFOpTextShow)op, this.operator, parentStructureTag, parentsTags, defaultLang));
                 } else if (op instanceof GFOp_sh) {
                     list.add(new GFSEShadingItem((GFOp_sh)op, this.operator, parentStructureTag, parentsTags));
