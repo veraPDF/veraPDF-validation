@@ -261,6 +261,16 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	@Override
+	public Boolean getcontainsPieceInfo() {
+		return this.catalog == null ? false : this.catalog.knownKey(ASAtom.PIECE_INFO);
+	}
+
+	@Override
+	public Boolean getcontainsInfo() {
+		return cosDocument.getTrailer().getInfo() != null;
+	}
+
+	@Override
 	public Boolean getSuspects() {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);

@@ -28,9 +28,9 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDEncryption;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
+import org.verapdf.model.coslayer.CosInfo;
 import org.verapdf.model.coslayer.CosTrailer;
 import org.verapdf.model.pdlayer.PDEncryption;
-import org.verapdf.pd.PDObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,6 +50,7 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 
 	public static final String CATALOG = "Catalog";
 	public static final String ENCRYPT = "Encrypt";
+	public static final String INFO = "Info";
 
 	private final boolean isEncrypted;
 
@@ -72,13 +73,16 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
-		if (CATALOG.equals(link)) {
-			return this.getCatalog();
+		switch (link) {
+			case CATALOG:
+				return this.getCatalog();
+			case ENCRYPT:
+				return this.getEncrypt();
+			case INFO:
+				return this.getInfo();
+			default:
+				return super.getLinkedObjects(link);
 		}
-		if (ENCRYPT.equals(link)) {
-			return this.getEncrypt();
-		}
-		return super.getLinkedObjects(link);
 	}
 
 	private List<PDEncryption> getEncrypt() {
@@ -86,6 +90,16 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 		if (object != null && object.getType() == COSObjType.COS_DICT) {
 			List<PDEncryption> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFPDEncryption(new org.verapdf.pd.encryption.PDEncryption(object)));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<CosInfo> getInfo() {
+		COSObject object = this.baseObject.getKey(ASAtom.INFO);
+		if (object != null && object.getType() == COSObjType.COS_DICT) {
+			List<CosInfo> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosInfo((COSDictionary)object.getDirectBase()));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

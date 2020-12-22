@@ -48,8 +48,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     public final static String GLYPH_TYPE = "Glyph";
 
-    private static final int[] UNICODE_PRIVATE_USE_AREA_ARRAY = {0xE000, 0xF8FF, 0xF0000, 0xFFFFD, 0x100000, 0x10FFFD};
-
     private final String id;
 
     private Boolean glyphPresent;
@@ -62,11 +60,11 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     protected GFGlyph(PDFont font, int glyphCode, int renderingMode, String id,
                    GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        this(font, glyphCode, GLYPH_TYPE, renderingMode, id, markedContent, structureElementAccessObject);
+        this(font, glyphCode, renderingMode, id, markedContent, structureElementAccessObject, GLYPH_TYPE);
     }
 
-    protected GFGlyph(PDFont font, int glyphCode, String type, int renderingMode, String id,
-                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+    protected GFGlyph(PDFont font, int glyphCode, int renderingMode, String id,
+                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject, String type) {
         super(type);
 
         FontProgram fontProgram = font.getFontProgram();
@@ -126,8 +124,8 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 cachedGlyph = new GFCIDGlyph(font, glyphCode, renderingMode, id,
                         markedContent, structureElementAccessObject);
             } else {
-                cachedGlyph = new GFGlyph(font, glyphCode, GLYPH_TYPE, renderingMode, id,
-                        markedContent, structureElementAccessObject);
+                cachedGlyph = new GFGlyph(font, glyphCode, renderingMode, id,
+                        markedContent, structureElementAccessObject, GLYPH_TYPE);
             }
             StaticContainers.getCachedGlyphs().put(id, cachedGlyph);
         }
@@ -212,21 +210,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     @Override
     public Boolean getunicodePUA() {
-        if (toUnicode == null) {
-            return false;
-        }
-        for (int i = 0; i < toUnicode.length(); ++i) {
-            int unicode = this.toUnicode.codePointAt(i);
-            if ((unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[0] &&
-                    unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[1]) ||
-                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[2] &&
-                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[3]) ||
-                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[4] &&
-                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[5])) {
-                return true;
-            }
-        }
-        return false;
+        return PUAHelper.containPUA(toUnicode);
     }
 
     @Override

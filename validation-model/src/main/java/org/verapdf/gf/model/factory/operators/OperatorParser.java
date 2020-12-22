@@ -455,6 +455,7 @@ class OperatorParser {
 				GFOp_S_stroke s_stroke = new GFOp_S_stroke(arguments, this.graphicState, resourcesHandler);
 				addColorSpace(s_stroke, this.transparencyGraphicState);
 				processedOperators.add(s_stroke);
+				break;
 
 			// SHADING
 			case Operators.SH:

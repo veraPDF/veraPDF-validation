@@ -298,4 +298,9 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
+    @Override
+    public String getVersion() {
+        ASAtom version = catalog != null ? catalog.getNameKey(ASAtom.VERSION) : null;
+        return version != null ? version.getValue() : null;
+    }
 }
