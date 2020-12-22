@@ -30,6 +30,7 @@ import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
+import org.verapdf.gf.model.impl.operator.textshow.PUAHelper;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEGeneral;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
@@ -166,6 +167,11 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public Boolean getcircularMappingExist() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 		return type != null ? StaticContainers.getRoleMapHelper().circularMappingExist(type.getType()) : null;
+	}
+
+	@Override
+	public Boolean getactualTextContainsPUA() {
+		return PUAHelper.containPUA(getActualText());
 	}
 
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){

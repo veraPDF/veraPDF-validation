@@ -20,31 +20,29 @@
  */
 package org.verapdf.gf.model.impl.operator.textshow;
 
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.operator.CIDGlyph;
-import org.verapdf.pd.font.PDFont;
-import org.verapdf.pd.font.PDType0Font;
-import org.verapdf.pd.structure.StructureElementAccessObject;
-
 /**
- * Represents glyph in the composite font.
- *
- * @author Sergey Shemyakov
+ * @author Maxim Plushchov
  */
-public class GFCIDGlyph extends GFGlyph implements CIDGlyph {
+public class PUAHelper {
 
-    public final static String CID_GLYPH_TYPE = "CIDGlyph";
+    private static final int[] UNICODE_PRIVATE_USE_AREA_ARRAY = {0xE000, 0xF8FF, 0xF0000, 0xFFFFD, 0x100000, 0x10FFFD};
 
-    private int cid;
-
-    protected GFCIDGlyph(PDFont font, int glyphCode, int renderingMode, String id,
-                      GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        super(font, glyphCode, renderingMode, id, markedContent, structureElementAccessObject, CID_GLYPH_TYPE);
-        this.cid = ((PDType0Font) font).toCID(glyphCode);
+    public static Boolean containPUA(String string) {
+        if (string == null) {
+            return false;
+        }
+        for (int i = 0; i < string.length(); ++i) {
+            int unicode = string.codePointAt(i);
+            if ((unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[0] &&
+                    unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[1]) ||
+                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[2] &&
+                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[3]) ||
+                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[4] &&
+                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[5])) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Override
-    public Long getCID() {
-        return Long.valueOf(this.cid);
-    }
 }

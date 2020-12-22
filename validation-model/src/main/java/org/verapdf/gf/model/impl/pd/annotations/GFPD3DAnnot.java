@@ -20,11 +20,18 @@
  */
 package org.verapdf.gf.model.impl.pd.annotations;
 
+import org.verapdf.gf.model.impl.pd.GFPD3DStream;
 import org.verapdf.gf.model.impl.pd.GFPDAnnot;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PD3DAnnot;
+import org.verapdf.model.pdlayer.PD3DStream;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDPage;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Maxim Plushchov
@@ -33,8 +40,30 @@ public class GFPD3DAnnot extends GFPDAnnot implements PD3DAnnot {
 
 	public static final String ANNOTATION_3D_TYPE = "PD3DAnnot";
 
+	public static final String stream3D = "stream3D";
+
 	public GFPD3DAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, pageResources, page, ANNOTATION_3D_TYPE);
+	}
+
+	private List<PD3DStream> get3DStream() {
+		org.verapdf.pd.PD3DStream stream = ((PDAnnotation) simplePDObject).get3DD();
+		if (stream != null) {
+			List<PD3DStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			streams.add(new GFPD3DStream(stream));
+			return streams;
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<? extends Object> getLinkedObjects(String link) {
+		switch (link) {
+			case stream3D:
+				return this.get3DStream();
+			default:
+				return super.getLinkedObjects(link);
+		}
 	}
 
 }

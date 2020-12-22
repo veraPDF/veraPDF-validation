@@ -122,6 +122,11 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
     }
 
     @Override
+    public Boolean getcontainsHTO() {
+        return this.simplePDObject.knownKey(ASAtom.HTO);
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case RI:
@@ -169,6 +174,7 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
         }
         return Collections.emptyList();
     }
+
     private List<GFPDFunction> getCustomFunctions() {
         org.verapdf.pd.PDExtGState extGState = (org.verapdf.pd.PDExtGState) this.simplePDObject;
         List<GFPDFunction> result = new ArrayList<>();
