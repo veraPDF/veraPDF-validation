@@ -27,6 +27,7 @@ import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
+import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.signature.GFPDPerms;
 import org.verapdf.gf.model.tools.OutlinesHelper;
 import org.verapdf.model.baselayer.Object;
@@ -96,9 +97,9 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
      */
     public static final String PERMS = "Perms";
 
-    public static final int MAX_NUMBER_OF_ACTIONS = 5;
-
     private final PDCatalog catalog;
+
+    private OutputIntents outputIntents = null;
 
     public GFPDDocument(org.verapdf.pd.PDDocument document) {
         super(document, PD_DOCUMENT_TYPE);
@@ -132,6 +133,17 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     @Override
     public Boolean getcontainsAA() {
         return this.catalog != null && this.catalog.getObject().getType().isDictionaryBased() && this.catalog.knownKey(ASAtom.AA);
+    }
+
+    @Override
+    public String getoutputColorSpace() {
+        if (this.outputIntents == null) {
+            this.outputIntents = parseOutputIntents();
+        }
+        if (this.outputIntents != null) {
+            return ((GFOutputIntents)outputIntents).getColorSpace();
+        }
+        return null;
     }
 
     @Override
@@ -177,29 +189,12 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.unmodifiableList(actions);
     }
 
-    private List<PDAction> getActions() {
+    private List<PDAdditionalActions> getActions() {
         if (this.catalog != null) {
             PDCatalogAdditionalActions additionalActions = this.catalog.getAdditionalActions();
             if (additionalActions != null) {
-                List<PDAction> actions = new ArrayList<>(MAX_NUMBER_OF_ACTIONS);
-
-                org.verapdf.pd.actions.PDAction raw;
-
-                raw = additionalActions.getDP();
-                this.addAction(actions, raw);
-
-                raw = additionalActions.getDS();
-                this.addAction(actions, raw);
-
-                raw = additionalActions.getWP();
-                this.addAction(actions, raw);
-
-                raw = additionalActions.getWS();
-                this.addAction(actions, raw);
-
-                raw = additionalActions.getWC();
-                this.addAction(actions, raw);
-
+                List<PDAdditionalActions> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                actions.add(new GFPDAdditionalActions(additionalActions));
                 return Collections.unmodifiableList(actions);
             }
         }
@@ -227,16 +222,24 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    private List<PDOutputIntent> getOutputIntents() {
-        List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
-        if (outInts.size() > 0) {
-            List<PDOutputIntent> res = new ArrayList<>(outInts.size());
-            for (org.verapdf.pd.PDOutputIntent outInt : outInts) {
-                res.add(new GFPDOutputIntent(outInt));
-            }
-            return Collections.unmodifiableList(res);
+    private List<OutputIntents> getOutputIntents() {
+        if (this.outputIntents == null) {
+            this.outputIntents = parseOutputIntents();
+        }
+        if (this.outputIntents != null) {
+            List<OutputIntents> array = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            array.add(this.outputIntents);
+            return array;
         }
         return Collections.emptyList();
+    }
+
+    private OutputIntents parseOutputIntents() {
+        List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
+        if (outInts.size() > 0) {
+            return new GFOutputIntents(outInts);
+        }
+        return null;
     }
 
     private List<PDAcroForm> getAcroForms() {

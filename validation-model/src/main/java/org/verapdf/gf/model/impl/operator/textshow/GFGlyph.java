@@ -167,7 +167,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         }
     }
 
-    private static Boolean checkWidths(int glyphCode, org.verapdf.pd.font.PDFont font) {
+    private static Boolean checkWidths(int glyphCode, PDFont font) {
         Double fontWidth = font.getWidth(glyphCode);
         double expectedWidth = fontWidth == null ? 0 : fontWidth.doubleValue();
         double foundWidth = font.getWidthFromProgram(glyphCode);

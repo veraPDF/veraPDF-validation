@@ -27,6 +27,7 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDWidgetAnnot;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDPage;
+import org.verapdf.pd.annotations.PDWidgetAnnotation;
 
 /**
  * @author Maxim Plushchov
@@ -35,13 +36,13 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 
 	public static final String WIDGET_ANNOTATION_TYPE = "PDWidgetAnnot";
 
-	public GFPDWidgetAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
+	public GFPDWidgetAnnot(PDWidgetAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, pageResources, page, WIDGET_ANNOTATION_TYPE);
 	}
 
 	@Override
 	public String getTU() {
-		COSObject parent = ((PDAnnotation) simplePDObject).getParent();
+		COSObject parent = ((PDWidgetAnnotation) simplePDObject).getParent();
 		if (parent != null) {
 			return parent.getStringKey(ASAtom.TU);
 		}

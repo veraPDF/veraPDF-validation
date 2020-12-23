@@ -33,13 +33,10 @@ public class PUAHelper {
         }
         for (int i = 0; i < string.length(); ++i) {
             int unicode = string.codePointAt(i);
-            if ((unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[0] &&
-                    unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[1]) ||
-                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[2] &&
-                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[3]) ||
-                    (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[4] &&
-                            unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[5])) {
-                return true;
+            for (int j = 1; j < UNICODE_PRIVATE_USE_AREA_ARRAY.length; j += 2) {
+                if (unicode >= UNICODE_PRIVATE_USE_AREA_ARRAY[j - 1] && unicode <= UNICODE_PRIVATE_USE_AREA_ARRAY[j]) {
+                    return true;
+                }
             }
         }
         return false;
