@@ -26,10 +26,11 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
+import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.signature.GFPDSignatureField;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
-import org.verapdf.model.pdlayer.PDAction;
+import org.verapdf.model.pdlayer.PDAdditionalActions;
 import org.verapdf.model.pdlayer.PDFormField;
 import org.verapdf.pd.actions.PDFormFieldActions;
 import org.verapdf.pd.form.PDSignatureField;
@@ -49,8 +50,6 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     public static final String ADDITIONAL_ACTION = "AA";
 
     public static final String LANG = "Lang";
-
-    public static final int MAX_NUMBER_OF_ACTIONS = 4;
 
     public GFPDFormField(org.verapdf.pd.form.PDFormField simplePDObject) {
         super(simplePDObject, FORM_FIELD_TYPE);
@@ -113,26 +112,12 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
         }
     }
 
-    private List<PDAction> getAdditionalAction() {
+    private List<PDAdditionalActions> getAdditionalAction() {
         PDFormFieldActions pbActions = ((org.verapdf.pd.form.PDFormField) this.simplePDObject)
                 .getActions();
         if (pbActions != null) {
-            List<PDAction> actions = new ArrayList<>(MAX_NUMBER_OF_ACTIONS);
-
-            org.verapdf.pd.actions.PDAction buffer;
-
-            buffer = pbActions.getC();
-            this.addAction(actions, buffer);
-
-            buffer = pbActions.getF();
-            this.addAction(actions, buffer);
-
-            buffer = pbActions.getK();
-            this.addAction(actions, buffer);
-
-            buffer = pbActions.getV();
-            this.addAction(actions, buffer);
-
+            List<PDAdditionalActions> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            actions.add(new GFPDAdditionalActions(pbActions));
             return Collections.unmodifiableList(actions);
         }
 

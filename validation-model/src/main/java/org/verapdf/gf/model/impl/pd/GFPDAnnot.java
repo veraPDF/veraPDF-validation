@@ -30,6 +30,7 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
+import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.annotations.GFPD3DAnnot;
 import org.verapdf.gf.model.impl.pd.annotations.GFPDLinkAnnot;
 import org.verapdf.gf.model.impl.pd.annotations.GFPDPrinterMarkAnnot;
@@ -40,6 +41,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.pdlayer.PDAction;
+import org.verapdf.model.pdlayer.PDAdditionalActions;
 import org.verapdf.model.pdlayer.PDAnnot;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.pd.PDPage;
@@ -48,6 +50,7 @@ import org.verapdf.pd.PDAppearanceEntry;
 import org.verapdf.pd.PDAppearanceStream;
 import org.verapdf.pd.PDGroup;
 import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
+import org.verapdf.pd.annotations.PDWidgetAnnotation;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
@@ -79,7 +82,6 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final String TRAP_NET = "TrapNet";
 	public static final String TYPE_3D = "3D";
 
-	public static final int MAX_COUNT_OF_ACTIONS = 10;
 	public static final int X_AXIS = 0;
 	public static final int Y_AXIS = 1;
 
@@ -261,42 +263,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		}
 	}
 
-	private List<PDAction> getAdditionalActions() {
+	private List<PDAdditionalActions> getAdditionalActions() {
 		PDAnnotationAdditionalActions additionalActions = ((PDAnnotation) simplePDObject).getAdditionalActions();
 		if (additionalActions != null) {
-			List<PDAction> actions = new ArrayList<>(MAX_COUNT_OF_ACTIONS);
-			org.verapdf.pd.actions.PDAction buffer;
-
-			buffer = additionalActions.getBl();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getD();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getE();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getFo();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getPC();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getPI();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getPO();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getPV();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getU();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getX();
-			this.addAction(actions, buffer);
-
+			List<PDAdditionalActions> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			actions.add(new GFPDAdditionalActions(additionalActions));
 			return Collections.unmodifiableList(actions);
 		}
 		return Collections.emptyList();
@@ -417,7 +388,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		String subtypeString = subtype.getValue();
 		switch (subtypeString) {
 			case WIDGET:
-				return new GFPDWidgetAnnot(annot, pageResources, page);
+				return new GFPDWidgetAnnot((PDWidgetAnnotation) annot, pageResources, page);
 			case TYPE_3D:
 				return new GFPD3DAnnot(annot, pageResources, page);
 			case TRAP_NET:

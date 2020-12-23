@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosBBox;
+import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
@@ -85,16 +86,19 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 * Link name for page art box
 	 */
 	private static final String ART_BOX = "ArtBox";
+	/**
+	 * Link name for all output intents
+	 */
+	public static final String OUTPUT_INTENTS = "outputIntents";
 
 	public static final String PORTRAIT_ORIENTATION = "Portrait";
 	public static final String LANDSCAPE_ORIENTATION = "Landscape";
 	public static final String SQUARE_ORIENTATION = "Square";
 
-	public static final int MAX_NUMBER_OF_ACTIONS = 2;
-
 	private boolean containsTransparency = false;
 	private List<PDContentStream> contentStreams = null;
 	private List<PDAnnot> annotations = null;
+	private OutputIntents outputIntents = null;
 
 	/**
 	 * Default constructor
@@ -126,9 +130,34 @@ public class GFPDPage extends GFPDObject implements PDPage {
 				return this.getTrimBox();
 			case ART_BOX:
 				return this.getArtBox();
+			case OUTPUT_INTENTS:
+				return this.getOutputIntents();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<OutputIntents> getOutputIntents() {
+		if (this.outputIntents == null) {
+			this.outputIntents = parseOutputIntents();
+		}
+		if (this.outputIntents != null) {
+			List<OutputIntents> outIntents = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			outIntents.add(this.outputIntents);
+			return outIntents;
+		}
+		return Collections.emptyList();
+	}
+
+	private OutputIntents parseOutputIntents() {
+		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
+			return null;
+		}
+		List<org.verapdf.pd.PDOutputIntent> outInts = ((org.verapdf.pd.PDPage) this.simplePDObject).getOutputIntents();
+		if (outInts.size() > 0) {
+			return new GFOutputIntents(outInts);
+		}
+		return null;
 	}
 
 	private List<PDGroup> getGroup() {
@@ -169,20 +198,12 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		return Collections.emptyList();
 	}
 
-	private List<PDAction> getActions() {
+	private List<PDAdditionalActions> getActions() {
 		PDPageAdditionalActions additionalActions =
 				((org.verapdf.pd.PDPage) this.simplePDObject).getAdditionalActions();
 		if (additionalActions != null) {
-			List<PDAction> actions = new ArrayList<>(MAX_NUMBER_OF_ACTIONS);
-
-			org.verapdf.pd.actions.PDAction raw;
-
-			raw = additionalActions.getC();
-			this.addAction(actions, raw);
-
-			raw = additionalActions.getO();
-			this.addAction(actions, raw);
-
+			List<PDAdditionalActions> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			actions.add(new GFPDAdditionalActions(additionalActions));
 			return Collections.unmodifiableList(actions);
 		}
 		return Collections.emptyList();
@@ -300,5 +321,16 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			return LANDSCAPE_ORIENTATION;
 		}
 		return SQUARE_ORIENTATION;
+	}
+
+	@Override
+	public String getoutputColorSpace() {
+		if (this.outputIntents == null) {
+			this.outputIntents = parseOutputIntents();
+		}
+		if (this.outputIntents != null) {
+			return ((GFOutputIntents)outputIntents).getColorSpace();
+		}
+		return null;
 	}
 }

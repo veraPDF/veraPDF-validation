@@ -158,11 +158,10 @@ public final class GFFeatureParser {
 			reportAction(catalog.getOpenAction(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
 			PDCatalogAdditionalActions additionalActions = catalog.getAdditionalActions();
 			if (additionalActions != null) {
-				reportAction(additionalActions.getDP(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
-				reportAction(additionalActions.getDS(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
-				reportAction(additionalActions.getWS(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
-				reportAction(additionalActions.getWC(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
-				reportAction(additionalActions.getWP(), ActionFeaturesObjectAdapter.Location.DOCUMENT);
+				List<PDAction> actions = additionalActions.getActions();
+				for (PDAction action : actions) {
+					reportAction(action, ActionFeaturesObjectAdapter.Location.DOCUMENT);
+				}
 			}
 			if (namesDictionary != null) {
 				PDNameTreeNode javaScript = namesDictionary.getJavaScript();
@@ -238,12 +237,12 @@ public final class GFFeatureParser {
 	}
 
 	private void getFormFieldActions(PDFormField field) {
-		PDFormFieldActions actions = field.getActions();
-		if (actions != null) {
-			reportAction(actions.getK(), ActionFeaturesObjectAdapter.Location.INTERACTIVE_FORM_FIELD);
-			reportAction(actions.getC(), ActionFeaturesObjectAdapter.Location.INTERACTIVE_FORM_FIELD);
-			reportAction(actions.getF(), ActionFeaturesObjectAdapter.Location.INTERACTIVE_FORM_FIELD);
-			reportAction(actions.getV(), ActionFeaturesObjectAdapter.Location.INTERACTIVE_FORM_FIELD);
+		PDFormFieldActions additionalActions = field.getActions();
+		if (additionalActions != null) {
+			List<PDAction> actions = additionalActions.getActions();
+			for (PDAction action : actions) {
+				reportAction(action, ActionFeaturesObjectAdapter.Location.INTERACTIVE_FORM_FIELD);
+			}
 		}
 		for (PDFormField child : field.getChildFormFields()) {
 			if (child != null) {
@@ -311,8 +310,10 @@ public final class GFFeatureParser {
 		if (config.isFeatureEnabled(FeatureObjectType.ACTION)) {
 			PDPageAdditionalActions additionalActions = page.getAdditionalActions();
 			if (additionalActions != null) {
-				reportAction(additionalActions.getC(), ActionFeaturesObjectAdapter.Location.PAGE);
-				reportAction(additionalActions.getO(), ActionFeaturesObjectAdapter.Location.PAGE);
+				List<PDAction> actions = additionalActions.getActions();
+				for (PDAction action : actions) {
+					reportAction(action, ActionFeaturesObjectAdapter.Location.PAGE);
+				}
 			}
 			Set<COSKey> visitedKeys = new HashSet<>();
 			processNavigationNodeActions(page.getPresSteps(), visitedKeys);
@@ -365,16 +366,10 @@ public final class GFFeatureParser {
 			reportAction(annot.getA(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
 			PDAnnotationAdditionalActions additionalActions = annot.getAdditionalActions();
 			if (additionalActions != null) {
-				reportAction(additionalActions.getBl(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getD(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getE(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getFo(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getPC(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getPI(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getPO(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getPV(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getU(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
-				reportAction(additionalActions.getX(), ActionFeaturesObjectAdapter.Location.ANNOTATION);
+				List<PDAction> actions = additionalActions.getActions();
+				for (PDAction action : actions) {
+					reportAction(action, ActionFeaturesObjectAdapter.Location.ANNOTATION);
+				}
 			}
 		}
 	}
