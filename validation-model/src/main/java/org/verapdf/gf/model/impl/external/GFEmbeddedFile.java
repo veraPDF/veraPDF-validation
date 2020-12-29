@@ -94,13 +94,37 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		return Boolean.valueOf(retVal);
 	}
 
+	@Override
+	public Boolean getisValidPDFA124() {
+		if (this.stream == null) {
+			return Boolean.TRUE;
+		}
+		boolean retVal = false;
+		saveStaticContainersState();
+		try (InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE)) {
+			retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_1_B);
+			if (!retVal) {
+				unfilteredStream.reset();
+				retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_2_B);
+			}
+			if (!retVal) {
+				unfilteredStream.reset();
+				retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_4);
+			}
+		} catch (VeraPDFException | IOException e) {
+			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
+		}
+		restoreSavedSCState();
+		return Boolean.valueOf(retVal);
+	}
+
 	private static boolean isValidPdfaStream(final InputStream toValidate, final PDFAFlavour flavour)
 			throws VeraPDFException {
 		try (GFModelParser parser = GFModelParser.createModelWithFlavour(toValidate, flavour)) {
-			PDFAValidator validator1b = ValidatorFactory.createValidator(flavour, false, 1);
-			ValidationResult result1b = validator1b.validate(parser);
+			PDFAValidator validator = ValidatorFactory.createValidator(flavour, false, 1);
+			ValidationResult result = validator.validate(parser);
 			parser.close();
-			return result1b.isCompliant();
+			return result.isCompliant();
 		}
 	}
 
@@ -167,7 +191,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setValidPDF(this.validPDF);
 		StaticContainers.setLastHeadingNestingLevel(this.lastHeadingNestingLevel);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
-
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);

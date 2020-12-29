@@ -26,7 +26,9 @@ import org.verapdf.cos.COSInteger;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSName;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.cos.GFCosBM;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
@@ -38,6 +40,7 @@ import org.verapdf.gf.model.impl.pd.annotations.GFPDTrapNetAnnot;
 import org.verapdf.gf.model.impl.pd.annotations.GFPDWidgetAnnot;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosBM;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.pdlayer.PDAction;
@@ -76,6 +79,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final String A = "A";
 	public static final String ADDITIONAL_ACTION = "AA";
 	public static final String LANG = "Lang";
+	public static final String BM = "BM";
 	public static final String LINK = "Link";
 	public static final String PRINTER_MARK = "PrinterMark";
 	public static final String WIDGET = "Widget";
@@ -198,6 +202,19 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return Collections.emptyList();
 	}
 
+	private List<CosBM> getBM() {
+		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.PDFA_4.getPart()) {
+			return Collections.emptyList();
+		}
+		COSObject BM = ((PDAnnotation)simplePDObject).getBM();
+		if (BM != null && BM.getType() == COSObjType.COS_NAME) {
+			List<CosBM> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosBM((COSName)BM.getDirectBase()));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	@Override
 	public String getContents() {
 		return ((PDAnnotation) simplePDObject).getContents();
@@ -258,6 +275,8 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 				return this.getAppearance();
 			case LANG:
 				return this.getLang();
+			case BM:
+				return this.getBM();
 			default:
 				return super.getLinkedObjects(link);
 		}
