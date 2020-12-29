@@ -267,7 +267,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	@Override
 	public Boolean getcontainsInfo() {
-		return cosDocument.getTrailer().getInfo() != null;
+		COSObject info = cosDocument.getTrailer().getInfo();
+		return info != null && !info.empty();
 	}
 
 	@Override

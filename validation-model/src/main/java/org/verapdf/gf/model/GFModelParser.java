@@ -140,10 +140,6 @@ public class GFModelParser implements PDFAParser {
 			if (pdfaFlavour == PDFAFlavour.NO_FLAVOUR) {
 				return defaultFlavour;
 			}
-			// TODO: remove that logic after adding PDF/A-4 validation profile
-			if (pdfaFlavour == PDFAFlavour.PDFA_4) {
-				return defaultFlavour;
-			}
 			return pdfaFlavour;
 		} catch (XMPException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
