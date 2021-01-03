@@ -55,7 +55,7 @@ public class GFPDAdditionalActions extends GFPDObject implements PDAdditionalAct
     private List<PDAction> getActions() {
         List<org.verapdf.pd.actions.PDAction> actions = ((PDAbstractAdditionalActions)simplePDObject).getActions();
         List<PDAction> pdActions = new ArrayList<>(actions.size());
-        for(org.verapdf.pd.actions.PDAction action : actions) {
+        for (org.verapdf.pd.actions.PDAction action : actions) {
             this.addAction(pdActions, action);
         }
         return pdActions;

@@ -133,14 +133,14 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     private List<FontProgram> getFontProgram() {
         org.verapdf.pd.font.FontProgram fontProgram = this.pdFont.getFontProgram();
-        if(fontProgram != null && this.fontProgramParsed) {
+        if (fontProgram != null && this.fontProgramParsed) {
             ASAtom subType = this.pdFont.getSubtype();
             if (ASAtom.TRUE_TYPE == subType) {
                 GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(
                         fontProgram);
                 return getFontProgramList(font);
             }
-			if(TYPE0_STRING.equals(this.getSubtype())) {
+			if (TYPE0_STRING.equals(this.getSubtype())) {
 			    GFFontProgram font = new GFFontProgram(fontProgram,
 			            (GFPDFont) ((GFPDType0Font) this).getLinkedObjects(GFPDType0Font.DESCENDANT_FONTS).get(0));
 			    return getFontProgramList(font);

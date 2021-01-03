@@ -131,7 +131,7 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
             return null;
         }
         NodeList childNodes = parent.getChildNodes();
-        for(int i = 0; i < childNodes.getLength(); i++) {
+        for (int i = 0; i < childNodes.getLength(); i++) {
             Node item = childNodes.item(i);
             if (propertyName.equals(item.getNodeName())){
                 return item;

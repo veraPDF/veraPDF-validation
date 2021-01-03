@@ -20,21 +20,28 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.selayer.SEImageItem;
+import org.verapdf.model.selayer.SEInlineImageItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
+public class GFSEInlineImageItem extends GFSEImageItem implements SEInlineImageItem {
 
-    public GFSEImageItem(String objectType, String parentStructureTag, String parentsTags) {
-        super(objectType, parentStructureTag, parentsTags);
+    public static final String INLINE_IMAGE_ITEM_TYPE = "SEInlineImageItem";
+
+    private GFOp_EI operator;
+
+    public GFSEInlineImageItem(GFOp_EI operator, String parentStructureTag, String parentsTags) {
+        super(INLINE_IMAGE_ITEM_TYPE, parentStructureTag, parentsTags);
+        this.operator = operator;
     }
 
-    public GFSEImageItem(String objectType, GFOpMarkedContent parentMarkedContentOperator,
-                         String parentStructureTag, String parentsTags) {
-        super(objectType, parentMarkedContentOperator, parentStructureTag, parentsTags);
+    public GFSEInlineImageItem(GFOp_EI operator, GFOpMarkedContent parentMarkedContentOperator,
+                               String parentStructureTag, String parentsTags) {
+        super(INLINE_IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+        this.operator = operator;
     }
 
 }

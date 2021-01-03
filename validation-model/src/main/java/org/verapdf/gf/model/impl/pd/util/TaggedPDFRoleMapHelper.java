@@ -170,7 +170,7 @@ public class TaggedPDFRoleMapHelper {
 		visitedTypes.add(type);
 		ASAtom res = roleMap.get(type);
 		while (res != null) {
-			if(visitedTypes.contains(res)) {
+			if (visitedTypes.contains(res)) {
 				return true;
 			}
 			visitedTypes.add(res);

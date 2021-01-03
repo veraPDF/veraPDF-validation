@@ -42,7 +42,7 @@ public final class GFIDGenerator {
 	}
 
 	public static String generateID(PDFont font) {
-		if(font instanceof PDType0Font) {
+		if (font instanceof PDType0Font) {
 			return generateID((PDType0Font) font);
 		}
 		int hashcode = font.getDictionary().hashCode();

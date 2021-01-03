@@ -21,20 +21,31 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.selayer.SEImageItem;
+import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
+import org.verapdf.gf.model.impl.pd.images.GFPDXImage;
+import org.verapdf.model.selayer.SEImageXObjectItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
+public class GFSEImageXObjectItem extends GFSEImageItem implements SEImageXObjectItem {
 
-    public GFSEImageItem(String objectType, String parentStructureTag, String parentsTags) {
-        super(objectType, parentStructureTag, parentsTags);
+    public static final String IMAGE_X_OBJECT_ITEM_TYPE = "SEImageXObjectItem";
+
+    private GFOp_Do operator;
+    private GFPDXImage image;
+
+    public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, String parentStructureTag, String parentsTags) {
+        super(IMAGE_X_OBJECT_ITEM_TYPE, parentStructureTag, parentsTags);
+        this.operator = operator;
+        this.image = image;
     }
 
-    public GFSEImageItem(String objectType, GFOpMarkedContent parentMarkedContentOperator,
-                         String parentStructureTag, String parentsTags) {
-        super(objectType, parentMarkedContentOperator, parentStructureTag, parentsTags);
+    public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, GFOpMarkedContent parentMarkedContentOperator,
+                                String parentStructureTag, String parentsTags) {
+        super(IMAGE_X_OBJECT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+        this.operator = operator;
+        this.image = image;
     }
 
 }

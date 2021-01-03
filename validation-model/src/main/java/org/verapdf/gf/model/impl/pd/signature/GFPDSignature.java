@@ -58,7 +58,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
 
     public GFPDSignature(org.verapdf.pd.PDSignature pdSignature, COSObject signatureReference) {
         super(pdSignature, SIGNATURE_TYPE);
-        if(signatureReference.isIndirect().booleanValue()) {
+        if (signatureReference.isIndirect().booleanValue()) {
             COSKey key = signatureReference.getObjectKey();
             this.signatureOffset = StaticContainers.getDocument().getDocument().getOffset(key).longValue();
         }
