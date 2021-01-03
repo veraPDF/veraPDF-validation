@@ -58,7 +58,7 @@ public class GFPDRenditionAction extends GFPDAction implements PDRenditionAction
         COSObject object = ((PDAction) this.simplePDObject).getRendition();
         if (object != null) {
             object = object.getKey(ASAtom.C);
-            if(object != null) {
+            if (object != null) {
                 List<PDMediaClip> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
                 list.add(new GFPDMediaClip(new org.verapdf.pd.actions.PDMediaClip(object)));
                 return Collections.unmodifiableList(list);

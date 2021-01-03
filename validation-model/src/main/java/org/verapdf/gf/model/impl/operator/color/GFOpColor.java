@@ -46,9 +46,13 @@ public class GFOpColor extends GFOpSetColor implements OpColor {
 
     private PDColorSpace colorSpace;
 
-    public GFOpColor(List<COSBase> arguments, PDColorSpace colorSpace) {
-        super(arguments, OP_COLOR_TYPE);
+    public GFOpColor(List<COSBase> arguments, PDColorSpace colorSpace, String type) {
+        super(arguments, type);
         this.colorSpace = colorSpace;
+    }
+
+    public GFOpColor(List<COSBase> arguments, PDColorSpace colorSpace) {
+        this(arguments, colorSpace, OP_COLOR_TYPE);
     }
 
     @Override

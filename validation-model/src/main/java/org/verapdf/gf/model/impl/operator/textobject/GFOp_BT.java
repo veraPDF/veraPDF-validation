@@ -18,40 +18,22 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.operator.pathconstruction;
+package org.verapdf.gf.model.impl.operator.textobject;
 
 import org.verapdf.cos.COSBase;
-import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosNumber;
-import org.verapdf.model.operator.Op_re;
+import org.verapdf.model.operator.Op_BT;
 
 import java.util.List;
 
 /**
- * @author Timur Kamalov
+ * @author Maxim Plushchov
  */
-public class GFOp_re extends GFOpPathConstruction implements Op_re {
+public class GFOp_BT extends GFOpTextObject implements Op_BT {
 
-	/** Type name for {@code GFOp_re} */
-    public static final String OP_RE_TYPE = "Op_re";
+    public static final String OP_BT_TYPE = "Op_BT";
 
-	/** Name of link to the rectangle box */
-    public static final String RECT_BOX = "rectBox";
-
-    public GFOp_re(List<COSBase> arguments) {
-        super(arguments, OP_RE_TYPE);
-    }
-
-    @Override
-    public List<? extends Object> getLinkedObjects(String link) {
-       if (RECT_BOX.equals(link)) {
-           return this.getRectBox();
-       }
-       return super.getLinkedObjects(link);
-    }
-
-    private List<CosNumber> getRectBox() {
-        return this.getListOfNumbers();
+    public GFOp_BT(List<COSBase> arguments) {
+        super(arguments, OP_BT_TYPE);
     }
 
 }

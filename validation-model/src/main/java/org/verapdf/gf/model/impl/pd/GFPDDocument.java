@@ -263,7 +263,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     }
 
     private List<PDPerms> getPerms() {
-        if(this.catalog != null) {
+        if (this.catalog != null) {
             COSObject perms = this.catalog.getKey(ASAtom.PERMS);
             if (perms != null && perms.getType().isDictionaryBased()) {
                 List<PDPerms> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);

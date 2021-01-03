@@ -44,8 +44,8 @@ public abstract class GFOpStringTextShow extends GFOpTextShow {
     public static final String SHOW_STRING = "showString";
 
     protected GFOpStringTextShow(List<COSBase> arguments, GraphicState state,
-                                 PDResourcesHandler resources,
-                                 GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject, final String opType) {
+                                 PDResourcesHandler resources, GFOpMarkedContent markedContent,
+                                 StructureElementAccessObject structureElementAccessObject, final String opType) {
         super(arguments, state, resources, markedContent, structureElementAccessObject, opType);
     }
 

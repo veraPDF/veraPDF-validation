@@ -83,12 +83,12 @@ public class GFSETable extends GFSEGeneral implements SETable {
             return false;
         }
         for (String headers : headersSet) {
-            if(!idSet.contains(headers)) {
+            if (!idSet.contains(headers)) {
                 return false;
             }
         }
         for (String id : idSet) {
-            if(!headersSet.contains(id)) {
+            if (!headersSet.contains(id)) {
                 return false;
             }
         }
@@ -133,7 +133,7 @@ public class GFSETable extends GFSEGeneral implements SETable {
             }
         }
         for (int i = 0; i < rowNum; i++) {
-            for(int j = 0; j < columnNum; j++) {
+            for (int j = 0; j < columnNum; j++) {
                 if (!cells[i][j]) {
                     return false;
                 }
@@ -144,11 +144,11 @@ public class GFSETable extends GFSEGeneral implements SETable {
 
     private List<org.verapdf.model.pdlayer.PDStructElem> getTR() {
         List<org.verapdf.model.pdlayer.PDStructElem> listTR = new LinkedList<>();
-        for(org.verapdf.model.pdlayer.PDStructElem elem : getChildren()) {
+        for (org.verapdf.model.pdlayer.PDStructElem elem : getChildren()) {
             String type = elem.getstandardType();
             if (!addTRtoList(listTR, elem) && TaggedPDFConstants.THEAD.equals(type) ||
                     TaggedPDFConstants.TBODY.equals(type) || TaggedPDFConstants.TFOOT.equals(type)) {
-                for(org.verapdf.model.pdlayer.PDStructElem child : ((GFPDStructElem)elem).getChildren()) {
+                for (org.verapdf.model.pdlayer.PDStructElem child : ((GFPDStructElem)elem).getChildren()) {
                     addTRtoList(listTR, child);
                 }
             }
@@ -179,7 +179,7 @@ public class GFSETable extends GFSEGeneral implements SETable {
     }
 
     private Boolean checkRegular(boolean cells[][], long rowSpan, long colSpan, int i, int j) {
-        for(int k = 0; k < rowSpan; k++) {
+        for (int k = 0; k < rowSpan; k++) {
             for (int l = 0; l < colSpan; l++) {
                 if (cells[i + k][j + l]) {
                     return false;

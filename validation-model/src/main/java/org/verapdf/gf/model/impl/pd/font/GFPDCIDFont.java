@@ -63,13 +63,13 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
     public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
         super(font, renderingMode, CID_FONT_TYPE);
-        if(font != null) {
+        if (font != null) {
             FontProgram program = font.getFontProgram();
             if (program != null) {
                 StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
                         program.getFontProgramResource());
             }
-            if(program != null) {
+            if (program != null) {
                 try {
                     if (!program.isAttemptedParsing()) {
                         program.parseFont();
@@ -131,7 +131,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
      */
     @Override
     public Boolean getcidSetListsAllGlyphs() {
-        if(!fontProgramParsed) {
+        if (!fontProgramParsed) {
             return Boolean.valueOf(false);
         }
 

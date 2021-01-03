@@ -35,7 +35,11 @@ public class GFOpTextObject extends GFOperator implements OpTextObject {
     public static final String OP_TEXT_OBJECT_TYPE = "OpTextObject";
 
     public GFOpTextObject(List<COSBase> arguments) {
-        super(arguments, OP_TEXT_OBJECT_TYPE);
+        this(arguments, OP_TEXT_OBJECT_TYPE);
+    }
+
+    public GFOpTextObject(List<COSBase> arguments, String type) {
+        super(arguments, type);
     }
 
 }

@@ -126,9 +126,9 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 
 	private void getNextScaleFactors() {
 		Double scaleFactor = null;
-		for(int i = operators.size() - 1; i >= 0; i--) {
+		for (int i = operators.size() - 1; i >= 0; i--) {
 			Operator operator = operators.get(i);
-			if(GFOp_Tj.OP_TJ_TYPE.equals(operator.getObjectType()) || GFOp_TJ_Big.OP_TJ_BIG_TYPE.equals(operator.getObjectType())) {
+			if (GFOp_Tj.OP_TJ_TYPE.equals(operator.getObjectType()) || GFOp_TJ_Big.OP_TJ_BIG_TYPE.equals(operator.getObjectType())) {
 				((GFOpTextShow)operator).setNextScaleFactor(scaleFactor);
 				scaleFactor = ((GFOpTextShow)operator).getScaleFactor();
 			}
