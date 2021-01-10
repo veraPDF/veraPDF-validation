@@ -31,8 +31,6 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.model.pdlayer.PDStructTreeRoot;
-import org.verapdf.pd.structure.StructureType;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.*;

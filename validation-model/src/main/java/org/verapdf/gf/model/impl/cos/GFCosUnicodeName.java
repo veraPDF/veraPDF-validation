@@ -23,19 +23,14 @@ package org.verapdf.gf.model.impl.cos;
 import org.verapdf.cos.COSName;
 import org.verapdf.model.coslayer.CosUnicodeName;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFCosUnicodeName extends GFCosName implements CosUnicodeName {
-
-	public static final Logger LOGGER = Logger.getLogger(GFCosUnicodeName.class.getCanonicalName());
 
 	public static final String COS_UNICODE_NAME_TYPE = "CosUnicodeName";
 

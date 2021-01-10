@@ -26,8 +26,6 @@ import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_EMC;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
-import org.verapdf.gf.model.impl.operator.textshow.GFOp_TJ_Big;
-import org.verapdf.gf.model.impl.operator.textshow.GFOp_Tj;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEMarkedContent;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEUnmarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -128,7 +126,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 		Double scaleFactor = null;
 		for (int i = operators.size() - 1; i >= 0; i--) {
 			Operator operator = operators.get(i);
-			if (GFOp_Tj.OP_TJ_TYPE.equals(operator.getObjectType()) || GFOp_TJ_Big.OP_TJ_BIG_TYPE.equals(operator.getObjectType())) {
+			if (operator instanceof GFOpTextShow) {
 				((GFOpTextShow)operator).setNextScaleFactor(scaleFactor);
 				scaleFactor = ((GFOpTextShow)operator).getScaleFactor();
 			}

@@ -353,7 +353,7 @@ class OperatorParser {
 				this.graphicState.setFont(resourcesHandler.getFont(getFirstCOSName(arguments)));
 				if (arguments.size() > 1) {
 					COSBase scaleFactor = arguments.get(1);
-					if (scaleFactor.getType() == COSObjType.COS_REAL || scaleFactor.getType() == COSObjType.COS_INTEGER) {
+					if (scaleFactor.getType().isNumber()) {
 						this.graphicState.setPrevScaleFactor(this.graphicState.getScaleFactor());
 						this.graphicState.setScaleFactor(scaleFactor.getReal());
 					}

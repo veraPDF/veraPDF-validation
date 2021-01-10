@@ -28,14 +28,10 @@ import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;
 
-import java.util.logging.Level;
-
 /**
  * @author Maksim Bezrukov
  */
 public class GFPDXObject extends GFPDResource implements PDXObject {
-
-	private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(GFPDXObject.class.getCanonicalName());
 
 	public static final String X_OBJECT_TYPE = "PDXObject";
 

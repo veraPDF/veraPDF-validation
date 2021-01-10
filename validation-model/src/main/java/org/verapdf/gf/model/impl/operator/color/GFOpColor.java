@@ -24,7 +24,6 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.gf.model.impl.cos.GFCosName;
-import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.operator.OpColor;
