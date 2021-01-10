@@ -82,14 +82,14 @@ public class PDResourcesHandler {
 	}
 
 	public PDFont getFont(ASAtom name) {
-		PDFont font;
+		PDFont font = null;
 		if (this.objectResources != null) {
 			font = this.objectResources.getFont(name);
-			if (font == null) {
+			if (font == null && this.pageResources != null) {
 				font = this.pageResources.getFont(name);
 				setInherited(font, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			font = this.pageResources.getFont(name);
 			setInherited(font, inheritedResources);
 		}
@@ -104,17 +104,17 @@ public class PDResourcesHandler {
 	}
 
 	public PDColorSpace getColorSpace(ASAtom name) {
-		PDColorSpace colorSpace;
+		PDColorSpace colorSpace = null;
 		if (this.objectResources != null) {
 			if (isDefaultColorSpaceUsed(name)) {
 				return this.objectResources.getDefaultColorSpace(name);
 			}
 			colorSpace = this.objectResources.getColorSpace(name);
-			if (colorSpace == null) {
+			if (colorSpace == null && this.pageResources != null) {
 				colorSpace = this.pageResources.getColorSpace(name);
 				colorSpace = setColorSpaceInherited(colorSpace, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			if (isDefaultColorSpaceUsed(name)) {
 				return this.pageResources.getDefaultColorSpace(name);
 			}
@@ -132,14 +132,14 @@ public class PDResourcesHandler {
 	}
 
 	public PDPattern getPattern(ASAtom name) {
-		PDPattern pattern;
+		PDPattern pattern = null;
 		if (this.objectResources != null) {
 			pattern = this.objectResources.getPattern(name);
-			if (pattern == null) {
+			if (pattern == null && this.pageResources != null) {
 				pattern = this.pageResources.getPattern(name);
 				setInherited(pattern, true);
 			}
-		} else {
+		} else if (this.pageResources != null){
 			pattern = this.pageResources.getPattern(name);
 			setInherited(pattern, inheritedResources);
 		}
@@ -154,14 +154,14 @@ public class PDResourcesHandler {
 	}
 
 	public PDShading getShading(ASAtom name) {
-		PDShading shading;
+		PDShading shading = null;
 		if (this.objectResources != null) {
 			shading = this.objectResources.getShading(name);
-			if (shading == null) {
+			if (shading == null && this.pageResources != null) {
 				shading = this.pageResources.getShading(name);
 				setInherited(shading, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			shading = this.pageResources.getShading(name);
 			setInherited(shading, inheritedResources);
 		}
@@ -176,14 +176,14 @@ public class PDResourcesHandler {
 	}
 
 	public PDXObject getXObject(ASAtom name) {
-		PDXObject xObject;
+		PDXObject xObject = null;
 		if (this.objectResources != null) {
 			xObject = this.objectResources.getXObject(name);
-			if (xObject == null) {
+			if (xObject == null && this.pageResources != null) {
 				xObject = this.pageResources.getXObject(name);
 				setInherited(xObject, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			xObject = this.pageResources.getXObject(name);
 			setInherited(xObject, inheritedResources);
 		}
@@ -198,14 +198,14 @@ public class PDResourcesHandler {
 	}
 
 	public PDExtGState getExtGState(ASAtom name) {
-		PDExtGState state;
+		PDExtGState state = null;
 		if (this.objectResources != null) {
 			state = this.objectResources.getExtGState(name);
-			if (state == null) {
+			if (state == null && this.pageResources != null) {
 				state = this.pageResources.getExtGState(name);
 				setInherited(state, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			state = this.pageResources.getExtGState(name);
 			setInherited(state, inheritedResources);
 		}
@@ -220,14 +220,14 @@ public class PDResourcesHandler {
 	}
 
 	public PDResource getProperties(ASAtom name) {
-		PDResource res;
+		PDResource res = null;
 		if (this.objectResources != null) {
 			res = this.objectResources.getProperties(name);
-			if (res == null) {
+			if (res == null && this.pageResources != null) {
 				res = this.pageResources.getProperties(name);
 				setInherited(res, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			res = this.pageResources.getProperties(name);
 			setInherited(res, inheritedResources);
 		}

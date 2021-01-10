@@ -76,6 +76,9 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	 */
 	public List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
 		if (this.xObjects == null) {
+			if (this.pbXObject == null) {
+				return Collections.emptyList();
+			}
 			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler,
 					inheritedGraphicState, this.parentStructureTag, this.parentsTags);
 			if (typedPDXObject != null) {
