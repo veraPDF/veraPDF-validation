@@ -28,6 +28,7 @@ import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.selayer.SEContentItem;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.Collections;
 import java.util.List;
@@ -107,7 +108,9 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
 
     @Override
     public String getparentStandardTag() {
-        return StaticContainers.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getparentStructureTag()));
+        return StaticContainers.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getparentStructureTag()),
+                StaticContainers.getFlavour() != null &&
+                StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1);
     }
 
 }

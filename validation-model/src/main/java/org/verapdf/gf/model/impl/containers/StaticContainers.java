@@ -23,7 +23,7 @@ package org.verapdf.gf.model.impl.containers;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
-import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDFont;

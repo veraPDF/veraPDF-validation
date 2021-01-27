@@ -27,7 +27,7 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
-import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
