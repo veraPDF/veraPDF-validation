@@ -112,7 +112,7 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 
 	private List<PDStructElem> parseChildren() {
 		List<org.verapdf.pd.structure.PDStructElem> elements =
-				((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getChildren();
+				((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getStructChildren();
 		if (!elements.isEmpty()) {
 			List<PDStructElem> res = new ArrayList<>(elements.size());
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {

@@ -183,7 +183,9 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		} else {
 			StructureType type = pdStructElem.getStructureType();
 			if (type != null) {
-				return StaticContainers.getRoleMapHelper().getStandardType(type.getType());
+				return StaticContainers.getRoleMapHelper().getStandardType(type.getType(),
+						StaticContainers.getFlavour() != null &&
+						StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1);
 			}
 		}
 		return null;
@@ -204,7 +206,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	private List<String> getChildrenStandardTypes() {
-		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getChildren();
+		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructChildren();
 		if (!elements.isEmpty()) {
 			List<String> res = new ArrayList<>(elements.size());
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
@@ -216,7 +218,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	public List<PDStructElem> getChildren() {
-		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getChildren();
+		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructChildren();
 		if (!elements.isEmpty()) {
 			List<PDStructElem> res = new ArrayList<>(elements.size());
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
