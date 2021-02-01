@@ -47,6 +47,8 @@ public class PDResourcesHandler {
 
 	private final PDResources objectResources;
 
+	private boolean containsUndefinedResource = false;
+
 	private PDResourcesHandler(PDResources pageResources, boolean inheritedResources) {
 		this.pageResources = pageResources;
 		this.inheritedResources = inheritedResources;
@@ -93,6 +95,9 @@ public class PDResourcesHandler {
 			font = this.pageResources.getFont(name);
 			setInherited(font, inheritedResources);
 		}
+		if (font == null) {
+			containsUndefinedResource = true;
+		}
 		return font;
 	}
 
@@ -107,19 +112,24 @@ public class PDResourcesHandler {
 		PDColorSpace colorSpace = null;
 		if (this.objectResources != null) {
 			if (isDefaultColorSpaceUsed(name)) {
-				return this.objectResources.getDefaultColorSpace(name);
-			}
-			colorSpace = this.objectResources.getColorSpace(name);
-			if (colorSpace == null && this.pageResources != null) {
-				colorSpace = this.pageResources.getColorSpace(name);
-				colorSpace = setColorSpaceInherited(colorSpace, true);
+				colorSpace = this.objectResources.getDefaultColorSpace(name);
+			} else {
+				colorSpace = this.objectResources.getColorSpace(name);
+				if (colorSpace == null && this.pageResources != null) {
+					colorSpace = this.pageResources.getColorSpace(name);
+					colorSpace = setColorSpaceInherited(colorSpace, true);
+				}
 			}
 		} else if (this.pageResources != null) {
 			if (isDefaultColorSpaceUsed(name)) {
-				return this.pageResources.getDefaultColorSpace(name);
+				colorSpace = this.pageResources.getDefaultColorSpace(name);
+			} else {
+				colorSpace = this.pageResources.getColorSpace(name);
+				colorSpace = setColorSpaceInherited(colorSpace, inheritedResources);
 			}
-			colorSpace = this.pageResources.getColorSpace(name);
-			colorSpace = setColorSpaceInherited(colorSpace, inheritedResources);
+		}
+		if (colorSpace == null) {
+			containsUndefinedResource = true;
 		}
 		return colorSpace;
 	}
@@ -143,6 +153,9 @@ public class PDResourcesHandler {
 			pattern = this.pageResources.getPattern(name);
 			setInherited(pattern, inheritedResources);
 		}
+		if (pattern == null) {
+			containsUndefinedResource = true;
+		}
 		return pattern;
 	}
 
@@ -164,6 +177,9 @@ public class PDResourcesHandler {
 		} else if (this.pageResources != null) {
 			shading = this.pageResources.getShading(name);
 			setInherited(shading, inheritedResources);
+		}
+		if (shading == null) {
+			containsUndefinedResource = true;
 		}
 		return shading;
 	}
@@ -187,6 +203,9 @@ public class PDResourcesHandler {
 			xObject = this.pageResources.getXObject(name);
 			setInherited(xObject, inheritedResources);
 		}
+		if (xObject == null) {
+			containsUndefinedResource = true;
+		}
 		return xObject;
 	}
 
@@ -209,6 +228,9 @@ public class PDResourcesHandler {
 			state = this.pageResources.getExtGState(name);
 			setInherited(state, inheritedResources);
 		}
+		if (state == null) {
+			containsUndefinedResource = true;
+		}
 		return state;
 	}
 
@@ -230,6 +252,9 @@ public class PDResourcesHandler {
 		} else if (this.pageResources != null) {
 			res = this.pageResources.getProperties(name);
 			setInherited(res, inheritedResources);
+		}
+		if (res == null) {
+			containsUndefinedResource = true;
 		}
 		return res;
 	}
@@ -285,4 +310,7 @@ public class PDResourcesHandler {
 				ASAtom.DEVICEGRAY.equals(name) || ASAtom.DEVICECMYK.equals(name);
 	}
 
+	public boolean getContainsUndefinedResource() {
+		return containsUndefinedResource;
+	}
 }

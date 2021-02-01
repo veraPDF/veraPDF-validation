@@ -203,7 +203,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<CosBM> getBM() {
-		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.PDFA_4.getPart()) {
+		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
 			return Collections.emptyList();
 		}
 		COSObject BM = ((PDAnnotation)simplePDObject).getBM();
@@ -393,6 +393,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 						new StructureElementAccessObject(this.simpleCOSObject), getstructParentType(), "",
 						annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue());
 			}
+			this.containsTransparency |= stream.isContainsTransparency();
 			PDGroup group = toAdd.getGroup();
 			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());
 			list.add(stream);

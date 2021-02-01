@@ -64,15 +64,13 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	protected String parentStructureTag;
 	protected String parentsTags;
 
-	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
-							 PDResourcesHandler resourcesHandler,
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject) {
 		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, CONTENT_STREAM_TYPE);
 	}
 
-	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
-							 PDResourcesHandler resourcesHandler,
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject,
 							 String parentStructureTag, String parentsTags) {
@@ -80,8 +78,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				parentStructureTag, parentsTags, CONTENT_STREAM_TYPE);
 	}
 
-	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
-							 PDResourcesHandler resourcesHandler,
+	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject, final String type) {
 		super(contentStream, type);
@@ -170,6 +167,11 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				this.operators = Collections.emptyList();
 			}
 		}
+	}
+
+	@Override
+	public Boolean getcontainsUndefinedResource() {
+		return resourcesHandler.getContainsUndefinedResource();
 	}
 
 	public boolean isContainsTransparency() {
