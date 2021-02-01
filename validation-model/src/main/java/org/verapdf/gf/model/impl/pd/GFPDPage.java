@@ -165,9 +165,9 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		org.verapdf.pd.PDGroup group = page.getGroup();
 		if (group != null) {
 			List<PDGroup> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(),
-					page.isInheritedResources().booleanValue());
-			res.add(new GFPDGroup(group, resourcesHandler.getPageResources()));
+			res.add(ASAtom.TRANSPARENCY.equals(group.getSubtype()) ?
+					new GFPDPageTransparencyGroup(group, page.getResources()) :
+					new GFPDGroup(group, page.getResources()));
 			return Collections.unmodifiableList(res);
 		}
 		return Collections.emptyList();
@@ -294,7 +294,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	@Override
 	public Boolean getcontainsGroupCS() {
 		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) this.simplePDObject).getGroup();
-		return Boolean.valueOf(group != null && group.getColorSpace() != null);
+		return group != null && group.getColorSpace() != null;
 	}
 
 	@Override

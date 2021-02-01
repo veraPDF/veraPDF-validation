@@ -44,8 +44,7 @@ public class GFPDICCBased extends GFPDColorSpace implements PDICCBased {
     public static final String ICC_PROFILE = "iccProfile";
 
     public GFPDICCBased(org.verapdf.pd.colors.PDICCBased simplePDObject) {
-        super(simplePDObject, ICC_BASED_TYPE);
-        checkAlternateComponentsNumber();
+        this(simplePDObject, ICC_BASED_TYPE);
     }
 
     protected GFPDICCBased(org.verapdf.pd.colors.PDICCBased simplePDObject, String type) {
@@ -78,5 +77,10 @@ public class GFPDICCBased extends GFPDColorSpace implements PDICCBased {
             LOGGER.warning("Alternate color space does not match the number of components in the ICC profile");
         }
 
+    }
+
+    @Override
+    public String getICCProfileIndirect() {
+        return ((org.verapdf.pd.colors.PDICCBased) simplePDObject).getICCProfileIndirect();
     }
 }

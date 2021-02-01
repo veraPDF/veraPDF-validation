@@ -88,7 +88,7 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
         if (BM == null || BM.empty() || BM.getType() == COSObjType.COS_NULL) {
             return Collections.emptyList();
         }
-        if (StaticContainers.getFlavour().getPart() != PDFAFlavour.PDFA_4.getPart()) {
+        if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
             if (BM.getType() == COSObjType.COS_ARRAY) {
                 COSArray array = (COSArray)BM.getDirectBase();
                 for (COSObject obj : array) {
