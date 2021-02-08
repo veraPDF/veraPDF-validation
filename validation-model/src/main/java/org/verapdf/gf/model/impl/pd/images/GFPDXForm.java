@@ -32,6 +32,9 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDGroup;
 import org.verapdf.model.pdlayer.PDXForm;
+import org.verapdf.model.pdlayer.XFormTransparencyGroup;
+import org.verapdf.model.pdlayer.ParentXFormTransparencyGroup;
+import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
@@ -49,6 +52,9 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	public static final String GROUP = "Group";
 	public static final String CONTENT_STREAM = "contentStream";
 
+	public static final String XFORM_TRANSPARENCY_GROUP = "xFormTransparencyGroup";
+	public static final String PARENT_XFORM_TRANSPARENCY_GROUP = "parentXFormTransparencyGroup";
+
 	private List<PDContentStream> contentStreams = null;
 	private List<PDGroup> groups = null;
 	private boolean groupContainsTransparency = false;
@@ -56,6 +62,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private final GraphicState inheritedGraphicState;
 	private final String parentStructureTag;
 	private final String parentsTags;
+	private final PDColorSpace blendingColorSpace;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
 					 GraphicState inheritedGraphicState,
@@ -64,6 +71,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructureTag = parentStructureTag;
 		this.parentsTags = parentsTags;
+		this.blendingColorSpace = getBlendingColorSpace();
 	}
 
 	@Override
@@ -79,6 +87,10 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 				return this.getGroup();
 			case CONTENT_STREAM:
 				return this.getContentStream();
+			case XFORM_TRANSPARENCY_GROUP:
+				return this.getXFormTransparencyGroup();
+			case PARENT_XFORM_TRANSPARENCY_GROUP:
+				return this.getParentXFormTransparencyGroup();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -89,6 +101,14 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 			initializeGroups();
 		}
 		return this.groups;
+	}
+
+	public PDColorSpace getBlendingColorSpace() {
+		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.images.PDXForm) this.simplePDObject).getGroup();
+		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype())) {
+			return null;
+		}
+		return group.getColorSpace();
 	}
 
 	@Override
@@ -174,5 +194,23 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		}
 
 		return groupContainsTransparency || contentStreamContainsTransparency;
+	}
+
+	private List<XFormTransparencyGroup> getXFormTransparencyGroup() {
+		if (blendingColorSpace != null) {
+			List<XFormTransparencyGroup> xFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			xFormTransparencyGroup.add(new GFXFormTransparencyGroup(blendingColorSpace));
+			return Collections.unmodifiableList(xFormTransparencyGroup);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ParentXFormTransparencyGroup> getParentXFormTransparencyGroup() {
+		if (blendingColorSpace != null) {
+			List<ParentXFormTransparencyGroup> parentXFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			parentXFormTransparencyGroup.add(new GFParentXFormTransparencyGroup(StaticContainers.getXFormTransparencyColorSpace()));
+			return Collections.unmodifiableList(parentXFormTransparencyGroup);
+		}
+		return Collections.emptyList();
 	}
 }

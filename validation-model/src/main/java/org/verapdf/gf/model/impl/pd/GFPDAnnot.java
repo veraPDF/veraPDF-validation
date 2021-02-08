@@ -92,6 +92,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private final PDResourcesHandler resources;
 	private final PDPage page;
 
+	private List<CosBM> blendMode = null;
 	private List<PDContentStream> appearance = null;
 	private boolean containsTransparency = false;
 
@@ -203,11 +204,19 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<CosBM> getBM() {
+		if (blendMode == null) {
+			blendMode = parseBM();
+		}
+		return blendMode;
+	}
+
+	private List<CosBM> parseBM() {
 		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
 			return Collections.emptyList();
 		}
 		COSObject BM = ((PDAnnotation)simplePDObject).getBM();
 		if (BM != null && BM.getType() == COSObjType.COS_NAME) {
+			this.containsTransparency = true;
 			List<CosBM> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosBM((COSName)BM.getDirectBase()));
 			return Collections.unmodifiableList(list);
@@ -349,6 +358,9 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	boolean isContainsTransparency() {
 		if (this.appearance == null) {
 			this.appearance = parseAppearance();
+		}
+		if (this.blendMode == null) {
+			this.blendMode = parseBM();
 		}
 		return this.containsTransparency;
 	}

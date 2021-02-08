@@ -65,6 +65,9 @@ public class StaticContainers {
 
 	private static final ThreadLocal<Integer> lastHeadingNestingLevel = new ThreadLocal<>();
 
+	private static final ThreadLocal<org.verapdf.pd.colors.PDColorSpace> xFormTransparencyColorSpace = new ThreadLocal<>();
+	private static final ThreadLocal<org.verapdf.pd.colors.PDColorSpace> pageTransparencyColorSpace = new ThreadLocal<>();
+
 	//PDXForm
 	private static final ThreadLocal<Set<COSKey>> xFormKeysSet = new ThreadLocal<>();
 
@@ -82,6 +85,8 @@ public class StaticContainers {
 		noteIDSet.set(new HashSet<>());
 		validPDF.set(true);
 		lastHeadingNestingLevel.set(0);
+		xFormTransparencyColorSpace.set(null);
+		pageTransparencyColorSpace.set(null);
 		xFormKeysSet.set(new HashSet<>());
 	}
 
@@ -215,6 +220,22 @@ public class StaticContainers {
 
 	public static void setLastHeadingNestingLevel(Integer lastHeadingNestingLevel) {
 		StaticContainers.lastHeadingNestingLevel.set(lastHeadingNestingLevel);
+	}
+
+	public static org.verapdf.pd.colors.PDColorSpace getXFormTransparencyColorSpace() {
+		return xFormTransparencyColorSpace.get();
+	}
+
+	public static void setXFormTransparencyColorSpace(org.verapdf.pd.colors.PDColorSpace xFormTransparencyColorSpace) {
+		StaticContainers.xFormTransparencyColorSpace.set(xFormTransparencyColorSpace);
+	}
+
+	public static org.verapdf.pd.colors.PDColorSpace getPageTransparencyColorSpace() {
+		return pageTransparencyColorSpace.get();
+	}
+
+	public static void setPageTransparencyColorSpace(org.verapdf.pd.colors.PDColorSpace pageTransparencyColorSpace) {
+		StaticContainers.pageTransparencyColorSpace.set(pageTransparencyColorSpace);
 	}
 
 	public static Map<String, Glyph> getCachedGlyphs() {
