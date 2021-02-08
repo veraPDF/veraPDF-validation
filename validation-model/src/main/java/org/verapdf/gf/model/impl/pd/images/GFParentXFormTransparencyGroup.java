@@ -18,38 +18,27 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd;
+package org.verapdf.gf.model.impl.pd.images;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.model.pdlayer.PDPageTransparencyGroup;
-import org.verapdf.pd.PDResources;
+import org.verapdf.model.pdlayer.ParentXFormTransparencyGroup;
 import org.verapdf.pd.colors.PDColorSpace;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFPDPageTransparencyGroup extends GFPDGroup implements PDPageTransparencyGroup {
+public class GFParentXFormTransparencyGroup extends GFXFormTransparencyGroup implements ParentXFormTransparencyGroup {
 
-	public static final String PAGE_TRANSPARENCY_GROUP_TYPE = "PDPageTransparencyGroup";
+    public static final String PARENT_XFORM_TRANSPARENCY_GROUP_TYPE = "ParentXFormTransparencyGroup";
 
-	private PDColorSpace colorSpace;
+    public GFParentXFormTransparencyGroup(PDColorSpace colorSpace) {
+        super(colorSpace, PARENT_XFORM_TRANSPARENCY_GROUP_TYPE);
+    }
 
-	public GFPDPageTransparencyGroup(org.verapdf.pd.PDGroup simplePDObject, PDResources resources) {
-		super(simplePDObject,resources, PAGE_TRANSPARENCY_GROUP_TYPE);
-		this.colorSpace = simplePDObject.getColorSpace(resources);
-		StaticContainers.setPageTransparencyColorSpace(colorSpace);
-	}
-
-	@Override
-	public String getcolorSpaceType() {
-		if (colorSpace == null) {
-			return null;
-		}
-		if (ASAtom.ICCBASED.equals(colorSpace.getType())) {
-			return ((org.verapdf.pd.colors.PDICCBased)colorSpace).getColorSpaceType();
-		}
-		return colorSpace.getType().getValue();
-	}
+    @Override
+    public String getcolorSpaceType() {
+        StaticContainers.setXFormTransparencyColorSpace(colorSpace);
+        return super.getcolorSpaceType();
+    }
 
 }

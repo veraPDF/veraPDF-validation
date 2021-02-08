@@ -20,7 +20,9 @@
  */
 package org.verapdf.gf.model.impl.pd.colors;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.external.ICCProfile;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.external.GFICCInputProfile;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.external.ICCInputProfile;
@@ -68,6 +70,18 @@ public class GFPDICCBased extends GFPDColorSpace implements PDICCBased {
             return Collections.unmodifiableList(profiles);
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public String getcurrentTransparencyProfileIndirect() {
+        org.verapdf.pd.colors.PDColorSpace currentColorSpace = StaticContainers.getXFormTransparencyColorSpace();
+        if (currentColorSpace == null) {
+            currentColorSpace = StaticContainers.getPageTransparencyColorSpace();
+        }
+        if (currentColorSpace != null && ASAtom.ICCBASED.equals(currentColorSpace.getType())) {
+            return ((org.verapdf.pd.colors.PDICCBased)currentColorSpace).getICCProfileIndirect();
+        }
+        return null;
     }
 
     private void checkAlternateComponentsNumber() {
