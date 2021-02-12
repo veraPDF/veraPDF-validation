@@ -79,6 +79,9 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 	}
 
 	protected List<org.verapdf.model.pdlayer.PDColorSpace> getFillCS() {
+		if (!this.inheritedGraphicState.isProcessColorOperators()) {
+			return Collections.emptyList();
+		}
 		if (this.fillCS == null) {
 			this.fillCS = getColorSpace(this.rawFillColorSpace, this.overprintingFlagNonStroke);
 		}
@@ -86,6 +89,9 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 	}
 
 	protected List<org.verapdf.model.pdlayer.PDColorSpace> getStrokeCS() {
+		if (!this.inheritedGraphicState.isProcessColorOperators()) {
+			return Collections.emptyList();
+		}
 		if (this.strokeCS == null) {
 			this.strokeCS = getColorSpace(this.rawStrokeColorSpace, this.overprintingFlagStroke);
 		}
