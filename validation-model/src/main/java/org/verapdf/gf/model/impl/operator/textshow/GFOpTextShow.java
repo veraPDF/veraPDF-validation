@@ -188,6 +188,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getFillColorSpace() {
+		if (!inheritedGraphicState.isProcessColorOperators()) {
+			return Collections.emptyList();
+		}
 		if (this.fillCS == null) {
 			this.fillCS = parseFillColorSpace();
 		}
@@ -195,6 +198,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getStrokeColorSpace() {
+		if (!inheritedGraphicState.isProcessColorOperators()) {
+			return Collections.emptyList();
+		}
 		if (this.strokeCS == null) {
 			this.strokeCS = parseStrokeColorSpace();
 		}
