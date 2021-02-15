@@ -29,6 +29,7 @@ import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.font.cff.CFFType1FontProgram;
 import org.verapdf.pd.font.opentype.OpenTypeFontProgram;
 import org.verapdf.pd.font.type1.Type1FontProgram;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
 import java.util.Set;
@@ -114,14 +115,16 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
         } else {
             fontProgramCharSet = new TreeSet<>();
         }
-        if (!(descriptorCharSet.size() == fontProgramCharSet.size() ||
-            descriptorCharSet.size() == fontProgramCharSet.size() - 1) ) {
-            return Boolean.valueOf(false);
-        }
-        for (String glyphName : fontProgramCharSet) {
-            if (!NOTDEF_STRING.equals(glyphName) &&
-                    !descriptorCharSet.contains(glyphName)) {
+        if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_1) {
+            if (!(descriptorCharSet.size() == fontProgramCharSet.size() ||
+                  descriptorCharSet.size() == fontProgramCharSet.size() - 1) ) {
                 return Boolean.valueOf(false);
+            }
+            for (String glyphName : fontProgramCharSet) {
+                if (!NOTDEF_STRING.equals(glyphName) &&
+                    !descriptorCharSet.contains(glyphName)) {
+                    return Boolean.valueOf(false);
+                }
             }
         }
 
