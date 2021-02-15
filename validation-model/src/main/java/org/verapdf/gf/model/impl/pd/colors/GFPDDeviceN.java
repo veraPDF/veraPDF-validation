@@ -68,9 +68,9 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
 	private static boolean areColorantsPresent(org.verapdf.pd.colors.PDDeviceN simplePDObject) {
 		COSObject attributes = simplePDObject.getAttributes();
+		List<COSObject> colorantsArray = simplePDObject.getNames();
 		if (attributes != null && attributes.getType() == COSObjType.COS_DICT) {
 			COSObject colorantsDict = attributes.getKey(ASAtom.COLORANTS);
-			List<COSObject> colorantsArray = simplePDObject.getNames();
 			Set<ASAtom> componentNames = new HashSet<>();
 			if (colorantsDict != null && colorantsDict.getType() == COSObjType.COS_DICT) {
 				componentNames.addAll(colorantsDict.getKeySet());
@@ -85,7 +85,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 			}
 			return GFPDDeviceN.areColorantsPresent(componentNames, colorantsArray);
 		}
-		return false;
+		return GFPDDeviceN.areColorantsPresent(Collections.emptySet(), colorantsArray);
 	}
 
 	private static COSArray getProcessComponents(COSObject attributes) {
