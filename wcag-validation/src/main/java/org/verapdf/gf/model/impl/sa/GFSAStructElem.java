@@ -1,0 +1,249 @@
+/**
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
+ * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * All rights reserved.
+ *
+ * veraPDF Validation is free software: you can redistribute it and/or modify
+ * it under the terms of either:
+ *
+ * The GNU General public license GPLv3+.
+ * You should have received a copy of the GNU General Public License
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
+ * tree.  If not, see http://www.gnu.org/licenses/ or
+ * https://www.gnu.org/licenses/gpl-3.0.en.html.
+ *
+ * The Mozilla Public License MPLv2+.
+ * You should have received a copy of the Mozilla Public License along with
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
+ * If a copy of the MPL was not distributed with this file, you can obtain one at
+ * http://mozilla.org/MPL/2.0/.
+ */
+package org.verapdf.gf.model.impl.sa;
+
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.containers.StaticStorages;
+import org.verapdf.model.GenericModelObject;
+import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.salayer.SAStructElem;
+import org.verapdf.pd.structure.StructureType;
+import org.verapdf.wcag.algorithms.entities.INode;
+import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
+import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
+import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
+
+import java.util.*;
+
+/**
+ * @author Maxim Plushchov
+ */
+public class GFSAStructElem extends GenericModelObject implements SAStructElem, INode {
+
+	public static final String STRUCTURE_ELEMENT_TYPE = "SAStructElem";
+
+    public static final String CHILDREN = "children";
+
+	private org.verapdf.pd.structure.PDStructElem structElemDictionary = null;
+
+	private List<INode> children = null;
+	private List<SAStructElem> structChildren = null;
+
+	private Double correctSemanticScore;
+	private SemanticType semanticType;
+	private BoundingBox boundingBox;
+
+	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String type) {
+		super(type);
+		this.structElemDictionary = structElemDictionary;
+		boundingBox = new BoundingBox();
+	}
+
+	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
+		this(structElemDictionary, STRUCTURE_ELEMENT_TYPE);
+	}
+
+	@Override
+	public List<? extends Object> getLinkedObjects(String link) {
+		switch (link) {
+			case CHILDREN:
+				return this.getchildren();
+			default:
+				return super.getLinkedObjects(link);
+		}
+	}
+
+	public String getType() {
+		ASAtom type = structElemDictionary.getType();
+		return type == null ? null : type.getValue();
+	}
+
+	public String getStandardType() {
+		return getStructureElementStandardType(structElemDictionary);
+	}
+
+	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
+		StructureType type = pdStructElem.getStructureType();
+		if (type != null) {
+			return StaticStorages.getRoleMapHelper().getStandardType(type.getType(), false);
+		}
+		return null;
+	}
+
+	@Override
+	public void setSemanticType(SemanticType semanticType) {
+		this.semanticType = semanticType;
+	}
+
+	@Override
+	public Double getCorrectSemanticScore() {
+		return correctSemanticScore;
+	}
+
+	@Override
+	public void setCorrectSemanticScore(Double correctSemanticScore) {
+		this.correctSemanticScore = correctSemanticScore;
+	}
+
+	@Override
+	public Integer getPageNumber() {
+		return boundingBox.getPageNumber();
+	}
+
+	@Override
+	public void setPageNumber(Integer pageNumber) {
+		this.boundingBox.setPageNumber(pageNumber);
+	}
+
+	@Override
+	public Integer getLastPageNumber() {
+		return boundingBox.getLastPageNumber();
+	}
+
+	@Override
+	public void setLastPageNumber(Integer lastPageNumber) {
+		this.boundingBox.setLastPageNumber(lastPageNumber);
+	}
+
+	@Override
+	public double getLeftX() {
+		return boundingBox.getLeftX();
+	}
+
+	@Override
+	public double getBottomY() {
+		return boundingBox.getBottomY();
+	}
+
+	@Override
+	public double getRightX() {
+		return boundingBox.getRightX();
+	}
+
+	@Override
+	public double getTopY() {
+		return boundingBox.getTopY();
+	}
+
+	@Override
+	public BoundingBox getBoundingBox() {
+		return boundingBox;
+	}
+
+	@Override
+	public void setBoundingBox(BoundingBox boundingBox) {
+		this.boundingBox.init(boundingBox);
+	}
+
+	@Override
+	public SemanticType getSemanticType() {
+		return semanticType;
+	}
+
+	@Override
+	public List<INode> getChildren() {
+		if (this.children == null) {
+			parseChildren();
+		}
+		return Collections.unmodifiableList(children);
+	}
+
+	private List<SAStructElem> getchildren() {
+		if (this.structChildren == null) {
+			parseChildren();
+		}
+		return Collections.unmodifiableList(structChildren);
+	}
+
+	private void parseChildren() {
+		List<java.lang.Object> elements = structElemDictionary.getChildren();
+		children = new ArrayList<>(elements.size());
+		structChildren = new ArrayList<>(elements.size());
+		if (!elements.isEmpty()) {
+			for (java.lang.Object element : elements) {
+				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
+					GFSAStructElem structElem = new GFSAStructElem((org.verapdf.pd.structure.PDStructElem)element);
+					children.add(structElem);
+					structChildren.add(structElem);
+				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
+					List<INode> chunks = StaticStorages.getChunks().get((((COSObject)element).getDirectBase()).getInteger());
+					if (chunks != null) {
+						children.addAll(chunks);
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public String getContext() {
+		return null;
+	}
+
+	@Override
+	public Double getcorrectSemanticScore() {
+		return correctSemanticScore;
+	}
+
+	@Override
+	public Boolean gethasCorrectType() {
+		String standardType = getStandardType();
+		if (standardType == null) {
+			return false;
+		}
+		SemanticType semanticType = getSemanticType();
+		if (!SemanticTypeMapper.containsType(standardType) || semanticType == null) {
+			return null;
+		}
+		return standardType.equals(semanticType.getValue());
+	}
+
+	@Override
+	public String getcorrectType() {
+		return getSemanticType().getValue();
+	}
+
+	@Override
+	public String getExtraContext() {
+		return getStandardType();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(boundingBox);
+	}
+
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		GFSAStructElem that = (GFSAStructElem) o;
+		return that.getBoundingBox().equals(boundingBox);
+	}
+
+}
