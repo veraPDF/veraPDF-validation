@@ -22,7 +22,7 @@ package org.verapdf.gf.model.impl.containers;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
-import org.verapdf.wcag.algorithms.entities.INode;
+import org.verapdf.wcag.algorithms.entities.content.IChunk;
 
 import java.util.*;
 
@@ -33,7 +33,7 @@ public class StaticStorages {
 
 	private static final ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
 
-	private static final ThreadLocal<Map<Long, List<INode>>> chunks = new ThreadLocal<>();
+	private static final ThreadLocal<Map<Long, List<IChunk>>> chunks = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
 		roleMapHelper.set(null);
@@ -52,14 +52,14 @@ public class StaticStorages {
 		StaticStorages.roleMapHelper.set(roleMapHelper);
 	}
 
-	    public static Map<Long, List<INode>> getChunks() {
+	    public static Map<Long, List<IChunk>> getChunks() {
         if (chunks.get() == null) {
             chunks.set(new HashMap<>());
         }
         return chunks.get();
     }
 
-    public static void setChunks(Map<Long, List<INode>> chunks) {
+    public static void setChunks(Map<Long, List<IChunk>> chunks) {
 	    StaticStorages.chunks.set(chunks);
     }
 
