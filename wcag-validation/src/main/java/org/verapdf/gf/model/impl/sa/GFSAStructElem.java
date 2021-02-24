@@ -29,6 +29,9 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.wcag.algorithms.entities.INode;
+import org.verapdf.wcag.algorithms.entities.SemanticSpan;
+import org.verapdf.wcag.algorithms.entities.content.IChunk;
+import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
@@ -186,9 +189,13 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 					children.add(structElem);
 					structChildren.add(structElem);
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
-					List<INode> chunks = StaticStorages.getChunks().get((((COSObject)element).getDirectBase()).getInteger());
+					List<IChunk> chunks = StaticStorages.getChunks().get((((COSObject)element).getDirectBase()).getInteger());
 					if (chunks != null) {
-						children.addAll(chunks);
+						for(IChunk chunk : chunks) {
+							if (chunk instanceof TextChunk) {
+								children.add(new SemanticSpan((TextChunk) chunk));
+							}
+						}
 					}
 				}
 			}
