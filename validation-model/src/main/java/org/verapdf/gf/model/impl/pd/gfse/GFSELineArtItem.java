@@ -23,7 +23,6 @@ package org.verapdf.gf.model.impl.pd.gfse;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
 import org.verapdf.model.selayer.SELineArtItem;
-import org.verapdf.pd.structure.StructureElementAccessObject;
 
 /**
  * @author Maxim Plushchov

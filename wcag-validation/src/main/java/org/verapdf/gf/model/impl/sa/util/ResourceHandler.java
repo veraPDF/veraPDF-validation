@@ -25,6 +25,7 @@ import org.verapdf.cos.COSName;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.images.PDXObject;
 
 /**
  * @author Maxim Plushchov
@@ -83,6 +84,26 @@ public class ResourceHandler {
 			res = this.pageResources.getProperties(name);
 		}
 		return res;
+	}
+
+	public PDXObject getXObject(COSName name) {
+		if (name != null) {
+			return getXObject(name.getName());
+		}
+		return null;
+	}
+
+	public PDXObject getXObject(ASAtom name) {
+		PDXObject xObject = null;
+		if (this.objectResources != null) {
+			xObject = this.objectResources.getXObject(name);
+			if (xObject == null && this.pageResources != null) {
+				xObject = this.pageResources.getXObject(name);
+			}
+		} else if (this.pageResources != null) {
+			xObject = this.pageResources.getXObject(name);
+		}
+		return xObject;
 	}
 
 }

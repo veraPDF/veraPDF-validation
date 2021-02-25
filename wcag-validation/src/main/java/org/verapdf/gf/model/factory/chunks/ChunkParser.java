@@ -30,8 +30,9 @@ import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.cos.*;
 import org.verapdf.operator.Operator;
 import org.verapdf.pd.PDResource;
-import org.verapdf.pd.font.type3.PDType3Font;
+import org.verapdf.pd.images.PDXObject;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
+import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
@@ -233,6 +234,9 @@ class ChunkParser {
 					this.graphicsState.getTextState().setTextRise(textRise);
 				}
 				break;
+			case Operators.BI:
+				putChunk(getMarkedContent(), new ImageChunk(new BoundingBox(pageNumber, parseImageBoundingBox())));
+				break;
 			case Operators.CM_CONCAT:
 				graphicsState.getCTM().concatenate(new Matrix(arguments));
 				break;
@@ -244,6 +248,15 @@ class ChunkParser {
 			case Operators.Q_GSAVE:
 				this.graphicsStateStack.push(this.graphicsState.clone());
 				break;
+			case Operators.DO:
+				PDXObject xObject = resourceHandler.getXObject(getLastCOSName(arguments));
+				if (xObject != null) {
+					if (ASAtom.IMAGE.equals(xObject.getType())) {
+						putChunk(getMarkedContent(), new ImageChunk(new BoundingBox(pageNumber, parseImageBoundingBox())));
+					}
+				}
+				break;
+
 			default:
 				break;
 		}
@@ -284,7 +297,7 @@ class ChunkParser {
 		this.graphicsState.getTextState().setCharacterSpacing(op2);
 	}
 
-	public Double getValueOfLastNumber(List<COSBase> arguments) {
+	private Double getValueOfLastNumber(List<COSBase> arguments) {
 		if (!arguments.isEmpty()) {
 			COSBase base = arguments.get(arguments.size() - 1);
 			if (base.getType().isNumber()) {
@@ -292,6 +305,37 @@ class ChunkParser {
 			}
 		}
 		return null;
+	}
+
+	private double[] parseImageBoundingBox() {
+		double x1, y1, x2, y2;
+		if (graphicsState.getCTM().getScaleX() >= 0 && graphicsState.getCTM().getShearX() >= 0) {
+			x1 = graphicsState.getCTM().getTranslateX();
+			x2 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleX() + graphicsState.getCTM().getShearX();
+		} else if (graphicsState.getCTM().getScaleX() < 0 && graphicsState.getCTM().getShearX() < 0) {
+			x1 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleX() + graphicsState.getCTM().getShearX();
+			x2 = graphicsState.getCTM().getTranslateX();
+		} else if (graphicsState.getCTM().getScaleX() >= 0) {
+			x1 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getShearX();
+			x2 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleX();
+		} else {
+			x1 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleX();
+			x2 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getShearX();
+		}
+		if (graphicsState.getCTM().getScaleY() >= 0 && graphicsState.getCTM().getShearY() >= 0) {
+			y1 = graphicsState.getCTM().getTranslateY();
+			y2 = graphicsState.getCTM().getTranslateY() + graphicsState.getCTM().getScaleY() + graphicsState.getCTM().getShearY();
+		} else if (graphicsState.getCTM().getScaleY() < 0 && graphicsState.getCTM().getShearY() < 0) {
+			y1 = graphicsState.getCTM().getTranslateY() + graphicsState.getCTM().getScaleY() + graphicsState.getCTM().getShearY();
+			y2 = graphicsState.getCTM().getTranslateY();
+		} else if (graphicsState.getCTM().getScaleY() >= 0) {
+			y1 = graphicsState.getCTM().getTranslateY() + graphicsState.getCTM().getShearY();
+			y2 = graphicsState.getCTM().getTranslateY() + graphicsState.getCTM().getScaleY();
+		} else {
+			y1 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleY();
+			y2 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getShearY();
+		}
+		return new double[]{x1, y1, x2, y2};
 	}
 
 	private void putChunk(Long mcid, IChunk chunk) {
