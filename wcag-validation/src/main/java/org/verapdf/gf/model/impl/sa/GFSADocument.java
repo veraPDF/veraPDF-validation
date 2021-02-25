@@ -24,6 +24,7 @@ import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SADocument;
 import org.verapdf.model.salayer.SAStructTreeRoot;
+import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
 
 import java.util.*;
 
@@ -40,9 +41,12 @@ public class GFSADocument extends GenericModelObject implements SADocument {
 
     public static final String STRUCTURE_TREE_ROOT = "StructTreeRoot";
 
+    private GFSAStructTreeRoot treeRoot = null;
+
     public GFSADocument(org.verapdf.pd.PDDocument document) {
         super(DOCUMENT_TYPE);
         this.document = document;
+        checkSemantic();
     }
 
     @Override
@@ -55,15 +59,51 @@ public class GFSADocument extends GenericModelObject implements SADocument {
         }
     }
 
-    private List<SAStructTreeRoot> getStructureTreeRoot() {
+	private List<GFSAPage> getPages() {
+		List<GFSAPage> result = new ArrayList<>();
+		List<org.verapdf.pd.PDPage> rawPages = document.getPages();
+		for (org.verapdf.pd.PDPage rawPage : rawPages) {
+			result.add(new GFSAPage(rawPage));
+		}
+		return Collections.unmodifiableList(result);
+	}
+
+    private void parseStructureTreeRoot() {
         org.verapdf.pd.structure.PDStructTreeRoot root = document.getStructTreeRoot();
         if (root != null) {
+            this.treeRoot = new GFSAStructTreeRoot(root);
+        }
+    }
+
+    private List<SAStructTreeRoot> getStructureTreeRoot() {
+        if (treeRoot == null) {
+            parseStructureTreeRoot();
+        }
+        if (treeRoot != null) {
             List<SAStructTreeRoot> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-            GFSAStructTreeRoot treeRoot = new GFSAStructTreeRoot(root);
             res.add(treeRoot);
             return Collections.unmodifiableList(res);
         }
         return Collections.emptyList();
+    }
+
+    private void parseChunks() {
+        List<GFSAPage> pages = getPages();
+        for (GFSAPage page : pages) {
+            GFSAContentStream contentStream = page.getContentStream();
+            if (contentStream != null) {
+                contentStream.parseChunks();
+            }
+        }
+    }
+
+    private void checkSemantic() {
+        parseChunks();
+        parseStructureTreeRoot();
+        if (treeRoot != null) {
+            AccumulatedNodeSemanticChecker accumulatedNodeSemanticChecker = new AccumulatedNodeSemanticChecker();
+            accumulatedNodeSemanticChecker.checkSemanticTree(treeRoot);
+        }
     }
 
 }

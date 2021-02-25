@@ -30,8 +30,6 @@ import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.cmap.PDCMap;
 
-import java.util.List;
-
 /**
  * @author Timur Kamalov
  */

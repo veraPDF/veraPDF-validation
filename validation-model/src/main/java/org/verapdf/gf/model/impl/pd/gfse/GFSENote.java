@@ -26,9 +26,6 @@ import org.verapdf.model.selayer.SENote;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class GFSENote extends GFSEGeneral implements SENote {
 
     public static final String NOTE_STRUCTURE_ELEMENT_TYPE = "SENote";

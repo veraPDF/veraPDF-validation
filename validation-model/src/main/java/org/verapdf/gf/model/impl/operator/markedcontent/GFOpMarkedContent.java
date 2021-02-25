@@ -175,13 +175,13 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	}
 
 	public COSString getE() {
-		COSObject actualText = getAttribute(ASAtom.E, COSObjType.COS_STRING);
-		return actualText == null ? null : (COSString) actualText.get();
+		COSObject e = getAttribute(ASAtom.E, COSObjType.COS_STRING);
+		return e == null ? null : (COSString) e.get();
 	}
 
 	public COSString getAlt() {
-		COSObject actualText = getAttribute(ASAtom.ALT, COSObjType.COS_STRING);
-		return actualText == null ? null : (COSString) actualText.get();
+		COSObject alt = getAttribute(ASAtom.ALT, COSObjType.COS_STRING);
+		return alt == null ? null : (COSString) alt.get();
 	}
 
 	/**

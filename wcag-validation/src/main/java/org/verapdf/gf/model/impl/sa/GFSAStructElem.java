@@ -49,8 +49,8 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 
 	private org.verapdf.pd.structure.PDStructElem structElemDictionary = null;
 
-	private List<INode> children = null;
-	private List<SAStructElem> structChildren = null;
+	private List<INode> nodeChildren = null;
+	private List<Object> children = null;
 
 	private Double correctSemanticScore;
 	private SemanticType semanticType;
@@ -165,35 +165,36 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 
 	@Override
 	public List<INode> getChildren() {
+		if (this.nodeChildren == null) {
+			parseChildren();
+		}
+		return Collections.unmodifiableList(nodeChildren);
+	}
+
+	private List<Object> getchildren() {
 		if (this.children == null) {
 			parseChildren();
 		}
 		return Collections.unmodifiableList(children);
 	}
 
-	private List<SAStructElem> getchildren() {
-		if (this.structChildren == null) {
-			parseChildren();
-		}
-		return Collections.unmodifiableList(structChildren);
-	}
-
 	private void parseChildren() {
 		List<java.lang.Object> elements = structElemDictionary.getChildren();
+		nodeChildren = new ArrayList<>(elements.size());
 		children = new ArrayList<>(elements.size());
-		structChildren = new ArrayList<>(elements.size());
 		if (!elements.isEmpty()) {
 			for (java.lang.Object element : elements) {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
 					GFSAStructElem structElem = new GFSAStructElem((org.verapdf.pd.structure.PDStructElem)element);
+					nodeChildren.add(structElem);
 					children.add(structElem);
-					structChildren.add(structElem);
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
 					List<IChunk> chunks = StaticStorages.getChunks().get((((COSObject)element).getDirectBase()).getInteger());
 					if (chunks != null) {
 						for(IChunk chunk : chunks) {
 							if (chunk instanceof TextChunk) {
-								children.add(new SemanticSpan((TextChunk) chunk));
+								nodeChildren.add(new SemanticSpan((TextChunk) chunk));
+								children.add(new GFSATextChunk((TextChunk) chunk));
 							}
 						}
 					}
