@@ -55,11 +55,13 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 	private Double correctSemanticScore;
 	private SemanticType semanticType;
 	private BoundingBox boundingBox;
+	private SemanticType initialSemanticType;
 
 	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String type) {
 		super(type);
 		this.structElemDictionary = structElemDictionary;
 		boundingBox = new BoundingBox();
+		setInitialType();
 	}
 
 	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
@@ -96,6 +98,21 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 	@Override
 	public void setSemanticType(SemanticType semanticType) {
 		this.semanticType = semanticType;
+	}
+
+	public SemanticType getInitialSemanticType() {
+		return initialSemanticType;
+	}
+
+	public void setInitialType() {
+		String standardType = getStandardType();
+		if (standardType != null && SemanticTypeMapper.containsType(standardType)) {
+			setInitialSemanticType(SemanticTypeMapper.getSemanticType(standardType));
+		}
+	}
+
+	public void setInitialSemanticType(SemanticType initialSemanticType) {
+		this.initialSemanticType = initialSemanticType;
 	}
 
 	@Override
@@ -205,7 +222,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 
 	@Override
 	public String getContext() {
-		return null;
+		return boundingBox.getLocation();
 	}
 
 	@Override
