@@ -22,11 +22,14 @@ package org.verapdf.gf.model.impl.operator.markedcontent;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
+import org.verapdf.gf.model.impl.cos.GFCosActualText;
 import org.verapdf.gf.model.impl.cos.GFCosDict;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosName;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosActualText;
 import org.verapdf.model.coslayer.CosDict;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosName;
@@ -48,6 +51,8 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
     public static final String PROPERTIES = "properties";
 	/** Name of link to Lang value from the properties dictionary */
 	public static final String LANG = "Lang";
+	/** Name of link to ActualText value from the properties dictionary */
+	public static final String ACTUAL_TEXT = "actualText";
 
 	private COSDictionary propertiesDict;
 	private final GFOpMarkedContent markedContent;
@@ -76,6 +81,16 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 					}
 				}
 			}
+		}
+	}
+
+	@Override
+	public List<? extends Object> getLinkedObjects(String link) {
+		switch (link) {
+			case ACTUAL_TEXT:
+				return this.getactualText();
+			default:
+				return super.getLinkedObjects(link);
 		}
 	}
 
@@ -208,4 +223,15 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	public int hashCode() {
 		return propertiesDict == null ? 0 : propertiesDict.hashCode();
 	}
+
+	private List<CosActualText> getactualText() {
+		COSString actualText = getActualText();
+		if (actualText != null) {
+			List<CosActualText> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosActualText(actualText));
+			return list;
+		}
+		return Collections.emptyList();
+	}
+
 }

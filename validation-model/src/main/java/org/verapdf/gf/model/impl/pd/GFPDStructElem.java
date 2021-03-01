@@ -28,11 +28,12 @@ import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSKey;
 import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.cos.GFCosActualText;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
-import org.verapdf.gf.model.impl.operator.textshow.PUAHelper;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEGeneral;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosActualText;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
@@ -69,6 +70,10 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	 * Link name for {@code Lang} key
 	 */
 	public static final String LANG = "Lang";
+	/**
+	 * Link name for {@code ActualText} key
+	 */
+	public static final String ACTUAL_TEXT = "actualText";
 
 	protected GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String type) {
 		super(structElemDictionary, type);
@@ -155,7 +160,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	@Override
 	public String getActualText() {
-		return ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getActualText();
+		return ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getActualText().getString();
 	}
 
 	@Override
@@ -167,11 +172,6 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public Boolean getcircularMappingExist() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 		return type != null ? StaticContainers.getRoleMapHelper().circularMappingExist(type.getType()) : null;
-	}
-
-	@Override
-	public Boolean getactualTextContainsPUA() {
-		return PUAHelper.containPUA(getActualText());
 	}
 
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
@@ -200,6 +200,8 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 				return this.getStructureType();
 			case LANG:
 				return this.getLang();
+			case ACTUAL_TEXT:
+				return this.getactualText();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -273,5 +275,15 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 			return baseLang.getString();
 		}
 		return null;
+	}
+
+	private List<CosActualText> getactualText() {
+		COSObject actualText = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getActualText();
+		if (actualText != null && COSObjType.COS_STRING == actualText.getType()) {
+			List<CosActualText> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosActualText((COSString)actualText.getDirectBase()));
+			return list;
+		}
+		return Collections.emptyList();
 	}
 }
