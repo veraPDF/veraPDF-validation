@@ -44,11 +44,16 @@ public class GFSATextChunk extends GFSAChunk implements SATextChunk {
 
 	@Override
 	public Double getcontrastRatio() {
-		return null;
+		return textChunk.getContrastRatio();
 	}
 
 	@Override
 	public Double gettextWeight() {
 		return textChunk.getFontWeight();
+	}
+
+	@Override
+	public String getContext() {
+		return textChunk.getBoundingBox().getLocation();
 	}
 }

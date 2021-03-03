@@ -366,7 +366,7 @@ class ChunkParser {
 		return null;
 	}
 
-	private Matrix calculateTextRenderingMatrix(COSBase argument, StringBuilder unicodeValue) {
+	private void parseTextShowArgument(COSBase argument, StringBuilder unicodeValue) {
 		if (argument.getType() == COSObjType.COS_STRING) {
 			parseString((COSString) argument.getDirectBase(), unicodeValue);
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
@@ -383,10 +383,6 @@ class ChunkParser {
 				}
 			}
 		}
-		Matrix parameters = new Matrix(graphicsState.getTextState().getTextFontSize() *
-		    graphicsState.getTextState().getHorizontalScaling(), 0, 0,
-		    graphicsState.getTextState().getTextFontSize(), 0, graphicsState.getTextState().getTextRise());
-		return parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
 	}
 
 	private void parseString(COSString string, StringBuilder unicodeValue) {
@@ -418,8 +414,14 @@ class ChunkParser {
 		if (font != null && argument != null && (argument.getType() == COSObjType.COS_STRING ||
 		        argument.getType() == COSObjType.COS_ARRAY)) {
 			StringBuilder unicodeValue = new StringBuilder();
-			Matrix textRenderingMatrix = calculateTextRenderingMatrix(argument, unicodeValue);
-			return new TextChunk(new BoundingBox(pageNumber, new double[]{textRenderingMatrix.getTranslateX(),
+			Matrix parameters = new Matrix(graphicsState.getTextState().getTextFontSize() *
+			                               graphicsState.getTextState().getHorizontalScaling(), 0, 0,
+			                               graphicsState.getTextState().getTextFontSize(), 0,
+			                               graphicsState.getTextState().getTextRise());
+			double leftX = parameters.multiply(textMatrix).multiply(graphicsState.getCTM()).getTranslateX();
+			parseTextShowArgument(argument, unicodeValue);
+			Matrix textRenderingMatrix = parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
+			return new TextChunk(new BoundingBox(pageNumber, new double[]{leftX,
 				textRenderingMatrix.getTranslateY() + font.getBoundingBox()[1] * textRenderingMatrix.getScaleY() / 1000,
 				textRenderingMatrix.getTranslateX(), textRenderingMatrix.getTranslateY() + font.getBoundingBox()[3] *
 				textRenderingMatrix.getScaleY() / 1000}), unicodeValue.toString(), font.getNameWithoutSubset(),
