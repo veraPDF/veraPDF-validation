@@ -25,6 +25,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SADocument;
 import org.verapdf.model.salayer.SAStructTreeRoot;
 import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
+import org.verapdf.wcag.algorithms.semanticalgorithms.ContrastRatioChecker;
 
 import java.util.*;
 
@@ -103,6 +104,10 @@ public class GFSADocument extends GenericModelObject implements SADocument {
         if (treeRoot != null) {
             AccumulatedNodeSemanticChecker accumulatedNodeSemanticChecker = new AccumulatedNodeSemanticChecker();
             accumulatedNodeSemanticChecker.checkSemanticTree(treeRoot);
+            if (document.getDocument().getFileName() != null) {
+                ContrastRatioChecker contrastRatioChecker = new ContrastRatioChecker();
+                contrastRatioChecker.checkSemanticTree(treeRoot, document.getDocument().getFileName());
+            }
         }
     }
 
