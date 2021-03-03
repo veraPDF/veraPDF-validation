@@ -110,27 +110,27 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
     @Override
     public Double getca() {
         COSObject ca = ((org.verapdf.pd.PDExtGState) simplePDObject).getCA_NS();
+        if (ca == null || ca.empty()) {
+            return null;
+        }
         if (ca.getType().isNumber()) {
             return ca.getReal();
-        } else if (ca.empty()) {
-            return null;
-        } else {
-            LOGGER.log(Level.SEVERE, "Value of ca key is not a number. Ignoring ca");
-            return 2.0; // check is failed
         }
+        LOGGER.log(Level.SEVERE, "Value of ca key is not a number. Ignoring ca");
+        return 2.0; // check is failed
     }
 
     @Override
     public Double getCA() {
         COSObject ca = ((org.verapdf.pd.PDExtGState) simplePDObject).getCA();
+        if (ca == null || ca.empty()) {
+            return null;
+        }
         if (ca.getType().isNumber()) {
             return ca.getReal();
-        } else if (ca.empty()) {
-            return null;
-        } else {
-            LOGGER.log(Level.SEVERE, "Value of CA key is not a number. Ignoring CA");
-            return 2.0; // check is failed
         }
+        LOGGER.log(Level.SEVERE, "Value of CA key is not a number. Ignoring CA");
+        return 2.0; // check is failed
     }
 
     private static String getStringProperty(COSObject property) {
