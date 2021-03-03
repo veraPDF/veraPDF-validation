@@ -138,13 +138,13 @@ public class TransparencyGraphicsState {
             if (bm != null) {
                 this.bm = bm;
             }
-            Double ca_ns = extGState.getCA_NS().getReal();
-            if (ca_ns != null) {
-                this.ca_ns = ca_ns.floatValue();
+            COSObject ca_ns = extGState.getCA_NS();
+            if (ca_ns != null && ca_ns.getReal() != null) {
+                this.ca_ns = ca_ns.getReal().floatValue();
             }
-            Double ca = extGState.getCA().getReal();
-            if (ca != null) {
-                this.ca = ca.floatValue();
+            COSObject ca = extGState.getCA();
+            if (ca != null && ca.getReal() != null) {
+                this.ca = ca.getReal().floatValue();
             }
         }
     }
