@@ -89,7 +89,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final int X_AXIS = 0;
 	public static final int Y_AXIS = 1;
 
-	private final PDResourcesHandler resources;
+	protected final PDResourcesHandler resources;
 	private final PDPage page;
 
 	private List<CosBM> blendMode = null;
