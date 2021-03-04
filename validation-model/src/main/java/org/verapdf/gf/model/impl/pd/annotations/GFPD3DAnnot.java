@@ -50,7 +50,7 @@ public class GFPD3DAnnot extends GFPDAnnot implements PD3DAnnot {
 		org.verapdf.pd.PD3DStream stream = ((PDAnnotation) simplePDObject).get3DD();
 		if (stream != null) {
 			List<PD3DStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			streams.add(new GFPD3DStream(stream));
+			streams.add(new GFPD3DStream(stream, resources));
 			return streams;
 		}
 		return Collections.emptyList();
