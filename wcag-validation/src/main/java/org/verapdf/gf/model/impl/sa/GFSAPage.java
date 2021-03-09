@@ -21,8 +21,11 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.model.salayer.SAChunk;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
+import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,10 +36,25 @@ public class GFSAPage {
 
 	private GFSAContentStream contentStream = null;
 
+	private List<SAChunk> artifacts = null;
+
 	private org.verapdf.pd.PDPage pdPage = null;
 
 	public GFSAPage(org.verapdf.pd.PDPage pdPage) {
 		this.pdPage = pdPage;
+	}
+
+	private List<SAChunk> getartifacts() {
+		if (this.artifacts == null) {
+			List<IChunk> artifacts = getArtifacts();
+			this.artifacts = new ArrayList<>(artifacts.size());
+			for (IChunk chunk : artifacts) {
+				if (chunk instanceof TextChunk) {
+					this.artifacts.add(new GFSATextChunk((TextChunk) chunk));
+				}
+			}
+		}
+		return artifacts;
 	}
 
 	private List<IChunk> getArtifacts() {
