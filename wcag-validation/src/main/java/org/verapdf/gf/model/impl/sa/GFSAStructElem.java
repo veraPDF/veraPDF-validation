@@ -208,7 +208,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
 					List<IChunk> chunks = StaticStorages.getChunks().get((((COSObject)element).getDirectBase()).getInteger());
 					if (chunks != null) {
-						for(IChunk chunk : chunks) {
+						for (IChunk chunk : chunks) {
 							if (chunk instanceof TextChunk) {
 								nodeChildren.add(new SemanticSpan((TextChunk) chunk));
 								children.add(new GFSATextChunk((TextChunk) chunk));

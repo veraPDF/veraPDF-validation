@@ -42,6 +42,8 @@ public class GFSADocument extends GenericModelObject implements SADocument {
 
     public static final String STRUCTURE_TREE_ROOT = "StructTreeRoot";
 
+    private List<GFSAPage> pages;
+
     private GFSAStructTreeRoot treeRoot = null;
 
     public GFSADocument(org.verapdf.pd.PDDocument document) {
@@ -60,13 +62,20 @@ public class GFSADocument extends GenericModelObject implements SADocument {
         }
     }
 
+    private List<GFSAPage> parsePages() {
+        List<GFSAPage> result = new ArrayList<>();
+        List<org.verapdf.pd.PDPage> rawPages = document.getPages();
+        for (org.verapdf.pd.PDPage rawPage : rawPages) {
+            result.add(new GFSAPage(rawPage));
+        }
+        return Collections.unmodifiableList(result);
+    }
+
 	private List<GFSAPage> getPages() {
-		List<GFSAPage> result = new ArrayList<>();
-		List<org.verapdf.pd.PDPage> rawPages = document.getPages();
-		for (org.verapdf.pd.PDPage rawPage : rawPages) {
-			result.add(new GFSAPage(rawPage));
-		}
-		return Collections.unmodifiableList(result);
+        if (this.pages == null) {
+            this.pages = parsePages();
+        }
+        return this.pages;
 	}
 
     private void parseStructureTreeRoot() {
@@ -89,7 +98,9 @@ public class GFSADocument extends GenericModelObject implements SADocument {
     }
 
     private void parseChunks() {
-        List<GFSAPage> pages = getPages();
+        if (this.pages == null) {
+            pages = parsePages();
+        }
         for (GFSAPage page : pages) {
             GFSAContentStream contentStream = page.getContentStream();
             if (contentStream != null) {

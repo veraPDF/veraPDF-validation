@@ -33,6 +33,7 @@ import org.verapdf.pd.PDResource;
 import org.verapdf.pd.images.PDXObject;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
+import org.verapdf.wcag.algorithms.entities.content.LineChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
@@ -54,7 +55,9 @@ class ChunkParser {
 	private Matrix textMatrix = null;
 	private Matrix textLineMatrix = null;
 	private GraphicsState graphicsState;
+	private Path path = new Path();
 	private List<IChunk> artifacts = new LinkedList<>();
+	private List<IChunk> notStrokeArtifacts = new LinkedList<>();
 
 	public ChunkParser(Integer pageNumber) {
 		this.pageNumber = pageNumber;
@@ -237,6 +240,85 @@ class ChunkParser {
 			case Operators.BI:
 				putChunk(getMarkedContent(), new ImageChunk(new BoundingBox(pageNumber, parseImageBoundingBox())));
 				break;
+			case Operators.C_CURVE_TO:
+				if (arguments.size() == 6 && arguments.get(0).getType().isNumber() &&
+						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
+						arguments.get(3).getType().isNumber() && arguments.get(4).getType().isNumber() &&
+						arguments.get(5).getType().isNumber()) {
+					double x3 = arguments.get(4).getReal();
+					double y3 = arguments.get(5).getReal();
+					path.setCurrentPoint(x3, y3);
+				}
+				break;
+			case Operators.H_CLOSEPATH:
+				processOp_h();
+				break;
+			case Operators.L_LINE_TO:
+				if (arguments.size() == 2 && arguments.get(0).getType().isNumber() &&
+						arguments.get(1).getType().isNumber()) {
+					double x = arguments.get(0).getReal();
+					double y = arguments.get(1).getReal();
+					notStrokeArtifacts.add(new LineChunk(pageNumber, path.getCurrentX(), path.getCurrentY(), x, y));
+					path.setCurrentPoint(x, y);
+				}
+				break;
+			case Operators.M_MOVE_TO:
+				if (arguments.size() == 2 && arguments.get(0).getType().isNumber() &&
+						arguments.get(1).getType().isNumber()) {
+					double x = arguments.get(0).getReal();
+					double y = arguments.get(1).getReal();
+					path.setStartPoint(x, y);
+					path.setCurrentPoint(x, y);
+				}
+				break;
+			case Operators.RE:
+				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
+						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
+						arguments.get(3).getType().isNumber()) {
+					double x = arguments.get(0).getReal();
+					double y = arguments.get(1).getReal();
+					path.setCurrentPoint(x, y);
+					path.setStartPoint(x, y);
+				}
+				break;
+			case Operators.V:
+				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
+						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
+						arguments.get(3).getType().isNumber()) {
+					path.setCurrentPoint(arguments.get(2).getReal(), arguments.get(3).getReal());
+				}
+				break;
+			case Operators.Y:
+				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
+						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
+						arguments.get(3).getType().isNumber()) {
+					path.setCurrentPoint(arguments.get(2).getReal(), arguments.get(3).getReal());
+				}
+				break;
+			case Operators.B_CLOSEPATH_FILL_STROKE:
+				processOp_h();
+				processOp_S();
+				break;
+			case Operators.B_FILL_STROKE:
+				processOp_S();
+				break;
+			case Operators.B_STAR_CLOSEPATH_EOFILL_STROKE:
+				processOp_h();
+				processOp_S();
+				break;
+			case Operators.B_STAR_EOFILL_STROKE:
+				processOp_S();
+				break;
+			case Operators.N:
+				notStrokeArtifacts = new LinkedList<>();
+				break;
+			case Operators.S_CLOSE_STROKE:
+				processOp_h();
+				processOp_S();
+				break;
+			case Operators.S_STROKE:
+				processOp_S();
+				break;
 			case Operators.CM_CONCAT:
 				graphicsState.getCTM().concatenate(new Matrix(arguments));
 				break;
@@ -295,6 +377,20 @@ class ChunkParser {
 	private void processDoubleQuote(double op1, double op2) {
 		this.graphicsState.getTextState().setWordSpacing(op1);
 		this.graphicsState.getTextState().setCharacterSpacing(op2);
+	}
+
+	private void processOp_h() {
+		artifacts.add(new LineChunk(pageNumber, path.getStartX(), path.getStartY(), path.getCurrentX(), path.getCurrentY()));
+		path.setCurrentPoint(path.getStartX(), path.getStartY());
+	}
+
+	private void processOp_S() {
+		for (IChunk chunk : notStrokeArtifacts) {
+			if (chunk instanceof LineChunk) {
+				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getCTM()));
+			}
+		}
+		notStrokeArtifacts = new LinkedList<>();
 	}
 
 	private Double getValueOfLastNumber(List<COSBase> arguments) {
@@ -454,6 +550,13 @@ class ChunkParser {
 			}
 		}
 		return null;
+	}
+
+	private LineChunk transformLineChunk(LineChunk lineChunk, Matrix currentTransformationMatrix) {
+		return new LineChunk(pageNumber, lineChunk.getStartX() * currentTransformationMatrix.getScaleX() + lineChunk.getStartY() * currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
+				lineChunk.getStartX() * currentTransformationMatrix.getShearX() + lineChunk.getStartY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY(),
+				lineChunk.getEndX() * currentTransformationMatrix.getScaleX() + lineChunk.getEndY() * currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
+				lineChunk.getEndX() * currentTransformationMatrix.getShearX() + lineChunk.getEndY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY());
 	}
 
 }
