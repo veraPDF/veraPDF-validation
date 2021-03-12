@@ -68,18 +68,18 @@ public class OutlinesHelper {
 
 	private static Map<String, PDOutlineItem> getOutlinesMap(Deque<PDOutlineItem> stack) {
 		Map<String, PDOutlineItem> result = new HashMap<>();
-		do {
+		while (!stack.isEmpty()) {
 			PDOutlineItem item = stack.pop();
 			PDOutlineItem nextSibling = item.getNext();
 			PDOutlineItem firstChild = item.getFirst();
-			if (nextSibling != null && !result.containsKey(nextSibling)) {
+			if (nextSibling != null && !result.containsKey(GFIDGenerator.getOutlineID(nextSibling))) {
 				stack.add(nextSibling);
 			}
-			if (firstChild != null && !result.containsKey(firstChild)) {
+			if (firstChild != null && !result.containsKey(GFIDGenerator.getOutlineID(firstChild))) {
 				stack.add(firstChild);
 			}
-			result.put(GFIDGenerator.generateID(item), item);
-		} while (!stack.isEmpty());
+			result.put(GFIDGenerator.getOutlineID(item), item);
+		}
 
 		return result;
 	}

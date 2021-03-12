@@ -93,4 +93,13 @@ public final class GFIDGenerator {
 		return null;
 	}
 
+	public static String getOutlineID(PDOutlineItem item) {
+		COSObject dictionary = item.getObject();
+		if (dictionary != null && dictionary.getKey() != null) {
+			String value = GFIDGenerator.generateID(dictionary.getKey());
+			return "outline " + value;
+		}
+		return null;
+	}
+
 }
