@@ -73,13 +73,24 @@ public class GFPDICCBased extends GFPDColorSpace implements PDICCBased {
     }
 
     @Override
+    public String getICCProfileMD5() {
+        return ((org.verapdf.pd.colors.PDICCBased) simplePDObject).getICCProfileMD5();
+    }
+
+    @Override
     public String getcurrentTransparencyProfileIndirect() {
-        org.verapdf.pd.colors.PDColorSpace currentColorSpace = StaticContainers.getXFormTransparencyColorSpace();
-        if (currentColorSpace == null) {
-            currentColorSpace = StaticContainers.getPageTransparencyColorSpace();
-        }
+        PDColorSpace currentColorSpace = StaticContainers.getCurrentTransparencyColorSpace();
         if (currentColorSpace != null && ASAtom.ICCBASED.equals(currentColorSpace.getType())) {
             return ((org.verapdf.pd.colors.PDICCBased)currentColorSpace).getICCProfileIndirect();
+        }
+        return null;
+    }
+
+    @Override
+    public String getcurrentTransparencyICCProfileMD5() {
+        PDColorSpace currentColorSpace = StaticContainers.getCurrentTransparencyColorSpace();
+        if (currentColorSpace != null && ASAtom.ICCBASED.equals(currentColorSpace.getType())) {
+            return ((org.verapdf.pd.colors.PDICCBased)currentColorSpace).getICCProfileMD5();
         }
         return null;
     }
