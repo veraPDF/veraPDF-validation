@@ -31,6 +31,7 @@ import org.verapdf.model.coslayer.CosBBox;
 import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.actions.PDPageAdditionalActions;
+import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
@@ -95,10 +96,14 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	public static final String LANDSCAPE_ORIENTATION = "Landscape";
 	public static final String SQUARE_ORIENTATION = "Square";
 
+	public static final String TRANSPARENCY_COLOR_SPACE = "transparencyColorSpace";
+	public static final String PARENT_TRANSPARENCY_COLOR_SPACE = "parentTransparencyColorSpace";
+
 	private boolean containsTransparency = false;
 	private List<PDContentStream> contentStreams = null;
 	private List<PDAnnot> annotations = null;
 	private OutputIntents outputIntents = null;
+	private final PDColorSpace blendingColorSpace;
 
 	/**
 	 * Default constructor
@@ -107,6 +112,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 */
 	public GFPDPage(org.verapdf.pd.PDPage pdPage) {
 		super(pdPage, PD_PAGE_TYPE);
+		this.blendingColorSpace = getBlendingColorSpace();
 	}
 
 	@Override
@@ -132,6 +138,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 				return this.getArtBox();
 			case OUTPUT_INTENTS:
 				return this.getOutputIntents();
+			case TRANSPARENCY_COLOR_SPACE:
+				return this.getTransparencyColorSpace();
+			case PARENT_TRANSPARENCY_COLOR_SPACE:
+				return this.getParentTransparencyColorSpace();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -165,9 +175,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		org.verapdf.pd.PDGroup group = page.getGroup();
 		if (group != null) {
 			List<PDGroup> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			res.add(ASAtom.TRANSPARENCY.equals(group.getSubtype()) ?
-					new GFPDPageTransparencyGroup(group, page.getResources()) :
-					new GFPDGroup(group, page.getResources()));
+			res.add(new GFPDGroup(group, page.getResources()));
 			return Collections.unmodifiableList(res);
 		}
 		return Collections.emptyList();
@@ -279,6 +287,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 */
 	@Override
 	public Boolean getcontainsTransparency() {
+		StaticContainers.setCurrentTransparencyColorSpace(blendingColorSpace);
 		if (this.contentStreams == null) {
 			this.contentStreams = parseContentStream();
 		}
@@ -332,5 +341,32 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			return ((GFOutputIntents)outputIntents).getColorSpace();
 		}
 		return null;
+	}
+
+	public PDColorSpace getBlendingColorSpace() {
+		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) this.simplePDObject).getGroup();
+		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype())) {
+			return null;
+		}
+		return group.getColorSpace();
+	}
+
+	private List<TransparencyColorSpace> getTransparencyColorSpace() {
+		if (blendingColorSpace != null) {
+			List<TransparencyColorSpace> xFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			xFormTransparencyGroup.add(new GFTransparencyColorSpace(blendingColorSpace));
+			return Collections.unmodifiableList(xFormTransparencyGroup);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<TransparencyColorSpace> getParentTransparencyColorSpace() {
+		if (blendingColorSpace != null) {
+			List<TransparencyColorSpace> parentXFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			parentXFormTransparencyGroup.add(new GFTransparencyColorSpace(null));
+			StaticContainers.setCurrentTransparencyColorSpace(blendingColorSpace);
+			return Collections.unmodifiableList(parentXFormTransparencyGroup);
+		}
+		return Collections.emptyList();
 	}
 }

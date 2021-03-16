@@ -88,4 +88,11 @@ public class GFPDOutputIntent extends GFPDObject implements PDOutputIntent {
         }
         return Collections.emptyList();
     }
+
+    @Override
+    public String getICCProfileMD5() {
+        ICCProfile iccProfile = ((org.verapdf.pd.PDOutputIntent) simplePDObject).getDestOutputProfile();
+        return iccProfile != null ? iccProfile.getMD5() : null;
+    }
+
 }

@@ -27,13 +27,13 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.GFPDGroup;
 import org.verapdf.gf.model.impl.pd.GFPDSemanticContentStream;
+import org.verapdf.gf.model.impl.pd.GFTransparencyColorSpace;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDGroup;
 import org.verapdf.model.pdlayer.PDXForm;
-import org.verapdf.model.pdlayer.XFormTransparencyGroup;
-import org.verapdf.model.pdlayer.ParentXFormTransparencyGroup;
+import org.verapdf.model.pdlayer.TransparencyColorSpace;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
@@ -52,8 +52,8 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	public static final String GROUP = "Group";
 	public static final String CONTENT_STREAM = "contentStream";
 
-	public static final String XFORM_TRANSPARENCY_GROUP = "xFormTransparencyGroup";
-	public static final String PARENT_XFORM_TRANSPARENCY_GROUP = "parentXFormTransparencyGroup";
+	public static final String TRANSPARENCY_COLOR_SPACE = "transparencyColorSpace";
+	public static final String PARENT_TRANSPARENCY_COLOR_SPACE = "parentTransparencyColorSpace";
 
 	private List<PDContentStream> contentStreams = null;
 	private List<PDGroup> groups = null;
@@ -87,10 +87,10 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 				return this.getGroup();
 			case CONTENT_STREAM:
 				return this.getContentStream();
-			case XFORM_TRANSPARENCY_GROUP:
-				return this.getXFormTransparencyGroup();
-			case PARENT_XFORM_TRANSPARENCY_GROUP:
-				return this.getParentXFormTransparencyGroup();
+			case TRANSPARENCY_COLOR_SPACE:
+				return this.getTransparencyGroup();
+			case PARENT_TRANSPARENCY_COLOR_SPACE:
+				return this.getParentTransparencyGroup();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -108,7 +108,34 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype())) {
 			return null;
 		}
-		return group.getColorSpace();
+		PDColorSpace colorSpace = group.getColorSpace();
+		PDColorSpace currentTransparencyColorSpace = StaticContainers.getCurrentTransparencyColorSpace();
+		if (currentTransparencyColorSpace == null) {
+			return colorSpace;
+		}
+		if (colorSpace == null) {
+			return null;
+		}
+		if (colorSpace.getType() == ASAtom.DEVICERGB) {
+			if (currentTransparencyColorSpace.getType() == ASAtom.CALRGB || currentTransparencyColorSpace.getType() == ASAtom.LAB) {
+				return null;
+			}
+			if (currentTransparencyColorSpace.getType() == ASAtom.ICCBASED && currentTransparencyColorSpace.getNumberOfComponents() == 3) {
+				return null;
+			}
+		} else if (colorSpace.getType() == ASAtom.DEVICECMYK) {
+			if (currentTransparencyColorSpace.getType() == ASAtom.ICCBASED && currentTransparencyColorSpace.getNumberOfComponents() == 4) {
+				return null;
+			}
+		} else if (colorSpace.getType() == ASAtom.DEVICEGRAY) {
+			if (currentTransparencyColorSpace.getType() == ASAtom.CALGRAY) {
+				return null;
+			}
+			if (currentTransparencyColorSpace.getType() == ASAtom.ICCBASED && currentTransparencyColorSpace.getNumberOfComponents() == 1) {
+				return null;
+			}
+		}
+		return colorSpace;
 	}
 
 	@Override
@@ -196,19 +223,20 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		return groupContainsTransparency || contentStreamContainsTransparency;
 	}
 
-	private List<XFormTransparencyGroup> getXFormTransparencyGroup() {
+	private List<TransparencyColorSpace> getTransparencyGroup() {
 		if (blendingColorSpace != null) {
-			List<XFormTransparencyGroup> xFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			xFormTransparencyGroup.add(new GFXFormTransparencyGroup(blendingColorSpace));
+			List<TransparencyColorSpace> xFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			xFormTransparencyGroup.add(new GFTransparencyColorSpace(blendingColorSpace));
 			return Collections.unmodifiableList(xFormTransparencyGroup);
 		}
 		return Collections.emptyList();
 	}
 
-	private List<ParentXFormTransparencyGroup> getParentXFormTransparencyGroup() {
+	private List<TransparencyColorSpace> getParentTransparencyGroup() {
 		if (blendingColorSpace != null) {
-			List<ParentXFormTransparencyGroup> parentXFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			parentXFormTransparencyGroup.add(new GFParentXFormTransparencyGroup(StaticContainers.getXFormTransparencyColorSpace()));
+			List<TransparencyColorSpace> parentXFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			parentXFormTransparencyGroup.add(new GFTransparencyColorSpace(StaticContainers.getCurrentTransparencyColorSpace()));
+			StaticContainers.setCurrentTransparencyColorSpace(blendingColorSpace);
 			return Collections.unmodifiableList(parentXFormTransparencyGroup);
 		}
 		return Collections.emptyList();

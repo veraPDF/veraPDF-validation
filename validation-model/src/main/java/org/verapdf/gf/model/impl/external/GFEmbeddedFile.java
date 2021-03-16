@@ -144,8 +144,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Map<String, Glyph> cachedGlyphs;
 	private boolean validPDF;
 	private Integer lastHeadingNestingLevel;
-	private org.verapdf.pd.colors.PDColorSpace xFormTransparencyColorSpace;
-	private org.verapdf.pd.colors.PDColorSpace pageTransparencyColorSpace;
+	private org.verapdf.pd.colors.PDColorSpace currentTransparencyColorSpace;
 
 	// StaticResources have to be saved too
 	private Map<String, CMap> cMapCache;
@@ -167,8 +166,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.validPDF = StaticContainers.getValidPDF();
 		this.lastHeadingNestingLevel = StaticContainers.getLastHeadingNestingLevel();
 		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
-		this.pageTransparencyColorSpace = StaticContainers.getPageTransparencyColorSpace();
-		this.xFormTransparencyColorSpace = StaticContainers.getXFormTransparencyColorSpace();
+		this.currentTransparencyColorSpace = StaticContainers.getCurrentTransparencyColorSpace();
 
 		Map<String, CMap> cMaps = StaticResources.getcMapCache();
 		this.cMapCache = cMaps == null ? null : new HashMap<>(cMaps);
@@ -195,8 +193,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setValidPDF(this.validPDF);
 		StaticContainers.setLastHeadingNestingLevel(this.lastHeadingNestingLevel);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
-		StaticContainers.setPageTransparencyColorSpace(this.pageTransparencyColorSpace);
-		StaticContainers.setXFormTransparencyColorSpace(this.xFormTransparencyColorSpace);
+		StaticContainers.setCurrentTransparencyColorSpace(this.currentTransparencyColorSpace);
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
