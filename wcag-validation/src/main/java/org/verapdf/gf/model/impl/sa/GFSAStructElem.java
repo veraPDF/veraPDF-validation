@@ -104,15 +104,11 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 		return initialSemanticType;
 	}
 
-	public void setInitialType() {
+	private void setInitialType() {
 		String standardType = getStandardType();
 		if (standardType != null && SemanticTypeMapper.containsType(standardType)) {
-			setInitialSemanticType(SemanticTypeMapper.getSemanticType(standardType));
+			initialSemanticType = (SemanticTypeMapper.getSemanticType(standardType));
 		}
-	}
-
-	public void setInitialSemanticType(SemanticType initialSemanticType) {
-		this.initialSemanticType = initialSemanticType;
 	}
 
 	@Override
