@@ -89,6 +89,17 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
+	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour) throws IOException {
+		try {
+			this.document = new PDDocument(pdfFile.getAbsolutePath());
+			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? ((defaultFlavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : obtainFlavour(this.document, defaultFlavour)) : flavour;
+			initializeStaticContainers(this.document, this.flavour);
+		} catch (Throwable t) {
+			this.close();
+			throw t;
+		}
+	}
+
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
 		try {
@@ -111,13 +122,26 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
+	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour)
+			throws ModelParsingException, EncryptedPdfException {
+		try {
+			return new GFModelParser(pdfFile, flavour, defaultFlavour);
+		} catch (InvalidPasswordException excep) {
+			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
+		} catch (IOException e) {
+			throw new ModelParsingException("Couldn't parse stream", e);
+		}
+	}
+
 	private static PDFAFlavour obtainFlavour(PDDocument document) {
-		PDMetadata metadata;
-		PDFAFlavour defaultFlavour = Foundries.defaultInstance().defaultFlavour();
+		return obtainFlavour(document, Foundries.defaultInstance().defaultFlavour());
+	}
+
+		private static PDFAFlavour obtainFlavour(PDDocument document, PDFAFlavour defaultFlavour) {
 		if (document == null || document.getCatalog() == null) {
 			return defaultFlavour;
 		}
-		metadata = document.getCatalog().getMetadata();
+		PDMetadata metadata = document.getCatalog().getMetadata();
 		if (metadata == null) {
 			return defaultFlavour;
 		}
