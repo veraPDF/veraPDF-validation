@@ -21,12 +21,14 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
+import org.verapdf.pd.structure.PDMCRDictionary;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.wcag.algorithms.entities.INode;
 import org.verapdf.wcag.algorithms.entities.SemanticSpan;
@@ -201,16 +203,23 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 					GFSAStructElem structElem = new GFSAStructElem((org.verapdf.pd.structure.PDStructElem)element);
 					nodeChildren.add(structElem);
 					children.add(structElem);
+				} else if (element instanceof org.verapdf.pd.structure.PDMCRDictionary) {
+					PDMCRDictionary mcr = (org.verapdf.pd.structure.PDMCRDictionary) element;
+					addChunksToChildren(mcr.getPageObjectNumber(), mcr.getMCID());
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
-					List<IChunk> chunks = StaticStorages.getChunks().get((((COSObject)element).getDirectBase()).getInteger());
-					if (chunks != null) {
-						for (IChunk chunk : chunks) {
-							if (chunk instanceof TextChunk) {
-								nodeChildren.add(new SemanticSpan((TextChunk) chunk));
-								children.add(new GFSATextChunk((TextChunk) chunk));
-							}
-						}
-					}
+					addChunksToChildren(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger());
+				}
+			}
+		}
+	}
+
+	private void addChunksToChildren(COSKey pageObjectNumber, Long mcid) {
+		List<IChunk> chunks = StaticStorages.getChunks().get(pageObjectNumber, mcid);
+		if (chunks != null) {
+			for (IChunk chunk : chunks) {
+				if (chunk instanceof TextChunk) {
+					nodeChildren.add(new SemanticSpan((TextChunk) chunk));
+					children.add(new GFSATextChunk((TextChunk) chunk));
 				}
 			}
 		}
@@ -265,6 +274,10 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 
 		GFSAStructElem that = (GFSAStructElem) o;
 		return that.getBoundingBox().equals(boundingBox);
+	}
+
+	public COSKey getPageObjectNumber() {
+		return structElemDictionary.getPageObjectNumber();
 	}
 
 }

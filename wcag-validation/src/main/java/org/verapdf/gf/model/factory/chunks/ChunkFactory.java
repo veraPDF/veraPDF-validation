@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.operator.Operator;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
@@ -32,9 +33,9 @@ import java.util.*;
  */
 public final class ChunkFactory {
 
-	public List<IChunk> chunksFromTokens(Integer pageNumber, List<Object> rawTokens, ResourceHandler resourceHandler) {
+	public List<IChunk> chunksFromTokens(Integer pageNumber, COSKey pageObjectNumber, List<Object> rawTokens, ResourceHandler resourceHandler) {
 		List<COSBase> arguments = new ArrayList<>();
-		ChunkParser parser = new ChunkParser(pageNumber);
+		ChunkParser parser = new ChunkParser(pageNumber, pageObjectNumber);
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {
 				arguments.add((COSBase) rawToken);
