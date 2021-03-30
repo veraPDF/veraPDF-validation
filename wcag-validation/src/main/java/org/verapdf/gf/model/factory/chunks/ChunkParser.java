@@ -52,6 +52,7 @@ class ChunkParser {
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private Stack<Long> markedContentStack = new Stack<>();
 	private Integer pageNumber;
+	private COSKey pageObjectNumber;
 	private Matrix textMatrix = null;
 	private Matrix textLineMatrix = null;
 	private GraphicsState graphicsState;
@@ -59,8 +60,9 @@ class ChunkParser {
 	private List<IChunk> artifacts = new LinkedList<>();
 	private List<IChunk> notStrokeArtifacts = new LinkedList<>();
 
-	public ChunkParser(Integer pageNumber) {
+	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber) {
 		this.pageNumber = pageNumber;
+		this.pageObjectNumber = pageObjectNumber;
 		graphicsState = new GraphicsState();
 	}
 
@@ -439,13 +441,7 @@ class ChunkParser {
 			return;
 		}
 		if (mcid != null) {
-			if (StaticStorages.getChunks().containsKey(mcid)) {
-				StaticStorages.getChunks().get(mcid).add(chunk);
-			} else {
-				List<IChunk> list = new ArrayList<>();
-				list.add(chunk);
-				StaticStorages.getChunks().put(mcid, list);
-			}
+			StaticStorages.getChunks().add(pageObjectNumber, mcid, chunk);
 		} else {
 			artifacts.add(chunk);
 		}
@@ -521,15 +517,20 @@ class ChunkParser {
 				textRenderingMatrix.getTranslateY() + font.getBoundingBox()[1] * textRenderingMatrix.getScaleY() / 1000,
 				textRenderingMatrix.getTranslateX(), textRenderingMatrix.getTranslateY() + font.getBoundingBox()[3] *
 				textRenderingMatrix.getScaleY() / 1000}), unicodeValue.toString(), font.getNameWithoutSubset(),
-				textRenderingMatrix.getScaleY() * graphicsState.getTextState().getTextFontSize(), font.getFontWeight(),
-				font.getFontDescriptor().getItalicAngle(), textRenderingMatrix.getTranslateY(), graphicsState.getFillColor());
+				textRenderingMatrix.getScaleY(), font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
+				textRenderingMatrix.getTranslateY(), graphicsState.getFillColor());
 		}
 		return null;
 	}
 
 	private Long getMarkedContent() {
 		if (!markedContentStack.empty()) {
-			return markedContentStack.peek();
+			for (int i = markedContentStack.size() - 1; i >= 0; i--) {
+				Long mcid = markedContentStack.get(i);
+				if (mcid != null) {
+					return mcid;
+				}
+			}
 		}
 		return null;
 	}

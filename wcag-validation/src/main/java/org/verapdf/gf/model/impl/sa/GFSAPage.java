@@ -78,7 +78,7 @@ public class GFSAPage {
 		GFSAContentStream pdContentStream = null;
 		if (pdPage.getContent() != null) {
 			ResourceHandler resourceHandler = ResourceHandler.getInstance(pdPage.getResources());
-			pdContentStream = new GFSAContentStream(pdPage.getContent(), resourceHandler, pdPage.getPageNumber());
+			pdContentStream = new GFSAContentStream(pdPage.getContent(), resourceHandler, pdPage.getPageNumber(), pdPage.getObject().getKey());
 		}
 		this.contentStream = pdContentStream;
 	}

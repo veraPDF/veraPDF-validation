@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.io.ASInputStream;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
@@ -43,13 +44,15 @@ public class GFSAContentStream {
 	private static final Logger LOGGER = Logger.getLogger(GFSAContentStream.class.getName());
 
 	private Integer pageNumber;
+	private COSKey pageObjectNumber;
 	private List<IChunk> artifacts = null;
 	private ResourceHandler resourceHandler;
 	private org.verapdf.pd.PDContentStream contentStream = null;
 
 	public GFSAContentStream(org.verapdf.pd.PDContentStream contentStream,
-	                         ResourceHandler resourceHandler, Integer pageNumber) {
+	                         ResourceHandler resourceHandler, Integer pageNumber, COSKey pageObjectNumber) {
 		this.pageNumber = pageNumber;
+		this.pageObjectNumber = pageObjectNumber;
 		this.contentStream = contentStream;
 		this.resourceHandler = resourceHandler;
 	}
@@ -75,7 +78,7 @@ public class GFSAContentStream {
 						try (PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
 							streamParser.parseTokens();
 							ChunkFactory chunkFactory = new ChunkFactory();
-							this.artifacts = chunkFactory.chunksFromTokens(pageNumber, streamParser.getTokens(), resourceHandler);
+							this.artifacts = chunkFactory.chunksFromTokens(pageNumber, pageObjectNumber, streamParser.getTokens(), resourceHandler);
 						}
 					}
 				}
