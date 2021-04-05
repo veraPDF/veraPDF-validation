@@ -78,7 +78,7 @@
     <verapdf.parser.version>[1.19.0,1.20.0)</verapdf.parser.version>
     <verapdf.pdfmodel.version>[1.19.0,1.20.0)</verapdf.pdfmodel.version>
     <verapdf.library.version>[1.19.0,1.20.0)</verapdf.library.version>
-    <verapdf.wcag.algs.version>1.19.10</verapdf.wcag.algs.version>
+    <verapdf.wcag.algs.version>[1.19.0,1.20.0)</verapdf.wcag.algs.version>
   </properties>
 
   <dependencyManagement>

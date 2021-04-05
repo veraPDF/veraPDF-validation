@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
@@ -58,11 +59,18 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 	private SemanticType semanticType;
 	private BoundingBox boundingBox;
 	private SemanticType initialSemanticType;
+	private final String id;
+	private final String standardType;
 
 	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String type) {
 		super(type);
 		this.structElemDictionary = structElemDictionary;
 		boundingBox = new BoundingBox();
+		standardType = calculateStandardType();
+		COSKey key = structElemDictionary.getObject().getObjectKey();
+		id = (key != null ? key.getNumber() + " " + key.getGeneration() + " obj" + this.getObjectType() : "0 0 obj") +
+		     (standardType != null ? (" " + standardType) : "")  +
+		     (getType() != null ? (" " + ((COSName) COSName.fromValue(getType())).getUnicodeValue()) : "");
 		setInitialType();
 	}
 
@@ -86,6 +94,10 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 	}
 
 	public String getStandardType() {
+		return standardType;
+	}
+
+	public String calculateStandardType() {
 		return getStructureElementStandardType(structElemDictionary);
 	}
 
@@ -254,8 +266,8 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 	}
 
 	@Override
-	public String getExtraContext() {
-		return getStandardType();
+	public String getID() {
+		return this.id;
 	}
 
 	@Override
