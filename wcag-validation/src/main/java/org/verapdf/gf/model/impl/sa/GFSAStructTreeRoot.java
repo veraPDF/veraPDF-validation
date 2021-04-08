@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.gf.model.impl.containers.StaticStorages;
+import org.verapdf.gf.model.impl.sa.structelems.GFSAGeneral;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
@@ -41,7 +42,7 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 
 	private List<GFSAStructElem> children = null;
 
-	private org.verapdf.pd.structure.PDStructTreeRoot treeRoot = null;
+	private final org.verapdf.pd.structure.PDStructTreeRoot treeRoot;
 
 	public GFSAStructTreeRoot(org.verapdf.pd.structure.PDStructTreeRoot treeRoot) {
 		super(STRUCT_TREE_ROOT_TYPE);
@@ -71,7 +72,10 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 		if (!elements.isEmpty()) {
 			List<GFSAStructElem> res = new ArrayList<>(elements.size());
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				res.add(new GFSAStructElem(element));
+				GFSAStructElem structElem = GFSAGeneral.createTypedStructElem(element);
+				INode childNode = new GFSANode(structElem);
+				structElem.setNode(childNode);
+				res.add(structElem);
 			}
 			return Collections.unmodifiableList(res);
 		}
@@ -83,6 +87,6 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 		if (this.children == null) {
 			this.children = parseChildren();
 		}
-		return children.get(0);
+		return children.get(0).getNode();
 	}
 }

@@ -20,40 +20,30 @@
  */
 package org.verapdf.gf.model.impl.sa;
 
-import org.verapdf.model.salayer.SATextChunk;
-import org.verapdf.wcag.algorithms.entities.content.TextChunk;
+import org.verapdf.wcag.algorithms.entities.INode;
+import org.verapdf.wcag.algorithms.entities.SemanticNode;
+import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
+
+import java.util.List;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSATextChunk extends GFSAChunk implements SATextChunk {
+public class GFSANode extends SemanticNode {
 
-	public static final String TEXT_CHUNK_TYPE = "SATextChunk";
+	private final GFSAStructElem structElem;
 
-	private final TextChunk textChunk;
-
-	public GFSATextChunk(TextChunk textChunk) {
-		super(TEXT_CHUNK_TYPE);
-		this.textChunk = textChunk;
+	public GFSANode(GFSAStructElem structElem) {
+		super(SemanticTypeMapper.getSemanticType(structElem.getStandardType()));
+		this.structElem = structElem;
 	}
 
 	@Override
-	public Double gettextSize() {
-		return textChunk.getFontSize();
+	public List<INode> getChildren() {
+		if (structElem.children == null) {
+			structElem.parseChildren();
+		}
+		return super.getChildren();
 	}
 
-	@Override
-	public Double getcontrastRatio() {
-		return textChunk.getContrastRatio();
-	}
-
-	@Override
-	public Double gettextWeight() {
-		return textChunk.getFontWeight();
-	}
-
-	@Override
-	public String getContext() {
-		return textChunk.getBoundingBox().getLocation();
-	}
 }
