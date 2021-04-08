@@ -21,11 +21,9 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSKey;
-import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
+import org.verapdf.gf.model.impl.sa.structelems.GFSAGeneral;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
@@ -36,7 +34,6 @@ import org.verapdf.wcag.algorithms.entities.SemanticSpan;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
-import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
 
 import java.util.*;
@@ -44,45 +41,42 @@ import java.util.*;
 /**
  * @author Maxim Plushchov
  */
-public class GFSAStructElem extends GenericModelObject implements SAStructElem, INode {
-
-	public static final String STRUCTURE_ELEMENT_TYPE = "SAStructElem";
+public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 
     public static final String CHILDREN = "children";
 
-	private org.verapdf.pd.structure.PDStructElem structElemDictionary = null;
+	private final org.verapdf.pd.structure.PDStructElem structElemDictionary;
 
-	private List<INode> nodeChildren = null;
-	private List<Object> children = null;
+	protected List<Object> children = null;
 
-	private Double correctSemanticScore;
-	private SemanticType semanticType;
-	private BoundingBox boundingBox;
-	private SemanticType initialSemanticType;
+	private INode node;
+
 	private final String id;
 	private final String standardType;
 
-	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String type) {
+	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType, String type) {
 		super(type);
 		this.structElemDictionary = structElemDictionary;
-		boundingBox = new BoundingBox();
-		standardType = calculateStandardType();
+		this.standardType = standardType;
 		COSKey key = structElemDictionary.getObject().getObjectKey();
 		id = (key != null ? key.getNumber() + " " + key.getGeneration() + " obj" + this.getObjectType() : "0 0 obj") +
 		     (standardType != null ? (" " + standardType) : "")  +
 		     (getType() != null ? (" " + ((COSName) COSName.fromValue(getType())).getUnicodeValue()) : "");
-		setInitialType();
 	}
 
-	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
-		this(structElemDictionary, STRUCTURE_ELEMENT_TYPE);
+	public void setNode(INode node) {
+		this.node = node;
+	}
+
+	public INode getNode() {
+		return node;
 	}
 
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case CHILDREN:
-				return this.getchildren();
+				return this.getChildren();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -97,10 +91,6 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 		return standardType;
 	}
 
-	public String calculateStandardType() {
-		return getStructureElementStandardType(structElemDictionary);
-	}
-
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
 		StructureType type = pdStructElem.getStructureType();
 		if (type != null) {
@@ -109,111 +99,23 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 		return null;
 	}
 
-	@Override
-	public void setSemanticType(SemanticType semanticType) {
-		this.semanticType = semanticType;
-	}
-
-	public SemanticType getInitialSemanticType() {
-		return initialSemanticType;
-	}
-
-	private void setInitialType() {
-		String standardType = getStandardType();
-		if (standardType != null && SemanticTypeMapper.containsType(standardType)) {
-			initialSemanticType = (SemanticTypeMapper.getSemanticType(standardType));
-		}
-	}
-
-	@Override
-	public Double getCorrectSemanticScore() {
-		return correctSemanticScore;
-	}
-
-	@Override
-	public void setCorrectSemanticScore(Double correctSemanticScore) {
-		this.correctSemanticScore = correctSemanticScore;
-	}
-
-	@Override
-	public Integer getPageNumber() {
-		return boundingBox.getPageNumber();
-	}
-
-	@Override
-	public void setPageNumber(Integer pageNumber) {
-		this.boundingBox.setPageNumber(pageNumber);
-	}
-
-	@Override
-	public Integer getLastPageNumber() {
-		return boundingBox.getLastPageNumber();
-	}
-
-	@Override
-	public void setLastPageNumber(Integer lastPageNumber) {
-		this.boundingBox.setLastPageNumber(lastPageNumber);
-	}
-
-	@Override
-	public double getLeftX() {
-		return boundingBox.getLeftX();
-	}
-
-	@Override
-	public double getBottomY() {
-		return boundingBox.getBottomY();
-	}
-
-	@Override
-	public double getRightX() {
-		return boundingBox.getRightX();
-	}
-
-	@Override
-	public double getTopY() {
-		return boundingBox.getTopY();
-	}
-
-	@Override
-	public BoundingBox getBoundingBox() {
-		return boundingBox;
-	}
-
-	@Override
-	public void setBoundingBox(BoundingBox boundingBox) {
-		this.boundingBox.init(boundingBox);
-	}
-
-	@Override
-	public SemanticType getSemanticType() {
-		return semanticType;
-	}
-
-	@Override
-	public List<INode> getChildren() {
-		if (this.nodeChildren == null) {
-			parseChildren();
-		}
-		return Collections.unmodifiableList(nodeChildren);
-	}
-
-	private List<Object> getchildren() {
+	private List<Object> getChildren() {
 		if (this.children == null) {
 			parseChildren();
 		}
 		return Collections.unmodifiableList(children);
 	}
 
-	private void parseChildren() {
+	protected void parseChildren() {
 		List<java.lang.Object> elements = structElemDictionary.getChildren();
-		nodeChildren = new ArrayList<>(elements.size());
 		children = new ArrayList<>(elements.size());
 		if (!elements.isEmpty()) {
 			for (java.lang.Object element : elements) {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
-					GFSAStructElem structElem = new GFSAStructElem((org.verapdf.pd.structure.PDStructElem)element);
-					nodeChildren.add(structElem);
+					GFSAStructElem structElem = GFSAGeneral.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element);
+					INode childNode = new GFSANode(structElem);
+					structElem.setNode(childNode);
+					node.addChild(childNode);
 					children.add(structElem);
 				} else if (element instanceof org.verapdf.pd.structure.PDMCRDictionary) {
 					PDMCRDictionary mcr = (org.verapdf.pd.structure.PDMCRDictionary) element;
@@ -230,7 +132,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 		if (chunks != null) {
 			for (IChunk chunk : chunks) {
 				if (chunk instanceof TextChunk) {
-					nodeChildren.add(new SemanticSpan((TextChunk) chunk));
+					node.addChild(new SemanticSpan((TextChunk) chunk));
 					children.add(new GFSATextChunk((TextChunk) chunk));
 				}
 			}
@@ -239,12 +141,12 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 
 	@Override
 	public String getContext() {
-		return boundingBox.getLocation();
+		return node.getBoundingBox().getLocation();
 	}
 
 	@Override
 	public Double getcorrectSemanticScore() {
-		return correctSemanticScore;
+		return node.getCorrectSemanticScore();
 	}
 
 	@Override
@@ -253,7 +155,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 		if (standardType == null) {
 			return false;
 		}
-		SemanticType semanticType = getSemanticType();
+		SemanticType semanticType = node.getSemanticType();
 		if (!SemanticTypeMapper.containsType(standardType) || semanticType == null) {
 			return null;
 		}
@@ -262,30 +164,16 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem, 
 
 	@Override
 	public String getcorrectType() {
-		return getSemanticType().getValue();
+		SemanticType semanticType = node.getSemanticType();
+		if (!SemanticTypeMapper.containsType(standardType) || semanticType == null) {
+			return null;
+		}
+		return node.getSemanticType().getValue();
 	}
 
 	@Override
 	public String getID() {
 		return this.id;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(boundingBox);
-	}
-
-	@Override
-	public boolean equals(java.lang.Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-
-		GFSAStructElem that = (GFSAStructElem) o;
-		return that.getBoundingBox().equals(boundingBox);
 	}
 
 	public COSKey getPageObjectNumber() {

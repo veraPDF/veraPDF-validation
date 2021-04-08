@@ -18,42 +18,16 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.sa;
+package org.verapdf.gf.model.impl.sa.structelems;
 
-import org.verapdf.model.salayer.SATextChunk;
-import org.verapdf.wcag.algorithms.entities.content.TextChunk;
+import org.verapdf.model.salayer.SANonStandard;
+import org.verapdf.pd.structure.PDStructElem;
 
-/**
- * @author Maxim Plushchov
- */
-public class GFSATextChunk extends GFSAChunk implements SATextChunk {
+public class GFSANonStandard extends GFSAGeneral implements SANonStandard {
 
-	public static final String TEXT_CHUNK_TYPE = "SATextChunk";
+    public static final String NON_STANDARD_STRUCTURE_ELEMENT_TYPE = "SANonStandard";
 
-	private final TextChunk textChunk;
-
-	public GFSATextChunk(TextChunk textChunk) {
-		super(TEXT_CHUNK_TYPE);
-		this.textChunk = textChunk;
-	}
-
-	@Override
-	public Double gettextSize() {
-		return textChunk.getFontSize();
-	}
-
-	@Override
-	public Double getcontrastRatio() {
-		return textChunk.getContrastRatio();
-	}
-
-	@Override
-	public Double gettextWeight() {
-		return textChunk.getFontWeight();
-	}
-
-	@Override
-	public String getContext() {
-		return textChunk.getBoundingBox().getLocation();
-	}
+    public GFSANonStandard(PDStructElem structElemDictionary, String standardType) {
+        super(structElemDictionary, standardType, NON_STANDARD_STRUCTURE_ELEMENT_TYPE);
+    }
 }
