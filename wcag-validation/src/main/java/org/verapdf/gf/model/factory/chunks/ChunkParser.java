@@ -485,8 +485,8 @@ class ChunkParser {
 				unicodeValue.append(graphicsState.getTextState().getTextFont().toUnicode(code));
 				Double width = graphicsState.getTextState().getTextFont().getWidth(code);
 				if (width == null) {
-					LOGGER.log(Level.SEVERE, "Missing width of glyph with code" + code +
-							"in font" + graphicsState.getTextState().getTextFont().getName());
+					LOGGER.log(Level.SEVERE, "Missing width of glyph with code " + code +
+							" in font" + graphicsState.getTextState().getTextFont().getName());
 					width = 0.0;
 				}
 				textMatrix.concatenate(Matrix.getTranslateInstance((width *

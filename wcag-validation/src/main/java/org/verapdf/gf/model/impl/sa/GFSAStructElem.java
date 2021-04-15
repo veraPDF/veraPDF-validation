@@ -59,9 +59,9 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		this.structElemDictionary = structElemDictionary;
 		this.standardType = standardType;
 		COSKey key = structElemDictionary.getObject().getObjectKey();
-		id = (key != null ? key.getNumber() + " " + key.getGeneration() + " obj" + this.getObjectType() : "0 0 obj") +
-		     (standardType != null ? (" " + standardType) : "")  +
-		     (getType() != null ? (" " + ((COSName) COSName.fromValue(getType())).getUnicodeValue()) : "");
+		id = (key != null ? (key.getNumber() + " " + key.getGeneration() + " obj") : "0 0 obj") +
+		     (standardType != null ? (" " + standardType) : "") +
+		     (getStructureType() != null ? (" " + ((COSName) COSName.fromValue(getStructureType())).getUnicodeValue()) : "");
 	}
 
 	public void setNode(INode node) {
@@ -85,6 +85,11 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	public String getType() {
 		ASAtom type = structElemDictionary.getType();
 		return type == null ? null : type.getValue();
+	}
+
+	public String getStructureType() {
+		ASAtom subtype = structElemDictionary.getNameKey(ASAtom.S);
+		return subtype == null ? null : subtype.getValue();
 	}
 
 	public String getStandardType() {

@@ -20,33 +20,15 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
-import org.verapdf.gf.model.impl.sa.GFSAStructElem;
+import org.verapdf.model.salayer.SATable;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public abstract class GFSAGeneral extends GFSAStructElem {
+public class GFSATable extends GFSAGeneral implements SATable {
 
-    protected GFSAGeneral(PDStructElem structElemDictionary, String standardType, String type) {
-        super(structElemDictionary, standardType, type);
+    public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SATable";
+
+    public GFSATable(PDStructElem structElemDictionary) {
+        super(structElemDictionary, TaggedPDFConstants.TABLE, TABLE_STRUCTURE_ELEMENT_TYPE);
     }
-
-    public static GFSAGeneral createTypedStructElem(PDStructElem structElemDictionary){
-        String standardType = GFSAStructElem.getStructureElementStandardType(structElemDictionary);
-
-        if (standardType == null) {
-            return new GFSANonStandard(structElemDictionary, null);
-        }
-
-        switch (standardType) {
-            case TaggedPDFConstants.P:
-                return new GFSAP(structElemDictionary);
-            case TaggedPDFConstants.SPAN:
-                return new GFSASpan(structElemDictionary);
-            case TaggedPDFConstants.TABLE:
-                return new GFSATable(structElemDictionary);
-            default:
-                return new GFSANonStandard(structElemDictionary, standardType);
-        }
-    }
-
 }
