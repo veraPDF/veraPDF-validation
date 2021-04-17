@@ -33,12 +33,14 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;
+import org.verapdf.model.pdlayer.PDResources;
 import org.verapdf.parser.PDFStreamParser;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
@@ -54,6 +56,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	public static final String CONTENT_STREAM_TYPE = "PDContentStream";
 
 	public static final String OPERATORS = "operators";
+
+	private static final String RESOURCES = "resources";
 
 	private PDResourcesHandler resourcesHandler;
 
@@ -106,6 +110,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		switch (link) {
 			case OPERATORS:
 				return this.getOperators();
+			case RESOURCES:
+				return this.getResources();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -191,6 +197,15 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 			}
 		}
 		return null;
+	}
+
+	private List<PDResources> getResources() {
+		List<PDResources> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+		org.verapdf.pd.PDResources resources = resourcesHandler.getObjectResources();
+		if (resources != null) {
+			result.add(new GFPDResources(resources));
+		}
+		return result;
 	}
 
 }
