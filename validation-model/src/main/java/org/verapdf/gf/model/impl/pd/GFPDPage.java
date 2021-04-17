@@ -91,6 +91,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 * Link name for all output intents
 	 */
 	public static final String OUTPUT_INTENTS = "outputIntents";
+	/**
+	 * Link name for font names, names of colourants in Separation and DeviceN colour spaces
+	 */
+	private static final String RESOURCES = "resources";
 
 	public static final String PORTRAIT_ORIENTATION = "Portrait";
 	public static final String LANDSCAPE_ORIENTATION = "Landscape";
@@ -142,6 +146,8 @@ public class GFPDPage extends GFPDObject implements PDPage {
 				return this.getTransparencyColorSpace();
 			case PARENT_TRANSPARENCY_COLOR_SPACE:
 				return this.getParentTransparencyColorSpace();
+			case RESOURCES:
+				return this.getResources();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -368,5 +374,14 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			return Collections.unmodifiableList(parentXFormTransparencyGroup);
 		}
 		return Collections.emptyList();
+	}
+
+	private List<PDResources> getResources() {
+		List<PDResources> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+		org.verapdf.pd.PDResources resources = ((org.verapdf.pd.PDPage) this.simplePDObject).getResources();
+		if (resources != null) {
+			result.add(new GFPDResources(resources));
+		}
+		return result;
 	}
 }
