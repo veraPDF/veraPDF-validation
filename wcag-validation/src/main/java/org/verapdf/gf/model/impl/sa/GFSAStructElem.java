@@ -29,6 +29,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
 import org.verapdf.pd.structure.PDMCRDictionary;
 import org.verapdf.pd.structure.StructureType;
+import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.wcag.algorithms.entities.INode;
 import org.verapdf.wcag.algorithms.entities.SemanticSpan;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
@@ -92,8 +93,22 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		return subtype == null ? null : subtype.getValue();
 	}
 
-	public String getStandardType() {
+	@Override
+	public String getstandardType() {
 		return standardType;
+	}
+
+	@Override
+	public Boolean getisTableElem() {
+		return TaggedPDFConstants.TBODY.equals(standardType) || TaggedPDFConstants.THEAD.equals(standardType) ||
+		       TaggedPDFConstants.TFOOT.equals(standardType) || TaggedPDFConstants.TH.equals(standardType) ||
+		       TaggedPDFConstants.TD.equals(standardType) || TaggedPDFConstants.TR.equals(standardType);
+	}
+
+	@Override
+	public Boolean getisTableChild() {
+		return getisTableElem() || TaggedPDFConstants.P.equals(standardType) ||
+		       TaggedPDFConstants.SPAN.equals(standardType) || TaggedPDFConstants.TABLE.equals(standardType);
 	}
 
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
@@ -156,7 +171,6 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 
 	@Override
 	public Boolean gethasCorrectType() {
-		String standardType = getStandardType();
 		if (standardType == null) {
 			return false;
 		}
@@ -170,7 +184,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	@Override
 	public String getcorrectType() {
 		SemanticType semanticType = node.getSemanticType();
-		if (!SemanticTypeMapper.containsType(standardType) || semanticType == null) {
+		if (semanticType == null) {
 			return null;
 		}
 		return node.getSemanticType().getValue();

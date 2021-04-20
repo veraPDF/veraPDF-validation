@@ -34,7 +34,7 @@ public class GFSANode extends SemanticNode {
 	private final GFSAStructElem structElem;
 
 	public GFSANode(GFSAStructElem structElem) {
-		super(SemanticTypeMapper.getSemanticType(structElem.getStandardType()));
+		super(SemanticTypeMapper.getSemanticType(structElem.getstandardType()));
 		this.structElem = structElem;
 	}
 
