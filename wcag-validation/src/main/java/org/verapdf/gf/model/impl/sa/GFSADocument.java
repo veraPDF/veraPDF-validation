@@ -24,6 +24,7 @@ import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SADocument;
 import org.verapdf.model.salayer.SAStructTreeRoot;
+import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
 import org.verapdf.wcag.algorithms.semanticalgorithms.ContrastRatioChecker;
 
@@ -49,6 +50,7 @@ public class GFSADocument extends GenericModelObject implements SADocument {
     public GFSADocument(org.verapdf.pd.PDDocument document) {
         super(DOCUMENT_TYPE);
         this.document = document;
+        StaticStorages.clearAllContainers();
         checkSemantic();
     }
 
