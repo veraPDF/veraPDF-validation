@@ -187,7 +187,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		if (semanticType == null) {
 			return null;
 		}
-		return node.getSemanticType().getValue();
+		return semanticType.getValue();
 	}
 
 	@Override
