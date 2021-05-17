@@ -44,8 +44,20 @@ public abstract class GFSAGeneral extends GFSAStructElem {
                 return new GFSASpan(structElemDictionary);
             case TaggedPDFConstants.TABLE:
                 return new GFSATable(structElemDictionary);
+            case TaggedPDFConstants.TR:
+                return new GFSATR(structElemDictionary);
+            case TaggedPDFConstants.TH:
+                return new GFSATH(structElemDictionary);
+            case TaggedPDFConstants.TD:
+                return new GFSATD(structElemDictionary);
+            case TaggedPDFConstants.H:
+                return new GFSAH(structElemDictionary);
             default:
-                return new GFSANonStandard(structElemDictionary, standardType);
+                if (standardType.matches(TaggedPDFConstants.HN_REGEXP)) {
+                    return new GFSAHn(structElemDictionary, standardType);
+                } else {
+                    return new GFSANonStandard(structElemDictionary, standardType);
+                }
         }
     }
 
