@@ -510,17 +510,46 @@ class ChunkParser {
 			                               graphicsState.getTextState().getHorizontalScaling(), 0, 0,
 			                               graphicsState.getTextState().getTextFontSize(), 0,
 			                               graphicsState.getTextState().getTextRise());
-			double leftX = parameters.multiply(textMatrix).multiply(graphicsState.getCTM()).getTranslateX();
+			Matrix textRenderingMatrixBefore = parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
 			parseTextShowArgument(argument, unicodeValue);
-			Matrix textRenderingMatrix = parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
-			return new TextChunk(new BoundingBox(pageNumber, new double[]{leftX,
-				textRenderingMatrix.getTranslateY() + font.getBoundingBox()[1] * textRenderingMatrix.getScaleY() / 1000,
-				textRenderingMatrix.getTranslateX(), textRenderingMatrix.getTranslateY() + font.getBoundingBox()[3] *
-				textRenderingMatrix.getScaleY() / 1000}), unicodeValue.toString(), font.getNameWithoutSubset(),
-				textRenderingMatrix.getScaleY(), font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
-				textRenderingMatrix.getTranslateY(), graphicsState.getFillColor());
+			Matrix textRenderingMatrixAfter = parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
+			return new TextChunk(new BoundingBox(pageNumber, calculateTextBoundingBox(textRenderingMatrixBefore,
+			    textRenderingMatrixAfter, font.getBoundingBox())), unicodeValue.toString(), font.getNameWithoutSubset(),
+			    textRenderingMatrixAfter.getScaleY(), font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
+			    textRenderingMatrixAfter.getTranslateY(), graphicsState.getFillColor());
 		}
 		return null;
+	}
+
+	private double[] calculateTextBoundingBox(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, double[] fontBoundingBox) {
+		double x1, y1, x2, y2;
+		if (textRenderingMatrixBefore.getScaleX() >= 0 && textRenderingMatrixBefore.getShearX() >= 0) {
+			x1 = textRenderingMatrixBefore.getTranslateX() + fontBoundingBox[1] * textRenderingMatrixBefore.getShearX() / 1000;
+			x2 = textRenderingMatrixAfter.getTranslateX() + fontBoundingBox[3] * textRenderingMatrixAfter.getShearX() / 1000;
+		} else if (textRenderingMatrixBefore.getScaleX() < 0 && textRenderingMatrixBefore.getShearX() < 0) {
+			x1 = textRenderingMatrixAfter.getTranslateX() + fontBoundingBox[3] * textRenderingMatrixAfter.getShearX() / 1000;
+			x2 = textRenderingMatrixBefore.getTranslateX() + fontBoundingBox[1] * textRenderingMatrixBefore.getShearX() / 1000;
+		} else if (textRenderingMatrixBefore.getScaleX() >= 0) {
+			x1 = textRenderingMatrixBefore.getTranslateX() + fontBoundingBox[3] * textRenderingMatrixBefore.getShearX() / 1000;
+			x2 = textRenderingMatrixAfter.getTranslateX() + fontBoundingBox[1] * textRenderingMatrixAfter.getShearX() / 1000;
+		} else {
+			x1 = textRenderingMatrixAfter.getTranslateX() + fontBoundingBox[1] * textRenderingMatrixAfter.getShearX() / 1000;
+			x2 = textRenderingMatrixBefore.getTranslateX() + fontBoundingBox[3] * textRenderingMatrixBefore.getShearX() / 1000;
+		}
+		if (textRenderingMatrixBefore.getScaleY() >= 0 && textRenderingMatrixBefore.getShearY() >= 0) {
+			y1 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixBefore.getScaleY() / 1000;
+			y2 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixAfter.getScaleY() / 1000;
+		} else if (textRenderingMatrixBefore.getScaleY() < 0 && textRenderingMatrixBefore.getShearY() < 0) {
+			y1 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixAfter.getScaleY() / 1000;
+			y2 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixBefore.getScaleY() / 1000;
+		} else if (textRenderingMatrixBefore.getScaleY() >= 0) {
+			y1 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixAfter.getScaleY() / 1000;
+			y2 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixBefore.getScaleY() / 1000;
+		} else {
+			y1 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixBefore.getScaleY() / 1000;
+			y2 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixAfter.getScaleY() / 1000;
+		}
+		return new double[]{x1, y1, x2, y2};
 	}
 
 	private Long getMarkedContent() {
