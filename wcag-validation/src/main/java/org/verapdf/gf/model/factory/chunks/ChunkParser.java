@@ -30,6 +30,10 @@ import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.cos.*;
 import org.verapdf.operator.Operator;
 import org.verapdf.pd.PDResource;
+import org.verapdf.pd.colors.PDColorSpace;
+import org.verapdf.pd.colors.PDDeviceCMYK;
+import org.verapdf.pd.colors.PDDeviceGray;
+import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.images.PDXObject;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
@@ -60,10 +64,10 @@ class ChunkParser {
 	private List<IChunk> artifacts = new LinkedList<>();
 	private List<IChunk> notStrokeArtifacts = new LinkedList<>();
 
-	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber) {
+	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber, ResourceHandler resourceHandler) {
 		this.pageNumber = pageNumber;
 		this.pageObjectNumber = pageObjectNumber;
-		graphicsState = new GraphicsState();
+		graphicsState = new GraphicsState(resourceHandler);
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -83,65 +87,106 @@ class ChunkParser {
 				markedContentStack.pop();
 				break;
 			case Operators.G_FILL: {
-				Double fillColor = getValueOfLastNumber(arguments);
-				if (fillColor != null) {
-					this.graphicsState.setFillColor(new double[]{fillColor});
+				if (this.graphicsState.isProcessColorOperators()) {
+					processColorSpace(this.graphicsState, resourceHandler, PDDeviceGray.INSTANCE,
+					                  ASAtom.DEVICEGRAY, false);
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+						Double fillColor = getValueOfLastNumber(arguments);
+						if (fillColor != null) {
+							this.graphicsState.setFillColor(new double[]{fillColor});
+						}
+					} else {
+						this.graphicsState.setFillColor(new double[0]);
+					}
 				}
 				break;
 			}
 			case Operators.RG_FILL: {
-				if (arguments.size() == 3 && arguments.get(0).getType().isNumber() &&
-						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber()) {
-					this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-						arguments.get(1).getReal(), arguments.get(2).getReal()});
+				if (this.graphicsState.isProcessColorOperators()) {
+					processColorSpace(this.graphicsState, resourceHandler, PDDeviceRGB.INSTANCE,
+					                  ASAtom.DEVICERGB, false);
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+						if (arguments.size() == 3 && arguments.get(0).getType().isNumber() &&
+						    arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber()) {
+							this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
+							                                             arguments.get(1).getReal(), arguments.get(2).getReal()});
+						}
+					} else {
+						this.graphicsState.setFillColor(new double[0]);
+					}
 				}
 				break;
 			}
 			case Operators.K_FILL: {
-				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
-				    arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
-				    arguments.get(3).getType().isNumber()) {
-					this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(), arguments.get(1).getReal(),
-						arguments.get(2).getReal(), arguments.get(3).getReal()});
+				if (this.graphicsState.isProcessColorOperators()) {
+					processColorSpace(this.graphicsState, resourceHandler, PDDeviceCMYK.INSTANCE,
+					                  ASAtom.DEVICECMYK, false);
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+						if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
+						    arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
+						    arguments.get(3).getType().isNumber()) {
+							this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(), arguments.get(1).getReal(),
+							                                             arguments.get(2).getReal(), arguments.get(3).getReal()});
+						}
+					} else {
+						this.graphicsState.setFillColor(new double[0]);
+					}
 				}
 				break;
 			}
 			case Operators.SCN_FILL:
-				if (arguments.size() == 1 || arguments.size() == 2) {
-					if (arguments.get(0).getType().isNumber()) {
-						this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal()});
-					}
-				} else if (arguments.size() == 3 || (arguments.size() == 4 && !arguments.get(3).getType().isNumber())) {
-					if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
-							arguments.get(2).getType().isNumber()) {
-						this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-							arguments.get(1).getReal(), arguments.get(2).getReal()});
-					}
-				} else if (arguments.size() == 4 || arguments.size() == 5) {
-					if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
-							arguments.get(2).getType().isNumber() && arguments.get(3).getType().isNumber()) {
-						this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-							arguments.get(1).getReal(), arguments.get(2).getReal(), arguments.get(3).getReal()});
+				if (this.graphicsState.isProcessColorOperators()) {
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+						if (arguments.size() == 1 || arguments.size() == 2) {
+							if (arguments.get(0).getType().isNumber()) {
+								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal()});
+							}
+						} else if (arguments.size() == 3 || (arguments.size() == 4 && !arguments.get(3).getType().isNumber())) {
+							if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
+							    arguments.get(2).getType().isNumber()) {
+								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
+								                                             arguments.get(1).getReal(), arguments.get(2).getReal()});
+							}
+						} else if (arguments.size() == 4 || arguments.size() == 5) {
+							if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
+							    arguments.get(2).getType().isNumber() && arguments.get(3).getType().isNumber()) {
+								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
+								                                             arguments.get(1).getReal(), arguments.get(2).getReal(), arguments.get(3).getReal()});
+							}
+						}
+					} else {
+						this.graphicsState.setFillColor(new double[0]);
 					}
 				}
 				break;
 			case Operators.SC_FILL:
-				if (arguments.size() == 1) {
-					if (arguments.get(0).getType().isNumber()) {
-						this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal()});
+				if (this.graphicsState.isProcessColorOperators()) {
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+						if (arguments.size() == 1) {
+							if (arguments.get(0).getType().isNumber()) {
+								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal()});
+							}
+						} else if (arguments.size() == 3) {
+							if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
+							    arguments.get(2).getType().isNumber()) {
+								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
+								                                             arguments.get(1).getReal(), arguments.get(2).getReal()});
+							}
+						} else if (arguments.size() == 4) {
+							if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
+							    arguments.get(2).getType().isNumber() && arguments.get(3).getType().isNumber()) {
+								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
+								                                             arguments.get(1).getReal(), arguments.get(2).getReal(), arguments.get(3).getReal()});
+							}
+						}
+					} else {
+						this.graphicsState.setFillColor(new double[0]);
 					}
-				} else if (arguments.size() == 3) {
-					if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
-							arguments.get(2).getType().isNumber()) {
-						this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-							arguments.get(1).getReal(), arguments.get(2).getReal()});
-					}
-				} else if (arguments.size() == 4) {
-					if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
-							arguments.get(2).getType().isNumber() && arguments.get(3).getType().isNumber()) {
-						this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-							arguments.get(1).getReal(), arguments.get(2).getReal(), arguments.get(3).getReal()});
-					}
+				}
+				break;
+			case Operators.CS_FILL:
+				if (this.graphicsState.isProcessColorOperators()) {
+					this.graphicsState.setFillColorSpace(resourceHandler.getColorSpace(getLastCOSName(arguments)));
 				}
 				break;
 			case Operators.ET:
@@ -339,6 +384,9 @@ class ChunkParser {
 						putChunk(getMarkedContent(), new ImageChunk(new BoundingBox(pageNumber, parseImageBoundingBox())));
 					}
 				}
+				break;
+			case Operators.D1:
+				this.graphicsState.disableColorOperators();
 				break;
 
 			default:
@@ -587,6 +635,23 @@ class ChunkParser {
 				lineChunk.getStartX() * currentTransformationMatrix.getShearX() + lineChunk.getStartY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY(),
 				lineChunk.getEndX() * currentTransformationMatrix.getScaleX() + lineChunk.getEndY() * currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
 				lineChunk.getEndX() * currentTransformationMatrix.getShearX() + lineChunk.getEndY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY());
+	}
+
+	private static void processColorSpace(GraphicsState graphicState, ResourceHandler resourcesHandler,
+	                                      PDColorSpace defaultCS, ASAtom name, boolean stroke) {
+		PDColorSpace colorSpace = resourcesHandler.getColorSpace(name);
+		if (colorSpace == null) {
+			colorSpace = defaultCS;
+		}
+		if (!stroke) {
+			graphicState.setFillColorSpace(colorSpace);
+		}
+	}
+
+	private boolean isProcessColorSpace(ASAtom colorSpaceType) {
+		return ASAtom.DEVICERGB.equals(colorSpaceType) || ASAtom.DEVICEGRAY.equals(colorSpaceType) ||
+		       ASAtom.DEVICECMYK.equals(colorSpaceType) || ASAtom.ICCBASED.equals(colorSpaceType) ||
+		       ASAtom.CALRGB.equals(colorSpaceType) || ASAtom.CALGRAY.equals(colorSpaceType);
 	}
 
 }
