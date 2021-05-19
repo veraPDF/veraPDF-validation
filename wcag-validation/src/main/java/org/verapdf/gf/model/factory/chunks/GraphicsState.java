@@ -20,6 +20,10 @@
  */
 package org.verapdf.gf.model.factory.chunks;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.pd.colors.PDColorSpace;
+
 /**
  * @author Maxim Plushchov
  */
@@ -28,8 +32,31 @@ public class GraphicsState implements Cloneable {
 	private Matrix CTM = new Matrix();
 	private TextState textState = new TextState();
 	private double[] fillColor = new double[]{0};
+	private PDColorSpace fillColorSpace;
+	private boolean processColorOperators = true;
 
-	public GraphicsState() {
+	private GraphicsState() {
+
+	}
+
+	public GraphicsState(ResourceHandler resourceHandler) {
+		this.fillColorSpace = resourceHandler.getColorSpace(ASAtom.DEVICEGRAY);
+	}
+
+	public PDColorSpace getFillColorSpace() {
+		return fillColorSpace;
+	}
+
+	public void setFillColorSpace(PDColorSpace fillColorSpace) {
+		this.fillColorSpace = fillColorSpace;
+	}
+
+	public boolean isProcessColorOperators() {
+		return processColorOperators;
+	}
+
+	public void disableColorOperators() {
+		this.processColorOperators = false;
 	}
 
 	public Matrix getCTM() {
@@ -60,6 +87,8 @@ public class GraphicsState implements Cloneable {
 		this.CTM = graphicState.getCTM();
 		this.textState = graphicState.getTextState();
 		this.fillColor = graphicState.getFillColor();
+		this.fillColorSpace = graphicState.getFillColorSpace();
+		this.processColorOperators = graphicState.isProcessColorOperators();
 	}
 
 	@Override
@@ -68,6 +97,8 @@ public class GraphicsState implements Cloneable {
 		clone.CTM = this.CTM.clone();
 		clone.textState = this.textState.clone();
 		clone.fillColor = this.fillColor;
+		clone.fillColorSpace = this.fillColorSpace;
+		clone.processColorOperators = this.processColorOperators;
 		return clone;
 	}
 

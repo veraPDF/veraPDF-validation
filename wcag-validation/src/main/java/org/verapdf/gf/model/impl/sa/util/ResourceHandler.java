@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.PDResources;
+import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.images.PDXObject;
 
@@ -51,6 +52,34 @@ public class ResourceHandler {
 
 	public static ResourceHandler getInstance(PDResources pageResources, PDResources objectResources) {
 		return new ResourceHandler(pageResources, objectResources);
+	}
+
+	public PDColorSpace getColorSpace(COSName name) {
+		if (name != null) {
+			return getColorSpace(name.getName());
+		}
+		return null;
+	}
+
+	public PDColorSpace getColorSpace(ASAtom name) {
+		PDColorSpace colorSpace = null;
+		if (this.objectResources != null) {
+			if (isDefaultColorSpaceUsed(name)) {
+				colorSpace = this.objectResources.getDefaultColorSpace(name);
+			} else {
+				colorSpace = this.objectResources.getColorSpace(name);
+				if (colorSpace == null && this.pageResources != null) {
+					colorSpace = this.pageResources.getColorSpace(name);
+				}
+			}
+		} else if (this.pageResources != null) {
+			if (isDefaultColorSpaceUsed(name)) {
+				colorSpace = this.pageResources.getDefaultColorSpace(name);
+			} else {
+				colorSpace = this.pageResources.getColorSpace(name);
+			}
+		}
+		return colorSpace;
 	}
 
 	public PDFont getFont(COSName name) {
@@ -104,6 +133,28 @@ public class ResourceHandler {
 			xObject = this.pageResources.getXObject(name);
 		}
 		return xObject;
+	}
+
+	private boolean isDefaultColorSpaceUsed(ASAtom name) {
+		if (ResourceHandler.isDeviceDependent(name)) {
+			if (objectResources != null) {
+				ASAtom value = org.verapdf.factory.colors.ColorSpaceFactory.getDefaultValue(objectResources, name);
+				if (value != null) {
+					return true;
+				}
+			} else {
+				ASAtom value = org.verapdf.factory.colors.ColorSpaceFactory.getDefaultValue(pageResources, name);
+				if (value != null) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private static boolean isDeviceDependent(ASAtom name) {
+		return ASAtom.DEVICERGB.equals(name) ||
+		       ASAtom.DEVICEGRAY.equals(name) || ASAtom.DEVICECMYK.equals(name);
 	}
 
 }
