@@ -40,7 +40,9 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 
 	public static final String CHILDREN = "children";
 
-	private List<GFSAStructElem> children = null;
+	protected List<GFSAStructElem> children = null;
+
+	private final INode node;
 
 	private final org.verapdf.pd.structure.PDStructTreeRoot treeRoot;
 
@@ -48,6 +50,7 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 		super(STRUCT_TREE_ROOT_TYPE);
 		this.treeRoot = treeRoot;
 		StaticStorages.setRoleMapHelper(treeRoot.getRoleMap());
+		node = new GFSARoot(this);
 	}
 
 	@Override
@@ -60,33 +63,29 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 		}
 	}
 
-	private List<SAStructElem> getChildren() {
+	public List<SAStructElem> getChildren() {
 		if (this.children == null) {
-			this.children = parseChildren();
+			parseChildren();
 		}
 		return Collections.unmodifiableList(children);
 	}
 
-	private List<GFSAStructElem> parseChildren() {
+	protected void parseChildren() {
 		List<org.verapdf.pd.structure.PDStructElem> elements = treeRoot.getStructChildren();
+		children = new ArrayList<>(elements.size());
 		if (!elements.isEmpty()) {
-			List<GFSAStructElem> res = new ArrayList<>(elements.size());
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
 				GFSAStructElem structElem = GFSAGeneral.createTypedStructElem(element);
 				INode childNode = new GFSANode(structElem);
 				structElem.setNode(childNode);
-				res.add(structElem);
+				node.addChild(childNode);
+				children.add(structElem);
 			}
-			return Collections.unmodifiableList(res);
 		}
-		return Collections.emptyList();
 	}
 
 	@Override
 	public INode getRoot() {
-		if (this.children == null) {
-			this.children = parseChildren();
-		}
-		return children.get(0).getNode();
+		return node;
 	}
 }
