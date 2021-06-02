@@ -111,6 +111,11 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		       TaggedPDFConstants.SPAN.equals(standardType) || TaggedPDFConstants.TABLE.equals(standardType);
 	}
 
+	@Override
+	public Long getstructureID() {
+		return node.getRecognizedStructureId();
+	}
+
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
 		StructureType type = pdStructElem.getStructureType();
 		if (type != null) {
