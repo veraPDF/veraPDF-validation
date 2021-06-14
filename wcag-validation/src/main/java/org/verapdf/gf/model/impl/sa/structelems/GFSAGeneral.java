@@ -38,20 +38,108 @@ public abstract class GFSAGeneral extends GFSAStructElem {
         }
 
         switch (standardType) {
-            case TaggedPDFConstants.P:
-                return new GFSAP(structElemDictionary);
-            case TaggedPDFConstants.SPAN:
-                return new GFSASpan(structElemDictionary);
-            case TaggedPDFConstants.TABLE:
-                return new GFSATable(structElemDictionary);
-            case TaggedPDFConstants.TR:
-                return new GFSATR(structElemDictionary);
-            case TaggedPDFConstants.TH:
-                return new GFSATH(structElemDictionary);
-            case TaggedPDFConstants.TD:
-                return new GFSATD(structElemDictionary);
+            case TaggedPDFConstants.ANNOT:
+                return new GFSAAnnot(structElemDictionary);
+            case TaggedPDFConstants.ART:
+                return new GFSAArt(structElemDictionary);
+            case TaggedPDFConstants.ARTIFACT:
+                return new GFSAArtifact(structElemDictionary);
+            case TaggedPDFConstants.ASIDE:
+                return new GFSAAside(structElemDictionary);
+            case TaggedPDFConstants.BIB_ENTRY:
+                return new GFSABibEntry(structElemDictionary);
+            case TaggedPDFConstants.BLOCK_QUOTE:
+                return new GFSABlockQuote(structElemDictionary);
+            case TaggedPDFConstants.CAPTION:
+                return new GFSACaption(structElemDictionary);
+            case TaggedPDFConstants.CODE:
+                return new GFSACode(structElemDictionary);
+            case TaggedPDFConstants.DIV:
+                return new GFSADiv(structElemDictionary);
+            case TaggedPDFConstants.DOCUMENT:
+                return new GFSADocument(structElemDictionary);
+            case TaggedPDFConstants.DOCUMENT_FRAGMENT:
+                return new GFSADocumentFragment(structElemDictionary);
+            case TaggedPDFConstants.EM:
+                return new GFSAEm(structElemDictionary);
+            case TaggedPDFConstants.FENOTE:
+                return new GFSAFENote(structElemDictionary);
+            case TaggedPDFConstants.FIGURE:
+                return new GFSAFigure(structElemDictionary);
+            case TaggedPDFConstants.FORM:
+                return new GFSAForm(structElemDictionary);
+            case TaggedPDFConstants.FORMULA:
+                return new GFSAFormula(structElemDictionary);
             case TaggedPDFConstants.H:
                 return new GFSAH(structElemDictionary);
+            case TaggedPDFConstants.INDEX:
+                return new GFSAIndex(structElemDictionary);
+            case TaggedPDFConstants.L:
+                return new GFSAL(structElemDictionary);
+            case TaggedPDFConstants.LBL:
+                return new GFSALbl(structElemDictionary);
+            case TaggedPDFConstants.LBODY:
+                return new GFSALBody(structElemDictionary);
+            case TaggedPDFConstants.LI:
+                return new GFSALI(structElemDictionary);
+            case TaggedPDFConstants.LINK:
+                return new GFSALink(structElemDictionary);
+            case TaggedPDFConstants.NON_STRUCT:
+                return new GFSANonStruct(structElemDictionary);
+            case TaggedPDFConstants.NOTE:
+                return new GFSANote(structElemDictionary);
+            case TaggedPDFConstants.P:
+                return new GFSAP(structElemDictionary);
+            case TaggedPDFConstants.PART:
+                return new GFSAPart(structElemDictionary);
+            case TaggedPDFConstants.PRIVATE:
+                return new GFSAPrivate(structElemDictionary);
+            case TaggedPDFConstants.QUOTE:
+                return new GFSAQuote(structElemDictionary);
+            case TaggedPDFConstants.RB:
+                return new GFSARB(structElemDictionary);
+            case TaggedPDFConstants.REFERENCE:
+                return new GFSAReference(structElemDictionary);
+            case TaggedPDFConstants.RP:
+                return new GFSARP(structElemDictionary);
+            case TaggedPDFConstants.RT:
+                return new GFSART(structElemDictionary);
+            case TaggedPDFConstants.RUBY:
+                return new GFSARuby(structElemDictionary);
+            case TaggedPDFConstants.SECT:
+                return new GFSASect(structElemDictionary);
+            case TaggedPDFConstants.SPAN:
+                return new GFSASpan(structElemDictionary);
+            case TaggedPDFConstants.STRONG:
+                return new GFSAStrong(structElemDictionary);
+            case TaggedPDFConstants.SUB:
+                return new GFSASub(structElemDictionary);
+            case TaggedPDFConstants.TABLE:
+                return new GFSATable(structElemDictionary);
+            case TaggedPDFConstants.TBODY:
+                return new GFSATBody(structElemDictionary);
+            case TaggedPDFConstants.TD:
+                return new GFSATD(structElemDictionary);
+            case TaggedPDFConstants.TFOOT:
+                return new GFSATFoot(structElemDictionary);
+            case TaggedPDFConstants.TH:
+                return new GFSATH(structElemDictionary);
+            case TaggedPDFConstants.THEAD:
+                return new GFSATHead(structElemDictionary);
+            case TaggedPDFConstants.TITLE:
+                return new GFSATitle(structElemDictionary);
+            case TaggedPDFConstants.TOC:
+                return new GFSATOC(structElemDictionary);
+            case TaggedPDFConstants.TOCI:
+                return new GFSATOCI(structElemDictionary);
+            case TaggedPDFConstants.TR:
+                return new GFSATR(structElemDictionary);
+            case TaggedPDFConstants.WARICHU:
+                return new GFSAWarichu(structElemDictionary);
+            case TaggedPDFConstants.WP:
+                return new GFSAWP(structElemDictionary);
+            case TaggedPDFConstants.WT:
+                return new GFSAWT(structElemDictionary);
             default:
                 if (standardType.matches(TaggedPDFConstants.HN_REGEXP)) {
                     return new GFSAHn(structElemDictionary, standardType);

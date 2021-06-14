@@ -25,7 +25,7 @@ import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDDocument;
 import org.verapdf.gf.model.impl.pd.util.XMPChecker;
-import org.verapdf.gf.model.impl.sa.GFSADocument;
+import org.verapdf.gf.model.impl.sa.GFSAPDFDocument;
 import org.verapdf.gf.model.tools.FileSpecificationKeysHelper;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.*;
@@ -53,7 +53,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	private static final String DOC = "doc";
 	private static final String EMBEDDED_FILES = "EmbeddedFiles";
 
-	private static final String GFSADOCUMENT_CLASS_NAME = "org.verapdf.gf.model.impl.sa.GFSADocument";
+	private static final String GFSAPDFDOCUMENT_CLASS_NAME = "org.verapdf.gf.model.impl.sa.GFSAPDFDocument";
 
 	private final COSDictionary catalog;
 
@@ -433,10 +433,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		return Collections.emptyList();
 	}
 
-	private List<org.verapdf.model.salayer.SADocument> getdocument() {
-		if (StaticContainers.getDocument() != null && isPresent(GFSADOCUMENT_CLASS_NAME)) {
-			List<org.verapdf.model.salayer.SADocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFSADocument(StaticContainers.getDocument()));
+	private List<org.verapdf.model.salayer.SAPDFDocument> getdocument() {
+		if (StaticContainers.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
+			List<org.verapdf.model.salayer.SAPDFDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFSAPDFDocument(StaticContainers.getDocument()));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
