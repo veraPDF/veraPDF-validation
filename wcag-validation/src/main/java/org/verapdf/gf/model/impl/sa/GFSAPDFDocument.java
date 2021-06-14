@@ -22,7 +22,7 @@ package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.salayer.SADocument;
+import org.verapdf.model.salayer.SAPDFDocument;
 import org.verapdf.model.salayer.SAStructTreeRoot;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
@@ -33,9 +33,9 @@ import java.util.*;
 /**
  * @author Maxim Plushchov
  */
-public class GFSADocument extends GenericModelObject implements SADocument {
+public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument {
 
-    public static final String DOCUMENT_TYPE = "SADocument";
+    public static final String DOCUMENT_TYPE = "SAPDFDocument";
 
     protected org.verapdf.pd.PDDocument document;
 
@@ -47,7 +47,7 @@ public class GFSADocument extends GenericModelObject implements SADocument {
 
     private GFSAStructTreeRoot treeRoot = null;
 
-    public GFSADocument(org.verapdf.pd.PDDocument document) {
+    public GFSAPDFDocument(org.verapdf.pd.PDDocument document) {
         super(DOCUMENT_TYPE);
         this.document = document;
         StaticStorages.clearAllContainers();
