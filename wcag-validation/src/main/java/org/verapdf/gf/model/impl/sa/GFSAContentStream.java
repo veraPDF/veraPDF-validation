@@ -48,13 +48,18 @@ public class GFSAContentStream {
 	private List<IChunk> artifacts = null;
 	private ResourceHandler resourceHandler;
 	private org.verapdf.pd.PDContentStream contentStream = null;
+	private double[] mediabox;
 
-	public GFSAContentStream(org.verapdf.pd.PDContentStream contentStream,
-	                         ResourceHandler resourceHandler, Integer pageNumber, COSKey pageObjectNumber) {
+	public GFSAContentStream(org.verapdf.pd.PDContentStream contentStream, ResourceHandler resourceHandler,
+	                         Integer pageNumber, COSKey pageObjectNumber, double[] mediabox) {
 		this.pageNumber = pageNumber;
 		this.pageObjectNumber = pageObjectNumber;
 		this.contentStream = contentStream;
 		this.resourceHandler = resourceHandler;
+		this.mediabox = mediabox;
+		if (this.mediabox == null) {
+			this.mediabox = new double[]{0.0, 0.0, 0.0, 0.0};
+		}
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -78,7 +83,7 @@ public class GFSAContentStream {
 						try (PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
 							streamParser.parseTokens();
 							ChunkFactory chunkFactory = new ChunkFactory();
-							this.artifacts = chunkFactory.chunksFromTokens(pageNumber, pageObjectNumber, streamParser.getTokens(), resourceHandler);
+							this.artifacts = chunkFactory.chunksFromTokens(pageNumber, pageObjectNumber, streamParser.getTokens(), resourceHandler, mediabox);
 						}
 					}
 				}
