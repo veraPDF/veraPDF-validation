@@ -33,9 +33,10 @@ import java.util.*;
  */
 public final class ChunkFactory {
 
-	public List<IChunk> chunksFromTokens(Integer pageNumber, COSKey pageObjectNumber, List<Object> rawTokens, ResourceHandler resourceHandler) {
+	public List<IChunk> chunksFromTokens(Integer pageNumber, COSKey pageObjectNumber, List<Object> rawTokens,
+	                                     ResourceHandler resourceHandler, double[] mediabox) {
 		List<COSBase> arguments = new ArrayList<>();
-		ChunkParser parser = new ChunkParser(pageNumber, pageObjectNumber, resourceHandler);
+		ChunkParser parser = new ChunkParser(pageNumber, pageObjectNumber, resourceHandler, mediabox);
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {
 				arguments.add((COSBase) rawToken);

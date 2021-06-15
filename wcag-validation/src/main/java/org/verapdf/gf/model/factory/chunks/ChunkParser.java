@@ -63,11 +63,13 @@ class ChunkParser {
 	private Path path = new Path();
 	private List<IChunk> artifacts = new LinkedList<>();
 	private List<IChunk> notStrokeArtifacts = new LinkedList<>();
+	private double[] mediabox;
 
-	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber, ResourceHandler resourceHandler) {
+	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber, ResourceHandler resourceHandler, double[] mediabox) {
 		this.pageNumber = pageNumber;
 		this.pageObjectNumber = pageObjectNumber;
 		graphicsState = new GraphicsState(resourceHandler);
+		this.mediabox = mediabox;
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -454,32 +456,31 @@ class ChunkParser {
 	}
 
 	private double[] parseImageBoundingBox() {
-		double x1, y1, x2, y2;
+		double x1 = graphicsState.getCTM().getTranslateX() - mediabox[0];
+		double y1 = graphicsState.getCTM().getTranslateY() - mediabox[1];
+		double x2 = x1;
+		double y2 = y1;
 		if (graphicsState.getCTM().getScaleX() >= 0 && graphicsState.getCTM().getShearX() >= 0) {
-			x1 = graphicsState.getCTM().getTranslateX();
-			x2 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleX() + graphicsState.getCTM().getShearX();
+			x2 += graphicsState.getCTM().getScaleX() + graphicsState.getCTM().getShearX();
 		} else if (graphicsState.getCTM().getScaleX() < 0 && graphicsState.getCTM().getShearX() < 0) {
-			x1 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleX() + graphicsState.getCTM().getShearX();
-			x2 = graphicsState.getCTM().getTranslateX();
+			x1 += graphicsState.getCTM().getScaleX() + graphicsState.getCTM().getShearX();
 		} else if (graphicsState.getCTM().getScaleX() >= 0) {
-			x1 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getShearX();
-			x2 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleX();
+			x1 += graphicsState.getCTM().getShearX();
+			x2 += graphicsState.getCTM().getScaleX();
 		} else {
-			x1 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleX();
-			x2 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getShearX();
+			x1 += graphicsState.getCTM().getScaleX();
+			x2 += graphicsState.getCTM().getShearX();
 		}
 		if (graphicsState.getCTM().getScaleY() >= 0 && graphicsState.getCTM().getShearY() >= 0) {
-			y1 = graphicsState.getCTM().getTranslateY();
-			y2 = graphicsState.getCTM().getTranslateY() + graphicsState.getCTM().getScaleY() + graphicsState.getCTM().getShearY();
+			y2 += graphicsState.getCTM().getScaleY() + graphicsState.getCTM().getShearY();
 		} else if (graphicsState.getCTM().getScaleY() < 0 && graphicsState.getCTM().getShearY() < 0) {
-			y1 = graphicsState.getCTM().getTranslateY() + graphicsState.getCTM().getScaleY() + graphicsState.getCTM().getShearY();
-			y2 = graphicsState.getCTM().getTranslateY();
+			y1 += graphicsState.getCTM().getScaleY() + graphicsState.getCTM().getShearY();
 		} else if (graphicsState.getCTM().getScaleY() >= 0) {
-			y1 = graphicsState.getCTM().getTranslateY() + graphicsState.getCTM().getShearY();
-			y2 = graphicsState.getCTM().getTranslateY() + graphicsState.getCTM().getScaleY();
+			y1 += graphicsState.getCTM().getShearY();
+			y2 += graphicsState.getCTM().getScaleY();
 		} else {
-			y1 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getScaleY();
-			y2 = graphicsState.getCTM().getTranslateX() + graphicsState.getCTM().getShearY();
+			y1 += graphicsState.getCTM().getScaleY();
+			y2 += graphicsState.getCTM().getShearY();
 		}
 		return new double[]{x1, y1, x2, y2};
 	}
@@ -597,7 +598,7 @@ class ChunkParser {
 			y1 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixBefore.getScaleY() / 1000;
 			y2 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixAfter.getScaleY() / 1000;
 		}
-		return new double[]{x1, y1, x2, y2};
+		return new double[]{x1 - mediabox[0], y1 - mediabox[1], x2 - mediabox[0], y2 - mediabox[1]};
 	}
 
 	private Long getMarkedContent() {
