@@ -565,7 +565,7 @@ class ChunkParser {
 			return new TextChunk(new BoundingBox(pageNumber, calculateTextBoundingBox(textRenderingMatrixBefore,
 			    textRenderingMatrixAfter, font.getBoundingBox())), unicodeValue.toString(), font.getNameWithoutSubset(),
 			    textRenderingMatrixAfter.getScaleY(), font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
-			    textRenderingMatrixAfter.getTranslateY(), graphicsState.getFillColor());
+			    textRenderingMatrixAfter.getTranslateY() - mediabox[1], graphicsState.getFillColor());
 		}
 		return null;
 	}
