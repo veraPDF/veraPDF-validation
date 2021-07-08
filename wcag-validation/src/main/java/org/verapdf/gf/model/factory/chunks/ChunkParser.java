@@ -54,16 +54,16 @@ class ChunkParser {
 	private static final Logger LOGGER = Logger.getLogger(ChunkParser.class.getName());
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
-	private Stack<Long> markedContentStack = new Stack<>();
-	private Integer pageNumber;
-	private COSKey pageObjectNumber;
+	private final Stack<Long> markedContentStack = new Stack<>();
+	private final Integer pageNumber;
+	private final COSKey pageObjectNumber;
 	private Matrix textMatrix = null;
 	private Matrix textLineMatrix = null;
-	private GraphicsState graphicsState;
-	private Path path = new Path();
-	private List<IChunk> artifacts = new LinkedList<>();
+	private final GraphicsState graphicsState;
+	private final Path path = new Path();
+	private final List<IChunk> artifacts = new LinkedList<>();
 	private List<IChunk> notStrokeArtifacts = new LinkedList<>();
-	private double[] mediabox;
+	private final double[] mediabox;
 
 	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber, ResourceHandler resourceHandler, double[] mediabox) {
 		this.pageNumber = pageNumber;
@@ -565,7 +565,8 @@ class ChunkParser {
 			return new TextChunk(new BoundingBox(pageNumber, calculateTextBoundingBox(textRenderingMatrixBefore,
 			    textRenderingMatrixAfter, font.getBoundingBox())), unicodeValue.toString(), font.getNameWithoutSubset(),
 			    textRenderingMatrixAfter.getScaleY(), font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
-			    textRenderingMatrixAfter.getTranslateY() - mediabox[1], graphicsState.getFillColor());
+			    textRenderingMatrixAfter.getTranslateY() - mediabox[1], graphicsState.getFillColor(),
+			    graphicsState.getFillColorSpace() != null ? graphicsState.getFillColorSpace().getType().getValue() : null);
 		}
 		return null;
 	}
