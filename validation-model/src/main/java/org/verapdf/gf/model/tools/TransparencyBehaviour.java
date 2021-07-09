@@ -217,9 +217,8 @@ public class TransparencyBehaviour {
                     return true;
                 }
 				COSObject bmValue = bmArray.at(0);
-				if (bmValue == null
-				        || bmValue.getType() != COSObjType.COS_NAME
-				        || ASAtom.NORMAL.equals(bmValue.getName())) {
+				if (bmValue != null && bmValue.getType() == COSObjType.COS_NAME &&
+                    !ASAtom.NORMAL.equals(bmValue.getName())) {
 				    return true;
 				}
             } else {
