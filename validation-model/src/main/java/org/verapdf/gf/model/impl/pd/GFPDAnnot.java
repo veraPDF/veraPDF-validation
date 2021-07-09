@@ -216,7 +216,9 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		}
 		COSObject BM = ((PDAnnotation)simplePDObject).getBM();
 		if (BM != null && BM.getType() == COSObjType.COS_NAME) {
-			this.containsTransparency = true;
+			if (!ASAtom.NORMAL.equals(BM.getName())) {
+				this.containsTransparency = true;
+			}
 			List<CosBM> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosBM((COSName)BM.getDirectBase()));
 			return Collections.unmodifiableList(list);
