@@ -422,8 +422,12 @@ class ChunkParser {
 	}
 
 	private void processTd(double op1, double op2) {
-		textLineMatrix.concatenate(Matrix.getTranslateInstance(op1, op2));
-		textMatrix = textLineMatrix.clone();
+		if (textLineMatrix != null) {
+			textLineMatrix.concatenate(Matrix.getTranslateInstance(op1, op2));
+			textMatrix = textLineMatrix.clone();
+		} else {
+			LOGGER.log(Level.WARNING, "Text operator not inside text content");
+		}
 	}
 
 	private void processDoubleQuote(double op1, double op2) {
@@ -507,14 +511,19 @@ class ChunkParser {
 		return null;
 	}
 
-	private void parseTextShowArgument(COSBase argument, StringBuilder unicodeValue) {
+	private void parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
 		if (argument.getType() == COSObjType.COS_STRING) {
 			parseString((COSString) argument.getDirectBase(), unicodeValue);
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
+			boolean beforeFirstText = true;
 			COSArray array = (COSArray) argument;
 			for (COSObject obj : array) {
 				if (obj != null) {
 					if (obj.getType() == COSObjType.COS_STRING) {
+						if (beforeFirstText) {
+							beforeFirstText = false;
+							textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
+						}
 						parseString((COSString) obj.getDirectBase(), unicodeValue);
 					} else if (obj.getType().isNumber()) {
 						textMatrix.concatenate(Matrix.getTranslateInstance(- obj.getReal() / 1000 *
@@ -555,13 +564,9 @@ class ChunkParser {
 		if (font != null && argument != null && (argument.getType() == COSObjType.COS_STRING ||
 		        argument.getType() == COSObjType.COS_ARRAY)) {
 			StringBuilder unicodeValue = new StringBuilder();
-			Matrix parameters = new Matrix(graphicsState.getTextState().getTextFontSize() *
-			                               graphicsState.getTextState().getHorizontalScaling(), 0, 0,
-			                               graphicsState.getTextState().getTextFontSize(), 0,
-			                               graphicsState.getTextState().getTextRise());
-			Matrix textRenderingMatrixBefore = parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
-			parseTextShowArgument(argument, unicodeValue);
-			Matrix textRenderingMatrixAfter = parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
+			Matrix textRenderingMatrixBefore = new Matrix();
+			parseTextShowArgument(argument, unicodeValue, textRenderingMatrixBefore);
+			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
 			return new TextChunk(new BoundingBox(pageNumber, calculateTextBoundingBox(textRenderingMatrixBefore,
 			    textRenderingMatrixAfter, font.getBoundingBox())), unicodeValue.toString(), font.getNameWithoutSubset(),
 			    textRenderingMatrixAfter.getScaleY(), font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
@@ -569,6 +574,14 @@ class ChunkParser {
 			    graphicsState.getFillColorSpace() != null ? graphicsState.getFillColorSpace().getType().getValue() : null);
 		}
 		return null;
+	}
+
+	private Matrix calculateTextRenderingMatrix() {
+		Matrix parameters = new Matrix(graphicsState.getTextState().getTextFontSize() *
+		                               graphicsState.getTextState().getHorizontalScaling(), 0, 0,
+		                               graphicsState.getTextState().getTextFontSize(), 0,
+		                               graphicsState.getTextState().getTextRise());
+		return parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
 	}
 
 	private double[] calculateTextBoundingBox(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, double[] fontBoundingBox) {
