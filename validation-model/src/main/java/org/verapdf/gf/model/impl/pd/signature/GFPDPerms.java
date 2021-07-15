@@ -40,7 +40,7 @@ public class GFPDPerms extends GFPDObject implements PDPerms {
      */
     public static final String PERMS_TYPE = "PDPerms";
 
-    private static final ASAtom UC3 = ASAtom.getASAtom("UC3");
+    private static final ASAtom UR3 = ASAtom.getASAtom("UR3");
     public static final ASAtom DOC_MDP = ASAtom.getASAtom("DocMDP");
 
     /**
@@ -59,7 +59,7 @@ public class GFPDPerms extends GFPDObject implements PDPerms {
         if (!this.simpleCOSObject.empty()) {
             Set<ASAtom> names = this.simpleCOSObject.get().getKeySet();
             for (ASAtom name : names) {
-                if (name != UC3 && name != DOC_MDP) {
+                if (name != UR3 && name != DOC_MDP) {
                     return Boolean.TRUE;
                 }
             }
