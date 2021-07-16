@@ -513,6 +513,7 @@ class ChunkParser {
 
 	private void parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
 		if (argument.getType() == COSObjType.COS_STRING) {
+			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
 			parseString((COSString) argument.getDirectBase(), unicodeValue);
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
 			boolean beforeFirstText = true;
