@@ -63,13 +63,13 @@ class ChunkParser {
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
 	private List<IChunk> notStrokeArtifacts = new LinkedList<>();
-	private final double[] mediabox;
+	private final double[] cropBox;
 
-	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber, ResourceHandler resourceHandler, double[] mediabox) {
+	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber, ResourceHandler resourceHandler, double[] cropBox) {
 		this.pageNumber = pageNumber;
 		this.pageObjectNumber = pageObjectNumber;
 		graphicsState = new GraphicsState(resourceHandler);
-		this.mediabox = mediabox;
+		this.cropBox = cropBox;
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -460,8 +460,8 @@ class ChunkParser {
 	}
 
 	private double[] parseImageBoundingBox() {
-		double x1 = graphicsState.getCTM().getTranslateX() - mediabox[0];
-		double y1 = graphicsState.getCTM().getTranslateY() - mediabox[1];
+		double x1 = graphicsState.getCTM().getTranslateX() - cropBox[0];
+		double y1 = graphicsState.getCTM().getTranslateY() - cropBox[1];
 		double x2 = x1;
 		double y2 = y1;
 		if (graphicsState.getCTM().getScaleX() >= 0 && graphicsState.getCTM().getShearX() >= 0) {
@@ -563,7 +563,7 @@ class ChunkParser {
 		org.verapdf.pd.font.PDFont font = graphicsState.getTextState().getTextFont();
 		COSBase argument = getArgument(arguments, operatorType);
 		if (font != null && argument != null && (argument.getType() == COSObjType.COS_STRING ||
-		        argument.getType() == COSObjType.COS_ARRAY)) {
+		        argument.getType() == COSObjType.COS_ARRAY) && this.textMatrix != null) {
 			StringBuilder unicodeValue = new StringBuilder();
 			Matrix textRenderingMatrixBefore = new Matrix();
 			parseTextShowArgument(argument, unicodeValue, textRenderingMatrixBefore);
@@ -571,7 +571,7 @@ class ChunkParser {
 			return new TextChunk(new BoundingBox(pageNumber, calculateTextBoundingBox(textRenderingMatrixBefore,
 			    textRenderingMatrixAfter, font.getBoundingBox())), unicodeValue.toString(), font.getNameWithoutSubset(),
 			    textRenderingMatrixAfter.getScaleY(), font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
-			    textRenderingMatrixAfter.getTranslateY() - mediabox[1], graphicsState.getFillColor(),
+			    textRenderingMatrixAfter.getTranslateY() - cropBox[1], graphicsState.getFillColor(),
 			    graphicsState.getFillColorSpace() != null ? graphicsState.getFillColorSpace().getType().getValue() : null);
 		}
 		return null;
@@ -613,7 +613,7 @@ class ChunkParser {
 			y1 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixBefore.getScaleY() / 1000;
 			y2 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixAfter.getScaleY() / 1000;
 		}
-		return new double[]{x1 - mediabox[0], y1 - mediabox[1], x2 - mediabox[0], y2 - mediabox[1]};
+		return new double[]{x1 - cropBox[0], y1 - cropBox[1], x2 - cropBox[0], y2 - cropBox[1]};
 	}
 
 	private Long getMarkedContent() {
