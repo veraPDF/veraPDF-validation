@@ -43,22 +43,22 @@ public class GFSAContentStream {
 
 	private static final Logger LOGGER = Logger.getLogger(GFSAContentStream.class.getName());
 
-	private Integer pageNumber;
-	private COSKey pageObjectNumber;
+	private final Integer pageNumber;
+	private final COSKey pageObjectNumber;
 	private List<IChunk> artifacts = null;
-	private ResourceHandler resourceHandler;
-	private org.verapdf.pd.PDContentStream contentStream = null;
-	private double[] mediabox;
+	private final ResourceHandler resourceHandler;
+	private final org.verapdf.pd.PDContentStream contentStream;
+	private double[] cropBox;
 
 	public GFSAContentStream(org.verapdf.pd.PDContentStream contentStream, ResourceHandler resourceHandler,
-	                         Integer pageNumber, COSKey pageObjectNumber, double[] mediabox) {
+	                         Integer pageNumber, COSKey pageObjectNumber, double[] cropBox) {
 		this.pageNumber = pageNumber;
 		this.pageObjectNumber = pageObjectNumber;
 		this.contentStream = contentStream;
 		this.resourceHandler = resourceHandler;
-		this.mediabox = mediabox;
-		if (this.mediabox == null) {
-			this.mediabox = new double[]{0.0, 0.0, 0.0, 0.0};
+		this.cropBox = cropBox;
+		if (this.cropBox == null) {
+			this.cropBox = new double[]{0.0, 0.0, 0.0, 0.0};
 		}
 	}
 
@@ -83,7 +83,7 @@ public class GFSAContentStream {
 						try (PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
 							streamParser.parseTokens();
 							ChunkFactory chunkFactory = new ChunkFactory();
-							this.artifacts = chunkFactory.chunksFromTokens(pageNumber, pageObjectNumber, streamParser.getTokens(), resourceHandler, mediabox);
+							this.artifacts = chunkFactory.chunksFromTokens(pageNumber, pageObjectNumber, streamParser.getTokens(), resourceHandler, cropBox);
 						}
 					}
 				}
