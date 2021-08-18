@@ -28,7 +28,7 @@ public class GFSAAside extends GFSAGeneral implements SAAside {
 
     public static final String ASIDE_STRUCTURE_ELEMENT_TYPE = "SAAside";
 
-    public GFSAAside(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.ASIDE, ASIDE_STRUCTURE_ELEMENT_TYPE);
+    public GFSAAside(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.ASIDE, ASIDE_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

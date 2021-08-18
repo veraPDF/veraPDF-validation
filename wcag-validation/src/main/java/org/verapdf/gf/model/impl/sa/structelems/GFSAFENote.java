@@ -28,7 +28,7 @@ public class GFSAFENote extends GFSAGeneral implements SAFENote {
 
     public static final String FENOTE_STRUCTURE_ELEMENT_TYPE = "SAFENote";
 
-    public GFSAFENote(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.FENOTE, FENOTE_STRUCTURE_ELEMENT_TYPE);
+    public GFSAFENote(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.FENOTE, FENOTE_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

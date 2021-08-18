@@ -28,7 +28,7 @@ public class GFSASpan extends GFSAGeneral implements SASpan {
 
     public static final String SPAN_STRUCTURE_ELEMENT_TYPE = "SASpan";
 
-    public GFSASpan(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.SPAN, SPAN_STRUCTURE_ELEMENT_TYPE);
+    public GFSASpan(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.SPAN, SPAN_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

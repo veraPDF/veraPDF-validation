@@ -26,125 +26,127 @@ import org.verapdf.tools.TaggedPDFConstants;
 
 public abstract class GFSAGeneral extends GFSAStructElem {
 
-    protected GFSAGeneral(PDStructElem structElemDictionary, String standardType, String type) {
-        super(structElemDictionary, standardType, type);
+    protected GFSAGeneral(PDStructElem structElemDictionary, String standardType, String type,
+                          boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, standardType, type, isTableChild, isListChild);
     }
 
-    public static GFSAGeneral createTypedStructElem(PDStructElem structElemDictionary){
+    public static GFSAGeneral createTypedStructElem(PDStructElem structElemDictionary,
+                                                    boolean isTableChild, boolean isListChild){
         String standardType = GFSAStructElem.getStructureElementStandardType(structElemDictionary);
 
         if (standardType == null) {
-            return new GFSANonStandard(structElemDictionary, null);
+            return new GFSANonStandard(structElemDictionary, null, isTableChild, isListChild);
         }
 
         switch (standardType) {
             case TaggedPDFConstants.ANNOT:
-                return new GFSAAnnot(structElemDictionary);
+                return new GFSAAnnot(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.ART:
-                return new GFSAArt(structElemDictionary);
+                return new GFSAArt(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.ARTIFACT:
-                return new GFSAArtifact(structElemDictionary);
+                return new GFSAArtifact(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.ASIDE:
-                return new GFSAAside(structElemDictionary);
+                return new GFSAAside(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.BIB_ENTRY:
-                return new GFSABibEntry(structElemDictionary);
+                return new GFSABibEntry(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.BLOCK_QUOTE:
-                return new GFSABlockQuote(structElemDictionary);
+                return new GFSABlockQuote(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.CAPTION:
-                return new GFSACaption(structElemDictionary);
+                return new GFSACaption(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.CODE:
-                return new GFSACode(structElemDictionary);
+                return new GFSACode(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.DIV:
-                return new GFSADiv(structElemDictionary);
+                return new GFSADiv(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.DOCUMENT:
-                return new GFSADocument(structElemDictionary);
+                return new GFSADocument(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.DOCUMENT_FRAGMENT:
-                return new GFSADocumentFragment(structElemDictionary);
+                return new GFSADocumentFragment(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.EM:
-                return new GFSAEm(structElemDictionary);
+                return new GFSAEm(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.FENOTE:
-                return new GFSAFENote(structElemDictionary);
+                return new GFSAFENote(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.FIGURE:
-                return new GFSAFigure(structElemDictionary);
+                return new GFSAFigure(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.FORM:
-                return new GFSAForm(structElemDictionary);
+                return new GFSAForm(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.FORMULA:
-                return new GFSAFormula(structElemDictionary);
+                return new GFSAFormula(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.H:
-                return new GFSAH(structElemDictionary);
+                return new GFSAH(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.INDEX:
-                return new GFSAIndex(structElemDictionary);
+                return new GFSAIndex(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.L:
-                return new GFSAL(structElemDictionary);
+                return new GFSAL(structElemDictionary, isTableChild);
             case TaggedPDFConstants.LBL:
-                return new GFSALbl(structElemDictionary);
+                return new GFSALbl(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.LBODY:
-                return new GFSALBody(structElemDictionary);
+                return new GFSALBody(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.LI:
-                return new GFSALI(structElemDictionary);
+                return new GFSALI(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.LINK:
-                return new GFSALink(structElemDictionary);
+                return new GFSALink(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.NON_STRUCT:
-                return new GFSANonStruct(structElemDictionary);
+                return new GFSANonStruct(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.NOTE:
-                return new GFSANote(structElemDictionary);
+                return new GFSANote(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.P:
-                return new GFSAP(structElemDictionary);
+                return new GFSAP(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.PART:
-                return new GFSAPart(structElemDictionary);
+                return new GFSAPart(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.PRIVATE:
-                return new GFSAPrivate(structElemDictionary);
+                return new GFSAPrivate(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.QUOTE:
-                return new GFSAQuote(structElemDictionary);
+                return new GFSAQuote(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.RB:
-                return new GFSARB(structElemDictionary);
+                return new GFSARB(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.REFERENCE:
-                return new GFSAReference(structElemDictionary);
+                return new GFSAReference(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.RP:
-                return new GFSARP(structElemDictionary);
+                return new GFSARP(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.RT:
-                return new GFSART(structElemDictionary);
+                return new GFSART(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.RUBY:
-                return new GFSARuby(structElemDictionary);
+                return new GFSARuby(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.SECT:
-                return new GFSASect(structElemDictionary);
+                return new GFSASect(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.SPAN:
-                return new GFSASpan(structElemDictionary);
+                return new GFSASpan(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.STRONG:
-                return new GFSAStrong(structElemDictionary);
+                return new GFSAStrong(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.SUB:
-                return new GFSASub(structElemDictionary);
+                return new GFSASub(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.TABLE:
-                return new GFSATable(structElemDictionary);
+                return new GFSATable(structElemDictionary, isListChild);
             case TaggedPDFConstants.TBODY:
-                return new GFSATBody(structElemDictionary);
+                return new GFSATBody(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.TD:
-                return new GFSATD(structElemDictionary);
+                return new GFSATD(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.TFOOT:
-                return new GFSATFoot(structElemDictionary);
+                return new GFSATFoot(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.TH:
-                return new GFSATH(structElemDictionary);
+                return new GFSATH(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.THEAD:
-                return new GFSATHead(structElemDictionary);
+                return new GFSATHead(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.TITLE:
-                return new GFSATitle(structElemDictionary);
+                return new GFSATitle(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.TOC:
-                return new GFSATOC(structElemDictionary);
+                return new GFSATOC(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.TOCI:
-                return new GFSATOCI(structElemDictionary);
+                return new GFSATOCI(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.TR:
-                return new GFSATR(structElemDictionary);
+                return new GFSATR(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.WARICHU:
-                return new GFSAWarichu(structElemDictionary);
+                return new GFSAWarichu(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.WP:
-                return new GFSAWP(structElemDictionary);
+                return new GFSAWP(structElemDictionary, isTableChild, isListChild);
             case TaggedPDFConstants.WT:
-                return new GFSAWT(structElemDictionary);
+                return new GFSAWT(structElemDictionary, isTableChild, isListChild);
             default:
                 if (standardType.matches(TaggedPDFConstants.HN_REGEXP)) {
-                    return new GFSAHn(structElemDictionary, standardType);
+                    return new GFSAHn(structElemDictionary, standardType, isTableChild, isListChild);
                 } else {
-                    return new GFSANonStandard(structElemDictionary, standardType);
+                    return new GFSANonStandard(structElemDictionary, standardType, isTableChild, isListChild);
                 }
         }
     }

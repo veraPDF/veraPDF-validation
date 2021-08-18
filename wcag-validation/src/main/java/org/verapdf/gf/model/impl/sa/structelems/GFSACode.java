@@ -28,7 +28,7 @@ public class GFSACode extends GFSAGeneral implements SACode {
 
     public static final String CODE_STRUCTURE_ELEMENT_TYPE = "SACode";
 
-    public GFSACode(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.CODE, CODE_STRUCTURE_ELEMENT_TYPE);
+    public GFSACode(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.CODE, CODE_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

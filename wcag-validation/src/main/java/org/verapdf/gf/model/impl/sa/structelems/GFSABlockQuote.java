@@ -28,7 +28,8 @@ public class GFSABlockQuote extends GFSAGeneral implements SABlockQuote {
 
     public static final String BLOCK_QUOTE_STRUCTURE_ELEMENT_TYPE = "SABlockQuote";
 
-    public GFSABlockQuote(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.BLOCK_QUOTE, BLOCK_QUOTE_STRUCTURE_ELEMENT_TYPE);
+    public GFSABlockQuote(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.BLOCK_QUOTE, BLOCK_QUOTE_STRUCTURE_ELEMENT_TYPE,
+              isTableChild, isListChild);
     }
 }

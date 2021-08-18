@@ -28,7 +28,8 @@ public class GFSAFormula extends GFSAGeneral implements SAFormula {
 
     public static final String FORMULA_STRUCTURE_ELEMENT_TYPE = "SAFormula";
 
-    public GFSAFormula(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.FORMULA, FORMULA_STRUCTURE_ELEMENT_TYPE);
+    public GFSAFormula(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.FORMULA, FORMULA_STRUCTURE_ELEMENT_TYPE,
+              isTableChild, isListChild);
     }
 }

@@ -27,7 +27,8 @@ public class GFSANonStandard extends GFSAGeneral implements SANonStandard {
 
     public static final String NON_STANDARD_STRUCTURE_ELEMENT_TYPE = "SANonStandard";
 
-    public GFSANonStandard(PDStructElem structElemDictionary, String standardType) {
-        super(structElemDictionary, standardType, NON_STANDARD_STRUCTURE_ELEMENT_TYPE);
+    public GFSANonStandard(PDStructElem structElemDictionary, String standardType,
+                           boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, standardType, NON_STANDARD_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

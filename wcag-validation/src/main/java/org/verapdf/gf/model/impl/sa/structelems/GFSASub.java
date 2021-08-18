@@ -28,7 +28,7 @@ public class GFSASub extends GFSAGeneral implements SASub {
 
     public static final String SUB_STRUCTURE_ELEMENT_TYPE = "SASub";
 
-    public GFSASub(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.SUB, SUB_STRUCTURE_ELEMENT_TYPE);
+    public GFSASub(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.SUB, SUB_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

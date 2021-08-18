@@ -28,7 +28,8 @@ public class GFSAReference extends GFSAGeneral implements SAReference {
 
     public static final String REFERENCE_STRUCTURE_ELEMENT_TYPE = "SAReference";
 
-    public GFSAReference(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.REFERENCE, REFERENCE_STRUCTURE_ELEMENT_TYPE);
+    public GFSAReference(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.REFERENCE, REFERENCE_STRUCTURE_ELEMENT_TYPE,
+              isTableChild, isListChild);
     }
 }

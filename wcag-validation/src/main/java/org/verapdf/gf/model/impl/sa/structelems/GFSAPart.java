@@ -28,7 +28,7 @@ public class GFSAPart extends GFSAGeneral implements SAPart {
 
     public static final String PART_STRUCTURE_ELEMENT_TYPE = "SAPart";
 
-    public GFSAPart(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.PART, PART_STRUCTURE_ELEMENT_TYPE);
+    public GFSAPart(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.PART, PART_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

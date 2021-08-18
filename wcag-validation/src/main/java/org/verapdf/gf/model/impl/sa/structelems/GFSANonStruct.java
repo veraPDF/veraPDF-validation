@@ -28,7 +28,8 @@ public class GFSANonStruct extends GFSAGeneral implements SANonStruct {
 
     public static final String NON_STRUCT_STRUCTURE_ELEMENT_TYPE = "SANonStruct";
 
-    public GFSANonStruct(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.NON_STRUCT, NON_STRUCT_STRUCTURE_ELEMENT_TYPE);
+    public GFSANonStruct(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.NON_STRUCT, NON_STRUCT_STRUCTURE_ELEMENT_TYPE,
+              isTableChild, isListChild);
     }
 }

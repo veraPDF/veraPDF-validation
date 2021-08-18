@@ -28,7 +28,7 @@ public class GFSAL extends GFSAGeneral implements SAL {
 
     public static final String L_STRUCTURE_ELEMENT_TYPE = "SAL";
 
-    public GFSAL(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.L, L_STRUCTURE_ELEMENT_TYPE);
+    public GFSAL(PDStructElem structElemDictionary, boolean isTableChild) {
+        super(structElemDictionary, TaggedPDFConstants.L, L_STRUCTURE_ELEMENT_TYPE, isTableChild, true);
     }
 }

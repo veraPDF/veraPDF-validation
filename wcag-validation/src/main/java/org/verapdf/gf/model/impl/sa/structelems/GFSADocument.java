@@ -28,7 +28,8 @@ public class GFSADocument extends GFSAGeneral implements SADocument {
 
     public static final String DOCUMENT_STRUCTURE_ELEMENT_TYPE = "SADocument";
 
-    public GFSADocument(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.DOCUMENT, DOCUMENT_STRUCTURE_ELEMENT_TYPE);
+    public GFSADocument(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.DOCUMENT, DOCUMENT_STRUCTURE_ELEMENT_TYPE,
+              isTableChild, isListChild);
     }
 }
