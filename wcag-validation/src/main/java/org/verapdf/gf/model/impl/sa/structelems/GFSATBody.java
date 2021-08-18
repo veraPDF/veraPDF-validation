@@ -28,7 +28,7 @@ public class GFSATBody extends GFSAGeneral implements SATBody {
 
     public static final String TBODY_STRUCTURE_ELEMENT_TYPE = "SATBody";
 
-    public GFSATBody(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.TBODY, TBODY_STRUCTURE_ELEMENT_TYPE);
+    public GFSATBody(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.TBODY, TBODY_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

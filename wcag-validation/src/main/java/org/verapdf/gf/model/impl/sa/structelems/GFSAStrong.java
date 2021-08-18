@@ -28,7 +28,7 @@ public class GFSAStrong extends GFSAGeneral implements SAStrong {
 
     public static final String STRONG_STRUCTURE_ELEMENT_TYPE = "SAStrong";
 
-    public GFSAStrong(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.STRONG, STRONG_STRUCTURE_ELEMENT_TYPE);
+    public GFSAStrong(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.STRONG, STRONG_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

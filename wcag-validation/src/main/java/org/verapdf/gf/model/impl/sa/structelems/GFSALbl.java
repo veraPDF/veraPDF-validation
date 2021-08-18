@@ -28,7 +28,7 @@ public class GFSALbl extends GFSAGeneral implements SALbl {
 
     public static final String LBL_STRUCTURE_ELEMENT_TYPE = "SALbl";
 
-    public GFSALbl(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.LBL, LBL_STRUCTURE_ELEMENT_TYPE);
+    public GFSALbl(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.LBL, LBL_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

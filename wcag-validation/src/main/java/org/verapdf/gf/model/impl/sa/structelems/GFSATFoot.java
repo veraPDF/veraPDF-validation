@@ -28,7 +28,7 @@ public class GFSATFoot extends GFSAGeneral implements SATFoot {
 
     public static final String TFOOT_STRUCTURE_ELEMENT_TYPE = "SATFoot";
 
-    public GFSATFoot(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.TFOOT, TFOOT_STRUCTURE_ELEMENT_TYPE);
+    public GFSATFoot(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.TFOOT, TFOOT_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

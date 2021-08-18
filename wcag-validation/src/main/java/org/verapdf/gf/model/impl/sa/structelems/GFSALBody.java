@@ -28,7 +28,7 @@ public class GFSALBody extends GFSAGeneral implements SALBody {
 
     public static final String LBODY_STRUCTURE_ELEMENT_TYPE = "SALBody";
 
-    public GFSALBody(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.LBODY, LBODY_STRUCTURE_ELEMENT_TYPE);
+    public GFSALBody(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.LBODY, LBODY_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

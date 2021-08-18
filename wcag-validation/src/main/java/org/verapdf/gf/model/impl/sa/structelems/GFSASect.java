@@ -28,7 +28,7 @@ public class GFSASect extends GFSAGeneral implements SASect {
 
     public static final String SECT_STRUCTURE_ELEMENT_TYPE = "SASect";
 
-    public GFSASect(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.SECT, SECT_STRUCTURE_ELEMENT_TYPE);
+    public GFSASect(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.SECT, SECT_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

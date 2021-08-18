@@ -75,7 +75,7 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 		children = new ArrayList<>(elements.size());
 		if (!elements.isEmpty()) {
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				GFSAStructElem structElem = GFSAGeneral.createTypedStructElem(element);
+				GFSAStructElem structElem = GFSAGeneral.createTypedStructElem(element, false, false);
 				INode childNode = new GFSANode(structElem);
 				structElem.setNode(childNode);
 				node.addChild(childNode);

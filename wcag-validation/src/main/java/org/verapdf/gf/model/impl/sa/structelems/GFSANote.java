@@ -28,7 +28,7 @@ public class GFSANote extends GFSAGeneral implements SANote {
 
     public static final String NOTE_STRUCTURE_ELEMENT_TYPE = "SANote";
 
-    public GFSANote(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.NOTE, NOTE_STRUCTURE_ELEMENT_TYPE);
+    public GFSANote(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.NOTE, NOTE_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

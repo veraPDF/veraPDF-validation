@@ -28,7 +28,7 @@ public class GFSATOC extends GFSAGeneral implements SATOC {
 
     public static final String TOC_STRUCTURE_ELEMENT_TYPE = "SATOC";
 
-    public GFSATOC(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.TOC, TOC_STRUCTURE_ELEMENT_TYPE);
+    public GFSATOC(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.TOC, TOC_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

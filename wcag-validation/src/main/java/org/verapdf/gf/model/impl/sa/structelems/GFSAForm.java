@@ -28,7 +28,7 @@ public class GFSAForm extends GFSAGeneral implements SAForm {
 
     public static final String FORM_STRUCTURE_ELEMENT_TYPE = "SAForm";
 
-    public GFSAForm(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.FORM, FORM_STRUCTURE_ELEMENT_TYPE);
+    public GFSAForm(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.FORM, FORM_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

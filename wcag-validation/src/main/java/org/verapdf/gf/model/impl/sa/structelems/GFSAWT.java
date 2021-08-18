@@ -28,7 +28,7 @@ public class GFSAWT extends GFSAGeneral implements SAWT {
 
     public static final String WT_STRUCTURE_ELEMENT_TYPE = "SAWT";
 
-    public GFSAWT(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.WT, WT_STRUCTURE_ELEMENT_TYPE);
+    public GFSAWT(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.WT, WT_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

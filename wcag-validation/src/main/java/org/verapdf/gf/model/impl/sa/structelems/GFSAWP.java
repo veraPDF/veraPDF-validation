@@ -28,7 +28,7 @@ public class GFSAWP extends GFSAGeneral implements SAWP {
 
     public static final String WP_STRUCTURE_ELEMENT_TYPE = "SAWP";
 
-    public GFSAWP(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.WP, WP_STRUCTURE_ELEMENT_TYPE);
+    public GFSAWP(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.WP, WP_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

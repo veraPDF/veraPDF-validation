@@ -56,8 +56,12 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 
 	private final String id;
 	private final String standardType;
+	private final StringBuilder textValue = new StringBuilder();
+	private final boolean isTableChild;
+	private final boolean isListChild;
 
-	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType, String type) {
+	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType,
+	                      String type, boolean isTableChild, boolean isListChild) {
 		super(type);
 		this.structElemDictionary = structElemDictionary;
 		this.standardType = standardType;
@@ -65,6 +69,8 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		id = (key != null ? (key.getNumber() + " " + key.getGeneration() + " obj") : "0 0 obj") +
 		     (standardType != null ? (" " + standardType) : "") +
 		     (getStructureType() != null ? (" " + ((COSName) COSName.fromValue(getStructureType())).getUnicodeValue()) : "");
+		this.isTableChild = isTableChild;
+		this.isListChild = isListChild;
 	}
 
 	public void setNode(INode node) {
@@ -107,10 +113,18 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		       TaggedPDFConstants.TD.equals(standardType) || TaggedPDFConstants.TR.equals(standardType);
 	}
 
+	public Boolean getisListElem() {
+		return TaggedPDFConstants.L.equals(standardType) || TaggedPDFConstants.LI.equals(standardType) ||
+		       TaggedPDFConstants.LBODY.equals(standardType) || TaggedPDFConstants.LBL.equals(standardType);
+	}
+
 	@Override
 	public Boolean getisTableChild() {
-		return getisTableElem() || TaggedPDFConstants.P.equals(standardType) ||
-		       TaggedPDFConstants.SPAN.equals(standardType) || TaggedPDFConstants.TABLE.equals(standardType);
+		return isTableChild;
+	}
+
+	public Boolean getisListChild() {
+		return isListChild;
 	}
 
 	@Override
@@ -139,7 +153,8 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		if (!elements.isEmpty()) {
 			for (java.lang.Object element : elements) {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
-					GFSAStructElem structElem = GFSAGeneral.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element);
+					GFSAStructElem structElem = GFSAGeneral.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
+					                                                              isTableChild, isListChild);
 					INode childNode = new GFSANode(structElem);
 					structElem.setNode(childNode);
 					node.addChild(childNode);
@@ -159,8 +174,10 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		if (chunks != null) {
 			for (IChunk chunk : chunks) {
 				if (chunk instanceof TextChunk) {
-					node.addChild(new SemanticSpan((TextChunk) chunk));
-					children.add(new GFSATextChunk((TextChunk) chunk));
+					TextChunk textChunk = (TextChunk) chunk;
+					node.addChild(new SemanticSpan(textChunk));
+					children.add(new GFSATextChunk(textChunk));
+					textValue.append(textChunk.getValue());
 				} else if (chunk instanceof ImageChunk) {
 					node.addChild(new SemanticImageNode((ImageChunk) chunk));
 					children.add(new GFSAImageChunk((ImageChunk) chunk));

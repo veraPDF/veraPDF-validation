@@ -28,7 +28,7 @@ public class GFSATHead extends GFSAGeneral implements SATHead {
 
     public static final String THEAD_STRUCTURE_ELEMENT_TYPE = "SATHead";
 
-    public GFSATHead(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.THEAD, THEAD_STRUCTURE_ELEMENT_TYPE);
+    public GFSATHead(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.THEAD, THEAD_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

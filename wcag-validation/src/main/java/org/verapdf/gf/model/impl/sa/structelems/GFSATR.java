@@ -28,7 +28,7 @@ public class GFSATR extends GFSAGeneral implements SATR {
 
     public static final String TR_STRUCTURE_ELEMENT_TYPE = "SATR";
 
-    public GFSATR(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.TR, TR_STRUCTURE_ELEMENT_TYPE);
+    public GFSATR(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.TR, TR_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

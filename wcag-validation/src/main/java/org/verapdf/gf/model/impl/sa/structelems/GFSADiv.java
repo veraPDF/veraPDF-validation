@@ -28,7 +28,7 @@ public class GFSADiv extends GFSAGeneral implements SADiv {
 
     public static final String DIV_STRUCTURE_ELEMENT_TYPE = "SADiv";
 
-    public GFSADiv(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.DIV, DIV_STRUCTURE_ELEMENT_TYPE);
+    public GFSADiv(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.DIV, DIV_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }

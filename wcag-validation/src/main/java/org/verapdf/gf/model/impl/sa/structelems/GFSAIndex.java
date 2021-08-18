@@ -28,7 +28,7 @@ public class GFSAIndex extends GFSAGeneral implements SAIndex {
 
     public static final String INDEX_STRUCTURE_ELEMENT_TYPE = "SAIndex";
 
-    public GFSAIndex(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.INDEX, INDEX_STRUCTURE_ELEMENT_TYPE);
+    public GFSAIndex(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+        super(structElemDictionary, TaggedPDFConstants.INDEX, INDEX_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
     }
 }
