@@ -64,10 +64,12 @@ public class GFSETH extends GFSEGeneral implements SETH {
         return null;
     }
 
+    @Override
     public Long getColSpan() {
         return TableHelper.getColSpan(simplePDObject);
     }
 
+    @Override
     public Long getRowSpan() {
         return TableHelper.getRowSpan(simplePDObject);
     }

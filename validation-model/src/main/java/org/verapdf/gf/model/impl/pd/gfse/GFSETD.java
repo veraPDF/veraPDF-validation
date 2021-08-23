@@ -41,10 +41,12 @@ public class GFSETD extends GFSEGeneral implements SETD {
         super(structElemDictionary, TaggedPDFConstants.TD, TD_STRUCTURE_ELEMENT_TYPE);
     }
 
+    @Override
     public Long getColSpan() {
         return TableHelper.getColSpan(simplePDObject);
     }
 
+    @Override
     public Long getRowSpan() {
         return TableHelper.getRowSpan(simplePDObject);
     }

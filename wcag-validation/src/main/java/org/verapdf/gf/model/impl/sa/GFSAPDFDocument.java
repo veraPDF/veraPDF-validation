@@ -43,6 +43,8 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
 
     public static final String STRUCTURE_TREE_ROOT = "StructTreeRoot";
 
+    public static final String PAGES = "pages";
+
     private List<GFSAPage> pages;
 
     private GFSAStructTreeRoot treeRoot = null;
@@ -59,6 +61,8 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         switch (link) {
             case STRUCTURE_TREE_ROOT:
                 return this.getStructureTreeRoot();
+            case PAGES:
+                return getPages();
             default:
                 return super.getLinkedObjects(link);
         }

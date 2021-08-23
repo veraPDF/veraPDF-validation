@@ -21,7 +21,12 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.model.GenericModelObject;
+import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.salayer.SAAnnotation;
 import org.verapdf.model.salayer.SAChunk;
+import org.verapdf.model.salayer.SAPage;
+import org.verapdf.pd.PDAnnotation;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 
@@ -32,16 +37,53 @@ import java.util.List;
 /**
  * @author Maxim Plushchov
  */
-public class GFSAPage {
+public class GFSAPage extends GenericModelObject implements SAPage {
+
+	public static final String PAGE_TYPE = "SAPage";
+
+	private static final String ANNOTS = "annots";
 
 	private GFSAContentStream contentStream = null;
 
 	private List<SAChunk> artifacts = null;
 
-	private org.verapdf.pd.PDPage pdPage = null;
+	private final org.verapdf.pd.PDPage pdPage;
+
+	private List<SAAnnotation> annotations = null;
 
 	public GFSAPage(org.verapdf.pd.PDPage pdPage) {
+		super(PAGE_TYPE);
 		this.pdPage = pdPage;
+	}
+
+	@Override
+	public List<? extends Object> getLinkedObjects(String link) {
+		switch (link) {
+			case ANNOTS:
+				return this.getAnnotations();
+			default:
+				return super.getLinkedObjects(link);
+		}
+	}
+
+	private List<SAAnnotation> parseAnnotataions() {
+		List<PDAnnotation> annots = pdPage.getAnnotations();
+		if (annots.size() > 0) {
+			List<SAAnnotation> res = new ArrayList<>(annots.size());
+			for (PDAnnotation annot : annots) {
+				res.add(GFSAAnnotation.createAnnot(annot, pdPage));
+			}
+			return Collections.unmodifiableList(res);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<SAAnnotation> getAnnotations() {
+		if (this.annotations == null) {
+			this.annotations = parseAnnotataions();
+		}
+
+		return this.annotations;
 	}
 
 	private List<SAChunk> getartifacts() {

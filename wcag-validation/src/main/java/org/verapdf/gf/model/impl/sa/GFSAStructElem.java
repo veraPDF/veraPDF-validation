@@ -113,6 +113,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		       TaggedPDFConstants.TD.equals(standardType) || TaggedPDFConstants.TR.equals(standardType);
 	}
 
+	@Override
 	public Boolean getisListElem() {
 		return TaggedPDFConstants.L.equals(standardType) || TaggedPDFConstants.LI.equals(standardType) ||
 		       TaggedPDFConstants.LBODY.equals(standardType) || TaggedPDFConstants.LBL.equals(standardType);
@@ -123,8 +124,14 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		return isTableChild;
 	}
 
+	@Override
 	public Boolean getisListChild() {
 		return isListChild;
+	}
+
+	@Override
+	public Boolean getisLeafElem() {
+		return getChildren().isEmpty();
 	}
 
 	@Override
