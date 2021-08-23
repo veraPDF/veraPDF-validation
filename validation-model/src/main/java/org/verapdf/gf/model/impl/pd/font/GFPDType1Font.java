@@ -120,20 +120,18 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
                   descriptorCharSet.size() == fontProgramCharSet.size() - 1) ) {
                 return Boolean.valueOf(false);
             }
-            for (String glyphName : fontProgramCharSet) {
-                if (!NOTDEF_STRING.equals(glyphName) &&
-                    !descriptorCharSet.contains(glyphName)) {
+            for (String glyphName : descriptorCharSet) {
+                if (!NOTDEF_STRING.equals(glyphName) && !fontProgramCharSet.contains(glyphName)) {
                     return Boolean.valueOf(false);
                 }
             }
         }
-
-        for (String glyphName : descriptorCharSet) {
-            if (!NOTDEF_STRING.equals(glyphName) && !fontProgramCharSet.contains(glyphName)) {
+        for (String glyphName : fontProgramCharSet) {
+            if (!NOTDEF_STRING.equals(glyphName) &&
+                !descriptorCharSet.contains(glyphName)) {
                 return Boolean.valueOf(false);
             }
         }
-
         return Boolean.valueOf(true);
     }
 
