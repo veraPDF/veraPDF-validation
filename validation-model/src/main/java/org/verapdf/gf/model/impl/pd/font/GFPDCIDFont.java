@@ -148,29 +148,28 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
                 FontProgram cidFont = this.pdFont.getFontProgram();
 
-                // we skip i = 0 which corresponds to .notdef glyph
-                for (int i = 1; i < bitSet.size(); i++) {
-                    if (bitSet.get(i) && !cidFont.containsCID(i)) {
+                //on this levels we need to ensure that all glyphs present in font program are described in cid set
+                List<Integer> fontCIDs;
+                if (cidFont instanceof CIDFontType2Program) {
+                    fontCIDs = ((CIDFontType2Program) cidFont).getCIDList();
+                } else if (cidFont instanceof CFFFontProgram) {
+                    fontCIDs = ((CFFFontProgram) cidFont).getCIDList();
+                } else if (cidFont instanceof CFFCIDFontProgram) {
+                    fontCIDs = ((CFFCIDFontProgram) cidFont).getCIDList();
+                } else {
+                    fontCIDs = Collections.emptyList();
+                }
+                for (int i = 0; i < fontCIDs.size(); ++i) {
+                    int cid = fontCIDs.get(i);
+                    if (cid != 0 && !bitSet.get(cid)) {
                         return Boolean.FALSE;
                     }
                 }
-
                 PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
-                    //on this levels we need to ensure that all glyphs present in font program are described in cid set
-                    List<Integer> fontCIDs;
-                    if (cidFont instanceof CIDFontType2Program) {
-                        fontCIDs = ((CIDFontType2Program) cidFont).getCIDList();
-                    } else if (cidFont instanceof CFFFontProgram) {
-                        fontCIDs = ((CFFFontProgram) cidFont).getCIDList();
-                    } else if (cidFont instanceof CFFCIDFontProgram) {
-                        fontCIDs = ((CFFCIDFontProgram) cidFont).getCIDList();
-                    } else {
-                        fontCIDs = Collections.emptyList();
-                    }
-                    for (int i = 0; i < fontCIDs.size(); ++i) {
-                        int cid = fontCIDs.get(i);
-                        if (cid != 0 && !bitSet.get(cid)) {
+                    // we skip i = 0 which corresponds to .notdef glyph
+                    for (int i = 1; i < bitSet.size(); i++) {
+                        if (bitSet.get(i) && !cidFont.containsCID(i)) {
                             return Boolean.FALSE;
                         }
                     }
