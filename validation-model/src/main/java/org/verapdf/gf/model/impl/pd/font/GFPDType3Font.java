@@ -26,6 +26,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
@@ -34,6 +35,7 @@ import org.verapdf.model.pdlayer.PDType3Font;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.font.type3.PDType3CharProc;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -122,8 +124,12 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
         }
     }
 
+    /**
+     * PDF/A-4 validation should doesn't accept Resource dictionaries specified in the individual CharProc stream dictionaries
+     */
     private PDResourcesHandler getResourcesFromCharProcs(COSObject charProcs) {
-        if (!charProcs.knownKey(ASAtom.RESOURCES)) {
+        if (!charProcs.knownKey(ASAtom.RESOURCES) ||
+            StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_4) {
             return null;
         }
         PDResources res = new PDResources(charProcs.getKey(ASAtom.RESOURCES));
