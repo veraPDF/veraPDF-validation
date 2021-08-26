@@ -56,7 +56,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	private COSDictionary propertiesDict;
 	private final GFOpMarkedContent markedContent;
-	private String parentsTags;
+	private final String parentsTags;
 
 	public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources,
 							 GFOpMarkedContent markedContent, String parentsTags) {
@@ -232,6 +232,26 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 			return list;
 		}
 		return Collections.emptyList();
+	}
+
+	public COSString getInheritedActualText() {
+		if (markedContent != null) {
+			COSString actualText = markedContent.getInheritedActualText();
+			if (actualText != null) {
+				return actualText;
+			}
+		}
+		return getActualText();
+	}
+
+	public Long getInheritedMCID() {
+		if (markedContent != null) {
+			Long mcid = markedContent.getInheritedMCID();
+			if (mcid != null) {
+				return mcid;
+			}
+		}
+		return getMCID();
 	}
 
 }

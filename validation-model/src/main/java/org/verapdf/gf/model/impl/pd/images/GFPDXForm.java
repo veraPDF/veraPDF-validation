@@ -65,8 +65,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private final PDColorSpace blendingColorSpace;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
-					 GraphicState inheritedGraphicState,
-					 String parentStructureTag, String parentsTags) {
+					 GraphicState inheritedGraphicState, String parentStructureTag, String parentsTags) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructureTag = parentStructureTag;

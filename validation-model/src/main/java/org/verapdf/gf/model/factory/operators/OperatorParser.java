@@ -514,7 +514,7 @@ class OperatorParser {
 				Long mcid = null;
 				String parentsTags = "";
 				if (!markedContentStack.empty()) {
-					mcid = markedContentStack.peek().getMCID();
+					mcid = markedContentStack.peek().getInheritedMCID();
 					parentsTags = markedContentStack.peek().getParentsTags();
 				}
 				String parentStructureTag = getParentStructureTag(structureElementAccessObject, mcid);
@@ -683,7 +683,7 @@ class OperatorParser {
 		if (this.markedContentStack.empty()) {
 			return null;
 		}
-		return this.markedContentStack.firstElement();
+		return this.markedContentStack.peek();
 	}
 
 	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject, Long mcid) {

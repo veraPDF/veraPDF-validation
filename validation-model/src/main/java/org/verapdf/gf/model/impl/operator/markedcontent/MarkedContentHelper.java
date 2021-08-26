@@ -36,19 +36,21 @@ public class MarkedContentHelper {
     public static boolean containsActualText(GFOpMarkedContent markedContent,
                                              StructureElementAccessObject accessObject) {
         if (markedContent != null) {
-            if (markedContent.getActualText() != null) {
+            if (markedContent.getInheritedActualText() != null) {
                 return true;
             }
 
-            Long mcid = markedContent.getMCID();
             PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
             if (structTreeRoot != null) {
                 PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-                COSObject structureElement = parentTreeRoot == null ? null : accessObject.getStructureElement(parentTreeRoot, mcid);
-                if (structureElement != null && !structureElement.empty()) {
-                    COSObject actualText = structureElement.getKey(ASAtom.ACTUAL_TEXT);
-                    return actualText != null && !actualText.empty() &&
-                            actualText.getType() == COSObjType.COS_STRING;
+                if (parentTreeRoot != null) {
+                    Long mcid = markedContent.getInheritedMCID();
+                    COSObject structureElement = accessObject.getStructureElement(parentTreeRoot, mcid);
+                    if (structureElement != null && !structureElement.empty()) {
+                        COSObject actualText = structureElement.getKey(ASAtom.ACTUAL_TEXT);
+                        return actualText != null && !actualText.empty() &&
+                               actualText.getType() == COSObjType.COS_STRING;
+                    }
                 }
             }
         }

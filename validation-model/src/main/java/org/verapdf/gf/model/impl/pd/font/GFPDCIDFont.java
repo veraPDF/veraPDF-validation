@@ -183,13 +183,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     }
 
     private COSStream getCIDSetStream() {
-        PDFontDescriptor fontDescriptor = this.pdFont.getFontDescriptor();
-        COSStream cidSet;
-        if (fontDescriptor != null) {
-            cidSet = ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
-            return cidSet;
-        }
-        return null;
+        return ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
     }
 
     private static byte[] getCIDsFromCIDSet(ASInputStream cidSet) throws IOException {
