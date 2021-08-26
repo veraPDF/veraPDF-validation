@@ -130,8 +130,8 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     @Override
     public String getinheritedLang() {
-        String inheritedlang =  operator.getParentLang();
-        return inheritedlang != null ? inheritedlang : defaultLang;
+        String inheritedLang =  operator.getParentLang();
+        return inheritedLang != null ? inheritedLang : defaultLang;
     }
 
     @Override
