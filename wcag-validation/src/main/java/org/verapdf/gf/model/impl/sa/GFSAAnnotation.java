@@ -21,9 +21,17 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.salayer.SAAnnotation;
 import org.verapdf.pd.*;
+import org.verapdf.wcag.algorithms.entities.content.IChunk;
+import org.verapdf.wcag.algorithms.entities.content.TextChunk;
+import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
 
 /**
  * @author Maxim Plushchov
@@ -35,6 +43,7 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 
 	private final PDAnnotation annot;
 	private final PDPage page;
+	private String textValue;
 
 	public GFSAAnnotation(PDAnnotation annot, PDPage page) {
 		this(annot, page, ANNOTATION_TYPE);
@@ -44,6 +53,37 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 		super(type);
 		this.page = page;
 		this.annot = annot;
+	}
+
+	@Override
+	public String gettextValue() {
+		if (textValue == null) {
+			textValue = findTextValue();
+		}
+		return textValue;
+	}
+
+	private String findTextValue() {
+		double[] rect = annot.getRect();
+		if (rect != null) {
+			List<IChunk> chunks = StaticStorages.getChunks().get(page.getObject().getKey(), new BoundingBox(page.getPageNumber(), rect));
+			return chunks.stream()
+			             .filter(iChunk -> iChunk instanceof TextChunk)//sort?
+			             .map(chunk -> ((TextChunk) chunk).getValue())
+			             .reduce((s1, s2) -> s1 + s2)
+			             .orElse("").trim();
+		}
+		return "";
+	}
+
+	@Override
+	public Boolean gethasLinkValue() {
+        try {
+            new URI(gettextValue());
+            return true;
+        } catch (URISyntaxException ignored) {
+        }
+		return false;
 	}
 
 	public static GFSAAnnotation createAnnot(PDAnnotation annot, PDPage page) {
