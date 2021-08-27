@@ -2,6 +2,7 @@ package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.cos.COSKey;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
+import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +46,38 @@ public class ChunkContainer {
 		}
 		Map<Long, List<IChunk>> map = chunks.get(pageObjectNumber);
 		return map != null ? map.get(mcid) : null;
+	}
+
+	public List<IChunk> get(COSKey pageObjectNumber, BoundingBox boundingBox) {
+		if (pageObjectNumber == null) {
+			return get(boundingBox);
+		}
+		Map<Long, List<IChunk>> map = chunks.get(pageObjectNumber);
+		List<IChunk> chunksList = new ArrayList<>();
+		if (map != null) {
+			for (List<IChunk> list : map.values()) {
+				for (IChunk chunk : list) {
+					if (boundingBox.contains(chunk.getBoundingBox())) {
+						chunksList.add(chunk);
+					}
+				}
+			}
+		}
+		return chunksList;
+	}
+
+	public List<IChunk> get(BoundingBox boundingBox) {
+		List<IChunk> chunksList = new ArrayList<>();
+		for (Map<Long, List<IChunk>> map : chunks.values()) {
+			for (List<IChunk> list : map.values()) {
+				for (IChunk chunk : list) {
+					if (boundingBox.contains(chunk.getBoundingBox())) {
+						chunksList.add(chunk);
+					}
+				}
+			}
+		}
+		return chunksList;
 	}
 
 	public void add(Long mcid, IChunk chunk) {

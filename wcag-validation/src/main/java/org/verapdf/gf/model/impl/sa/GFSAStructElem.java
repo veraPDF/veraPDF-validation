@@ -166,8 +166,8 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 					structElem.setNode(childNode);
 					node.addChild(childNode);
 					children.add(structElem);
-				} else if (element instanceof org.verapdf.pd.structure.PDMCRDictionary) {
-					PDMCRDictionary mcr = (org.verapdf.pd.structure.PDMCRDictionary) element;
+				} else if (element instanceof PDMCRDictionary) {
+					PDMCRDictionary mcr = (PDMCRDictionary) element;
 					addChunksToChildren(mcr.getPageObjectNumber(), mcr.getMCID());
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
 					addChunksToChildren(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger());
@@ -233,4 +233,36 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		return structElemDictionary.getPageObjectNumber();
 	}
 
+	@Override
+	public Long getnumberOfSameCharacters() {
+		return GFSAStructElem.getNumberOfSameCharacters(getTextValue());
+	}
+
+	public String getTextValue() {
+		if (children == null) {
+			parseChildren();
+		}
+		return textValue.toString();
+	}
+
+	private static long getNumberOfSameCharacters(String value) {
+		if (value == null || value.isEmpty()) {
+			return 0;
+		}
+		char[] characters = value.toCharArray();
+		char lastCharacter = characters[0];
+		int maxLength = 0;
+		int length = 0;
+		for (char character : characters) {
+			if (lastCharacter == character) {
+				length++;
+			} else {
+				if (length > maxLength) {
+					maxLength = length;
+				}
+				length = 1;
+			}
+		}
+		return maxLength;
+	}
 }
