@@ -35,7 +35,7 @@ public class GFCIDGlyph extends GFGlyph implements CIDGlyph {
 
     public final static String CID_GLYPH_TYPE = "CIDGlyph";
 
-    private int cid;
+    private final int cid;
 
     protected GFCIDGlyph(PDFont font, int glyphCode, int renderingMode, String id,
                       GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {

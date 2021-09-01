@@ -23,6 +23,8 @@ package org.verapdf.gf.model.impl.pd.font;
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.tools.GFIDGenerator;
+import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDType1Font;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
@@ -32,6 +34,7 @@ import org.verapdf.pd.font.type1.Type1FontProgram;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.logging.Level;
@@ -125,11 +128,21 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
                     return Boolean.valueOf(false);
                 }
             }
-        }
-        for (String glyphName : fontProgramCharSet) {
-            if (!NOTDEF_STRING.equals(glyphName) &&
-                !descriptorCharSet.contains(glyphName)) {
-                return Boolean.valueOf(false);
+            for (String glyphName : fontProgramCharSet) {
+                if (!NOTDEF_STRING.equals(glyphName) &&
+                    !descriptorCharSet.contains(glyphName)) {
+                    return Boolean.valueOf(false);
+                }
+            }
+        } else {
+            Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(GFIDGenerator.generateID(pdFont));
+            if (map != null) {
+                for (Glyph glyph : map.values()) {
+                    String glyphName = glyph.getname();
+                    if (fontProgramCharSet.contains(glyphName) && !descriptorCharSet.contains(glyphName)) {
+                        return false;
+                    }
+                }
             }
         }
         return Boolean.valueOf(true);

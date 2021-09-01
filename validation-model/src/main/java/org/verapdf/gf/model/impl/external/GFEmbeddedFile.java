@@ -141,7 +141,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Set<COSKey> fileSpecificationKeys;
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
-	private Map<String, Glyph> cachedGlyphs;
+	private Map<String, Map<String, Glyph>> cachedGlyphs;
 	private boolean validPDF;
 	private Integer lastHeadingNestingLevel;
 	private org.verapdf.pd.colors.PDColorSpace currentTransparencyColorSpace;
