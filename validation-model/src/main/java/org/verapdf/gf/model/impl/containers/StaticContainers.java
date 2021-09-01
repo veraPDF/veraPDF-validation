@@ -58,7 +58,7 @@ public class StaticContainers {
 	private static final ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
 	private static final ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
 
-	private static final ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
+	private static final ThreadLocal<Map<String, Map<String, Glyph>>> cachedGlyphs = new ThreadLocal<>();
 
 	//SENote
 	private static final ThreadLocal<Set<String>> noteIDSet = new ThreadLocal<>();
@@ -228,14 +228,14 @@ public class StaticContainers {
 		StaticContainers.currentTransparencyColorSpace.set(currentTransparencyColorSpace);
 	}
 
-	public static Map<String, Glyph> getCachedGlyphs() {
+	public static Map<String, Map<String, Glyph>> getCachedGlyphs() {
 		if (cachedGlyphs.get() == null) {
 			cachedGlyphs.set(new HashMap<>());
 		}
 		return cachedGlyphs.get();
 	}
 
-	public static void setCachedGlyphs(Map<String, Glyph> cachedGlyphs) {
+	public static void setCachedGlyphs(Map<String, Map<String, Glyph>> cachedGlyphs) {
 		StaticContainers.cachedGlyphs.set(cachedGlyphs);
 	}
 }

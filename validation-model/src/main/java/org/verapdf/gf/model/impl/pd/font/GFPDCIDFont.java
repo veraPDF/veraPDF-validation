@@ -27,12 +27,14 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosStream;
+import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosStream;
+import org.verapdf.model.operator.CIDGlyph;
+import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
-import org.verapdf.pd.font.PDFontDescriptor;
 import org.verapdf.pd.font.cff.CFFCIDFontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.font.truetype.CIDFontType2Program;
@@ -148,29 +150,40 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
                 FontProgram cidFont = this.pdFont.getFontProgram();
 
-                //on this levels we need to ensure that all glyphs present in font program are described in cid set
-                List<Integer> fontCIDs;
-                if (cidFont instanceof CIDFontType2Program) {
-                    fontCIDs = ((CIDFontType2Program) cidFont).getCIDList();
-                } else if (cidFont instanceof CFFFontProgram) {
-                    fontCIDs = ((CFFFontProgram) cidFont).getCIDList();
-                } else if (cidFont instanceof CFFCIDFontProgram) {
-                    fontCIDs = ((CFFCIDFontProgram) cidFont).getCIDList();
-                } else {
-                    fontCIDs = Collections.emptyList();
-                }
-                for (int i = 0; i < fontCIDs.size(); ++i) {
-                    int cid = fontCIDs.get(i);
-                    if (cid != 0 && !bitSet.get(cid)) {
-                        return Boolean.FALSE;
-                    }
-                }
                 PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
+                    //on this levels we need to ensure that all glyphs present in font program are described in cid set
+                    List<Integer> fontCIDs;
+                    if (cidFont instanceof CIDFontType2Program) {
+                        fontCIDs = ((CIDFontType2Program) cidFont).getCIDList();
+                    } else if (cidFont instanceof CFFFontProgram) {
+                        fontCIDs = ((CFFFontProgram) cidFont).getCIDList();
+                    } else if (cidFont instanceof CFFCIDFontProgram) {
+                        fontCIDs = ((CFFCIDFontProgram) cidFont).getCIDList();
+                    } else {
+                        fontCIDs = Collections.emptyList();
+                    }
+                    for (int cid : fontCIDs) {
+                        if (cid != 0 && !bitSet.get(cid)) {
+                            return Boolean.FALSE;
+                        }
+                    }
                     // we skip i = 0 which corresponds to .notdef glyph
                     for (int i = 1; i < bitSet.size(); i++) {
                         if (bitSet.get(i) && !cidFont.containsCID(i)) {
                             return Boolean.FALSE;
+                        }
+                    }
+                } else {
+                    Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(GFIDGenerator.generateID(pdFont));
+                    if (map != null) {
+                        for (Glyph glyph : map.values()) {
+                            if (glyph instanceof CIDGlyph) {
+                                int cid = ((CIDGlyph)glyph).getCID().intValue();
+                                if (cid != 0 && cidFont.containsCID(cid) && !bitSet.get(cid)) {
+                                    return false;
+                                }
+                            }
                         }
                     }
                 }

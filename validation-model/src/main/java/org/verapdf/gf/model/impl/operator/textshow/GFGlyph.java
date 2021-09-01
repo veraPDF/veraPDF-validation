@@ -34,6 +34,8 @@ import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -115,9 +117,14 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode,
                                  GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+        String fontId = GFIDGenerator.generateID(font);
         String id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
                 font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject);
-        Glyph cachedGlyph = StaticContainers.getCachedGlyphs().get(id);
+        Glyph cachedGlyph = null;
+        Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(fontId);
+        if (map != null) {
+            cachedGlyph = map.get(id);
+        }
         if (cachedGlyph == null) {
             if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
                     font.getSubtype() == ASAtom.TYPE0) {
@@ -127,7 +134,13 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 cachedGlyph = new GFGlyph(font, glyphCode, renderingMode, id,
                         markedContent, structureElementAccessObject, GLYPH_TYPE);
             }
-            StaticContainers.getCachedGlyphs().put(id, cachedGlyph);
+            if (map == null) {
+                map = new HashMap<>();
+                map.put(id, cachedGlyph);
+                StaticContainers.getCachedGlyphs().put(fontId, map);
+            } else {
+                map.put(id, cachedGlyph);
+            }
         }
         return cachedGlyph;
     }

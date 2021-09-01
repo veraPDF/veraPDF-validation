@@ -64,9 +64,11 @@ public class GFPDResources extends GFPDObject implements PDResources {
         org.verapdf.pd.PDResources resources = ((org.verapdf.pd.PDResources)simplePDObject);
         for (ASAtom fontName : resources.getFontNames()) {
             PDFont font = resources.getFont(fontName);
-            String name = font.getName();
-            if (name != null) {
-                names.add(new GFCosUnicodeName((COSName) COSName.construct(ASAtom.getASAtom(name)).get()));
+            if (font != null) {
+                String name = font.getName();
+                if (name != null) {
+                    names.add(new GFCosUnicodeName((COSName) COSName.construct(ASAtom.getASAtom(name)).get()));
+                }
             }
         }
         for (ASAtom colorName : resources.getColorSpaceNames()) {
