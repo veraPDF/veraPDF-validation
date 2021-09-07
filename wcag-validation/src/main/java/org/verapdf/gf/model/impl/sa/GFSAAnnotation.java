@@ -29,8 +29,8 @@ import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -79,9 +79,9 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 	@Override
 	public Boolean gethasLinkValue() {
         try {
-            new URI(gettextValue());
+            new URL(gettextValue());
             return true;
-        } catch (URISyntaxException ignored) {
+        } catch (MalformedURLException ignored) {
         }
 		return false;
 	}
