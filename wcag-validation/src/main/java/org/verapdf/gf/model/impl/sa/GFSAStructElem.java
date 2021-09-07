@@ -59,6 +59,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	private final StringBuilder textValue = new StringBuilder();
 	private final boolean isTableChild;
 	private final boolean isListChild;
+	private boolean isLeafNode = true;
 
 	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType,
 	                      String type, boolean isTableChild, boolean isListChild) {
@@ -131,7 +132,10 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 
 	@Override
 	public Boolean getisLeafElem() {
-		return getChildren().isEmpty();
+		if (this.children == null) {
+			parseChildren();
+		}
+		return isLeafNode;
 	}
 
 	@Override
@@ -166,6 +170,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 					structElem.setNode(childNode);
 					node.addChild(childNode);
 					children.add(structElem);
+					isLeafNode = false;
 				} else if (element instanceof PDMCRDictionary) {
 					PDMCRDictionary mcr = (PDMCRDictionary) element;
 					addChunksToChildren(mcr.getPageObjectNumber(), mcr.getMCID());
@@ -261,7 +266,11 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 					maxLength = length;
 				}
 				length = 1;
+				lastCharacter = character;
 			}
+		}
+		if (length > maxLength) {
+			maxLength = length;
 		}
 		return maxLength;
 	}
