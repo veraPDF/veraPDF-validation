@@ -113,6 +113,15 @@ public class GFPDFont extends GFPDResource implements PDFont {
     }
 
     @Override
+    public Boolean getisItalic() {
+        org.verapdf.pd.font.PDFontDescriptor fontDescriptor = this.pdFont.getFontDescriptor();
+        if (fontDescriptor != null) {
+            return fontDescriptor.isItalic();
+        }
+        return null;
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case FONT_FILE:
