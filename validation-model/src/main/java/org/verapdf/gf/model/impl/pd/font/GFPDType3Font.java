@@ -53,7 +53,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
     public static final String TYPE3_FONT_TYPE = "PDType3Font";
 
     public static final String CHAR_STRINGS = "charStrings";
-    private PDResourcesHandler resources;
+    private final PDResourcesHandler resources;
     private Map<String, PDContentStream> charStrings = null;
     private final GraphicState inheritedGraphicState;
 
