@@ -89,7 +89,8 @@ public class GFICCProfile extends GFExternal implements org.verapdf.model.extern
 
 	private void checkAlternateComponentsNumber() {
 		PDColorSpace alternate = this.iccProfile.getAlternate();
-		if (alternate != null && alternate.getNumberOfComponents() != getN()) {
+		Long n = getN();
+		if (alternate != null && n != null && alternate.getNumberOfComponents() != n) {
 			LOGGER.warning("Alternate color space does not match the number of components in the ICC profile");
 		}
 	}
