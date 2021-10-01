@@ -132,6 +132,9 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	}
 
 	private void processCOSDictionaryInOrder(COSObject element, Set<String> groupNames) {
-		groupNames.remove(element.getStringKey(ASAtom.NAME));
+		String name = element.getStringKey(ASAtom.NAME);
+		if (name != null) {
+			groupNames.remove(name);
+		}
 	}
 }
