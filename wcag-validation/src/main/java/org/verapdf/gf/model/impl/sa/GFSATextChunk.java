@@ -56,4 +56,14 @@ public class GFSATextChunk extends GFSAChunk implements SATextChunk {
 	public String getContext() {
 		return textChunk.getBoundingBox().getLocation();
 	}
+
+	@Override
+	public String getExtraContext() {
+		return textChunk.getValue();
+	}
+
+	@Override
+	public Boolean gethasSpecialStyle() {
+		return textChunk.getHasSpecialStyle();
+	}
 }
