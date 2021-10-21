@@ -2,12 +2,14 @@ package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.cos.COSKey;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
+import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
 
 public class ChunkContainer {
 
@@ -53,31 +55,43 @@ public class ChunkContainer {
 			return get(boundingBox);
 		}
 		Map<Long, List<IChunk>> map = chunks.get(pageObjectNumber);
-		List<IChunk> chunksList = new ArrayList<>();
 		if (map != null) {
-			for (List<IChunk> list : map.values()) {
-				for (IChunk chunk : list) {
-					if (boundingBox.contains(chunk.getBoundingBox())) {
+			return processAllChunks(map, boundingBox);
+		}
+		return Collections.emptyList();
+	}
+
+	public List<IChunk> get(BoundingBox boundingBox) {
+		List<IChunk> chunksList = new ArrayList<>();
+		for (Map<Long, List<IChunk>> map : chunks.values()) {
+			chunksList.addAll(processAllChunks(map, boundingBox));
+		}
+		return chunksList;
+	}
+
+	private List<IChunk> processAllChunks(Map<Long, List<IChunk>> map, BoundingBox boundingBox) {
+		List<IChunk> chunksList = new ArrayList<>();
+		for (List<IChunk> list : map.values()) {
+			for (IChunk chunk : list) {
+				if (chunk instanceof TextChunk) {
+					if (checkTextChunk((TextChunk) chunk, boundingBox)) {
 						chunksList.add(chunk);
 					}
+				} else if (boundingBox.contains(chunk.getBoundingBox())) {
+					chunksList.add(chunk);
 				}
 			}
 		}
 		return chunksList;
 	}
 
-	public List<IChunk> get(BoundingBox boundingBox) {
-		List<IChunk> chunksList = new ArrayList<>();
-		for (Map<Long, List<IChunk>> map : chunks.values()) {
-			for (List<IChunk> list : map.values()) {
-				for (IChunk chunk : list) {
-					if (boundingBox.contains(chunk.getBoundingBox())) {
-						chunksList.add(chunk);
-					}
-				}
-			}
-		}
-		return chunksList;
+	private boolean checkTextChunk(TextChunk textChunk, BoundingBox boundingBox) {
+		BoundingBox textChunkBoundingBox = textChunk.getBoundingBox();
+		int numOfSymbols = textChunk.getValue().length();
+		double fontSymbolWidth = textChunkBoundingBox.getWidth() / numOfSymbols;
+		double fontSymbolHeight = textChunkBoundingBox.getHeight();
+		return boundingBox.contains(textChunk.getBoundingBox(), fontSymbolWidth / 2,
+		                            fontSymbolHeight / 2);
 	}
 
 	public void add(Long mcid, IChunk chunk) {
