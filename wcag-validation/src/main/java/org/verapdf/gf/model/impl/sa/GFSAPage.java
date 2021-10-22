@@ -27,7 +27,9 @@ import org.verapdf.model.salayer.SAAnnotation;
 import org.verapdf.model.salayer.SAChunk;
 import org.verapdf.model.salayer.SAPage;
 import org.verapdf.pd.PDAnnotation;
+import org.verapdf.wcag.algorithms.entities.IPage;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
+import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 
 import java.util.ArrayList;
@@ -37,9 +39,11 @@ import java.util.List;
 /**
  * @author Maxim Plushchov
  */
-public class GFSAPage extends GenericModelObject implements SAPage {
+public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 
 	public static final String PAGE_TYPE = "SAPage";
+
+	public static final String ARTIFACTS = "artifacts";
 
 	private static final String ANNOTS = "annots";
 
@@ -59,6 +63,8 @@ public class GFSAPage extends GenericModelObject implements SAPage {
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
+			case ARTIFACTS:
+				return getartifacts();
 			case ANNOTS:
 				return this.getAnnotations();
 			default:
@@ -93,13 +99,16 @@ public class GFSAPage extends GenericModelObject implements SAPage {
 			for (IChunk chunk : artifacts) {
 				if (chunk instanceof TextChunk) {
 					this.artifacts.add(new GFSATextChunk((TextChunk) chunk));
+				} else if (chunk instanceof ImageChunk) {
+					this.artifacts.add(new GFSAImageChunk((ImageChunk) chunk));
 				}
 			}
 		}
 		return artifacts;
 	}
 
-	private List<IChunk> getArtifacts() {
+	@Override
+	public List<IChunk> getArtifacts() {
 		if (contentStream == null) {
 			parseContentStream();
 		}
@@ -124,5 +133,9 @@ public class GFSAPage extends GenericModelObject implements SAPage {
 			                                        pdPage.getObject().getKey(), pdPage.getCropBox());
 		}
 		this.contentStream = pdContentStream;
+	}
+
+	public int getPageNumber() {
+		return pdPage.getPageNumber();
 	}
 }
