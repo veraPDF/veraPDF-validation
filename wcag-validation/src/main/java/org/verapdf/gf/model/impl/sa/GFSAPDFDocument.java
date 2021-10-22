@@ -25,6 +25,10 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAPDFDocument;
 import org.verapdf.model.salayer.SAStructTreeRoot;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
+import org.verapdf.wcag.algorithms.entities.IDocument;
+import org.verapdf.wcag.algorithms.entities.IPage;
+import org.verapdf.wcag.algorithms.entities.ITree;
+import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
 import org.verapdf.wcag.algorithms.semanticalgorithms.ContrastRatioChecker;
 
@@ -33,7 +37,7 @@ import java.util.*;
 /**
  * @author Maxim Plushchov
  */
-public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument {
+public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument, IDocument {
 
     public static final String DOCUMENT_TYPE = "SAPDFDocument";
 
@@ -62,7 +66,7 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
             case STRUCTURE_TREE_ROOT:
                 return this.getStructureTreeRoot();
             case PAGES:
-                return getPages();
+                return getpages();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -77,12 +81,20 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         return Collections.unmodifiableList(result);
     }
 
-	private List<GFSAPage> getPages() {
+    private List<GFSAPage> getpages() {
         if (this.pages == null) {
             this.pages = parsePages();
         }
         return this.pages;
-	}
+    }
+
+    @Override
+    public List<IPage> getPages() {
+        if (this.pages == null) {
+            this.pages = parsePages();
+        }
+        return Collections.unmodifiableList(this.pages);
+    }
 
     private void parseStructureTreeRoot() {
         org.verapdf.pd.structure.PDStructTreeRoot root = document.getStructTreeRoot();
@@ -115,17 +127,46 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         }
     }
 
+    @Override
+    public List<IChunk> getArtifacts(Integer pageNumber) {
+        if (pageNumber < pages.size()) {
+            return pages.get(pageNumber).getArtifacts();
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public IPage getPage(Integer pageNumber) {
+        if (pageNumber < pages.size()) {
+            return pages.get(pageNumber);
+        }
+        return null;
+    }
+
+    @Override
+    public List<IChunk> getArtifacts() {
+        List<IChunk> artifacts = new LinkedList<>();
+        for (GFSAPage page : pages) {
+            artifacts.addAll(page.getArtifacts());
+        }
+        return artifacts;
+    }
+
+    @Override
+    public ITree getTree() {
+        return treeRoot;
+    }
+
     private void checkSemantic() {
         parseChunks();
         parseStructureTreeRoot();
         if (treeRoot != null) {
             AccumulatedNodeSemanticChecker accumulatedNodeSemanticChecker = new AccumulatedNodeSemanticChecker();
-            accumulatedNodeSemanticChecker.checkSemanticTree(treeRoot);
-            if (document.getDocument().getFileName() != null) {
-                ContrastRatioChecker contrastRatioChecker = new ContrastRatioChecker();
-                contrastRatioChecker.checkSemanticTree(treeRoot, document.getDocument().getFileName());
-            }
+            accumulatedNodeSemanticChecker.checkSemanticTree(this);
+        }
+        if (document.getDocument().getFileName() != null) {
+            ContrastRatioChecker contrastRatioChecker = new ContrastRatioChecker();
+            contrastRatioChecker.checkDocument(this, document.getDocument().getFileName());
         }
     }
-
 }
