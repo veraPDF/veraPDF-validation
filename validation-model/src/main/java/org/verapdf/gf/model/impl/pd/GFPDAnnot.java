@@ -399,7 +399,8 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
 			List<CosLang> annotLang = getLang();
 			GFPDContentStream stream;
-			if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
+			if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily()) &&
+			    !PDFAFlavour.WCAG2_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
 				stream = new GFPDContentStream(toAdd, resources, null,
 						new StructureElementAccessObject(this.simpleCOSObject), getstructParentType(), "");
 			} else {

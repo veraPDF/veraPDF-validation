@@ -185,7 +185,9 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 			if (type != null) {
 				return StaticContainers.getRoleMapHelper().getStandardType(type.getType(),
 						StaticContainers.getFlavour() != null &&
-						StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1);
+						StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1,
+						StaticContainers.getFlavour() != null &&
+						StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1);
 			}
 		}
 		return null;
