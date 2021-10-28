@@ -111,7 +111,9 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
     public String getparentStandardTag() {
         return StaticContainers.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getparentStructureTag()),
                 StaticContainers.getFlavour() != null &&
-                StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1);
+                StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1,
+                StaticContainers.getFlavour() != null &&
+                StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1);
     }
 
 }

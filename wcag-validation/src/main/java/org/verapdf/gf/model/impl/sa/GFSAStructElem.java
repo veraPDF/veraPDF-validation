@@ -146,7 +146,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
 		StructureType type = pdStructElem.getStructureType();
 		if (type != null) {
-			return StaticStorages.getRoleMapHelper().getStandardType(type.getType(), false);
+			return StaticStorages.getRoleMapHelper().getStandardType(type.getType(), false, true);
 		}
 		return null;
 	}
