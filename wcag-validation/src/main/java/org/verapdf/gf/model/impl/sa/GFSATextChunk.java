@@ -66,4 +66,9 @@ public class GFSATextChunk extends GFSAChunk implements SATextChunk {
 	public Boolean gethasSpecialStyle() {
 		return textChunk.getHasSpecialStyle();
 	}
+
+	@Override
+	public Boolean getisUnderlined() {
+		return textChunk.getIsUnderlinedText();
+	}
 }

@@ -34,6 +34,7 @@ public class GraphicsState implements Cloneable {
 	private double[] fillColor = new double[]{0};
 	private PDColorSpace fillColorSpace;
 	private boolean processColorOperators = true;
+	private double lineWidth = 1.0;
 
 	private GraphicsState() {
 
@@ -83,12 +84,21 @@ public class GraphicsState implements Cloneable {
 		this.fillColor = fillColor.clone();
 	}
 
+	public double getLineWidth() {
+		return lineWidth;
+	}
+
+	public void setLineWidth(double lineWidth) {
+		this.lineWidth = lineWidth;
+	}
+
 	public void copyProperties(GraphicsState graphicState) {
 		this.CTM = graphicState.getCTM();
 		this.textState = graphicState.getTextState();
 		this.fillColor = graphicState.getFillColor();
 		this.fillColorSpace = graphicState.getFillColorSpace();
 		this.processColorOperators = graphicState.isProcessColorOperators();
+		this.lineWidth = graphicState.getLineWidth();
 	}
 
 	@Override
@@ -99,7 +109,7 @@ public class GraphicsState implements Cloneable {
 		clone.fillColor = this.fillColor;
 		clone.fillColorSpace = this.fillColorSpace;
 		clone.processColorOperators = this.processColorOperators;
+		clone.lineWidth = this.lineWidth;
 		return clone;
 	}
-
 }
