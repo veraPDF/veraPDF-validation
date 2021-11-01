@@ -62,7 +62,7 @@ class ChunkParser {
 	private final GraphicsState graphicsState;
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
-	private List<IChunk> notStrokeArtifacts = new LinkedList<>();
+	private List<Object> nonDrawingArtifacts = new LinkedList<>();
 	private final double[] cropBox;
 
 	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber, ResourceHandler resourceHandler, double[] cropBox) {
@@ -300,14 +300,19 @@ class ChunkParser {
 				}
 				break;
 			case Operators.H_CLOSEPATH:
-				processOp_h();
+				processh();
+				break;
+			case Operators.F_FILL:
+			case Operators.F_FILL_OBSOLETE:
+			case Operators.F_STAR_FILL:
+				processf();
 				break;
 			case Operators.L_LINE_TO:
 				if (arguments.size() == 2 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber()) {
 					double x = arguments.get(0).getReal();
 					double y = arguments.get(1).getReal();
-					notStrokeArtifacts.add(new LineChunk(pageNumber, path.getCurrentX(), path.getCurrentY(), x, y));
+					nonDrawingArtifacts.add(new LineChunk(pageNumber, path.getCurrentX(), path.getCurrentY(), x, y, graphicsState.getLineWidth()));
 					path.setCurrentPoint(x, y);
 				}
 				break;
@@ -320,12 +325,18 @@ class ChunkParser {
 					path.setCurrentPoint(x, y);
 				}
 				break;
+			case Operators.W_LINE_WIDTH:
+				if (arguments.size() == 1 && arguments.get(0).getType().isNumber()) {
+					graphicsState.setLineWidth(Math.max(1.0, arguments.get(0).getReal()));
+				}
+				break;
 			case Operators.RE:
 				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
 						arguments.get(3).getType().isNumber()) {
 					double x = arguments.get(0).getReal();
 					double y = arguments.get(1).getReal();
+					nonDrawingArtifacts.add(new Rectangle(pageNumber, x, y, arguments.get(2).getReal(), arguments.get(3).getReal()));
 					path.setCurrentPoint(x, y);
 					path.setStartPoint(x, y);
 				}
@@ -345,28 +356,28 @@ class ChunkParser {
 				}
 				break;
 			case Operators.B_CLOSEPATH_FILL_STROKE:
-				processOp_h();
-				processOp_S();
+				processh();
+				processB();
 				break;
 			case Operators.B_FILL_STROKE:
-				processOp_S();
+				processB();
 				break;
 			case Operators.B_STAR_CLOSEPATH_EOFILL_STROKE:
-				processOp_h();
-				processOp_S();
+				processh();
+				processB();
 				break;
 			case Operators.B_STAR_EOFILL_STROKE:
-				processOp_S();
+				processB();
 				break;
 			case Operators.N:
-				notStrokeArtifacts = new LinkedList<>();
+				nonDrawingArtifacts = new LinkedList<>();
 				break;
 			case Operators.S_CLOSE_STROKE:
-				processOp_h();
-				processOp_S();
+				processh();
+				processS();
 				break;
 			case Operators.S_STROKE:
-				processOp_S();
+				processS();
 				break;
 			case Operators.CM_CONCAT:
 				graphicsState.getCTM().concatenate(new Matrix(arguments));
@@ -435,18 +446,57 @@ class ChunkParser {
 		this.graphicsState.getTextState().setCharacterSpacing(op2);
 	}
 
-	private void processOp_h() {
-		artifacts.add(new LineChunk(pageNumber, path.getStartX(), path.getStartY(), path.getCurrentX(), path.getCurrentY()));
+	private void processh() {
+		artifacts.add(new LineChunk(pageNumber, path.getStartX(), path.getStartY(), path.getCurrentX(), path.getCurrentY(), graphicsState.getLineWidth()));
 		path.setCurrentPoint(path.getStartX(), path.getStartY());
 	}
 
-	private void processOp_S() {
-		for (IChunk chunk : notStrokeArtifacts) {
+	private void processB() {
+		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
-				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getCTM()));
+				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getCTM(), graphicsState.getLineWidth()));
+			} else if (chunk instanceof Rectangle) {
+				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
+				if (line != null) {
+					artifacts.add(transformLineChunk(line, graphicsState.getCTM(), line.getWidth()));
+				}
 			}
 		}
-		notStrokeArtifacts = new LinkedList<>();
+		nonDrawingArtifacts = new LinkedList<>();
+	}
+
+	private void processS() {
+		for (Object chunk : nonDrawingArtifacts) {
+			if (chunk instanceof LineChunk) {
+				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getCTM(), graphicsState.getLineWidth()));
+			} else if (chunk instanceof Rectangle) {
+				Rectangle rectangle = (Rectangle) chunk;
+				if (rectangle.getHeight() < graphicsState.getLineWidth() || rectangle.getWidth() < graphicsState.getLineWidth()) {
+					LineChunk line = rectangle.getLine(graphicsState.getLineWidth());
+					if (line != null) {
+						artifacts.add(transformLineChunk(line, graphicsState.getCTM(), line.getWidth()));
+					}
+				} else {
+					List<LineChunk> lines = rectangle.getLines(graphicsState.getLineWidth());
+					for (LineChunk line : lines) {
+						artifacts.add(transformLineChunk(line, graphicsState.getCTM(), graphicsState.getLineWidth()));
+					}
+				}
+			}
+		}
+		nonDrawingArtifacts = new LinkedList<>();
+	}
+
+	private void processf() {
+		for (Object chunk : nonDrawingArtifacts) {
+			if (chunk instanceof Rectangle) {
+				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
+				if (line != null) {
+					artifacts.add(transformLineChunk(line, graphicsState.getCTM(), line.getWidth()));
+				}
+			}
+		}
+		nonDrawingArtifacts = new LinkedList<>();
 	}
 
 	private Double getValueOfLastNumber(List<COSBase> arguments) {
@@ -646,11 +696,12 @@ class ChunkParser {
 		return null;
 	}
 
-	private LineChunk transformLineChunk(LineChunk lineChunk, Matrix currentTransformationMatrix) {
+	private LineChunk transformLineChunk(LineChunk lineChunk, Matrix currentTransformationMatrix, double lineWidth) {
 		return new LineChunk(pageNumber, lineChunk.getStartX() * currentTransformationMatrix.getScaleX() + lineChunk.getStartY() * currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
 				lineChunk.getStartX() * currentTransformationMatrix.getShearX() + lineChunk.getStartY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY(),
 				lineChunk.getEndX() * currentTransformationMatrix.getScaleX() + lineChunk.getEndY() * currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
-				lineChunk.getEndX() * currentTransformationMatrix.getShearX() + lineChunk.getEndY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY());
+				lineChunk.getEndX() * currentTransformationMatrix.getShearX() + lineChunk.getEndY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY(),
+				lineWidth);
 	}
 
 	private static void processColorSpace(GraphicsState graphicState, ResourceHandler resourcesHandler,
