@@ -146,7 +146,16 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	@Override
 	public Boolean getisRemappedStandardType() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
-		if (type != null && TaggedPDFHelper.isStandardType(type)) {
+		if (type == null) {
+			return false;
+		}
+		boolean isStandardType;
+		if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1) {
+			isStandardType = TaggedPDFHelper.isWCAGStandardType(type);
+		} else {
+			isStandardType =  TaggedPDFHelper.isStandardType(type);
+		}
+		if (isStandardType) {
 			String actualType = type.getType().getValue();
 			return !actualType.equals(getStructureElementStandardType((org.verapdf.pd.structure.PDStructElem)simplePDObject));
 		}
