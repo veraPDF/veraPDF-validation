@@ -168,8 +168,10 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	private List<JPEG2000> parseJPXStream() {
 		org.verapdf.external.JPEG2000 jpeg = ((org.verapdf.pd.images.PDXImage) this.simplePDObject).getJPXStream();
 		if (jpeg != null) {
+			COSObject colorSpace = simplePDObject.getKey(ASAtom.COLORSPACE);
 			List<JPEG2000> list = new ArrayList<>(GFPDObject.MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFJPEG2000(jpeg));
+			list.add(new GFJPEG2000(jpeg,
+					colorSpace != null && !colorSpace.empty() && colorSpace.getType() != COSObjType.COS_NULL));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
