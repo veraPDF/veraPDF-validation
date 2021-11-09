@@ -33,9 +33,12 @@ public class GFJPEG2000 extends GFExternal implements JPEG2000 {
 
     private final org.verapdf.external.JPEG2000 jpeg2000;
 
-    public GFJPEG2000(org.verapdf.external.JPEG2000 jpeg2000) {
+    private final boolean hasColorSpace;
+
+    public GFJPEG2000(org.verapdf.external.JPEG2000 jpeg2000, boolean hasColorSpace) {
         super(JPEG_2000_TYPE);
         this.jpeg2000 = jpeg2000;
+        this.hasColorSpace = hasColorSpace;
     }
 
     @Override
@@ -71,6 +74,11 @@ public class GFJPEG2000 extends GFExternal implements JPEG2000 {
     @Override
     public Boolean getbpccBoxPresent() {
         return this.jpeg2000.getBPCCBoxPresent();
+    }
+
+    @Override
+    public Boolean gethasColorSpace() {
+        return hasColorSpace;
     }
 
     public PDColorSpace getImageColorSpace() {
