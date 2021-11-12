@@ -39,6 +39,7 @@ import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.ArrayList;
@@ -113,7 +114,15 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();
 		if (parent != null) {
-			return getStructureElementStandardType(parent);
+			String parentStandardType = getStructureElementStandardType(parent);
+			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType)) {
+				parent = parent.getParent();
+				if (parent == null) {
+					return null;
+				}
+				parentStandardType = getStructureElementStandardType(parent);
+			}
+			return parentStandardType;
 		}
 		return null;
 	}
@@ -219,15 +228,24 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	private List<String> getChildrenStandardTypes() {
-		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructChildren();
-		if (!elements.isEmpty()) {
-			List<String> res = new ArrayList<>(elements.size());
-			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				res.add(getStructureElementStandardType(element));
-			}
-			return Collections.unmodifiableList(res);
+		return getChildrenStandardTypes((org.verapdf.pd.structure.PDStructElem) simplePDObject);
+	}
+
+	private static List<String> getChildrenStandardTypes(org.verapdf.pd.structure.PDStructElem element) {
+		List<org.verapdf.pd.structure.PDStructElem> elementsChildren = element.getStructChildren();
+		if (elementsChildren.isEmpty()) {
+			return Collections.emptyList();
 		}
-		return Collections.emptyList();
+		List<String> res = new ArrayList<>();
+		for (org.verapdf.pd.structure.PDStructElem child : elementsChildren) {
+			String elementStandardType = getStructureElementStandardType(child);
+			if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
+				res.addAll(getChildrenStandardTypes(child));
+			} else {
+				res.add(elementStandardType);
+			}
+		}
+		return Collections.unmodifiableList(res);
 	}
 
 	public List<PDStructElem> getChildren() {
