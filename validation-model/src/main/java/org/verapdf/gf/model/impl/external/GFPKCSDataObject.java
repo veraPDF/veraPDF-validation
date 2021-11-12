@@ -52,13 +52,8 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
     public GFPKCSDataObject(COSString pkcsData) {
         super(PKCS_DATA_OBJECT_TYPE);
         try {
-            if (!pkcsData.isHexadecimal()) {
-                pkcs7 = new PKCS7(pkcsData.get());
-            } else {
-                byte[] decodedData = pkcsData.get();
-                pkcs7 = new PKCS7(decodedData);
-            }
-        } catch (IOException e) {
+            pkcs7 = new PKCS7(pkcsData.get());
+        } catch (IOException | ArrayIndexOutOfBoundsException e) {
             LOGGER.log(Level.FINE, "Passed PKCS7 object can't be read", e);
             pkcs7 = getEmptyPKCS7();
         }
