@@ -104,10 +104,17 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	@Override
 	public String getkidsStandardTypes() {
+		if (StaticContainers.getFlavour() != null &&
+		    StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1) {
+			return this.getChildrenStandardTypes()
+			           .stream()
+			           .filter(type -> type != null && !TaggedPDFConstants.ARTIFACT.equals(type))
+			           .collect(Collectors.joining("&"));
+		}
 		return this.getChildrenStandardTypes()
-				.stream()
-				.filter(Objects::nonNull)
-				.collect(Collectors.joining("&"));
+		           .stream()
+		           .filter(Objects::nonNull)
+		           .collect(Collectors.joining("&"));
 	}
 
 	@Override
