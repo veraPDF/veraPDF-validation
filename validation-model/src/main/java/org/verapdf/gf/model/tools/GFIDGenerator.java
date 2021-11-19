@@ -47,7 +47,7 @@ public final class GFIDGenerator {
 		}
 		int hashcode = font.getDictionary().hashCode();
 		String fontName = font.getName();
-		if (fontName.length() > 127) {
+		if (fontName != null && fontName.length() > 127) {
 			fontName = fontName.substring(0, 127);
 		}
 		return String.valueOf(hashcode) + ' ' + fontName;
@@ -56,7 +56,7 @@ public final class GFIDGenerator {
 	public static String generateID(PDType0Font font) {
 		int hashcode = font.getType0FontDict().hashCode();
 		String fontName = font.getName();
-		if (fontName.length() > 127) {
+		if (fontName != null && fontName.length() > 127) {
 			fontName = fontName.substring(0, 127);
 		}
 		return String.valueOf(hashcode) + ' ' + fontName;
