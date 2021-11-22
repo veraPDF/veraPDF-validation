@@ -55,11 +55,13 @@ public class Rectangle {
 
     public LineChunk getLine(double lineWidth) {
         if (width < height) {
-            double lineX = x + width / 2;
-            return new LineChunk(pageNumber, lineX, y, lineX, y + height, width + lineWidth);
+            double lineX = x + 0.5 * width;
+            return new LineChunk(pageNumber, lineX, y + 0.5 * width, lineX, y + height - 0.5 * width,
+                    width + lineWidth);
         } else if (width > height) {
-            double lineY = y + height / 2;
-            return new LineChunk(pageNumber, x, lineY, x + width, lineY, height + lineWidth);
+            double lineY = y + 0.5 * height;
+            return new LineChunk(pageNumber, x + 0.5 * height, lineY, x + width - 0.5 * height, lineY,
+                    height + lineWidth);
         }
         return null;
     }

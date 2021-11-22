@@ -162,7 +162,7 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         parseStructureTreeRoot();
         if (treeRoot != null) {
             AccumulatedNodeSemanticChecker accumulatedNodeSemanticChecker = new AccumulatedNodeSemanticChecker();
-            accumulatedNodeSemanticChecker.checkSemanticTree(this);
+            accumulatedNodeSemanticChecker.checkSemanticDocument(this);
         }
         if (document.getDocument().getFileName() != null) {
             ContrastRatioChecker contrastRatioChecker = new ContrastRatioChecker();
