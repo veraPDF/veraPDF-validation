@@ -58,12 +58,10 @@ public class Rectangle {
             double lineX = x + 0.5 * width;
             return new LineChunk(pageNumber, lineX, y + 0.5 * width, lineX, y + height - 0.5 * width,
                     width + lineWidth);
-        } else if (width > height) {
-            double lineY = y + 0.5 * height;
-            return new LineChunk(pageNumber, x + 0.5 * height, lineY, x + width - 0.5 * height, lineY,
-                    height + lineWidth);
         }
-        return null;
+        double lineY = y + 0.5 * height;
+        return new LineChunk(pageNumber, x + 0.5 * height, lineY, x + width - 0.5 * height, lineY,
+                height + lineWidth);
     }
 
     public double getWidth() {

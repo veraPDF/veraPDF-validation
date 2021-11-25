@@ -23,6 +23,7 @@ package org.verapdf.gf.model.factory.chunks;
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.pd.colors.PDColorSpace;
+import org.verapdf.wcag.algorithms.entities.content.LineChunk;
 
 /**
  * @author Maxim Plushchov
@@ -35,6 +36,7 @@ public class GraphicsState implements Cloneable {
 	private PDColorSpace fillColorSpace;
 	private boolean processColorOperators = true;
 	private double lineWidth = 1.0;
+	private int lineCap = LineChunk.BUTT_CAP_STYLE;
 
 	private GraphicsState() {
 
@@ -92,6 +94,14 @@ public class GraphicsState implements Cloneable {
 		this.lineWidth = lineWidth;
 	}
 
+	public int getLineCap() {
+		return lineCap;
+	}
+
+	public void setLineCap(int lineCap) {
+		this.lineCap = lineCap;
+	}
+
 	public void copyProperties(GraphicsState graphicState) {
 		this.CTM = graphicState.getCTM();
 		this.textState = graphicState.getTextState();
@@ -99,6 +109,7 @@ public class GraphicsState implements Cloneable {
 		this.fillColorSpace = graphicState.getFillColorSpace();
 		this.processColorOperators = graphicState.isProcessColorOperators();
 		this.lineWidth = graphicState.getLineWidth();
+		this.lineCap = graphicState.getLineCap();
 	}
 
 	@Override
@@ -110,6 +121,7 @@ public class GraphicsState implements Cloneable {
 		clone.fillColorSpace = this.fillColorSpace;
 		clone.processColorOperators = this.processColorOperators;
 		clone.lineWidth = this.lineWidth;
+		clone.lineCap = this.lineCap;
 		return clone;
 	}
 }

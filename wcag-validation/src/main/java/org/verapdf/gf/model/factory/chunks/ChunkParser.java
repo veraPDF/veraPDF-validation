@@ -330,6 +330,11 @@ class ChunkParser {
 					graphicsState.setLineWidth(Math.max(1.0, arguments.get(0).getReal()));
 				}
 				break;
+			case Operators.J_LINE_CAP:
+				if (arguments.size() == 1 && arguments.get(0).getType() == COSObjType.COS_INTEGER) {
+					graphicsState.setLineCap(arguments.get(0).getInteger().intValue());
+				}
+				break;
 			case Operators.RE:
 				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
@@ -447,18 +452,21 @@ class ChunkParser {
 	}
 
 	private void processh() {
-		artifacts.add(new LineChunk(pageNumber, path.getStartX(), path.getStartY(), path.getCurrentX(), path.getCurrentY(), graphicsState.getLineWidth()));
+		artifacts.add(new LineChunk(pageNumber, path.getStartX(), path.getStartY(),
+				path.getCurrentX(), path.getCurrentY(), graphicsState.getLineWidth()));
 		path.setCurrentPoint(path.getStartX(), path.getStartY());
 	}
 
 	private void processB() {
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
-				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getCTM(), graphicsState.getLineWidth()));
+				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getCTM(),
+						graphicsState.getLineWidth(), graphicsState.getLineCap()));
 			} else if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
 				if (line != null) {
-					artifacts.add(transformLineChunk(line, graphicsState.getCTM(), line.getWidth()));
+					artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
+							line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
 				}
 			}
 		}
@@ -468,18 +476,22 @@ class ChunkParser {
 	private void processS() {
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
-				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getCTM(), graphicsState.getLineWidth()));
+				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getCTM(),
+						graphicsState.getLineWidth(), graphicsState.getLineCap()));
 			} else if (chunk instanceof Rectangle) {
 				Rectangle rectangle = (Rectangle) chunk;
-				if (rectangle.getHeight() < graphicsState.getLineWidth() || rectangle.getWidth() < graphicsState.getLineWidth()) {
+				if (rectangle.getHeight() < graphicsState.getLineWidth() ||
+						rectangle.getWidth() < graphicsState.getLineWidth()) {
 					LineChunk line = rectangle.getLine(graphicsState.getLineWidth());
 					if (line != null) {
-						artifacts.add(transformLineChunk(line, graphicsState.getCTM(), line.getWidth()));
+						artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
+								line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
 					}
 				} else {
 					List<LineChunk> lines = rectangle.getLines(graphicsState.getLineWidth());
 					for (LineChunk line : lines) {
-						artifacts.add(transformLineChunk(line, graphicsState.getCTM(), graphicsState.getLineWidth()));
+						artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
+								graphicsState.getLineWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
 					}
 				}
 			}
@@ -490,9 +502,10 @@ class ChunkParser {
 	private void processf() {
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof Rectangle) {
-				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
+				LineChunk line = ((Rectangle)chunk).getLine(0);
 				if (line != null) {
-					artifacts.add(transformLineChunk(line, graphicsState.getCTM(), line.getWidth()));
+					artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
+							line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
 				}
 			}
 		}
@@ -696,12 +709,17 @@ class ChunkParser {
 		return null;
 	}
 
-	private LineChunk transformLineChunk(LineChunk lineChunk, Matrix currentTransformationMatrix, double lineWidth) {
-		return new LineChunk(pageNumber, lineChunk.getStartX() * currentTransformationMatrix.getScaleX() + lineChunk.getStartY() * currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
-				lineChunk.getStartX() * currentTransformationMatrix.getShearX() + lineChunk.getStartY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY(),
-				lineChunk.getEndX() * currentTransformationMatrix.getScaleX() + lineChunk.getEndY() * currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
-				lineChunk.getEndX() * currentTransformationMatrix.getShearX() + lineChunk.getEndY() * currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY(),
-				lineWidth);
+	private LineChunk transformLineChunk(LineChunk lineChunk, Matrix currentTransformationMatrix, double lineWidth, int lineCap) {
+		return LineChunk.createLineChunk(pageNumber, lineChunk.getStartX() *
+						currentTransformationMatrix.getScaleX() + lineChunk.getStartY() *
+						currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
+				lineChunk.getStartX() * currentTransformationMatrix.getShearX() + lineChunk.getStartY() *
+						currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY(),
+				lineChunk.getEndX() * currentTransformationMatrix.getScaleX() + lineChunk.getEndY() *
+						currentTransformationMatrix.getShearY() + currentTransformationMatrix.getTranslateX(),
+				lineChunk.getEndX() * currentTransformationMatrix.getShearX() + lineChunk.getEndY() *
+						currentTransformationMatrix.getScaleY() + currentTransformationMatrix.getTranslateY(),
+				lineWidth, lineCap);
 	}
 
 	private static void processColorSpace(GraphicsState graphicState, ResourceHandler resourcesHandler,
