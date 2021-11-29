@@ -327,7 +327,10 @@ class ChunkParser {
 				break;
 			case Operators.W_LINE_WIDTH:
 				if (arguments.size() == 1 && arguments.get(0).getType().isNumber()) {
-					graphicsState.setLineWidth(Math.max(1.0, arguments.get(0).getReal()));
+					double width = arguments.get(0).getReal();
+					if (width > 0.0) {
+						graphicsState.setLineWidth(width);
+					}
 				}
 				break;
 			case Operators.J_LINE_CAP:
