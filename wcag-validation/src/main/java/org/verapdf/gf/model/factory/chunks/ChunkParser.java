@@ -40,6 +40,8 @@ import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.LineChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
+import org.verapdf.wcag.algorithms.entities.geometry.Vertex;
+import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
 
 import java.io.*;
 import java.util.*;
@@ -305,6 +307,7 @@ class ChunkParser {
 			case Operators.F_FILL:
 			case Operators.F_FILL_OBSOLETE:
 			case Operators.F_STAR_FILL:
+				processh();
 				processf();
 				break;
 			case Operators.L_LINE_TO:
@@ -312,7 +315,10 @@ class ChunkParser {
 						arguments.get(1).getType().isNumber()) {
 					double x = arguments.get(0).getReal();
 					double y = arguments.get(1).getReal();
-					nonDrawingArtifacts.add(new LineChunk(pageNumber, path.getCurrentX(), path.getCurrentY(), x, y, graphicsState.getLineWidth()));
+					if (!NodeUtils.areCloseNumbers(path.getCurrentX(), x) || !NodeUtils.areCloseNumbers(path.getCurrentY(), y)) {
+						nonDrawingArtifacts.add(new LineChunk(pageNumber, path.getCurrentX(), path.getCurrentY(),
+								x, y, graphicsState.getLineWidth()));
+					}
 					path.setCurrentPoint(x, y);
 				}
 				break;
@@ -455,8 +461,11 @@ class ChunkParser {
 	}
 
 	private void processh() {
-		artifacts.add(new LineChunk(pageNumber, path.getStartX(), path.getStartY(),
-				path.getCurrentX(), path.getCurrentY(), graphicsState.getLineWidth()));
+		if (!NodeUtils.areCloseNumbers(path.getStartX(), path.getCurrentX()) ||
+				!NodeUtils.areCloseNumbers(path.getStartY(), path.getCurrentY())) {
+			nonDrawingArtifacts.add(new LineChunk(pageNumber, path.getStartX(), path.getStartY(),
+					path.getCurrentX(), path.getCurrentY(), graphicsState.getLineWidth()));
+		}
 		path.setCurrentPoint(path.getStartX(), path.getStartY());
 	}
 
@@ -503,16 +512,47 @@ class ChunkParser {
 	}
 
 	private void processf() {
-		for (Object chunk : nonDrawingArtifacts) {
+		for (int i = 0; i < nonDrawingArtifacts.size(); i++) {
+			Object chunk = nonDrawingArtifacts.get(i);
 			if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(0);
 				if (line != null) {
 					artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
 							line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
 				}
+			} else if (chunk instanceof LineChunk) {
+				parsingRectangleFormLines(i, (LineChunk)chunk);
 			}
 		}
 		nonDrawingArtifacts = new LinkedList<>();
+	}
+
+	public void parsingRectangleFormLines(int i, LineChunk line1) {
+		if ((i < nonDrawingArtifacts.size() - 3) && (nonDrawingArtifacts.get(i + 1) instanceof LineChunk) &&
+				(nonDrawingArtifacts.get(i + 2) instanceof LineChunk) &&
+				(nonDrawingArtifacts.get(i + 3) instanceof LineChunk)) {
+			LineChunk line2 = (LineChunk) nonDrawingArtifacts.get(i + 1);
+			LineChunk line3 = (LineChunk) nonDrawingArtifacts.get(i + 2);
+			LineChunk line4 = (LineChunk) nonDrawingArtifacts.get(i + 3);
+			if (Vertex.areCloseVertexes(line1.getEnd(), line2.getStart()) &&
+					Vertex.areCloseVertexes(line2.getEnd(), line3.getStart()) &&
+					Vertex.areCloseVertexes(line3.getEnd(), line4.getStart()) &&
+					Vertex.areCloseVertexes(line4.getEnd(), line1.getStart())) {
+				if (line1.isHorizontalLine() && line2.isVerticalLine() &&
+						line3.isHorizontalLine() && line4.isVerticalLine()) {
+					LineChunk line = new LineChunk(pageNumber, line2.getCenterX(), line2.getCenterY(),
+							line4.getCenterX(), line4.getCenterY(), Math.abs(line1.getCenterY() - line3.getCenterY()));
+					artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
+							line.getWidth(), LineChunk.BUTT_CAP_STYLE));
+				} else if (line1.isVerticalLine() && line2.isHorizontalLine() &&
+						line3.isVerticalLine() && line4.isHorizontalLine()) {
+					LineChunk line = new LineChunk(pageNumber, line1.getCenterX(), line1.getCenterY(),
+							line3.getCenterX(), line3.getCenterY(), Math.abs(line2.getCenterY() - line4.getCenterY()));
+					artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
+							line.getWidth(), LineChunk.BUTT_CAP_STYLE));
+				}
+			}
+		}
 	}
 
 	private Double getValueOfLastNumber(List<COSBase> arguments) {
