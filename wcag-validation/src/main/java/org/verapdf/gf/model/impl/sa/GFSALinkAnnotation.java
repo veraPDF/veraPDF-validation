@@ -24,6 +24,9 @@ import org.verapdf.model.salayer.SALinkAnnotation;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDPage;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * @author Maxim Plushchov
  */
@@ -33,6 +36,30 @@ public class GFSALinkAnnotation extends GFSAAnnotation implements SALinkAnnotati
 
 	public GFSALinkAnnotation(PDAnnotation annot, PDPage page) {
 		super(annot, page, LINK_ANNOTATION_TYPE);
+	}
+
+	@Override
+	public Boolean getcontentsIsLink() {
+		return isLink(getContents());
+	}
+
+	@Override
+	public Boolean getaltIsLink() {
+		return isLink(getAlt());
+	}
+
+	@Override
+	public Boolean gettextValueIsLink() {
+		return isLink(gettextValue());
+	}
+
+	private Boolean isLink(String textValue) {
+		try {
+			new URL(textValue);
+			return true;
+		} catch (MalformedURLException ignored) {
+		}
+		return false;
 	}
 
 }
