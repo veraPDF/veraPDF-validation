@@ -21,16 +21,18 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.salayer.SAAnnotation;
 import org.verapdf.pd.*;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -76,16 +78,6 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 		return "";
 	}
 
-	@Override
-	public Boolean gethasLinkValue() {
-        try {
-            new URL(gettextValue());
-            return true;
-        } catch (MalformedURLException ignored) {
-        }
-		return false;
-	}
-
 	public static GFSAAnnotation createAnnot(PDAnnotation annot, PDPage page) {
 		ASAtom subtype = annot.getSubtype();
 		if (subtype == null) {
@@ -114,6 +106,23 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 	@Override
 	public String getContents() {
 		return annot.getContents();
+	}
+
+	@Override
+	public String getAlt() {
+		PDStructTreeRoot structTreeRoot = page.getPDDocument().getStructTreeRoot();
+		Long structParent = this.annot.getStructParent();
+		if (structTreeRoot != null && structParent != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
+			if (structureElement != null) {
+				COSObject baseAlt = structureElement.getKey(ASAtom.ALT);
+				if (baseAlt != null && baseAlt.getType() == COSObjType.COS_STRING) {
+					return baseAlt.getDirectBase().toString();
+				}
+			}
+		}
+		return null;
 	}
 
 	@Override
