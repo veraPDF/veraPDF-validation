@@ -28,7 +28,7 @@ public class GFSATitle extends GFSAGeneral implements SATitle {
 
     public static final String TITLE_STRUCTURE_ELEMENT_TYPE = "SATitle";
 
-    public GFSATitle(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.TITLE, TITLE_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSATitle(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.TITLE, TITLE_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

@@ -28,8 +28,8 @@ public class GFSADocumentFragment extends GFSAGeneral implements SADocumentFragm
 
     public static final String DOCUMENT_FRAGMENT_STRUCTURE_ELEMENT_TYPE = "SADocumentFragment";
 
-    public GFSADocumentFragment(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+    public GFSADocumentFragment(PDStructElem structElemDictionary, String parentsStandardTypes) {
         super(structElemDictionary, TaggedPDFConstants.DOCUMENT_FRAGMENT,
-              DOCUMENT_FRAGMENT_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+              DOCUMENT_FRAGMENT_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

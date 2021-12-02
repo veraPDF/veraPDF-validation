@@ -28,8 +28,7 @@ public class GFSAArtifact extends GFSAGeneral implements SAArtifact {
 
     public static final String ARTIFACT_STRUCTURE_ELEMENT_TYPE = "SAArtifact";
 
-    public GFSAArtifact(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.ARTIFACT, ARTIFACT_STRUCTURE_ELEMENT_TYPE,
-              isTableChild, isListChild);
+    public GFSAArtifact(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.ARTIFACT, ARTIFACT_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

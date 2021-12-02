@@ -28,7 +28,7 @@ public class GFSAQuote extends GFSAGeneral implements SAQuote {
 
     public static final String QUOTE_STRUCTURE_ELEMENT_TYPE = "SAQuote";
 
-    public GFSAQuote(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.QUOTE, QUOTE_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAQuote(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.QUOTE, QUOTE_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

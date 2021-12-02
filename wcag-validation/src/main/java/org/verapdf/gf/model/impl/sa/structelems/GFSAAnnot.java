@@ -28,7 +28,7 @@ public class GFSAAnnot extends GFSAGeneral implements SAAnnot {
 
     public static final String ANNOT_STRUCTURE_ELEMENT_TYPE = "SAAnnot";
 
-    public GFSAAnnot(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.ANNOT, ANNOT_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAAnnot(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.ANNOT, ANNOT_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

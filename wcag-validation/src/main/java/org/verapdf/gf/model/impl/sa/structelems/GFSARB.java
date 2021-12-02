@@ -28,7 +28,7 @@ public class GFSARB extends GFSAGeneral implements SARB {
 
     public static final String RB_STRUCTURE_ELEMENT_TYPE = "SARB";
 
-    public GFSARB(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.RB, RB_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSARB(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.RB, RB_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

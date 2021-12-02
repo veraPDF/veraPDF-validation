@@ -28,7 +28,7 @@ public class GFSARuby extends GFSAGeneral implements SARuby {
 
     public static final String RUBY_STRUCTURE_ELEMENT_TYPE = "SARuby";
 
-    public GFSARuby(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.RUBY, RUBY_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSARuby(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.RUBY, RUBY_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

@@ -28,7 +28,7 @@ public class GFSATable extends GFSAGeneral implements SATable {
 
     public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SATable";
 
-    public GFSATable(PDStructElem structElemDictionary, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.TABLE, TABLE_STRUCTURE_ELEMENT_TYPE, true, isListChild);
+    public GFSATable(PDStructElem structElemDictionary, String parentStandardTags) {
+        super(structElemDictionary, TaggedPDFConstants.TABLE, TABLE_STRUCTURE_ELEMENT_TYPE, parentStandardTags);
     }
 }

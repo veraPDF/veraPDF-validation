@@ -28,7 +28,7 @@ public class GFSAP extends GFSAGeneral implements SAP {
 
     public static final String P_STRUCTURE_ELEMENT_TYPE = "SAP";
 
-    public GFSAP(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.P, P_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAP(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.P, P_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

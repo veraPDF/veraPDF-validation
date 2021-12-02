@@ -27,7 +27,7 @@ public class GFSAHn extends GFSAGeneral implements SAHn {
 
     public static final String HN_STRUCTURE_ELEMENT_TYPE = "SAHn";
 
-    public GFSAHn(PDStructElem structElemDictionary, String standardType, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, standardType, HN_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAHn(PDStructElem structElemDictionary, String standardType, String parentsStandardTypes) {
+        super(structElemDictionary, standardType, HN_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

@@ -28,7 +28,7 @@ public class GFSATH extends GFSAGeneral implements SATH {
 
     public static final String TH_STRUCTURE_ELEMENT_TYPE = "SATH";
 
-    public GFSATH(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.TH, TH_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSATH(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.TH, TH_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

@@ -28,7 +28,7 @@ public class GFSATD extends GFSAGeneral implements SATD {
 
     public static final String TD_STRUCTURE_ELEMENT_TYPE = "SATD";
 
-    public GFSATD(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.TD, TD_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSATD(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.TD, TD_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

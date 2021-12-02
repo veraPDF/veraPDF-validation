@@ -28,7 +28,7 @@ public class GFSALI extends GFSAGeneral implements SALI {
 
     public static final String LI_STRUCTURE_ELEMENT_TYPE = "SALI";
 
-    public GFSALI(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.LI, LI_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSALI(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.LI, LI_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

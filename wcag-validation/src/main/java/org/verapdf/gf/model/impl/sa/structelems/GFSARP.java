@@ -28,7 +28,7 @@ public class GFSARP extends GFSAGeneral implements SARP {
 
     public static final String RP_STRUCTURE_ELEMENT_TYPE = "SARP";
 
-    public GFSARP(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.RP, RP_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSARP(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.RP, RP_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }
