@@ -28,7 +28,7 @@ public class GFSAFigure extends GFSAGeneral implements SAFigure {
 
     public static final String FIGURE_STRUCTURE_ELEMENT_TYPE = "SAFigure";
 
-    public GFSAFigure(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.FIGURE, FIGURE_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAFigure(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.FIGURE, FIGURE_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

@@ -28,7 +28,7 @@ public class GFSAArt extends GFSAGeneral implements SAArt {
 
     public static final String ART_STRUCTURE_ELEMENT_TYPE = "SAArt";
 
-    public GFSAArt(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.ART, ART_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAArt(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.ART, ART_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

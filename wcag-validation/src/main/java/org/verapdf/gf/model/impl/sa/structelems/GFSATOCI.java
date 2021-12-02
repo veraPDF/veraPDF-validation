@@ -28,7 +28,7 @@ public class GFSATOCI extends GFSAGeneral implements SATOCI {
 
     public static final String TOCI_STRUCTURE_ELEMENT_TYPE = "SATOCI";
 
-    public GFSATOCI(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.TOCI, TOCI_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSATOCI(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.TOCI, TOCI_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

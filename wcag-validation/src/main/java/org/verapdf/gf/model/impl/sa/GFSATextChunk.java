@@ -31,10 +31,12 @@ public class GFSATextChunk extends GFSAChunk implements SATextChunk {
 	public static final String TEXT_CHUNK_TYPE = "SATextChunk";
 
 	private final TextChunk textChunk;
+	private final String parentsStandardTypes;
 
-	public GFSATextChunk(TextChunk textChunk) {
+	public GFSATextChunk(TextChunk textChunk, String parentsStandardTypes) {
 		super(TEXT_CHUNK_TYPE);
 		this.textChunk = textChunk;
+		this.parentsStandardTypes = parentsStandardTypes;
 	}
 
 	@Override
@@ -70,5 +72,10 @@ public class GFSATextChunk extends GFSAChunk implements SATextChunk {
 	@Override
 	public Boolean getisUnderlined() {
 		return textChunk.getIsUnderlinedText();
+	}
+
+	@Override
+	public String getparentsStandardTypes() {
+		return parentsStandardTypes;
 	}
 }

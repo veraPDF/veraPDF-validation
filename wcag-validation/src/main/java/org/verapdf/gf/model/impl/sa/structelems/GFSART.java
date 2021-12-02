@@ -28,7 +28,7 @@ public class GFSART extends GFSAGeneral implements SART {
 
     public static final String RT_STRUCTURE_ELEMENT_TYPE = "SART";
 
-    public GFSART(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.RT, RT_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSART(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.RT, RT_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

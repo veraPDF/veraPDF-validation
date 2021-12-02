@@ -28,8 +28,8 @@ public class GFSACaption extends GFSAGeneral implements SACaption {
 
     public static final String CAPTION_STRUCTURE_ELEMENT_TYPE = "SACaption";
 
-    public GFSACaption(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+    public GFSACaption(PDStructElem structElemDictionary, String parentsStandardTypes) {
         super(structElemDictionary, TaggedPDFConstants.CAPTION, CAPTION_STRUCTURE_ELEMENT_TYPE,
-              isTableChild, isListChild);
+              parentsStandardTypes);
     }
 }

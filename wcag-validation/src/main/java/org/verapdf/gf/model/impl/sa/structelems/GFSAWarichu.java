@@ -28,8 +28,8 @@ public class GFSAWarichu extends GFSAGeneral implements SAWarichu {
 
     public static final String WARICHU_STRUCTURE_ELEMENT_TYPE = "SAWarichu";
 
-    public GFSAWarichu(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
+    public GFSAWarichu(PDStructElem structElemDictionary, String parentsStandardTypes) {
         super(structElemDictionary, TaggedPDFConstants.WARICHU, WARICHU_STRUCTURE_ELEMENT_TYPE,
-              isTableChild, isListChild);
+              parentsStandardTypes);
     }
 }

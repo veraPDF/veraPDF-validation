@@ -28,7 +28,7 @@ public class GFSAH extends GFSAGeneral implements SAH {
 
     public static final String H_STRUCTURE_ELEMENT_TYPE = "SAH";
 
-    public GFSAH(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.H, H_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAH(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.H, H_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

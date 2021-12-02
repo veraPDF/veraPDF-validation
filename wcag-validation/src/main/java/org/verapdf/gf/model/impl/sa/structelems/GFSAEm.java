@@ -28,7 +28,7 @@ public class GFSAEm extends GFSAGeneral implements SAEm {
 
     public static final String EM_STRUCTURE_ELEMENT_TYPE = "SAEm";
 
-    public GFSAEm(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.EM, EM_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAEm(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.EM, EM_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

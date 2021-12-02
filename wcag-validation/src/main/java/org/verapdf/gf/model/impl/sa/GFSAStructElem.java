@@ -60,18 +60,20 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	private final boolean isTableChild;
 	private final boolean isListChild;
 	private boolean isLeafNode = true;
+	private final String parentsStandardTypes;
 
 	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType,
-	                      String type, boolean isTableChild, boolean isListChild) {
+	                      String type, String parentsStandardTypes) {
 		super(type);
 		this.structElemDictionary = structElemDictionary;
 		this.standardType = standardType;
 		COSKey key = structElemDictionary.getObject().getObjectKey();
-		id = (key != null ? (key.getNumber() + " " + key.getGeneration() + " obj") : "0 0 obj") +
+		id = (key != null ? (key.getNumber() + " " + key.getGeneration()) : "0 0") + " obj" +
 		     (standardType != null ? (" " + standardType) : "") +
 		     (getStructureType() != null ? (" " + ((COSName) COSName.fromValue(getStructureType())).getUnicodeValue()) : "");
-		this.isTableChild = isTableChild;
-		this.isListChild = isListChild;
+		this.isTableChild = Arrays.asList(parentsStandardTypes.split("&")).contains(TaggedPDFConstants.TABLE);
+		this.isListChild = Arrays.asList(parentsStandardTypes.split("&")).contains(TaggedPDFConstants.L);
+		this.parentsStandardTypes = parentsStandardTypes;
 	}
 
 	public void setNode(INode node) {
@@ -165,7 +167,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 			for (java.lang.Object element : elements) {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
 					GFSAStructElem structElem = GFSAGeneral.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
-					                                                              isTableChild, isListChild);
+							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + "&")) + standardType);
 					INode childNode = new GFSANode(structElem);
 					structElem.setNode(childNode);
 					node.addChild(childNode);
@@ -188,7 +190,8 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 				if (chunk instanceof TextChunk) {
 					TextChunk textChunk = (TextChunk) chunk;
 					node.addChild(new SemanticSpan(textChunk));
-					children.add(new GFSATextChunk(textChunk));
+					children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
+							(parentsStandardTypes + "&")) + standardType));
 					textValue.append(textChunk.getValue());
 				} else if (chunk instanceof ImageChunk) {
 					node.addChild(new SemanticImageNode((ImageChunk) chunk));

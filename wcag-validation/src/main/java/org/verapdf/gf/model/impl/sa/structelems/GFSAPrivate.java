@@ -28,7 +28,7 @@ public class GFSAPrivate extends GFSAGeneral implements SAPrivate {
 
     public static final String PRIVATE_STRUCTURE_ELEMENT_TYPE = "SAPrivate";
 
-    public GFSAPrivate(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.PRIVATE, PRIVATE_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSAPrivate(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.PRIVATE, PRIVATE_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

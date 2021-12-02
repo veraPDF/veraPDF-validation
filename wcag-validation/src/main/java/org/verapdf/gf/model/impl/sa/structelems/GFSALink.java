@@ -28,7 +28,7 @@ public class GFSALink extends GFSAGeneral implements SALink {
 
     public static final String LINK_STRUCTURE_ELEMENT_TYPE = "SALink";
 
-    public GFSALink(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.LINK, LINK_STRUCTURE_ELEMENT_TYPE, isTableChild, isListChild);
+    public GFSALink(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.LINK, LINK_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }

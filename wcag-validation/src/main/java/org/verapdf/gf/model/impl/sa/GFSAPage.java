@@ -98,7 +98,7 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 			this.artifacts = new ArrayList<>(artifacts.size());
 			for (IChunk chunk : artifacts) {
 				if (chunk instanceof TextChunk) {
-					this.artifacts.add(new GFSATextChunk((TextChunk) chunk));
+					this.artifacts.add(new GFSATextChunk((TextChunk) chunk, ""));
 				} else if (chunk instanceof ImageChunk) {
 					this.artifacts.add(new GFSAImageChunk((ImageChunk) chunk));
 				}

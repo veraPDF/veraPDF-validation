@@ -28,8 +28,7 @@ public class GFSABibEntry extends GFSAGeneral implements SABibEntry {
 
     public static final String BIB_ENTRY_STRUCTURE_ELEMENT_TYPE = "SABibEntry";
 
-    public GFSABibEntry(PDStructElem structElemDictionary, boolean isTableChild, boolean isListChild) {
-        super(structElemDictionary, TaggedPDFConstants.BIB_ENTRY, BIB_ENTRY_STRUCTURE_ELEMENT_TYPE,
-              isTableChild, isListChild);
+    public GFSABibEntry(PDStructElem structElemDictionary, String parentsStandardTypes) {
+        super(structElemDictionary, TaggedPDFConstants.BIB_ENTRY, BIB_ENTRY_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
     }
 }
