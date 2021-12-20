@@ -129,8 +129,8 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 		GFSAContentStream pdContentStream = null;
 		if (pdPage.getContent() != null) {
 			ResourceHandler resourceHandler = ResourceHandler.getInstance(pdPage.getResources());
-			pdContentStream = new GFSAContentStream(pdPage.getContent(), resourceHandler, pdPage.getPageNumber(),
-			                                        pdPage.getObject().getKey(), pdPage.getCropBox());
+			pdContentStream = new GFSAContentStream(pdPage.getContent(), null, resourceHandler, pdPage.getPageNumber(),
+			                                        pdPage.getObject().getKey(), pdPage.getCropBox(), null);
 		}
 		this.contentStream = pdContentStream;
 	}

@@ -26,6 +26,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.chunks.ChunkFactory;
+import org.verapdf.gf.model.factory.chunks.GraphicsState;
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.parser.PDFStreamParser;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
@@ -44,18 +45,23 @@ public class GFSAContentStream {
 	private static final Logger LOGGER = Logger.getLogger(GFSAContentStream.class.getName());
 
 	private final Integer pageNumber;
-	private final COSKey pageObjectNumber;
+	private final COSKey objectKey;
 	private List<IChunk> artifacts = null;
 	private final ResourceHandler resourceHandler;
+	private final GraphicsState inheritedGraphicsState;
 	private final org.verapdf.pd.PDContentStream contentStream;
 	private double[] cropBox;
+	private final Long markedContent;
 
-	public GFSAContentStream(org.verapdf.pd.PDContentStream contentStream, ResourceHandler resourceHandler,
-	                         Integer pageNumber, COSKey pageObjectNumber, double[] cropBox) {
+	public GFSAContentStream(org.verapdf.pd.PDContentStream contentStream, GraphicsState inheritedGraphicsState,
+							 ResourceHandler resourceHandler, Integer pageNumber, COSKey objectKey, double[] cropBox,
+							 Long markedContent) {
 		this.pageNumber = pageNumber;
-		this.pageObjectNumber = pageObjectNumber;
+		this.objectKey = objectKey;
 		this.contentStream = contentStream;
 		this.resourceHandler = resourceHandler;
+		this.inheritedGraphicsState = inheritedGraphicsState;
+		this.markedContent = markedContent;
 		this.cropBox = cropBox;
 		if (this.cropBox == null) {
 			this.cropBox = new double[]{0.0, 0.0, 0.0, 0.0};
@@ -63,13 +69,12 @@ public class GFSAContentStream {
 	}
 
 	public List<IChunk> getArtifacts() {
-		if (pageNumber != null) {
-			if (this.artifacts == null) {
-				parseChunks();
-			}
-		}
 		if (this.artifacts == null) {
-			this.artifacts = Collections.emptyList();
+			if (pageNumber != null) {
+				parseChunks();
+			} else {
+				this.artifacts = Collections.emptyList();
+			}
 		}
 		return this.artifacts;
 	}
@@ -82,8 +87,8 @@ public class GFSAContentStream {
 					try (ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
 						try (PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
 							streamParser.parseTokens();
-							ChunkFactory chunkFactory = new ChunkFactory();
-							this.artifacts = chunkFactory.chunksFromTokens(pageNumber, pageObjectNumber, streamParser.getTokens(), resourceHandler, cropBox);
+							this.artifacts = ChunkFactory.chunksFromTokens(pageNumber, objectKey, streamParser.getTokens(),
+									inheritedGraphicsState, resourceHandler, cropBox, markedContent);
 						}
 					}
 				}
