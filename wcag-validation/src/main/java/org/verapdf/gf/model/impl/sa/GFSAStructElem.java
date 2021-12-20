@@ -184,7 +184,12 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 					isLeafNode = false;
 				} else if (element instanceof PDMCRDictionary) {
 					PDMCRDictionary mcr = (PDMCRDictionary) element;
-					addChunksToChildren(mcr.getPageObjectNumber(), mcr.getMCID());
+					COSKey streamKey = mcr.getStreamObjectKey();
+					if (streamKey != null) {
+						addChunksToChildren(streamKey, mcr.getMCID());
+					} else {
+						addChunksToChildren(mcr.getPageObjectKey(), mcr.getMCID());
+					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
 					addChunksToChildren(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger());
 				}

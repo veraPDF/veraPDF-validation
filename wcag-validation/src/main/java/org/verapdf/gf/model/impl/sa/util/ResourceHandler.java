@@ -157,4 +157,8 @@ public class ResourceHandler {
 		       ASAtom.DEVICEGRAY.equals(name) || ASAtom.DEVICECMYK.equals(name);
 	}
 
+	public ResourceHandler getExtendedResources(PDResources objectResources) {
+		return getInstance(this.pageResources, objectResources);
+	}
+
 }

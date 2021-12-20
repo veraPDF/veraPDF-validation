@@ -18,35 +18,29 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.factory.chunks;
+package org.verapdf.gf.model.impl.sa;
 
-import org.verapdf.cos.COSBase;
-import org.verapdf.cos.COSKey;
+import org.verapdf.gf.model.factory.chunks.GraphicsState;
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
-import org.verapdf.operator.Operator;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * @author Maxim Plushchov
  */
-public final class ChunkFactory {
+public class GFSAXForm {
 
-	public static List<IChunk> chunksFromTokens(Integer pageNumber, COSKey objectKey, List<Object> rawTokens,
-										 GraphicsState inheritedGraphicState, ResourceHandler resourceHandler,
-										 double[] cropBox, Long markedContent) {
-		List<COSBase> arguments = new ArrayList<>();
-		ChunkParser parser = new ChunkParser(pageNumber, objectKey, inheritedGraphicState, resourceHandler,
+	private final GFSAContentStream contentStream;
+
+	public GFSAXForm(org.verapdf.pd.images.PDXForm xForm, ResourceHandler resourceHandler,
+					 GraphicsState inheritedGraphicsState, Integer pageNumber, double[] cropBox, Long markedContent) {
+		this.contentStream = new GFSAContentStream(xForm, inheritedGraphicsState,
+				resourceHandler.getExtendedResources(xForm.getResources()), pageNumber, xForm.getObject().getKey(),
 				cropBox, markedContent);
-		for (Object rawToken : rawTokens) {
-			if (rawToken instanceof COSBase) {
-				arguments.add((COSBase) rawToken);
-			} else if (rawToken instanceof Operator) {
-				parser.parseChunk(((Operator) rawToken), resourceHandler, arguments);
-				arguments = new ArrayList<>();
-			}
-		}
-		return parser.getArtifacts();
+	}
+
+	public List<IChunk> getArtifacts() {
+		return contentStream.getArtifacts();
 	}
 }

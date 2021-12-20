@@ -25,6 +25,7 @@ package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
+import org.verapdf.gf.model.impl.sa.GFSAXForm;
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.cos.*;
@@ -34,6 +35,7 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
+import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
@@ -58,7 +60,7 @@ class ChunkParser {
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
 	private final Integer pageNumber;
-	private final COSKey pageObjectNumber;
+	private final COSKey objectKey;
 	private Matrix textMatrix = null;
 	private Matrix textLineMatrix = null;
 	private final GraphicsState graphicsState;
@@ -67,11 +69,19 @@ class ChunkParser {
 	private List<Object> nonDrawingArtifacts = new LinkedList<>();
 	private final double[] cropBox;
 
-	public ChunkParser(Integer pageNumber, COSKey pageObjectNumber, ResourceHandler resourceHandler, double[] cropBox) {
+	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
+					   ResourceHandler resourceHandler, double[] cropBox, Long markedContent) {
 		this.pageNumber = pageNumber;
-		this.pageObjectNumber = pageObjectNumber;
-		graphicsState = new GraphicsState(resourceHandler);
+		this.objectKey = objectKey;
+		if (inheritedGraphicState == null) {
+			this.graphicsState = new GraphicsState(resourceHandler);
+		} else {
+			this.graphicsState = inheritedGraphicState.clone();
+		}
 		this.cropBox = cropBox;
+		if (markedContent != null) {
+			markedContentStack.push(markedContent);
+		}
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -94,7 +104,7 @@ class ChunkParser {
 				if (this.graphicsState.isProcessColorOperators()) {
 					processColorSpace(this.graphicsState, resourceHandler, PDDeviceGray.INSTANCE,
 					                  ASAtom.DEVICEGRAY, false);
-					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
 						Double fillColor = getValueOfLastNumber(arguments);
 						if (fillColor != null) {
 							this.graphicsState.setFillColor(new double[]{fillColor});
@@ -109,7 +119,7 @@ class ChunkParser {
 				if (this.graphicsState.isProcessColorOperators()) {
 					processColorSpace(this.graphicsState, resourceHandler, PDDeviceRGB.INSTANCE,
 					                  ASAtom.DEVICERGB, false);
-					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
 						if (arguments.size() == 3 && arguments.get(0).getType().isNumber() &&
 						    arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber()) {
 							this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
@@ -125,7 +135,7 @@ class ChunkParser {
 				if (this.graphicsState.isProcessColorOperators()) {
 					processColorSpace(this.graphicsState, resourceHandler, PDDeviceCMYK.INSTANCE,
 					                  ASAtom.DEVICECMYK, false);
-					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
 						if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
 						    arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
 						    arguments.get(3).getType().isNumber()) {
@@ -140,7 +150,7 @@ class ChunkParser {
 			}
 			case Operators.SCN_FILL:
 				if (this.graphicsState.isProcessColorOperators()) {
-					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
 						if (arguments.size() == 1 || arguments.size() == 2) {
 							if (arguments.get(0).getType().isNumber()) {
 								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal()});
@@ -165,7 +175,7 @@ class ChunkParser {
 				break;
 			case Operators.SC_FILL:
 				if (this.graphicsState.isProcessColorOperators()) {
-					if (isProcessColorSpace(this.graphicsState.getFillColorSpace().getType())) {
+					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
 						if (arguments.size() == 1) {
 							if (arguments.get(0).getType().isNumber()) {
 								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal()});
@@ -409,6 +419,10 @@ class ChunkParser {
 				if (xObject != null) {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
 						putChunk(getMarkedContent(), new ImageChunk(new BoundingBox(pageNumber, parseImageBoundingBox())));
+					} else if (ASAtom.FORM.equals(xObject.getType())) {
+						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, graphicsState, pageNumber,
+								cropBox, getMarkedContent());
+						artifacts.addAll(xForm.getArtifacts());
 					}
 				}
 				break;
@@ -463,8 +477,8 @@ class ChunkParser {
 	private void processh() {
 		if (!NodeUtils.areCloseNumbers(path.getStartX(), path.getCurrentX()) ||
 				!NodeUtils.areCloseNumbers(path.getStartY(), path.getCurrentY())) {
-			nonDrawingArtifacts.add(new LineChunk(pageNumber, path.getStartX(), path.getStartY(),
-					path.getCurrentX(), path.getCurrentY(), graphicsState.getLineWidth()));
+			nonDrawingArtifacts.add(new LineChunk(pageNumber, path.getCurrentX(), path.getCurrentY(),
+					path.getStartX(), path.getStartY(), graphicsState.getLineWidth()));
 		}
 		path.setCurrentPoint(path.getStartX(), path.getStartY());
 	}
@@ -521,13 +535,16 @@ class ChunkParser {
 							line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
 				}
 			} else if (chunk instanceof LineChunk) {
-				parsingRectangleFormLines(i, (LineChunk)chunk);
+				if (parsingRectangleFromLines(i)) {
+					i += 3;
+				}
 			}
 		}
 		nonDrawingArtifacts = new LinkedList<>();
 	}
 
-	public void parsingRectangleFormLines(int i, LineChunk line1) {
+	private boolean parsingRectangleFromLines(int i) {
+		LineChunk line1 = (LineChunk) nonDrawingArtifacts.get(i);
 		if ((i < nonDrawingArtifacts.size() - 3) && (nonDrawingArtifacts.get(i + 1) instanceof LineChunk) &&
 				(nonDrawingArtifacts.get(i + 2) instanceof LineChunk) &&
 				(nonDrawingArtifacts.get(i + 3) instanceof LineChunk)) {
@@ -544,15 +561,18 @@ class ChunkParser {
 							line4.getCenterX(), line4.getCenterY(), Math.abs(line1.getCenterY() - line3.getCenterY()));
 					artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
 							line.getWidth(), LineChunk.BUTT_CAP_STYLE));
+					return true;
 				} else if (line1.isVerticalLine() && line2.isHorizontalLine() &&
 						line3.isVerticalLine() && line4.isHorizontalLine()) {
 					LineChunk line = new LineChunk(pageNumber, line1.getCenterX(), line1.getCenterY(),
 							line3.getCenterX(), line3.getCenterY(), Math.abs(line2.getCenterY() - line4.getCenterY()));
 					artifacts.add(transformLineChunk(line, graphicsState.getCTM(),
 							line.getWidth(), LineChunk.BUTT_CAP_STYLE));
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 
 	private Double getValueOfLastNumber(List<COSBase> arguments) {
@@ -600,7 +620,7 @@ class ChunkParser {
 			return;
 		}
 		if (mcid != null) {
-			StaticStorages.getChunks().add(pageObjectNumber, mcid, chunk);
+			StaticStorages.getChunks().add(objectKey, mcid, chunk);
 		} else {
 			artifacts.add(chunk);
 		}
@@ -776,7 +796,11 @@ class ChunkParser {
 		}
 	}
 
-	private boolean isProcessColorSpace(ASAtom colorSpaceType) {
+	private boolean isProcessColorSpace(PDColorSpace colorSpace) {
+		if (colorSpace == null) {
+			return false;
+		}
+		ASAtom colorSpaceType = colorSpace.getType();
 		return ASAtom.DEVICERGB.equals(colorSpaceType) || ASAtom.DEVICEGRAY.equals(colorSpaceType) ||
 		       ASAtom.DEVICECMYK.equals(colorSpaceType) || ASAtom.ICCBASED.equals(colorSpaceType) ||
 		       ASAtom.CALRGB.equals(colorSpaceType) || ASAtom.CALGRAY.equals(colorSpaceType);
