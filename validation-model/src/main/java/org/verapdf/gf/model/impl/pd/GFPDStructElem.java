@@ -167,7 +167,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		}
 		boolean isStandardType;
 		if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1) {
-			isStandardType = TaggedPDFHelper.isWCAGStandardType(type);
+			isStandardType = TaggedPDFHelper.isWCAGStandardType(type) && !TaggedPDFConstants.TITLE.equals(type.getType().getValue());
 		} else {
 			isStandardType =  TaggedPDFHelper.isStandardType(type);
 		}
