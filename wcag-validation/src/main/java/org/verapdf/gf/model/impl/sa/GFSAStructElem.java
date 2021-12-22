@@ -260,6 +260,11 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		return GFSAStructElem.getNumberOfSameCharacters(getTextValue());
 	}
 
+	@Override
+	public String getparentsStandardTypes() {
+		return parentsStandardTypes;
+	}
+
 	public String getTextValue() {
 		if (children == null) {
 			parseChildren();
