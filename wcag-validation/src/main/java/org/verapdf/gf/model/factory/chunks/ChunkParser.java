@@ -744,8 +744,7 @@ class ChunkParser {
 
 	private Long getMarkedContent() {
 		if (!markedContentStack.empty()) {
-			for (int i = markedContentStack.size() - 1; i >= 0; i--) {
-				Long mcid = markedContentStack.get(i);
+			for (Long mcid : markedContentStack) {
 				if (mcid != null) {
 					return mcid;
 				}
