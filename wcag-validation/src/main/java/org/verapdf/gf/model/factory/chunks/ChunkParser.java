@@ -67,7 +67,6 @@ class ChunkParser {
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
 	private List<Object> nonDrawingArtifacts = new LinkedList<>();
-	private final double[] cropBox;
 
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
 					   ResourceHandler resourceHandler, double[] cropBox, Long markedContent) {
@@ -78,7 +77,7 @@ class ChunkParser {
 		} else {
 			this.graphicsState = inheritedGraphicState.clone();
 		}
-		this.cropBox = cropBox;
+		this.graphicsState.getCTM().translate(-cropBox[0], -cropBox[1]);
 		if (markedContent != null) {
 			markedContentStack.push(markedContent);
 		}
@@ -421,7 +420,7 @@ class ChunkParser {
 						putChunk(getMarkedContent(), new ImageChunk(new BoundingBox(pageNumber, parseImageBoundingBox())));
 					} else if (ASAtom.FORM.equals(xObject.getType())) {
 						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, graphicsState, pageNumber,
-								cropBox, getMarkedContent());
+								null, getMarkedContent());
 						artifacts.addAll(xForm.getArtifacts());
 					}
 				}
@@ -586,8 +585,8 @@ class ChunkParser {
 	}
 
 	private double[] parseImageBoundingBox() {
-		double x1 = graphicsState.getCTM().getTranslateX() - cropBox[0];
-		double y1 = graphicsState.getCTM().getTranslateY() - cropBox[1];
+		double x1 = graphicsState.getCTM().getTranslateX();
+		double y1 = graphicsState.getCTM().getTranslateY();
 		double x2 = x1;
 		double y2 = y1;
 		if (graphicsState.getCTM().getScaleX() >= 0 && graphicsState.getCTM().getShearX() >= 0) {
@@ -697,7 +696,7 @@ class ChunkParser {
 			return new TextChunk(new BoundingBox(pageNumber, calculateTextBoundingBox(textRenderingMatrixBefore,
 			    textRenderingMatrixAfter, font.getBoundingBox())), unicodeValue.toString(), font.getNameWithoutSubset(),
 			    textRenderingMatrixAfter.getScaleY(), font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
-			    textRenderingMatrixAfter.getTranslateY() - cropBox[1], graphicsState.getFillColor(),
+			    textRenderingMatrixAfter.getTranslateY(), graphicsState.getFillColor(),
 			    graphicsState.getFillColorSpace() != null ? graphicsState.getFillColorSpace().getType().getValue() : null);
 		}
 		return null;
@@ -739,7 +738,7 @@ class ChunkParser {
 			y1 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixBefore.getScaleY() / 1000;
 			y2 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixAfter.getScaleY() / 1000;
 		}
-		return new double[]{x1 - cropBox[0], y1 - cropBox[1], x2 - cropBox[0], y2 - cropBox[1]};
+		return new double[]{x1, y1 , x2, y2};
 	}
 
 	private Long getMarkedContent() {
