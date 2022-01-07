@@ -18,9 +18,6 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-/**
- *
- */
 package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.as.ASAtom;
@@ -305,9 +302,11 @@ class ChunkParser {
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
 						arguments.get(3).getType().isNumber() && arguments.get(4).getType().isNumber() &&
 						arguments.get(5).getType().isNumber()) {
-					double x3 = arguments.get(4).getReal();
-					double y3 = arguments.get(5).getReal();
-					path.setCurrentPoint(x3, y3);
+					Curve curve = new Curve(pageNumber, path.getCurrentX(), path.getCurrentY(),
+							arguments.get(0).getReal(), arguments.get(1).getReal(), arguments.get(2).getReal(),
+							arguments.get(3).getReal(), arguments.get(4).getReal(), arguments.get(5).getReal());
+					path.setCurrentPoint(curve.getX3(), curve.getY3());
+					nonDrawingArtifacts.add(curve);
 				}
 				break;
 			case Operators.H_CLOSEPATH:
@@ -368,14 +367,22 @@ class ChunkParser {
 				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
 						arguments.get(3).getType().isNumber()) {
-					path.setCurrentPoint(arguments.get(2).getReal(), arguments.get(3).getReal());
+					Curve curve = new Curve(pageNumber, path.getCurrentX(), path.getCurrentY(),
+							arguments.get(0).getReal(), arguments.get(1).getReal(), arguments.get(2).getReal(),
+							arguments.get(3).getReal(), true);
+					path.setCurrentPoint(curve.getX3(), curve.getY3());
+					nonDrawingArtifacts.add(curve);
 				}
 				break;
 			case Operators.Y:
 				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
 						arguments.get(3).getType().isNumber()) {
-					path.setCurrentPoint(arguments.get(2).getReal(), arguments.get(3).getReal());
+					Curve curve = new Curve(pageNumber, path.getCurrentX(), path.getCurrentY(),
+							arguments.get(0).getReal(), arguments.get(1).getReal(), arguments.get(2).getReal(),
+							arguments.get(3).getReal(), false);
+					path.setCurrentPoint(curve.getX3(), curve.getY3());
+					nonDrawingArtifacts.add(curve);
 				}
 				break;
 			case Operators.B_CLOSEPATH_FILL_STROKE:
@@ -531,7 +538,9 @@ class ChunkParser {
 					artifacts.add(transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
 				}
 			} else if (chunk instanceof LineChunk) {
-				if (parsingRectangleFromLines(i)) {
+				LineChunk line = parsingRectangleFromLines(i);
+				if (line != null) {
+					artifacts.add(line);
 					i += 3;
 				}
 			}
@@ -539,7 +548,7 @@ class ChunkParser {
 		nonDrawingArtifacts = new LinkedList<>();
 	}
 
-	private boolean parsingRectangleFromLines(int i) {
+	private LineChunk parsingRectangleFromLines(int i) {
 		LineChunk line1 = (LineChunk) nonDrawingArtifacts.get(i);
 		if ((i < nonDrawingArtifacts.size() - 3) && (nonDrawingArtifacts.get(i + 1) instanceof LineChunk) &&
 				(nonDrawingArtifacts.get(i + 2) instanceof LineChunk) &&
@@ -555,18 +564,16 @@ class ChunkParser {
 						line3.isHorizontalLine() && line4.isVerticalLine()) {
 					LineChunk line = new LineChunk(pageNumber, line2.getCenterX(), line2.getCenterY(),
 							line4.getCenterX(), line4.getCenterY(), Math.abs(line1.getCenterY() - line3.getCenterY()));
-					artifacts.add(transformLineChunk(line, line.getWidth(), LineChunk.BUTT_CAP_STYLE));
-					return true;
+					return transformLineChunk(line, line.getWidth(), LineChunk.BUTT_CAP_STYLE);
 				} else if (line1.isVerticalLine() && line2.isHorizontalLine() &&
 						line3.isVerticalLine() && line4.isHorizontalLine()) {
 					LineChunk line = new LineChunk(pageNumber, line1.getCenterX(), line1.getCenterY(),
 							line3.getCenterX(), line3.getCenterY(), Math.abs(line2.getCenterY() - line4.getCenterY()));
-					artifacts.add(transformLineChunk(line, line.getWidth(), LineChunk.BUTT_CAP_STYLE));
-					return true;
+					return transformLineChunk(line, line.getWidth(), LineChunk.BUTT_CAP_STYLE);
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 
 	private Double getValueOfLastNumber(List<COSBase> arguments) {

@@ -52,7 +52,7 @@ public class StaticStorages {
 		StaticStorages.roleMapHelper.set(roleMapHelper);
 	}
 
-	    public static ChunkContainer getChunks() {
+	public static ChunkContainer getChunks() {
         if (chunks.get() == null) {
             chunks.set(new ChunkContainer());
         }
