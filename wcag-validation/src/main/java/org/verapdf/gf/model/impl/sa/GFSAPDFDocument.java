@@ -23,14 +23,17 @@ package org.verapdf.gf.model.impl.sa;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAPDFDocument;
+import org.verapdf.model.salayer.SARepeatedCharacters;
 import org.verapdf.model.salayer.SAStructTreeRoot;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.wcag.algorithms.entities.IDocument;
 import org.verapdf.wcag.algorithms.entities.IPage;
 import org.verapdf.wcag.algorithms.entities.ITree;
+import org.verapdf.wcag.algorithms.entities.RepeatedCharacters;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
 import org.verapdf.wcag.algorithms.semanticalgorithms.ContrastRatioChecker;
+import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
 
 import java.util.*;
 
@@ -48,6 +51,10 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
     public static final String STRUCTURE_TREE_ROOT = "StructTreeRoot";
 
     public static final String PAGES = "pages";
+
+    private static final String REPEATED_CHARACTERS = "repeatedCharacters";
+
+    private List<SARepeatedCharacters> repeatedCharacters = null;
 
     private List<GFSAPage> pages;
 
@@ -67,6 +74,8 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
                 return this.getStructureTreeRoot();
             case PAGES:
                 return getpages();
+            case REPEATED_CHARACTERS:
+                return this.getRepeatedCharacters();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -113,6 +122,16 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
             return Collections.unmodifiableList(res);
         }
         return Collections.emptyList();
+    }
+
+    private List<SARepeatedCharacters> getRepeatedCharacters() {
+        if (this.repeatedCharacters == null) {
+            this.repeatedCharacters = new ArrayList<>(StaticContainers.getRepeatedCharacters().size());
+            for (RepeatedCharacters characters : StaticContainers.getRepeatedCharacters()) {
+                this.repeatedCharacters.add(new GFSARepeatedCharacters(characters));
+            }
+        }
+        return this.repeatedCharacters;
     }
 
     private void parseChunks() {
