@@ -347,4 +347,9 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		}
 		return new int[]{firstMaxIndex, secondMaxIndex};
 	}
+
+	@Override
+	public Boolean gethasLowestDepthError() {
+		return node.getHasLowestDepthError();
+	}
 }
