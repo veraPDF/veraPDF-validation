@@ -34,11 +34,9 @@ import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
-import org.verapdf.wcag.algorithms.entities.content.IChunk;
-import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
-import org.verapdf.wcag.algorithms.entities.content.LineChunk;
-import org.verapdf.wcag.algorithms.entities.content.TextChunk;
+import org.verapdf.wcag.algorithms.entities.content.*;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
+import org.verapdf.wcag.algorithms.entities.geometry.MultiBoundingBox;
 import org.verapdf.wcag.algorithms.entities.geometry.Vertex;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
 
@@ -64,6 +62,7 @@ class ChunkParser {
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
 	private List<Object> nonDrawingArtifacts = new LinkedList<>();
+	private final LineArtContainer lineArtContainer = new LineArtContainer();
 
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
 					   ResourceHandler resourceHandler, double[] cropBox, Long markedContent) {
@@ -302,9 +301,10 @@ class ChunkParser {
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
 						arguments.get(3).getType().isNumber() && arguments.get(4).getType().isNumber() &&
 						arguments.get(5).getType().isNumber()) {
-					Curve curve = new Curve(pageNumber, path.getCurrentX(), path.getCurrentY(),
-							arguments.get(0).getReal(), arguments.get(1).getReal(), arguments.get(2).getReal(),
-							arguments.get(3).getReal(), arguments.get(4).getReal(), arguments.get(5).getReal());
+					CurveChunk curve = new CurveChunk(pageNumber, new Vertex(path.getCurrentX(), path.getCurrentY()),
+							new Vertex(arguments.get(0).getReal(), arguments.get(1).getReal()),
+							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()),
+							new Vertex(arguments.get(4).getReal(), arguments.get(5).getReal()));
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -367,9 +367,9 @@ class ChunkParser {
 				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
 						arguments.get(3).getType().isNumber()) {
-					Curve curve = new Curve(pageNumber, path.getCurrentX(), path.getCurrentY(),
-							arguments.get(0).getReal(), arguments.get(1).getReal(), arguments.get(2).getReal(),
-							arguments.get(3).getReal(), true);
+					CurveChunk curve = new CurveChunk(pageNumber, new Vertex(path.getCurrentX(), path.getCurrentY()),
+							new Vertex(arguments.get(0).getReal(), arguments.get(1).getReal()),
+							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()), true);
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -378,9 +378,9 @@ class ChunkParser {
 				if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
 						arguments.get(3).getType().isNumber()) {
-					Curve curve = new Curve(pageNumber, path.getCurrentX(), path.getCurrentY(),
-							arguments.get(0).getReal(), arguments.get(1).getReal(), arguments.get(2).getReal(),
-							arguments.get(3).getReal(), false);
+					CurveChunk curve = new CurveChunk(pageNumber, new Vertex(path.getCurrentX(), path.getCurrentY()),
+							new Vertex(arguments.get(0).getReal(), arguments.get(1).getReal()),
+							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()), false);
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -490,10 +490,14 @@ class ChunkParser {
 	}
 
 	private void processB() {
+		List<IChunk> artifacts = new ArrayList<>(nonDrawingArtifacts.size());
+		Long mcid = getMarkedContent();
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
 				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 						graphicsState.getLineCap()));
+			} else if (chunk instanceof CurveChunk) {
+				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM()).getBoundingBox());
 			} else if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
 				if (line != null) {
@@ -501,14 +505,20 @@ class ChunkParser {
 				}
 			}
 		}
+		artifacts.forEach(artifact -> lineArtContainer.add(mcid, artifact.getBoundingBox()));
+		this.artifacts.addAll(artifacts);
 		nonDrawingArtifacts = new LinkedList<>();
 	}
 
 	private void processS() {
+		List<IChunk> artifacts = new ArrayList<>(nonDrawingArtifacts.size());
+		Long mcid = getMarkedContent();
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
 				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 						graphicsState.getLineCap()));
+			} else if (chunk instanceof CurveChunk) {
+				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM()).getBoundingBox());
 			} else if (chunk instanceof Rectangle) {
 				Rectangle rectangle = (Rectangle) chunk;
 				if (rectangle.getHeight() < graphicsState.getLineWidth() ||
@@ -526,10 +536,14 @@ class ChunkParser {
 				}
 			}
 		}
+		artifacts.forEach(artifact -> lineArtContainer.add(mcid, artifact.getBoundingBox()));
+		this.artifacts.addAll(artifacts);
 		nonDrawingArtifacts = new LinkedList<>();
 	}
 
 	private void processf() {
+		List<IChunk> artifacts = new ArrayList<>(nonDrawingArtifacts.size());
+		Long mcid = getMarkedContent();
 		for (int i = 0; i < nonDrawingArtifacts.size(); i++) {
 			Object chunk = nonDrawingArtifacts.get(i);
 			if (chunk instanceof Rectangle) {
@@ -542,9 +556,16 @@ class ChunkParser {
 				if (line != null) {
 					artifacts.add(line);
 					i += 3;
+				} else {
+					lineArtContainer.add(mcid, transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
+							graphicsState.getLineCap()).getBoundingBox());
 				}
+			} else if (chunk instanceof CurveChunk) {
+				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM()).getBoundingBox());
 			}
 		}
+		artifacts.forEach(artifact -> lineArtContainer.add(mcid, artifact.getBoundingBox()));
+		this.artifacts.addAll(artifacts);
 		nonDrawingArtifacts = new LinkedList<>();
 	}
 
@@ -780,37 +801,11 @@ class ChunkParser {
 
 	private LineChunk transformLineChunk(LineChunk lineChunk, double lineWidth, int lineCap) {
 		return LineChunk.createLineChunk(pageNumber,
-				transformX(lineChunk.getStartX(), lineChunk.getStartY()),
-				transformY(lineChunk.getStartX(), lineChunk.getStartY()),
-				transformX(lineChunk.getEndX(), lineChunk.getEndY()),
-				transformY(lineChunk.getEndX(), lineChunk.getEndY()),
+				graphicsState.getCTM().transformX(lineChunk.getStartX(), lineChunk.getStartY()),
+				graphicsState.getCTM().transformY(lineChunk.getStartX(), lineChunk.getStartY()),
+				graphicsState.getCTM().transformX(lineChunk.getEndX(), lineChunk.getEndY()),
+				graphicsState.getCTM().transformY(lineChunk.getEndX(), lineChunk.getEndY()),
 				lineWidth, lineCap);
-	}
-
-	private BoundingBox transformBoundingBox(BoundingBox boundingBox) {
-		List<Double> xCoordinates = new ArrayList<>(4);
-		List<Double> yCoordinates = new ArrayList<>(4);
-		xCoordinates.add(transformX(boundingBox.getLeftX(), boundingBox.getBottomY()));
-		xCoordinates.add(transformX(boundingBox.getRightX(), boundingBox.getBottomY()));
-		xCoordinates.add(transformX(boundingBox.getLeftX(), boundingBox.getTopY()));
-		xCoordinates.add(transformX(boundingBox.getRightX(), boundingBox.getTopY()));
-		yCoordinates.add(transformY(boundingBox.getLeftX(), boundingBox.getBottomY()));
-		yCoordinates.add(transformY(boundingBox.getRightX(), boundingBox.getBottomY()));
-		yCoordinates.add(transformY(boundingBox.getLeftX(), boundingBox.getTopY()));
-		yCoordinates.add(transformY(boundingBox.getRightX(), boundingBox.getTopY()));
-		xCoordinates.sort(Double::compare);
-		yCoordinates.sort(Double::compare);
-		return new BoundingBox(pageNumber, xCoordinates.get(0), yCoordinates.get(0), xCoordinates.get(3), yCoordinates.get(3));
-	}
-
-	private double transformX(double x, double y) {
-		return x * graphicsState.getCTM().getScaleX() + y * graphicsState.getCTM().getShearY() +
-				graphicsState.getCTM().getTranslateX();
-	}
-
-	private double transformY(double x, double y) {
-		return x * graphicsState.getCTM().getShearX() + y * graphicsState.getCTM().getScaleY() +
-				graphicsState.getCTM().getTranslateY();
 	}
 
 	private static void processColorSpace(GraphicsState graphicState, ResourceHandler resourcesHandler,
@@ -834,4 +829,21 @@ class ChunkParser {
 		       ASAtom.CALRGB.equals(colorSpaceType) || ASAtom.CALGRAY.equals(colorSpaceType);
 	}
 
+	public void parseLineArts() {
+		lineArtContainer.unionBoundingBoxes();
+		for (Map.Entry<Long, List<BoundingBox>> boundingBoxes : lineArtContainer.entrySet()) {
+			Long mcid = boundingBoxes.getKey();
+			if (mcid == null) {
+				for (BoundingBox box : boundingBoxes.getValue()) {
+					putChunk(mcid, new LineArtChunk(box));
+				}
+			} else {
+				BoundingBox boundingBox = new MultiBoundingBox();
+				for (BoundingBox box : boundingBoxes.getValue()) {
+					boundingBox.union(box);
+				}
+				putChunk(mcid, new LineArtChunk(boundingBox));
+			}
+		}
+	}
 }

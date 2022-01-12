@@ -22,7 +22,10 @@ package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSBase;
+import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
+import org.verapdf.wcag.algorithms.entities.geometry.Vertex;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -167,6 +170,35 @@ public class Matrix implements Cloneable {
 
 	public double getTranslateY() {
 		return matrixArray[5];
+	}
+
+	public BoundingBox transformBoundingBox(BoundingBox boundingBox) {
+		List<Double> xCoordinates = new ArrayList<>(4);
+		List<Double> yCoordinates = new ArrayList<>(4);
+		xCoordinates.add(transformX(boundingBox.getLeftX(), boundingBox.getBottomY()));
+		xCoordinates.add(transformX(boundingBox.getRightX(), boundingBox.getBottomY()));
+		xCoordinates.add(transformX(boundingBox.getLeftX(), boundingBox.getTopY()));
+		xCoordinates.add(transformX(boundingBox.getRightX(), boundingBox.getTopY()));
+		yCoordinates.add(transformY(boundingBox.getLeftX(), boundingBox.getBottomY()));
+		yCoordinates.add(transformY(boundingBox.getRightX(), boundingBox.getBottomY()));
+		yCoordinates.add(transformY(boundingBox.getLeftX(), boundingBox.getTopY()));
+		yCoordinates.add(transformY(boundingBox.getRightX(), boundingBox.getTopY()));
+		xCoordinates.sort(Double::compare);
+		yCoordinates.sort(Double::compare);
+		return new BoundingBox(boundingBox.getPageNumber(), xCoordinates.get(0), yCoordinates.get(0),
+				xCoordinates.get(3), yCoordinates.get(3));
+	}
+
+	public double transformX(double x, double y) {
+		return x * getScaleX() + y * getShearY() + getTranslateX();
+	}
+
+	public double transformY(double x, double y) {
+		return x * getShearX() + y * getScaleY() + getTranslateY();
+	}
+
+	public Vertex transformVertex(Vertex v) {
+		return new Vertex(v.getPageNumber(), transformX(v.getX(), v.getY()), transformY(v.getX(), v.getY()));
 	}
 
 	@Override
