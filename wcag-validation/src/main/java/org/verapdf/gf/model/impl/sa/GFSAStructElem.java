@@ -31,10 +31,12 @@ import org.verapdf.pd.structure.PDMCRDictionary;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.wcag.algorithms.entities.INode;
+import org.verapdf.wcag.algorithms.entities.SemanticFigure;
 import org.verapdf.wcag.algorithms.entities.SemanticImageNode;
 import org.verapdf.wcag.algorithms.entities.SemanticSpan;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
+import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
 import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
@@ -210,6 +212,8 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 				} else if (chunk instanceof ImageChunk) {
 					node.addChild(new SemanticImageNode((ImageChunk) chunk));
 					children.add(new GFSAImageChunk((ImageChunk) chunk));
+				} else if (chunk instanceof LineArtChunk) {
+					node.addChild(new SemanticFigure((LineArtChunk) chunk));
 				}
 			}
 		}

@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
+import org.verapdf.wcag.algorithms.entities.geometry.Vertex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,23 +31,21 @@ import java.util.List;
  */
 public class CurvesHelper {
 
-	public static BoundingBox getBoundingBoxForCurveC(int pageNumber, double x0, double y0, double x1, double y1,
-													   double x2, double y2, double x3, double y3) {
-		double[] x = getMinAndMaxCurveValues(x0, x1, x2, x3);
-		double[] y = getMinAndMaxCurveValues(y0, y1, y2, y3);
+	public static BoundingBox getBoundingBoxForCurveC(int pageNumber, Vertex v0, Vertex v1, Vertex v2, Vertex v3) {//use width
+		double[] x = getMinAndMaxCurveValues(v0.getX(), v1.getX(), v2.getX(), v3.getX());
+		double[] y = getMinAndMaxCurveValues(v0.getY(), v1.getY(), v2.getY(), v3.getY());
 		return new BoundingBox(pageNumber, x[0], y[0], x[1], y[1]);
 	}
 
-	public static BoundingBox getBoundingBoxForCurveY(int pageNumber, double x0, double y0, double x1, double y1,
-													  double x3, double y3) {
-		return getBoundingBoxForCurveV(pageNumber, x3, y3, x1, y1, x0, y0);
+	public static BoundingBox getBoundingBoxForCurveY(int pageNumber, Vertex v0, Vertex v1, Vertex v3) {
+		return getBoundingBoxForCurveV(pageNumber, v3, v1, v0);
 	}
 
-	public static BoundingBox getBoundingBoxForCurveV(int pageNumber, double x0, double y0, double x2, double y2,
-													  double x3, double y3) {
-		double x = getExtremumCurveValue(x0, x2, x3);
-		double y = getExtremumCurveValue(y0, y2, y3);
-		return new BoundingBox(pageNumber, Math.min(x0, x), Math.min(y0, y), Math.max(x0, x), Math.max(y0, y));
+	public static BoundingBox getBoundingBoxForCurveV(int pageNumber, Vertex v0, Vertex v2, Vertex v3) {
+		double x = getExtremumCurveValue(v0.getX(), v2.getX(), v3.getX());
+		double y = getExtremumCurveValue(v0.getY(), v2.getY(), v3.getY());
+		return new BoundingBox(pageNumber, Math.min(v0.getX(), x), Math.min(v0.getY(), y),
+				Math.max(v0.getX(), x), Math.max(v0.getY(), y));
 	}
 
 	private static double[] getMinAndMaxCurveValues(double x0, double x1, double x2, double x3) {//rename

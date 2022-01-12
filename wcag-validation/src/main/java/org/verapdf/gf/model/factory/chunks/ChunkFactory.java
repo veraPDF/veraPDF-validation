@@ -47,6 +47,7 @@ public final class ChunkFactory {
 				arguments = new ArrayList<>();
 			}
 		}
+		parser.parseLineArts();
 		return parser.getArtifacts();
 	}
 }
