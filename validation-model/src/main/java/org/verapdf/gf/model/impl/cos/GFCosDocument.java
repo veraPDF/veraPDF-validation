@@ -434,7 +434,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private List<org.verapdf.model.salayer.SAPDFDocument> getdocument() {
-		if (StaticContainers.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
+		if (StaticContainers.getFlavour() == PDFAFlavour.WCAG2_1 &&
+				StaticContainers.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
 			List<org.verapdf.model.salayer.SAPDFDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFSAPDFDocument(StaticContainers.getDocument()));
 			return Collections.unmodifiableList(list);
