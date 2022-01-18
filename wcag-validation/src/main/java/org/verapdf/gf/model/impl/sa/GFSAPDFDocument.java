@@ -126,9 +126,13 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
 
     private List<SARepeatedCharacters> getRepeatedCharacters() {
         if (this.repeatedCharacters == null) {
-            this.repeatedCharacters = new ArrayList<>(StaticContainers.getRepeatedCharacters().size());
-            for (RepeatedCharacters characters : StaticContainers.getRepeatedCharacters()) {
-                this.repeatedCharacters.add(new GFSARepeatedCharacters(characters));
+            if (StaticContainers.getRepeatedCharacters() == null) {
+                this.repeatedCharacters = new ArrayList<>();
+            } else {
+                this.repeatedCharacters = new ArrayList<>(StaticContainers.getRepeatedCharacters().size());
+                for (RepeatedCharacters characters : StaticContainers.getRepeatedCharacters()) {
+                    this.repeatedCharacters.add(new GFSARepeatedCharacters(characters));
+                }
             }
         }
         return this.repeatedCharacters;
