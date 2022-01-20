@@ -304,7 +304,8 @@ class ChunkParser {
 					CurveChunk curve = new CurveChunk(pageNumber, new Vertex(path.getCurrentX(), path.getCurrentY()),
 							new Vertex(arguments.get(0).getReal(), arguments.get(1).getReal()),
 							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()),
-							new Vertex(arguments.get(4).getReal(), arguments.get(5).getReal()));
+							new Vertex(arguments.get(4).getReal(), arguments.get(5).getReal()),
+							graphicsState.getLineWidth());
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -369,7 +370,8 @@ class ChunkParser {
 						arguments.get(3).getType().isNumber()) {
 					CurveChunk curve = new CurveChunk(pageNumber, new Vertex(path.getCurrentX(), path.getCurrentY()),
 							new Vertex(arguments.get(0).getReal(), arguments.get(1).getReal()),
-							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()), true);
+							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()),
+							graphicsState.getLineWidth(), true);
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -380,7 +382,8 @@ class ChunkParser {
 						arguments.get(3).getType().isNumber()) {
 					CurveChunk curve = new CurveChunk(pageNumber, new Vertex(path.getCurrentX(), path.getCurrentY()),
 							new Vertex(arguments.get(0).getReal(), arguments.get(1).getReal()),
-							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()), false);
+							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()),
+							graphicsState.getLineWidth(), false);
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -497,7 +500,8 @@ class ChunkParser {
 				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 						graphicsState.getLineCap()));
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM()).getBoundingBox());
+				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+						graphicsState.getLineWidth()).getBoundingBox());
 			} else if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
 				if (line != null) {
@@ -518,7 +522,8 @@ class ChunkParser {
 				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 						graphicsState.getLineCap()));
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM()).getBoundingBox());
+				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+						graphicsState.getLineWidth()).getBoundingBox());
 			} else if (chunk instanceof Rectangle) {
 				Rectangle rectangle = (Rectangle) chunk;
 				if (rectangle.getHeight() < graphicsState.getLineWidth() ||
@@ -561,7 +566,8 @@ class ChunkParser {
 							graphicsState.getLineCap()).getBoundingBox());
 				}
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM()).getBoundingBox());
+				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+						graphicsState.getLineWidth()).getBoundingBox());
 			}
 		}
 		artifacts.forEach(artifact -> lineArtContainer.add(mcid, artifact.getBoundingBox()));
@@ -835,7 +841,7 @@ class ChunkParser {
 			Long mcid = boundingBoxes.getKey();
 			if (mcid == null) {
 				for (BoundingBox box : boundingBoxes.getValue()) {
-					putChunk(mcid, new LineArtChunk(box));
+					artifacts.add(new LineArtChunk(box));
 				}
 			} else {
 				BoundingBox boundingBox = new MultiBoundingBox();

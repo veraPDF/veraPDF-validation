@@ -38,12 +38,12 @@ public class LineArtContainer {
 		return lineArtBBoxes.containsKey(mcid);
 	}
 
-	public List<BoundingBox> get(Long mcid) {
+	public List<BoundingBox> getBoundingBoxes(Long mcid) {
 		return lineArtBBoxes.get(mcid);
 	}
 
 	public void add(Long mcid, BoundingBox boundingBox) {
-		List<BoundingBox> list = get(mcid);
+		List<BoundingBox> list = getBoundingBoxes(mcid);
 		if (list != null) {
 			boolean isSeparateBoundingBox = true;
 			for (int i = 0; i < list.size(); i++) {
@@ -54,7 +54,7 @@ public class LineArtContainer {
 				}
 			}
 			if (isSeparateBoundingBox) {
-				list.add(boundingBox);
+				list.add(new BoundingBox(boundingBox));
 			}
 		} else {
 			list = new ArrayList<>();

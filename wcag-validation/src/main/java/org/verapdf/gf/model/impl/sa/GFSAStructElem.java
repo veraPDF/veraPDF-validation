@@ -199,8 +199,8 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		}
 	}
 
-	private void addChunksToChildren(COSKey pageObjectNumber, Long mcid) {
-		List<IChunk> chunks = StaticStorages.getChunks().get(pageObjectNumber, mcid);
+	private void addChunksToChildren(COSKey objectNumber, Long mcid) {
+		List<IChunk> chunks = StaticStorages.getChunks().get(objectNumber, mcid);
 		if (chunks != null) {
 			for (IChunk chunk : chunks) {
 				if (chunk instanceof TextChunk) {
@@ -214,6 +214,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 					children.add(new GFSAImageChunk((ImageChunk) chunk));
 				} else if (chunk instanceof LineArtChunk) {
 					node.addChild(new SemanticFigure((LineArtChunk) chunk));
+					children.add(new GFSALineArtChunk((LineArtChunk) chunk));
 				}
 			}
 		}
