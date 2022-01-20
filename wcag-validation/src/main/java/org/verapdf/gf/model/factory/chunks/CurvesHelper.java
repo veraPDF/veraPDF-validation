@@ -31,21 +31,24 @@ import java.util.List;
  */
 public class CurvesHelper {
 
-	public static BoundingBox getBoundingBoxForCurveC(int pageNumber, Vertex v0, Vertex v1, Vertex v2, Vertex v3) {//use width
+	public static BoundingBox getBoundingBoxForCurveC(int pageNumber, Vertex v0, Vertex v1, Vertex v2, Vertex v3,
+													  double width) {
 		double[] x = getMinAndMaxCurveValues(v0.getX(), v1.getX(), v2.getX(), v3.getX());
 		double[] y = getMinAndMaxCurveValues(v0.getY(), v1.getY(), v2.getY(), v3.getY());
-		return new BoundingBox(pageNumber, x[0], y[0], x[1], y[1]);
+		return new BoundingBox(pageNumber, x[0] - 0.5 * width, y[0] - 0.5 * width,
+				x[1] + 0.5 * width, y[1] + 0.5 * width);
 	}
 
-	public static BoundingBox getBoundingBoxForCurveY(int pageNumber, Vertex v0, Vertex v1, Vertex v3) {
-		return getBoundingBoxForCurveV(pageNumber, v3, v1, v0);
+	public static BoundingBox getBoundingBoxForCurveY(int pageNumber, Vertex v0, Vertex v1, Vertex v3, double width) {
+		return getBoundingBoxForCurveV(pageNumber, v3, v1, v0, width);
 	}
 
-	public static BoundingBox getBoundingBoxForCurveV(int pageNumber, Vertex v0, Vertex v2, Vertex v3) {
+	public static BoundingBox getBoundingBoxForCurveV(int pageNumber, Vertex v0, Vertex v2, Vertex v3, double width) {
 		double x = getExtremumCurveValue(v0.getX(), v2.getX(), v3.getX());
 		double y = getExtremumCurveValue(v0.getY(), v2.getY(), v3.getY());
-		return new BoundingBox(pageNumber, Math.min(v0.getX(), x), Math.min(v0.getY(), y),
-				Math.max(v0.getX(), x), Math.max(v0.getY(), y));
+		return new BoundingBox(pageNumber, Math.min(v0.getX(), x) - 0.5 * width,
+				Math.min(v0.getY(), y) - 0.5 * width, Math.max(v0.getX(), x) + 0.5 * width,
+				Math.max(v0.getY(), y) + 0.5 * width);
 	}
 
 	private static double[] getMinAndMaxCurveValues(double x0, double x1, double x2, double x3) {//rename

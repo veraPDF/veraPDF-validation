@@ -32,27 +32,30 @@ public class CurveChunk extends InfoChunk {
     private final Vertex v1;
     private final Vertex v2;
     private final Vertex v3;
+    private final double width;
 
-    public CurveChunk(Integer pageNumber, Vertex v0, Vertex v1, Vertex v2, Vertex v3) {
-        super(CurvesHelper.getBoundingBoxForCurveC(pageNumber, v0, v1, v2, v3));//use width);
+    public CurveChunk(Integer pageNumber, Vertex v0, Vertex v1, Vertex v2, Vertex v3, double width) {
+        super(CurvesHelper.getBoundingBoxForCurveC(pageNumber, v0, v1, v2, v3, width));
         this.v0 = v0;
         this.v1 = v1;
         this.v2 = v2;
         this.v3 = v3;
+        this.width = width;
     }
 
-    public CurveChunk(Integer pageNumber, Vertex v0, Vertex v1, Vertex v2, boolean isVOperator) {
+    public CurveChunk(Integer pageNumber, Vertex v0, Vertex v1, Vertex v2, double width, boolean isVOperator) {
         this.v0 = v0;
         this.v3 = v2;
         if (isVOperator) {
             this.v1 = v0;
             this.v2 = v1;
-            setBoundingBox(CurvesHelper.getBoundingBoxForCurveV(pageNumber, v0, v1, v2));
+            setBoundingBox(CurvesHelper.getBoundingBoxForCurveV(pageNumber, v0, v1, v2, width));
         } else {
             this.v1 = v1;
             this.v2 = v2;
-            setBoundingBox(CurvesHelper.getBoundingBoxForCurveY(pageNumber, v0, v1, v2));
+            setBoundingBox(CurvesHelper.getBoundingBoxForCurveY(pageNumber, v0, v1, v2, width));
         }
+        this.width = width;
     }
 
     public double getX3() {
@@ -63,9 +66,9 @@ public class CurveChunk extends InfoChunk {
         return v3.getY();
     }
 
-    public static CurveChunk transformCurve(CurveChunk curve, Matrix transformationMatrix) {
+    public static CurveChunk transformCurve(CurveChunk curve, Matrix transformationMatrix, double width) {
         return new CurveChunk(curve.getPageNumber(), transformationMatrix.transformVertex(curve.v0),
                 transformationMatrix.transformVertex(curve.v1), transformationMatrix.transformVertex(curve.v2),
-                transformationMatrix.transformVertex(curve.v3));
+                transformationMatrix.transformVertex(curve.v3), width);
     }
 }

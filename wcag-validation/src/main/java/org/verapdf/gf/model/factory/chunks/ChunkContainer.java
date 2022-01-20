@@ -51,8 +51,8 @@ public class ChunkContainer {
 		return false;
 	}
 
-	public boolean containsKey(COSKey pageObjectNumber, Long mcid) {
-		Map<Long, List<IChunk>> map = chunks.get(pageObjectNumber);
+	public boolean containsKey(COSKey objectNumber, Long mcid) {
+		Map<Long, List<IChunk>> map = chunks.get(objectNumber);
 		return map != null && map.containsKey(mcid);
 	}
 
@@ -65,19 +65,19 @@ public class ChunkContainer {
 		return null;
 	}
 
-	public List<IChunk> get(COSKey pageObjectNumber, Long mcid) {
-		if (pageObjectNumber == null) {
+	public List<IChunk> get(COSKey objectNumber, Long mcid) {
+		if (objectNumber == null) {
 			return get(mcid);
 		}
-		Map<Long, List<IChunk>> map = chunks.get(pageObjectNumber);
+		Map<Long, List<IChunk>> map = chunks.get(objectNumber);
 		return map != null ? map.get(mcid) : null;
 	}
 
-	public List<IChunk> get(COSKey pageObjectNumber, BoundingBox boundingBox) {
-		if (pageObjectNumber == null) {
+	public List<IChunk> get(COSKey objectNumber, BoundingBox boundingBox) {
+		if (objectNumber == null) {
 			return get(boundingBox);
 		}
-		Map<Long, List<IChunk>> map = chunks.get(pageObjectNumber);
+		Map<Long, List<IChunk>> map = chunks.get(objectNumber);
 		if (map != null) {
 			return processAllChunks(map, boundingBox);
 		}
@@ -131,17 +131,17 @@ public class ChunkContainer {
 		}
 	}
 
-	public void add(COSKey pageObjectNumber, Long mcid, IChunk chunk) {
-		List<IChunk> list = get(pageObjectNumber, mcid);
+	public void add(COSKey objectNumber, Long mcid, IChunk chunk) {
+		List<IChunk> list = get(objectNumber, mcid);
 		if (list != null) {
 			list.add(chunk);
 		} else {
 			list = new ArrayList<>();
 			list.add(chunk);
-			if (!chunks.containsKey(pageObjectNumber)) {
-				chunks.put(pageObjectNumber, new HashMap<>());
+			if (!chunks.containsKey(objectNumber)) {
+				chunks.put(objectNumber, new HashMap<>());
 			}
-			chunks.get(pageObjectNumber).put(mcid, list);
+			chunks.get(objectNumber).put(mcid, list);
 		}
 	}
 
