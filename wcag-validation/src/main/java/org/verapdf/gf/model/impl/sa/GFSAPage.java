@@ -26,11 +26,15 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAAnnotation;
 import org.verapdf.model.salayer.SAChunk;
 import org.verapdf.model.salayer.SAPage;
+import org.verapdf.model.salayer.SATableBorder;
+import org.verapdf.gf.model.impl.sa.tables.GFSATableBorder;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.wcag.algorithms.entities.IPage;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
+import org.verapdf.wcag.algorithms.entities.tables.tableBorders.TableBorder;
+import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,8 +47,8 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 
 	public static final String PAGE_TYPE = "SAPage";
 
-	public static final String ARTIFACTS = "artifacts";
-
+	private static final String ARTIFACTS = "artifacts";
+	private static final String TABLE_BORDERS = "tableBorders";
 	private static final String ANNOTS = "annots";
 
 	private GFSAContentStream contentStream = null;
@@ -67,12 +71,14 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 				return getartifacts();
 			case ANNOTS:
 				return this.getAnnotations();
+			case TABLE_BORDERS:
+				return this.getTableBorders();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<SAAnnotation> parseAnnotataions() {
+	private List<SAAnnotation> parseAnnotations() {
 		List<PDAnnotation> annots = pdPage.getAnnotations();
 		if (annots.size() > 0) {
 			List<SAAnnotation> res = new ArrayList<>(annots.size());
@@ -86,10 +92,20 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 
 	private List<SAAnnotation> getAnnotations() {
 		if (this.annotations == null) {
-			this.annotations = parseAnnotataions();
+			this.annotations = parseAnnotations();
 		}
+		return Collections.unmodifiableList(this.annotations);
+	}
 
-		return this.annotations;
+	private List<SATableBorder> getTableBorders() {
+		if (StaticContainers.getTableBordersCollection() == null) {
+			return Collections.emptyList();
+		}
+		List<SATableBorder> tableBorders = new ArrayList<>();
+		for (TableBorder tableBorder : StaticContainers.getTableBordersCollection().getTableBorders(pdPage.getPageNumber())) {
+			tableBorders.add(new GFSATableBorder(tableBorder));
+		}
+		return tableBorders;
 	}
 
 	private List<SAChunk> getartifacts() {
