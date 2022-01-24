@@ -58,7 +58,7 @@ public class LineArtContainer {
 			}
 		} else {
 			list = new ArrayList<>();
-			list.add(boundingBox);
+			list.add(new BoundingBox(boundingBox));
 			lineArtBBoxes.put(mcid, list);
 		}
 	}
