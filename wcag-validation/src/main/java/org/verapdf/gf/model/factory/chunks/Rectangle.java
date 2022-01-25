@@ -38,10 +38,10 @@ public class Rectangle {
 
     public Rectangle(Integer pageNumber, double x, double y, double width, double height) {
         this.pageNumber = pageNumber;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.x = width < 0 ? x + width : x;
+        this.y = height < 0 ? y + height : y;
+        this.width = Math.abs(width);
+        this.height = Math.abs(height);
     }
 
     public List<LineChunk> getLines(double lineWidth) {
