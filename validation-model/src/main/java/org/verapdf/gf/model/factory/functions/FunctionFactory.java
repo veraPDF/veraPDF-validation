@@ -23,6 +23,7 @@ package org.verapdf.gf.model.factory.functions;
 import org.verapdf.gf.model.impl.pd.functions.*;
 import org.verapdf.pd.function.PDFunction;
 import org.verapdf.pd.function.PDType3Function;
+import org.verapdf.pd.function.PDType4Function;
 
 import java.util.logging.Logger;
 
@@ -49,7 +50,7 @@ public class FunctionFactory {
             case 3:
                 return new GFPDType3Function((PDType3Function) function);
             case 4:
-                return new GFPDType4Function(function);
+                return new GFPDType4Function((PDType4Function) function);
             default:
                 LOGGER.warning("Function type key must be {0, 2, 3, 4}");
                 return new GFPDFunction(function);
