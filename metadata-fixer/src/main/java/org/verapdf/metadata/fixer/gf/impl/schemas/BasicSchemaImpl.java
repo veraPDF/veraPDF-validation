@@ -20,7 +20,7 @@
  */
 package org.verapdf.metadata.fixer.gf.impl.schemas;
 
-import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.metadata.fixer.entity.Metadata;
 import org.verapdf.metadata.fixer.schemas.BasicSchema;
 

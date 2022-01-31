@@ -20,8 +20,8 @@
  */
 package org.verapdf.gf.model.impl.pd.util;
 
-import com.adobe.xmp.XMPException;
-import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSObjType;

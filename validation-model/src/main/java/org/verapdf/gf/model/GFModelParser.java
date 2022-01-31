@@ -20,8 +20,8 @@
  */
 package org.verapdf.gf.model;
 
-import com.adobe.xmp.XMPException;
-import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.ReleaseDetails;
 import org.verapdf.component.ComponentDetails;
 import org.verapdf.component.Components;
