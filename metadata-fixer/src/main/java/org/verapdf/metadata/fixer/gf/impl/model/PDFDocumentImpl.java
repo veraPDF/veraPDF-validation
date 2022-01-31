@@ -20,8 +20,8 @@
  */
 package org.verapdf.metadata.fixer.gf.impl.model;
 
-import com.adobe.xmp.XMPException;
-import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;

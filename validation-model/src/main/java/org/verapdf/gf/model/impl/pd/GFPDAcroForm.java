@@ -20,7 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
-import com.adobe.xmp.impl.ByteBuffer;
+import org.verapdf.xmp.impl.ByteBuffer;
 import org.verapdf.as.ASAtom;
 import org.verapdf.as.io.ASInputStream;
 import org.verapdf.cos.COSArray;

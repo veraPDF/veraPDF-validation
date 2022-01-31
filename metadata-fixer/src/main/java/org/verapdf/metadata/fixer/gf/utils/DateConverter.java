@@ -20,9 +20,9 @@
  */
 package org.verapdf.metadata.fixer.gf.utils;
 
-import com.adobe.xmp.XMPDateTime;
-import com.adobe.xmp.XMPDateTimeFactory;
-import com.adobe.xmp.XMPException;
+import org.verapdf.xmp.XMPDateTime;
+import org.verapdf.xmp.XMPDateTimeFactory;
+import org.verapdf.xmp.XMPException;
 import org.verapdf.tools.TypeConverter;
 
 import java.text.SimpleDateFormat;
