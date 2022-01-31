@@ -37,7 +37,7 @@ public class GFPDType4Function extends GFPDFunction implements PDType4Function {
     public static final String OPERATORS = "operators";
 
 
-    public GFPDType4Function(PDFunction function) {
+    public GFPDType4Function(org.verapdf.pd.function.PDType4Function function) {
         super(function, PD_TYPE4_FUNCTION_TYPE);
     }
 
@@ -52,7 +52,7 @@ public class GFPDType4Function extends GFPDFunction implements PDType4Function {
     }
 
     private List<CosObject> getOperators(){
-        PDFunction function = (PDFunction)this.simplePDObject;
+        org.verapdf.pd.function.PDType4Function function = (org.verapdf.pd.function.PDType4Function)this.simplePDObject;
         List<CosObject> result = new ArrayList<>();
         for (COSObject obj : function.getOperators()) {
             result.add(GFCosObject.getFromValue(obj.get()));
