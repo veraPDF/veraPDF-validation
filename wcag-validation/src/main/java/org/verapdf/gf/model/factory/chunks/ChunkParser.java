@@ -222,6 +222,14 @@ class ChunkParser {
 				textMatrix = new Matrix(arguments);
 				textLineMatrix = textMatrix.clone();
 				break;
+            case Operators.TR:
+                if (arguments.size() == 1 && arguments.get(0).getType().isNumber()) {
+                    int renderingMode = arguments.get(0).getInteger().intValue();
+                    if (renderingMode >= 0 && renderingMode <= 7) {
+                        graphicsState.getTextState().setRenderingMode(renderingMode);
+                    }
+                }
+                break;
 			case Operators.T_STAR:
 				processT_STAR();
 				break;
@@ -726,12 +734,22 @@ class ChunkParser {
 			    textRenderingMatrixAfter, font.getBoundingBox()), unicodeValue.toString(), font.getNameWithoutSubset(),
 			    Math.sqrt(textRenderingMatrixAfter.getScaleY() * textRenderingMatrixAfter.getScaleY() +
 						textRenderingMatrixAfter.getShearX() * textRenderingMatrixAfter.getShearX()),
-					font.getFontWeight(), font.getFontDescriptor().getItalicAngle(),
-					textRenderingMatrixAfter.getTranslateY(), graphicsState.getFillColor(),
+                    graphicsState.getTextState().getRenderingMode() == 2 ? getBolderFontWeight(font.getFontWeight()) : font.getFontWeight(),
+                    font.getFontDescriptor().getItalicAngle(), textRenderingMatrixAfter.getTranslateY(), graphicsState.getFillColor(),
 			    graphicsState.getFillColorSpace() != null ? graphicsState.getFillColorSpace().getType().getValue() : null);
 		}
 		return null;
 	}
+
+    private Double getBolderFontWeight(Double fontWeight) {
+        if (fontWeight < 400) {
+            return 400.0;
+        }
+        if (fontWeight < 600) {
+            return 700.0;
+        }
+        return 900.0;
+    }
 
 	private Matrix calculateTextRenderingMatrix() {
 		Matrix parameters = new Matrix(graphicsState.getTextState().getTextFontSize() *

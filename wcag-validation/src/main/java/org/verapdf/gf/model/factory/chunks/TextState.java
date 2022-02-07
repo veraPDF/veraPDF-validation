@@ -34,6 +34,7 @@ public class TextState implements Cloneable {
  	private double horizontalScaling = 1;
 	private double textLeading = 0;
 	private double textRise = 0;
+	private int renderingMode = 0;
 
 	public TextState() {
 	}
@@ -94,6 +95,14 @@ public class TextState implements Cloneable {
 		this.textRise = textRise;
 	}
 
+	public int getRenderingMode() {
+		return renderingMode;
+	}
+
+	public void setRenderingMode(int renderingMode) {
+		this.renderingMode = renderingMode;
+	}
+
 	public void copyProperties(TextState textState) {
 		this.textFont = textState.getTextFont();
 		this.textFontSize = textState.getTextFontSize();
@@ -102,6 +111,7 @@ public class TextState implements Cloneable {
 		this.textLeading = textState.getTextLeading();
 		this.horizontalScaling = textState.getHorizontalScaling();
 		this.wordSpacing = textState.getWordSpacing();
+		this.renderingMode = textState.getRenderingMode();
 	}
 
 	@Override
@@ -114,6 +124,7 @@ public class TextState implements Cloneable {
 		clone.horizontalScaling = this.horizontalScaling;
 		clone.textLeading = this.textLeading;
 		clone.textRise = this.textRise;
+		clone.renderingMode = this.renderingMode;
 		return clone;
 	}
 
