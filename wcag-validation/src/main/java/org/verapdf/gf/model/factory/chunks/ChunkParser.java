@@ -58,6 +58,7 @@ class ChunkParser {
 	private final COSKey objectKey;
 	private Matrix textMatrix = null;
 	private Matrix textLineMatrix = null;
+	private final ResourceHandler resourceHandler;
 	private final GraphicsState graphicsState;
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
@@ -65,25 +66,21 @@ class ChunkParser {
 	private final LineArtContainer lineArtContainer = new LineArtContainer();
 
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
-					   ResourceHandler resourceHandler, double[] cropBox, Long markedContent) {
+					   ResourceHandler resourceHandler, Long markedContent) {
 		this.pageNumber = pageNumber;
 		this.objectKey = objectKey;
-		if (inheritedGraphicState == null) {
-			this.graphicsState = new GraphicsState(resourceHandler);
-		} else {
-			this.graphicsState = inheritedGraphicState.clone();
-		}
-		this.graphicsState.getCTM().translate(-cropBox[0], -cropBox[1]);
+		this.graphicsState = inheritedGraphicState.clone();
 		if (markedContent != null) {
 			markedContentStack.push(markedContent);
 		}
+		this.resourceHandler = resourceHandler;
 	}
 
 	public List<IChunk> getArtifacts() {
 		return artifacts;
 	}
 
-	public void parseChunk(Operator rawOperator, ResourceHandler resourceHandler, List<COSBase> arguments) {
+	public void parseChunk(Operator rawOperator, List<COSBase> arguments) {
 		String operatorName = rawOperator.getOperator();
 		switch (operatorName) {
 			case Operators.BMC:
@@ -438,7 +435,7 @@ class ChunkParser {
 						putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
 					} else if (ASAtom.FORM.equals(xObject.getType())) {
 						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, graphicsState, pageNumber,
-								null, getMarkedContent());
+								getMarkedContent());
 						artifacts.addAll(xForm.getArtifacts());
 					}
 				}

@@ -58,8 +58,11 @@ public class GFSATableBorderRow extends GenericModelObject implements SATableBor
 
 	public List<SATableBorderCell> getCells() {
 		List<SATableBorderCell> cells = new ArrayList<>();
-		for (TableBorderCell cell : row.getCells()) {
-			cells.add(new GFSATableBorderCell(cell));
+		for (int colNumber = 0; colNumber < row.getCells().length; colNumber++) {
+			TableBorderCell cell = row.getCell(colNumber);
+			if (row.getRowNumber() == cell.getRowNumber() && colNumber == cell.getColNumber()) {
+				cells.add(new GFSATableBorderCell(cell));
+			}
 		}
 		return cells;
 	}
