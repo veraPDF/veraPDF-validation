@@ -34,10 +34,10 @@ public class GFSAXForm {
 	private final GFSAContentStream contentStream;
 
 	public GFSAXForm(org.verapdf.pd.images.PDXForm xForm, ResourceHandler resourceHandler,
-					 GraphicsState inheritedGraphicsState, Integer pageNumber, double[] cropBox, Long markedContent) {
+					 GraphicsState inheritedGraphicsState, Integer pageNumber, Long markedContent) {
 		this.contentStream = new GFSAContentStream(xForm, inheritedGraphicsState,
 				resourceHandler.getExtendedResources(xForm.getResources()), pageNumber, xForm.getObject().getKey(),
-				cropBox, markedContent);
+				markedContent);
 	}
 
 	public List<IChunk> getArtifacts() {

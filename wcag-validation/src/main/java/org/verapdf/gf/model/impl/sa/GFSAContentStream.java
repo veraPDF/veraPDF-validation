@@ -50,22 +50,16 @@ public class GFSAContentStream {
 	private final ResourceHandler resourceHandler;
 	private final GraphicsState inheritedGraphicsState;
 	private final org.verapdf.pd.PDContentStream contentStream;
-	private double[] cropBox;
 	private final Long markedContent;
 
 	public GFSAContentStream(org.verapdf.pd.PDContentStream contentStream, GraphicsState inheritedGraphicsState,
-							 ResourceHandler resourceHandler, Integer pageNumber, COSKey objectKey, double[] cropBox,
-							 Long markedContent) {
+							 ResourceHandler resourceHandler, Integer pageNumber, COSKey objectKey, Long markedContent) {
 		this.pageNumber = pageNumber;
 		this.objectKey = objectKey;
 		this.contentStream = contentStream;
 		this.resourceHandler = resourceHandler;
 		this.inheritedGraphicsState = inheritedGraphicsState;
 		this.markedContent = markedContent;
-		this.cropBox = cropBox;
-		if (this.cropBox == null) {
-			this.cropBox = new double[]{0.0, 0.0, 0.0, 0.0};
-		}
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -87,8 +81,8 @@ public class GFSAContentStream {
 					try (ASInputStream opStream = contentStream.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
 						try (PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
 							streamParser.parseTokens();
-							this.artifacts = ChunkFactory.chunksFromTokens(pageNumber, objectKey, streamParser.getTokens(),
-									inheritedGraphicsState, resourceHandler, cropBox, markedContent);
+							this.artifacts = ChunkFactory.chunksFromTokens(pageNumber, objectKey,
+									streamParser.getTokens(), inheritedGraphicsState, resourceHandler, markedContent);
 						}
 					}
 				}

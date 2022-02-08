@@ -35,15 +35,15 @@ public final class ChunkFactory {
 
 	public static List<IChunk> chunksFromTokens(Integer pageNumber, COSKey objectKey, List<Object> rawTokens,
 										 GraphicsState inheritedGraphicState, ResourceHandler resourceHandler,
-										 double[] cropBox, Long markedContent) {
+										 Long markedContent) {
 		List<COSBase> arguments = new ArrayList<>();
 		ChunkParser parser = new ChunkParser(pageNumber, objectKey, inheritedGraphicState, resourceHandler,
-				cropBox, markedContent);
+				markedContent);
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {
 				arguments.add((COSBase) rawToken);
 			} else if (rawToken instanceof Operator) {
-				parser.parseChunk(((Operator) rawToken), resourceHandler, arguments);
+				parser.parseChunk(((Operator) rawToken), arguments);
 				arguments = new ArrayList<>();
 			}
 		}

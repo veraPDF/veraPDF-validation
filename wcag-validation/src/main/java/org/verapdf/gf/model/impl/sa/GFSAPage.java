@@ -20,6 +20,8 @@
  */
 package org.verapdf.gf.model.impl.sa;
 
+import org.verapdf.gf.model.factory.chunks.GraphicsState;
+import org.verapdf.gf.model.factory.chunks.Matrix;
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
@@ -32,6 +34,7 @@ import org.verapdf.pd.PDAnnotation;
 import org.verapdf.wcag.algorithms.entities.IPage;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
+import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.tables.tableBorders.TableBorder;
 import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
@@ -117,6 +120,8 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 					this.artifacts.add(new GFSATextChunk((TextChunk) chunk, ""));
 				} else if (chunk instanceof ImageChunk) {
 					this.artifacts.add(new GFSAImageChunk((ImageChunk) chunk));
+				} else if (chunk instanceof LineArtChunk) {
+					this.artifacts.add(new GFSALineArtChunk((LineArtChunk) chunk));
 				}
 			}
 		}
@@ -145,8 +150,28 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 		GFSAContentStream pdContentStream = null;
 		if (pdPage.getContent() != null) {
 			ResourceHandler resourceHandler = ResourceHandler.getInstance(pdPage.getResources());
-			pdContentStream = new GFSAContentStream(pdPage.getContent(), null, resourceHandler, pdPage.getPageNumber(),
-			                                        pdPage.getObject().getKey(), pdPage.getCropBox(), null);
+			GraphicsState graphicsState = new GraphicsState(resourceHandler);
+			double[] cropBox = pdPage.getCropBox();
+			if (cropBox == null) {
+				cropBox = new double[]{0.0, 0.0, 0.0, 0.0};
+			}
+			Matrix currentTransformationMatrix = new Matrix();
+			long rotation = pdPage.getRotation() % 360;
+			if (rotation == 90L) {
+				currentTransformationMatrix.translate(0, cropBox[2] - cropBox[0]);
+				currentTransformationMatrix.rotate(1.5 * Math.PI);
+			} if (rotation == 180L) {
+				currentTransformationMatrix.translate(cropBox[2] - cropBox[0], cropBox[3] - cropBox[1]);
+				currentTransformationMatrix.rotate(Math.PI);
+			} if (rotation == 270L) {
+				currentTransformationMatrix.translate(cropBox[3], -cropBox[0]);
+				currentTransformationMatrix.rotate(0.5 * Math.PI);
+			} else {
+				currentTransformationMatrix.translate(-cropBox[0], -cropBox[1]);
+			}
+			graphicsState.setCTM(currentTransformationMatrix);
+			pdContentStream = new GFSAContentStream(pdPage.getContent(), graphicsState, resourceHandler,
+					pdPage.getPageNumber(), pdPage.getObject().getKey(), null);
 		}
 		this.contentStream = pdContentStream;
 	}

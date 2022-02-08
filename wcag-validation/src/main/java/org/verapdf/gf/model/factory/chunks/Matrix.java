@@ -190,11 +190,11 @@ public class Matrix implements Cloneable {
 	}
 
 	public double transformX(double x, double y) {
-		return x * getScaleX() + y * getShearY() + getTranslateX();
+		return x * getScaleX() + y * getShearX() + getTranslateX();
 	}
 
 	public double transformY(double x, double y) {
-		return x * getShearX() + y * getScaleY() + getTranslateY();
+		return x * getShearY() + y * getScaleY() + getTranslateY();
 	}
 
 	public Vertex transformVertex(Vertex v) {
