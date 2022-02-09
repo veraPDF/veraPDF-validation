@@ -673,18 +673,14 @@ class ChunkParser {
 	private void parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
 		if (argument.getType() == COSObjType.COS_STRING) {
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
-			parseString((COSString) argument.getDirectBase(), unicodeValue);
+			parseString((COSString) argument.getDirectBase(), unicodeValue, null);
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
-			boolean beforeFirstText = true;
 			COSArray array = (COSArray) argument;
+			TextPieces textPieces = new TextPieces();
 			for (COSObject obj : array) {
 				if (obj != null) {
 					if (obj.getType() == COSObjType.COS_STRING) {
-						if (beforeFirstText) {
-							beforeFirstText = false;
-							textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
-						}
-						parseString((COSString) obj.getDirectBase(), unicodeValue);
+						parseString((COSString) obj.getDirectBase(), unicodeValue, textPieces);
 					} else if (obj.getType().isNumber()) {
 						textMatrix.concatenate(Matrix.getTranslateInstance(- obj.getReal() / 1000 *
 						    graphicsState.getTextState().getTextFontSize() *
@@ -692,26 +688,36 @@ class ChunkParser {
 					}
 				}
 			}
+			unicodeValue.append(textPieces.getValue());
+			textMatrix.setTranslateX(textPieces.getStartX());
+			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
+			textMatrix.setTranslateX(textPieces.getEndX());
 		}
 	}
 
-	private void parseString(COSString string, StringBuilder unicodeValue) {
+	private void parseString(COSString string, StringBuilder unicodeValue, TextPieces textPieces) {
 		byte[] bytes = string.get();
 		try (InputStream inputStream = new ByteArrayInputStream(bytes)) {
 			while (inputStream.available() > 0) {
 				int code = graphicsState.getTextState().getTextFont().readCode(inputStream);
-				unicodeValue.append(graphicsState.getTextState().getTextFont().toUnicode(code));
 				Double width = graphicsState.getTextState().getTextFont().getWidth(code);
 				if (width == null) {
 					LOGGER.log(Level.SEVERE, "Missing width of glyph with code " + code +
 							" in font" + graphicsState.getTextState().getTextFont().getName());
 					width = 0.0;
 				}
+				double startX = textMatrix.getTranslateX();
 				textMatrix.concatenate(Matrix.getTranslateInstance((width *
 					graphicsState.getTextState().getTextFontSize() / 1000 +
 					graphicsState.getTextState().getCharacterSpacing() + (code == 32 ?
 					graphicsState.getTextState().getWordSpacing() : 0)) *
 					graphicsState.getTextState().getHorizontalScaling(), 0));
+				String value = graphicsState.getTextState().getTextFont().toUnicode(code);
+				if (textPieces == null) {
+					unicodeValue.append(value);
+				} else {
+					textPieces.add(new TextPieces.TextPiece(value, startX, textMatrix.getTranslateX()));
+				}
 			}
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Error processing text show operator's string argument : " + new String(bytes), e);

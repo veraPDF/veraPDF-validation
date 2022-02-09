@@ -151,29 +151,33 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 		if (pdPage.getContent() != null) {
 			ResourceHandler resourceHandler = ResourceHandler.getInstance(pdPage.getResources());
 			GraphicsState graphicsState = new GraphicsState(resourceHandler);
-			double[] cropBox = pdPage.getCropBox();
-			if (cropBox == null) {
-				cropBox = new double[]{0.0, 0.0, 0.0, 0.0};
-			}
-			Matrix currentTransformationMatrix = new Matrix();
-			long rotation = pdPage.getRotation() % 360;
-			if (rotation == 90L) {
-				currentTransformationMatrix.translate(0, cropBox[2] - cropBox[0]);
-				currentTransformationMatrix.rotate(1.5 * Math.PI);
-			} if (rotation == 180L) {
-				currentTransformationMatrix.translate(cropBox[2] - cropBox[0], cropBox[3] - cropBox[1]);
-				currentTransformationMatrix.rotate(Math.PI);
-			} if (rotation == 270L) {
-				currentTransformationMatrix.translate(cropBox[3], -cropBox[0]);
-				currentTransformationMatrix.rotate(0.5 * Math.PI);
-			} else {
-				currentTransformationMatrix.translate(-cropBox[0], -cropBox[1]);
-			}
-			graphicsState.setCTM(currentTransformationMatrix);
+			graphicsState.setCTM(createCurrentTransformationMatrix());
 			pdContentStream = new GFSAContentStream(pdPage.getContent(), graphicsState, resourceHandler,
 					pdPage.getPageNumber(), pdPage.getObject().getKey(), null);
 		}
 		this.contentStream = pdContentStream;
+	}
+
+	private Matrix createCurrentTransformationMatrix() {
+		double[] cropBox = pdPage.getCropBox();
+		if (cropBox == null) {
+			cropBox = new double[]{0.0, 0.0, 0.0, 0.0};
+		}
+		Matrix currentTransformationMatrix = new Matrix();
+		long rotation = pdPage.getRotation() % 360;
+		if (rotation == 90L) {
+			currentTransformationMatrix.translate(0, cropBox[2] - cropBox[0]);
+			currentTransformationMatrix.rotate(1.5 * Math.PI);
+		} if (rotation == 180L) {
+			currentTransformationMatrix.translate(cropBox[2] - cropBox[0], cropBox[3] - cropBox[1]);
+			currentTransformationMatrix.rotate(Math.PI);
+		} if (rotation == 270L) {
+			currentTransformationMatrix.translate(cropBox[3], -cropBox[0]);
+			currentTransformationMatrix.rotate(0.5 * Math.PI);
+		} else {
+			currentTransformationMatrix.translate(-cropBox[0], -cropBox[1]);
+		}
+		return currentTransformationMatrix;
 	}
 
 	public int getPageNumber() {
