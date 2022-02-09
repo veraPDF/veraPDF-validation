@@ -350,6 +350,11 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		return null;
 	}
 
+	@Override
+	public Long getpageNumber() {
+		return (long) ((org.verapdf.pd.PDPage) this.simplePDObject).getPageNumber();
+	}
+
 	public PDColorSpace getBlendingColorSpace() {
 		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) this.simplePDObject).getGroup();
 		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype())) {
