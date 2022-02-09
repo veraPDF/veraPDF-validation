@@ -154,7 +154,7 @@ class OperatorParser {
 
 			// MARKED CONTENT
 			case Operators.BMC:
-				GFOp_BMC bmcOp = new GFOp_BMC(arguments, resourcesHandler, getCurrentMarkedContent(), parentsTags);
+				GFOp_BMC bmcOp = new GFOp_BMC(arguments, getCurrentMarkedContent(), parentsTags);
 				processedOperators.add(bmcOp);
 				this.markedContentStack.push(bmcOp);
 				break;

@@ -25,7 +25,6 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.gf.model.impl.cos.GFCosName;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.operator.Op_BMC;
@@ -42,8 +41,8 @@ public class GFOp_BMC extends GFOpMarkedContent implements Op_BMC {
 	/** Type name for {@code GFOp_BMC} */
     public static final String OP_BMC_TYPE = "Op_BMC";
 
-    public GFOp_BMC(List<COSBase> arguments, PDResourcesHandler resources, GFOpMarkedContent markedContent, String parentsTags) {
-        super(arguments, OP_BMC_TYPE, resources, markedContent, parentsTags);
+    public GFOp_BMC(List<COSBase> arguments, GFOpMarkedContent markedContent, String parentsTags) {
+        super(arguments, OP_BMC_TYPE, markedContent, parentsTags);
     }
 
     @Override
