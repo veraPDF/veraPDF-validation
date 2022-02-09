@@ -168,6 +168,10 @@ public class Matrix implements Cloneable {
 		return matrixArray[4];
 	}
 
+	public void setTranslateX(double translateX) {
+		matrixArray[4] = translateX;
+	}
+
 	public double getTranslateY() {
 		return matrixArray[5];
 	}
