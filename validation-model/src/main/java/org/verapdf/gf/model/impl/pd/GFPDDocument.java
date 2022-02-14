@@ -40,6 +40,10 @@ import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static org.verapdf.gf.model.impl.pd.GFPDPage.SQUARE_ORIENTATION;
 
 /**
  * @author Timur Kamalov
@@ -305,5 +309,20 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     public String getVersion() {
         ASAtom version = catalog != null ? catalog.getNameKey(ASAtom.VERSION) : null;
         return version != null ? version.getValue() : null;
+    }
+
+    @Override
+    public String getmostCommonOrientation() {
+        List<String> twoTheMostFrequent = getPages()
+                .stream()
+                .map(PDPage::getorientation)
+                .collect(Collectors.groupingBy(a -> a, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(2)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        return SQUARE_ORIENTATION.equals(twoTheMostFrequent.get(0)) && twoTheMostFrequent.size() == 2 ? twoTheMostFrequent.get(1) : twoTheMostFrequent.get(0);
     }
 }
