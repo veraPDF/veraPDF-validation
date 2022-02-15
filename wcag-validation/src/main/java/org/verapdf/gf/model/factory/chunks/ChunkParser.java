@@ -682,16 +682,16 @@ class ChunkParser {
 					if (obj.getType() == COSObjType.COS_STRING) {
 						parseString((COSString) obj.getDirectBase(), unicodeValue, textPieces);
 					} else if (obj.getType().isNumber()) {
-						textMatrix.concatenate(Matrix.getTranslateInstance(- obj.getReal() / 1000 *
+						textPieces.shiftCurrentX(- obj.getReal() / 1000 *
 						    graphicsState.getTextState().getTextFontSize() *
-						    graphicsState.getTextState().getHorizontalScaling(), 0));
+						    graphicsState.getTextState().getHorizontalScaling());
 					}
 				}
 			}
 			unicodeValue.append(textPieces.getValue());
-			textMatrix.setTranslateX(textPieces.getStartX());
+			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
-			textMatrix.setTranslateX(textPieces.getEndX());
+			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getEndX() - textPieces.getStartX(), 0));
 		}
 	}
 
@@ -706,17 +706,17 @@ class ChunkParser {
 							" in font" + graphicsState.getTextState().getTextFont().getName());
 					width = 0.0;
 				}
-				double startX = textMatrix.getTranslateX();
-				textMatrix.concatenate(Matrix.getTranslateInstance((width *
-					graphicsState.getTextState().getTextFontSize() / 1000 +
-					graphicsState.getTextState().getCharacterSpacing() + (code == 32 ?
-					graphicsState.getTextState().getWordSpacing() : 0)) *
-					graphicsState.getTextState().getHorizontalScaling(), 0));
+				double shift = (width *
+								graphicsState.getTextState().getTextFontSize() / 1000 +
+								graphicsState.getTextState().getCharacterSpacing() + (code == 32 ?
+								graphicsState.getTextState().getWordSpacing() : 0)) *
+								graphicsState.getTextState().getHorizontalScaling();
 				String value = graphicsState.getTextState().getTextFont().toUnicode(code);
 				if (textPieces == null) {
 					unicodeValue.append(value);
+					textMatrix.concatenate(Matrix.getTranslateInstance(shift, 0));
 				} else {
-					textPieces.add(new TextPieces.TextPiece(value, startX, textMatrix.getTranslateX()));
+					textPieces.add(new TextPieces.TextPiece(value, textPieces.getCurrentX(), textPieces.getCurrentX() + shift));
 				}
 			}
 		} catch (IOException e) {
