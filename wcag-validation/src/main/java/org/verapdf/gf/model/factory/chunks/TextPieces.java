@@ -29,10 +29,12 @@ import java.util.Comparator;
  */
 public class TextPieces {
 
-	SortedSet<TextPiece> textPieces = new TreeSet<>(new TextPieceComparator());
+	private final SortedSet<TextPiece> textPieces = new TreeSet<>(new TextPieceComparator());
+	private double currentX = 0;
 
 	public void add(TextPiece textPiece) {
 		textPieces.add(textPiece);
+		currentX = textPiece.endX;
 	}
 
 	public String getValue() {
@@ -49,6 +51,18 @@ public class TextPieces {
 
 	public double getEndX() {
 		return textPieces.stream().map(TextPiece::getEndX).max(Double::compare).orElse(getStartX());
+	}
+
+	public double getCurrentX() {
+		return currentX;
+	}
+
+	public void shiftCurrentX(double shift) {
+		currentX += shift;
+	}
+
+	public void setCurrentX(double currentX) {
+		this.currentX = currentX;
 	}
 
 	public static class TextPiece {
