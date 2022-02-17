@@ -57,8 +57,8 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
     public static final String XMP_PACKAGE = "XMPPackage";
     public static final String STREAM = "stream";
 
-    private boolean isMainMetadata;
-    private org.verapdf.pd.PDMetadata mainMetadata;
+    private final boolean isMainMetadata;
+    private final org.verapdf.pd.PDMetadata mainMetadata;
 
     public GFPDMetadata(org.verapdf.pd.PDMetadata simplePDObject, Boolean isMainMetadata) {
         super(simplePDObject, METADATA_TYPE);

@@ -26,6 +26,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSArray;
 import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosActualText;
@@ -76,12 +77,17 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	 */
 	public static final String ACTUAL_TEXT = "actualText";
 
-	protected GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String type) {
+	private final String standardType;
+
+	private List<GFPDStructElem> children;
+
+	protected GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType, String type) {
 		super(structElemDictionary, type);
 		ASAtom subtype = this.simplePDObject.getNameKey(ASAtom.S);
 		if (subtype != null) {
 			this.id = (super.getID() != null ? super.getID() : "0 0 obj") + " " + ((COSName) COSName.fromValue(subtype)).getUnicodeValue();
 		}
+		this.standardType = standardType;
 	}
 
 	/**
@@ -90,7 +96,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	 * @param structElemDictionary dictionary of structure element
 	 */
 	public GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
-		this(structElemDictionary, STRUCTURE_ELEMENT_TYPE);
+		this(structElemDictionary, null, STRUCTURE_ELEMENT_TYPE);
 	}
 
 	/**
@@ -143,9 +149,8 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		if (TaggedPDFHelper.isContentItem(children)) {
 			return true;
 		}
-		if (children.getType() == COSObjType.COS_ARRAY && children.size().intValue() > 0) {
-			for (int i = 0; i < children.size().intValue(); ++i) {
-				COSObject elem = children.at(i);
+		if (children.getType() == COSObjType.COS_ARRAY) {
+			for (COSObject elem : (COSArray)children.getDirectBase()) {
 				if (TaggedPDFHelper.isContentItem(elem)) {
 					return true;
 				}
@@ -156,7 +161,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	@Override
 	public String getstandardType() {
-		return getStructureElementStandardType((org.verapdf.pd.structure.PDStructElem)simplePDObject);
+		return this.standardType;
 	}
 
 	@Override
@@ -173,7 +178,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		}
 		if (isStandardType) {
 			String actualType = type.getType().getValue();
-			return !actualType.equals(getStructureElementStandardType((org.verapdf.pd.structure.PDStructElem)simplePDObject));
+			return !actualType.equals(standardType);
 		}
 		return false;
 	}
@@ -235,17 +240,13 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	private List<String> getChildrenStandardTypes() {
-		return getChildrenStandardTypes((org.verapdf.pd.structure.PDStructElem) simplePDObject);
+		return getChildrenStandardTypes(this);
 	}
 
-	private static List<String> getChildrenStandardTypes(org.verapdf.pd.structure.PDStructElem element) {
-		List<org.verapdf.pd.structure.PDStructElem> elementsChildren = element.getStructChildren();
-		if (elementsChildren.isEmpty()) {
-			return Collections.emptyList();
-		}
+	private static List<String> getChildrenStandardTypes(GFPDStructElem element) {
 		List<String> res = new ArrayList<>();
-		for (org.verapdf.pd.structure.PDStructElem child : elementsChildren) {
-			String elementStandardType = getStructureElementStandardType(child);
+		for (GFPDStructElem child : element.getChildren()) {
+			String elementStandardType = child.getstandardType();
 			if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
 				res.addAll(getChildrenStandardTypes(child));
 			} else {
@@ -255,16 +256,20 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		return Collections.unmodifiableList(res);
 	}
 
-	public List<PDStructElem> getChildren() {
-		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructChildren();
-		if (!elements.isEmpty()) {
-			List<PDStructElem> res = new ArrayList<>(elements.size());
-			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				res.add(GFSEGeneral.createTypedStructElem(element));
+	public List<GFPDStructElem> getChildren() {
+		if (children == null) {
+			List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructChildren();
+			if (!elements.isEmpty()) {
+				List<GFPDStructElem> res = new ArrayList<>(elements.size());
+				for (org.verapdf.pd.structure.PDStructElem element : elements) {
+					res.add(GFSEGeneral.createTypedStructElem(element));
+				}
+				children = Collections.unmodifiableList(res);
+			} else {
+				children = Collections.emptyList();
 			}
-			return Collections.unmodifiableList(res);
 		}
-		return Collections.emptyList();
+		return children;
 	}
 
 	private List<CosUnicodeName> getStructureType() {

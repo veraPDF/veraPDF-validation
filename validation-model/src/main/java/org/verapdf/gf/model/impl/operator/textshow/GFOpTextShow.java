@@ -74,8 +74,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 
 	private final org.verapdf.pd.font.PDFont font;
 	private final Double scaleFactor;
-	private final Double prevScaleFactor;
-	private Double nextScaleFactor;
 
 	private final RenderingMode renderingMode;
 
@@ -100,7 +98,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		this.rawStrokeColorSpace = state.getStrokeColorSpace();
 		this.font = state.getFont();
 		this.scaleFactor = state.getScaleFactor();
-		this.prevScaleFactor = state.getPrevScaleFactor();
 		this.renderingMode = state.getRenderingMode();
 		this.opm = state.getOpm();
 		this.overprintingFlagStroke = state.isOverprintingFlagStroke();
@@ -137,18 +134,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	public Double getScaleFactor() {
 		return scaleFactor;
 	}
-
-    public Double getPrevScaleFactor() {
-        return prevScaleFactor;
-    }
-
-    public Double getNextScaleFactor() {
-        return nextScaleFactor;
-    }
-
-    public void setNextScaleFactor(Double nextScaleFactor) {
-        this.nextScaleFactor = nextScaleFactor;
-    }
 
 	public PDFont getVeraModelFont() {
 		if (this.fonts == null) {

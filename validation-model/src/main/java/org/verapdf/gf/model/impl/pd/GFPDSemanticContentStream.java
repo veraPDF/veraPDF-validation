@@ -90,7 +90,6 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 		if (this.operators == null) {
 			parseOperators();
 		}
-		getNextScaleFactors();
 		int unmarkedContentIndex = 0;
 		int markedContentIndex = -1;
 		Stack<Integer> markedContentStack = new Stack<>();
@@ -120,17 +119,6 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 					parentStructureTag, parentsTags, defaultLang));
 		}
 		return Collections.unmodifiableList(list);
-	}
-
-	private void getNextScaleFactors() {
-		Double scaleFactor = null;
-		for (int i = operators.size() - 1; i >= 0; i--) {
-			Operator operator = operators.get(i);
-			if (operator instanceof GFOpTextShow) {
-				((GFOpTextShow)operator).setNextScaleFactor(scaleFactor);
-				scaleFactor = ((GFOpTextShow)operator).getScaleFactor();
-			}
-		}
 	}
 
 }

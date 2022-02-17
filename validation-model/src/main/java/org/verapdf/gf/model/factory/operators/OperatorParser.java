@@ -85,12 +85,12 @@ class OperatorParser {
 	private static final Logger LOGGER = Logger.getLogger(OperatorParser.class.getName());
 
 	private final Deque<GraphicState> graphicStateStack = new ArrayDeque<>();
-	private GraphicState graphicState;
+	private final GraphicState graphicState;
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
-	private Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
-	private StructureElementAccessObject structureElementAccessObject;
-	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
+	private final Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
+	private final StructureElementAccessObject structureElementAccessObject;
+	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 	private final String parentStructureTag;
 	private final String parentsTags;
 
@@ -354,7 +354,6 @@ class OperatorParser {
 				if (arguments.size() > 1) {
 					COSBase scaleFactor = arguments.get(1);
 					if (scaleFactor.getType().isNumber()) {
-						this.graphicState.setPrevScaleFactor(this.graphicState.getScaleFactor());
 						this.graphicState.setScaleFactor(scaleFactor.getReal());
 					}
 				}
