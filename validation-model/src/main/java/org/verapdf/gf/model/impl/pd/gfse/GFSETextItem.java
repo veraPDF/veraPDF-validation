@@ -35,8 +35,8 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     public static final String TEXT_ITEM_TYPE = "SETextItem";
 
-    private GFOpTextShow opTextShow;
-    private String defaultLang;
+    private final GFOpTextShow opTextShow;
+    private final String defaultLang;
 
     public GFSETextItem(GFOpTextShow opTextShow, String parentStructureTag, String parentsTags, String defaultLang) {
         this(opTextShow, null, parentStructureTag, parentsTags, defaultLang);
@@ -57,18 +57,6 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
     @Override
     public Double getscaleFactor() {
         return opTextShow.getScaleFactor();
-    }
-
-    @Override
-    public String getsuspectRole() {
-        if (opTextShow.getScaleFactor() != null) {
-            if ((opTextShow.getPrevScaleFactor() != null && opTextShow.getScaleFactor() > opTextShow.getPrevScaleFactor())
-                    || (opTextShow.getNextScaleFactor() != null && opTextShow.getScaleFactor() > opTextShow.getNextScaleFactor())) {
-                return "H";
-            }
-            return "P";
-        }
-        return null;
     }
 
     @Override

@@ -26,11 +26,8 @@ import org.verapdf.tools.TaggedPDFConstants;
 
 public abstract class GFSEGeneral extends GFPDStructElem {
 
-    private final String standardType;
-
     protected GFSEGeneral(PDStructElem structElemDictionary, String standardType, String type) {
-        super(structElemDictionary, type);
-        this.standardType = standardType;
+        super(structElemDictionary, standardType, type);
     }
 
     public static GFSEGeneral createTypedStructElem(PDStructElem structElemDictionary){
@@ -150,10 +147,5 @@ public abstract class GFSEGeneral extends GFPDStructElem {
                     return new GFSENonStandard(structElemDictionary, standardType);
                 }
         }
-    }
-
-    @Override
-    public String getstandardType() {
-        return this.standardType;
     }
 }

@@ -43,7 +43,6 @@ public class GraphicState implements Cloneable {
 	private GraphicState initialGraphicState = null;
 	private boolean processColorOperators = true;
 	private Double scaleFactor = null;
-	private Double prevScaleFactor = null;
 
 	private GraphicState() {
 	}
@@ -107,14 +106,6 @@ public class GraphicState implements Cloneable {
 
 	public void setScaleFactor(Double scaleFactor) {
 		this.scaleFactor = scaleFactor;
-	}
-
-	public Double getPrevScaleFactor() {
-		return prevScaleFactor;
-	}
-
-	public void setPrevScaleFactor(Double prevScaleFactor) {
-		this.prevScaleFactor = prevScaleFactor;
 	}
 
 	public boolean isOverprintingFlagStroke() {
@@ -200,7 +191,6 @@ public class GraphicState implements Cloneable {
 		clone.renderingMode = this.renderingMode;
 		clone.font = this.font;
 		clone.scaleFactor = this.scaleFactor;
-		clone.prevScaleFactor = this.prevScaleFactor;
 		clone.overprintingFlagStroke = this.overprintingFlagStroke;
 		clone.overprintingFlagNonStroke = this.overprintingFlagNonStroke;
 		clone.opm = this.opm;

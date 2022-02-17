@@ -42,15 +42,15 @@ public class GFSETable extends GFSEGeneral implements SETable {
     // This logic checks that all TH have Scope attribute or TD reference to TH ID using Headers
     @Override
     public Boolean getuseHeadersAndIdOrScope() {
-        Stack<org.verapdf.model.pdlayer.PDStructElem> stack = new Stack<>();
-        Boolean hasScope = true;
-        Boolean hasID = true;
-        Boolean hasHeaders = true;
+        Stack<GFPDStructElem> stack = new Stack<>();
+        boolean hasScope = true;
+        boolean hasID = true;
+        boolean hasHeaders = true;
         Set<String> idSet = new HashSet<>();
         Set<String> headersSet = new HashSet<>();
         stack.push(this);
         while (!stack.empty()) {
-            org.verapdf.model.pdlayer.PDStructElem elem = stack.pop();
+            GFPDStructElem elem = stack.pop();
             String type = elem.getstandardType();
             if (TaggedPDFConstants.TD.equals(type)) {
                 List<String> list = ((GFSETD)elem).getHeaders();
@@ -70,10 +70,7 @@ public class GFSETable extends GFSEGeneral implements SETable {
                     hasScope = false;
                 }
             }
-            List<org.verapdf.model.pdlayer.PDStructElem> list = ((GFPDStructElem)elem).getChildren();
-            for (org.verapdf.model.pdlayer.PDStructElem  el : list) {
-                stack.push(el);
-            }
+            stack.addAll(elem.getChildren());
         }
         if (hasScope) {
             return true;
@@ -91,13 +88,13 @@ public class GFSETable extends GFSEGeneral implements SETable {
 
     @Override
     public Boolean getisRegular() {
-        List<org.verapdf.model.pdlayer.PDStructElem> listTR = getTR();
+        List<GFPDStructElem> listTR = getTR();
         int rowNum = listTR.size();
-        int columnNum = getColumnNum((GFPDStructElem)listTR.get(0));
-        boolean cells[][] = new boolean[rowNum][columnNum];
+        int columnNum = getColumnNum(listTR.get(0));
+        boolean[][] cells = new boolean[rowNum][columnNum];
         for (int i = 0; i < rowNum; i++) {
             int j = 0;
-            for (org.verapdf.model.pdlayer.PDStructElem elem : ((GFPDStructElem)listTR.get(i)).getChildren()) {
+            for (org.verapdf.model.pdlayer.PDStructElem elem : listTR.get(i).getChildren()) {
                 String type = elem.getstandardType();
                 long colSpan;
                 long rowSpan;
@@ -136,26 +133,22 @@ public class GFSETable extends GFSEGeneral implements SETable {
         return true;
     }
 
-    private List<org.verapdf.model.pdlayer.PDStructElem> getTR() {
-        List<org.verapdf.model.pdlayer.PDStructElem> listTR = new LinkedList<>();
-        for (org.verapdf.model.pdlayer.PDStructElem elem : getChildren()) {
+    private List<GFPDStructElem> getTR() {
+        List<GFPDStructElem> listTR = new LinkedList<>();
+        for (GFPDStructElem elem : getChildren()) {
             String type = elem.getstandardType();
-            if (!addTRtoList(listTR, elem) && TaggedPDFConstants.THEAD.equals(type) ||
-                    TaggedPDFConstants.TBODY.equals(type) || TaggedPDFConstants.TFOOT.equals(type)) {
-                for (org.verapdf.model.pdlayer.PDStructElem child : ((GFPDStructElem)elem).getChildren()) {
-                    addTRtoList(listTR, child);
+            if (TaggedPDFConstants.TR.equals(type)) {
+                listTR.add(elem);
+            } else if (TaggedPDFConstants.THEAD.equals(type) || TaggedPDFConstants.TBODY.equals(type) ||
+                    TaggedPDFConstants.TFOOT.equals(type)) {
+                for (GFPDStructElem child : elem.getChildren()) {
+                    if (TaggedPDFConstants.TR.equals(child.getstandardType())) {
+                        listTR.add(child);
+                    }
                 }
             }
         }
         return listTR;
-    }
-
-    private boolean addTRtoList(List<org.verapdf.model.pdlayer.PDStructElem> listTR, org.verapdf.model.pdlayer.PDStructElem elem) {
-        if (TaggedPDFConstants.TR.equals(elem.getstandardType())) {
-            listTR.add(elem);
-            return true;
-        }
-        return false;
     }
 
     private Integer getColumnNum(GFPDStructElem firstTR) {
@@ -171,7 +164,7 @@ public class GFSETable extends GFSEGeneral implements SETable {
         return columnNum;
     }
 
-    private Boolean checkRegular(boolean cells[][], long rowSpan, long colSpan, int i, int j) {
+    private Boolean checkRegular(boolean[][] cells, long rowSpan, long colSpan, int i, int j) {
         for (int k = 0; k < rowSpan; k++) {
             for (int l = 0; l < colSpan; l++) {
                 if (cells[i + k][j + l]) {
