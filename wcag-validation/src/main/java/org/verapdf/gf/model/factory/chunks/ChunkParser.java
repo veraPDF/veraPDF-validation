@@ -670,17 +670,19 @@ class ChunkParser {
 		return null;
 	}
 
-	private void parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
+	private List<Double> parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
+		List<Double> symbolEnds = new ArrayList<>();
 		if (argument.getType() == COSObjType.COS_STRING) {
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
-			parseString((COSString) argument.getDirectBase(), unicodeValue, null);
+			parseString((COSString) argument.getDirectBase(), unicodeValue, null, symbolEnds);
+			textMatrix.concatenate(Matrix.getTranslateInstance(symbolEnds.get(symbolEnds.size() - 1), 0));
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
 			COSArray array = (COSArray) argument;
 			TextPieces textPieces = new TextPieces();
 			for (COSObject obj : array) {
 				if (obj != null) {
 					if (obj.getType() == COSObjType.COS_STRING) {
-						parseString((COSString) obj.getDirectBase(), unicodeValue, textPieces);
+						parseString((COSString) obj.getDirectBase(), unicodeValue, textPieces, null);
 					} else if (obj.getType().isNumber()) {
 						textPieces.shiftCurrentX(- obj.getReal() / 1000 *
 						    graphicsState.getTextState().getTextFontSize() *
@@ -692,10 +694,13 @@ class ChunkParser {
 			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
 			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getEndX() - textPieces.getStartX(), 0));
+			symbolEnds = textPieces.getSymbolEnds();
 		}
+		symbolEnds.add(0, 0.0);
+		return symbolEnds;
 	}
 
-	private void parseString(COSString string, StringBuilder unicodeValue, TextPieces textPieces) {
+	private void parseString(COSString string, StringBuilder unicodeValue, TextPieces textPieces, List<Double> symbolEnds) {
 		byte[] bytes = string.get();
 		try (InputStream inputStream = new ByteArrayInputStream(bytes)) {
 			while (inputStream.available() > 0) {
@@ -712,9 +717,15 @@ class ChunkParser {
 								graphicsState.getTextState().getWordSpacing() : 0)) *
 								graphicsState.getTextState().getHorizontalScaling();
 				String value = graphicsState.getTextState().getTextFont().toUnicode(code);
+				if (symbolEnds != null) {
+					if (symbolEnds.isEmpty()) {
+						symbolEnds.add(shift);
+					} else {
+						symbolEnds.add(symbolEnds.get(symbolEnds.size() - 1) + shift);
+					}
+				}
 				if (textPieces == null) {
 					unicodeValue.append(value);
-					textMatrix.concatenate(Matrix.getTranslateInstance(shift, 0));
 				} else {
 					textPieces.add(new TextPieces.TextPiece(value, textPieces.getCurrentX(), textPieces.getCurrentX() + shift));
 				}
@@ -731,15 +742,17 @@ class ChunkParser {
 		        argument.getType() == COSObjType.COS_ARRAY) && this.textMatrix != null) {
 			StringBuilder unicodeValue = new StringBuilder();
 			Matrix textRenderingMatrixBefore = new Matrix();
-			parseTextShowArgument(argument, unicodeValue, textRenderingMatrixBefore);
+			List<Double> symbolEnds = parseTextShowArgument(argument, unicodeValue, textRenderingMatrixBefore);
 			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
-			return new TextChunk(calculateTextBoundingBox(textRenderingMatrixBefore,
-			    textRenderingMatrixAfter, font.getBoundingBox()), unicodeValue.toString(), font.getNameWithoutSubset(),
-			    Math.sqrt(textRenderingMatrixAfter.getScaleY() * textRenderingMatrixAfter.getScaleY() +
-						textRenderingMatrixAfter.getShearX() * textRenderingMatrixAfter.getShearX()),
-                    graphicsState.getTextState().getRenderingMode() == 2 ? getBolderFontWeight(font.getFontWeight()) : font.getFontWeight(),
-                    font.getFontDescriptor().getItalicAngle(), textRenderingMatrixAfter.getTranslateY(), graphicsState.getFillColor(),
-			    graphicsState.getFillColorSpace() != null ? graphicsState.getFillColorSpace().getType().getValue() : null);
+			return new TextChunk(calculateTextBoundingBox(textRenderingMatrixBefore, textRenderingMatrixAfter, font.getBoundingBox()),
+			                     unicodeValue.toString(), font.getNameWithoutSubset(),
+			                     Math.sqrt(textRenderingMatrixAfter.getScaleY() * textRenderingMatrixAfter.getScaleY() +
+			                               textRenderingMatrixAfter.getShearX() * textRenderingMatrixAfter.getShearX()),
+			                     graphicsState.getTextState().getRenderingMode() == 2 ? getBolderFontWeight(font.getFontWeight()) : font.getFontWeight(),
+                                 font.getFontDescriptor().getItalicAngle(), textRenderingMatrixAfter.getTranslateY(),
+                                 graphicsState.getFillColor(),
+                                 graphicsState.getFillColorSpace() != null ? graphicsState.getFillColorSpace().getType().getValue() : null,
+                                 symbolEnds);
 		}
 		return null;
 	}

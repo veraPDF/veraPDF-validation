@@ -20,9 +20,8 @@
  */
 package org.verapdf.gf.model.factory.chunks;
 
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.Comparator;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -63,6 +62,10 @@ public class TextPieces {
 
 	public void setCurrentX(double currentX) {
 		this.currentX = currentX;
+	}
+
+	public List<Double> getSymbolEnds() {
+		return textPieces.stream().map(TextPiece::getEndX).collect(Collectors.toList());
 	}
 
 	public static class TextPiece {
