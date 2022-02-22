@@ -95,6 +95,17 @@ public class TextChunksHelper {
 		return renderingMode == 2 ? getBolderFontWeight(font.getFontWeight()) : font.getFontWeight();
 	}
 
+	protected static void updateSymbolEnds(List<Double> symbolEnds, double shift, double left, int length) {
+		if (length <= 1) {
+			symbolEnds.add(left + shift);
+		} else {
+			double newShift = shift / length;
+			for (int i = 1; i <= length; i++) {
+				symbolEnds.add(left + i * newShift);
+			}
+		}
+	}
+
 	private static double getBolderFontWeight(Double fontWeight) {
 		if (fontWeight < 400) {
 			return 400.0;

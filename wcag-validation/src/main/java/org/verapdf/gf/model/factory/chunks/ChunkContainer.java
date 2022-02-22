@@ -92,6 +92,25 @@ public class ChunkContainer {
 		return chunksList;
 	}
 
+	public List<String> getValues(COSKey objectNumber, BoundingBox boundingBox) {
+		if (objectNumber == null) {
+			return getValues(boundingBox);
+		}
+		Map<Long, List<IChunk>> map = chunks.get(objectNumber);
+		if (map != null) {
+			return processAllChunkValues(map, boundingBox);
+		}
+		return Collections.emptyList();
+	}
+
+	public List<String> getValues(BoundingBox boundingBox) {
+		List<String> valueList = new ArrayList<>();
+		for (Map<Long, List<IChunk>> map : chunks.values()) {
+			valueList.addAll(processAllChunkValues(map, boundingBox));
+		}
+		return valueList;
+	}
+
 	private List<IChunk> processAllChunks(Map<Long, List<IChunk>> map, BoundingBox boundingBox) {
 		List<IChunk> chunksList = new ArrayList<>();
 		for (List<IChunk> list : map.values()) {
@@ -115,6 +134,41 @@ public class ChunkContainer {
 		double fontSymbolHeight = textChunkBoundingBox.getHeight();
 		return boundingBox.contains(textChunk.getBoundingBox(), fontSymbolWidth / 2,
 		                            fontSymbolHeight / 2);
+	}
+
+	private List<String> processAllChunkValues(Map<Long, List<IChunk>> map, BoundingBox boundingBox) {
+		List<String> valuesList = new ArrayList<>();
+		for (List<IChunk> list : map.values()) {
+			for (IChunk chunk : list) {
+				if (chunk instanceof TextChunk) {
+					String resultValue = checkTextChunkValue((TextChunk) chunk, boundingBox);
+					if (resultValue != null) {
+						valuesList.add(resultValue);
+					}
+				}
+			}
+		}
+		return valuesList;
+	}
+
+	private String checkTextChunkValue(TextChunk textChunk, BoundingBox boundingBox) {
+		BoundingBox textChunkBoundingBox = textChunk.getBoundingBox();
+		double widthEps = textChunkBoundingBox.getWidth() / (4 * textChunk.getValue().length());
+		double heightEps = textChunkBoundingBox.getHeight() / 4;
+		if (boundingBox.contains(textChunkBoundingBox, widthEps, heightEps)) {
+			return textChunk.getValue();
+		}
+		BoundingBox crossBox = BoundingBox.cross(textChunkBoundingBox, boundingBox, widthEps, heightEps);
+		if (crossBox == null || crossBox.getHeight() < textChunkBoundingBox.getHeight() - heightEps) {
+			return null;
+		}
+
+		Integer start = getResultValueStartIndex(textChunk, crossBox.getLeftX());
+		Integer end = getResultValueEndIndex(textChunk, crossBox.getRightX());
+		if (start == null || end == null) {
+			return "";
+		}
+		return textChunk.getValue().substring(start, end + 1);
 	}
 
 	public void add(Long mcid, IChunk chunk) {
@@ -143,6 +197,24 @@ public class ChunkContainer {
 			}
 			chunks.get(objectNumber).put(mcid, list);
 		}
+	}
+
+	private Integer getResultValueStartIndex(TextChunk textChunk, double leftX) {
+		for (int i = 0; i < textChunk.getValue().length(); i++) {
+			if (textChunk.getSymbolStartCoordinate(i) >= leftX) {
+				return i;
+			}
+		}
+		return null;
+	}
+
+	private Integer getResultValueEndIndex(TextChunk textChunk, double rightX) {
+		for (int i = textChunk.getValue().length() - 1; i >= 0; i--) {
+			if (textChunk.getSymbolEndCoordinate(i) <= rightX) {
+				return i;
+			}
+		}
+		return null;
 	}
 
 }
