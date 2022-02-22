@@ -44,6 +44,7 @@ import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -694,7 +695,9 @@ class ChunkParser {
 			symbolEnds = textPieces.getSymbolEnds();
 		}
 		symbolEnds.add(0, 0.0);
-		return symbolEnds;
+		double multiplier = Math.sqrt(textMatrix.getScaleX() * textMatrix.getScaleX() +
+		                              textMatrix.getShearY() * textMatrix.getShearY());
+		return symbolEnds.stream().map(e -> e * multiplier).collect(Collectors.toList());
 	}
 
 	private void parseString(COSString string, StringBuilder unicodeValue, TextPieces textPieces, List<Double> symbolEnds) {
@@ -716,9 +719,10 @@ class ChunkParser {
 				String value = graphicsState.getTextState().getTextFont().toUnicode(code);
 				if (symbolEnds != null) {
 					if (symbolEnds.isEmpty()) {
-						symbolEnds.add(shift);
+						TextChunksHelper.updateSymbolEnds(symbolEnds, shift, 0, value.length());
 					} else {
-						symbolEnds.add(symbolEnds.get(symbolEnds.size() - 1) + shift);
+						TextChunksHelper.updateSymbolEnds(symbolEnds, shift, symbolEnds.get(symbolEnds.size() - 1),
+						                                  value.length());
 					}
 				}
 				if (textPieces == null) {

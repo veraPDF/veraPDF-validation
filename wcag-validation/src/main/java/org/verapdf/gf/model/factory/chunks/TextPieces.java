@@ -21,7 +21,6 @@
 package org.verapdf.gf.model.factory.chunks;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -65,7 +64,12 @@ public class TextPieces {
 	}
 
 	public List<Double> getSymbolEnds() {
-		return textPieces.stream().map(TextPiece::getEndX).collect(Collectors.toList());
+		List<Double> ends = new ArrayList<>();
+		for (TextPiece textPiece : textPieces) {
+			TextChunksHelper.updateSymbolEnds(ends, textPiece.endX - textPiece.startX, textPiece.startX,
+			                                  textPiece.value.length());
+		}
+		return ends;
 	}
 
 	public static class TextPiece {

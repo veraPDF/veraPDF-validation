@@ -68,12 +68,11 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 	private String findTextValue() {
 		double[] rect = annot.getRect();
 		if (rect != null) {
-			List<IChunk> chunks = StaticStorages.getChunks().get(page.getObject().getKey(), new BoundingBox(page.getPageNumber(), rect));
-			return chunks.stream()
-			             .filter(iChunk -> iChunk instanceof TextChunk)//sort?
-			             .map(chunk -> ((TextChunk) chunk).getValue())
-			             .reduce((s1, s2) -> s1 + s2)
-			             .orElse("").trim();
+			List<String> values = StaticStorages.getChunks().getValues(page.getObject().getKey(),
+			                                                           new BoundingBox(page.getPageNumber(), rect));
+			return values.stream()
+			             .reduce("", String::concat)
+			             .trim();
 		}
 		return "";
 	}
