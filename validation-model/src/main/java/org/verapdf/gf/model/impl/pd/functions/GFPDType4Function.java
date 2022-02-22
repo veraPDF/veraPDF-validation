@@ -25,7 +25,6 @@ import org.verapdf.gf.model.impl.cos.GFCosObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosObject;
 import org.verapdf.model.pdlayer.PDType4Function;
-import org.verapdf.pd.function.PDFunction;
 
 import java.util.ArrayList;
 import java.util.Collections;

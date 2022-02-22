@@ -142,23 +142,27 @@ class ChunkParser {
 			}
 			case Operators.SCN_FILL:
 				if (this.graphicsState.isProcessColorOperators()) {
-					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
-						if (arguments.size() == 1 || arguments.size() == 2) {
-							if (arguments.get(0).getType().isNumber()) {
-								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal()});
+					PDColorSpace colorSpace = this.graphicsState.getFillColorSpace();
+					if (isProcessColorSpace(colorSpace)) {
+						try {
+							int size = arguments.size();
+							if (!arguments.get(size - 1).getType().isNumber()) {
+								size--;
 							}
-						} else if (arguments.size() == 3 || (arguments.size() == 4 && !arguments.get(3).getType().isNumber())) {
-							if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
-							    arguments.get(2).getType().isNumber()) {
-								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-								                                             arguments.get(1).getReal(), arguments.get(2).getReal()});
+							double[] colorArguments = new double[size];
+							boolean areNumbers = true;
+							for (int i = 0; i < size; ++i) {
+								if (!arguments.get(i).getType().isNumber()) {
+									areNumbers = false;
+									break;
+								}
+								colorArguments[i] = arguments.get(i).getReal();
 							}
-						} else if (arguments.size() == 4 || arguments.size() == 5) {
-							if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
-							    arguments.get(2).getType().isNumber() && arguments.get(3).getType().isNumber()) {
-								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-								                                             arguments.get(1).getReal(), arguments.get(2).getReal(), arguments.get(3).getReal()});
+							if (areNumbers) {
+								this.graphicsState.setFillColor(colorSpace.toRGB(colorArguments));
 							}
+						} catch (Exception e) {
+							LOGGER.log(Level.WARNING, "Error setting fill color with scn operator", e);
 						}
 					} else {
 						this.graphicsState.setFillColor(new double[0]);
@@ -167,23 +171,27 @@ class ChunkParser {
 				break;
 			case Operators.SC_FILL:
 				if (this.graphicsState.isProcessColorOperators()) {
-					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
-						if (arguments.size() == 1) {
-							if (arguments.get(0).getType().isNumber()) {
-								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal()});
+					PDColorSpace colorSpace = this.graphicsState.getFillColorSpace();
+					ASAtom colorSpaceType = colorSpace.getType();
+					if (ASAtom.DEVICERGB.equals(colorSpaceType) || ASAtom.DEVICEGRAY.equals(colorSpaceType) ||
+							ASAtom.DEVICECMYK.equals(colorSpaceType) || ASAtom.CALRGB.equals(colorSpaceType) ||
+							ASAtom.CALGRAY.equals(colorSpaceType) || ASAtom.INDEXED.equals(colorSpaceType) ||
+							ASAtom.LAB.equals(colorSpaceType)) {
+						try {
+							double[] colorArguments = new double[arguments.size()];
+							boolean areNumbers = true;
+							for (int i = 0; i < arguments.size(); ++i) {
+								if (!arguments.get(i).getType().isNumber()) {
+									areNumbers = false;
+									break;
+								}
+								colorArguments[i] = arguments.get(i).getReal();
 							}
-						} else if (arguments.size() == 3) {
-							if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
-							    arguments.get(2).getType().isNumber()) {
-								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-								                                             arguments.get(1).getReal(), arguments.get(2).getReal()});
+							if (areNumbers) {
+								this.graphicsState.setFillColor(colorSpace.toRGB(colorArguments));
 							}
-						} else if (arguments.size() == 4) {
-							if (arguments.get(0).getType().isNumber() && arguments.get(1).getType().isNumber() &&
-							    arguments.get(2).getType().isNumber() && arguments.get(3).getType().isNumber()) {
-								this.graphicsState.setFillColor(new double[]{arguments.get(0).getReal(),
-								                                             arguments.get(1).getReal(), arguments.get(2).getReal(), arguments.get(3).getReal()});
-							}
+						} catch (Exception e) {
+							LOGGER.log(Level.WARNING, "Error setting fill color with sc operator", e);
 						}
 					} else {
 						this.graphicsState.setFillColor(new double[0]);
@@ -866,7 +874,9 @@ class ChunkParser {
 		ASAtom colorSpaceType = colorSpace.getType();
 		return ASAtom.DEVICERGB.equals(colorSpaceType) || ASAtom.DEVICEGRAY.equals(colorSpaceType) ||
 		       ASAtom.DEVICECMYK.equals(colorSpaceType) || ASAtom.ICCBASED.equals(colorSpaceType) ||
-		       ASAtom.CALRGB.equals(colorSpaceType) || ASAtom.CALGRAY.equals(colorSpaceType);
+		       ASAtom.CALRGB.equals(colorSpaceType) || ASAtom.CALGRAY.equals(colorSpaceType) ||
+		       ASAtom.DEVICEN.equals(colorSpaceType) || ASAtom.SEPARATION.equals(colorSpaceType) ||
+		       ASAtom.INDEXED.equals(colorSpaceType) || ASAtom.LAB.equals(colorSpaceType);
 	}
 
 	public void parseLineArts() {

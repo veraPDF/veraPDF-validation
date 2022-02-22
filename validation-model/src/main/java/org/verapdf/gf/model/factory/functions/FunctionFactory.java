@@ -21,9 +21,7 @@
 package org.verapdf.gf.model.factory.functions;
 
 import org.verapdf.gf.model.impl.pd.functions.*;
-import org.verapdf.pd.function.PDFunction;
-import org.verapdf.pd.function.PDType3Function;
-import org.verapdf.pd.function.PDType4Function;
+import org.verapdf.pd.function.*;
 
 import java.util.logging.Logger;
 
@@ -44,9 +42,9 @@ public class FunctionFactory {
 
         switch (functionType.intValue()) {
             case 0:
-                return new GFPDType0Function(function);
+                return new GFPDType0Function((PDType0Function) function);
             case 2:
-                return new GFPDType2Function(function);
+                return new GFPDType2Function((PDType2Function) function);
             case 3:
                 return new GFPDType3Function((PDType3Function) function);
             case 4:
