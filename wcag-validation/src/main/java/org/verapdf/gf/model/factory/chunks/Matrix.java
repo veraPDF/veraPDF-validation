@@ -201,6 +201,10 @@ public class Matrix implements Cloneable {
 		return new Vertex(v.getPageNumber(), transformX(v.getX(), v.getY()), transformY(v.getX(), v.getY()));
 	}
 
+	public double getRotationDegree() {
+		return Math.toDegrees(Math.atan2(getShearY(), getScaleX()));
+	}
+
 	@Override
 	public String toString() {
 		return "[" +

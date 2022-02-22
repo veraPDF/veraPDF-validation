@@ -667,17 +667,6 @@ class ChunkParser {
 		}
 	}
 
-	private COSBase getArgument(List<COSBase> arguments, String operatorType) {
-		if (Operators.DOUBLE_QUOTE.equals(operatorType)) {
-			if (arguments.size() > 2) {
-				return arguments.get(2);
-			}
-		} else if (!arguments.isEmpty()) {
-			return arguments.get(0);
-		}
-		return null;
-	}
-
 	private List<Double> parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
 		List<Double> symbolEnds = new ArrayList<>();
 		if (argument.getType() == COSObjType.COS_STRING) {
@@ -745,35 +734,22 @@ class ChunkParser {
 
 	private TextChunk createTextChunk(List<COSBase> arguments, String operatorType) {
 		org.verapdf.pd.font.PDFont font = graphicsState.getTextState().getTextFont();
-		COSBase argument = getArgument(arguments, operatorType);
+		COSBase argument = TextChunksHelper.getArgument(arguments, operatorType);
 		if (font != null && argument != null && (argument.getType() == COSObjType.COS_STRING ||
 		        argument.getType() == COSObjType.COS_ARRAY) && this.textMatrix != null) {
 			StringBuilder unicodeValue = new StringBuilder();
 			Matrix textRenderingMatrixBefore = new Matrix();
 			List<Double> symbolEnds = parseTextShowArgument(argument, unicodeValue, textRenderingMatrixBefore);
 			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
-			return new TextChunk(calculateTextBoundingBox(textRenderingMatrixBefore, textRenderingMatrixAfter, font.getBoundingBox()),
-			                     unicodeValue.toString(), font.getNameWithoutSubset(),
-			                     Math.sqrt(textRenderingMatrixAfter.getScaleY() * textRenderingMatrixAfter.getScaleY() +
-			                               textRenderingMatrixAfter.getShearX() * textRenderingMatrixAfter.getShearX()),
-			                     graphicsState.getTextState().getRenderingMode() == 2 ? getBolderFontWeight(font.getFontWeight()) : font.getFontWeight(),
-                                 font.getFontDescriptor().getItalicAngle(), textRenderingMatrixAfter.getTranslateY(),
-                                 graphicsState.getFillColor(),
-                                 graphicsState.getFillColorSpace() != null ? graphicsState.getFillColorSpace().getType().getValue() : null,
-                                 symbolEnds);
+			return new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
+				textRenderingMatrixAfter, font.getBoundingBox(), pageNumber), unicodeValue.toString(),
+				font.getNameWithoutSubset(), TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
+				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font),
+				font.getFontDescriptor().getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
+				graphicsState.getFillColor(), symbolEnds, textRenderingMatrixAfter.getRotationDegree());
 		}
 		return null;
 	}
-
-    private Double getBolderFontWeight(Double fontWeight) {
-        if (fontWeight < 400) {
-            return 400.0;
-        }
-        if (fontWeight < 600) {
-            return 700.0;
-        }
-        return 900.0;
-    }
 
 	private Matrix calculateTextRenderingMatrix() {
 		Matrix parameters = new Matrix(graphicsState.getTextState().getTextFontSize() *
@@ -781,41 +757,6 @@ class ChunkParser {
 		                               graphicsState.getTextState().getTextFontSize(), 0,
 		                               graphicsState.getTextState().getTextRise());
 		return parameters.multiply(textMatrix).multiply(graphicsState.getCTM());
-	}
-
-	private BoundingBox calculateTextBoundingBox(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter,
-												 double[] fontBoundingBox) {
-		double x1;
-		double x2;
-		if (textRenderingMatrixBefore.getScaleX() >= 0 && textRenderingMatrixBefore.getShearX() >= 0) {
-			x1 = textRenderingMatrixBefore.getTranslateX() + fontBoundingBox[1] * textRenderingMatrixBefore.getShearX() / 1000;
-			x2 = textRenderingMatrixAfter.getTranslateX() + fontBoundingBox[3] * textRenderingMatrixAfter.getShearX() / 1000;
-		} else if (textRenderingMatrixBefore.getScaleX() < 0 && textRenderingMatrixBefore.getShearX() < 0) {
-			x1 = textRenderingMatrixAfter.getTranslateX() + fontBoundingBox[3] * textRenderingMatrixAfter.getShearX() / 1000;
-			x2 = textRenderingMatrixBefore.getTranslateX() + fontBoundingBox[1] * textRenderingMatrixBefore.getShearX() / 1000;
-		} else if (textRenderingMatrixBefore.getScaleX() >= 0) {
-			x1 = textRenderingMatrixBefore.getTranslateX() + fontBoundingBox[3] * textRenderingMatrixBefore.getShearX() / 1000;
-			x2 = textRenderingMatrixAfter.getTranslateX() + fontBoundingBox[1] * textRenderingMatrixAfter.getShearX() / 1000;
-		} else {
-			x1 = textRenderingMatrixAfter.getTranslateX() + fontBoundingBox[1] * textRenderingMatrixAfter.getShearX() / 1000;
-			x2 = textRenderingMatrixBefore.getTranslateX() + fontBoundingBox[3] * textRenderingMatrixBefore.getShearX() / 1000;
-		}
-		double y1;
-		double y2;
-		if (textRenderingMatrixBefore.getScaleY() >= 0 && textRenderingMatrixBefore.getShearY() >= 0) {
-			y1 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixBefore.getScaleY() / 1000;
-			y2 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixAfter.getScaleY() / 1000;
-		} else if (textRenderingMatrixBefore.getScaleY() < 0 && textRenderingMatrixBefore.getShearY() < 0) {
-			y1 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixAfter.getScaleY() / 1000;
-			y2 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixBefore.getScaleY() / 1000;
-		} else if (textRenderingMatrixBefore.getScaleY() >= 0) {
-			y1 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixAfter.getScaleY() / 1000;
-			y2 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixBefore.getScaleY() / 1000;
-		} else {
-			y1 = textRenderingMatrixBefore.getTranslateY() + fontBoundingBox[3] * textRenderingMatrixBefore.getScaleY() / 1000;
-			y2 = textRenderingMatrixAfter.getTranslateY() + fontBoundingBox[1] * textRenderingMatrixAfter.getScaleY() / 1000;
-		}
-		return new BoundingBox(pageNumber, x1, y1, x2, y2);
 	}
 
 	private Long getMarkedContent() {
