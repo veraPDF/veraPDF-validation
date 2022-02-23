@@ -67,7 +67,7 @@ public class TextPieces {
 		List<Double> ends = new ArrayList<>();
 		for (TextPiece textPiece : textPieces) {
 			TextChunksHelper.updateSymbolEnds(ends, textPiece.endX - textPiece.startX, textPiece.startX,
-			                                  textPiece.value.length());
+			                                  textPiece.value != null ? textPiece.value.length() : 0);
 		}
 		return ends;
 	}
