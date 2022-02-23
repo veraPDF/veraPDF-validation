@@ -719,10 +719,10 @@ class ChunkParser {
 				String value = graphicsState.getTextState().getTextFont().toUnicode(code);
 				if (symbolEnds != null) {
 					if (symbolEnds.isEmpty()) {
-						TextChunksHelper.updateSymbolEnds(symbolEnds, shift, 0, value.length());
+						TextChunksHelper.updateSymbolEnds(symbolEnds, shift, 0, value != null ? value.length() : 0);
 					} else {
 						TextChunksHelper.updateSymbolEnds(symbolEnds, shift, symbolEnds.get(symbolEnds.size() - 1),
-						                                  value.length());
+						                                  value != null ? value.length() : 0);
 					}
 				}
 				if (textPieces == null) {
