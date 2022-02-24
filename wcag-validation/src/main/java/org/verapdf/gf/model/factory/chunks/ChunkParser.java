@@ -726,9 +726,10 @@ class ChunkParser {
 					}
 				}
 				if (textPieces == null) {
-					unicodeValue.append(value);
+					unicodeValue.append(value != null ? value : "");
 				} else {
-					textPieces.add(new TextPieces.TextPiece(value, textPieces.getCurrentX(), textPieces.getCurrentX() + shift));
+					textPieces.add(new TextPieces.TextPiece(value != null ? value : "", textPieces.getCurrentX(),
+					                                        textPieces.getCurrentX() + shift));
 				}
 			}
 		} catch (IOException e) {
