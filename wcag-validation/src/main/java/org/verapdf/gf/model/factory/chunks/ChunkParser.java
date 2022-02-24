@@ -177,7 +177,7 @@ class ChunkParser {
 					if (ASAtom.DEVICERGB.equals(colorSpaceType) || ASAtom.DEVICEGRAY.equals(colorSpaceType) ||
 							ASAtom.DEVICECMYK.equals(colorSpaceType) || ASAtom.CALRGB.equals(colorSpaceType) ||
 							ASAtom.CALGRAY.equals(colorSpaceType) || ASAtom.INDEXED.equals(colorSpaceType) ||
-							ASAtom.LAB.equals(colorSpaceType)) {
+							ASAtom.LAB.equals(colorSpaceType) || ASAtom.ICCBASED.equals(colorSpaceType)) {
 						try {
 							double[] colorArguments = new double[arguments.size()];
 							boolean areNumbers = true;
