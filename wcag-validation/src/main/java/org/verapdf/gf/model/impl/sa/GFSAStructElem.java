@@ -21,7 +21,10 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.*;
+import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.structelems.GFSAGeneral;
 import org.verapdf.model.GenericModelObject;
@@ -40,11 +43,11 @@ import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
 import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
-import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
 
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Maxim Plushchov
@@ -52,9 +55,6 @@ import java.util.regex.Pattern;
 public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 
     public static final String CHILDREN = "children";
-	public static final String START = "START";
-	public static final String MIDDLE = "MIDDLE";
-	public static final String END = "END";
 
 	private final org.verapdf.pd.structure.PDStructElem structElemDictionary;
 
@@ -69,9 +69,6 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	private final boolean isListChild;
 	private boolean isLeafNode = true;
 	private final String parentsStandardTypes;
-
-	private int maxSpaceStartIndex;
-	private int maxSpaceEndIndex;
 
 	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType,
 	                      String type, String parentsStandardTypes) {
@@ -261,11 +258,6 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	}
 
 	@Override
-	public Long getnumberOfSameCharacters() {
-		return GFSAStructElem.getNumberOfSameCharacters(getTextValue());
-	}
-
-	@Override
 	public String getparentsStandardTypes() {
 		return parentsStandardTypes;
 	}
@@ -275,78 +267,6 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 			parseChildren();
 		}
 		return textValue.toString();
-	}
-
-	private static long getNumberOfSameCharacters(String value) {
-		if (value == null || value.isEmpty()) {
-			return 0;
-		}
-		char[] characters = value.toCharArray();
-		char lastCharacter = characters[0];
-		int maxLength = 0;
-		int length = 0;
-		for (char character : characters) {
-			if (lastCharacter == character) {
-				length++;
-			} else {
-				if (length > maxLength && !TextChunkUtils.isWhiteSpaceChar(lastCharacter)) {
-					maxLength = length;
-				}
-				length = 1;
-				lastCharacter = character;
-			}
-		}
-		if (length > maxLength && !TextChunkUtils.isWhiteSpaceChar(lastCharacter)) {
-			maxLength = length;
-		}
-		return maxLength;
-	}
-
-	@Override
-	public Long getnumberOfRepeatedSpaces() {
-		return getNumberOfRepeatedSpaces(getTextValue());
-	}
-
-	private long getNumberOfRepeatedSpaces(String value) {
-		int[] indexes = getIndexesOfLongestSequenceOfSpaces(value);
-		maxSpaceStartIndex = indexes[0];
-		maxSpaceEndIndex = indexes[1];
-		if (maxSpaceStartIndex == -1) {
-			return 0;
-		}
-		return (long)maxSpaceEndIndex - maxSpaceStartIndex;
-	}
-
-	@Override
-	public String getpositionOfRepeatedSpaces() {
-		return getPositionOfRepeatedSpaces(getTextValue());
-	}
-
-	private String getPositionOfRepeatedSpaces(String value) {
-		if (maxSpaceStartIndex == 0) {
-			return START;
-		}
-		if (maxSpaceEndIndex == value.length()) {
-			return END;
-		}
-		return MIDDLE;
-	}
-
-	private static int[] getIndexesOfLongestSequenceOfSpaces(String value) {
-		if (value == null || value.isEmpty() || value.indexOf(' ') == -1) {
-			return new int[]{-1, -1};
-		}
-		int firstMaxIndex = -1;
-		int secondMaxIndex = -1;
-		Pattern pattern = Pattern.compile("[\\s+\\u00A0\\u2007\\u202F\\u001C\\u001D\\u001E\\u001F]+");
-		Matcher matcher = pattern.matcher(value);
-		while (matcher.find()) {
-			if (matcher.end() - matcher.start() > secondMaxIndex - firstMaxIndex) {
-				firstMaxIndex = matcher.start();
-				secondMaxIndex = matcher.end();
-			}
-		}
-		return new int[]{firstMaxIndex, secondMaxIndex};
 	}
 
 	@Override
