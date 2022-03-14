@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.sa.util;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
+import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.PDResources;
 import org.verapdf.pd.colors.PDColorSpace;
@@ -133,6 +134,26 @@ public class ResourceHandler {
 			xObject = this.pageResources.getXObject(name);
 		}
 		return xObject;
+	}
+
+	public PDExtGState getExtGState(COSName name) {
+		if (name != null) {
+			return getExtGState(name.getName());
+		}
+		return null;
+	}
+
+	public PDExtGState getExtGState(ASAtom name) {
+		PDExtGState state = null;
+		if (this.objectResources != null) {
+			state = this.objectResources.getExtGState(name);
+			if (state == null && this.pageResources != null) {
+				state = this.pageResources.getExtGState(name);
+			}
+		} else if (this.pageResources != null) {
+			state = this.pageResources.getExtGState(name);
+		}
+		return state;
 	}
 
 	private boolean isDefaultColorSpaceUsed(ASAtom name) {

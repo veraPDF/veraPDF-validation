@@ -21,8 +21,11 @@
 package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSNumber;
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.colors.PDColorSpace;
+import org.verapdf.pd.font.PDFont;
 import org.verapdf.wcag.algorithms.entities.content.LineChunk;
 
 /**
@@ -110,6 +113,19 @@ public class GraphicsState implements Cloneable {
 		this.processColorOperators = graphicState.isProcessColorOperators();
 		this.lineWidth = graphicState.getLineWidth();
 		this.lineCap = graphicState.getLineCap();
+	}
+
+	public void copyPropertiesFromExtGState(PDExtGState extGState) {
+		if (extGState != null) {
+			PDFont font = extGState.getFont();
+			if (font != null) {
+				this.getTextState().setTextFont(font);
+			}
+			COSNumber fontSize = extGState.getCOSFontSize();
+			if (fontSize != null) {
+				this.getTextState().setTextFontSize(fontSize.getReal());
+			}
+		}
 	}
 
 	@Override

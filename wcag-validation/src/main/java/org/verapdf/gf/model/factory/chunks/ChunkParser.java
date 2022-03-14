@@ -27,6 +27,7 @@ import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.cos.*;
 import org.verapdf.operator.Operator;
+import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
@@ -332,6 +333,10 @@ class ChunkParser {
 			case Operators.F_STAR_FILL:
 				processh();
 				processf();
+				break;
+			case Operators.GS:
+				PDExtGState extGState = this.resourceHandler.getExtGState(getLastCOSName(arguments));
+				this.graphicsState.copyPropertiesFromExtGState(extGState);
 				break;
 			case Operators.L_LINE_TO:
 				if (arguments.size() == 2 && arguments.get(0).getType().isNumber() &&
