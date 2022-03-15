@@ -48,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -260,6 +261,48 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	@Override
 	public String getparentsStandardTypes() {
 		return parentsStandardTypes;
+	}
+
+	@Override
+	public String getkidsStandardTypes() {
+			return this.getChildrenStandardTypes()
+					.stream()
+					.filter(type -> type != null && !TaggedPDFConstants.ARTIFACT.equals(type))
+					.collect(Collectors.joining("&"));
+	}
+
+	private List<String> getChildrenStandardTypes() {
+		return getChildrenStandardTypes(this);
+	}
+
+	private static List<String> getChildrenStandardTypes(GFSAStructElem element) {
+		List<String> res = new ArrayList<>();
+		for (Object child : element.children) {
+			String elementStandardType = ((GFSAStructElem) child).getstandardType();
+			if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
+				res.addAll(getChildrenStandardTypes((GFSAStructElem) child));
+			} else {
+				res.add(elementStandardType);
+			}
+		}
+		return Collections.unmodifiableList(res);
+	}
+
+	@Override
+	public String getparentStandardType() {
+		org.verapdf.pd.structure.PDStructElem parent = this.structElemDictionary.getParent();
+		if (parent != null) {
+			String parentStandardType = getStructureElementStandardType(parent);
+			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType)) {
+				parent = parent.getParent();
+				if (parent == null) {
+					return null;
+				}
+				parentStandardType = getStructureElementStandardType(parent);
+			}
+			return parentStandardType;
+		}
+		return null;
 	}
 
 	public String getTextValue() {
