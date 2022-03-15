@@ -278,11 +278,13 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	private static List<String> getChildrenStandardTypes(GFSAStructElem element) {
 		List<String> res = new ArrayList<>();
 		for (Object child : element.children) {
-			String elementStandardType = ((GFSAStructElem) child).getstandardType();
-			if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
-				res.addAll(getChildrenStandardTypes((GFSAStructElem) child));
-			} else {
-				res.add(elementStandardType);
+			if (child instanceof GFSAStructElem) {
+				String elementStandardType = ((GFSAStructElem) child).getstandardType();
+				if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
+					res.addAll(getChildrenStandardTypes((GFSAStructElem) child));
+				} else {
+					res.add(elementStandardType);
+				}
 			}
 		}
 		return Collections.unmodifiableList(res);
