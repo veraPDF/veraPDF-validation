@@ -57,7 +57,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 
     public static final String CHILDREN = "children";
 
-	private final org.verapdf.pd.structure.PDStructElem structElemDictionary;
+	protected final org.verapdf.pd.structure.PDStructElem structElemDictionary;
 
 	protected List<Object> children = null;
 
@@ -317,5 +317,23 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	@Override
 	public Boolean gethasLowestDepthError() {
 		return node.getHasLowestDepthError();
+	}
+
+	@Override
+	public Long getpage() {
+		Integer page = this.node.getBoundingBox().getPageNumber();
+		if (page != null) {
+			return Long.valueOf(page);
+		}
+		return null;
+	}
+
+	@Override
+	public Long getlastPage() {
+		Integer lastPage = this.node.getBoundingBox().getLastPageNumber();
+		if (lastPage != null) {
+			return Long.valueOf(lastPage);
+		}
+		return null;
 	}
 }
