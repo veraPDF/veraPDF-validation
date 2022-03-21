@@ -58,30 +58,29 @@ public class GFSETD extends GFSEGeneral implements SETD {
                 for (COSObject object : (COSArray)A.getDirectBase()) {
                     if (object.getType() == COSObjType.COS_DICT && TaggedPDFConstants.TABLE.equals(object.getStringKey(ASAtom.O))) {
                         COSObject Headers = object.getKey(ASAtom.HEADERS);
-                        if (Headers != null && Headers.getType() == COSObjType.COS_ARRAY) {
-                            List<String> list = new LinkedList<>();
-                            for (COSObject elem : (COSArray)Headers.getDirectBase()) {
-                                if (elem.getType() == COSObjType.COS_STRING) {
-                                    list.add(elem.getString());
-                                }
-                            }
-                            return list;
-                        }
+                        List<String> list = getHeaderElementList(Headers);
+                        if (list != null) return list;
                     }
                 }
             } else if (A.getType() == COSObjType.COS_DICT && TaggedPDFConstants.TABLE.equals(A.getStringKey(ASAtom.O))) {
                 COSObject Headers = A.getKey(ASAtom.HEADERS);
-                if (Headers != null && Headers.getType() == COSObjType.COS_ARRAY) {
-                    List<String> list = new LinkedList<>();
-                    for (COSObject elem : (COSArray)Headers.getDirectBase()) {
-                        if (elem.getType() == COSObjType.COS_STRING) {
-                            list.add(elem.getString());
-                        }
-                    }
-                    return list;
-                }
+                List<String> list = getHeaderElementList(Headers);
+                if (list != null) return list;
             }
         }
         return Collections.emptyList();
+    }
+
+    private List<String> getHeaderElementList(COSObject Headers) {
+        if (Headers != null && Headers.getType() == COSObjType.COS_ARRAY) {
+            List<String> list = new LinkedList<>();
+            for (COSObject elem : (COSArray) Headers.getDirectBase()) {
+                if (elem.getType() == COSObjType.COS_STRING) {
+                    list.add(elem.getString());
+                }
+            }
+            return list;
+        }
+        return null;
     }
 }
