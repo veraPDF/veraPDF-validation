@@ -20,10 +20,12 @@
  */
 package org.verapdf.gf.model.impl.cos;
 
+import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSIndirect;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.tools.GFIDGenerator;
+import org.verapdf.gf.model.visitor.cos.pb.GFCosVisitor;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosObject;
@@ -80,7 +82,7 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
      */
     private List<CosObject> parseDirectObject() {
         List<CosObject> list = new ArrayList<>();
-        list.add(baseObject != null ? getFromValue(baseObject) : GFCosNull.getInstance());
+        list.add(baseObject != null ? this.getFromValue(baseObject) : GFCosNull.getInstance());
         return Collections.unmodifiableList(list);
     }
 
@@ -100,6 +102,25 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
         return object.isEndOfObjectComplyPDFA().booleanValue()
                 && object.isHeaderFormatComplyPDFA().booleanValue()
                 && object.isHeaderOfObjectComplyPDFA().booleanValue();
+    }
+
+    /**
+     * Transform object of pdf box to corresponding object of abstract model
+     * implementation. For transforming using {@code PBCosVisitor}.
+     *
+     * @param base
+     * @return object of abstract model implementation, transformed from
+     *         {@code base}
+     */
+    private CosObject getFromValue(COSBase base) {
+        if (base != null) {
+            GFCosVisitor visitor = GFCosVisitor.getInstance();
+            if (base.isIndirect().booleanValue()) {
+                return (CosObject) GFCosVisitor.visitFromIndirect((COSIndirect) base);
+            }
+            return (CosObject) base.accept(visitor);
+        }
+        return null;
     }
 
 }

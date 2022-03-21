@@ -20,8 +20,10 @@
  */
 package org.verapdf.gf.model.impl.pd.functions;
 
+import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSIndirect;
 import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.cos.GFCosObject;
+import org.verapdf.gf.model.visitor.cos.pb.GFCosVisitor;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosObject;
 import org.verapdf.model.pdlayer.PDType4Function;
@@ -54,8 +56,27 @@ public class GFPDType4Function extends GFPDFunction implements PDType4Function {
         org.verapdf.pd.function.PDType4Function function = (org.verapdf.pd.function.PDType4Function)this.simplePDObject;
         List<CosObject> result = new ArrayList<>();
         for (COSObject obj : function.getOperators()) {
-            result.add(GFCosObject.getFromValue(obj.get()));
+            result.add(this.getFromValue(obj.get()));
         }
         return Collections.unmodifiableList(result);
+    }
+
+    /**
+     * Transform object of pdf box to corresponding object of abstract model
+     * implementation. For transforming using {@code PBCosVisitor}.
+     *
+     * @param base
+     * @return object of abstract model implementation, transformed from
+     *         {@code base}
+     */
+    private CosObject getFromValue(COSBase base) {
+        if (base != null) {
+            GFCosVisitor visitor = GFCosVisitor.getInstance();
+            if (base.isIndirect().booleanValue()) {
+                return (CosObject) GFCosVisitor.visitFromIndirect((COSIndirect) base);
+            }
+            return (CosObject) base.accept(visitor);
+        }
+        return null;
     }
 }

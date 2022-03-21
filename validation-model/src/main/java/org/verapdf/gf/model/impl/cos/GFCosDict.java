@@ -21,11 +21,9 @@
 package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSBase;
-import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObject;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.pd.GFPDMetadata;
+import org.verapdf.gf.model.visitor.cos.pb.GFCosVisitor;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosDict;
 import org.verapdf.model.coslayer.CosName;
@@ -99,7 +97,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
         for (ASAtom key : this.baseObject.getKeySet()) {
             if (key != null) {
                 COSBase name = COSName.fromValue(key);
-                list.add((CosName) getFromValue(name));
+                list.add((CosName) this.getFromValue(name));
             }
         }
         return Collections.unmodifiableList(list);
@@ -112,7 +110,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
         List<CosObject> list = new ArrayList<>(this.baseObject.size().intValue());
         for (COSObject value : this.baseObject.getValues()) {
             if (value != null) {
-                list.add(getFromValue(value.get()));
+                list.add(this.getFromValue(value.get()));
             }
         }
         return Collections.unmodifiableList(list);
@@ -134,6 +132,25 @@ public class GFCosDict extends GFCosObject implements CosDict {
         }
 
         return Collections.emptyList();
+    }
+
+    /**
+     * Transform object of pdf box to corresponding object of abstract model
+     * implementation. For transforming using {@code PBCosVisitor}.
+     *
+     * @param base
+     * @return object of abstract model implementation, transformed from
+     *         {@code base}
+     */
+    private CosObject getFromValue(COSBase base) {
+        if (base != null) {
+            GFCosVisitor visitor = GFCosVisitor.getInstance();
+            if (base.isIndirect().booleanValue()) {
+                return (CosObject) GFCosVisitor.visitFromIndirect((COSIndirect) base);
+            }
+            return (CosObject) base.accept(visitor);
+        }
+        return null;
     }
 
 }

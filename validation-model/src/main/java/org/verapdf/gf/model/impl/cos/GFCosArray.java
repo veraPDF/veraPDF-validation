@@ -21,7 +21,10 @@
 package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.cos.COSArray;
+import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSIndirect;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.visitor.cos.pb.GFCosVisitor;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosArray;
 import org.verapdf.model.coslayer.CosObject;
@@ -90,10 +93,29 @@ public class GFCosArray extends GFCosObject implements CosArray {
         while (iterator.hasNext()) {
             COSObject object = (COSObject) iterator.next();
             if (object != null && object.get() != null) {
-                list.add(getFromValue(object.get()));
+                list.add(this.getFromValue(object.get()));
             }
         }
         return Collections.unmodifiableList(list);
+    }
+
+    /**
+     * Transform object of pdf box to corresponding object of abstract model
+     * implementation. For transforming using {@code PBCosVisitor}.
+     *
+     * @param base
+     * @return object of abstract model implementation, transformed from
+     *         {@code base}
+     */
+    private CosObject getFromValue(COSBase base) {
+        if (base != null) {
+            GFCosVisitor visitor = GFCosVisitor.getInstance();
+            if (base.isIndirect().booleanValue()) {
+                return (CosObject) GFCosVisitor.visitFromIndirect((COSIndirect) base);
+            }
+            return (CosObject) base.accept(visitor);
+        }
+        return null;
     }
 
 }
