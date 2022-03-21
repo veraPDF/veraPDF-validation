@@ -513,13 +513,13 @@ class ChunkParser {
 
 	private void processB() {
 		List<IChunk> artifacts = new ArrayList<>(nonDrawingArtifacts.size());
-		Long mcid = getMarkedContent();
+		Long markedContentId = getMarkedContent();
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
 				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 						graphicsState.getLineCap()));
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+				lineArtContainer.add(markedContentId, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth()).getBoundingBox());
 			} else if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
@@ -528,20 +528,20 @@ class ChunkParser {
 				}
 			}
 		}
-		artifacts.forEach(artifact -> lineArtContainer.add(mcid, artifact.getBoundingBox()));
+		artifacts.forEach(artifact -> lineArtContainer.add(markedContentId, artifact.getBoundingBox()));
 		this.artifacts.addAll(artifacts);
 		nonDrawingArtifacts = new LinkedList<>();
 	}
 
 	private void processS() {
 		List<IChunk> artifacts = new ArrayList<>(nonDrawingArtifacts.size());
-		Long mcid = getMarkedContent();
+		Long markedContentId = getMarkedContent();
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
 				artifacts.add(transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 						graphicsState.getLineCap()));
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+				lineArtContainer.add(markedContentId, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth()).getBoundingBox());
 			} else if (chunk instanceof Rectangle) {
 				Rectangle rectangle = (Rectangle) chunk;
@@ -560,14 +560,14 @@ class ChunkParser {
 				}
 			}
 		}
-		artifacts.forEach(artifact -> lineArtContainer.add(mcid, artifact.getBoundingBox()));
+		artifacts.forEach(artifact -> lineArtContainer.add(markedContentId, artifact.getBoundingBox()));
 		this.artifacts.addAll(artifacts);
 		nonDrawingArtifacts = new LinkedList<>();
 	}
 
 	private void processf() {
 		List<IChunk> artifacts = new ArrayList<>(nonDrawingArtifacts.size());
-		Long mcid = getMarkedContent();
+		Long markedContentId = getMarkedContent();
 		for (int i = 0; i < nonDrawingArtifacts.size(); i++) {
 			Object chunk = nonDrawingArtifacts.get(i);
 			if (chunk instanceof Rectangle) {
@@ -581,15 +581,15 @@ class ChunkParser {
 					artifacts.add(line);
 					i += 3;
 				} else {
-					lineArtContainer.add(mcid, transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
+					lineArtContainer.add(markedContentId, transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 							graphicsState.getLineCap()).getBoundingBox());
 				}
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+				lineArtContainer.add(markedContentId, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth()).getBoundingBox());
 			}
 		}
-		artifacts.forEach(artifact -> lineArtContainer.add(mcid, artifact.getBoundingBox()));
+		artifacts.forEach(artifact -> lineArtContainer.add(markedContentId, artifact.getBoundingBox()));
 		this.artifacts.addAll(artifacts);
 		nonDrawingArtifacts = new LinkedList<>();
 	}
@@ -662,12 +662,12 @@ class ChunkParser {
 		return new BoundingBox(pageNumber, x1, y1, x2, y2);
 	}
 
-	private void putChunk(Long mcid, IChunk chunk) {
+	private void putChunk(Long markedContentId, IChunk chunk) {
 		if (chunk == null) {
 			return;
 		}
-		if (mcid != null) {
-			StaticStorages.getChunks().add(objectKey, mcid, chunk);
+		if (markedContentId != null) {
+			StaticStorages.getChunks().add(objectKey, markedContentId, chunk);
 		} else {
 			artifacts.add(chunk);
 		}
@@ -771,9 +771,9 @@ class ChunkParser {
 
 	private Long getMarkedContent() {
 		if (!markedContentStack.empty()) {
-			for (Long mcid : markedContentStack) {
-				if (mcid != null) {
-					return mcid;
+			for (Long markedContentId : markedContentStack) {
+				if (markedContentId != null) {
+					return markedContentId;
 				}
 			}
 		}
@@ -833,8 +833,8 @@ class ChunkParser {
 	public void parseLineArts() {
 		lineArtContainer.unionBoundingBoxes();
 		for (Map.Entry<Long, List<BoundingBox>> boundingBoxes : lineArtContainer.entrySet()) {
-			Long mcid = boundingBoxes.getKey();
-			if (mcid == null) {
+			Long markedContentId = boundingBoxes.getKey();
+			if (markedContentId == null) {
 				for (BoundingBox box : boundingBoxes.getValue()) {
 					artifacts.add(new LineArtChunk(box));
 				}
@@ -843,7 +843,7 @@ class ChunkParser {
 				for (BoundingBox box : boundingBoxes.getValue()) {
 					boundingBox.union(box);
 				}
-				putChunk(mcid, new LineArtChunk(boundingBox));
+				putChunk(markedContentId, new LineArtChunk(boundingBox));
 			}
 		}
 	}
