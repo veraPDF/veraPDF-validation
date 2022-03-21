@@ -22,13 +22,12 @@ package org.verapdf.gf.model.impl.external;
 
 import org.verapdf.cos.COSString;
 import org.verapdf.model.external.PKCSDataObject;
-import sun.security.pkcs.ContentInfo;
-import sun.security.pkcs.PKCS7;
-import sun.security.pkcs.SignerInfo;
-import sun.security.x509.AlgorithmId;
+import org.verapdf.parser.pkcs7.PKCS7;
+import org.verapdf.parser.pkcs7.X509CertificateImpl;
 
 import java.io.IOException;
-import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -64,7 +63,7 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
      */
     @Override
     public Long getSignerInfoCount() {
-        return new Long(pkcs7.getSignerInfos().length);
+        return (long) pkcs7.getSignerInfosLength();
     }
 
     /**
@@ -73,21 +72,19 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
      */
     @Override
     public Boolean getsigningCertificatePresent() {
-        X509Certificate[] certificates = pkcs7.getCertificates();
-        if (certificates.length == 0) {
+        List<X509CertificateImpl> certificates = pkcs7.getCertificates();
+        if (certificates.isEmpty()) {
             return Boolean.FALSE;
         }
-		for (X509Certificate cert : certificates) {
-		    if (cert == null) {
-	            return Boolean.FALSE;
-		    }
-		}
+        for (X509CertificateImpl cert : certificates) {
+            if (cert == null) {
+                return Boolean.FALSE;
+            }
+        }
         return Boolean.TRUE;
     }
 
     private static PKCS7 getEmptyPKCS7() {
-        return new PKCS7(new AlgorithmId[]{}, new ContentInfo(new byte[]{}),
-                new X509Certificate[]{}, new SignerInfo[]{});
+        return new PKCS7(new ArrayList<>());
     }
-
 }
