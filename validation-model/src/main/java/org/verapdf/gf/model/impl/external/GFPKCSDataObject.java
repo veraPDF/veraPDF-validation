@@ -22,8 +22,8 @@ package org.verapdf.gf.model.impl.external;
 
 import org.verapdf.cos.COSString;
 import org.verapdf.model.external.PKCSDataObject;
-import org.verapdf.parser.pkcs7.PKCS7;
-import org.verapdf.parser.pkcs7.X509CertificateImpl;
+import org.verapdf.pdfa.parsers.pkcs7.X509CertificateImpl;
+import org.verapdf.pdfa.parsers.pkcs7.PKCS7;
 
 import java.io.IOException;
 import java.util.ArrayList;
