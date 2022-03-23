@@ -39,6 +39,10 @@ public class GFSATextChunk extends GFSAChunk implements SATextChunk {
 		this.parentsStandardTypes = parentsStandardTypes;
 	}
 
+	public TextChunk getTextChunk() {
+		return textChunk;
+	}
+
 	@Override
 	public Double gettextSize() {
 		return textChunk.getFontSize();
