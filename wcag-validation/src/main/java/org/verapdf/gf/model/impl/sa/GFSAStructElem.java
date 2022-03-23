@@ -21,10 +21,7 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSKey;
-import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.structelems.GFSAGeneral;
 import org.verapdf.model.GenericModelObject;
@@ -41,13 +38,11 @@ import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
+import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
 import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -58,6 +53,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
     public static final String CHILDREN = "children";
 
 	protected final org.verapdf.pd.structure.PDStructElem structElemDictionary;
+	private static final double TEXT_CHUNK_MERGE_EPSILON = 0.2;
 
 	protected List<Object> children = null;
 
@@ -202,11 +198,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		if (chunks != null) {
 			for (IChunk chunk : chunks) {
 				if (chunk instanceof TextChunk) {
-					TextChunk textChunk = (TextChunk) chunk;
-					node.addChild(new SemanticSpan(textChunk));
-					children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
-							(parentsStandardTypes + "&")) + standardType));
-					textValue.append(textChunk.getValue());
+					addTextChunk(new TextChunk((TextChunk) chunk));
 				} else if (chunk instanceof ImageChunk) {
 					node.addChild(new SemanticImageNode((ImageChunk) chunk));
 					children.add(new GFSAImageChunk((ImageChunk) chunk));
@@ -216,6 +208,24 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 				}
 			}
 		}
+	}
+
+	public void addTextChunk(TextChunk textChunk) {
+		textValue.append(textChunk.getValue());
+		Object previousChild  = children.isEmpty() ? null : children.get(children.size() - 1);
+		if (previousChild instanceof GFSATextChunk) {
+			TextChunk previousTextChunk = ((GFSATextChunk)previousChild).getTextChunk();
+			if (TextChunk.areTextChunksHaveSameStyle(previousTextChunk, textChunk) &&
+					TextChunk.areTextChunksHaveSameBaseLine(previousTextChunk, textChunk) &&
+					NodeUtils.areCloseNumbers(previousTextChunk.getTextEnd(), textChunk.getTextStart(),
+							TEXT_CHUNK_MERGE_EPSILON * textChunk.getBoundingBox().getHeight())) {
+				TextChunk.unionTextChunks(previousTextChunk, textChunk);
+				return;
+			}
+		}
+		node.addChild(new SemanticSpan(textChunk));
+		children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
+				(parentsStandardTypes + "&")) + getstandardType()));
 	}
 
 	@Override
