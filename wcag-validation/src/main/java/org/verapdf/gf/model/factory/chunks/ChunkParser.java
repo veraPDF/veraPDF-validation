@@ -65,11 +65,12 @@ class ChunkParser {
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
 	private List<Object> nonDrawingArtifacts = new LinkedList<>();
-	private final LineArtContainer lineArtContainer = new LineArtContainer();
+	private final LineArtContainer lineArtContainer;
 
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
 					   ResourceHandler resourceHandler, Long markedContent) {
 		this.pageNumber = pageNumber;
+		lineArtContainer = new LineArtContainer(objectKey);
 		this.objectKey = objectKey;
 		this.graphicsState = inheritedGraphicState.clone();
 		if (markedContent != null) {
@@ -843,7 +844,11 @@ class ChunkParser {
 				for (BoundingBox box : boundingBoxes.getValue()) {
 					boundingBox.union(box);
 				}
+
 				putChunk(markedContentId, new LineArtChunk(boundingBox));
+
+				lineArtContainer.getLineArt(markedContentId).setBoundingBox(boundingBox);
+
 			}
 		}
 	}
