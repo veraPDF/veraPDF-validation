@@ -196,9 +196,10 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	private void addChunksToChildren(COSKey objectNumber, Long mcid) {
 		List<IChunk> chunks = StaticStorages.getChunks().get(objectNumber, mcid);
 		if (chunks != null) {
-			for (IChunk chunk : chunks) {
+			for (int i = 0; i < chunks.size(); i++) {
+				IChunk chunk = chunks.get(i);
 				if (chunk instanceof TextChunk) {
-					addTextChunk(new TextChunk((TextChunk) chunk));
+					i += addTextChunk(i, chunks);
 				} else if (chunk instanceof ImageChunk) {
 					node.addChild(new SemanticImageNode((ImageChunk) chunk));
 					children.add(new GFSAImageChunk((ImageChunk) chunk));
@@ -210,22 +211,26 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		}
 	}
 
-	public void addTextChunk(TextChunk textChunk) {
-		textValue.append(textChunk.getValue());
-		Object previousChild  = children.isEmpty() ? null : children.get(children.size() - 1);
-		if (previousChild instanceof GFSATextChunk) {
-			TextChunk previousTextChunk = ((GFSATextChunk)previousChild).getTextChunk();
-			if (TextChunk.areTextChunksHaveSameStyle(previousTextChunk, textChunk) &&
-					TextChunk.areTextChunksHaveSameBaseLine(previousTextChunk, textChunk) &&
-					NodeUtils.areCloseNumbers(previousTextChunk.getTextEnd(), textChunk.getTextStart(),
+	public int addTextChunk(int number, List<IChunk> chunks) {
+		TextChunk textChunk = (TextChunk)chunks.get(number);
+		int i = number + 1;
+		while (i < chunks.size() && chunks.get(i) instanceof TextChunk) {
+			TextChunk nextTextChunk = (TextChunk)chunks.get(i);
+			if (TextChunk.areTextChunksHaveSameStyle(textChunk, nextTextChunk) &&
+					TextChunk.areTextChunksHaveSameBaseLine(textChunk, nextTextChunk) &&
+					NodeUtils.areCloseNumbers(textChunk.getTextEnd(), nextTextChunk.getTextStart(),
 							TEXT_CHUNK_MERGE_EPSILON * textChunk.getBoundingBox().getHeight())) {
-				TextChunk.unionTextChunks(previousTextChunk, textChunk);
-				return;
+				textChunk = TextChunk.unionTextChunks(textChunk, nextTextChunk);
+				i++;
+			} else {
+				break;
 			}
 		}
+		textValue.append(textChunk.getValue());
 		node.addChild(new SemanticSpan(textChunk));
 		children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
 				(parentsStandardTypes + "&")) + getstandardType()));
+		return i - number - 1;
 	}
 
 	@Override
