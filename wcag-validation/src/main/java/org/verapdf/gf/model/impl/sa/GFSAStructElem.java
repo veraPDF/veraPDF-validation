@@ -41,6 +41,7 @@ import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
 import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
+import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -53,7 +54,6 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
     public static final String CHILDREN = "children";
 
 	protected final org.verapdf.pd.structure.PDStructElem structElemDictionary;
-	private static final double TEXT_CHUNK_MERGE_EPSILON = 0.2;
 
 	protected List<Object> children = null;
 
@@ -169,8 +169,10 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		List<java.lang.Object> elements = structElemDictionary.getChildren();
 		children = new ArrayList<>(elements.size());
 		if (!elements.isEmpty()) {
+			List<IChunk> chunks = new LinkedList<>();
 			for (java.lang.Object element : elements) {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
+					addChunksToChildren(chunks);
 					GFSAStructElem structElem = GFSAGeneral.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
 							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + "&")) + standardType);
 					INode childNode = new GFSANode(structElem);
@@ -182,33 +184,37 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 					PDMCRDictionary mcr = (PDMCRDictionary) element;
 					COSKey streamKey = mcr.getStreamObjectKey();
 					if (streamKey != null) {
-						addChunksToChildren(streamKey, mcr.getMCID());
+						chunks.addAll(getChunks(streamKey, mcr.getMCID()));
 					} else {
-						addChunksToChildren(mcr.getPageObjectKey(), mcr.getMCID());
+						chunks.addAll(getChunks(mcr.getPageObjectKey(), mcr.getMCID()));
 					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
-					addChunksToChildren(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger());
+					chunks.addAll(getChunks(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger()));
 				}
 			}
+			addChunksToChildren(chunks);
 		}
 	}
 
-	private void addChunksToChildren(COSKey objectNumber, Long mcid) {
+	private List<IChunk> getChunks(COSKey objectNumber, Long mcid) {
 		List<IChunk> chunks = StaticStorages.getChunks().get(objectNumber, mcid);
-		if (chunks != null) {
-			for (int i = 0; i < chunks.size(); i++) {
-				IChunk chunk = chunks.get(i);
-				if (chunk instanceof TextChunk) {
-					i += addTextChunk(i, chunks);
-				} else if (chunk instanceof ImageChunk) {
-					node.addChild(new SemanticImageNode((ImageChunk) chunk));
-					children.add(new GFSAImageChunk((ImageChunk) chunk));
-				} else if (chunk instanceof LineArtChunk) {
-					node.addChild(new SemanticFigure((LineArtChunk) chunk));
-					children.add(new GFSALineArtChunk((LineArtChunk) chunk));
-				}
+		return chunks != null ? chunks : Collections.emptyList();
+	}
+
+	private void addChunksToChildren(List<IChunk> chunks) {
+		for (int i = 0; i < chunks.size(); i++) {
+			IChunk chunk = chunks.get(i);
+			if (chunk instanceof TextChunk) {
+				i += addTextChunk(i, chunks);
+			} else if (chunk instanceof ImageChunk) {
+				node.addChild(new SemanticImageNode((ImageChunk) chunk));
+				children.add(new GFSAImageChunk((ImageChunk) chunk));
+			} else if (chunk instanceof LineArtChunk) {
+				node.addChild(new SemanticFigure((LineArtChunk) chunk));
+				children.add(new GFSALineArtChunk((LineArtChunk) chunk));
 			}
 		}
+		chunks.clear();
 	}
 
 	public int addTextChunk(int number, List<IChunk> chunks) {
@@ -216,11 +222,10 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		int i = number + 1;
 		while (i < chunks.size() && chunks.get(i) instanceof TextChunk) {
 			TextChunk nextTextChunk = (TextChunk)chunks.get(i);
-			if (TextChunk.areTextChunksHaveSameStyle(textChunk, nextTextChunk) &&
-					TextChunk.areTextChunksHaveSameBaseLine(textChunk, nextTextChunk) &&
-					NodeUtils.areCloseNumbers(textChunk.getTextEnd(), nextTextChunk.getTextStart(),
-							TEXT_CHUNK_MERGE_EPSILON * textChunk.getBoundingBox().getHeight())) {
-				textChunk = TextChunk.unionTextChunks(textChunk, nextTextChunk);
+			if (TextChunkUtils.areTextChunksHaveSameStyle(textChunk, nextTextChunk) &&
+					TextChunkUtils.areTextChunksHaveSameBaseLine(textChunk, nextTextChunk) &&
+					TextChunkUtils.areNeighborsTextChunks(textChunk, nextTextChunk)) {
+				textChunk = TextChunkUtils.unionTextChunks(textChunk, nextTextChunk);
 				i++;
 			} else {
 				break;
