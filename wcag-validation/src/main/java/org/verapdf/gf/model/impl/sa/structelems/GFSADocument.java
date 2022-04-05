@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SADocument;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSADocument extends GFSAGeneral implements SADocument {
+public class GFSADocument extends GFSAStructElem implements SADocument {
 
     public static final String DOCUMENT_STRUCTURE_ELEMENT_TYPE = "SADocument";
 

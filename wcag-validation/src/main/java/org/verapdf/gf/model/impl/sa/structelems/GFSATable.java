@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SATable;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSATable extends GFSAGeneral implements SATable {
+public class GFSATable extends GFSAStructElem implements SATable {
 
     public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SATable";
 

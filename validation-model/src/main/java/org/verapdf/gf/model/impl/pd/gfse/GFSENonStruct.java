@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SENonStruct;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSENonStruct extends GFSEGeneral implements SENonStruct {
+public class GFSENonStruct extends GFPDStructElem implements SENonStruct {
 
     public static final String NON_STRUCT_STRUCTURE_ELEMENT_TYPE = "SENonStruct";
 

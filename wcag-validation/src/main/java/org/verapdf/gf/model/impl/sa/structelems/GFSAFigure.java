@@ -21,11 +21,12 @@
 package org.verapdf.gf.model.impl.sa.structelems;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAFigure;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAFigure extends GFSAGeneral implements SAFigure {
+public class GFSAFigure extends GFSAStructElem implements SAFigure {
 
     public static final String FIGURE_STRUCTURE_ELEMENT_TYPE = "SAFigure";
 

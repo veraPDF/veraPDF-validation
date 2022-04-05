@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAAnnot;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAAnnot extends GFSAGeneral implements SAAnnot {
+public class GFSAAnnot extends GFSAStructElem implements SAAnnot {
 
     public static final String ANNOT_STRUCTURE_ELEMENT_TYPE = "SAAnnot";
 

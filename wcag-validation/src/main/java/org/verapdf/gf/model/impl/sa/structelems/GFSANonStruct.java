@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SANonStruct;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSANonStruct extends GFSAGeneral implements SANonStruct {
+public class GFSANonStruct extends GFSAStructElem implements SANonStruct {
 
     public static final String NON_STRUCT_STRUCTURE_ELEMENT_TYPE = "SANonStruct";
 

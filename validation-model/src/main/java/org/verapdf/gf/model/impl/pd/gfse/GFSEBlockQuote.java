@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEBlockQuote;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEBlockQuote extends GFSEGeneral implements SEBlockQuote {
+public class GFSEBlockQuote extends GFPDStructElem implements SEBlockQuote {
 
     public static final String BLOCK_QUOTE_STRUCTURE_ELEMENT_TYPE = "SEBlockQuote";
 

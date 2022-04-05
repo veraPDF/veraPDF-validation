@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.gf.model.impl.pd.util.TableHelper;
 import org.verapdf.model.selayer.SETH;
 import org.verapdf.pd.structure.PDStructElem;
@@ -33,7 +34,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GFSETH extends GFSEGeneral implements SETH {
+public class GFSETH extends GFPDStructElem implements SETH {
 
     public static final String TH_STRUCTURE_ELEMENT_TYPE = "SETH";
 

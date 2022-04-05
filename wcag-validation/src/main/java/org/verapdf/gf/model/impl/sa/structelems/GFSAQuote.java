@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAQuote;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAQuote extends GFSAGeneral implements SAQuote {
+public class GFSAQuote extends GFSAStructElem implements SAQuote {
 
     public static final String QUOTE_STRUCTURE_ELEMENT_TYPE = "SAQuote";
 

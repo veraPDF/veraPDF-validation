@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SATitle;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSATitle extends GFSAGeneral implements SATitle {
+public class GFSATitle extends GFSAStructElem implements SATitle {
 
     public static final String TITLE_STRUCTURE_ELEMENT_TYPE = "SATitle";
 

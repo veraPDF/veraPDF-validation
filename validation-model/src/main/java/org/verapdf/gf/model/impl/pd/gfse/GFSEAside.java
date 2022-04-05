@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEAside;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEAside extends GFSEGeneral implements SEAside {
+public class GFSEAside extends GFPDStructElem implements SEAside {
 
     public static final String ASIDE_STRUCTURE_ELEMENT_TYPE = "SEAside";
 

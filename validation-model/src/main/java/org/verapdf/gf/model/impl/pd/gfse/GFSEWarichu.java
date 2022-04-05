@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEWarichu;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEWarichu extends GFSEGeneral implements SEWarichu {
+public class GFSEWarichu extends GFPDStructElem implements SEWarichu {
 
     public static final String WARICHU_STRUCTURE_ELEMENT_TYPE = "SEWarichu";
 

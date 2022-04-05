@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SARuby;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSARuby extends GFSAGeneral implements SARuby {
+public class GFSARuby extends GFSAStructElem implements SARuby {
 
     public static final String RUBY_STRUCTURE_ELEMENT_TYPE = "SARuby";
 

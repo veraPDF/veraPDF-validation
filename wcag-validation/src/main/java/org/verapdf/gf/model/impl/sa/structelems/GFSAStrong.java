@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAStrong;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAStrong extends GFSAGeneral implements SAStrong {
+public class GFSAStrong extends GFSAStructElem implements SAStrong {
 
     public static final String STRONG_STRUCTURE_ELEMENT_TYPE = "SAStrong";
 

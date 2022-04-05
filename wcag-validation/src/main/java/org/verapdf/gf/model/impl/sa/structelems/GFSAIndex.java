@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAIndex;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAIndex extends GFSAGeneral implements SAIndex {
+public class GFSAIndex extends GFSAStructElem implements SAIndex {
 
     public static final String INDEX_STRUCTURE_ELEMENT_TYPE = "SAIndex";
 

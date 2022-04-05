@@ -31,7 +31,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-public class GFSETable extends GFSEGeneral implements SETable {
+public class GFSETable extends GFPDStructElem implements SETable {
 
     public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SETable";
 

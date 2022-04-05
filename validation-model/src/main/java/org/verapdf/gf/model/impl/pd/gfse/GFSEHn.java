@@ -21,10 +21,11 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEHn;
 import org.verapdf.pd.structure.PDStructElem;
 
-public class GFSEHn extends GFSEGeneral implements SEHn {
+public class GFSEHn extends GFPDStructElem implements SEHn {
 
     public static final String HN_STRUCTURE_ELEMENT_TYPE = "SEHn";
 

@@ -20,10 +20,11 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SANonStandard;
 import org.verapdf.pd.structure.PDStructElem;
 
-public class GFSANonStandard extends GFSAGeneral implements SANonStandard {
+public class GFSANonStandard extends GFSAStructElem implements SANonStandard {
 
     public static final String NON_STANDARD_STRUCTURE_ELEMENT_TYPE = "SANonStandard";
 

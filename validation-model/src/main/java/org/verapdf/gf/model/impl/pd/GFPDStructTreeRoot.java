@@ -26,7 +26,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEGeneral;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
@@ -116,7 +116,7 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 		if (!elements.isEmpty()) {
 			List<PDStructElem> res = new ArrayList<>(elements.size());
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				res.add(GFSEGeneral.createTypedStructElem(element));
+				res.add(GFSEFactory.createTypedStructElem(element));
 			}
 			return Collections.unmodifiableList(res);
 		}

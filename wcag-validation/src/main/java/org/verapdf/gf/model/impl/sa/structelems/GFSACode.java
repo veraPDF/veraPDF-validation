@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SACode;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSACode extends GFSAGeneral implements SACode {
+public class GFSACode extends GFSAStructElem implements SACode {
 
     public static final String CODE_STRUCTURE_ELEMENT_TYPE = "SACode";
 

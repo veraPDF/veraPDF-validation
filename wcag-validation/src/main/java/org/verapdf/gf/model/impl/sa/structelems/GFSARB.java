@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SARB;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSARB extends GFSAGeneral implements SARB {
+public class GFSARB extends GFSAStructElem implements SARB {
 
     public static final String RB_STRUCTURE_ELEMENT_TYPE = "SARB";
 

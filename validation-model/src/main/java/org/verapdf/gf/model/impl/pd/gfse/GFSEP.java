@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEP;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEP extends GFSEGeneral implements SEP {
+public class GFSEP extends GFPDStructElem implements SEP {
 
     public static final String P_STRUCTURE_ELEMENT_TYPE = "SEP";
 

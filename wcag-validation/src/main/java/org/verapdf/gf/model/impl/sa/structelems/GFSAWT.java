@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAWT;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAWT extends GFSAGeneral implements SAWT {
+public class GFSAWT extends GFSAStructElem implements SAWT {
 
     public static final String WT_STRUCTURE_ELEMENT_TYPE = "SAWT";
 

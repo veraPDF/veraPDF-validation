@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SATFoot;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSATFoot extends GFSAGeneral implements SATFoot {
+public class GFSATFoot extends GFSAStructElem implements SATFoot {
 
     public static final String TFOOT_STRUCTURE_ELEMENT_TYPE = "SATFoot";
 
