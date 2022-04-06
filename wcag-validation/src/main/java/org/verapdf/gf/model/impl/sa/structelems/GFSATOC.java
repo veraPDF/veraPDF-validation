@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SATOC;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSATOC extends GFSAGeneral implements SATOC {
+public class GFSATOC extends GFSAStructElem implements SATOC {
 
     public static final String TOC_STRUCTURE_ELEMENT_TYPE = "SATOC";
 

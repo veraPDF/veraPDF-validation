@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SECode;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSECode extends GFSEGeneral implements SECode {
+public class GFSECode extends GFPDStructElem implements SECode {
 
     public static final String CODE_STRUCTURE_ELEMENT_TYPE = "SECode";
 

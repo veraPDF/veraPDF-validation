@@ -21,14 +21,16 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.*;
+import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
-import org.verapdf.gf.model.impl.sa.structelems.GFSAGeneral;
+import org.verapdf.gf.model.impl.sa.structelems.GFSAFactory;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
 import org.verapdf.pd.structure.PDMCRDictionary;
-import org.verapdf.pd.structure.StructureType;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.wcag.algorithms.entities.INode;
 import org.verapdf.wcag.algorithms.entities.SemanticFigure;
@@ -38,7 +40,6 @@ import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
-import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
 import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
@@ -150,14 +151,6 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		return node.getRecognizedStructureId();
 	}
 
-	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
-		StructureType type = pdStructElem.getStructureType();
-		if (type != null) {
-			return StaticStorages.getRoleMapHelper().getStandardType(type.getType(), false, true);
-		}
-		return null;
-	}
-
 	private List<Object> getChildren() {
 		if (this.children == null) {
 			parseChildren();
@@ -173,7 +166,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 			for (java.lang.Object element : elements) {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
 					addChunksToChildren(chunks);
-					GFSAStructElem structElem = GFSAGeneral.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
+					GFSAStructElem structElem = GFSAFactory.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
 							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + "&")) + standardType);
 					INode childNode = new GFSANode(structElem);
 					structElem.setNode(childNode);
@@ -314,13 +307,13 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = this.structElemDictionary.getParent();
 		if (parent != null) {
-			String parentStandardType = getStructureElementStandardType(parent);
+			String parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
 			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;
 				}
-				parentStandardType = getStructureElementStandardType(parent);
+				parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
 			}
 			return parentStandardType;
 		}

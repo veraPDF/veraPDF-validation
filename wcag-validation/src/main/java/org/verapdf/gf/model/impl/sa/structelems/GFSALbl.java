@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SALbl;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSALbl extends GFSAGeneral implements SALbl {
+public class GFSALbl extends GFSAStructElem implements SALbl {
 
     public static final String LBL_STRUCTURE_ELEMENT_TYPE = "SALbl";
 

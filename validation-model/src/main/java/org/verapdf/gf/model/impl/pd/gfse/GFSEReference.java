@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEReference;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEReference extends GFSEGeneral implements SEReference {
+public class GFSEReference extends GFPDStructElem implements SEReference {
 
     public static final String REFERENCE_STRUCTURE_ELEMENT_TYPE = "SEReference";
 

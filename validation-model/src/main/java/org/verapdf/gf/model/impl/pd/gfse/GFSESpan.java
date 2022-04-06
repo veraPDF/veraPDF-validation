@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SESpan;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSESpan extends GFSEGeneral implements SESpan {
+public class GFSESpan extends GFPDStructElem implements SESpan {
 
     public static final String SPAN_STRUCTURE_ELEMENT_TYPE = "SESpan";
 

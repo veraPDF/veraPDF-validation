@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SABibEntry;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSABibEntry extends GFSAGeneral implements SABibEntry {
+public class GFSABibEntry extends GFSAStructElem implements SABibEntry {
 
     public static final String BIB_ENTRY_STRUCTURE_ELEMENT_TYPE = "SABibEntry";
 

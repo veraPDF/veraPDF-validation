@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAH;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAH extends GFSAGeneral implements SAH {
+public class GFSAH extends GFSAStructElem implements SAH {
 
     public static final String H_STRUCTURE_ELEMENT_TYPE = "SAH";
 

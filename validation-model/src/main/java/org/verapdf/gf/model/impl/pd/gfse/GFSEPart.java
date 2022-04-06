@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEPart;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEPart extends GFSEGeneral implements SEPart {
+public class GFSEPart extends GFPDStructElem implements SEPart {
 
     public static final String PART_STRUCTURE_ELEMENT_TYPE = "SEPart";
 

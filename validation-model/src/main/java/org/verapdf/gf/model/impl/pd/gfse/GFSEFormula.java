@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEFormula;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEFormula extends GFSEGeneral implements SEFormula {
+public class GFSEFormula extends GFPDStructElem implements SEFormula {
 
     public static final String FORMULA_STRUCTURE_ELEMENT_TYPE = "SEFormula";
 

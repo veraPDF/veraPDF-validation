@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SATOCI;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSATOCI extends GFSAGeneral implements SATOCI {
+public class GFSATOCI extends GFSAStructElem implements SATOCI {
 
     public static final String TOCI_STRUCTURE_ELEMENT_TYPE = "SATOCI";
 

@@ -48,33 +48,9 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 		this.outline = outline;
 	}
 
-	private static List<PDOutlineItem> getPDChildren(PDOutlineDictionary dictionary) {
-		List<PDOutlineItem> res = new ArrayList<>();
-		PDOutlineItem curr = dictionary.getFirst();
-		while (curr != null) {
-			res.add(curr);
-			curr = curr.getNext();
-		}
-		return res;
-	}
-
-	private static List<OutlineFeaturesObjectAdapter> getChildren(PDOutlineDictionary dict) {
-		if (dict != null && !dict.empty()) {
-			List<PDOutlineItem> children = getPDChildren(dict);
-			List<OutlineFeaturesObjectAdapter> res = new ArrayList<>();
-			for (PDOutlineItem item : children) {
-				if (item != null) {
-					res.add(new GFOutlineFeaturesObjectAdapter(item));
-				}
-			}
-			return Collections.unmodifiableList(res);
-		}
-		return Collections.emptyList();
-	}
-
 	@Override
 	public List<OutlineFeaturesObjectAdapter> getChildren() {
-		return getChildren(outline);
+		return GFOutlineFeaturesObjectAdapter.getChildren(outline);
 	}
 
 	@Override
@@ -135,7 +111,31 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 
 		@Override
 		public List<OutlineFeaturesObjectAdapter> getChildren() {
-			return GFOutlinesFeaturesObjectAdapter.getChildren(outline);
+			return getChildren(outline);
+		}
+
+		private static List<OutlineFeaturesObjectAdapter> getChildren(PDOutlineDictionary dict) {
+			if (dict != null && !dict.empty()) {
+				List<PDOutlineItem> children = getPDChildren(dict);
+				List<OutlineFeaturesObjectAdapter> res = new ArrayList<>();
+				for (PDOutlineItem item : children) {
+					if (item != null) {
+						res.add(new GFOutlineFeaturesObjectAdapter(item));
+					}
+				}
+				return Collections.unmodifiableList(res);
+			}
+			return Collections.emptyList();
+		}
+
+		private static List<PDOutlineItem> getPDChildren(PDOutlineDictionary dictionary) {
+			List<PDOutlineItem> res = new ArrayList<>();
+			PDOutlineItem curr = dictionary.getFirst();
+			while (curr != null) {
+				res.add(curr);
+				curr = curr.getNext();
+			}
+			return res;
 		}
 	}
 }

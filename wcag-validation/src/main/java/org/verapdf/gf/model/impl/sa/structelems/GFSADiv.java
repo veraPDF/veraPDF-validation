@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SADiv;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSADiv extends GFSAGeneral implements SADiv {
+public class GFSADiv extends GFSAStructElem implements SADiv {
 
     public static final String DIV_STRUCTURE_ELEMENT_TYPE = "SADiv";
 

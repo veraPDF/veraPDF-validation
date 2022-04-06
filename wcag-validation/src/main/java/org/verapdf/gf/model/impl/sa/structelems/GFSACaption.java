@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SACaption;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSACaption extends GFSAGeneral implements SACaption {
+public class GFSACaption extends GFSAStructElem implements SACaption {
 
     public static final String CAPTION_STRUCTURE_ELEMENT_TYPE = "SACaption";
 

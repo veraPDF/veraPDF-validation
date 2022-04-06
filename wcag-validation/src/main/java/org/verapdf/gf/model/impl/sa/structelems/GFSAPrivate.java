@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAPrivate;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAPrivate extends GFSAGeneral implements SAPrivate {
+public class GFSAPrivate extends GFSAStructElem implements SAPrivate {
 
     public static final String PRIVATE_STRUCTURE_ELEMENT_TYPE = "SAPrivate";
 
