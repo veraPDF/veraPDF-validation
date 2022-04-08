@@ -679,7 +679,9 @@ class ChunkParser {
 		if (argument.getType() == COSObjType.COS_STRING) {
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
 			parseString((COSString) argument.getDirectBase(), unicodeValue, null, symbolEnds);
-			textMatrix.concatenate(Matrix.getTranslateInstance(symbolEnds.get(symbolEnds.size() - 1), 0));
+			if (!symbolEnds.isEmpty()) {
+				textMatrix.concatenate(Matrix.getTranslateInstance(symbolEnds.get(symbolEnds.size() - 1), 0));
+			}
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
 			COSArray array = (COSArray) argument;
 			TextPieces textPieces = new TextPieces();
