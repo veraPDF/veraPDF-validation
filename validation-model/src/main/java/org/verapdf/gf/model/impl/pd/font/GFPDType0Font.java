@@ -137,11 +137,11 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 	public Boolean getisSupplementCompatible() {
 		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
 			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
-			return Boolean.valueOf(false);
+			return Boolean.FALSE;
 		}
 		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
 			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
-			return Boolean.valueOf(false);
+			return Boolean.FALSE;
 		}
 		Long fontSupplement = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo()
 				.getIntegerKey(ASAtom.SUPPLEMENT);
@@ -154,7 +154,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 			LOGGER.log(Level.FINE, "CMap's CIDSystemInfo dictionary missing or doesn't contain Supplement entry.");
 			cMapSupplement = 0L;
 		}
-		return Boolean.valueOf(fontSupplement.longValue() >= cMapSupplement.longValue());
+		return fontSupplement <= cMapSupplement;
 	}
 
 	/**
