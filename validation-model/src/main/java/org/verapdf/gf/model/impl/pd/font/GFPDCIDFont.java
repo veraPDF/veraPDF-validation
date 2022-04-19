@@ -63,6 +63,13 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     public static final int maxSize = 16384;
     public static final int bufferSize = 2048;
 
+    private String externalFontID;
+
+    public GFPDCIDFont(PDFont font, RenderingMode renderingMode, String id) {
+        this(font, renderingMode);
+        externalFontID = id;
+    }
+
     public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
         super(font, renderingMode, CID_FONT_TYPE);
         if (font != null) {
@@ -134,7 +141,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     @Override
     public Boolean getcidSetListsAllGlyphs() {
         if (!fontProgramParsed) {
-            return Boolean.valueOf(false);
+            return Boolean.FALSE;
         }
 
         try {
@@ -175,18 +182,25 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                         }
                     }
                 } else {
-                    Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(GFIDGenerator.generateID(pdFont));
+                    String key = GFIDGenerator.generateID(pdFont);
+                    if (externalFontID != null) {
+                        String fontName = key.split(" ", 2)[1];
+                        key = externalFontID + " " + fontName;
+                    }
+                    Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(key);
                     if (map != null) {
                         for (Glyph glyph : map.values()) {
                             if (glyph instanceof CIDGlyph) {
                                 int cid = ((CIDGlyph)glyph).getCID().intValue();
                                 if (cid != 0 && cidFont.containsCID(cid) && !bitSet.get(cid)) {
-                                    return false;
+                                    return Boolean.FALSE;
                                 }
                             }
                         }
                     }
                 }
+            } else {
+                return Boolean.FALSE;
             }
         } catch (IOException e) {
             LOGGER.log(Level.FINE, "Error while parsing embedded font program. " + e.getMessage(), e);

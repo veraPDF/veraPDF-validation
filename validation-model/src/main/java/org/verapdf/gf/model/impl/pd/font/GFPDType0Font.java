@@ -92,7 +92,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 					((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getCMapFile(),
 					this.pdFont.getFontProgram(), this.pdFont.isSuccessfullyParsed());
 			this.cidFont = cidFont;
-			PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode);
+			PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode, String.valueOf(((org.verapdf.pd.font.PDType0Font) this.pdFont).getType0FontDict().hashCode()));
 			return pdCIDFont;
 		}
 		return null;
