@@ -62,13 +62,13 @@ public final class GFIDGenerator {
 		return String.valueOf(hashcode) + ' ' + fontName;
 	}
 
-	public static String generateID(int hashcode, String fontName, int glyphCode, int renderingMode,
+	public static String generateID(String fontID, String fontName, int glyphCode, int renderingMode,
 									GFOpMarkedContent markedContent,
 									StructureElementAccessObject structureElementAccessObject) {
 		String markedContentID = markedContent == null ? "" : String.valueOf(markedContent.hashCode());
 		String structureElementAccessID = structureElementAccessObject == null ? "" :
 				String.valueOf(structureElementAccessObject.hashCode());
-		return String.valueOf(hashcode) + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode + ' ' +
+		return fontID + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode + ' ' +
 				markedContentID + ' ' + structureElementAccessID;
 	}
 

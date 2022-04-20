@@ -27,7 +27,6 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosStream;
-import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.model.operator.CIDGlyph;
@@ -62,9 +61,11 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     public static final String CUSTOM = "Custom";
     public static final int maxSize = 16384;
     public static final int bufferSize = 2048;
+    private final String externalFontID;
 
-    public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
+    public GFPDCIDFont(PDFont font, RenderingMode renderingMode, String externalFontID) {
         super(font, renderingMode, CID_FONT_TYPE);
+        this.externalFontID = externalFontID;
         if (font != null) {
             FontProgram program = font.getFontProgram();
             if (program != null) {
@@ -175,7 +176,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                         }
                     }
                 } else {
-                    Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(GFIDGenerator.generateID(pdFont));
+                    Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(externalFontID);
                     if (map != null) {
                         for (Glyph glyph : map.values()) {
                             if (glyph instanceof CIDGlyph) {
