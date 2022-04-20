@@ -115,10 +115,10 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         this.id = id;
     }
 
-    public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode,
-                                 GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
+    public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode, GFOpMarkedContent markedContent,
+                                 StructureElementAccessObject structureElementAccessObject) {
         String fontId = GFIDGenerator.generateID(font);
-        String id = GFIDGenerator.generateID(font.getDictionary().hashCode(),
+        String id = GFIDGenerator.generateID(fontId,
                 font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject);
         Glyph cachedGlyph = null;
         Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(fontId);

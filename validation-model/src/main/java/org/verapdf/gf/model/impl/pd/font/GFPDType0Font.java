@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
+import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.model.pdlayer.PDCMap;
@@ -92,7 +93,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 					((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getCMapFile(),
 					this.pdFont.getFontProgram(), this.pdFont.isSuccessfullyParsed());
 			this.cidFont = cidFont;
-			PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode);
+			PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode, GFIDGenerator.generateID(this.pdFont));
 			return pdCIDFont;
 		}
 		return null;

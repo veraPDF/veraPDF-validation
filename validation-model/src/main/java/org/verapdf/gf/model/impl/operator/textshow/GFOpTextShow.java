@@ -158,10 +158,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			try (InputStream inputStream = new ByteArrayInputStream(string)) {
 				while (inputStream.available() > 0) {
 					int code = font.readCode(inputStream);
-					Glyph glyph;
-					glyph = GFGlyph.getGlyph(font, code, this.renderingMode.getValue(),
+					Glyph glyph = GFGlyph.getGlyph(font, code, this.renderingMode.getValue(),
 							markedContent, structureElementAccessObject);
-						res.add(glyph);
+					res.add(glyph);
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
