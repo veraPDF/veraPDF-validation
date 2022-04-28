@@ -34,11 +34,15 @@ public class LineArtContainer {
 	private final Map<Long, List<BoundingBox>> lineArtBBoxes;
 	private final Map<Long, LineArtChunk> lineArts;
 	private final COSKey objectKey;
+	private final COSKey parentObjectKey;
+	private final Long parentMarkedContent;
 
-	public LineArtContainer(COSKey objectKey) {
+	public LineArtContainer(COSKey objectKey, COSKey parentObjectKey, Long parentMarkedContent) {
 		lineArtBBoxes = new HashMap<>();
 		lineArts = new HashMap<>();
 		this.objectKey = objectKey;
+		this.parentObjectKey = parentObjectKey;
+		this.parentMarkedContent = parentMarkedContent;
 	}
 
 	public List<BoundingBox> getBoundingBoxes(Long mcid) {
@@ -64,9 +68,13 @@ public class LineArtContainer {
 				list.add(new BoundingBox(boundingBox));
 			}
 		} else {
-			if (mcid != null) {
+			if (mcid != null || parentMarkedContent != null) {
 				LineArtChunk lineArtChunk = new LineArtChunk();
-				StaticStorages.getChunks().add(objectKey, mcid, lineArtChunk);
+				if (mcid != null) {
+					StaticStorages.getChunks().add(objectKey, mcid, lineArtChunk);
+				} else {
+					StaticStorages.getChunks().add(parentObjectKey, parentMarkedContent, lineArtChunk);
+				}
 				lineArts.put(mcid, lineArtChunk);
 			}
 			list = new ArrayList<>();

@@ -66,17 +66,18 @@ class ChunkParser {
 	private final List<IChunk> artifacts = new LinkedList<>();
 	private List<Object> nonDrawingArtifacts = new LinkedList<>();
 	private final LineArtContainer lineArtContainer;
+	private final COSKey parentObjectKey;
+	private final Long parentMarkedContent;
 
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
-					   ResourceHandler resourceHandler, Long markedContent) {
+					   ResourceHandler resourceHandler, COSKey parentObjectKey, Long markedContent) {
 		this.pageNumber = pageNumber;
-		lineArtContainer = new LineArtContainer(objectKey);
+		lineArtContainer = new LineArtContainer(objectKey, parentObjectKey, markedContent);
 		this.objectKey = objectKey;
 		this.graphicsState = inheritedGraphicState.clone();
-		if (markedContent != null) {
-			markedContentStack.push(markedContent);
-		}
 		this.resourceHandler = resourceHandler;
+		this.parentObjectKey = parentObjectKey;
+		this.parentMarkedContent = markedContent;
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -449,8 +450,14 @@ class ChunkParser {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
 						putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
 					} else if (ASAtom.FORM.equals(xObject.getType())) {
+						Long markedContent = getMarkedContent();
+						COSKey key = objectKey;
+						if (markedContent == null) {
+							key = parentObjectKey;
+							markedContent = parentMarkedContent;
+						}
 						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, graphicsState, pageNumber,
-								getMarkedContent());
+								key, markedContent);
 						artifacts.addAll(xForm.getArtifacts());
 					}
 				}
@@ -669,6 +676,8 @@ class ChunkParser {
 		}
 		if (mcid != null) {
 			StaticStorages.getChunks().add(objectKey, mcid, chunk);
+		} else if (parentMarkedContent != null) {
+			StaticStorages.getChunks().add(parentObjectKey, parentMarkedContent, chunk);
 		} else {
 			artifacts.add(chunk);
 		}
@@ -783,7 +792,7 @@ class ChunkParser {
 		return null;
 	}
 
-	private Long getMCID(List<COSBase> arguments, ResourceHandler resources) {
+	private static Long getMCID(List<COSBase> arguments, ResourceHandler resources) {
 		if (!arguments.isEmpty()) {
 			COSBase lastArg = arguments.get(arguments.size() - 1);
 			if (lastArg.getType() == COSObjType.COS_DICT) {
