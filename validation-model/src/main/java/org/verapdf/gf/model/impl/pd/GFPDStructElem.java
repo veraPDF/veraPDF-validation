@@ -166,21 +166,35 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 
 	@Override
 	public Boolean getisRemappedStandardType() {
+		if (hasStandardType()) {
+			StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
+			if (type == null) {
+				return false;
+			}
+			return !type.getType().getValue().equals(standardType);
+		}
+		return false;
+	}
+
+	private boolean hasStandardType(){
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 		if (type == null) {
 			return false;
 		}
-		boolean isStandardType;
-		if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1) {
-			isStandardType = TaggedPDFHelper.isWCAGStandardType(type) && !TaggedPDFConstants.TITLE.equals(type.getType().getValue());
-		} else {
-			isStandardType =  TaggedPDFHelper.isStandardType(type);
+		PDFAFlavour flavour = StaticContainers.getFlavour();
+		if (flavour != null) {
+			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+				return TaggedPDFHelper.getPdf14StandardRoleTypes().contains(type.getType().getValue());
+			}
+			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_4) {
+				return TaggedPDFHelper.isStandardType(type);
+			}
+			if (flavour.getPart() == PDFAFlavour.Specification.WCAG_2_1) {
+				return TaggedPDFHelper.isWCAGStandardType(type) &&
+						!TaggedPDFConstants.TITLE.equals(type.getType().getValue());
+			}
 		}
-		if (isStandardType) {
-			String actualType = type.getType().getValue();
-			return !actualType.equals(standardType);
-		}
-		return false;
+		return TaggedPDFHelper.getPdf17StandardRoleTypes().contains(type.getType().getValue());
 	}
 
 	@Override
