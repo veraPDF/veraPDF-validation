@@ -149,7 +149,8 @@ public class GFSEFactory {
     }
 
     public static String getStructureElementStandardType(PDStructElem pdStructElem){
-        if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_4) {
+        if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart() ==
+                PDFAFlavour.Specification.ISO_19005_4) {
             StructureType defaultStructureType = pdStructElem.getDefaultStructureType();
             if (defaultStructureType != null) {
                 return defaultStructureType.getType().getValue();
