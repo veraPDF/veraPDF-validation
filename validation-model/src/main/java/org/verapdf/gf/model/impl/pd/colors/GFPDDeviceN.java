@@ -117,7 +117,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
 	@Override
 	public Boolean getareColorantsPresent() {
-		return Boolean.valueOf(this.areColorantsPresent);
+		return this.areColorantsPresent;
 	}
 
 	@Override

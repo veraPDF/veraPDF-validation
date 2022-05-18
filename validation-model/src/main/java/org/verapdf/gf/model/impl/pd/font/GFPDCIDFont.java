@@ -135,7 +135,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     @Override
     public Boolean getcidSetListsAllGlyphs() {
         if (!fontProgramParsed) {
-            return Boolean.valueOf(false);
+            return Boolean.FALSE;
         }
 
         try {

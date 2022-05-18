@@ -56,8 +56,8 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 
 	@Override
 	public Boolean getInterpolate() {
-		return Boolean.valueOf(((org.verapdf.pd.images.PDInlineImage) this.simplePDObject)
-				.isInterpolate());
+		return ((org.verapdf.pd.images.PDInlineImage) this.simplePDObject)
+				.isInterpolate();
 	}
 
 	@Override
@@ -67,8 +67,8 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 
 	@Override
 	public Boolean getisInherited() {
-		return Boolean.valueOf(((org.verapdf.pd.images.PDInlineImage) this.simplePDObject)
-				.isInherited());
+		return ((org.verapdf.pd.images.PDInlineImage) this.simplePDObject)
+				.isInherited();
 	}
 
 	@Override

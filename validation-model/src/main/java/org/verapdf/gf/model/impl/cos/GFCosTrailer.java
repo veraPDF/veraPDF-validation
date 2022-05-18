@@ -68,7 +68,7 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 	 */
 	@Override
 	public Boolean getisEncrypted() {
-		return Boolean.valueOf(this.isEncrypted);
+		return this.isEncrypted;
 	}
 
 	@Override

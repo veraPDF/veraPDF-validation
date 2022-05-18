@@ -70,7 +70,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
      */
     @Override
     public Boolean getisStandard() {
-        return Boolean.valueOf(false);
+        return Boolean.FALSE;
     }
 
     @Override

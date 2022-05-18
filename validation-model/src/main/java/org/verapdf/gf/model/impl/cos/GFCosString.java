@@ -69,7 +69,7 @@ public class GFCosString extends GFCosObject implements CosString {
 	 */
 	@Override
 	public Boolean getisHex() {
-		return Boolean.valueOf(this.isHex);
+		return this.isHex;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class GFCosString extends GFCosObject implements CosString {
 	 */
 	@Override
 	public Boolean getcontainsOnlyHex() {
-		return Boolean.valueOf(this.containsOnlyHex);
+		return this.containsOnlyHex;
 	}
 
 	/**

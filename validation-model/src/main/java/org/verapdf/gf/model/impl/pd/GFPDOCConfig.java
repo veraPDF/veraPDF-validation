@@ -112,7 +112,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 
 	@Override
 	public Boolean gethasDuplicateName() {
-		return Boolean.valueOf(this.duplicateName);
+		return this.duplicateName;
 	}
 
 	@Override

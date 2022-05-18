@@ -157,7 +157,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Boolean getisOptionalContentPresent() {
-		return Boolean.valueOf(isOptionalContentPresent);
+		return isOptionalContentPresent;
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Boolean getisLinearized() {
-		return Boolean.valueOf(this.isLinearised);
+		return this.isLinearised;
 	}
 
 	/**
@@ -334,7 +334,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	@Override
 	public Boolean getNeedsRendering() {
 		if (!catalog.knownKey(ASAtom.NEEDS_RENDERING).booleanValue()) {
-			return Boolean.valueOf(false);
+			return Boolean.FALSE;
 		}
 		return catalog.getBooleanKey(ASAtom.NEEDS_RENDERING);
 	}
@@ -347,7 +347,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 				return names.knownKey(ASAtom.EMBEDDED_FILES);
 			 }
 		}
-		return Boolean.valueOf(false);
+		return Boolean.FALSE;
 	}
 
 	@Override
@@ -457,8 +457,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	private List<CosXRef> getXRefs() {
 		List<CosXRef> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		list.add(new GFCosXRef(Boolean.valueOf(cosDocument.isSubsectionHeaderSpaceSeparated()),
-				Boolean.valueOf(cosDocument.isXrefEOLMarkersComplyPDFA())));
+		list.add(new GFCosXRef(cosDocument.isSubsectionHeaderSpaceSeparated(),
+				cosDocument.isXrefEOLMarkersComplyPDFA()));
 		return Collections.unmodifiableList(list);
 	}
 
