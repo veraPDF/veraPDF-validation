@@ -90,7 +90,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public Boolean getisSymbolic() {
-        return Boolean.valueOf(this.pdFont.isSymbolic());
+        return this.pdFont.isSymbolic();
     }
 
     /**

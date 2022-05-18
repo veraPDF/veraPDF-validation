@@ -91,7 +91,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
 		}
 		restoreSavedSCState();
-		return Boolean.valueOf(retVal);
+		return retVal;
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
 		}
 		restoreSavedSCState();
-		return Boolean.valueOf(retVal);
+		return retVal;
 	}
 
 	private static boolean isValidPdfaStream(final InputStream toValidate, final PDFAFlavour flavour)

@@ -170,8 +170,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 // every font contains notdef glyph. But if we call method
                 // of font program we can't distinguish case of code 0
                 // and glyph that is not present indeed.
-                glyphPresent = glyphCode == 0 ? true :
-                        Boolean.valueOf(font.glyphIsPresent(glyphCode));
+                glyphPresent = glyphCode == 0 || font.glyphIsPresent(glyphCode);
                 widthsConsistent = checkWidths(glyphCode, font);
             }
         } catch (IOException e) {

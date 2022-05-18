@@ -110,12 +110,12 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	 */
 	@Override
 	public Boolean getstreamKeywordCRLFCompliant() {
-		return Boolean.valueOf(this.streamKeywordCRLFCompliant);
+		return this.streamKeywordCRLFCompliant;
 	}
 
 	@Override
 	public Boolean getendstreamKeywordEOLCompliant() {
-		return Boolean.valueOf(this.endstreamKeywordEOLCompliant);
+		return this.endstreamKeywordEOLCompliant;
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	 */
 	@Override
 	public Boolean getisLengthCorrect() {
-		return Boolean.valueOf(this.isLengthCorrect);
+		return this.isLengthCorrect;
 	}
 
 	@Override

@@ -66,7 +66,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
      */
     @Override
     public Boolean getisSymbolic() {
-        return Boolean.valueOf(this.trueTypeFont.isSymbolic());
+        return this.trueTypeFont.isSymbolic();
     }
 
     /**
@@ -92,7 +92,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
      */
     @Override
     public Boolean getcmap31Present() {
-        return Boolean.valueOf(this.trueTypeFont.isCmapPresent(3, 1));
+        return this.trueTypeFont.isCmapPresent(3, 1);
     }
 
     /**
@@ -101,7 +101,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
      */
     @Override
     public Boolean getcmap10Present() {
-        return Boolean.valueOf(this.trueTypeFont.isCmapPresent(1, 0));
+        return this.trueTypeFont.isCmapPresent(1, 0);
     }
 
 }

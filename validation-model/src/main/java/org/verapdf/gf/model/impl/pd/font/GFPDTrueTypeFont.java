@@ -76,7 +76,7 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
     @Override
     public Boolean getdifferencesAreUnicodeCompliant() {
         if (!fontProgramParsed) {
-            return Boolean.valueOf(false);
+            return Boolean.FALSE;
         }
 
         FontProgram font = this.pdFont.getFontProgram();
@@ -84,7 +84,7 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
             font = ((OpenTypeFontProgram) font).getFont();
         }
         if (!((TrueTypeFontProgram) font).isCmapPresent(3, 1)) {
-            return Boolean.valueOf(false);
+            return Boolean.FALSE;
         }
         COSObject encoding = this.pdFont.getEncoding();
         if (!encoding.empty() && encoding.getType() != COSObjType.COS_NAME) {
@@ -93,13 +93,13 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
                 for (COSObject diff : (COSArray) differences.getDirectBase()) {
                     if (diff.getType() == COSObjType.COS_NAME &&
                             !AdobeGlyphList.contains(diff.getString())) {
-                        return Boolean.valueOf(false);
+                        return Boolean.FALSE;
                     }
                 }
             }
         }
 
-        return Boolean.valueOf(true);
+        return Boolean.TRUE;
     }
 
     /**
@@ -107,6 +107,6 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
      */
     @Override
     public Boolean getisStandard() {
-        return Boolean.valueOf(false);
+        return Boolean.FALSE;
     }
 }
