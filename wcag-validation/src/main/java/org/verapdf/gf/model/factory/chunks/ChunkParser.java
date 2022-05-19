@@ -72,7 +72,7 @@ class ChunkParser {
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
 					   ResourceHandler resourceHandler, COSKey parentObjectKey, Long markedContent) {
 		this.pageNumber = pageNumber;
-		lineArtContainer = new LineArtContainer(objectKey, parentObjectKey, markedContent);
+		lineArtContainer = new LineArtContainer(objectKey);
 		this.objectKey = objectKey;
 		this.graphicsState = inheritedGraphicState.clone();
 		this.resourceHandler = resourceHandler;
@@ -846,16 +846,19 @@ class ChunkParser {
 		lineArtContainer.unionBoundingBoxes();
 		for (Map.Entry<Long, List<BoundingBox>> boundingBoxes : lineArtContainer.entrySet()) {
 			Long mcid = boundingBoxes.getKey();
-			if (mcid == null) {
+			if (mcid == null && parentMarkedContent == null) {
 				for (BoundingBox box : boundingBoxes.getValue()) {
 					artifacts.add(new LineArtChunk(box));
 				}
-			} else {
-				BoundingBox boundingBox = new MultiBoundingBox();
-				for (BoundingBox box : boundingBoxes.getValue()) {
-					boundingBox.union(box);
-				}
+			}
+			BoundingBox boundingBox = new MultiBoundingBox();
+			for (BoundingBox box : boundingBoxes.getValue()) {
+				boundingBox.union(box);
+			}
+			if (mcid != null) {
 				lineArtContainer.getLineArt(mcid).setBoundingBox(boundingBox);
+			} else {
+				StaticStorages.getChunks().add(parentObjectKey, parentMarkedContent, new LineArtChunk(boundingBox));
 			}
 		}
 	}
