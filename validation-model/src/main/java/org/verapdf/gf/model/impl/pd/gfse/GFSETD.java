@@ -25,7 +25,7 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
-import org.verapdf.gf.model.impl.pd.util.TableHelper;
+import org.verapdf.gf.model.impl.pd.util.AttributeHelper;
 import org.verapdf.model.selayer.SETD;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
@@ -42,50 +42,26 @@ public class GFSETD extends GFPDStructElem implements SETD {
         super(structElemDictionary, TaggedPDFConstants.TD, TD_STRUCTURE_ELEMENT_TYPE);
     }
 
-    @Override
-    public Long getColSpan() {
-        return TableHelper.getColSpan(simplePDObject);
-    }
-
-    @Override
-    public Long getRowSpan() {
-        return TableHelper.getRowSpan(simplePDObject);
-    }
-
-	protected List<String> getHeaders() {
-		COSObject A = simplePDObject.getKey(ASAtom.A);
-		if (A != null) {
-			if (A.getType() == COSObjType.COS_ARRAY) {
-				for (COSObject object : (COSArray) A.getDirectBase()) {
-					if (object.getType() == COSObjType.COS_DICT
-					    && TaggedPDFConstants.TABLE.equals(object.getStringKey(ASAtom.O))) {
-						List<String> headersList = getHeadersList(object);
-						if (headersList != null) {
-							return headersList;
-						}
-					}
-				}
-			} else if (A.getType() == COSObjType.COS_DICT && TaggedPDFConstants.TABLE.equals(A.getStringKey(ASAtom.O))) {
-				List<String> headersList = getHeadersList(A);
-				if (headersList != null) {
-					return headersList;
-				}
-			}
-		}
-		return Collections.emptyList();
+	public Long getColSpan() {
+		return AttributeHelper.getColSpan(simplePDObject);
 	}
 
-	private List<String> getHeadersList(COSObject object) {
-		COSObject headers = object.getKey(ASAtom.HEADERS);
-		if (headers != null && headers.getType() == COSObjType.COS_ARRAY) {
+	public Long getRowSpan() {
+		return AttributeHelper.getRowSpan(simplePDObject);
+	}
+
+	protected List<String> getHeaders() {
+    	COSArray headers = AttributeHelper.getArrayAttributeValue(simplePDObject, ASAtom.HEADERS,
+				TaggedPDFConstants.TABLE, null);
+		if (headers != null) {
 			List<String> list = new LinkedList<>();
-			for (COSObject elem : (COSArray) headers.getDirectBase()) {
+			for (COSObject elem : headers) {
 				if (elem.getType() == COSObjType.COS_STRING) {
 					list.add(elem.getString());
 				}
 			}
 			return list;
 		}
-		return null;
+		return Collections.emptyList();
 	}
 }
