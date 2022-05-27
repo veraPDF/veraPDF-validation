@@ -37,7 +37,7 @@ public class AttributeHelper {
     }
 
     public static String getScope(org.verapdf.pd.PDObject simplePDObject) {
-        return AttributeHelper.getStringAttributeValue(simplePDObject, ASAtom.SCOPE, TaggedPDFConstants.TABLE, null);
+        return AttributeHelper.getNameAttributeValue(simplePDObject, ASAtom.SCOPE, TaggedPDFConstants.TABLE, null);
     }
 
     public static COSArray getArrayAttributeValue(org.verapdf.pd.PDObject simplePDObject, ASAtom attributeName, String O,
@@ -49,10 +49,10 @@ public class AttributeHelper {
         return defaultValue;
     }
 
-    private static String getStringAttributeValue(org.verapdf.pd.PDObject simplePDObject, ASAtom attributeName, String O,
+    private static String getNameAttributeValue(org.verapdf.pd.PDObject simplePDObject, ASAtom attributeName, String O,
                                                   String defaultValue) {
-        COSObject object = getAttributeValue(simplePDObject, attributeName, O, COSObjType.COS_STRING);
-        if (object.getType() == COSObjType.COS_STRING) {
+        COSObject object = getAttributeValue(simplePDObject, attributeName, O, COSObjType.COS_NAME);
+        if (object.getType() == COSObjType.COS_NAME) {
             return object.getString();
         }
         return defaultValue;
