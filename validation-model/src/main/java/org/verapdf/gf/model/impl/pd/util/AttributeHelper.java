@@ -28,6 +28,8 @@ import org.verapdf.tools.TaggedPDFConstants;
 
 public class AttributeHelper {
 
+    public static final String PRINT_FIELD = "PrintField";
+
     public static Long getColSpan(org.verapdf.pd.PDObject simplePDObject) {
         return AttributeHelper.getIntegerAttributeValue(simplePDObject, ASAtom.COL_SPAN, TaggedPDFConstants.TABLE, 1L);
     }
@@ -38,6 +40,10 @@ public class AttributeHelper {
 
     public static String getScope(org.verapdf.pd.PDObject simplePDObject) {
         return AttributeHelper.getNameAttributeValue(simplePDObject, ASAtom.SCOPE, TaggedPDFConstants.TABLE, null);
+    }
+
+    public static String getRole(org.verapdf.pd.PDObject simplePDObject) {
+        return AttributeHelper.getNameAttributeValue(simplePDObject, ASAtom.ROLE, PRINT_FIELD, null);
     }
 
     public static COSArray getArrayAttributeValue(org.verapdf.pd.PDObject simplePDObject, ASAtom attributeName, String O,

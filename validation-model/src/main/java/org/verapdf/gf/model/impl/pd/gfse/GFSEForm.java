@@ -20,10 +20,16 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
+import org.verapdf.gf.model.impl.pd.util.AttributeHelper;
 import org.verapdf.model.selayer.SEForm;
+import org.verapdf.pd.structure.PDOBJRDictionary;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
+
+import java.util.List;
 
 public class GFSEForm extends GFPDStructElem implements SEForm {
 
@@ -31,5 +37,29 @@ public class GFSEForm extends GFPDStructElem implements SEForm {
 
     public GFSEForm(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.FORM, FORM_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    @Override
+    public String getroleAttribute() {
+        return AttributeHelper.getRole(this.simplePDObject);
+    }
+
+    @Override
+    public Boolean gethasOneInteractiveChild() {
+        List<Object> children = ((PDStructElem)this.simplePDObject).getChildren();
+        if (children.size() != 1) {
+            return false;
+        }
+        Object child = children.get(0);
+        if (child instanceof PDOBJRDictionary) {
+            COSObject referencedObject = ((PDOBJRDictionary) child).getReferencedObject();
+            if (referencedObject != null) {
+                COSObject subtypeValue = referencedObject.getDirectBase().getKey(ASAtom.SUBTYPE);
+                if (subtypeValue != null) {
+                    return ASAtom.WIDGET.getValue().equals(subtypeValue.getDirectBase().getString());
+                }
+            }
+        }
+        return false;
     }
 }
