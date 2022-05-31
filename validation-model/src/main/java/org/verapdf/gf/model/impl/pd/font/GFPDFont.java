@@ -103,13 +103,13 @@ public class GFPDFont extends GFPDResource implements PDFont {
 
     @Override
     public String getfontFileSubtype() {
-	if (this.pdFont != null) {
-		ASAtom subtype = this.pdFont.getProgramSubtype();
-		if (subtype != null) {
-        		return subtype.getValue();
-		}
-	}
-	return null;
+        if (this.pdFont != null) {
+            ASAtom subtype = this.pdFont.getProgramSubtype();
+            if (subtype != null) {
+                return subtype.getValue();
+            }
+        }
+        return null;
     }
 
     @Override
