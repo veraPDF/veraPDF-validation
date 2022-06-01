@@ -100,6 +100,6 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
     @Override
     public Boolean getcontainsDifferences() {
         COSObject encoding = this.pdFont.getEncoding();
-        return !encoding.empty() && encoding.knownKey(ASAtom.DIFFERENCES);
+        return encoding.getType() == COSObjType.COS_DICT && encoding.knownKey(ASAtom.DIFFERENCES);
     }
 }
