@@ -33,8 +33,6 @@ import org.verapdf.model.pdlayer.PDSimpleFont;
  */
 public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
 
-    public static final String CUSTOM_ENCODING = "Custom";
-
     protected GFPDSimpleFont(org.verapdf.pd.font.PDSimpleFont font,
                              RenderingMode renderingMode, final String type) {
         super(font, renderingMode, type);
@@ -102,9 +100,6 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
     @Override
     public Boolean getcontainsDifferences() {
         COSObject encoding = this.pdFont.getEncoding();
-        if (encoding.empty()) {
-            return null;
-        }
-        return encoding.knownKey(ASAtom.DIFFERENCES);
+        return !encoding.empty() && encoding.knownKey(ASAtom.DIFFERENCES);
     }
 }
