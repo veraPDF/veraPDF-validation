@@ -25,9 +25,9 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
-import org.verapdf.gf.model.impl.pd.util.AttributeHelper;
 import org.verapdf.model.selayer.SETD;
 import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.tools.AttributeHelper;
 import org.verapdf.tools.TaggedPDFConstants;
 
 import java.util.Collections;
