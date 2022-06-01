@@ -23,10 +23,10 @@ package org.verapdf.gf.model.impl.pd.gfse;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
-import org.verapdf.gf.model.impl.pd.util.AttributeHelper;
 import org.verapdf.model.selayer.SEForm;
 import org.verapdf.pd.structure.PDOBJRDictionary;
 import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.tools.AttributeHelper;
 import org.verapdf.tools.TaggedPDFConstants;
 
 import java.util.List;

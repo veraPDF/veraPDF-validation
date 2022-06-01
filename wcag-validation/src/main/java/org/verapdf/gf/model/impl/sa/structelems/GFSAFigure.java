@@ -20,10 +20,10 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAFigure;
 import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.tools.AttributeHelper;
 import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSAFigure extends GFSAStructElem implements SAFigure {
@@ -36,7 +36,6 @@ public class GFSAFigure extends GFSAStructElem implements SAFigure {
 
     @Override
     public Boolean gethasBBox() {
-        return this.structElemDictionary.knownKey(ASAtom.A) &&
-                this.structElemDictionary.getKey(ASAtom.A).getKey(ASAtom.BBOX) != null;
+        return AttributeHelper.getBBox(this.structElemDictionary) != null;
     }
 }
