@@ -531,7 +531,7 @@ class OperatorParser {
 				break;
 
 			default:
-				processedOperators.add(new GFOp_Undefined(arguments));
+				processedOperators.add(new GFOp_Undefined(operatorName, arguments));
 				break;
 		}
 	}

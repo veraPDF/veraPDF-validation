@@ -47,12 +47,12 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	public static final String F_DECODE_PARMS = "FDecodeParms";
 
 	private final Long length;
+	private final Long realLength;
 	private final String fileSpec;
 	private final String fFilter;
 	private final String fDecodeParams;
 	private final boolean streamKeywordCRLFCompliant;
 	private final boolean endstreamKeywordEOLCompliant;
-	private final boolean isLengthCorrect;
 
 	/**
 	 * Default constructor
@@ -68,7 +68,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		this.fDecodeParams = fDecodeParams == null || fDecodeParams.isEmpty() ? null : fDecodeParams;
 		this.streamKeywordCRLFCompliant = stream.isStreamKeywordCRLFCompliant().booleanValue();
 		this.endstreamKeywordEOLCompliant = stream.isEndstreamKeywordCRLFCompliant().booleanValue();
-		this.isLengthCorrect = this.length != null && this.length.equals(stream.getRealStreamSize());
+		this.realLength = stream.getRealStreamSize();
 	}
 
 	/**
@@ -78,6 +78,9 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	public Long getLength() {
 		return this.length;
 	}
+
+	@Override
+	public Long getrealLength() { return realLength; }
 
 	/**
 	 * @return string representation of file specification if its present
@@ -123,7 +126,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	 */
 	@Override
 	public Boolean getisLengthCorrect() {
-		return this.isLengthCorrect;
+		return this.length != null && this.length.equals(realLength);
 	}
 
 	@Override

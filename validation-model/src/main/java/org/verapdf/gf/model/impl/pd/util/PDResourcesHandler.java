@@ -35,6 +35,9 @@ import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.patterns.PDShading;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author Timur Kamalov
  */
@@ -48,6 +51,7 @@ public class PDResourcesHandler {
 	private final PDResources objectResources;
 
 	private boolean containsUndefinedResource = false;
+	private List<ASAtom> undefinedResourceNames = new LinkedList<>();
 
 	private PDResourcesHandler(PDResources pageResources, boolean inheritedResources) {
 		this.pageResources = pageResources;
@@ -97,6 +101,7 @@ public class PDResourcesHandler {
 		}
 		if (font == null) {
 			containsUndefinedResource = true;
+			undefinedResourceNames.add(name);
 		}
 		return font;
 	}
@@ -130,6 +135,7 @@ public class PDResourcesHandler {
 		}
 		if (colorSpace == null) {
 			containsUndefinedResource = true;
+			undefinedResourceNames.add(name);
 		}
 		return colorSpace;
 	}
@@ -155,6 +161,7 @@ public class PDResourcesHandler {
 		}
 		if (pattern == null) {
 			containsUndefinedResource = true;
+			undefinedResourceNames.add(name);
 		}
 		return pattern;
 	}
@@ -180,6 +187,7 @@ public class PDResourcesHandler {
 		}
 		if (shading == null) {
 			containsUndefinedResource = true;
+			undefinedResourceNames.add(name);
 		}
 		return shading;
 	}
@@ -205,6 +213,7 @@ public class PDResourcesHandler {
 		}
 		if (xObject == null) {
 			containsUndefinedResource = true;
+			undefinedResourceNames.add(name);
 		}
 		return xObject;
 	}
@@ -230,6 +239,7 @@ public class PDResourcesHandler {
 		}
 		if (state == null) {
 			containsUndefinedResource = true;
+			undefinedResourceNames.add(name);
 		}
 		return state;
 	}
@@ -255,6 +265,7 @@ public class PDResourcesHandler {
 		}
 		if (res == null) {
 			containsUndefinedResource = true;
+			undefinedResourceNames.add(name);
 		}
 		return res;
 	}
@@ -312,5 +323,9 @@ public class PDResourcesHandler {
 
 	public boolean getContainsUndefinedResource() {
 		return containsUndefinedResource;
+	}
+
+	public List<ASAtom> getUndefinedResourceNames() {
+		return undefinedResourceNames;
 	}
 }

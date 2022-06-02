@@ -54,6 +54,8 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     private Boolean glyphPresent;
     private Boolean widthsConsistent;
+    private Double widthFromDictionary;
+    private Double widthFromFontProgram;
     private String name;
     private String toUnicode;
     private Long renderingMode;
@@ -158,6 +160,8 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private void initForType3(PDFont font, int glyphCode) {
         glyphPresent = ((PDType3Font) font).containsCharString(glyphCode);
         this.widthsConsistent = checkWidths(glyphCode, font);
+        this.widthFromFontProgram = getWidthFromProgram(glyphCode, font);
+        this.widthFromDictionary = getWidthFromDictionary(glyphCode, font);
     }
 
     private void initForNotType3(boolean fontProgramIsInvalid, FontProgram fontProgram,
@@ -165,6 +169,8 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         try {
             glyphPresent = null;
             widthsConsistent = null;
+            widthFromDictionary = null;
+            widthFromFontProgram = null;
             if (!fontProgramIsInvalid) {
                 fontProgram.parseFont();
                 // every font contains notdef glyph. But if we call method
@@ -172,11 +178,26 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 // and glyph that is not present indeed.
                 glyphPresent = glyphCode == 0 || font.glyphIsPresent(glyphCode);
                 widthsConsistent = checkWidths(glyphCode, font);
+                widthFromFontProgram = getWidthFromProgram(glyphCode, font);
+                widthFromDictionary = getWidthFromDictionary(glyphCode, font);
             }
         } catch (IOException e) {
             LOGGER.log(Level.FINE, "Error in parsing font program", e);
             StaticContainers.setValidPDF(false);
         }
+    }
+
+    private static Double getWidthFromDictionary(int glyphCode, PDFont font) {
+        Double fontWidth = font.getWidth(glyphCode);
+        return fontWidth == null ? 0 : fontWidth;
+    }
+
+    private static Double getWidthFromProgram(int glyphCode, PDFont font) {
+        double foundWidth = font.getWidthFromProgram(glyphCode);
+        if (foundWidth == -1) {
+            foundWidth = font.getDefaultWidth() == null ? 0 : font.getDefaultWidth();
+        }
+        return foundWidth;
     }
 
     private static Boolean checkWidths(int glyphCode, PDFont font) {
@@ -198,6 +219,16 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     @Override
     public Boolean getisWidthConsistent() {
         return this.widthsConsistent;
+    }
+
+    @Override
+    public Double getwidthFromDictionary() {
+        return widthFromDictionary;
+    }
+
+    @Override
+    public Double getwidthFromFontProgram() {
+        return widthFromFontProgram;
     }
 
     @Override

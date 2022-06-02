@@ -29,6 +29,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.model.pdlayer.PDCMap;
 import org.verapdf.model.pdlayer.PDType0Font;
+import org.verapdf.pd.font.PDCIDSystemInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -127,6 +128,68 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 			return Boolean.FALSE;
 		}
 		return this.isOrderingCompatible() && this.isRegistryCompatible();
+	}
+
+	@Override
+	public String getCIDFontOrdering() {
+		PDCIDSystemInfo info = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo();
+		if (info == null) {
+			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
+			return null;
+		}
+		return info.getStringKey(ASAtom.ORDERING);
+	}
+
+	@Override
+	public String getCMapOrdering() {
+		org.verapdf.pd.font.cmap.PDCMap cmap = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap();
+		if (cmap == null) {
+			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
+			return null;
+		}
+		return cmap.getOrdering();
+	}
+
+	@Override
+	public String getCIDFontRegistry() {
+		PDCIDSystemInfo info = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo();
+		if (info == null) {
+			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
+			return null;
+		}
+		return info.getStringKey(ASAtom.REGISTRY);
+	}
+
+	@Override
+	public String getCMapRegistry() {
+		org.verapdf.pd.font.cmap.PDCMap cmap = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap();
+		if (cmap == null) {
+			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
+			return null;
+		}
+		return cmap.getRegistry();
+	}
+
+	@Override
+	public Long getCIDFontSupplement() {
+		PDCIDSystemInfo info = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo();
+		if (info == null) {
+			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
+			return null;
+		}
+		Long supplement = info.getIntegerKey(ASAtom.SUPPLEMENT);
+		return supplement != null ? supplement : 0L;
+	}
+
+	@Override
+	public Long getCMapSupplement() {
+		org.verapdf.pd.font.cmap.PDCMap cmap = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap();
+		if (cmap == null) {
+			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
+			return null;
+		}
+		Long supplement = cmap.getSupplement();
+		return supplement != null ? supplement : 0L;
 	}
 
 	/**

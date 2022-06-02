@@ -223,8 +223,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     private static BitSet toBitSetBigEndian(byte[] source) {
         BitSet bitSet = new BitSet(source.length * 8);
         int i = 0;
-        for (int j = 0; j < source.length; j++) {
-            int b = source[j] >= 0 ? source[j] : 256 + source[j];
+        for (byte value : source) {
+            int b = value >= 0 ? value : 256 + value;
             for (int k = 0; k < 8; k++) {
                 bitSet.set(i++, (b & 0x80) != 0);
                 b = b << 1;

@@ -35,6 +35,7 @@ import org.verapdf.model.pdlayer.PDMetadata;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Timur Kamalov
@@ -75,6 +76,13 @@ public class GFCosDict extends GFCosObject implements CosDict {
     @Override
     public Long getsize() {
         return Long.valueOf(this.size);
+    }
+
+    @Override
+    public String getkeysString() {
+        return this.baseObject.getKeySet().stream()
+                .map(ASAtom::getValue)
+                .collect(Collectors.joining("&"));
     }
 
     @Override

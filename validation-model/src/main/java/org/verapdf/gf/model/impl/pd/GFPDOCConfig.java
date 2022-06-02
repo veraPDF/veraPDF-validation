@@ -65,7 +65,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 		COSObject order = this.simplePDObject.getKey(ASAtom.ORDER);
 		if (!order.empty()) {
 			if (order.getType() == COSObjType.COS_ARRAY) {
-				for (int i = 0; i < order.size().intValue(); i++) {
+				for (int i = 0; i < order.size(); i++) {
 					COSObject element = order.at(i);
 					if (element.getType() == COSObjType.COS_ARRAY) {
 						processCOSArrayInOrder(element, groupNamesSet);
@@ -91,7 +91,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 		if (!asArray.empty()) {
 			String result = "";
 			if (asArray.getType() == COSObjType.COS_ARRAY) {
-				for (int i = 0; i < asArray.size().intValue(); i++) {
+				for (int i = 0; i < asArray.size(); i++) {
 					COSObject element = asArray.at(i);
 					if (element.getType() == COSObjType.COS_DICT) {
 						String event = element.getStringKey(ASAtom.EVENT);
@@ -121,7 +121,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	}
 
 	private void processCOSArrayInOrder(COSObject array, Set<String> groupNames) {
-		for (int i = 0; i < array.size().intValue(); i++) {
+		for (int i = 0; i < array.size(); i++) {
 			COSObject element = array.at(i);
 			if (element.getType() == COSObjType.COS_ARRAY) {
 				processCOSArrayInOrder(element, groupNames);
