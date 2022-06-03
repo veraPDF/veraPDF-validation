@@ -63,6 +63,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Maksim Bezrukov
@@ -136,6 +137,13 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	@Override
 	public Double getCA() {
 		return ((PDAnnotation) simplePDObject).getCA();
+	}
+
+	@Override
+	public String getkeys() {
+		return simplePDObject.getObject().getDirectBase().getKeySet().stream()
+				.map(ASAtom::getValue)
+				.collect(Collectors.joining("&"));
 	}
 
 	@Override

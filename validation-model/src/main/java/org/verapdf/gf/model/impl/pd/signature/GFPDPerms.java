@@ -26,6 +26,7 @@ import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDPerms;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Represents permissions dictionary referred by /Perms key from the document
@@ -65,6 +66,16 @@ public class GFPDPerms extends GFPDObject implements PDPerms {
             }
         }
         return Boolean.FALSE;
+    }
+
+    @Override
+    public String getentries() {
+        if (!this.simpleCOSObject.empty()) {
+            return this.simpleCOSObject.get().getKeySet().stream()
+                    .map(ASAtom::getValue)
+                    .collect(Collectors.joining("&"));
+        }
+        return "";
     }
 
 }

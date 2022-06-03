@@ -160,6 +160,12 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	@Override
+	public String getvalueS() {
+		COSName type = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getCOSStructureType();
+		return type != null ? type.getString() : null;
+	}
+
+	@Override
 	public String getstandardType() {
 		return this.standardType;
 	}

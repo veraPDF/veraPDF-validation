@@ -45,6 +45,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * @author Timur Kamalov
@@ -178,6 +179,13 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	@Override
 	public Boolean getcontainsUndefinedResource() {
 		return resourcesHandler.getContainsUndefinedResource();
+	}
+
+	@Override
+	public String getundefinedResourceNames() {
+		return resourcesHandler.getUndefinedResourceNames().stream()
+				.map(ASAtom::getValue)
+				.collect(Collectors.joining(","));
 	}
 
 	public boolean isContainsTransparency() {

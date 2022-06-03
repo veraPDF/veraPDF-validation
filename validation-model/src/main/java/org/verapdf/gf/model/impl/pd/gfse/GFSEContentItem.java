@@ -78,11 +78,6 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
     }
 
     @Override
-    public String getsuspectRole() {
-        return null;
-    }
-
-    @Override
     public String getparentsTags() {
         if (parentMarkedContentOperator != null) {
             return parentMarkedContentOperator.getParentsTags();

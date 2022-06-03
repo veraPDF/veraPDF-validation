@@ -140,7 +140,7 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	}
 
 	@Override
-	public String gettopLevelFirstElementStandartType() {
+	public String gettopLevelFirstElementStandardType() {
 		if (this.children == null) {
 			this.children = parseChildren();
 		}
