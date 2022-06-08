@@ -111,6 +111,32 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	}
 
 	@Override
+	public String getOCGsNotContainInOrder() {
+		Set<String> groupNamesSet = new TreeSet<>(groupNames);
+		COSObject order = this.simplePDObject.getKey(ASAtom.ORDER);
+		if (!order.empty()) {
+			if (order.getType() == COSObjType.COS_ARRAY) {
+				for (int i = 0; i < order.size(); i++) {
+					COSObject element = order.at(i);
+					if (element.getType() == COSObjType.COS_ARRAY) {
+						processCOSArrayInOrder(element, groupNamesSet);
+					} else if (element.getType() == COSObjType.COS_DICT) {
+						processCOSDictionaryInOrder(element, groupNamesSet);
+					} else {
+						LOGGER.log(Level.SEVERE, "Invalid object type in order array. Ignoring the object.");
+					}
+				}
+				if (!groupNamesSet.isEmpty()) {
+					return String.join(",", groupNamesSet);
+				}
+			} else {
+				LOGGER.log(Level.SEVERE, "Invalid object type of Order entry. Ignoring the Order entry.");
+			}
+		}
+		return "";
+	}
+
+	@Override
 	public Boolean gethasDuplicateName() {
 		return this.duplicateName;
 	}

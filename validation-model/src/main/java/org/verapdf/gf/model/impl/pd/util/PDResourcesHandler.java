@@ -50,7 +50,6 @@ public class PDResourcesHandler {
 
 	private final PDResources objectResources;
 
-	private boolean containsUndefinedResource = false;
 	private List<ASAtom> undefinedResourceNames = new LinkedList<>();
 
 	private PDResourcesHandler(PDResources pageResources, boolean inheritedResources) {
@@ -100,7 +99,6 @@ public class PDResourcesHandler {
 			setInherited(font, inheritedResources);
 		}
 		if (font == null) {
-			containsUndefinedResource = true;
 			undefinedResourceNames.add(name);
 		}
 		return font;
@@ -134,7 +132,6 @@ public class PDResourcesHandler {
 			}
 		}
 		if (colorSpace == null) {
-			containsUndefinedResource = true;
 			undefinedResourceNames.add(name);
 		}
 		return colorSpace;
@@ -160,7 +157,6 @@ public class PDResourcesHandler {
 			setInherited(pattern, inheritedResources);
 		}
 		if (pattern == null) {
-			containsUndefinedResource = true;
 			undefinedResourceNames.add(name);
 		}
 		return pattern;
@@ -186,7 +182,6 @@ public class PDResourcesHandler {
 			setInherited(shading, inheritedResources);
 		}
 		if (shading == null) {
-			containsUndefinedResource = true;
 			undefinedResourceNames.add(name);
 		}
 		return shading;
@@ -212,7 +207,6 @@ public class PDResourcesHandler {
 			setInherited(xObject, inheritedResources);
 		}
 		if (xObject == null) {
-			containsUndefinedResource = true;
 			undefinedResourceNames.add(name);
 		}
 		return xObject;
@@ -238,7 +232,6 @@ public class PDResourcesHandler {
 			setInherited(state, inheritedResources);
 		}
 		if (state == null) {
-			containsUndefinedResource = true;
 			undefinedResourceNames.add(name);
 		}
 		return state;
@@ -264,7 +257,6 @@ public class PDResourcesHandler {
 			setInherited(res, inheritedResources);
 		}
 		if (res == null) {
-			containsUndefinedResource = true;
 			undefinedResourceNames.add(name);
 		}
 		return res;
@@ -319,10 +311,6 @@ public class PDResourcesHandler {
 	private static boolean isDeviceDependent(ASAtom name) {
 		return ASAtom.DEVICERGB.equals(name) ||
 				ASAtom.DEVICEGRAY.equals(name) || ASAtom.DEVICECMYK.equals(name);
-	}
-
-	public boolean getContainsUndefinedResource() {
-		return containsUndefinedResource;
 	}
 
 	public List<ASAtom> getUndefinedResourceNames() {

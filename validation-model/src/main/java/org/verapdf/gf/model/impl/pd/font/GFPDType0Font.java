@@ -113,23 +113,6 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 		return Collections.emptyList();
 	}
 
-	/**
-	 * @return true if Registry and Ordering keys of the corresponding CMap and
-	 *         CIDFont are compatible.
-	 */
-	@Override
-	public Boolean getareRegistryOrderingCompatible() {
-		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
-			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
-			return Boolean.FALSE;
-		}
-		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
-			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
-			return Boolean.FALSE;
-		}
-		return this.isOrderingCompatible() && this.isRegistryCompatible();
-	}
-
 	@Override
 	public String getCIDFontOrdering() {
 		PDCIDSystemInfo info = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo();
@@ -190,34 +173,6 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 		}
 		Long supplement = cmap.getSupplement();
 		return supplement != null ? supplement : 0L;
-	}
-
-	/**
-	 * @return true if the Supplement key in the CIDFont is greater or equal to
-	 *         the Supplement key in the CMap dictionary.
-	 */
-	@Override
-	public Boolean getisSupplementCompatible() {
-		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
-			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
-			return Boolean.FALSE;
-		}
-		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
-			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
-			return Boolean.FALSE;
-		}
-		Long fontSupplement = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo()
-				.getIntegerKey(ASAtom.SUPPLEMENT);
-		Long cMapSupplement = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getSupplement();
-		if (fontSupplement == null) {
-			LOGGER.log(Level.FINE, "Font's CIDSystemInfo dictionary doesn't contain Supplement entry.");
-			fontSupplement = 0L;
-		}
-		if (cMapSupplement == null) {
-			LOGGER.log(Level.FINE, "CMap's CIDSystemInfo dictionary missing or doesn't contain Supplement entry.");
-			cMapSupplement = 0L;
-		}
-		return fontSupplement <= cMapSupplement;
 	}
 
 	/**

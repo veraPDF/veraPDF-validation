@@ -113,11 +113,11 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     }
 
     private List<PDAdditionalActions> getAdditionalAction() {
-        PDFormFieldActions pbActions = ((org.verapdf.pd.form.PDFormField) this.simplePDObject)
+        PDFormFieldActions pdActions = ((org.verapdf.pd.form.PDFormField) this.simplePDObject)
                 .getActions();
-        if (pbActions != null) {
+        if (pdActions != null) {
             List<PDAdditionalActions> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-            actions.add(new GFPDAdditionalActions(pbActions));
+            actions.add(new GFPDAdditionalActions(pdActions));
             return Collections.unmodifiableList(actions);
         }
 
