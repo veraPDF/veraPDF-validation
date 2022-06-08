@@ -78,4 +78,9 @@ public class GFPDAdditionalActions extends GFPDObject implements PDAdditionalAct
     public String getactions() {
         return getActions().stream().map(PDAction::getS).collect(Collectors.joining("&"));
     }
+
+    @Override
+    public String getparentType() {
+        return ((PDAbstractAdditionalActions)simplePDObject).getParentType();
+    }
 }

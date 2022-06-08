@@ -177,11 +177,6 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	}
 
 	@Override
-	public Boolean getcontainsUndefinedResource() {
-		return resourcesHandler.getContainsUndefinedResource();
-	}
-
-	@Override
 	public String getundefinedResourceNames() {
 		return resourcesHandler.getUndefinedResourceNames().stream()
 				.map(ASAtom::getValue)

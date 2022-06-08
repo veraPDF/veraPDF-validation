@@ -121,14 +121,6 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		return this.endstreamKeywordEOLCompliant;
 	}
 
-	/**
-	 * true if the value of Length key matches the actual length of the stream
-	 */
-	@Override
-	public Boolean getisLengthCorrect() {
-		return this.length != null && this.length.equals(realLength);
-	}
-
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {

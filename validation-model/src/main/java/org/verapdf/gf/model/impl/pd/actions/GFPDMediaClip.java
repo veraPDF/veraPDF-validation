@@ -49,10 +49,8 @@ public class GFPDMediaClip extends GFPDObject implements PDMediaClip {
 
     @Override
     public String getAlt() {
-        List<String> list = ((org.verapdf.pd.actions.PDMediaClip)simplePDObject).getAlternateDescription();
-        return list.stream()
-                .filter(Objects::nonNull)
-                .collect(Collectors.joining(""));
+        COSObject object = simplePDObject.getKey(ASAtom.ALT);
+        return object != null ? object.toString() : null;
     }
 
     @Override

@@ -51,23 +51,6 @@ public class GFPDPerms extends GFPDObject implements PDPerms {
         super(dictionary, PERMS_TYPE);
     }
 
-    /**
-     * @return true if the permissions dictionary contains entries other than
-     * DocMDP and UC3.
-     */
-    @Override
-    public Boolean getcontainsOtherEntries() {
-        if (!this.simpleCOSObject.empty()) {
-            Set<ASAtom> names = this.simpleCOSObject.get().getKeySet();
-            for (ASAtom name : names) {
-                if (name != UR3 && name != DOC_MDP) {
-                    return Boolean.TRUE;
-                }
-            }
-        }
-        return Boolean.FALSE;
-    }
-
     @Override
     public String getentries() {
         if (!this.simpleCOSObject.empty()) {

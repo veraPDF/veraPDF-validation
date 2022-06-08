@@ -53,7 +53,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private final String id;
 
     private Boolean glyphPresent;
-    private Boolean widthsConsistent;
     private Double widthFromDictionary;
     private Double widthFromFontProgram;
     private String name;
@@ -159,7 +158,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     private void initForType3(PDFont font, int glyphCode) {
         glyphPresent = ((PDType3Font) font).containsCharString(glyphCode);
-        this.widthsConsistent = checkWidths(glyphCode, font);
         this.widthFromFontProgram = getWidthFromProgram(glyphCode, font);
         this.widthFromDictionary = getWidthFromDictionary(glyphCode, font);
     }
@@ -168,7 +166,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                                  PDFont font, int glyphCode) {
         try {
             glyphPresent = null;
-            widthsConsistent = null;
             widthFromDictionary = null;
             widthFromFontProgram = null;
             if (!fontProgramIsInvalid) {
@@ -177,7 +174,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 // of font program we can't distinguish case of code 0
                 // and glyph that is not present indeed.
                 glyphPresent = glyphCode == 0 || font.glyphIsPresent(glyphCode);
-                widthsConsistent = checkWidths(glyphCode, font);
                 widthFromFontProgram = getWidthFromProgram(glyphCode, font);
                 widthFromDictionary = getWidthFromDictionary(glyphCode, font);
             }
@@ -214,11 +210,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     @Override
     public String getname() {
         return this.name;
-    }
-
-    @Override
-    public Boolean getisWidthConsistent() {
-        return this.widthsConsistent;
     }
 
     @Override
