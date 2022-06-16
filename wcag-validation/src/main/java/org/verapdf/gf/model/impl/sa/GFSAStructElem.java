@@ -289,6 +289,9 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	}
 
 	private static List<String> getChildrenStandardTypes(GFSAStructElem element) {
+		if (element.children == null) {
+			element.parseChildren();
+		}
 		List<String> res = new ArrayList<>();
 		for (Object child : element.children) {
 			if (child instanceof GFSAStructElem) {
