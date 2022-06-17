@@ -21,7 +21,6 @@
 package org.verapdf.features.gf.objects;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.features.objects.PageFeaturesObjectAdapter;

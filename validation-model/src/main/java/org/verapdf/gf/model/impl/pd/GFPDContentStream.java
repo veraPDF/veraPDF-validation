@@ -183,6 +183,13 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				.collect(Collectors.joining(","));
 	}
 
+	@Override
+	public String getinheritedResourceNames() {
+		return resourcesHandler.getInheritedResourceNames().stream()
+				.map(ASAtom::getValue)
+				.collect(Collectors.joining(","));
+	}
+
 	public boolean isContainsTransparency() {
 		if (this.operators == null) {
 			parseOperators();
