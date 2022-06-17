@@ -25,7 +25,6 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDPerms;
 
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

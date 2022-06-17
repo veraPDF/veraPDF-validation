@@ -21,10 +21,7 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSKey;
-import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.structelems.GFSAFactory;
 import org.verapdf.model.GenericModelObject;
@@ -41,7 +38,6 @@ import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
-import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
 
 import java.util.*;
@@ -242,15 +238,9 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	}
 
 	@Override
-	public Boolean gethasCorrectType() {
-		if (standardType == null) {
-			return false;
-		}
-		SemanticType semanticType = node.getSemanticType();
-		if (!SemanticTypeMapper.containsType(standardType) || semanticType == null) {
-			return null;
-		}
-		return standardType.equals(semanticType.getValue());
+	public String getvalueS() {
+		COSName type = structElemDictionary.getCOSStructureType();
+		return type != null ? type.getString() : null;
 	}
 
 	@Override
