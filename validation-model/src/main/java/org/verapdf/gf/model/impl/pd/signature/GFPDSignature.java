@@ -53,7 +53,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     public static final String CONTENTS = "Contents";
     public static final String REFERENCE = "Reference";
 
-    protected static COSString contents;
+    protected COSString contents;
     protected long signatureOffset = -1;
 
     public GFPDSignature(org.verapdf.pd.PDSignature pdSignature, COSObject signatureReference) {
@@ -80,7 +80,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     /**
      * @return DER-encoded PKCS#7 data object representing PDF Signature.
      */
-    private static List<PKCSDataObject> getContents() {
+    private List<PKCSDataObject> getContents() {
         if (contents != null) {
             List<PKCSDataObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             list.add(new GFPKCSDataObject(contents));

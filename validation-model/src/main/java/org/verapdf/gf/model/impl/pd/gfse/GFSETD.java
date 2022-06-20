@@ -24,7 +24,6 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETD;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.AttributeHelper;
@@ -34,24 +33,16 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GFSETD extends GFPDStructElem implements SETD {
+public class GFSETD extends GFSETableCell implements SETD {
 
-    public static final String TD_STRUCTURE_ELEMENT_TYPE = "SETD";
+	public static final String TD_STRUCTURE_ELEMENT_TYPE = "SETD";
 
-    public GFSETD(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.TD, TD_STRUCTURE_ELEMENT_TYPE);
-    }
-
-	public Long getColSpan() {
-		return AttributeHelper.getColSpan(simplePDObject);
-	}
-
-	public Long getRowSpan() {
-		return AttributeHelper.getRowSpan(simplePDObject);
+	public GFSETD(PDStructElem structElemDictionary) {
+		super(structElemDictionary, TaggedPDFConstants.TD, TD_STRUCTURE_ELEMENT_TYPE);
 	}
 
 	protected List<String> getHeaders() {
-    	COSArray headers = AttributeHelper.getArrayAttributeValue(simplePDObject, ASAtom.HEADERS,
+		COSArray headers = AttributeHelper.getArrayAttributeValue(simplePDObject, ASAtom.HEADERS,
 				TaggedPDFConstants.TABLE, null);
 		if (headers != null) {
 			List<String> list = new LinkedList<>();

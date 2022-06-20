@@ -170,7 +170,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                         }
                     }
                     // we skip i = 0 which corresponds to .notdef glyph
-                    for (int i = 1; i < bitSet.size(); i++) {
+                    for (int i = 1; i < bitSet.length(); i++) {
                         if (bitSet.get(i) && !cidFont.containsCID(i)) {
                             return Boolean.FALSE;
                         }

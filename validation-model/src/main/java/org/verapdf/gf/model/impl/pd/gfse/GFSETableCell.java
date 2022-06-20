@@ -20,25 +20,40 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
-import org.verapdf.as.ASAtom;
-import org.verapdf.model.selayer.SETH;
-import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.tools.AttributeHelper;
-import org.verapdf.tools.TaggedPDFConstants;
+import org.verapdf.pd.structure.PDStructElem;
 
-public class GFSETH extends GFSETableCell implements SETH {
+public class GFSETableCell extends GFPDStructElem {
 
-    public static final String TH_STRUCTURE_ELEMENT_TYPE = "SETH";
+    private int rowNumber;
+    private int columnNumber;
 
-    public GFSETH(PDStructElem structElemDictionary) {
-        super(structElemDictionary, TaggedPDFConstants.TH, TH_STRUCTURE_ELEMENT_TYPE);
+    public GFSETableCell(PDStructElem structElemDictionary, String standardType, String type) {
+        super(structElemDictionary, standardType, type);
     }
 
-    protected String getTHID() {
-        return simplePDObject.getStringKey(ASAtom.ID);
+    public Long getColSpan() {
+        return AttributeHelper.getColSpan(simplePDObject);
     }
 
-    protected String getScope() {
-        return AttributeHelper.getScope(simplePDObject);
+    public Long getRowSpan() {
+        return AttributeHelper.getRowSpan(simplePDObject);
+    }
+
+    public int getRowNumber() {
+        return rowNumber;
+    }
+
+    public void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
+    }
+
+    public int getColumnNumber() {
+        return columnNumber;
+    }
+
+    public void setColumnNumber(int columnNumber) {
+        this.columnNumber = columnNumber;
     }
 }
