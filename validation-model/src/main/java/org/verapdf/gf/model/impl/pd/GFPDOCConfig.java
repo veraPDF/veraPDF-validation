@@ -60,32 +60,6 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	}
 
 	@Override
-	public Boolean getdoesOrderContainAllOCGs() {
-		Set<String> groupNamesSet = new TreeSet<>(groupNames);
-		COSObject order = this.simplePDObject.getKey(ASAtom.ORDER);
-		if (!order.empty()) {
-			if (order.getType() == COSObjType.COS_ARRAY) {
-				for (int i = 0; i < order.size(); i++) {
-					COSObject element = order.at(i);
-					if (element.getType() == COSObjType.COS_ARRAY) {
-						processCOSArrayInOrder(element, groupNamesSet);
-					} else if (element.getType() == COSObjType.COS_DICT) {
-						processCOSDictionaryInOrder(element, groupNamesSet);
-					} else {
-						LOGGER.log(Level.SEVERE, "Invalid object type in order array. Ignoring the object.");
-					}
-				}
-				if (!groupNamesSet.isEmpty()) {
-					return Boolean.FALSE;
-				}
-			} else {
-				LOGGER.log(Level.SEVERE, "Invalid object type of Order entry. Ignoring the Order entry.");
-			}
-		}
-		return Boolean.TRUE;
-	}
-
-	@Override
 	public String getAS() {
 		COSObject asArray = this.simplePDObject.getKey(ASAtom.AS);
 		if (!asArray.empty()) {

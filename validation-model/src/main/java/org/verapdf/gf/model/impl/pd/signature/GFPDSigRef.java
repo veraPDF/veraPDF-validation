@@ -75,7 +75,7 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
 		PDCatalog catalog = StaticContainers.getDocument().getCatalog();
 		COSDictionary perms = (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
 		if (perms != null) {
-			return perms.knownKey(GFPDPerms.DOC_MDP);
+			return perms.knownKey(ASAtom.DOC_MDP);
 		}
 		return Boolean.FALSE;
 	}

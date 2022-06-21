@@ -140,6 +140,6 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
         return obj != null
                 && obj.getType() == COSObjType.COS_STREAM
                 && obj.getNameKey(ASAtom.TYPE) == ASAtom.METADATA
-                && ASAtom.getASAtom("XML").equals(obj.getNameKey(ASAtom.SUBTYPE));
+                && obj.getNameKey(ASAtom.SUBTYPE) == ASAtom.XML;
     }
 }

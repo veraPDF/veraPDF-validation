@@ -20,12 +20,9 @@
  */
 package org.verapdf.gf.model.impl.pd.signature;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDPerms;
-
-import java.util.stream.Collectors;
 
 /**
  * Represents permissions dictionary referred by /Perms key from the document
@@ -40,24 +37,11 @@ public class GFPDPerms extends GFPDObject implements PDPerms {
      */
     public static final String PERMS_TYPE = "PDPerms";
 
-    private static final ASAtom UR3 = ASAtom.getASAtom("UR3");
-    public static final ASAtom DOC_MDP = ASAtom.getASAtom("DocMDP");
-
     /**
      * @param dictionary is permissions dictionary.
      */
     public GFPDPerms(COSObject dictionary) {
         super(dictionary, PERMS_TYPE);
-    }
-
-    @Override
-    public String getentries() {
-        if (!this.simpleCOSObject.empty()) {
-            return this.simpleCOSObject.get().getKeySet().stream()
-                    .map(ASAtom::getValue)
-                    .collect(Collectors.joining("&"));
-        }
-        return "";
     }
 
 }
