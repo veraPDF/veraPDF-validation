@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.tools.GFIDGenerator;
@@ -29,6 +30,8 @@ import org.verapdf.pd.PDContentStream;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pd.font.cmap.PDCMap;
+
+import java.util.stream.Collectors;
 
 /**
  * @author Timur Kamalov
@@ -102,6 +105,16 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 	public GFPDObject(COSObject simpleCOSObject, final String type) {
 		super(type);
 		this.simpleCOSObject = simpleCOSObject;
+	}
+
+	@Override
+	public String getentries() {
+		if (this.simplePDObject != null && !this.simplePDObject.empty()) {
+			return this.simplePDObject.getObject().getDirectBase().getKeySet().stream()
+					.map(ASAtom::getValue)
+					.collect(Collectors.joining("&"));
+		}
+		return "";
 	}
 
 	@Override

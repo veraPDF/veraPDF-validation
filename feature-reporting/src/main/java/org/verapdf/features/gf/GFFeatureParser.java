@@ -269,7 +269,7 @@ public final class GFFeatureParser {
 
 			String thumbID = null;
 			PDResources resources = page.getResources();
-			COSObject thumb = page.getKey(ASAtom.getASAtom("Thumb"));
+			COSObject thumb = page.getKey(ASAtom.THUMB);
 			if (thumb != null) {
 				thumbID = getId(thumb, FeatureObjectType.IMAGE_XOBJECT);
 				if (checkIDBeforeProcess(thumbID)) {

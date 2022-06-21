@@ -97,8 +97,7 @@ public class MetadataImpl implements Metadata {
         }
         this.setRequiredDictionaryValue(ASAtom.METADATA, ASAtom.TYPE,
                 resultBuilder);
-        this.setRequiredDictionaryValue(ASAtom.getASAtom("XML"),
-                ASAtom.SUBTYPE, resultBuilder);
+        this.setRequiredDictionaryValue(ASAtom.XML, ASAtom.SUBTYPE, resultBuilder);
     }
 
     private void setRequiredDictionaryValue(ASAtom value, ASAtom key,
