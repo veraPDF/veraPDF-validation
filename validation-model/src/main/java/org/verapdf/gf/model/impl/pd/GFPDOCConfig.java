@@ -107,7 +107,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 				LOGGER.log(Level.SEVERE, "Invalid object type of Order entry. Ignoring the Order entry.");
 			}
 		}
-		return "";
+		return null;
 	}
 
 	@Override

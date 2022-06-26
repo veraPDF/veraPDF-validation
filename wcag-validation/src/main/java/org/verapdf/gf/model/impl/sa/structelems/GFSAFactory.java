@@ -150,7 +150,7 @@ public class GFSAFactory {
     public static String getStructureElementStandardType(PDStructElem pdStructElem){
         StructureType type = pdStructElem.getStructureType();
         if (type != null) {
-            return StaticStorages.getRoleMapHelper().getStandardType(type.getType(), false, true);
+            return StaticStorages.getRoleMapHelper().getStandardType(type.getType());
         }
         return null;
     }

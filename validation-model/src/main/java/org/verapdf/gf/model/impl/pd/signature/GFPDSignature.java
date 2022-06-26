@@ -114,13 +114,13 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     public Boolean getdoesByteRangeCoverEntireDocument() {
         try {
             SeekableInputStream pdfSource = StaticContainers.getDocument().getPDFSource();
-            long offest = pdfSource.getOffset();
+            long offset = pdfSource.getOffset();
             SignatureParser parser = new SignatureParser(pdfSource,
                     StaticContainers.getDocument().getDocument());
             long[] actualByteRange =
                     parser.getByteRangeBySignatureOffset(signatureOffset);
             int[] byteRange = ((org.verapdf.pd.PDSignature) this.simplePDObject).getByteRange();
-            pdfSource.seek(offest);
+            pdfSource.seek(offset);
             for (int i = 0; i < 3; ++i) {
                 if (byteRange[i] != actualByteRange[i]) {
                     return Boolean.FALSE;
