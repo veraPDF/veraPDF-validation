@@ -27,6 +27,7 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
+import org.verapdf.parser.PDFFlavour;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
 import org.verapdf.model.operator.Glyph;
@@ -197,5 +198,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
+		StaticResources.setFlavour(this.flavour != null ? PDFFlavour.valueOf(this.flavour.name()) : null);
 	}
 }

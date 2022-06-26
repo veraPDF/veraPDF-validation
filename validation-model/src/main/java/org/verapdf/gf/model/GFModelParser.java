@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model;
 
+import org.verapdf.parser.PDFFlavour;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.xmp.XMPException;
 import org.verapdf.xmp.impl.VeraPDFMeta;
@@ -180,6 +181,7 @@ public class GFModelParser implements PDFAParser {
 		StaticContainers.setDocument(document);
 		StaticContainers.setFlavour(flavour);
 		StaticResources.clear();
+		StaticResources.setFlavour(flavour != null ? PDFFlavour.valueOf(flavour.name()) : null);
 	}
 
 	/**
