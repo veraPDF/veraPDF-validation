@@ -109,8 +109,8 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 
 	@Override
 	public String getentries() {
-		if (this.simplePDObject != null && !this.simplePDObject.empty()) {
-			return this.simplePDObject.getObject().getDirectBase().getKeySet().stream()
+		if (this.simpleCOSObject != null && !this.simpleCOSObject.empty()) {
+			return this.simpleCOSObject.getDirectBase().getKeySet().stream()
 					.map(ASAtom::getValue)
 					.collect(Collectors.joining("&"));
 		}
