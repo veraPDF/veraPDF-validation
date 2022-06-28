@@ -28,7 +28,6 @@ import org.verapdf.pd.actions.PDAbstractAdditionalActions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -67,11 +66,6 @@ public class GFPDAdditionalActions extends GFPDObject implements PDAdditionalAct
         if (action != null) {
             actions.add(action);
         }
-    }
-
-    @Override
-    public String getactions() {
-        return getActions().stream().map(PDAction::getS).collect(Collectors.joining("&"));
     }
 
     @Override
