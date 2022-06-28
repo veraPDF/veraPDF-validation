@@ -233,7 +233,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
 			if (markInfoObject == null || markInfoObject.empty()) {
-				return Boolean.FALSE;
+				return null;
 			}
 			COSBase markInfo = markInfoObject.getDirectBase();
 			if (markInfo.getType() == COSObjType.COS_DICT) {
@@ -241,9 +241,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			}
 			LOGGER.log(Level.WARNING,
 					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
-			return Boolean.FALSE;
+			return null;
 		}
-		return Boolean.FALSE;
+		return null;
 	}
 
 	@Override
@@ -266,7 +266,25 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	@Override
 	public Boolean getcontainsPieceInfo() {
-		return this.catalog == null ? false : this.catalog.knownKey(ASAtom.PIECE_INFO);
+		return this.catalog != null && this.catalog.knownKey(ASAtom.PIECE_INFO);
+	}
+
+	@Override
+	public String getMarkInfo() {
+		if (this.catalog != null) {
+			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
+			return markInfoObject != null ? markInfoObject.toString() : null;
+		}
+		return null;
+	}
+
+	@Override
+	public String getViewerPreferences() {
+		if (this.catalog != null) {
+			COSObject viewerPrefObject = this.catalog.getKey(ASAtom.VIEWER_PREFERENCES);
+			return viewerPrefObject != null ? viewerPrefObject.toString() : null;
+		}
+		return null;
 	}
 
 	@Override

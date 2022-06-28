@@ -133,13 +133,6 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	@Override
-	public String getkeys() {
-		return simplePDObject.getObject().getDirectBase().getKeySet().stream()
-				.map(ASAtom::getValue)
-				.collect(Collectors.joining("&"));
-	}
-
-	@Override
 	public String getN_type() {
 		PDAppearanceEntry normalAppearance = ((PDAnnotation) simplePDObject).getNormalAppearance();
 		if (normalAppearance == null) {
