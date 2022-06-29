@@ -147,7 +147,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		return node.getRecognizedStructureId();
 	}
 
-	private List<Object> getChildren() {
+	public List<Object> getChildren() {
 		if (this.children == null) {
 			parseChildren();
 		}
