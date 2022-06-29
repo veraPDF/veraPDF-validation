@@ -111,7 +111,7 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         }
     }
 
-    private List<SAStructTreeRoot> getStructureTreeRoot() {
+    public List<SAStructTreeRoot> getStructureTreeRoot() {
         if (treeRoot == null) {
             checkSemantic();
         }
