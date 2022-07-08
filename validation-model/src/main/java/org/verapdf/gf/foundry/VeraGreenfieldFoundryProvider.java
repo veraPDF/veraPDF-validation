@@ -18,7 +18,11 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.pdfa;
+package org.verapdf.gf.foundry;
+
+import org.verapdf.pdfa.Foundries;
+import org.verapdf.pdfa.VeraFoundryProvider;
+import org.verapdf.pdfa.VeraPDFFoundry;
 
 public class VeraGreenfieldFoundryProvider implements VeraFoundryProvider {
 	private static final VeraFoundryProvider instance = new VeraGreenfieldFoundryProvider();
