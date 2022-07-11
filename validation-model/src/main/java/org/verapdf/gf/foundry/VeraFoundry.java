@@ -18,7 +18,11 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.pdfa;
+package org.verapdf.gf.foundry;
+
+import java.io.File;
+import java.io.InputStream;
+import java.net.URI;
 
 import org.verapdf.ReleaseDetails;
 import org.verapdf.component.ComponentDetails;
@@ -27,11 +31,11 @@ import org.verapdf.core.EncryptedPdfException;
 import org.verapdf.core.ModelParsingException;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.metadata.fixer.gf.GFMetadataFixerImpl;
+import org.verapdf.pdfa.MetadataFixer;
+import org.verapdf.pdfa.PDFAParser;
+import org.verapdf.pdfa.AbstractFoundry;
+import org.verapdf.pdfa.VeraPDFFoundry;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
-
-import java.io.File;
-import java.io.InputStream;
-import java.net.URI;
 
 /**
  * @author Maksim Bezrukov
