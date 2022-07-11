@@ -31,7 +31,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-public class GFSETable extends GFSEGeneral implements SETable {
+public class GFSETable extends GFPDStructElem implements SETable {
 
     public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SETable";
 
@@ -90,6 +90,9 @@ public class GFSETable extends GFSEGeneral implements SETable {
     public Boolean getisRegular() {
         List<GFPDStructElem> listTR = getTR();
         int rowNum = listTR.size();
+        if (rowNum == 0) {
+            return true;
+        }
         int columnNum = getColumnNum(listTR.get(0));
         boolean[][] cells = new boolean[rowNum][columnNum];
         for (int i = 0; i < rowNum; i++) {

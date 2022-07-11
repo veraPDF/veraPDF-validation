@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEH;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEH extends GFSEGeneral implements SEH {
+public class GFSEH extends GFPDStructElem implements SEH {
 
     public static final String H_STRUCTURE_ELEMENT_TYPE = "SEH";
 

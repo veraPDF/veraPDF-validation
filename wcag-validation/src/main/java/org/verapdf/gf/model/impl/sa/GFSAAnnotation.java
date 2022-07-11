@@ -29,8 +29,6 @@ import org.verapdf.model.salayer.SAAnnotation;
 import org.verapdf.pd.*;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
-import org.verapdf.wcag.algorithms.entities.content.IChunk;
-import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
 import java.util.List;

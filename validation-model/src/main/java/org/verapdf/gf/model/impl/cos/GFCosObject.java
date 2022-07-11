@@ -56,8 +56,8 @@ public class GFCosObject extends GenericModelObject implements CosObject {
     }
 
     /**
-     * Transform object of pdf box to corresponding object of abstract model
-     * implementation. For transforming using {@code PBCosVisitor}.
+     * Transform base to corresponding object of abstract model
+     * implementation. For transforming using {@code GFCosVisitor}.
      *
      * @param base
      * @return object of abstract model implementation, transformed from

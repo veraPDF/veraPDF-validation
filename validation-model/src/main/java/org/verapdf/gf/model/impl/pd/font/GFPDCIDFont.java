@@ -27,7 +27,6 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosStream;
-import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.model.operator.CIDGlyph;
@@ -62,9 +61,11 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     public static final String CUSTOM = "Custom";
     public static final int maxSize = 16384;
     public static final int bufferSize = 2048;
+    private final String externalFontID;
 
-    public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
+    public GFPDCIDFont(PDFont font, RenderingMode renderingMode, String externalFontID) {
         super(font, renderingMode, CID_FONT_TYPE);
+        this.externalFontID = externalFontID;
         if (font != null) {
             FontProgram program = font.getFontProgram();
             if (program != null) {
@@ -134,7 +135,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     @Override
     public Boolean getcidSetListsAllGlyphs() {
         if (!fontProgramParsed) {
-            return Boolean.valueOf(false);
+            return Boolean.FALSE;
         }
 
         try {
@@ -169,13 +170,13 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                         }
                     }
                     // we skip i = 0 which corresponds to .notdef glyph
-                    for (int i = 1; i < bitSet.size(); i++) {
+                    for (int i = 1; i < bitSet.length(); i++) {
                         if (bitSet.get(i) && !cidFont.containsCID(i)) {
                             return Boolean.FALSE;
                         }
                     }
                 } else {
-                    Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(GFIDGenerator.generateID(pdFont));
+                    Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(externalFontID);
                     if (map != null) {
                         for (Glyph glyph : map.values()) {
                             if (glyph instanceof CIDGlyph) {
@@ -222,8 +223,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     private static BitSet toBitSetBigEndian(byte[] source) {
         BitSet bitSet = new BitSet(source.length * 8);
         int i = 0;
-        for (int j = 0; j < source.length; j++) {
-            int b = source[j] >= 0 ? source[j] : 256 + source[j];
+        for (byte value : source) {
+            int b = value >= 0 ? value : 256 + value;
             for (int k = 0; k < 8; k++) {
                 bitSet.set(i++, (b & 0x80) != 0);
                 b = b << 1;

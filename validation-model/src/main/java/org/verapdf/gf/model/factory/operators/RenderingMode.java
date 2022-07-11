@@ -34,11 +34,11 @@ public enum RenderingMode {
     FILL_STROKE_CLIP(6),
     NEITHER_CLIP(7);
 
+    private final int value;
+
     public static RenderingMode getRenderingMode(int value) {
         return RenderingMode.values()[value];
     }
-
-    private final int value;
 
     RenderingMode(int value) {
         this.value = value;

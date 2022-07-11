@@ -33,8 +33,6 @@ import org.verapdf.model.pdlayer.PDSimpleFont;
  */
 public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
 
-    public static final String CUSTOM_ENCODING = "Custom";
-
     protected GFPDSimpleFont(org.verapdf.pd.font.PDSimpleFont font,
                              RenderingMode renderingMode, final String type) {
         super(font, renderingMode, type);
@@ -86,8 +84,6 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
      * if /Encoding entry is a dictionary, which does not contain /Differences
      * array, then the value of /BaseEncoding entry in this dictionary
      * (or null, if /BaseEncoding is also not present);
-     * the string "Custom", of the /Encoding entry is a dictionary containing
-     * /Differences key.
      */
     @Override
     public String getEncoding() {
@@ -98,22 +94,12 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
         if (encoding.getType() == COSObjType.COS_NAME) {
             return encoding.getString();
         }
-        if (encoding.knownKey(ASAtom.DIFFERENCES)) {
-            return CUSTOM_ENCODING;
-        }
-        COSObject baseEncoding = encoding.getKey(ASAtom.BASE_ENCODING);
-        if (baseEncoding.empty()) {
-            return null;
-        }
-        return baseEncoding.getString();
+        return encoding.getKey(ASAtom.BASE_ENCODING).getString();
     }
 
     @Override
     public Boolean getcontainsDifferences() {
         COSObject encoding = this.pdFont.getEncoding();
-        if (encoding.empty()) {
-            return null;
-        }
-        return encoding.knownKey(ASAtom.DIFFERENCES);
+        return encoding.getType() == COSObjType.COS_DICT && encoding.knownKey(ASAtom.DIFFERENCES);
     }
 }

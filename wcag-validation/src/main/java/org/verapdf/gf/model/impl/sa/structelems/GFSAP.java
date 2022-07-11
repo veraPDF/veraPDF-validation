@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAP;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAP extends GFSAGeneral implements SAP {
+public class GFSAP extends GFSAStructElem implements SAP {
 
     public static final String P_STRUCTURE_ELEMENT_TYPE = "SAP";
 

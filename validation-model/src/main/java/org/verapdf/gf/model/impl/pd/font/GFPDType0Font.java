@@ -24,10 +24,12 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
+import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.model.pdlayer.PDCMap;
 import org.verapdf.model.pdlayer.PDType0Font;
+import org.verapdf.pd.font.PDCIDSystemInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,7 +94,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 					((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getCMapFile(),
 					this.pdFont.getFontProgram(), this.pdFont.isSuccessfullyParsed());
 			this.cidFont = cidFont;
-			PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode);
+			PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode, GFIDGenerator.generateID(this.pdFont));
 			return pdCIDFont;
 		}
 		return null;
@@ -111,50 +113,66 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 		return Collections.emptyList();
 	}
 
-	/**
-	 * @return true if Registry and Ordering keys of the corresponding CMap and
-	 *         CIDFont are compatible.
-	 */
 	@Override
-	public Boolean getareRegistryOrderingCompatible() {
-		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
+	public String getCIDFontOrdering() {
+		PDCIDSystemInfo info = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo();
+		if (info == null) {
 			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
-			return Boolean.valueOf(false);
+			return null;
 		}
-		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
-			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
-			return Boolean.valueOf(false);
-		}
-		return Boolean
-				.valueOf(this.isOrderingCompatible() && this.isRegistryCompatible());
+		return info.getStringKey(ASAtom.ORDERING);
 	}
 
-	/**
-	 * @return true if the Supplement key in the CIDFont is greater or equal to
-	 *         the Supplement key in the CMap dictionary.
-	 */
 	@Override
-	public Boolean getisSupplementCompatible() {
-		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
-			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
-			return Boolean.valueOf(false);
-		}
-		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
+	public String getCMapOrdering() {
+		org.verapdf.pd.font.cmap.PDCMap cmap = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap();
+		if (cmap == null) {
 			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
-			return Boolean.valueOf(false);
+			return null;
 		}
-		Long fontSupplement = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo()
-				.getIntegerKey(ASAtom.SUPPLEMENT);
-		Long cMapSupplement = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getSupplement();
-		if (fontSupplement == null) {
-			LOGGER.log(Level.FINE, "Font's CIDSystemInfo dictionary doesn't contain Supplement entry.");
-			fontSupplement = 0L;
+		return cmap.getOrdering();
+	}
+
+	@Override
+	public String getCIDFontRegistry() {
+		PDCIDSystemInfo info = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo();
+		if (info == null) {
+			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
+			return null;
 		}
-		if (cMapSupplement == null) {
-			LOGGER.log(Level.FINE, "CMap's CIDSystemInfo dictionary missing or doesn't contain Supplement entry.");
-			cMapSupplement = 0L;
+		return info.getStringKey(ASAtom.REGISTRY);
+	}
+
+	@Override
+	public String getCMapRegistry() {
+		org.verapdf.pd.font.cmap.PDCMap cmap = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap();
+		if (cmap == null) {
+			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
+			return null;
 		}
-		return Boolean.valueOf(fontSupplement.longValue() >= cMapSupplement.longValue());
+		return cmap.getRegistry();
+	}
+
+	@Override
+	public Long getCIDFontSupplement() {
+		PDCIDSystemInfo info = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo();
+		if (info == null) {
+			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
+			return null;
+		}
+		Long supplement = info.getIntegerKey(ASAtom.SUPPLEMENT);
+		return supplement != null ? supplement : 0L;
+	}
+
+	@Override
+	public Long getCMapSupplement() {
+		org.verapdf.pd.font.cmap.PDCMap cmap = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap();
+		if (cmap == null) {
+			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
+			return null;
+		}
+		Long supplement = cmap.getSupplement();
+		return supplement != null ? supplement : 0L;
 	}
 
 	/**

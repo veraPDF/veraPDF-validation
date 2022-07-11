@@ -59,9 +59,9 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
 	public Boolean getcontainsDigestEntries() {
 		COSDictionary dictionary = (COSDictionary) this.simpleCOSObject.getDirectBase();
 		if (dictionary != null) {
-			return Boolean.valueOf(dictionary.knownKey(ASAtom.DIGEST_LOCATION).booleanValue()
-					|| dictionary.knownKey(ASAtom.DIGEST_METHOD).booleanValue()
-					|| dictionary.knownKey(ASAtom.DIGEST_VALUE).booleanValue());
+			return dictionary.knownKey(ASAtom.DIGEST_LOCATION)
+					|| dictionary.knownKey(ASAtom.DIGEST_METHOD)
+					|| dictionary.knownKey(ASAtom.DIGEST_VALUE);
 		}
 		return Boolean.FALSE;
 	}
@@ -75,8 +75,8 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
 		PDCatalog catalog = StaticContainers.getDocument().getCatalog();
 		COSDictionary perms = (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
 		if (perms != null) {
-			return perms.knownKey(GFPDPerms.DOC_MDP);
+			return perms.knownKey(ASAtom.DOC_MDP);
 		}
-		return Boolean.valueOf(false);
+		return Boolean.FALSE;
 	}
 }

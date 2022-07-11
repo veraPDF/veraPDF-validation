@@ -32,7 +32,7 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosActualText;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEGeneral;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosActualText;
 import org.verapdf.model.coslayer.CosLang;
@@ -127,13 +127,13 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();
 		if (parent != null) {
-			String parentStandardType = getStructureElementStandardType(parent);
+			String parentStandardType = GFSEFactory.getStructureElementStandardType(parent);
 			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;
 				}
-				parentStandardType = getStructureElementStandardType(parent);
+				parentStandardType = GFSEFactory.getStructureElementStandardType(parent);
 			}
 			return parentStandardType;
 		}
@@ -160,27 +160,47 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	@Override
+	public String getvalueS() {
+		COSName type = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getCOSStructureType();
+		return type != null ? type.getString() : null;
+	}
+
+	@Override
 	public String getstandardType() {
 		return this.standardType;
 	}
 
 	@Override
 	public Boolean getisRemappedStandardType() {
+		if (hasStandardType()) {
+			StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
+			if (type == null) {
+				return false;
+			}
+			return !type.getType().getValue().equals(standardType);
+		}
+		return false;
+	}
+
+	private boolean hasStandardType(){
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 		if (type == null) {
 			return false;
 		}
-		boolean isStandardType;
-		if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1) {
-			isStandardType = TaggedPDFHelper.isWCAGStandardType(type) && !TaggedPDFConstants.TITLE.equals(type.getType().getValue());
-		} else {
-			isStandardType =  TaggedPDFHelper.isStandardType(type);
+		PDFAFlavour flavour = StaticContainers.getFlavour();
+		if (flavour != null) {
+			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+				return TaggedPDFHelper.getPdf14StandardRoleTypes().contains(type.getType().getValue());
+			}
+			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_4) {
+				return TaggedPDFHelper.isStandardType(type);
+			}
+			if (flavour.getPart() == PDFAFlavour.Specification.WCAG_2_1) {
+				return TaggedPDFHelper.isWCAGStandardType(type) &&
+						!TaggedPDFConstants.TITLE.equals(type.getType().getValue());
+			}
 		}
-		if (isStandardType) {
-			String actualType = type.getType().getValue();
-			return !actualType.equals(standardType);
-		}
-		return false;
+		return TaggedPDFHelper.getPdf17StandardRoleTypes().contains(type.getType().getValue());
 	}
 
 	@Override
@@ -202,25 +222,6 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public Boolean getcircularMappingExist() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 		return type != null ? StaticContainers.getRoleMapHelper().circularMappingExist(type.getType()) : null;
-	}
-
-	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
-		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_4) {
-			StructureType defaultStructureType = pdStructElem.getDefaultStructureType();
-			if (defaultStructureType != null) {
-				return defaultStructureType.getType().getValue();
-			}
-		} else {
-			StructureType type = pdStructElem.getStructureType();
-			if (type != null) {
-				return StaticContainers.getRoleMapHelper().getStandardType(type.getType(),
-						StaticContainers.getFlavour() != null &&
-						StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1,
-						StaticContainers.getFlavour() != null &&
-						StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1);
-			}
-		}
-		return null;
 	}
 
 	@Override
@@ -262,7 +263,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 			if (!elements.isEmpty()) {
 				List<GFPDStructElem> res = new ArrayList<>(elements.size());
 				for (org.verapdf.pd.structure.PDStructElem element : elements) {
-					res.add(GFSEGeneral.createTypedStructElem(element));
+					res.add(GFSEFactory.createTypedStructElem(element));
 				}
 				children = Collections.unmodifiableList(res);
 			} else {

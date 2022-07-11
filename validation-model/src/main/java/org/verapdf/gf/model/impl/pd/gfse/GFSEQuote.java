@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEQuote;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEQuote extends GFSEGeneral implements SEQuote {
+public class GFSEQuote extends GFPDStructElem implements SEQuote {
 
     public static final String QUOTE_STRUCTURE_ELEMENT_TYPE = "SEQuote";
 

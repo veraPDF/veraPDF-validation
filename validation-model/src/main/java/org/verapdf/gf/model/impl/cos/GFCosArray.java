@@ -28,7 +28,6 @@ import org.verapdf.model.coslayer.CosObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -86,9 +85,7 @@ public class GFCosArray extends GFCosObject implements CosArray {
      */
     private List<CosObject> getElements() {
         List<CosObject> list = new ArrayList<>(this.getsize().intValue());
-        Iterator<?> iterator = ((COSArray) this.baseObject).iterator();
-        while (iterator.hasNext()) {
-            COSObject object = (COSObject) iterator.next();
+        for (COSObject object : (COSArray) this.baseObject) {
             if (object != null && object.get() != null) {
                 list.add(getFromValue(object.get()));
             }

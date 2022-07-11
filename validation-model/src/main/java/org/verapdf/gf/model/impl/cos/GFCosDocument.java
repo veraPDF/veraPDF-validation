@@ -157,7 +157,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Boolean getisOptionalContentPresent() {
-		return Boolean.valueOf(isOptionalContentPresent);
+		return isOptionalContentPresent;
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Boolean getisLinearized() {
-		return Boolean.valueOf(this.isLinearised);
+		return this.isLinearised;
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
 			if (markInfoObject == null || markInfoObject.empty()) {
-				return Boolean.FALSE;
+				return null;
 			}
 			COSBase markInfo = markInfoObject.getDirectBase();
 			if (markInfo.getType() == COSObjType.COS_DICT) {
@@ -241,9 +241,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			}
 			LOGGER.log(Level.WARNING,
 					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
-			return Boolean.FALSE;
+			return null;
 		}
-		return Boolean.FALSE;
+		return null;
 	}
 
 	@Override
@@ -266,7 +266,25 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	@Override
 	public Boolean getcontainsPieceInfo() {
-		return this.catalog == null ? false : this.catalog.knownKey(ASAtom.PIECE_INFO);
+		return this.catalog != null && this.catalog.knownKey(ASAtom.PIECE_INFO);
+	}
+
+	@Override
+	public String getMarkInfo() {
+		if (this.catalog != null) {
+			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
+			return markInfoObject != null ? markInfoObject.toString() : null;
+		}
+		return null;
+	}
+
+	@Override
+	public String getViewerPreferences() {
+		if (this.catalog != null) {
+			COSObject viewerPrefObject = this.catalog.getKey(ASAtom.VIEWER_PREFERENCES);
+			return viewerPrefObject != null ? viewerPrefObject.toString() : null;
+		}
+		return null;
 	}
 
 	@Override
@@ -334,7 +352,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	@Override
 	public Boolean getNeedsRendering() {
 		if (!catalog.knownKey(ASAtom.NEEDS_RENDERING).booleanValue()) {
-			return Boolean.valueOf(false);
+			return Boolean.FALSE;
 		}
 		return catalog.getBooleanKey(ASAtom.NEEDS_RENDERING);
 	}
@@ -347,7 +365,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 				return names.knownKey(ASAtom.EMBEDDED_FILES);
 			 }
 		}
-		return Boolean.valueOf(false);
+		return Boolean.FALSE;
 	}
 
 	@Override
@@ -457,8 +475,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	private List<CosXRef> getXRefs() {
 		List<CosXRef> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		list.add(new GFCosXRef(Boolean.valueOf(cosDocument.isSubsectionHeaderSpaceSeparated()),
-				Boolean.valueOf(cosDocument.isXrefEOLMarkersComplyPDFA())));
+		list.add(new GFCosXRef(cosDocument.isSubsectionHeaderSpaceSeparated(),
+				cosDocument.isXrefEOLMarkersComplyPDFA()));
 		return Collections.unmodifiableList(list);
 	}
 

@@ -20,12 +20,9 @@
  */
 package org.verapdf.gf.model.impl.pd.signature;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDPerms;
-
-import java.util.Set;
 
 /**
  * Represents permissions dictionary referred by /Perms key from the document
@@ -40,31 +37,11 @@ public class GFPDPerms extends GFPDObject implements PDPerms {
      */
     public static final String PERMS_TYPE = "PDPerms";
 
-    private static final ASAtom UR3 = ASAtom.getASAtom("UR3");
-    public static final ASAtom DOC_MDP = ASAtom.getASAtom("DocMDP");
-
     /**
      * @param dictionary is permissions dictionary.
      */
     public GFPDPerms(COSObject dictionary) {
         super(dictionary, PERMS_TYPE);
-    }
-
-    /**
-     * @return true if the permissions dictionary contains entries other than
-     * DocMDP and UC3.
-     */
-    @Override
-    public Boolean getcontainsOtherEntries() {
-        if (!this.simpleCOSObject.empty()) {
-            Set<ASAtom> names = this.simpleCOSObject.get().getKeySet();
-            for (ASAtom name : names) {
-                if (name != UR3 && name != DOC_MDP) {
-                    return Boolean.TRUE;
-                }
-            }
-        }
-        return Boolean.FALSE;
     }
 
 }

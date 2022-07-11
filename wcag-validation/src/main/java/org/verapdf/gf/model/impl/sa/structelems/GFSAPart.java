@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAPart;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAPart extends GFSAGeneral implements SAPart {
+public class GFSAPart extends GFSAStructElem implements SAPart {
 
     public static final String PART_STRUCTURE_ELEMENT_TYPE = "SAPart";
 

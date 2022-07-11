@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAAside;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAAside extends GFSAGeneral implements SAAside {
+public class GFSAAside extends GFSAStructElem implements SAAside {
 
     public static final String ASIDE_STRUCTURE_ELEMENT_TYPE = "SAAside";
 

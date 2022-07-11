@@ -45,7 +45,7 @@ public class GFCosBool extends GFCosObject implements CosBool {
      */
     @Override
     public Boolean getvalue() {
-        return Boolean.valueOf(this.value);
+        return this.value;
     }
 
     /**

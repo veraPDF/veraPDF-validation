@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETHead;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSETHead extends GFSEGeneral implements SETHead {
+public class GFSETHead extends GFPDStructElem implements SETHead {
 
     public static final String THEAD_STRUCTURE_ELEMENT_TYPE = "SETHead";
 

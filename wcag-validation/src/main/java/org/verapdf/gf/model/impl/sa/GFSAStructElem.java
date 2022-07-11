@@ -23,12 +23,11 @@ package org.verapdf.gf.model.impl.sa;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
-import org.verapdf.gf.model.impl.sa.structelems.GFSAGeneral;
+import org.verapdf.gf.model.impl.sa.structelems.GFSAFactory;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
 import org.verapdf.pd.structure.PDMCRDictionary;
-import org.verapdf.pd.structure.StructureType;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.wcag.algorithms.entities.INode;
 import org.verapdf.wcag.algorithms.entities.SemanticFigure;
@@ -39,12 +38,10 @@ import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
 import org.verapdf.wcag.algorithms.entities.content.TextChunk;
 import org.verapdf.wcag.algorithms.entities.enums.SemanticType;
-import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -52,11 +49,8 @@ import java.util.regex.Pattern;
 public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 
     public static final String CHILDREN = "children";
-	public static final String START = "START";
-	public static final String MIDDLE = "MIDDLE";
-	public static final String END = "END";
 
-	private final org.verapdf.pd.structure.PDStructElem structElemDictionary;
+	protected final org.verapdf.pd.structure.PDStructElem structElemDictionary;
 
 	protected List<Object> children = null;
 
@@ -69,9 +63,6 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	private final boolean isListChild;
 	private boolean isLeafNode = true;
 	private final String parentsStandardTypes;
-
-	private int maxSpaceStartIndex;
-	private int maxSpaceEndIndex;
 
 	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType,
 	                      String type, String parentsStandardTypes) {
@@ -156,15 +147,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		return node.getRecognizedStructureId();
 	}
 
-	public static String getStructureElementStandardType(org.verapdf.pd.structure.PDStructElem pdStructElem){
-		StructureType type = pdStructElem.getStructureType();
-		if (type != null) {
-			return StaticStorages.getRoleMapHelper().getStandardType(type.getType(), false, true);
-		}
-		return null;
-	}
-
-	private List<Object> getChildren() {
+	public List<Object> getChildren() {
 		if (this.children == null) {
 			parseChildren();
 		}
@@ -175,9 +158,11 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		List<java.lang.Object> elements = structElemDictionary.getChildren();
 		children = new ArrayList<>(elements.size());
 		if (!elements.isEmpty()) {
+			List<IChunk> chunks = new LinkedList<>();
 			for (java.lang.Object element : elements) {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
-					GFSAStructElem structElem = GFSAGeneral.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
+					addChunksToChildren(chunks);
+					GFSAStructElem structElem = GFSAFactory.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
 							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + "&")) + standardType);
 					INode childNode = new GFSANode(structElem);
 					structElem.setNode(childNode);
@@ -188,36 +173,58 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 					PDMCRDictionary mcr = (PDMCRDictionary) element;
 					COSKey streamKey = mcr.getStreamObjectKey();
 					if (streamKey != null) {
-						addChunksToChildren(streamKey, mcr.getMCID());
+						chunks.addAll(getChunks(streamKey, mcr.getMCID()));
 					} else {
-						addChunksToChildren(mcr.getPageObjectKey(), mcr.getMCID());
+						chunks.addAll(getChunks(mcr.getPageObjectKey(), mcr.getMCID()));
 					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
-					addChunksToChildren(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger());
+					chunks.addAll(getChunks(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger()));
 				}
 			}
+			addChunksToChildren(chunks);
 		}
 	}
 
-	private void addChunksToChildren(COSKey objectNumber, Long mcid) {
+	private List<IChunk> getChunks(COSKey objectNumber, Long mcid) {
 		List<IChunk> chunks = StaticStorages.getChunks().get(objectNumber, mcid);
-		if (chunks != null) {
-			for (IChunk chunk : chunks) {
-				if (chunk instanceof TextChunk) {
-					TextChunk textChunk = (TextChunk) chunk;
-					node.addChild(new SemanticSpan(textChunk));
-					children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
-							(parentsStandardTypes + "&")) + standardType));
-					textValue.append(textChunk.getValue());
-				} else if (chunk instanceof ImageChunk) {
-					node.addChild(new SemanticImageNode((ImageChunk) chunk));
-					children.add(new GFSAImageChunk((ImageChunk) chunk));
-				} else if (chunk instanceof LineArtChunk) {
-					node.addChild(new SemanticFigure((LineArtChunk) chunk));
-					children.add(new GFSALineArtChunk((LineArtChunk) chunk));
-				}
+		return chunks != null ? chunks : Collections.emptyList();
+	}
+
+	private void addChunksToChildren(List<IChunk> chunks) {
+		for (int i = 0; i < chunks.size(); i++) {
+			IChunk chunk = chunks.get(i);
+			if (chunk instanceof TextChunk) {
+				i += addTextChunk(i, chunks);
+			} else if (chunk instanceof ImageChunk) {
+				node.addChild(new SemanticImageNode((ImageChunk) chunk));
+				children.add(new GFSAImageChunk((ImageChunk) chunk));
+			} else if (chunk instanceof LineArtChunk) {
+				node.addChild(new SemanticFigure((LineArtChunk) chunk));
+				children.add(new GFSALineArtChunk((LineArtChunk) chunk));
 			}
 		}
+		chunks.clear();
+	}
+
+	public int addTextChunk(int number, List<IChunk> chunks) {
+		TextChunk textChunk = (TextChunk)chunks.get(number);
+		int i = number + 1;
+		while (i < chunks.size() && chunks.get(i) instanceof TextChunk) {
+			TextChunk nextTextChunk = (TextChunk)chunks.get(i);
+			if (TextChunkUtils.areTextChunksHaveSameStyle(textChunk, nextTextChunk) &&
+					TextChunkUtils.areTextChunksHaveSameBaseLine(textChunk, nextTextChunk) &&
+					TextChunkUtils.areNeighborsTextChunks(textChunk, nextTextChunk)) {
+				textChunk = TextChunkUtils.unionTextChunks(textChunk, nextTextChunk);
+				i++;
+			} else {
+				break;
+			}
+		}
+		textValue.append(textChunk.getValue());
+		node.addChild(new SemanticSpan(textChunk));
+		children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
+				(parentsStandardTypes + "&")) + getstandardType()));
+		return i - number - 1;
 	}
 
 	@Override
@@ -231,15 +238,9 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	}
 
 	@Override
-	public Boolean gethasCorrectType() {
-		if (standardType == null) {
-			return false;
-		}
-		SemanticType semanticType = node.getSemanticType();
-		if (!SemanticTypeMapper.containsType(standardType) || semanticType == null) {
-			return null;
-		}
-		return standardType.equals(semanticType.getValue());
+	public String getvalueS() {
+		COSName type = structElemDictionary.getCOSStructureType();
+		return type != null ? type.getString() : null;
 	}
 
 	@Override
@@ -261,13 +262,55 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 	}
 
 	@Override
-	public Long getnumberOfSameCharacters() {
-		return GFSAStructElem.getNumberOfSameCharacters(getTextValue());
+	public String getparentsStandardTypes() {
+		return parentsStandardTypes;
 	}
 
 	@Override
-	public String getparentsStandardTypes() {
-		return parentsStandardTypes;
+	public String getkidsStandardTypes() {
+			return this.getChildrenStandardTypes()
+					.stream()
+					.filter(type -> type != null && !TaggedPDFConstants.ARTIFACT.equals(type))
+					.collect(Collectors.joining("&"));
+	}
+
+	private List<String> getChildrenStandardTypes() {
+		return getChildrenStandardTypes(this);
+	}
+
+	private static List<String> getChildrenStandardTypes(GFSAStructElem element) {
+		if (element.children == null) {
+			element.parseChildren();
+		}
+		List<String> res = new ArrayList<>();
+		for (Object child : element.children) {
+			if (child instanceof GFSAStructElem) {
+				String elementStandardType = ((GFSAStructElem) child).getstandardType();
+				if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
+					res.addAll(getChildrenStandardTypes((GFSAStructElem) child));
+				} else {
+					res.add(elementStandardType);
+				}
+			}
+		}
+		return Collections.unmodifiableList(res);
+	}
+
+	@Override
+	public String getparentStandardType() {
+		org.verapdf.pd.structure.PDStructElem parent = this.structElemDictionary.getParent();
+		if (parent != null) {
+			String parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
+			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType)) {
+				parent = parent.getParent();
+				if (parent == null) {
+					return null;
+				}
+				parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
+			}
+			return parentStandardType;
+		}
+		return null;
 	}
 
 	public String getTextValue() {
@@ -277,80 +320,26 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 		return textValue.toString();
 	}
 
-	private static long getNumberOfSameCharacters(String value) {
-		if (value == null || value.isEmpty()) {
-			return 0;
-		}
-		char[] characters = value.toCharArray();
-		char lastCharacter = characters[0];
-		int maxLength = 0;
-		int length = 0;
-		for (char character : characters) {
-			if (lastCharacter == character) {
-				length++;
-			} else {
-				if (length > maxLength && !TextChunkUtils.isWhiteSpaceChar(lastCharacter)) {
-					maxLength = length;
-				}
-				length = 1;
-				lastCharacter = character;
-			}
-		}
-		if (length > maxLength && !TextChunkUtils.isWhiteSpaceChar(lastCharacter)) {
-			maxLength = length;
-		}
-		return maxLength;
-	}
-
-	@Override
-	public Long getnumberOfRepeatedSpaces() {
-		return getNumberOfRepeatedSpaces(getTextValue());
-	}
-
-	private long getNumberOfRepeatedSpaces(String value) {
-		int[] indexes = getIndexesOfLongestSequenceOfSpaces(value);
-		maxSpaceStartIndex = indexes[0];
-		maxSpaceEndIndex = indexes[1];
-		if (maxSpaceStartIndex == -1) {
-			return 0;
-		}
-		return (long)maxSpaceEndIndex - maxSpaceStartIndex;
-	}
-
-	@Override
-	public String getpositionOfRepeatedSpaces() {
-		return getPositionOfRepeatedSpaces(getTextValue());
-	}
-
-	private String getPositionOfRepeatedSpaces(String value) {
-		if (maxSpaceStartIndex == 0) {
-			return START;
-		}
-		if (maxSpaceEndIndex == value.length()) {
-			return END;
-		}
-		return MIDDLE;
-	}
-
-	private static int[] getIndexesOfLongestSequenceOfSpaces(String value) {
-		if (value == null || value.isEmpty() || value.indexOf(' ') == -1) {
-			return new int[]{-1, -1};
-		}
-		int firstMaxIndex = -1;
-		int secondMaxIndex = -1;
-		Pattern pattern = Pattern.compile("[\\s+\\u00A0\\u2007\\u202F\\u001C\\u001D\\u001E\\u001F]+");
-		Matcher matcher = pattern.matcher(value);
-		while (matcher.find()) {
-			if (matcher.end() - matcher.start() > secondMaxIndex - firstMaxIndex) {
-				firstMaxIndex = matcher.start();
-				secondMaxIndex = matcher.end();
-			}
-		}
-		return new int[]{firstMaxIndex, secondMaxIndex};
-	}
-
 	@Override
 	public Boolean gethasLowestDepthError() {
 		return node.getHasLowestDepthError();
+	}
+
+	@Override
+	public Long getpage() {
+		Integer page = this.node.getBoundingBox().getPageNumber();
+		if (page != null) {
+			return Long.valueOf(page);
+		}
+		return null;
+	}
+
+	@Override
+	public Long getlastPage() {
+		Integer lastPage = this.node.getBoundingBox().getLastPageNumber();
+		if (lastPage != null) {
+			return Long.valueOf(lastPage);
+		}
+		return null;
 	}
 }

@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SADocumentFragment;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSADocumentFragment extends GFSAGeneral implements SADocumentFragment {
+public class GFSADocumentFragment extends GFSAStructElem implements SADocumentFragment {
 
     public static final String DOCUMENT_FRAGMENT_STRUCTURE_ELEMENT_TYPE = "SADocumentFragment";
 

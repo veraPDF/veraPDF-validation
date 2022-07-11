@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.factory.operators;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSNumber;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.colors.PDColorSpace;
@@ -165,7 +166,14 @@ public class GraphicState implements Cloneable {
 
 	public void copyPropertiesFormExtGState(PDExtGState extGState) {
 		if (extGState != null) {
-			//TODO : copy font settings
+			PDFont font = extGState.getFont();
+			if (font != null) {
+				this.font = font;
+			}
+			COSNumber fontSize = extGState.getCOSFontSize();
+			if (fontSize != null) {
+				this.scaleFactor = fontSize.getReal();
+			}
 			Boolean oFS = extGState.getStrokingOverprintControl();
 			if (oFS != null) {
 				this.overprintingFlagStroke = oFS.booleanValue();

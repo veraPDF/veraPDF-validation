@@ -94,7 +94,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
     @Override
     public Boolean getcharSetListsAllGlyphs() {
         if (!fontProgramParsed) {
-            return Boolean.valueOf(false);
+            return Boolean.FALSE;
         }
 
         Set<String> descriptorCharSet = ((org.verapdf.pd.font.type1.PDType1Font)
@@ -121,17 +121,17 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
         if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_1) {
             if (!(descriptorCharSet.size() == fontProgramCharSet.size() ||
                   descriptorCharSet.size() == fontProgramCharSet.size() - 1) ) {
-                return Boolean.valueOf(false);
+                return Boolean.FALSE;
             }
             for (String glyphName : descriptorCharSet) {
                 if (!NOTDEF_STRING.equals(glyphName) && !fontProgramCharSet.contains(glyphName)) {
-                    return Boolean.valueOf(false);
+                    return Boolean.FALSE;
                 }
             }
             for (String glyphName : fontProgramCharSet) {
                 if (!NOTDEF_STRING.equals(glyphName) &&
                     !descriptorCharSet.contains(glyphName)) {
-                    return Boolean.valueOf(false);
+                    return Boolean.FALSE;
                 }
             }
         } else {
@@ -145,7 +145,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
                 }
             }
         }
-        return Boolean.valueOf(true);
+        return Boolean.TRUE;
     }
 
     /**

@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAForm;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAForm extends GFSAGeneral implements SAForm {
+public class GFSAForm extends GFSAStructElem implements SAForm {
 
     public static final String FORM_STRUCTURE_ELEMENT_TYPE = "SAForm";
 

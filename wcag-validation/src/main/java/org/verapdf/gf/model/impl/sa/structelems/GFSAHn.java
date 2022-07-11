@@ -20,10 +20,11 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAHn;
 import org.verapdf.pd.structure.PDStructElem;
 
-public class GFSAHn extends GFSAGeneral implements SAHn {
+public class GFSAHn extends GFSAStructElem implements SAHn {
 
     public static final String HN_STRUCTURE_ELEMENT_TYPE = "SAHn";
 

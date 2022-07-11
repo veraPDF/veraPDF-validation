@@ -27,6 +27,7 @@ import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.cos.*;
 import org.verapdf.operator.Operator;
+import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
@@ -64,17 +65,19 @@ class ChunkParser {
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
 	private List<Object> nonDrawingArtifacts = new LinkedList<>();
-	private final LineArtContainer lineArtContainer = new LineArtContainer();
+	private final LineArtContainer lineArtContainer;
+	private final COSKey parentObjectKey;
+	private final Long parentMarkedContent;
 
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
-					   ResourceHandler resourceHandler, Long markedContent) {
+					   ResourceHandler resourceHandler, COSKey parentObjectKey, Long markedContent) {
 		this.pageNumber = pageNumber;
+		lineArtContainer = new LineArtContainer(objectKey);
 		this.objectKey = objectKey;
 		this.graphicsState = inheritedGraphicState.clone();
-		if (markedContent != null) {
-			markedContentStack.push(markedContent);
-		}
 		this.resourceHandler = resourceHandler;
+		this.parentObjectKey = parentObjectKey;
+		this.parentMarkedContent = markedContent;
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -177,7 +180,7 @@ class ChunkParser {
 					if (ASAtom.DEVICERGB.equals(colorSpaceType) || ASAtom.DEVICEGRAY.equals(colorSpaceType) ||
 							ASAtom.DEVICECMYK.equals(colorSpaceType) || ASAtom.CALRGB.equals(colorSpaceType) ||
 							ASAtom.CALGRAY.equals(colorSpaceType) || ASAtom.INDEXED.equals(colorSpaceType) ||
-							ASAtom.LAB.equals(colorSpaceType)) {
+							ASAtom.LAB.equals(colorSpaceType) || ASAtom.ICCBASED.equals(colorSpaceType)) {
 						try {
 							double[] colorArguments = new double[arguments.size()];
 							boolean areNumbers = true;
@@ -333,6 +336,10 @@ class ChunkParser {
 				processh();
 				processf();
 				break;
+			case Operators.GS:
+				PDExtGState extGState = this.resourceHandler.getExtGState(getLastCOSName(arguments));
+				this.graphicsState.copyPropertiesFromExtGState(extGState);
+				break;
 			case Operators.L_LINE_TO:
 				if (arguments.size() == 2 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber()) {
@@ -443,8 +450,14 @@ class ChunkParser {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
 						putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
 					} else if (ASAtom.FORM.equals(xObject.getType())) {
+						Long markedContent = getMarkedContent();
+						COSKey key = objectKey;
+						if (markedContent == null) {
+							key = parentObjectKey;
+							markedContent = parentMarkedContent;
+						}
 						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, graphicsState, pageNumber,
-								getMarkedContent());
+								key, markedContent);
 						artifacts.addAll(xForm.getArtifacts());
 					}
 				}
@@ -663,6 +676,8 @@ class ChunkParser {
 		}
 		if (mcid != null) {
 			StaticStorages.getChunks().add(objectKey, mcid, chunk);
+		} else if (parentMarkedContent != null) {
+			StaticStorages.getChunks().add(parentObjectKey, parentMarkedContent, chunk);
 		} else {
 			artifacts.add(chunk);
 		}
@@ -673,7 +688,9 @@ class ChunkParser {
 		if (argument.getType() == COSObjType.COS_STRING) {
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
 			parseString((COSString) argument.getDirectBase(), unicodeValue, null, symbolEnds);
-			textMatrix.concatenate(Matrix.getTranslateInstance(symbolEnds.get(symbolEnds.size() - 1), 0));
+			if (!symbolEnds.isEmpty()) {
+				textMatrix.concatenate(Matrix.getTranslateInstance(symbolEnds.get(symbolEnds.size() - 1), 0));
+			}
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
 			COSArray array = (COSArray) argument;
 			TextPieces textPieces = new TextPieces();
@@ -726,9 +743,10 @@ class ChunkParser {
 					}
 				}
 				if (textPieces == null) {
-					unicodeValue.append(value);
+					unicodeValue.append(value != null ? value : "");
 				} else {
-					textPieces.add(new TextPieces.TextPiece(value, textPieces.getCurrentX(), textPieces.getCurrentX() + shift));
+					textPieces.add(new TextPieces.TextPiece(value != null ? value : "", textPieces.getCurrentX(),
+					                                        textPieces.getCurrentX() + shift));
 				}
 			}
 		} catch (IOException e) {
@@ -746,7 +764,7 @@ class ChunkParser {
 			List<Double> symbolEnds = parseTextShowArgument(argument, unicodeValue, textRenderingMatrixBefore);
 			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
 			return new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
-				textRenderingMatrixAfter, font.getBoundingBox(), pageNumber), unicodeValue.toString(),
+				textRenderingMatrixAfter, font, pageNumber), unicodeValue.toString(),
 				font.getNameWithoutSubset(), TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
 				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font),
 				font.getFontDescriptor().getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
@@ -774,7 +792,7 @@ class ChunkParser {
 		return null;
 	}
 
-	private Long getMCID(List<COSBase> arguments, ResourceHandler resources) {
+	private static Long getMCID(List<COSBase> arguments, ResourceHandler resources) {
 		if (!arguments.isEmpty()) {
 			COSBase lastArg = arguments.get(arguments.size() - 1);
 			if (lastArg.getType() == COSObjType.COS_DICT) {
@@ -828,16 +846,19 @@ class ChunkParser {
 		lineArtContainer.unionBoundingBoxes();
 		for (Map.Entry<Long, List<BoundingBox>> boundingBoxes : lineArtContainer.entrySet()) {
 			Long mcid = boundingBoxes.getKey();
-			if (mcid == null) {
+			if (mcid == null && parentMarkedContent == null) {
 				for (BoundingBox box : boundingBoxes.getValue()) {
 					artifacts.add(new LineArtChunk(box));
 				}
+			}
+			BoundingBox boundingBox = new MultiBoundingBox();
+			for (BoundingBox box : boundingBoxes.getValue()) {
+				boundingBox.union(box);
+			}
+			if (mcid != null) {
+				lineArtContainer.getLineArt(mcid).setBoundingBox(boundingBox);
 			} else {
-				BoundingBox boundingBox = new MultiBoundingBox();
-				for (BoundingBox box : boundingBoxes.getValue()) {
-					boundingBox.union(box);
-				}
-				putChunk(mcid, new LineArtChunk(boundingBox));
+				StaticStorages.getChunks().add(parentObjectKey, parentMarkedContent, new LineArtChunk(boundingBox));
 			}
 		}
 	}

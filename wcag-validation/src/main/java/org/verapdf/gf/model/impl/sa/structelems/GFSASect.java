@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SASect;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSASect extends GFSAGeneral implements SASect {
+public class GFSASect extends GFSAStructElem implements SASect {
 
     public static final String SECT_STRUCTURE_ELEMENT_TYPE = "SASect";
 

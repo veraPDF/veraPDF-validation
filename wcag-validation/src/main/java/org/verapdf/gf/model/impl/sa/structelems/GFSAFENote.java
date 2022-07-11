@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAFENote;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAFENote extends GFSAGeneral implements SAFENote {
+public class GFSAFENote extends GFSAStructElem implements SAFENote {
 
     public static final String FENOTE_STRUCTURE_ELEMENT_TYPE = "SAFENote";
 

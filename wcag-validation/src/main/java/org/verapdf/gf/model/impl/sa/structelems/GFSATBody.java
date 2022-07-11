@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SATBody;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSATBody extends GFSAGeneral implements SATBody {
+public class GFSATBody extends GFSAStructElem implements SATBody {
 
     public static final String TBODY_STRUCTURE_ELEMENT_TYPE = "SATBody";
 

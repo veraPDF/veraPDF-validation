@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SASpan;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSASpan extends GFSAGeneral implements SASpan {
+public class GFSASpan extends GFSAStructElem implements SASpan {
 
     public static final String SPAN_STRUCTURE_ELEMENT_TYPE = "SASpan";
 

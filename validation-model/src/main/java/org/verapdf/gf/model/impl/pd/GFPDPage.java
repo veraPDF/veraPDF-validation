@@ -286,7 +286,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 */
 	@Override
 	public Boolean getcontainsPresSteps() {
-		return Boolean.valueOf(((org.verapdf.pd.PDPage) simplePDObject).getCOSPresSteps() != null);
+		return ((org.verapdf.pd.PDPage) simplePDObject).getCOSPresSteps() != null;
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		if (this.annotations == null) {
 			this.annotations = parseAnnotataions();
 		}
-		return Boolean.valueOf(this.containsTransparency);
+		return this.containsTransparency;
 	}
 
 	/**
@@ -315,7 +315,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 
 	@Override
 	public Boolean getcontainsAA() {
-		return this.simplePDObject == null ? Boolean.valueOf(false) :
+		return this.simplePDObject == null ? Boolean.FALSE :
 				this.simplePDObject.knownKey(ASAtom.AA);
 	}
 

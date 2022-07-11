@@ -27,10 +27,6 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDMediaClip;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 /**
  * @author Maxim Plushchov
  */
@@ -49,10 +45,8 @@ public class GFPDMediaClip extends GFPDObject implements PDMediaClip {
 
     @Override
     public String getAlt() {
-        List<String> list = ((org.verapdf.pd.actions.PDMediaClip)simplePDObject).getAlternateDescription();
-        return list.stream()
-                .filter(Objects::nonNull)
-                .collect(Collectors.joining(""));
+        COSObject object = simplePDObject.getKey(ASAtom.ALT);
+        return object != null ? object.toString() : null;
     }
 
     @Override

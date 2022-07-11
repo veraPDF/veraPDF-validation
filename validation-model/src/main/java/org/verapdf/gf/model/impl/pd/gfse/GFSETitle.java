@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETitle;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSETitle extends GFSEGeneral implements SETitle {
+public class GFSETitle extends GFPDStructElem implements SETitle {
 
     public static final String TITLE_STRUCTURE_ELEMENT_TYPE = "SETitle";
 

@@ -68,7 +68,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 
 	@Override
 	public Boolean getInterpolate() {
-		return Boolean.valueOf(((org.verapdf.pd.images.PDXImage) simplePDObject).isInterpolate());
+		return ((org.verapdf.pd.images.PDXImage) simplePDObject).isInterpolate();
 	}
 
 	@Override

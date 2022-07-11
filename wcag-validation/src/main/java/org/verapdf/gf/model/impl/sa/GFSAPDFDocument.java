@@ -64,7 +64,6 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         super(DOCUMENT_TYPE);
         this.document = document;
         StaticStorages.clearAllContainers();
-        checkSemantic();
     }
 
     @Override
@@ -112,9 +111,9 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         }
     }
 
-    private List<SAStructTreeRoot> getStructureTreeRoot() {
+    public List<SAStructTreeRoot> getStructureTreeRoot() {
         if (treeRoot == null) {
-            parseStructureTreeRoot();
+            checkSemantic();
         }
         if (treeRoot != null) {
             List<SAStructTreeRoot> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);

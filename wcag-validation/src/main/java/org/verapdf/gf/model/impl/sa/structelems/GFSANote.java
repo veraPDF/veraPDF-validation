@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SANote;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSANote extends GFSAGeneral implements SANote {
+public class GFSANote extends GFSAStructElem implements SANote {
 
     public static final String NOTE_STRUCTURE_ELEMENT_TYPE = "SANote";
 

@@ -20,18 +20,17 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.pd.structure.StructureType;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public abstract class GFSEGeneral extends GFPDStructElem {
+public class GFSEFactory {
 
-    protected GFSEGeneral(PDStructElem structElemDictionary, String standardType, String type) {
-        super(structElemDictionary, standardType, type);
-    }
-
-    public static GFSEGeneral createTypedStructElem(PDStructElem structElemDictionary){
-        String standardType = GFPDStructElem.getStructureElementStandardType(structElemDictionary);
+    public static GFPDStructElem createTypedStructElem(PDStructElem structElemDictionary){
+        String standardType = getStructureElementStandardType(structElemDictionary);
 
         if (standardType == null) {
             return new GFSENonStandard(structElemDictionary, null);
@@ -147,5 +146,21 @@ public abstract class GFSEGeneral extends GFPDStructElem {
                     return new GFSENonStandard(structElemDictionary, standardType);
                 }
         }
+    }
+
+    public static String getStructureElementStandardType(PDStructElem pdStructElem){
+        if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart() ==
+                PDFAFlavour.Specification.ISO_19005_4) {
+            StructureType defaultStructureType = pdStructElem.getDefaultStructureType();
+            if (defaultStructureType != null) {
+                return defaultStructureType.getType().getValue();
+            }
+        } else {
+            StructureType type = pdStructElem.getStructureType();
+            if (type != null) {
+                return StaticContainers.getRoleMapHelper().getStandardType(type.getType());
+            }
+        }
+        return null;
     }
 }

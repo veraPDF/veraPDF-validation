@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEDocumentFragment;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSEDocumentFragment extends GFSEGeneral implements SEDocumentFragment {
+public class GFSEDocumentFragment extends GFPDStructElem implements SEDocumentFragment {
 
     public static final String DOCUMENT_FRAGMENT_STRUCTURE_ELEMENT_TYPE = "SEDocumentFragment";
 

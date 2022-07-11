@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SART;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSART extends GFSAGeneral implements SART {
+public class GFSART extends GFSAStructElem implements SART {
 
     public static final String RT_STRUCTURE_ELEMENT_TYPE = "SART";
 

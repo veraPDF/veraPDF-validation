@@ -20,15 +20,22 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAFigure;
 import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.tools.AttributeHelper;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAFigure extends GFSAGeneral implements SAFigure {
+public class GFSAFigure extends GFSAStructElem implements SAFigure {
 
     public static final String FIGURE_STRUCTURE_ELEMENT_TYPE = "SAFigure";
 
     public GFSAFigure(PDStructElem structElemDictionary, String parentsStandardTypes) {
         super(structElemDictionary, TaggedPDFConstants.FIGURE, FIGURE_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
+    }
+
+    @Override
+    public Boolean gethasBBox() {
+        return AttributeHelper.getBBox(this.structElemDictionary) != null;
     }
 }

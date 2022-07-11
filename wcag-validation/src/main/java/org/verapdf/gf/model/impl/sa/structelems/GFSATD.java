@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SATD;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSATD extends GFSAGeneral implements SATD {
+public class GFSATD extends GFSAStructElem implements SATD {
 
     public static final String TD_STRUCTURE_ELEMENT_TYPE = "SATD";
 

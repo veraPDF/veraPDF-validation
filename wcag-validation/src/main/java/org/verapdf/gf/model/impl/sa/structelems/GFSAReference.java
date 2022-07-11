@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SAReference;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSAReference extends GFSAGeneral implements SAReference {
+public class GFSAReference extends GFSAStructElem implements SAReference {
 
     public static final String REFERENCE_STRUCTURE_ELEMENT_TYPE = "SAReference";
 

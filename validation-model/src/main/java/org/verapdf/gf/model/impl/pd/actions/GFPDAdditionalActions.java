@@ -69,7 +69,7 @@ public class GFPDAdditionalActions extends GFPDObject implements PDAdditionalAct
     }
 
     @Override
-    public Boolean getcontainsOtherActions() {
-        return ((PDAbstractAdditionalActions)simplePDObject).containsOtherKeys();
+    public String getparentType() {
+        return ((PDAbstractAdditionalActions)simplePDObject).getParentType();
     }
 }

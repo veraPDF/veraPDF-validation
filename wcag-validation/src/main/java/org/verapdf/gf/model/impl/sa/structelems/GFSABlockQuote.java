@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.model.salayer.SABlockQuote;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSABlockQuote extends GFSAGeneral implements SABlockQuote {
+public class GFSABlockQuote extends GFSAStructElem implements SABlockQuote {
 
     public static final String BLOCK_QUOTE_STRUCTURE_ELEMENT_TYPE = "SABlockQuote";
 

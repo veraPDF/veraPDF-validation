@@ -168,7 +168,7 @@ public final class XMPChecker {
         boolean isXMPBasicMatch = checkProperty(info, properties, ASAtom.CREATOR)
                 && checkProperty(info, properties, ASAtom.CREATION_DATE)
                 && checkProperty(info, properties, ASAtom.MOD_DATE);
-        return Boolean.valueOf(isXMPBasicMatch);
+        return isXMPBasicMatch;
     }
 
     private static boolean checkProperty(COSObject info,
@@ -178,7 +178,7 @@ public final class XMPChecker {
             return true;
         } else if (item.getType() == COSObjType.COS_STRING) {
             return checkCOSStringProperty(item, properties,
-                    checksRule).booleanValue();
+                    checksRule);
         }
         return false;
     }
@@ -188,14 +188,13 @@ public final class XMPChecker {
         final Object value = properties.get(checksRule);
         if (value != null) {
             if (value instanceof String) {
-                return Boolean.valueOf(checkStringsIgnoreInfoTrailingZero(value, string.getString()));
+                return checkStringsIgnoreInfoTrailingZero(value, string.getString());
             } else if (value instanceof List) {
                 List<?> list = (List<?>) value;
-                return Boolean.valueOf(list.size() == 1 && checkStringsIgnoreInfoTrailingZero(list.get(0), string.getString()));
+                return list.size() == 1 && checkStringsIgnoreInfoTrailingZero(list.get(0), string.getString());
             } else if (value instanceof Calendar) {
                 final Calendar valueDate = TypeConverter.parseDate(string.getString());
-                return Boolean.valueOf(valueDate != null
-                        && valueDate.compareTo((Calendar) value) == 0);
+                return valueDate != null && valueDate.compareTo((Calendar) value) == 0;
             }
         }
         return Boolean.FALSE;

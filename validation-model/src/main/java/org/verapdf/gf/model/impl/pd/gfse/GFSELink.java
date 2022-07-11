@@ -20,11 +20,12 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SELink;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSELink extends GFSEGeneral implements SELink {
+public class GFSELink extends GFPDStructElem implements SELink {
 
     public static final String LINK_STRUCTURE_ELEMENT_TYPE = "SELink";
 

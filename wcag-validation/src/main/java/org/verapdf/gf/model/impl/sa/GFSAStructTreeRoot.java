@@ -21,7 +21,7 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.gf.model.impl.containers.StaticStorages;
-import org.verapdf.gf.model.impl.sa.structelems.GFSAGeneral;
+import org.verapdf.gf.model.impl.sa.structelems.GFSAFactory;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
@@ -75,7 +75,7 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 		children = new ArrayList<>(elements.size());
 		if (!elements.isEmpty()) {
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				GFSAStructElem structElem = GFSAGeneral.createTypedStructElem(element, "");
+				GFSAStructElem structElem = GFSAFactory.createTypedStructElem(element, "");
 				INode childNode = new GFSANode(structElem);
 				structElem.setNode(childNode);
 				node.addChild(childNode);
