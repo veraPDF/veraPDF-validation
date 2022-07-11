@@ -30,5 +30,6 @@ jobs:
     needs: [ build ]
 
     steps:
+      - uses: actions/checkout@v2
       - name: Codacy analysis reporting
         uses: codacy/codacy-analysis-cli-action@master
