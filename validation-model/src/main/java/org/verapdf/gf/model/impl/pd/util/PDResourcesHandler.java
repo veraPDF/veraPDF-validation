@@ -37,11 +37,15 @@ import org.verapdf.pd.patterns.PDShading;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class PDResourcesHandler {
+
+	private static final Logger LOGGER = Logger.getLogger(PDResourcesHandler.class.getCanonicalName());
 
 	public static final PDResourcesHandler EMPTY = PDResourcesHandler.getInstance(new PDResources(COSDictionary.construct()), false);
 
@@ -101,6 +105,7 @@ public class PDResourcesHandler {
 		}
 		if (font == null) {
 			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined font " + name + " in a content stream");
 		}
 		return font;
 	}
@@ -134,6 +139,7 @@ public class PDResourcesHandler {
 		}
 		if (colorSpace == null) {
 			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined color space " + name + " in a content stream");
 		}
 		return colorSpace;
 	}
@@ -159,6 +165,7 @@ public class PDResourcesHandler {
 		}
 		if (pattern == null) {
 			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined pattern " + name + " in a content stream");
 		}
 		return pattern;
 	}
@@ -184,6 +191,7 @@ public class PDResourcesHandler {
 		}
 		if (shading == null) {
 			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined shading " + name + " in a content stream");
 		}
 		return shading;
 	}
@@ -209,6 +217,7 @@ public class PDResourcesHandler {
 		}
 		if (xObject == null) {
 			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined XObject " + name + " in a content stream");
 		}
 		return xObject;
 	}
@@ -234,6 +243,7 @@ public class PDResourcesHandler {
 		}
 		if (state == null) {
 			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined graphics state " + name + " in a content stream");
 		}
 		return state;
 	}
@@ -259,6 +269,7 @@ public class PDResourcesHandler {
 		}
 		if (res == null) {
 			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined property " + name + " in a content stream");
 		}
 		return res;
 	}

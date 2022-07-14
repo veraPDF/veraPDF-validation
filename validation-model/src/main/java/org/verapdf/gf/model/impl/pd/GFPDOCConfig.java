@@ -85,7 +85,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 	}
 
 	@Override
-	public String getOCGsNotContainInOrder() {
+	public String getOCGsNotContainedInOrder() {
 		Set<String> groupNamesSet = new TreeSet<>(groupNames);
 		COSObject order = this.simplePDObject.getKey(ASAtom.ORDER);
 		if (!order.empty()) {
