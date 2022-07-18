@@ -52,21 +52,6 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
 	}
 
 	/**
-	 * @return true if any of the entries /DigestLocation, /DigestMethod, or
-	 *         /DigestValue is present.
-	 */
-	@Override
-	public Boolean getcontainsDigestEntries() {
-		COSDictionary dictionary = (COSDictionary) this.simpleCOSObject.getDirectBase();
-		if (dictionary != null) {
-			return dictionary.knownKey(ASAtom.DIGEST_LOCATION)
-					|| dictionary.knownKey(ASAtom.DIGEST_METHOD)
-					|| dictionary.knownKey(ASAtom.DIGEST_VALUE);
-		}
-		return Boolean.FALSE;
-	}
-
-	/**
 	 * @return true if the document permissions dictionary contains DocMDP
 	 *         entry.
 	 */

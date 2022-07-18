@@ -328,17 +328,17 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private static String getRequirementsString(COSArray reqArray) {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		Iterator<COSObject> iterator = reqArray.iterator();
 		while (iterator.hasNext()) {
 			COSObject element = iterator.next();
 			COSBase base = element.getDirectBase();
 			if (base.getType() == COSObjType.COS_DICT) {
-				result += getRequirementsString((COSDictionary) base);
-				result += " ";
+				result.append(getRequirementsString((COSDictionary) base));
+				result.append(" ");
 			}
 		}
-		return result;
+		return result.toString();
 	}
 
 	private static String getRequirementsString(COSDictionary reqDict) {
