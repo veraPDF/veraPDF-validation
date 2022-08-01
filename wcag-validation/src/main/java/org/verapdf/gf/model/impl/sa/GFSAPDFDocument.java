@@ -60,6 +60,8 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
 
     private GFSAStructTreeRoot treeRoot = null;
 
+    private Boolean hasStructTreeRoot = null;
+
     public GFSAPDFDocument(org.verapdf.pd.PDDocument document) {
         super(DOCUMENT_TYPE);
         this.document = document;
@@ -108,11 +110,14 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         org.verapdf.pd.structure.PDStructTreeRoot root = document.getStructTreeRoot();
         if (root != null) {
             this.treeRoot = new GFSAStructTreeRoot(root);
+            hasStructTreeRoot = true;
+        } else {
+            hasStructTreeRoot = false;
         }
     }
 
     public List<SAStructTreeRoot> getStructureTreeRoot() {
-        if (treeRoot == null) {
+        if (hasStructTreeRoot == null) {
             checkSemantic();
         }
         if (treeRoot != null) {
@@ -185,6 +190,8 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         if (treeRoot != null) {
             AccumulatedNodeSemanticChecker accumulatedNodeSemanticChecker = new AccumulatedNodeSemanticChecker();
             accumulatedNodeSemanticChecker.checkSemanticDocument(this);
+        } else {
+            StaticContainers.clearAllContainers(this);
         }
         if (document.getDocument().getFileName() != null) {
             ContrastRatioChecker contrastRatioChecker = new ContrastRatioChecker();
