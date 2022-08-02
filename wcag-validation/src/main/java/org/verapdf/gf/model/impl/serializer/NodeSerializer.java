@@ -3,10 +3,8 @@ package org.verapdf.gf.model.impl.serializer;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import org.verapdf.gf.model.impl.sa.GFSAImageChunk;
-import org.verapdf.gf.model.impl.sa.GFSALineArtChunk;
-import org.verapdf.gf.model.impl.sa.GFSAStructElem;
-import org.verapdf.gf.model.impl.sa.GFSATextChunk;
+import org.verapdf.gf.model.impl.sa.*;
+import org.verapdf.wcag.algorithms.entities.INode;
 
 import java.io.IOException;
 
@@ -32,6 +30,11 @@ public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 				} else if (child instanceof GFSALineArtChunk) {
 					jsonGenerator.writeObject(((GFSALineArtChunk) child).lineArtChunk);
 				} else {
+					jsonGenerator.writeObject(child);
+				}
+			}
+			for (INode child : elem.getNode().getChildren()) {
+				if (child instanceof GFSAAnnotationNode) {
 					jsonGenerator.writeObject(child);
 				}
 			}

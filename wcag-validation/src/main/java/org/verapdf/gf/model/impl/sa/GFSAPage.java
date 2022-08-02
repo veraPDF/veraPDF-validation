@@ -60,11 +60,14 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 
 	private final org.verapdf.pd.PDPage pdPage;
 
+	private final String pageLabel;
+
 	private List<SAAnnotation> annotations = null;
 
-	public GFSAPage(org.verapdf.pd.PDPage pdPage) {
+	public GFSAPage(org.verapdf.pd.PDPage pdPage, String pageLabel) {
 		super(PAGE_TYPE);
 		this.pdPage = pdPage;
+		this.pageLabel = pageLabel;
 	}
 
 	@Override
@@ -182,5 +185,10 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 
 	public int getPageNumber() {
 		return pdPage.getPageNumber();
+	}
+
+	@Override
+	public String getPageLabel() {
+		return pageLabel;
 	}
 }

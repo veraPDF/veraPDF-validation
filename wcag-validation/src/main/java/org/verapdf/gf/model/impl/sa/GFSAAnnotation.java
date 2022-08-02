@@ -29,6 +29,7 @@ import org.verapdf.model.salayer.SAAnnotation;
 import org.verapdf.pd.*;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
+import org.verapdf.tools.StaticResources;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
 import java.util.List;
@@ -107,7 +108,7 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 
 	@Override
 	public String getAlt() {
-		PDStructTreeRoot structTreeRoot = page.getPDDocument().getStructTreeRoot();
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		Long structParent = this.annot.getStructParent();
 		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();

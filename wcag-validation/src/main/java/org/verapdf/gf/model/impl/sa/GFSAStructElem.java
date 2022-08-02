@@ -27,12 +27,11 @@ import org.verapdf.gf.model.impl.sa.structelems.GFSAFactory;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
+import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.structure.PDMCRDictionary;
+import org.verapdf.pd.structure.PDOBJRDictionary;
 import org.verapdf.tools.TaggedPDFConstants;
-import org.verapdf.wcag.algorithms.entities.INode;
-import org.verapdf.wcag.algorithms.entities.SemanticFigure;
-import org.verapdf.wcag.algorithms.entities.SemanticImageNode;
-import org.verapdf.wcag.algorithms.entities.SemanticSpan;
+import org.verapdf.wcag.algorithms.entities.*;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
 import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
@@ -176,6 +175,12 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 						chunks.addAll(getChunks(streamKey, mcr.getMCID()));
 					} else {
 						chunks.addAll(getChunks(mcr.getPageObjectKey(), mcr.getMCID()));
+					}
+				} else if (element instanceof PDOBJRDictionary) {
+					COSObject obj = ((PDOBJRDictionary)element).getReferencedObject();
+					if (obj != null && obj.getType() == COSObjType.COS_DICT &&
+							GFSAAnnotation.LINK.equals(obj.getStringKey(ASAtom.SUBTYPE))) {
+						node.addChild(new GFSAAnnotationNode(new PDAnnotation(obj)));
 					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
 					chunks.addAll(getChunks(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger()));

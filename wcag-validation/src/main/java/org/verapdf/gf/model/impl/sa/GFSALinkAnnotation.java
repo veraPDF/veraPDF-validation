@@ -53,7 +53,7 @@ public class GFSALinkAnnotation extends GFSAAnnotation implements SALinkAnnotati
 		return isLink(gettextValue());
 	}
 
-	private Boolean isLink(String textValue) {
+	private static Boolean isLink(String textValue) {
 		try {
 			new URL(textValue);
 			return true;
