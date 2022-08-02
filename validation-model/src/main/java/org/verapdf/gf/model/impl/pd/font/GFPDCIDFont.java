@@ -38,6 +38,7 @@ import org.verapdf.pd.font.cff.CFFCIDFontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.font.truetype.CIDFontType2Program;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.io.IOException;
 import java.util.*;
@@ -69,7 +70,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         if (font != null) {
             FontProgram program = font.getFontProgram();
             if (program != null) {
-                StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
+                StaticResources.getDocument().getDocument().getResourceHandler().addResource(
                         program.getFontProgramResource());
             }
             if (program != null) {

@@ -38,6 +38,7 @@ import org.verapdf.parser.PDFStreamParser;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.tools.StaticResources;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -155,9 +156,9 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							this.operators = Collections.unmodifiableList(result);
 						} finally {
 							streamParser.close();
-							if (StaticContainers.getDocument() != null &&
-									StaticContainers.getDocument().getDocument() != null) {
-								StaticContainers.getDocument().getDocument().getResourceHandler().addAll(
+							if (StaticResources.getDocument() != null &&
+									StaticResources.getDocument().getDocument() != null) {
+								StaticResources.getDocument().getDocument().getResourceHandler().addAll(
 										streamParser.getImageDataStreams());
 							}
 						}
@@ -198,7 +199,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	}
 
 	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject) {
-		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		if (structTreeRoot != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, null);

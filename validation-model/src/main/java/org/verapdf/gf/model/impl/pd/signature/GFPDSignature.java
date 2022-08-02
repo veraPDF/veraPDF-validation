@@ -21,7 +21,6 @@
 package org.verapdf.gf.model.impl.pd.signature;
 
 import org.verapdf.cos.*;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.external.GFPKCSDataObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.io.SeekableInputStream;
@@ -30,6 +29,7 @@ import org.verapdf.model.external.PKCSDataObject;
 import org.verapdf.model.pdlayer.PDSigRef;
 import org.verapdf.model.pdlayer.PDSignature;
 import org.verapdf.parser.SignatureParser;
+import org.verapdf.tools.StaticResources;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
         super(pdSignature, SIGNATURE_TYPE);
         if (signatureReference.isIndirect().booleanValue()) {
             COSKey key = signatureReference.getObjectKey();
-            this.signatureOffset = StaticContainers.getDocument().getDocument().getOffset(key).longValue();
+            this.signatureOffset = StaticResources.getDocument().getDocument().getOffset(key).longValue();
         }
         contents = pdSignature.getContents();
     }
@@ -113,10 +113,10 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     @Override
     public Boolean getdoesByteRangeCoverEntireDocument() {
         try {
-            SeekableInputStream pdfSource = StaticContainers.getDocument().getPDFSource();
+            SeekableInputStream pdfSource = StaticResources.getDocument().getPDFSource();
             long offset = pdfSource.getOffset();
             SignatureParser parser = new SignatureParser(pdfSource,
-                    StaticContainers.getDocument().getDocument());
+                    StaticResources.getDocument().getDocument());
             long[] actualByteRange =
                     parser.getByteRangeBySignatureOffset(signatureOffset);
             int[] byteRange = ((org.verapdf.pd.PDSignature) this.simplePDObject).getByteRange();
