@@ -3,6 +3,7 @@ package org.verapdf.gf.model.impl.serializer;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.verapdf.gf.model.impl.sa.GFSAAnnotationNode;
 import org.verapdf.gf.model.impl.sa.GFSAPDFDocument;
 import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.wcag.algorithms.entities.IPage;
@@ -40,6 +41,9 @@ public class GFSAPDFDocumentSerializer {
 
 		ImageSerializer imageSerializer = new ImageSerializer(ImageChunk.class);
 		module.addSerializer(ImageChunk.class, imageSerializer);
+
+		AnnotationNodeSerializer annotationSerializer = new AnnotationNodeSerializer(GFSAAnnotationNode.class);
+		module.addSerializer(GFSAAnnotationNode.class, annotationSerializer);
 
 		LineArtSerializer lineArtSerializer = new LineArtSerializer(LineArtChunk.class);
 		module.addSerializer(LineArtChunk.class, lineArtSerializer);

@@ -26,11 +26,12 @@ import org.verapdf.model.salayer.SAPDFDocument;
 import org.verapdf.model.salayer.SARepeatedCharacters;
 import org.verapdf.model.salayer.SAStructTreeRoot;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
+import org.verapdf.tools.PageLabels;
 import org.verapdf.wcag.algorithms.entities.IDocument;
 import org.verapdf.wcag.algorithms.entities.IPage;
 import org.verapdf.wcag.algorithms.entities.ITree;
 import org.verapdf.wcag.algorithms.entities.RepeatedCharacters;
-import org.verapdf.wcag.algorithms.entities.content.IChunk;
+import org.verapdf.wcag.algorithms.entities.content.*;
 import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
 import org.verapdf.wcag.algorithms.semanticalgorithms.ContrastRatioChecker;
 import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
@@ -85,8 +86,10 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
     private List<GFSAPage> parsePages() {
         List<GFSAPage> result = new ArrayList<>();
         List<org.verapdf.pd.PDPage> rawPages = document.getPages();
-        for (org.verapdf.pd.PDPage rawPage : rawPages) {
-            result.add(new GFSAPage(rawPage));
+        PageLabels pageLabels = document.getCatalog() != null ? document.getCatalog().getPageLabels() : null;
+        for (int pageNumber = 0; pageNumber < rawPages.size(); pageNumber++) {
+            org.verapdf.pd.PDPage page = rawPages.get(pageNumber);
+            result.add(new GFSAPage(page, (pageLabels != null ? pageLabels.getLabel(pageNumber) : null)));
         }
         return Collections.unmodifiableList(result);
     }

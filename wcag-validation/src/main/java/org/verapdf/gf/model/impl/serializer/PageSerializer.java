@@ -21,6 +21,7 @@ public class PageSerializer extends StdSerializer<IPage> {
 
 		jsonGenerator.writeStartObject();
 		jsonGenerator.writeNumberField("pageNumber", page.getPageNumber());
+		jsonGenerator.writeStringField("pageLabel", page.getPageLabel());
 		jsonGenerator.writeFieldName("artifacts");
 		jsonGenerator.writeStartArray();
 		for (IChunk chunk : page.getArtifacts()) {
