@@ -36,6 +36,7 @@ import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.actions.PDCatalogAdditionalActions;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
+import org.verapdf.tools.StaticResources;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -207,7 +208,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
 	private static List<PDPage> getPages() {
 		List<PDPage> result = new ArrayList<>();
-		List<org.verapdf.pd.PDPage> rawPages = StaticContainers.getDocument().getPages();
+		List<org.verapdf.pd.PDPage> rawPages = StaticResources.getDocument().getPages();
 		for (org.verapdf.pd.PDPage rawPage : rawPages) {
 			result.add(new GFPDPage(rawPage));
 		}

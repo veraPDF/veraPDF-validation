@@ -31,6 +31,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.*;
 import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -443,9 +444,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 * link to the high-level PDF Document structure
 	 */
 	private static List<org.verapdf.model.pdlayer.PDDocument> getDocument() {
-		if (StaticContainers.getDocument() != null) {
+		if (StaticResources.getDocument() != null) {
 			List<org.verapdf.model.pdlayer.PDDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFPDDocument(StaticContainers.getDocument()));
+			list.add(new GFPDDocument(StaticResources.getDocument()));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -453,9 +454,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	private List<org.verapdf.model.salayer.SAPDFDocument> getdocument() {
 		if (StaticContainers.getFlavour() == PDFAFlavour.WCAG2_1 &&
-				StaticContainers.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
+				StaticResources.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
 			List<org.verapdf.model.salayer.SAPDFDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFSAPDFDocument(StaticContainers.getDocument()));
+			list.add(new GFSAPDFDocument(StaticResources.getDocument()));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

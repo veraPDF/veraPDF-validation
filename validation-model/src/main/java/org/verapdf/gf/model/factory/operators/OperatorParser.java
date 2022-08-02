@@ -71,6 +71,7 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.util.*;
 import java.util.logging.*;
@@ -686,7 +687,7 @@ class OperatorParser {
 	}
 
 	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject, Long mcid) {
-		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		if (structTreeRoot != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);

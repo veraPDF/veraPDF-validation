@@ -25,13 +25,13 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.exceptions.LoopedException;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_BDC;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.tools.StaticResources;
 
 import java.util.List;
 import java.util.Set;
@@ -71,7 +71,7 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 
 	public String getstructureTag() {
 		Long mcid = getMCID();
-		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		if (structTreeRoot != null && mcid != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
@@ -84,7 +84,7 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 
 	public String getstructParentLang() {
 		Long mcid = getMCID();
-		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		if (structTreeRoot == null || mcid == null) {
 			return null;
 		}

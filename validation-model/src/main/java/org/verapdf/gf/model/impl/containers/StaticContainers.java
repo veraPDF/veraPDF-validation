@@ -27,7 +27,6 @@ import org.verapdf.tools.TaggedPDFRoleMapHelper;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDFont;
-import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.*;
@@ -37,7 +36,6 @@ import java.util.*;
  */
 public class StaticContainers {
 
-	private static final ThreadLocal<PDDocument> document = new ThreadLocal<>();
 	private static final ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
 
 	// TaggedPDF
@@ -71,7 +69,6 @@ public class StaticContainers {
 	private static final ThreadLocal<Set<COSKey>> xFormKeysSet = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
-		document.set(null);
 		flavour.set(null);
 		roleMapHelper.set(null);
 		separations.set(new HashMap<>());
@@ -86,14 +83,6 @@ public class StaticContainers {
 		lastHeadingNestingLevel.set(0);
 		currentTransparencyColorSpace.set(null);
 		xFormKeysSet.set(new HashSet<>());
-	}
-
-	public static PDDocument getDocument() {
-		return document.get();
-	}
-
-	public static void setDocument(PDDocument document) {
-		StaticContainers.document.set(document);
 	}
 
 	public static PDFAFlavour getFlavour() {

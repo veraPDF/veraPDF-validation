@@ -24,7 +24,6 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.signature.GFPDSignatureField;
@@ -36,6 +35,7 @@ import org.verapdf.pd.actions.PDFormFieldActions;
 import org.verapdf.pd.form.PDSignatureField;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
+import org.verapdf.tools.StaticResources;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,7 +78,7 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     }
 
     private List<CosLang> getLang() {
-        PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+        PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
         Long structParent = ((org.verapdf.pd.form.PDFormField)this.simplePDObject).getStructParent();
         if (structTreeRoot != null && structParent != null) {
             PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
