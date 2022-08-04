@@ -178,9 +178,9 @@ public class GFModelParser implements PDFAParser {
 
 	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
 		StaticContainers.clearAllContainers();
-		StaticContainers.setDocument(document);
-		StaticContainers.setFlavour(flavour);
 		StaticResources.clear();
+		StaticResources.setDocument(document);
+		StaticContainers.setFlavour(flavour);
 		StaticResources.setFlavour(flavour != null ? PDFFlavour.valueOf(flavour.name()) : null);
 	}
 

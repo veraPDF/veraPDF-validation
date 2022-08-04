@@ -37,6 +37,7 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.tools.StaticResources;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -148,7 +149,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		}
 		FontProgram fontProgram = font.getFontProgram();
 		if (fontProgram instanceof CFFFontProgram) {
-			StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
+			StaticResources.getDocument().getDocument().getResourceHandler().addResource(
 					fontProgram.getFontProgramResource());
 		}
 

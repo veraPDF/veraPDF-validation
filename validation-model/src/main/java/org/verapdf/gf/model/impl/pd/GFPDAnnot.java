@@ -58,6 +58,7 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -167,7 +168,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public String getstructParentType() {
-		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
 		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
@@ -180,7 +181,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<CosLang> getLang() {
-		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
 		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
@@ -227,7 +228,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public String getAlt() {
-		PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
 		if (structTreeRoot != null && structParent != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();

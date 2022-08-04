@@ -32,6 +32,7 @@ import org.verapdf.pd.font.cff.CFFType1FontProgram;
 import org.verapdf.pd.font.opentype.OpenTypeFontProgram;
 import org.verapdf.pd.font.type1.Type1FontProgram;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.io.IOException;
 import java.util.Map;
@@ -59,7 +60,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
         if (pdFont != null) {
             FontProgram program = pdFont.getFontProgram();
             if (program != null) {
-                StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
+                StaticResources.getDocument().getDocument().getResourceHandler().addResource(
                         program.getFontProgramResource());
             }
             if (program != null) {

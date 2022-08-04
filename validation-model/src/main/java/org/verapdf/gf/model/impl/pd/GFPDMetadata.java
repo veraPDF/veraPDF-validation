@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.tools.StaticResources;
 import org.verapdf.xmp.XMPException;
 import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.xmp.impl.VeraPDFXMPNode;
@@ -63,8 +64,8 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
     public GFPDMetadata(org.verapdf.pd.PDMetadata simplePDObject, Boolean isMainMetadata) {
         super(simplePDObject, METADATA_TYPE);
         this.isMainMetadata = isMainMetadata.booleanValue();
-        if (StaticContainers.getDocument() != null && StaticContainers.getDocument().getCatalog() != null && StaticContainers.getDocument().getCatalog().getMetadata() != null) {
-            this.mainMetadata = StaticContainers.getDocument().getCatalog().getMetadata();
+        if (StaticResources.getDocument() != null && StaticResources.getDocument().getCatalog() != null && StaticResources.getDocument().getCatalog().getMetadata() != null) {
+            this.mainMetadata = StaticResources.getDocument().getCatalog().getMetadata();
         } else {
             this.mainMetadata = null;
         }

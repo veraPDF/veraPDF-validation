@@ -23,10 +23,10 @@ package org.verapdf.gf.model.impl.operator.markedcontent;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.tools.StaticResources;
 
 /**
  * @author Sergey Shemyakov
@@ -40,7 +40,7 @@ public class MarkedContentHelper {
                 return true;
             }
 
-            PDStructTreeRoot structTreeRoot = StaticContainers.getDocument().getStructTreeRoot();
+            PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
             if (structTreeRoot != null) {
                 PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
                 if (parentTreeRoot != null) {

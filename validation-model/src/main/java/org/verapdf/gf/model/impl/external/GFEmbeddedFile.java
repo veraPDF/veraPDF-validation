@@ -153,7 +153,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Map<String, FontProgram> cachedFonts;
 
 	private void saveStaticContainersState() {
-		this.document = StaticContainers.getDocument();
+		this.document = StaticResources.getDocument();
 		this.flavour = StaticContainers.getFlavour();
 		this.separations = StaticContainers.getSeparations();
 		this.inconsistentSeparations = StaticContainers.getInconsistentSeparations();
@@ -180,7 +180,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	}
 
 	private void restoreSavedSCState() {
-		StaticContainers.setDocument(this.document);
 		StaticContainers.setFlavour(this.flavour);
 		StaticContainers.setSeparations(this.separations);
 		StaticContainers.setInconsistentSeparations(this.inconsistentSeparations);
@@ -195,6 +194,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setLastHeadingNestingLevel(this.lastHeadingNestingLevel);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
 		StaticContainers.setCurrentTransparencyColorSpace(this.currentTransparencyColorSpace);
+		StaticResources.setDocument(this.document);
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
