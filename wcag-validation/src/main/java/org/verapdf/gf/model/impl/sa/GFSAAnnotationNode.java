@@ -36,7 +36,7 @@ public class GFSAAnnotationNode extends AnnotationNode {
 		COSObject destination = annot.getDestination();
 		if (destination == null || destination.empty()) {
 			PDAction action = annot.getA();
-			if (ASAtom.GO_TO == action.getSubtype()) {
+			if (action != null && ASAtom.GO_TO == action.getSubtype()) {
 				destination = action.getStructureDestination();
 				if (destination == null || destination.empty()) {
 					destination = action.getDestination();
