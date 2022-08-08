@@ -37,9 +37,9 @@ public class GFSAAnnotationNode extends AnnotationNode {
 		if (destination == null || destination.empty()) {
 			PDAction action = annot.getA();
 			if (action != null && ASAtom.GO_TO == action.getSubtype()) {
-				destination = action.getStructureDestination();
+				destination = action.getDestination();
 				if (destination == null || destination.empty()) {
-					destination = action.getDestination();
+					destination = action.getStructureDestination();
 				}
 			}
 		}
