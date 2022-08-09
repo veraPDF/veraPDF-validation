@@ -164,6 +164,7 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 					GFSAStructElem structElem = GFSAFactory.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
 							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + "&")) + standardType);
 					INode childNode = new GFSANode(structElem);
+					childNode.setErrorCodes(structElem.getErrorCodes());
 					structElem.setNode(childNode);
 					node.addChild(childNode);
 					children.add(structElem);

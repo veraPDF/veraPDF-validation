@@ -763,12 +763,14 @@ class ChunkParser {
 			Matrix textRenderingMatrixBefore = new Matrix();
 			List<Double> symbolEnds = parseTextShowArgument(argument, unicodeValue, textRenderingMatrixBefore);
 			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
-			return new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
+			TextChunk textChunk = new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
 				textRenderingMatrixAfter, font, pageNumber), unicodeValue.toString(),
 				font.getNameWithoutSubset(), TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
 				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font),
 				font.getFontDescriptor().getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
-				graphicsState.getFillColor(), symbolEnds, textRenderingMatrixAfter.getRotationDegree());
+				graphicsState.getFillColor(), textRenderingMatrixAfter.getRotationDegree());
+			textChunk.adjustSymbolEndsToBoundingBox(symbolEnds);
+			return textChunk;
 		}
 		return null;
 	}
