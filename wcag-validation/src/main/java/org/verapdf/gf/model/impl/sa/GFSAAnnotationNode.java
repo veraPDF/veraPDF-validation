@@ -1,6 +1,7 @@
 package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.pd.PDAnnotation;
@@ -17,8 +18,39 @@ import java.util.Objects;
 public class GFSAAnnotationNode extends AnnotationNode {
 
 	public GFSAAnnotationNode(PDAnnotation annotation) {
-		super(annotation.getSubtype().getValue(), new BoundingBox(getPageNumber(annotation.getParent()),
-						annotation.getRect()), getPageNumber(getDestination(annotation)));
+		super(annotation.getSubtype().getValue(), getBoundingBox(annotation), getPageNumber(getDestination(annotation)));
+	}
+
+	private static BoundingBox getBoundingBox(PDAnnotation annotation) {
+		Integer pageNumber = getAnnotationPageNumber(annotation);
+		double[] rect = annotation.getRect();
+		BoundingBox boundingBox = new BoundingBox(pageNumber, rect);
+		if (pageNumber != null) {
+			PDPage page = StaticResources.getDocument().getPages().get(pageNumber);
+			boundingBox = GFSAPage.createCurrentTransformationMatrix(page).transformBoundingBox(boundingBox);
+		}
+		return boundingBox;
+	}
+
+	private static Integer getAnnotationPageNumber(PDAnnotation annotation) {
+		Integer pageNumber = getPageNumber(annotation.getParent());
+		if (pageNumber != null) {
+			return pageNumber;
+		}
+		if (annotation.getObject().getKey() == null) {
+			return null;
+		}
+		for (PDPage page : StaticResources.getDocument().getPages()) {
+			COSObject annots = page.getKey(ASAtom.ANNOTS);
+			if (!annots.empty() && annots.getType() == COSObjType.COS_ARRAY) {
+				for (COSObject annot : (COSArray) annots.getDirectBase()) {
+					if (annotation.getObject().getKey().equals(annot.getKey())) {
+						return page.getPageNumber();
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	private static Integer getPageNumber(COSObject obj) {

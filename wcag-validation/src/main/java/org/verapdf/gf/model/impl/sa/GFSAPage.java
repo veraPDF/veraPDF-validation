@@ -31,6 +31,7 @@ import org.verapdf.model.salayer.SAPage;
 import org.verapdf.model.salayer.SATableBorder;
 import org.verapdf.gf.model.impl.sa.tables.GFSATableBorder;
 import org.verapdf.pd.PDAnnotation;
+import org.verapdf.pd.PDPage;
 import org.verapdf.wcag.algorithms.entities.IPage;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 import org.verapdf.wcag.algorithms.entities.content.ImageChunk;
@@ -58,13 +59,13 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 
 	private List<SAChunk> artifacts = null;
 
-	private final org.verapdf.pd.PDPage pdPage;
+	private final PDPage pdPage;
 
 	private final String pageLabel;
 
 	private List<SAAnnotation> annotations = null;
 
-	public GFSAPage(org.verapdf.pd.PDPage pdPage, String pageLabel) {
+	public GFSAPage(PDPage pdPage, String pageLabel) {
 		super(PAGE_TYPE);
 		this.pdPage = pdPage;
 		this.pageLabel = pageLabel;
@@ -154,14 +155,14 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 		if (pdPage.getContent() != null) {
 			ResourceHandler resourceHandler = ResourceHandler.getInstance(pdPage.getResources());
 			GraphicsState graphicsState = new GraphicsState(resourceHandler);
-			graphicsState.setCTM(createCurrentTransformationMatrix());
+			graphicsState.setCTM(createCurrentTransformationMatrix(pdPage));
 			pdContentStream = new GFSAContentStream(pdPage.getContent(), graphicsState, resourceHandler,
 					pdPage.getPageNumber(), pdPage.getObject().getKey(), null, null);
 		}
 		this.contentStream = pdContentStream;
 	}
 
-	private Matrix createCurrentTransformationMatrix() {
+	public static Matrix createCurrentTransformationMatrix(PDPage pdPage) {
 		double[] cropBox = pdPage.getCropBox();
 		if (cropBox == null) {
 			cropBox = new double[]{0.0, 0.0, 0.0, 0.0};
