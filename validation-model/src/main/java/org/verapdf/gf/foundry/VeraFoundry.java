@@ -91,6 +91,18 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	@Override
+	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour, String password)
+			throws ModelParsingException, EncryptedPdfException {
+		return GFModelParser.createModelWithFlavour(file, pdfaFlavour, password);
+	}
+
+	@Override
+	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour, PDFAFlavour defaultPdfaFlavour, String password)
+			throws ModelParsingException, EncryptedPdfException {
+		return GFModelParser.createModelWithFlavour(file, pdfaFlavour, defaultPdfaFlavour, password);
+	}
+
+	@Override
 	public PDFAParser createParser(File file)
 			throws ModelParsingException, EncryptedPdfException {
 		return createParser(file, PDFAFlavour.NO_FLAVOUR);

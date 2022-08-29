@@ -71,6 +71,7 @@ public class GFModelParser implements PDFAParser {
 
 	private GFModelParser(final InputStream docStream, PDFAFlavour flavour) throws IOException {
 		try {
+			clearStaticContainers();
 			this.document = new PDDocument(docStream);
 			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
 			initializeStaticContainers(this.document, this.flavour);
@@ -82,6 +83,7 @@ public class GFModelParser implements PDFAParser {
 
 	private GFModelParser(final File pdfFile, PDFAFlavour flavour) throws IOException {
 		try {
+			clearStaticContainers();
 			this.document = new PDDocument(pdfFile.getAbsolutePath());
 			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
 			initializeStaticContainers(this.document, this.flavour);
@@ -93,6 +95,34 @@ public class GFModelParser implements PDFAParser {
 
 	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour) throws IOException {
 		try {
+			clearStaticContainers();
+			this.document = new PDDocument(pdfFile.getAbsolutePath());
+			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? ((defaultFlavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : obtainFlavour(this.document, defaultFlavour)) : flavour;
+			initializeStaticContainers(this.document, this.flavour);
+		} catch (Throwable t) {
+			this.close();
+			throw t;
+		}
+	}
+
+	private GFModelParser(final File pdfFile, PDFAFlavour flavour, String password) throws IOException {
+		try {
+			clearStaticContainers();
+			initializeStaticResources(password);
+			this.document = new PDDocument(pdfFile.getAbsolutePath());
+			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
+			initializeStaticContainers(this.document, this.flavour);
+		} catch (Throwable t) {
+			this.close();
+			throw t;
+		}
+	}
+
+	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
+			throws IOException {
+		try {
+			clearStaticContainers();
+			initializeStaticResources(password);
 			this.document = new PDDocument(pdfFile.getAbsolutePath());
 			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? ((defaultFlavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : obtainFlavour(this.document, defaultFlavour)) : flavour;
 			initializeStaticContainers(this.document, this.flavour);
@@ -128,6 +158,29 @@ public class GFModelParser implements PDFAParser {
 			throws ModelParsingException, EncryptedPdfException {
 		try {
 			return new GFModelParser(pdfFile, flavour, defaultFlavour);
+		} catch (InvalidPasswordException excep) {
+			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
+		} catch (IOException e) {
+			throw new ModelParsingException("Couldn't parse stream", e);
+		}
+	}
+
+	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, String password)
+			throws ModelParsingException, EncryptedPdfException {
+		try {
+			return new GFModelParser(pdfFile, flavour, password);
+		} catch (InvalidPasswordException excep) {
+			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
+		} catch (IOException e) {
+			throw new ModelParsingException("Couldn't parse stream", e);
+		}
+	}
+
+	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour,
+	                                                   String password)
+			throws ModelParsingException, EncryptedPdfException {
+		try {
+			return new GFModelParser(pdfFile, flavour, defaultFlavour, password);
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
@@ -177,11 +230,18 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
-		StaticContainers.clearAllContainers();
-		StaticResources.clear();
 		StaticResources.setDocument(document);
 		StaticContainers.setFlavour(flavour);
 		StaticResources.setFlavour(flavour != null ? PDFFlavour.valueOf(flavour.name()) : null);
+	}
+
+	private static void initializeStaticResources(String password) {
+		StaticResources.setPassword(password);
+	}
+
+	private static void clearStaticContainers() {
+		StaticContainers.clearAllContainers();
+		StaticResources.clear();
 	}
 
 	/**
