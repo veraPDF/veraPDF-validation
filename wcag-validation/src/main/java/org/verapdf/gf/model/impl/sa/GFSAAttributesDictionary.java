@@ -20,32 +20,29 @@
  */
 package org.verapdf.gf.model.impl.sa;
 
-import org.verapdf.wcag.algorithms.entities.INode;
-import org.verapdf.wcag.algorithms.entities.SemanticNode;
-import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
+import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.tools.AttributeHelper;
+import org.verapdf.wcag.algorithms.entities.IAttributesDictionary;
 
-import java.util.List;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSANode extends SemanticNode {
+public class GFSAAttributesDictionary implements IAttributesDictionary {
 
-	private final GFSAStructElem structElem;
+	private final PDStructElem pdStructElem;
 
-	public GFSANode(GFSAStructElem structElem) {
-		super(SemanticTypeMapper.getSemanticType(structElem.getstandardType()));
-		this.structElem = structElem;
-		setErrorCodes(structElem.getErrorCodes());
-		setAttributesDictionary(new GFSAAttributesDictionary(structElem.getStructElemDictionary()));
+	public GFSAAttributesDictionary(PDStructElem pdStructElem) {
+		this.pdStructElem = pdStructElem;
 	}
 
 	@Override
-	public List<INode> getChildren() {
-		if (structElem.children == null) {
-			structElem.parseChildren();
-		}
-		return super.getChildren();
+	public long getColSpan() {
+		return AttributeHelper.getColSpan(pdStructElem);
 	}
 
+	@Override
+	public long getRowSpan() {
+		return AttributeHelper.getRowSpan(pdStructElem);
+	}
 }
