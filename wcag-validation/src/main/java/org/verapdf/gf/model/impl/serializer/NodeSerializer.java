@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import org.verapdf.gf.model.impl.sa.*;
+import org.verapdf.wcag.algorithms.entities.IAttributesDictionary;
 import org.verapdf.wcag.algorithms.entities.INode;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 
@@ -19,6 +21,14 @@ public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 
 		jsonGenerator.writeStartObject();
 		jsonGenerator.writeStringField("type", elem.getstandardType());
+		if (Objects.equals(elem.getstandardType(), "TD") || Objects.equals(elem.getstandardType(), "TH")) {
+			IAttributesDictionary AttributesDictionary = elem.getNode().getAttributesDictionary();
+			jsonGenerator.writeFieldName("attributes");
+			jsonGenerator.writeStartObject();
+			jsonGenerator.writeNumberField("colSpan", AttributesDictionary.getColSpan());
+			jsonGenerator.writeNumberField("rowSpan", AttributesDictionary.getRowSpan());
+			jsonGenerator.writeEndObject();
+		}
 		if (!elem.getChildren().isEmpty()) {
 			jsonGenerator.writeFieldName("children");
 			jsonGenerator.writeStartArray();
