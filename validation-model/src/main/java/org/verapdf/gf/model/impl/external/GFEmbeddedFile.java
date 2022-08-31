@@ -133,6 +133,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	// documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
+	private String password;
 	private TaggedPDFRoleMapHelper roleMapHelper;
 	private Map<String, List<GFPDSeparation>> separations;
 	private List<String> inconsistentSeparations;
@@ -155,6 +156,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private void saveStaticContainersState() {
 		this.document = StaticResources.getDocument();
 		this.flavour = StaticContainers.getFlavour();
+		this.password = StaticResources.getPassword();
 		this.separations = StaticContainers.getSeparations();
 		this.inconsistentSeparations = StaticContainers.getInconsistentSeparations();
 		this.cachedColorSpaces = StaticContainers.getCachedColorSpaces();
@@ -195,6 +197,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
 		StaticContainers.setCurrentTransparencyColorSpace(this.currentTransparencyColorSpace);
 		StaticResources.setDocument(this.document);
+		StaticResources.setPassword(this.password);
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
