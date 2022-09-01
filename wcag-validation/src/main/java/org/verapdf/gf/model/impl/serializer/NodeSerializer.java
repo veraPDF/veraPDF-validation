@@ -20,7 +20,11 @@ public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 			throws IOException {
 
 		jsonGenerator.writeStartObject();
-		jsonGenerator.writeStringField("type", elem.getstandardType());
+		String type = elem.getstandardType();
+		if (type == null) {
+			type = "NonStandard";
+		}
+		jsonGenerator.writeStringField("type", type);
 		if (Objects.equals(elem.getstandardType(), "TD") || Objects.equals(elem.getstandardType(), "TH")) {
 			IAttributesDictionary AttributesDictionary = elem.getNode().getAttributesDictionary();
 			jsonGenerator.writeFieldName("attributes");
