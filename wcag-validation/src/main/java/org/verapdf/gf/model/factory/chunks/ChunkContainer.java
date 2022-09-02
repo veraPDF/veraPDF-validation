@@ -165,7 +165,7 @@ public class ChunkContainer {
 
 		Integer start = getResultValueStartIndex(textChunk, crossBox.getLeftX());
 		Integer end = getResultValueEndIndex(textChunk, crossBox.getRightX());
-		if (start == null || end == null) {
+		if (start == null || end == null || start > end) {
 			return "";
 		}
 		return textChunk.getValue().substring(start, end + 1);
