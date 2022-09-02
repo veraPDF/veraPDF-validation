@@ -83,6 +83,9 @@ public class GFSAAnnotationNode extends AnnotationNode {
 			PDNameTreeNode dests = namesDictionary.getDests();
 			if (dests != null) {
 				destination = dests.getObject(destination.getString());
+				if (destination == null) {
+					return null;
+				}
 			}
 		}
 		if (destination.getType() == COSObjType.COS_DICT) {
