@@ -20,15 +20,13 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
-import org.verapdf.model.salayer.SATH;
+import org.verapdf.gf.model.impl.sa.GFSAStructElem;
+import org.verapdf.model.salayer.SATableCell;
 import org.verapdf.pd.structure.PDStructElem;
-import org.verapdf.tools.TaggedPDFConstants;
 
-public class GFSATH extends GFSATableCell implements SATH {
+public class GFSATableCell extends GFSAStructElem implements SATableCell {
 
-    public static final String TH_STRUCTURE_ELEMENT_TYPE = "SATH";
-
-    public GFSATH(PDStructElem structElemDictionary, String parentsStandardTypes) {
-        super(structElemDictionary, TaggedPDFConstants.TH, TH_STRUCTURE_ELEMENT_TYPE, parentsStandardTypes);
+    public GFSATableCell(PDStructElem structElemDictionary, String standardType, String type, String parentsStandardTypes) {
+        super(structElemDictionary, standardType, type, parentsStandardTypes);
     }
 }
