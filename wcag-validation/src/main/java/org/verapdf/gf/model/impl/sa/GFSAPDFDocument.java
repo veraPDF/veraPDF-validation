@@ -20,8 +20,10 @@
  */
 package org.verapdf.gf.model.impl.sa;
 
+import org.verapdf.gf.model.impl.sa.lists.GFSAList;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.salayer.SAList;
 import org.verapdf.model.salayer.SAPDFDocument;
 import org.verapdf.model.salayer.SARepeatedCharacters;
 import org.verapdf.model.salayer.SAStructTreeRoot;
@@ -32,6 +34,7 @@ import org.verapdf.wcag.algorithms.entities.IPage;
 import org.verapdf.wcag.algorithms.entities.ITree;
 import org.verapdf.wcag.algorithms.entities.RepeatedCharacters;
 import org.verapdf.wcag.algorithms.entities.content.*;
+import org.verapdf.wcag.algorithms.entities.lists.PDFList;
 import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
 import org.verapdf.wcag.algorithms.semanticalgorithms.ContrastRatioChecker;
 import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
@@ -55,7 +58,11 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
 
     private static final String REPEATED_CHARACTERS = "repeatedCharacters";
 
+    private static final String LISTS = "lists";
+
     private List<SARepeatedCharacters> repeatedCharacters = null;
+
+    private List<SAList> lists = null;
 
     private List<GFSAPage> pages;
 
@@ -78,6 +85,8 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
                 return getpages();
             case REPEATED_CHARACTERS:
                 return this.getRepeatedCharacters();
+            case LISTS:
+                return this.getLists();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -143,6 +152,20 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
             }
         }
         return this.repeatedCharacters;
+    }
+
+    private List<SAList> getLists() {
+        if (this.lists == null) {
+            if (StaticContainers.getListsCollection() == null) {
+                this.lists = new ArrayList<>();
+            } else {
+                this.lists = new ArrayList<>(StaticContainers.getListsCollection().size());
+                for (PDFList list : StaticContainers.getListsCollection()) {
+                    this.lists.add(new GFSAList(list));
+                }
+            }
+        }
+        return this.lists;
     }
 
     private void parseChunks() {

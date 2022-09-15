@@ -18,44 +18,33 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.sa.tables;
+package org.verapdf.gf.model.impl.sa.lists;
 
 import org.verapdf.model.GenericModelObject;
-import org.verapdf.model.salayer.SATableBorderCell;
-import org.verapdf.wcag.algorithms.entities.tables.tableBorders.TableBorderCell;
+import org.verapdf.model.salayer.SAListItem;
+import org.verapdf.wcag.algorithms.entities.lists.ListItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSATableBorderCell extends GenericModelObject implements SATableBorderCell {
+public class GFSAListItem extends GenericModelObject implements SAListItem {
 
-	public static final String TABLE_BORDER_CELL_ELEMENT_TYPE = "SATableBorderCell";
+	public static final String LIST_TYPE = "SAListItem";
 
-	private TableBorderCell cell;
+	private final ListItem listItem;
 
-	public GFSATableBorderCell(TableBorderCell cell) {
-		super(TABLE_BORDER_CELL_ELEMENT_TYPE);
-		this.cell = cell;
-	}
-
-	@Override
-	public Long getcolSpan() {
-		return (long)cell.getColSpan();
-	}
-
-	@Override
-	public Long getrowSpan() {
-		return (long)cell.getRowSpan();
+	public GFSAListItem(ListItem listItem) {
+		super(LIST_TYPE);
+		this.listItem = listItem;
 	}
 
 	@Override
 	public String getContext() {
-		return cell.getBoundingBox().getLocation();
+		return listItem.getBoundingBox().getLocation();
 	}
 
 	@Override
 	public String getstructureID() {
-		return "id:" + cell.getId();
+		return "id:" + listItem.getId();
 	}
-
 }
