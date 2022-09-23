@@ -111,6 +111,14 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
     }
 
     @Override
+    public int getNumberOfPages() {
+        if (this.pages == null) {
+            this.pages = parsePages();
+        }
+        return pages.size();
+    }
+
+    @Override
     public List<IPage> getPages() {
         if (this.pages == null) {
             this.pages = parsePages();
