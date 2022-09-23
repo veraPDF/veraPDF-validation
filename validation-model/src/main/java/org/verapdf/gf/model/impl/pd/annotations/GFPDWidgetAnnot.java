@@ -42,9 +42,9 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 
 	@Override
 	public String getTU() {
-		COSObject parent = ((PDWidgetAnnotation) simplePDObject).getParent();
-		if (parent != null) {
-			return parent.getStringKey(ASAtom.TU);
+		if (((PDWidgetAnnotation) simplePDObject).getT() == null) {
+			COSObject parent = ((PDWidgetAnnotation) simplePDObject).getParent();
+			return parent != null ? parent.getStringKey(ASAtom.TU) : null;
 		}
 		return ((PDAnnotation) simplePDObject).getTU();
 	}
