@@ -55,7 +55,10 @@ public class GFSATableBorderCell extends GenericModelObject implements SATableBo
 
 	@Override
 	public String getstructureID() {
-		return "id:" + cell.getId();
+		if (cell.getId() != null) {
+			return "id:" + cell.getId();
+		}
+		return null;
 	}
 
 }

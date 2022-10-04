@@ -143,7 +143,10 @@ public class GFSAStructElem extends GenericModelObject implements SAStructElem {
 
 	@Override
 	public String getstructureID() {
-		return "id:" + node.getRecognizedStructureId();
+		if (node.getRecognizedStructureId() != null) {
+			return "id:" + node.getRecognizedStructureId();
+		}
+		return null;
 	}
 
 	public List<Object> getChildren() {

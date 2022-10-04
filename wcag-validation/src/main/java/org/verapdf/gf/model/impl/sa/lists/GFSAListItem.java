@@ -45,6 +45,9 @@ public class GFSAListItem extends GenericModelObject implements SAListItem {
 
 	@Override
 	public String getstructureID() {
-		return "id:" + listItem.getId();
+		if (listItem.getId() != null) {
+			return "id:" + listItem.getId();
+		}
+		return null;
 	}
 }
