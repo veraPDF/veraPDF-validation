@@ -40,9 +40,9 @@
   <description>veraPDF validation, feature extraction and metadata repair based on PDF parser.</description>
 
   <scm>
-    <url>https://github.com/veraPDF/veraPDF-valdation/</url>
-    <connection>scm:git:https://github.com/veraPDF/veraPDF-valdation.git</connection>
-    <developerConnection>scm:git:git@github.com:veraPDF/veraPDF-valdation.git</developerConnection>
+    <url>https://github.com/veraPDF/veraPDF-validation/</url>
+    <connection>scm:git:https://github.com/veraPDF/veraPDF-validation.git</connection>
+    <developerConnection>scm:git:git@github.com:veraPDF/veraPDF-validation.git</developerConnection>
   </scm>
 
   <repositories>
