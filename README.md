@@ -2,7 +2,7 @@ veraPDF-validation
 ==================
 *Greenfield PDF/A validation, feature reporting and metadata repair developed for veraPDF*
 
-[![Build Status](https://travis-ci.org/veraPDF/veraPDF-validation.svg?branch=integration)](https://travis-ci.org/veraPDF/valdation "Travis-CI")
+[![Build Status](https://travis-ci.org/veraPDF/veraPDF-validation.svg?branch=integration)](https://travis-ci.org/veraPDF/validation "Travis-CI")
 [![Build Status](http://jenkins.openpreservation.org/buildStatus/icon?job=veraPDF-validation)](http://jenkins.openpreservation.org/job/veraPDF-validation/ "OPF Jenkins Release")
 [![Build Status](http://jenkins.openpreservation.org/buildStatus/icon?job=veraPDF-validation-dev)](http://jenkins.openpreservation.org/job/veraPDF-validation-dev/ "OPF Jenkins Development")
 [![Maven Central](https://img.shields.io/maven-central/v/org.verapdf/validation.svg)](http://repo1.maven.org/maven2/org/verapdf/validation/ "Maven central")
