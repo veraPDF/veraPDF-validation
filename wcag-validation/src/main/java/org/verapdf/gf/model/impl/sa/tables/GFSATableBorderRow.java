@@ -20,7 +20,7 @@
  */
 package org.verapdf.gf.model.impl.sa.tables;
 
-import org.verapdf.model.GenericModelObject;
+import org.verapdf.gf.model.impl.sa.GFSAObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SATableBorderCell;
 import org.verapdf.model.salayer.SATableBorderRow;
@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * @author Maxim Plushchov
  */
-public class GFSATableBorderRow extends GenericModelObject implements SATableBorderRow {
+public class GFSATableBorderRow extends GFSAObject implements SATableBorderRow {
 
 	public static final String CELLS = "cells";
 
