@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
 /**
  * @author Maxim Plushchov
  */
-public class GFSAStructElem extends GenericModelObject implements SAStructElem {
+public class GFSAStructElem extends GFSAObject implements SAStructElem {
 
     public static final String CHILDREN = "children";
 

@@ -20,7 +20,7 @@
  */
 package org.verapdf.gf.model.impl.sa.lists;
 
-import org.verapdf.model.GenericModelObject;
+import org.verapdf.gf.model.impl.sa.GFSAObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAList;
 import org.verapdf.model.salayer.SAListItem;
@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * @author Maxim Plushchov
  */
-public class GFSAList extends GenericModelObject implements SAList {
+public class GFSAList extends GFSAObject implements SAList {
 
 	public static final String LIST_ITEMS = "items";
 

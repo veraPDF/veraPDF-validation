@@ -20,14 +20,14 @@
  */
 package org.verapdf.gf.model.impl.sa.lists;
 
-import org.verapdf.model.GenericModelObject;
+import org.verapdf.gf.model.impl.sa.GFSAObject;
 import org.verapdf.model.salayer.SAListItem;
 import org.verapdf.wcag.algorithms.entities.lists.ListItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSAListItem extends GenericModelObject implements SAListItem {
+public class GFSAListItem extends GFSAObject implements SAListItem {
 
 	public static final String LIST_TYPE = "SAListItem";
 

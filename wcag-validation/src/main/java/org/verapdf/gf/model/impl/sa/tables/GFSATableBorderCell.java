@@ -20,14 +20,14 @@
  */
 package org.verapdf.gf.model.impl.sa.tables;
 
-import org.verapdf.model.GenericModelObject;
+import org.verapdf.gf.model.impl.sa.GFSAObject;
 import org.verapdf.model.salayer.SATableBorderCell;
 import org.verapdf.wcag.algorithms.entities.tables.tableBorders.TableBorderCell;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSATableBorderCell extends GenericModelObject implements SATableBorderCell {
+public class GFSATableBorderCell extends GFSAObject implements SATableBorderCell {
 
 	public static final String TABLE_BORDER_CELL_ELEMENT_TYPE = "SATableBorderCell";
 
