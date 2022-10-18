@@ -31,8 +31,8 @@ import java.util.stream.Collectors;
  */
 public class GFSAObject extends GenericModelObject implements SAObject {
 
-	private final Set<Integer> errorCodes = new HashSet<>();
-	private final List<List<java.lang.Object>> errorArguments = new LinkedList<>();
+	private final List<Integer> errorCodes = new LinkedList<>();
+	private final List<List<Object>> errorArguments = new LinkedList<>();
 
 	public GFSAObject(String type) {
 		super(type);
@@ -48,7 +48,7 @@ public class GFSAObject extends GenericModelObject implements SAObject {
 		return errorCodes.stream().map(Objects::toString).collect(Collectors.joining(","));
 	}
 
-	public Set<Integer> getErrorCodes() {
+	public List<Integer> getErrorCodes() {
 		return errorCodes;
 	}
 
@@ -59,8 +59,8 @@ public class GFSAObject extends GenericModelObject implements SAObject {
 	@Override
 	public String geterrorArguments() {
 		StringBuilder string = new StringBuilder();
-		for (List<java.lang.Object> arguments : errorArguments) {
-			string.append(arguments.stream().map(java.lang.Object::toString).collect(Collectors.joining(";")));
+		for (List<Object> arguments : errorArguments) {
+			string.append(arguments.stream().map(Object::toString).collect(Collectors.joining(";")));
 			string.append(";;");
 		}
 		return string.toString();
