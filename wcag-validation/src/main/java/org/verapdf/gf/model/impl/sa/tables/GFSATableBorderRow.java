@@ -39,11 +39,12 @@ public class GFSATableBorderRow extends GFSAObject implements SATableBorderRow {
 
 	public static final String TABLE_BORDER_ROW_ELEMENT_TYPE = "SATableBorderRow";
 
-	private final TableBorderRow row;
-
 	public GFSATableBorderRow(TableBorderRow row) {
-		super(TABLE_BORDER_ROW_ELEMENT_TYPE);
-		this.row = row;
+		super(row, TABLE_BORDER_ROW_ELEMENT_TYPE);
+	}
+
+	private TableBorderRow getTableBorderRow() {
+		return (TableBorderRow)object;
 	}
 
 	@Override
@@ -58,17 +59,12 @@ public class GFSATableBorderRow extends GFSAObject implements SATableBorderRow {
 
 	public List<SATableBorderCell> getCells() {
 		List<SATableBorderCell> cells = new ArrayList<>();
-		for (int colNumber = 0; colNumber < row.getCells().length; colNumber++) {
-			TableBorderCell cell = row.getCell(colNumber);
-			if (row.getRowNumber() == cell.getRowNumber() && colNumber == cell.getColNumber()) {
+		for (int colNumber = 0; colNumber < getTableBorderRow().getCells().length; colNumber++) {
+			TableBorderCell cell = getTableBorderRow().getCell(colNumber);
+			if (getTableBorderRow().getRowNumber() == cell.getRowNumber() && colNumber == cell.getColNumber()) {
 				cells.add(new GFSATableBorderCell(cell));
 			}
 		}
 		return cells;
-	}
-
-	@Override
-	public String getContext() {
-		return row.getBoundingBox().getLocation();
 	}
 }

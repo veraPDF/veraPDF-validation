@@ -31,23 +31,7 @@ public class GFSAListItem extends GFSAObject implements SAListItem {
 
 	public static final String LIST_TYPE = "SAListItem";
 
-	private final ListItem listItem;
-
 	public GFSAListItem(ListItem listItem) {
-		super(LIST_TYPE);
-		this.listItem = listItem;
-	}
-
-	@Override
-	public String getContext() {
-		return listItem.getBoundingBox().getLocation();
-	}
-
-	@Override
-	public String getstructureID() {
-		if (listItem.getId() != null) {
-			return "id:" + listItem.getId();
-		}
-		return null;
+		super(listItem, LIST_TYPE);
 	}
 }

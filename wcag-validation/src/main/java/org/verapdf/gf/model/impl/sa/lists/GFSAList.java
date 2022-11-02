@@ -39,11 +39,8 @@ public class GFSAList extends GFSAObject implements SAList {
 
 	public static final String LIST_TYPE = "SAList";
 
-	private final PDFList list;
-
 	public GFSAList(PDFList list) {
-		super(LIST_TYPE);
-		this.list = list;
+		super(list, LIST_TYPE);
 	}
 
 	@Override
@@ -56,16 +53,15 @@ public class GFSAList extends GFSAObject implements SAList {
 		}
 	}
 
+	private PDFList getList() {
+		return (PDFList) object;
+	}
+
 	private List<SAListItem> getListItems() {
 		List<SAListItem> rows = new ArrayList<>();
-		for (ListItem item : list.getListItems()) {
+		for (ListItem item : getList().getListItems()) {
 			rows.add(new GFSAListItem(item));
 		}
 		return rows;
-	}
-
-	@Override
-	public String getContext() {
-		return list.getBoundingBox().getLocation();
 	}
 }

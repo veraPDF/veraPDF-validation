@@ -31,34 +31,21 @@ public class GFSATableBorderCell extends GFSAObject implements SATableBorderCell
 
 	public static final String TABLE_BORDER_CELL_ELEMENT_TYPE = "SATableBorderCell";
 
-	private TableBorderCell cell;
-
 	public GFSATableBorderCell(TableBorderCell cell) {
-		super(TABLE_BORDER_CELL_ELEMENT_TYPE);
-		this.cell = cell;
+		super(cell, TABLE_BORDER_CELL_ELEMENT_TYPE);
+	}
+
+	private TableBorderCell getTableBorderCell() {
+		return (TableBorderCell)object;
 	}
 
 	@Override
 	public Long getcolSpan() {
-		return (long)cell.getColSpan();
+		return (long)getTableBorderCell().getColSpan();
 	}
 
 	@Override
 	public Long getrowSpan() {
-		return (long)cell.getRowSpan();
+		return (long)getTableBorderCell().getRowSpan();
 	}
-
-	@Override
-	public String getContext() {
-		return cell.getBoundingBox().getLocation();
-	}
-
-	@Override
-	public String getstructureID() {
-		if (cell.getId() != null) {
-			return "id:" + cell.getId();
-		}
-		return null;
-	}
-
 }
