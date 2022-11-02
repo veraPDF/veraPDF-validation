@@ -24,7 +24,6 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.structelems.GFSAFactory;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAStructElem;
 import org.verapdf.pd.PDAnnotation;
@@ -53,8 +52,6 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 
 	protected List<Object> children = null;
 
-	private INode node;
-
 	private final String id;
 	private final String standardType;
 	private final StringBuilder textValue = new StringBuilder();
@@ -78,11 +75,11 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 	}
 
 	public void setNode(INode node) {
-		this.node = node;
+		setObject(node);
 	}
 
 	public INode getNode() {
-		return node;
+		return (INode)object;
 	}
 
 	@Override
@@ -141,14 +138,6 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		return isLeafNode;
 	}
 
-	@Override
-	public String getstructureID() {
-		if (node.getRecognizedStructureId() != null) {
-			return "id:" + node.getRecognizedStructureId();
-		}
-		return null;
-	}
-
 	public List<Object> getChildren() {
 		if (this.children == null) {
 			parseChildren();
@@ -168,7 +157,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + "&")) + standardType);
 					INode childNode = new GFSANode(structElem);
 					structElem.setNode(childNode);
-					node.addChild(childNode);
+					getNode().addChild(childNode);
 					children.add(structElem);
 					isLeafNode = false;
 				} else if (element instanceof PDMCRDictionary) {
@@ -183,7 +172,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 					COSObject obj = ((PDOBJRDictionary)element).getReferencedObject();
 					if (obj != null && obj.getType() == COSObjType.COS_DICT &&
 							GFSAAnnotation.LINK.equals(obj.getStringKey(ASAtom.SUBTYPE))) {
-						node.addChild(new GFSAAnnotationNode(new PDAnnotation(obj)));
+						getNode().addChild(new GFSAAnnotationNode(new PDAnnotation(obj)));
 					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
 					chunks.addAll(getChunks(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger()));
@@ -204,10 +193,10 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 			if (chunk instanceof TextChunk) {
 				i += addTextChunk(i, chunks);
 			} else if (chunk instanceof ImageChunk) {
-				node.addChild(new SemanticImageNode((ImageChunk) chunk));
+				getNode().addChild(new SemanticImageNode((ImageChunk) chunk));
 				children.add(new GFSAImageChunk((ImageChunk) chunk));
 			} else if (chunk instanceof LineArtChunk) {
-				node.addChild(new SemanticFigure((LineArtChunk) chunk));
+				getNode().addChild(new SemanticFigure((LineArtChunk) chunk));
 				children.add(new GFSALineArtChunk((LineArtChunk) chunk));
 			}
 		}
@@ -229,20 +218,15 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 			}
 		}
 		textValue.append(textChunk.getValue());
-		node.addChild(new SemanticSpan(textChunk));
+		getNode().addChild(new SemanticSpan(textChunk));
 		children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
 				(parentsStandardTypes + "&")) + getstandardType()));
 		return i - number - 1;
 	}
 
 	@Override
-	public String getContext() {
-		return node.getBoundingBox().getLocation();
-	}
-
-	@Override
 	public Double getcorrectSemanticScore() {
-		return node.getCorrectSemanticScore();
+		return getNode().getCorrectSemanticScore();
 	}
 
 	@Override
@@ -253,7 +237,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 
 	@Override
 	public String getcorrectType() {
-		SemanticType semanticType = node.getSemanticType();
+		SemanticType semanticType = getNode().getSemanticType();
 		if (semanticType == null) {
 			return null;
 		}
@@ -330,12 +314,12 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 
 	@Override
 	public Boolean gethasLowestDepthError() {
-		return node.getHasLowestDepthError();
+		return getNode().getHasLowestDepthError();
 	}
 
 	@Override
 	public Long getpage() {
-		Integer page = this.node.getBoundingBox().getPageNumber();
+		Integer page = this.getObject().getBoundingBox().getPageNumber();
 		if (page != null) {
 			return Long.valueOf(page);
 		}
@@ -344,7 +328,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 
 	@Override
 	public Long getlastPage() {
-		Integer lastPage = this.node.getBoundingBox().getLastPageNumber();
+		Integer lastPage = this.getObject().getBoundingBox().getLastPageNumber();
 		if (lastPage != null) {
 			return Long.valueOf(lastPage);
 		}

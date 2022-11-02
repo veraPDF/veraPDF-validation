@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.salayer.SAObject;
+import org.verapdf.wcag.algorithms.entities.IObject;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,14 +34,15 @@ public class GFSAObject extends GenericModelObject implements SAObject {
 
 	private final List<Integer> errorCodes = new LinkedList<>();
 	private final List<List<Object>> errorArguments = new LinkedList<>();
+	protected IObject object;
 
 	public GFSAObject(String type) {
 		super(type);
 	}
 
-	@Override
-	public String getstructureID() {
-		return null;
+	public GFSAObject(IObject object, String type) {
+		super(type);
+		this.object = object;
 	}
 
 	@Override
@@ -64,5 +66,26 @@ public class GFSAObject extends GenericModelObject implements SAObject {
 			string.append(";;");
 		}
 		return string.toString();
+	}
+
+	@Override
+	public String getContext() {
+		return object.getBoundingBox().getLocation();
+	}
+
+	@Override
+	public String getstructureID() {
+		if (object.getRecognizedStructureId() != null) {
+			return "id:" + object.getRecognizedStructureId();
+		}
+		return null;
+	}
+
+	protected void setObject(IObject object) {
+		this.object = object;
+	}
+
+	protected IObject getObject() {
+		return object;
 	}
 }

@@ -39,11 +39,12 @@ public class GFSATableBorder extends GFSAObject implements SATableBorder {
 
 	public static final String TABLE_BORDER_ELEMENT_TYPE = "SATableBorder";
 
-	private final TableBorder tableBorder;
-
 	public GFSATableBorder(TableBorder tableBorder) {
-		super(TABLE_BORDER_ELEMENT_TYPE);
-		this.tableBorder = tableBorder;
+		super(tableBorder, TABLE_BORDER_ELEMENT_TYPE);
+	}
+
+	private TableBorder getTableBorder() {
+		return (TableBorder)object;
 	}
 
 	@Override
@@ -58,14 +59,9 @@ public class GFSATableBorder extends GFSAObject implements SATableBorder {
 
 	private List<SATableBorderRow> getRows() {
 		List<SATableBorderRow> rows = new ArrayList<>();
-		for (TableBorderRow row : tableBorder.getRows()) {
+		for (TableBorderRow row : getTableBorder().getRows()) {
 			rows.add(new GFSATableBorderRow(row));
 		}
 		return rows;
-	}
-
-	@Override
-	public String getContext() {
-		return tableBorder.getBoundingBox().getLocation();
 	}
 }
