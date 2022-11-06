@@ -82,11 +82,12 @@ public class PDFDocumentImpl implements PDFDocument {
 		PDCatalog catalog = this.document.getCatalog();
 		PDMetadata meta = catalog.getMetadata();
 		if (meta == null) {
-			COSObject stream = COSStream.construct();
-			catalog.setKey(ASAtom.METADATA, stream);
-			this.document.getDocument().addObject(stream);
+			COSObject indirectStream = COSIndirect.construct(COSStream.construct(), document.getDocument());
+			catalog.setKey(ASAtom.METADATA, indirectStream);
+			this.document.getDocument().addChangedObject(catalog.getObject());
+			this.document.getDocument().addObject(indirectStream);
 			VeraPDFMeta xmp = VeraPDFMeta.create();
-			return new MetadataImpl(xmp, stream, this.document.getDocument(),
+			return new MetadataImpl(xmp, indirectStream, this.document.getDocument(),
 					true);
 		}
 		return parseMetadata(meta, this.document);
