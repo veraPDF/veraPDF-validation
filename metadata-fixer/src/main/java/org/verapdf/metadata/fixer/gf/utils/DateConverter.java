@@ -28,7 +28,6 @@ import org.verapdf.tools.TypeConverter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 import static org.verapdf.metadata.fixer.utils.MetadataFixerConstants.UTC_PATTERN;
 
@@ -40,42 +39,37 @@ import static org.verapdf.metadata.fixer.utils.MetadataFixerConstants.UTC_PATTER
 public class DateConverter {
 
 	/**
-	 * Convert {@code Calendar} object to string representation in UTC form
+	 * Convert {@code Calendar} object to string representation in xmp date form
 	 *
 	 * @param calendar passed date
 	 * @return string representation of passed date
 	 */
-	public static String toUTCString(Calendar calendar) {
-		return calendar == null ? null : toUTCString(calendar.getTime());
+	public static String toXMPDateFormat(Calendar calendar) {
+		return calendar == null ? null : toXMPDateFormat(calendar.getTime());
 	}
 
 	/**
-	 * Convert {@code Date} object to string representation in UTC form
+	 * Convert {@code Date} object to string representation in xmp date form
 	 *
 	 * @param time passed date
 	 * @return string representation of passed date
 	 */
-	public static String toUTCString(Date time) {
+	public static String toXMPDateFormat(Date time) {
 		if (time == null) {
 			return null;
 		}
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat(UTC_PATTERN);
-		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-
-		return dateFormat.format(time);
+		return new SimpleDateFormat(UTC_PATTERN).format(time);
 	}
 
 	/**
-	 * Convert string date representation to string representation in UTC form.
-	 * <p/>
-	 * Note: current implementation is not effective
+	 * Convert string date representation to string representation in xmp date form.
 	 *
 	 * @param date passed date
-	 * @return UTC string representation of passed date
+	 * @return XMP representation of passed date
 	 */
-	public static String toUTCString(String date) {
-		return toUTCString(toCalendar(date));
+	public static String toXMPDateFormat(String date) {
+		return toXMPDateFormat(toCalendar(date));
 	}
 
 	/**
@@ -89,9 +83,7 @@ public class DateConverter {
 			return null;
 		}
 
-		Calendar buffer = TypeConverter.parseDate(date);
-		buffer.setTimeZone(TimeZone.getTimeZone("UTC"));
-		return buffer;
+		return TypeConverter.parseDate(date);
 	}
 
 	/**
@@ -101,15 +93,14 @@ public class DateConverter {
 	 * @param date passed date
 	 * @return PDF string representation of passed date
 	 */
-	public static String toPDFFormat(String date) {
+	public static String toPDFDateFormat(String date) {
 		try {
 			XMPDateTime fromISO8601 = XMPDateTimeFactory.createFromISO8601(date);
 			Calendar buffer = fromISO8601.getCalendar();
-			buffer.setTimeZone(TimeZone.getTimeZone("UTC"));
 			return TypeConverter.getPDFDate(buffer);
 		} catch (XMPException e) {
 			// This exception should not be thrown because of logic of metadata fixer should use this method only
-			// with arguments date obtained from DateConverter.toUTCString(Calendar) method
+			// with arguments date obtained from DateConverter.toXMPDateFormat(Calendar) method
 			throw new IllegalStateException("Problems with parsing utc date", e);
 		}
 	}
@@ -120,7 +111,7 @@ public class DateConverter {
 	 * @param date passed date
 	 * @return PDF string representation of date
 	 */
-	public static String toPDFFormat(Calendar date) {
+	public static String toPDFDateFormat(Calendar date) {
 		return TypeConverter.getPDFDate(date);
 	}
 }

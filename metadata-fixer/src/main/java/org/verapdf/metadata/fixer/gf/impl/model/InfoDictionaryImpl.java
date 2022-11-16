@@ -109,7 +109,7 @@ public class InfoDictionaryImpl implements InfoDictionary {
 
 	@Override
 	public void setCreationDate(String creationDate) {
-		this.info.setStringKey(ASAtom.CREATION_DATE, DateConverter.toPDFFormat(creationDate));
+		this.info.setStringKey(ASAtom.CREATION_DATE, DateConverter.toPDFDateFormat(creationDate));
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class InfoDictionaryImpl implements InfoDictionary {
 
 	@Override
 	public void setModificationDate(String modificationDate) {
-		this.info.setStringKey(ASAtom.MOD_DATE, DateConverter.toPDFFormat(modificationDate));
+		this.info.setStringKey(ASAtom.MOD_DATE, DateConverter.toPDFDateFormat(modificationDate));
 	}
 
 	@Override

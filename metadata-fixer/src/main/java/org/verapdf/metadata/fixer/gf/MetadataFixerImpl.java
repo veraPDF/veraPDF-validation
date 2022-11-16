@@ -234,13 +234,16 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 											InfoDictionary info, String metaValue, String infoValue, String attribute) {
 		if (infoValue != null) {
 			String key = attributes.get(attribute);
-			String utcInfoValue = DateConverter.toUTCString(infoValue);
 			if (metaValue == null) {
 				doSaveAction(schema, attribute, infoValue);
 				resultBuilder.addFix("Added '" + key + "' to metadata from info dictionary");
-			} else if (!metaValue.equals(utcInfoValue) || !infoValue.matches(PDF_DATE_FORMAT_REGEX)) {
-				doSaveAction(info, attribute, metaValue);
-				resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
+			} else {
+				Calendar metaCalendar = DateConverter.toCalendar(DateConverter.toPDFDateFormat(metaValue));
+				Calendar infoCalendar = DateConverter.toCalendar(infoValue);
+				if (!infoValue.matches(PDF_DATE_FORMAT_REGEX) || metaCalendar.compareTo(infoCalendar) != 0) {
+					doSaveAction(info, attribute, metaValue);
+					resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
+				}
 			}
 		}
 	}
@@ -284,11 +287,11 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 		if (document.isNeedToBeUpdated() && schema != null) {
 			Calendar time = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 			if (schema.getModificationDate() != null) {
-				doSaveAction(schema, METADATA_MODIFICATION_DATE, DateConverter.toPDFFormat(time));
+				doSaveAction(schema, METADATA_MODIFICATION_DATE, DateConverter.toPDFDateFormat(time));
 				resultBuilder.addFix("Set new modification date to metadata");
 			}
 			if (info != null && info.getModificationDate() != null) {
-				doSaveAction(info, METADATA_MODIFICATION_DATE, DateConverter.toUTCString(time));
+				doSaveAction(info, METADATA_MODIFICATION_DATE, DateConverter.toXMPDateFormat(time));
 				resultBuilder.addFix("Set new modification date to info dictionary");
 			}
 		}
