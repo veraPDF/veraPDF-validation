@@ -63,7 +63,7 @@ public class XMPBasicSchemaImpl extends BasicSchemaImpl implements XMPBasic {
 	@Override
 	public String getCreationDate() {
 		try {
-			return DateConverter.toUTCString(this.meta.getCreateDate());
+			return DateConverter.toXMPDateFormat(this.meta.getCreateDate());
 		} catch (XMPException e) {
 			LOGGER.log(Level.FINE, "Can not get creation date.", e);
 			throw new IllegalStateException(e);
@@ -83,7 +83,7 @@ public class XMPBasicSchemaImpl extends BasicSchemaImpl implements XMPBasic {
 	@Override
 	public String getModificationDate() {
 		try {
-			return DateConverter.toUTCString(this.meta.getModifyDate());
+			return DateConverter.toXMPDateFormat(this.meta.getModifyDate());
 		} catch (XMPException e) {
 			LOGGER.log(Level.FINE, "Can not get modification date.", e);
 			throw new IllegalStateException(e);

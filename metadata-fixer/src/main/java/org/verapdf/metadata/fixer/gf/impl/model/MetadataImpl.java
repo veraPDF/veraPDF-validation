@@ -110,7 +110,7 @@ public class MetadataImpl implements Metadata {
     }
 
     public void removePDFAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (isValidPDFAIdentification() && !isWrongPDFAIdentification(flavour)) {
+        if (isValidPDFAIdentification() && isWrongPDFAIdentification(flavour)) {
             return;
         }
         if (this.metadata.deleteIdentificationSchema()) {
