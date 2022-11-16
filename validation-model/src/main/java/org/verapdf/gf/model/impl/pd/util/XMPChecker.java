@@ -105,7 +105,7 @@ public final class XMPChecker {
         return Boolean.FALSE;
     }
 
-    private static InputStream getMetadataStream(COSDocument document) throws IOException {
+    public static InputStream getMetadataStream(COSDocument document) throws IOException {
         PDMetadata meta = document.getPDDocument().getMetadata();
         if (meta != null) {
             return meta.getStream();
@@ -205,5 +205,12 @@ public final class XMPChecker {
             fromInfo = fromInfo.substring(0, fromInfo.length() - 1);
         }
         return fromXMP.equals(fromInfo);
+    }
+
+    public static String getStringWithoutTrailingZero(String string) {
+        if (string != null && string.endsWith("\0")) {
+            return string.substring(0, string.length() - 1);
+        }
+        return string;
     }
 }

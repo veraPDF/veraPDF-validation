@@ -25,8 +25,8 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.OutputIntents;
 import org.verapdf.model.pdlayer.PDOutputIntent;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -56,6 +56,15 @@ public class GFOutputIntents extends GenericModelObject implements OutputIntents
             destOutputProfileIndirect = destOutputProfileIndirect == null ? currentOutputProfile : destOutputProfileIndirect;
         }
         return true;
+    }
+
+    @Override
+    public String getoutputProfileIndirects() {
+        return outInts.stream()
+                .map(org.verapdf.pd.PDOutputIntent::getDestOutputProfileIndirect)
+                .filter(Objects::nonNull)
+                .distinct()
+                .collect(Collectors.joining(","));
     }
 
     @Override

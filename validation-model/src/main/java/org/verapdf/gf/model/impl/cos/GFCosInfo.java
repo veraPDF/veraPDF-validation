@@ -22,7 +22,21 @@ package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSDocument;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.gf.model.impl.pd.util.XMPChecker;
+import org.verapdf.metadata.fixer.gf.utils.DateConverter;
 import org.verapdf.model.coslayer.CosInfo;
+import org.verapdf.tools.StaticResources;
+import org.verapdf.tools.TypeConverter;
+import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.impl.VeraPDFMeta;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * @author Maxim Plushchov
@@ -31,12 +45,194 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
 
     public static final String INFORMATION_TYPE = "CosInfo";
 
+    private VeraPDFMeta meta;
+
     public GFCosInfo(COSDictionary dictionary) {
         super(dictionary, INFORMATION_TYPE);
+        this.meta = parseMetadata();
+    }
+
+    private VeraPDFMeta parseMetadata() {
+        COSDocument document = StaticResources.getDocument().getDocument();
+        try (InputStream metadataStream = XMPChecker.getMetadataStream(document)) {
+            if (metadataStream != null) {
+                return VeraPDFMeta.parse(metadataStream);
+            }
+        } catch (IOException | XMPException ignored) {
+        }
+        return null;
     }
 
     @Override
     public String getModDate() {
         return this.baseObject.getStringKey(ASAtom.MOD_DATE);
+    }
+
+    @Override
+    public String getCreationDate() {
+        return this.baseObject.getStringKey(ASAtom.CREATION_DATE);
+    }
+
+    private String getStringProperty(ASAtom name) {
+        COSObject value = baseObject.getKey(name);
+        if (value != null && value.getType() == COSObjType.COS_STRING) {
+            return XMPChecker.getStringWithoutTrailingZero(value.getString());
+        }
+        return null;
+    }
+
+    @Override
+    public String getTitle() {
+        return getStringProperty(ASAtom.TITLE);
+    }
+
+    @Override
+    public String getAuthor() {
+        return getStringProperty(ASAtom.AUTHOR);
+    }
+
+    @Override
+    public String getSubject() {
+        return getStringProperty(ASAtom.SUBJECT);
+    }
+
+    @Override
+    public String getProducer() {
+        return getStringProperty(ASAtom.PRODUCER);
+    }
+
+    @Override
+    public String getCreator() {
+        return getStringProperty(ASAtom.CREATOR);
+    }
+
+    @Override
+    public String getKeywords() {
+        return getStringProperty(ASAtom.KEYWORDS);
+    }
+
+    @Override
+    public String getXMPTitle() {
+        if (meta != null) {
+            try {
+                return meta.getTitle();
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getXMPCreator() {
+        if (meta != null) {
+            try {
+                List<String> creator = meta.getCreator();
+                if (creator != null) {
+                    return String.join(",", creator);
+                }
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getXMPProducer() {
+        if (meta != null) {
+            try {
+                return meta.getProducer();
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getXMPCreatorTool() {
+        if (meta != null) {
+            try {
+                return meta.getCreatorTool();
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getXMPKeywords() {
+        if (meta != null) {
+            try {
+                return meta.getKeywords();
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getXMPDescription() {
+        if (meta != null) {
+            try {
+                return meta.getDescription();
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean getdoCreationDatesMatch() {
+        Calendar xmpCreateDate = null;
+        if (meta != null) {
+            try {
+                xmpCreateDate = meta.getCreateDate();
+            } catch (XMPException ignored) {
+            }
+        }
+        String creationDate = getCreationDate();
+        if (xmpCreateDate != null && creationDate != null) {
+            Calendar creationDateCalendar = TypeConverter.parseDate(creationDate);
+            return creationDateCalendar != null && xmpCreateDate.compareTo(creationDateCalendar) == 0;
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean getdoModDatesMatch() {
+        Calendar xmpModifyDate = null;
+        if (meta != null) {
+            try {
+                xmpModifyDate = meta.getModifyDate();
+            } catch (XMPException ignored) {
+            }
+        }
+        String modDate = getModDate();
+        if (xmpModifyDate != null && modDate != null) {
+            Calendar modDateCalendar = TypeConverter.parseDate(modDate);
+            return modDateCalendar != null && xmpModifyDate.compareTo(modDateCalendar) == 0;
+        }
+        return null;
+    }
+
+    @Override
+    public String getXMPCreateDate() {
+        if (meta != null) {
+            try {
+                return DateConverter.toXMPDateFormat(meta.getCreateDate());
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getXMPModifyDate() {
+        if (meta != null) {
+            try {
+                return DateConverter.toXMPDateFormat(meta.getModifyDate());
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
     }
 }
