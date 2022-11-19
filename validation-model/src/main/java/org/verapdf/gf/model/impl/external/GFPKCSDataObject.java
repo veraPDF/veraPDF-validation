@@ -39,7 +39,7 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
     private static final Logger LOGGER = Logger.getLogger(GFPKCSDataObject.class.getCanonicalName());
 
     /**
-     * Type name for {@code PBoxPKCSDataObject}
+     * Type name for {@code GFPKCSDataObject}
      */
     public static final String PKCS_DATA_OBJECT_TYPE = "PKCSDataObject";
 

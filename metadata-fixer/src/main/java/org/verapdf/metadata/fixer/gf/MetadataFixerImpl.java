@@ -108,6 +108,9 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 						if (fixIdentification) {
 							metadata.removePDFIdentificationSchema(resultBuilder,
 									result.getPDFAFlavour());
+							if (document.isNeedToBeUpdated()) {
+								removeMetadataFilters(resultBuilder, document, result.getPDFAFlavour());
+							}
 						}
 						break;
 					}
@@ -153,8 +156,8 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 		return ValidationStatus.INVALID_METADATA;
 	}
 
-	private static void executeInvalidMetadataCase(PDFDocument document, Metadata metadata,
-												   MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour, boolean fixIdentification) {
+	private static void removeMetadataFilters(MetadataFixerResultImpl.Builder resultBuilder,
+											  PDFDocument document, PDFAFlavour flavour) {
 		if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
 			int removedFilters = document.removeFiltersForAllMetadataObjects();
 			if (removedFilters > 0) {
@@ -163,6 +166,12 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 				throw new IllegalStateException("Problem while removing filters from metadata streams");
 			}
 		}
+	}
+
+	private static void executeInvalidMetadataCase(PDFDocument document, Metadata metadata,
+												   MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour,
+												   boolean fixIdentification) {
+		removeMetadataFilters(resultBuilder, document, flavour);
 		fixMetadata(resultBuilder, document, flavour);
 		if (fixIdentification) {
 			metadata.addPDFIdentificationSchema(resultBuilder, flavour);

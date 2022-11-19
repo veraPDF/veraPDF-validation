@@ -36,7 +36,7 @@ import java.util.List;
 public class GFPDSignatureField extends GFPDFormField implements PDSignatureField {
 
     /**
-     * Type name for {@code PBoxPDSignatureField}
+     * Type name for {@code GFPDSignatureField}
      */
     public static final String SIGNATURE_FIELD_TYPE = "PDSignatureField";
 

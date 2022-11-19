@@ -332,11 +332,11 @@ public class MetadataImpl implements Metadata {
             }
         }
         if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
+            COSStream cosStream = (COSStream) stream.getDirectBase();
+            COSFilters filters = cosStream.getFilters();
+            boolean isFixFilter = filters.size() != 1 || filters.getFilters().get(0) != ASAtom.FLATE_DECODE;
+            cosStream.setKey(ASAtom.FILTER, new COSObject());
             try {
-                COSStream cosStream = (COSStream) stream.getDirectBase();
-                COSFilters filters = cosStream.getFilters();
-                boolean isFixFilter = filters.size() != 1 || filters.getFilters().get(0) != ASAtom.FLATE_DECODE;
-                cosStream.setKey(ASAtom.FILTER, new COSObject());
                 cosStream.setFilters(new COSFilters(COSName.construct(ASAtom.FLATE_DECODE)));
                 if (isFixFilter) {
                     builder.addFix("Metadata stream filtered with FlateDecode");

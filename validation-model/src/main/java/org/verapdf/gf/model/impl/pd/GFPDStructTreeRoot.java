@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
  */
 public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 
-	/** Type name for {@code PBoxPDStructTreeRoot} */
+	/** Type name for {@code GFPDStructTreeRoot} */
 	public static final String STRUCT_TREE_ROOT_TYPE = "PDStructTreeRoot";
 
 	/** Link name for {@code K} key */
