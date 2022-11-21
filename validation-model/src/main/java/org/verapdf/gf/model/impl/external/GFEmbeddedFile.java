@@ -56,7 +56,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 	private static final Logger LOGGER = Logger.getLogger(GFEmbeddedFile.class.getCanonicalName());
 
-	/** Type name for {@code PBoxEmbeddedFile} */
+	/** Type name for {@code GFEmbeddedFile} */
 	public static final String EMBEDDED_FILE_TYPE = "EmbeddedFile";
 
 	private final COSStream stream;

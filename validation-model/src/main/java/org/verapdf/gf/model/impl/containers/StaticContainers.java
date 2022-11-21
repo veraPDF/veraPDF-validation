@@ -41,7 +41,7 @@ public class StaticContainers {
 	// TaggedPDF
 	private static final ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
 
-	//PBoxPDSeparation
+	//GFPDSeparation
 	private static final ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
 	private static final ThreadLocal<List<String>> inconsistentSeparations = new ThreadLocal<>();
 

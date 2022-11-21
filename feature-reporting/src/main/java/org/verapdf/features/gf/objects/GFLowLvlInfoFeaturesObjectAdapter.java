@@ -63,7 +63,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     /**
      * Constructs new low level info feature object adapter.
      *
-     * @param document pdfbox class represents document object
+     * @param document class represents document object
      */
     public GFLowLvlInfoFeaturesObjectAdapter(COSDocument document) {
         init(document);

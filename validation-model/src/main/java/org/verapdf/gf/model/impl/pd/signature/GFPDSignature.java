@@ -46,7 +46,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     private static final Logger LOGGER = Logger.getLogger(GFPDSignature.class.getCanonicalName());
 
     /**
-     * Type name for {@code PBoxPDSignature}
+     * Type name for {@code GFPDSignature}
      */
     public static final String SIGNATURE_TYPE = "PDSignature";
 
