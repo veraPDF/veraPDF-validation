@@ -75,8 +75,12 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
 
     private String getStringProperty(ASAtom name) {
         COSObject value = baseObject.getKey(name);
-        if (value != null && value.getType() == COSObjType.COS_STRING) {
-            return XMPChecker.getStringWithoutTrailingZero(value.getString());
+        if (value != null && !value.empty() && value.getType() != COSObjType.COS_NULL) {
+            if (value.getType() == COSObjType.COS_STRING) {
+                return XMPChecker.getStringWithoutTrailingZero(value.getString());
+            } else {
+                return value.toString();
+            }
         }
         return null;
     }
