@@ -41,6 +41,8 @@ import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.profiles.ProfileDirectory;
 import org.verapdf.pdfa.validation.profiles.Profiles;
 import org.verapdf.pdfa.validation.profiles.ValidationProfile;
+import org.verapdf.xmp.XMPDateTimeFactory;
+import org.verapdf.xmp.XMPException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -242,15 +244,23 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 	private static void fixCalendarProperty(MetadataFixerResultImpl.Builder resultBuilder, BasicSchema schema,
 											InfoDictionary info, String metaValue, String infoValue, String attribute) {
 		if (infoValue != null) {
-			String key = attributes.get(attribute);
-			if (metaValue == null) {
+			Calendar metaCalendar = null;
+			try {
+				metaCalendar = XMPDateTimeFactory.createFromISO8601(metaValue).getCalendar();
+			} catch (XMPException ignored) {
+			}
+			if (metaCalendar == null) {
 				doSaveAction(schema, attribute, infoValue);
-				resultBuilder.addFix("Added '" + key + "' to metadata from info dictionary");
+				resultBuilder.addFix("Added '" + attributes.get(attribute) + "' to metadata from info dictionary");
 			} else {
-				Calendar metaCalendar = DateConverter.toCalendar(DateConverter.toPDFDateFormat(metaValue));
+				if (metaCalendar.get(Calendar.MILLISECOND) != 0) {
+					metaCalendar.set(Calendar.MILLISECOND, 0);
+					doSaveAction(schema, attribute, DateConverter.toPDFDateFormat(metaCalendar));
+					resultBuilder.addFix("Set milliseconds of '" + attribute + "' in metadata to 0");
+				}
 				Calendar infoCalendar = DateConverter.toCalendar(infoValue);
 				if (!infoValue.matches(PDF_DATE_FORMAT_REGEX) || metaCalendar.compareTo(infoCalendar) != 0) {
-					doSaveAction(info, attribute, metaValue);
+					doSaveAction(info, attribute, DateConverter.toXMPDateFormat(metaCalendar));
 					resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
 				}
 			}
