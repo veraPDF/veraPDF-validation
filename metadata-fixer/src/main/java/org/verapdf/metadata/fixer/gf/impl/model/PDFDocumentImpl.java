@@ -81,7 +81,7 @@ public class PDFDocumentImpl implements PDFDocument {
 	private MetadataImpl parseMetadata() {
 		PDCatalog catalog = this.document.getCatalog();
 		PDMetadata meta = catalog.getMetadata();
-		if (meta == null) {
+		if (meta == null || !PDMetadata.isMetadataObject(meta.getObject())) {
 			COSObject indirectStream = COSIndirect.construct(COSStream.construct(), document.getDocument());
 			catalog.setKey(ASAtom.METADATA, indirectStream);
 			this.document.getDocument().addChangedObject(catalog.getObject());
