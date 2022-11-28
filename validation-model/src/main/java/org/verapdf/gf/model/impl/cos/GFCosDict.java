@@ -133,8 +133,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
         COSDictionary dictionary = (COSDictionary) this.baseObject;
         COSObject meta = dictionary.getKey(ASAtom.METADATA);
         ASAtom type = dictionary.getNameKey(ASAtom.TYPE);
-        if (GFPDMetadata.isMetadataObject(meta)
-                && type != ASAtom.CATALOG) {
+        if (org.verapdf.pd.PDMetadata.isMetadataObject(meta) && type != ASAtom.CATALOG) {
             ArrayList<PDMetadata> pdMetadatas = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             org.verapdf.pd.PDMetadata md = new org.verapdf.pd.PDMetadata(meta);
             pdMetadatas.add(new GFPDMetadata(md, Boolean.FALSE));
