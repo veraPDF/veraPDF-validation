@@ -87,4 +87,9 @@ public class GFSATextChunk extends GFSAChunk implements SATextChunk {
 	public String getparentsStandardTypes() {
 		return parentsStandardTypes;
 	}
+
+	@Override
+	public Boolean getisWhiteSpaceChunk() {
+		return textChunk.isWhiteSpaceChunk();
+	}
 }
