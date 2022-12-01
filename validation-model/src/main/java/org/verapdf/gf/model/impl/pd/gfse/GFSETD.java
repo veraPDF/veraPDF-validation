@@ -29,6 +29,7 @@ import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.AttributeHelper;
 import org.verapdf.tools.TaggedPDFConstants;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +37,10 @@ import java.util.List;
 public class GFSETD extends GFSETableCell implements SETD {
 
 	public static final String TD_STRUCTURE_ELEMENT_TYPE = "SETD";
+
+	private Boolean hasConnectedHeader = null;
+
+	private final List<String> unknownHeaders = new ArrayList<>();
 
 	public GFSETD(PDStructElem structElemDictionary) {
 		super(structElemDictionary, TaggedPDFConstants.TD, TD_STRUCTURE_ELEMENT_TYPE);
@@ -54,5 +59,23 @@ public class GFSETD extends GFSETableCell implements SETD {
 			return list;
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean gethasConnectedHeader() {
+		return hasConnectedHeader;
+	}
+
+	public void setHasConnectedHeader(boolean hasConnectedHeader) {
+		this.hasConnectedHeader = hasConnectedHeader;
+	}
+
+	@Override
+	public String getunknownHeaders() {
+		return String.join(",", unknownHeaders);
+	}
+
+	public void addUnknownHeader(String unknownHeader) {
+		this.unknownHeaders.add(unknownHeader);
 	}
 }
