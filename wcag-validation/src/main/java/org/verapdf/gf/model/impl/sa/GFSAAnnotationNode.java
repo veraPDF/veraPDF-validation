@@ -18,7 +18,7 @@ import java.util.Objects;
 public class GFSAAnnotationNode extends AnnotationNode {
 
 	public GFSAAnnotationNode(PDAnnotation annotation) {
-		super(annotation.getSubtype().getValue(), getBoundingBox(annotation), getPageNumber(getDestination(annotation)));
+		super(annotation.getSubtype().getValue(), getBoundingBox(annotation), getPageNumber(getDestination(annotation, ASAtom.D)));
 	}
 
 	private static BoundingBox getBoundingBox(PDAnnotation annotation) {
@@ -64,18 +64,15 @@ public class GFSAAnnotationNode extends AnnotationNode {
 		return null;
 	}
 
-	private static COSObject getDestination(PDAnnotation annot) {
+	private static COSObject getDestination(PDAnnotation annot, ASAtom key) {
 		COSObject destination = annot.getDestination();
 		if (destination == null || destination.empty()) {
 			PDAction action = annot.getA();
 			if (action != null && ASAtom.GO_TO == action.getSubtype()) {
-				destination = action.getDestination();
-				if (destination == null || destination.empty()) {
-					destination = action.getStructureDestination();
-				}
+				destination = action.getObject().getKey(key);
 			}
 		}
-		if (destination == null) {
+		if (destination == null || destination.empty()) {
 			return null;
 		}
 		if (destination.getType() == COSObjType.COS_STRING || destination.getType() == COSObjType.COS_NAME) {
