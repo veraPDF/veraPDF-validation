@@ -36,7 +36,6 @@ import org.verapdf.wcag.algorithms.entities.RepeatedCharacters;
 import org.verapdf.wcag.algorithms.entities.content.*;
 import org.verapdf.wcag.algorithms.entities.lists.PDFList;
 import org.verapdf.wcag.algorithms.semanticalgorithms.AccumulatedNodeSemanticChecker;
-import org.verapdf.wcag.algorithms.semanticalgorithms.ContrastRatioChecker;
 import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
 
 import java.util.*;
@@ -221,15 +220,7 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
     private void checkSemantic() {
         parseChunks();
         parseStructureTreeRoot();
-        if (document.getDocument().getFileName() != null) {
-            ContrastRatioChecker contrastRatioChecker = new ContrastRatioChecker();
-            contrastRatioChecker.checkDocument(this, document.getDocument().getFileName());
-        }
-        if (treeRoot != null) {
-            AccumulatedNodeSemanticChecker accumulatedNodeSemanticChecker = new AccumulatedNodeSemanticChecker();
-            accumulatedNodeSemanticChecker.checkSemanticDocument(this);
-        } else {
-            StaticContainers.updateContainers(this);
-        }
+        AccumulatedNodeSemanticChecker accumulatedNodeSemanticChecker = new AccumulatedNodeSemanticChecker();
+        accumulatedNodeSemanticChecker.checkSemanticDocument(this, document.getDocument().getFileName());
     }
 }
