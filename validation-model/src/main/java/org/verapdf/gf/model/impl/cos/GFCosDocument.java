@@ -191,6 +191,18 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		}
 	}
 
+	@Override
+	public String getfirstPageIDValue() {
+		COSObject id = cosDocument.getFirstTrailer().getKey(ASAtom.ID);
+		return id != null ? id.toString() : null;
+	}
+
+	@Override
+	public String getlastIDValue() {
+		COSObject id = cosDocument.getLastTrailer().getKey(ASAtom.ID);
+		return id != null ? id.toString() : null;
+	}
+
 	private static String getTrailerID(COSObject ids) {
 		if (ids != null && ids.getType() == COSObjType.COS_ARRAY) {
 			COSArray idArray = (COSArray) ids.getDirectBase();
