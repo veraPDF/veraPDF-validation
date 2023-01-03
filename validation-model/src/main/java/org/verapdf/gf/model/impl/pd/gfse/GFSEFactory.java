@@ -149,13 +149,16 @@ public class GFSEFactory {
     }
 
     public static String getStructureElementStandardType(PDStructElem pdStructElem){
-        if (StaticContainers.getFlavour() != null && StaticContainers.getFlavour().getPart() ==
-                PDFAFlavour.Specification.ISO_19005_4) {
+        if (StaticContainers.getFlavour() != null && (StaticContainers.getFlavour().getPart() ==
+                PDFAFlavour.Specification.ISO_19005_4 || StaticContainers.getFlavour().getPart() ==
+                PDFAFlavour.Specification.WCAG_2_1)) {
             StructureType defaultStructureType = pdStructElem.getDefaultStructureType();
             if (defaultStructureType != null) {
                 return defaultStructureType.getType().getValue();
             }
-        } else {
+        }
+        if (StaticContainers.getFlavour() == null || StaticContainers.getFlavour().getPart() !=
+                PDFAFlavour.Specification.ISO_19005_4) {
             StructureType type = pdStructElem.getStructureType();
             if (type != null) {
                 return StaticContainers.getRoleMapHelper().getStandardType(type.getType());
