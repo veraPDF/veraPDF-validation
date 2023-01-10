@@ -25,6 +25,7 @@ public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 			type = "NonStandard";
 		}
 		jsonGenerator.writeStringField("type", type);
+		jsonGenerator.writeNumberField("objectKeyNumber", elem.getStructElemDictionary().getObject().getKey().getNumber());
 		if (Objects.equals(elem.getstandardType(), "TD") || Objects.equals(elem.getstandardType(), "TH")) {
 			IAttributesDictionary AttributesDictionary = elem.getNode().getAttributesDictionary();
 			jsonGenerator.writeFieldName("attributes");

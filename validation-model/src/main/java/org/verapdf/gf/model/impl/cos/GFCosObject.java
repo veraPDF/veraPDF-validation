@@ -23,7 +23,7 @@ package org.verapdf.gf.model.impl.cos;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSIndirect;
-import org.verapdf.gf.model.visitor.cos.pb.GFCosVisitor;
+import org.verapdf.gf.model.visitor.cos.gf.GFCosVisitor;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.coslayer.CosObject;
 

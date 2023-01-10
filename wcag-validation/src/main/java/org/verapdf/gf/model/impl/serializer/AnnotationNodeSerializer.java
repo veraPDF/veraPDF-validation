@@ -23,6 +23,9 @@ public class AnnotationNodeSerializer extends StdSerializer<GFSAAnnotationNode> 
 		if (annotationNode.getDestinationPageNumber() != null) {
 			jsonGenerator.writeNumberField("destinationPageNumber", annotationNode.getDestinationPageNumber());
 		}
+		if (annotationNode.getDestinationObjectKeyNumber() != null) {
+			jsonGenerator.writeNumberField("destinationObjectKeyNumber", annotationNode.getDestinationObjectKeyNumber());
+		}
 		if (annotationNode.getPageNumber() != null) {
 			jsonGenerator.writeNumberField("pageNumber", annotationNode.getPageNumber());
 		}
