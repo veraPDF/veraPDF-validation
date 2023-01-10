@@ -18,7 +18,9 @@ import java.util.Objects;
 public class GFSAAnnotationNode extends AnnotationNode {
 
 	public GFSAAnnotationNode(PDAnnotation annotation) {
-		super(annotation.getSubtype().getValue(), getBoundingBox(annotation), getPageNumber(getDestination(annotation, ASAtom.D)));
+		super(annotation.getSubtype().getValue(), getBoundingBox(annotation),
+				getPageNumber(getDestination(annotation, ASAtom.D)),
+				getObjectKeyNumber(getDestination(annotation, ASAtom.SD)));
 	}
 
 	private static BoundingBox getBoundingBox(PDAnnotation annotation) {
@@ -60,6 +62,13 @@ public class GFSAAnnotationNode extends AnnotationNode {
 					return page.getPageNumber();
 				}
 			}
+		}
+		return null;
+	}
+
+	private static Integer getObjectKeyNumber(COSObject obj) {
+		if (obj != null && ASAtom.STRUCT_ELEM == obj.getNameKey(ASAtom.TYPE)) {
+			return obj.getKey() != null ? obj.getKey().getNumber() : null;
 		}
 		return null;
 	}
