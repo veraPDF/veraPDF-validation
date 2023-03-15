@@ -23,6 +23,7 @@ package org.verapdf.gf.model.factory.chunks;
 import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
+import org.verapdf.wcag.algorithms.entities.content.LineChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 
 import java.util.*;
@@ -33,11 +34,13 @@ import java.util.*;
 public class LineArtContainer {
 	private final Map<Long, List<BoundingBox>> lineArtBBoxes;
 	private final Map<Long, LineArtChunk> lineArts;
+	private final Map<Long, List<LineChunk>> lineArtLines;
 	private final COSKey objectKey;
 
 	public LineArtContainer(COSKey objectKey) {
 		lineArtBBoxes = new HashMap<>();
 		lineArts = new HashMap<>();
+		lineArtLines = new HashMap<>();
 		this.objectKey = objectKey;
 	}
 
@@ -45,8 +48,24 @@ public class LineArtContainer {
 		return lineArtBBoxes.get(mcid);
 	}
 
+	public List<LineChunk> getLineChunks(Long mcid) {
+		return lineArtLines.get(mcid);
+	}
+
 	public LineArtChunk getLineArt(Long mcid) {
 		return lineArts.get(mcid);
+	}
+
+	public void add(Long mcid, LineChunk lineChunk) {
+		List<LineChunk> lineChunks = getLineChunks(mcid);
+		if (lineChunks != null) {
+			lineChunks.add(lineChunk);
+		} else {
+			lineChunks = new LinkedList<>();
+			lineChunks.add(lineChunk);
+			lineArtLines.put(mcid, lineChunks);
+		}
+		add(mcid, lineChunk.getBoundingBox());
 	}
 
 	public void add(Long mcid, BoundingBox boundingBox) {
