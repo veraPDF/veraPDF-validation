@@ -579,7 +579,7 @@ class ChunkParser {
 			} else if (chunk instanceof LineChunk) {
 				LineChunk line = parsingRectangleFromLines(i);
 				if (line != null) {
-					artifacts.add(line);
+					lineArtContainer.add(mcid, line);
 					i += 3;
 				} else {
 					lineArtContainer.add(mcid, transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
