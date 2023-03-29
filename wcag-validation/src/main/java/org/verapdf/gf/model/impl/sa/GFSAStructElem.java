@@ -193,7 +193,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 			if (chunk instanceof TextChunk) {
 				i += addTextChunk(i, chunks);
 			} else if (chunk instanceof ImageChunk) {
-				getNode().addChild(new SemanticImageNode((ImageChunk) chunk));
+				getNode().addChild(new SemanticFigure((ImageChunk) chunk));
 				children.add(new GFSAImageChunk((ImageChunk) chunk));
 			} else if (chunk instanceof LineArtChunk) {
 				getNode().addChild(new SemanticFigure((LineArtChunk) chunk));
