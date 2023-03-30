@@ -118,6 +118,10 @@ public class PDResourcesHandler {
 	}
 
 	public PDColorSpace getColorSpace(ASAtom name) {
+		return getColorSpace(name, true);
+	}
+
+	public PDColorSpace getColorSpace(ASAtom name, boolean checkUndefined) {
 		PDColorSpace colorSpace = null;
 		if (this.objectResources != null) {
 			if (isDefaultColorSpaceUsed(name)) {
@@ -137,7 +141,7 @@ public class PDResourcesHandler {
 				colorSpace = setColorSpaceInherited(colorSpace, name, inheritedResources);
 			}
 		}
-		if (colorSpace == null) {
+		if (colorSpace == null && checkUndefined) {
 			undefinedResourceNames.add(name);
 			LOGGER.log(Level.SEVERE, "Undefined color space " + name + " in a content stream");
 		}

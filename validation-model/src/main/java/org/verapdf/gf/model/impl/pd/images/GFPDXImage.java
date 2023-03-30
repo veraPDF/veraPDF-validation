@@ -134,7 +134,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 			} else {
 				colorSpace = image.getImageCS();
 				if (colorSpace != null) {
-					colorSpace = resourcesHandler.getColorSpace(colorSpace.getType());
+					colorSpace = resourcesHandler.getColorSpace(colorSpace.getType(), false);
 					if (colorSpace == null) {
 						colorSpace = image.getImageCS();
 					}
