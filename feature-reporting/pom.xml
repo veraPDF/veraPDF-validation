@@ -27,12 +27,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>validation</artifactId>
+        <artifactId>validation-jakarta</artifactId>
         <groupId>org.verapdf</groupId>
         <version>1.23.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>feature-reporting</artifactId>
+    <artifactId>feature-reporting-jakarta</artifactId>
 
     <name>veraPDF Feature Reporting</name>
     <description>veraPDF PDF feature reporting implementation based on PDF parser.</description>
@@ -46,25 +46,25 @@
 
         <dependency>
             <groupId>org.verapdf</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>core-jakarta</artifactId>
         </dependency>
 
         <dependency>
-          <groupId>javax.xml.bind</groupId>
-          <artifactId>jaxb-api</artifactId>
-          <version>2.3.1</version>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.0</version>
         </dependency>
 
         <dependency>
-          <groupId>com.sun.xml.bind</groupId>
-          <artifactId>jaxb-impl</artifactId>
-          <version>2.3.2</version>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>4.0.2</version>
         </dependency>
 
         <dependency>
-          <groupId>com.sun.xml.bind</groupId>
-          <artifactId>jaxb-core</artifactId>
-          <version>2.3.0.1</version>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>4.0.2</version>
         </dependency>
 
         <dependency>
