@@ -30,6 +30,10 @@ public class GFSETH extends GFSETableCell implements SETH {
 
     public static final String TH_STRUCTURE_ELEMENT_TYPE = "SETH";
 
+    public static final String BOTH = "Both";
+    public static final String COLUMN = "Column";
+    public static final String ROW = "Row";
+
     public GFSETH(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TH, TH_STRUCTURE_ELEMENT_TYPE);
     }
@@ -40,5 +44,18 @@ public class GFSETH extends GFSETableCell implements SETH {
 
     protected String getScope() {
         return AttributeHelper.getScope(simplePDObject);
+    }
+
+    public static String getDefaultScope(int rowNumber, int columnNumber) {
+        if (rowNumber == 0 && columnNumber == 0) {
+            return BOTH;
+        }
+        if (rowNumber == 0) {
+            return COLUMN;
+        }
+        if (columnNumber == 0) {
+            return ROW;
+        }
+        return BOTH;
     }
 }

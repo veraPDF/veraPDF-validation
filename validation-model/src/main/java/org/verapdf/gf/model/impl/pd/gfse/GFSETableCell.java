@@ -21,13 +21,16 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
+import org.verapdf.model.selayer.SETableCell;
 import org.verapdf.tools.AttributeHelper;
 import org.verapdf.pd.structure.PDStructElem;
 
-public class GFSETableCell extends GFPDStructElem {
+public class GFSETableCell extends GFPDStructElem implements SETableCell {
 
     private int rowNumber;
     private int columnNumber;
+
+    private boolean hasIntersection = false;
 
     public GFSETableCell(PDStructElem structElemDictionary, String standardType, String type) {
         super(structElemDictionary, standardType, type);
@@ -55,5 +58,14 @@ public class GFSETableCell extends GFPDStructElem {
 
     public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
+    }
+
+    @Override
+    public Boolean gethasIntersection() {
+        return hasIntersection;
+    }
+
+    public void setHasIntersection(boolean hasIntersection) {
+        this.hasIntersection = hasIntersection;
     }
 }

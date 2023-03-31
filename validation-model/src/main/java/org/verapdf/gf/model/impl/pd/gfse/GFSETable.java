@@ -22,11 +22,10 @@ package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETable;
-import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
 import java.util.List;
-import java.util.Stack;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -35,105 +34,204 @@ public class GFSETable extends GFPDStructElem implements SETable {
 
     public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SETable";
 
-    public GFSETable(PDStructElem structElemDictionary) {
+    private Boolean isRegular;
+    private Boolean useHeadersAndIdOrScope;
+    private Long columnSpan;
+    private Long rowSpan;
+    private Long numberOfRowWithWrongColumnSpan = null;
+    private Long numberOfColumnWithWrongRowSpan = null;
+    private Long wrongColumnSpan;
+
+    public GFSETable(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TABLE, TABLE_STRUCTURE_ELEMENT_TYPE);
     }
 
     // This logic checks that all TH have Scope attribute or TD reference to TH ID using Headers
     @Override
     public Boolean getuseHeadersAndIdOrScope() {
-        Stack<GFPDStructElem> stack = new Stack<>();
-        boolean hasScope = true;
-        boolean hasID = true;
-        boolean hasHeaders = true;
+        if (useHeadersAndIdOrScope == null) {
+            checkTable();
+        }
+        return useHeadersAndIdOrScope;
+    }
+
+    private void checkTable() {
+        List<GFPDStructElem> listTR = getTR();
+        int numberOfRows = listTR.size();
+        this.rowSpan = (long)numberOfRows;
+        if (numberOfRows == 0) {
+            isRegular = true;
+            useHeadersAndIdOrScope = true;
+            return;
+        }
+        int numberOfColumns = getNumberOfColumns(listTR.get(0));
+        this.columnSpan = (long)numberOfColumns;
+        GFSETableCell[][] cells = new GFSETableCell[numberOfRows][numberOfColumns];
+        if (!checkRegular(listTR, cells, numberOfRows, numberOfColumns)) {
+            isRegular = false;
+            useHeadersAndIdOrScope = true;
+            return;
+        }
+        isRegular = true;
         Set<String> idSet = new HashSet<>();
-        Set<String> headersSet = new HashSet<>();
-        stack.push(this);
-        while (!stack.empty()) {
-            GFPDStructElem elem = stack.pop();
-            String type = elem.getstandardType();
-            if (TaggedPDFConstants.TD.equals(type)) {
-                List<String> list = ((GFSETD)elem).getHeaders();
-                if (list != null && !list.isEmpty()) {
-                    headersSet.addAll(list);
-                } else {
-                    hasHeaders = false;
-                }
-            } else if (TaggedPDFConstants.TH.equals(type)) {
-                String id = ((GFSETH)elem).getTHID();
-                if (id == null || id.isEmpty()) {
-                    hasID = false;
-                } else {
-                    idSet.add(id);
-                }
-                if (((GFSETH)elem).getScope() == null) {
-                    hasScope = false;
+        if (hasScope(cells, numberOfRows, numberOfColumns, idSet)) {
+            useHeadersAndIdOrScope = true;
+            return;
+        }
+        useHeadersAndIdOrScope = hasHeaders(cells, idSet, numberOfRows, numberOfColumns);
+    }
+
+    private boolean hasScope(GFSETableCell[][] cells, int numberOfRows, int numberOfColumns, Set<String> idSet) {
+        boolean hasScope = true;
+        for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
+            for (int columnNumber = 0; columnNumber < numberOfColumns; columnNumber++) {
+                GFSETableCell cell = cells[rowNumber][columnNumber];
+                if (TaggedPDFConstants.TH.equals(cell.getstandardType())) {
+                    GFSETH tableHeader = (GFSETH)cell;
+                    String id = tableHeader.getTHID();
+                    if (id != null && !id.isEmpty()) {
+                        idSet.add(id);
+                    }
+                    if (tableHeader.getScope() == null) {
+                        hasScope = false;
+                    }
                 }
             }
-            stack.addAll(elem.getChildren());
         }
-        if (hasScope) {
-            return true;
+        return hasScope;
+    }
+
+    private boolean checkRegular(List<GFPDStructElem> listTR, GFSETableCell[][] cells,
+                                 int numberOfRows, int numberOfColumns) {
+        for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
+            int columnNumber = 0;
+            for (PDStructElem elem : listTR.get(rowNumber).getChildren()) {
+                String type = elem.getstandardType();
+                if (!TaggedPDFConstants.TD.equals(type) && !TaggedPDFConstants.TH.equals(type)) {
+                    continue;
+                }
+                GFSETableCell cell = (GFSETableCell) elem;
+                long colSpan = cell.getColSpan();
+                long rowSpan = cell.getRowSpan();
+                while (columnNumber < numberOfColumns && cells[rowNumber][columnNumber] != null) {
+                    ++columnNumber;
+                }
+                if (columnNumber + colSpan > numberOfColumns) {
+                    this.numberOfRowWithWrongColumnSpan = (long)rowNumber;
+                    return false;
+                }
+                if (rowNumber + rowSpan > numberOfRows) {
+                    this.numberOfColumnWithWrongRowSpan = (long)columnNumber;
+                    return false;
+                }
+                if (!checkRegular(cells, cell, rowSpan, colSpan, rowNumber, columnNumber)) {
+                    return false;
+                }
+                columnNumber += colSpan;
+            }
         }
-        if (!hasID || !hasHeaders) {
-            return false;
-        }
-        for (String headers : headersSet) {
-            if (!idSet.contains(headers)) {
+        for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
+            int numberOfEmptyCells = 0;
+            for (int columnNumber = 0; columnNumber < numberOfColumns; columnNumber++) {
+                if (cells[rowNumber][columnNumber] == null) {
+                    numberOfEmptyCells++;
+                }
+            }
+            if (numberOfEmptyCells != 0) {
+                numberOfRowWithWrongColumnSpan = (long)rowNumber;
+                wrongColumnSpan = (long)(numberOfColumns - numberOfEmptyCells);
                 return false;
             }
         }
         return true;
     }
 
-    @Override
-    public Boolean getisRegular() {
-        List<GFPDStructElem> listTR = getTR();
-        int rowNum = listTR.size();
-        if (rowNum == 0) {
-            return true;
-        }
-        int columnNum = getColumnNum(listTR.get(0));
-        boolean[][] cells = new boolean[rowNum][columnNum];
-        for (int i = 0; i < rowNum; i++) {
-            int j = 0;
-            for (org.verapdf.model.pdlayer.PDStructElem elem : listTR.get(i).getChildren()) {
-                String type = elem.getstandardType();
-                long colSpan;
-                long rowSpan;
-                if (TaggedPDFConstants.TH.equals(type)) {
-                    colSpan = ((GFSETH)elem).getColSpan();
-                    rowSpan = ((GFSETH)elem).getRowSpan();
-                } else if (TaggedPDFConstants.TD.equals(type)) {
-                    colSpan = ((GFSETD)elem).getColSpan();
-                    rowSpan = ((GFSETD)elem).getRowSpan();
-                } else {
+    private boolean hasHeaders(GFSETableCell[][] cells, Set<String> idSet, int numberOfRows, int numberOfColumns) {
+        for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
+            for (int columnNumber = 0; columnNumber < numberOfColumns; columnNumber++) {
+                GFSETableCell cell = cells[rowNumber][columnNumber];
+                String type = cell.getstandardType();
+                if (!TaggedPDFConstants.TD.equals(type) || rowNumber != cell.getRowNumber() ||
+                        columnNumber != cell.getColumnNumber()) {
                     continue;
                 }
-
-                while (j < columnNum && cells[i][j]) {
-                    ++j;
+                GFSETD tableCell = (GFSETD)cell;
+                boolean hasHeaders = false;
+                List<String> list = tableCell.getHeaders();
+                if (list != null && !list.isEmpty()) {
+                    hasHeaders = true;
+                    for (String header : list) {
+                        if (!idSet.contains(header)) {
+                            hasHeaders = false;
+                            break;
+                        }
+                    }
                 }
-                if (j >= columnNum) {
-                    return false;
+                if (hasHeaders || hasHeaders(cells, rowNumber, columnNumber,
+                        rowNumber + tableCell.getRowSpan().intValue(), columnNumber + tableCell.getColSpan().intValue())) {
+                    tableCell.setHasConnectedHeader(true);
+                    continue;
                 }
-                if (i + rowSpan > rowNum || j + colSpan > columnNum) {
-                    return false;
+                tableCell.setHasConnectedHeader(false);
+                if (list != null) {
+                    for (String header : list) {
+                        if (!idSet.contains(header)) {
+                            tableCell.addUnknownHeader(header);
+                        }
+                    }
                 }
-                if (!checkRegular(cells, rowSpan, colSpan, i, j)) {
-                    return false;
-                }
-                j += colSpan;
-            }
-        }
-        for (int i = 0; i < rowNum; i++) {
-            for (int j = 0; j < columnNum; j++) {
-                if (!cells[i][j]) {
-                    return false;
-                }
+                return false;
             }
         }
         return true;
+    }
+
+    private boolean hasHeaders(GFSETableCell[][] cells, int cellRowNumber, int cellColumnNumber,
+                               int cellEndRowNumber, int cellEndColumnNumber) {
+        if (cellRowNumber > 0) {
+            for (int columnNumber = cellColumnNumber; columnNumber < cellEndColumnNumber; columnNumber++) {
+                boolean headerFound = false;
+                for (int rowNumber = cellRowNumber - 1; rowNumber >= 0; rowNumber--) {
+                    if (hasScope(cells[rowNumber][columnNumber], rowNumber, columnNumber, GFSETH.COLUMN)) {
+                        return true;
+                    }
+                    if (TaggedPDFConstants.TH.equals(cells[rowNumber][columnNumber].getstandardType())) {
+                        headerFound = true;
+                    } else if (headerFound) {
+                        break;
+                    }
+                }
+            }
+        }
+        if (cellColumnNumber > 0) {
+            for (int rowNumber = cellRowNumber; rowNumber < cellEndRowNumber; rowNumber++) {
+                boolean headerFound = false;
+                for (int columnNumber = cellColumnNumber - 1; columnNumber >= 0; columnNumber--) {
+                    if (hasScope(cells[rowNumber][columnNumber], rowNumber, columnNumber, GFSETH.ROW)) {
+                        return true;
+                    }
+                    if (TaggedPDFConstants.TH.equals(cells[rowNumber][columnNumber].getstandardType())) {
+                        headerFound = true;
+                    } else if (headerFound) {
+                        break;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean hasScope(GFSETableCell cell, int rowNumber, int columnNumber, String value) {
+        if (TaggedPDFConstants.TH.equals(cell.getstandardType())) {
+            String scope = ((GFSETH)cell).getScope();
+            if (scope == null) {
+                scope = GFSETH.getDefaultScope(rowNumber, columnNumber);
+            }
+            if (GFSETH.BOTH.equals(scope) || value.equals(scope)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private List<GFPDStructElem> getTR() {
@@ -154,28 +252,71 @@ public class GFSETable extends GFPDStructElem implements SETable {
         return listTR;
     }
 
-    private Integer getColumnNum(GFPDStructElem firstTR) {
-        int columnNum = 0;
-        for (org.verapdf.model.pdlayer.PDStructElem elem : firstTR.getChildren()) {
+    private Integer getNumberOfColumns(GFPDStructElem firstTR) {
+        int numberOfColumns = 0;
+        for (PDStructElem elem : firstTR.getChildren()) {
             String type = elem.getstandardType();
-            if (TaggedPDFConstants.TH.equals(type)) {
-                columnNum += ((GFSETH)elem).getColSpan();
-            } else if (TaggedPDFConstants.TD.equals(type)) {
-                columnNum += ((GFSETD)elem).getColSpan();
+            if (TaggedPDFConstants.TH.equals(type) || TaggedPDFConstants.TD.equals(type)) {
+                numberOfColumns += ((GFSETableCell)elem).getColSpan();
             }
         }
-        return columnNum;
+        return numberOfColumns;
     }
 
-    private Boolean checkRegular(boolean[][] cells, long rowSpan, long colSpan, int i, int j) {
-        for (int k = 0; k < rowSpan; k++) {
-            for (int l = 0; l < colSpan; l++) {
-                if (cells[i + k][j + l]) {
+    private Boolean checkRegular(GFSETableCell[][] cells, GFSETableCell cell, long rowSpan, long colSpan,
+                                 int rowNumber, int columnNumber) {
+        cell.setRowNumber(rowNumber);
+        cell.setColumnNumber(columnNumber);
+        for (int i = 0; i < rowSpan; i++) {
+            for (int j = 0; j < colSpan; j++) {
+                if (cells[rowNumber + i][columnNumber + j] != null) {
+                    cell.setHasIntersection(true);
+                    cells[rowNumber + i][columnNumber + j].setHasIntersection(true);
                     return false;
                 }
-                cells[i + k][j + l] = true;
+                cells[rowNumber + i][columnNumber + j] = cell;
             }
         }
         return true;
+    }
+
+    @Override
+    public Long getcolumnSpan() {
+        if (rowSpan == null) {
+            checkTable();
+        }
+        return columnSpan;
+    }
+
+    @Override
+    public Long getrowSpan() {
+        if (rowSpan == null) {
+            checkTable();
+        }
+        return rowSpan;
+    }
+
+    @Override
+    public Long getnumberOfRowWithWrongColumnSpan() {
+        if (rowSpan == null) {
+            checkTable();
+        }
+        return numberOfRowWithWrongColumnSpan;
+    }
+
+    @Override
+    public Long getnumberOfColumnWithWrongRowSpan() {
+        if (rowSpan == null) {
+            checkTable();
+        }
+        return numberOfColumnWithWrongRowSpan;
+    }
+
+    @Override
+    public Long getwrongColumnSpan() {
+        if (rowSpan == null) {
+            checkTable();
+        }
+        return wrongColumnSpan;
     }
 }
