@@ -14,6 +14,7 @@ import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.Operator;
 import org.verapdf.as.io.ASInputStream;
 import org.verapdf.parser.PDFStreamParser;
+import org.verapdf.pd.structure.NameTreeIterator;
 import java.io.IOException;
 
 public class GFAObject extends GenericModelObject implements AObject {
@@ -109,7 +110,35 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return !standardFonts.contains(baseFont.getString());
 	}
 
-	public static boolean hasCycle(COSObject object, ASAtom entryName) {
+	@Override
+	public Boolean getisEncryptedWrapper() {
+		PDDocument document = StaticResources.getDocument();
+		if (document == null) {
+			return false;
+		}
+		PDCatalog catalog = document.getCatalog();
+		if (catalog == null) {
+			return false;
+		}
+		PDNamesDictionary names = catalog.getNamesDictionary();
+		if (names == null) {
+			return false;
+		}
+		PDNameTreeNode embeddedFiles = names.getEmbeddedFiles();
+		if (embeddedFiles == null) {
+			return false;
+		}
+		for (COSObject embeddedFile : embeddedFiles) {
+			COSObject relationship = embeddedFile.getKey(ASAtom.AF_RELATIONSHIP);
+			if (relationship != null && relationship.getType() == COSObjType.COS_NAME &&
+					relationship.getName() == ASAtom.getASAtom("EncryptedPayload")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static Boolean hasCycle(COSObject object,ASAtom entryName) {
 		if (object == null) {
 			return false;
 		}

@@ -14,6 +14,7 @@ import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.Operator;
 import org.verapdf.as.io.ASInputStream;
 import org.verapdf.parser.PDFStreamParser;
+import org.verapdf.pd.structure.NameTreeIterator;
 import java.io.IOException;
 
 public class GFADSS extends GFAObject implements ADSS {
