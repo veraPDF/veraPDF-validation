@@ -20,11 +20,16 @@
  */
 package org.verapdf.gf.model;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSDocument;
 import org.verapdf.parser.PDFFlavour;
+import org.verapdf.pd.PDCatalog;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.xmp.XMPException;
 import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.ReleaseDetails;
+import org.verapdf.pdfa.flavours.PDFAFlavours;
+import org.verapdf.gf.model.impl.arlington.GFAFileTrailer;
 import org.verapdf.component.ComponentDetails;
 import org.verapdf.component.Components;
 import org.verapdf.core.EncryptedPdfException;
@@ -108,8 +113,14 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private static PDFAFlavour detectFlavour(PDDocument document, PDFAFlavour flavour, PDFAFlavour defaultFlavour) {
-		return flavour == PDFAFlavour.NO_FLAVOUR ? obtainFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR ?
-				defaultFlavour : Foundries.defaultInstance().defaultFlavour()) : flavour;
+		if (flavour == PDFAFlavour.NO_FLAVOUR) {
+			return obtainFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR ?
+					defaultFlavour : Foundries.defaultInstance().defaultFlavour());
+		}
+		if (flavour == PDFAFlavour.NO_ARLINGTON_FLAVOUR) {
+			return obtainArlingtonFlavour(document, PDFAFlavour.ARLINGTON1_4);
+		}
+		return flavour;
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
@@ -206,6 +217,29 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
+	private static PDFAFlavour obtainArlingtonFlavour(PDDocument document, PDFAFlavour defaultFlavour) {
+		if (document == null) {
+			return defaultFlavour;
+		}
+		COSDocument cosDocument = document.getDocument();
+		Float version = cosDocument != null ? cosDocument.getHeader().getVersion() : null;
+		if (version == null) {
+			PDCatalog catalog = document.getCatalog();
+			ASAtom versionValue = catalog != null ? catalog.getNameKey(ASAtom.VERSION) : null;
+			version = versionValue != null ? Float.valueOf(versionValue.getValue()) : null;
+		}
+		if (version == null) {
+			return defaultFlavour;
+		}
+		if (version <= PDFAFlavours.VERSION_1_4) {
+			version = PDFAFlavours.VERSION_1_4;
+		} else if (version <= PDFAFlavours.VERSION_1_7) {
+			version = PDFAFlavours.VERSION_1_7;
+		}
+		PDFAFlavour flavour = PDFAFlavour.byFlavourId(PDFAFlavours.ARLINGTON_PREFIX + version);
+		return flavour != PDFAFlavour.NO_FLAVOUR ? flavour : defaultFlavour;
+	}
+
 	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
 		StaticResources.setDocument(document);
 		StaticContainers.setFlavour(flavour);
@@ -243,6 +277,10 @@ public class GFModelParser implements PDFAParser {
 	 */
 	@Override
 	public org.verapdf.model.baselayer.Object getRoot() {
+		if (PDFAFlavour.Specification.ISO_32000_1_0.getFamily().equals(this.flavour.getPart().getFamily()) ||
+				PDFAFlavour.Specification.ISO_32000_2_0.getFamily().equals(this.flavour.getPart().getFamily())) {
+			return new GFAFileTrailer(this.document.getDocument().getTrailer().getObject().getDirectBase(), null, null);
+		}
 		return new GFCosDocument(this.document.getDocument());
 	}
 

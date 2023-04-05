@@ -1,0 +1,204 @@
+package org.verapdf.gf.model.impl.arlington;
+
+import org.verapdf.cos.*;
+import org.verapdf.model.GenericModelObject;
+import org.verapdf.model.alayer.*;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.tools.StaticResources;
+import java.util.*;
+import org.verapdf.pd.*;
+import org.verapdf.as.ASAtom;
+import java.util.stream.Collectors;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.model.tools.constants.Operators;
+import org.verapdf.operator.Operator;
+import org.verapdf.as.io.ASInputStream;
+import org.verapdf.parser.PDFStreamParser;
+import java.io.IOException;
+
+public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNet {
+
+	public GFAAppearanceTrapNet(COSBase baseObject, COSBase parentObject, String keyName) {
+		super(baseObject, parentObject, keyName, "AAppearanceTrapNet");
+	}
+
+	@Override
+	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
+		switch (link) {
+			case "R":
+				return getR();
+			case "D":
+				return getD();
+			case "N":
+				return getN();
+			default:
+				return super.getLinkedObjects(link);
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getR() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getR1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getR1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearanceTrapNetSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearanceTrapNetSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "R"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "R"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getD() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getD1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getD1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearanceTrapNetSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearanceTrapNetSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "D"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getN() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getN1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getN1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearanceTrapNetSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearanceTrapNetSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "N"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "N"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	}
+
+	@Override
+	public Boolean getisDIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getDHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getDHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsN() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
+	}
+
+	@Override
+	public Boolean getisNIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getNHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getNHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
+	}
+
+	@Override
+	public Boolean getisRIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getRHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getRHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+}
