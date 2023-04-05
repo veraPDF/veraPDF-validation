@@ -73,7 +73,7 @@ public class GFModelParser implements PDFAParser {
 		try {
 			clearStaticContainers();
 			this.document = new PDDocument(docStream);
-			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
+			this.flavour = detectFlavour(this.document, flavour, PDFAFlavour.NO_FLAVOUR);
 			initializeStaticContainers(this.document, this.flavour);
 		} catch (Throwable t) {
 			this.close();
@@ -82,40 +82,15 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private GFModelParser(final File pdfFile, PDFAFlavour flavour) throws IOException {
-		try {
-			clearStaticContainers();
-			this.document = new PDDocument(pdfFile.getAbsolutePath());
-			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
-			initializeStaticContainers(this.document, this.flavour);
-		} catch (Throwable t) {
-			this.close();
-			throw t;
-		}
+		this(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR);
 	}
 
 	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour) throws IOException {
-		try {
-			clearStaticContainers();
-			this.document = new PDDocument(pdfFile.getAbsolutePath());
-			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? ((defaultFlavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : obtainFlavour(this.document, defaultFlavour)) : flavour;
-			initializeStaticContainers(this.document, this.flavour);
-		} catch (Throwable t) {
-			this.close();
-			throw t;
-		}
+		this(pdfFile, flavour, defaultFlavour, null);
 	}
 
 	private GFModelParser(final File pdfFile, PDFAFlavour flavour, String password) throws IOException {
-		try {
-			clearStaticContainers();
-			initializeStaticResources(password);
-			this.document = new PDDocument(pdfFile.getAbsolutePath());
-			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
-			initializeStaticContainers(this.document, this.flavour);
-		} catch (Throwable t) {
-			this.close();
-			throw t;
-		}
+		this(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR, password);
 	}
 
 	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
@@ -124,12 +99,17 @@ public class GFModelParser implements PDFAParser {
 			clearStaticContainers();
 			initializeStaticResources(password);
 			this.document = new PDDocument(pdfFile.getAbsolutePath());
-			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? ((defaultFlavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : obtainFlavour(this.document, defaultFlavour)) : flavour;
+			this.flavour = detectFlavour(this.document, flavour, defaultFlavour);
 			initializeStaticContainers(this.document, this.flavour);
 		} catch (Throwable t) {
 			this.close();
 			throw t;
 		}
+	}
+
+	private static PDFAFlavour detectFlavour(PDDocument document, PDFAFlavour flavour, PDFAFlavour defaultFlavour) {
+		return flavour == PDFAFlavour.NO_FLAVOUR ? obtainFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR ?
+				defaultFlavour : Foundries.defaultInstance().defaultFlavour()) : flavour;
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
@@ -188,11 +168,8 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
-	private static PDFAFlavour obtainFlavour(PDDocument document) {
-		return obtainFlavour(document, Foundries.defaultInstance().defaultFlavour());
-	}
+	private static PDFAFlavour obtainFlavour(PDDocument document, PDFAFlavour defaultFlavour) {
 
-		private static PDFAFlavour obtainFlavour(PDDocument document, PDFAFlavour defaultFlavour) {
 		if (document == null || document.getCatalog() == null) {
 			return defaultFlavour;
 		}
