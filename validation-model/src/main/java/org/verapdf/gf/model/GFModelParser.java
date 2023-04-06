@@ -69,28 +69,18 @@ public class GFModelParser implements PDFAParser {
 
 	private final PDFAFlavour flavour;
 
-	private GFModelParser(final InputStream docStream, PDFAFlavour flavour) throws IOException {
+	private GFModelParser(final InputStream docStream, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
+			throws IOException {
 		try {
 			clearStaticContainers();
+			initializeStaticResources(password);
 			this.document = new PDDocument(docStream);
-			this.flavour = detectFlavour(this.document, flavour, PDFAFlavour.NO_FLAVOUR);
+			this.flavour = detectFlavour(this.document, flavour, defaultFlavour);
 			initializeStaticContainers(this.document, this.flavour);
 		} catch (Throwable t) {
 			this.close();
 			throw t;
 		}
-	}
-
-	private GFModelParser(final File pdfFile, PDFAFlavour flavour) throws IOException {
-		this(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR);
-	}
-
-	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour) throws IOException {
-		this(pdfFile, flavour, defaultFlavour, null);
-	}
-
-	private GFModelParser(final File pdfFile, PDFAFlavour flavour, String password) throws IOException {
-		this(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR, password);
 	}
 
 	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
@@ -114,8 +104,24 @@ public class GFModelParser implements PDFAParser {
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(toLoad, flavour, PDFAFlavour.NO_FLAVOUR);
+	}
+
+	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, PDFAFlavour defaultFlavour)
+			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(toLoad, flavour, defaultFlavour, null);
+	}
+
+	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, String password)
+			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(toLoad, flavour, PDFAFlavour.NO_FLAVOUR, password);
+	}
+
+	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, PDFAFlavour defaultFlavour,
+													   String password)
+			throws ModelParsingException, EncryptedPdfException {
 		try {
-			return new GFModelParser(toLoad, flavour);
+			return new GFModelParser(toLoad, flavour, defaultFlavour, password);
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
@@ -125,35 +131,17 @@ public class GFModelParser implements PDFAParser {
 
 	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
-		try {
-			return new GFModelParser(pdfFile, flavour);
-		} catch (InvalidPasswordException excep) {
-			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
-		} catch (IOException e) {
-			throw new ModelParsingException("Couldn't parse stream", e);
-		}
+		return createModelWithFlavour(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR);
 	}
 
 	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour)
 			throws ModelParsingException, EncryptedPdfException {
-		try {
-			return new GFModelParser(pdfFile, flavour, defaultFlavour);
-		} catch (InvalidPasswordException excep) {
-			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
-		} catch (IOException e) {
-			throw new ModelParsingException("Couldn't parse stream", e);
-		}
+		return createModelWithFlavour(pdfFile, flavour, defaultFlavour, null);
 	}
 
 	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, String password)
 			throws ModelParsingException, EncryptedPdfException {
-		try {
-			return new GFModelParser(pdfFile, flavour, password);
-		} catch (InvalidPasswordException excep) {
-			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
-		} catch (IOException e) {
-			throw new ModelParsingException("Couldn't parse stream", e);
-		}
+		return createModelWithFlavour(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR, password);
 	}
 
 	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour,
