@@ -34,7 +34,6 @@ public class GFSETable extends GFPDStructElem implements SETable {
 
     public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SETable";
 
-    private Boolean isRegular;
     private Boolean useHeadersAndIdOrScope;
     private Long columnSpan;
     private Long rowSpan;
@@ -60,7 +59,6 @@ public class GFSETable extends GFPDStructElem implements SETable {
         int numberOfRows = listTR.size();
         this.rowSpan = (long)numberOfRows;
         if (numberOfRows == 0) {
-            isRegular = true;
             useHeadersAndIdOrScope = true;
             return;
         }
@@ -68,11 +66,9 @@ public class GFSETable extends GFPDStructElem implements SETable {
         this.columnSpan = (long)numberOfColumns;
         GFSETableCell[][] cells = new GFSETableCell[numberOfRows][numberOfColumns];
         if (!checkRegular(listTR, cells, numberOfRows, numberOfColumns)) {
-            isRegular = false;
             useHeadersAndIdOrScope = true;
             return;
         }
-        isRegular = true;
         Set<String> idSet = new HashSet<>();
         if (hasScope(cells, numberOfRows, numberOfColumns, idSet)) {
             useHeadersAndIdOrScope = true;
