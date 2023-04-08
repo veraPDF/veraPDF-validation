@@ -243,7 +243,7 @@ public class GFModelParser implements PDFAParser {
 	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
 		StaticResources.setDocument(document);
 		StaticContainers.setFlavour(flavour);
-		StaticResources.setFlavour(flavour != null ? PDFFlavour.valueOf(flavour.name()) : null);
+		StaticResources.setFlavour(PDFFlavour.NO_FLAVOUR);
 	}
 
 	private static void initializeStaticResources(String password) {

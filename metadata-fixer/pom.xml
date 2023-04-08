@@ -26,12 +26,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>validation</artifactId>
+        <artifactId>validation-arlington</artifactId>
         <groupId>org.verapdf</groupId>
         <version>1.23.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>metadata-fixer</artifactId>
+    <artifactId>metadata-fixer-arlington</artifactId>
 
     <name>veraPDF Metadata Fixer</name>
     <description>veraPDF PDF/A metadata fixer implementation based on PDF parser.</description>
@@ -43,11 +43,11 @@
         </dependency>
         <dependency>
             <groupId>org.verapdf</groupId>
-            <artifactId>verapdf-xmp-core</artifactId>
+            <artifactId>verapdf-xmp-core-arlington</artifactId>
         </dependency>
         <dependency>
             <groupId>org.verapdf</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>core-arlington</artifactId>
         </dependency>
     </dependencies>
 
