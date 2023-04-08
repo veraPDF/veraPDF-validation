@@ -27,12 +27,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>validation</artifactId>
+        <artifactId>validation-arlington</artifactId>
         <groupId>org.verapdf</groupId>
         <version>1.23.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>feature-reporting</artifactId>
+    <artifactId>feature-reporting-arlington</artifactId>
 
     <name>veraPDF Feature Reporting</name>
     <description>veraPDF PDF feature reporting implementation based on PDF parser.</description>
@@ -46,7 +46,7 @@
 
         <dependency>
             <groupId>org.verapdf</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>core-arlington</artifactId>
         </dependency>
 
         <dependency>
