@@ -611,7 +611,11 @@ class OperatorParser {
 		if (!arguments.isEmpty()) {
 			COSBase renderingMode = arguments.get(0);
 			if (renderingMode instanceof COSInteger) {
-				return RenderingMode.getRenderingMode(renderingMode.getInteger().intValue());
+				RenderingMode mode = RenderingMode.getRenderingMode(renderingMode.getInteger().intValue());
+				if (mode != null) {
+					return mode;
+				}
+				LOGGER.log(Level.WARNING, "Wrong argument of Tr operator in stream");
 			}
 		}
 		return RenderingMode.FILL;
