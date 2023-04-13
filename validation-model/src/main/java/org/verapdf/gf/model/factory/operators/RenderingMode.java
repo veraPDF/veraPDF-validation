@@ -37,6 +37,9 @@ public enum RenderingMode {
     private final int value;
 
     public static RenderingMode getRenderingMode(int value) {
+        if (value > 7) {
+            return null;
+        }
         return RenderingMode.values()[value];
     }
 
