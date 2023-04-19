@@ -26,12 +26,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>validation</artifactId>
+    <artifactId>validation-jakarta</artifactId>
     <groupId>org.verapdf</groupId>
     <version>1.23.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>validation-model</artifactId>
+  <artifactId>validation-model-jakarta</artifactId>
 
   <name>veraPDF Validation</name>
   <description>veraPDF PDF/A validation model implementation based on PDF parser.</description>
@@ -47,22 +47,22 @@
     </dependency>
     <dependency>
       <groupId>org.verapdf</groupId>
-      <artifactId>core</artifactId>
+      <artifactId>core-jakarta</artifactId>
     </dependency>
     <dependency>
       <groupId>org.verapdf</groupId>
-      <artifactId>feature-reporting</artifactId>
+      <artifactId>feature-reporting-jakarta</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.verapdf</groupId>
-      <artifactId>wcag-validation</artifactId>
+      <artifactId>wcag-validation-jakarta</artifactId>
       <version>${project.version}</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.verapdf</groupId>
-      <artifactId>metadata-fixer</artifactId>
+      <artifactId>metadata-fixer-jakarta</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>

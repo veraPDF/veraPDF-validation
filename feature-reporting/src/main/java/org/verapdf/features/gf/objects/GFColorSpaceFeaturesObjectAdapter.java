@@ -26,7 +26,7 @@ import org.verapdf.features.gf.tools.GFAdapterHelper;
 import org.verapdf.features.objects.ColorSpaceFeaturesObjectAdapter;
 import org.verapdf.pd.colors.*;
 
-import javax.xml.bind.DatatypeConverter;
+import jakarta.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
