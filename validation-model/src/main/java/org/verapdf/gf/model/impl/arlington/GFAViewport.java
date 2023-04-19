@@ -118,6 +118,58 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	@Override
+	public Boolean getcontainsBBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BBox"));
+	}
+
+	@Override
+	public Boolean getBBoxHasTypeRectangle() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean getcontainsMeasure() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Measure"));
+	}
+
+	@Override
+	public Boolean getMeasureHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
+	}
+
+	@Override
+	public Boolean getNameHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsPtData() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PtData"));
+	}
+
+	@Override
+	public Boolean getPtDataHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -142,58 +194,6 @@ public class GFAViewport extends GFAObject implements AViewport {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsBBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BBox"));
-	}
-
-	@Override
-	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public Boolean getcontainsPtData() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PtData"));
-	}
-
-	@Override
-	public Boolean getPtDataHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
-	}
-
-	@Override
-	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsMeasure() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Measure"));
-	}
-
-	@Override
-	public Boolean getMeasureHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

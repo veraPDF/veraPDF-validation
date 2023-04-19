@@ -72,42 +72,6 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	}
 
 	@Override
-	public Boolean getcontainsSW() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SW"));
-	}
-
-	@Override
-	public Boolean getSWHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SW"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSWNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SW"));
-		if (object == null || object.empty()) {
-			return getSWNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSWNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "A";
-		}
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsFB() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FB"));
 	}
@@ -150,6 +114,42 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "P";
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsSW() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SW"));
+	}
+
+	@Override
+	public Boolean getSWHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SW"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSWNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SW"));
+		if (object == null || object.empty()) {
+			return getSWNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSWNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "A";
 		}
 		return null;
 	}

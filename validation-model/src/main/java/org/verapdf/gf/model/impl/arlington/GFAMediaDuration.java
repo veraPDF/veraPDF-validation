@@ -86,6 +86,17 @@ public class GFAMediaDuration extends GFAObject implements AMediaDuration {
 	}
 
 	@Override
+	public Boolean getcontainsT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
+	}
+
+	@Override
+	public Boolean getTHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -110,17 +121,6 @@ public class GFAMediaDuration extends GFAObject implements AMediaDuration {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
-	}
-
-	@Override
-	public Boolean getTHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

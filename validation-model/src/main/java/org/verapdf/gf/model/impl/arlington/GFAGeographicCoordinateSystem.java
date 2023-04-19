@@ -24,6 +24,17 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 	}
 
 	@Override
+	public Boolean getcontainsEPSG() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EPSG"));
+	}
+
+	@Override
+	public Boolean getEPSGHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EPSG"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -59,17 +70,6 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 	public Boolean getWKTHasTypeStringAscii() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WKT"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
-	}
-
-	@Override
-	public Boolean getcontainsEPSG() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EPSG"));
-	}
-
-	@Override
-	public Boolean getEPSGHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EPSG"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 }

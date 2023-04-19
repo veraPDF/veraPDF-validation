@@ -57,21 +57,21 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	@Override
-	public Boolean getcontainsStyle() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Style"));
+	public Boolean getcontainsA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
 	@Override
-	public Boolean getStyleHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+	public Boolean getAHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public String getStyleNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+	public String getANameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
 		if (object == null || object.empty()) {
-			return getStyleNameDefaultValue();
+			return getANameDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
@@ -79,11 +79,45 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 		return null;
 	}
 
-	public String getStyleNameDefaultValue() {
+	public String getANameDefaultValue() {
 		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "Embedded";
+				return "XA";
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsAIS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AIS"));
+	}
+
+	@Override
+	public Boolean getAISHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AIS"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getAISNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AIS"));
+		if (object == null || object.empty()) {
+			return getAISNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getAISNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "L";
 		}
 		return null;
 	}
@@ -122,116 +156,6 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	@Override
-	public Boolean getcontainsTB() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TB"));
-	}
-
-	@Override
-	public Boolean getTBHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TB"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
-	}
-
-	@Override
-	public Boolean getAHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getANameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		if (object == null || object.empty()) {
-			return getANameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getANameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "XA";
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsWindow() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Window"));
-	}
-
-	@Override
-	public Boolean getWindowHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Window"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsAIS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AIS"));
-	}
-
-	@Override
-	public Boolean getAISHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AIS"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getAISNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AIS"));
-		if (object == null || object.empty()) {
-			return getAISNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getAISNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "L";
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsTransparent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Transparent"));
-	}
-
-	@Override
-	public Boolean getTransparentHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Transparent"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsNP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NP"));
-	}
-
-	@Override
-	public Boolean getNPHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NP"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
 	public Boolean getcontainsDIS() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DIS"));
 	}
@@ -262,6 +186,82 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 				return "U";
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsNP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NP"));
+	}
+
+	@Override
+	public Boolean getNPHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NP"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsStyle() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Style"));
+	}
+
+	@Override
+	public Boolean getStyleHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getStyleNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		if (object == null || object.empty()) {
+			return getStyleNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getStyleNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "Embedded";
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsTB() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TB"));
+	}
+
+	@Override
+	public Boolean getTBHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TB"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsTransparent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Transparent"));
+	}
+
+	@Override
+	public Boolean getTransparentHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Transparent"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsWindow() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Window"));
+	}
+
+	@Override
+	public Boolean getWindowHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Window"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

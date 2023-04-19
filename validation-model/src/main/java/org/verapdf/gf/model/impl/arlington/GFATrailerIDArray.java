@@ -17,66 +17,52 @@ import org.verapdf.parser.PDFStreamParser;
 import org.verapdf.pd.structure.NameTreeIterator;
 import java.io.IOException;
 
-public class GFAArrayOf_2Numbers extends GFAObject implements AArrayOf_2Numbers {
+public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 
-	public GFAArrayOf_2Numbers(COSBase baseObject, COSBase parentObject, String keyName) {
-		super(baseObject, parentObject, keyName, "AArrayOf_2Numbers");
+	public GFATrailerIDArray(COSBase baseObject, COSBase parentObject, String keyName) {
+		super(baseObject, parentObject, keyName, "ATrailerIDArray");
 	}
 
 	@Override
-	public Boolean getentry0HasTypeNumber() {
+	public Boolean getisentry0Indirect() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType().isNumber();
+		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
-	public Double getentry0NumberValue() {
+	public Boolean getentry0HasTypeStringByte() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry0NumberDefaultValue() {
-		return null;
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
-	public Boolean getentry1HasTypeNumber() {
+	public Boolean getisentry1Indirect() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType().isNumber();
+		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
-	public Double getentry1NumberValue() {
+	public Boolean getentry1HasTypeStringByte() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
-	public Double getentry1NumberDefaultValue() {
-		return null;
+	@Override
+	public Boolean getcontainstrailerEncrypt() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		return trailer.knownKey(ASAtom.getASAtom("Encrypt"));
 	}
 
 }

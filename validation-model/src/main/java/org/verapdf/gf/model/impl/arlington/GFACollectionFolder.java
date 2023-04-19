@@ -26,44 +26,21 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Parent":
-				return getParent();
 			case "CI":
 				return getCI();
-			case "Thumb":
-				return getThumb();
-			case "Next":
-				return getNext();
-			case "Free":
-				return getFree();
 			case "Child":
 				return getChild();
+			case "Free":
+				return getFree();
+			case "Next":
+				return getNext();
+			case "Parent":
+				return getParent();
+			case "Thumb":
+				return getThumb();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ACollectionFolder> getParent() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getParent1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ACollectionFolder> getParent1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ACollectionFolder> list = new ArrayList<>(1);
-			list.add(new GFACollectionFolder((COSDictionary)object.getDirectBase(), this.baseObject, "Parent"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ACollectionItem> getCI() {
@@ -89,47 +66,24 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return Collections.emptyList();
 	}
 
-	private List<AThumbnail> getThumb() {
+	private List<ACollectionFolder> getChild() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getThumb1_7();
+				return getChild1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AThumbnail> getThumb1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AThumbnail> list = new ArrayList<>(1);
-			list.add(new GFAThumbnail((COSStream)object.getDirectBase(), this.baseObject, "Thumb"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ACollectionFolder> getNext() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getNext1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ACollectionFolder> getNext1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+	private List<ACollectionFolder> getChild1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ACollectionFolder> list = new ArrayList<>(1);
-			list.add(new GFACollectionFolder((COSDictionary)object.getDirectBase(), this.baseObject, "Next"));
+			list.add(new GFACollectionFolder((COSDictionary)object.getDirectBase(), this.baseObject, "Child"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -158,27 +112,167 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return Collections.emptyList();
 	}
 
-	private List<ACollectionFolder> getChild() {
+	private List<ACollectionFolder> getNext() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getChild1_7();
+				return getNext1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ACollectionFolder> getChild1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
+	private List<ACollectionFolder> getNext1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ACollectionFolder> list = new ArrayList<>(1);
-			list.add(new GFACollectionFolder((COSDictionary)object.getDirectBase(), this.baseObject, "Child"));
+			list.add(new GFACollectionFolder((COSDictionary)object.getDirectBase(), this.baseObject, "Next"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private List<ACollectionFolder> getParent() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getParent1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ACollectionFolder> getParent1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ACollectionFolder> list = new ArrayList<>(1);
+			list.add(new GFACollectionFolder((COSDictionary)object.getDirectBase(), this.baseObject, "Parent"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AThumbnail> getThumb() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getThumb1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AThumbnail> getThumb1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AThumbnail> list = new ArrayList<>(1);
+			list.add(new GFAThumbnail((COSStream)object.getDirectBase(), this.baseObject, "Thumb"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsCI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CI"));
+	}
+
+	@Override
+	public Boolean getCIHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsChild() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Child"));
+	}
+
+	@Override
+	public Boolean getisChildIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getChildHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsCreationDate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
+	}
+
+	@Override
+	public Boolean getCreationDateHasTypeDate() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+	}
+
+	@Override
+	public Boolean getcontainsDesc() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Desc"));
+	}
+
+	@Override
+	public Boolean getDescHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Desc"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsFree() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Free"));
+	}
+
+	@Override
+	public Boolean getFreeHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Free"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsID() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
+	}
+
+	@Override
+	public Boolean getentryIDHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsModDate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ModDate"));
+	}
+
+	@Override
+	public Boolean getModDateHasTypeDate() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+	}
+
+	@Override
+	public Boolean getcontainsName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
+	}
+
+	@Override
+	public Boolean getNameHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -213,56 +307,6 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	public Boolean getParentHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
-	}
-
-	@Override
-	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsChild() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Child"));
-	}
-
-	@Override
-	public Boolean getisChildIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getChildHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CI"));
-	}
-
-	@Override
-	public Boolean getCIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsDesc() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Desc"));
-	}
-
-	@Override
-	public Boolean getDescHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Desc"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -307,50 +351,6 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsID() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
-	}
-
-	@Override
-	public Boolean getentryIDHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsCreationDate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
-	}
-
-	@Override
-	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
-	}
-
-	@Override
-	public Boolean getcontainsFree() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Free"));
-	}
-
-	@Override
-	public Boolean getFreeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Free"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsModDate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ModDate"));
-	}
-
-	@Override
-	public Boolean getModDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 }

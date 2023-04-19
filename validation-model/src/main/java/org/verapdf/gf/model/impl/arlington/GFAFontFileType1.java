@@ -26,170 +26,19 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "FDecodeParms":
-				return getFDecodeParms();
-			case "Filter":
-				return getFilter();
-			case "F":
-				return getF();
 			case "DecodeParms":
 				return getDecodeParms();
+			case "F":
+				return getF();
+			case "FDecodeParms":
+				return getFDecodeParms();
 			case "FFilter":
 				return getFFilter();
+			case "Filter":
+				return getFilter();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-				return getFDecodeParms1_3();
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFDecodeParms1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_3(object.getDirectBase(), "FDecodeParms");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "LZWDecode":
-				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
-			case "FlateDecode":
-				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_5(object.getDirectBase(), "FDecodeParms");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_5(COSBase base, String keyName) {
-		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "LZWDecode":
-				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
-			case "Crypt":
-				return new GFAFilterCrypt(base, this.baseObject, keyName);
-			case "FlateDecode":
-				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFilter1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfCompressionFilterNames> getFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfCompressionFilterNames> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfCompressionFilterNames((COSArray)object.getDirectBase(), this.baseObject, "Filter"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getF1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AFileSpecification> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "F"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
@@ -289,6 +138,130 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 		}
 	}
 
+	private List<AFileSpecification> getF() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getF1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AFileSpecification> getF1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AFileSpecification> list = new ArrayList<>(1);
+			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "F"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+				return getFDecodeParms1_3();
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFDecodeParms1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_3(object.getDirectBase(), "FDecodeParms");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "LZWDecode":
+				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
+			case "FlateDecode":
+				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_5(object.getDirectBase(), "FDecodeParms");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_5(COSBase base, String keyName) {
+		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "LZWDecode":
+				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
+			case "Crypt":
+				return new GFAFilterCrypt(base, this.baseObject, keyName);
+			case "FlateDecode":
+				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
@@ -316,100 +289,31 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsLength2() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Length2"));
-	}
-
-	@Override
-	public Boolean getLength2HasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length2"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getLength2IntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length2"));
-		if (object == null || object.empty()) {
-			return getLength2IntegerDefaultValue();
+	private List<AArrayOfCompressionFilterNames> getFilter() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFilter1_3();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
+	}
+
+	private List<AArrayOfCompressionFilterNames> getFilter1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		if (object == null) {
+			return Collections.emptyList();
 		}
-		return null;
-	}
-
-	public Long getLength2IntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsLength1() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Length1"));
-	}
-
-	@Override
-	public Boolean getLength1HasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length1"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getLength1IntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length1"));
-		if (object == null || object.empty()) {
-			return getLength1IntegerDefaultValue();
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfCompressionFilterNames> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfCompressionFilterNames((COSArray)object.getDirectBase(), this.baseObject, "Filter"));
+			return Collections.unmodifiableList(list);
 		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getLength1IntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsFFilter() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
-	}
-
-	@Override
-	public Boolean getFFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getFFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public String getFFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (object == null || object.empty()) {
-			return getFFilterNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getFFilterNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Long getFFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -440,23 +344,6 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 	}
 
 	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
-	}
-
-	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getcontainsDecodeParms() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DecodeParms"));
 	}
@@ -483,20 +370,105 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 	}
 
 	@Override
-	public Boolean getcontainsFilter() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
 	@Override
-	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsFDecodeParms() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
+	}
+
+	@Override
+	public Boolean getFDecodeParmsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getFDecodeParmsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Long getFDecodeParmsArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsFFilter() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
+	}
+
+	@Override
+	public Boolean getFFilterHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getFFilterHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getFFilterNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		if (object == null || object.empty()) {
+			return getFFilterNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getFFilterNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Long getFFilterArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsFilter() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getFilterHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -536,28 +508,56 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 	}
 
 	@Override
-	public Boolean getcontainsFDecodeParms() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
+	public Boolean getcontainsLength1() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Length1"));
 	}
 
 	@Override
-	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getLength1HasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length1"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Long getFDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
+	public Long getLength1IntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length1"));
+		if (object == null || object.empty()) {
+			return getLength1IntegerDefaultValue();
 		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getLength1IntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsLength2() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Length2"));
+	}
+
+	@Override
+	public Boolean getLength2HasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length2"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getLength2IntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length2"));
+		if (object == null || object.empty()) {
+			return getLength2IntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getLength2IntegerDefaultValue() {
 		return null;
 	}
 

@@ -26,37 +26,13 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Components":
-				return getComponents();
 			case "ColorSpace":
 				return getColorSpace();
+			case "Components":
+				return getComponents();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfNamesGeneral> getComponents() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getComponents1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfNamesGeneral> getComponents1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Components"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNamesGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNamesGeneral((COSArray)object.getDirectBase(), this.baseObject, "Components"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace() {
@@ -110,15 +86,28 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 		}
 	}
 
-	@Override
-	public Boolean getcontainsComponents() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Components"));
+	private List<AArrayOfNamesGeneral> getComponents() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getComponents1_6();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getComponentsHasTypeArray() {
+	private List<AArrayOfNamesGeneral> getComponents1_6() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Components"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNamesGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNamesGeneral((COSArray)object.getDirectBase(), this.baseObject, "Components"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -127,15 +116,15 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	}
 
 	@Override
-	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getColorSpaceHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getColorSpaceHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -152,6 +141,17 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 
 	public String getColorSpaceNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsComponents() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Components"));
+	}
+
+	@Override
+	public Boolean getComponentsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Components"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

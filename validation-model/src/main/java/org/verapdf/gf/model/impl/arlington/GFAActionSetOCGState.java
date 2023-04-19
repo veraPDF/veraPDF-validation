@@ -26,38 +26,13 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "State":
-				return getState();
 			case "Next":
 				return getNext();
+			case "State":
+				return getState();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfOCGState> getState() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getState1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfOCGState> getState1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("State"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfOCGState> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfOCGState((COSArray)object.getDirectBase(), this.baseObject, "State"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
@@ -290,6 +265,48 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 		}
 	}
 
+	private List<AArrayOfOCGState> getState() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getState1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfOCGState> getState1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("State"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfOCGState> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfOCGState((COSArray)object.getDirectBase(), this.baseObject, "State"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsNext() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
+	}
+
+	@Override
+	public Boolean getNextHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getNextHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
 	@Override
 	public Boolean getcontainsPreserveRB() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PreserveRB"));
@@ -299,17 +316,6 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	public Boolean getPreserveRBHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreserveRB"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsState() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("State"));
-	}
-
-	@Override
-	public Boolean getStateHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("State"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -340,6 +346,17 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	}
 
 	@Override
+	public Boolean getcontainsState() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("State"));
+	}
+
+	@Override
+	public Boolean getStateHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("State"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -364,23 +381,6 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsNext() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
-	}
-
-	@Override
-	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

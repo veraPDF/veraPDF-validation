@@ -24,6 +24,84 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	}
 
 	@Override
+	public Boolean getentry0HasTypeNumber() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getentry0NumberValue() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		if (object == null || object.empty()) {
+			return getentry0NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry0NumberDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return -100D;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNumber() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getentry1NumberValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry1NumberDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 100D;
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getentry2HasTypeNumber() {
 		if (this.baseObject.size() <= 2) {
 			return null;
@@ -97,84 +175,6 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 100D;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeNumber() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry1NumberValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry1NumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 100D;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry0NumberValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry0NumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return -100D;
 		}
 		return null;
 	}

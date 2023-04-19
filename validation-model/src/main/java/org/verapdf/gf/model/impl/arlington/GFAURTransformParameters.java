@@ -28,14 +28,14 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		switch (link) {
 			case "Annots":
 				return getAnnots();
+			case "Document":
+				return getDocument();
 			case "EF":
 				return getEF();
 			case "Form":
 				return getForm();
 			case "Signature":
 				return getSignature();
-			case "Document":
-				return getDocument();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -61,6 +61,31 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AURTransformParamAnnotsArray> list = new ArrayList<>(1);
 			list.add(new GFAURTransformParamAnnotsArray((COSArray)object.getDirectBase(), this.baseObject, "Annots"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AURTransformParamDocumentArray> getDocument() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getDocument1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AURTransformParamDocumentArray> getDocument1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Document"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AURTransformParamDocumentArray> list = new ArrayList<>(1);
+			list.add(new GFAURTransformParamDocumentArray((COSArray)object.getDirectBase(), this.baseObject, "Document"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -140,29 +165,70 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return Collections.emptyList();
 	}
 
-	private List<AURTransformParamDocumentArray> getDocument() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDocument1_5();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsAnnots() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Annots"));
 	}
 
-	private List<AURTransformParamDocumentArray> getDocument1_5() {
+	@Override
+	public Boolean getAnnotsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annots"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsDocument() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Document"));
+	}
+
+	@Override
+	public Boolean getDocumentHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Document"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AURTransformParamDocumentArray> list = new ArrayList<>(1);
-			list.add(new GFAURTransformParamDocumentArray((COSArray)object.getDirectBase(), this.baseObject, "Document"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsEF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EF"));
+	}
+
+	@Override
+	public Boolean getEFHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsForm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Form"));
+	}
+
+	@Override
+	public Boolean getFormHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Form"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsMsg() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Msg"));
+	}
+
+	@Override
+	public Boolean getMsgHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Msg"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
+	}
+
+	@Override
+	public Boolean getPHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -204,17 +270,6 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	@Override
-	public Boolean getcontainsP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
-	}
-
-	@Override
-	public Boolean getPHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
 	public Boolean getcontainsV() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
@@ -223,61 +278,6 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	public Boolean getVHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getcontainsDocument() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Document"));
-	}
-
-	@Override
-	public Boolean getDocumentHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Document"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsAnnots() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Annots"));
-	}
-
-	@Override
-	public Boolean getAnnotsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annots"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsMsg() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Msg"));
-	}
-
-	@Override
-	public Boolean getMsgHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Msg"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsEF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EF"));
-	}
-
-	@Override
-	public Boolean getEFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsForm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Form"));
-	}
-
-	@Override
-	public Boolean getFormHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Form"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

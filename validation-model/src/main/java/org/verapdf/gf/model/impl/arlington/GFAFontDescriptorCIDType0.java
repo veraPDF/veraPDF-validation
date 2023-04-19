@@ -26,103 +26,19 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "FontFile":
-				return getFontFile();
-			case "Style":
-				return getStyle();
-			case "FontFile3":
-				return getFontFile3();
 			case "CIDSet":
 				return getCIDSet();
 			case "FD":
 				return getFD();
+			case "FontFile":
+				return getFontFile();
+			case "FontFile3":
+				return getFontFile3();
+			case "Style":
+				return getStyle();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AFontFile> getFontFile() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFontFile1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AFontFile> getFontFile1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AFontFile> list = new ArrayList<>(1);
-			list.add(new GFAFontFile((COSStream)object.getDirectBase(), this.baseObject, "FontFile"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AStyleDict> getStyle() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getStyle1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AStyleDict> getStyle1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AStyleDict> list = new ArrayList<>(1);
-			list.add(new GFAStyleDict((COSDictionary)object.getDirectBase(), this.baseObject, "Style"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AFontFile3CIDType0> getFontFile3() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFontFile31_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AFontFile3CIDType0> getFontFile31_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile3"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AFontFile3CIDType0> list = new ArrayList<>(1);
-			list.add(new GFAFontFile3CIDType0((COSStream)object.getDirectBase(), this.baseObject, "FontFile3"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AStream> getCIDSet() {
@@ -181,122 +97,110 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsFontStretch() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontStretch"));
-	}
-
-	@Override
-	public Boolean getFontStretchHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontStretch"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getFontStretchNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontStretch"));
-		if (object == null || object.empty()) {
-			return getFontStretchNameDefaultValue();
+	private List<AFontFile> getFontFile() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFontFile1_2();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
 	}
 
-	public String getFontStretchNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsLeading() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Leading"));
-	}
-
-	@Override
-	public Boolean getLeadingHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Leading"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsLang() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
-	}
-
-	@Override
-	public Boolean getLangHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getcontainsMissingWidth() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MissingWidth"));
-	}
-
-	@Override
-	public Boolean getMissingWidthHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MissingWidth"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsFontFile() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontFile"));
-	}
-
-	@Override
-	public Boolean getisFontFileIndirect() {
+	private List<AFontFile> getFontFile1_2() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile"));
-		return object != null && object.get() != null && object.get().isIndirect();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AFontFile> list = new ArrayList<>(1);
+			list.add(new GFAFontFile((COSStream)object.getDirectBase(), this.baseObject, "FontFile"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AFontFile3CIDType0> getFontFile3() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFontFile31_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AFontFile3CIDType0> getFontFile31_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile3"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AFontFile3CIDType0> list = new ArrayList<>(1);
+			list.add(new GFAFontFile3CIDType0((COSStream)object.getDirectBase(), this.baseObject, "FontFile3"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AStyleDict> getStyle() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getStyle1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AStyleDict> getStyle1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AStyleDict> list = new ArrayList<>(1);
+			list.add(new GFAStyleDict((COSDictionary)object.getDirectBase(), this.baseObject, "Style"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
-	public Boolean getFontFileHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+	public Boolean getcontainsAscent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Ascent"));
 	}
 
 	@Override
-	public Boolean getcontainsCapHeight() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CapHeight"));
-	}
-
-	@Override
-	public Boolean getCapHeightHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CapHeight"));
+	public Boolean getAscentHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ascent"));
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
-	public Boolean getcontainsMaxWidth() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MaxWidth"));
+	public Boolean getcontainsAvgWidth() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AvgWidth"));
 	}
 
 	@Override
-	public Boolean getMaxWidthHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MaxWidth"));
+	public Boolean getAvgWidthHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AvgWidth"));
 		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsFontBBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontBBox"));
-	}
-
-	@Override
-	public Boolean getFontBBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontBBox"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	@Override
@@ -317,79 +221,13 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
-	public Boolean getcontainsFontWeight() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontWeight"));
+	public Boolean getcontainsCapHeight() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CapHeight"));
 	}
 
 	@Override
-	public Boolean getFontWeightHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontWeight"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFontWeightIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontWeight"));
-		if (object == null || object.empty()) {
-			return getFontWeightIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFontWeightIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsFontFile3() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontFile3"));
-	}
-
-	@Override
-	public Boolean getisFontFile3Indirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile3"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getFontFile3HasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile3"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsFontFamily() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontFamily"));
-	}
-
-	@Override
-	public Boolean getFontFamilyHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFamily"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsAvgWidth() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AvgWidth"));
-	}
-
-	@Override
-	public Boolean getAvgWidthHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AvgWidth"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsItalicAngle() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ItalicAngle"));
-	}
-
-	@Override
-	public Boolean getItalicAngleHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ItalicAngle"));
+	public Boolean getCapHeightHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CapHeight"));
 		return object != null && object.getType().isNumber();
 	}
 
@@ -421,82 +259,6 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
-	public Boolean getcontainsStemH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("StemH"));
-	}
-
-	@Override
-	public Boolean getStemHHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemH"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsFontName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontName"));
-	}
-
-	@Override
-	public Boolean getFontNameHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontName"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getFontNameNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontName"));
-		if (object == null || object.empty()) {
-			return getFontNameNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getFontNameNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAscent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Ascent"));
-	}
-
-	@Override
-	public Boolean getAscentHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ascent"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getcontainsFD() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FD"));
 	}
@@ -505,39 +267,6 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public Boolean getFDHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FD"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsStemV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("StemV"));
-	}
-
-	@Override
-	public Boolean getStemVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemV"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsStyle() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Style"));
-	}
-
-	@Override
-	public Boolean getStyleHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsXHeight() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("XHeight"));
-	}
-
-	@Override
-	public Boolean getXHeightHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XHeight"));
-		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -568,6 +297,277 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public Boolean getcontainsFontBBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontBBox"));
+	}
+
+	@Override
+	public Boolean getFontBBoxHasTypeRectangle() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontBBox"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean getcontainsFontFamily() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontFamily"));
+	}
+
+	@Override
+	public Boolean getFontFamilyHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFamily"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsFontFile() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontFile"));
+	}
+
+	@Override
+	public Boolean getisFontFileIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getFontFileHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsFontFile3() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontFile3"));
+	}
+
+	@Override
+	public Boolean getisFontFile3Indirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile3"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getFontFile3HasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile3"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsFontName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontName"));
+	}
+
+	@Override
+	public Boolean getFontNameHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontName"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getFontNameNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontName"));
+		if (object == null || object.empty()) {
+			return getFontNameNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getFontNameNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsFontStretch() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontStretch"));
+	}
+
+	@Override
+	public Boolean getFontStretchHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontStretch"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getFontStretchNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontStretch"));
+		if (object == null || object.empty()) {
+			return getFontStretchNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getFontStretchNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsFontWeight() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontWeight"));
+	}
+
+	@Override
+	public Boolean getFontWeightHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontWeight"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFontWeightIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontWeight"));
+		if (object == null || object.empty()) {
+			return getFontWeightIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getFontWeightIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsItalicAngle() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ItalicAngle"));
+	}
+
+	@Override
+	public Boolean getItalicAngleHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ItalicAngle"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsLang() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
+	}
+
+	@Override
+	public Boolean getLangHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getcontainsLeading() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Leading"));
+	}
+
+	@Override
+	public Boolean getLeadingHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Leading"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsMaxWidth() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MaxWidth"));
+	}
+
+	@Override
+	public Boolean getMaxWidthHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MaxWidth"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsMissingWidth() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MissingWidth"));
+	}
+
+	@Override
+	public Boolean getMissingWidthHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MissingWidth"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsStemH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("StemH"));
+	}
+
+	@Override
+	public Boolean getStemHHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemH"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsStemV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("StemV"));
+	}
+
+	@Override
+	public Boolean getStemVHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemV"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsStyle() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Style"));
+	}
+
+	@Override
+	public Boolean getStyleHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsXHeight() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("XHeight"));
+	}
+
+	@Override
+	public Boolean getXHeightHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XHeight"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public String getparentBaseFontNameValue() {
 		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
 			return null;
@@ -575,9 +575,4 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 		COSObject BaseFont = this.parentObject.getKey(ASAtom.getASAtom("BaseFont"));
 		return new GFAFontCIDType0(this.parentObject.getDirectBase(), null, null).getBaseFontNameValue();
 	}
-	@Override
-	public Boolean getcontainsFontFile2() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontFile2"));
-	}
-
 }

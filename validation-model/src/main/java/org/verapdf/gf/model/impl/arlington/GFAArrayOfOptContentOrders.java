@@ -26,13 +26,34 @@ public class GFAArrayOfOptContentOrders extends GFAObject implements AArrayOfOpt
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "entry0":
-				return getentry0();
 			case "Entries":
 				return getEntries();
+			case "entry0":
+				return getentry0();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfOptContentOrdersEntry> getEntries() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getEntries1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfOptContentOrdersEntry> getEntries1_5() {
+		List<AArrayOfOptContentOrdersEntry> list = new LinkedList<>();
+		for (int i = 1; i < baseObject.size(); i++) {
+			COSObject object = baseObject.at(i);
+			list.add(new GFAArrayOfOptContentOrdersEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+		}
+		return Collections.unmodifiableList(list);
 	}
 
 	private List<AOptContentGroup> getentry0() {
@@ -58,27 +79,6 @@ public class GFAArrayOfOptContentOrders extends GFAObject implements AArrayOfOpt
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	private List<AArrayOfOptContentOrdersEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getEntries1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfOptContentOrdersEntry> getEntries1_5() {
-		List<AArrayOfOptContentOrdersEntry> list = new LinkedList<>();
-		for (int i = 1; i < baseObject.size(); i++) {
-			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOfOptContentOrdersEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
-		}
-		return Collections.unmodifiableList(list);
 	}
 
 	@Override

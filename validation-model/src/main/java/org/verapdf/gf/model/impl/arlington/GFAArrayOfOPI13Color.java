@@ -24,34 +24,6 @@ public class GFAArrayOfOPI13Color extends GFAObject implements AArrayOfOPI13Colo
 	}
 
 	@Override
-	public Boolean getentry1HasTypeNumber() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry1NumberValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry1NumberDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeNumber() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -80,12 +52,59 @@ public class GFAArrayOfOPI13Color extends GFAObject implements AArrayOfOPI13Colo
 	}
 
 	@Override
-	public Boolean getentry4HasTypeStringByte() {
-		if (this.baseObject.size() <= 4) {
+	public Boolean getentry1HasTypeNumber() {
+		if (this.baseObject.size() <= 1) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(4);
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getentry1NumberValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry1NumberDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNumber() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getentry2NumberValue() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		if (object == null || object.empty()) {
+			return getentry2NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry2NumberDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -117,31 +136,12 @@ public class GFAArrayOfOPI13Color extends GFAObject implements AArrayOfOPI13Colo
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
+	public Boolean getentry4HasTypeStringByte() {
+		if (this.baseObject.size() <= 4) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry2NumberValue() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		if (object == null || object.empty()) {
-			return getentry2NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry2NumberDefaultValue() {
-		return null;
+		COSObject object = this.baseObject.at(4);
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

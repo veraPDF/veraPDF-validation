@@ -86,6 +86,17 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	}
 
 	@Override
+	public Boolean getcontainsCategory() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Category"));
+	}
+
+	@Override
+	public Boolean getCategoryHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Category"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
 	public Boolean getcontainsEvent() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Event"));
 	}
@@ -120,17 +131,6 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	@Override
 	public Boolean getOCGsHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsCategory() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Category"));
-	}
-
-	@Override
-	public Boolean getCategoryHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Category"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

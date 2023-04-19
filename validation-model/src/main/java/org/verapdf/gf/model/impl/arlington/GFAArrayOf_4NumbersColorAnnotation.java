@@ -24,62 +24,6 @@ public class GFAArrayOf_4NumbersColorAnnotation extends GFAObject implements AAr
 	}
 
 	@Override
-	public Boolean getentry1HasTypeNumber() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry1NumberValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry1NumberDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry3HasTypeNumber() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry3NumberValue() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		if (object == null || object.empty()) {
-			return getentry3NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry3NumberDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeNumber() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -104,6 +48,34 @@ public class GFAArrayOf_4NumbersColorAnnotation extends GFAObject implements AAr
 	}
 
 	public Double getentry0NumberDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNumber() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getentry1NumberValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry1NumberDefaultValue() {
 		return null;
 	}
 
@@ -137,6 +109,34 @@ public class GFAArrayOf_4NumbersColorAnnotation extends GFAObject implements AAr
 	}
 
 	public Double getentry2NumberDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeNumber() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getentry3NumberValue() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		if (object == null || object.empty()) {
+			return getentry3NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry3NumberDefaultValue() {
 		return null;
 	}
 

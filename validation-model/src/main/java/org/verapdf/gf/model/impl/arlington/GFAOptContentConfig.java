@@ -26,72 +26,23 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Order":
-				return getOrder();
-			case "Locked":
-				return getLocked();
 			case "AS":
 				return getAS();
 			case "Intent":
 				return getIntent();
-			case "RBGroups":
-				return getRBGroups();
+			case "Locked":
+				return getLocked();
 			case "OFF":
 				return getOFF();
 			case "ON":
 				return getON();
+			case "Order":
+				return getOrder();
+			case "RBGroups":
+				return getRBGroups();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfOptContentOrderElements> getOrder() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getOrder1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfOptContentOrderElements> getOrder1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Order"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfOptContentOrderElements> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfOptContentOrderElements((COSArray)object.getDirectBase(), this.baseObject, "Order"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfOptContentGroups> getLocked() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getLocked1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfOptContentGroups> getLocked1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Locked"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfOptContentGroups> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfOptContentGroups((COSArray)object.getDirectBase(), this.baseObject, "Locked"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AArrayOfOCUsage> getAS() {
@@ -144,26 +95,25 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfArraysRBGroups> getRBGroups() {
+	private List<AArrayOfOptContentGroups> getLocked() {
 		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getRBGroups1_5();
+				return getLocked1_6();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfArraysRBGroups> getRBGroups1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RBGroups"));
+	private List<AArrayOfOptContentGroups> getLocked1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Locked"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfArraysRBGroups> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfArraysRBGroups((COSArray)object.getDirectBase(), this.baseObject, "RBGroups"));
+			List<AArrayOfOptContentGroups> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfOptContentGroups((COSArray)object.getDirectBase(), this.baseObject, "Locked"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -219,77 +169,54 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsIntent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Intent"));
-	}
-
-	@Override
-	public Boolean getIntentHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getIntentHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public String getIntentNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
-		if (object == null || object.empty()) {
-			return getIntentNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getIntentNameDefaultValue() {
+	private List<AArrayOfOptContentOrderElements> getOrder() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "View";
+				return getOrder1_5();
+			default:
+				return Collections.emptyList();
 		}
-		return null;
 	}
 
-	@Override
-	public Boolean getcontainsCreator() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Creator"));
+	private List<AArrayOfOptContentOrderElements> getOrder1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Order"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfOptContentOrderElements> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfOptContentOrderElements((COSArray)object.getDirectBase(), this.baseObject, "Order"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getCreatorHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	private List<AArrayOfArraysRBGroups> getRBGroups() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRBGroups1_5();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getcontainsLocked() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Locked"));
-	}
-
-	@Override
-	public Boolean getLockedHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Locked"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
-	}
-
-	@Override
-	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	private List<AArrayOfArraysRBGroups> getRBGroups1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RBGroups"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfArraysRBGroups> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfArraysRBGroups((COSArray)object.getDirectBase(), this.baseObject, "RBGroups"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -338,14 +265,54 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
-	public Boolean getcontainsON() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ON"));
+	public Boolean getcontainsCreator() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Creator"));
 	}
 
 	@Override
-	public Boolean getONHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ON"));
+	public Boolean getCreatorHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsIntent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Intent"));
+	}
+
+	@Override
+	public Boolean getIntentHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getIntentHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getIntentNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		if (object == null || object.empty()) {
+			return getIntentNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getIntentNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "View";
+		}
+		return null;
 	}
 
 	@Override
@@ -383,13 +350,46 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
-	public Boolean getcontainsRBGroups() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RBGroups"));
+	public Boolean getcontainsLocked() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Locked"));
 	}
 
 	@Override
-	public Boolean getRBGroupsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RBGroups"));
+	public Boolean getLockedHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Locked"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
+	}
+
+	@Override
+	public Boolean getNameHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsOFF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OFF"));
+	}
+
+	@Override
+	public Boolean getOFFHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OFF"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsON() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ON"));
+	}
+
+	@Override
+	public Boolean getONHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ON"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -405,13 +405,13 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
-	public Boolean getcontainsOFF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OFF"));
+	public Boolean getcontainsRBGroups() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RBGroups"));
 	}
 
 	@Override
-	public Boolean getOFFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OFF"));
+	public Boolean getRBGroupsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RBGroups"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

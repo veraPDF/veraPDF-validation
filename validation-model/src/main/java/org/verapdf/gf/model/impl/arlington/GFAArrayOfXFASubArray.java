@@ -58,6 +58,15 @@ public class GFAArrayOfXFASubArray extends GFAObject implements AArrayOfXFASubAr
 	}
 
 	@Override
+	public Boolean getentry0HasTypeStringText() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
 	public Boolean getisentry1Indirect() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -73,15 +82,6 @@ public class GFAArrayOfXFASubArray extends GFAObject implements AArrayOfXFASubAr
 		}
 		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeStringText() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

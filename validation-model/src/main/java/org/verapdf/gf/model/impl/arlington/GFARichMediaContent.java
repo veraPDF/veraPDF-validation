@@ -26,38 +26,15 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Views":
-				return getViews();
 			case "Assets":
 				return getAssets();
 			case "Configurations":
 				return getConfigurations();
+			case "Views":
+				return getViews();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOf3DView> getViews() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getViews1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOf3DView> getViews1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Views"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf3DView> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf3DView((COSArray)object.getDirectBase(), this.baseObject, "Views"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ARichMediaContentNameTreeAssets> getAssets() {
@@ -101,6 +78,29 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfRichMediaConfiguration> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfRichMediaConfiguration((COSArray)object.getDirectBase(), this.baseObject, "Configurations"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOf3DView> getViews() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getViews1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf3DView> getViews1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Views"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf3DView> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf3DView((COSArray)object.getDirectBase(), this.baseObject, "Views"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

@@ -26,40 +26,40 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "CropBox":
-				return getCropBox();
-			case "BleedBox":
-				return getBleedBox();
-			case "TrimBox":
-				return getTrimBox();
 			case "ArtBox":
 				return getArtBox();
+			case "BleedBox":
+				return getBleedBox();
+			case "CropBox":
+				return getCropBox();
+			case "TrimBox":
+				return getTrimBox();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<ABoxStyle> getCropBox() {
+	private List<ABoxStyle> getArtBox() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCropBox1_4();
+				return getArtBox1_4();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ABoxStyle> getCropBox1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+	private List<ABoxStyle> getArtBox1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ABoxStyle> list = new ArrayList<>(1);
-			list.add(new GFABoxStyle((COSDictionary)object.getDirectBase(), this.baseObject, "CropBox"));
+			list.add(new GFABoxStyle((COSDictionary)object.getDirectBase(), this.baseObject, "ArtBox"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -91,6 +91,32 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 		return Collections.emptyList();
 	}
 
+	private List<ABoxStyle> getCropBox() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getCropBox1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ABoxStyle> getCropBox1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ABoxStyle> list = new ArrayList<>(1);
+			list.add(new GFABoxStyle((COSDictionary)object.getDirectBase(), this.baseObject, "CropBox"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<ABoxStyle> getTrimBox() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
@@ -117,43 +143,6 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 		return Collections.emptyList();
 	}
 
-	private List<ABoxStyle> getArtBox() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getArtBox1_4();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ABoxStyle> getArtBox1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ABoxStyle> list = new ArrayList<>(1);
-			list.add(new GFABoxStyle((COSDictionary)object.getDirectBase(), this.baseObject, "ArtBox"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	@Override
-	public Boolean getcontainsTrimBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TrimBox"));
-	}
-
-	@Override
-	public Boolean getTrimBoxHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrimBox"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
 	@Override
 	public Boolean getcontainsArtBox() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ArtBox"));
@@ -162,6 +151,17 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	@Override
 	public Boolean getArtBoxHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsBleedBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BleedBox"));
+	}
+
+	@Override
+	public Boolean getBleedBoxHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BleedBox"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -177,13 +177,13 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	}
 
 	@Override
-	public Boolean getcontainsBleedBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BleedBox"));
+	public Boolean getcontainsTrimBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TrimBox"));
 	}
 
 	@Override
-	public Boolean getBleedBoxHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BleedBox"));
+	public Boolean getTrimBoxHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrimBox"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

@@ -26,36 +26,13 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Instance":
-				return getInstance();
 			case "Data":
 				return getData();
+			case "Instance":
+				return getInstance();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ARichMediaInstance> getInstance() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getInstance1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ARichMediaInstance> getInstance1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ARichMediaInstance> list = new ArrayList<>(1);
-			list.add(new GFARichMediaInstance((COSDictionary)object.getDirectBase(), this.baseObject, "Instance"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AStream> getData() {
@@ -81,6 +58,29 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 		return Collections.emptyList();
 	}
 
+	private List<ARichMediaInstance> getInstance() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getInstance1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ARichMediaInstance> getInstance1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ARichMediaInstance> list = new ArrayList<>(1);
+			list.add(new GFARichMediaInstance((COSDictionary)object.getDirectBase(), this.baseObject, "Instance"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	@Override
 	public Boolean getcontainsData() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Data"));
@@ -93,15 +93,15 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	}
 
 	@Override
-	public Boolean getDataHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getDataHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getDataHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override

@@ -24,17 +24,6 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 	}
 
 	@Override
-	public Boolean getcontainsVersion() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
-	}
-
-	@Override
-	public Boolean getVersionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getcontainsSubtype() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
@@ -70,6 +59,17 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 
 	public String getTypeNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsVersion() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
+	}
+
+	@Override
+	public Boolean getVersionHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 }

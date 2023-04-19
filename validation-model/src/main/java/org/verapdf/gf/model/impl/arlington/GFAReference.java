@@ -88,6 +88,34 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	@Override
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsID() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
+	}
+
+	@Override
+	public Boolean getentryIDHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
 	public Boolean getcontainsPage() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Page"));
 	}
@@ -118,34 +146,6 @@ public class GFAReference extends GFAObject implements AReference {
 
 	public Long getPageIntegerDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsID() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
-	}
-
-	@Override
-	public Boolean getentryIDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
-	}
-
-	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

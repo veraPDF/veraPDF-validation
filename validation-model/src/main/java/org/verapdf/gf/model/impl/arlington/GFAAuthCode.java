@@ -102,23 +102,6 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	}
 
 	@Override
-	public Boolean getcontainsSigObjRef() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SigObjRef"));
-	}
-
-	@Override
-	public Boolean getisSigObjRefIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigObjRef"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getSigObjRefHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigObjRef"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsByteRange() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ByteRange"));
 	}
@@ -183,6 +166,23 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 
 	public String getMACLocationNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsSigObjRef() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SigObjRef"));
+	}
+
+	@Override
+	public Boolean getisSigObjRefIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigObjRef"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getSigObjRefHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigObjRef"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

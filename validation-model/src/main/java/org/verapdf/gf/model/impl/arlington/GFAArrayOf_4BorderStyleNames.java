@@ -24,40 +24,12 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	}
 
 	@Override
-	public Boolean getentry1HasTypeNull() {
-		if (this.baseObject.size() <= 1) {
+	public Boolean getentry0HasTypeName() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeName() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getentry1NameValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getentry1NameDefaultValue() {
-		return null;
 	}
 
 	@Override
@@ -67,15 +39,6 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 		}
 		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeName() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -98,12 +61,40 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNull() {
-		if (this.baseObject.size() <= 2) {
+	public Boolean getentry1HasTypeName() {
+		if (this.baseObject.size() <= 1) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNull() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	@Override
+	public String getentry1NameValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1NameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getentry1NameDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -113,6 +104,15 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 		}
 		COSObject object = this.baseObject.at(2);
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNull() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
@@ -135,21 +135,21 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	}
 
 	@Override
-	public Boolean getentry3HasTypeNull() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
 	public Boolean getentry3HasTypeName() {
 		if (this.baseObject.size() <= 3) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(3);
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeNull() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override

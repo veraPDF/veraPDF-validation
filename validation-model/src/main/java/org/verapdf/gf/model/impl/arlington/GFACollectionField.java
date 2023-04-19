@@ -35,6 +35,55 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	}
 
 	@Override
+	public Boolean getcontainsN() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
+	}
+
+	@Override
+	public Boolean getNHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
+	}
+
+	@Override
+	public Boolean getOHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsSubtype() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
+	}
+
+	@Override
+	public Boolean getSubtypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSubtypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			return getSubtypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSubtypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -70,55 +119,6 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	public Boolean getVHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsSubtype() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
-	}
-
-	@Override
-	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsO() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
-	}
-
-	@Override
-	public Boolean getOHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsN() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
-	}
-
-	@Override
-	public Boolean getNHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

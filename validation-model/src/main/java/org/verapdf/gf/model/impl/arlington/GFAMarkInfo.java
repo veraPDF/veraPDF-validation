@@ -24,6 +24,17 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 	}
 
 	@Override
+	public Boolean getcontainsMarked() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Marked"));
+	}
+
+	@Override
+	public Boolean getMarkedHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Marked"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
 	public Boolean getcontainsSuspects() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Suspects"));
 	}
@@ -65,17 +76,6 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 				return false;
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsMarked() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Marked"));
-	}
-
-	@Override
-	public Boolean getMarkedHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Marked"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 }

@@ -26,61 +26,17 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "SpectralData":
-				return getSpectralData();
-			case "DestOutputProfileRef":
-				return getDestOutputProfileRef();
 			case "DestOutputProfile":
 				return getDestOutputProfile();
+			case "DestOutputProfileRef":
+				return getDestOutputProfileRef();
 			case "MixingHints":
 				return getMixingHints();
+			case "SpectralData":
+				return getSpectralData();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ASpectralData> getSpectralData() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getSpectralData2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ASpectralData> getSpectralData2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpectralData"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ASpectralData> list = new ArrayList<>(1);
-			list.add(new GFASpectralData((COSDictionary)object.getDirectBase(), this.baseObject, "SpectralData"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ADestOutputProfileRef> getDestOutputProfileRef() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getDestOutputProfileRef2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ADestOutputProfileRef> getDestOutputProfileRef2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DestOutputProfileRef"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ADestOutputProfileRef> list = new ArrayList<>(1);
-			list.add(new GFADestOutputProfileRef((COSDictionary)object.getDirectBase(), this.baseObject, "DestOutputProfileRef"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AICCProfileStream> getDestOutputProfile() {
@@ -109,6 +65,28 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 		return Collections.emptyList();
 	}
 
+	private List<ADestOutputProfileRef> getDestOutputProfileRef() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getDestOutputProfileRef2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ADestOutputProfileRef> getDestOutputProfileRef2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DestOutputProfileRef"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ADestOutputProfileRef> list = new ArrayList<>(1);
+			list.add(new GFADestOutputProfileRef((COSDictionary)object.getDirectBase(), this.baseObject, "DestOutputProfileRef"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<ADeviceNMixingHints> getMixingHints() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
@@ -131,53 +109,26 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsMixingHints() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MixingHints"));
-	}
-
-	@Override
-	public Boolean getMixingHintsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MixingHints"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
+	private List<ASpectralData> getSpectralData() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getSpectralData2_0();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
+	}
+
+	private List<ASpectralData> getSpectralData2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpectralData"));
+		if (object == null) {
+			return Collections.emptyList();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsRegistryName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RegistryName"));
-	}
-
-	@Override
-	public Boolean getRegistryNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RegistryName"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ASpectralData> list = new ArrayList<>(1);
+			list.add(new GFASpectralData((COSDictionary)object.getDirectBase(), this.baseObject, "SpectralData"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -198,6 +149,39 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	@Override
+	public Boolean getcontainsDestOutputProfileRef() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DestOutputProfileRef"));
+	}
+
+	@Override
+	public Boolean getDestOutputProfileRefHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DestOutputProfileRef"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsInfo() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Info"));
+	}
+
+	@Override
+	public Boolean getInfoHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsMixingHints() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MixingHints"));
+	}
+
+	@Override
+	public Boolean getMixingHintsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MixingHints"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsOutputCondition() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OutputCondition"));
 	}
@@ -205,6 +189,28 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getOutputConditionHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputCondition"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsOutputConditionIdentifier() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OutputConditionIdentifier"));
+	}
+
+	@Override
+	public Boolean getOutputConditionIdentifierHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputConditionIdentifier"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsRegistryName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RegistryName"));
+	}
+
+	@Override
+	public Boolean getRegistryNameHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RegistryName"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -247,36 +253,30 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	@Override
-	public Boolean getcontainsOutputConditionIdentifier() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OutputConditionIdentifier"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getOutputConditionIdentifierHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputConditionIdentifier"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getcontainsDestOutputProfileRef() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DestOutputProfileRef"));
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
 	}
 
-	@Override
-	public Boolean getDestOutputProfileRefHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DestOutputProfileRef"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsInfo() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Info"));
-	}
-
-	@Override
-	public Boolean getInfoHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 }

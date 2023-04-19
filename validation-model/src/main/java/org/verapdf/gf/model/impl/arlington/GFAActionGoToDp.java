@@ -26,13 +26,35 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Next":
-				return getNext();
 			case "Dp":
 				return getDp();
+			case "Next":
+				return getNext();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<ADPart> getDp() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getDp2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ADPart> getDp2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ADPart> list = new ArrayList<>(1);
+			list.add(new GFADPart((COSDictionary)object.getDirectBase(), this.baseObject, "Dp"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
@@ -120,26 +142,21 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 		}
 	}
 
-	private List<ADPart> getDp() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getDp2_0();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsDp() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Dp"));
 	}
 
-	private List<ADPart> getDp2_0() {
+	@Override
+	public Boolean getisDpIndirect() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ADPart> list = new ArrayList<>(1);
-			list.add(new GFADPart((COSDictionary)object.getDirectBase(), this.baseObject, "Dp"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getDpHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -156,50 +173,6 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsDp() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Dp"));
-	}
-
-	@Override
-	public Boolean getisDpIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getDpHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -227,6 +200,33 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 	}
 
 	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

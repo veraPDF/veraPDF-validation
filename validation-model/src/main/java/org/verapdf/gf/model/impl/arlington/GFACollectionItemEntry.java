@@ -69,15 +69,15 @@ public class GFACollectionItemEntry extends GFAObject implements ACollectionItem
 	}
 
 	@Override
-	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getHasTypeNumber() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getHasTypeDictionary() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

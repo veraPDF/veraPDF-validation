@@ -26,10 +26,10 @@ public class GFADSS extends GFAObject implements ADSS {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Certs":
-				return getCerts();
 			case "CRLs":
 				return getCRLs();
+			case "Certs":
+				return getCerts();
 			case "OCSPs":
 				return getOCSPs();
 			case "VRI":
@@ -37,28 +37,6 @@ public class GFADSS extends GFAObject implements ADSS {
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfStreamsGeneral> getCerts() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getCerts2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfStreamsGeneral> getCerts2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Certs"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfStreamsGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStreamsGeneral((COSArray)object.getDirectBase(), this.baseObject, "Certs"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AArrayOfStreamsGeneral> getCRLs() {
@@ -78,6 +56,28 @@ public class GFADSS extends GFAObject implements ADSS {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfStreamsGeneral> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfStreamsGeneral((COSArray)object.getDirectBase(), this.baseObject, "CRLs"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfStreamsGeneral> getCerts() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getCerts2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfStreamsGeneral> getCerts2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Certs"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfStreamsGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfStreamsGeneral((COSArray)object.getDirectBase(), this.baseObject, "Certs"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -128,28 +128,6 @@ public class GFADSS extends GFAObject implements ADSS {
 	}
 
 	@Override
-	public Boolean getcontainsVRI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("VRI"));
-	}
-
-	@Override
-	public Boolean getVRIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VRI"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsOCSPs() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OCSPs"));
-	}
-
-	@Override
-	public Boolean getOCSPsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSPs"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
 	public Boolean getcontainsCRLs() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CRLs"));
 	}
@@ -168,6 +146,17 @@ public class GFADSS extends GFAObject implements ADSS {
 	@Override
 	public Boolean getCertsHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Certs"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsOCSPs() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OCSPs"));
+	}
+
+	@Override
+	public Boolean getOCSPsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSPs"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -196,6 +185,17 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	public String getTypeNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsVRI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("VRI"));
+	}
+
+	@Override
+	public Boolean getVRIHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VRI"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

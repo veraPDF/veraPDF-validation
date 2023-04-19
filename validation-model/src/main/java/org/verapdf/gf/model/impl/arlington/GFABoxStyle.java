@@ -88,17 +88,6 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 	}
 
 	@Override
-	public Boolean getcontainsW() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
-	}
-
-	@Override
-	public Boolean getWHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getcontainsC() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
@@ -153,6 +142,17 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 				return "S";
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsW() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
+	}
+
+	@Override
+	public Boolean getWHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		return object != null && object.getType().isNumber();
 	}
 
 }

@@ -26,44 +26,15 @@ public class GFALabDict extends GFAObject implements ALabDict {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "WhitePoint":
-				return getWhitePoint();
 			case "BlackPoint":
 				return getBlackPoint();
 			case "Range":
 				return getRange();
+			case "WhitePoint":
+				return getWhitePoint();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AWhitepointArray> getWhitePoint() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getWhitePoint1_1();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AWhitepointArray> getWhitePoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AWhitepointArray> list = new ArrayList<>(1);
-			list.add(new GFAWhitepointArray((COSArray)object.getDirectBase(), this.baseObject, "WhitePoint"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ABlackpointArray> getBlackPoint() {
@@ -124,15 +95,33 @@ public class GFALabDict extends GFAObject implements ALabDict {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsWhitePoint() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("WhitePoint"));
+	private List<AWhitepointArray> getWhitePoint() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getWhitePoint1_1();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getWhitePointHasTypeArray() {
+	private List<AWhitepointArray> getWhitePoint1_1() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AWhitepointArray> list = new ArrayList<>(1);
+			list.add(new GFAWhitepointArray((COSArray)object.getDirectBase(), this.baseObject, "WhitePoint"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -154,6 +143,17 @@ public class GFALabDict extends GFAObject implements ALabDict {
 	@Override
 	public Boolean getRangeHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsWhitePoint() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("WhitePoint"));
+	}
+
+	@Override
+	public Boolean getWhitePointHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

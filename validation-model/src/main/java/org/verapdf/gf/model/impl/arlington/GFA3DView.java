@@ -26,98 +26,29 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "P":
-				return getP();
-			case "NA":
-				return getNA();
-			case "MA":
-				return getMA();
 			case "BG":
 				return getBG();
-			case "U3DPath":
-				return getU3DPath();
-			case "LS":
-				return getLS();
 			case "C2W":
 				return getC2W();
+			case "LS":
+				return getLS();
+			case "MA":
+				return getMA();
+			case "NA":
+				return getNA();
+			case "O":
+				return getO();
+			case "P":
+				return getP();
 			case "RM":
 				return getRM();
 			case "SA":
 				return getSA();
-			case "O":
-				return getO();
+			case "U3DPath":
+				return getU3DPath();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AProjection> getP() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getP1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AProjection> getP1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AProjection> list = new ArrayList<>(1);
-			list.add(new GFAProjection((COSDictionary)object.getDirectBase(), this.baseObject, "P"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOf3DNode> getNA() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getNA1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOf3DNode> getNA1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf3DNode> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf3DNode((COSArray)object.getDirectBase(), this.baseObject, "NA"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOf3DMeasure> getMA() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getMA2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOf3DMeasure> getMA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MA"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf3DMeasure> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf3DMeasure((COSArray)object.getDirectBase(), this.baseObject, "MA"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<A3DBackground> getBG() {
@@ -144,25 +75,25 @@ public class GFA3DView extends GFAObject implements A3DView {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfStringsText> getU3DPath() {
+	private List<AArrayOf3DTransMatrix> getC2W() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getU3DPath1_6();
+				return getC2W1_6();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStringsText> getU3DPath1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
+	private List<AArrayOf3DTransMatrix> getC2W1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C2W"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfStringsText> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStringsText((COSArray)object.getDirectBase(), this.baseObject, "U3DPath"));
+			List<AArrayOf3DTransMatrix> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf3DTransMatrix((COSArray)object.getDirectBase(), this.baseObject, "C2W"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -191,25 +122,94 @@ public class GFA3DView extends GFAObject implements A3DView {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOf3DTransMatrix> getC2W() {
+	private List<AArrayOf3DMeasure> getMA() {
 		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getC2W1_6();
+				return getMA2_0();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf3DTransMatrix> getC2W1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C2W"));
+	private List<AArrayOf3DMeasure> getMA2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MA"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf3DTransMatrix> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf3DTransMatrix((COSArray)object.getDirectBase(), this.baseObject, "C2W"));
+			List<AArrayOf3DMeasure> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf3DMeasure((COSArray)object.getDirectBase(), this.baseObject, "MA"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOf3DNode> getNA() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getNA1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf3DNode> getNA1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf3DNode> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf3DNode((COSArray)object.getDirectBase(), this.baseObject, "NA"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AXObjectFormType1> getO() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getO1_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AXObjectFormType1> getO1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormType1> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormType1((COSStream)object.getDirectBase(), this.baseObject, "O"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AProjection> getP() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getP1_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AProjection> getP1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AProjection> list = new ArrayList<>(1);
+			list.add(new GFAProjection((COSDictionary)object.getDirectBase(), this.baseObject, "P"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -261,38 +261,38 @@ public class GFA3DView extends GFAObject implements A3DView {
 		return Collections.emptyList();
 	}
 
-	private List<AXObjectFormType1> getO() {
+	private List<AArrayOfStringsText> getU3DPath() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getO1_6();
+				return getU3DPath1_6();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AXObjectFormType1> getO1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+	private List<AArrayOfStringsText> getU3DPath1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormType1> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormType1((COSStream)object.getDirectBase(), this.baseObject, "O"));
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfStringsText> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfStringsText((COSArray)object.getDirectBase(), this.baseObject, "U3DPath"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
 	@Override
-	public Boolean getcontainsLS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("LS"));
+	public Boolean getcontainsBG() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BG"));
 	}
 
 	@Override
-	public Boolean getLSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LS"));
+	public Boolean getBGHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -308,14 +308,14 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
-	public Boolean getcontainsNR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NR"));
+	public Boolean getcontainsCO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CO"));
 	}
 
 	@Override
-	public Boolean getNRHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NR"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	public Boolean getCOHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -330,42 +330,74 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
-	public Boolean getcontainsP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
+	public Boolean getcontainsLS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("LS"));
 	}
 
 	@Override
-	public Boolean getPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+	public Boolean getLSHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LS"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsU3DPath() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("U3DPath"));
+	public Boolean getcontainsMA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MA"));
 	}
 
 	@Override
-	public Boolean getU3DPathHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
+	public Boolean getMAHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MA"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Boolean getU3DPathHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getcontainsMS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MS"));
 	}
 
 	@Override
-	public Boolean getcontainsCO() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CO"));
+	public Boolean getMSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MS"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getCOHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
-		return object != null && object.getType().isNumber();
+	public String getMSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MS"));
+		if (object == null || object.empty()) {
+			return getMSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getMSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsNA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NA"));
+	}
+
+	@Override
+	public Boolean getNAHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsNR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NR"));
+	}
+
+	@Override
+	public Boolean getNRHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NR"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -386,47 +418,25 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
-	public Boolean getcontainsNA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NA"));
+	public Boolean getcontainsP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
 	@Override
-	public Boolean getNAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsBG() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BG"));
-	}
-
-	@Override
-	public Boolean getBGHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+	public Boolean getPHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsXN() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("XN"));
+	public Boolean getcontainsRM() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RM"));
 	}
 
 	@Override
-	public Boolean getXNHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XN"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsMA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MA"));
-	}
-
-	@Override
-	public Boolean getMAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MA"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getRMHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RM"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -468,41 +478,31 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
-	public Boolean getcontainsRM() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RM"));
+	public Boolean getcontainsU3DPath() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("U3DPath"));
 	}
 
 	@Override
-	public Boolean getRMHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RM"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getU3DPathHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Boolean getcontainsMS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MS"));
+	public Boolean getU3DPathHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
-	public Boolean getMSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MS"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getcontainsXN() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("XN"));
 	}
 
 	@Override
-	public String getMSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MS"));
-		if (object == null || object.empty()) {
-			return getMSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getMSNameDefaultValue() {
-		return null;
+	public Boolean getXNHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XN"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

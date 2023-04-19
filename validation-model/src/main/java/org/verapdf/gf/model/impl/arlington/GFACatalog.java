@@ -26,380 +26,61 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "DPartRoot":
-				return getDPartRoot();
-			case "Legal":
-				return getLegal();
-			case "Metadata":
-				return getMetadata();
-			case "PageLabels":
-				return getPageLabels();
-			case "Extensions":
-				return getExtensions();
-			case "URI":
-				return getURI();
-			case "Requirements":
-				return getRequirements();
-			case "Names":
-				return getNames();
-			case "AcroForm":
-				return getAcroForm();
-			case "Outlines":
-				return getOutlines();
-			case "Dests":
-				return getDests();
-			case "SpiderInfo":
-				return getSpiderInfo();
 			case "AA":
 				return getAA();
 			case "AF":
 				return getAF();
-			case "DSS":
-				return getDSS();
-			case "OutputIntents":
-				return getOutputIntents();
-			case "PieceInfo":
-				return getPieceInfo();
-			case "OCProperties":
-				return getOCProperties();
-			case "Pages":
-				return getPages();
-			case "Threads":
-				return getThreads();
-			case "OpenAction":
-				return getOpenAction();
-			case "Perms":
-				return getPerms();
-			case "ViewerPreferences":
-				return getViewerPreferences();
+			case "AcroForm":
+				return getAcroForm();
 			case "Collection":
 				return getCollection();
+			case "DPartRoot":
+				return getDPartRoot();
+			case "DSS":
+				return getDSS();
+			case "Dests":
+				return getDests();
+			case "Extensions":
+				return getExtensions();
+			case "Legal":
+				return getLegal();
 			case "MarkInfo":
 				return getMarkInfo();
+			case "Metadata":
+				return getMetadata();
+			case "Names":
+				return getNames();
+			case "OCProperties":
+				return getOCProperties();
+			case "OpenAction":
+				return getOpenAction();
+			case "Outlines":
+				return getOutlines();
+			case "OutputIntents":
+				return getOutputIntents();
+			case "PageLabels":
+				return getPageLabels();
+			case "Pages":
+				return getPages();
+			case "Perms":
+				return getPerms();
+			case "PieceInfo":
+				return getPieceInfo();
+			case "Requirements":
+				return getRequirements();
+			case "SpiderInfo":
+				return getSpiderInfo();
 			case "StructTreeRoot":
 				return getStructTreeRoot();
+			case "Threads":
+				return getThreads();
+			case "URI":
+				return getURI();
+			case "ViewerPreferences":
+				return getViewerPreferences();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ADPartRoot> getDPartRoot() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDPartRoot1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ADPartRoot> getDPartRoot1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRoot"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ADPartRoot> list = new ArrayList<>(1);
-			list.add(new GFADPartRoot((COSDictionary)object.getDirectBase(), this.baseObject, "DPartRoot"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ALegalAttestation> getLegal() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getLegal1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ALegalAttestation> getLegal1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Legal"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ALegalAttestation> list = new ArrayList<>(1);
-			list.add(new GFALegalAttestation((COSDictionary)object.getDirectBase(), this.baseObject, "Legal"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getMetadata1_4();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AMetadata> getMetadata1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AMetadata> list = new ArrayList<>(1);
-			list.add(new GFAMetadata((COSStream)object.getDirectBase(), this.baseObject, "Metadata"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ACatalogNumberTreePageLabels> getPageLabels() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPageLabels1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ACatalogNumberTreePageLabels> getPageLabels1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ACatalogNumberTreePageLabels> list = new ArrayList<>(1);
-			list.add(new GFACatalogNumberTreePageLabels((COSDictionary)object.getDirectBase(), this.baseObject, "PageLabels"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AExtensions> getExtensions() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getExtensions1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AExtensions> getExtensions1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AExtensions> list = new ArrayList<>(1);
-			list.add(new GFAExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "Extensions"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AURI> getURI() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getURI1_1();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AURI> getURI1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AURI> list = new ArrayList<>(1);
-			list.add(new GFAURI((COSDictionary)object.getDirectBase(), this.baseObject, "URI"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfRequirements> getRequirements() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getRequirements1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfRequirements> getRequirements1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Requirements"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfRequirements> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfRequirements((COSArray)object.getDirectBase(), this.baseObject, "Requirements"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AName> getNames() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getNames1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AName> getNames1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AName> list = new ArrayList<>(1);
-			list.add(new GFAName((COSDictionary)object.getDirectBase(), this.baseObject, "Names"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AInteractiveForm> getAcroForm() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getAcroForm1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AInteractiveForm> getAcroForm1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AcroForm"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AInteractiveForm> list = new ArrayList<>(1);
-			list.add(new GFAInteractiveForm((COSDictionary)object.getDirectBase(), this.baseObject, "AcroForm"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AOutline> getOutlines() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getOutlines1_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AOutline> getOutlines1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AOutline> list = new ArrayList<>(1);
-			list.add(new GFAOutline((COSDictionary)object.getDirectBase(), this.baseObject, "Outlines"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ADestsMap> getDests() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDests1_1();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ADestsMap> getDests1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ADestsMap> list = new ArrayList<>(1);
-			list.add(new GFADestsMap((COSDictionary)object.getDirectBase(), this.baseObject, "Dests"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AWebCaptureInfo> getSpiderInfo() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getSpiderInfo1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AWebCaptureInfo> getSpiderInfo1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpiderInfo"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AWebCaptureInfo> list = new ArrayList<>(1);
-			list.add(new GFAWebCaptureInfo((COSDictionary)object.getDirectBase(), this.baseObject, "SpiderInfo"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AAddActionCatalog> getAA() {
@@ -450,6 +131,81 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return Collections.emptyList();
 	}
 
+	private List<AInteractiveForm> getAcroForm() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getAcroForm1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AInteractiveForm> getAcroForm1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AcroForm"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AInteractiveForm> list = new ArrayList<>(1);
+			list.add(new GFAInteractiveForm((COSDictionary)object.getDirectBase(), this.baseObject, "AcroForm"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ACollection> getCollection() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getCollection1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ACollection> getCollection1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Collection"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ACollection> list = new ArrayList<>(1);
+			list.add(new GFACollection((COSDictionary)object.getDirectBase(), this.baseObject, "Collection"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ADPartRoot> getDPartRoot() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getDPartRoot1_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ADPartRoot> getDPartRoot1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRoot"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ADPartRoot> list = new ArrayList<>(1);
+			list.add(new GFADPartRoot((COSDictionary)object.getDirectBase(), this.baseObject, "DPartRoot"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<ADSS> getDSS() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
@@ -472,53 +228,158 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfOutputIntents> getOutputIntents() {
+	private List<ADestsMap> getDests() {
 		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getOutputIntents1_4();
+				return getDests1_1();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfOutputIntents> getOutputIntents1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+	private List<ADestsMap> getDests1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfOutputIntents> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfOutputIntents((COSArray)object.getDirectBase(), this.baseObject, "OutputIntents"));
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ADestsMap> list = new ArrayList<>(1);
+			list.add(new GFADestsMap((COSDictionary)object.getDirectBase(), this.baseObject, "Dests"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
-	private List<APagePiece> getPieceInfo() {
+	private List<AExtensions> getExtensions() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getExtensions1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AExtensions> getExtensions1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AExtensions> list = new ArrayList<>(1);
+			list.add(new GFAExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "Extensions"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ALegalAttestation> getLegal() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getLegal1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ALegalAttestation> getLegal1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Legal"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ALegalAttestation> list = new ArrayList<>(1);
+			list.add(new GFALegalAttestation((COSDictionary)object.getDirectBase(), this.baseObject, "Legal"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AMarkInfo> getMarkInfo() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getPieceInfo1_4();
+				return getMarkInfo1_4();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<APagePiece> getPieceInfo1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+	private List<AMarkInfo> getMarkInfo1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MarkInfo"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<APagePiece> list = new ArrayList<>(1);
-			list.add(new GFAPagePiece((COSDictionary)object.getDirectBase(), this.baseObject, "PieceInfo"));
+			List<AMarkInfo> list = new ArrayList<>(1);
+			list.add(new GFAMarkInfo((COSDictionary)object.getDirectBase(), this.baseObject, "MarkInfo"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AMetadata> getMetadata() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getMetadata1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AMetadata> getMetadata1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AMetadata> list = new ArrayList<>(1);
+			list.add(new GFAMetadata((COSStream)object.getDirectBase(), this.baseObject, "Metadata"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AName> getNames() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getNames1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AName> getNames1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AName> list = new ArrayList<>(1);
+			list.add(new GFAName((COSDictionary)object.getDirectBase(), this.baseObject, "Names"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -544,65 +405,6 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AOptContentProperties> list = new ArrayList<>(1);
 			list.add(new GFAOptContentProperties((COSDictionary)object.getDirectBase(), this.baseObject, "OCProperties"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<APageTreeNodeRoot> getPages() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPages1_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<APageTreeNodeRoot> getPages1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<APageTreeNodeRoot> list = new ArrayList<>(1);
-			list.add(new GFAPageTreeNodeRoot((COSDictionary)object.getDirectBase(), this.baseObject, "Pages"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfThreads> getThreads() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getThreads1_1();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfThreads> getThreads1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfThreads> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfThreads((COSArray)object.getDirectBase(), this.baseObject, "Threads"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -1125,6 +927,119 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		}
 	}
 
+	private List<AOutline> getOutlines() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getOutlines1_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AOutline> getOutlines1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AOutline> list = new ArrayList<>(1);
+			list.add(new GFAOutline((COSDictionary)object.getDirectBase(), this.baseObject, "Outlines"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfOutputIntents> getOutputIntents() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getOutputIntents1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfOutputIntents> getOutputIntents1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfOutputIntents> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfOutputIntents((COSArray)object.getDirectBase(), this.baseObject, "OutputIntents"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ACatalogNumberTreePageLabels> getPageLabels() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPageLabels1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ACatalogNumberTreePageLabels> getPageLabels1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ACatalogNumberTreePageLabels> list = new ArrayList<>(1);
+			list.add(new GFACatalogNumberTreePageLabels((COSDictionary)object.getDirectBase(), this.baseObject, "PageLabels"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<APageTreeNodeRoot> getPages() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPages1_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<APageTreeNodeRoot> getPages1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<APageTreeNodeRoot> list = new ArrayList<>(1);
+			list.add(new GFAPageTreeNodeRoot((COSDictionary)object.getDirectBase(), this.baseObject, "Pages"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<APermissions> getPerms() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
@@ -1145,6 +1060,167 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<APermissions> list = new ArrayList<>(1);
 			list.add(new GFAPermissions((COSDictionary)object.getDirectBase(), this.baseObject, "Perms"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<APagePiece> getPieceInfo() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPieceInfo1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<APagePiece> getPieceInfo1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<APagePiece> list = new ArrayList<>(1);
+			list.add(new GFAPagePiece((COSDictionary)object.getDirectBase(), this.baseObject, "PieceInfo"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfRequirements> getRequirements() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRequirements1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfRequirements> getRequirements1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Requirements"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfRequirements> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfRequirements((COSArray)object.getDirectBase(), this.baseObject, "Requirements"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AWebCaptureInfo> getSpiderInfo() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getSpiderInfo1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AWebCaptureInfo> getSpiderInfo1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpiderInfo"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AWebCaptureInfo> list = new ArrayList<>(1);
+			list.add(new GFAWebCaptureInfo((COSDictionary)object.getDirectBase(), this.baseObject, "SpiderInfo"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AStructTreeRoot> getStructTreeRoot() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getStructTreeRoot1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AStructTreeRoot> getStructTreeRoot1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructTreeRoot"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AStructTreeRoot> list = new ArrayList<>(1);
+			list.add(new GFAStructTreeRoot((COSDictionary)object.getDirectBase(), this.baseObject, "StructTreeRoot"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfThreads> getThreads() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getThreads1_1();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfThreads> getThreads1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfThreads> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfThreads((COSArray)object.getDirectBase(), this.baseObject, "Threads"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AURI> getURI() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getURI1_1();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AURI> getURI1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AURI> list = new ArrayList<>(1);
+			list.add(new GFAURI((COSDictionary)object.getDirectBase(), this.baseObject, "URI"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -1178,245 +1254,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return Collections.emptyList();
 	}
 
-	private List<ACollection> getCollection() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getCollection1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ACollection> getCollection1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Collection"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ACollection> list = new ArrayList<>(1);
-			list.add(new GFACollection((COSDictionary)object.getDirectBase(), this.baseObject, "Collection"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AMarkInfo> getMarkInfo() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getMarkInfo1_4();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AMarkInfo> getMarkInfo1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MarkInfo"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AMarkInfo> list = new ArrayList<>(1);
-			list.add(new GFAMarkInfo((COSDictionary)object.getDirectBase(), this.baseObject, "MarkInfo"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AStructTreeRoot> getStructTreeRoot() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getStructTreeRoot1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AStructTreeRoot> getStructTreeRoot1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructTreeRoot"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AStructTreeRoot> list = new ArrayList<>(1);
-			list.add(new GFAStructTreeRoot((COSDictionary)object.getDirectBase(), this.baseObject, "StructTreeRoot"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+	@Override
+	public Boolean getcontainsAA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AA"));
 	}
 
 	@Override
-	public Boolean getcontainsPerms() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Perms"));
-	}
-
-	@Override
-	public Boolean getPermsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Perms"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsDPartRoot() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DPartRoot"));
-	}
-
-	@Override
-	public Boolean getDPartRootHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRoot"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPages() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Pages"));
-	}
-
-	@Override
-	public Boolean getisPagesIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getPagesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsViewerPreferences() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ViewerPreferences"));
-	}
-
-	@Override
-	public Boolean getViewerPreferencesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewerPreferences"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsSpiderInfo() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SpiderInfo"));
-	}
-
-	@Override
-	public Boolean getSpiderInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpiderInfo"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsMetadata() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
-	}
-
-	@Override
-	public Boolean getisMetadataIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getMetadataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsURI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("URI"));
-	}
-
-	@Override
-	public Boolean getURIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsNeedsRendering() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NeedsRendering"));
-	}
-
-	@Override
-	public Boolean getNeedsRenderingHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NeedsRendering"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsPageLabels() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PageLabels"));
-	}
-
-	@Override
-	public Boolean getPageLabelsHasTypeNumberTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsVersion() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
-	}
-
-	@Override
-	public Boolean getVersionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getVersionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
-		if (object == null || object.empty()) {
-			return getVersionNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getVersionNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAcroForm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AcroForm"));
-	}
-
-	@Override
-	public Boolean getAcroFormHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AcroForm"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsOpenAction() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OpenAction"));
-	}
-
-	@Override
-	public Boolean getOpenActionHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getOpenActionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+	public Boolean getAAHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1441,53 +1286,220 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
-	public Boolean getcontainsAA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AA"));
+	public Boolean getcontainsAcroForm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AcroForm"));
 	}
 
 	@Override
-	public Boolean getAAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+	public Boolean getAcroFormHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AcroForm"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsPageMode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PageMode"));
+	public Boolean getcontainsCollection() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Collection"));
 	}
 
 	@Override
-	public Boolean getPageModeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageMode"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getCollectionHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Collection"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public String getPageModeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageMode"));
-		if (object == null || object.empty()) {
-			return getPageModeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+	public Boolean getcontainsDPartRoot() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DPartRoot"));
 	}
 
-	public String getPageModeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "UseNone";
-		}
-		return null;
+	@Override
+	public Boolean getDPartRootHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRoot"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsDSS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DSS"));
+	}
+
+	@Override
+	public Boolean getDSSHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSS"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsDests() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Dests"));
+	}
+
+	@Override
+	public Boolean getisDestsIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getDestsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsExtensions() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Extensions"));
+	}
+
+	@Override
+	public Boolean getisExtensionsIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getExtensionsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsLang() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
+	}
+
+	@Override
+	public Boolean getLangHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsLegal() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Legal"));
+	}
+
+	@Override
+	public Boolean getLegalHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Legal"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsMarkInfo() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MarkInfo"));
+	}
+
+	@Override
+	public Boolean getMarkInfoHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MarkInfo"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsMetadata() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
+	}
+
+	@Override
+	public Boolean getisMetadataIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getMetadataHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsNames() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Names"));
+	}
+
+	@Override
+	public Boolean getNamesHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsNeedsRendering() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NeedsRendering"));
+	}
+
+	@Override
+	public Boolean getNeedsRenderingHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NeedsRendering"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsOCProperties() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OCProperties"));
+	}
+
+	@Override
+	public Boolean getOCPropertiesHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCProperties"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsOpenAction() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OpenAction"));
+	}
+
+	@Override
+	public Boolean getOpenActionHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getOpenActionHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsOutlines() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Outlines"));
+	}
+
+	@Override
+	public Boolean getisOutlinesIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getOutlinesHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsOutputIntents() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OutputIntents"));
+	}
+
+	@Override
+	public Boolean getOutputIntentsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsPageLabels() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PageLabels"));
+	}
+
+	@Override
+	public Boolean getPageLabelsHasTypeNumberTree() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -1530,102 +1542,102 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
-	public Boolean getcontainsOCProperties() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OCProperties"));
+	public Boolean getcontainsPageMode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PageMode"));
 	}
 
 	@Override
-	public Boolean getOCPropertiesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCProperties"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getPageModeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageMode"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getcontainsLegal() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Legal"));
+	public String getPageModeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageMode"));
+		if (object == null || object.empty()) {
+			return getPageModeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getPageModeNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "UseNone";
+		}
+		return null;
 	}
 
 	@Override
-	public Boolean getLegalHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Legal"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getcontainsPages() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Pages"));
 	}
 
 	@Override
-	public Boolean getcontainsOutlines() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Outlines"));
-	}
-
-	@Override
-	public Boolean getisOutlinesIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
+	public Boolean getisPagesIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
-	public Boolean getOutlinesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
+	public Boolean getPagesHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsCollection() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Collection"));
+	public Boolean getcontainsPerms() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Perms"));
 	}
 
 	@Override
-	public Boolean getCollectionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Collection"));
+	public Boolean getPermsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Perms"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsDests() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Dests"));
+	public Boolean getcontainsPieceInfo() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PieceInfo"));
 	}
 
 	@Override
-	public Boolean getisDestsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getDestsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+	public Boolean getPieceInfoHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsOutputIntents() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OutputIntents"));
+	public Boolean getcontainsRequirements() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Requirements"));
 	}
 
 	@Override
-	public Boolean getOutputIntentsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+	public Boolean getRequirementsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Requirements"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Boolean getcontainsMarkInfo() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MarkInfo"));
+	public Boolean getcontainsSpiderInfo() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SpiderInfo"));
 	}
 
 	@Override
-	public Boolean getMarkInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MarkInfo"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsNames() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Names"));
-	}
-
-	@Override
-	public Boolean getNamesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
+	public Boolean getSpiderInfoHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpiderInfo"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1638,6 +1650,23 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public Boolean getStructTreeRootHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructTreeRoot"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsThreads() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Threads"));
+	}
+
+	@Override
+	public Boolean getisThreadsIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getThreadsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -1668,81 +1697,52 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
-	public Boolean getcontainsPieceInfo() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PieceInfo"));
+	public Boolean getcontainsURI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("URI"));
 	}
 
 	@Override
-	public Boolean getPieceInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+	public Boolean getURIHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsExtensions() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Extensions"));
+	public Boolean getcontainsVersion() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
 	}
 
 	@Override
-	public Boolean getisExtensionsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
-		return object != null && object.get() != null && object.get().isIndirect();
+	public Boolean getVersionHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getExtensionsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
+	public String getVersionNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		if (object == null || object.empty()) {
+			return getVersionNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getVersionNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsViewerPreferences() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ViewerPreferences"));
+	}
+
+	@Override
+	public Boolean getViewerPreferencesHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewerPreferences"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsDSS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DSS"));
-	}
-
-	@Override
-	public Boolean getDSSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSS"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsLang() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
-	}
-
-	@Override
-	public Boolean getLangHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsRequirements() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Requirements"));
-	}
-
-	@Override
-	public Boolean getRequirementsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Requirements"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsThreads() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Threads"));
-	}
-
-	@Override
-	public Boolean getisThreadsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getThreadsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

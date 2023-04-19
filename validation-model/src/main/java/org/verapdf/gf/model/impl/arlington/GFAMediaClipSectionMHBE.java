@@ -134,17 +134,6 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 	}
 
 	@Override
-	public Boolean getcontainsE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
-	}
-
-	@Override
-	public Boolean getEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsB() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("B"));
 	}
@@ -152,6 +141,17 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 	@Override
 	public Boolean getBHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
+	}
+
+	@Override
+	public Boolean getEHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

@@ -60,16 +60,16 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 			}
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getEntryDictionary1_3(object.getDirectBase(), keyName);
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getEntryStream1_3(object.getDirectBase(), keyName);
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getEntryStream1_3(object.getDirectBase(), keyName);
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getEntryDictionary1_3(object.getDirectBase(), keyName);
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
@@ -108,6 +108,39 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 				return new GFALabColorSpace(base, this.baseObject, keyName);
 			case "Indexed":
 				return new GFAIndexedColorSpace(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryStream1_3(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("Type"))) {
+			return new GFAPatternType1(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("ShadingType"))) {
+			return getEntryStreamShadingType1_3(base, keyName);
+		}
+		return new GFAStream(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryStreamShadingType1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 4:
+				return new GFAShadingType4(base, this.baseObject, keyName);
+			case 5:
+				return new GFAShadingType5(base, this.baseObject, keyName);
+			case 6:
+				return new GFAShadingType6(base, this.baseObject, keyName);
+			case 7:
+				return new GFAShadingType7(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -255,39 +288,6 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryStream1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("Type"))) {
-			return new GFAPatternType1(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("ShadingType"))) {
-			return getEntryStreamShadingType1_3(base, keyName);
-		}
-		return new GFAStream(base, this.baseObject, keyName);
-	}
-
-	private org.verapdf.model.baselayer.Object getEntryStreamShadingType1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 4:
-				return new GFAShadingType4(base, this.baseObject, keyName);
-			case 5:
-				return new GFAShadingType5(base, this.baseObject, keyName);
-			case 6:
-				return new GFAShadingType6(base, this.baseObject, keyName);
-			case 7:
-				return new GFAShadingType7(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
 	@Override
 	public Boolean getisIndirect() {
 		COSObject object = new COSObject(this.baseObject);
@@ -301,15 +301,15 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 	}
 
 	@Override
-	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getHasTypeStream() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getHasTypeDictionary() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

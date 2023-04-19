@@ -90,28 +90,6 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
-	}
-
-	@Override
-	public Boolean getHHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getcontainsCT() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CT"));
 	}
@@ -120,42 +98,6 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	public Boolean getCTHasTypeStringAscii() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CT"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
-	}
-
-	@Override
-	public Boolean getcontainsL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
-	}
-
-	@Override
-	public Boolean getLHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getLIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		if (object == null || object.empty()) {
-			return getLIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getLIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 1L;
-		}
-		return null;
 	}
 
 	@Override
@@ -195,14 +137,50 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	@Override
-	public Boolean getcontainsURL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
+	public Boolean getcontainsH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
 	}
 
 	@Override
-	public Boolean getURLHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+	public Boolean getHHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
+	}
+
+	@Override
+	public Boolean getLHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getLIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		if (object == null || object.empty()) {
+			return getLIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getLIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 1L;
+		}
+		return null;
 	}
 
 	@Override
@@ -226,6 +204,28 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	public Boolean getPHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsURL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
+	}
+
+	@Override
+	public Boolean getURLHasTypeStringAscii() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
 }

@@ -64,6 +64,43 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	}
 
 	@Override
+	public Boolean getentry0HasTypeNumber() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry0HasTypeDictionary() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Double getentry0NumberValue() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		if (object == null || object.empty()) {
+			return getentry0NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry0NumberDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getentry1HasTypeName() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -92,20 +129,11 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	}
 
 	@Override
-	public Boolean getentry3HasTypeNull() {
-		if (this.baseObject.size() <= 3) {
+	public Boolean getentry2HasTypeNumber() {
+		if (this.baseObject.size() <= 2) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getentry3HasTypeNumber() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = this.baseObject.at(2);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -119,20 +147,20 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
+	public Boolean getentry3HasTypeNumber() {
+		if (this.baseObject.size() <= 3) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = this.baseObject.at(3);
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
-	public Boolean getentry4HasTypeNull() {
-		if (this.baseObject.size() <= 4) {
+	public Boolean getentry3HasTypeNull() {
+		if (this.baseObject.size() <= 3) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(4);
+		COSObject object = this.baseObject.at(3);
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
@@ -146,40 +174,12 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	}
 
 	@Override
-	public Boolean getentry0HasTypeDictionary() {
-		if (this.baseObject.size() <= 0) {
+	public Boolean getentry4HasTypeNull() {
+		if (this.baseObject.size() <= 4) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry0NumberValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry0NumberDefaultValue() {
-		return null;
+		COSObject object = this.baseObject.at(4);
+		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 }

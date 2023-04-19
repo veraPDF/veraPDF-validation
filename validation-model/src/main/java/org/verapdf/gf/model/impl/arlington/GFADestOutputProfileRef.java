@@ -26,35 +26,13 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "URLs":
-				return getURLs();
 			case "ColorantTable":
 				return getColorantTable();
+			case "URLs":
+				return getURLs();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfURLs> getURLs() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getURLs2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfURLs> getURLs2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLs"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfURLs> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfURLs((COSArray)object.getDirectBase(), this.baseObject, "URLs"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AArrayOfNamesGeneral> getColorantTable() {
@@ -79,26 +57,26 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsProfileName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ProfileName"));
+	private List<AArrayOfURLs> getURLs() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getURLs2_0();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getProfileNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileName"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsProfileCS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ProfileCS"));
-	}
-
-	@Override
-	public Boolean getProfileCSHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileCS"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+	private List<AArrayOfURLs> getURLs2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLs"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfURLs> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfURLs((COSArray)object.getDirectBase(), this.baseObject, "URLs"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -124,6 +102,39 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	}
 
 	@Override
+	public Boolean getcontainsICCVersion() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ICCVersion"));
+	}
+
+	@Override
+	public Boolean getICCVersionHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ICCVersion"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsProfileCS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ProfileCS"));
+	}
+
+	@Override
+	public Boolean getProfileCSHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileCS"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsProfileName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ProfileName"));
+	}
+
+	@Override
+	public Boolean getProfileNameHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileName"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
 	public Boolean getcontainsURLs() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URLs"));
 	}
@@ -141,17 +152,6 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 			return (long) object.size();
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsICCVersion() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ICCVersion"));
-	}
-
-	@Override
-	public Boolean getICCVersionHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ICCVersion"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

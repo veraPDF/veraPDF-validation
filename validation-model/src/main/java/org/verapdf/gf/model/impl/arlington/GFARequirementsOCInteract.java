@@ -160,23 +160,6 @@ public class GFARequirementsOCInteract extends GFAObject implements ARequirement
 	}
 
 	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -201,6 +184,23 @@ public class GFARequirementsOCInteract extends GFAObject implements ARequirement
 
 	public String getTypeNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

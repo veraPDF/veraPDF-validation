@@ -26,40 +26,13 @@ public class GFASeparation extends GFAObject implements ASeparation {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Pages":
-				return getPages();
 			case "ColorSpace":
 				return getColorSpace();
+			case "Pages":
+				return getPages();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfPages> getPages() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPages1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfPages> getPages1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfPages> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfPages((COSArray)object.getDirectBase(), this.baseObject, "Pages"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace() {
@@ -114,6 +87,33 @@ public class GFASeparation extends GFAObject implements ASeparation {
 		}
 	}
 
+	private List<AArrayOfPages> getPages() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPages1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfPages> getPages1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfPages> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfPages((COSArray)object.getDirectBase(), this.baseObject, "Pages"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	@Override
 	public Boolean getcontainsColorSpace() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
@@ -131,15 +131,15 @@ public class GFASeparation extends GFAObject implements ASeparation {
 	}
 
 	@Override
-	public Boolean getDeviceColorantHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getDeviceColorantHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getDeviceColorantHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override

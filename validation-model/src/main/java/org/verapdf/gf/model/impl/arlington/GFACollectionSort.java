@@ -99,6 +99,23 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 	}
 
 	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -123,23 +140,6 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

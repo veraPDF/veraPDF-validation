@@ -24,6 +24,48 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	}
 
 	@Override
+	public Boolean getcontainsAO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AO"));
+	}
+
+	@Override
+	public Boolean getAOHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AO"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getAOIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AO"));
+		if (object == null || object.empty()) {
+			return getAOIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getAOIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return 0L;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsPlayCount() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PlayCount"));
+	}
+
+	@Override
+	public Boolean getPlayCountHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PlayCount"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
 	public Boolean getcontainsSpeed() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Speed"));
 	}
@@ -51,64 +93,6 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 1D;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAO() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AO"));
-	}
-
-	@Override
-	public Boolean getAOHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AO"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getAOIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AO"));
-		if (object == null || object.empty()) {
-			return getAOIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getAOIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return 0L;
 		}
 		return null;
 	}
@@ -146,14 +130,30 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	}
 
 	@Override
-	public Boolean getcontainsPlayCount() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PlayCount"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getPlayCountHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PlayCount"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 }

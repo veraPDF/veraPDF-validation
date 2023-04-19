@@ -76,6 +76,39 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	@Override
+	public Boolean getcontainsE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
+	}
+
+	@Override
+	public Boolean getisEIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getEHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getEIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		if (object == null || object.empty()) {
+			return getEIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getEIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsH() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
 	}
@@ -90,6 +123,105 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	public Boolean getHHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
+	}
+
+	@Override
+	public Boolean getisLIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getLHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getLIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		if (object == null || object.empty()) {
+			return getLIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getLIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsLinearized() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Linearized"));
+	}
+
+	@Override
+	public Boolean getisLinearizedIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getLinearizedHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getLinearizedNumberValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
+		if (object == null || object.empty()) {
+			return getLinearizedNumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getLinearizedNumberDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsN() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
+	}
+
+	@Override
+	public Boolean getisNIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getNHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getNIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		if (object == null || object.empty()) {
+			return getNIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getNIntegerDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -169,105 +301,6 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	@Override
-	public Boolean getcontainsN() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
-	}
-
-	@Override
-	public Boolean getisNIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getNHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getNIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		if (object == null || object.empty()) {
-			return getNIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getNIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsLinearized() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Linearized"));
-	}
-
-	@Override
-	public Boolean getisLinearizedIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getLinearizedHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getLinearizedNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
-		if (object == null || object.empty()) {
-			return getLinearizedNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getLinearizedNumberDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
-	}
-
-	@Override
-	public Boolean getisEIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getEHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getEIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
-		if (object == null || object.empty()) {
-			return getEIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getEIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsT() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
@@ -297,39 +330,6 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	public Long getTIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
-	}
-
-	@Override
-	public Boolean getisLIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getLHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getLIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		if (object == null || object.empty()) {
-			return getLIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getLIntegerDefaultValue() {
 		return null;
 	}
 

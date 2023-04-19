@@ -119,15 +119,6 @@ public class GFAArrayOf_4AnnotBorderCharacteristics extends GFAObject implements
 	}
 
 	@Override
-	public Boolean getentry3HasTypeArray() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
 	public Boolean getentry2HasTypeNumber() {
 		if (this.baseObject.size() <= 2) {
 			return null;
@@ -153,6 +144,15 @@ public class GFAArrayOf_4AnnotBorderCharacteristics extends GFAObject implements
 
 	public Double getentry2NumberDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeArray() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

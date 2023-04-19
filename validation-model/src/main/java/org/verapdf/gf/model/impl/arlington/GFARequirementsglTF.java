@@ -61,6 +61,37 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	}
 
 	@Override
+	public Boolean getcontainsPenalty() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
+	}
+
+	@Override
+	public Boolean getPenaltyHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getPenaltyIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
+		if (object == null || object.empty()) {
+			return getPenaltyIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getPenaltyIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return 100L;
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsRH() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
 	}
@@ -105,33 +136,6 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	}
 
 	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getVNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null || object.empty()) {
-			return getVNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getVNameDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -159,33 +163,29 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	}
 
 	@Override
-	public Boolean getcontainsPenalty() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
 	@Override
-	public Boolean getPenaltyHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getVHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Long getPenaltyIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
+	public String getVNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		if (object == null || object.empty()) {
-			return getPenaltyIntegerDefaultValue();
+			return getVNameDefaultValue();
 		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
 
-	public Long getPenaltyIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return 100L;
-		}
+	public String getVNameDefaultValue() {
 		return null;
 	}
 

@@ -57,14 +57,14 @@ public class GFADataEntry extends GFAObject implements ADataEntry {
 			list.add(new GFA_UniversalArray((COSArray)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<A_UniversalDictionary> list = new ArrayList<>(1);
-			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
 			list.add(new GFAStream((COSStream)object.getDirectBase(), this.parentObject, keyName));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<A_UniversalDictionary> list = new ArrayList<>(1);
+			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -77,39 +77,9 @@ public class GFADataEntry extends GFAObject implements ADataEntry {
 	}
 
 	@Override
-	public Boolean getHasTypeName() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getHasTypeArray() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getHasTypeBoolean() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getHasTypeInteger() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getHasTypeNumber() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -119,9 +89,39 @@ public class GFADataEntry extends GFAObject implements ADataEntry {
 	}
 
 	@Override
+	public Boolean getHasTypeBoolean() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getHasTypeNumber() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public Boolean getHasTypeString() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getHasTypeInteger() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getHasTypeName() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getHasTypeDictionary() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

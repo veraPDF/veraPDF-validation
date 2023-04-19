@@ -53,7 +53,7 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	private List<AHalftoneType5Entry> getEntries1_2() {
 		List<AHalftoneType5Entry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
-			if ("Type".equals(key.getValue()) || "HalftoneType".equals(key.getValue()) || "Default".equals(key.getValue()) || "HalftoneName".equals(key.getValue())) {
+			if ("Default".equals(key.getValue()) || "HalftoneName".equals(key.getValue()) || "HalftoneType".equals(key.getValue()) || "Type".equals(key.getValue())) {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
@@ -83,17 +83,17 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AHalftoneType1> list = new ArrayList<>(1);
-			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.baseObject, "Default"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getDefaultStream1_2(object.getDirectBase(), "Default");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AHalftoneType1> list = new ArrayList<>(1);
+			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.baseObject, "Default"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -123,17 +123,17 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AHalftoneType1> list = new ArrayList<>(1);
-			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.baseObject, "Default"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getDefaultStream1_3(object.getDirectBase(), "Default");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AHalftoneType1> list = new ArrayList<>(1);
+			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.baseObject, "Default"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -172,15 +172,15 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	}
 
 	@Override
-	public Boolean getDefaultHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getDefaultHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getDefaultHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -192,33 +192,6 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	public Boolean getHalftoneNameHasTypeStringByte() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneName"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
 	}
 
 	@Override
@@ -245,6 +218,33 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	}
 
 	public Long getHalftoneTypeIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

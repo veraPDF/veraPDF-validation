@@ -24,24 +24,6 @@ public class GFAArrayOfPaths extends GFAObject implements AArrayOfPaths {
 	}
 
 	@Override
-	public Boolean getentry4HasTypeNumber() {
-		if (this.baseObject.size() <= 4) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(4);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getentry3HasTypeNumber() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getentry0HasTypeNumber() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -60,20 +42,38 @@ public class GFAArrayOfPaths extends GFAObject implements AArrayOfPaths {
 	}
 
 	@Override
-	public Boolean getentry5HasTypeNumber() {
-		if (this.baseObject.size() <= 5) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(5);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getentry2HasTypeNumber() {
 		if (this.baseObject.size() <= 2) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry3HasTypeNumber() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry4HasTypeNumber() {
+		if (this.baseObject.size() <= 4) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(4);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry5HasTypeNumber() {
+		if (this.baseObject.size() <= 5) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(5);
 		return object != null && object.getType().isNumber();
 	}
 

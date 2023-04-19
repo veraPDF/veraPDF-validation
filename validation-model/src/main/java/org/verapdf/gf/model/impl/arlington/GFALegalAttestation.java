@@ -24,21 +24,21 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
-	public Boolean getcontainsMovieActions() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MovieActions"));
+	public Boolean getcontainsAlternateImages() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AlternateImages"));
 	}
 
 	@Override
-	public Boolean getMovieActionsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MovieActions"));
+	public Boolean getAlternateImagesHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternateImages"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Long getMovieActionsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MovieActions"));
+	public Long getAlternateImagesIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternateImages"));
 		if (object == null || object.empty()) {
-			return getMovieActionsIntegerDefaultValue();
+			return getAlternateImagesIntegerDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
@@ -46,142 +46,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 		return null;
 	}
 
-	public Long getMovieActionsIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsExternalRefXobjects() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ExternalRefXobjects"));
-	}
-
-	@Override
-	public Boolean getExternalRefXobjectsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalRefXobjects"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getExternalRefXobjectsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalRefXobjects"));
-		if (object == null || object.empty()) {
-			return getExternalRefXobjectsIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getExternalRefXobjectsIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsDevDepGS_BG() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DevDepGS_BG"));
-	}
-
-	@Override
-	public Boolean getDevDepGS_BGHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_BG"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getDevDepGS_BGIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_BG"));
-		if (object == null || object.empty()) {
-			return getDevDepGS_BGIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getDevDepGS_BGIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsGoToRemoteActions() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("GoToRemoteActions"));
-	}
-
-	@Override
-	public Boolean getGoToRemoteActionsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GoToRemoteActions"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getGoToRemoteActionsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GoToRemoteActions"));
-		if (object == null || object.empty()) {
-			return getGoToRemoteActionsIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getGoToRemoteActionsIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsExternalOPIdicts() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ExternalOPIdicts"));
-	}
-
-	@Override
-	public Boolean getExternalOPIdictsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalOPIdicts"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getExternalOPIdictsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalOPIdicts"));
-		if (object == null || object.empty()) {
-			return getExternalOPIdictsIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getExternalOPIdictsIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsDevDepGS_TR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DevDepGS_TR"));
-	}
-
-	@Override
-	public Boolean getDevDepGS_TRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_TR"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getDevDepGS_TRIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_TR"));
-		if (object == null || object.empty()) {
-			return getDevDepGS_TRIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getDevDepGS_TRIntegerDefaultValue() {
+	public Long getAlternateImagesIntegerDefaultValue() {
 		return null;
 	}
 
@@ -213,21 +78,32 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
-	public Boolean getcontainsURIActions() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("URIActions"));
+	public Boolean getcontainsAttestation() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Attestation"));
 	}
 
 	@Override
-	public Boolean getURIActionsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URIActions"));
+	public Boolean getAttestationHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Attestation"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsDevDepGS_BG() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DevDepGS_BG"));
+	}
+
+	@Override
+	public Boolean getDevDepGS_BGHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_BG"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Long getURIActionsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URIActions"));
+	public Long getDevDepGS_BGIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_BG"));
 		if (object == null || object.empty()) {
-			return getURIActionsIntegerDefaultValue();
+			return getDevDepGS_BGIntegerDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
@@ -235,99 +111,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 		return null;
 	}
 
-	public Long getURIActionsIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsHideAnnotationActions() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("HideAnnotationActions"));
-	}
-
-	@Override
-	public Boolean getHideAnnotationActionsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HideAnnotationActions"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getHideAnnotationActionsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HideAnnotationActions"));
-		if (object == null || object.empty()) {
-			return getHideAnnotationActionsIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getHideAnnotationActionsIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsOptionalContent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OptionalContent"));
-	}
-
-	@Override
-	public Boolean getOptionalContentHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OptionalContent"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsJavaScriptActions() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("JavaScriptActions"));
-	}
-
-	@Override
-	public Boolean getJavaScriptActionsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScriptActions"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getJavaScriptActionsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScriptActions"));
-		if (object == null || object.empty()) {
-			return getJavaScriptActionsIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getJavaScriptActionsIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsExternalStreams() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ExternalStreams"));
-	}
-
-	@Override
-	public Boolean getExternalStreamsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalStreams"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getExternalStreamsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalStreams"));
-		if (object == null || object.empty()) {
-			return getExternalStreamsIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getExternalStreamsIntegerDefaultValue() {
+	public Long getDevDepGS_BGIntegerDefaultValue() {
 		return null;
 	}
 
@@ -359,33 +143,6 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
-	public Boolean getcontainsDevDepGS_UCR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DevDepGS_UCR"));
-	}
-
-	@Override
-	public Boolean getDevDepGS_UCRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_UCR"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getDevDepGS_UCRIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_UCR"));
-		if (object == null || object.empty()) {
-			return getDevDepGS_UCRIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getDevDepGS_UCRIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsDevDepGS_HT() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DevDepGS_HT"));
 	}
@@ -410,17 +167,6 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 
 	public Long getDevDepGS_HTIntegerDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAttestation() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Attestation"));
-	}
-
-	@Override
-	public Boolean getAttestationHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Attestation"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -451,21 +197,21 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
-	public Boolean getcontainsTrueTypeFonts() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TrueTypeFonts"));
+	public Boolean getcontainsDevDepGS_TR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DevDepGS_TR"));
 	}
 
 	@Override
-	public Boolean getTrueTypeFontsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrueTypeFonts"));
+	public Boolean getDevDepGS_TRHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_TR"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Long getTrueTypeFontsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrueTypeFonts"));
+	public Long getDevDepGS_TRIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_TR"));
 		if (object == null || object.empty()) {
-			return getTrueTypeFontsIntegerDefaultValue();
+			return getDevDepGS_TRIntegerDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
@@ -473,26 +219,26 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 		return null;
 	}
 
-	public Long getTrueTypeFontsIntegerDefaultValue() {
+	public Long getDevDepGS_TRIntegerDefaultValue() {
 		return null;
 	}
 
 	@Override
-	public Boolean getcontainsAlternateImages() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AlternateImages"));
+	public Boolean getcontainsDevDepGS_UCR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DevDepGS_UCR"));
 	}
 
 	@Override
-	public Boolean getAlternateImagesHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternateImages"));
+	public Boolean getDevDepGS_UCRHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_UCR"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Long getAlternateImagesIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternateImages"));
+	public Long getDevDepGS_UCRIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_UCR"));
 		if (object == null || object.empty()) {
-			return getAlternateImagesIntegerDefaultValue();
+			return getDevDepGS_UCRIntegerDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
@@ -500,7 +246,223 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 		return null;
 	}
 
-	public Long getAlternateImagesIntegerDefaultValue() {
+	public Long getDevDepGS_UCRIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsExternalOPIdicts() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ExternalOPIdicts"));
+	}
+
+	@Override
+	public Boolean getExternalOPIdictsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalOPIdicts"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getExternalOPIdictsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalOPIdicts"));
+		if (object == null || object.empty()) {
+			return getExternalOPIdictsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getExternalOPIdictsIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsExternalRefXobjects() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ExternalRefXobjects"));
+	}
+
+	@Override
+	public Boolean getExternalRefXobjectsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalRefXobjects"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getExternalRefXobjectsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalRefXobjects"));
+		if (object == null || object.empty()) {
+			return getExternalRefXobjectsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getExternalRefXobjectsIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsExternalStreams() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ExternalStreams"));
+	}
+
+	@Override
+	public Boolean getExternalStreamsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalStreams"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getExternalStreamsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalStreams"));
+		if (object == null || object.empty()) {
+			return getExternalStreamsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getExternalStreamsIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsGoToRemoteActions() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("GoToRemoteActions"));
+	}
+
+	@Override
+	public Boolean getGoToRemoteActionsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GoToRemoteActions"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getGoToRemoteActionsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GoToRemoteActions"));
+		if (object == null || object.empty()) {
+			return getGoToRemoteActionsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getGoToRemoteActionsIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsHideAnnotationActions() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("HideAnnotationActions"));
+	}
+
+	@Override
+	public Boolean getHideAnnotationActionsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HideAnnotationActions"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getHideAnnotationActionsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HideAnnotationActions"));
+		if (object == null || object.empty()) {
+			return getHideAnnotationActionsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getHideAnnotationActionsIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsJavaScriptActions() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("JavaScriptActions"));
+	}
+
+	@Override
+	public Boolean getJavaScriptActionsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScriptActions"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getJavaScriptActionsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScriptActions"));
+		if (object == null || object.empty()) {
+			return getJavaScriptActionsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getJavaScriptActionsIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsLaunchActions() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("LaunchActions"));
+	}
+
+	@Override
+	public Boolean getLaunchActionsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LaunchActions"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getLaunchActionsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LaunchActions"));
+		if (object == null || object.empty()) {
+			return getLaunchActionsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getLaunchActionsIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsMovieActions() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MovieActions"));
+	}
+
+	@Override
+	public Boolean getMovieActionsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MovieActions"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getMovieActionsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MovieActions"));
+		if (object == null || object.empty()) {
+			return getMovieActionsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getMovieActionsIntegerDefaultValue() {
 		return null;
 	}
 
@@ -532,6 +494,17 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public Boolean getcontainsOptionalContent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OptionalContent"));
+	}
+
+	@Override
+	public Boolean getOptionalContentHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OptionalContent"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
 	public Boolean getcontainsSoundActions() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SoundActions"));
 	}
@@ -559,21 +532,21 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
-	public Boolean getcontainsLaunchActions() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("LaunchActions"));
+	public Boolean getcontainsTrueTypeFonts() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TrueTypeFonts"));
 	}
 
 	@Override
-	public Boolean getLaunchActionsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LaunchActions"));
+	public Boolean getTrueTypeFontsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrueTypeFonts"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Long getLaunchActionsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LaunchActions"));
+	public Long getTrueTypeFontsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrueTypeFonts"));
 		if (object == null || object.empty()) {
-			return getLaunchActionsIntegerDefaultValue();
+			return getTrueTypeFontsIntegerDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
@@ -581,7 +554,34 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 		return null;
 	}
 
-	public Long getLaunchActionsIntegerDefaultValue() {
+	public Long getTrueTypeFontsIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsURIActions() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("URIActions"));
+	}
+
+	@Override
+	public Boolean getURIActionsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URIActions"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getURIActionsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URIActions"));
+		if (object == null || object.empty()) {
+			return getURIActionsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getURIActionsIntegerDefaultValue() {
 		return null;
 	}
 

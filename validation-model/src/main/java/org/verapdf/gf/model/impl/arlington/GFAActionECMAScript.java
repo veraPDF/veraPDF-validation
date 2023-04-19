@@ -26,13 +26,40 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Next":
-				return getNext();
 			case "JS":
 				return getJS();
+			case "Next":
+				return getNext();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AStream> getJS() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getJS1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AStream> getJS1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "JS"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
@@ -330,31 +357,44 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 		}
 	}
 
-	private List<AStream> getJS() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getJS1_3();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsJS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("JS"));
 	}
 
-	private List<AStream> getJS1_3() {
+	@Override
+	public Boolean getisJSIndirect() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "JS"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getJSHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getJSHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsNext() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
+	}
+
+	@Override
+	public Boolean getNextHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getNextHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -382,46 +422,6 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 
 	public String getSNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsNext() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
-	}
-
-	@Override
-	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsJS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("JS"));
-	}
-
-	@Override
-	public Boolean getisJSIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getJSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getJSHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

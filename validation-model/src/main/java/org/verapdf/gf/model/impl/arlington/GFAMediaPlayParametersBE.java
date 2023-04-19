@@ -59,6 +59,39 @@ public class GFAMediaPlayParametersBE extends GFAObject implements AMediaPlayPar
 	}
 
 	@Override
+	public Boolean getcontainsA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
+	}
+
+	@Override
+	public Boolean getAHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
+	}
+
+	@Override
+	public Boolean getCHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	}
+
+	@Override
+	public Boolean getDHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsF() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
@@ -124,39 +157,6 @@ public class GFAMediaPlayParametersBE extends GFAObject implements AMediaPlayPar
 				return 1.0D;
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
-	}
-
-	@Override
-	public Boolean getAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
-	}
-
-	@Override
-	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
-	}
-
-	@Override
-	public Boolean getCHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override

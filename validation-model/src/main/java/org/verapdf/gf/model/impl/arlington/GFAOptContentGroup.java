@@ -26,13 +26,38 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Usage":
-				return getUsage();
 			case "Intent":
 				return getIntent();
+			case "Usage":
+				return getUsage();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfNamesGeneral> getIntent() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getIntent1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfNamesGeneral> getIntent1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNamesGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNamesGeneral((COSArray)object.getDirectBase(), this.baseObject, "Intent"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AOptContentUsage> getUsage() {
@@ -60,29 +85,32 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfNamesGeneral> getIntent() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getIntent1_5();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsIntent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Intent"));
 	}
 
-	private List<AArrayOfNamesGeneral> getIntent1_5() {
+	@Override
+	public Boolean getIntentHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNamesGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNamesGeneral((COSArray)object.getDirectBase(), this.baseObject, "Intent"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getIntentHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getcontainsName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
+	}
+
+	@Override
+	public Boolean getNameHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -113,17 +141,6 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	}
 
 	@Override
-	public Boolean getcontainsName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
-	}
-
-	@Override
-	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getcontainsUsage() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Usage"));
 	}
@@ -132,23 +149,6 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	public Boolean getUsageHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Usage"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsIntent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Intent"));
-	}
-
-	@Override
-	public Boolean getIntentHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getIntentHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

@@ -61,6 +61,15 @@ public class GFARelatedFilesArraySubArray extends GFAObject implements ARelatedF
 	}
 
 	@Override
+	public Boolean getentry0HasTypeString() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
 	public Boolean getisentry1Indirect() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -76,15 +85,6 @@ public class GFARelatedFilesArraySubArray extends GFAObject implements ARelatedF
 		}
 		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeString() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

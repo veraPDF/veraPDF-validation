@@ -79,14 +79,6 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 			list.add(new GFAArrayOfFunctions((COSArray)object.getDirectBase(), this.baseObject, "SpotFunction"));
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getSpotFunctionDictionary1_3(object.getDirectBase(), "SpotFunction");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getSpotFunctionStream1_3(object.getDirectBase(), "SpotFunction");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -95,26 +87,15 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getSpotFunctionDictionary1_3(object.getDirectBase(), "SpotFunction");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getSpotFunctionDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getSpotFunctionStream1_3(COSBase base, String keyName) {
@@ -131,6 +112,25 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 				return new GFAFunctionType0(base, this.baseObject, keyName);
 			case 4:
 				return new GFAFunctionType4(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getSpotFunctionDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -170,14 +170,6 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getTransferFunctionDictionary1_3(object.getDirectBase(), "TransferFunction");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getTransferFunctionStream1_3(object.getDirectBase(), "TransferFunction");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -186,26 +178,15 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getTransferFunctionDictionary1_3(object.getDirectBase(), "TransferFunction");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getTransferFunctionDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getTransferFunctionStream1_3(COSBase base, String keyName) {
@@ -227,31 +208,45 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		}
 	}
 
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
+	private org.verapdf.model.baselayer.Object getTransferFunctionDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
 		}
-		return null;
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
-	public String getTypeNameDefaultValue() {
-		return null;
+	@Override
+	public Boolean getcontainsAccurateScreens() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AccurateScreens"));
+	}
+
+	@Override
+	public Boolean getAccurateScreensHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AccurateScreens"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsAngle() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Angle"));
+	}
+
+	@Override
+	public Boolean getAngleHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Angle"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -282,70 +277,14 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
-	public Boolean getcontainsAngle() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Angle"));
+	public Boolean getcontainsHalftoneName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("HalftoneName"));
 	}
 
 	@Override
-	public Boolean getAngleHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Angle"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsTransferFunction() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TransferFunction"));
-	}
-
-	@Override
-	public Boolean getisTransferFunctionIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getTransferFunctionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getTransferFunctionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getTransferFunctionHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public String getTransferFunctionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		if (object == null || object.empty()) {
-			return getTransferFunctionNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTransferFunctionNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAccurateScreens() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AccurateScreens"));
-	}
-
-	@Override
-	public Boolean getAccurateScreensHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AccurateScreens"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	public Boolean getHalftoneNameHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneName"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -376,17 +315,6 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
-	public Boolean getcontainsHalftoneName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("HalftoneName"));
-	}
-
-	@Override
-	public Boolean getHalftoneNameHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneName"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getcontainsSpotFunction() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SpotFunction"));
 	}
@@ -398,27 +326,27 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
-	public Boolean getSpotFunctionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getSpotFunctionHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Boolean getSpotFunctionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getSpotFunctionHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getSpotFunctionHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getSpotFunctionHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -434,6 +362,78 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	public String getSpotFunctionNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsTransferFunction() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TransferFunction"));
+	}
+
+	@Override
+	public Boolean getisTransferFunctionIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getTransferFunctionHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getTransferFunctionHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getTransferFunctionHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public String getTransferFunctionNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		if (object == null || object.empty()) {
+			return getTransferFunctionNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTransferFunctionNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

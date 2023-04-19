@@ -28,14 +28,14 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 		switch (link) {
 			case "Bounds":
 				return getBounds();
-			case "Functions":
-				return getFunctions();
-			case "Range":
-				return getRange();
 			case "Domain":
 				return getDomain();
 			case "Encode":
 				return getEncode();
+			case "Functions":
+				return getFunctions();
+			case "Range":
+				return getRange();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -63,60 +63,6 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Bounds"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfFunctions> getFunctions() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFunctions1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfFunctions> getFunctions1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Functions"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFunctions> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFunctions((COSArray)object.getDirectBase(), this.baseObject, "Functions"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfNumbersGeneral> getRange() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getRange1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfNumbersGeneral> getRange1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Range"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -176,6 +122,60 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 		return Collections.emptyList();
 	}
 
+	private List<AArrayOfFunctions> getFunctions() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFunctions1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfFunctions> getFunctions1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Functions"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFunctions> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFunctions((COSArray)object.getDirectBase(), this.baseObject, "Functions"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfNumbersGeneral> getRange() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRange1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfNumbersGeneral> getRange1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Range"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	@Override
 	public Boolean getcontainsBounds() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Bounds"));
@@ -217,6 +217,26 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	@Override
+	public Boolean getcontainsEncode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Encode"));
+	}
+
+	@Override
+	public Boolean getEncodeHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Long getEncodeArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsFunctionType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FunctionType"));
 	}
@@ -244,19 +264,19 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	@Override
-	public Boolean getcontainsEncode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Encode"));
+	public Boolean getcontainsFunctions() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Functions"));
 	}
 
 	@Override
-	public Boolean getEncodeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+	public Boolean getFunctionsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Functions"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Long getEncodeArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+	public Long getFunctionsArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Functions"));
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -277,26 +297,6 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	@Override
 	public Long getRangeArraySize() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsFunctions() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Functions"));
-	}
-
-	@Override
-	public Boolean getFunctionsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Functions"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Long getFunctionsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Functions"));
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}

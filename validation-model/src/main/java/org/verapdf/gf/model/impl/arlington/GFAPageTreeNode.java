@@ -26,15 +26,45 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "Kids":
+				return getKids();
 			case "Parent":
 				return getParent();
 			case "Resources":
 				return getResources();
-			case "Kids":
-				return getKids();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfPageTreeNodeKids> getKids() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getKids1_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfPageTreeNodeKids> getKids1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfPageTreeNodeKids> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfPageTreeNodeKids((COSArray)object.getDirectBase(), this.baseObject, "Kids"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
@@ -107,34 +137,50 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfPageTreeNodeKids> getKids() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getKids1_0();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsCount() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Count"));
 	}
 
-	private List<AArrayOfPageTreeNodeKids> getKids1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
-		if (object == null) {
-			return Collections.emptyList();
+	@Override
+	public Boolean getCountHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getCountIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
+		if (object == null || object.empty()) {
+			return getCountIntegerDefaultValue();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfPageTreeNodeKids> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfPageTreeNodeKids((COSArray)object.getDirectBase(), this.baseObject, "Kids"));
-			return Collections.unmodifiableList(list);
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
-		return Collections.emptyList();
+		return null;
+	}
+
+	public Long getCountIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsCropBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CropBox"));
+	}
+
+	@Override
+	public Boolean getCropBoxHasTypeRectangle() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -146,6 +192,53 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	public Boolean getKidsHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsMediaBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MediaBox"));
+	}
+
+	@Override
+	public Boolean getMediaBoxHasTypeRectangle() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MediaBox"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean getcontainsParent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
+	}
+
+	@Override
+	public Boolean getisParentIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getParentHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsResources() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
+	}
+
+	@Override
+	public Boolean getResourcesHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -193,82 +286,6 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	@Override
-	public Boolean getcontainsMediaBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MediaBox"));
-	}
-
-	@Override
-	public Boolean getMediaBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MediaBox"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public Boolean getcontainsCropBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CropBox"));
-	}
-
-	@Override
-	public Boolean getCropBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public Boolean getcontainsCount() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Count"));
-	}
-
-	@Override
-	public Boolean getCountHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getCountIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
-		if (object == null || object.empty()) {
-			return getCountIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getCountIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsResources() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
-	}
-
-	@Override
-	public Boolean getResourcesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -293,23 +310,6 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsParent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
-	}
-
-	@Override
-	public Boolean getisParentIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

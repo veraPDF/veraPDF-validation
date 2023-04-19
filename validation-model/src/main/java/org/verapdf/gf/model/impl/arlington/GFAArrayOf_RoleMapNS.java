@@ -56,6 +56,15 @@ public class GFAArrayOf_RoleMapNS extends GFAObject implements AArrayOf_RoleMapN
 	}
 
 	@Override
+	public Boolean getentry0HasTypeName() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
 	public Boolean getisentry1Indirect() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -71,15 +80,6 @@ public class GFAArrayOf_RoleMapNS extends GFAObject implements AArrayOf_RoleMapN
 		}
 		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeName() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 }

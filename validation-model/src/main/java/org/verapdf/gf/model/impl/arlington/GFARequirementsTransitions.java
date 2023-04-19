@@ -85,30 +85,51 @@ public class GFARequirementsTransitions extends GFAObject implements ARequiremen
 	}
 
 	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	public Boolean getcontainsPenalty() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
 	}
 
 	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getPenaltyHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+	public Long getPenaltyIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
 		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
+			return getPenaltyIntegerDefaultValue();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
 
-	public String getTypeNameDefaultValue() {
+	public Long getPenaltyIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return 100L;
+		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsRH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
+	}
+
+	@Override
+	public Boolean getRHHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getRHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -139,20 +160,30 @@ public class GFARequirementsTransitions extends GFAObject implements ARequiremen
 	}
 
 	@Override
-	public Boolean getcontainsRH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getRHHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getRHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -170,37 +201,6 @@ public class GFARequirementsTransitions extends GFAObject implements ARequiremen
 	public Boolean getVHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPenalty() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
-	}
-
-	@Override
-	public Boolean getPenaltyHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getPenaltyIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
-		if (object == null || object.empty()) {
-			return getPenaltyIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPenaltyIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return 100L;
-		}
-		return null;
 	}
 
 }

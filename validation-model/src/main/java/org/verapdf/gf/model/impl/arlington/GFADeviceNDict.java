@@ -113,6 +113,17 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	@Override
+	public Boolean getcontainsColorants() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Colorants"));
+	}
+
+	@Override
+	public Boolean getColorantsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colorants"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsMixingHints() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("MixingHints"));
 	}
@@ -120,6 +131,17 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	@Override
 	public Boolean getMixingHintsHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MixingHints"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsProcess() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Process"));
+	}
+
+	@Override
+	public Boolean getProcessHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Process"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -154,28 +176,6 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 				return "DeviceN";
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsColorants() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Colorants"));
-	}
-
-	@Override
-	public Boolean getColorantsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colorants"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsProcess() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Process"));
-	}
-
-	@Override
-	public Boolean getProcessHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Process"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

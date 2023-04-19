@@ -54,17 +54,17 @@ public class GFAHalftoneType5Entry extends GFAObject implements AHalftoneType5En
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_2() {
 		COSObject object = new COSObject(this.baseObject);
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AHalftoneType1> list = new ArrayList<>(1);
-			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getEntryStream1_2(object.getDirectBase(), keyName);
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AHalftoneType1> list = new ArrayList<>(1);
+			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -91,17 +91,17 @@ public class GFAHalftoneType5Entry extends GFAObject implements AHalftoneType5En
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_3() {
 		COSObject object = new COSObject(this.baseObject);
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AHalftoneType1> list = new ArrayList<>(1);
-			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getEntryStream1_3(object.getDirectBase(), keyName);
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AHalftoneType1> list = new ArrayList<>(1);
+			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -135,15 +135,15 @@ public class GFAHalftoneType5Entry extends GFAObject implements AHalftoneType5En
 	}
 
 	@Override
-	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getHasTypeStream() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getHasTypeDictionary() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

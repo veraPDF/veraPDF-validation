@@ -24,17 +24,6 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
-	public Boolean getcontainsAvgWidth() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AvgWidth"));
-	}
-
-	@Override
-	public Boolean getAvgWidthHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AvgWidth"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getcontainsAscent() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Ascent"));
 	}
@@ -46,30 +35,25 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
-	public Boolean getcontainsFlags() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Flags"));
+	public Boolean getcontainsAvgWidth() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AvgWidth"));
 	}
 
 	@Override
-	public Boolean getFlagsHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getAvgWidthHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AvgWidth"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override
-	public Long getFlagsBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
-		if (object == null || object.empty()) {
-			return getFlagsBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+	public Boolean getcontainsCapHeight() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CapHeight"));
 	}
 
-	public Long getFlagsBitmaskDefaultValue() {
-		return null;
+	@Override
+	public Boolean getCapHeightHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CapHeight"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -81,61 +65,6 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	public Boolean getCharSetHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CharSet"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsStemV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("StemV"));
-	}
-
-	@Override
-	public Boolean getStemVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemV"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsFontName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontName"));
-	}
-
-	@Override
-	public Boolean getFontNameHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontName"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getcontainsMissingWidth() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MissingWidth"));
-	}
-
-	@Override
-	public Boolean getMissingWidthHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MissingWidth"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsStemH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("StemH"));
-	}
-
-	@Override
-	public Boolean getStemHHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemH"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsXHeight() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("XHeight"));
-	}
-
-	@Override
-	public Boolean getXHeightHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XHeight"));
-		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -166,6 +95,74 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public Boolean getcontainsFlags() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Flags"));
+	}
+
+	@Override
+	public Boolean getFlagsHasTypeBitmask() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFlagsBitmaskValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
+		if (object == null || object.empty()) {
+			return getFlagsBitmaskDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getFlagsBitmaskDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsFontBBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontBBox"));
+	}
+
+	@Override
+	public Boolean getFontBBoxHasTypeRectangle() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontBBox"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean getcontainsFontName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontName"));
+	}
+
+	@Override
+	public Boolean getFontNameHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontName"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getcontainsItalicAngle() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ItalicAngle"));
+	}
+
+	@Override
+	public Boolean getItalicAngleHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ItalicAngle"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public Boolean getcontainsLeading() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Leading"));
 	}
@@ -173,6 +170,50 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	@Override
 	public Boolean getLeadingHasTypeNumber() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Leading"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsMaxWidth() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MaxWidth"));
+	}
+
+	@Override
+	public Boolean getMaxWidthHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MaxWidth"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsMissingWidth() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MissingWidth"));
+	}
+
+	@Override
+	public Boolean getMissingWidthHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MissingWidth"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsStemH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("StemH"));
+	}
+
+	@Override
+	public Boolean getStemHHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemH"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsStemV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("StemV"));
+	}
+
+	@Override
+	public Boolean getStemVHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemV"));
 		return object != null && object.getType().isNumber();
 	}
 
@@ -204,54 +245,13 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
-	public Boolean getcontainsItalicAngle() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ItalicAngle"));
+	public Boolean getcontainsXHeight() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("XHeight"));
 	}
 
 	@Override
-	public Boolean getItalicAngleHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ItalicAngle"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsMaxWidth() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MaxWidth"));
-	}
-
-	@Override
-	public Boolean getMaxWidthHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MaxWidth"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsFontBBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontBBox"));
-	}
-
-	@Override
-	public Boolean getFontBBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontBBox"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public Boolean getcontainsCapHeight() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CapHeight"));
-	}
-
-	@Override
-	public Boolean getCapHeightHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CapHeight"));
+	public Boolean getXHeightHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XHeight"));
 		return object != null && object.getType().isNumber();
 	}
 

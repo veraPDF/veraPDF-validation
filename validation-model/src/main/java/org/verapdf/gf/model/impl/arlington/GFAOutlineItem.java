@@ -28,22 +28,22 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		switch (link) {
 			case "A":
 				return getA();
-			case "Dest":
-				return getDest();
-			case "Last":
-				return getLast();
-			case "SE":
-				return getSE();
 			case "C":
 				return getC();
-			case "Prev":
-				return getPrev();
-			case "Parent":
-				return getParent();
-			case "Next":
-				return getNext();
+			case "Dest":
+				return getDest();
 			case "First":
 				return getFirst();
+			case "Last":
+				return getLast();
+			case "Next":
+				return getNext();
+			case "Parent":
+				return getParent();
+			case "Prev":
+				return getPrev();
+			case "SE":
+				return getSE();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -428,6 +428,32 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		}
 	}
 
+	private List<AArrayOf_3RGBNumbers> getC() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getC1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_3RGBNumbers> getC1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "C"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<org.verapdf.model.baselayer.Object> getDest() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
@@ -476,6 +502,36 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		}
 	}
 
+	private List<AOutlineItem> getFirst() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFirst1_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AOutlineItem> getFirst1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AOutlineItem> list = new ArrayList<>(1);
+			list.add(new GFAOutlineItem((COSDictionary)object.getDirectBase(), this.baseObject, "First"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<AOutlineItem> getLast() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
@@ -506,60 +562,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return Collections.emptyList();
 	}
 
-	private List<AStructElem> getSE() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getSE1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AStructElem> getSE1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AStructElem> list = new ArrayList<>(1);
-			list.add(new GFAStructElem((COSDictionary)object.getDirectBase(), this.baseObject, "SE"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOf_3RGBNumbers> getC() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getC1_4();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOf_3RGBNumbers> getC1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "C"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AOutlineItem> getPrev() {
+	private List<AOutlineItem> getNext() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
@@ -570,20 +573,20 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getPrev1_0();
+				return getNext1_0();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AOutlineItem> getPrev1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+	private List<AOutlineItem> getNext1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AOutlineItem> list = new ArrayList<>(1);
-			list.add(new GFAOutlineItem((COSDictionary)object.getDirectBase(), this.baseObject, "Prev"));
+			list.add(new GFAOutlineItem((COSDictionary)object.getDirectBase(), this.baseObject, "Next"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -629,7 +632,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return new GFAOutline(base, this.baseObject, keyName);
 	}
 
-	private List<AOutlineItem> getNext() {
+	private List<AOutlineItem> getPrev() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
@@ -640,70 +643,50 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getNext1_0();
+				return getPrev1_0();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AOutlineItem> getNext1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+	private List<AOutlineItem> getPrev1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AOutlineItem> list = new ArrayList<>(1);
-			list.add(new GFAOutlineItem((COSDictionary)object.getDirectBase(), this.baseObject, "Next"));
+			list.add(new GFAOutlineItem((COSDictionary)object.getDirectBase(), this.baseObject, "Prev"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
-	private List<AOutlineItem> getFirst() {
+	private List<AStructElem> getSE() {
 		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getFirst1_0();
+				return getSE1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AOutlineItem> getFirst1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+	private List<AStructElem> getSE1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AOutlineItem> list = new ArrayList<>(1);
-			list.add(new GFAOutlineItem((COSDictionary)object.getDirectBase(), this.baseObject, "First"));
+			List<AStructElem> list = new ArrayList<>(1);
+			list.add(new GFAStructElem((COSDictionary)object.getDirectBase(), this.baseObject, "SE"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	@Override
-	public Boolean getcontainsParent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
-	}
-
-	@Override
-	public Boolean getisParentIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -718,25 +701,30 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
-	public Boolean getcontainsTitle() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Title"));
+	public Boolean getcontainsC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
 	@Override
-	public Boolean getTitleHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getCHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsCount() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Count"));
+	}
+
+	@Override
+	public Boolean getCountHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getcontainsDest() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dest"));
-	}
-
-	@Override
-	public Boolean getDestHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -752,99 +740,9 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
-	public Boolean getcontainsFirst() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("First"));
-	}
-
-	@Override
-	public Boolean getisFirstIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getFirstHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsNext() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
-	}
-
-	@Override
-	public Boolean getisNextIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPrev() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Prev"));
-	}
-
-	@Override
-	public Boolean getisPrevIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getPrevHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCount() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Count"));
-	}
-
-	@Override
-	public Boolean getCountHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsLast() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Last"));
-	}
-
-	@Override
-	public Boolean getisLastIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getLastHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsSE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SE"));
-	}
-
-	@Override
-	public Boolean getisSEIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getSEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getDestHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -883,14 +781,116 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
-	public Boolean getcontainsC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
+	public Boolean getcontainsFirst() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("First"));
 	}
 
 	@Override
-	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getisFirstIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getFirstHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsLast() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Last"));
+	}
+
+	@Override
+	public Boolean getisLastIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getLastHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsNext() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
+	}
+
+	@Override
+	public Boolean getisNextIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getNextHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsParent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
+	}
+
+	@Override
+	public Boolean getisParentIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getParentHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPrev() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Prev"));
+	}
+
+	@Override
+	public Boolean getisPrevIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getPrevHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsSE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SE"));
+	}
+
+	@Override
+	public Boolean getisSEIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getSEHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsTitle() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Title"));
+	}
+
+	@Override
+	public Boolean getTitleHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

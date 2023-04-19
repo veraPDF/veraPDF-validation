@@ -26,13 +26,33 @@ public class GFAVisibilityExpressionArray extends GFAObject implements AVisibili
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "entry1":
-				return getentry1();
 			case "Entries":
 				return getEntries();
+			case "entry1":
+				return getentry1();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AVisibilityExpressionArrayEntry> getEntries() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getEntries1_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AVisibilityExpressionArrayEntry> getEntries1_6() {
+		List<AVisibilityExpressionArrayEntry> list = new LinkedList<>();
+		for (int i = 2; i < baseObject.size(); i++) {
+			COSObject object = baseObject.at(i);
+			list.add(new GFAVisibilityExpressionArrayEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+		}
+		return Collections.unmodifiableList(list);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry1() {
@@ -62,26 +82,6 @@ public class GFAVisibilityExpressionArray extends GFAObject implements AVisibili
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	private List<AVisibilityExpressionArrayEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getEntries1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AVisibilityExpressionArrayEntry> getEntries1_6() {
-		List<AVisibilityExpressionArrayEntry> list = new LinkedList<>();
-		for (int i = 2; i < baseObject.size(); i++) {
-			COSObject object = baseObject.at(i);
-			list.add(new GFAVisibilityExpressionArrayEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
-		}
-		return Collections.unmodifiableList(list);
 	}
 
 	@Override

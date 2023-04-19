@@ -57,6 +57,52 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 	}
 
 	@Override
+	public Boolean getcontainsA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
+	}
+
+	@Override
+	public Boolean getAHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getAHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getAHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getAHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getAHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
+	}
+
+	@Override
+	public Boolean getCHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -81,52 +127,6 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
-	}
-
-	@Override
-	public Boolean getCHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
-	}
-
-	@Override
-	public Boolean getAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getAHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getAHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getAHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType().isNumber();
 	}
 
 }

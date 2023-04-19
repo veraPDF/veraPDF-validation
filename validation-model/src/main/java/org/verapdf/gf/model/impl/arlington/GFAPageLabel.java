@@ -24,6 +24,44 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 	}
 
 	@Override
+	public Boolean getcontainsP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
+	}
+
+	@Override
+	public Boolean getPHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsSt() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("St"));
 	}
@@ -60,33 +98,6 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 	}
 
 	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -111,17 +122,6 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
-	}
-
-	@Override
-	public Boolean getPHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

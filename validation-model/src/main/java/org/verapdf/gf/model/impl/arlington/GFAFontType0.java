@@ -26,18 +26,18 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "ToUnicode":
-				return getToUnicode();
-			case "Encoding":
-				return getEncoding();
 			case "DescendantFonts":
 				return getDescendantFonts();
+			case "Encoding":
+				return getEncoding();
+			case "ToUnicode":
+				return getToUnicode();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<AStream> getToUnicode() {
+	private List<AArrayOfDescendantFonts> getDescendantFonts() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -46,20 +46,20 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getToUnicode1_2();
+				return getDescendantFonts1_2();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AStream> getToUnicode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+	private List<AArrayOfDescendantFonts> getDescendantFonts1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DescendantFonts"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDescendantFonts> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDescendantFonts((COSArray)object.getDirectBase(), this.baseObject, "DescendantFonts"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -93,7 +93,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfDescendantFonts> getDescendantFonts() {
+	private List<AStream> getToUnicode() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -102,23 +102,84 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getDescendantFonts1_2();
+				return getToUnicode1_2();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfDescendantFonts> getDescendantFonts1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DescendantFonts"));
+	private List<AStream> getToUnicode1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDescendantFonts> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDescendantFonts((COSArray)object.getDirectBase(), this.baseObject, "DescendantFonts"));
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsBaseFont() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BaseFont"));
+	}
+
+	@Override
+	public Boolean getBaseFontHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getcontainsDescendantFonts() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DescendantFonts"));
+	}
+
+	@Override
+	public Boolean getDescendantFontsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DescendantFonts"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsEncoding() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Encoding"));
+	}
+
+	@Override
+	public Boolean getisEncodingIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getEncodingHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getEncodingHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getEncodingNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		if (object == null || object.empty()) {
+			return getEncodingNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getEncodingNameDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -163,67 +224,6 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	public Boolean getToUnicodeHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsEncoding() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Encoding"));
-	}
-
-	@Override
-	public Boolean getisEncodingIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getEncodingHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getEncodingHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public String getEncodingNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
-		if (object == null || object.empty()) {
-			return getEncodingNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getEncodingNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsDescendantFonts() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DescendantFonts"));
-	}
-
-	@Override
-	public Boolean getDescendantFontsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DescendantFonts"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsBaseFont() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BaseFont"));
-	}
-
-	@Override
-	public Boolean getBaseFontHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override

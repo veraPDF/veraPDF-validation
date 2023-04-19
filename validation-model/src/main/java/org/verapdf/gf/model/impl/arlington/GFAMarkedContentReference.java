@@ -115,14 +115,14 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 			list.add(new GFA_UniversalArray((COSArray)object.getDirectBase(), this.baseObject, "StmOwn"));
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<A_UniversalDictionary> list = new ArrayList<>(1);
-			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.baseObject, "StmOwn"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
 			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "StmOwn"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<A_UniversalDictionary> list = new ArrayList<>(1);
+			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.baseObject, "StmOwn"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -137,6 +137,40 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	public Boolean getMCIDHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MCID"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsPg() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Pg"));
+	}
+
+	@Override
+	public Boolean getisPgIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getPgHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsStm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Stm"));
+	}
+
+	@Override
+	public Boolean getisStmIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Stm"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getStmHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Stm"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -157,15 +191,15 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	@Override
-	public Boolean getStmOwnHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getStmOwnHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getStmOwnHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -193,40 +227,6 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsStm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Stm"));
-	}
-
-	@Override
-	public Boolean getisStmIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Stm"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getStmHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Stm"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsPg() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Pg"));
-	}
-
-	@Override
-	public Boolean getisPgIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getPgHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

@@ -59,6 +59,33 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 	}
 
 	@Override
+	public Boolean getcontainsAction() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Action"));
+	}
+
+	@Override
+	public Boolean getActionHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getActionNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
+		if (object == null || object.empty()) {
+			return getActionNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getActionNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsFields() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Fields"));
 	}
@@ -120,33 +147,6 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 	}
 
 	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAction() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Action"));
-	}
-
-	@Override
-	public Boolean getActionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getActionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
-		if (object == null || object.empty()) {
-			return getActionNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getActionNameDefaultValue() {
 		return null;
 	}
 

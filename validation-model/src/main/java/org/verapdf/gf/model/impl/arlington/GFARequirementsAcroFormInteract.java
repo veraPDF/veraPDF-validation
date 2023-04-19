@@ -26,35 +26,13 @@ public class GFARequirementsAcroFormInteract extends GFAObject implements ARequi
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "V":
-				return getV();
 			case "RH":
 				return getRH();
+			case "V":
+				return getV();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AExtensions> getV() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getV2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AExtensions> getV2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AExtensions> list = new ArrayList<>(1);
-			list.add(new GFAExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH() {
@@ -79,6 +57,28 @@ public class GFARequirementsAcroFormInteract extends GFAObject implements ARequi
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ARequirementsHandler> list = new ArrayList<>(1);
 			list.add(new GFARequirementsHandler((COSDictionary)object.getDirectBase(), this.baseObject, "RH"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AExtensions> getV() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getV2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AExtensions> getV2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AExtensions> list = new ArrayList<>(1);
+			list.add(new GFAExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -160,23 +160,6 @@ public class GFARequirementsAcroFormInteract extends GFAObject implements ARequi
 	}
 
 	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -201,6 +184,23 @@ public class GFARequirementsAcroFormInteract extends GFAObject implements ARequi
 
 	public String getTypeNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

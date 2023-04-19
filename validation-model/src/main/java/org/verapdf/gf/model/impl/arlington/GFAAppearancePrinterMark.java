@@ -26,46 +26,15 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "R":
-				return getR();
 			case "D":
 				return getD();
 			case "N":
 				return getN();
+			case "R":
+				return getR();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getR() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getR1_4();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getR1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
-			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "R"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "R"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD() {
@@ -86,14 +55,14 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
-			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
 			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "D"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -117,63 +86,48 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
-			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "N"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
 			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "N"));
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "N"));
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
+	private List<org.verapdf.model.baselayer.Object> getR() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getR1_4();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getisRIndirect() {
+	private List<org.verapdf.model.baselayer.Object> getR1_4() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getRHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsN() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
-	}
-
-	@Override
-	public Boolean getisNIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getNHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getNHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "R"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "R"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -188,15 +142,61 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	@Override
+	public Boolean getDHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getDHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+	public Boolean getcontainsN() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
+	}
+
+	@Override
+	public Boolean getisNIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getNHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getNHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
+	}
+
+	@Override
+	public Boolean getisRIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getRHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getRHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

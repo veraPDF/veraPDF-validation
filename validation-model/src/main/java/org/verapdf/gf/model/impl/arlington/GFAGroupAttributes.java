@@ -87,47 +87,20 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	}
 
 	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsCS() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CS"));
-	}
-
-	@Override
-	public Boolean getCSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getCSHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getCSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -166,6 +139,33 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	public Boolean getKHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
+		return null;
 	}
 
 	@Override

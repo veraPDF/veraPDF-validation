@@ -26,40 +26,15 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "OS":
-				return getOS();
 			case "H":
 				return getH();
 			case "L":
 				return getL();
+			case "OS":
+				return getOS();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfStringsByte> getOS() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getOS1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfStringsByte> getOS1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfStringsByte> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStringsByte((COSArray)object.getDirectBase(), this.baseObject, "OS"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AArrayOfSoftwareVersions> getH() {
@@ -112,15 +87,29 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsLI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("LI"));
+	private List<AArrayOfStringsByte> getOS() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getOS1_5();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getLIHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LI"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	private List<AArrayOfStringsByte> getOS1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfStringsByte> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfStringsByte((COSArray)object.getDirectBase(), this.baseObject, "OS"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -143,6 +132,39 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	public Boolean getHIHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HI"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
+	}
+
+	@Override
+	public Boolean getLHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsLI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("LI"));
+	}
+
+	@Override
+	public Boolean getLIHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LI"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsOS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OS"));
+	}
+
+	@Override
+	public Boolean getOSHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -170,28 +192,6 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
-	}
-
-	@Override
-	public Boolean getLHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsOS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OS"));
-	}
-
-	@Override
-	public Boolean getOSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override

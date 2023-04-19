@@ -61,17 +61,6 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 	}
 
 	@Override
-	public Boolean getcontainsU() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
-	}
-
-	@Override
-	public Boolean getUHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
-	}
-
-	@Override
 	public Boolean getcontainsC() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
@@ -89,6 +78,17 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 			return (long) object.size();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsU() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
+	}
+
+	@Override
+	public Boolean getUHasTypeStringAscii() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
 }

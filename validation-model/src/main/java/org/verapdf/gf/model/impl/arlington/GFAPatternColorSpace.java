@@ -142,43 +142,6 @@ public class GFAPatternColorSpace extends GFAObject implements APatternColorSpac
 	}
 
 	@Override
-	public Boolean getentry1HasTypeName() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeArray() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public String getentry1NameValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getentry1NameDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeName() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -203,6 +166,43 @@ public class GFAPatternColorSpace extends GFAObject implements APatternColorSpac
 	}
 
 	public String getentry0NameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeArray() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeName() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getentry1NameValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1NameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getentry1NameDefaultValue() {
 		return null;
 	}
 

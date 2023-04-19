@@ -24,17 +24,6 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 	}
 
 	@Override
-	public Boolean getcontainsSubtype() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
-	}
-
-	@Override
-	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getcontainsPrintState() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PrintState"));
 	}
@@ -59,6 +48,17 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 
 	public String getPrintStateNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsSubtype() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
+	}
+
+	@Override
+	public Boolean getSubtypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 }

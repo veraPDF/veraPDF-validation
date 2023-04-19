@@ -26,89 +26,17 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "XFA":
-				return getXFA();
-			case "Fields":
-				return getFields();
 			case "CO":
 				return getCO();
 			case "DR":
 				return getDR();
+			case "Fields":
+				return getFields();
+			case "XFA":
+				return getXFA();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getXFA() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-				return getXFA1_5();
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getXFA1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getXFA1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "XFA"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getXFA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfXFA> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfXFA((COSArray)object.getDirectBase(), this.baseObject, "XFA"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "XFA"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfFields> getFields() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFields1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfFields> getFields1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFields> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFields((COSArray)object.getDirectBase(), this.baseObject, "Fields"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AArrayOfFields> getCO() {
@@ -166,6 +94,111 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return Collections.emptyList();
 	}
 
+	private List<AArrayOfFields> getFields() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFields1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfFields> getFields1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFields> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFields((COSArray)object.getDirectBase(), this.baseObject, "Fields"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getXFA() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+				return getXFA1_5();
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getXFA1_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getXFA1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "XFA"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getXFA1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfXFA> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfXFA((COSArray)object.getDirectBase(), this.baseObject, "XFA"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "XFA"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsCO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CO"));
+	}
+
+	@Override
+	public Boolean getCOHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsDA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
+	}
+
+	@Override
+	public Boolean getDAHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsDR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DR"));
+	}
+
+	@Override
+	public Boolean getDRHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DR"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
 	@Override
 	public Boolean getcontainsFields() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Fields"));
@@ -175,6 +208,44 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	public Boolean getFieldsHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsNeedAppearances() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NeedAppearances"));
+	}
+
+	@Override
+	public Boolean getNeedAppearancesHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NeedAppearances"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsQ() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Q"));
+	}
+
+	@Override
+	public Boolean getQHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Q"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getQIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Q"));
+		if (object == null || object.empty()) {
+			return getQIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getQIntegerDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -214,55 +285,6 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	@Override
-	public Boolean getcontainsQ() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Q"));
-	}
-
-	@Override
-	public Boolean getQHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Q"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getQIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Q"));
-		if (object == null || object.empty()) {
-			return getQIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getQIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsDR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DR"));
-	}
-
-	@Override
-	public Boolean getDRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DR"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCO() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CO"));
-	}
-
-	@Override
-	public Boolean getCOHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
 	public Boolean getcontainsXFA() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("XFA"));
 	}
@@ -283,28 +305,6 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	public Boolean getXFAHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsNeedAppearances() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NeedAppearances"));
-	}
-
-	@Override
-	public Boolean getNeedAppearancesHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NeedAppearances"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsDA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
-	}
-
-	@Override
-	public Boolean getDAHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

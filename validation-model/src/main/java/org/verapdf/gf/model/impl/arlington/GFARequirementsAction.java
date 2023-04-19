@@ -85,6 +85,37 @@ public class GFARequirementsAction extends GFAObject implements ARequirementsAct
 	}
 
 	@Override
+	public Boolean getcontainsPenalty() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
+	}
+
+	@Override
+	public Boolean getPenaltyHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getPenaltyIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
+		if (object == null || object.empty()) {
+			return getPenaltyIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getPenaltyIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return 100L;
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsRH() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
 	}
@@ -99,33 +130,6 @@ public class GFARequirementsAction extends GFAObject implements ARequirementsAct
 	public Boolean getRHHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
 	}
 
 	@Override
@@ -156,6 +160,33 @@ public class GFARequirementsAction extends GFAObject implements ARequirementsAct
 	}
 
 	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsV() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
@@ -170,37 +201,6 @@ public class GFARequirementsAction extends GFAObject implements ARequirementsAct
 	public Boolean getVHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPenalty() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
-	}
-
-	@Override
-	public Boolean getPenaltyHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getPenaltyIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
-		if (object == null || object.empty()) {
-			return getPenaltyIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPenaltyIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return 100L;
-		}
-		return null;
 	}
 
 }

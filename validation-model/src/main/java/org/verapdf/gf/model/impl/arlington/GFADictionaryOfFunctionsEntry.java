@@ -49,14 +49,6 @@ public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADiction
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_6() {
 		COSObject object = new COSObject(this.baseObject);
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getEntryDictionary1_6(object.getDirectBase(), keyName);
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getEntryStream1_6(object.getDirectBase(), keyName);
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -65,26 +57,15 @@ public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADiction
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getEntryDictionary1_6(object.getDirectBase(), keyName);
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getEntryDictionary1_6(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryStream1_6(COSBase base, String keyName) {
@@ -106,6 +87,25 @@ public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADiction
 		}
 	}
 
+	private org.verapdf.model.baselayer.Object getEntryDictionary1_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
 	@Override
 	public Boolean getisIndirect() {
 		COSObject object = new COSObject(this.baseObject);
@@ -113,15 +113,15 @@ public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADiction
 	}
 
 	@Override
-	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getHasTypeStream() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getHasTypeDictionary() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

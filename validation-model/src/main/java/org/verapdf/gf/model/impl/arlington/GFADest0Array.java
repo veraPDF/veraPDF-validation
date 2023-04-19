@@ -64,21 +64,21 @@ public class GFADest0Array extends GFAObject implements ADest0Array {
 	}
 
 	@Override
-	public Boolean getentry0HasTypeDictionary() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeNumber() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry0HasTypeDictionary() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

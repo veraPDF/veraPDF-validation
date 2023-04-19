@@ -26,66 +26,43 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "LPTS":
-				return getLPTS();
-			case "PDU":
-				return getPDU();
+			case "Bounds":
+				return getBounds();
 			case "DCS":
 				return getDCS();
 			case "GCS":
 				return getGCS();
-			case "Bounds":
-				return getBounds();
-			case "PCSM":
-				return getPCSM();
 			case "GPTS":
 				return getGPTS();
+			case "LPTS":
+				return getLPTS();
+			case "PCSM":
+				return getPCSM();
+			case "PDU":
+				return getPDU();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<AArrayOfNumbersGeneral> getLPTS() {
+	private List<AArrayOfNumbersGeneral> getBounds() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getLPTS1_7();
+				return getBounds1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfNumbersGeneral> getLPTS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LPTS"));
+	private List<AArrayOfNumbersGeneral> getBounds1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Bounds"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "LPTS"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOf3PDUNames> getPDU() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPDU1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOf3PDUNames> getPDU1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PDU"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf3PDUNames> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf3PDUNames((COSArray)object.getDirectBase(), this.baseObject, "PDU"));
+			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Bounds"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -181,24 +158,47 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		}
 	}
 
-	private List<AArrayOfNumbersGeneral> getBounds() {
+	private List<AArrayOfNumbersGeneral> getGPTS() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBounds1_7();
+				return getGPTS1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfNumbersGeneral> getBounds1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Bounds"));
+	private List<AArrayOfNumbersGeneral> getGPTS1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GPTS"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Bounds"));
+			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "GPTS"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfNumbersGeneral> getLPTS() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getLPTS1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfNumbersGeneral> getLPTS1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LPTS"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "LPTS"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -226,27 +226,82 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfNumbersGeneral> getGPTS() {
+	private List<AArrayOf3PDUNames> getPDU() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getGPTS1_7();
+				return getPDU1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfNumbersGeneral> getGPTS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GPTS"));
+	private List<AArrayOf3PDUNames> getPDU1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PDU"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "GPTS"));
+			List<AArrayOf3PDUNames> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf3PDUNames((COSArray)object.getDirectBase(), this.baseObject, "PDU"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsBounds() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Bounds"));
+	}
+
+	@Override
+	public Boolean getBoundsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Bounds"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsDCS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DCS"));
+	}
+
+	@Override
+	public Boolean getDCSHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DCS"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsGCS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("GCS"));
+	}
+
+	@Override
+	public Boolean getGCSHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GCS"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsGPTS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("GPTS"));
+	}
+
+	@Override
+	public Boolean getGPTSHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GPTS"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsLPTS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("LPTS"));
+	}
+
+	@Override
+	public Boolean getLPTSHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LPTS"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -261,33 +316,6 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsPDU() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PDU"));
 	}
@@ -296,17 +324,6 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	public Boolean getPDUHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PDU"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsDCS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DCS"));
-	}
-
-	@Override
-	public Boolean getDCSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DCS"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -337,47 +354,30 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	@Override
-	public Boolean getcontainsLPTS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("LPTS"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getLPTSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LPTS"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getcontainsBounds() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Bounds"));
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
 	}
 
-	@Override
-	public Boolean getBoundsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Bounds"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsGCS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("GCS"));
-	}
-
-	@Override
-	public Boolean getGCSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GCS"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsGPTS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("GPTS"));
-	}
-
-	@Override
-	public Boolean getGPTSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GPTS"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 }

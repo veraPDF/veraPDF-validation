@@ -26,52 +26,12 @@ public class GFADestDict extends GFAObject implements ADestDict {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "SD":
-				return getSD();
 			case "D":
 				return getD();
+			case "SD":
+				return getSD();
 			default:
 				return super.getLinkedObjects(link);
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getSD() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getSD2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getSD2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			org.verapdf.model.baselayer.Object result = getSDArray2_0(object.getDirectBase(), "SD");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getSDArray2_0(COSBase base, String keyName) {
-		switch (base.size()) {
-			case 5:
-				return new GFADestXYZStructArray(base, this.baseObject, keyName);
-			case 2:
-				return new GFADest0StructArray(base, this.baseObject, keyName);
-			case 3:
-				return new GFADest1StructArray(base, this.baseObject, keyName);
-			case 6:
-				return new GFADest4StructArray(base, this.baseObject, keyName);
-			default:
-				return null;
 		}
 	}
 
@@ -122,15 +82,44 @@ public class GFADestDict extends GFAObject implements ADestDict {
 		}
 	}
 
-	@Override
-	public Boolean getcontainsSD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SD"));
+	private List<org.verapdf.model.baselayer.Object> getSD() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getSD2_0();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getSDHasTypeArray() {
+	private List<org.verapdf.model.baselayer.Object> getSD2_0() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			org.verapdf.model.baselayer.Object result = getSDArray2_0(object.getDirectBase(), "SD");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getSDArray2_0(COSBase base, String keyName) {
+		switch (base.size()) {
+			case 5:
+				return new GFADestXYZStructArray(base, this.baseObject, keyName);
+			case 2:
+				return new GFADest0StructArray(base, this.baseObject, keyName);
+			case 3:
+				return new GFADest1StructArray(base, this.baseObject, keyName);
+			case 6:
+				return new GFADest4StructArray(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	@Override
@@ -141,6 +130,17 @@ public class GFADestDict extends GFAObject implements ADestDict {
 	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsSD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SD"));
+	}
+
+	@Override
+	public Boolean getSDHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

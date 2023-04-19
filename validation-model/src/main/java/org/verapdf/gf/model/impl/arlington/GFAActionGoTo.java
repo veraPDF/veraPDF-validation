@@ -26,54 +26,14 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "SD":
-				return getSD();
 			case "D":
 				return getD();
 			case "Next":
 				return getNext();
+			case "SD":
+				return getSD();
 			default:
 				return super.getLinkedObjects(link);
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getSD() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getSD2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getSD2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			org.verapdf.model.baselayer.Object result = getSDArray2_0(object.getDirectBase(), "SD");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getSDArray2_0(COSBase base, String keyName) {
-		switch (base.size()) {
-			case 5:
-				return new GFADestXYZStructArray(base, this.baseObject, keyName);
-			case 2:
-				return new GFADest0StructArray(base, this.baseObject, keyName);
-			case 3:
-				return new GFADest1StructArray(base, this.baseObject, keyName);
-			case 6:
-				return new GFADest4StructArray(base, this.baseObject, keyName);
-			default:
-				return null;
 		}
 	}
 
@@ -485,15 +445,49 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 		}
 	}
 
-	@Override
-	public Boolean getcontainsD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	private List<org.verapdf.model.baselayer.Object> getSD() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getSD2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getSD2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			org.verapdf.model.baselayer.Object result = getSDArray2_0(object.getDirectBase(), "SD");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getSDArray2_0(COSBase base, String keyName) {
+		switch (base.size()) {
+			case 5:
+				return new GFADestXYZStructArray(base, this.baseObject, keyName);
+			case 2:
+				return new GFADest0StructArray(base, this.baseObject, keyName);
+			case 3:
+				return new GFADest1StructArray(base, this.baseObject, keyName);
+			case 6:
+				return new GFADest4StructArray(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	@Override
-	public Boolean getDHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
 	@Override
@@ -509,30 +503,9 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	}
 
 	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+	public Boolean getDHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
 	}
 
 	@Override
@@ -550,17 +523,6 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsSD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SD"));
-	}
-
-	@Override
-	public Boolean getSDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -587,6 +549,44 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	}
 
 	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsSD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SD"));
+	}
+
+	@Override
+	public Boolean getSDHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

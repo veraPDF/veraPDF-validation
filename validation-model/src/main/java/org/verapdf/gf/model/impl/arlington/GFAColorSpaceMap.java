@@ -26,86 +26,16 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "DefaultRGB":
-				return getDefaultRGB();
 			case "Entries":
 				return getEntries();
 			case "DefaultCMYK":
 				return getDefaultCMYK();
 			case "DefaultGray":
 				return getDefaultGray();
+			case "DefaultRGB":
+				return getDefaultRGB();
 			default:
 				return super.getLinkedObjects(link);
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getDefaultRGB() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-				return getDefaultRGB1_1();
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDefaultRGB1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getDefaultRGB1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<ACalRGBColorSpace> list = new ArrayList<>(1);
-			list.add(new GFACalRGBColorSpace((COSArray)object.getDirectBase(), this.baseObject, "DefaultRGB"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getDefaultRGB1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			org.verapdf.model.baselayer.Object result = getDefaultRGBArray1_3(object.getDirectBase(), "DefaultRGB");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getDefaultRGBArray1_3(COSBase base, String keyName) {
-		if (base.size() <= 0) {
-			return null;
-		}
-		COSObject subtype = base.at(0);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "ICCBased":
-				return new GFAICCBasedColorSpace(base, this.baseObject, keyName);
-			case "CalRGB":
-				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
-			case "DeviceN":
-				return new GFADeviceNColorSpace(base, this.baseObject, keyName);
-			default:
-				return null;
 		}
 	}
 
@@ -152,7 +82,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	private List<AColorSpaceMapEntry> getEntries1_3() {
 		List<AColorSpaceMapEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
-			if ("DefaultCMYK".equals(key.getValue()) || "DefaultRGB".equals(key.getValue()) || "DefaultGray".equals(key.getValue())) {
+			if ("DefaultCMYK".equals(key.getValue()) || "DefaultGray".equals(key.getValue()) || "DefaultRGB".equals(key.getValue())) {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
@@ -324,15 +254,74 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 		}
 	}
 
-	@Override
-	public Boolean getcontainsDefaultRGB() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DefaultRGB"));
+	private List<org.verapdf.model.baselayer.Object> getDefaultRGB() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+				return getDefaultRGB1_1();
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getDefaultRGB1_3();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getDefaultRGBHasTypeArray() {
+	private List<org.verapdf.model.baselayer.Object> getDefaultRGB1_1() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<ACalRGBColorSpace> list = new ArrayList<>(1);
+			list.add(new GFACalRGBColorSpace((COSArray)object.getDirectBase(), this.baseObject, "DefaultRGB"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getDefaultRGB1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			org.verapdf.model.baselayer.Object result = getDefaultRGBArray1_3(object.getDirectBase(), "DefaultRGB");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getDefaultRGBArray1_3(COSBase base, String keyName) {
+		if (base.size() <= 0) {
+			return null;
+		}
+		COSObject subtype = base.at(0);
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "ICCBased":
+				return new GFAICCBasedColorSpace(base, this.baseObject, keyName);
+			case "CalRGB":
+				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
+			case "DeviceN":
+				return new GFADeviceNColorSpace(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	@Override
@@ -354,6 +343,17 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	@Override
 	public Boolean getDefaultGrayHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultGray"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsDefaultRGB() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DefaultRGB"));
+	}
+
+	@Override
+	public Boolean getDefaultRGBHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

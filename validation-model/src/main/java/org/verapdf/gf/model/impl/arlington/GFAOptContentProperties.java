@@ -26,15 +26,40 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "Configs":
+				return getConfigs();
 			case "D":
 				return getD();
 			case "OCGs":
 				return getOCGs();
-			case "Configs":
-				return getConfigs();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfOCConfig> getConfigs() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getConfigs1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfOCConfig> getConfigs1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configs"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfOCConfig> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfOCConfig((COSArray)object.getDirectBase(), this.baseObject, "Configs"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AOptContentConfig> getD() {
@@ -82,31 +107,6 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfOCGindirect> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfOCGindirect((COSArray)object.getDirectBase(), this.baseObject, "OCGs"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfOCConfig> getConfigs() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getConfigs1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfOCConfig> getConfigs1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configs"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfOCConfig> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfOCConfig((COSArray)object.getDirectBase(), this.baseObject, "Configs"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

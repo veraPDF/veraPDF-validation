@@ -35,38 +35,6 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	}
 
 	@Override
-	public Boolean getcontainsTM() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TM"));
-	}
-
-	@Override
-	public Boolean getTMHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getTMNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
-		if (object == null || object.empty()) {
-			return getTMNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getTMNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 1D;
-		}
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsSubtype() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
@@ -94,6 +62,38 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "None";
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsTM() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TM"));
+	}
+
+	@Override
+	public Boolean getTMHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getTMNumberValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
+		if (object == null || object.empty()) {
+			return getTMNumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getTMNumberDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 1D;
 		}
 		return null;
 	}

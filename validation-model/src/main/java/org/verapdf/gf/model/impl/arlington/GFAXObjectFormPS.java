@@ -26,177 +26,21 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "FDecodeParms":
-				return getFDecodeParms();
-			case "Filter":
-				return getFilter();
-			case "F":
-				return getF();
 			case "DecodeParms":
 				return getDecodeParms();
-			case "Level1":
-				return getLevel1();
+			case "F":
+				return getF();
+			case "FDecodeParms":
+				return getFDecodeParms();
 			case "FFilter":
 				return getFFilter();
+			case "Filter":
+				return getFilter();
+			case "Level1":
+				return getLevel1();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-				return getFDecodeParms1_2();
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFDecodeParms1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_2(object.getDirectBase(), "FDecodeParms");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_2(COSBase base, String keyName) {
-		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "LZWDecode":
-				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
-			case "FlateDecode":
-				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_5(object.getDirectBase(), "FDecodeParms");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_5(COSBase base, String keyName) {
-		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "LZWDecode":
-				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
-			case "Crypt":
-				return new GFAFilterCrypt(base, this.baseObject, keyName);
-			case "FlateDecode":
-				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFilter1_1();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfCompressionFilterNames> getFilter1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfCompressionFilterNames> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfCompressionFilterNames((COSArray)object.getDirectBase(), this.baseObject, "Filter"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getF1_1();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AFileSpecification> getF1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "F"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
@@ -317,7 +161,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 		}
 	}
 
-	private List<AStream> getLevel1() {
+	private List<AFileSpecification> getF() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -327,23 +171,121 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getLevel11_1();
+				return getF1_1();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AStream> getLevel11_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
+	private List<AFileSpecification> getF1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "Level1"));
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AFileSpecification> list = new ArrayList<>(1);
+			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "F"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+				return getFDecodeParms1_2();
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFDecodeParms1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_2(object.getDirectBase(), "FDecodeParms");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_2(COSBase base, String keyName) {
+		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "LZWDecode":
+				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
+			case "FlateDecode":
+				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_5(object.getDirectBase(), "FDecodeParms");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_5(COSBase base, String keyName) {
+		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "LZWDecode":
+				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
+			case "Crypt":
+				return new GFAFilterCrypt(base, this.baseObject, keyName);
+			case "FlateDecode":
+				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
@@ -374,48 +316,62 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
+	private List<AArrayOfCompressionFilterNames> getFilter() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFilter1_1();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
+	}
+
+	private List<AArrayOfCompressionFilterNames> getFilter1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		if (object == null) {
+			return Collections.emptyList();
 		}
-		return null;
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfCompressionFilterNames> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfCompressionFilterNames((COSArray)object.getDirectBase(), this.baseObject, "Filter"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
-	public String getTypeNameDefaultValue() {
-		return null;
+	private List<AStream> getLevel1() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getLevel11_1();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getcontainsLevel1() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Level1"));
-	}
-
-	@Override
-	public Boolean getisLevel1Indirect() {
+	private List<AStream> getLevel11_1() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getLevel1HasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "Level1"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -445,20 +401,105 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	@Override
-	public Boolean getcontainsFilter() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
 	@Override
-	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsFDecodeParms() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
+	}
+
+	@Override
+	public Boolean getFDecodeParmsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getFDecodeParmsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Long getFDecodeParmsArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsFFilter() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
+	}
+
+	@Override
+	public Boolean getFFilterHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getFFilterHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getFFilterNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		if (object == null || object.empty()) {
+			return getFFilterNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getFFilterNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Long getFFilterArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsFilter() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getFilterHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -484,6 +525,34 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 			return (long) object.size();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsLength() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
+	}
+
+	@Override
+	public Boolean getLengthHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsLevel1() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Level1"));
+	}
+
+	@Override
+	public Boolean getisLevel1Indirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getLevel1HasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -514,55 +583,21 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsLength() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
-	}
-
-	@Override
-	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsFFilter() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
-	}
-
-	@Override
-	public Boolean getFFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getFFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public String getFFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		if (object == null || object.empty()) {
-			return getFFilterNameDefaultValue();
+			return getTypeNameDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
@@ -570,42 +605,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 		return null;
 	}
 
-	public String getFFilterNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Long getFFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsFDecodeParms() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
-	}
-
-	@Override
-	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Long getFDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

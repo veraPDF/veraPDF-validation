@@ -26,25 +26,125 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "CreatorInfo":
+				return getCreatorInfo();
+			case "Export":
+				return getExport();
+			case "Language":
+				return getLanguage();
+			case "PageElement":
+				return getPageElement();
 			case "Print":
 				return getPrint();
 			case "User":
 				return getUser();
-			case "Language":
-				return getLanguage();
-			case "Export":
-				return getExport();
-			case "Zoom":
-				return getZoom();
-			case "PageElement":
-				return getPageElement();
-			case "CreatorInfo":
-				return getCreatorInfo();
 			case "View":
 				return getView();
+			case "Zoom":
+				return getZoom();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AOptContentCreatorInfo> getCreatorInfo() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getCreatorInfo1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AOptContentCreatorInfo> getCreatorInfo1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreatorInfo"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AOptContentCreatorInfo> list = new ArrayList<>(1);
+			list.add(new GFAOptContentCreatorInfo((COSDictionary)object.getDirectBase(), this.baseObject, "CreatorInfo"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AOptContentExport> getExport() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getExport1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AOptContentExport> getExport1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Export"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AOptContentExport> list = new ArrayList<>(1);
+			list.add(new GFAOptContentExport((COSDictionary)object.getDirectBase(), this.baseObject, "Export"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AOptContentLanguage> getLanguage() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getLanguage1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AOptContentLanguage> getLanguage1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Language"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AOptContentLanguage> list = new ArrayList<>(1);
+			list.add(new GFAOptContentLanguage((COSDictionary)object.getDirectBase(), this.baseObject, "Language"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AOptContentPageElement> getPageElement() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPageElement1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AOptContentPageElement> getPageElement1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageElement"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AOptContentPageElement> list = new ArrayList<>(1);
+			list.add(new GFAOptContentPageElement((COSDictionary)object.getDirectBase(), this.baseObject, "PageElement"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AOptContentPrint> getPrint() {
@@ -97,51 +197,26 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return Collections.emptyList();
 	}
 
-	private List<AOptContentLanguage> getLanguage() {
+	private List<AOptContentView> getView() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getLanguage1_5();
+				return getView1_5();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AOptContentLanguage> getLanguage1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Language"));
+	private List<AOptContentView> getView1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("View"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AOptContentLanguage> list = new ArrayList<>(1);
-			list.add(new GFAOptContentLanguage((COSDictionary)object.getDirectBase(), this.baseObject, "Language"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AOptContentExport> getExport() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getExport1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AOptContentExport> getExport1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Export"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AOptContentExport> list = new ArrayList<>(1);
-			list.add(new GFAOptContentExport((COSDictionary)object.getDirectBase(), this.baseObject, "Export"));
+			List<AOptContentView> list = new ArrayList<>(1);
+			list.add(new GFAOptContentView((COSDictionary)object.getDirectBase(), this.baseObject, "View"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -172,79 +247,70 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return Collections.emptyList();
 	}
 
-	private List<AOptContentPageElement> getPageElement() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPageElement1_5();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsCreatorInfo() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CreatorInfo"));
 	}
 
-	private List<AOptContentPageElement> getPageElement1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageElement"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AOptContentPageElement> list = new ArrayList<>(1);
-			list.add(new GFAOptContentPageElement((COSDictionary)object.getDirectBase(), this.baseObject, "PageElement"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AOptContentCreatorInfo> getCreatorInfo() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getCreatorInfo1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AOptContentCreatorInfo> getCreatorInfo1_5() {
+	@Override
+	public Boolean getCreatorInfoHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreatorInfo"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AOptContentCreatorInfo> list = new ArrayList<>(1);
-			list.add(new GFAOptContentCreatorInfo((COSDictionary)object.getDirectBase(), this.baseObject, "CreatorInfo"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
-	private List<AOptContentView> getView() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getView1_5();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsExport() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Export"));
 	}
 
-	private List<AOptContentView> getView1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("View"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AOptContentView> list = new ArrayList<>(1);
-			list.add(new GFAOptContentView((COSDictionary)object.getDirectBase(), this.baseObject, "View"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+	@Override
+	public Boolean getExportHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Export"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsLanguage() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Language"));
+	}
+
+	@Override
+	public Boolean getLanguageHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Language"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPageElement() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PageElement"));
+	}
+
+	@Override
+	public Boolean getPageElementHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageElement"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPrint() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Print"));
+	}
+
+	@Override
+	public Boolean getPrintHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Print"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsUser() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("User"));
+	}
+
+	@Override
+	public Boolean getUserHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("User"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -266,72 +332,6 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	@Override
 	public Boolean getZoomHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Zoom"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCreatorInfo() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CreatorInfo"));
-	}
-
-	@Override
-	public Boolean getCreatorInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreatorInfo"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPageElement() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PageElement"));
-	}
-
-	@Override
-	public Boolean getPageElementHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageElement"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsUser() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("User"));
-	}
-
-	@Override
-	public Boolean getUserHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("User"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsExport() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Export"));
-	}
-
-	@Override
-	public Boolean getExportHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Export"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPrint() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Print"));
-	}
-
-	@Override
-	public Boolean getPrintHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Print"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsLanguage() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Language"));
-	}
-
-	@Override
-	public Boolean getLanguageHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Language"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

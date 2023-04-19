@@ -62,6 +62,17 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	}
 
 	@Override
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	}
+
+	@Override
+	public Boolean getDHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
 	public Boolean getcontainsS() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
@@ -95,6 +106,33 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 			case ARLINGTON2_0:
 				return "S";
 		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -133,44 +171,6 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 				return 1D;
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
-	}
-
-	@Override
-	public Boolean getDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

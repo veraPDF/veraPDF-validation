@@ -436,6 +436,78 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	@Override
+	public Boolean getcontainsNext() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
+	}
+
+	@Override
+	public Boolean getNextHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getNextHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsRepeat() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Repeat"));
+	}
+
+	@Override
+	public Boolean getRepeatHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Repeat"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsSound() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Sound"));
+	}
+
+	@Override
+	public Boolean getisSoundIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sound"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getSoundHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sound"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
 	public Boolean getcontainsSynchronous() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Synchronous"));
 	}
@@ -474,50 +546,6 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsNext() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
-	}
-
-	@Override
-	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsVolume() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Volume"));
 	}
@@ -552,34 +580,6 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 				return 1.0D;
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSound() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Sound"));
-	}
-
-	@Override
-	public Boolean getisSoundIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sound"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getSoundHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sound"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsRepeat() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Repeat"));
-	}
-
-	@Override
-	public Boolean getRepeatHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Repeat"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 }

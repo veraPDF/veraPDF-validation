@@ -56,38 +56,6 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 	}
 
 	@Override
-	public Boolean getcontainsMin() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Min"));
-	}
-
-	@Override
-	public Boolean getMinHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Min"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getMinIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Min"));
-		if (object == null || object.empty()) {
-			return getMinIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getMinIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 72L;
-		}
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsMax() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Max"));
 	}
@@ -115,6 +83,38 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 576L;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsMin() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Min"));
+	}
+
+	@Override
+	public Boolean getMinHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Min"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getMinIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Min"));
+		if (object == null || object.empty()) {
+			return getMinIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getMinIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 72L;
 		}
 		return null;
 	}

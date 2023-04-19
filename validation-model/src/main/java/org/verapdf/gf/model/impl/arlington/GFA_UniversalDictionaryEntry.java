@@ -58,14 +58,14 @@ public class GFA_UniversalDictionaryEntry extends GFAObject implements A_Univers
 			list.add(new GFA_UniversalArray((COSArray)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<A_UniversalDictionary> list = new ArrayList<>(1);
-			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
 			list.add(new GFAStream((COSStream)object.getDirectBase(), this.parentObject, keyName));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<A_UniversalDictionary> list = new ArrayList<>(1);
+			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -78,39 +78,9 @@ public class GFA_UniversalDictionaryEntry extends GFAObject implements A_Univers
 	}
 
 	@Override
-	public Boolean getHasTypeNull() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getHasTypeName() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getHasTypeArray() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getHasTypeBoolean() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getHasTypeNumber() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -120,9 +90,39 @@ public class GFA_UniversalDictionaryEntry extends GFAObject implements A_Univers
 	}
 
 	@Override
+	public Boolean getHasTypeBoolean() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getHasTypeNumber() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public Boolean getHasTypeString() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getHasTypeName() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getHasTypeNull() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	@Override
+	public Boolean getHasTypeDictionary() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

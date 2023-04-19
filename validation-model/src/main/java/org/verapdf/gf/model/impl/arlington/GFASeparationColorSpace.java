@@ -167,14 +167,6 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 			return Collections.emptyList();
 		}
 		COSObject object = this.baseObject.at(3);
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getentry3Dictionary1_3(object.getDirectBase(), "3");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getentry3Stream1_3(object.getDirectBase(), "3");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -183,26 +175,15 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getentry3Dictionary1_3(object.getDirectBase(), "3");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getentry3Dictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getentry3Stream1_3(COSBase base, String keyName) {
@@ -224,50 +205,23 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 		}
 	}
 
-	@Override
-	public Boolean getentry1HasTypeName() {
-		if (this.baseObject.size() <= 1) {
+	private org.verapdf.model.baselayer.Object getentry3Dictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeName() {
-		if (this.baseObject.size() <= 2) {
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeArray() {
-		if (this.baseObject.size() <= 2) {
-			return null;
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
 		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public String getentry2NameValue() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		if (object == null || object.empty()) {
-			return getentry2NameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getentry2NameDefaultValue() {
-		return null;
 	}
 
 	@Override
@@ -299,6 +253,52 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	@Override
+	public Boolean getentry1HasTypeName() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeArray() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeName() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getentry2NameValue() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		if (object == null || object.empty()) {
+			return getentry2NameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getentry2NameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getisentry3Indirect() {
 		if (this.baseObject.size() <= 3) {
 			return null;
@@ -308,21 +308,21 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	@Override
-	public Boolean getentry3HasTypeDictionary() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getentry3HasTypeStream() {
 		if (this.baseObject.size() <= 3) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(3);
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeDictionary() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

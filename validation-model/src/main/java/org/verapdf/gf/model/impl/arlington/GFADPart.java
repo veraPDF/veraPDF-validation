@@ -26,23 +26,45 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "AF":
+				return getAF();
 			case "DPM":
 				return getDPM();
 			case "DParts":
 				return getDParts();
+			case "End":
+				return getEnd();
+			case "Metadata":
+				return getMetadata();
 			case "Parent":
 				return getParent();
 			case "Start":
 				return getStart();
-			case "AF":
-				return getAF();
-			case "Metadata":
-				return getMetadata();
-			case "End":
-				return getEnd();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfFileSpecifications> getAF() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getAF2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfFileSpecifications> getAF2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<ADPM> getDPM() {
@@ -88,6 +110,52 @@ public class GFADPart extends GFAObject implements ADPart {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfDPartArrays> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfDPartArrays((COSArray)object.getDirectBase(), this.baseObject, "DParts"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<APageObject> getEnd() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getEnd1_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<APageObject> getEnd1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("End"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<APageObject> list = new ArrayList<>(1);
+			list.add(new GFAPageObject((COSDictionary)object.getDirectBase(), this.baseObject, "End"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AMetadata> getMetadata() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getMetadata2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AMetadata> getMetadata2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AMetadata> list = new ArrayList<>(1);
+			list.add(new GFAMetadata((COSStream)object.getDirectBase(), this.baseObject, "Metadata"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -163,72 +231,15 @@ public class GFADPart extends GFAObject implements ADPart {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getAF2_0();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsAF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
 	}
 
-	private List<AArrayOfFileSpecifications> getAF2_0() {
+	@Override
+	public Boolean getAFHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getMetadata2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AMetadata> getMetadata2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AMetadata> list = new ArrayList<>(1);
-			list.add(new GFAMetadata((COSStream)object.getDirectBase(), this.baseObject, "Metadata"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<APageObject> getEnd() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getEnd1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<APageObject> getEnd1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("End"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<APageObject> list = new ArrayList<>(1);
-			list.add(new GFAPageObject((COSDictionary)object.getDirectBase(), this.baseObject, "End"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -263,6 +274,74 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	@Override
+	public Boolean getcontainsEnd() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("End"));
+	}
+
+	@Override
+	public Boolean getisEndIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("End"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getEndHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("End"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsMetadata() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
+	}
+
+	@Override
+	public Boolean getisMetadataIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getMetadataHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsParent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
+	}
+
+	@Override
+	public Boolean getisParentIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getParentHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsStart() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Start"));
+	}
+
+	@Override
+	public Boolean getisStartIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getStartHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -287,85 +366,6 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsParent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
-	}
-
-	@Override
-	public Boolean getisParentIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsMetadata() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
-	}
-
-	@Override
-	public Boolean getisMetadataIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getMetadataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsAF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
-	}
-
-	@Override
-	public Boolean getAFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsStart() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Start"));
-	}
-
-	@Override
-	public Boolean getisStartIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getStartHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsEnd() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("End"));
-	}
-
-	@Override
-	public Boolean getisEndIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("End"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getEndHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("End"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

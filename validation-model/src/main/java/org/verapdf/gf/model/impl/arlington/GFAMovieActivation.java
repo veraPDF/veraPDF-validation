@@ -26,17 +26,73 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "Duration":
+				return getDuration();
+			case "FWPosition":
+				return getFWPosition();
 			case "FWScale":
 				return getFWScale();
 			case "Start":
 				return getStart();
-			case "FWPosition":
-				return getFWPosition();
-			case "Duration":
-				return getDuration();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfDuration> getDuration() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getDuration1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfDuration> getDuration1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDuration> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDuration((COSArray)object.getDirectBase(), this.baseObject, "Duration"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOf_2Numbers> getFWPosition() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFWPosition1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_2Numbers> getFWPosition1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_2Numbers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_2Numbers((COSArray)object.getDirectBase(), this.baseObject, "FWPosition"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AArrayOf_2Integers> getFWScale() {
@@ -95,60 +151,52 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOf_2Numbers> getFWPosition() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFWPosition1_2();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsDuration() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Duration"));
 	}
 
-	private List<AArrayOf_2Numbers> getFWPosition1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_2Numbers> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_2Numbers((COSArray)object.getDirectBase(), this.baseObject, "FWPosition"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfDuration> getDuration() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDuration1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfDuration> getDuration1_2() {
+	@Override
+	public Boolean getDurationHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
-		if (object == null) {
-			return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getDurationHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getDurationHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getDurationIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
+		if (object == null || object.empty()) {
+			return getDurationIntegerDefaultValue();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDuration> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDuration((COSArray)object.getDirectBase(), this.baseObject, "Duration"));
-			return Collections.unmodifiableList(list);
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
-		return Collections.emptyList();
+		return null;
+	}
+
+	public Long getDurationIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Long getDurationStringSize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			return (long) object.getString().length();
+		}
+		return null;
 	}
 
 	@Override
@@ -163,51 +211,14 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
-	public Boolean getcontainsVolume() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Volume"));
+	public Boolean getcontainsFWScale() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FWScale"));
 	}
 
 	@Override
-	public Boolean getVolumeHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Volume"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getVolumeNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Volume"));
-		if (object == null || object.empty()) {
-			return getVolumeNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getVolumeNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 1.0D;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSynchronous() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Synchronous"));
-	}
-
-	@Override
-	public Boolean getSynchronousHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Synchronous"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	public Boolean getFWScaleHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -248,6 +259,17 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
+	public Boolean getcontainsRate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Rate"));
+	}
+
+	@Override
+	public Boolean getRateHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rate"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public Boolean getcontainsShowControls() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ShowControls"));
 	}
@@ -256,54 +278,6 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	public Boolean getShowControlsHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ShowControls"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsDuration() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Duration"));
-	}
-
-	@Override
-	public Boolean getDurationHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getDurationHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getDurationHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Long getDurationIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
-		if (object == null || object.empty()) {
-			return getDurationIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getDurationIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Long getDurationStringSize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return (long) object.getString().length();
-		}
-		return null;
 	}
 
 	@Override
@@ -318,15 +292,15 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
-	public Boolean getStartHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
 	public Boolean getStartHasTypeStringByte() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getStartHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
@@ -365,25 +339,51 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
-	public Boolean getcontainsFWScale() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FWScale"));
+	public Boolean getcontainsSynchronous() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Synchronous"));
 	}
 
 	@Override
-	public Boolean getFWScaleHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getSynchronousHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Synchronous"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
-	public Boolean getcontainsRate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Rate"));
+	public Boolean getcontainsVolume() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Volume"));
 	}
 
 	@Override
-	public Boolean getRateHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rate"));
+	public Boolean getVolumeHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Volume"));
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getVolumeNumberValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Volume"));
+		if (object == null || object.empty()) {
+			return getVolumeNumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getVolumeNumberDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 1.0D;
+		}
+		return null;
 	}
 
 	@Override

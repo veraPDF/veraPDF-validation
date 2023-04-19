@@ -26,35 +26,35 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Seetings":
-				return getSeetings();
-			case "FlashVars":
-				return getFlashVars();
 			case "CuePoints":
 				return getCuePoints();
+			case "FlashVars":
+				return getFlashVars();
+			case "Settings":
+				return getSettings();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<AStream> getSeetings() {
+	private List<AArrayOfRichMediaCuePoints> getCuePoints() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getSeetings1_7();
+				return getCuePoints1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AStream> getSeetings1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Seetings"));
+	private List<AArrayOfRichMediaCuePoints> getCuePoints1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CuePoints"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "Seetings"));
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfRichMediaCuePoints> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfRichMediaCuePoints((COSArray)object.getDirectBase(), this.baseObject, "CuePoints"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -83,24 +83,24 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfRichMediaCuePoints> getCuePoints() {
+	private List<AStream> getSettings() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCuePoints1_7();
+				return getSettings1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfRichMediaCuePoints> getCuePoints1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CuePoints"));
+	private List<AStream> getSettings1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Settings"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfRichMediaCuePoints> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfRichMediaCuePoints((COSArray)object.getDirectBase(), this.baseObject, "CuePoints"));
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "Settings"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -139,26 +139,14 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	@Override
-	public Boolean getcontainsSeetings() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Seetings"));
+	public Boolean getcontainsBindingMaterial() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BindingMaterial"));
 	}
 
 	@Override
-	public Boolean getisSeetingsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Seetings"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getSeetingsHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Seetings"));
+	public Boolean getBindingMaterialHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BindingMaterial"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getSeetingsHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Seetings"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -170,6 +158,52 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	public Boolean getCuePointsHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CuePoints"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsFlashVars() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FlashVars"));
+	}
+
+	@Override
+	public Boolean getisFlashVarsIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FlashVars"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getFlashVarsHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FlashVars"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getFlashVarsHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FlashVars"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsSettings() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Settings"));
+	}
+
+	@Override
+	public Boolean getisSettingsIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Settings"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getSettingsHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Settings"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getSettingsHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Settings"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -197,40 +231,6 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsBindingMaterial() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BindingMaterial"));
-	}
-
-	@Override
-	public Boolean getBindingMaterialHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BindingMaterial"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsFlashVars() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FlashVars"));
-	}
-
-	@Override
-	public Boolean getisFlashVarsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FlashVars"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getFlashVarsHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FlashVars"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getFlashVarsHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FlashVars"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 }

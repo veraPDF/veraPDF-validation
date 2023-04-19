@@ -26,64 +26,67 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "R":
-				return getR();
-			case "Next":
-				return getNext();
-			case "JS":
-				return getJS();
 			case "AN":
 				return getAN();
+			case "JS":
+				return getJS();
+			case "Next":
+				return getNext();
+			case "R":
+				return getR();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getR() {
+	private List<AAnnotScreen> getAN() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getR1_5();
+				return getAN1_5();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getR1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+	private List<AAnnotScreen> getAN1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AN"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getRDictionary1_5(object.getDirectBase(), "R");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
+			List<AAnnotScreen> list = new ArrayList<>(1);
+			list.add(new GFAAnnotScreen((COSDictionary)object.getDirectBase(), this.baseObject, "AN"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
-	private org.verapdf.model.baselayer.Object getRDictionary1_5(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "MR":
-				return new GFARenditionMedia(base, this.baseObject, keyName);
-			case "SR":
-				return new GFARenditionSelector(base, this.baseObject, keyName);
+	private List<AStream> getJS() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getJS1_5();
 			default:
-				return null;
+				return Collections.emptyList();
 		}
+	}
+
+	private List<AStream> getJS1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "JS"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
@@ -316,54 +319,68 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 		}
 	}
 
-	private List<AStream> getJS() {
+	private List<org.verapdf.model.baselayer.Object> getR() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getJS1_5();
+				return getR1_5();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AStream> getJS1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "JS"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AAnnotScreen> getAN() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getAN1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AAnnotScreen> getAN1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AN"));
+	private List<org.verapdf.model.baselayer.Object> getR1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAnnotScreen> list = new ArrayList<>(1);
-			list.add(new GFAAnnotScreen((COSDictionary)object.getDirectBase(), this.baseObject, "AN"));
+			org.verapdf.model.baselayer.Object result = getRDictionary1_5(object.getDirectBase(), "R");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getRDictionary1_5(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "MR":
+				return new GFARenditionMedia(base, this.baseObject, keyName);
+			case "SR":
+				return new GFARenditionSelector(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	@Override
+	public Boolean getcontainsAN() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AN"));
+	}
+
+	@Override
+	public Boolean getisANIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AN"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getANHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AN"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -378,25 +395,31 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	@Override
-	public Boolean getJSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getJSHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
-	public Boolean getcontainsR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
+	public Boolean getJSHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
-	public Boolean getRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+	public Boolean getcontainsNext() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
+	}
+
+	@Override
+	public Boolean getNextHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getNextHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -428,19 +451,13 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	@Override
-	public Boolean getcontainsAN() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AN"));
+	public Boolean getcontainsR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
 	@Override
-	public Boolean getisANIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AN"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getANHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AN"));
+	public Boolean getRHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -496,23 +513,6 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsNext() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
-	}
-
-	@Override
-	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

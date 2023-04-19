@@ -24,6 +24,15 @@ public class GFAArrayOfClassNamesRevisionsSubArray extends GFAObject implements 
 	}
 
 	@Override
+	public Boolean getentry0HasTypeName() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
 	public Boolean getentry1HasTypeInteger() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -49,15 +58,6 @@ public class GFAArrayOfClassNamesRevisionsSubArray extends GFAObject implements 
 
 	public Long getentry1IntegerDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeName() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 }

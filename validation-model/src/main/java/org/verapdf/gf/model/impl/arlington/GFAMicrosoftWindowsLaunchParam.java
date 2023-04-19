@@ -35,6 +35,17 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 	}
 
 	@Override
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	}
+
+	@Override
+	public Boolean getFHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
 	public Boolean getcontainsO() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
@@ -70,17 +81,6 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 				return "'open'";
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
-	}
-
-	@Override
-	public Boolean getFHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

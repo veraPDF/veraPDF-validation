@@ -26,13 +26,42 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "WhitePoint":
-				return getWhitePoint();
 			case "BlackPoint":
 				return getBlackPoint();
+			case "WhitePoint":
+				return getWhitePoint();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<ABlackpointArray> getBlackPoint() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getBlackPoint1_1();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ABlackpointArray> getBlackPoint1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<ABlackpointArray> list = new ArrayList<>(1);
+			list.add(new GFABlackpointArray((COSArray)object.getDirectBase(), this.baseObject, "BlackPoint"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AWhitepointArray> getWhitePoint() {
@@ -64,33 +93,15 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 		return Collections.emptyList();
 	}
 
-	private List<ABlackpointArray> getBlackPoint() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getBlackPoint1_1();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsBlackPoint() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BlackPoint"));
 	}
 
-	private List<ABlackpointArray> getBlackPoint1_1() {
+	@Override
+	public Boolean getBlackPointHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<ABlackpointArray> list = new ArrayList<>(1);
-			list.add(new GFABlackpointArray((COSArray)object.getDirectBase(), this.baseObject, "BlackPoint"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -129,17 +140,6 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 				return 1D;
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsBlackPoint() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BlackPoint"));
-	}
-
-	@Override
-	public Boolean getBlackPointHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override

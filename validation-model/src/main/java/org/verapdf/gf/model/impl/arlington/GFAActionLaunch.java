@@ -457,36 +457,8 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	@Override
-	public Boolean getcontainsNewWindow() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NewWindow"));
-	}
-
-	@Override
-	public Boolean getNewWindowHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NewWindow"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsUnix() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Unix"));
-	}
-
-	@Override
-	public Boolean getUnixHasTypeNull() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Unix"));
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
 	public Boolean getcontainsF() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
-	}
-
-	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -496,14 +468,31 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	@Override
-	public Boolean getcontainsWin() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Win"));
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getWinHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Win"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getcontainsMac() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Mac"));
+	}
+
+	@Override
+	public Boolean getMacHasTypeNull() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mac"));
+		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	@Override
+	public Boolean getcontainsNewWindow() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NewWindow"));
+	}
+
+	@Override
+	public Boolean getNewWindowHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NewWindow"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -521,6 +510,33 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -551,41 +567,25 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	@Override
-	public Boolean getcontainsMac() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Mac"));
+	public Boolean getcontainsUnix() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Unix"));
 	}
 
 	@Override
-	public Boolean getMacHasTypeNull() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mac"));
+	public Boolean getUnixHasTypeNull() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Unix"));
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	public Boolean getcontainsWin() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Win"));
 	}
 
 	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
-		return null;
+	public Boolean getWinHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Win"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

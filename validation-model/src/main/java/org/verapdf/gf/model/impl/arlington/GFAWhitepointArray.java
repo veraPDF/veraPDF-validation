@@ -24,6 +24,34 @@ public class GFAWhitepointArray extends GFAObject implements AWhitepointArray {
 	}
 
 	@Override
+	public Boolean getentry0HasTypeNumber() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getentry0NumberValue() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		if (object == null || object.empty()) {
+			return getentry0NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry0NumberDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getentry1HasTypeNumber() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -76,34 +104,6 @@ public class GFAWhitepointArray extends GFAObject implements AWhitepointArray {
 	}
 
 	public Double getentry2NumberDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry0NumberValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry0NumberDefaultValue() {
 		return null;
 	}
 

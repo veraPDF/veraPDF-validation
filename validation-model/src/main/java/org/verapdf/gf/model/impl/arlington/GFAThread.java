@@ -28,10 +28,10 @@ public class GFAThread extends GFAObject implements AThread {
 		switch (link) {
 			case "F":
 				return getF();
-			case "Metadata":
-				return getMetadata();
 			case "I":
 				return getI();
+			case "Metadata":
+				return getMetadata();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -66,28 +66,6 @@ public class GFAThread extends GFAObject implements AThread {
 		return Collections.emptyList();
 	}
 
-	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getMetadata2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AMetadata> getMetadata2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AMetadata> list = new ArrayList<>(1);
-			list.add(new GFAMetadata((COSStream)object.getDirectBase(), this.baseObject, "Metadata"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<ADocInfo> getI() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
@@ -117,15 +95,26 @@ public class GFAThread extends GFAObject implements AThread {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
+	private List<AMetadata> getMetadata() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getMetadata2_0();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	private List<AMetadata> getMetadata2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AMetadata> list = new ArrayList<>(1);
+			list.add(new GFAMetadata((COSStream)object.getDirectBase(), this.baseObject, "Metadata"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -142,6 +131,17 @@ public class GFAThread extends GFAObject implements AThread {
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
+	}
+
+	@Override
+	public Boolean getIHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

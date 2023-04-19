@@ -24,11 +24,20 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
-	public Boolean getentry9HasTypeNumber() {
-		if (this.baseObject.size() <= 9) {
+	public Boolean getentry0HasTypeNumber() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(9);
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNumber() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -51,56 +60,11 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
-	public Boolean getentry6HasTypeNumber() {
-		if (this.baseObject.size() <= 6) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(6);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getentry8HasTypeNumber() {
-		if (this.baseObject.size() <= 8) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(8);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getentry1HasTypeNumber() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getentry2HasTypeNumber() {
 		if (this.baseObject.size() <= 2) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getentry7HasTypeNumber() {
-		if (this.baseObject.size() <= 7) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(7);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -114,6 +78,15 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
+	public Boolean getentry4HasTypeNumber() {
+		if (this.baseObject.size() <= 4) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(4);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public Boolean getentry5HasTypeNumber() {
 		if (this.baseObject.size() <= 5) {
 			return null;
@@ -123,11 +96,38 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
-	public Boolean getentry4HasTypeNumber() {
-		if (this.baseObject.size() <= 4) {
+	public Boolean getentry6HasTypeNumber() {
+		if (this.baseObject.size() <= 6) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(4);
+		COSObject object = this.baseObject.at(6);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry7HasTypeNumber() {
+		if (this.baseObject.size() <= 7) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(7);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry8HasTypeNumber() {
+		if (this.baseObject.size() <= 8) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(8);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry9HasTypeNumber() {
+		if (this.baseObject.size() <= 9) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(9);
 		return object != null && object.getType().isNumber();
 	}
 

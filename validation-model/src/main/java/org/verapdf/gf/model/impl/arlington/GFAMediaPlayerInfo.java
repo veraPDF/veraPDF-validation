@@ -28,10 +28,10 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 		switch (link) {
 			case "BE":
 				return getBE();
-			case "PID":
-				return getPID();
 			case "MH":
 				return getMH();
+			case "PID":
+				return getPID();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -62,31 +62,6 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 		return Collections.emptyList();
 	}
 
-	private List<ASoftwareIdentifier> getPID() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPID1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ASoftwareIdentifier> getPID1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PID"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ASoftwareIdentifier> list = new ArrayList<>(1);
-			list.add(new GFASoftwareIdentifier((COSDictionary)object.getDirectBase(), this.baseObject, "PID"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<A_UniversalDictionary> getMH() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
@@ -112,14 +87,39 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsPID() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PID"));
+	private List<ASoftwareIdentifier> getPID() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPID1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ASoftwareIdentifier> getPID1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PID"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ASoftwareIdentifier> list = new ArrayList<>(1);
+			list.add(new GFASoftwareIdentifier((COSDictionary)object.getDirectBase(), this.baseObject, "PID"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
-	public Boolean getPIDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PID"));
+	public Boolean getcontainsBE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
+	}
+
+	@Override
+	public Boolean getBEHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -131,6 +131,17 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	@Override
 	public Boolean getMHHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPID() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PID"));
+	}
+
+	@Override
+	public Boolean getPIDHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PID"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -159,17 +170,6 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsBE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
-	}
-
-	@Override
-	public Boolean getBEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

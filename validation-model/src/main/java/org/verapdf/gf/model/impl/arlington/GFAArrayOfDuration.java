@@ -24,31 +24,12 @@ public class GFAArrayOfDuration extends GFAObject implements AArrayOfDuration {
 	}
 
 	@Override
-	public Boolean getentry1HasTypeInteger() {
-		if (this.baseObject.size() <= 1) {
+	public Boolean getentry0HasTypeStringByte() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getentry1IntegerValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1IntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getentry1IntegerDefaultValue() {
-		return null;
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -58,15 +39,6 @@ public class GFAArrayOfDuration extends GFAObject implements AArrayOfDuration {
 		}
 		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeStringByte() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -97,6 +69,34 @@ public class GFAArrayOfDuration extends GFAObject implements AArrayOfDuration {
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return (long) object.getString().length();
 		}
+		return null;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeInteger() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getentry1IntegerValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1IntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getentry1IntegerDefaultValue() {
 		return null;
 	}
 

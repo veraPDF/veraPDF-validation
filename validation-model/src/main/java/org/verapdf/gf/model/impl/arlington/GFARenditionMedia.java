@@ -26,44 +26,19 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "P":
-				return getP();
 			case "BE":
 				return getBE();
 			case "C":
 				return getC();
 			case "MH":
 				return getMH();
+			case "P":
+				return getP();
 			case "SP":
 				return getSP();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AMediaPlayParameters> getP() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getP1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AMediaPlayParameters> getP1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AMediaPlayParameters> list = new ArrayList<>(1);
-			list.add(new GFAMediaPlayParameters((COSDictionary)object.getDirectBase(), this.baseObject, "P"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ARenditionBE> getBE() {
@@ -163,6 +138,31 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 		return Collections.emptyList();
 	}
 
+	private List<AMediaPlayParameters> getP() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getP1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AMediaPlayParameters> getP1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AMediaPlayParameters> list = new ArrayList<>(1);
+			list.add(new GFAMediaPlayParameters((COSDictionary)object.getDirectBase(), this.baseObject, "P"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<AMediaScreenParameters> getSP() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
@@ -211,17 +211,6 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	@Override
-	public Boolean getcontainsSP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SP"));
-	}
-
-	@Override
-	public Boolean getSPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SP"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsMH() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
 	}
@@ -244,30 +233,14 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	public Boolean getcontainsP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
 	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
+	public Boolean getPHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -298,14 +271,41 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	@Override
-	public Boolean getcontainsP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
+	public Boolean getcontainsSP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SP"));
 	}
 
 	@Override
-	public Boolean getPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+	public Boolean getSPHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SP"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 }

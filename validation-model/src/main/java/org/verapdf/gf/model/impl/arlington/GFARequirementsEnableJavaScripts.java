@@ -86,6 +86,81 @@ public class GFARequirementsEnableJavaScripts extends GFAObject implements ARequ
 	}
 
 	@Override
+	public Boolean getcontainsPenalty() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
+	}
+
+	@Override
+	public Boolean getPenaltyHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getPenaltyIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
+		if (object == null || object.empty()) {
+			return getPenaltyIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getPenaltyIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return 100L;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsRH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
+	}
+
+	@Override
+	public Boolean getRHHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getRHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -127,81 +202,6 @@ public class GFARequirementsEnableJavaScripts extends GFAObject implements ARequ
 	public Boolean getVHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsRH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
-	}
-
-	@Override
-	public Boolean getRHHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getRHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPenalty() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
-	}
-
-	@Override
-	public Boolean getPenaltyHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getPenaltyIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Penalty"));
-		if (object == null || object.empty()) {
-			return getPenaltyIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPenaltyIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return 100L;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
-		return null;
 	}
 
 }

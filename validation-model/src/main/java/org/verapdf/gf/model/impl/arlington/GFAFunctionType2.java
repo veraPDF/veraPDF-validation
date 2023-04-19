@@ -26,71 +26,17 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Range":
-				return getRange();
-			case "Domain":
-				return getDomain();
 			case "C0":
 				return getC0();
 			case "C1":
 				return getC1();
+			case "Domain":
+				return getDomain();
+			case "Range":
+				return getRange();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfNumbersGeneral> getRange() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getRange1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfNumbersGeneral> getRange1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Range"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfNumbersGeneral> getDomain() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDomain1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfNumbersGeneral> getDomain1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Domain"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AArrayOfNumbersGeneral> getC0() {
@@ -147,24 +93,58 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsRange() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Range"));
-	}
-
-	@Override
-	public Boolean getRangeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Long getRangeArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
+	private List<AArrayOfNumbersGeneral> getDomain() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getDomain1_3();
+			default:
+				return Collections.emptyList();
 		}
-		return null;
+	}
+
+	private List<AArrayOfNumbersGeneral> getDomain1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Domain"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfNumbersGeneral> getRange() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRange1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfNumbersGeneral> getRange1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Range"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -181,6 +161,26 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Long getC0ArraySize() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C0"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsC1() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("C1"));
+	}
+
+	@Override
+	public Boolean getC1HasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C1"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Long getC1ArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C1"));
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -235,26 +235,6 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	@Override
-	public Boolean getcontainsC1() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("C1"));
-	}
-
-	@Override
-	public Boolean getC1HasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C1"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Long getC1ArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C1"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsN() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
@@ -263,6 +243,26 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	public Boolean getNHasTypeNumber() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsRange() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Range"));
+	}
+
+	@Override
+	public Boolean getRangeHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Long getRangeArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
 	}
 
 }

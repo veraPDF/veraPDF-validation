@@ -58,6 +58,40 @@ public class GFACryptFilter extends GFAObject implements ACryptFilter {
 	}
 
 	@Override
+	public Boolean getcontainsCFM() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CFM"));
+	}
+
+	@Override
+	public Boolean getCFMHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CFM"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getCFMNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CFM"));
+		if (object == null || object.empty()) {
+			return getCFMNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getCFMNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "None";
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsLength() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
@@ -108,40 +142,6 @@ public class GFACryptFilter extends GFAObject implements ACryptFilter {
 	}
 
 	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsCFM() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CFM"));
-	}
-
-	@Override
-	public Boolean getCFMHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CFM"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getCFMNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CFM"));
-		if (object == null || object.empty()) {
-			return getCFMNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getCFMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "None";
-		}
 		return null;
 	}
 

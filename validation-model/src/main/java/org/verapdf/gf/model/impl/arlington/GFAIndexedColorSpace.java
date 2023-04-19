@@ -222,30 +222,68 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	@Override
-	public Boolean getisentry3Indirect() {
-		if (this.baseObject.size() <= 3) {
+	public Boolean getentry0HasTypeName() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.get() != null && object.get().isIndirect();
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getentry3HasTypeStream() {
-		if (this.baseObject.size() <= 3) {
+	public String getentry0NameValue() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		COSObject object = this.baseObject.at(0);
+		if (object == null || object.empty()) {
+			return getentry0NameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getentry0NameDefaultValue() {
+		return null;
 	}
 
 	@Override
-	public Boolean getentry3HasTypeString() {
-		if (this.baseObject.size() <= 3) {
+	public Boolean getentry1HasTypeArray() {
+		if (this.baseObject.size() <= 1) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeName() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getentry1NameValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1NameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getentry1NameDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -277,68 +315,30 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	@Override
-	public Boolean getentry1HasTypeName() {
-		if (this.baseObject.size() <= 1) {
+	public Boolean getisentry3Indirect() {
+		if (this.baseObject.size() <= 3) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
-	public Boolean getentry1HasTypeArray() {
-		if (this.baseObject.size() <= 1) {
+	public Boolean getentry3HasTypeStream() {
+		if (this.baseObject.size() <= 3) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
-	public String getentry1NameValue() {
-		if (this.baseObject.size() <= 1) {
+	public Boolean getentry3HasTypeString() {
+		if (this.baseObject.size() <= 3) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getentry1NameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeName() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getentry0NameValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getentry0NameDefaultValue() {
-		return null;
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

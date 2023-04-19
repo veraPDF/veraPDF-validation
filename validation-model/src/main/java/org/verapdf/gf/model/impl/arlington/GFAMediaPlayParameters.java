@@ -113,6 +113,39 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 	}
 
 	@Override
+	public Boolean getcontainsBE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
+	}
+
+	@Override
+	public Boolean getBEHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsMH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
+	}
+
+	@Override
+	public Boolean getMHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PL"));
+	}
+
+	@Override
+	public Boolean getPLHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PL"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -137,39 +170,6 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsPL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PL"));
-	}
-
-	@Override
-	public Boolean getPLHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PL"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsMH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
-	}
-
-	@Override
-	public Boolean getMHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsBE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
-	}
-
-	@Override
-	public Boolean getBEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

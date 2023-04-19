@@ -24,11 +24,20 @@ public class GFAArrayOf_9Numbers extends GFAObject implements AArrayOf_9Numbers 
 	}
 
 	@Override
-	public Boolean getentry8HasTypeNumber() {
-		if (this.baseObject.size() <= 8) {
+	public Boolean getentry0HasTypeNumber() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(8);
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNumber() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -42,6 +51,15 @@ public class GFAArrayOf_9Numbers extends GFAObject implements AArrayOf_9Numbers 
 	}
 
 	@Override
+	public Boolean getentry3HasTypeNumber() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public Boolean getentry4HasTypeNumber() {
 		if (this.baseObject.size() <= 4) {
 			return null;
@@ -51,11 +69,11 @@ public class GFAArrayOf_9Numbers extends GFAObject implements AArrayOf_9Numbers 
 	}
 
 	@Override
-	public Boolean getentry3HasTypeNumber() {
-		if (this.baseObject.size() <= 3) {
+	public Boolean getentry5HasTypeNumber() {
+		if (this.baseObject.size() <= 5) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = this.baseObject.at(5);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -78,29 +96,11 @@ public class GFAArrayOf_9Numbers extends GFAObject implements AArrayOf_9Numbers 
 	}
 
 	@Override
-	public Boolean getentry5HasTypeNumber() {
-		if (this.baseObject.size() <= 5) {
+	public Boolean getentry8HasTypeNumber() {
+		if (this.baseObject.size() <= 8) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(5);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getentry1HasTypeNumber() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = this.baseObject.at(8);
 		return object != null && object.getType().isNumber();
 	}
 

@@ -28,16 +28,16 @@ public class GFACollection extends GFAObject implements ACollection {
 		switch (link) {
 			case "Colors":
 				return getColors();
+			case "Folders":
+				return getFolders();
 			case "Navigator":
 				return getNavigator();
+			case "Resources":
+				return getResources();
 			case "Schema":
 				return getSchema();
 			case "Sort":
 				return getSort();
-			case "Folders":
-				return getFolders();
-			case "Resources":
-				return getResources();
 			case "Split":
 				return getSplit();
 			default:
@@ -68,6 +68,29 @@ public class GFACollection extends GFAObject implements ACollection {
 		return Collections.emptyList();
 	}
 
+	private List<ACollectionFolder> getFolders() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFolders1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ACollectionFolder> getFolders1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Folders"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ACollectionFolder> list = new ArrayList<>(1);
+			list.add(new GFACollectionFolder((COSDictionary)object.getDirectBase(), this.baseObject, "Folders"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<ANavigator> getNavigator() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
@@ -86,6 +109,29 @@ public class GFACollection extends GFAObject implements ACollection {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ANavigator> list = new ArrayList<>(1);
 			list.add(new GFANavigator((COSDictionary)object.getDirectBase(), this.baseObject, "Navigator"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ACollectionNameTreeResources> getResources() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getResources1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ACollectionNameTreeResources> getResources1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ACollectionNameTreeResources> list = new ArrayList<>(1);
+			list.add(new GFACollectionNameTreeResources((COSDictionary)object.getDirectBase(), this.baseObject, "Resources"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -137,52 +183,6 @@ public class GFACollection extends GFAObject implements ACollection {
 		return Collections.emptyList();
 	}
 
-	private List<ACollectionFolder> getFolders() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFolders1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ACollectionFolder> getFolders1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Folders"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ACollectionFolder> list = new ArrayList<>(1);
-			list.add(new GFACollectionFolder((COSDictionary)object.getDirectBase(), this.baseObject, "Folders"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ACollectionNameTreeResources> getResources() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getResources1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ACollectionNameTreeResources> getResources1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ACollectionNameTreeResources> list = new ArrayList<>(1);
-			list.add(new GFACollectionNameTreeResources((COSDictionary)object.getDirectBase(), this.baseObject, "Resources"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<ACollectionSplit> getSplit() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
@@ -204,6 +204,139 @@ public class GFACollection extends GFAObject implements ACollection {
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsColors() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Colors"));
+	}
+
+	@Override
+	public Boolean getColorsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colors"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	}
+
+	@Override
+	public Boolean getDHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsFolders() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Folders"));
+	}
+
+	@Override
+	public Boolean getisFoldersIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Folders"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getFoldersHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Folders"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsNavigator() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Navigator"));
+	}
+
+	@Override
+	public Boolean getisNavigatorIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Navigator"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getNavigatorHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Navigator"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsResources() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
+	}
+
+	@Override
+	public Boolean getisResourcesIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getResourcesHasTypeNameTree() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsSchema() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Schema"));
+	}
+
+	@Override
+	public Boolean getSchemaHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsSort() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Sort"));
+	}
+
+	@Override
+	public Boolean getSortHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sort"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsSplit() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Split"));
+	}
+
+	@Override
+	public Boolean getSplitHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Split"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -235,139 +368,6 @@ public class GFACollection extends GFAObject implements ACollection {
 			case ARLINGTON2_0:
 				return "D";
 		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSort() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Sort"));
-	}
-
-	@Override
-	public Boolean getSortHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sort"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsFolders() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Folders"));
-	}
-
-	@Override
-	public Boolean getisFoldersIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Folders"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getFoldersHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Folders"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsSchema() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Schema"));
-	}
-
-	@Override
-	public Boolean getSchemaHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsNavigator() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Navigator"));
-	}
-
-	@Override
-	public Boolean getisNavigatorIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Navigator"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getNavigatorHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Navigator"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsColors() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Colors"));
-	}
-
-	@Override
-	public Boolean getColorsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colors"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
-	}
-
-	@Override
-	public Boolean getDHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsSplit() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Split"));
-	}
-
-	@Override
-	public Boolean getSplitHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Split"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsResources() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
-	}
-
-	@Override
-	public Boolean getisResourcesIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getResourcesHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

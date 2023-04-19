@@ -24,11 +24,11 @@ public class GFAArrayOf_6Numbers extends GFAObject implements AArrayOf_6Numbers 
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
+	public Boolean getentry0HasTypeNumber() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -42,11 +42,11 @@ public class GFAArrayOf_6Numbers extends GFAObject implements AArrayOf_6Numbers 
 	}
 
 	@Override
-	public Boolean getentry4HasTypeNumber() {
-		if (this.baseObject.size() <= 4) {
+	public Boolean getentry2HasTypeNumber() {
+		if (this.baseObject.size() <= 2) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(4);
+		COSObject object = this.baseObject.at(2);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -60,11 +60,11 @@ public class GFAArrayOf_6Numbers extends GFAObject implements AArrayOf_6Numbers 
 	}
 
 	@Override
-	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
+	public Boolean getentry4HasTypeNumber() {
+		if (this.baseObject.size() <= 4) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = this.baseObject.at(4);
 		return object != null && object.getType().isNumber();
 	}
 

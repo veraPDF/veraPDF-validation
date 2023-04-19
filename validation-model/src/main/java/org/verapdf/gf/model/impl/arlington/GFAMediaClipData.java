@@ -26,16 +26,16 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "P":
-				return getP();
+			case "Alt":
+				return getAlt();
 			case "BE":
 				return getBE();
 			case "D":
 				return getD();
-			case "Alt":
-				return getAlt();
 			case "MH":
 				return getMH();
+			case "P":
+				return getP();
 			case "PL":
 				return getPL();
 			default:
@@ -43,26 +43,26 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 		}
 	}
 
-	private List<AMediaPermissions> getP() {
+	private List<AArrayOfStringsText> getAlt() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getP1_5();
+				return getAlt1_5();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AMediaPermissions> getP1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+	private List<AArrayOfStringsText> getAlt1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alt"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AMediaPermissions> list = new ArrayList<>(1);
-			list.add(new GFAMediaPermissions((COSDictionary)object.getDirectBase(), this.baseObject, "P"));
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfStringsText> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfStringsText((COSArray)object.getDirectBase(), this.baseObject, "Alt"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -110,39 +110,14 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AXObjectFormType1> list = new ArrayList<>(1);
 			list.add(new GFAXObjectFormType1((COSStream)object.getDirectBase(), this.baseObject, "D"));
 			return Collections.unmodifiableList(list);
 		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfStringsText> getAlt() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getAlt1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfStringsText> getAlt1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alt"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfStringsText> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStringsText((COSArray)object.getDirectBase(), this.baseObject, "Alt"));
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AFileSpecification> list = new ArrayList<>(1);
+			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -168,6 +143,31 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AMediaClipDataMHBE> list = new ArrayList<>(1);
 			list.add(new GFAMediaClipDataMHBE((COSDictionary)object.getDirectBase(), this.baseObject, "MH"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AMediaPermissions> getP() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getP1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AMediaPermissions> getP1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AMediaPermissions> list = new ArrayList<>(1);
+			list.add(new GFAMediaPermissions((COSDictionary)object.getDirectBase(), this.baseObject, "P"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -199,6 +199,28 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	@Override
+	public Boolean getcontainsAlt() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Alt"));
+	}
+
+	@Override
+	public Boolean getAltHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alt"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsBE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
+	}
+
+	@Override
+	public Boolean getBEHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsCT() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CT"));
 	}
@@ -207,6 +229,79 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	public Boolean getCTHasTypeStringAscii() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CT"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+	}
+
+	@Override
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	}
+
+	@Override
+	public Boolean getisDIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getDHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getDHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getDHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsMH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
+	}
+
+	@Override
+	public Boolean getMHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsN() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
+	}
+
+	@Override
+	public Boolean getNHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
+	}
+
+	@Override
+	public Boolean getPHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PL"));
+	}
+
+	@Override
+	public Boolean getPLHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PL"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -237,17 +332,6 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	@Override
-	public Boolean getcontainsN() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
-	}
-
-	@Override
-	public Boolean getNHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -272,90 +356,6 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAlt() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Alt"));
-	}
-
-	@Override
-	public Boolean getAltHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alt"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsMH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
-	}
-
-	@Override
-	public Boolean getMHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
-	}
-
-	@Override
-	public Boolean getisDIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getDHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getDHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsPL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PL"));
-	}
-
-	@Override
-	public Boolean getPLHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PL"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
-	}
-
-	@Override
-	public Boolean getPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsBE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
-	}
-
-	@Override
-	public Boolean getBEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

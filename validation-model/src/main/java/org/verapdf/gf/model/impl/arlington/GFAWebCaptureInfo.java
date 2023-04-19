@@ -61,6 +61,17 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 	}
 
 	@Override
+	public Boolean getcontainsC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
+	}
+
+	@Override
+	public Boolean getCHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
 	public Boolean getcontainsV() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
@@ -85,17 +96,6 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 
 	public Double getVNumberDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
-	}
-
-	@Override
-	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

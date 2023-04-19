@@ -86,6 +86,17 @@ public class GFAMediaScreenParameters extends GFAObject implements AMediaScreenP
 	}
 
 	@Override
+	public Boolean getcontainsBE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
+	}
+
+	@Override
+	public Boolean getBEHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsMH() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
 	}
@@ -121,17 +132,6 @@ public class GFAMediaScreenParameters extends GFAObject implements AMediaScreenP
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsBE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
-	}
-
-	@Override
-	public Boolean getBEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

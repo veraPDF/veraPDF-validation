@@ -27,15 +27,15 @@ public class GFAArrayOfAnnotStatesEntry extends GFAObject implements AArrayOfAnn
 	}
 
 	@Override
-	public Boolean getHasTypeNull() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
 	public Boolean getHasTypeName() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getHasTypeNull() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 }

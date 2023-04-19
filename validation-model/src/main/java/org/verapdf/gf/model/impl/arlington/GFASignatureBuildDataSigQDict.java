@@ -59,28 +59,6 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 	}
 
 	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
-	}
-
-	@Override
-	public Boolean getRHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getcontainsDate() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Date"));
 	}
@@ -92,13 +70,24 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 	}
 
 	@Override
-	public Boolean getcontainsPreRelease() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PreRelease"));
+	public Boolean getcontainsName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
 	}
 
 	@Override
-	public Boolean getPreReleaseHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreRelease"));
+	public Boolean getNameHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getcontainsNonEFontNoWarn() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NonEFontNoWarn"));
+	}
+
+	@Override
+	public Boolean getNonEFontNoWarnHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NonEFontNoWarn"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -114,24 +103,13 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 	}
 
 	@Override
-	public Boolean getcontainsName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
+	public Boolean getcontainsPreRelease() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PreRelease"));
 	}
 
 	@Override
-	public Boolean getNameHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getcontainsTrustedMode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TrustedMode"));
-	}
-
-	@Override
-	public Boolean getTrustedModeHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrustedMode"));
+	public Boolean getPreReleaseHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreRelease"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -147,14 +125,36 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 	}
 
 	@Override
-	public Boolean getcontainsNonEFontNoWarn() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NonEFontNoWarn"));
+	public Boolean getcontainsR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
 	@Override
-	public Boolean getNonEFontNoWarnHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NonEFontNoWarn"));
+	public Boolean getRHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsTrustedMode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TrustedMode"));
+	}
+
+	@Override
+	public Boolean getTrustedModeHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrustedMode"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType().isNumber();
 	}
 
 }

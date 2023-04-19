@@ -26,13 +26,40 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "OC":
-				return getOC();
 			case "Image":
 				return getImage();
+			case "OC":
+				return getOC();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AXObjectImage> getImage() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getImage1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AXObjectImage> getImage1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Image"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectImage> list = new ArrayList<>(1);
+			list.add(new GFAXObjectImage((COSStream)object.getDirectBase(), this.baseObject, "Image"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
@@ -80,33 +107,6 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 			default:
 				return null;
 		}
-	}
-
-	private List<AXObjectImage> getImage() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getImage1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AXObjectImage> getImage1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Image"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectImage> list = new ArrayList<>(1);
-			list.add(new GFAXObjectImage((COSStream)object.getDirectBase(), this.baseObject, "Image"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	@Override

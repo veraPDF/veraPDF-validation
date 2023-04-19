@@ -26,13 +26,40 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "SI":
-				return getSI();
 			case "O":
 				return getO();
+			case "SI":
+				return getSI();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfWebCapturePages> getO() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getO1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfWebCapturePages> getO1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfWebCapturePages> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfWebCapturePages((COSArray)object.getDirectBase(), this.baseObject, "O"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSI() {
@@ -67,31 +94,15 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfWebCapturePages> getO() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getO1_3();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsCT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CT"));
 	}
 
-	private List<AArrayOfWebCapturePages> getO1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfWebCapturePages> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfWebCapturePages((COSArray)object.getDirectBase(), this.baseObject, "O"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+	@Override
+	public Boolean getCTHasTypeStringAscii() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CT"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
 	@Override
@@ -106,20 +117,14 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	}
 
 	@Override
-	public Boolean getcontainsSI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SI"));
+	public Boolean getcontainsO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
 	@Override
-	public Boolean getSIHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
+	public Boolean getOHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getSIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -150,36 +155,20 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	}
 
 	@Override
-	public Boolean getcontainsTID() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TID"));
+	public Boolean getcontainsSI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SI"));
 	}
 
 	@Override
-	public Boolean getTIDHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TID"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsO() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
-	}
-
-	@Override
-	public Boolean getOHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+	public Boolean getSIHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Boolean getcontainsCT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CT"));
-	}
-
-	@Override
-	public Boolean getCTHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CT"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+	public Boolean getSIHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -191,6 +180,28 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	public Boolean getTHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsTID() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TID"));
+	}
+
+	@Override
+	public Boolean getTIDHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TID"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsTS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TS"));
+	}
+
+	@Override
+	public Boolean getTSHasTypeDate() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 	@Override
@@ -218,17 +229,6 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsTS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TS"));
-	}
-
-	@Override
-	public Boolean getTSHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 }

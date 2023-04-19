@@ -28,12 +28,12 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 		switch (link) {
 			case "C":
 				return getC();
-			case "V":
-				return getV();
 			case "F":
 				return getF();
 			case "K":
 				return getK();
+			case "V":
+				return getV();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -61,33 +61,6 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AActionECMAScript> list = new ArrayList<>(1);
 			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "C"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AActionECMAScript> getV() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getV1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AActionECMAScript> getV1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AActionECMAScript> list = new ArrayList<>(1);
-			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -147,15 +120,31 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	private List<AActionECMAScript> getV() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getV1_3();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getVHasTypeDictionary() {
+	private List<AActionECMAScript> getV1_3() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AActionECMAScript> list = new ArrayList<>(1);
+			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -166,6 +155,17 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	}
+
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -181,13 +181,13 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
 	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+	public Boolean getVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

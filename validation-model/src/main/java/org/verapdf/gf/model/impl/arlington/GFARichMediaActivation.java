@@ -26,14 +26,14 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Scripts":
-				return getScripts();
-			case "Configuration":
-				return getConfiguration();
 			case "Animation":
 				return getAnimation();
+			case "Configuration":
+				return getConfiguration();
 			case "Presentation":
 				return getPresentation();
+			case "Scripts":
+				return getScripts();
 			case "View":
 				return getView();
 			default:
@@ -41,24 +41,24 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 		}
 	}
 
-	private List<AArrayOfIndirectFileSpecifications> getScripts() {
+	private List<ARichMediaAnimation> getAnimation() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getScripts1_7();
+				return getAnimation1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfIndirectFileSpecifications> getScripts1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scripts"));
+	private List<ARichMediaAnimation> getAnimation1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Animation"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfIndirectFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfIndirectFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "Scripts"));
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ARichMediaAnimation> list = new ArrayList<>(1);
+			list.add(new GFARichMediaAnimation((COSDictionary)object.getDirectBase(), this.baseObject, "Animation"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -87,29 +87,6 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 		return Collections.emptyList();
 	}
 
-	private List<ARichMediaAnimation> getAnimation() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getAnimation1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ARichMediaAnimation> getAnimation1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Animation"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ARichMediaAnimation> list = new ArrayList<>(1);
-			list.add(new GFARichMediaAnimation((COSDictionary)object.getDirectBase(), this.baseObject, "Animation"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<ARichMediaPresentation> getPresentation() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
@@ -128,6 +105,29 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ARichMediaPresentation> list = new ArrayList<>(1);
 			list.add(new GFARichMediaPresentation((COSDictionary)object.getDirectBase(), this.baseObject, "Presentation"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfIndirectFileSpecifications> getScripts() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getScripts1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfIndirectFileSpecifications> getScripts1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scripts"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfIndirectFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfIndirectFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "Scripts"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -170,6 +170,17 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	@Override
+	public Boolean getcontainsAnimation() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Animation"));
+	}
+
+	@Override
+	public Boolean getAnimationHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Animation"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsCondition() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Condition"));
 	}
@@ -202,14 +213,20 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	@Override
-	public Boolean getcontainsScripts() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Scripts"));
+	public Boolean getcontainsConfiguration() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Configuration"));
 	}
 
 	@Override
-	public Boolean getScriptsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scripts"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getisConfigurationIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configuration"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getConfigurationHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configuration"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -221,6 +238,17 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	public Boolean getPresentationHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Presentation"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsScripts() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Scripts"));
+	}
+
+	@Override
+	public Boolean getScriptsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scripts"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -251,17 +279,6 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	@Override
-	public Boolean getcontainsAnimation() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Animation"));
-	}
-
-	@Override
-	public Boolean getAnimationHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Animation"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsView() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("View"));
 	}
@@ -275,23 +292,6 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public Boolean getViewHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("View"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsConfiguration() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Configuration"));
-	}
-
-	@Override
-	public Boolean getisConfigurationIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configuration"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getConfigurationHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configuration"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

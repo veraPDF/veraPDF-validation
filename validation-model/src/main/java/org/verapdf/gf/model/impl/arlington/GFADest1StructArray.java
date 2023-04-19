@@ -56,31 +56,12 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 	}
 
 	@Override
-	public Boolean getentry1HasTypeName() {
-		if (this.baseObject.size() <= 1) {
+	public Boolean getentry0HasTypeStringByte() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getentry1NameValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getentry1NameDefaultValue() {
-		return null;
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -90,15 +71,6 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 		}
 		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getentry0HasTypeStringByte() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -159,12 +131,31 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNull() {
-		if (this.baseObject.size() <= 2) {
+	public Boolean getentry1HasTypeName() {
+		if (this.baseObject.size() <= 1) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getentry1NameValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1NameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getentry1NameDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -174,6 +165,15 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 		}
 		COSObject object = this.baseObject.at(2);
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNull() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override

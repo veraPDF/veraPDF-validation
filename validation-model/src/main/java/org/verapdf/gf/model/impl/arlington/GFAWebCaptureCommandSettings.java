@@ -90,17 +90,6 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	}
 
 	@Override
-	public Boolean getcontainsG() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("G"));
-	}
-
-	@Override
-	public Boolean getGHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsC() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
@@ -108,6 +97,17 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsG() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("G"));
+	}
+
+	@Override
+	public Boolean getGHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

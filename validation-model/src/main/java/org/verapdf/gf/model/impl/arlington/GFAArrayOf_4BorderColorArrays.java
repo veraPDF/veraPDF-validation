@@ -140,56 +140,11 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNull() {
-		if (this.baseObject.size() <= 2) {
+	public Boolean getentry0HasTypeArray() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeArray() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getentry3HasTypeNull() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getentry3HasTypeArray() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeNull() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeArray() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -203,12 +158,57 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	@Override
-	public Boolean getentry0HasTypeArray() {
-		if (this.baseObject.size() <= 0) {
+	public Boolean getentry1HasTypeArray() {
+		if (this.baseObject.size() <= 1) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNull() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeArray() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNull() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeArray() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeNull() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 }

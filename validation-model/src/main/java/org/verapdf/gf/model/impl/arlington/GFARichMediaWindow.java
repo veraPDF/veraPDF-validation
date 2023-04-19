@@ -26,38 +26,15 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Position":
-				return getPosition();
 			case "Height":
 				return getHeight();
+			case "Position":
+				return getPosition();
 			case "Width":
 				return getWidth();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ARichMediaPosition> getPosition() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPosition1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ARichMediaPosition> getPosition1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ARichMediaPosition> list = new ArrayList<>(1);
-			list.add(new GFARichMediaPosition((COSDictionary)object.getDirectBase(), this.baseObject, "Position"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ARichMediaHeight> getHeight() {
@@ -78,6 +55,29 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ARichMediaHeight> list = new ArrayList<>(1);
 			list.add(new GFARichMediaHeight((COSDictionary)object.getDirectBase(), this.baseObject, "Height"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ARichMediaPosition> getPosition() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPosition1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ARichMediaPosition> getPosition1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ARichMediaPosition> list = new ArrayList<>(1);
+			list.add(new GFARichMediaPosition((COSDictionary)object.getDirectBase(), this.baseObject, "Position"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -104,6 +104,17 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsHeight() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Height"));
+	}
+
+	@Override
+	public Boolean getHeightHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -142,17 +153,6 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsHeight() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Height"));
-	}
-
-	@Override
-	public Boolean getHeightHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

@@ -26,41 +26,149 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "C":
-				return getC();
-			case "ExData":
-				return getExData();
 			case "AF":
 				return getAF();
+			case "AP":
+				return getAP();
+			case "BS":
+				return getBS();
+			case "Border":
+				return getBorder();
+			case "C":
+				return getC();
+			case "CO":
+				return getCO();
+			case "ExData":
+				return getExData();
+			case "IC":
+				return getIC();
 			case "IRT":
 				return getIRT();
 			case "L":
 				return getL();
-			case "CO":
-				return getCO();
-			case "AP":
-				return getAP();
-			case "P":
-				return getP();
-			case "BS":
-				return getBS();
-			case "RC":
-				return getRC();
-			case "OC":
-				return getOC();
-			case "Popup":
-				return getPopup();
-			case "Measure":
-				return getMeasure();
 			case "LE":
 				return getLE();
-			case "IC":
-				return getIC();
-			case "Border":
-				return getBorder();
+			case "Measure":
+				return getMeasure();
+			case "OC":
+				return getOC();
+			case "P":
+				return getP();
+			case "Popup":
+				return getPopup();
+			case "RC":
+				return getRC();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getAF() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getAF2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AFileSpecification> list = new ArrayList<>(1);
+			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "AF"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AAppearance> getAP() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getAP1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AAppearance> getAP1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearance> list = new ArrayList<>(1);
+			list.add(new GFAAppearance((COSDictionary)object.getDirectBase(), this.baseObject, "AP"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ABorderStyle> getBS() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getBS1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ABorderStyle> getBS1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BS"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ABorderStyle> list = new ArrayList<>(1);
+			list.add(new GFABorderStyle((COSDictionary)object.getDirectBase(), this.baseObject, "BS"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getBorder1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_4AnnotBorderCharacteristics> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_4AnnotBorderCharacteristics((COSArray)object.getDirectBase(), this.baseObject, "Border"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
@@ -85,6 +193,29 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_4NumbersColorAnnotation> list = new ArrayList<>(1);
 			list.add(new GFAArrayOf_4NumbersColorAnnotation((COSArray)object.getDirectBase(), this.baseObject, "C"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOf_2Numbers> getCO() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getCO1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_2Numbers> getCO1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_2Numbers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_2Numbers((COSArray)object.getDirectBase(), this.baseObject, "CO"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -176,28 +307,27 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getAF() {
+	private List<AArrayOf_4NumbersColorAnnotation> getIC() {
 		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getAF2_0();
+				return getIC1_4();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+	private List<AArrayOf_4NumbersColorAnnotation> getIC1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IC"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOf_4NumbersColorAnnotation> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_4NumbersColorAnnotation((COSArray)object.getDirectBase(), this.baseObject, "IC"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -557,204 +687,27 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOf_2Numbers> getCO() {
+	private List<AArrayOf_2LineEndingsNames> getLE() {
 		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCO1_7();
+				return getLE1_4();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_2Numbers> getCO1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+	private List<AArrayOf_2LineEndingsNames> getLE1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LE"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_2Numbers> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_2Numbers((COSArray)object.getDirectBase(), this.baseObject, "CO"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getAP1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AAppearance> getAP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAppearance> list = new ArrayList<>(1);
-			list.add(new GFAAppearance((COSDictionary)object.getDirectBase(), this.baseObject, "AP"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getP1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<APageObject> getP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<APageObject> list = new ArrayList<>(1);
-			list.add(new GFAPageObject((COSDictionary)object.getDirectBase(), this.baseObject, "P"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ABorderStyle> getBS() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getBS1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ABorderStyle> getBS1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BS"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ABorderStyle> list = new ArrayList<>(1);
-			list.add(new GFABorderStyle((COSDictionary)object.getDirectBase(), this.baseObject, "BS"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AStream> getRC() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getRC1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AStream> getRC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "RC"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getOC1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getOC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getOCDictionary1_5(object.getDirectBase(), "OC");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getOCDictionary1_5(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "OCG":
-				return new GFAOptContentGroup(base, this.baseObject, keyName);
-			case "OCMD":
-				return new GFAOptContentMembership(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<AAnnotPopup> getPopup() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPopup1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AAnnotPopup> getPopup1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Popup"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAnnotPopup> list = new ArrayList<>(1);
-			list.add(new GFAAnnotPopup((COSDictionary)object.getDirectBase(), this.baseObject, "Popup"));
+			List<AArrayOf_2LineEndingsNames> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_2LineEndingsNames((COSArray)object.getDirectBase(), this.baseObject, "LE"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -819,59 +772,54 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 		}
 	}
 
-	private List<AArrayOf_2LineEndingsNames> getLE() {
+	private List<org.verapdf.model.baselayer.Object> getOC() {
 		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getLE1_4();
+				return getOC1_5();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_2LineEndingsNames> getLE1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LE"));
+	private List<org.verapdf.model.baselayer.Object> getOC1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_2LineEndingsNames> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_2LineEndingsNames((COSArray)object.getDirectBase(), this.baseObject, "LE"));
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getOCDictionary1_5(object.getDirectBase(), "OC");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOf_4NumbersColorAnnotation> getIC() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getIC1_4();
+	private org.verapdf.model.baselayer.Object getOCDictionary1_5(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "OCG":
+				return new GFAOptContentGroup(base, this.baseObject, keyName);
+			case "OCMD":
+				return new GFAOptContentMembership(base, this.baseObject, keyName);
 			default:
-				return Collections.emptyList();
+				return null;
 		}
 	}
 
-	private List<AArrayOf_4NumbersColorAnnotation> getIC1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IC"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_4NumbersColorAnnotation> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_4NumbersColorAnnotation((COSArray)object.getDirectBase(), this.baseObject, "IC"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
+	private List<APageObject> getP() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -879,34 +827,75 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBorder1_3();
+				return getP1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+	private List<APageObject> getP1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_4AnnotBorderCharacteristics> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_4AnnotBorderCharacteristics((COSArray)object.getDirectBase(), this.baseObject, "Border"));
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<APageObject> list = new ArrayList<>(1);
+			list.add(new GFAPageObject((COSDictionary)object.getDirectBase(), this.baseObject, "P"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsBS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BS"));
+	private List<AAnnotPopup> getPopup() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPopup1_3();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getBSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BS"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	private List<AAnnotPopup> getPopup1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Popup"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAnnotPopup> list = new ArrayList<>(1);
+			list.add(new GFAAnnotPopup((COSDictionary)object.getDirectBase(), this.baseObject, "Popup"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AStream> getRC() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRC1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AStream> getRC1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "RC"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -927,6 +916,17 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public Boolean getcontainsAP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AP"));
+	}
+
+	@Override
+	public Boolean getAPHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsAS() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AS"));
 	}
@@ -938,21 +938,21 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
-	public Boolean getcontainsIT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("IT"));
+	public Boolean getcontainsBM() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BM"));
 	}
 
 	@Override
-	public Boolean getITHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IT"));
+	public Boolean getBMHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public String getITNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IT"));
+	public String getBMNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
 		if (object == null || object.empty()) {
-			return getITNameDefaultValue();
+			return getBMNameDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
@@ -960,30 +960,45 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 		return null;
 	}
 
-	public String getITNameDefaultValue() {
+	public String getBMNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return "Normal";
+		}
 		return null;
 	}
 
 	@Override
-	public Boolean getcontainsMeasure() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Measure"));
+	public Boolean getcontainsBS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BS"));
 	}
 
 	@Override
-	public Boolean getMeasureHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+	public Boolean getBSHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BS"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsLang() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
+	public Boolean getcontainsBorder() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Border"));
 	}
 
 	@Override
-	public Boolean getLangHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getBorderHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
+	}
+
+	@Override
+	public Boolean getCHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -1022,6 +1037,222 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public Boolean getcontainsCO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CO"));
+	}
+
+	@Override
+	public Boolean getCOHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsCP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CP"));
+	}
+
+	@Override
+	public Boolean getCPHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CP"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getCPNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CP"));
+		if (object == null || object.empty()) {
+			return getCPNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getCPNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "Inline";
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsCap() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Cap"));
+	}
+
+	@Override
+	public Boolean getCapHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cap"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getCapBooleanValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cap"));
+		if (object == null || object.empty()) {
+			return getCapBooleanDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
+			return object.getBoolean();
+		}
+		return null;
+	}
+
+	public Boolean getCapBooleanDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return false;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsContents() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Contents"));
+	}
+
+	@Override
+	public Boolean getContentsHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsCreationDate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
+	}
+
+	@Override
+	public Boolean getCreationDateHasTypeDate() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+	}
+
+	@Override
+	public Boolean getcontainsExData() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ExData"));
+	}
+
+	@Override
+	public Boolean getExDataHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExData"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	}
+
+	@Override
+	public Boolean getFHasTypeBitmask() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFBitmaskValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		if (object == null || object.empty()) {
+			return getFBitmaskDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getFBitmaskDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 0L;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsIC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("IC"));
+	}
+
+	@Override
+	public Boolean getICHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IC"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsIRT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("IRT"));
+	}
+
+	@Override
+	public Boolean getIRTHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IRT"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsIT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("IT"));
+	}
+
+	@Override
+	public Boolean getITHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IT"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getITNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IT"));
+		if (object == null || object.empty()) {
+			return getITNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getITNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
+	}
+
+	@Override
+	public Boolean getLHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsLE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("LE"));
+	}
+
+	@Override
+	public Boolean getLEHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LE"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
 	public Boolean getcontainsLL() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("LL"));
 	}
@@ -1033,6 +1264,105 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public Boolean getcontainsLLE() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("LLE"));
+	}
+
+	@Override
+	public Boolean getLLEHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLE"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getLLENumberValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLE"));
+		if (object == null || object.empty()) {
+			return getLLENumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getLLENumberDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 0D;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsLLO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("LLO"));
+	}
+
+	@Override
+	public Boolean getLLOHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLO"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getLLONumberValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLO"));
+		if (object == null || object.empty()) {
+			return getLLONumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getLLONumberDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsLang() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
+	}
+
+	@Override
+	public Boolean getLangHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsM() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("M"));
+	}
+
+	@Override
+	public Boolean getMHasTypeDate() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+	}
+
+	@Override
+	public Boolean getMHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsMeasure() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Measure"));
+	}
+
+	@Override
+	public Boolean getMeasureHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsNM() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("NM"));
 	}
@@ -1041,6 +1371,107 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public Boolean getNMHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NM"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsOC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OC"));
+	}
+
+	@Override
+	public Boolean getOCHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
+	}
+
+	@Override
+	public Boolean getisPIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getPHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPopup() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Popup"));
+	}
+
+	@Override
+	public Boolean getisPopupIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Popup"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getPopupHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Popup"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsRC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RC"));
+	}
+
+	@Override
+	public Boolean getisRCIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getRCHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getRCHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsRT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RT"));
+	}
+
+	@Override
+	public Boolean getRTHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getRTNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
+		if (object == null || object.empty()) {
+			return getRTNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getRTNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "R";
+		}
+		return null;
 	}
 
 	@Override
@@ -1097,154 +1528,24 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
-	public Boolean getcontainsContents() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Contents"));
+	public Boolean getcontainsStructParent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("StructParent"));
 	}
 
 	@Override
-	public Boolean getContentsHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
-	}
-
-	@Override
-	public Boolean getLHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsRC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RC"));
-	}
-
-	@Override
-	public Boolean getisRCIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getRCHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getRCHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsIC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("IC"));
-	}
-
-	@Override
-	public Boolean getICHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IC"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsIRT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("IRT"));
-	}
-
-	@Override
-	public Boolean getIRTHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IRT"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CP"));
-	}
-
-	@Override
-	public Boolean getCPHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CP"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getCPNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CP"));
-		if (object == null || object.empty()) {
-			return getCPNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getCPNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "Inline";
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
-	}
-
-	@Override
-	public Boolean getFHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+	public Boolean getStructParentHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructParent"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Long getFBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		if (object == null || object.empty()) {
-			return getFBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0L;
-		}
-		return null;
+	public Boolean getcontainsSubj() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subj"));
 	}
 
 	@Override
-	public Boolean getcontainsM() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("M"));
-	}
-
-	@Override
-	public Boolean getMHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
-	}
-
-	@Override
-	public Boolean getMHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+	public Boolean getSubjHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subj"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -1276,56 +1577,6 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
-	public Boolean getcontainsPopup() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Popup"));
-	}
-
-	@Override
-	public Boolean getisPopupIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Popup"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getPopupHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Popup"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCO() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CO"));
-	}
-
-	@Override
-	public Boolean getCOHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsAP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AP"));
-	}
-
-	@Override
-	public Boolean getAPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsExData() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ExData"));
-	}
-
-	@Override
-	public Boolean getExDataHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExData"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsT() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
@@ -1334,81 +1585,6 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public Boolean getTHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsStructParent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("StructParent"));
-	}
-
-	@Override
-	public Boolean getStructParentHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructParent"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsLLE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("LLE"));
-	}
-
-	@Override
-	public Boolean getLLEHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLE"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getLLENumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLE"));
-		if (object == null || object.empty()) {
-			return getLLENumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getLLENumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0D;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsBM() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BM"));
-	}
-
-	@Override
-	public Boolean getBMHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getBMNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
-		if (object == null || object.empty()) {
-			return getBMNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return "Normal";
-		}
-		return null;
 	}
 
 	@Override
@@ -1439,44 +1615,6 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
-	public Boolean getcontainsLLO() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("LLO"));
-	}
-
-	@Override
-	public Boolean getLLOHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLO"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getLLONumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLO"));
-		if (object == null || object.empty()) {
-			return getLLONumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getLLONumberDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsBorder() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Border"));
-	}
-
-	@Override
-	public Boolean getBorderHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
 	public Boolean getcontainsca() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ca"));
 	}
@@ -1503,144 +1641,6 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
-	}
-
-	@Override
-	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsLE() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("LE"));
-	}
-
-	@Override
-	public Boolean getLEHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LE"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsOC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OC"));
-	}
-
-	@Override
-	public Boolean getOCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCap() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Cap"));
-	}
-
-	@Override
-	public Boolean getCapHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cap"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getCapBooleanValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cap"));
-		if (object == null || object.empty()) {
-			return getCapBooleanDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
-	}
-
-	public Boolean getCapBooleanDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return false;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSubj() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subj"));
-	}
-
-	@Override
-	public Boolean getSubjHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subj"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsCreationDate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
-	}
-
-	@Override
-	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
-	}
-
-	@Override
-	public Boolean getcontainsP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
-	}
-
-	@Override
-	public Boolean getisPIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsRT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RT"));
-	}
-
-	@Override
-	public Boolean getRTHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getRTNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
-		if (object == null || object.empty()) {
-			return getRTNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getRTNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "R";
 		}
 		return null;
 	}

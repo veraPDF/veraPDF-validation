@@ -26,37 +26,37 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "TI":
-				return getTI();
-			case "Next":
-				return getNext();
 			case "CMD":
 				return getCMD();
+			case "Next":
+				return getNext();
 			case "TA":
 				return getTA();
+			case "TI":
+				return getTI();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<ARichMediaInstance> getTI() {
+	private List<ARichMediaCommand> getCMD() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getTI1_7();
+				return getCMD1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ARichMediaInstance> getTI1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TI"));
+	private List<ARichMediaCommand> getCMD1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CMD"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<ARichMediaInstance> list = new ArrayList<>(1);
-			list.add(new GFARichMediaInstance((COSDictionary)object.getDirectBase(), this.baseObject, "TI"));
+			List<ARichMediaCommand> list = new ArrayList<>(1);
+			list.add(new GFARichMediaCommand((COSDictionary)object.getDirectBase(), this.baseObject, "CMD"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -223,29 +223,6 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 		}
 	}
 
-	private List<ARichMediaCommand> getCMD() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getCMD1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ARichMediaCommand> getCMD1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CMD"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ARichMediaCommand> list = new ArrayList<>(1);
-			list.add(new GFARichMediaCommand((COSDictionary)object.getDirectBase(), this.baseObject, "CMD"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<AAnnotRichMedia> getTA() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
@@ -269,31 +246,27 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
+	private List<ARichMediaInstance> getTI() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getTI1_7();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
 	}
 
-	public String getTypeNameDefaultValue() {
-		return null;
+	private List<ARichMediaInstance> getTI1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TI"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ARichMediaInstance> list = new ArrayList<>(1);
+			list.add(new GFARichMediaInstance((COSDictionary)object.getDirectBase(), this.baseObject, "TI"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -304,40 +277,6 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	@Override
 	public Boolean getCMDHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CMD"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsTA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TA"));
-	}
-
-	@Override
-	public Boolean getisTAIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TA"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getTAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TA"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsTI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TI"));
-	}
-
-	@Override
-	public Boolean getisTIIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TI"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getTIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TI"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -382,6 +321,67 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsTA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TA"));
+	}
+
+	@Override
+	public Boolean getisTAIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TA"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getTAHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TA"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsTI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TI"));
+	}
+
+	@Override
+	public Boolean getisTIIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TI"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getTIHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TI"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

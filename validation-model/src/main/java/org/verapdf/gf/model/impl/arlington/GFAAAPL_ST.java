@@ -26,15 +26,43 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "ColorSpace":
-				return getColorSpace();
 			case "Color":
 				return getColor();
+			case "ColorSpace":
+				return getColorSpace();
 			case "Offset":
 				return getOffset();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfNumbersGeneral> getColor() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getColor1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfNumbersGeneral> getColor1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Color"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace() {
@@ -139,34 +167,6 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 		}
 	}
 
-	private List<AArrayOfNumbersGeneral> getColor() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getColor1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfNumbersGeneral> getColor1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Color"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<AArrayOf_2Numbers> getOffset() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
@@ -196,20 +196,31 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	@Override
-	public Boolean getcontainsColorSpace() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
+	public Boolean getcontainsColor() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Color"));
 	}
 
 	@Override
-	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getColorHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsColorSpace() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getColorSpaceHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -225,71 +236,6 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	public String getColorSpaceNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsColor() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Color"));
-	}
-
-	@Override
-	public Boolean getColorHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsSubtype() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
-	}
-
-	@Override
-	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -328,6 +274,60 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	public Double getRadiusNumberDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsSubtype() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
+	}
+
+	@Override
+	public Boolean getSubtypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSubtypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			return getSubtypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSubtypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

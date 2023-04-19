@@ -32,12 +32,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 				return getKeyUsage();
 			case "OID":
 				return getOID();
-			case "SubjectDN":
-				return getSubjectDN();
 			case "SignaturePolicyCommitmentType":
 				return getSignaturePolicyCommitmentType();
 			case "Subject":
 				return getSubject();
+			case "SubjectDN":
+				return getSubjectDN();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -116,29 +116,6 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfSubjectDN> getSubjectDN() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getSubjectDN1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfSubjectDN> getSubjectDN1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubjectDN"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfSubjectDN> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfSubjectDN((COSArray)object.getDirectBase(), this.baseObject, "SubjectDN"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<AArrayOfStringsASCII> getSignaturePolicyCommitmentType() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
@@ -186,15 +163,27 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsKeyUsage() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("KeyUsage"));
+	private List<AArrayOfSubjectDN> getSubjectDN() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getSubjectDN1_7();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getKeyUsageHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KeyUsage"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	private List<AArrayOfSubjectDN> getSubjectDN1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubjectDN"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfSubjectDN> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfSubjectDN((COSArray)object.getDirectBase(), this.baseObject, "SubjectDN"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -232,24 +221,24 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
-	public Boolean getcontainsSignaturePolicyHashValue() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyHashValue"));
+	public Boolean getcontainsIssuer() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Issuer"));
 	}
 
 	@Override
-	public Boolean getSignaturePolicyHashValueHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashValue"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+	public Boolean getIssuerHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Issuer"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Boolean getcontainsSignaturePolicyCommitmentType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyCommitmentType"));
+	public Boolean getcontainsKeyUsage() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("KeyUsage"));
 	}
 
 	@Override
-	public Boolean getSignaturePolicyCommitmentTypeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyCommitmentType"));
+	public Boolean getKeyUsageHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KeyUsage"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -265,14 +254,85 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
-	public Boolean getcontainsURL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
+	public Boolean getcontainsSignaturePolicyCommitmentType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyCommitmentType"));
 	}
 
 	@Override
-	public Boolean getURLHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+	public Boolean getSignaturePolicyCommitmentTypeHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyCommitmentType"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsSignaturePolicyHashAlgorithm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
+	}
+
+	@Override
+	public Boolean getSignaturePolicyHashAlgorithmHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSignaturePolicyHashAlgorithmNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
+		if (object == null || object.empty()) {
+			return getSignaturePolicyHashAlgorithmNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSignaturePolicyHashAlgorithmNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsSignaturePolicyHashValue() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyHashValue"));
+	}
+
+	@Override
+	public Boolean getSignaturePolicyHashValueHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashValue"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsSignaturePolicyOID() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyOID"));
+	}
+
+	@Override
+	public Boolean getSignaturePolicyOIDHasTypeStringAscii() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyOID"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+	}
+
+	@Override
+	public Boolean getcontainsSubject() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subject"));
+	}
+
+	@Override
+	public Boolean getSubjectHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsSubjectDN() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SubjectDN"));
+	}
+
+	@Override
+	public Boolean getSubjectDNHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubjectDN"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -303,36 +363,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
-	public Boolean getcontainsSubjectDN() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SubjectDN"));
+	public Boolean getcontainsURL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
 	}
 
 	@Override
-	public Boolean getSubjectDNHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubjectDN"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsSignaturePolicyOID() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyOID"));
-	}
-
-	@Override
-	public Boolean getSignaturePolicyOIDHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyOID"));
+	public Boolean getURLHasTypeStringAscii() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
-	}
-
-	@Override
-	public Boolean getcontainsIssuer() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Issuer"));
-	}
-
-	@Override
-	public Boolean getIssuerHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Issuer"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -365,44 +403,6 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 				return "Browser";
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSignaturePolicyHashAlgorithm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
-	}
-
-	@Override
-	public Boolean getSignaturePolicyHashAlgorithmHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSignaturePolicyHashAlgorithmNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
-		if (object == null || object.empty()) {
-			return getSignaturePolicyHashAlgorithmNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSignaturePolicyHashAlgorithmNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSubject() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subject"));
-	}
-
-	@Override
-	public Boolean getSubjectHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

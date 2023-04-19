@@ -171,20 +171,20 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	static {
-		standardFonts.add("TimesRoman");
+		standardFonts.add("Times-Roman");
 		standardFonts.add("Helvetica");
 		standardFonts.add("Courier");
 		standardFonts.add("Symbol");
-		standardFonts.add("TimesBold");
-		standardFonts.add("HelveticaBold");
-		standardFonts.add("CourierBold");
+		standardFonts.add("Times-Bold");
+		standardFonts.add("Helvetica-Bold");
+		standardFonts.add("Courier-Bold");
 		standardFonts.add("ZapfDingbats");
-		standardFonts.add("TimesItalic");
-		standardFonts.add("HelveticaOblique");
-		standardFonts.add("CourierOblique");
-		standardFonts.add("TimesBoldItalic");
-		standardFonts.add("HelveticaBoldOblique");
-		standardFonts.add("CourierBoldOblique");
+		standardFonts.add("Times-Italic");
+		standardFonts.add("Helvetica-Oblique");
+		standardFonts.add("Courier-Oblique");
+		standardFonts.add("Times-BoldItalic");
+		standardFonts.add("Helvetica-BoldOblique");
+		standardFonts.add("Courier-BoldOblique");
 	}
 
 }

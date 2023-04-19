@@ -26,79 +26,23 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "ToUnicode":
-				return getToUnicode();
-			case "W":
-				return getW();
 			case "CIDSystemInfo":
 				return getCIDSystemInfo();
-			case "W2":
-				return getW2();
+			case "CIDToGIDMap":
+				return getCIDToGIDMap();
 			case "DW2":
 				return getDW2();
 			case "FontDescriptor":
 				return getFontDescriptor();
-			case "CIDToGIDMap":
-				return getCIDToGIDMap();
+			case "ToUnicode":
+				return getToUnicode();
+			case "W":
+				return getW();
+			case "W2":
+				return getW2();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AStream> getToUnicode() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getToUnicode1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AStream> getToUnicode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfCIDGlyphMetricsW> getW() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getW1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfCIDGlyphMetricsW> getW1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfCIDGlyphMetricsW> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfCIDGlyphMetricsW((COSArray)object.getDirectBase(), this.baseObject, "W"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ACIDSystemInfo> getCIDSystemInfo() {
@@ -129,7 +73,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfCIDGlyphMetricsW2> getW2() {
+	private List<AStream> getCIDToGIDMap() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -138,20 +82,20 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getW21_2();
+				return getCIDToGIDMap1_2();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfCIDGlyphMetricsW2> getW21_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W2"));
+	private List<AStream> getCIDToGIDMap1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfCIDGlyphMetricsW2> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfCIDGlyphMetricsW2((COSArray)object.getDirectBase(), this.baseObject, "W2"));
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "CIDToGIDMap"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -213,7 +157,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return Collections.emptyList();
 	}
 
-	private List<AStream> getCIDToGIDMap() {
+	private List<AStream> getToUnicode() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -222,183 +166,79 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIDToGIDMap1_2();
+				return getToUnicode1_2();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AStream> getCIDToGIDMap1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+	private List<AStream> getToUnicode1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "CIDToGIDMap"));
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsDW2() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DW2"));
-	}
-
-	@Override
-	public Boolean getDW2HasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW2"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsSubtype() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
-	}
-
-	@Override
-	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
+	private List<AArrayOfCIDGlyphMetricsW> getW() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getW1_2();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
 	}
 
-	public String getSubtypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsDW() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DW"));
-	}
-
-	@Override
-	public Boolean getDWHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsFontDescriptor() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontDescriptor"));
-	}
-
-	@Override
-	public Boolean getisFontDescriptorIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getFontDescriptorHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCIDToGIDMap() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CIDToGIDMap"));
-	}
-
-	@Override
-	public Boolean getisCIDToGIDMapIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getCIDToGIDMapHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getCIDToGIDMapHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public String getCIDToGIDMapNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
-		if (object == null || object.empty()) {
-			return getCIDToGIDMapNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getCIDToGIDMapNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsW() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
-	}
-
-	@Override
-	public Boolean getWHasTypeArray() {
+	private List<AArrayOfCIDGlyphMetricsW> getW1_2() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfCIDGlyphMetricsW> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfCIDGlyphMetricsW((COSArray)object.getDirectBase(), this.baseObject, "W"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsToUnicode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ToUnicode"));
+	private List<AArrayOfCIDGlyphMetricsW2> getW2() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getW21_2();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getisToUnicodeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getToUnicodeHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+	private List<AArrayOfCIDGlyphMetricsW2> getW21_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W2"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfCIDGlyphMetricsW2> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfCIDGlyphMetricsW2((COSArray)object.getDirectBase(), this.baseObject, "W2"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -437,6 +277,166 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	public Boolean getCIDSystemInfoHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDSystemInfo"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsCIDToGIDMap() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CIDToGIDMap"));
+	}
+
+	@Override
+	public Boolean getisCIDToGIDMapIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getCIDToGIDMapHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getCIDToGIDMapHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getCIDToGIDMapNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		if (object == null || object.empty()) {
+			return getCIDToGIDMapNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getCIDToGIDMapNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsDW() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DW"));
+	}
+
+	@Override
+	public Boolean getDWHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsDW2() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DW2"));
+	}
+
+	@Override
+	public Boolean getDW2HasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW2"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsFontDescriptor() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontDescriptor"));
+	}
+
+	@Override
+	public Boolean getisFontDescriptorIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getFontDescriptorHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsSubtype() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
+	}
+
+	@Override
+	public Boolean getSubtypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSubtypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			return getSubtypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSubtypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsToUnicode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ToUnicode"));
+	}
+
+	@Override
+	public Boolean getisToUnicodeIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getToUnicodeHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsW() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
+	}
+
+	@Override
+	public Boolean getWHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override

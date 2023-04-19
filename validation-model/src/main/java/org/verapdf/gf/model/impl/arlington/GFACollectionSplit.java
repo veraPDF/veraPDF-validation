@@ -24,6 +24,33 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 	}
 
 	@Override
+	public Boolean getcontainsDirection() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Direction"));
+	}
+
+	@Override
+	public Boolean getDirectionHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Direction"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getDirectionNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Direction"));
+		if (object == null || object.empty()) {
+			return getDirectionNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getDirectionNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsPosition() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Position"));
 	}
@@ -74,33 +101,6 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 	}
 
 	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsDirection() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Direction"));
-	}
-
-	@Override
-	public Boolean getDirectionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Direction"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getDirectionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Direction"));
-		if (object == null || object.empty()) {
-			return getDirectionNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getDirectionNameDefaultValue() {
 		return null;
 	}
 

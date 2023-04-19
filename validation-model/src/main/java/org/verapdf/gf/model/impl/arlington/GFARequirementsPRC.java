@@ -85,23 +85,6 @@ public class GFARequirementsPRC extends GFAObject implements ARequirementsPRC {
 	}
 
 	@Override
-	public Boolean getcontainsRH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
-	}
-
-	@Override
-	public Boolean getRHHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getRHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsPenalty() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Penalty"));
 	}
@@ -130,6 +113,23 @@ public class GFARequirementsPRC extends GFAObject implements ARequirementsPRC {
 				return 100L;
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsRH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
+	}
+
+	@Override
+	public Boolean getRHHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getRHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

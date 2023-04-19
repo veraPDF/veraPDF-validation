@@ -26,36 +26,13 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "UF":
-				return getUF();
 			case "F":
 				return getF();
+			case "UF":
+				return getUF();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ARelatedFilesArray> getUF() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getUF1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ARelatedFilesArray> getUF1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<ARelatedFilesArray> list = new ArrayList<>(1);
-			list.add(new GFARelatedFilesArray((COSArray)object.getDirectBase(), this.baseObject, "UF"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ARelatedFilesArray> getF() {
@@ -85,30 +62,27 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsUF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("UF"));
-	}
-
-	@Override
-	public Boolean getisUFIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getUFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Long getUFArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
+	private List<ARelatedFilesArray> getUF() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getUF1_7();
+			default:
+				return Collections.emptyList();
 		}
-		return null;
+	}
+
+	private List<ARelatedFilesArray> getUF1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<ARelatedFilesArray> list = new ArrayList<>(1);
+			list.add(new GFARelatedFilesArray((COSArray)object.getDirectBase(), this.baseObject, "UF"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -131,6 +105,32 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	@Override
 	public Long getFArraySize() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsUF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("UF"));
+	}
+
+	@Override
+	public Boolean getisUFIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getUFHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Long getUFArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}

@@ -28,10 +28,10 @@ public class GFAMediaPlayers extends GFAObject implements AMediaPlayers {
 		switch (link) {
 			case "A":
 				return getA();
-			case "NU":
-				return getNU();
 			case "MU":
 				return getMU();
+			case "NU":
+				return getNU();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -62,6 +62,31 @@ public class GFAMediaPlayers extends GFAObject implements AMediaPlayers {
 		return Collections.emptyList();
 	}
 
+	private List<AArrayOfMediaPlayerInfo> getMU() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getMU1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfMediaPlayerInfo> getMU1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MU"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfMediaPlayerInfo> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfMediaPlayerInfo((COSArray)object.getDirectBase(), this.baseObject, "MU"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<AArrayOfMediaPlayerInfo> getNU() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
@@ -87,29 +112,46 @@ public class GFAMediaPlayers extends GFAObject implements AMediaPlayers {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfMediaPlayerInfo> getMU() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getMU1_5();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
-	private List<AArrayOfMediaPlayerInfo> getMU1_5() {
+	@Override
+	public Boolean getAHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsMU() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MU"));
+	}
+
+	@Override
+	public Boolean getMUHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MU"));
-		if (object == null) {
-			return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Long getMUArraySize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MU"));
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
 		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfMediaPlayerInfo> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfMediaPlayerInfo((COSArray)object.getDirectBase(), this.baseObject, "MU"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsNU() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NU"));
+	}
+
+	@Override
+	public Boolean getNUHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NU"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -137,48 +179,6 @@ public class GFAMediaPlayers extends GFAObject implements AMediaPlayers {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsNU() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NU"));
-	}
-
-	@Override
-	public Boolean getNUHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NU"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsMU() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MU"));
-	}
-
-	@Override
-	public Boolean getMUHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MU"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Long getMUArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MU"));
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
-	}
-
-	@Override
-	public Boolean getAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

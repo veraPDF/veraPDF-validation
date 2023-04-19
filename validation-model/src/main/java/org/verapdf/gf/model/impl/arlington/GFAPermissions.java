@@ -86,17 +86,6 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	}
 
 	@Override
-	public Boolean getcontainsUR3() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("UR3"));
-	}
-
-	@Override
-	public Boolean getUR3HasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UR3"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsDocMDP() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DocMDP"));
 	}
@@ -110,6 +99,17 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	@Override
 	public Boolean getDocMDPHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DocMDP"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsUR3() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("UR3"));
+	}
+
+	@Override
+	public Boolean getUR3HasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UR3"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

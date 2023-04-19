@@ -26,13 +26,48 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "TransformParams":
-				return getTransformParams();
 			case "Data":
 				return getData();
+			case "TransformParams":
+				return getTransformParams();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getData() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getData1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getData1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<A_UniversalArray> list = new ArrayList<>(1);
+			list.add(new GFA_UniversalArray((COSArray)object.getDirectBase(), this.baseObject, "Data"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "Data"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<A_UniversalDictionary> list = new ArrayList<>(1);
+			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.baseObject, "Data"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<ADocMDPTransformParameters> getTransformParams() {
@@ -60,106 +95,6 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 		return Collections.emptyList();
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getData() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getData1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getData1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<A_UniversalArray> list = new ArrayList<>(1);
-			list.add(new GFA_UniversalArray((COSArray)object.getDirectBase(), this.baseObject, "Data"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<A_UniversalDictionary> list = new ArrayList<>(1);
-			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.baseObject, "Data"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "Data"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsTransformParams() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TransformParams"));
-	}
-
-	@Override
-	public Boolean getTransformParamsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformParams"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsTransformMethod() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TransformMethod"));
-	}
-
-	@Override
-	public Boolean getTransformMethodHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformMethod"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTransformMethodNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformMethod"));
-		if (object == null || object.empty()) {
-			return getTransformMethodNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTransformMethodNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Boolean getcontainsData() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Data"));
@@ -172,33 +107,9 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 	}
 
 	@Override
-	public Boolean getDataHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getDataHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getDataHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getDataHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getDataHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -208,9 +119,33 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 	}
 
 	@Override
+	public Boolean getDataHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
 	public Boolean getDataHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getDataHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getDataHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getDataHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -245,6 +180,71 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 			case ARLINGTON1_7:
 				return true ? "MD5" : gethasExtensionISO_TS_32001() ? "SHA256" : null;
 		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsTransformMethod() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TransformMethod"));
+	}
+
+	@Override
+	public Boolean getTransformMethodHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformMethod"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTransformMethodNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformMethod"));
+		if (object == null || object.empty()) {
+			return getTransformMethodNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTransformMethodNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsTransformParams() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TransformParams"));
+	}
+
+	@Override
+	public Boolean getTransformParamsHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformParams"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

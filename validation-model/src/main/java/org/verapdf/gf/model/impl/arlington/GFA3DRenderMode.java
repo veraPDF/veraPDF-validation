@@ -82,20 +82,42 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	@Override
-	public Boolean getcontainsFC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FC"));
+	public Boolean getcontainsAC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AC"));
 	}
 
 	@Override
-	public Boolean getFCHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FC"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getACHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsCV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CV"));
+	}
+
+	@Override
+	public Boolean getCVHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CV"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsFC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FC"));
 	}
 
 	@Override
 	public Boolean getFCHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FC"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getFCHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FC"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -116,33 +138,6 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 			case ARLINGTON2_0:
 				return "BG";
 		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -179,17 +174,6 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	@Override
-	public Boolean getcontainsAC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AC"));
-	}
-
-	@Override
-	public Boolean getACHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
 	public Boolean getcontainsSubtype() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
@@ -217,14 +201,30 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	@Override
-	public Boolean getcontainsCV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CV"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getCVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CV"));
-		return object != null && object.getType().isNumber();
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 }

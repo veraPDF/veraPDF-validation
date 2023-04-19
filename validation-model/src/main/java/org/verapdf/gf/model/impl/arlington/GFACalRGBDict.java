@@ -26,17 +26,46 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Gamma":
-				return getGamma();
-			case "WhitePoint":
-				return getWhitePoint();
-			case "Matrix":
-				return getMatrix();
 			case "BlackPoint":
 				return getBlackPoint();
+			case "Gamma":
+				return getGamma();
+			case "Matrix":
+				return getMatrix();
+			case "WhitePoint":
+				return getWhitePoint();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<ABlackpointArray> getBlackPoint() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getBlackPoint1_1();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ABlackpointArray> getBlackPoint1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<ABlackpointArray> list = new ArrayList<>(1);
+			list.add(new GFABlackpointArray((COSArray)object.getDirectBase(), this.baseObject, "BlackPoint"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AGammaArray> getGamma() {
@@ -63,35 +92,6 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AGammaArray> list = new ArrayList<>(1);
 			list.add(new GFAGammaArray((COSArray)object.getDirectBase(), this.baseObject, "Gamma"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AWhitepointArray> getWhitePoint() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getWhitePoint1_1();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AWhitepointArray> getWhitePoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AWhitepointArray> list = new ArrayList<>(1);
-			list.add(new GFAWhitepointArray((COSArray)object.getDirectBase(), this.baseObject, "WhitePoint"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -126,7 +126,7 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 		return Collections.emptyList();
 	}
 
-	private List<ABlackpointArray> getBlackPoint() {
+	private List<AWhitepointArray> getWhitePoint() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -136,33 +136,33 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBlackPoint1_1();
+				return getWhitePoint1_1();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ABlackpointArray> getBlackPoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+	private List<AWhitepointArray> getWhitePoint1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<ABlackpointArray> list = new ArrayList<>(1);
-			list.add(new GFABlackpointArray((COSArray)object.getDirectBase(), this.baseObject, "BlackPoint"));
+			List<AWhitepointArray> list = new ArrayList<>(1);
+			list.add(new GFAWhitepointArray((COSArray)object.getDirectBase(), this.baseObject, "WhitePoint"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
 	@Override
-	public Boolean getcontainsMatrix() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Matrix"));
+	public Boolean getcontainsBlackPoint() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BlackPoint"));
 	}
 
 	@Override
-	public Boolean getMatrixHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+	public Boolean getBlackPointHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -178,6 +178,17 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	}
 
 	@Override
+	public Boolean getcontainsMatrix() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Matrix"));
+	}
+
+	@Override
+	public Boolean getMatrixHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
 	public Boolean getcontainsWhitePoint() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("WhitePoint"));
 	}
@@ -185,17 +196,6 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	@Override
 	public Boolean getWhitePointHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsBlackPoint() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BlackPoint"));
-	}
-
-	@Override
-	public Boolean getBlackPointHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

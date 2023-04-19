@@ -63,12 +63,6 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 	}
 
 	@Override
-	public Boolean getHasTypeName() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getHasTypeArray() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
@@ -93,21 +87,27 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 	}
 
 	@Override
+	public Boolean getHasTypeNumber() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public Boolean getHasTypeInteger() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Boolean getHasTypeDictionary() {
+	public Boolean getHasTypeName() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getHasTypeNumber() {
+	public Boolean getHasTypeDictionary() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType().isNumber();
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

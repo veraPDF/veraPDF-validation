@@ -59,29 +59,36 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	}
 
 	@Override
-	public Boolean getcontainsLength() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
+	public Boolean getcontainsAuthEvent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AuthEvent"));
 	}
 
 	@Override
-	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getAuthEventHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthEvent"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Long getLengthIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+	public String getAuthEventNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthEvent"));
 		if (object == null || object.empty()) {
-			return getLengthIntegerDefaultValue();
+			return getAuthEventNameDefaultValue();
 		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
 
-	public Long getLengthIntegerDefaultValue() {
+	public String getAuthEventNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "DocOpen";
+		}
 		return null;
 	}
 
@@ -120,6 +127,44 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	}
 
 	@Override
+	public Boolean getcontainsEncryptMetadata() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EncryptMetadata"));
+	}
+
+	@Override
+	public Boolean getEncryptMetadataHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsLength() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
+	}
+
+	@Override
+	public Boolean getLengthHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getLengthIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		if (object == null || object.empty()) {
+			return getLengthIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getLengthIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsRecipients() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Recipients"));
 	}
@@ -134,17 +179,6 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	public Boolean getRecipientsHasTypeStringByte() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Recipients"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsEncryptMetadata() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EncryptMetadata"));
-	}
-
-	@Override
-	public Boolean getEncryptMetadataHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -171,40 +205,6 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	}
 
 	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAuthEvent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AuthEvent"));
-	}
-
-	@Override
-	public Boolean getAuthEventHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthEvent"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getAuthEventNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthEvent"));
-		if (object == null || object.empty()) {
-			return getAuthEventNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getAuthEventNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "DocOpen";
-		}
 		return null;
 	}
 

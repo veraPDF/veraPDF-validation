@@ -24,44 +24,6 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	}
 
 	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsVOffset() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("VOffset"));
-	}
-
-	@Override
-	public Boolean getVOffsetHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VOffset"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getcontainsHAlign() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("HAlign"));
 	}
@@ -105,6 +67,33 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	}
 
 	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsVAlign() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("VAlign"));
 	}
@@ -134,6 +123,17 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 				return "Near";
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsVOffset() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("VOffset"));
+	}
+
+	@Override
+	public Boolean getVOffsetHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VOffset"));
+		return object != null && object.getType().isNumber();
 	}
 
 }

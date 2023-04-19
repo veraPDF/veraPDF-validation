@@ -26,42 +26,42 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "WP":
-				return getWP();
-			case "DP":
-				return getDP();
-			case "WS":
-				return getWS();
 			case "DC":
 				return getDC();
+			case "DP":
+				return getDP();
 			case "DS":
 				return getDS();
+			case "WP":
+				return getWP();
+			case "WS":
+				return getWS();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<AActionECMAScript> getWP() {
+	private List<AActionECMAScript> getDC() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getWP1_4();
+				return getDC1_4();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AActionECMAScript> getWP1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WP"));
+	private List<AActionECMAScript> getDC1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DC"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AActionECMAScript> list = new ArrayList<>(1);
-			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "WP"));
+			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "DC"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -93,58 +93,6 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 		return Collections.emptyList();
 	}
 
-	private List<AActionECMAScript> getWS() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getWS1_4();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AActionECMAScript> getWS1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WS"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AActionECMAScript> list = new ArrayList<>(1);
-			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "WS"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AActionECMAScript> getDC() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDC1_4();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AActionECMAScript> getDC1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DC"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AActionECMAScript> list = new ArrayList<>(1);
-			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "DC"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<AActionECMAScript> getDS() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
@@ -171,26 +119,56 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsWS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("WS"));
+	private List<AActionECMAScript> getWP() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getWP1_4();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getWSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WS"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsWP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("WP"));
-	}
-
-	@Override
-	public Boolean getWPHasTypeDictionary() {
+	private List<AActionECMAScript> getWP1_4() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WP"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AActionECMAScript> list = new ArrayList<>(1);
+			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "WP"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AActionECMAScript> getWS() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getWS1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AActionECMAScript> getWS1_4() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WS"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AActionECMAScript> list = new ArrayList<>(1);
+			list.add(new GFAActionECMAScript((COSDictionary)object.getDirectBase(), this.baseObject, "WS"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -201,6 +179,17 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	@Override
 	public Boolean getDCHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DC"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsDP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DP"));
+	}
+
+	@Override
+	public Boolean getDPHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DP"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -216,13 +205,24 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	@Override
-	public Boolean getcontainsDP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DP"));
+	public Boolean getcontainsWP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("WP"));
 	}
 
 	@Override
-	public Boolean getDPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DP"));
+	public Boolean getWPHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WP"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsWS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("WS"));
+	}
+
+	@Override
+	public Boolean getWSHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WS"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

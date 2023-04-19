@@ -24,6 +24,56 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	}
 
 	@Override
+	public Boolean getcontainsBaseVersion() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BaseVersion"));
+	}
+
+	@Override
+	public Boolean getisBaseVersionIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getBaseVersionHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getBaseVersionNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
+		if (object == null || object.empty()) {
+			return getBaseVersionNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getBaseVersionNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsExtensionLevel() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ExtensionLevel"));
+	}
+
+	@Override
+	public Boolean getisExtensionLevelIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionLevel"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getExtensionLevelHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionLevel"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
 	public Boolean getcontainsExtensionRevision() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ExtensionRevision"));
 	}
@@ -74,39 +124,6 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	}
 
 	@Override
-	public Boolean getcontainsBaseVersion() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BaseVersion"));
-	}
-
-	@Override
-	public Boolean getisBaseVersionIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getBaseVersionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getBaseVersionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
-		if (object == null || object.empty()) {
-			return getBaseVersionNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getBaseVersionNameDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsURL() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
 	}
@@ -121,23 +138,6 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	public Boolean getURLHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsExtensionLevel() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ExtensionLevel"));
-	}
-
-	@Override
-	public Boolean getisExtensionLevelIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionLevel"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getExtensionLevelHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionLevel"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 }

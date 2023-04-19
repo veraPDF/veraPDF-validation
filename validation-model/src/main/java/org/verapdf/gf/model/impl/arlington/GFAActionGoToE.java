@@ -28,12 +28,12 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 		switch (link) {
 			case "D":
 				return getD();
-			case "T":
-				return getT();
 			case "F":
 				return getF();
 			case "Next":
 				return getNext();
+			case "T":
+				return getT();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -79,30 +79,6 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 			default:
 				return null;
 		}
-	}
-
-	private List<ATarget> getT() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getT1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ATarget> getT1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ATarget> list = new ArrayList<>(1);
-			list.add(new GFATarget((COSDictionary)object.getDirectBase(), this.baseObject, "T"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AFileSpecification> getF() {
@@ -289,6 +265,81 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 		}
 	}
 
+	private List<ATarget> getT() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getT1_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ATarget> getT1_6() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ATarget> list = new ArrayList<>(1);
+			list.add(new GFATarget((COSDictionary)object.getDirectBase(), this.baseObject, "T"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	}
+
+	@Override
+	public Boolean getDHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getDHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getDHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsNewWindow() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NewWindow"));
+	}
+
+	@Override
+	public Boolean getNewWindowHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NewWindow"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
 	@Override
 	public Boolean getcontainsNext() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
@@ -345,29 +396,6 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	@Override
-	public Boolean getcontainsD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
-	}
-
-	@Override
-	public Boolean getDHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getDHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -392,34 +420,6 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsNewWindow() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NewWindow"));
-	}
-
-	@Override
-	public Boolean getNewWindowHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NewWindow"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
-	}
-
-	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

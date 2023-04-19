@@ -61,6 +61,26 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	}
 
 	@Override
+	public Boolean getcontainsCheckSum() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CheckSum"));
+	}
+
+	@Override
+	public Boolean getCheckSumHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Long getCheckSumStringSize() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			return (long) object.getString().length();
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsCreationDate() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
 	}
@@ -91,26 +111,6 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	public Boolean getModDateHasTypeDate() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
-	}
-
-	@Override
-	public Boolean getcontainsCheckSum() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CheckSum"));
-	}
-
-	@Override
-	public Boolean getCheckSumHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Long getCheckSumStringSize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return (long) object.getString().length();
-		}
-		return null;
 	}
 
 	@Override

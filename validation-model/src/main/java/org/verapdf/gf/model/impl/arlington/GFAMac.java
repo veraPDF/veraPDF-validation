@@ -61,6 +61,17 @@ public class GFAMac extends GFAObject implements AMac {
 	}
 
 	@Override
+	public Boolean getcontainsCreator() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Creator"));
+	}
+
+	@Override
+	public Boolean getCreatorHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
 	public Boolean getcontainsResFork() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ResFork"));
 	}
@@ -85,17 +96,6 @@ public class GFAMac extends GFAObject implements AMac {
 	@Override
 	public Boolean getSubtypeHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsCreator() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Creator"));
-	}
-
-	@Override
-	public Boolean getCreatorHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 

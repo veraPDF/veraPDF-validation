@@ -24,20 +24,20 @@ public class GFAArrayOf_2StringsByte extends GFAObject implements AArrayOf_2Stri
 	}
 
 	@Override
-	public Boolean getentry1HasTypeStringByte() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeStringByte() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeStringByte() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 

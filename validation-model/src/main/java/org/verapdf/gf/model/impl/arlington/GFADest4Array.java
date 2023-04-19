@@ -64,21 +64,21 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 	}
 
 	@Override
-	public Boolean getentry0HasTypeDictionary() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeNumber() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry0HasTypeDictionary() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -98,42 +98,6 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 
 	public Double getentry0NumberDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeNull() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getentry3HasTypeNull() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
-	public Boolean getentry3HasTypeNumber() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -165,20 +129,47 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 	}
 
 	@Override
-	public Boolean getentry5HasTypeNull() {
-		if (this.baseObject.size() <= 5) {
+	public Boolean getentry2HasTypeNumber() {
+		if (this.baseObject.size() <= 2) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(5);
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNull() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
-	public Boolean getentry5HasTypeNumber() {
-		if (this.baseObject.size() <= 5) {
+	public Boolean getentry3HasTypeNumber() {
+		if (this.baseObject.size() <= 3) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(5);
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry3HasTypeNull() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	@Override
+	public Boolean getentry4HasTypeNumber() {
+		if (this.baseObject.size() <= 4) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(4);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -192,12 +183,21 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 	}
 
 	@Override
-	public Boolean getentry4HasTypeNumber() {
-		if (this.baseObject.size() <= 4) {
+	public Boolean getentry5HasTypeNumber() {
+		if (this.baseObject.size() <= 5) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(4);
+		COSObject object = this.baseObject.at(5);
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry5HasTypeNull() {
+		if (this.baseObject.size() <= 5) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(5);
+		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 }

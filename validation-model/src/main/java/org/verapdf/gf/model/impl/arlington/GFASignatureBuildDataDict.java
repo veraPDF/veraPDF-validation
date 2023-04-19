@@ -59,14 +59,25 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	}
 
 	@Override
-	public Boolean getcontainsPreRelease() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PreRelease"));
+	public Boolean getcontainsDate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Date"));
 	}
 
 	@Override
-	public Boolean getPreReleaseHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreRelease"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	public Boolean getDateHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Date"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
+	}
+
+	@Override
+	public Boolean getNameHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -81,6 +92,28 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	}
 
 	@Override
+	public Boolean getcontainsOS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OS"));
+	}
+
+	@Override
+	public Boolean getOSHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsPreRelease() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PreRelease"));
+	}
+
+	@Override
+	public Boolean getPreReleaseHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreRelease"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
 	public Boolean getcontainsR() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
@@ -89,17 +122,6 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	public Boolean getRHasTypeNumber() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsDate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Date"));
-	}
-
-	@Override
-	public Boolean getDateHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Date"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -122,28 +144,6 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	public Boolean getVHasTypeNumber() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
-	}
-
-	@Override
-	public Boolean getNameHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getcontainsOS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OS"));
-	}
-
-	@Override
-	public Boolean getOSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

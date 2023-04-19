@@ -26,56 +26,16 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "SD":
-				return getSD();
 			case "D":
 				return getD();
 			case "F":
 				return getF();
 			case "Next":
 				return getNext();
+			case "SD":
+				return getSD();
 			default:
 				return super.getLinkedObjects(link);
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getSD() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getSD2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getSD2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			org.verapdf.model.baselayer.Object result = getSDArray2_0(object.getDirectBase(), "SD");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getSDArray2_0(COSBase base, String keyName) {
-		switch (base.size()) {
-			case 5:
-				return new GFADestXYZStructArray(base, this.baseObject, keyName);
-			case 2:
-				return new GFADest0StructArray(base, this.baseObject, keyName);
-			case 3:
-				return new GFADest1StructArray(base, this.baseObject, keyName);
-			case 6:
-				return new GFADest4StructArray(base, this.baseObject, keyName);
-			default:
-				return null;
 		}
 	}
 
@@ -516,42 +476,49 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 		}
 	}
 
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
+	private List<org.verapdf.model.baselayer.Object> getSD() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getSD2_0();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
 	}
 
-	public String getTypeNameDefaultValue() {
-		return null;
+	private List<org.verapdf.model.baselayer.Object> getSD2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			org.verapdf.model.baselayer.Object result = getSDArray2_0(object.getDirectBase(), "SD");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getSDArray2_0(COSBase base, String keyName) {
+		switch (base.size()) {
+			case 5:
+				return new GFADestXYZStructArray(base, this.baseObject, keyName);
+			case 2:
+				return new GFADest0StructArray(base, this.baseObject, keyName);
+			case 3:
+				return new GFADest1StructArray(base, this.baseObject, keyName);
+			case 6:
+				return new GFADest4StructArray(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	@Override
 	public Boolean getcontainsD() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
-	}
-
-	@Override
-	public Boolean getDHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -564,6 +531,40 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	public Boolean getDHasTypeStringByte() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getDHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsNewWindow() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NewWindow"));
+	}
+
+	@Override
+	public Boolean getNewWindowHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NewWindow"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -622,31 +623,30 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
 	}
 
-	@Override
-	public Boolean getcontainsNewWindow() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NewWindow"));
-	}
-
-	@Override
-	public Boolean getNewWindowHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NewWindow"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 }

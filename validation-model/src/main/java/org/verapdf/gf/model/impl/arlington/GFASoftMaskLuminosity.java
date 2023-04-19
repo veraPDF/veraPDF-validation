@@ -107,14 +107,6 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getTRDictionary1_4(object.getDirectBase(), "TR");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getTRStream1_4(object.getDirectBase(), "TR");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -123,26 +115,15 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getTRDictionary1_4(object.getDirectBase(), "TR");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getTRDictionary1_4(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getTRStream1_4(COSBase base, String keyName) {
@@ -164,57 +145,34 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 		}
 	}
 
-	@Override
-	public Boolean getcontainsTR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TR"));
-	}
-
-	@Override
-	public Boolean getisTRIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getTRHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getTRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getTRHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public String getTRNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		if (object == null || object.empty()) {
-			return getTRNameDefaultValue();
+	private org.verapdf.model.baselayer.Object getTRDictionary1_4(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
 		}
-		return null;
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
-	public String getTRNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "Identity";
-		}
-		return null;
+	@Override
+	public Boolean getcontainsBC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BC"));
+	}
+
+	@Override
+	public Boolean getBCHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -262,14 +220,56 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	}
 
 	@Override
-	public Boolean getcontainsBC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BC"));
+	public Boolean getcontainsTR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TR"));
 	}
 
 	@Override
-	public Boolean getBCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getisTRIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getTRHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getTRHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getTRHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public String getTRNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		if (object == null || object.empty()) {
+			return getTRNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTRNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "Identity";
+		}
+		return null;
 	}
 
 	@Override

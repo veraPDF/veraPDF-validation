@@ -26,35 +26,13 @@ public class GFARequirementsMarkup extends GFAObject implements ARequirementsMar
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "V":
-				return getV();
 			case "RH":
 				return getRH();
+			case "V":
+				return getV();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AExtensions> getV() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getV2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AExtensions> getV2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AExtensions> list = new ArrayList<>(1);
-			list.add(new GFAExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH() {
@@ -84,65 +62,26 @@ public class GFARequirementsMarkup extends GFAObject implements ARequirementsMar
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsRH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
-	}
-
-	@Override
-	public Boolean getRHHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getRHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
+	private List<AExtensions> getV() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getV2_0();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
 	}
 
-	public String getSNameDefaultValue() {
-		return null;
+	private List<AExtensions> getV2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AExtensions> list = new ArrayList<>(1);
+			list.add(new GFAExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -177,6 +116,50 @@ public class GFARequirementsMarkup extends GFAObject implements ARequirementsMar
 	}
 
 	@Override
+	public Boolean getcontainsRH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
+	}
+
+	@Override
+	public Boolean getRHHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getRHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -201,6 +184,23 @@ public class GFARequirementsMarkup extends GFAObject implements ARequirementsMar
 
 	public String getTypeNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

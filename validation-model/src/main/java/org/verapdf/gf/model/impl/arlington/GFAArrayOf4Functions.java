@@ -73,14 +73,6 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 			return Collections.emptyList();
 		}
 		COSObject object = this.baseObject.at(0);
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getentry0Dictionary1_3(object.getDirectBase(), "0");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getentry0Stream1_3(object.getDirectBase(), "0");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -89,26 +81,15 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getentry0Dictionary1_3(object.getDirectBase(), "0");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getentry0Dictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getentry0Stream1_3(COSBase base, String keyName) {
@@ -125,6 +106,25 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 				return new GFAFunctionType0(base, this.baseObject, keyName);
 			case 4:
 				return new GFAFunctionType4(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getentry0Dictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -164,14 +164,6 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 			return Collections.emptyList();
 		}
 		COSObject object = this.baseObject.at(1);
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getentry1Dictionary1_3(object.getDirectBase(), "1");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getentry1Stream1_3(object.getDirectBase(), "1");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -180,26 +172,15 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getentry1Dictionary1_3(object.getDirectBase(), "1");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getentry1Dictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getentry1Stream1_3(COSBase base, String keyName) {
@@ -216,6 +197,25 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 				return new GFAFunctionType0(base, this.baseObject, keyName);
 			case 4:
 				return new GFAFunctionType4(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getentry1Dictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -255,14 +255,6 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 			return Collections.emptyList();
 		}
 		COSObject object = this.baseObject.at(2);
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getentry2Dictionary1_3(object.getDirectBase(), "2");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getentry2Stream1_3(object.getDirectBase(), "2");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -271,26 +263,15 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getentry2Dictionary1_3(object.getDirectBase(), "2");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getentry2Dictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getentry2Stream1_3(COSBase base, String keyName) {
@@ -307,6 +288,25 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 				return new GFAFunctionType0(base, this.baseObject, keyName);
 			case 4:
 				return new GFAFunctionType4(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getentry2Dictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -346,14 +346,6 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 			return Collections.emptyList();
 		}
 		COSObject object = this.baseObject.at(3);
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getentry3Dictionary1_3(object.getDirectBase(), "3");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getentry3Stream1_3(object.getDirectBase(), "3");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -362,26 +354,15 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getentry3Dictionary1_3(object.getDirectBase(), "3");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getentry3Dictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getentry3Stream1_3(COSBase base, String keyName) {
@@ -403,31 +384,23 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 		}
 	}
 
-	@Override
-	public Boolean getisentry2Indirect() {
-		if (this.baseObject.size() <= 2) {
+	private org.verapdf.model.baselayer.Object getentry3Dictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getentry2HasTypeDictionary() {
-		if (this.baseObject.size() <= 2) {
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeStream() {
-		if (this.baseObject.size() <= 2) {
-			return null;
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
 		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -440,15 +413,6 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	@Override
-	public Boolean getentry0HasTypeDictionary() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeStream() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -458,30 +422,12 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	@Override
-	public Boolean getisentry3Indirect() {
-		if (this.baseObject.size() <= 3) {
+	public Boolean getentry0HasTypeDictionary() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getentry3HasTypeDictionary() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getentry3HasTypeStream() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -494,6 +440,15 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	@Override
+	public Boolean getentry1HasTypeStream() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
 	public Boolean getentry1HasTypeDictionary() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -503,12 +458,57 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	@Override
-	public Boolean getentry1HasTypeStream() {
-		if (this.baseObject.size() <= 1) {
+	public Boolean getisentry2Indirect() {
+		if (this.baseObject.size() <= 2) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getentry2HasTypeStream() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeDictionary() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getisentry3Indirect() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getentry3HasTypeStream() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeDictionary() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

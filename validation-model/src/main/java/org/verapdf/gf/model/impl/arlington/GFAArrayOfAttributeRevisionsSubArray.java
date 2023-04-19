@@ -52,14 +52,14 @@ public class GFAArrayOfAttributeRevisionsSubArray extends GFAObject implements A
 			return Collections.emptyList();
 		}
 		COSObject object = this.baseObject.at(0);
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AStructureAttributesDict> list = new ArrayList<>(1);
-			list.add(new GFAStructureAttributesDict((COSDictionary)object.getDirectBase(), this.baseObject, "0"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
 			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "0"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AStructureAttributesDict> list = new ArrayList<>(1);
+			list.add(new GFAStructureAttributesDict((COSDictionary)object.getDirectBase(), this.baseObject, "0"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -75,21 +75,21 @@ public class GFAArrayOfAttributeRevisionsSubArray extends GFAObject implements A
 	}
 
 	@Override
-	public Boolean getentry0HasTypeDictionary() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeStream() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeDictionary() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

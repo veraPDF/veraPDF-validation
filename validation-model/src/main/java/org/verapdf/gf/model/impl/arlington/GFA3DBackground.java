@@ -58,50 +58,6 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	}
 
 	@Override
-	public Boolean getcontainsSubtype() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
-	}
-
-	@Override
-	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "SC";
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsEA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EA"));
-	}
-
-	@Override
-	public Boolean getEAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EA"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
 	public Boolean getcontainsC() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
@@ -141,6 +97,50 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "DeviceRGB";
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsEA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EA"));
+	}
+
+	@Override
+	public Boolean getEAHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EA"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsSubtype() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
+	}
+
+	@Override
+	public Boolean getSubtypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSubtypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			return getSubtypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSubtypeNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "SC";
 		}
 		return null;
 	}

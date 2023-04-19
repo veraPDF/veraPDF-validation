@@ -24,17 +24,6 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	}
 
 	@Override
-	public Boolean getcontainsColumns() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Columns"));
-	}
-
-	@Override
-	public Boolean getColumnsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Columns"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
 	public Boolean getcontainsBitsPerComponent() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BitsPerComponent"));
 	}
@@ -106,6 +95,17 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 				return 1L;
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsColumns() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Columns"));
+	}
+
+	@Override
+	public Boolean getColumnsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Columns"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override

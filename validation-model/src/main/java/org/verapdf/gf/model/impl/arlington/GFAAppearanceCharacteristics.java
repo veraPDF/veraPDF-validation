@@ -30,14 +30,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 				return getBC();
 			case "BG":
 				return getBG();
-			case "RI":
-				return getRI();
 			case "I":
 				return getI();
 			case "IF":
 				return getIF();
 			case "IX":
 				return getIX();
+			case "RI":
+				return getRI();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -97,56 +97,6 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getRI() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getRI1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getRI1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getRIStream1_2(object.getDirectBase(), "RI");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getRIStream1_2(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "Form":
-				return new GFAXObjectFormType1(base, this.baseObject, keyName);
-			case "Image":
-				return new GFAXObjectImage(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getI() {
@@ -276,6 +226,184 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		}
 	}
 
+	private List<org.verapdf.model.baselayer.Object> getRI() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRI1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getRI1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getRIStream1_2(object.getDirectBase(), "RI");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getRIStream1_2(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "Form":
+				return new GFAXObjectFormType1(base, this.baseObject, keyName);
+			case "Image":
+				return new GFAXObjectImage(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	@Override
+	public Boolean getcontainsAC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AC"));
+	}
+
+	@Override
+	public Boolean getACHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsBC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BC"));
+	}
+
+	@Override
+	public Boolean getBCHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsBG() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BG"));
+	}
+
+	@Override
+	public Boolean getBGHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsCA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CA"));
+	}
+
+	@Override
+	public Boolean getCAHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
+	}
+
+	@Override
+	public Boolean getisIIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getIHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsIF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("IF"));
+	}
+
+	@Override
+	public Boolean getIFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IF"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsIX() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("IX"));
+	}
+
+	@Override
+	public Boolean getisIXIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IX"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getIXHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IX"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsR() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
+	}
+
+	@Override
+	public Boolean getRHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsRC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RC"));
+	}
+
+	@Override
+	public Boolean getRCHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsRI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RI"));
+	}
+
+	@Override
+	public Boolean getisRIIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getRIHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
 	@Override
 	public Boolean getcontainsTP() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TP"));
@@ -311,134 +439,6 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 				return 0L;
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsRI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RI"));
-	}
-
-	@Override
-	public Boolean getisRIIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getRIHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
-	}
-
-	@Override
-	public Boolean getisIIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getIHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsR() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
-	}
-
-	@Override
-	public Boolean getRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsAC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AC"));
-	}
-
-	@Override
-	public Boolean getACHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsCA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CA"));
-	}
-
-	@Override
-	public Boolean getCAHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsRC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RC"));
-	}
-
-	@Override
-	public Boolean getRCHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsBC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BC"));
-	}
-
-	@Override
-	public Boolean getBCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsIF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("IF"));
-	}
-
-	@Override
-	public Boolean getIFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IF"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsIX() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("IX"));
-	}
-
-	@Override
-	public Boolean getisIXIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IX"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getIXHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IX"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsBG() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BG"));
-	}
-
-	@Override
-	public Boolean getBGHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

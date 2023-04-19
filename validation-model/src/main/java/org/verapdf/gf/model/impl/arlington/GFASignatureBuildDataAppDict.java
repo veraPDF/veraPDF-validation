@@ -59,25 +59,14 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	}
 
 	@Override
-	public Boolean getcontainsNonEFontNoWarn() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NonEFontNoWarn"));
+	public Boolean getcontainsDate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Date"));
 	}
 
 	@Override
-	public Boolean getNonEFontNoWarnHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NonEFontNoWarn"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType().isNumber();
+	public Boolean getDateHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Date"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -92,6 +81,17 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	}
 
 	@Override
+	public Boolean getcontainsNonEFontNoWarn() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NonEFontNoWarn"));
+	}
+
+	@Override
+	public Boolean getNonEFontNoWarnHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NonEFontNoWarn"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
 	public Boolean getcontainsOS() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OS"));
 	}
@@ -100,39 +100,6 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	public Boolean getOSHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsREx() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("REx"));
-	}
-
-	@Override
-	public Boolean getRExHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("REx"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsDate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Date"));
-	}
-
-	@Override
-	public Boolean getDateHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Date"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsTrustedMode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TrustedMode"));
-	}
-
-	@Override
-	public Boolean getTrustedModeHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrustedMode"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -154,6 +121,39 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getRHasTypeNumber() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsREx() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("REx"));
+	}
+
+	@Override
+	public Boolean getRExHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("REx"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsTrustedMode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TrustedMode"));
+	}
+
+	@Override
+	public Boolean getTrustedModeHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrustedMode"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType().isNumber();
 	}
 

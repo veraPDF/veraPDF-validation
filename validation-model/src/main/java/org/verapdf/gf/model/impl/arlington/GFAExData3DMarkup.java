@@ -82,28 +82,6 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	@Override
-	public Boolean getcontainsMD5() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MD5"));
-	}
-
-	@Override
-	public Boolean getMD5HasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MD5"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontains3DV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("3DV"));
-	}
-
-	@Override
-	public Boolean getentry3DVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DV"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontains3DA() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("3DA"));
 	}
@@ -121,30 +99,25 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	public Boolean getcontains3DV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("3DV"));
 	}
 
 	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getentry3DVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DV"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+	public Boolean getcontainsMD5() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MD5"));
 	}
 
-	public String getTypeNameDefaultValue() {
-		return null;
+	@Override
+	public Boolean getMD5HasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MD5"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -171,6 +144,33 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	public String getSubtypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

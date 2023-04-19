@@ -26,13 +26,31 @@ public class GFAArrayOfArraysPaths extends GFAObject implements AArrayOfArraysPa
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "entry0":
-				return getentry0();
 			case "Entries":
 				return getEntries();
+			case "entry0":
+				return getentry0();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfArraysPathsEntry> getEntries() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getEntries2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfArraysPathsEntry> getEntries2_0() {
+		List<AArrayOfArraysPathsEntry> list = new LinkedList<>();
+		for (int i = 1; i < baseObject.size(); i++) {
+			COSObject object = baseObject.at(i);
+			list.add(new GFAArrayOfArraysPathsEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+		}
+		return Collections.unmodifiableList(list);
 	}
 
 	private List<AArrayOfPaths> getentry0() {
@@ -55,24 +73,6 @@ public class GFAArrayOfArraysPaths extends GFAObject implements AArrayOfArraysPa
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	private List<AArrayOfArraysPathsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getEntries2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfArraysPathsEntry> getEntries2_0() {
-		List<AArrayOfArraysPathsEntry> list = new LinkedList<>();
-		for (int i = 1; i < baseObject.size(); i++) {
-			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOfArraysPathsEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
-		}
-		return Collections.unmodifiableList(list);
 	}
 
 	@Override

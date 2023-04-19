@@ -24,17 +24,6 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	@Override
-	public Boolean getcontainsEncodedByteAlign() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EncodedByteAlign"));
-	}
-
-	@Override
-	public Boolean getEncodedByteAlignHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncodedByteAlign"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
 	public Boolean getcontainsBlackIs1() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BlackIs1"));
 	}
@@ -46,120 +35,14 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	@Override
-	public Boolean getcontainsK() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("K"));
+	public Boolean getcontainsBlackls1() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Blackls1"));
 	}
 
 	@Override
-	public Boolean getKHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getKIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
-		if (object == null || object.empty()) {
-			return getKIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getKIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0L;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsEndOfLine() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EndOfLine"));
-	}
-
-	@Override
-	public Boolean getEndOfLineHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EndOfLine"));
+	public Boolean getBlackls1HasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Blackls1"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getEndOfLineBooleanValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EndOfLine"));
-		if (object == null || object.empty()) {
-			return getEndOfLineBooleanDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
-	}
-
-	public Boolean getEndOfLineBooleanDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return false;
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsRows() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Rows"));
-	}
-
-	@Override
-	public Boolean getRowsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rows"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getRowsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rows"));
-		if (object == null || object.empty()) {
-			return getRowsIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getRowsIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0L;
-		}
-		return null;
 	}
 
 	@Override
@@ -202,17 +85,6 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	@Override
-	public Boolean getcontainsBlackls1() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Blackls1"));
-	}
-
-	@Override
-	public Boolean getBlackls1HasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Blackls1"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
 	public Boolean getcontainsDamagedRowsBeforeError() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DamagedRowsBeforeError"));
 	}
@@ -252,6 +124,17 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	@Override
+	public Boolean getcontainsEncodedByteAlign() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EncodedByteAlign"));
+	}
+
+	@Override
+	public Boolean getEncodedByteAlignHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncodedByteAlign"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
 	public Boolean getcontainsEndOfBlock() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("EndOfBlock"));
 	}
@@ -260,6 +143,123 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	public Boolean getEndOfBlockHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EndOfBlock"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsEndOfLine() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EndOfLine"));
+	}
+
+	@Override
+	public Boolean getEndOfLineHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EndOfLine"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getEndOfLineBooleanValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EndOfLine"));
+		if (object == null || object.empty()) {
+			return getEndOfLineBooleanDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
+			return object.getBoolean();
+		}
+		return null;
+	}
+
+	public Boolean getEndOfLineBooleanDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return false;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsK() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("K"));
+	}
+
+	@Override
+	public Boolean getKHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getKIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		if (object == null || object.empty()) {
+			return getKIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getKIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 0L;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsRows() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Rows"));
+	}
+
+	@Override
+	public Boolean getRowsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rows"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getRowsIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rows"));
+		if (object == null || object.empty()) {
+			return getRowsIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getRowsIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 0L;
+		}
+		return null;
 	}
 
 }

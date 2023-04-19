@@ -98,6 +98,44 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	@Override
+	public Boolean getcontainsEFF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EFF"));
+	}
+
+	@Override
+	public Boolean getEFFHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getEFFNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
+		if (object == null || object.empty()) {
+			return getEFFNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getEFFNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsEncryptMetadata() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EncryptMetadata"));
+	}
+
+	@Override
+	public Boolean getEncryptMetadataHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
 	public Boolean getcontainsFilter() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
@@ -142,21 +180,21 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	public Boolean getcontainsLength() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
 	@Override
-	public Boolean getVHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+	public Boolean getLengthHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Long getVIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+	public Long getLengthIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
 		if (object == null || object.empty()) {
-			return getVIntegerDefaultValue();
+			return getLengthIntegerDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
@@ -164,46 +202,16 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return null;
 	}
 
-	public Long getVIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSubFilter() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SubFilter"));
-	}
-
-	@Override
-	public Boolean getSubFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSubFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
-		if (object == null || object.empty()) {
-			return getSubFilterNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
+	public Long getLengthIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 40L;
 		}
 		return null;
-	}
-
-	public String getSubFilterNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsStmF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("StmF"));
-	}
-
-	@Override
-	public Boolean getStmFHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmF"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -254,36 +262,35 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	@Override
-	public Boolean getcontainsLength() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
+	public Boolean getcontainsStmF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("StmF"));
 	}
 
 	@Override
-	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getStmFHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmF"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Long getLengthIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+	public String getStmFNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmF"));
 		if (object == null || object.empty()) {
-			return getLengthIntegerDefaultValue();
+			return getStmFNameDefaultValue();
 		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
 
-	public Long getLengthIntegerDefaultValue() {
+	public String getStmFNameDefaultValue() {
 		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 40L;
+				return "Identity";
 		}
 		return null;
 	}
@@ -300,25 +307,80 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	@Override
-	public Boolean getcontainsEFF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EFF"));
+	public String getStrFNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StrF"));
+		if (object == null || object.empty()) {
+			return getStrFNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getStrFNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "Identity";
+		}
+		return null;
 	}
 
 	@Override
-	public Boolean getEFFHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
+	public Boolean getcontainsSubFilter() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SubFilter"));
+	}
+
+	@Override
+	public Boolean getSubFilterHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Boolean getcontainsEncryptMetadata() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EncryptMetadata"));
+	public String getSubFilterNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
+		if (object == null || object.empty()) {
+			return getSubFilterNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSubFilterNameDefaultValue() {
+		return null;
 	}
 
 	@Override
-	public Boolean getEncryptMetadataHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getVIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null || object.empty()) {
+			return getVIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getVIntegerDefaultValue() {
+		return null;
 	}
 
 	@Override

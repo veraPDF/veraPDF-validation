@@ -24,15 +24,6 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 	}
 
 	@Override
-	public Boolean getentry3HasTypeNumber() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getentry0HasTypeNumber() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -56,6 +47,15 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getentry3HasTypeNumber() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
 		return object != null && object.getType().isNumber();
 	}
 

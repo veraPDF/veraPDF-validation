@@ -30,18 +30,18 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 				return getAA();
 			case "DV":
 				return getDV();
-			case "SV":
-				return getSV();
-			case "RV":
-				return getRV();
-			case "Parent":
-				return getParent();
-			case "V":
-				return getV();
 			case "Kids":
 				return getKids();
 			case "Lock":
 				return getLock();
+			case "Parent":
+				return getParent();
+			case "RV":
+				return getRV();
+			case "SV":
+				return getSV();
+			case "V":
+				return getV();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -123,51 +123,53 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		}
 	}
 
-	private List<ASigFieldSeedValue> getSV() {
+	private List<AArrayOfFields> getKids() {
 		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getSV1_5();
+				return getKids1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ASigFieldSeedValue> getSV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SV"));
+	private List<AArrayOfFields> getKids1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ASigFieldSeedValue> list = new ArrayList<>(1);
-			list.add(new GFASigFieldSeedValue((COSDictionary)object.getDirectBase(), this.baseObject, "SV"));
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFields> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFields((COSArray)object.getDirectBase(), this.baseObject, "Kids"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
-	private List<AStream> getRV() {
+	private List<ASigFieldLock> getLock() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getRV1_5();
+				return getLock1_5();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AStream> getRV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+	private List<ASigFieldLock> getLock1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lock"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "RV"));
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ASigFieldLock> list = new ArrayList<>(1);
+			list.add(new GFASigFieldLock((COSDictionary)object.getDirectBase(), this.baseObject, "Lock"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -264,6 +266,56 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		}
 	}
 
+	private List<AStream> getRV() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRV1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AStream> getRV1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "RV"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ASigFieldSeedValue> getSV() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getSV1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ASigFieldSeedValue> getSV1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SV"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ASigFieldSeedValue> list = new ArrayList<>(1);
+			list.add(new GFASigFieldSeedValue((COSDictionary)object.getDirectBase(), this.baseObject, "SV"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<org.verapdf.model.baselayer.Object> getV() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
@@ -313,56 +365,151 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		}
 	}
 
-	private List<AArrayOfFields> getKids() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getKids1_3();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsAA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AA"));
 	}
 
-	private List<AArrayOfFields> getKids1_3() {
+	@Override
+	public Boolean getAAHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsDA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
+	}
+
+	@Override
+	public Boolean getDAHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getcontainsDS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DS"));
+	}
+
+	@Override
+	public Boolean getDSHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsDV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DV"));
+	}
+
+	@Override
+	public Boolean getDVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsFT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FT"));
+	}
+
+	@Override
+	public Boolean getFTHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FT"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getFTNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FT"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("FT"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (object == null || object.empty()) {
+			return getFTNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getFTNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsFf() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
+	}
+
+	@Override
+	public Boolean getFfHasTypeBitmask() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFfBitmaskValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Ff"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (object == null || object.empty()) {
+			return getFfBitmaskDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getFfBitmaskDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsKids() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Kids"));
+	}
+
+	@Override
+	public Boolean getKidsHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFields> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFields((COSArray)object.getDirectBase(), this.baseObject, "Kids"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
-	private List<ASigFieldLock> getLock() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getLock1_5();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsLock() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Lock"));
 	}
 
-	private List<ASigFieldLock> getLock1_5() {
+	@Override
+	public Boolean getisLockIndirect() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lock"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ASigFieldLock> list = new ArrayList<>(1);
-			list.add(new GFASigFieldLock((COSDictionary)object.getDirectBase(), this.baseObject, "Lock"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getLockHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lock"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsParent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
+	}
+
+	@Override
+	public Boolean getParentHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -413,130 +560,15 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	@Override
-	public Boolean getRVHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getRVHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
-	public Boolean getcontainsDS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DS"));
-	}
-
-	@Override
-	public Boolean getDSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
+	public Boolean getRVHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsLock() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Lock"));
-	}
-
-	@Override
-	public Boolean getisLockIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lock"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getLockHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lock"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsDA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
-	}
-
-	@Override
-	public Boolean getDAHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
-	}
-
-	@Override
-	public Boolean getTHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsKids() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Kids"));
-	}
-
-	@Override
-	public Boolean getKidsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsDV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DV"));
-	}
-
-	@Override
-	public Boolean getDVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsFT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FT"));
-	}
-
-	@Override
-	public Boolean getFTHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FT"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getFTNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FT"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("FT"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
-		}
-		if (object == null || object.empty()) {
-			return getFTNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getFTNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsAA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AA"));
-	}
-
-	@Override
-	public Boolean getAAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -557,25 +589,14 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	@Override
-	public Boolean getcontainsParent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
+	public Boolean getcontainsT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
 	@Override
-	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getTHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -601,35 +622,14 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	@Override
-	public Boolean getcontainsFf() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
 	@Override
-	public Boolean getFfHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFfBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("Ff"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
-		}
-		if (object == null || object.empty()) {
-			return getFfBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFfBitmaskDefaultValue() {
-		return null;
+	public Boolean getVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

@@ -24,6 +24,17 @@ public class GFAOptContentLanguage extends GFAObject implements AOptContentLangu
 	}
 
 	@Override
+	public Boolean getcontainsLang() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
+	}
+
+	@Override
+	public Boolean getLangHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
 	public Boolean getcontainsPreferred() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Preferred"));
 	}
@@ -55,17 +66,6 @@ public class GFAOptContentLanguage extends GFAObject implements AOptContentLangu
 				return "OFF";
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsLang() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
-	}
-
-	@Override
-	public Boolean getLangHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

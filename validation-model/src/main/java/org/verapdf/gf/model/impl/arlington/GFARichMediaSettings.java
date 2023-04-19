@@ -26,13 +26,36 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Deactivation":
-				return getDeactivation();
 			case "Activation":
 				return getActivation();
+			case "Deactivation":
+				return getDeactivation();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<ARichMediaActivation> getActivation() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getActivation1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ARichMediaActivation> getActivation1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Activation"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ARichMediaActivation> list = new ArrayList<>(1);
+			list.add(new GFARichMediaActivation((COSDictionary)object.getDirectBase(), this.baseObject, "Activation"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<ARichMediaDeactivation> getDeactivation() {
@@ -58,27 +81,26 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 		return Collections.emptyList();
 	}
 
-	private List<ARichMediaActivation> getActivation() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getActivation1_7();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsActivation() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Activation"));
 	}
 
-	private List<ARichMediaActivation> getActivation1_7() {
+	@Override
+	public Boolean getActivationHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Activation"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ARichMediaActivation> list = new ArrayList<>(1);
-			list.add(new GFARichMediaActivation((COSDictionary)object.getDirectBase(), this.baseObject, "Activation"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsDeactivation() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Deactivation"));
+	}
+
+	@Override
+	public Boolean getDeactivationHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Deactivation"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -106,28 +128,6 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsActivation() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Activation"));
-	}
-
-	@Override
-	public Boolean getActivationHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Activation"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsDeactivation() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Deactivation"));
-	}
-
-	@Override
-	public Boolean getDeactivationHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Deactivation"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

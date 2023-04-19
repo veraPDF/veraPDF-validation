@@ -24,33 +24,6 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	@Override
-	public Boolean getcontainsPredictor() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Predictor"));
-	}
-
-	@Override
-	public Boolean getPredictorHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getPredictorIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
-		if (object == null || object.empty()) {
-			return getPredictorIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPredictorIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsBitsPerComponent() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BitsPerComponent"));
 	}
@@ -129,6 +102,17 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	@Override
+	public Boolean getcontainsColumns() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Columns"));
+	}
+
+	@Override
+	public Boolean getColumnsHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Columns"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
 	public Boolean getcontainsEarlyChange() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("EarlyChange"));
 	}
@@ -168,14 +152,30 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	@Override
-	public Boolean getcontainsColumns() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Columns"));
+	public Boolean getcontainsPredictor() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Predictor"));
 	}
 
 	@Override
-	public Boolean getColumnsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Columns"));
+	public Boolean getPredictorHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getPredictorIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
+		if (object == null || object.empty()) {
+			return getPredictorIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getPredictorIntegerDefaultValue() {
+		return null;
 	}
 
 }

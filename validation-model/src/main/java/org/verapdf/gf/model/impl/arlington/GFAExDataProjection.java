@@ -85,6 +85,23 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 	}
 
 	@Override
+	public Boolean getcontainsM3DREF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("M3DREF"));
+	}
+
+	@Override
+	public Boolean getisM3DREFIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M3DREF"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getM3DREFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M3DREF"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsSubtype() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
@@ -136,23 +153,6 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsM3DREF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("M3DREF"));
-	}
-
-	@Override
-	public Boolean getisM3DREFIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M3DREF"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getM3DREFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M3DREF"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

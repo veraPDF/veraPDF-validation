@@ -26,35 +26,13 @@ public class GFARequirementsNavigation extends GFAObject implements ARequirement
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "V":
-				return getV();
 			case "RH":
 				return getRH();
+			case "V":
+				return getV();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AExtensions> getV() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getV2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AExtensions> getV2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AExtensions> list = new ArrayList<>(1);
-			list.add(new GFAExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH() {
@@ -84,21 +62,26 @@ public class GFARequirementsNavigation extends GFAObject implements ARequirement
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsRH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
+	private List<AExtensions> getV() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getV2_0();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getRHHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getRHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	private List<AExtensions> getV2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AExtensions> list = new ArrayList<>(1);
+			list.add(new GFAExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -133,19 +116,19 @@ public class GFARequirementsNavigation extends GFAObject implements ARequirement
 	}
 
 	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	public Boolean getcontainsRH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
 	}
 
 	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getRHHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+	public Boolean getRHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -201,6 +184,23 @@ public class GFARequirementsNavigation extends GFAObject implements ARequirement
 
 	public String getTypeNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

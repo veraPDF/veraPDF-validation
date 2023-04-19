@@ -26,75 +26,17 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Widths":
-				return getWidths();
-			case "ToUnicode":
-				return getToUnicode();
 			case "Encoding":
 				return getEncoding();
 			case "FontDescriptor":
 				return getFontDescriptor();
+			case "ToUnicode":
+				return getToUnicode();
+			case "Widths":
+				return getWidths();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfNumbersGeneral> getWidths() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getWidths1_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfNumbersGeneral> getWidths1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Widths"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Widths"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AStream> getToUnicode() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getToUnicode1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AStream> getToUnicode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AEncoding> getEncoding() {
@@ -157,22 +99,80 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsSubtype() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
+	private List<AStream> getToUnicode() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getToUnicode1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AStream> getToUnicode1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfNumbersGeneral> getWidths() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getWidths1_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfNumbersGeneral> getWidths1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Widths"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Widths"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
-	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+	public Boolean getcontainsBaseFont() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BaseFont"));
+	}
+
+	@Override
+	public Boolean getBaseFontHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+	public String getBaseFontNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
 		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
+			return getBaseFontNameDefaultValue();
 		}
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
@@ -180,58 +180,8 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 		return null;
 	}
 
-	public String getSubtypeNameDefaultValue() {
+	public String getBaseFontNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsWidths() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Widths"));
-	}
-
-	@Override
-	public Boolean getWidthsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Widths"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsLastChar() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("LastChar"));
-	}
-
-	@Override
-	public Boolean getLastCharHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LastChar"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsFontDescriptor() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FontDescriptor"));
-	}
-
-	@Override
-	public Boolean getisFontDescriptorIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getFontDescriptorHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsName() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
-	}
-
-	@Override
-	public Boolean getNameHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -268,33 +218,6 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 	}
 
 	@Override
-	public Boolean getcontainsBaseFont() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BaseFont"));
-	}
-
-	@Override
-	public Boolean getBaseFontHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getBaseFontNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
-		if (object == null || object.empty()) {
-			return getBaseFontNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getBaseFontNameDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsFirstChar() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FirstChar"));
 	}
@@ -303,6 +226,72 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 	public Boolean getFirstCharHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FirstChar"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsFontDescriptor() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontDescriptor"));
+	}
+
+	@Override
+	public Boolean getisFontDescriptorIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getFontDescriptorHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsLastChar() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("LastChar"));
+	}
+
+	@Override
+	public Boolean getLastCharHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LastChar"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsName() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
+	}
+
+	@Override
+	public Boolean getNameHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getcontainsSubtype() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
+	}
+
+	@Override
+	public Boolean getSubtypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSubtypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			return getSubtypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSubtypeNameDefaultValue() {
+		return null;
 	}
 
 	@Override
@@ -347,6 +336,17 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 
 	public String getTypeNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsWidths() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Widths"));
+	}
+
+	@Override
+	public Boolean getWidthsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Widths"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

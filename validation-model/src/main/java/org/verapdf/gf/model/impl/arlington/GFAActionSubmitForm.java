@@ -26,41 +26,13 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Fields":
-				return getFields();
 			case "F":
 				return getF();
+			case "Fields":
+				return getFields();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfFieldID> getFields() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFields1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfFieldID> getFields1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFieldID> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFieldID((COSArray)object.getDirectBase(), this.baseObject, "Fields"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AFileSpecification> getF() {
@@ -91,31 +63,32 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
+	private List<AArrayOfFieldID> getFields() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFields1_2();
+			default:
+				return Collections.emptyList();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
 	}
 
-	public String getSNameDefaultValue() {
-		return null;
+	private List<AArrayOfFieldID> getFields1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFieldID> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFieldID((COSArray)object.getDirectBase(), this.baseObject, "Fields"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -151,15 +124,15 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	}
 
 	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -207,6 +180,33 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 			case ARLINGTON2_0:
 				return 0L;
 		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
 		return null;
 	}
 

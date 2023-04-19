@@ -86,37 +86,25 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	@Override
-	public Boolean getcontainsW() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
+	public Boolean getcontainsB() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("B"));
 	}
 
 	@Override
-	public Boolean getWHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getBHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Long getWIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
-		if (object == null || object.empty()) {
-			return getWIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
-	public Long getWIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 3L;
-		}
-		return null;
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -154,17 +142,6 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
-	}
-
-	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getcontainsO() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
@@ -199,14 +176,37 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	@Override
-	public Boolean getcontainsB() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("B"));
+	public Boolean getcontainsW() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
 	}
 
 	@Override
-	public Boolean getBHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getWHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getWIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		if (object == null || object.empty()) {
+			return getWIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getWIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 3L;
+		}
+		return null;
 	}
 
 }

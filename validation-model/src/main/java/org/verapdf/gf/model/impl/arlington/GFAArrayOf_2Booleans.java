@@ -24,20 +24,20 @@ public class GFAArrayOf_2Booleans extends GFAObject implements AArrayOf_2Boolean
 	}
 
 	@Override
-	public Boolean getentry1HasTypeBoolean() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeBoolean() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeBoolean() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 

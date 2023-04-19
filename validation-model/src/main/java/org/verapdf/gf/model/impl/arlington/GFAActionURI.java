@@ -395,30 +395,14 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 	}
 
 	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	public Boolean getcontainsIsMap() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("IsMap"));
 	}
 
 	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
+	public Boolean getIsMapHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IsMap"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -436,28 +420,6 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsIsMap() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("IsMap"));
-	}
-
-	@Override
-	public Boolean getIsMapHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IsMap"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsURI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("URI"));
-	}
-
-	@Override
-	public Boolean getURIHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
 	@Override
@@ -485,6 +447,44 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 
 	public String getSNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsURI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("URI"));
+	}
+
+	@Override
+	public Boolean getURIHasTypeStringAscii() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
 }

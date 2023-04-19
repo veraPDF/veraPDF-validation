@@ -27,49 +27,19 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Root":
-				return getRoot();
 			case "AuthCode":
 				return getAuthCode();
+			case "Encrypt":
+				return getEncrypt();
 			case "entryID":
 				return getentryID();
 			case "Info":
 				return getInfo();
-			case "Encrypt":
-				return getEncrypt();
+			case "Root":
+				return getRoot();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ACatalog> getRoot() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getRoot1_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ACatalog> getRoot1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ACatalog> list = new ArrayList<>(1);
-			list.add(new GFACatalog((COSDictionary)object.getDirectBase(), this.baseObject, "Root"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AAuthCode> getAuthCode() {
@@ -89,65 +59,6 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AAuthCode> list = new ArrayList<>(1);
 			list.add(new GFAAuthCode((COSDictionary)object.getDirectBase(), this.baseObject, "AuthCode"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOf_2UnencryptedStringsByte> getentryID() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getentryID1_1();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOf_2UnencryptedStringsByte> getentryID1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_2UnencryptedStringsByte> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_2UnencryptedStringsByte((COSArray)object.getDirectBase(), this.baseObject, "ID"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ADocInfo> getInfo() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getInfo1_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ADocInfo> getInfo1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ADocInfo> list = new ArrayList<>(1);
-			list.add(new GFADocInfo((COSDictionary)object.getDirectBase(), this.baseObject, "Info"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -206,6 +117,157 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		}
 	}
 
+	private List<ATrailerIDArray> getentryID() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getentryID1_1();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ATrailerIDArray> getentryID1_1() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<ATrailerIDArray> list = new ArrayList<>(1);
+			list.add(new GFATrailerIDArray((COSArray)object.getDirectBase(), this.baseObject, "ID"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ADocInfo> getInfo() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getInfo1_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ADocInfo> getInfo1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ADocInfo> list = new ArrayList<>(1);
+			list.add(new GFADocInfo((COSDictionary)object.getDirectBase(), this.baseObject, "Info"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ACatalog> getRoot() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRoot1_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ACatalog> getRoot1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ACatalog> list = new ArrayList<>(1);
+			list.add(new GFACatalog((COSDictionary)object.getDirectBase(), this.baseObject, "Root"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsAuthCode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AuthCode"));
+	}
+
+	@Override
+	public Boolean getisAuthCodeIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getAuthCodeHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsEncrypt() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Encrypt"));
+	}
+
+	@Override
+	public Boolean getEncryptHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsID() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
+	}
+
+	@Override
+	public Boolean getisentryIDIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getentryIDHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsInfo() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Info"));
+	}
+
+	@Override
+	public Boolean getisInfoIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getInfoHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
 	@Override
 	public Boolean getcontainsPrev() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Prev"));
@@ -237,50 +299,6 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	public Long getPrevIntegerDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsXRefStm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("XRefStm"));
-	}
-
-	@Override
-	public Boolean getXRefStmHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XRefStm"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getXRefStmIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XRefStm"));
-		if (object == null || object.empty()) {
-			return getXRefStmIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getXRefStmIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsID() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
-	}
-
-	@Override
-	public Boolean getisentryIDIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getentryIDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -334,48 +352,30 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	@Override
-	public Boolean getcontainsInfo() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Info"));
+	public Boolean getcontainsXRefStm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("XRefStm"));
 	}
 
 	@Override
-	public Boolean getisInfoIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
-		return object != null && object.get() != null && object.get().isIndirect();
+	public Boolean getXRefStmHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XRefStm"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Boolean getInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Long getXRefStmIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XRefStm"));
+		if (object == null || object.empty()) {
+			return getXRefStmIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
 	}
 
-	@Override
-	public Boolean getcontainsEncrypt() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Encrypt"));
-	}
-
-	@Override
-	public Boolean getEncryptHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsAuthCode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AuthCode"));
-	}
-
-	@Override
-	public Boolean getisAuthCodeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getAuthCodeHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Long getXRefStmIntegerDefaultValue() {
+		return null;
 	}
 
 	@Override

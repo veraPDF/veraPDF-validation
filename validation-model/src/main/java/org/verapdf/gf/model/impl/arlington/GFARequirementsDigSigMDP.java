@@ -26,14 +26,58 @@ public class GFARequirementsDigSigMDP extends GFAObject implements ARequirements
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "DigSig":
+				return getDigSig();
 			case "RH":
 				return getRH();
 			case "V":
 				return getV();
-			case "DigSig":
-				return getDigSig();
 			default:
 				return super.getLinkedObjects(link);
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getDigSig() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getDigSig2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getDigSig2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigSig"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getDigSigDictionary2_0(object.getDirectBase(), "DigSig");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getDigSigDictionary2_0(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "Sig":
+				return new GFASignature(base, this.baseObject, keyName);
+			case "DocTimeStamp":
+				return new GFADocTimeStamp(base, this.baseObject, keyName);
+			default:
+				return null;
 		}
 	}
 
@@ -86,48 +130,15 @@ public class GFARequirementsDigSigMDP extends GFAObject implements ARequirements
 		return Collections.emptyList();
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getDigSig() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getDigSig2_0();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsDigSig() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DigSig"));
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getDigSig2_0() {
+	@Override
+	public Boolean getDigSigHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigSig"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getDigSigDictionary2_0(object.getDirectBase(), "DigSig");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getDigSigDictionary2_0(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "Sig":
-				return new GFASignature(base, this.baseObject, keyName);
-			case "DocTimeStamp":
-				return new GFADocTimeStamp(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -158,50 +169,6 @@ public class GFARequirementsDigSigMDP extends GFAObject implements ARequirements
 			case ARLINGTON2_0:
 				return 100L;
 		}
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -250,13 +217,46 @@ public class GFARequirementsDigSigMDP extends GFAObject implements ARequirements
 	}
 
 	@Override
-	public Boolean getcontainsDigSig() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DigSig"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getDigSigHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigSig"));
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

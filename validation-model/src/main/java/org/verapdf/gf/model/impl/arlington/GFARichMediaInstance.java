@@ -104,29 +104,29 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	}
 
 	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	public Boolean getcontainsScene() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Scene"));
 	}
 
 	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
+	public Boolean getSceneHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scene"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+	public Long getSceneIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scene"));
 		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
+			return getSceneIntegerDefaultValue();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
 
-	public String getTypeNameDefaultValue() {
+	public Long getSceneIntegerDefaultValue() {
 		return null;
 	}
 
@@ -158,29 +158,29 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	}
 
 	@Override
-	public Boolean getcontainsScene() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Scene"));
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
 	@Override
-	public Boolean getSceneHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scene"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Long getSceneIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scene"));
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		if (object == null || object.empty()) {
-			return getSceneIntegerDefaultValue();
+			return getTypeNameDefaultValue();
 		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
 
-	public Long getSceneIntegerDefaultValue() {
+	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

@@ -26,40 +26,15 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "StdCF":
-				return getStdCF();
 			case "Entries":
 				return getEntries();
 			case "Identity":
 				return getIdentity();
+			case "StdCF":
+				return getStdCF();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ACryptFilter> getStdCF() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getStdCF1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ACryptFilter> getStdCF1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StdCF"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ACryptFilter> list = new ArrayList<>(1);
-			list.add(new GFACryptFilter((COSDictionary)object.getDirectBase(), this.baseObject, "StdCF"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ACryptFilterMapEntry> getEntries() {
@@ -77,7 +52,7 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	private List<ACryptFilterMapEntry> getEntries1_5() {
 		List<ACryptFilterMapEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
-			if ("StdCF".equals(key.getValue()) || "Identity".equals(key.getValue())) {
+			if ("Identity".equals(key.getValue()) || "StdCF".equals(key.getValue())) {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
@@ -111,15 +86,29 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsStdCF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("StdCF"));
+	private List<ACryptFilter> getStdCF() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getStdCF1_5();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getStdCFHasTypeDictionary() {
+	private List<ACryptFilter> getStdCF1_5() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StdCF"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ACryptFilter> list = new ArrayList<>(1);
+			list.add(new GFACryptFilter((COSDictionary)object.getDirectBase(), this.baseObject, "StdCF"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -130,6 +119,17 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	@Override
 	public Boolean getIdentityHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Identity"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsStdCF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("StdCF"));
+	}
+
+	@Override
+	public Boolean getStdCFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StdCF"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

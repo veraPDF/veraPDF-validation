@@ -26,101 +26,20 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Function":
-				return getFunction();
 			case "Background":
 				return getBackground();
-			case "Extend":
-				return getExtend();
 			case "ColorSpace":
 				return getColorSpace();
 			case "Coords":
 				return getCoords();
 			case "Domain":
 				return getDomain();
+			case "Extend":
+				return getExtend();
+			case "Function":
+				return getFunction();
 			default:
 				return super.getLinkedObjects(link);
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFunction() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFunction1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFunction1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFunctions> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFunctions((COSArray)object.getDirectBase(), this.baseObject, "Function"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getFunctionDictionary1_3(object.getDirectBase(), "Function");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getFunctionStream1_3(object.getDirectBase(), "Function");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getFunctionDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private org.verapdf.model.baselayer.Object getFunctionStream1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 0:
-				return new GFAFunctionType0(base, this.baseObject, keyName);
-			case 4:
-				return new GFAFunctionType4(base, this.baseObject, keyName);
-			default:
-				return null;
 		}
 	}
 
@@ -146,33 +65,6 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfNumbersGeneral> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfNumbersGeneral((COSArray)object.getDirectBase(), this.baseObject, "Background"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOf_2Booleans> getExtend() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getExtend1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOf_2Booleans> getExtend1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extend"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_2Booleans> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_2Booleans((COSArray)object.getDirectBase(), this.baseObject, "Extend"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -294,6 +186,210 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 		return Collections.emptyList();
 	}
 
+	private List<AArrayOf_2Booleans> getExtend() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getExtend1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_2Booleans> getExtend1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extend"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_2Booleans> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_2Booleans((COSArray)object.getDirectBase(), this.baseObject, "Extend"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFunction() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFunction1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFunction1_3() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFunctions> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFunctions((COSArray)object.getDirectBase(), this.baseObject, "Function"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getFunctionStream1_3(object.getDirectBase(), "Function");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getFunctionDictionary1_3(object.getDirectBase(), "Function");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getFunctionStream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 0:
+				return new GFAFunctionType0(base, this.baseObject, keyName);
+			case 4:
+				return new GFAFunctionType4(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getFunctionDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	@Override
+	public Boolean getcontainsAntiAlias() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AntiAlias"));
+	}
+
+	@Override
+	public Boolean getAntiAliasHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AntiAlias"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsBBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("BBox"));
+	}
+
+	@Override
+	public Boolean getBBoxHasTypeRectangle() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean getcontainsBackground() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Background"));
+	}
+
+	@Override
+	public Boolean getBackgroundHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsColorSpace() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
+	}
+
+	@Override
+	public Boolean getColorSpaceHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getColorSpaceHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getColorSpaceNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		if (object == null || object.empty()) {
+			return getColorSpaceNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getColorSpaceNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsCoords() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Coords"));
+	}
+
+	@Override
+	public Boolean getCoordsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Coords"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsDomain() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Domain"));
+	}
+
+	@Override
+	public Boolean getDomainHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
 	@Override
 	public Boolean getcontainsExtend() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Extend"));
@@ -323,111 +419,15 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	}
 
 	@Override
-	public Boolean getFunctionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getFunctionHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
-	public Boolean getcontainsColorSpace() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
-	}
-
-	@Override
-	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public String getColorSpaceNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
-		if (object == null || object.empty()) {
-			return getColorSpaceNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getColorSpaceNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsBBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("BBox"));
-	}
-
-	@Override
-	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public Boolean getcontainsCoords() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Coords"));
-	}
-
-	@Override
-	public Boolean getCoordsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Coords"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsBackground() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Background"));
-	}
-
-	@Override
-	public Boolean getBackgroundHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsAntiAlias() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AntiAlias"));
-	}
-
-	@Override
-	public Boolean getAntiAliasHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AntiAlias"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsDomain() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Domain"));
-	}
-
-	@Override
-	public Boolean getDomainHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getFunctionHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

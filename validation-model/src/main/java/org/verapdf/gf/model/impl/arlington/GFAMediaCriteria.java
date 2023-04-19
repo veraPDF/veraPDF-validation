@@ -26,44 +26,19 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "P":
-				return getP();
 			case "D":
 				return getD();
+			case "L":
+				return getL();
+			case "P":
+				return getP();
 			case "V":
 				return getV();
 			case "Z":
 				return getZ();
-			case "L":
-				return getL();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfNamesGeneral> getP() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getP1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfNamesGeneral> getP1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfNamesGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfNamesGeneral((COSArray)object.getDirectBase(), this.baseObject, "P"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AMinimumBitDepth> getD() {
@@ -86,6 +61,56 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AMinimumBitDepth> list = new ArrayList<>(1);
 			list.add(new GFAMinimumBitDepth((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfStringsText> getL() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getL1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfStringsText> getL1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfStringsText> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfStringsText((COSArray)object.getDirectBase(), this.baseObject, "L"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOfNamesGeneral> getP() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getP1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfNamesGeneral> getP1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfNamesGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNamesGeneral((COSArray)object.getDirectBase(), this.baseObject, "P"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -141,40 +166,15 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfStringsText> getL() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getL1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfStringsText> getL1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfStringsText> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStringsText((COSArray)object.getDirectBase(), this.baseObject, "L"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+	@Override
+	public Boolean getcontainsA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
 	@Override
-	public Boolean getcontainsP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
-	}
-
-	@Override
-	public Boolean getPHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getAHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -186,6 +186,50 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	public Boolean getCHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	}
+
+	@Override
+	public Boolean getDHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
+	}
+
+	@Override
+	public Boolean getLHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
+	}
+
+	@Override
+	public Boolean getOHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
+	}
+
+	@Override
+	public Boolean getPHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
@@ -251,50 +295,6 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
-	}
-
-	@Override
-	public Boolean getLHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
-	}
-
-	@Override
-	public Boolean getAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
-	}
-
-	@Override
-	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsO() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
-	}
-
-	@Override
-	public Boolean getOHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override

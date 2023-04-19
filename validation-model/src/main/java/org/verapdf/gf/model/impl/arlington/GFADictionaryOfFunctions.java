@@ -74,14 +74,6 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getDefaultDictionary1_6(object.getDirectBase(), "Default");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getDefaultStream1_6(object.getDirectBase(), "Default");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -90,26 +82,15 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getDefaultDictionary1_6(object.getDirectBase(), "Default");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getDefaultDictionary1_6(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 2:
-				return new GFAFunctionType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAFunctionType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getDefaultStream1_6(COSBase base, String keyName) {
@@ -131,6 +112,25 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 		}
 	}
 
+	private org.verapdf.model.baselayer.Object getDefaultDictionary1_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 2:
+				return new GFAFunctionType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
 	@Override
 	public Boolean getcontainsDefault() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Default"));
@@ -143,15 +143,15 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 	}
 
 	@Override
-	public Boolean getDefaultHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
 	public Boolean getDefaultHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getDefaultHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

@@ -26,39 +26,39 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "CardBorder":
-				return getCardBorder();
-			case "CardBackground":
-				return getCardBackground();
 			case "Background":
 				return getBackground();
-			case "SecondaryText":
-				return getSecondaryText();
+			case "CardBackground":
+				return getCardBackground();
+			case "CardBorder":
+				return getCardBorder();
 			case "PrimaryText":
 				return getPrimaryText();
+			case "SecondaryText":
+				return getSecondaryText();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<AArrayOf_3RGBNumbers> getCardBorder() {
+	private List<AArrayOf_3RGBNumbers> getBackground() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCardBorder1_7();
+				return getBackground1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_3RGBNumbers> getCardBorder1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBorder"));
+	private List<AArrayOf_3RGBNumbers> getBackground1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "CardBorder"));
+			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "Background"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -87,47 +87,24 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOf_3RGBNumbers> getBackground() {
+	private List<AArrayOf_3RGBNumbers> getCardBorder() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBackground1_7();
+				return getCardBorder1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_3RGBNumbers> getBackground1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+	private List<AArrayOf_3RGBNumbers> getCardBorder1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBorder"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "Background"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOf_3RGBNumbers> getSecondaryText() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getSecondaryText1_7();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOf_3RGBNumbers> getSecondaryText1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SecondaryText"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "SecondaryText"));
+			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "CardBorder"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -156,6 +133,84 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return Collections.emptyList();
 	}
 
+	private List<AArrayOf_3RGBNumbers> getSecondaryText() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getSecondaryText1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_3RGBNumbers> getSecondaryText1_7() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SecondaryText"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "SecondaryText"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsBackground() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Background"));
+	}
+
+	@Override
+	public Boolean getBackgroundHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsCardBackground() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CardBackground"));
+	}
+
+	@Override
+	public Boolean getCardBackgroundHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBackground"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsCardBorder() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CardBorder"));
+	}
+
+	@Override
+	public Boolean getCardBorderHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBorder"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsPrimaryText() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PrimaryText"));
+	}
+
+	@Override
+	public Boolean getPrimaryTextHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrimaryText"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsSecondaryText() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SecondaryText"));
+	}
+
+	@Override
+	public Boolean getSecondaryTextHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SecondaryText"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
 	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
@@ -181,61 +236,6 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSecondaryText() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SecondaryText"));
-	}
-
-	@Override
-	public Boolean getSecondaryTextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SecondaryText"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsCardBorder() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CardBorder"));
-	}
-
-	@Override
-	public Boolean getCardBorderHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBorder"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsCardBackground() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CardBackground"));
-	}
-
-	@Override
-	public Boolean getCardBackgroundHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBackground"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsBackground() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Background"));
-	}
-
-	@Override
-	public Boolean getBackgroundHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsPrimaryText() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PrimaryText"));
-	}
-
-	@Override
-	public Boolean getPrimaryTextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrimaryText"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

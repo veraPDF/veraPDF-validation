@@ -24,17 +24,6 @@ public class GFAProjectedCoordinateSystem extends GFAObject implements AProjecte
 	}
 
 	@Override
-	public Boolean getcontainsWKT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("WKT"));
-	}
-
-	@Override
-	public Boolean getWKTHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WKT"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
-	}
-
-	@Override
 	public Boolean getcontainsEPSG() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("EPSG"));
 	}
@@ -70,6 +59,17 @@ public class GFAProjectedCoordinateSystem extends GFAObject implements AProjecte
 
 	public String getTypeNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsWKT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("WKT"));
+	}
+
+	@Override
+	public Boolean getWKTHasTypeStringAscii() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WKT"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
 }

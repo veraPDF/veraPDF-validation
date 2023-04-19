@@ -30,14 +30,14 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 				return getAA();
 			case "DV":
 				return getDV();
-			case "RV":
-				return getRV();
-			case "Parent":
-				return getParent();
-			case "V":
-				return getV();
 			case "Kids":
 				return getKids();
+			case "Parent":
+				return getParent();
+			case "RV":
+				return getRV();
+			case "V":
+				return getV();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -98,26 +98,29 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 		return Collections.emptyList();
 	}
 
-	private List<AStream> getRV() {
+	private List<AArrayOfFields> getKids() {
 		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getRV1_5();
+				return getKids1_2();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AStream> getRV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+	private List<AArrayOfFields> getKids1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "RV"));
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFields> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFields((COSArray)object.getDirectBase(), this.baseObject, "Kids"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -291,6 +294,31 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 		}
 	}
 
+	private List<AStream> getRV() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRV1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AStream> getRV1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "RV"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<AStream> getV() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
@@ -319,34 +347,6 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfFields> getKids() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getKids1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfFields> getKids1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFields> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFields((COSArray)object.getDirectBase(), this.baseObject, "Kids"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	@Override
 	public Boolean getcontainsAA() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AA"));
@@ -359,78 +359,48 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
-	public Boolean getcontainsKids() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Kids"));
+	public Boolean getcontainsDA() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
 	}
 
 	@Override
-	public Boolean getKidsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getDAHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
-	public Boolean getcontainsFf() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
+	public Boolean getcontainsDS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DS"));
 	}
 
 	@Override
-	public Boolean getFfHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getDSHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
-	public Long getFfBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("Ff"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
-		}
-		if (object == null || object.empty()) {
-			return getFfBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFfBitmaskDefaultValue() {
-		return null;
+	public Boolean getcontainsDV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DV"));
 	}
 
 	@Override
-	public Boolean getcontainsMaxLen() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MaxLen"));
+	public Boolean getisDVIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
-	public Boolean getMaxLenHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MaxLen"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getDVHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
-	public Long getMaxLenIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MaxLen"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("MaxLen"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
-		}
-		if (object == null || object.empty()) {
-			return getMaxLenIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getMaxLenIntegerDefaultValue() {
-		return null;
+	public Boolean getDVHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -466,59 +436,89 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
-	public Boolean getcontainsDS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DS"));
+	public Boolean getcontainsFf() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
 	}
 
 	@Override
-	public Boolean getDSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getFfHasTypeBitmask() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Boolean getcontainsDA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
+	public Long getFfBitmaskValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Ff"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (object == null || object.empty()) {
+			return getFfBitmaskDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getFfBitmaskDefaultValue() {
+		return null;
 	}
 
 	@Override
-	public Boolean getDAHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+	public Boolean getcontainsKids() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Kids"));
 	}
 
 	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	public Boolean getKidsHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
-	public Boolean getisVIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.get() != null && object.get().isIndirect();
+	public Boolean getcontainsMaxLen() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MaxLen"));
 	}
 
 	@Override
-	public Boolean getVHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getMaxLenHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MaxLen"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public Boolean getVHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+	public Long getMaxLenIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MaxLen"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("MaxLen"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (object == null || object.empty()) {
+			return getMaxLenIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getMaxLenIntegerDefaultValue() {
+		return null;
 	}
 
 	@Override
-	public Boolean getcontainsTM() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TM"));
+	public Boolean getcontainsParent() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
 	}
 
 	@Override
-	public Boolean getTMHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getParentHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -559,14 +559,26 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
-	public Boolean getcontainsParent() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
+	public Boolean getcontainsRV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RV"));
 	}
 
 	@Override
-	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getisRVIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getRVHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getRVHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -581,26 +593,14 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
-	public Boolean getcontainsDV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DV"));
+	public Boolean getcontainsTM() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TM"));
 	}
 
 	@Override
-	public Boolean getisDVIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getDVHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+	public Boolean getTMHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getDVHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -615,26 +615,26 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
-	public Boolean getcontainsRV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RV"));
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
 	@Override
-	public Boolean getisRVIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+	public Boolean getisVIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
-	public Boolean getRVHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getVHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
-	public Boolean getRVHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+	public Boolean getVHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

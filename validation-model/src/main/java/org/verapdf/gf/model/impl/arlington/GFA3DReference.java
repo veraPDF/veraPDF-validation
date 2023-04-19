@@ -58,6 +58,23 @@ public class GFA3DReference extends GFAObject implements A3DReference {
 	}
 
 	@Override
+	public Boolean getcontains3DD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("3DD"));
+	}
+
+	@Override
+	public Boolean getisentry3DDIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DD"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getentry3DDHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DD"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -82,23 +99,6 @@ public class GFA3DReference extends GFAObject implements A3DReference {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontains3DD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("3DD"));
-	}
-
-	@Override
-	public Boolean getisentry3DDIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DD"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getentry3DDHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DD"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 }

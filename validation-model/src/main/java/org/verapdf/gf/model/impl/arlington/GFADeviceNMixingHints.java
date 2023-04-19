@@ -26,39 +26,15 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Solidities":
-				return getSolidities();
 			case "DotGain":
 				return getDotGain();
 			case "PrintingOrder":
 				return getPrintingOrder();
+			case "Solidities":
+				return getSolidities();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<ASolidities> getSolidities() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getSolidities1_6();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ASolidities> getSolidities1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Solidities"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ASolidities> list = new ArrayList<>(1);
-			list.add(new GFASolidities((COSDictionary)object.getDirectBase(), this.baseObject, "Solidities"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ADictionaryOfFunctions> getDotGain() {
@@ -109,15 +85,28 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsSolidities() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Solidities"));
+	private List<ASolidities> getSolidities() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getSolidities1_6();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	@Override
-	public Boolean getSoliditiesHasTypeDictionary() {
+	private List<ASolidities> getSolidities1_6() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Solidities"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ASolidities> list = new ArrayList<>(1);
+			list.add(new GFASolidities((COSDictionary)object.getDirectBase(), this.baseObject, "Solidities"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -140,6 +129,17 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	public Boolean getPrintingOrderHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrintingOrder"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsSolidities() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Solidities"));
+	}
+
+	@Override
+	public Boolean getSoliditiesHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Solidities"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

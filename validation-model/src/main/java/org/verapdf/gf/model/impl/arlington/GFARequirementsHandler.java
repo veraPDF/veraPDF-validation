@@ -24,17 +24,6 @@ public class GFARequirementsHandler extends GFAObject implements ARequirementsHa
 	}
 
 	@Override
-	public Boolean getcontainsScript() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Script"));
-	}
-
-	@Override
-	public Boolean getScriptHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Script"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getcontainsS() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
@@ -59,6 +48,17 @@ public class GFARequirementsHandler extends GFAObject implements ARequirementsHa
 
 	public String getSNameDefaultValue() {
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsScript() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Script"));
+	}
+
+	@Override
+	public Boolean getScriptHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Script"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override

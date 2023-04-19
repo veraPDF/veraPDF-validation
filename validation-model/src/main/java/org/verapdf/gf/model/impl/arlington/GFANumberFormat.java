@@ -24,6 +24,50 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
+	public Boolean getcontainsC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
+	}
+
+	@Override
+	public Boolean getCHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsD() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	}
+
+	@Override
+	public Boolean getDHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getDIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		if (object == null || object.empty()) {
+			return getDIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getDIntegerDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return 16L;
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsF() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
@@ -68,55 +112,6 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
-	public Boolean getcontainsSS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("SS"));
-	}
-
-	@Override
-	public Boolean getSSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SS"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsRT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RT"));
-	}
-
-	@Override
-	public Boolean getRTHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsO() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
@@ -150,13 +145,13 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
-	public Boolean getcontainsU() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
+	public Boolean getcontainsPS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PS"));
 	}
 
 	@Override
-	public Boolean getUHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+	public Boolean getPSHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -172,57 +167,62 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
-	public Boolean getcontainsD() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
+	public Boolean getcontainsRT() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RT"));
 	}
 
 	@Override
-	public Boolean getDHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	public Boolean getRTHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
-	public Long getDIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+	public Boolean getcontainsSS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SS"));
+	}
+
+	@Override
+	public Boolean getSSHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SS"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		if (object == null || object.empty()) {
-			return getDIntegerDefaultValue();
+			return getTypeNameDefaultValue();
 		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getDIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 16L;
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
 
-	@Override
-	public Boolean getcontainsC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 	@Override
-	public Boolean getCHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
-		return object != null && object.getType().isNumber();
+	public Boolean getcontainsU() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
 	}
 
 	@Override
-	public Boolean getcontainsPS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PS"));
-	}
-
-	@Override
-	public Boolean getPSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
+	public Boolean getUHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

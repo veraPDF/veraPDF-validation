@@ -35,14 +35,22 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 	}
 
 	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	public Boolean getcontainsMatrix() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Matrix"));
 	}
 
 	@Override
-	public Boolean getVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType().isNumber();
+	public Boolean getMatrixHasTypeMatrix() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -73,22 +81,14 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 	}
 
 	@Override
-	public Boolean getcontainsMatrix() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Matrix"));
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
 	@Override
-	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+	public Boolean getVHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType().isNumber();
 	}
 
 }

@@ -57,6 +57,71 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	@Override
+	public Boolean getcontainsNavigationPane() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NavigationPane"));
+	}
+
+	@Override
+	public Boolean getNavigationPaneHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NavigationPane"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsPassContextClick() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PassContextClick"));
+	}
+
+	@Override
+	public Boolean getPassContextClickHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PassContextClick"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsStyle() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Style"));
+	}
+
+	@Override
+	public Boolean getStyleHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getStyleNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		if (object == null || object.empty()) {
+			return getStyleNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getStyleNameDefaultValue() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return "Embedded";
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsToolbar() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Toolbar"));
+	}
+
+	@Override
+	public Boolean getToolbarHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Toolbar"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
 	public Boolean getcontainsTransparent() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Transparent"));
 	}
@@ -95,60 +160,6 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	@Override
-	public Boolean getcontainsNavigationPane() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NavigationPane"));
-	}
-
-	@Override
-	public Boolean getNavigationPaneHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NavigationPane"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsToolbar() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Toolbar"));
-	}
-
-	@Override
-	public Boolean getToolbarHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Toolbar"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsStyle() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Style"));
-	}
-
-	@Override
-	public Boolean getStyleHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getStyleNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
-		if (object == null || object.empty()) {
-			return getStyleNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getStyleNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "Embedded";
-		}
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsWindow() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Window"));
 	}
@@ -157,17 +168,6 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	public Boolean getWindowHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Window"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPassContextClick() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PassContextClick"));
-	}
-
-	@Override
-	public Boolean getPassContextClickHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PassContextClick"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 }

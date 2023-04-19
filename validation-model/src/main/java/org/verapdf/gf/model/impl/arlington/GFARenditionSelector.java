@@ -26,40 +26,15 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "R":
-				return getR();
 			case "BE":
 				return getBE();
 			case "MH":
 				return getMH();
+			case "R":
+				return getR();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AArrayOfRenditions> getR() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getR1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfRenditions> getR1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfRenditions> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfRenditions((COSArray)object.getDirectBase(), this.baseObject, "R"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ARenditionBE> getBE() {
@@ -112,6 +87,31 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 		return Collections.emptyList();
 	}
 
+	private List<AArrayOfRenditions> getR() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getR1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfRenditions> getR1_5() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfRenditions> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfRenditions((COSArray)object.getDirectBase(), this.baseObject, "R"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	@Override
 	public Boolean getcontainsBE() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
@@ -120,6 +120,17 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	@Override
 	public Boolean getBEHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsMH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
+	}
+
+	@Override
+	public Boolean getMHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -143,17 +154,6 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	public Boolean getRHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsMH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
-	}
-
-	@Override
-	public Boolean getMHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

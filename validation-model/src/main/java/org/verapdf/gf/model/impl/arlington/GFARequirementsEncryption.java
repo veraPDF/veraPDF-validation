@@ -26,14 +26,60 @@ public class GFARequirementsEncryption extends GFAObject implements ARequirement
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "Encrypt":
+				return getEncrypt();
 			case "RH":
 				return getRH();
 			case "V":
 				return getV();
-			case "Encrypt":
-				return getEncrypt();
 			default:
 				return super.getLinkedObjects(link);
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getEncrypt() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getEncrypt2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getEncrypt2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getEncryptDictionary2_0(object.getDirectBase(), "Encrypt");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getEncryptDictionary2_0(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Filter"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return new GFAEncryptionPublicKey(base, this.baseObject, keyName);
+		}
+		switch (subtypeValue) {
+			case "Adobe.PubSec":
+				return new GFAEncryptionPublicKey(base, this.baseObject, keyName);
+			case "AdobePPKLite":
+				return new GFAEncryptionPublicKey(base, this.baseObject, keyName);
+			case "Standard":
+				return new GFAEncryptionStandard(base, this.baseObject, keyName);
+			default:
+				return null;
 		}
 	}
 
@@ -86,137 +132,14 @@ public class GFARequirementsEncryption extends GFAObject implements ARequirement
 		return Collections.emptyList();
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getEncrypt() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getEncrypt2_0();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsEncrypt() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Encrypt"));
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getEncrypt2_0() {
+	@Override
+	public Boolean getEncryptHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getEncryptDictionary2_0(object.getDirectBase(), "Encrypt");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getEncryptDictionary2_0(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("Filter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return new GFAEncryptionPublicKey(base, this.baseObject, keyName);
-		}
-		switch (subtypeValue) {
-			case "Adobe.PubSec":
-				return new GFAEncryptionPublicKey(base, this.baseObject, keyName);
-			case "AdobePPKLite":
-				return new GFAEncryptionPublicKey(base, this.baseObject, keyName);
-			case "Standard":
-				return new GFAEncryptionStandard(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	@Override
-	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
-	}
-
-	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsRH() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
-	}
-
-	@Override
-	public Boolean getRHHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getRHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -252,13 +175,90 @@ public class GFARequirementsEncryption extends GFAObject implements ARequirement
 	}
 
 	@Override
-	public Boolean getcontainsEncrypt() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Encrypt"));
+	public Boolean getcontainsRH() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RH"));
 	}
 
 	@Override
-	public Boolean getEncryptHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+	public Boolean getRHHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getRHHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	@Override
+	public Boolean getVHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getVHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

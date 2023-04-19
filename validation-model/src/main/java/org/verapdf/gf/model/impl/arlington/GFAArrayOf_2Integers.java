@@ -24,34 +24,6 @@ public class GFAArrayOf_2Integers extends GFAObject implements AArrayOf_2Integer
 	}
 
 	@Override
-	public Boolean getentry1HasTypeInteger() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getentry1IntegerValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1IntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getentry1IntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeInteger() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -76,6 +48,34 @@ public class GFAArrayOf_2Integers extends GFAObject implements AArrayOf_2Integer
 	}
 
 	public Long getentry0IntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeInteger() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getentry1IntegerValue() {
+		if (this.baseObject.size() <= 1) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(1);
+		if (object == null || object.empty()) {
+			return getentry1IntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getentry1IntegerDefaultValue() {
 		return null;
 	}
 

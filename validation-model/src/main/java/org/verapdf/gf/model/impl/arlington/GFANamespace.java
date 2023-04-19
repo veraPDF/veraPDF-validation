@@ -26,35 +26,13 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Schema":
-				return getSchema();
 			case "RoleMapNS":
 				return getRoleMapNS();
+			case "Schema":
+				return getSchema();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AFileSpecification> getSchema() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getSchema2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AFileSpecification> getSchema2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "Schema"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ARoleMapNS> getRoleMapNS() {
@@ -79,21 +57,37 @@ public class GFANamespace extends GFAObject implements ANamespace {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getcontainsSchema() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Schema"));
+	private List<AFileSpecification> getSchema() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getSchema2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AFileSpecification> getSchema2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AFileSpecification> list = new ArrayList<>(1);
+			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "Schema"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
-	public Boolean getSchemaHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+	public Boolean getcontainsNS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NS"));
 	}
 
 	@Override
-	public Boolean getSchemaHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+	public Boolean getNSHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -104,6 +98,23 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	@Override
 	public Boolean getRoleMapNSHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RoleMapNS"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsSchema() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Schema"));
+	}
+
+	@Override
+	public Boolean getSchemaHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getSchemaHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -132,17 +143,6 @@ public class GFANamespace extends GFAObject implements ANamespace {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsNS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("NS"));
-	}
-
-	@Override
-	public Boolean getNSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

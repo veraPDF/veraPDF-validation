@@ -26,13 +26,41 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Next":
-				return getNext();
 			case "Annotation":
 				return getAnnotation();
+			case "Next":
+				return getNext();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AAnnotMovie> getAnnotation() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getAnnotation1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AAnnotMovie> getAnnotation1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annotation"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAnnotMovie> list = new ArrayList<>(1);
+			list.add(new GFAAnnotMovie((COSDictionary)object.getDirectBase(), this.baseObject, "Annotation"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
@@ -396,34 +424,6 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 		}
 	}
 
-	private List<AAnnotMovie> getAnnotation() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getAnnotation1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AAnnotMovie> getAnnotation1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annotation"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAnnotMovie> list = new ArrayList<>(1);
-			list.add(new GFAAnnotMovie((COSDictionary)object.getDirectBase(), this.baseObject, "Annotation"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
 	@Override
 	public Boolean getcontainsAnnotation() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Annotation"));
@@ -433,60 +433,6 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	public Boolean getAnnotationHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annotation"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
-		return null;
 	}
 
 	@Override
@@ -544,6 +490,33 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			return getSNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getSNameDefaultValue() {
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsT() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
@@ -552,6 +525,33 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	public Boolean getTHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		if (object == null || object.empty()) {
+			return getTypeNameDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getTypeNameDefaultValue() {
+		return null;
 	}
 
 }

@@ -26,12 +26,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "OCSP":
-				return getOCSP();
-			case "Cert":
-				return getCert();
 			case "CRL":
 				return getCRL();
+			case "Cert":
+				return getCert();
+			case "OCSP":
+				return getOCSP();
 			case "TS":
 				return getTS();
 			default:
@@ -39,23 +39,23 @@ public class GFAVRI extends GFAObject implements AVRI {
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getOCSP() {
+	private List<AArrayOfStreamsGeneral> getCRL() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getOCSP2_0();
+				return getCRL2_0();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getOCSP2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSP"));
+	private List<AArrayOfStreamsGeneral> getCRL2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRL"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfStreamsGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStreamsGeneral((COSArray)object.getDirectBase(), this.baseObject, "OCSP"));
+			list.add(new GFAArrayOfStreamsGeneral((COSArray)object.getDirectBase(), this.baseObject, "CRL"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -83,23 +83,23 @@ public class GFAVRI extends GFAObject implements AVRI {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfStreamsGeneral> getCRL() {
+	private List<AArrayOfStreamsGeneral> getOCSP() {
 		switch(StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getCRL2_0();
+				return getOCSP2_0();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getCRL2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRL"));
+	private List<AArrayOfStreamsGeneral> getOCSP2_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSP"));
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfStreamsGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStreamsGeneral((COSArray)object.getDirectBase(), this.baseObject, "CRL"));
+			list.add(new GFAArrayOfStreamsGeneral((COSArray)object.getDirectBase(), this.baseObject, "OCSP"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -128,6 +128,39 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	@Override
+	public Boolean getcontainsCRL() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CRL"));
+	}
+
+	@Override
+	public Boolean getCRLHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRL"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsCert() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Cert"));
+	}
+
+	@Override
+	public Boolean getCertHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsOCSP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OCSP"));
+	}
+
+	@Override
+	public Boolean getOCSPHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSP"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
 	public Boolean getcontainsTS() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TS"));
 	}
@@ -145,14 +178,14 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	@Override
-	public Boolean getcontainsCRL() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CRL"));
+	public Boolean getcontainsTU() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TU"));
 	}
 
 	@Override
-	public Boolean getCRLHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRL"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	public Boolean getTUHasTypeDate() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 	@Override
@@ -180,39 +213,6 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsCert() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Cert"));
-	}
-
-	@Override
-	public Boolean getCertHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsOCSP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OCSP"));
-	}
-
-	@Override
-	public Boolean getOCSPHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSP"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsTU() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TU"));
-	}
-
-	@Override
-	public Boolean getTUHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 	@Override

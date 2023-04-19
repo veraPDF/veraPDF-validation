@@ -26,43 +26,13 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
-			case "Resources":
-				return getResources();
 			case "Kids":
 				return getKids();
+			case "Resources":
+				return getResources();
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<AResource> getResources() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getResources1_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AResource> getResources1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AResource> list = new ArrayList<>(1);
-			list.add(new GFAResource((COSDictionary)object.getDirectBase(), this.baseObject, "Resources"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<AArrayOfPageTreeNodeKids> getKids() {
@@ -95,6 +65,82 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 		return Collections.emptyList();
 	}
 
+	private List<AResource> getResources() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getResources1_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AResource> getResources1_0() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AResource> list = new ArrayList<>(1);
+			list.add(new GFAResource((COSDictionary)object.getDirectBase(), this.baseObject, "Resources"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsCount() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Count"));
+	}
+
+	@Override
+	public Boolean getCountHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getCountIntegerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
+		if (object == null || object.empty()) {
+			return getCountIntegerDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
+	public Long getCountIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsCropBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CropBox"));
+	}
+
+	@Override
+	public Boolean getCropBoxHasTypeRectangle() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	@Override
 	public Boolean getcontainsKids() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Kids"));
@@ -104,6 +150,36 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	public Boolean getKidsHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsMediaBox() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("MediaBox"));
+	}
+
+	@Override
+	public Boolean getMediaBoxHasTypeRectangle() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MediaBox"));
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean getcontainsResources() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
+	}
+
+	@Override
+	public Boolean getResourcesHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -146,63 +222,6 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	}
 
 	@Override
-	public Boolean getcontainsResources() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
-	}
-
-	@Override
-	public Boolean getResourcesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsCropBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CropBox"));
-	}
-
-	@Override
-	public Boolean getCropBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public Boolean getcontainsCount() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Count"));
-	}
-
-	@Override
-	public Boolean getCountHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getCountIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
-		if (object == null || object.empty()) {
-			return getCountIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getCountIntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -227,25 +246,6 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsMediaBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MediaBox"));
-	}
-
-	@Override
-	public Boolean getMediaBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MediaBox"));
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 }

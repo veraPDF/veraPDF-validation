@@ -24,14 +24,25 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
-	public Boolean getcontainsTU() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TU"));
+	public Boolean getcontainsDSm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DSm"));
 	}
 
 	@Override
-	public Boolean getTUHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	public Boolean getDSmHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSm"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontainsDSn() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DSn"));
+	}
+
+	@Override
+	public Boolean getDSnHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSn"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -46,46 +57,13 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
-	public Boolean getcontainsUSm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("USm"));
+	public Boolean getcontainsTSm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TSm"));
 	}
 
 	@Override
-	public Boolean getUSmHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("USm"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsDSm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DSm"));
-	}
-
-	@Override
-	public Boolean getDSmHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSm"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getcontainsUU() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("UU"));
-	}
-
-	@Override
-	public Boolean getUUHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UU"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsDSn() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DSn"));
-	}
-
-	@Override
-	public Boolean getDSnHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSn"));
+	public Boolean getTSmHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TSm"));
 		return object != null && object.getType().isNumber();
 	}
 
@@ -101,6 +79,28 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
+	public Boolean getcontainsTU() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TU"));
+	}
+
+	@Override
+	public Boolean getTUHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsUSm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("USm"));
+	}
+
+	@Override
+	public Boolean getUSmHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("USm"));
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
 	public Boolean getcontainsUSn() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("USn"));
 	}
@@ -112,14 +112,14 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
-	public Boolean getcontainsTSm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TSm"));
+	public Boolean getcontainsUU() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("UU"));
 	}
 
 	@Override
-	public Boolean getTSmHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TSm"));
-		return object != null && object.getType().isNumber();
+	public Boolean getUUHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UU"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

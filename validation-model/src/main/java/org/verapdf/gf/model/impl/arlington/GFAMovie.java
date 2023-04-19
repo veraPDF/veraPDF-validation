@@ -26,15 +26,43 @@ public class GFAMovie extends GFAObject implements AMovie {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "Aspect":
+				return getAspect();
 			case "F":
 				return getF();
 			case "Poster":
 				return getPoster();
-			case "Aspect":
-				return getAspect();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOf_2Numbers> getAspect() {
+		switch(StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getAspect1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_2Numbers> getAspect1_2() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Aspect"));
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_2Numbers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_2Numbers((COSArray)object.getDirectBase(), this.baseObject, "Aspect"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AFileSpecification> getF() {
@@ -93,32 +121,55 @@ public class GFAMovie extends GFAObject implements AMovie {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOf_2Numbers> getAspect() {
-		switch(StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getAspect1_2();
-			default:
-				return Collections.emptyList();
-		}
+	@Override
+	public Boolean getcontainsAspect() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Aspect"));
 	}
 
-	private List<AArrayOf_2Numbers> getAspect1_2() {
+	@Override
+	public Boolean getAspectHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Aspect"));
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_2Numbers> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_2Numbers((COSArray)object.getDirectBase(), this.baseObject, "Aspect"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean getFHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPoster() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Poster"));
+	}
+
+	@Override
+	public Boolean getisPosterIndirect() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getPosterHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getPosterHasTypeBoolean() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
@@ -156,57 +207,6 @@ public class GFAMovie extends GFAObject implements AMovie {
 				return 0L;
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsF() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
-	}
-
-	@Override
-	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getcontainsAspect() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Aspect"));
-	}
-
-	@Override
-	public Boolean getAspectHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Aspect"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsPoster() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Poster"));
-	}
-
-	@Override
-	public Boolean getisPosterIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getPosterHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getPosterHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 }

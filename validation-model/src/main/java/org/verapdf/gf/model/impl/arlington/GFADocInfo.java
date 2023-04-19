@@ -53,7 +53,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	private List<ADocInfoEntry> getEntries1_1() {
 		List<ADocInfoEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
-			if ("Producer".equals(key.getValue()) || "Creator".equals(key.getValue()) || "CreationDate".equals(key.getValue()) || "Keywords".equals(key.getValue()) || "ModDate".equals(key.getValue()) || "Subject".equals(key.getValue()) || "Author".equals(key.getValue()) || "Title".equals(key.getValue())) {
+			if ("Author".equals(key.getValue()) || "CreationDate".equals(key.getValue()) || "Creator".equals(key.getValue()) || "Keywords".equals(key.getValue()) || "ModDate".equals(key.getValue()) || "Producer".equals(key.getValue()) || "Subject".equals(key.getValue()) || "Title".equals(key.getValue())) {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
@@ -65,13 +65,35 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	private List<ADocInfoEntry> getEntries1_3() {
 		List<ADocInfoEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
-			if ("Author".equals(key.getValue()) || "Keywords".equals(key.getValue()) || "Trapped".equals(key.getValue()) || "Creator".equals(key.getValue()) || "Producer".equals(key.getValue()) || "ModDate".equals(key.getValue()) || "CreationDate".equals(key.getValue()) || "Title".equals(key.getValue()) || "Subject".equals(key.getValue())) {
+			if ("Author".equals(key.getValue()) || "CreationDate".equals(key.getValue()) || "Creator".equals(key.getValue()) || "Keywords".equals(key.getValue()) || "ModDate".equals(key.getValue()) || "Producer".equals(key.getValue()) || "Subject".equals(key.getValue()) || "Title".equals(key.getValue()) || "Trapped".equals(key.getValue())) {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
 			list.add(new GFADocInfoEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
+	}
+
+	@Override
+	public Boolean getcontainsAuthor() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Author"));
+	}
+
+	@Override
+	public Boolean getAuthorHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Author"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsCreationDate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
+	}
+
+	@Override
+	public Boolean getCreationDateHasTypeDate() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 	@Override
@@ -86,6 +108,50 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	}
 
 	@Override
+	public Boolean getcontainsKeywords() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Keywords"));
+	}
+
+	@Override
+	public Boolean getKeywordsHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Keywords"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsModDate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ModDate"));
+	}
+
+	@Override
+	public Boolean getModDateHasTypeDate() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+	}
+
+	@Override
+	public Boolean getcontainsProducer() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Producer"));
+	}
+
+	@Override
+	public Boolean getProducerHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Producer"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsSubject() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Subject"));
+	}
+
+	@Override
+	public Boolean getSubjectHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
 	public Boolean getcontainsTitle() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Title"));
 	}
@@ -94,17 +160,6 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	public Boolean getTitleHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsCreationDate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
-	}
-
-	@Override
-	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 	@Override
@@ -141,61 +196,6 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 				return "Unknown";
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsModDate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ModDate"));
-	}
-
-	@Override
-	public Boolean getModDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
-	}
-
-	@Override
-	public Boolean getcontainsAuthor() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Author"));
-	}
-
-	@Override
-	public Boolean getAuthorHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Author"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsKeywords() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Keywords"));
-	}
-
-	@Override
-	public Boolean getKeywordsHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Keywords"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsProducer() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Producer"));
-	}
-
-	@Override
-	public Boolean getProducerHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Producer"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsSubject() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Subject"));
-	}
-
-	@Override
-	public Boolean getSubjectHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

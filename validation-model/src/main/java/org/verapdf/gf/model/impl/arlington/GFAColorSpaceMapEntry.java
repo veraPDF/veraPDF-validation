@@ -196,15 +196,15 @@ public class GFAColorSpaceMapEntry extends GFAObject implements AColorSpaceMapEn
 	}
 
 	@Override
-	public Boolean getHasTypeName() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getHasTypeArray() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getHasTypeName() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override

@@ -291,13 +291,19 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 	}
 
 	@Override
-	public Boolean getcontainsTrans() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Trans"));
+	public Boolean getcontainsNext() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
 	@Override
-	public Boolean getTransHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trans"));
+	public Boolean getNextHasTypeArray() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getNextHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -329,6 +335,17 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 	}
 
 	@Override
+	public Boolean getcontainsTrans() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Trans"));
+	}
+
+	@Override
+	public Boolean getTransHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trans"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getcontainsType() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
@@ -353,23 +370,6 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 
 	public String getTypeNameDefaultValue() {
 		return null;
-	}
-
-	@Override
-	public Boolean getcontainsNext() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
-	}
-
-	@Override
-	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 }

@@ -24,58 +24,30 @@ public class GFAArrayOf_4ColourSpaceEntries extends GFAObject implements AArrayO
 	}
 
 	@Override
-	public Boolean getentry3HasTypeNumber() {
-		if (this.baseObject.size() <= 3) {
+	public Boolean getentry0HasTypeName() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType().isNumber();
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
-	public Double getentry3NumberValue() {
-		if (this.baseObject.size() <= 3) {
+	public String getentry0NameValue() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = this.baseObject.at(0);
 		if (object == null || object.empty()) {
-			return getentry3NumberDefaultValue();
+			return getentry0NameDefaultValue();
 		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getentry3NumberDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getentry2NumberValue() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		if (object == null || object.empty()) {
-			return getentry2NumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
 
-	public Double getentry2NumberDefaultValue() {
+	public String getentry0NameDefaultValue() {
 		return null;
 	}
 
@@ -108,30 +80,58 @@ public class GFAArrayOf_4ColourSpaceEntries extends GFAObject implements AArrayO
 	}
 
 	@Override
-	public Boolean getentry0HasTypeName() {
-		if (this.baseObject.size() <= 0) {
+	public Boolean getentry2HasTypeNumber() {
+		if (this.baseObject.size() <= 2) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override
-	public String getentry0NameValue() {
-		if (this.baseObject.size() <= 0) {
+	public Double getentry2NumberValue() {
+		if (this.baseObject.size() <= 2) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = this.baseObject.at(2);
 		if (object == null || object.empty()) {
-			return getentry0NameDefaultValue();
+			return getentry2NumberDefaultValue();
 		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}
 
-	public String getentry0NameDefaultValue() {
+	public Double getentry2NumberDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeNumber() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getentry3NumberValue() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		if (object == null || object.empty()) {
+			return getentry3NumberDefaultValue();
+		}
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
+	}
+
+	public Double getentry3NumberDefaultValue() {
 		return null;
 	}
 
