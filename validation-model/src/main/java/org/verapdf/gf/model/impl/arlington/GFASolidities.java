@@ -51,7 +51,7 @@ public class GFASolidities extends GFAObject implements ASolidities {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFASoliditiesEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFASoliditiesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

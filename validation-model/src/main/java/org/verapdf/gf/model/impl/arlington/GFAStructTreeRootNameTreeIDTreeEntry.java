@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAStructTreeRootNameTreeIDTreeEntry extends GFAObject implements AStructTreeRootNameTreeIDTreeEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAStructTreeRootNameTreeIDTreeEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAStructTreeRootNameTreeIDTreeEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AStructTreeRootNameTreeIDTreeEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

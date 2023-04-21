@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfNumbersGeneralEntry extends GFAObject implements AArrayOfNumbersGeneralEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfNumbersGeneralEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfNumbersGeneralEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfNumbersGeneralEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

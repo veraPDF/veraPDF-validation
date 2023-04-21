@@ -57,7 +57,7 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFAHalftoneType5Entry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFAHalftoneType5Entry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

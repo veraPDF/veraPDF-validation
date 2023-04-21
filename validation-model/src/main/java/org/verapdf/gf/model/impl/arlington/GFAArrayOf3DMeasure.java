@@ -46,7 +46,7 @@ public class GFAArrayOf3DMeasure extends GFAObject implements AArrayOf3DMeasure 
 		List<AArrayOf3DMeasureEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOf3DMeasureEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+			list.add(new GFAArrayOf3DMeasureEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}

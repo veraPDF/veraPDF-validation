@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfNamespaceEntry extends GFAObject implements AArrayOfNamespaceEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfNamespaceEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfNamespaceEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfNamespaceEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

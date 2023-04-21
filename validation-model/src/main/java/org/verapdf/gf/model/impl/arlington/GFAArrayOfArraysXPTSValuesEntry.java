@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArrayOfArraysXPTSValuesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfArraysXPTSValuesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfArraysXPTSValuesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfArraysXPTSValuesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

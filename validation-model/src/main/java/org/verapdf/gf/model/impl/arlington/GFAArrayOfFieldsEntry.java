@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfFieldsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfFieldsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfFieldsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

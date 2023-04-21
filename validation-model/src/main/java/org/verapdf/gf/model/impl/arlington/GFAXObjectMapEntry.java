@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAXObjectMapEntry extends GFAObject implements AXObjectMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAXObjectMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAXObjectMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AXObjectMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -47,7 +47,7 @@ public class GFAArrayOf3DNode extends GFAObject implements AArrayOf3DNode {
 		List<AArrayOf3DNodeEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOf3DNodeEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+			list.add(new GFAArrayOf3DNodeEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}

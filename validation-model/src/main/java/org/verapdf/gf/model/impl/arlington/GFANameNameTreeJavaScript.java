@@ -55,7 +55,7 @@ public class GFANameNameTreeJavaScript extends GFAObject implements ANameNameTre
 	private List<ANameNameTreeJavaScriptEntry> getEntries1_3() {
 		List<ANameNameTreeJavaScriptEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeJavaScriptEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeJavaScriptEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

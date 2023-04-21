@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFADPMEntry extends GFAObject implements ADPMEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFADPMEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFADPMEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ADPMEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFASoliditiesEntry extends GFAObject implements ASoliditiesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFASoliditiesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFASoliditiesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ASoliditiesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

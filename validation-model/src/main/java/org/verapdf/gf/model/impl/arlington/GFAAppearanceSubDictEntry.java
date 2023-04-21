@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAAppearanceSubDictEntry extends GFAObject implements AAppearanceSubDictEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAAppearanceSubDictEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAAppearanceSubDictEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AAppearanceSubDictEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

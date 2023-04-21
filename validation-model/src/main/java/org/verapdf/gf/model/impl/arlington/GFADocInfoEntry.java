@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFADocInfoEntry extends GFAObject implements ADocInfoEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFADocInfoEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFADocInfoEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ADocInfoEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -56,7 +56,7 @@ public class GFANameNameTreeDests extends GFAObject implements ANameNameTreeDest
 	private List<ANameNameTreeDestsEntry> getEntries1_2() {
 		List<ANameNameTreeDestsEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeDestsEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeDestsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

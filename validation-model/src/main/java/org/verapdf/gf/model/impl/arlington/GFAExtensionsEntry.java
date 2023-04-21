@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAExtensionsEntry extends GFAObject implements AExtensionsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAExtensionsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAExtensionsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AExtensionsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

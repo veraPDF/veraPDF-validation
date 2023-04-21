@@ -53,7 +53,7 @@ public class GFAArrayOfBeads extends GFAObject implements AArrayOfBeads {
 		List<AArrayOfBeadsEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOfBeadsEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+			list.add(new GFAArrayOfBeadsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}

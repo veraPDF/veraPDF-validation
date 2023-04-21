@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfOptContentOrderElementsEntry extends GFAObject implements AArrayOfOptContentOrderElementsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfOptContentOrderElementsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfOptContentOrderElementsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfOptContentOrderElementsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -51,7 +51,7 @@ public class GFARichMediaContentNameTreeAssets extends GFAObject implements ARic
 	private List<ARichMediaContentNameTreeAssetsEntry> getEntries1_7() {
 		List<ARichMediaContentNameTreeAssetsEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFARichMediaContentNameTreeAssetsEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFARichMediaContentNameTreeAssetsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

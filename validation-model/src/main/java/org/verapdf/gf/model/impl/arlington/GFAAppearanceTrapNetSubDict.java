@@ -51,7 +51,7 @@ public class GFAAppearanceTrapNetSubDict extends GFAObject implements AAppearanc
 		List<AAppearanceTrapNetSubDictEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFAAppearanceTrapNetSubDictEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFAAppearanceTrapNetSubDictEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

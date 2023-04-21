@@ -51,7 +51,7 @@ public class GFAAppearanceSubDict extends GFAObject implements AAppearanceSubDic
 		List<AAppearanceSubDictEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFAAppearanceSubDictEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFAAppearanceSubDictEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

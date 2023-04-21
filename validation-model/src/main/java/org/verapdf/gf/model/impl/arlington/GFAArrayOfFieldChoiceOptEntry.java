@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfFieldChoiceOptEntry extends GFAObject implements AArrayOfFieldChoiceOptEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfFieldChoiceOptEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfFieldChoiceOptEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfFieldChoiceOptEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDecodeParamsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfDecodeParamsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfDecodeParamsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfDecodeParamsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 
@@ -71,8 +73,12 @@ public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDe
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_0(COSBase base, String keyName) {
 		String name = "FDecodeParms".equals(collectionName) ? "FFilter" : "Filter";
-		COSObject object = this.parentObject.getKey(ASAtom.getASAtom(name));
-		COSObject subtype = object.at(Integer.parseInt(keyName));
+		COSObject object = this.parentParentObject.getKey(ASAtom.getASAtom(name));
+		int keyNumber = Integer.parseInt(keyName);
+		if (object == null) { 
+			return null;
+		}
+		COSObject subtype = object.at(keyNumber);
 		if (subtype == null) {
 			return null;
 		}
@@ -107,8 +113,12 @@ public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDe
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_2(COSBase base, String keyName) {
 		String name = "FDecodeParms".equals(collectionName) ? "FFilter" : "Filter";
-		COSObject object = this.parentObject.getKey(ASAtom.getASAtom(name));
-		COSObject subtype = object.at(Integer.parseInt(keyName));
+		COSObject object = this.parentParentObject.getKey(ASAtom.getASAtom(name));
+		int keyNumber = Integer.parseInt(keyName);
+		if (object == null) { 
+			return null;
+		}
+		COSObject subtype = object.at(keyNumber);
 		if (subtype == null) {
 			return null;
 		}
@@ -145,8 +155,12 @@ public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDe
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_4(COSBase base, String keyName) {
 		String name = "FDecodeParms".equals(collectionName) ? "FFilter" : "Filter";
-		COSObject object = this.parentObject.getKey(ASAtom.getASAtom(name));
-		COSObject subtype = object.at(Integer.parseInt(keyName));
+		COSObject object = this.parentParentObject.getKey(ASAtom.getASAtom(name));
+		int keyNumber = Integer.parseInt(keyName);
+		if (object == null) { 
+			return null;
+		}
+		COSObject subtype = object.at(keyNumber);
 		if (subtype == null) {
 			return null;
 		}
@@ -185,8 +199,12 @@ public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDe
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_5(COSBase base, String keyName) {
 		String name = "FDecodeParms".equals(collectionName) ? "FFilter" : "Filter";
-		COSObject object = this.parentObject.getKey(ASAtom.getASAtom(name));
-		COSObject subtype = object.at(Integer.parseInt(keyName));
+		COSObject object = this.parentParentObject.getKey(ASAtom.getASAtom(name));
+		int keyNumber = Integer.parseInt(keyName);
+		if (object == null) { 
+			return null;
+		}
+		COSObject subtype = object.at(keyNumber);
 		if (subtype == null) {
 			return null;
 		}

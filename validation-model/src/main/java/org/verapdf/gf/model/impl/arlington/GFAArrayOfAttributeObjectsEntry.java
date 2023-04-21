@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfAttributeObjectsEntry extends GFAObject implements AArrayOfAttributeObjectsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfAttributeObjectsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfAttributeObjectsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfAttributeObjectsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

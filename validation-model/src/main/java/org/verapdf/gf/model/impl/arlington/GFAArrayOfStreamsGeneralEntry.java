@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfStreamsGeneralEntry extends GFAObject implements AArrayOfStreamsGeneralEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfStreamsGeneralEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfStreamsGeneralEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfStreamsGeneralEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

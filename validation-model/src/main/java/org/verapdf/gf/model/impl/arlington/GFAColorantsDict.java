@@ -51,7 +51,7 @@ public class GFAColorantsDict extends GFAObject implements AColorantsDict {
 		List<AColorantsDictEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFAColorantsDictEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFAColorantsDictEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

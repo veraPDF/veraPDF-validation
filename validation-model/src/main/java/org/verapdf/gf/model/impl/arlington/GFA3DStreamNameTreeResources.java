@@ -52,7 +52,7 @@ public class GFA3DStreamNameTreeResources extends GFAObject implements A3DStream
 	private List<A3DStreamNameTreeResourcesEntry> getEntries1_6() {
 		List<A3DStreamNameTreeResourcesEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFA3DStreamNameTreeResourcesEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFA3DStreamNameTreeResourcesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

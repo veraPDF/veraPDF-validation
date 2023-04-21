@@ -56,7 +56,7 @@ public class GFAData extends GFAObject implements AData {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFADataEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFADataEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

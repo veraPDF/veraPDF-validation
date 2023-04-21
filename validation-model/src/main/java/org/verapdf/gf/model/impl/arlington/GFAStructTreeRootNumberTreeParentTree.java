@@ -55,7 +55,7 @@ public class GFAStructTreeRootNumberTreeParentTree extends GFAObject implements 
 	private List<AStructTreeRootNumberTreeParentTreeEntry> getEntries1_3() {
 		List<AStructTreeRootNumberTreeParentTreeEntry> list = new LinkedList<>();
 		for (COSObject object : new PDNumberTreeNode(new COSObject(baseObject))) {
-			list.add(new GFAStructTreeRootNumberTreeParentTreeEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFAStructTreeRootNumberTreeParentTreeEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

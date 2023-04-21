@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfBooleansGeneralEntry extends GFAObject implements AArrayOfBooleansGeneralEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfBooleansGeneralEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfBooleansGeneralEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfBooleansGeneralEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

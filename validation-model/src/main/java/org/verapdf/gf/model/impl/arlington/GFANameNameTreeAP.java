@@ -55,7 +55,7 @@ public class GFANameNameTreeAP extends GFAObject implements ANameNameTreeAP {
 	private List<ANameNameTreeAPEntry> getEntries1_3() {
 		List<ANameNameTreeAPEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeAPEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeAPEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfCIDGlyphMetricsW2Entry extends GFAObject implements AArrayOfCIDGlyphMetricsW2Entry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfCIDGlyphMetricsW2Entry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfCIDGlyphMetricsW2Entry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfCIDGlyphMetricsW2Entry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

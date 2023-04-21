@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFA3DStreamNameTreeResourcesEntry extends GFAObject implements A3DStreamNameTreeResourcesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFA3DStreamNameTreeResourcesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFA3DStreamNameTreeResourcesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "A3DStreamNameTreeResourcesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

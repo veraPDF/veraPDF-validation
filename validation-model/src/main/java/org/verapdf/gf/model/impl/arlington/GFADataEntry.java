@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFADataEntry extends GFAObject implements ADataEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFADataEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFADataEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ADataEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

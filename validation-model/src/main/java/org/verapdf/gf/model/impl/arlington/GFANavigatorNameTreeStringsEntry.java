@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFANavigatorNameTreeStringsEntry extends GFAObject implements ANavigatorNameTreeStringsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFANavigatorNameTreeStringsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFANavigatorNameTreeStringsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ANavigatorNameTreeStringsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

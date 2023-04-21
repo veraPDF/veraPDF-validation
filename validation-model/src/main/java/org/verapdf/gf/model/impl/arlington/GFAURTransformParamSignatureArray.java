@@ -49,7 +49,7 @@ public class GFAURTransformParamSignatureArray extends GFAObject implements AURT
 		List<AURTransformParamSignatureArrayEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAURTransformParamSignatureArrayEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+			list.add(new GFAURTransformParamSignatureArrayEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}

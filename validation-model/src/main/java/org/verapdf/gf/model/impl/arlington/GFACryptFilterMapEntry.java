@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFACryptFilterMapEntry extends GFAObject implements ACryptFilterMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFACryptFilterMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFACryptFilterMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ACryptFilterMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

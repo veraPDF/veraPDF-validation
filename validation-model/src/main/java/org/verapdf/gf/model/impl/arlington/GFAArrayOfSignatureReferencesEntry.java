@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfSignatureReferencesEntry extends GFAObject implements AArrayOfSignatureReferencesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfSignatureReferencesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfSignatureReferencesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfSignatureReferencesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

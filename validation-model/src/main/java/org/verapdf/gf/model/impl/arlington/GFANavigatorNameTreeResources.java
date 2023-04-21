@@ -51,7 +51,7 @@ public class GFANavigatorNameTreeResources extends GFAObject implements ANavigat
 	private List<ANavigatorNameTreeResourcesEntry> getEntries1_7() {
 		List<ANavigatorNameTreeResourcesEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANavigatorNameTreeResourcesEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANavigatorNameTreeResourcesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

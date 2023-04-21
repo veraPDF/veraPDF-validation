@@ -55,7 +55,7 @@ public class GFAStructTreeRootNameTreeIDTree extends GFAObject implements AStruc
 	private List<AStructTreeRootNameTreeIDTreeEntry> getEntries1_3() {
 		List<AStructTreeRootNameTreeIDTreeEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFAStructTreeRootNameTreeIDTreeEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFAStructTreeRootNameTreeIDTreeEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFARichMediaContentNameTreeAssetsEntry extends GFAObject implements ARichMediaContentNameTreeAssetsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFARichMediaContentNameTreeAssetsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFARichMediaContentNameTreeAssetsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ARichMediaContentNameTreeAssetsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

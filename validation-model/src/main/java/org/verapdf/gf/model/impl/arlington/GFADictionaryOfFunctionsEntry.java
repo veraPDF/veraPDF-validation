@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADictionaryOfFunctionsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFADictionaryOfFunctionsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFADictionaryOfFunctionsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ADictionaryOfFunctionsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

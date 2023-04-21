@@ -55,7 +55,7 @@ public class GFANameNameTreePages extends GFAObject implements ANameNameTreePage
 	private List<ANameNameTreePagesEntry> getEntries1_3() {
 		List<ANameNameTreePagesEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreePagesEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreePagesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

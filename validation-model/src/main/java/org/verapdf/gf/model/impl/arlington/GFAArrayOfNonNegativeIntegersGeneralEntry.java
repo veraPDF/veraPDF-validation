@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfNonNegativeIntegersGeneralEntry extends GFAObject implements AArrayOfNonNegativeIntegersGeneralEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfNonNegativeIntegersGeneralEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfNonNegativeIntegersGeneralEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfNonNegativeIntegersGeneralEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

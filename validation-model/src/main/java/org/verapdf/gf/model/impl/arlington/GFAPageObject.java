@@ -1146,12 +1146,27 @@ public class GFAPageObject extends GFAObject implements APageObject {
 			try (ASInputStream opStream = contents.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
 				try (PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
 					streamParser.parseTokens();
+					List<COSBase> arguments = new ArrayList<>();
 					for (java.lang.Object rawToken : streamParser.getTokens()) {
-						if (rawToken instanceof Operator) {
+						if (rawToken instanceof COSBase) {
+							arguments.add((COSBase) rawToken);
+						} else if (rawToken instanceof Operator) {
 							String operatorName = ((Operator)rawToken).getOperator();
 							if (Operators.BMC.equals(operatorName) || Operators.BDC.equals(operatorName)) {
+								if (arguments.isEmpty()) {
+									continue;
+								}
+								COSBase lastArgument = arguments.get(arguments.size() - 1);
+								if (lastArgument.getType() == COSObjType.COS_DICT) {
+									if (lastArgument.knownKey(ASAtom.MCID)) {
+										return true;
+									}
+								} else if (lastArgument.getType() == COSObjType.COS_NAME) {
+									//todo check dict from properties
+								}
 								return true;
 							}
+							arguments = new ArrayList<>();
 						}
 					}
 				}

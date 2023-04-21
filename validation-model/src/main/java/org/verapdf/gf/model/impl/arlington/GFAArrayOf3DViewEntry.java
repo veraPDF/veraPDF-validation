@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOf3DViewEntry extends GFAObject implements AArrayOf3DViewEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOf3DViewEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOf3DViewEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOf3DViewEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

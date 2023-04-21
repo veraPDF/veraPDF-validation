@@ -46,7 +46,7 @@ public class GFARoleMapNS extends GFAObject implements ARoleMapNS {
 		List<ARoleMapNSEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFARoleMapNSEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFARoleMapNSEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

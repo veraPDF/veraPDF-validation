@@ -51,7 +51,7 @@ public class GFAArrayOf_ArrayOfNumbers extends GFAObject implements AArrayOf_Arr
 		List<AArrayOf_ArrayOfNumbersEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOf_ArrayOfNumbersEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+			list.add(new GFAArrayOf_ArrayOfNumbersEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}

@@ -54,7 +54,7 @@ public class GFANameNameTreeEmbeddedFiles extends GFAObject implements ANameName
 	private List<ANameNameTreeEmbeddedFilesEntry> getEntries1_4() {
 		List<ANameNameTreeEmbeddedFilesEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeEmbeddedFilesEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeEmbeddedFilesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

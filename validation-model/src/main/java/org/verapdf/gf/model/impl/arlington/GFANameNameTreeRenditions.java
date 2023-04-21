@@ -53,7 +53,7 @@ public class GFANameNameTreeRenditions extends GFAObject implements ANameNameTre
 	private List<ANameNameTreeRenditionsEntry> getEntries1_5() {
 		List<ANameNameTreeRenditionsEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeRenditionsEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeRenditionsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

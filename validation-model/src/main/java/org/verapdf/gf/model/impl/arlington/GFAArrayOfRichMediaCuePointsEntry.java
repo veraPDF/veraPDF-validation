@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfRichMediaCuePointsEntry extends GFAObject implements AArrayOfRichMediaCuePointsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfRichMediaCuePointsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfRichMediaCuePointsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfRichMediaCuePointsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

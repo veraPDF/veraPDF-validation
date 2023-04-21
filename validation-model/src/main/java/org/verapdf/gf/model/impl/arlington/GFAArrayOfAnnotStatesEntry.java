@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfAnnotStatesEntry extends GFAObject implements AArrayOfAnnotStatesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfAnnotStatesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfAnnotStatesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfAnnotStatesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

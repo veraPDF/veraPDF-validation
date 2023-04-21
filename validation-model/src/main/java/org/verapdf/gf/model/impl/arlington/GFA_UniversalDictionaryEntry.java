@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFA_UniversalDictionaryEntry extends GFAObject implements A_UniversalDictionaryEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFA_UniversalDictionaryEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFA_UniversalDictionaryEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "A_UniversalDictionaryEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

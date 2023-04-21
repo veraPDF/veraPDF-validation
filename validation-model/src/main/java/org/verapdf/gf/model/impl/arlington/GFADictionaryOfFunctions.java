@@ -53,7 +53,7 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFADictionaryOfFunctionsEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFADictionaryOfFunctionsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

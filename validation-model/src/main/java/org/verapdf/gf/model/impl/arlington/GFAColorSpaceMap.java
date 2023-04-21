@@ -62,7 +62,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 		List<AColorSpaceMapEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFAColorSpaceMapEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFAColorSpaceMapEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}
@@ -74,7 +74,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFAColorSpaceMapEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFAColorSpaceMapEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}
@@ -86,7 +86,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFAColorSpaceMapEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFAColorSpaceMapEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

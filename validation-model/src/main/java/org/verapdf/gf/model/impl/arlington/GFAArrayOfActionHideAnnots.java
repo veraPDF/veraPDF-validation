@@ -52,7 +52,7 @@ public class GFAArrayOfActionHideAnnots extends GFAObject implements AArrayOfAct
 		List<AArrayOfActionHideAnnotsEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOfActionHideAnnotsEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+			list.add(new GFAArrayOfActionHideAnnotsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}

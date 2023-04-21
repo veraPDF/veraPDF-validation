@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfRequirementsHandlersEntry extends GFAObject implements AArrayOfRequirementsHandlersEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfRequirementsHandlersEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfRequirementsHandlersEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfRequirementsHandlersEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

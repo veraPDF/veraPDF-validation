@@ -47,7 +47,7 @@ public class GFAArrayOf3DCrossSection extends GFAObject implements AArrayOf3DCro
 		List<AArrayOf3DCrossSectionEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOf3DCrossSectionEntry(object != null ? object.get() : null, this.baseObject, keyName, String.valueOf(i)));
+			list.add(new GFAArrayOf3DCrossSectionEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}

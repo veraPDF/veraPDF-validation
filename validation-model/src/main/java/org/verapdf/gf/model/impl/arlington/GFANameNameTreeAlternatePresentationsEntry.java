@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFANameNameTreeAlternatePresentationsEntry extends GFAObject implements ANameNameTreeAlternatePresentationsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFANameNameTreeAlternatePresentationsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFANameNameTreeAlternatePresentationsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ANameNameTreeAlternatePresentationsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

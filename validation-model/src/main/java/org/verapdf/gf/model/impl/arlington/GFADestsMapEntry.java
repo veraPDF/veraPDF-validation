@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFADestsMapEntry extends GFAObject implements ADestsMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFADestsMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFADestsMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ADestsMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

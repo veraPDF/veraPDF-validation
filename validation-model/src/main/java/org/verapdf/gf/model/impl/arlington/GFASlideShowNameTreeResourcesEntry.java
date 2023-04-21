@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFASlideShowNameTreeResourcesEntry extends GFAObject implements ASlideShowNameTreeResourcesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFASlideShowNameTreeResourcesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFASlideShowNameTreeResourcesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ASlideShowNameTreeResourcesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

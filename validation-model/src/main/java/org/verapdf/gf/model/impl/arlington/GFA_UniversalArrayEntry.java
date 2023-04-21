@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFA_UniversalArrayEntry extends GFAObject implements A_UniversalArrayEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFA_UniversalArrayEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFA_UniversalArrayEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "A_UniversalArrayEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

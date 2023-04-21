@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfWebCaptureImagesEntry extends GFAObject implements AArrayOfWebCaptureImagesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfWebCaptureImagesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfWebCaptureImagesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfWebCaptureImagesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

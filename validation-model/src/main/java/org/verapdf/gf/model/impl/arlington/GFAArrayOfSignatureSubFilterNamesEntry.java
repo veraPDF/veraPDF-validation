@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfSignatureSubFilterNamesEntry extends GFAObject implements AArrayOfSignatureSubFilterNamesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfSignatureSubFilterNamesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfSignatureSubFilterNamesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfSignatureSubFilterNamesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

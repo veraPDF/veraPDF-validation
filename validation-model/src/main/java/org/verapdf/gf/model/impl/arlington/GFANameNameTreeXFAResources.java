@@ -51,7 +51,7 @@ public class GFANameNameTreeXFAResources extends GFAObject implements ANameNameT
 	private List<ANameNameTreeXFAResourcesEntry> getEntries1_7() {
 		List<ANameNameTreeXFAResourcesEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeXFAResourcesEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeXFAResourcesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

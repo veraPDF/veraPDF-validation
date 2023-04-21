@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAFontMapEntry extends GFAObject implements AFontMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAFontMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAFontMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AFontMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

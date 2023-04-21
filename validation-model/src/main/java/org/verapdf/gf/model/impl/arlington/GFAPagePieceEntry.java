@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAPagePieceEntry extends GFAObject implements APagePieceEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAPagePieceEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAPagePieceEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "APagePieceEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

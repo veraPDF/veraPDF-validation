@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFANameNameTreeEmbeddedFilesEntry extends GFAObject implements ANameNameTreeEmbeddedFilesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFANameNameTreeEmbeddedFilesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFANameNameTreeEmbeddedFilesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ANameNameTreeEmbeddedFilesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

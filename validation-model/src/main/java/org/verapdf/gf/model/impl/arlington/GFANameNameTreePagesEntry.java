@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFANameNameTreePagesEntry extends GFAObject implements ANameNameTreePagesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFANameNameTreePagesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFANameNameTreePagesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ANameNameTreePagesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

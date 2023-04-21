@@ -50,7 +50,7 @@ public class GFACollectionItem extends GFAObject implements ACollectionItem {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFACollectionItemEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFACollectionItemEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

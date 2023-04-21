@@ -50,7 +50,7 @@ public class GFACollectionSchema extends GFAObject implements ACollectionSchema 
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFACollectionSchemaEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFACollectionSchemaEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

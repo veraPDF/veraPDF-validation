@@ -54,7 +54,7 @@ public class GFANameNameTreeAlternatePresentations extends GFAObject implements 
 	private List<ANameNameTreeAlternatePresentationsEntry> getEntries1_4() {
 		List<ANameNameTreeAlternatePresentationsEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeAlternatePresentationsEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeAlternatePresentationsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

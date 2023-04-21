@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFACollectionItemEntry extends GFAObject implements ACollectionItemEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFACollectionItemEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFACollectionItemEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ACollectionItemEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

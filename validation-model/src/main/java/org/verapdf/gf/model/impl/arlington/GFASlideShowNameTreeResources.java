@@ -54,7 +54,7 @@ public class GFASlideShowNameTreeResources extends GFAObject implements ASlideSh
 	private List<ASlideShowNameTreeResourcesEntry> getEntries1_4() {
 		List<ASlideShowNameTreeResourcesEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFASlideShowNameTreeResourcesEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFASlideShowNameTreeResourcesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

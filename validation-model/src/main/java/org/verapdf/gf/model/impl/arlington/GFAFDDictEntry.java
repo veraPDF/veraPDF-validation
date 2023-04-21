@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAFDDictEntry extends GFAObject implements AFDDictEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAFDDictEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAFDDictEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AFDDictEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

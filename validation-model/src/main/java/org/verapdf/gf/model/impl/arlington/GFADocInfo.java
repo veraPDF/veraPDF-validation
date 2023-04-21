@@ -57,7 +57,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFADocInfoEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFADocInfoEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}
@@ -69,7 +69,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFADocInfoEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFADocInfoEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAURTransformParamSignatureArrayEntry extends GFAObject implements AURTransformParamSignatureArrayEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAURTransformParamSignatureArrayEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAURTransformParamSignatureArrayEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AURTransformParamSignatureArrayEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

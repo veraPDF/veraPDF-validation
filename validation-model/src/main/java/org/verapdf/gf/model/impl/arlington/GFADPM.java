@@ -55,7 +55,7 @@ public class GFADPM extends GFAObject implements ADPM {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFADPMEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFADPMEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

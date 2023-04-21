@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAGraphicsStateParameterMapEntry extends GFAObject implements AGraphicsStateParameterMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAGraphicsStateParameterMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAGraphicsStateParameterMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AGraphicsStateParameterMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFACharProcMapEntry extends GFAObject implements ACharProcMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFACharProcMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFACharProcMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ACharProcMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

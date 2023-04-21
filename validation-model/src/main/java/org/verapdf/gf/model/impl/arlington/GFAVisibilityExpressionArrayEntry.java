@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAVisibilityExpressionArrayEntry extends GFAObject implements AVisibilityExpressionArrayEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAVisibilityExpressionArrayEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAVisibilityExpressionArrayEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AVisibilityExpressionArrayEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

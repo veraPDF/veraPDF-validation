@@ -51,7 +51,7 @@ public class GFACollectionNameTreeResources extends GFAObject implements ACollec
 	private List<ACollectionNameTreeResourcesEntry> getEntries1_7() {
 		List<ACollectionNameTreeResourcesEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFACollectionNameTreeResourcesEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFACollectionNameTreeResourcesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

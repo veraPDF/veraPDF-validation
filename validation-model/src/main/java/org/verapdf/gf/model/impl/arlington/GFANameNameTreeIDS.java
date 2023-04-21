@@ -55,7 +55,7 @@ public class GFANameNameTreeIDS extends GFAObject implements ANameNameTreeIDS {
 	private List<ANameNameTreeIDSEntry> getEntries1_3() {
 		List<ANameNameTreeIDSEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeIDSEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeIDSEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

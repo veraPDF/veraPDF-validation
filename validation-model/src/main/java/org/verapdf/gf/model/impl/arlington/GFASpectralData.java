@@ -46,7 +46,7 @@ public class GFASpectralData extends GFAObject implements ASpectralData {
 		List<ASpectralDataEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFASpectralDataEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFASpectralDataEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

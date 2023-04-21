@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAShadingMapEntry extends GFAObject implements AShadingMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAShadingMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAShadingMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AShadingMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

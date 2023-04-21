@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAHalftoneType5Entry extends GFAObject implements AHalftoneType5Entry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAHalftoneType5Entry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAHalftoneType5Entry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AHalftoneType5Entry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

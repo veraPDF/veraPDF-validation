@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAAppearancePrinterMarkSubDictEntry extends GFAObject implements AAppearancePrinterMarkSubDictEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAAppearancePrinterMarkSubDictEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAAppearancePrinterMarkSubDictEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AAppearancePrinterMarkSubDictEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -52,7 +52,7 @@ public class GFAPatternMap extends GFAObject implements APatternMap {
 		List<APatternMapEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFAPatternMapEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFAPatternMapEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

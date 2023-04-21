@@ -56,7 +56,7 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
-			list.add(new GFACryptFilterPublicKeyMapEntry(object != null ? object.get() : null, this.baseObject, keyName, key.getValue()));
+			list.add(new GFACryptFilterPublicKeyMapEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
 	}

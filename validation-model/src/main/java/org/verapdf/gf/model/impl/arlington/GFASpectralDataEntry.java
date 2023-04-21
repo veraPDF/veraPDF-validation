@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFASpectralDataEntry extends GFAObject implements ASpectralDataEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFASpectralDataEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFASpectralDataEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ASpectralDataEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

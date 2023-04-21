@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAAppearanceTrapNetSubDictEntry extends GFAObject implements AAppearanceTrapNetSubDictEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAAppearanceTrapNetSubDictEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAAppearanceTrapNetSubDictEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AAppearanceTrapNetSubDictEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

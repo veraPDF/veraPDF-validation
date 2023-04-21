@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfPageTreeNodeKidsEntry extends GFAObject implements AArrayOfPageTreeNodeKidsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfPageTreeNodeKidsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfPageTreeNodeKidsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfPageTreeNodeKidsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

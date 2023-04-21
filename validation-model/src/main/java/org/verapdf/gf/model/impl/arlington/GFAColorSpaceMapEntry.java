@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAColorSpaceMapEntry extends GFAObject implements AColorSpaceMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAColorSpaceMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAColorSpaceMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AColorSpaceMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAURTransformParamDocumentArrayEntry extends GFAObject implements AURTransformParamDocumentArrayEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAURTransformParamDocumentArrayEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAURTransformParamDocumentArrayEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AURTransformParamDocumentArrayEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

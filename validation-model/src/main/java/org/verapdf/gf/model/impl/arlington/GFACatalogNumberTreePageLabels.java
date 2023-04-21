@@ -55,7 +55,7 @@ public class GFACatalogNumberTreePageLabels extends GFAObject implements ACatalo
 	private List<ACatalogNumberTreePageLabelsEntry> getEntries1_3() {
 		List<ACatalogNumberTreePageLabelsEntry> list = new LinkedList<>();
 		for (COSObject object : new PDNumberTreeNode(new COSObject(baseObject))) {
-			list.add(new GFACatalogNumberTreePageLabelsEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFACatalogNumberTreePageLabelsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

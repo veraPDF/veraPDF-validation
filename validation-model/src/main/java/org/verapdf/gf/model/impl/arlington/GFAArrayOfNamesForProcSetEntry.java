@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfNamesForProcSetEntry extends GFAObject implements AArrayOfNamesForProcSetEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfNamesForProcSetEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfNamesForProcSetEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfNamesForProcSetEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

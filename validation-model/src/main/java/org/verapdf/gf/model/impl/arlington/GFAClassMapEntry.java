@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAClassMapEntry extends GFAObject implements AClassMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAClassMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAClassMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AClassMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

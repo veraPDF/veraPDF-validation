@@ -55,7 +55,7 @@ public class GFANameNameTreeTemplates extends GFAObject implements ANameNameTree
 	private List<ANameNameTreeTemplatesEntry> getEntries1_3() {
 		List<ANameNameTreeTemplatesEntry> list = new LinkedList<>();
 		for (COSObject object : PDNameTreeNode.create(new COSObject(baseObject))) {
-			list.add(new GFANameNameTreeTemplatesEntry(object != null ? object.get() : null, this.baseObject, keyName, null));
+			list.add(new GFANameNameTreeTemplatesEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, null));
 		}
 		return Collections.unmodifiableList(list);
 	}

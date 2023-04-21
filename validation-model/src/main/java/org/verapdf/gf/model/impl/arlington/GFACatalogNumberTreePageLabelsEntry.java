@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFACatalogNumberTreePageLabelsEntry extends GFAObject implements ACatalogNumberTreePageLabelsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFACatalogNumberTreePageLabelsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFACatalogNumberTreePageLabelsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ACatalogNumberTreePageLabelsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

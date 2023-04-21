@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfArraysURLStringsEntry extends GFAObject implements AArrayOfArraysURLStringsEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfArraysURLStringsEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfArraysURLStringsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfArraysURLStringsEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

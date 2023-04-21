@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfSoftwareIdentifiersEntry extends GFAObject implements AArrayOfSoftwareIdentifiersEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfSoftwareIdentifiersEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfSoftwareIdentifiersEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfSoftwareIdentifiersEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFASubjectDNEntry extends GFAObject implements ASubjectDNEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFASubjectDNEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFASubjectDNEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "ASubjectDNEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

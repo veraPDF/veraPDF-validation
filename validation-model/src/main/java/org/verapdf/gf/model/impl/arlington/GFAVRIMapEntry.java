@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAVRIMapEntry extends GFAObject implements AVRIMapEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAVRIMapEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAVRIMapEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AVRIMapEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 

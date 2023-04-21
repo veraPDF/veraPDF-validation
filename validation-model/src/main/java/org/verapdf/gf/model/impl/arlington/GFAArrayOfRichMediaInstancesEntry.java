@@ -19,10 +19,12 @@ import java.io.IOException;
 
 public class GFAArrayOfRichMediaInstancesEntry extends GFAObject implements AArrayOfRichMediaInstancesEntry {
 
+	private COSBase parentParentObject;
 	private String collectionName;
 
-	public GFAArrayOfRichMediaInstancesEntry(COSBase baseObject, COSBase parentObject, String collectionName, String keyName) {
+	public GFAArrayOfRichMediaInstancesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfRichMediaInstancesEntry");
+		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
 
