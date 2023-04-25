@@ -143,15 +143,15 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 	}
 
 	@Override
-	public Boolean getDefaultHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getDefaultHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getDefaultHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 }

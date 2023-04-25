@@ -462,15 +462,15 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -633,15 +633,15 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	@Override
-	public Boolean getUseCMapHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UseCMap"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getUseCMapHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UseCMap"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getUseCMapHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UseCMap"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

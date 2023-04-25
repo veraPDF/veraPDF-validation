@@ -198,15 +198,15 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	@Override
-	public Boolean getPSHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getPSHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getPSHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override

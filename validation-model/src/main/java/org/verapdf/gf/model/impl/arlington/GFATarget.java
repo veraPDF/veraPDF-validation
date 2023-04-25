@@ -63,31 +63,15 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
-	public Boolean getAHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getAHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public String getAStringTextValue() {
+	public Boolean getAHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		if (object == null || object.empty()) {
-			return getAStringTextDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getAStringTextDefaultValue() {
-		return null;
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -103,6 +87,22 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	public Long getAIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public String getAStringTextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		if (object == null || object.empty()) {
+			return getAStringTextDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getAStringTextDefaultValue() {
 		return null;
 	}
 
@@ -149,31 +149,15 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
-	public Boolean getPHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
-	public String getPStringByteValue() {
+	public Boolean getPHasTypeStringByte() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPStringByteDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getPStringByteDefaultValue() {
-		return null;
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -189,6 +173,22 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	public Long getPIntegerDefaultValue() {
+		return null;
+	}
+
+	@Override
+	public String getPStringByteValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null || object.empty()) {
+			return getPStringByteDefaultValue();
+		}
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	public String getPStringByteDefaultValue() {
 		return null;
 	}
 

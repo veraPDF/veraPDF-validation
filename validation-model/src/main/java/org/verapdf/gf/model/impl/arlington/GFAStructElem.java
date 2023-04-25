@@ -332,15 +332,15 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
-	public Boolean getAHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getAHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getAHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -442,15 +442,15 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
-	public Boolean getKHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
 	public Boolean getKHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getKHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override

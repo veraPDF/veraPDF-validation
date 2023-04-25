@@ -131,15 +131,15 @@ public class GFASeparation extends GFAObject implements ASeparation {
 	}
 
 	@Override
-	public Boolean getDeviceColorantHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getDeviceColorantHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getDeviceColorantHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

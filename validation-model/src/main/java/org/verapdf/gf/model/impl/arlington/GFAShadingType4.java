@@ -746,15 +746,15 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -885,15 +885,15 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	@Override
-	public Boolean getFunctionHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getFunctionHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFunctionHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

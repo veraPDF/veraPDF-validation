@@ -35,15 +35,15 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 	}
 
 	@Override
-	public Boolean getDHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getDHasTypeNumber() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getDHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override

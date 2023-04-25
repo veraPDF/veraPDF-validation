@@ -820,15 +820,15 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	@Override
-	public Boolean getHeightHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getHeightHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getHeightHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -872,15 +872,15 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	@Override
-	public Boolean getLineHeightHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LineHeight"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getLineHeightHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LineHeight"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getLineHeightHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LineHeight"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override
@@ -1480,15 +1480,15 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	@Override
-	public Boolean getWidthHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getWidthHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getWidthHasTypeNumber() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override

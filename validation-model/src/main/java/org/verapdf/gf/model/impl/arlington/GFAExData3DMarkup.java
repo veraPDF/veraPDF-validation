@@ -87,15 +87,15 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	@Override
-	public Boolean getentry3DAHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DA"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getentry3DAHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DA"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getentry3DAHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DA"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override

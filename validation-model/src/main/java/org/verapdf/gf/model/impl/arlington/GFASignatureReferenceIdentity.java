@@ -86,21 +86,15 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	}
 
 	@Override
-	public Boolean getDataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getDataHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
-	public Boolean getDataHasTypeString() {
+	public Boolean getDataHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -116,9 +110,15 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	}
 
 	@Override
-	public Boolean getDataHasTypeDictionary() {
+	public Boolean getDataHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getDataHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

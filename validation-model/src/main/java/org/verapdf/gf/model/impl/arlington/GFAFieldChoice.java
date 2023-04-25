@@ -416,12 +416,24 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsDA() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("DA"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("DA"));
 	}
 
 	@Override
 	public Boolean getDAHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("DA"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -438,29 +450,58 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsDV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("DV"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("DV"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("DV"));
 	}
 
 	@Override
 	public Boolean getDVHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("DV"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDVHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("DV"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
 	public Boolean getcontainsFT() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("FT"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("FT"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("FT"));
 	}
 
 	@Override
 	public Boolean getFTHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FT"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("FT"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -487,12 +528,24 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsFf() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Ff"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("Ff"));
 	}
 
 	@Override
 	public Boolean getFfHasTypeBitmask() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Ff"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -519,12 +572,24 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("I"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("I"));
 	}
 
 	@Override
 	public Boolean getIHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("I"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -561,12 +626,24 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsOpt() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Opt"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Opt"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("Opt"));
 	}
 
 	@Override
 	public Boolean getOptHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Opt"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Opt"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -663,12 +740,24 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsTI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TI"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("TI"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("TI"));
 	}
 
 	@Override
 	public Boolean getTIHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TI"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("TI"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -727,18 +816,35 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsV() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("V"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
 	@Override
 	public Boolean getVHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("V"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getVHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("V"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

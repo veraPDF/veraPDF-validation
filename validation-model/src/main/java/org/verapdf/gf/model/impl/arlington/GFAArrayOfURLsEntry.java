@@ -69,15 +69,15 @@ public class GFAArrayOfURLsEntry extends GFAObject implements AArrayOfURLsEntry 
 	}
 
 	@Override
-	public Boolean getHasTypeStream() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getHasTypeStream() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 }

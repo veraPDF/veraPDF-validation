@@ -107,15 +107,15 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	}
 
 	@Override
-	public Boolean getSchemaHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getSchemaHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getSchemaHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

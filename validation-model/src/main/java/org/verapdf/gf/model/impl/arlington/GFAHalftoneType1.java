@@ -332,9 +332,9 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
-	public Boolean getSpotFunctionHasTypeStream() {
+	public Boolean getSpotFunctionHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -344,9 +344,9 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
-	public Boolean getSpotFunctionHasTypeDictionary() {
+	public Boolean getSpotFunctionHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -377,9 +377,9 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
-	public Boolean getTransferFunctionHasTypeStream() {
+	public Boolean getTransferFunctionHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -389,9 +389,9 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
-	public Boolean getTransferFunctionHasTypeDictionary() {
+	public Boolean getTransferFunctionHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

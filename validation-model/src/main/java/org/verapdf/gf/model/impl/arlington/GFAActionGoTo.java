@@ -497,15 +497,15 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	}
 
 	@Override
-	public Boolean getDHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getDHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getDHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

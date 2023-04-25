@@ -101,15 +101,15 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	@Override
-	public Boolean getOCGsHasTypeNull() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
-		return object != null && object.getType() == COSObjType.COS_NULL;
-	}
-
-	@Override
 	public Boolean getOCGsHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getOCGsHasTypeNull() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override

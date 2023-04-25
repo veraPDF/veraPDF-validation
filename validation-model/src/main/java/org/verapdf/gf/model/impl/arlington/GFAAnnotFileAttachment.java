@@ -929,15 +929,15 @@ public class GFAAnnotFileAttachment extends GFAObject implements AAnnotFileAttac
 	}
 
 	@Override
-	public Boolean getFSHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FS"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getFSHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FS"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFSHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FS"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

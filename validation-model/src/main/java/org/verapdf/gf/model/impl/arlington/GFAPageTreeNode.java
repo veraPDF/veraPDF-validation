@@ -166,12 +166,24 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getcontainsCropBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CropBox"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("CropBox"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("CropBox"));
 	}
 
 	@Override
 	public Boolean getCropBoxHasTypeRectangle() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("CropBox"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -196,12 +208,24 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getcontainsMediaBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MediaBox"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("MediaBox"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("MediaBox"));
 	}
 
 	@Override
 	public Boolean getMediaBoxHasTypeRectangle() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MediaBox"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("MediaBox"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -232,23 +256,47 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getcontainsResources() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Resources"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("Resources"));
 	}
 
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Resources"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getcontainsRotate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Rotate"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Rotate"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("Rotate"));
 	}
 
 	@Override
 	public Boolean getRotateHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Rotate"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 

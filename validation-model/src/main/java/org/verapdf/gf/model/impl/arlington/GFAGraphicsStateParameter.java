@@ -940,15 +940,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getAAPLSTHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:ST"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getAAPLSTHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:ST"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getAAPLSTHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:ST"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -974,15 +974,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getBGHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getBGHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getBGHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -997,9 +997,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getBG2HasTypeStream() {
+	public Boolean getBG2HasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG2"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -1009,9 +1009,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getBG2HasTypeDictionary() {
+	public Boolean getBG2HasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG2"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -1135,9 +1135,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getHTHasTypeStream() {
+	public Boolean getHTHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -1147,9 +1147,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getHTHasTypeDictionary() {
+	public Boolean getHTHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -1391,15 +1391,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getSMaskHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getSMaskHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getSMaskHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
@@ -1447,9 +1447,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getTRHasTypeStream() {
+	public Boolean getTRHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -1459,9 +1459,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getTRHasTypeDictionary() {
+	public Boolean getTRHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -1482,9 +1482,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getTR2HasTypeStream() {
+	public Boolean getTR2HasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -1494,9 +1494,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getTR2HasTypeDictionary() {
+	public Boolean getTR2HasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -1538,15 +1538,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getUCRHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getUCRHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getUCRHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -1561,9 +1561,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getUCR2HasTypeStream() {
+	public Boolean getUCR2HasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR2"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -1573,9 +1573,9 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
-	public Boolean getUCR2HasTypeDictionary() {
+	public Boolean getUCR2HasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR2"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

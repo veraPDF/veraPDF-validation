@@ -86,27 +86,15 @@ public class GFA_UniversalArrayEntry extends GFAObject implements A_UniversalArr
 	}
 
 	@Override
-	public Boolean getHasTypeStream() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getHasTypeBoolean() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
-	public Boolean getHasTypeNumber() {
+	public Boolean getHasTypeDictionary() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getHasTypeString() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -122,9 +110,21 @@ public class GFA_UniversalArrayEntry extends GFAObject implements A_UniversalArr
 	}
 
 	@Override
-	public Boolean getHasTypeDictionary() {
+	public Boolean getHasTypeNumber() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getHasTypeStream() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getHasTypeString() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

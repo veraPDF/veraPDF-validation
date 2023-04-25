@@ -121,15 +121,15 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 	}
 
 	@Override
-	public Boolean getObjHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getObjHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getObjHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

@@ -309,21 +309,21 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	@Override
-	public Boolean getentry3HasTypeStream() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getentry3HasTypeDictionary() {
 		if (this.baseObject.size() <= 3) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(3);
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeStream() {
+		if (this.baseObject.size() <= 3) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(3);
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

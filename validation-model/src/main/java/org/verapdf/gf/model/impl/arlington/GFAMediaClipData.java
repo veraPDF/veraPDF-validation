@@ -243,6 +243,12 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	@Override
+	public Boolean getDHasTypeDictionary() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
 	public Boolean getDHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object != null && object.getType() == COSObjType.COS_STREAM;
@@ -252,12 +258,6 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	public Boolean getDHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
-	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

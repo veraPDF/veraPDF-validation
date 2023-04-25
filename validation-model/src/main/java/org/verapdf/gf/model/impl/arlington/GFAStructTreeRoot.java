@@ -370,15 +370,15 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
-	public Boolean getPronunciationLexiconHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getPronunciationLexiconHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getPronunciationLexiconHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

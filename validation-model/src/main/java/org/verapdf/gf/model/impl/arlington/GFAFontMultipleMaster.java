@@ -174,15 +174,15 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	}
 
 	@Override
-	public Boolean getEncodingHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
 	public Boolean getEncodingHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getEncodingHasTypeName() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override

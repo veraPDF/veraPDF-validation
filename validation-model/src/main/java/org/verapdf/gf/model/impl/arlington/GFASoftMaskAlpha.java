@@ -231,9 +231,9 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	}
 
 	@Override
-	public Boolean getTRHasTypeStream() {
+	public Boolean getTRHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -243,9 +243,9 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	}
 
 	@Override
-	public Boolean getTRHasTypeDictionary() {
+	public Boolean getTRHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

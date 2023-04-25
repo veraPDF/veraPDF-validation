@@ -118,27 +118,15 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	}
 
 	@Override
-	public Boolean getVHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getVHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
-	public Boolean getVHasTypeNumber() {
+	public Boolean getVHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getVHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -154,9 +142,21 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	}
 
 	@Override
-	public Boolean getVHasTypeDictionary() {
+	public Boolean getVHasTypeNumber() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getVHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getVHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

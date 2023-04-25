@@ -369,9 +369,9 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	@Override
-	public Boolean getVHasTypeStringText() {
+	public Boolean getVHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -387,9 +387,9 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	@Override
-	public Boolean getVHasTypeDictionary() {
+	public Boolean getVHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

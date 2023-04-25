@@ -468,15 +468,15 @@ public class GFAHalftoneType6 extends GFAObject implements AHalftoneType6 {
 	}
 
 	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -677,9 +677,9 @@ public class GFAHalftoneType6 extends GFAObject implements AHalftoneType6 {
 	}
 
 	@Override
-	public Boolean getTransferFunctionHasTypeStream() {
+	public Boolean getTransferFunctionHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -689,9 +689,9 @@ public class GFAHalftoneType6 extends GFAObject implements AHalftoneType6 {
 	}
 
 	@Override
-	public Boolean getTransferFunctionHasTypeDictionary() {
+	public Boolean getTransferFunctionHasTypeStream() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

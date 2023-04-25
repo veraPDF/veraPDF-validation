@@ -29,15 +29,15 @@ public class GFARichMediaCommandArrayEntry extends GFAObject implements ARichMed
 	}
 
 	@Override
-	public Boolean getHasTypeStringText() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getHasTypeBoolean() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getHasTypeInteger() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
@@ -47,9 +47,9 @@ public class GFARichMediaCommandArrayEntry extends GFAObject implements ARichMed
 	}
 
 	@Override
-	public Boolean getHasTypeInteger() {
+	public Boolean getHasTypeStringText() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

@@ -155,15 +155,15 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	@Override
-	public Boolean getEncodingHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getEncodingHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getEncodingHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

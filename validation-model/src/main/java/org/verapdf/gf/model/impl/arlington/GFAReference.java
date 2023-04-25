@@ -93,15 +93,15 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -121,15 +121,15 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	@Override
-	public Boolean getPageHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Page"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getPageHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Page"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getPageHasTypeStringText() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Page"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override

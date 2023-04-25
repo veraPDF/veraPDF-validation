@@ -24,21 +24,21 @@ public class GFAArrayOfDuration extends GFAObject implements AArrayOfDuration {
 	}
 
 	@Override
-	public Boolean getentry0HasTypeStringByte() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getentry0HasTypeInteger() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeStringByte() {
+		if (this.baseObject.size() <= 0) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(0);
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

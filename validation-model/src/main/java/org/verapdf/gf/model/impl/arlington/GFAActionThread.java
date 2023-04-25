@@ -499,15 +499,15 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	@Override
-	public Boolean getBHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
 	public Boolean getBHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getBHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
@@ -538,9 +538,9 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	@Override
-	public Boolean getDHasTypeStringText() {
+	public Boolean getDHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -550,9 +550,9 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	@Override
-	public Boolean getDHasTypeDictionary() {
+	public Boolean getDHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
@@ -577,15 +577,15 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

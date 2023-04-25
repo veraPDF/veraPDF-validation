@@ -935,15 +935,15 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
-	public Boolean getDestHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getDestHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getDestHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

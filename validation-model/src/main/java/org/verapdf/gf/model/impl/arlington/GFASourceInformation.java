@@ -95,15 +95,15 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	@Override
-	public Boolean getAUHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AU"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
-	}
-
-	@Override
 	public Boolean getAUHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AU"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getAUHasTypeStringAscii() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AU"));
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
 	@Override

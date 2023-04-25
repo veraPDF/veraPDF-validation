@@ -696,12 +696,24 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsCropBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("CropBox"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("CropBox"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("CropBox"));
 	}
 
 	@Override
 	public Boolean getCropBoxHasTypeRectangle() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("CropBox"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -748,12 +760,24 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsHid() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Hid"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Hid"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("Hid"));
 	}
 
 	@Override
 	public Boolean getHidHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Hid"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Hid"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -781,12 +805,24 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsMediaBox() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("MediaBox"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("MediaBox"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("MediaBox"));
 	}
 
 	@Override
 	public Boolean getMediaBoxHasTypeRectangle() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MediaBox"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("MediaBox"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -878,23 +914,47 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsResources() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Resources"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("Resources"));
 	}
 
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Resources"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getcontainsRotate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Rotate"));
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Rotate"))) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (currentObject == null || currentObject.empty()) {
+			return false;
+		}
+		return currentObject.knownKey(ASAtom.getASAtom("Rotate"));
 	}
 
 	@Override
 	public Boolean getRotateHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Rotate"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -1143,31 +1203,30 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public Boolean getpageContainsStructContentItems() {
 		COSObject contents = this.baseObject.getKey(ASAtom.CONTENTS);
 		if (contents.getType() == COSObjType.COS_STREAM || contents.getType() == COSObjType.COS_ARRAY) {
-			try (ASInputStream opStream = contents.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
-				try (PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
-					streamParser.parseTokens();
-					List<COSBase> arguments = new ArrayList<>();
-					for (java.lang.Object rawToken : streamParser.getTokens()) {
-						if (rawToken instanceof COSBase) {
-							arguments.add((COSBase) rawToken);
-						} else if (rawToken instanceof Operator) {
-							String operatorName = ((Operator)rawToken).getOperator();
-							if (Operators.BMC.equals(operatorName) || Operators.BDC.equals(operatorName)) {
-								if (arguments.isEmpty()) {
-									continue;
-								}
-								COSBase lastArgument = arguments.get(arguments.size() - 1);
-								if (lastArgument.getType() == COSObjType.COS_DICT) {
-									if (lastArgument.knownKey(ASAtom.MCID)) {
-										return true;
-									}
-								} else if (lastArgument.getType() == COSObjType.COS_NAME) {
-									//todo check dict from properties
-								}
-								return true;
+			try (ASInputStream opStream = contents.getDirectBase().getData(COSStream.FilterFlags.DECODE); PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
+				streamParser.parseTokens();
+				List<COSBase> arguments = new ArrayList<>();
+				for (java.lang.Object rawToken : streamParser.getTokens()) {
+					if (rawToken instanceof COSBase) {
+						arguments.add((COSBase) rawToken);
+					} else if (rawToken instanceof Operator) {
+						String operatorName = ((Operator)rawToken).getOperator();
+						if (Operators.BMC.equals(operatorName) || Operators.BDC.equals(operatorName)) {
+							if (arguments.isEmpty()) {
+								continue;
 							}
-							arguments = new ArrayList<>();
+							COSBase lastArgument = arguments.get(arguments.size() - 1);
+							if (lastArgument.getType() == COSObjType.COS_NAME) {
+								//todo check dict from properties
+							}
+							if (lastArgument.getType() == COSObjType.COS_DICT) {
+								if (lastArgument.knownKey(ASAtom.MCID)) {
+									return true;
+								}
+							}
+							return true;
 						}
+						arguments = new ArrayList<>();
 					}
 				}
 			} catch (IOException exception) {

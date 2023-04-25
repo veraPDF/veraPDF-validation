@@ -56,12 +56,12 @@ public class GFADestXYZStructArray extends GFAObject implements ADestXYZStructAr
 	}
 
 	@Override
-	public Boolean getentry0HasTypeStringByte() {
+	public Boolean getentry0HasTypeDictionary() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -74,12 +74,12 @@ public class GFADestXYZStructArray extends GFAObject implements ADestXYZStructAr
 	}
 
 	@Override
-	public Boolean getentry0HasTypeDictionary() {
+	public Boolean getentry0HasTypeStringByte() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -159,15 +159,6 @@ public class GFADestXYZStructArray extends GFAObject implements ADestXYZStructAr
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getentry2HasTypeNull() {
 		if (this.baseObject.size() <= 2) {
 			return null;
@@ -177,11 +168,11 @@ public class GFADestXYZStructArray extends GFAObject implements ADestXYZStructAr
 	}
 
 	@Override
-	public Boolean getentry3HasTypeNumber() {
-		if (this.baseObject.size() <= 3) {
+	public Boolean getentry2HasTypeNumber() {
+		if (this.baseObject.size() <= 2) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = this.baseObject.at(2);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -195,11 +186,11 @@ public class GFADestXYZStructArray extends GFAObject implements ADestXYZStructAr
 	}
 
 	@Override
-	public Boolean getentry4HasTypeNumber() {
-		if (this.baseObject.size() <= 4) {
+	public Boolean getentry3HasTypeNumber() {
+		if (this.baseObject.size() <= 3) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(4);
+		COSObject object = this.baseObject.at(3);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -210,6 +201,15 @@ public class GFADestXYZStructArray extends GFAObject implements ADestXYZStructAr
 		}
 		COSObject object = this.baseObject.at(4);
 		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	@Override
+	public Boolean getentry4HasTypeNumber() {
+		if (this.baseObject.size() <= 4) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(4);
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override

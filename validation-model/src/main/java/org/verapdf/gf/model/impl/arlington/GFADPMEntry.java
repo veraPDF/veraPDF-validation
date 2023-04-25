@@ -71,27 +71,21 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 	}
 
 	@Override
-	public Boolean getHasTypeDate() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
-	}
-
-	@Override
-	public Boolean getHasTypeStringText() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getHasTypeBoolean() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
-	public Boolean getHasTypeNumber() {
+	public Boolean getHasTypeDate() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType().isNumber();
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+	}
+
+	@Override
+	public Boolean getHasTypeDictionary() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -107,9 +101,15 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 	}
 
 	@Override
-	public Boolean getHasTypeDictionary() {
+	public Boolean getHasTypeNumber() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getHasTypeStringText() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

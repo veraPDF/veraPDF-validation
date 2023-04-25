@@ -127,27 +127,15 @@ public class GFAData extends GFAObject implements AData {
 	}
 
 	@Override
-	public Boolean getPrivateHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getPrivateHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
-	public Boolean getPrivateHasTypeNumber() {
+	public Boolean getPrivateHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Boolean getPrivateHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -163,9 +151,21 @@ public class GFAData extends GFAObject implements AData {
 	}
 
 	@Override
-	public Boolean getPrivateHasTypeDictionary() {
+	public Boolean getPrivateHasTypeNumber() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getPrivateHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getPrivateHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 }

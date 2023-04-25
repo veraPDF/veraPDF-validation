@@ -115,15 +115,15 @@ public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADiction
 	}
 
 	@Override
-	public Boolean getHasTypeStream() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getHasTypeStream() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 }

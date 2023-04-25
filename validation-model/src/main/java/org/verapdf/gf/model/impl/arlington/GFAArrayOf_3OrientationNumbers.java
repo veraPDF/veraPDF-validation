@@ -24,15 +24,6 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 	}
 
 	@Override
-	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getentry0HasTypeNull() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -42,11 +33,11 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 	}
 
 	@Override
-	public Boolean getentry1HasTypeNumber() {
-		if (this.baseObject.size() <= 1) {
+	public Boolean getentry0HasTypeNumber() {
+		if (this.baseObject.size() <= 0) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = this.baseObject.at(0);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -60,11 +51,11 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
+	public Boolean getentry1HasTypeNumber() {
+		if (this.baseObject.size() <= 1) {
 			return null;
 		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = this.baseObject.at(1);
 		return object != null && object.getType().isNumber();
 	}
 
@@ -75,6 +66,15 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 		}
 		COSObject object = this.baseObject.at(2);
 		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNumber() {
+		if (this.baseObject.size() <= 2) {
+			return null;
+		}
+		COSObject object = this.baseObject.at(2);
+		return object != null && object.getType().isNumber();
 	}
 
 }

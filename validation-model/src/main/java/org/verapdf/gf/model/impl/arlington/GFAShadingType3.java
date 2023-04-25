@@ -419,15 +419,15 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	}
 
 	@Override
-	public Boolean getFunctionHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getFunctionHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFunctionHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

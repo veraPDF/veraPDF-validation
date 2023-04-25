@@ -474,9 +474,9 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
-	public Boolean getDVHasTypeString() {
+	public Boolean getDVHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -492,9 +492,9 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
-	public Boolean getDVHasTypeDictionary() {
+	public Boolean getDVHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -561,15 +561,15 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

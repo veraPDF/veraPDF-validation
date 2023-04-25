@@ -70,15 +70,15 @@ public class GFAArrayOfCIDGlyphMetricsW2Entry extends GFAObject implements AArra
 	}
 
 	@Override
-	public Boolean getHasTypeNumber() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
 	public Boolean getHasTypeInteger() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getHasTypeNumber() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType().isNumber();
 	}
 
 	@Override

@@ -68,15 +68,15 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 	}
 
 	@Override
-	public Boolean getAHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
 	public Boolean getAHasTypeBoolean() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getAHasTypeInteger() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
@@ -86,9 +86,9 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 	}
 
 	@Override
-	public Boolean getAHasTypeInteger() {
+	public Boolean getAHasTypeStringText() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override

@@ -291,15 +291,15 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	}
 
 	@Override
-	public Boolean getCIDToGIDMapHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getCIDToGIDMapHasTypeName() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
 		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getCIDToGIDMapHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

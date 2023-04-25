@@ -145,15 +145,15 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	}
 
 	@Override
-	public Boolean getDHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getDHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -168,15 +168,15 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	}
 
 	@Override
-	public Boolean getNHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getNHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getNHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -191,15 +191,15 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	}
 
 	@Override
-	public Boolean getRHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getRHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getRHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 }

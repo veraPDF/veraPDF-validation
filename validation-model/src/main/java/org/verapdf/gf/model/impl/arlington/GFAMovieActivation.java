@@ -163,15 +163,15 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
-	public Boolean getDurationHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getDurationHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getDurationHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
@@ -292,15 +292,15 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
-	public Boolean getStartHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getStartHasTypeInteger() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getStartHasTypeStringByte() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

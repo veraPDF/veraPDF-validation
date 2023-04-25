@@ -65,9 +65,9 @@ public class GFACollectionItemEntry extends GFAObject implements ACollectionItem
 	}
 
 	@Override
-	public Boolean getHasTypeStringText() {
+	public Boolean getHasTypeDictionary() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -77,9 +77,9 @@ public class GFACollectionItemEntry extends GFAObject implements ACollectionItem
 	}
 
 	@Override
-	public Boolean getHasTypeDictionary() {
+	public Boolean getHasTypeStringText() {
 		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 }

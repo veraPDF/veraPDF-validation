@@ -386,15 +386,15 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
-	public Boolean getentry3DDHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DD"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getentry3DDHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DD"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getentry3DDHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DD"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -425,9 +425,9 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
-	public Boolean getentry3DVHasTypeString() {
+	public Boolean getentry3DVHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DV"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
@@ -443,9 +443,9 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
-	public Boolean getentry3DVHasTypeDictionary() {
+	public Boolean getentry3DVHasTypeString() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DV"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

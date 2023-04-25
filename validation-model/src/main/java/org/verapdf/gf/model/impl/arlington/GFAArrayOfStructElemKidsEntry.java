@@ -87,15 +87,15 @@ public class GFAArrayOfStructElemKidsEntry extends GFAObject implements AArrayOf
 	}
 
 	@Override
-	public Boolean getHasTypeInteger() {
-		COSObject object = new COSObject(this.baseObject);
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = new COSObject(this.baseObject);
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getHasTypeInteger() {
+		COSObject object = new COSObject(this.baseObject);
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 }

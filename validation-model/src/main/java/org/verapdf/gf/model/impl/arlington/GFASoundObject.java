@@ -464,15 +464,15 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 	}
 
 	@Override
-	public Boolean getCPHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CP"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getCPHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CP"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getCPHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CP"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
@@ -571,15 +571,15 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 	}
 
 	@Override
-	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_STRING;
-	}
-
-	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getFHasTypeString() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override

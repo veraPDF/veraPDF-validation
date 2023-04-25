@@ -191,15 +191,15 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	@Override
-	public Boolean getStmOwnHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getStmOwnHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getStmOwnHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override

@@ -213,15 +213,15 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	}
 
 	@Override
-	public Boolean getShadingHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
 	public Boolean getShadingHasTypeDictionary() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getShadingHasTypeStream() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
