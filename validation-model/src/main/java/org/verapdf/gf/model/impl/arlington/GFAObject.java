@@ -21,7 +21,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	private final static List<String> standardFonts = new LinkedList<>();
 	private static final ThreadLocal<Set<COSKey>> keysSet = new ThreadLocal<>();
-	protected static final String PDF_DATE_FORMAT_REGEX = "(D:)?(\\d\\d){2,7}((([+-](\\d\\d[']))(\\d\\d['])?)?|[Z])";
+	protected static final String PDF_DATE_FORMAT_REGEX = "(D:)?(\\d\\d){2,7}([Z+-]\\d\\d'(\\d\\d'?)?)?|Z";
 	protected final COSBase baseObject;
 	protected COSBase parentObject;
 	protected String keyName;
