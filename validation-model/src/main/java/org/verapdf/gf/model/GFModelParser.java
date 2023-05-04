@@ -113,12 +113,9 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private static PDFAFlavour detectFlavour(PDDocument document, PDFAFlavour flavour, PDFAFlavour defaultFlavour) {
-		if (flavour == PDFAFlavour.NO_FLAVOUR) {
-			return obtainFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR ?
-					defaultFlavour : Foundries.defaultInstance().defaultFlavour());
-		}
-		if (flavour == PDFAFlavour.NO_ARLINGTON_FLAVOUR) {
-			return obtainArlingtonFlavour(document, PDFAFlavour.ARLINGTON1_4);
+		if (flavour == PDFAFlavour.NO_FLAVOUR || flavour == PDFAFlavour.NO_ARLINGTON_FLAVOUR) {
+			return obtainArlingtonFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR &&
+					defaultFlavour != PDFAFlavour.NO_ARLINGTON_FLAVOUR ? defaultFlavour : PDFAFlavour.ARLINGTON1_4);
 		}
 		return flavour;
 	}
