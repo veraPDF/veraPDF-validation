@@ -54,14 +54,6 @@ public class GFAShadingMapEntry extends GFAObject implements AShadingMapEntry {
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_3() {
 		COSObject object = new COSObject(this.baseObject);
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getEntryStream1_3(object.getDirectBase(), keyName);
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getEntryDictionary1_3(object.getDirectBase(), keyName);
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -70,7 +62,36 @@ public class GFAShadingMapEntry extends GFAObject implements AShadingMapEntry {
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getEntryStream1_3(object.getDirectBase(), keyName);
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 1:
+				return new GFAShadingType1(base, this.baseObject, keyName);
+			case 2:
+				return new GFAShadingType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAShadingType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryStream1_3(COSBase base, String keyName) {
@@ -91,27 +112,6 @@ public class GFAShadingMapEntry extends GFAObject implements AShadingMapEntry {
 				return new GFAShadingType6(base, this.baseObject, keyName);
 			case 7:
 				return new GFAShadingType7(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private org.verapdf.model.baselayer.Object getEntryDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 1:
-				return new GFAShadingType1(base, this.baseObject, keyName);
-			case 2:
-				return new GFAShadingType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAShadingType3(base, this.baseObject, keyName);
 			default:
 				return null;
 		}

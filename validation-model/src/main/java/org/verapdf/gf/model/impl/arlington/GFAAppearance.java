@@ -110,17 +110,17 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 		if (object == null) {
 			return Collections.emptyList();
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearanceSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearanceSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
+			return Collections.unmodifiableList(list);
+		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getDStream1_3(object.getDirectBase(), "D");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAppearanceSubDict> list = new ArrayList<>(1);
-			list.add(new GFAAppearanceSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -235,17 +235,17 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 		if (object == null) {
 			return Collections.emptyList();
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearanceSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearanceSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "N"));
+			return Collections.unmodifiableList(list);
+		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getNStream1_3(object.getDirectBase(), "N");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAppearanceSubDict> list = new ArrayList<>(1);
-			list.add(new GFAAppearanceSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "N"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -360,17 +360,17 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 		if (object == null) {
 			return Collections.emptyList();
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AAppearanceSubDict> list = new ArrayList<>(1);
+			list.add(new GFAAppearanceSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "R"));
+			return Collections.unmodifiableList(list);
+		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getRStream1_3(object.getDirectBase(), "R");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAppearanceSubDict> list = new ArrayList<>(1);
-			list.add(new GFAAppearanceSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "R"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

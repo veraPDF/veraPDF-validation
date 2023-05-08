@@ -93,14 +93,14 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<A3DStream> list = new ArrayList<>(1);
-			list.add(new GFA3DStream((COSStream)object.getDirectBase(), this.baseObject, "3DD"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<A3DReference> list = new ArrayList<>(1);
 			list.add(new GFA3DReference((COSDictionary)object.getDirectBase(), this.baseObject, "3DD"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<A3DStream> list = new ArrayList<>(1);
+			list.add(new GFA3DStream((COSStream)object.getDirectBase(), this.baseObject, "3DD"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

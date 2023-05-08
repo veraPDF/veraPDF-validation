@@ -337,14 +337,6 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getTransferFunctionStream1_3(object.getDirectBase(), "TransferFunction");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getTransferFunctionDictionary1_3(object.getDirectBase(), "TransferFunction");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -353,26 +345,15 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getTransferFunctionStream1_3(object.getDirectBase(), "TransferFunction");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getTransferFunctionStream1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 0:
-				return new GFAFunctionType0(base, this.baseObject, keyName);
-			case 4:
-				return new GFAFunctionType4(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getTransferFunctionDictionary1_3(COSBase base, String keyName) {
@@ -389,6 +370,25 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 				return new GFAFunctionType2(base, this.baseObject, keyName);
 			case 3:
 				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getTransferFunctionStream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 0:
+				return new GFAFunctionType0(base, this.baseObject, keyName);
+			case 4:
+				return new GFAFunctionType4(base, this.baseObject, keyName);
 			default:
 				return null;
 		}

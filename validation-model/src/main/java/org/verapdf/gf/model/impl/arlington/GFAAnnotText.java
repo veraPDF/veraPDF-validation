@@ -1196,7 +1196,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return Objects.equals(getStateModelStringTextValue(), "Marked") ? "Unmarked" : Objects.equals(getStateModelStringTextValue(), "Review") ? "None" : null;
+				return Objects.equals(getStateModelStringTextValue(), "Marked") ? "Unmarked" :Objects.equals(getStateModelStringTextValue(), "Review") ? "None" :null;
 		}
 		return null;
 	}

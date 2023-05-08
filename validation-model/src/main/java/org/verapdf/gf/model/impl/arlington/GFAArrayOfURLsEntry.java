@@ -49,14 +49,14 @@ public class GFAArrayOfURLsEntry extends GFAObject implements AArrayOfURLsEntry 
 
 	private List<org.verapdf.model.baselayer.Object> getEntry2_0() {
 		COSObject object = new COSObject(this.baseObject);
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AEmbeddedFileStream> list = new ArrayList<>(1);
-			list.add(new GFAEmbeddedFileStream((COSStream)object.getDirectBase(), this.parentObject, keyName));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AFileSpecification> list = new ArrayList<>(1);
 			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AEmbeddedFileStream> list = new ArrayList<>(1);
+			list.add(new GFAEmbeddedFileStream((COSStream)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

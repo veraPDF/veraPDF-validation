@@ -81,14 +81,6 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getShadingStream1_3(object.getDirectBase(), "Shading");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getShadingDictionary1_3(object.getDirectBase(), "Shading");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -97,7 +89,36 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getShadingStream1_3(object.getDirectBase(), "Shading");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getShadingDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 1:
+				return new GFAShadingType1(base, this.baseObject, keyName);
+			case 2:
+				return new GFAShadingType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAShadingType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	private org.verapdf.model.baselayer.Object getShadingStream1_3(COSBase base, String keyName) {
@@ -118,27 +139,6 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 				return new GFAShadingType6(base, this.baseObject, keyName);
 			case 7:
 				return new GFAShadingType7(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private org.verapdf.model.baselayer.Object getShadingDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 1:
-				return new GFAShadingType1(base, this.baseObject, keyName);
-			case 2:
-				return new GFAShadingType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAShadingType3(base, this.baseObject, keyName);
 			default:
 				return null;
 		}

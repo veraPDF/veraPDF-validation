@@ -115,14 +115,14 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 			list.add(new GFA_UniversalArray((COSArray)object.getDirectBase(), this.baseObject, "StmOwn"));
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "StmOwn"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<A_UniversalDictionary> list = new ArrayList<>(1);
 			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.baseObject, "StmOwn"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "StmOwn"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

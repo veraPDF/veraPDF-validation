@@ -121,14 +121,6 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getBGStream1_3(object.getDirectBase(), "BG");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getBGDictionary1_3(object.getDirectBase(), "BG");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -137,26 +129,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getBGStream1_3(object.getDirectBase(), "BG");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getBGStream1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 0:
-				return new GFAFunctionType0(base, this.baseObject, keyName);
-			case 4:
-				return new GFAFunctionType4(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getBGDictionary1_3(COSBase base, String keyName) {
@@ -173,6 +154,25 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 				return new GFAFunctionType2(base, this.baseObject, keyName);
 			case 3:
 				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getBGStream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 0:
+				return new GFAFunctionType0(base, this.baseObject, keyName);
+			case 4:
+				return new GFAFunctionType4(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -197,14 +197,6 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getBG2Stream1_3(object.getDirectBase(), "BG2");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getBG2Dictionary1_3(object.getDirectBase(), "BG2");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -213,26 +205,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getBG2Stream1_3(object.getDirectBase(), "BG2");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getBG2Stream1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 0:
-				return new GFAFunctionType0(base, this.baseObject, keyName);
-			case 4:
-				return new GFAFunctionType4(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getBG2Dictionary1_3(COSBase base, String keyName) {
@@ -249,6 +230,25 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 				return new GFAFunctionType2(base, this.baseObject, keyName);
 			case 3:
 				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getBG2Stream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 0:
+				return new GFAFunctionType0(base, this.baseObject, keyName);
+			case 4:
+				return new GFAFunctionType4(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -355,14 +355,6 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getHTStream1_2(object.getDirectBase(), "HT");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getHTDictionary1_2(object.getDirectBase(), "HT");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -371,26 +363,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getHTStream1_2(object.getDirectBase(), "HT");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getHTStream1_2(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 6:
-				return new GFAHalftoneType6(base, this.baseObject, keyName);
-			case 10:
-				return new GFAHalftoneType10(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getHTDictionary1_2(COSBase base, String keyName) {
@@ -412,18 +393,29 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		}
 	}
 
+	private org.verapdf.model.baselayer.Object getHTStream1_2(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 6:
+				return new GFAHalftoneType6(base, this.baseObject, keyName);
+			case 10:
+				return new GFAHalftoneType10(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
 	private List<org.verapdf.model.baselayer.Object> getHT1_3() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
 		if (object == null) {
 			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getHTStream1_3(object.getDirectBase(), "HT");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getHTDictionary1_3(object.getDirectBase(), "HT");
@@ -433,7 +425,34 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getHTStream1_3(object.getDirectBase(), "HT");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getHTDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 1:
+				return new GFAHalftoneType1(base, this.baseObject, keyName);
+			case 5:
+				return new GFAHalftoneType5(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	private org.verapdf.model.baselayer.Object getHTStream1_3(COSBase base, String keyName) {
@@ -452,25 +471,6 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 				return new GFAHalftoneType6(base, this.baseObject, keyName);
 			case 10:
 				return new GFAHalftoneType10(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private org.verapdf.model.baselayer.Object getHTDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 1:
-				return new GFAHalftoneType1(base, this.baseObject, keyName);
-			case 5:
-				return new GFAHalftoneType5(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -618,14 +618,6 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			list.add(new GFAArrayOf4Functions((COSArray)object.getDirectBase(), this.baseObject, "TR"));
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getTRStream1_3(object.getDirectBase(), "TR");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getTRDictionary1_3(object.getDirectBase(), "TR");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -634,26 +626,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getTRStream1_3(object.getDirectBase(), "TR");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getTRStream1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 0:
-				return new GFAFunctionType0(base, this.baseObject, keyName);
-			case 4:
-				return new GFAFunctionType4(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getTRDictionary1_3(COSBase base, String keyName) {
@@ -670,6 +651,25 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 				return new GFAFunctionType2(base, this.baseObject, keyName);
 			case 3:
 				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getTRStream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 0:
+				return new GFAFunctionType0(base, this.baseObject, keyName);
+			case 4:
+				return new GFAFunctionType4(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -699,14 +699,6 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			list.add(new GFAArrayOf4Functions((COSArray)object.getDirectBase(), this.baseObject, "TR2"));
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getTR2Stream1_3(object.getDirectBase(), "TR2");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getTR2Dictionary1_3(object.getDirectBase(), "TR2");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -715,26 +707,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getTR2Stream1_3(object.getDirectBase(), "TR2");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getTR2Stream1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 0:
-				return new GFAFunctionType0(base, this.baseObject, keyName);
-			case 4:
-				return new GFAFunctionType4(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getTR2Dictionary1_3(COSBase base, String keyName) {
@@ -751,6 +732,25 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 				return new GFAFunctionType2(base, this.baseObject, keyName);
 			case 3:
 				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getTR2Stream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 0:
+				return new GFAFunctionType0(base, this.baseObject, keyName);
+			case 4:
+				return new GFAFunctionType4(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -790,14 +790,6 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getUCRStream1_3(object.getDirectBase(), "UCR");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getUCRDictionary1_3(object.getDirectBase(), "UCR");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -806,26 +798,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getUCRStream1_3(object.getDirectBase(), "UCR");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getUCRStream1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 0:
-				return new GFAFunctionType0(base, this.baseObject, keyName);
-			case 4:
-				return new GFAFunctionType4(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getUCRDictionary1_3(COSBase base, String keyName) {
@@ -842,6 +823,25 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 				return new GFAFunctionType2(base, this.baseObject, keyName);
 			case 3:
 				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getUCRStream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 0:
+				return new GFAFunctionType0(base, this.baseObject, keyName);
+			case 4:
+				return new GFAFunctionType4(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -866,14 +866,6 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getUCR2Stream1_3(object.getDirectBase(), "UCR2");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getUCR2Dictionary1_3(object.getDirectBase(), "UCR2");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -882,26 +874,15 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			}
 			return Collections.unmodifiableList(list);
 		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getUCR2Stream1_3(object.getDirectBase(), "UCR2");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getUCR2Stream1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 0:
-				return new GFAFunctionType0(base, this.baseObject, keyName);
-			case 4:
-				return new GFAFunctionType4(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	private org.verapdf.model.baselayer.Object getUCR2Dictionary1_3(COSBase base, String keyName) {
@@ -918,6 +899,25 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 				return new GFAFunctionType2(base, this.baseObject, keyName);
 			case 3:
 				return new GFAFunctionType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getUCR2Stream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 0:
+				return new GFAFunctionType0(base, this.baseObject, keyName);
+			case 4:
+				return new GFAFunctionType4(base, this.baseObject, keyName);
 			default:
 				return null;
 		}

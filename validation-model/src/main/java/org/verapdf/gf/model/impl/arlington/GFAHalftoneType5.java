@@ -83,17 +83,17 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 		if (object == null) {
 			return Collections.emptyList();
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AHalftoneType1> list = new ArrayList<>(1);
+			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.baseObject, "Default"));
+			return Collections.unmodifiableList(list);
+		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getDefaultStream1_2(object.getDirectBase(), "Default");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AHalftoneType1> list = new ArrayList<>(1);
-			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.baseObject, "Default"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -123,17 +123,17 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 		if (object == null) {
 			return Collections.emptyList();
 		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AHalftoneType1> list = new ArrayList<>(1);
+			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.baseObject, "Default"));
+			return Collections.unmodifiableList(list);
+		}
 		if (object.getType() == COSObjType.COS_STREAM) {
 			org.verapdf.model.baselayer.Object result = getDefaultStream1_3(object.getDirectBase(), "Default");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
 			}
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AHalftoneType1> list = new ArrayList<>(1);
-			list.add(new GFAHalftoneType1((COSDictionary)object.getDirectBase(), this.baseObject, "Default"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

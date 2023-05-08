@@ -55,14 +55,14 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "D"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
 			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "D"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -86,14 +86,14 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "N"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
 			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "N"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "N"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -117,14 +117,14 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "R"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AAppearancePrinterMarkSubDict> list = new ArrayList<>(1);
 			list.add(new GFAAppearancePrinterMarkSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "R"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormPrinterMark> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormPrinterMark((COSStream)object.getDirectBase(), this.baseObject, "R"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

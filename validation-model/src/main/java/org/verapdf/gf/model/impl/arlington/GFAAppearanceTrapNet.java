@@ -56,14 +56,14 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "D"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AAppearanceTrapNetSubDict> list = new ArrayList<>(1);
 			list.add(new GFAAppearanceTrapNetSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "D"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -88,14 +88,14 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "N"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AAppearanceTrapNetSubDict> list = new ArrayList<>(1);
 			list.add(new GFAAppearanceTrapNetSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "N"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "N"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -120,14 +120,14 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "R"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AAppearanceTrapNetSubDict> list = new ArrayList<>(1);
 			list.add(new GFAAppearanceTrapNetSubDict((COSDictionary)object.getDirectBase(), this.baseObject, "R"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormTrapNet> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormTrapNet((COSStream)object.getDirectBase(), this.baseObject, "R"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

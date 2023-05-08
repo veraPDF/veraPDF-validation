@@ -110,14 +110,14 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 		if (object == null) {
 			return Collections.emptyList();
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormType1> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormType1((COSStream)object.getDirectBase(), this.baseObject, "D"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AFileSpecification> list = new ArrayList<>(1);
 			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "D"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXObjectFormType1> list = new ArrayList<>(1);
+			list.add(new GFAXObjectFormType1((COSStream)object.getDirectBase(), this.baseObject, "D"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

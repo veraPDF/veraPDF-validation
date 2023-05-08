@@ -71,14 +71,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 			list.add(new GFAArrayOfAttributeRevisions((COSArray)object.getDirectBase(), this.baseObject, "A"));
 			return Collections.unmodifiableList(list);
 		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "A"));
-			return Collections.unmodifiableList(list);
-		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AStructureAttributesDict> list = new ArrayList<>(1);
 			list.add(new GFAStructureAttributesDict((COSDictionary)object.getDirectBase(), this.baseObject, "A"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "A"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
