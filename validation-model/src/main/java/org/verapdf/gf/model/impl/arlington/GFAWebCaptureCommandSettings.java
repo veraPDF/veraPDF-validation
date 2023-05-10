@@ -36,7 +36,7 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	}
 
 	private List<A_UniversalDictionary> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -63,7 +63,7 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	}
 
 	private List<A_UniversalDictionary> getG() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

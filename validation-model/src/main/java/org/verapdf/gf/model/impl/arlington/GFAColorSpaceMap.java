@@ -40,7 +40,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<AColorSpaceMapEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 				return getEntries1_0();
 			case ARLINGTON1_1:
@@ -92,7 +92,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultCMYK() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -144,7 +144,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultGray() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 				return getDefaultGray1_1();
 			case ARLINGTON1_2:
@@ -255,7 +255,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultRGB() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 				return getDefaultRGB1_1();

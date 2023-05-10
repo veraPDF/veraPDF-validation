@@ -34,7 +34,7 @@ public class GFAGraphicsStateParameterMap extends GFAObject implements AGraphics
 	}
 
 	private List<AGraphicsStateParameterMapEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

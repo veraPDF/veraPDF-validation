@@ -52,7 +52,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -79,7 +79,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getAP1_7();
@@ -102,7 +102,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getBorder1_7();
@@ -125,7 +125,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getC1_7();
@@ -148,7 +148,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getExData() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getExData1_7();
@@ -195,7 +195,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getIRT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getIRT1_7();
@@ -288,7 +288,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getOC1_7();
@@ -333,7 +333,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getP1_7();
@@ -356,7 +356,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<AAnnotPopup> getPopup() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getPopup1_7();
@@ -379,7 +379,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	private List<AStream> getRC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getRC1_7();
@@ -464,7 +464,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -517,7 +517,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 1.0D;
@@ -582,7 +582,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 0L;
@@ -743,7 +743,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	public String getRTNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "R";
@@ -881,7 +881,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

@@ -48,7 +48,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -85,7 +85,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -112,7 +112,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<AArrayOfClassNamesRevisions> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -139,7 +139,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getK() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -195,7 +195,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<ANamespace> getNS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getNS2_0();
 			default:
@@ -217,7 +217,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -266,7 +266,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<APageObject> getPg() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -293,7 +293,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<AArrayOfStructElem> getRef() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getRef2_0();
 			default:
@@ -561,7 +561,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	public Long getRIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

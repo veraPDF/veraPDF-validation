@@ -34,7 +34,7 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getM3DREF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getM3DREF1_7();

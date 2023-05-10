@@ -34,7 +34,7 @@ public class GFAArrayOfRichMediaConfiguration extends GFAObject implements AArra
 	}
 
 	private List<AArrayOfRichMediaConfigurationEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntries1_7();

@@ -34,7 +34,7 @@ public class GFAArrayOfPageTreeNodeKids extends GFAObject implements AArrayOfPag
 	}
 
 	private List<AArrayOfPageTreeNodeKidsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

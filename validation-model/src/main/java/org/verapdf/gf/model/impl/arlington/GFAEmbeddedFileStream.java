@@ -44,7 +44,7 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 				return getDecodeParms1_3();
 			case ARLINGTON1_4:
@@ -198,7 +198,7 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -225,7 +225,7 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 				return getFDecodeParms1_3();
 			case ARLINGTON1_4:
@@ -379,7 +379,7 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	private List<AArrayOfFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -406,7 +406,7 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	private List<AArrayOfFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -433,7 +433,7 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	private List<AEmbeddedFileParameter> getParams() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

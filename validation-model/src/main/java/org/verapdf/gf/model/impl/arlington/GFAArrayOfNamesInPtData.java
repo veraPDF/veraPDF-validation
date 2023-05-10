@@ -34,7 +34,7 @@ public class GFAArrayOfNamesInPtData extends GFAObject implements AArrayOfNamesI
 	}
 
 	private List<AArrayOfNamesInPtDataEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntries1_7();

@@ -38,7 +38,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	private List<APageObject> getPg() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -65,7 +65,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	private List<AXObjectFormType1> getStm() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -92,7 +92,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getStmOwn() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

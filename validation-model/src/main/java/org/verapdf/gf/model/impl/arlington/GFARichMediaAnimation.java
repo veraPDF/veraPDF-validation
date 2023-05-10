@@ -47,7 +47,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	}
 
 	public Long getAOIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 0L;
 		}
@@ -89,7 +89,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	}
 
 	public Double getSpeedNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 1D;
@@ -121,7 +121,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	}
 
 	public String getSubtypeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "None";

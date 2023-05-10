@@ -64,7 +64,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -91,7 +91,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 				return getDecodeParms1_0();
@@ -210,7 +210,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -238,7 +238,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -336,7 +336,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -364,7 +364,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -394,7 +394,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AGroupAttributes> getGroup() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -420,7 +420,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getMeasure() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getMeasure1_7();
@@ -465,7 +465,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -491,7 +491,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -538,7 +538,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOPI() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -579,7 +579,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<APagePiece> getPieceInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -606,7 +606,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<APointData> getPtData() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getPtData1_7();
@@ -629,7 +629,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AReference> getRef() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -655,7 +655,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AResource> getResources() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -683,7 +683,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AArrayOfIntegersGeneral> getXUID() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

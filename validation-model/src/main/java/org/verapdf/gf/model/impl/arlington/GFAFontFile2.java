@@ -45,7 +45,7 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -143,7 +143,7 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -171,7 +171,7 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -269,7 +269,7 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -297,7 +297,7 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

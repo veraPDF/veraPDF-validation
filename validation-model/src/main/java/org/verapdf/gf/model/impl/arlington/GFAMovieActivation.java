@@ -40,7 +40,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	private List<AArrayOfDuration> getDuration() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -68,7 +68,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	private List<AArrayOf_2Numbers> getFWPosition() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -96,7 +96,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	private List<AArrayOf_2Integers> getFWScale() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -124,7 +124,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	private List<AArrayOfDuration> getStart() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -245,7 +245,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	public String getModeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -316,7 +316,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	public Long getStartIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -373,7 +373,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	public Double getVolumeNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

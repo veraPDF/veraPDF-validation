@@ -52,7 +52,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -79,7 +79,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -107,7 +107,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -137,7 +137,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -166,7 +166,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getExData() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 				return getExData1_7();
 			case ARLINGTON2_0:
@@ -252,7 +252,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getIRT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getIRT1_5();
 			case ARLINGTON1_6:
@@ -579,7 +579,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -626,7 +626,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -653,7 +653,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<AAnnotPopup> getPopup() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -680,7 +680,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<AStream> getRC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -767,7 +767,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -820,7 +820,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -888,7 +888,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -987,7 +987,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public String getNameNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -1105,7 +1105,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public String getRTNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -1191,12 +1191,12 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public String getStateStringTextDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return Objects.equals(getStateModelStringTextValue(), "Marked") ? "Unmarked" :Objects.equals(getStateModelStringTextValue(), "Review") ? "None" :null;
+				return Objects.equals(getStateModelStringTextValue(), "Marked") ? "Unmarked" : Objects.equals(getStateModelStringTextValue(), "Review") ? "None" : null;
 		}
 		return null;
 	}
@@ -1339,7 +1339,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

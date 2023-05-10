@@ -34,7 +34,7 @@ public class GFADest0StructArray extends GFAObject implements ADest0StructArray 
 	}
 
 	private List<AStructElem> getentry0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getentry02_0();
 			default:

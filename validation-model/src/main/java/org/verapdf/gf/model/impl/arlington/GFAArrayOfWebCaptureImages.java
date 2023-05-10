@@ -34,7 +34,7 @@ public class GFAArrayOfWebCaptureImages extends GFAObject implements AArrayOfWeb
 	}
 
 	private List<AArrayOfWebCaptureImagesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

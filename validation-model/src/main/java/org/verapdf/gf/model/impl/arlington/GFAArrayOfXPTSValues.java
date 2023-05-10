@@ -34,7 +34,7 @@ public class GFAArrayOfXPTSValues extends GFAObject implements AArrayOfXPTSValue
 	}
 
 	private List<AArrayOfXPTSValuesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntries1_7();

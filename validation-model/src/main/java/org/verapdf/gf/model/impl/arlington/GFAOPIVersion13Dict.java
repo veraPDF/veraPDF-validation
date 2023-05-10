@@ -50,7 +50,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOfOPI13Color> getColor() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -78,7 +78,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_4Numbers> getCropFixed() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -106,7 +106,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -134,7 +134,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOfIntegersGeneral> getGrayMap() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -162,7 +162,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_2Integers> getImageType() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -190,7 +190,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_8Numbers> getPosition() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -218,7 +218,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_2Numbers> getResolution() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -246,7 +246,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_2Integers> getSize() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -274,7 +274,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOfTags> getTags() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

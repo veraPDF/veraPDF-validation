@@ -34,7 +34,7 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 	}
 
 	private List<AArrayOfStringsText> getFields() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -147,7 +147,7 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 	}
 
 	public String getVNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

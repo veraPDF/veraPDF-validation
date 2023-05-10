@@ -34,7 +34,7 @@ public class GFARichMediaCommandArray extends GFAObject implements ARichMediaCom
 	}
 
 	private List<ARichMediaCommandArrayEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntries1_7();

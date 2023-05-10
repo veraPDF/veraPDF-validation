@@ -36,7 +36,7 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getB() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -85,7 +85,7 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

@@ -36,7 +36,7 @@ public class GFARequirementsSeparationSimulation extends GFAObject implements AR
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getRH2_0();
 			default:
@@ -63,7 +63,7 @@ public class GFARequirementsSeparationSimulation extends GFAObject implements AR
 	}
 
 	private List<AExtensions> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getV2_0();
 			default:
@@ -108,7 +108,7 @@ public class GFARequirementsSeparationSimulation extends GFAObject implements AR
 	}
 
 	public Long getPenaltyIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 100L;
 		}

@@ -36,7 +36,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getC1_2();
 			case ARLINGTON1_3:
@@ -372,7 +372,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getO1_2();
 			case ARLINGTON1_3:

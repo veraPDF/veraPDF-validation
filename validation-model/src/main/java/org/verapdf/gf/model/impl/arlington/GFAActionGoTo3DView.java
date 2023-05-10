@@ -38,7 +38,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 				return getNext1_6();
@@ -198,7 +198,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 				return getTA1_6();
@@ -258,7 +258,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	private List<A3DView> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

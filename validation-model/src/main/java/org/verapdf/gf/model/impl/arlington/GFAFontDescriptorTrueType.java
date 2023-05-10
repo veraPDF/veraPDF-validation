@@ -36,7 +36,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFontFileType1> getFontFile() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -65,7 +65,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFontFile2> getFontFile2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

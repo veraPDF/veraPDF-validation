@@ -36,7 +36,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	}
 
 	private List<ASignature> getDocMDP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -61,7 +61,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	}
 
 	private List<ASignature> getUR3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -127,6 +127,15 @@ public class GFAPermissions extends GFAObject implements APermissions {
 			return (long) Reference.size();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsDocMDPReference() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject DocMDP = this.baseObject.getKey(ASAtom.getASAtom("DocMDP"));
+		return DocMDP.knownKey(ASAtom.getASAtom("Reference"));
 	}
 
 }

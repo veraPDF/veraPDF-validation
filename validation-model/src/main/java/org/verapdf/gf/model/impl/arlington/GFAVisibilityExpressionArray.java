@@ -36,7 +36,7 @@ public class GFAVisibilityExpressionArray extends GFAObject implements AVisibili
 	}
 
 	private List<AVisibilityExpressionArrayEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -56,7 +56,7 @@ public class GFAVisibilityExpressionArray extends GFAObject implements AVisibili
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

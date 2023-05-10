@@ -36,7 +36,7 @@ public class GFAActionImportData extends GFAObject implements AActionImportData 
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -64,7 +64,7 @@ public class GFAActionImportData extends GFAObject implements AActionImportData 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getNext1_2();
 			case ARLINGTON1_3:

@@ -39,7 +39,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 				return getEntry1_0();

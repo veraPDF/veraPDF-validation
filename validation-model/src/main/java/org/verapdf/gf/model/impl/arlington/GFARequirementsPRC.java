@@ -36,7 +36,7 @@ public class GFARequirementsPRC extends GFAObject implements ARequirementsPRC {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getRH2_0();
 			default:
@@ -63,7 +63,7 @@ public class GFARequirementsPRC extends GFAObject implements ARequirementsPRC {
 	}
 
 	private List<AExtensions> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getV2_0();
 			default:
@@ -108,7 +108,7 @@ public class GFARequirementsPRC extends GFAObject implements ARequirementsPRC {
 	}
 
 	public Long getPenaltyIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 100L;
 		}

@@ -47,7 +47,7 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 	}
 
 	public Long getDefaultIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 288L;
@@ -79,7 +79,7 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 	}
 
 	public Long getMaxIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 576L;
@@ -111,7 +111,7 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 	}
 
 	public Long getMinIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 72L;

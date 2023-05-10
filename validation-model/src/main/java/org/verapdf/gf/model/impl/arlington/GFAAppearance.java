@@ -38,7 +38,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getD1_2();
 			case ARLINGTON1_3:
@@ -163,7 +163,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getN() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getN1_2();
 			case ARLINGTON1_3:
@@ -288,7 +288,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getR1_2();
 			case ARLINGTON1_3:

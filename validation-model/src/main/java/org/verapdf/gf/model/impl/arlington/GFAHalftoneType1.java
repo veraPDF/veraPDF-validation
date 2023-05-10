@@ -36,7 +36,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSpotFunction() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getSpotFunction1_2();
 			case ARLINGTON1_3:
@@ -137,7 +137,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTransferFunction() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getTransferFunction1_2();
 			case ARLINGTON1_3:

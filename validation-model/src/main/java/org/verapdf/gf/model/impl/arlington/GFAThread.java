@@ -38,7 +38,7 @@ public class GFAThread extends GFAObject implements AThread {
 	}
 
 	private List<ABeadFirst> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -67,7 +67,7 @@ public class GFAThread extends GFAObject implements AThread {
 	}
 
 	private List<ADocInfo> getI() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -96,7 +96,7 @@ public class GFAThread extends GFAObject implements AThread {
 	}
 
 	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getMetadata2_0();
 			default:

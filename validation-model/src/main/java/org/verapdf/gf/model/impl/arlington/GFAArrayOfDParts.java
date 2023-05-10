@@ -34,7 +34,7 @@ public class GFAArrayOfDParts extends GFAObject implements AArrayOfDParts {
 	}
 
 	private List<AArrayOfDPartsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

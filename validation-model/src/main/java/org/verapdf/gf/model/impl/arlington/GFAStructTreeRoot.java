@@ -48,7 +48,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -75,7 +75,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<AClassMap> getClassMap() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -102,7 +102,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<AStructTreeRootNameTreeIDTree> getIDTree() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -129,7 +129,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getK() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -161,7 +161,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<AArrayOfNamespace> getNamespaces() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getNamespaces2_0();
 			default:
@@ -183,7 +183,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<AStructTreeRootNumberTreeParentTree> getParentTree() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -210,7 +210,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPronunciationLexicon() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getPronunciationLexicon2_0();
 			default:
@@ -237,7 +237,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<ARoleMap> getRoleMap() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

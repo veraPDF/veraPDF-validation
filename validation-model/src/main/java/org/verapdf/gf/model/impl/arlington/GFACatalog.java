@@ -84,7 +84,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AAddActionCatalog> getAA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -110,7 +110,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AArrayOfFileSpecifications> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -132,7 +132,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AInteractiveForm> getAcroForm() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -160,7 +160,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ACollection> getCollection() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getCollection1_7();
@@ -183,7 +183,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ADPartRoot> getDPartRoot() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -207,7 +207,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ADSS> getDSS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getDSS2_0();
 			default:
@@ -229,7 +229,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ADestsMap> getDests() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -258,7 +258,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AExtensions> getExtensions() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getExtensions1_7();
@@ -281,7 +281,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ALegalAttestation> getLegal() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -306,7 +306,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AMarkInfo> getMarkInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -332,7 +332,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -358,7 +358,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AName> getNames() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -386,7 +386,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AOptContentProperties> getOCProperties() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -411,7 +411,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOpenAction() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 				return getOpenAction1_1();
 			case ARLINGTON1_2:
@@ -928,7 +928,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AOutline> getOutlines() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -958,7 +958,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AArrayOfOutputIntents> getOutputIntents() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -984,7 +984,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ACatalogNumberTreePageLabels> getPageLabels() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -1011,7 +1011,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<APageTreeNodeRoot> getPages() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -1041,7 +1041,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<APermissions> getPerms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -1066,7 +1066,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<APagePiece> getPieceInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -1092,7 +1092,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AArrayOfRequirements> getRequirements() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getRequirements1_7();
@@ -1115,7 +1115,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AWebCaptureInfo> getSpiderInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -1142,7 +1142,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AStructTreeRoot> getStructTreeRoot() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -1169,7 +1169,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AArrayOfThreads> getThreads() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -1198,7 +1198,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AURI> getURI() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -1227,7 +1227,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AViewerPreferences> getViewerPreferences() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -1526,7 +1526,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	public String getPageLayoutNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -1565,7 +1565,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	public String getPageModeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

@@ -36,7 +36,7 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -87,7 +87,7 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	}
 
 	private List<AArrayOfNamesGeneral> getComponents() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

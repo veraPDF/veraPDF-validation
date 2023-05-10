@@ -38,7 +38,7 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	}
 
 	private List<ACryptFilterMapEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -62,7 +62,7 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	}
 
 	private List<ACryptFilter> getIdentity() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -87,7 +87,7 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	}
 
 	private List<ACryptFilter> getStdCF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

@@ -36,7 +36,7 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 				return getentry11_0();
 			case ARLINGTON1_1:
@@ -192,7 +192,7 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	private List<AStream> getentry3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

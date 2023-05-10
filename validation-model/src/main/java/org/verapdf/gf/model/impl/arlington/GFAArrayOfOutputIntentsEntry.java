@@ -39,7 +39,7 @@ public class GFAArrayOfOutputIntentsEntry extends GFAObject implements AArrayOfO
 	}
 
 	private List<AOutputIntents> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

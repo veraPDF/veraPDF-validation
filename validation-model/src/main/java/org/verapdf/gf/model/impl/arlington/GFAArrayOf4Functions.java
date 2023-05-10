@@ -40,7 +40,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getentry01_2();
 			case ARLINGTON1_3:
@@ -131,7 +131,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getentry11_2();
 			case ARLINGTON1_3:
@@ -222,7 +222,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getentry21_2();
 			case ARLINGTON1_3:
@@ -313,7 +313,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getentry31_2();
 			case ARLINGTON1_3:

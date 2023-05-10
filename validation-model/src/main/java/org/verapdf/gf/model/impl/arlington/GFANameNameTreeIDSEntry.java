@@ -44,7 +44,7 @@ public class GFANameNameTreeIDSEntry extends GFAObject implements ANameNameTreeI
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

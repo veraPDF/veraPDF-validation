@@ -36,7 +36,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getCF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -60,7 +60,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	private List<AArrayOfStringsByte> getRecipients() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -203,7 +203,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	public Long getLengthIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -238,7 +238,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	public Long getPBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -285,7 +285,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	public String getStmFNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -319,7 +319,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	public String getStrFNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

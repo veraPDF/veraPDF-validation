@@ -40,7 +40,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	private List<AArrayOfNamesGeneral> getentry1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -67,7 +67,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -123,7 +123,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -199,7 +199,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	private List<ADeviceNDict> getentry4() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

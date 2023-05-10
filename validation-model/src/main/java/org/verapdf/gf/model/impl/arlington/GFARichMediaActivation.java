@@ -42,7 +42,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<ARichMediaAnimation> getAnimation() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getAnimation1_7();
@@ -65,7 +65,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<ARichMediaConfiguration> getConfiguration() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getConfiguration1_7();
@@ -88,7 +88,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<ARichMediaPresentation> getPresentation() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getPresentation1_7();
@@ -111,7 +111,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<AArrayOfIndirectFileSpecifications> getScripts() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getScripts1_7();
@@ -134,7 +134,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getView() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getView1_7();
@@ -204,7 +204,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	public String getConditionNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "XA";

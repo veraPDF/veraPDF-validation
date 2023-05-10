@@ -48,7 +48,7 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	}
 
 	public Double getentry0NumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -87,7 +87,7 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	}
 
 	public Double getentry1NumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -126,7 +126,7 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	}
 
 	public Double getentry2NumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -165,7 +165,7 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	}
 
 	public Double getentry3NumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

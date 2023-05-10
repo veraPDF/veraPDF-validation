@@ -34,7 +34,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	private List<ARichMediaWindow> getWindow() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getWindow1_7();
@@ -102,7 +102,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	public String getStyleNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "Embedded";

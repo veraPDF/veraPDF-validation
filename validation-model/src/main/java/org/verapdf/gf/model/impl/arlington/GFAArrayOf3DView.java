@@ -34,7 +34,7 @@ public class GFAArrayOf3DView extends GFAObject implements AArrayOf3DView {
 	}
 
 	private List<AArrayOf3DViewEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

@@ -39,7 +39,7 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

@@ -34,7 +34,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	}
 
 	private List<ADocInfoEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 				return getEntries1_1();
@@ -186,7 +186,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	}
 
 	public String getTrappedNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

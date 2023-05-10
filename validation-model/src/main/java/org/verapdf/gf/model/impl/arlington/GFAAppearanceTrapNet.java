@@ -38,7 +38,7 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -70,7 +70,7 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getN() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -102,7 +102,7 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

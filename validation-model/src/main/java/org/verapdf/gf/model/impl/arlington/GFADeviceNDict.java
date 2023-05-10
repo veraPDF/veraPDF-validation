@@ -38,7 +38,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	private List<AColorantsDict> getColorants() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -65,7 +65,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	private List<ADeviceNMixingHints> getMixingHints() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -89,7 +89,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	private List<ADeviceNProcess> getProcess() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -169,7 +169,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	public String getSubtypeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

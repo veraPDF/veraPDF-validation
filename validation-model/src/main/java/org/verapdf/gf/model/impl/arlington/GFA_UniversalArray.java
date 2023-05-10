@@ -34,7 +34,7 @@ public class GFA_UniversalArray extends GFAObject implements A_UniversalArray {
 	}
 
 	private List<A_UniversalArrayEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

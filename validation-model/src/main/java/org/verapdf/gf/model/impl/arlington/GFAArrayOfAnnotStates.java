@@ -34,7 +34,7 @@ public class GFAArrayOfAnnotStates extends GFAObject implements AArrayOfAnnotSta
 	}
 
 	private List<AArrayOfAnnotStatesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

@@ -47,7 +47,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	public String getCSNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -118,7 +118,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	public Double getNNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -151,7 +151,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	public String getOBNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "Absolute";
@@ -183,7 +183,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	public Double getOSNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

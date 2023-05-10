@@ -47,7 +47,7 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 	}
 
 	public Long getFfIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

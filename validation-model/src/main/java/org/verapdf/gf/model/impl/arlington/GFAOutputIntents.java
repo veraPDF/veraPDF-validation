@@ -40,7 +40,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	private List<AICCProfileStream> getDestOutputProfile() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -66,7 +66,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	private List<ADestOutputProfileRef> getDestOutputProfileRef() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getDestOutputProfileRef2_0();
 			default:
@@ -88,7 +88,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	private List<ADeviceNMixingHints> getMixingHints() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getMixingHints2_0();
 			default:
@@ -110,7 +110,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	private List<ASpectralData> getSpectralData() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getSpectralData2_0();
 			default:

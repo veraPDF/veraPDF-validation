@@ -42,7 +42,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AStream> getCIDSet() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -70,7 +70,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFDDict> getFD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -98,7 +98,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFontFile> getFontFile() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -126,7 +126,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFontFile3CIDType0> getFontFile3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -154,7 +154,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AStyleDict> getStyle() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

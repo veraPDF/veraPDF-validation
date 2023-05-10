@@ -39,7 +39,7 @@ public class GFAArrayOfImageAlternatesEntry extends GFAObject implements AArrayO
 	}
 
 	private List<AAlternateImage> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

@@ -34,7 +34,7 @@ public class GFAArrayOfViewParams extends GFAObject implements AArrayOfViewParam
 	}
 
 	private List<AArrayOfViewParamsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntries1_7();

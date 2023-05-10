@@ -48,7 +48,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -75,7 +75,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getAP1_7();
@@ -98,7 +98,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getBorder1_7();
@@ -121,7 +121,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getC1_7();
@@ -144,7 +144,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getOC1_7();
@@ -189,7 +189,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getP1_7();
@@ -212,7 +212,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	private List<ARichMediaContent> getRichMediaContent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getRichMediaContent1_7();
@@ -235,7 +235,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	private List<ARichMediaSettings> getRichMediaSettings() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getRichMediaSettings1_7();
@@ -320,7 +320,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -373,7 +373,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}
@@ -415,7 +415,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 0L;
@@ -654,7 +654,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

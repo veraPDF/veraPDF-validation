@@ -36,7 +36,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getNext1_2();
 			case ARLINGTON1_3:
@@ -397,7 +397,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	private List<ASoundObject> getSound() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -569,7 +569,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	public Double getVolumeNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

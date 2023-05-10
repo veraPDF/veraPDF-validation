@@ -36,7 +36,7 @@ public class GFAData extends GFAObject implements AData {
 	}
 
 	private List<ADataEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -62,7 +62,7 @@ public class GFAData extends GFAObject implements AData {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPrivate() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

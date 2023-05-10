@@ -39,7 +39,7 @@ public class GFAExtensionsEntry extends GFAObject implements AExtensionsEntry {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 				return getEntry1_7();
 			case ARLINGTON2_0:

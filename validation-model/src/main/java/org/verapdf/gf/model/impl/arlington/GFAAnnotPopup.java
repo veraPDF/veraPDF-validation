@@ -46,7 +46,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -73,7 +73,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -100,7 +100,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -127,7 +127,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -154,7 +154,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -201,7 +201,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -228,7 +228,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 				return getParent1_3();
 			case ARLINGTON1_4:
@@ -751,7 +751,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -804,7 +804,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}
@@ -846,7 +846,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -1055,7 +1055,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

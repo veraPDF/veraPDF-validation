@@ -34,7 +34,7 @@ public class GFAArrayOfNamespace extends GFAObject implements AArrayOfNamespace 
 	}
 
 	private List<AArrayOfNamespaceEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntries2_0();
 			default:

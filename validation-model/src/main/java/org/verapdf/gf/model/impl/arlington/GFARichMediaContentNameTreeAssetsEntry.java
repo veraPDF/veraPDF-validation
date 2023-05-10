@@ -44,7 +44,7 @@ public class GFARichMediaContentNameTreeAssetsEntry extends GFAObject implements
 	}
 
 	private List<AFileSpecification> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntry1_7();

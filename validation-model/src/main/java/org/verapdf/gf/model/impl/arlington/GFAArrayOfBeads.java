@@ -34,7 +34,7 @@ public class GFAArrayOfBeads extends GFAObject implements AArrayOfBeads {
 	}
 
 	private List<AArrayOfBeadsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

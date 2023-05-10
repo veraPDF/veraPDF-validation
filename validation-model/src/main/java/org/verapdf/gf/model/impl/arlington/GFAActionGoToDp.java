@@ -36,7 +36,7 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 	}
 
 	private List<ADPart> getDp() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getDp2_0();
 			default:
@@ -58,7 +58,7 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getNext2_0();
 			default:

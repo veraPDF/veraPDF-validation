@@ -34,7 +34,7 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getData() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -145,7 +145,7 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	}
 
 	public String getDigestMethodNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return gethasExtensionISO_TS_32001() ? "SHA256" : null;
 			case ARLINGTON1_5:

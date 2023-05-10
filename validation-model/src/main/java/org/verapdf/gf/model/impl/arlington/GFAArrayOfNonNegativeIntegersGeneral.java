@@ -34,7 +34,7 @@ public class GFAArrayOfNonNegativeIntegersGeneral extends GFAObject implements A
 	}
 
 	private List<AArrayOfNonNegativeIntegersGeneralEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

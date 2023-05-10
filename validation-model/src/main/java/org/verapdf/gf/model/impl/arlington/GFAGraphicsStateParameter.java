@@ -60,7 +60,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AAAPL_ST> getAAPLST() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -88,7 +88,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getBG() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getBG1_2();
 			case ARLINGTON1_3:
@@ -179,7 +179,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getBG2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -255,7 +255,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOfBlendModes> getBM() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -281,7 +281,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOfGSPDashPatterns> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -308,7 +308,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOfFontAndSize> getFont() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -335,7 +335,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getHT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getHT1_2();
 			case ARLINGTON1_3:
@@ -477,7 +477,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOf_2Numbers> getHTO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getHTO2_0();
 			default:
@@ -499,7 +499,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOf_2Integers> getHTP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -527,7 +527,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSMask() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -575,7 +575,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getTR1_2();
 			case ARLINGTON1_3:
@@ -676,7 +676,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTR2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -757,7 +757,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getUCR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getUCR1_2();
 			case ARLINGTON1_3:
@@ -848,7 +848,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getUCR2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -1602,7 +1602,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	public String getUseBlackPtCompNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Default";
 		}

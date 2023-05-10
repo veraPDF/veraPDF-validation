@@ -40,7 +40,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	}
 
 	private List<AEncoding> getEncoding() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -70,7 +70,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	}
 
 	private List<AFontDescriptorType1> getFontDescriptor() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -100,7 +100,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	}
 
 	private List<AStream> getToUnicode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -128,7 +128,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getWidths() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

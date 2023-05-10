@@ -39,7 +39,7 @@ public class GFARoleMapNSEntry extends GFAObject implements ARoleMapNSEntry {
 	}
 
 	private List<AArrayOf_RoleMapNS> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntry2_0();
 			default:

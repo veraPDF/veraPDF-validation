@@ -40,7 +40,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<AAnnotScreen> getAN() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -65,7 +65,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<AStream> getJS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -90,7 +90,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getNext1_5();
 			case ARLINGTON1_6:
@@ -320,7 +320,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

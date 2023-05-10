@@ -38,7 +38,7 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	}
 
 	private List<ACryptFilterPublicKeyMapEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -62,7 +62,7 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	}
 
 	private List<ACryptFilterPublicKey> getDefEmbeddedFile() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -87,7 +87,7 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	}
 
 	private List<ACryptFilterPublicKey> getDefaultCryptFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

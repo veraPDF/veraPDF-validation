@@ -48,7 +48,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AColorSpaceMap> getColorSpace() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -78,7 +78,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AGraphicsStateParameterMap> getExtGState() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -106,7 +106,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AFontMap> getFont() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -136,7 +136,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<APatternMap> getPattern() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -164,7 +164,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AArrayOfNamesForProcSet> getProcSet() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -194,7 +194,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<A_UniversalDictionary> getentryProperties() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -222,7 +222,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AShadingMap> getShading() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -249,7 +249,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AXObjectMap> getXObject() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

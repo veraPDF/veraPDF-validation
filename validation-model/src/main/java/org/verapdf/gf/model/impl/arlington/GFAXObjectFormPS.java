@@ -44,7 +44,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 				return getDecodeParms1_1();
 			case ARLINGTON1_2:
@@ -162,7 +162,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -191,7 +191,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -289,7 +289,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -317,7 +317,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -346,7 +346,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<AStream> getLevel1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

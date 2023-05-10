@@ -40,7 +40,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	private List<AStream> getData() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getData2_0();
 			default:
@@ -62,7 +62,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	private List<ARichMediaInstance> getInstance() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getInstance2_0();
 			default:
@@ -84,7 +84,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	private List<AArrayOf3DTransMatrix> getM() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getM1_7();
@@ -107,7 +107,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	private List<A3DRenderMode> getRM() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getRM2_0();
 			default:

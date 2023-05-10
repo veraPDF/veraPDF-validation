@@ -34,7 +34,7 @@ public class GFAArrayOfDashPatterns extends GFAObject implements AArrayOfDashPat
 	}
 
 	private List<AArrayOfDashPatternsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

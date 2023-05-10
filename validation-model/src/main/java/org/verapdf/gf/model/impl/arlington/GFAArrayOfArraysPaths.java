@@ -36,7 +36,7 @@ public class GFAArrayOfArraysPaths extends GFAObject implements AArrayOfArraysPa
 	}
 
 	private List<AArrayOfArraysPathsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntries2_0();
 			default:
@@ -54,7 +54,7 @@ public class GFAArrayOfArraysPaths extends GFAObject implements AArrayOfArraysPa
 	}
 
 	private List<AArrayOfPaths> getentry0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getentry02_0();
 			default:

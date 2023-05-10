@@ -39,7 +39,7 @@ public class GFA3DStreamNameTreeResources extends GFAObject implements A3DStream
 	}
 
 	private List<A3DStreamNameTreeResourcesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

@@ -34,7 +34,7 @@ public class GFAArrayOfDifferences extends GFAObject implements AArrayOfDifferen
 	}
 
 	private List<AArrayOfDifferencesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

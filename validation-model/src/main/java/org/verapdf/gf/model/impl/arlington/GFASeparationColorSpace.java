@@ -36,7 +36,7 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getentry21_2();
 			case ARLINGTON1_3:
@@ -134,7 +134,7 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getentry31_2();
 			case ARLINGTON1_3:

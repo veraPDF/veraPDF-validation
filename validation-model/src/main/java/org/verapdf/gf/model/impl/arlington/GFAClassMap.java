@@ -34,7 +34,7 @@ public class GFAClassMap extends GFAObject implements AClassMap {
 	}
 
 	private List<AClassMapEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

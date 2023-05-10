@@ -40,7 +40,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getC0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -67,7 +67,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getC1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -94,7 +94,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDomain() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -121,7 +121,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getRange() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

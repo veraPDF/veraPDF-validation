@@ -40,7 +40,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	private List<ACollectionSchema> getInitialFields() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getInitialFields1_7();
@@ -63,7 +63,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	private List<AArrayOfNavigatorLayoutNames> getLayout() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getLayout2_0();
 			default:
@@ -85,7 +85,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	private List<ANavigatorNameTreeResources> getResources() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getResources1_7();
@@ -108,7 +108,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	private List<ANavigatorNameTreeStrings> getStrings() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getStrings1_7();
@@ -253,7 +253,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	public String getLoadTypeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "Default";

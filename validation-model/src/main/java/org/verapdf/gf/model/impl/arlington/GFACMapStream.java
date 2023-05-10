@@ -46,7 +46,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	private List<ACIDSystemInfo> getCIDSystemInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -74,7 +74,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -172,7 +172,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -200,7 +200,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -298,7 +298,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -326,7 +326,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -354,7 +354,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	private List<AStream> getUseCMap() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -684,7 +684,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	public Long getWModeIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

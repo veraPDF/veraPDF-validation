@@ -39,7 +39,7 @@ public class GFAArrayOfRequirementsHandlersEntry extends GFAObject implements AA
 	}
 
 	private List<ARequirementsHandler> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntry1_7();

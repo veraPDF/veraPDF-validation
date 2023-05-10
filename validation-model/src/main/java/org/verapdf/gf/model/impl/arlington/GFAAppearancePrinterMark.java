@@ -38,7 +38,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -69,7 +69,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getN() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -100,7 +100,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

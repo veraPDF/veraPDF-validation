@@ -34,7 +34,7 @@ public class GFAArrayOfPages extends GFAObject implements AArrayOfPages {
 	}
 
 	private List<AArrayOfPagesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

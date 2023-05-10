@@ -34,7 +34,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getCS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

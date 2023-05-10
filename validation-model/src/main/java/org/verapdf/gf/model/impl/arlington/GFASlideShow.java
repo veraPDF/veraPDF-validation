@@ -34,7 +34,7 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	}
 
 	private List<ASlideShowNameTreeResources> getResources() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

@@ -52,7 +52,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -80,7 +80,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 				return getDecodeParms1_3();
@@ -177,7 +177,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDomain() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -205,7 +205,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getEncode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -233,7 +233,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -260,7 +260,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 				return getFDecodeParms1_3();
@@ -357,7 +357,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -384,7 +384,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -411,7 +411,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getRange() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -439,7 +439,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfIntegersGeneral> getSize() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -795,7 +795,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	public Long getOrderIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

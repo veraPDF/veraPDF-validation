@@ -36,7 +36,7 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getNext1_5();
 			case ARLINGTON1_6:
@@ -266,7 +266,7 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 	}
 
 	private List<ATransition> getTrans() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

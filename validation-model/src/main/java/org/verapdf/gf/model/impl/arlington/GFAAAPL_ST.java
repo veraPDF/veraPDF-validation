@@ -38,7 +38,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	private List<AArrayOfNumbersGeneral> getColor() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -66,7 +66,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getColorSpace1_2();
 			case ARLINGTON1_3:
@@ -168,7 +168,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	private List<AArrayOf_2Numbers> getOffset() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

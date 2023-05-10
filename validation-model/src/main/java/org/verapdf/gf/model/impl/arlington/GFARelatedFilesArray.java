@@ -34,7 +34,7 @@ public class GFARelatedFilesArray extends GFAObject implements ARelatedFilesArra
 	}
 
 	private List<ARelatedFilesArraySubArray> getsubArrays() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

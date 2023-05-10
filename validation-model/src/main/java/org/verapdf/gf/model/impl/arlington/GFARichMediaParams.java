@@ -38,7 +38,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	private List<AArrayOfRichMediaCuePoints> getCuePoints() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getCuePoints1_7();
@@ -61,7 +61,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	private List<AStream> getFlashVars() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getFlashVars1_7();
@@ -84,7 +84,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	private List<AStream> getSettings() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getSettings1_7();
@@ -130,7 +130,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	public String getBindingNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "None";

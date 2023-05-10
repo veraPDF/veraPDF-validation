@@ -34,7 +34,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	}
 
 	private List<AArrayOf_2Numbers> getA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -106,7 +106,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	}
 
 	public String getSNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -142,7 +142,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	}
 
 	public String getSWNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

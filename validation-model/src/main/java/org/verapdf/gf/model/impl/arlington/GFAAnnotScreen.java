@@ -50,7 +50,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getA1_5();
 			case ARLINGTON1_6:
@@ -265,7 +265,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<AAddActionScreenAnnotation> getAA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -290,7 +290,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -317,7 +317,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -342,7 +342,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -367,7 +367,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -392,7 +392,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<AAppearanceCharacteristics> getMK() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -417,7 +417,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -464,7 +464,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -573,7 +573,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -626,7 +626,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}
@@ -668,7 +668,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -909,7 +909,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

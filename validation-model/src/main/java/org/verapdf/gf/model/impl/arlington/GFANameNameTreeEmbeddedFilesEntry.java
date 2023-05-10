@@ -44,7 +44,7 @@ public class GFANameNameTreeEmbeddedFilesEntry extends GFAObject implements ANam
 	}
 
 	private List<AFileSpecification> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

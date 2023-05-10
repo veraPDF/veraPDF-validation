@@ -52,7 +52,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<A3DBackground> getBG() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -76,7 +76,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<AArrayOf3DTransMatrix> getC2W() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -100,7 +100,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<A3DLightingScheme> getLS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getLS1_7();
@@ -123,7 +123,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<AArrayOf3DMeasure> getMA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getMA2_0();
 			default:
@@ -145,7 +145,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<AArrayOf3DNode> getNA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getNA1_7();
@@ -168,7 +168,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<AXObjectFormType1> getO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -192,7 +192,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<AProjection> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -216,7 +216,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<A3DRenderMode> getRM() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getRM1_7();
@@ -239,7 +239,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<AArrayOf3DCrossSection> getSA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getSA1_7();
@@ -262,7 +262,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	private List<AArrayOfStringsText> getU3DPath() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

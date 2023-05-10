@@ -54,7 +54,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeAP> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -81,7 +81,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeAlternatePresentations> getAlternatePresentations() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -107,7 +107,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeDests> getDests() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -135,7 +135,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeEmbeddedFiles> getEmbeddedFiles() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -161,7 +161,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeIDS> getIDS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -188,7 +188,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeJavaScript> getJavaScript() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -215,7 +215,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreePages> getPages() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -242,7 +242,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeRenditions> getRenditions() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -267,7 +267,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeTemplates> getTemplates() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -294,7 +294,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeURLS> getURLS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -321,7 +321,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeXFAResources> getXFAResources() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getXFAResources1_7();

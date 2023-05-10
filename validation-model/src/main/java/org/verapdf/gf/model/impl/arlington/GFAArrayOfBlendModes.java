@@ -34,7 +34,7 @@ public class GFAArrayOfBlendModes extends GFAObject implements AArrayOfBlendMode
 	}
 
 	private List<AArrayOfBlendModesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

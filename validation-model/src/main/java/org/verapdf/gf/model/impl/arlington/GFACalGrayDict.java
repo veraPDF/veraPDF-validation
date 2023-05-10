@@ -36,7 +36,7 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	}
 
 	private List<ABlackpointArray> getBlackPoint() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -65,7 +65,7 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	}
 
 	private List<AWhitepointArray> getWhitePoint() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -128,7 +128,7 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	}
 
 	public Double getGammaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

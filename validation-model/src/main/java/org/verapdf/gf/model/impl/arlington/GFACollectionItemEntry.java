@@ -39,7 +39,7 @@ public class GFACollectionItemEntry extends GFAObject implements ACollectionItem
 	}
 
 	private List<ACollectionSubitem> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntry1_7();

@@ -38,7 +38,7 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	}
 
 	private List<AArrayOfNumbersGeneral> getBC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -64,7 +64,7 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	}
 
 	private List<AXObjectFormType1> getG() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -90,7 +90,7 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -261,7 +261,7 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	}
 
 	public String getTRNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

@@ -36,7 +36,7 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 	}
 
 	private List<AEmbeddedFileStream> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -63,7 +63,7 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 	}
 
 	private List<AEmbeddedFileStream> getUF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getUF1_7();

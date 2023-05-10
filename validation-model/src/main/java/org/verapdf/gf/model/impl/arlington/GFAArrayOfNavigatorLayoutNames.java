@@ -34,7 +34,7 @@ public class GFAArrayOfNavigatorLayoutNames extends GFAObject implements AArrayO
 	}
 
 	private List<AArrayOfNavigatorLayoutNamesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntries2_0();
 			default:

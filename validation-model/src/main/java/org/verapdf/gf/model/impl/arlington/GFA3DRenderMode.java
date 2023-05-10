@@ -36,7 +36,7 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	private List<AArrayOf_4ColourSpaceEntries> getAC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getAC1_7();
@@ -59,7 +59,7 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	private List<AArrayOf_4ColourSpaceEntries> getFC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getFC1_7();
@@ -133,7 +133,7 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	public String getFCNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "BG";
@@ -165,7 +165,7 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	public Double getONumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 0.5D;

@@ -36,7 +36,7 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 	}
 
 	private List<ARichMediaActivation> getActivation() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getActivation1_7();
@@ -59,7 +59,7 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 	}
 
 	private List<ARichMediaDeactivation> getDeactivation() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getDeactivation1_7();

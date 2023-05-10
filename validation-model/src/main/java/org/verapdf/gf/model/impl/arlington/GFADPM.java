@@ -38,7 +38,7 @@ public class GFADPM extends GFAObject implements ADPM {
 	}
 
 	private List<ADPMEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -61,7 +61,7 @@ public class GFADPM extends GFAObject implements ADPM {
 	}
 
 	private List<A_UniversalDictionary> getGTS_Managed() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -85,7 +85,7 @@ public class GFADPM extends GFAObject implements ADPM {
 	}
 
 	private List<A_UniversalDictionary> getGTS_Suspect() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

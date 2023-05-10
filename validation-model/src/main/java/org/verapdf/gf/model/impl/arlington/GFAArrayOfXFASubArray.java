@@ -34,7 +34,7 @@ public class GFAArrayOfXFASubArray extends GFAObject implements AArrayOfXFASubAr
 	}
 
 	private List<AStream> getentry1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

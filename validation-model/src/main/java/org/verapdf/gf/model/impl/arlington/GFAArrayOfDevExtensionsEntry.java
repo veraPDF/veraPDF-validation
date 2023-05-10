@@ -39,7 +39,7 @@ public class GFAArrayOfDevExtensionsEntry extends GFAObject implements AArrayOfD
 	}
 
 	private List<ADevExtensions> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntry2_0();
 			default:

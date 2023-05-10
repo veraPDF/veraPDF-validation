@@ -69,7 +69,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public Long getColumnsIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -108,7 +108,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public Long getDamagedRowsBeforeErrorIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -169,7 +169,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public Boolean getEndOfLineBooleanDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -208,7 +208,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public Long getKIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -247,7 +247,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public Long getRowsIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

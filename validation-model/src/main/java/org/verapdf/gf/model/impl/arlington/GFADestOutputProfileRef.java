@@ -36,7 +36,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	}
 
 	private List<AArrayOfNamesGeneral> getColorantTable() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getColorantTable2_0();
 			default:
@@ -58,7 +58,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	}
 
 	private List<AArrayOfURLs> getURLs() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getURLs2_0();
 			default:

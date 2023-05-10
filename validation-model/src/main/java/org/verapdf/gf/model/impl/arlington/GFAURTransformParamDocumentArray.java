@@ -34,7 +34,7 @@ public class GFAURTransformParamDocumentArray extends GFAObject implements AURTr
 	}
 
 	private List<AURTransformParamDocumentArrayEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

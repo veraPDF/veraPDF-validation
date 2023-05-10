@@ -39,7 +39,7 @@ public class GFAArrayOfFieldChoiceOptEntry extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_2StringsText> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

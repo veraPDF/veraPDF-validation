@@ -48,7 +48,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -74,7 +74,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 				return getDecodeParms1_4();
 			case ARLINGTON1_5:
@@ -182,7 +182,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -208,7 +208,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 				return getFDecodeParms1_4();
 			case ARLINGTON1_5:
@@ -316,7 +316,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AArrayOfFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -342,7 +342,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AArrayOfFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -368,7 +368,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AArrayOfNumbersGeneral> getMatte() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -394,7 +394,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -736,7 +736,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	public Boolean getImageMaskBooleanDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

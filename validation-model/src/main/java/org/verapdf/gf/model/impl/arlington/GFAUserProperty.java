@@ -34,7 +34,7 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

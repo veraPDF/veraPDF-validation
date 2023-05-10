@@ -34,7 +34,7 @@ public class GFAFDDict extends GFAObject implements AFDDict {
 	}
 
 	private List<AFDDictEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

@@ -39,7 +39,7 @@ public class GFAArrayOf3DMeasureEntry extends GFAObject implements AArrayOf3DMea
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntry2_0();
 			default:

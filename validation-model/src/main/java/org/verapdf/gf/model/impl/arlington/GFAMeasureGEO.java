@@ -46,7 +46,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOfNumbersGeneral> getBounds() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getBounds1_7();
@@ -69,7 +69,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDCS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getDCS1_7();
@@ -114,7 +114,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getGCS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getGCS1_7();
@@ -159,7 +159,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOfNumbersGeneral> getGPTS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getGPTS1_7();
@@ -182,7 +182,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOfNumbersGeneral> getLPTS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getLPTS1_7();
@@ -205,7 +205,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOf3DTransMatrix> getPCSM() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getPCSM2_0();
 			default:
@@ -227,7 +227,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOf3PDUNames> getPDU() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getPDU1_7();

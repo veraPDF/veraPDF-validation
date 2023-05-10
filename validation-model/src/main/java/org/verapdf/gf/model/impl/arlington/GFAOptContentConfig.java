@@ -46,7 +46,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOCUsage> getAS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -71,7 +71,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfNamesGeneral> getIntent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -96,7 +96,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOptContentGroups> getLocked() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -120,7 +120,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOptContentGroups> getOFF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -145,7 +145,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOptContentGroups> getON() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -170,7 +170,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOptContentOrderElements> getOrder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -195,7 +195,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfArraysRBGroups> getRBGroups() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -254,7 +254,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	public String getBaseStateNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -305,7 +305,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	public String getIntentNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -339,7 +339,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	public String getListModeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

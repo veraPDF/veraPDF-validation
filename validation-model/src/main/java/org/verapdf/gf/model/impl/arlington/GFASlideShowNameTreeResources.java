@@ -39,7 +39,7 @@ public class GFASlideShowNameTreeResources extends GFAObject implements ASlideSh
 	}
 
 	private List<ASlideShowNameTreeResourcesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

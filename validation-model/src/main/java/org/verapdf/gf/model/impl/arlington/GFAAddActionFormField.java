@@ -40,7 +40,7 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	private List<AActionECMAScript> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -67,7 +67,7 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	private List<AActionECMAScript> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -94,7 +94,7 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	private List<AActionECMAScript> getK() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -121,7 +121,7 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	private List<AActionECMAScript> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

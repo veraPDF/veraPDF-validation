@@ -34,7 +34,7 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	private List<ACryptFilterMap> getCF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -115,7 +115,7 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	public String getFilterNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -170,7 +170,7 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	public Long getLengthIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

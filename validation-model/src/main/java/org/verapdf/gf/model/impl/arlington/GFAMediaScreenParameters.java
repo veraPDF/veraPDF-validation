@@ -36,7 +36,7 @@ public class GFAMediaScreenParameters extends GFAObject implements AMediaScreenP
 	}
 
 	private List<AMediaScreenParametersMHBE> getBE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -61,7 +61,7 @@ public class GFAMediaScreenParameters extends GFAObject implements AMediaScreenP
 	}
 
 	private List<AMediaScreenParametersMHBE> getMH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

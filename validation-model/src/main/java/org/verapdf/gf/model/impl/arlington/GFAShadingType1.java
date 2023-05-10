@@ -40,7 +40,7 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getBackground() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -67,7 +67,7 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -129,7 +129,7 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 	}
 
 	private List<AArrayOf_4Numbers> getDomain() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -156,7 +156,7 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFunction() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

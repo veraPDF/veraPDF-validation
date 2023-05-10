@@ -42,7 +42,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamAnnotsArray> getAnnots() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -67,7 +67,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamDocumentArray> getDocument() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -92,7 +92,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamEFArray> getEF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -116,7 +116,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamFormArray> getForm() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -141,7 +141,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamSignatureArray> getSignature() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

@@ -40,7 +40,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -82,7 +82,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -106,7 +106,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 				return getNext1_6();
@@ -266,7 +266,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<ATarget> getT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

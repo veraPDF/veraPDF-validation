@@ -38,7 +38,7 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	private List<ARenditionBE> getBE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -63,7 +63,7 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	private List<ARenditionMH> getMH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -88,7 +88,7 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	private List<AArrayOfRenditions> getR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

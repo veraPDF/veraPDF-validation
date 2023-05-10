@@ -36,7 +36,7 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOCGs() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -66,7 +66,7 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	private List<AVisibilityExpressionArray> getVE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -136,7 +136,7 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	public String getPNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

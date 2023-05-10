@@ -36,7 +36,7 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	private List<AAnnot3D> getentry3DA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getentry3DA1_7();
@@ -59,7 +59,7 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	private List<A3DView> getentry3DV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getentry3DV1_7();

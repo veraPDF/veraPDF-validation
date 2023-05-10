@@ -48,7 +48,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AAddActionFormField> getAA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -75,7 +75,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfStringsText> getDV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -103,7 +103,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfNonNegativeIntegersGeneral> getI() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -129,7 +129,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfFields> getKids() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -157,7 +157,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfFieldChoiceOpt> getOpt() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -183,7 +183,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getParent1_2();
 			case ARLINGTON1_3:
@@ -351,7 +351,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AStream> getRV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -376,7 +376,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfStringsText> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -691,7 +691,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	public Long getQIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -779,7 +779,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	public Long getTIIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

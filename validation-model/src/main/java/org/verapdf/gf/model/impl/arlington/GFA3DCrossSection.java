@@ -40,7 +40,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	private List<AArrayOf_3CenterOfRotationNumbers> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getC1_7();
@@ -63,7 +63,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	private List<AArrayOf_4ColourSpaceEntries> getIC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getIC1_7();
@@ -86,7 +86,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	private List<AArrayOf_3OrientationNumbers> getO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getO1_7();
@@ -109,7 +109,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	private List<AArrayOf_4ColourSpaceEntries> getPC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getPC1_7();
@@ -177,7 +177,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	public Boolean getIVBooleanDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return true;
@@ -231,7 +231,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	public Double getPONumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 0.5D;

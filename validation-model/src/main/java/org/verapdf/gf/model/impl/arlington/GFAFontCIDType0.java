@@ -46,7 +46,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	}
 
 	private List<ACIDSystemInfo> getCIDSystemInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -74,7 +74,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	}
 
 	private List<AStream> getCIDToGIDMap() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -102,7 +102,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	}
 
 	private List<AArrayOf_2Numbers> getDW2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -130,7 +130,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	}
 
 	private List<AFontDescriptorCIDType0> getFontDescriptor() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -158,7 +158,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	}
 
 	private List<AStream> getToUnicode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -186,7 +186,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	}
 
 	private List<AArrayOfCIDGlyphMetricsW> getW() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -214,7 +214,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	}
 
 	private List<AArrayOfCIDGlyphMetricsW2> getW2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

@@ -34,7 +34,7 @@ public class GFARoleMapNS extends GFAObject implements ARoleMapNS {
 	}
 
 	private List<ARoleMapNSEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntries2_0();
 			default:

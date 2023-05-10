@@ -39,7 +39,7 @@ public class GFAArrayOfFunctionsEntry extends GFAObject implements AArrayOfFunct
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getEntry1_2();
 			case ARLINGTON1_3:

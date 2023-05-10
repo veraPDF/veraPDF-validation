@@ -36,7 +36,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	}
 
 	private List<AGraphicsStateParameter> getExtGState() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -63,7 +63,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getShading() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

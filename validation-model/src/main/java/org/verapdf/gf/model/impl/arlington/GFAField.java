@@ -38,7 +38,7 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	private List<AAddActionFormField> getAA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -65,7 +65,7 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	private List<AArrayOfFields> getKids() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -93,7 +93,7 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getParent1_2();
 			case ARLINGTON1_3:

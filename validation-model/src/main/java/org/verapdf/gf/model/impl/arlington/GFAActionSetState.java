@@ -34,7 +34,7 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

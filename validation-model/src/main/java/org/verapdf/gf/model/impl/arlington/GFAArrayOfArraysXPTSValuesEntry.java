@@ -39,7 +39,7 @@ public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArray
 	}
 
 	private List<AArrayOfXPTSValues> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntry1_7();
@@ -83,6 +83,11 @@ public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArray
 			return (long) Names.size();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainsparentNames() {
+		return this.parentObject.knownKey(ASAtom.getASAtom("Names"));
 	}
 
 }

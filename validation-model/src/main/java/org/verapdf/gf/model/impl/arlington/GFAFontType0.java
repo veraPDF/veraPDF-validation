@@ -38,7 +38,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	private List<AArrayOfDescendantFonts> getDescendantFonts() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -66,7 +66,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	private List<ACMapStream> getEncoding() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -94,7 +94,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	private List<AStream> getToUnicode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

@@ -34,7 +34,7 @@ public class GFAVRIMap extends GFAObject implements AVRIMap {
 	}
 
 	private List<AVRIMapEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntries2_0();
 			default:

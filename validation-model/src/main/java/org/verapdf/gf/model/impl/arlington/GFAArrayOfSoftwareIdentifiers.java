@@ -34,7 +34,7 @@ public class GFAArrayOfSoftwareIdentifiers extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOfSoftwareIdentifiersEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

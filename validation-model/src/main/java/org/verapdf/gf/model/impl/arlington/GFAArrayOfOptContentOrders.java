@@ -36,7 +36,7 @@ public class GFAArrayOfOptContentOrders extends GFAObject implements AArrayOfOpt
 	}
 
 	private List<AArrayOfOptContentOrdersEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -57,7 +57,7 @@ public class GFAArrayOfOptContentOrders extends GFAObject implements AArrayOfOpt
 	}
 
 	private List<AOptContentGroup> getentry0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

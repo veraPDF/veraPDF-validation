@@ -52,7 +52,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getBl() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getBl1_2();
 			case ARLINGTON1_3:
@@ -388,7 +388,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getD1_2();
 			case ARLINGTON1_3:
@@ -724,7 +724,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getE1_2();
 			case ARLINGTON1_3:
@@ -1060,7 +1060,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getFo1_2();
 			case ARLINGTON1_3:
@@ -1396,7 +1396,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getPC1_5();
 			case ARLINGTON1_6:
@@ -1611,7 +1611,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPI() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getPI1_5();
 			case ARLINGTON1_6:
@@ -1826,7 +1826,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getPO1_5();
 			case ARLINGTON1_6:
@@ -2041,7 +2041,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getPV1_5();
 			case ARLINGTON1_6:
@@ -2256,7 +2256,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getU() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getU1_2();
 			case ARLINGTON1_3:
@@ -2592,7 +2592,7 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getX() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getX1_2();
 			case ARLINGTON1_3:

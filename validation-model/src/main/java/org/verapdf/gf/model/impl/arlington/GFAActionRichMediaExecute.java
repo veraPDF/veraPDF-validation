@@ -40,7 +40,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<ARichMediaCommand> getCMD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getCMD1_7();
@@ -63,7 +63,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 				return getNext1_7();
 			case ARLINGTON2_0:
@@ -224,7 +224,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<AAnnotRichMedia> getTA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getTA1_7();
@@ -247,7 +247,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<ARichMediaInstance> getTI() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getTI1_7();

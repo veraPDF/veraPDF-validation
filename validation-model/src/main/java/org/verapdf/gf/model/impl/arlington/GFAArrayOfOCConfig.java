@@ -34,7 +34,7 @@ public class GFAArrayOfOCConfig extends GFAObject implements AArrayOfOCConfig {
 	}
 
 	private List<AArrayOfOCConfigEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

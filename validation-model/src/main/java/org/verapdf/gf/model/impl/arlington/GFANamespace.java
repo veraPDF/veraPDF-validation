@@ -36,7 +36,7 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	}
 
 	private List<ARoleMapNS> getRoleMapNS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getRoleMapNS2_0();
 			default:
@@ -58,7 +58,7 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	}
 
 	private List<AFileSpecification> getSchema() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getSchema2_0();
 			default:

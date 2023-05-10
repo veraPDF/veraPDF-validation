@@ -46,7 +46,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AIndexedColorSpace> getColorSpace() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -76,7 +76,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -106,7 +106,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 				return getDecodeParms1_3();
 			case ARLINGTON1_4:
@@ -260,7 +260,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -287,7 +287,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 				return getFDecodeParms1_3();
 			case ARLINGTON1_4:
@@ -441,7 +441,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AArrayOfFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -468,7 +468,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AArrayOfFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

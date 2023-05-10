@@ -36,7 +36,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	private List<AArrayOf_2Integers> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -61,7 +61,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	private List<AArrayOfStringsText> getTT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -120,7 +120,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	public Long getOIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -154,7 +154,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	public Long getPIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -188,7 +188,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	public Long getRIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -222,7 +222,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	public Long getRTIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -256,7 +256,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	public Boolean getTBooleanDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

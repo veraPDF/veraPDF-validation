@@ -36,7 +36,7 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -62,7 +62,7 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	private List<AArrayOf_2StringsByte> getentryID() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

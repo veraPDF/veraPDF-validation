@@ -36,7 +36,7 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 	}
 
 	private List<AXObjectImage> getImage() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -63,7 +63,7 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

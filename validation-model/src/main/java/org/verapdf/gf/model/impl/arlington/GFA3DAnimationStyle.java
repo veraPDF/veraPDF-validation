@@ -58,7 +58,7 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	}
 
 	public String getSubtypeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "None";
@@ -90,7 +90,7 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	}
 
 	public Double getTMNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 1D;

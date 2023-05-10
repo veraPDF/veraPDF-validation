@@ -38,7 +38,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	private List<AArrayOfSoftwareVersions> getH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -63,7 +63,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	private List<AArrayOfSoftwareVersions> getL() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -88,7 +88,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	private List<AArrayOfStringsByte> getOS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

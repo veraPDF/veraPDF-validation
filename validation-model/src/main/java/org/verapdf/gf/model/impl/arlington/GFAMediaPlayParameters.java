@@ -38,7 +38,7 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 	}
 
 	private List<AMediaPlayParametersBE> getBE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -63,7 +63,7 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 	}
 
 	private List<AMediaPlayParametersMH> getMH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -88,7 +88,7 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 	}
 
 	private List<AMediaPlayers> getPL() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

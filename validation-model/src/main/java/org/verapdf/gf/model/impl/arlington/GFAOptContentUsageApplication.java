@@ -36,7 +36,7 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	}
 
 	private List<AArrayOfNamesGeneral> getCategory() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -61,7 +61,7 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	}
 
 	private List<AArrayOfOCG> getOCGs() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

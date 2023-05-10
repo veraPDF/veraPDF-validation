@@ -34,7 +34,7 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 	}
 
 	private List<AArrayOfRichMediaInstances> getInstances() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getInstances1_7();

@@ -47,7 +47,7 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 	}
 
 	public Double getINumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -81,7 +81,7 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 	}
 
 	public String getSNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

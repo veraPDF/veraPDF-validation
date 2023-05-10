@@ -36,7 +36,7 @@ public class GFARequirementsEnableJavaScripts extends GFAObject implements ARequ
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getRH1_7();
@@ -64,7 +64,7 @@ public class GFARequirementsEnableJavaScripts extends GFAObject implements ARequ
 	}
 
 	private List<AExtensions> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getV2_0();
 			default:
@@ -109,7 +109,7 @@ public class GFARequirementsEnableJavaScripts extends GFAObject implements ARequ
 	}
 
 	public Long getPenaltyIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 100L;
 		}

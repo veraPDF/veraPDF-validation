@@ -46,7 +46,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<ACertSeedValue> getCert() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -71,7 +71,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AArrayOfDigestMethod> getDigestMethod() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getDigestMethod1_7();
@@ -94,7 +94,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AArrayOfStringsText> getLegalAttestation() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -118,7 +118,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AMDPDict> getMDP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -142,7 +142,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AArrayOfStringsText> getReasons() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -167,7 +167,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AArrayOfSignatureSubFilterNames> getSubFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -192,7 +192,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<ATimeStampDict> getTimeStamp() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -283,7 +283,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	public Long getFfBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 0L;

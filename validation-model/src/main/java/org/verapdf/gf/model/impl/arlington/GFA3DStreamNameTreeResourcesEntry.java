@@ -44,7 +44,7 @@ public class GFA3DStreamNameTreeResourcesEntry extends GFAObject implements A3DS
 	}
 
 	private List<A_UniversalDictionary> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

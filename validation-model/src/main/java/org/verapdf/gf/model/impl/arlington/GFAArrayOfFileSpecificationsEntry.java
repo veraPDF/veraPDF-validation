@@ -39,7 +39,7 @@ public class GFAArrayOfFileSpecificationsEntry extends GFAObject implements AArr
 	}
 
 	private List<AFileSpecification> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntry2_0();
 			default:

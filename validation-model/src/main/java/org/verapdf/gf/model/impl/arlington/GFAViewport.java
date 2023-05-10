@@ -36,7 +36,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getMeasure() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 				return getMeasure1_6();
@@ -96,7 +96,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	private List<APointData> getPtData() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getPtData2_0();
 			default:

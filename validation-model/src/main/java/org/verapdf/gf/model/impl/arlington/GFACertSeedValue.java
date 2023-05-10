@@ -44,7 +44,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsByte> getIssuer() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -69,7 +69,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsASCII> getKeyUsage() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getKeyUsage1_7();
@@ -92,7 +92,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsByte> getOID() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -117,7 +117,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsASCII> getSignaturePolicyCommitmentType() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getSignaturePolicyCommitmentType2_0();
 			default:
@@ -139,7 +139,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsByte> getSubject() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -164,7 +164,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfSubjectDN> getSubjectDN() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getSubjectDN1_7();
@@ -210,7 +210,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	public Long getFfBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -397,7 +397,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	public String getURLTypeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "Browser";

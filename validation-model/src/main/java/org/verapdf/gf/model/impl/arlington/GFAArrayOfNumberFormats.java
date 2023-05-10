@@ -34,7 +34,7 @@ public class GFAArrayOfNumberFormats extends GFAObject implements AArrayOfNumber
 	}
 
 	private List<AArrayOfNumberFormatsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

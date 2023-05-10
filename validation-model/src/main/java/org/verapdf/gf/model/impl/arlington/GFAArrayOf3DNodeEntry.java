@@ -39,7 +39,7 @@ public class GFAArrayOf3DNodeEntry extends GFAObject implements AArrayOf3DNodeEn
 	}
 
 	private List<A3DNode> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntry1_7();

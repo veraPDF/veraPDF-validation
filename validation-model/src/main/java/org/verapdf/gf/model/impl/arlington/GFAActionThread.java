@@ -40,7 +40,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<ABead> getB() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -69,7 +69,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<AThread> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -98,7 +98,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -127,7 +127,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getNext1_2();
 			case ARLINGTON1_3:
@@ -674,6 +674,16 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 			return (long) Threads.size();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontainstrailerCatalogThreads() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
+		return Root.knownKey(ASAtom.getASAtom("Threads"));
 	}
 
 }

@@ -66,7 +66,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -93,7 +93,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -118,7 +118,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<ABorderEffect> getBE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -143,7 +143,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<ABorderStyle> getBS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -168,7 +168,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -193,7 +193,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -218,7 +218,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getExData() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 				return getExData1_7();
 			case ARLINGTON2_0:
@@ -304,7 +304,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getIC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -329,7 +329,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getIRT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getIRT1_5();
 			case ARLINGTON1_6:
@@ -656,7 +656,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AArrayOf_2LineEndingsNames> getLE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -681,7 +681,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getMeasure() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 				return getMeasure1_7();
 			case ARLINGTON2_0:
@@ -740,7 +740,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -787,7 +787,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -812,7 +812,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AArrayOfArraysPaths> getPath() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getPath2_0();
 			default:
@@ -834,7 +834,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AAnnotPopup> getPopup() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -859,7 +859,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AStream> getRC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -884,7 +884,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private List<AArrayOfNumbersGeneral> getVertices() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -982,7 +982,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -1046,7 +1046,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -1113,7 +1113,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -1336,7 +1336,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	public String getRTNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -1520,7 +1520,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

@@ -38,7 +38,7 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	private List<AArrayOfWebCaptureImages> getO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -65,7 +65,7 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	private List<AArrayOfIntegersGeneral> getR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -92,7 +92,7 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSI() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

@@ -47,7 +47,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	public Long getBitsPerComponentIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -86,7 +86,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	public Long getColorsIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -136,7 +136,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	public Long getEarlyChangeIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

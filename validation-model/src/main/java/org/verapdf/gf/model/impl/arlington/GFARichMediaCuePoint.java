@@ -34,7 +34,7 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getA1_7();

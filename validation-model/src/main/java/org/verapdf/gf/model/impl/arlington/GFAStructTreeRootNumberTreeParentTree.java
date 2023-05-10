@@ -39,7 +39,7 @@ public class GFAStructTreeRootNumberTreeParentTree extends GFAObject implements 
 	}
 
 	private List<AStructTreeRootNumberTreeParentTreeEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

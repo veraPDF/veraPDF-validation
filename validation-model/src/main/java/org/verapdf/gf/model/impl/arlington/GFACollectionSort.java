@@ -36,7 +36,7 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 	}
 
 	private List<AArrayOfBooleansGeneral> getA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getA1_7();
@@ -59,7 +59,7 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 	}
 
 	private List<AArrayOfNamesGeneral> getS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getS1_7();

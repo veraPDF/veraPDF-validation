@@ -39,7 +39,7 @@ public class GFAColorSpaceMapEntry extends GFAObject implements AColorSpaceMapEn
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 				return getEntry1_0();
 			case ARLINGTON1_1:

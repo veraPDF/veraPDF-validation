@@ -50,7 +50,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 				return getA1_1();
 			case ARLINGTON1_2:
@@ -429,7 +429,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -455,7 +455,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -503,7 +503,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getFirst() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -533,7 +533,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getLast() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -563,7 +563,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -593,7 +593,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -633,7 +633,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getPrev() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -663,7 +663,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AStructElem> getSE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -769,7 +769,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

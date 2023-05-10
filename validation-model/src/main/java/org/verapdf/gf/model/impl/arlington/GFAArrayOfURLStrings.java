@@ -34,7 +34,7 @@ public class GFAArrayOfURLStrings extends GFAObject implements AArrayOfURLString
 	}
 
 	private List<AArrayOfURLStringsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

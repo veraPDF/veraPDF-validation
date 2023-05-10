@@ -34,7 +34,7 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 	}
 
 	private List<APageObject> getentry0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

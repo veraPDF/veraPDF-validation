@@ -36,7 +36,7 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -62,7 +62,7 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 	}
 
 	private List<AArrayOfDashPatterns> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -133,7 +133,7 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 	}
 
 	public String getSNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

@@ -52,7 +52,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getA11_7();
@@ -75,7 +75,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getA21_7();
@@ -98,7 +98,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getA31_7();
@@ -121,7 +121,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA4() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getA41_7();
@@ -144,7 +144,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getAP1_7();
@@ -167,7 +167,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getC1_7();
@@ -190,7 +190,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AAnnotProjection> getS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getS1_7();
@@ -213,7 +213,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getTP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getTP1_7();
@@ -236,7 +236,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getTX() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getTX1_7();
@@ -259,7 +259,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getTY() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getTY1_7();
@@ -393,7 +393,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	public Long getPIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 3L;

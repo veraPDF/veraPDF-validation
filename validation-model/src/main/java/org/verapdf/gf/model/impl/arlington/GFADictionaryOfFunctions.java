@@ -36,7 +36,7 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 	}
 
 	private List<ADictionaryOfFunctionsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -59,7 +59,7 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefault() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

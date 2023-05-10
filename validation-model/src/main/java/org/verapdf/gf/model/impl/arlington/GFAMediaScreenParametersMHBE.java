@@ -36,7 +36,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	private List<AArrayOf_3RGBNumbers> getB() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -61,7 +61,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	private List<AFloatingWindowParameters> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -131,7 +131,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	public Long getMIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -165,7 +165,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	public Double getONumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -199,7 +199,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	public Long getWIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

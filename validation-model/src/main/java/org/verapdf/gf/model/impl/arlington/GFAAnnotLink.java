@@ -56,7 +56,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 				return getA1_1();
 			case ARLINGTON1_2:
@@ -435,7 +435,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -462,7 +462,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -490,7 +490,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<ABorderStyle> getBS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -514,7 +514,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -544,7 +544,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -573,7 +573,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -621,7 +621,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -668,7 +668,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -695,7 +695,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AActionURI> getPA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -722,7 +722,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOfArraysPaths> getPath() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getPath2_0();
 			default:
@@ -744,7 +744,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOfQuadPoints> getQuadPoints() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -841,7 +841,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -905,7 +905,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}
@@ -970,7 +970,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -1008,7 +1008,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	public String getHNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -1229,7 +1229,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

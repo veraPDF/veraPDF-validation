@@ -46,7 +46,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionColors> getColors() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getColors1_7();
@@ -69,7 +69,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionFolder> getFolders() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getFolders1_7();
@@ -92,7 +92,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ANavigator> getNavigator() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getNavigator1_7();
@@ -115,7 +115,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionNameTreeResources> getResources() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getResources1_7();
@@ -138,7 +138,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionSchema> getSchema() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getSchema1_7();
@@ -161,7 +161,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionSort> getSort() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getSort1_7();
@@ -184,7 +184,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionSplit> getSplit() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getSplit1_7();
@@ -363,7 +363,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	public String getViewNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "D";

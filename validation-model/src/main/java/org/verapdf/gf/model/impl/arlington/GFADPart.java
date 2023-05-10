@@ -46,7 +46,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<AArrayOfFileSpecifications> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -68,7 +68,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<ADPM> getDPM() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -92,7 +92,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<AArrayOfDPartArrays> getDParts() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -116,7 +116,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<APageObject> getEnd() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -140,7 +140,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getMetadata2_0();
 			default:
@@ -162,7 +162,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -208,7 +208,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<APageObject> getStart() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

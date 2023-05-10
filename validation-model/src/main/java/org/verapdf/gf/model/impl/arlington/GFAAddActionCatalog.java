@@ -42,7 +42,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getDC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -68,7 +68,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getDP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -94,7 +94,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getDS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -120,7 +120,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getWP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -146,7 +146,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getWS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

@@ -38,7 +38,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	}
 
 	private List<AArrayOfOCConfig> getConfigs() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -63,7 +63,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	}
 
 	private List<AOptContentConfig> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -88,7 +88,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	}
 
 	private List<AArrayOfOCGindirect> getOCGs() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

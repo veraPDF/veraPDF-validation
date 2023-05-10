@@ -40,7 +40,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getNA1_5();
 			case ARLINGTON1_6:
@@ -255,7 +255,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<ANavNode> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -280,7 +280,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getPA1_5();
 			case ARLINGTON1_6:
@@ -495,7 +495,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<ANavNode> getPrev() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

@@ -34,7 +34,7 @@ public class GFAArrayOf_RoleMapNS extends GFAObject implements AArrayOf_RoleMapN
 	}
 
 	private List<ANamespace> getentry1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getentry12_0();
 			default:

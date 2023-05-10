@@ -34,7 +34,7 @@ public class GFARenditionMH extends GFAObject implements ARenditionMH {
 	}
 
 	private List<AMediaCriteria> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

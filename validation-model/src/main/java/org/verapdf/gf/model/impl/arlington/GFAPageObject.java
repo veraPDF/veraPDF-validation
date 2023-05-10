@@ -68,7 +68,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AAddActionPageObject> getAA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -96,7 +96,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -123,7 +123,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfAnnots> getAnnots() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -153,7 +153,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfBeads> getB() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -182,7 +182,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ABoxColorInfo> getBoxColorInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -208,7 +208,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getContents() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -243,7 +243,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ADPart> getDPart() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -267,7 +267,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AGroupAttributes> getGroup() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -293,7 +293,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AMetadata> getMetadata() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -319,7 +319,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfOutputIntents> getOutputIntents() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getOutputIntents2_0();
 			default:
@@ -341,7 +341,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -381,7 +381,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<APagePiece> getPieceInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -408,7 +408,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ANavNode> getPresSteps() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -433,7 +433,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AResource> getResources() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -463,7 +463,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ASeparation> getSeparationInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -490,7 +490,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AThumbnail> getThumb() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -520,7 +520,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ATransition> getTrans() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -549,7 +549,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfViewports> getVP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -976,7 +976,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	public Long getRotateIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

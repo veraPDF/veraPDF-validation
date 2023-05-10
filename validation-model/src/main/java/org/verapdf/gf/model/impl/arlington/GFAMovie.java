@@ -38,7 +38,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	private List<AArrayOf_2Numbers> getAspect() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -66,7 +66,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -94,7 +94,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	private List<AXObjectImage> getPoster() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -196,7 +196,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	public Long getRotateIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

@@ -38,7 +38,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	}
 
 	private List<ADictionaryOfFunctions> getDotGain() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -62,7 +62,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	}
 
 	private List<AArrayOfNamesForPrintingOrder> getPrintingOrder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -86,7 +86,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	}
 
 	private List<ASolidities> getSolidities() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

@@ -42,7 +42,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<AArrayOfIntegersGeneral> getByteRange() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -69,7 +69,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<AArrayOfStringsByte> getCert() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -96,7 +96,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<AArrayOf_3Integers> getChanges() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -123,7 +123,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<A_UniversalDictionary> getProp_Build() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -148,7 +148,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<AArrayOfSignatureReferences> getReference() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

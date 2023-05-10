@@ -44,7 +44,7 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	private List<AArrayOfStringsText> getAlt() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -69,7 +69,7 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	private List<AMediaClipDataMHBE> getBE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -94,7 +94,7 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -124,7 +124,7 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	private List<AMediaClipDataMHBE> getMH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -149,7 +149,7 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	private List<AMediaPermissions> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -174,7 +174,7 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 	}
 
 	private List<AMediaPlayers> getPL() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

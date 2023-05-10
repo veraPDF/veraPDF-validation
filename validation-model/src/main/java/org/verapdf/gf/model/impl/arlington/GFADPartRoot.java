@@ -36,7 +36,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	}
 
 	private List<ADPart> getDPartRootNode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -60,7 +60,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	}
 
 	private List<AArrayOfNamesGeneral> getNodeNameList() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

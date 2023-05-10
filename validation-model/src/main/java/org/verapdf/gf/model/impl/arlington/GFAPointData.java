@@ -36,7 +36,7 @@ public class GFAPointData extends GFAObject implements APointData {
 	}
 
 	private List<AArrayOfNamesInPtData> getNames() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getNames1_7();
@@ -59,7 +59,7 @@ public class GFAPointData extends GFAObject implements APointData {
 	}
 
 	private List<AArrayOfArraysXPTSValues> getXPTS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getXPTS1_7();

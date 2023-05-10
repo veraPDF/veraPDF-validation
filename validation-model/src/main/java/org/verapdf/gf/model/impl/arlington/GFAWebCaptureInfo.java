@@ -34,7 +34,7 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 	}
 
 	private List<AArrayOfWebCaptureCommands> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

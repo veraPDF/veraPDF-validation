@@ -47,7 +47,7 @@ public class GFAOptContentZoom extends GFAObject implements AOptContentZoom {
 	}
 
 	public Double getmaxNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -81,7 +81,7 @@ public class GFAOptContentZoom extends GFAObject implements AOptContentZoom {
 	}
 
 	public Double getminNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

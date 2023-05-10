@@ -38,7 +38,7 @@ public class GFARequirementsDigSigValidation extends GFAObject implements ARequi
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDigSig() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getDigSig2_0();
 			default:
@@ -82,7 +82,7 @@ public class GFARequirementsDigSigValidation extends GFAObject implements ARequi
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getRH2_0();
 			default:
@@ -109,7 +109,7 @@ public class GFARequirementsDigSigValidation extends GFAObject implements ARequi
 	}
 
 	private List<AExtensions> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getV2_0();
 			default:
@@ -165,7 +165,7 @@ public class GFARequirementsDigSigValidation extends GFAObject implements ARequi
 	}
 
 	public Long getPenaltyIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 100L;
 		}

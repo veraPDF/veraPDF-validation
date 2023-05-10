@@ -34,7 +34,7 @@ public class GFAOPIVersion13 extends GFAObject implements AOPIVersion13 {
 	}
 
 	private List<AOPIVersion13Dict> getentry13() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

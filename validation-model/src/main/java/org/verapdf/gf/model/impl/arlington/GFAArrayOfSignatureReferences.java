@@ -34,7 +34,7 @@ public class GFAArrayOfSignatureReferences extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOfSignatureReferencesEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

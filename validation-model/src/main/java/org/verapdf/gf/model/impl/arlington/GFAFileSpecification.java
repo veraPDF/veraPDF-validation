@@ -44,7 +44,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<ACollectionItem> getCI() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getCI1_7();
@@ -67,7 +67,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AFileSpecEF> getEF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -94,7 +94,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AEncryptedPayload> getEP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEP2_0();
 			default:
@@ -116,7 +116,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AArrayOf_2StringsByte> getentryID() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -145,7 +145,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AFileSpecRF> getRF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -172,7 +172,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AThumbnail> getThumb() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getThumb1_7();
@@ -218,7 +218,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	public String getAFRelationshipNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Unspecified";
 		}

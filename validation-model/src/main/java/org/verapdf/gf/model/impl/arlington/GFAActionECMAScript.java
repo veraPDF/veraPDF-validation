@@ -36,7 +36,7 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	private List<AStream> getJS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -63,7 +63,7 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 				return getNext1_3();

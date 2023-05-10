@@ -36,7 +36,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	private List<AURLAlias> getAU() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -63,7 +63,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	private List<AWebCaptureCommand> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -158,7 +158,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	public Long getSIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

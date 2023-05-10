@@ -40,7 +40,7 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_3RGBNumbers> getentry0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -65,7 +65,7 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_3RGBNumbers> getentry1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -90,7 +90,7 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_3RGBNumbers> getentry2() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -115,7 +115,7 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_3RGBNumbers> getentry3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

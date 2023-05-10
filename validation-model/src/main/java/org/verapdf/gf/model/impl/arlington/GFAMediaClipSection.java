@@ -40,7 +40,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	private List<AArrayOfStringsText> getAlt() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -65,7 +65,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	private List<AMediaClipSectionMHBE> getBE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -90,7 +90,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -137,7 +137,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	private List<AMediaClipSectionMHBE> getMH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

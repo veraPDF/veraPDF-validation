@@ -38,7 +38,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	}
 
 	private List<A_UniversalDictionary> getBE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -63,7 +63,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	}
 
 	private List<A_UniversalDictionary> getMH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -88,7 +88,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	}
 
 	private List<ASoftwareIdentifier> getPID() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

@@ -34,7 +34,7 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	}
 
 	private List<APageObject> getentry0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

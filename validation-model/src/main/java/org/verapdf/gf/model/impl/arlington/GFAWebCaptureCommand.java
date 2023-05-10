@@ -36,7 +36,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	private List<AStream> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -63,7 +63,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	private List<AWebCaptureCommandSettings> getS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -124,7 +124,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -171,7 +171,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	public Long getLIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

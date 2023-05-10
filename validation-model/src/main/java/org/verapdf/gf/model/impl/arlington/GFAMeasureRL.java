@@ -46,7 +46,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -70,7 +70,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -94,7 +94,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOf_2Numbers> getO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -118,7 +118,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -142,7 +142,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -166,7 +166,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getX() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -190,7 +190,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getY() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

@@ -62,7 +62,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_3RGBNumbers> getBackgroundColor() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -87,7 +87,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getBorderColor() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -126,7 +126,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4BorderStyleNames> getBorderStyle() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -151,7 +151,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4BorderThicknessNumbers> getBorderThickness() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -176,7 +176,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_3RGBNumbers> getColor() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -201,7 +201,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfNumbersGeneral> getColumnGap() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -225,7 +225,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfNumbersGeneral> getColumnWidths() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -249,7 +249,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfStringsText> getContents() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getContents1_7();
@@ -272,7 +272,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfStringsByte> getHeaders() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -298,7 +298,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<ANamespace> getNS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getNS2_0();
 			default:
@@ -320,7 +320,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfUserProperty> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -344,7 +344,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4Integers> getPadding() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -369,7 +369,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4BorderStyleNames> getTBorderStyle() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -394,7 +394,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4Integers> getTPadding() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -419,7 +419,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_3RGBNumbers> getTextDecorationColor() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -508,7 +508,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getBlockAlignNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -560,7 +560,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getBorderStyleNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -611,7 +611,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getCheckedNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "off";
@@ -793,7 +793,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getGlyphOrientationVerticalNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -855,7 +855,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getInlineAlignNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -896,7 +896,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getLineHeightNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -931,7 +931,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getListNumberingNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -1103,7 +1103,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getRubyAlignNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -1137,7 +1137,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getRubyPositionNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -1286,7 +1286,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getTBorderStyleNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -1337,7 +1337,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getTextAlignNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -1394,7 +1394,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getTextDecorationTypeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -1440,7 +1440,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getTextPositionNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -1515,7 +1515,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getWritingModeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -1550,7 +1550,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	public String getcheckedNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "off";

@@ -42,7 +42,7 @@ public class GFAMetadata extends GFAObject implements AMetadata {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 				return getDecodeParms1_4();
 			case ARLINGTON1_5:
@@ -138,7 +138,7 @@ public class GFAMetadata extends GFAObject implements AMetadata {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -164,7 +164,7 @@ public class GFAMetadata extends GFAObject implements AMetadata {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 				return getFDecodeParms1_4();
 			case ARLINGTON1_5:
@@ -260,7 +260,7 @@ public class GFAMetadata extends GFAObject implements AMetadata {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -286,7 +286,7 @@ public class GFAMetadata extends GFAObject implements AMetadata {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

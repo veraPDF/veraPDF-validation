@@ -40,7 +40,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	private List<AArrayOfStreamsGeneral> getCRL() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getCRL2_0();
 			default:
@@ -62,7 +62,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	private List<AArrayOfStreamsGeneral> getCert() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getCert2_0();
 			default:
@@ -84,7 +84,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	private List<AArrayOfStreamsGeneral> getOCSP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getOCSP2_0();
 			default:
@@ -106,7 +106,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	private List<AStream> getTS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getTS2_0();
 			default:

@@ -44,7 +44,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -71,7 +71,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	private List<AAppearancePrinterMark> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -97,7 +97,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -123,7 +123,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -149,7 +149,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -196,7 +196,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -284,7 +284,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -337,7 +337,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}
@@ -379,7 +379,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -626,7 +626,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

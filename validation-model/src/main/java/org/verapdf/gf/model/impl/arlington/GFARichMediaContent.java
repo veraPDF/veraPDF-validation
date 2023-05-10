@@ -38,7 +38,7 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	}
 
 	private List<ARichMediaContentNameTreeAssets> getAssets() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getAssets1_7();
@@ -61,7 +61,7 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	}
 
 	private List<AArrayOfRichMediaConfiguration> getConfigurations() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getConfigurations1_7();
@@ -84,7 +84,7 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	}
 
 	private List<AArrayOf3DView> getViews() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getViews1_7();

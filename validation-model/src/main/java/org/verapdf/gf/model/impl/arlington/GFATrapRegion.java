@@ -34,7 +34,7 @@ public class GFATrapRegion extends GFAObject implements ATrapRegion {
 	}
 
 	private List<AArrayOf_ArrayOfNumbers> getTZ() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

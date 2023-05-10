@@ -34,7 +34,7 @@ public class GFAArrayOfOCUsage extends GFAObject implements AArrayOfOCUsage {
 	}
 
 	private List<AArrayOfOCUsageEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

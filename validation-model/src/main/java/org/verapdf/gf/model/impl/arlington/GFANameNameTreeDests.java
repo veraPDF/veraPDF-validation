@@ -39,7 +39,7 @@ public class GFANameNameTreeDests extends GFAObject implements ANameNameTreeDest
 	}
 
 	private List<ANameNameTreeDestsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

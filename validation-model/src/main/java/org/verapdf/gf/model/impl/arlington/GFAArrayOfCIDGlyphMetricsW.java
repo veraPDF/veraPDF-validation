@@ -34,7 +34,7 @@ public class GFAArrayOfCIDGlyphMetricsW extends GFAObject implements AArrayOfCID
 	}
 
 	private List<AArrayOfCIDGlyphMetricsWEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

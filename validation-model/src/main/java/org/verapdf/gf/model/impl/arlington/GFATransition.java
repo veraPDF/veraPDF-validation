@@ -58,7 +58,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	public Double getDNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -102,7 +102,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	public Long getDiIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -156,7 +156,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	public String getDmNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -194,7 +194,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	public String getMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -232,7 +232,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	public String getSNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -270,7 +270,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	public Double getSSNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

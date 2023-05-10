@@ -34,7 +34,7 @@ public class GFAArrayOfAttributeObjects extends GFAObject implements AArrayOfAtt
 	}
 
 	private List<AArrayOfAttributeObjectsEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

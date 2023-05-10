@@ -42,7 +42,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<ARenditionBE> getBE() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -67,7 +67,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -114,7 +114,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<ARenditionMH> getMH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -139,7 +139,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<AMediaPlayParameters> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -164,7 +164,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<AMediaScreenParameters> getSP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

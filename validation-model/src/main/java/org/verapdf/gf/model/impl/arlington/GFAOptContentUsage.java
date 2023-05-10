@@ -48,7 +48,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentCreatorInfo> getCreatorInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -73,7 +73,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentExport> getExport() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -98,7 +98,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentLanguage> getLanguage() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -123,7 +123,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentPageElement> getPageElement() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -148,7 +148,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentPrint> getPrint() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -173,7 +173,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentUser> getUser() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -198,7 +198,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentView> getView() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -223,7 +223,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentZoom> getZoom() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

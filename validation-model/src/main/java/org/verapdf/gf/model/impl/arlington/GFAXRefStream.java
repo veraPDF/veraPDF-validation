@@ -56,7 +56,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AAuthCode> getAuthCode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAuthCode2_0();
 			default:
@@ -78,7 +78,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -130,7 +130,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEncrypt() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -179,7 +179,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -204,7 +204,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -256,7 +256,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -281,7 +281,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -306,7 +306,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<ATrailerIDArray> getentryID() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -331,7 +331,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AArrayOfXRefIndexIntegers> getIndex() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -356,7 +356,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<ADocInfo> getInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -381,7 +381,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<ACatalog> getRoot() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -406,7 +406,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AArrayOfXRefWIntegers> getW() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

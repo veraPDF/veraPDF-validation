@@ -39,7 +39,7 @@ public class GFAArrayOf3DCrossSectionEntry extends GFAObject implements AArrayOf
 	}
 
 	private List<A3DCrossSection> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntry1_7();

@@ -39,7 +39,7 @@ public class GFAArrayOfBeadsEntry extends GFAObject implements AArrayOfBeadsEntr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

@@ -50,7 +50,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -77,7 +77,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AAppearanceTrapNet> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -104,7 +104,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOfAnnotStates> getAnnotStates() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -131,7 +131,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -158,7 +158,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -185,7 +185,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOfFonts> getFontFauxing() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -212,7 +212,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -259,7 +259,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -286,7 +286,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOfTrapNetVersionObjects> getVersion() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -386,7 +386,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -439,7 +439,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}
@@ -692,7 +692,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

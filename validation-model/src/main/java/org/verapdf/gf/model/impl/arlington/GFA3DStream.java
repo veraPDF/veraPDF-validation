@@ -54,7 +54,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<A3DAnimationStyle> getAN() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getAN1_7();
@@ -77,7 +77,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getColorSpace2_0();
 			default:
@@ -124,7 +124,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<A3DView> getDV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -148,7 +148,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -201,7 +201,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -225,7 +225,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -278,7 +278,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -302,7 +302,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -326,7 +326,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AStream> getOnInstantiate() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -350,7 +350,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<A3DStreamNameTreeResources> getResources() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -374,7 +374,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AArrayOf3DView> getVA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

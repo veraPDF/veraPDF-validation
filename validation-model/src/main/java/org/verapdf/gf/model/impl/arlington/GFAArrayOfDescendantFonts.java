@@ -34,7 +34,7 @@ public class GFAArrayOfDescendantFonts extends GFAObject implements AArrayOfDesc
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry0() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

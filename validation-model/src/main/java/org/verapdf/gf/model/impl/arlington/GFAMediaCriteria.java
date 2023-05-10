@@ -42,7 +42,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AMinimumBitDepth> getD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -67,7 +67,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AArrayOfStringsText> getL() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -92,7 +92,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AArrayOfNamesGeneral> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -117,7 +117,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AArrayOfSoftwareIdentifiers> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -142,7 +142,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AMinimumScreenSize> getZ() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

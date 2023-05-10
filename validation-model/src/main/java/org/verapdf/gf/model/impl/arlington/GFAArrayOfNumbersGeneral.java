@@ -34,7 +34,7 @@ public class GFAArrayOfNumbersGeneral extends GFAObject implements AArrayOfNumbe
 	}
 
 	private List<AArrayOfNumbersGeneralEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

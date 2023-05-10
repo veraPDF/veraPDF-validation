@@ -34,7 +34,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	}
 
 	private List<AArrayOfStringsText> getOS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

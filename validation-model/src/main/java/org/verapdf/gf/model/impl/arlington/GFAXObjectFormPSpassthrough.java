@@ -46,7 +46,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 				return getDecodeParms1_1();
 			case ARLINGTON1_2:
@@ -164,7 +164,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -193,7 +193,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -248,7 +248,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -276,7 +276,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -305,7 +305,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	private List<AStream> getLevel1() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -334,7 +334,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	private List<AStream> getPS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

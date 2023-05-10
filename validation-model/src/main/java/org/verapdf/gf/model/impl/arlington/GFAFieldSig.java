@@ -48,7 +48,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<AAddActionFormField> getAA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -75,7 +75,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -124,7 +124,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<AArrayOfFields> getKids() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -151,7 +151,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<ASigFieldLock> getLock() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -176,7 +176,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -267,7 +267,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<AStream> getRV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -292,7 +292,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<ASigFieldSeedValue> getSV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -317,7 +317,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -584,7 +584,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	public Long getQIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

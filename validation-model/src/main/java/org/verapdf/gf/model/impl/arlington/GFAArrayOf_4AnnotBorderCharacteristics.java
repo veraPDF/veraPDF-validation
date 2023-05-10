@@ -34,7 +34,7 @@ public class GFAArrayOf_4AnnotBorderCharacteristics extends GFAObject implements
 	}
 
 	private List<AArrayOf_2DashNumbers> getentry3() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

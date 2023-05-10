@@ -54,7 +54,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<A3DActivation> getentry3DA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -78,7 +78,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry3DD() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -107,7 +107,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<A3DUnits> getentry3DU() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getentry3DU1_7();
@@ -130,7 +130,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<A3DView> getentry3DV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -154,7 +154,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
 			default:
@@ -181,7 +181,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<AAppearance> getAP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -205,7 +205,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -229,7 +229,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -253,7 +253,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<AMeasureGEO> getGEO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getGEO2_0();
 			default:
@@ -275,7 +275,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -321,7 +321,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -511,7 +511,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	public String getBMNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return "Normal";
 		}
@@ -564,7 +564,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	public Double getCANumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}
@@ -606,7 +606,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	public Long getFBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -835,7 +835,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	public Double getcaNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return 1.0D;
 		}

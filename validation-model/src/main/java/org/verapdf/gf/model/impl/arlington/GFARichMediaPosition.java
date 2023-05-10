@@ -47,7 +47,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	}
 
 	public String getHAlignNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "Far";
@@ -117,7 +117,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	}
 
 	public String getVAlignNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "Near";

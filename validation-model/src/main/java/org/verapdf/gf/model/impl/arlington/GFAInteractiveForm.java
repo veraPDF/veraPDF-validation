@@ -40,7 +40,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<AArrayOfFields> getCO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -67,7 +67,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<AResource> getDR() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -95,7 +95,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<AArrayOfFields> getFields() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -123,7 +123,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getXFA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 				return getXFA1_5();
 			case ARLINGTON1_6:
@@ -272,7 +272,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	public Long getSigFlagsBitmaskDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:

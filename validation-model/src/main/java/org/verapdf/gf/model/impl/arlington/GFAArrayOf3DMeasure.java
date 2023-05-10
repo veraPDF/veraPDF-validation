@@ -34,7 +34,7 @@ public class GFAArrayOf3DMeasure extends GFAObject implements AArrayOf3DMeasure 
 	}
 
 	private List<AArrayOf3DMeasureEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntries2_0();
 			default:

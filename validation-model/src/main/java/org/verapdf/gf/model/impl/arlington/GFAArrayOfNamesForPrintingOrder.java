@@ -34,7 +34,7 @@ public class GFAArrayOfNamesForPrintingOrder extends GFAObject implements AArray
 	}
 
 	private List<AArrayOfNamesForPrintingOrderEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

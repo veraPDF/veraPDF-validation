@@ -34,7 +34,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -92,7 +92,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	}
 
 	public String getCSNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -136,7 +136,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	}
 
 	public String getSubtypeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:

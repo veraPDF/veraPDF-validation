@@ -36,7 +36,7 @@ public class GFAOutline extends GFAObject implements AOutline {
 	}
 
 	private List<AOutlineItem> getFirst() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -66,7 +66,7 @@ public class GFAOutline extends GFAObject implements AOutline {
 	}
 
 	private List<AOutlineItem> getLast() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

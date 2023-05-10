@@ -34,7 +34,7 @@ public class GFAArrayOfStringsASCII extends GFAObject implements AArrayOfStrings
 	}
 
 	private List<AArrayOfStringsASCIIEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEntries1_7();

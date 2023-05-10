@@ -112,7 +112,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	}
 
 	public Double getResolutionNumberDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return 300D;

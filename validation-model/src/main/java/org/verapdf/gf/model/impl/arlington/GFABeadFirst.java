@@ -40,7 +40,7 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getN() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -81,7 +81,7 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 	}
 
 	private List<APageObject> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -110,7 +110,7 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 	}
 
 	private List<AThread> getT() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -139,7 +139,7 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getV() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

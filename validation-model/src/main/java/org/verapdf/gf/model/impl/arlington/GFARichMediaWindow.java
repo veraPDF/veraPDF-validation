@@ -38,7 +38,7 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	}
 
 	private List<ARichMediaHeight> getHeight() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getHeight1_7();
@@ -61,7 +61,7 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	}
 
 	private List<ARichMediaPosition> getPosition() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getPosition1_7();
@@ -84,7 +84,7 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	}
 
 	private List<ARichMediaWidth> getWidth() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getWidth1_7();

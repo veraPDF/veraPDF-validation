@@ -34,7 +34,7 @@ public class GFAArrayOfXRefIndexIntegers extends GFAObject implements AArrayOfXR
 	}
 
 	private List<AArrayOfXRefIndexIntegersSubArray> getsubArrays() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

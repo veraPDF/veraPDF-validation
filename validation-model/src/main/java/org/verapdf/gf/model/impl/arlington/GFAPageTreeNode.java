@@ -38,7 +38,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	private List<AArrayOfPageTreeNodeKids> getKids() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -68,7 +68,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -108,7 +108,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	private List<AResource> getResources() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -318,7 +318,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	public Long getRotateIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

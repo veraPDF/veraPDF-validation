@@ -36,7 +36,7 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	}
 
 	private List<AHalftoneType5Entry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -63,7 +63,7 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefault() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getDefault1_2();
 			case ARLINGTON1_3:

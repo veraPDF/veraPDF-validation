@@ -39,7 +39,7 @@ public class GFAArrayOfThreadsEntry extends GFAObject implements AArrayOfThreads
 	}
 
 	private List<AThread> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:

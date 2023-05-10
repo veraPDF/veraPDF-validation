@@ -36,7 +36,7 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	}
 
 	private List<ARelatedFilesArray> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -63,7 +63,7 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	}
 
 	private List<ARelatedFilesArray> getUF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getUF1_7();

@@ -36,7 +36,7 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	}
 
 	private List<AArrayOfNamesGeneral> getIntent() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -61,7 +61,7 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	}
 
 	private List<AOptContentUsage> getUsage() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

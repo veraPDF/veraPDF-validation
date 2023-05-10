@@ -56,7 +56,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<A3DBackground> getBG() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getBG2_0();
 			default:
@@ -78,7 +78,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOf3DTransMatrix> getC2W() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getC2W2_0();
 			default:
@@ -100,7 +100,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<A3DLightingScheme> getLS() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getLS2_0();
 			default:
@@ -122,7 +122,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOf3DMeasure> getMA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getMA2_0();
 			default:
@@ -144,7 +144,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOf3DNode> getNA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getNA2_0();
 			default:
@@ -166,7 +166,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AXObjectFormType1> getO() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getO2_0();
 			default:
@@ -188,7 +188,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AProjection> getP() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getP2_0();
 			default:
@@ -210,7 +210,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOfViewParams> getParams() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getParams1_7();
@@ -233,7 +233,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<A3DRenderMode> getRM() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getRM2_0();
 			default:
@@ -255,7 +255,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOf3DCrossSection> getSA() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getSA2_0();
 			default:
@@ -277,7 +277,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AXObjectImage> getSnapshot() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getSnapshot1_7();
@@ -300,7 +300,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOfStringsText> getU3DPath() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getU3DPath2_0();
 			default:

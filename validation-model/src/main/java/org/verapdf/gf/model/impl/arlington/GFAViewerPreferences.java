@@ -36,7 +36,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	private List<AArrayOfNamesForEnforce> getEnforce() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getEnforce1_7();
@@ -59,7 +59,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	private List<AArrayOfIntegersGeneral> getPrintPageRange() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getPrintPageRange1_7();
@@ -116,7 +116,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	public String getDirectionNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -245,7 +245,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	public String getNonFullScreenPageModeNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -320,7 +320,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	public String getPrintAreaNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -355,7 +355,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	public String getPrintClipNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -401,7 +401,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	public String getPrintScalingNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -434,7 +434,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	public String getViewAreaNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -469,7 +469,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	public String getViewClipNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:

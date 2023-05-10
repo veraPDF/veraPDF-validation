@@ -34,7 +34,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	private List<ARichMediaWindow> getWindow() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return getWindow1_7();
@@ -80,7 +80,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	public String getANameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -113,7 +113,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	public String getAISNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -146,7 +146,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	public String getDNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -179,7 +179,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	public String getDISNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -223,7 +223,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	public String getStyleNameDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return "Embedded";

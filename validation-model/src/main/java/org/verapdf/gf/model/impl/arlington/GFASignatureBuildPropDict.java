@@ -40,7 +40,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<ASignatureBuildDataAppDict> getApp() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -65,7 +65,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<ASignatureBuildDataDict> getFilter() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -90,7 +90,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<ASignatureBuildDataDict> getPubSec() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
@@ -115,7 +115,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<ASignatureBuildDataSigQDict> getSigQ() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:

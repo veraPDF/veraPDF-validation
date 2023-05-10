@@ -34,7 +34,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getH() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -287,7 +287,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	public Long getPIntegerDefaultValue() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

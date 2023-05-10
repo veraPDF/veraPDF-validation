@@ -39,7 +39,7 @@ public class GFAFDDictEntry extends GFAObject implements AFDDictEntry {
 	}
 
 	private List<ACIDFontDescriptorMetrics> getEntry() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:

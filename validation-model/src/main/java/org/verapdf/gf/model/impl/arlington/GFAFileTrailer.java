@@ -43,7 +43,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<AAuthCode> getAuthCode() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAuthCode2_0();
 			default:
@@ -65,7 +65,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEncrypt() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -118,7 +118,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<ATrailerIDArray> getentryID() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -147,7 +147,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<ADocInfo> getInfo() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -177,7 +177,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<ACatalog> getRoot() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

@@ -34,7 +34,7 @@ public class GFAXObjectMap extends GFAObject implements AXObjectMap {
 	}
 
 	private List<AXObjectMapEntry> getEntries() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:

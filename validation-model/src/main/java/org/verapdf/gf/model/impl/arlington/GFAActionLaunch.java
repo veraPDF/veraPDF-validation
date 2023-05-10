@@ -38,7 +38,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<AFileSpecification> getF() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -67,7 +67,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 				return getNext1_2();
 			case ARLINGTON1_3:
@@ -428,7 +428,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<AMicrosoftWindowsLaunchParam> getWin() {
-		switch(StaticContainers.getFlavour()) {
+		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
