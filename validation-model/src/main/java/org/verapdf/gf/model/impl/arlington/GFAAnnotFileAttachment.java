@@ -1163,8 +1163,8 @@ public class GFAAnnotFileAttachment extends GFAObject implements AAnnotFileAttac
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return null;
 		}
-		COSObject bottom = this.baseObject.at(1);
-		COSObject top = this.baseObject.at(3);
+		COSObject bottom = object.at(1);
+		COSObject top = object.at(3);
 		if (bottom == null || (bottom.getType() != COSObjType.COS_INTEGER && bottom.getType() != COSObjType.COS_REAL)) {
 			return null;
 		}
@@ -1180,8 +1180,8 @@ public class GFAAnnotFileAttachment extends GFAObject implements AAnnotFileAttac
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return null;
 		}
-		COSObject left = this.baseObject.at(0);
-		COSObject right = this.baseObject.at(2);
+		COSObject left = object.at(0);
+		COSObject right = object.at(2);
 		if (left == null || (left.getType() != COSObjType.COS_INTEGER && left.getType() != COSObjType.COS_REAL)) {
 			return null;
 		}

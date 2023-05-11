@@ -239,4 +239,14 @@ public class GFAVRI extends GFAObject implements AVRI {
 		return null;
 	}
 
+	@Override
+	public Boolean getcontainsparentCRLs() {
+		return this.parentObject.knownKey(ASAtom.getASAtom("CRLs"));
+	}
+
+	@Override
+	public Boolean getcontainsparentOCSPs() {
+		return this.parentObject.knownKey(ASAtom.getASAtom("OCSPs"));
+	}
+
 }
