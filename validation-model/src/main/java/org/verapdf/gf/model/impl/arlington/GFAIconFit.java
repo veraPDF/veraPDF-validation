@@ -169,6 +169,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 		COSObject entry1 = A.at(1);
 		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry1NumberValue();
 	}
+
 	@Override
 	public Double getA0NumberValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -184,4 +185,37 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 		COSObject entry0 = A.at(0);
 		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry0NumberValue();
 	}
+
+	@Override
+	public Boolean getA1HasTypeNumber() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject A = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (A.size() <= 1) {
+			return null;
+		}
+		COSObject entry1 = A.at(1);
+		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry1HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getA0HasTypeNumber() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject A = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (A.size() <= 0) {
+			return null;
+		}
+		COSObject entry0 = A.at(0);
+		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry0HasTypeNumber();
+	}
+
 }

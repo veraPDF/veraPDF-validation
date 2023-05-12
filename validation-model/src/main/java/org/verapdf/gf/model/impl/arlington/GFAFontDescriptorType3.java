@@ -333,4 +333,5 @@ public class GFAFontDescriptorType3 extends GFAObject implements AFontDescriptor
 		COSObject Name = this.parentObject.getKey(ASAtom.getASAtom("Name"));
 		return new GFAFontType3(this.parentObject.getDirectBase(), null, null).getNameNameValue();
 	}
+
 }

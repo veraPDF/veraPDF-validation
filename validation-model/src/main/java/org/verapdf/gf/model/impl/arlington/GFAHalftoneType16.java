@@ -815,4 +815,13 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 		return null;
 	}
 
+	@Override
+	public Boolean getparentHalftoneTypeHasTypeInteger() {
+		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject HalftoneType = this.parentObject.getKey(ASAtom.getASAtom("HalftoneType"));
+		return HalftoneType != null && HalftoneType.getType() == COSObjType.COS_INTEGER;
+	}
+
 }

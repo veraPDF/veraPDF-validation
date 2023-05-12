@@ -933,4 +933,22 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 		return null;
 	}
 
+	@Override
+	public Boolean getparentWidthHasTypeInteger() {
+		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Width = this.parentObject.getKey(ASAtom.getASAtom("Width"));
+		return Width != null && Width.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getparentHeightHasTypeInteger() {
+		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Height = this.parentObject.getKey(ASAtom.getASAtom("Height"));
+		return Height != null && Height.getType() == COSObjType.COS_INTEGER;
+	}
+
 }

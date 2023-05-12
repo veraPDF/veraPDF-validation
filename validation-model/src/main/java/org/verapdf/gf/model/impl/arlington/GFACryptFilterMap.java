@@ -145,4 +145,5 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 		COSObject AuthEvent = StdCF.getKey(ASAtom.getASAtom("AuthEvent"));
 		return new GFACryptFilter(StdCF.getDirectBase(), null, null).getAuthEventNameValue();
 	}
+
 }

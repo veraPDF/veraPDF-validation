@@ -330,6 +330,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		COSObject entry1 = D.at(1);
 		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry1IntegerValue();
 	}
+
 	@Override
 	public Long getD0IntegerValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -345,4 +346,37 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		COSObject entry0 = D.at(0);
 		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry0IntegerValue();
 	}
+
+	@Override
+	public Boolean getD1HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject D = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (D.size() <= 1) {
+			return null;
+		}
+		COSObject entry1 = D.at(1);
+		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry1HasTypeInteger();
+	}
+
+	@Override
+	public Boolean getD0HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject D = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (D.size() <= 0) {
+			return null;
+		}
+		COSObject entry0 = D.at(0);
+		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry0HasTypeInteger();
+	}
+
 }

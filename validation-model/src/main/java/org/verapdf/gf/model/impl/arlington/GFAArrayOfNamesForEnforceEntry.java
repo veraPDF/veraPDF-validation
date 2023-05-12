@@ -58,4 +58,5 @@ public class GFAArrayOfNamesForEnforceEntry extends GFAObject implements AArrayO
 		COSObject PrintScaling = this.parentObject.getKey(ASAtom.getASAtom("PrintScaling"));
 		return new GFAViewerPreferences(this.parentObject.getDirectBase(), null, null).getPrintScalingNameValue();
 	}
+
 }

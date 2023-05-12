@@ -401,6 +401,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		COSObject entry1 = IncludedImageDimensions.at(1);
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry1IntegerValue();
 	}
+
 	@Override
 	public Double getSize0NumberValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -416,6 +417,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		COSObject entry0 = Size.at(0);
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry0NumberValue();
 	}
+
 	@Override
 	public Long getIncludedImageDimensions0IntegerValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -431,6 +433,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		COSObject entry0 = IncludedImageDimensions.at(0);
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0IntegerValue();
 	}
+
 	@Override
 	public Double getSize1NumberValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -446,4 +449,69 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		COSObject entry1 = Size.at(1);
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry1NumberValue();
 	}
+
+	@Override
+	public Boolean getIncludedImageDimensions1HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject IncludedImageDimensions = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (IncludedImageDimensions.size() <= 1) {
+			return null;
+		}
+		COSObject entry1 = IncludedImageDimensions.at(1);
+		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry1HasTypeInteger();
+	}
+
+	@Override
+	public Boolean getSize0HasTypeNumber() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Size = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (Size.size() <= 0) {
+			return null;
+		}
+		COSObject entry0 = Size.at(0);
+		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry0HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getIncludedImageDimensions0HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject IncludedImageDimensions = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (IncludedImageDimensions.size() <= 0) {
+			return null;
+		}
+		COSObject entry0 = IncludedImageDimensions.at(0);
+		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0HasTypeInteger();
+	}
+
+	@Override
+	public Boolean getSize1HasTypeNumber() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Size = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (Size.size() <= 1) {
+			return null;
+		}
+		COSObject entry1 = Size.at(1);
+		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry1HasTypeNumber();
+	}
+
 }

@@ -1224,7 +1224,6 @@ public class GFAPageObject extends GFAObject implements APageObject {
 									return true;
 								}
 							}
-							return true;
 						}
 						arguments = new ArrayList<>();
 					}

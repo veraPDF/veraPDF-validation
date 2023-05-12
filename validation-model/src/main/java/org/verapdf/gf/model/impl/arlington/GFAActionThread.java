@@ -677,13 +677,17 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	@Override
-	public Boolean getcontainstrailerCatalogThreads() {
+	public Boolean gettrailerCatalogThreadsHasTypeArray() {
 		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
 		if (trailer == null || !trailer.getType().isDictionaryBased()) {
 			return null;
 		}
 		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
-		return Root.knownKey(ASAtom.getASAtom("Threads"));
+		if (Root == null || !Root.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Threads = Root.getKey(ASAtom.getASAtom("Threads"));
+		return Threads != null && Threads.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

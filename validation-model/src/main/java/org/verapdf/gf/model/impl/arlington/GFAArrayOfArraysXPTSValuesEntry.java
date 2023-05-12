@@ -86,8 +86,12 @@ public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArray
 	}
 
 	@Override
-	public Boolean getcontainsparentNames() {
-		return this.parentObject.knownKey(ASAtom.getASAtom("Names"));
+	public Boolean getparentNamesHasTypeArray() {
+		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Names = this.parentObject.getKey(ASAtom.getASAtom("Names"));
+		return Names != null && Names.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

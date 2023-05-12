@@ -394,4 +394,17 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return null;
 	}
 
+	@Override
+	public Boolean getEncryptVHasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Encrypt = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		if (Encrypt == null || !Encrypt.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
+		return V != null && V.getType() == COSObjType.COS_INTEGER;
+	}
+
 }

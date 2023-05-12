@@ -200,6 +200,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		COSObject entry1 = ByteRange.at(1);
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry1IntegerValue();
 	}
+
 	@Override
 	public Long getByteRange2IntegerValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -215,6 +216,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		COSObject entry2 = ByteRange.at(2);
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry2IntegerValue();
 	}
+
 	@Override
 	public Long getByteRange0IntegerValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -230,6 +232,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		COSObject entry0 = ByteRange.at(0);
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0IntegerValue();
 	}
+
 	@Override
 	public Long getByteRange3IntegerValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -245,4 +248,69 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		COSObject entry3 = ByteRange.at(3);
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry3IntegerValue();
 	}
+
+	@Override
+	public Boolean getByteRange1HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 1) {
+			return null;
+		}
+		COSObject entry1 = ByteRange.at(1);
+		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry1HasTypeInteger();
+	}
+
+	@Override
+	public Boolean getByteRange2HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 2) {
+			return null;
+		}
+		COSObject entry2 = ByteRange.at(2);
+		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry2HasTypeInteger();
+	}
+
+	@Override
+	public Boolean getByteRange0HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 0) {
+			return null;
+		}
+		COSObject entry0 = ByteRange.at(0);
+		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0HasTypeInteger();
+	}
+
+	@Override
+	public Boolean getByteRange3HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 3) {
+			return null;
+		}
+		COSObject entry3 = ByteRange.at(3);
+		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry3HasTypeInteger();
+	}
+
 }

@@ -130,12 +130,16 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	}
 
 	@Override
-	public Boolean getcontainsDocMDPReference() {
+	public Boolean getDocMDPReferenceHasTypeArray() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
 		COSObject DocMDP = this.baseObject.getKey(ASAtom.getASAtom("DocMDP"));
-		return DocMDP.knownKey(ASAtom.getASAtom("Reference"));
+		if (DocMDP == null || !DocMDP.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Reference = DocMDP.getKey(ASAtom.getASAtom("Reference"));
+		return Reference != null && Reference.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

@@ -315,6 +315,7 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 		COSObject S = Group.getKey(ASAtom.getASAtom("S"));
 		return new GFAGroupAttributes(Group.getDirectBase(), null, null).getSNameValue();
 	}
+
 	@Override
 	public Boolean getcontainsGGroupCS() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {

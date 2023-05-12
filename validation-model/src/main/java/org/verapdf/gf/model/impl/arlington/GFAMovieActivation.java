@@ -401,6 +401,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 		COSObject entry0 = FWPosition.at(0);
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry0NumberValue();
 	}
+
 	@Override
 	public Double getFWPosition1NumberValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -416,6 +417,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 		COSObject entry1 = FWPosition.at(1);
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry1NumberValue();
 	}
+
 	@Override
 	public Long getFWScale0IntegerValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -431,6 +433,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 		COSObject entry0 = FWScale.at(0);
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry0IntegerValue();
 	}
+
 	@Override
 	public Long getFWScale1IntegerValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
@@ -446,4 +449,69 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 		COSObject entry1 = FWScale.at(1);
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry1IntegerValue();
 	}
+
+	@Override
+	public Boolean getFWPosition0HasTypeNumber() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject FWPosition = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWPosition.size() <= 0) {
+			return null;
+		}
+		COSObject entry0 = FWPosition.at(0);
+		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry0HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getFWPosition1HasTypeNumber() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject FWPosition = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWPosition.size() <= 1) {
+			return null;
+		}
+		COSObject entry1 = FWPosition.at(1);
+		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry1HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getFWScale0HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject FWScale = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWScale.size() <= 0) {
+			return null;
+		}
+		COSObject entry0 = FWScale.at(0);
+		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry0HasTypeInteger();
+	}
+
+	@Override
+	public Boolean getFWScale1HasTypeInteger() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject FWScale = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWScale.size() <= 1) {
+			return null;
+		}
+		COSObject entry1 = FWScale.at(1);
+		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry1HasTypeInteger();
+	}
+
 }

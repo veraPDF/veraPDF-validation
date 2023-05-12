@@ -289,7 +289,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
-	public Boolean getcontainspagePAnnots() {
+	public Boolean getpagePAnnotsHasTypeArray() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		Long pageNumber = null;
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
@@ -310,7 +310,11 @@ public class GFATarget extends GFAObject implements ATarget {
 			return null;
 		}
 		COSObject page = StaticResources.getDocument().getPages().get(pageNumber.intValue()).getObject();
-		return page.knownKey(ASAtom.getASAtom("Annots"));
+		if (page == null || !page.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Annots = page.getKey(ASAtom.getASAtom("Annots"));
+		return Annots != null && Annots.getType() == COSObjType.COS_ARRAY;
 	}
 
 }

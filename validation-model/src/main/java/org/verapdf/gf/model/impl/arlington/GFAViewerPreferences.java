@@ -493,4 +493,5 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 		COSObject PageMode = Root.getKey(ASAtom.getASAtom("PageMode"));
 		return new GFACatalog(Root.getDirectBase(), null, null).getPageModeNameValue();
 	}
+
 }

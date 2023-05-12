@@ -176,4 +176,5 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 		COSObject UserProperties = MarkInfo.getKey(ASAtom.getASAtom("UserProperties"));
 		return new GFAMarkInfo(MarkInfo.getDirectBase(), null, null).getUserPropertiesBooleanValue();
 	}
+
 }

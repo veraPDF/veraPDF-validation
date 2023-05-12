@@ -436,4 +436,5 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 		COSObject BaseFont = this.parentObject.getKey(ASAtom.getASAtom("BaseFont"));
 		return new GFAFontTrueType(this.parentObject.getDirectBase(), null, null).getBaseFontNameValue();
 	}
+
 }
