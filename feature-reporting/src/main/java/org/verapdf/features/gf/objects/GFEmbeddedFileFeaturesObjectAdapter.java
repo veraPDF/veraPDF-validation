@@ -114,7 +114,7 @@ public class GFEmbeddedFileFeaturesObjectAdapter implements EmbeddedFileFeatures
 	@Override
 	public String getAFRelationship() {
 		if (embFile != null && embFile.getType().isDictionaryBased()) {
-			return embFile.getStringKey(ASAtom.AF_RELATIONSHIP);
+			return embFile.getNameKeyStringValue(ASAtom.AF_RELATIONSHIP);
 		}
 		return null;
 	}
@@ -122,7 +122,7 @@ public class GFEmbeddedFileFeaturesObjectAdapter implements EmbeddedFileFeatures
 	@Override
 	public String getSubtype() {
 		if (this.cosEmbFile != null && this.cosEmbFile.getType().isDictionaryBased()) {
-			return this.cosEmbFile.getStringKey(ASAtom.SUBTYPE);
+			return this.cosEmbFile.getNameKeyStringValue(ASAtom.SUBTYPE);
 		}
 		return null;
 	}

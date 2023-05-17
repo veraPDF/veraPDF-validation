@@ -93,8 +93,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
             if (pdDocument != null) {
                 PDCatalog catalog = pdDocument.getCatalog();
                 if (catalog != null) {
-                    ASAtom nameKey = catalog.getNameKey(ASAtom.VERSION);
-                    this.catalogVersion = nameKey == null ? null : nameKey.getValue();
+                    this.catalogVersion = catalog.getNameKeyStringValue(ASAtom.VERSION);
                     this.isTagged = catalog.getStructTreeRoot() != null;
                 }
             }
