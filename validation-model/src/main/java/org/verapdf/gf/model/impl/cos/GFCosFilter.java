@@ -44,7 +44,7 @@ public class GFCosFilter extends GFCosName implements CosFilter {
             if (decodeParms == null) {
                 this.decodeParms = IDENTITY;
             } else {
-                this.decodeParms = decodeParms.getStringKey(ASAtom.NAME);
+                this.decodeParms = decodeParms.getNameKeyStringValue(ASAtom.NAME);
             }
         } else if (decodeParms == null) {
             this.decodeParms = DEFAULT;
