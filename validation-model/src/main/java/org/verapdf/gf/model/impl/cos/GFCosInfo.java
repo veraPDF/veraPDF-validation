@@ -132,7 +132,24 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
             try {
                 List<String> creator = meta.getCreator();
                 if (creator != null) {
-                    return String.join(",", creator);
+                    if (creator.size() == 1) {
+                        return creator.get(0);
+                    } else {
+                        return "[" + String.join(",", creator) + "]";
+                    }                }
+            } catch (XMPException ignored) {
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Long getXMPCreatorSize() {
+        if (meta != null) {
+            try {
+                List<String> creator = meta.getCreator();
+                if (creator != null) {
+                    return (long) creator.size();
                 }
             } catch (XMPException ignored) {
             }
