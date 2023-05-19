@@ -69,8 +69,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	@Override
 	public String getSubtype() {
 		if (this.stream != null) {
-			ASAtom s = this.stream.getNameKey(ASAtom.SUBTYPE);
-			return s == null ? null : s.getValue();
+			return this.stream.getNameKeyStringValue(ASAtom.SUBTYPE);
 		}
 		return null;
 	}

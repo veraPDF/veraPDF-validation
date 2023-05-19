@@ -189,8 +189,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 
 	@Override
 	public String getSubtype() {
-		ASAtom subtype = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getType0FontDict().getNameKey(ASAtom.SUBTYPE);
-		return subtype == null ? null : subtype.getValue();
+		return ((org.verapdf.pd.font.PDType0Font) this.pdFont).getType0FontDict().getNameKeyStringValue(ASAtom.SUBTYPE);
 	}
 
 	private boolean isRegistryCompatible() {

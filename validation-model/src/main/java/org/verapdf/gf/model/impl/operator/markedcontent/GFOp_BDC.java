@@ -76,7 +76,7 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
 			if (structureElement != null && !structureElement.empty()) {
-				return structureElement.getStringKey(ASAtom.S);
+				return structureElement.getNameKeyStringValue(ASAtom.S);
 			}
 		}
 		return null;

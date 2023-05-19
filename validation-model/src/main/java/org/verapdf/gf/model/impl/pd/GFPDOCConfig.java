@@ -68,7 +68,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 				for (int i = 0; i < asArray.size(); i++) {
 					COSObject element = asArray.at(i);
 					if (element.getType() == COSObjType.COS_DICT) {
-						String event = element.getStringKey(ASAtom.EVENT);
+						String event = element.getNameKeyStringValue(ASAtom.EVENT);
 						if (event != null && !event.isEmpty()) {
 							result = result.concat(event);
 						}

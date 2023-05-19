@@ -64,8 +64,8 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		COSObject fileSpec = stream.getKey(ASAtom.F);
 		this.fileSpec = fileSpec.empty() ? null : fileSpec.toString();
 		this.fFilter = parseFilters(stream.getKey(ASAtom.F_FILTER).get());
-		String fDecodeParams = stream.getStringKey(ASAtom.F_DECODE_PARMS);
-		this.fDecodeParams = fDecodeParams == null || fDecodeParams.isEmpty() ? null : fDecodeParams;
+		COSObject fDecodeParams = stream.getKey(ASAtom.F_DECODE_PARMS);
+		this.fDecodeParams = fDecodeParams.empty() ? null : fDecodeParams.toString();
 		this.streamKeywordCRLFCompliant = stream.isStreamKeywordCRLFCompliant().booleanValue();
 		this.endstreamKeywordEOLCompliant = stream.isEndstreamKeywordCRLFCompliant().booleanValue();
 		this.realLength = stream.getRealStreamSize();
