@@ -174,7 +174,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
 			if (structureElement != null && structureElement.getType() == COSObjType.COS_DICT) {
-				return structureElement.getStringKey(ASAtom.S);
+				return structureElement.getNameKeyStringValue(ASAtom.S);
 			}
 		}
 		return null;

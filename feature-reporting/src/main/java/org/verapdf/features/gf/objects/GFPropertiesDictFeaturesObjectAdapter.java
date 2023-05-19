@@ -46,10 +46,7 @@ public class GFPropertiesDictFeaturesObjectAdapter implements PropertiesDictFeat
         this.id = id;
         this.isPresent = properties != null && !properties.empty();
         if (properties != null && !properties.empty()) {
-            ASAtom astype = properties.getNameKey(ASAtom.TYPE);
-            if (astype != null) {
-                this.type = astype.getValue();
-            }
+            this.type = properties.getNameKeyStringValue(ASAtom.TYPE);
         }
     }
 

@@ -355,7 +355,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private static String getRequirementsString(COSDictionary reqDict) {
-		return reqDict.getStringKey(ASAtom.S);
+		return reqDict.getNameKeyStringValue(ASAtom.S);
 	}
 
 	/**

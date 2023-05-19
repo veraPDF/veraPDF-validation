@@ -110,7 +110,7 @@ public class GFInfoDictFeaturesObjectAdapter implements InfoDictFeaturesObjectAd
             Set<ASAtom> keys = new TreeSet<>(info.getKeySet());
             keys.removeAll(Arrays.asList(predefinedKeys));
             for (ASAtom key : keys) {
-                res.put(key.getValue(), info.getStringKey(key));
+                res.put(key.getValue(), key == ASAtom.TRAPPED ? info.getNameKeyStringValue(key) : info.getStringKey(key));
             }
             return Collections.unmodifiableMap(res);
         }
@@ -144,8 +144,7 @@ public class GFInfoDictFeaturesObjectAdapter implements InfoDictFeaturesObjectAd
 
     private String getNameKey(ASAtom key) {
         if (info != null && info.getType() == COSObjType.COS_DICT) {
-            ASAtom atom = info.getNameKey(key);
-            return atom == null ? null : atom.getValue();
+            return info.getNameKeyStringValue(key);
         }
         return null;
     }

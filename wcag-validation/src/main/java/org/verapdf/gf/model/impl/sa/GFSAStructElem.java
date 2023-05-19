@@ -98,8 +98,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 	}
 
 	public String getStructureType() {
-		ASAtom subtype = structElemDictionary.getNameKey(ASAtom.S);
-		return subtype == null ? null : subtype.getValue();
+		return structElemDictionary.getNameKeyStringValue(ASAtom.S);
 	}
 
 	@Override
@@ -171,7 +170,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 				} else if (element instanceof PDOBJRDictionary) {
 					COSObject obj = ((PDOBJRDictionary)element).getReferencedObject();
 					if (obj != null && obj.getType() == COSObjType.COS_DICT &&
-							GFSAAnnotation.LINK.equals(obj.getStringKey(ASAtom.SUBTYPE))) {
+							GFSAAnnotation.LINK.equals(obj.getNameKeyStringValue(ASAtom.SUBTYPE))) {
 						getNode().addChild(new GFSAAnnotationNode(new PDAnnotation(obj)));
 					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {

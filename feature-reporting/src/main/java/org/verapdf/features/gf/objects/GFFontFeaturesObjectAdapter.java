@@ -161,8 +161,7 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 			if (enc.getType() == COSObjType.COS_NAME) {
 				return enc.getString();
 			} else if (enc.getType() == COSObjType.COS_DICT) {
-				ASAtom name = enc.getNameKey(ASAtom.BASE_ENCODING);
-				return name == null ? null : name.getValue();
+				return enc.getNameKeyStringValue(ASAtom.BASE_ENCODING);
 			}
 		}
 		return null;
