@@ -101,8 +101,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
 	private static boolean areColorantsPresent(Set<ASAtom> colorantDictionaryEntries,
 	                                           List<COSObject> colorantsArray) {
-		for (int i = 0; i < colorantsArray.size(); ++i) {
-			COSObject object = colorantsArray.get(i);
+		for (COSObject object : colorantsArray) {
 			if (object != null && !isNone(object) && !IGNORED_COLORANTS.contains(object.getName()) &&
 			    !colorantDictionaryEntries.contains(object.getName())) {
 				return false;
@@ -185,27 +184,16 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 	}
 
 	private List<PDSeparation> getColorants() {
-		COSObject attributes = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getAttributes();
-		if (attributes != null && attributes.getType() == COSObjType.COS_DICT) {
-			COSObject colorantsDict = attributes.getKey(ASAtom.COLORANTS);
-			if (colorantsDict.getType() == COSObjType.COS_DICT && colorantsDict.size().intValue() > 0) {
-				return GFPDDeviceN.getColorants(colorantsDict);
+		List<PDSeparation> result = new LinkedList<>();
+		List<org.verapdf.pd.colors.PDColorSpace> colorants = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getColorants();
+		for (org.verapdf.pd.colors.PDColorSpace colorSpace : colorants) {
+			if (ASAtom.SEPARATION.equals(colorSpace.getType())) {
+				result.add((GFPDSeparation) ColorSpaceFactory.getColorSpace(colorSpace));
 			}
 		}
-		return Collections.emptyList();
+		return result;
 	}
 
-	private static List<PDSeparation> getColorants(COSObject colorantsDict) {
-		List<PDSeparation> list = new ArrayList<>(colorantsDict.size().intValue());
-		for (COSObject value : colorantsDict.getValues()) {
-			org.verapdf.pd.colors.PDColorSpace colorSpace = org.verapdf.factory.colors.ColorSpaceFactory
-					.getColorSpace(value);
-			if (ASAtom.SEPARATION.equals(colorSpace.getType())) {
-				list.add((GFPDSeparation) ColorSpaceFactory.getColorSpace(colorSpace));
-			}
-		}
-		return Collections.unmodifiableList(list);
-	}
 	private List<GFPDFunction> getTintTransform() {
 		PDFunction pdFunction = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getTintTransform();
 		if (pdFunction == null) {
