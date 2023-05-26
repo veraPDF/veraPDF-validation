@@ -21,8 +21,10 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.model.selayer.SETH;
 import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.AttributeHelper;
 import org.verapdf.tools.TaggedPDFConstants;
 
@@ -47,6 +49,9 @@ public class GFSETH extends GFSETableCell implements SETH {
     }
 
     public static String getDefaultScope(int rowNumber, int columnNumber) {
+        if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_1) {
+            return null;
+        }
         if (rowNumber == 0 && columnNumber == 0) {
             return BOTH;
         }
