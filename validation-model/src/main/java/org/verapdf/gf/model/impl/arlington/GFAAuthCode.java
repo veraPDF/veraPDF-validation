@@ -106,15 +106,20 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ByteRange"));
 	}
 
+	public COSObject getByteRangeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisByteRangeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		COSObject object = getByteRangeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getByteRangeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		COSObject object = getByteRangeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -123,15 +128,20 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("MAC"));
 	}
 
+	public COSObject getMACValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MAC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisMACIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MAC"));
+		COSObject object = getMACValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getMACHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MAC"));
+		COSObject object = getMACValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -140,31 +150,29 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("MACLocation"));
 	}
 
+	public COSObject getMACLocationValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MACLocation"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisMACLocationIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MACLocation"));
+		COSObject object = getMACLocationValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getMACLocationHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MACLocation"));
+		COSObject object = getMACLocationValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getMACLocationNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MACLocation"));
-		if (object == null || object.empty()) {
-			return getMACLocationNameDefaultValue();
-		}
+		COSObject object = getMACLocationValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getMACLocationNameDefaultValue() {
 		return null;
 	}
 
@@ -173,15 +181,20 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SigObjRef"));
 	}
 
+	public COSObject getSigObjRefValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigObjRef"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisSigObjRefIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigObjRef"));
+		COSObject object = getSigObjRefValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getSigObjRefHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigObjRef"));
+		COSObject object = getSigObjRefValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

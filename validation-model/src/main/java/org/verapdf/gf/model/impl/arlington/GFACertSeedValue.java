@@ -191,31 +191,36 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
 	}
 
-	@Override
-	public Boolean getFfHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFfBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		if (object == null || object.empty()) {
-			return getFfBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFfBitmaskDefaultValue() {
+	public COSObject getFfDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getFfValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		if (object == null || object.empty()) {
+			object = getFfDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getFfHasTypeBitmask() {
+		COSObject object = getFfValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFfBitmaskValue() {
+		COSObject object = getFfValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -225,9 +230,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Issuer"));
 	}
 
+	public COSObject getIssuerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Issuer"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIssuerHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Issuer"));
+		COSObject object = getIssuerValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -236,9 +246,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("KeyUsage"));
 	}
 
+	public COSObject getKeyUsageValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KeyUsage"));
+		return object;
+	}
+
 	@Override
 	public Boolean getKeyUsageHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KeyUsage"));
+		COSObject object = getKeyUsageValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -247,9 +262,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OID"));
 	}
 
+	public COSObject getOIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOIDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OID"));
+		COSObject object = getOIDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -258,9 +278,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyCommitmentType"));
 	}
 
+	public COSObject getSignaturePolicyCommitmentTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyCommitmentType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSignaturePolicyCommitmentTypeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyCommitmentType"));
+		COSObject object = getSignaturePolicyCommitmentTypeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -269,25 +294,23 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
 	}
 
+	public COSObject getSignaturePolicyHashAlgorithmValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSignaturePolicyHashAlgorithmHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
+		COSObject object = getSignaturePolicyHashAlgorithmValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSignaturePolicyHashAlgorithmNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
-		if (object == null || object.empty()) {
-			return getSignaturePolicyHashAlgorithmNameDefaultValue();
-		}
+		COSObject object = getSignaturePolicyHashAlgorithmValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSignaturePolicyHashAlgorithmNameDefaultValue() {
 		return null;
 	}
 
@@ -296,9 +319,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyHashValue"));
 	}
 
+	public COSObject getSignaturePolicyHashValueValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashValue"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSignaturePolicyHashValueHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashValue"));
+		COSObject object = getSignaturePolicyHashValueValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -307,9 +335,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SignaturePolicyOID"));
 	}
 
+	public COSObject getSignaturePolicyOIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyOID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSignaturePolicyOIDHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyOID"));
+		COSObject object = getSignaturePolicyOIDValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
@@ -318,9 +351,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subject"));
 	}
 
+	public COSObject getSubjectValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubjectHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
+		COSObject object = getSubjectValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -329,9 +367,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SubjectDN"));
 	}
 
+	public COSObject getSubjectDNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubjectDN"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubjectDNHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubjectDN"));
+		COSObject object = getSubjectDNValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -340,25 +383,23 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -367,9 +408,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
 	}
 
+	public COSObject getURLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getURLHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		COSObject object = getURLValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
@@ -378,29 +424,34 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URLType"));
 	}
 
+	public COSObject getURLTypeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Browser");
+		}
+		return null;
+	}
+
+	public COSObject getURLTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLType"));
+		if (object == null || object.empty()) {
+			object = getURLTypeDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getURLTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLType"));
+		COSObject object = getURLTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getURLTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLType"));
-		if (object == null || object.empty()) {
-			return getURLTypeNameDefaultValue();
-		}
+		COSObject object = getURLTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getURLTypeNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "Browser";
 		}
 		return null;
 	}

@@ -28,27 +28,32 @@ public class GFARichMediaCommandArrayEntry extends GFAObject implements ARichMed
 		this.collectionName = collectionName;
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeBoolean() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
 	public Boolean getHasTypeInteger() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Boolean getHasTypeStringText() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

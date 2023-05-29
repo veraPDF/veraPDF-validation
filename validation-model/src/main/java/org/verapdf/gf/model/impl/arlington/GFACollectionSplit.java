@@ -28,25 +28,23 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Direction"));
 	}
 
+	public COSObject getDirectionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Direction"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDirectionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Direction"));
+		COSObject object = getDirectionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getDirectionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Direction"));
-		if (object == null || object.empty()) {
-			return getDirectionNameDefaultValue();
-		}
+		COSObject object = getDirectionValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getDirectionNameDefaultValue() {
 		return null;
 	}
 
@@ -55,25 +53,23 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Position"));
 	}
 
+	public COSObject getPositionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPositionHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		COSObject object = getPositionValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getPositionNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
-		if (object == null || object.empty()) {
-			return getPositionNumberDefaultValue();
-		}
+		COSObject object = getPositionValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getPositionNumberDefaultValue() {
 		return null;
 	}
 
@@ -82,25 +78,23 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

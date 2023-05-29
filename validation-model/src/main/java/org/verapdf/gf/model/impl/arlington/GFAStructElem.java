@@ -319,33 +319,38 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
+	public COSObject getAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisAIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getAHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Long getAArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -357,15 +362,20 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
 	}
 
+	public COSObject getAFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -374,9 +384,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ActualText"));
 	}
 
+	public COSObject getActualTextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ActualText"));
+		return object;
+	}
+
 	@Override
 	public Boolean getActualTextHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ActualText"));
+		COSObject object = getActualTextValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -385,9 +400,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Alt"));
 	}
 
+	public COSObject getAltValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alt"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAltHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alt"));
+		COSObject object = getAltValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -396,15 +416,20 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getCHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -413,9 +438,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
 	}
 
+	public COSObject getEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -424,9 +454,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryIDHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -435,21 +470,26 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("K"));
 	}
 
+	public COSObject getKValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		return object;
+	}
+
 	@Override
 	public Boolean getKHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getKHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getKHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -458,9 +498,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
 	}
 
+	public COSObject getLangValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLangHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		COSObject object = getLangValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -469,15 +514,20 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("NS"));
 	}
 
+	public COSObject getNSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisNSIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
+		COSObject object = getNSValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getNSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
+		COSObject object = getNSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -486,15 +536,20 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -503,15 +558,20 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Pg"));
 	}
 
+	public COSObject getPgValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPgIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPgHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -520,9 +580,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Phoneme"));
 	}
 
+	public COSObject getPhonemeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Phoneme"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPhonemeHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Phoneme"));
+		COSObject object = getPhonemeValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -531,9 +596,25 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PhoneticAlphabet"));
 	}
 
+	public COSObject getPhoneticAlphabetDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSName.construct("ipa");
+		}
+		return null;
+	}
+
+	public COSObject getPhoneticAlphabetValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PhoneticAlphabet"));
+		if (object == null || object.empty()) {
+			object = getPhoneticAlphabetDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPhoneticAlphabetHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PhoneticAlphabet"));
+		COSObject object = getPhoneticAlphabetValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -542,25 +623,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
-	@Override
-	public Boolean getRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getRIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		if (object == null || object.empty()) {
-			return getRIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getRIntegerDefaultValue() {
+	public COSObject getRDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -568,7 +631,30 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		if (object == null || object.empty()) {
+			object = getRDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getRHasTypeInteger() {
+		COSObject object = getRValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getRIntegerValue() {
+		COSObject object = getRValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -578,9 +664,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Ref"));
 	}
 
+	public COSObject getRefValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ref"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRefHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ref"));
+		COSObject object = getRefValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -589,9 +680,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -600,9 +696,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
+	public COSObject getTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -611,25 +712,23 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

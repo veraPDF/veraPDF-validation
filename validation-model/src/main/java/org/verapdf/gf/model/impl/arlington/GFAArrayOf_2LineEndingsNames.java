@@ -23,59 +23,49 @@ public class GFAArrayOf_2LineEndingsNames extends GFAObject implements AArrayOf_
 		super(baseObject, parentObject, keyName, "AArrayOf_2LineEndingsNames");
 	}
 
-	@Override
-	public Boolean getentry0HasTypeName() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeName() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NameDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getentry0NameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeName() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeName() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NameDefaultValue();
-		}
+		COSObject object = getentry1Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getentry1NameDefaultValue() {
 		return null;
 	}
 

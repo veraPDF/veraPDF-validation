@@ -86,9 +86,14 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AC"));
 	}
 
+	public COSObject getACValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getACHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
+		COSObject object = getACValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -97,9 +102,26 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CV"));
 	}
 
+	public COSObject getCVDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(45D);
+		}
+		return null;
+	}
+
+	public COSObject getCVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CV"));
+		if (object == null || object.empty()) {
+			object = getCVDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getCVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CV"));
+		COSObject object = getCVValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -108,35 +130,40 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FC"));
 	}
 
+	public COSObject getFCDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("BG");
+		}
+		return null;
+	}
+
+	public COSObject getFCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FC"));
+		if (object == null || object.empty()) {
+			object = getFCDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getFCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FC"));
+		COSObject object = getFCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFCHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FC"));
+		COSObject object = getFCValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFCNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FC"));
-		if (object == null || object.empty()) {
-			return getFCNameDefaultValue();
-		}
+		COSObject object = getFCValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getFCNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "BG";
 		}
 		return null;
 	}
@@ -146,29 +173,34 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getODefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(0.5D);
+		}
+		return null;
+	}
+
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		if (object == null || object.empty()) {
+			object = getODefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getOHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getONumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		if (object == null || object.empty()) {
-			return getONumberDefaultValue();
-		}
+		COSObject object = getOValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getONumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0.5D;
 		}
 		return null;
 	}
@@ -178,25 +210,23 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -205,25 +235,23 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

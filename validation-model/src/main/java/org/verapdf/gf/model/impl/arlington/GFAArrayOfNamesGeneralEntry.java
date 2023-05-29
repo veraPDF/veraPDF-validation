@@ -28,9 +28,14 @@ public class GFAArrayOfNamesGeneralEntry extends GFAObject implements AArrayOfNa
 		this.collectionName = collectionName;
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 

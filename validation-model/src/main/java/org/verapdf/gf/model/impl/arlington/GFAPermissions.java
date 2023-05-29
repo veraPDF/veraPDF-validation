@@ -90,15 +90,20 @@ public class GFAPermissions extends GFAObject implements APermissions {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DocMDP"));
 	}
 
+	public COSObject getDocMDPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DocMDP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDocMDPIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DocMDP"));
+		COSObject object = getDocMDPValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDocMDPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DocMDP"));
+		COSObject object = getDocMDPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -107,9 +112,14 @@ public class GFAPermissions extends GFAObject implements APermissions {
 		return this.baseObject.knownKey(ASAtom.getASAtom("UR3"));
 	}
 
+	public COSObject getUR3Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UR3"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUR3HasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UR3"));
+		COSObject object = getUR3Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

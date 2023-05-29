@@ -60,31 +60,29 @@ public class GFAArrayOfOCGStateEntry extends GFAObject implements AArrayOfOCGSta
 		return Collections.emptyList();
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getNameValue() {
-		COSObject object = new COSObject(this.baseObject);
-		if (object == null || object.empty()) {
-			return getNameDefaultValue();
-		}
+		COSObject object = getValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getNameDefaultValue() {
 		return null;
 	}
 

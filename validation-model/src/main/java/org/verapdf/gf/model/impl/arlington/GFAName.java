@@ -348,9 +348,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AP"));
 	}
 
+	public COSObject getAPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAPHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -359,9 +364,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AlternatePresentations"));
 	}
 
+	public COSObject getAlternatePresentationsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternatePresentations"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAlternatePresentationsHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternatePresentations"));
+		COSObject object = getAlternatePresentationsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -370,9 +380,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dests"));
 	}
 
+	public COSObject getDestsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDestsHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		COSObject object = getDestsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -381,9 +396,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("EmbeddedFiles"));
 	}
 
+	public COSObject getEmbeddedFilesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EmbeddedFiles"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEmbeddedFilesHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EmbeddedFiles"));
+		COSObject object = getEmbeddedFilesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -392,9 +412,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("IDS"));
 	}
 
+	public COSObject getIDSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIDSHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDS"));
+		COSObject object = getIDSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -403,9 +428,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("JavaScript"));
 	}
 
+	public COSObject getJavaScriptValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScript"));
+		return object;
+	}
+
 	@Override
 	public Boolean getJavaScriptHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScript"));
+		COSObject object = getJavaScriptValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -414,9 +444,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Pages"));
 	}
 
+	public COSObject getPagesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPagesHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		COSObject object = getPagesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -425,9 +460,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Renditions"));
 	}
 
+	public COSObject getRenditionsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Renditions"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRenditionsHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Renditions"));
+		COSObject object = getRenditionsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -436,9 +476,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Templates"));
 	}
 
+	public COSObject getTemplatesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Templates"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTemplatesHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Templates"));
+		COSObject object = getTemplatesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -447,9 +492,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URLS"));
 	}
 
+	public COSObject getURLSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getURLSHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLS"));
+		COSObject object = getURLSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -458,9 +508,14 @@ public class GFAName extends GFAObject implements AName {
 		return this.baseObject.knownKey(ASAtom.getASAtom("XFAResources"));
 	}
 
+	public COSObject getXFAResourcesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFAResources"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXFAResourcesHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFAResources"));
+		COSObject object = getXFAResourcesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

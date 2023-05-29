@@ -62,47 +62,38 @@ public class GFATarget extends GFAObject implements ATarget {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
+	public COSObject getAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getAHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
 	public Long getAIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		if (object == null || object.empty()) {
-			return getAIntegerDefaultValue();
-		}
+		COSObject object = getAValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
 		return null;
 	}
 
-	public Long getAIntegerDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public String getAStringTextValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
-		if (object == null || object.empty()) {
-			return getAStringTextDefaultValue();
-		}
+		COSObject object = getAValue();
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getAStringTextDefaultValue() {
 		return null;
 	}
 
@@ -111,15 +102,20 @@ public class GFATarget extends GFAObject implements ATarget {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
 
+	public COSObject getNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public Boolean getnameTreetrailerCatalogNamesEmbeddedFilesContainsNString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		if (object == null || object.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
@@ -148,53 +144,44 @@ public class GFATarget extends GFAObject implements ATarget {
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getPHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public Long getPIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPIntegerDefaultValue();
-		}
+		COSObject object = getPValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
 		return null;
 	}
 
-	public Long getPIntegerDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public String getPStringByteValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPStringByteDefaultValue();
-		}
+		COSObject object = getPValue();
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getPStringByteDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Boolean getnameTreetrailerCatalogNamesDestsContainsPString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null || object.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
@@ -223,25 +210,23 @@ public class GFATarget extends GFAObject implements ATarget {
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getRNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		if (object == null || object.empty()) {
-			return getRNameDefaultValue();
-		}
+		COSObject object = getRValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getRNameDefaultValue() {
 		return null;
 	}
 
@@ -250,15 +235,20 @@ public class GFATarget extends GFAObject implements ATarget {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
+	public COSObject getTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getpagePAnnotsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		Long pageNumber = null;
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			PDNamesDictionary names = StaticResources.getDocument().getCatalog().getNamesDictionary();
@@ -290,7 +280,7 @@ public class GFATarget extends GFAObject implements ATarget {
 
 	@Override
 	public Boolean getpagePAnnotsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		Long pageNumber = null;
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			PDNamesDictionary names = StaticResources.getDocument().getCatalog().getNamesDictionary();

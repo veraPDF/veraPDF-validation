@@ -127,9 +127,14 @@ public class GFADestDict extends GFAObject implements ADestDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -138,9 +143,14 @@ public class GFADestDict extends GFAObject implements ADestDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SD"));
 	}
 
+	public COSObject getSDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
+		COSObject object = getSDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

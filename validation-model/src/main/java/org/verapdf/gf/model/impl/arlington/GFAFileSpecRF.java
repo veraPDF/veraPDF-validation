@@ -90,21 +90,26 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisFIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getFArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -116,21 +121,26 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 		return this.baseObject.knownKey(ASAtom.getASAtom("UF"));
 	}
 
+	public COSObject getUFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisUFIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		COSObject object = getUFValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getUFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		COSObject object = getUFValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getUFArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		COSObject object = getUFValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}

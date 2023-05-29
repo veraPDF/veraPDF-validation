@@ -28,25 +28,23 @@ public class GFAOptContentView extends GFAObject implements AOptContentView {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ViewState"));
 	}
 
+	public COSObject getViewStateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewState"));
+		return object;
+	}
+
 	@Override
 	public Boolean getViewStateHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewState"));
+		COSObject object = getViewStateValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getViewStateNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewState"));
-		if (object == null || object.empty()) {
-			return getViewStateNameDefaultValue();
-		}
+		COSObject object = getViewStateValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getViewStateNameDefaultValue() {
 		return null;
 	}
 

@@ -113,9 +113,14 @@ public class GFADPM extends GFAObject implements ADPM {
 		return this.baseObject.knownKey(ASAtom.getASAtom("GTS_Managed"));
 	}
 
+	public COSObject getGTS_ManagedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Managed"));
+		return object;
+	}
+
 	@Override
 	public Boolean getGTS_ManagedHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Managed"));
+		COSObject object = getGTS_ManagedValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -124,9 +129,14 @@ public class GFADPM extends GFAObject implements ADPM {
 		return this.baseObject.knownKey(ASAtom.getASAtom("GTS_Suspect"));
 	}
 
+	public COSObject getGTS_SuspectValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Suspect"));
+		return object;
+	}
+
 	@Override
 	public Boolean getGTS_SuspectHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Suspect"));
+		COSObject object = getGTS_SuspectValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

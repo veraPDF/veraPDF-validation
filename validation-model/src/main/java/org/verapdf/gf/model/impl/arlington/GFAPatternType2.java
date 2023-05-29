@@ -149,9 +149,14 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ExtGState"));
 	}
 
+	public COSObject getExtGStateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtGState"));
+		return object;
+	}
+
 	@Override
 	public Boolean getExtGStateHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtGState"));
+		COSObject object = getExtGStateValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -160,9 +165,30 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Matrix"));
 	}
 
+	public COSObject getMatrixDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSArray.construct(6, new double[]{1,0,0,1,0,0});
+		}
+		return null;
+	}
+
+	public COSObject getMatrixValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		if (object == null || object.empty()) {
+			object = getMatrixDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		COSObject object = getMatrixValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
 			return false;
 		}
@@ -179,25 +205,23 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PatternType"));
 	}
 
+	public COSObject getPatternTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PatternType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPatternTypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PatternType"));
+		COSObject object = getPatternTypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getPatternTypeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PatternType"));
-		if (object == null || object.empty()) {
-			return getPatternTypeIntegerDefaultValue();
-		}
+		COSObject object = getPatternTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getPatternTypeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -206,21 +230,26 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Shading"));
 	}
 
+	public COSObject getShadingValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisShadingIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		COSObject object = getShadingValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getShadingHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		COSObject object = getShadingValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getShadingHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		COSObject object = getShadingValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -229,25 +258,23 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

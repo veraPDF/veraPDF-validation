@@ -524,9 +524,14 @@ public class GFANavNode extends GFAObject implements ANavNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dur"));
 	}
 
+	public COSObject getDurValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dur"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDurHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dur"));
+		COSObject object = getDurValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -535,9 +540,14 @@ public class GFANavNode extends GFAObject implements ANavNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("NA"));
 	}
 
+	public COSObject getNAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		COSObject object = getNAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -546,9 +556,14 @@ public class GFANavNode extends GFAObject implements ANavNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -557,9 +572,14 @@ public class GFANavNode extends GFAObject implements ANavNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PA"));
 	}
 
+	public COSObject getPAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
+		COSObject object = getPAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -568,9 +588,14 @@ public class GFANavNode extends GFAObject implements ANavNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Prev"));
 	}
 
+	public COSObject getPrevValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPrevHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -579,25 +604,23 @@ public class GFANavNode extends GFAObject implements ANavNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

@@ -23,59 +23,49 @@ public class GFAArrayOf_2Integers extends GFAObject implements AArrayOf_2Integer
 		super(baseObject, parentObject, keyName, "AArrayOf_2Integers");
 	}
 
-	@Override
-	public Boolean getentry0HasTypeInteger() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeInteger() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getentry0IntegerValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0IntegerDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
 		return null;
 	}
 
-	public Long getentry0IntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeInteger() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeInteger() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getentry1IntegerValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1IntegerDefaultValue();
-		}
+		COSObject object = getentry1Value();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getentry1IntegerDefaultValue() {
 		return null;
 	}
 

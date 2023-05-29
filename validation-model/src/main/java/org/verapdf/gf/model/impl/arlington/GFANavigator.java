@@ -135,9 +135,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("APIVersion"));
 	}
 
+	public COSObject getAPIVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("APIVersion"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAPIVersionHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("APIVersion"));
+		COSObject object = getAPIVersionValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -146,9 +151,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Category"));
 	}
 
+	public COSObject getCategoryValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Category"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCategoryHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Category"));
+		COSObject object = getCategoryValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -157,9 +167,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Desc"));
 	}
 
+	public COSObject getDescValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Desc"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDescHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Desc"));
+		COSObject object = getDescValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -168,9 +183,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryIDHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -179,9 +199,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Icon"));
 	}
 
+	public COSObject getIconValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Icon"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIconHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Icon"));
+		COSObject object = getIconValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -190,9 +215,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("InitialFields"));
 	}
 
+	public COSObject getInitialFieldsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("InitialFields"));
+		return object;
+	}
+
 	@Override
 	public Boolean getInitialFieldsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("InitialFields"));
+		COSObject object = getInitialFieldsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -201,31 +231,29 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Layout"));
 	}
 
+	public COSObject getLayoutValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Layout"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLayoutHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Layout"));
+		COSObject object = getLayoutValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getLayoutHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Layout"));
+		COSObject object = getLayoutValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getLayoutNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Layout"));
-		if (object == null || object.empty()) {
-			return getLayoutNameDefaultValue();
-		}
+		COSObject object = getLayoutValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getLayoutNameDefaultValue() {
 		return null;
 	}
 
@@ -234,29 +262,34 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("LoadType"));
 	}
 
+	public COSObject getLoadTypeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Default");
+		}
+		return null;
+	}
+
+	public COSObject getLoadTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LoadType"));
+		if (object == null || object.empty()) {
+			object = getLoadTypeDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getLoadTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LoadType"));
+		COSObject object = getLoadTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getLoadTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LoadType"));
-		if (object == null || object.empty()) {
-			return getLoadTypeNameDefaultValue();
-		}
+		COSObject object = getLoadTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getLoadTypeNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "Default";
 		}
 		return null;
 	}
@@ -266,9 +299,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Locale"));
 	}
 
+	public COSObject getLocaleValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Locale"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLocaleHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Locale"));
+		COSObject object = getLocaleValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -277,9 +315,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
 	}
 
+	public COSObject getNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		COSObject object = getNameValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -288,9 +331,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
 	}
 
+	public COSObject getResourcesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object;
+	}
+
 	@Override
 	public Boolean getResourcesHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -299,9 +347,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SWF"));
 	}
 
+	public COSObject getSWFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SWF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSWFHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SWF"));
+		COSObject object = getSWFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -310,9 +363,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Strings"));
 	}
 
+	public COSObject getStringsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Strings"));
+		return object;
+	}
+
 	@Override
 	public Boolean getStringsHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Strings"));
+		COSObject object = getStringsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -321,25 +379,23 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -348,9 +404,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
 	}
 
+	public COSObject getVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVersionHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		COSObject object = getVersionValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

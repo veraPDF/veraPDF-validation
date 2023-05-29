@@ -281,9 +281,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		return this.baseObject.knownKey(ASAtom.getASAtom("AC"));
 	}
 
+	public COSObject getACValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getACHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
+		COSObject object = getACValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -292,9 +297,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		return this.baseObject.knownKey(ASAtom.getASAtom("BC"));
 	}
 
+	public COSObject getBCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
+		COSObject object = getBCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -303,9 +313,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		return this.baseObject.knownKey(ASAtom.getASAtom("BG"));
 	}
 
+	public COSObject getBGValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBGHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		COSObject object = getBGValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -314,9 +329,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		return this.baseObject.knownKey(ASAtom.getASAtom("CA"));
 	}
 
+	public COSObject getCAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCAHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
+		COSObject object = getCAValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -325,15 +345,20 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
 	}
 
+	public COSObject getIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisIIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		COSObject object = getIValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getIHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		COSObject object = getIValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -342,9 +367,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		return this.baseObject.knownKey(ASAtom.getASAtom("IF"));
 	}
 
+	public COSObject getIFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IF"));
+		COSObject object = getIFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -353,15 +383,20 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		return this.baseObject.knownKey(ASAtom.getASAtom("IX"));
 	}
 
+	public COSObject getIXValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IX"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisIXIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IX"));
+		COSObject object = getIXValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getIXHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IX"));
+		COSObject object = getIXValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -370,64 +405,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
-	@Override
-	public Boolean getRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsRC() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RC"));
-	}
-
-	@Override
-	public Boolean getRCHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
-	}
-
-	@Override
-	public Boolean getcontainsRI() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("RI"));
-	}
-
-	@Override
-	public Boolean getisRIIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getRIHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsTP() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("TP"));
-	}
-
-	@Override
-	public Boolean getTPHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getTPIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
-		if (object == null || object.empty()) {
-			return getTPIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getTPIntegerDefaultValue() {
+	public COSObject getRDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -436,7 +414,101 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		if (object == null || object.empty()) {
+			object = getRDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getRHasTypeInteger() {
+		COSObject object = getRValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsRC() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RC"));
+	}
+
+	public COSObject getRCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
+		return object;
+	}
+
+	@Override
+	public Boolean getRCHasTypeStringText() {
+		COSObject object = getRCValue();
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean getcontainsRI() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RI"));
+	}
+
+	public COSObject getRIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisRIIndirect() {
+		COSObject object = getRIValue();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getRIHasTypeStream() {
+		COSObject object = getRIValue();
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsTP() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("TP"));
+	}
+
+	public COSObject getTPDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getTPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
+		if (object == null || object.empty()) {
+			object = getTPDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getTPHasTypeInteger() {
+		COSObject object = getTPValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getTPIntegerValue() {
+		COSObject object = getTPValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}

@@ -144,15 +144,20 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("App"));
 	}
 
+	public COSObject getAppValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("App"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisAppIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("App"));
+		COSObject object = getAppValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getAppHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("App"));
+		COSObject object = getAppValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -161,15 +166,20 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisFilterIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getFilterHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -178,15 +188,20 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("PubSec"));
 	}
 
+	public COSObject getPubSecValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PubSec"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPubSecIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PubSec"));
+		COSObject object = getPubSecValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPubSecHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PubSec"));
+		COSObject object = getPubSecValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -195,15 +210,20 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("SigQ"));
 	}
 
+	public COSObject getSigQValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigQ"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisSigQIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigQ"));
+		COSObject object = getSigQValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getSigQHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigQ"));
+		COSObject object = getSigQValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

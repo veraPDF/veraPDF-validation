@@ -28,29 +28,34 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Default"));
 	}
 
+	public COSObject getDefaultDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(288L);
+		}
+		return null;
+	}
+
+	public COSObject getDefaultValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		if (object == null || object.empty()) {
+			object = getDefaultDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getDefaultHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		COSObject object = getDefaultValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getDefaultIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
-		if (object == null || object.empty()) {
-			return getDefaultIntegerDefaultValue();
-		}
+		COSObject object = getDefaultValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getDefaultIntegerDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 288L;
 		}
 		return null;
 	}
@@ -60,29 +65,34 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Max"));
 	}
 
+	public COSObject getMaxDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(576L);
+		}
+		return null;
+	}
+
+	public COSObject getMaxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Max"));
+		if (object == null || object.empty()) {
+			object = getMaxDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getMaxHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Max"));
+		COSObject object = getMaxValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getMaxIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Max"));
-		if (object == null || object.empty()) {
-			return getMaxIntegerDefaultValue();
-		}
+		COSObject object = getMaxValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getMaxIntegerDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 576L;
 		}
 		return null;
 	}
@@ -92,29 +102,34 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Min"));
 	}
 
+	public COSObject getMinDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(72L);
+		}
+		return null;
+	}
+
+	public COSObject getMinValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Min"));
+		if (object == null || object.empty()) {
+			object = getMinDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getMinHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Min"));
+		COSObject object = getMinValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getMinIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Min"));
-		if (object == null || object.empty()) {
-			return getMinIntegerDefaultValue();
-		}
+		COSObject object = getMinValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getMinIntegerDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 72L;
 		}
 		return null;
 	}

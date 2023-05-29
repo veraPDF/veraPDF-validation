@@ -94,15 +94,20 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("AU"));
 	}
 
+	public COSObject getAUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AU"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAUHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AU"));
+		COSObject object = getAUValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getAUHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AU"));
+		COSObject object = getAUValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
@@ -111,15 +116,20 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisCIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -128,9 +138,14 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
 	}
 
+	public COSObject getEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -139,25 +154,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
-	@Override
-	public Boolean getSHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getSIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getSIntegerDefaultValue() {
+	public COSObject getSDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -165,7 +162,30 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			object = getSDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSHasTypeInteger() {
+		COSObject object = getSValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getSIntegerValue() {
+		COSObject object = getSValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -175,9 +195,14 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("TS"));
 	}
 
+	public COSObject getTSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTSHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		COSObject object = getTSValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 

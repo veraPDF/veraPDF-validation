@@ -63,15 +63,20 @@ public class GFAOptContentUser extends GFAObject implements AOptContentUser {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
 	}
 
+	public COSObject getNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNameHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		COSObject object = getNameValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		COSObject object = getNameValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -80,25 +85,23 @@ public class GFAOptContentUser extends GFAObject implements AOptContentUser {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

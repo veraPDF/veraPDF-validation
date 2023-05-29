@@ -429,9 +429,14 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Annotation"));
 	}
 
+	public COSObject getAnnotationValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annotation"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAnnotationHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annotation"));
+		COSObject object = getAnnotationValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -440,15 +445,20 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -457,25 +467,7 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Operation"));
 	}
 
-	@Override
-	public Boolean getOperationHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Operation"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getOperationNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Operation"));
-		if (object == null || object.empty()) {
-			return getOperationNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getOperationNameDefaultValue() {
+	public COSObject getOperationDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -484,7 +476,30 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "Play";
+				return COSName.construct("Play");
+		}
+		return null;
+	}
+
+	public COSObject getOperationValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Operation"));
+		if (object == null || object.empty()) {
+			object = getOperationDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getOperationHasTypeName() {
+		COSObject object = getOperationValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getOperationNameValue() {
+		COSObject object = getOperationValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -494,25 +509,23 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -521,9 +534,14 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
+	public COSObject getTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -532,25 +550,23 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

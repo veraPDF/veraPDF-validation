@@ -63,9 +63,28 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
+	public COSObject getADefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		if (object == null || object.empty()) {
+			object = getADefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -74,9 +93,28 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		if (object == null || object.empty()) {
+			object = getCDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -85,9 +123,14 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -96,31 +139,36 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
-	@Override
-	public Boolean getFHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		if (object == null || object.empty()) {
-			return getFIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFIntegerDefaultValue() {
+	public COSObject getFDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 5L;
+				return COSInteger.construct(5L);
+		}
+		return null;
+	}
+
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		if (object == null || object.empty()) {
+			object = getFDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getFHasTypeInteger() {
+		COSObject object = getFValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFIntegerValue() {
+		COSObject object = getFValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -130,31 +178,36 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 		return this.baseObject.knownKey(ASAtom.getASAtom("RC"));
 	}
 
-	@Override
-	public Boolean getRCHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getRCNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
-		if (object == null || object.empty()) {
-			return getRCNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getRCNumberDefaultValue() {
+	public COSObject getRCDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1.0D;
+				return COSReal.construct(1.0D);
+		}
+		return null;
+	}
+
+	public COSObject getRCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
+		if (object == null || object.empty()) {
+			object = getRCDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getRCHasTypeNumber() {
+		COSObject object = getRCValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getRCNumberValue() {
+		COSObject object = getRCValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}
@@ -164,31 +217,36 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
-	@Override
-	public Boolean getVHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getVIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null || object.empty()) {
-			return getVIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getVIntegerDefaultValue() {
+	public COSObject getVDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 100L;
+				return COSInteger.construct(100L);
+		}
+		return null;
+	}
+
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null || object.empty()) {
+			object = getVDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getVHasTypeInteger() {
+		COSObject object = getVValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getVIntegerValue() {
+		COSObject object = getVValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}

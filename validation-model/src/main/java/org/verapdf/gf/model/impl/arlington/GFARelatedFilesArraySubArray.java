@@ -60,30 +60,37 @@ public class GFARelatedFilesArraySubArray extends GFAObject implements ARelatedF
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getentry0HasTypeString() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object;
 	}
 
 	@Override
-	public Boolean getisentry1Indirect() {
+	public Boolean getentry0HasTypeString() {
+		COSObject object = getentry0Value();
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry1Indirect() {
+		COSObject object = getentry1Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStream() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 

@@ -218,9 +218,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
+	public COSObject getAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -229,9 +234,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CYX"));
 	}
 
+	public COSObject getCYXValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CYX"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCYXHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CYX"));
+		COSObject object = getCYXValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -240,9 +250,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -251,9 +266,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -262,9 +282,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -273,9 +298,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -284,25 +314,23 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -311,9 +339,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
+	public COSObject getTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -322,25 +355,23 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -349,9 +380,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("X"));
 	}
 
+	public COSObject getXValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
+		COSObject object = getXValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -360,9 +396,14 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Y"));
 	}
 
+	public COSObject getYValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Y"));
+		return object;
+	}
+
 	@Override
 	public Boolean getYHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Y"));
+		COSObject object = getYValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

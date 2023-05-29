@@ -114,9 +114,30 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DefaultForPrinting"));
 	}
 
+	public COSObject getDefaultForPrintingDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getDefaultForPrintingValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultForPrinting"));
+		if (object == null || object.empty()) {
+			object = getDefaultForPrintingDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getDefaultForPrintingHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultForPrinting"));
+		COSObject object = getDefaultForPrintingValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -125,15 +146,20 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Image"));
 	}
 
+	public COSObject getImageValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Image"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisImageIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Image"));
+		COSObject object = getImageValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getImageHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Image"));
+		COSObject object = getImageValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -142,9 +168,14 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OC"));
 	}
 
+	public COSObject getOCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

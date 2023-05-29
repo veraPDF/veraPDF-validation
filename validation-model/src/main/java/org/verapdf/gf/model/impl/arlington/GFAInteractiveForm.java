@@ -171,9 +171,14 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CO"));
 	}
 
+	public COSObject getCOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCOHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		COSObject object = getCOValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -182,9 +187,14 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
 	}
 
+	public COSObject getDAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDAHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
+		COSObject object = getDAValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -193,9 +203,14 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DR"));
 	}
 
+	public COSObject getDRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DR"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DR"));
+		COSObject object = getDRValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -204,9 +219,14 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Fields"));
 	}
 
+	public COSObject getFieldsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -215,9 +235,31 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("NeedAppearances"));
 	}
 
+	public COSObject getNeedAppearancesDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getNeedAppearancesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NeedAppearances"));
+		if (object == null || object.empty()) {
+			object = getNeedAppearancesDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getNeedAppearancesHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NeedAppearances"));
+		COSObject object = getNeedAppearancesValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -226,25 +268,23 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Q"));
 	}
 
+	public COSObject getQValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Q"));
+		return object;
+	}
+
 	@Override
 	public Boolean getQHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Q"));
+		COSObject object = getQValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getQIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Q"));
-		if (object == null || object.empty()) {
-			return getQIntegerDefaultValue();
-		}
+		COSObject object = getQValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getQIntegerDefaultValue() {
 		return null;
 	}
 
@@ -253,25 +293,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SigFlags"));
 	}
 
-	@Override
-	public Boolean getSigFlagsHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigFlags"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getSigFlagsBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigFlags"));
-		if (object == null || object.empty()) {
-			return getSigFlagsBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getSigFlagsBitmaskDefaultValue() {
+	public COSObject getSigFlagsDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -279,7 +301,30 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getSigFlagsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigFlags"));
+		if (object == null || object.empty()) {
+			object = getSigFlagsDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSigFlagsHasTypeBitmask() {
+		COSObject object = getSigFlagsValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getSigFlagsBitmaskValue() {
+		COSObject object = getSigFlagsValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -289,21 +334,26 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("XFA"));
 	}
 
+	public COSObject getXFAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisXFAIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
+		COSObject object = getXFAValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getXFAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
+		COSObject object = getXFAValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getXFAHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
+		COSObject object = getXFAValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 

@@ -28,9 +28,29 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Marked"));
 	}
 
+	public COSObject getMarkedDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getMarkedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Marked"));
+		if (object == null || object.empty()) {
+			object = getMarkedDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getMarkedHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Marked"));
+		COSObject object = getMarkedValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -39,9 +59,27 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Suspects"));
 	}
 
+	public COSObject getSuspectsDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getSuspectsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Suspects"));
+		if (object == null || object.empty()) {
+			object = getSuspectsDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getSuspectsHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Suspects"));
+		COSObject object = getSuspectsValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -50,30 +88,35 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("UserProperties"));
 	}
 
+	public COSObject getUserPropertiesDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getUserPropertiesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UserProperties"));
+		if (object == null || object.empty()) {
+			object = getUserPropertiesDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getUserPropertiesHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UserProperties"));
+		COSObject object = getUserPropertiesValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
 	public Boolean getUserPropertiesBooleanValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UserProperties"));
-		if (object == null || object.empty()) {
-			return getUserPropertiesBooleanDefaultValue();
-		}
+		COSObject object = getUserPropertiesValue();
 		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
 			return object.getBoolean();
-		}
-		return null;
-	}
-
-	public Boolean getUserPropertiesBooleanDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return false;
 		}
 		return null;
 	}

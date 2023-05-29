@@ -61,9 +61,26 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 		return this.baseObject.knownKey(ASAtom.getASAtom("NavigationPane"));
 	}
 
+	public COSObject getNavigationPaneDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getNavigationPaneValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NavigationPane"));
+		if (object == null || object.empty()) {
+			object = getNavigationPaneDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getNavigationPaneHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NavigationPane"));
+		COSObject object = getNavigationPaneValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -72,9 +89,26 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 		return this.baseObject.knownKey(ASAtom.getASAtom("PassContextClick"));
 	}
 
+	public COSObject getPassContextClickDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getPassContextClickValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PassContextClick"));
+		if (object == null || object.empty()) {
+			object = getPassContextClickDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPassContextClickHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PassContextClick"));
+		COSObject object = getPassContextClickValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -83,29 +117,34 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 		return this.baseObject.knownKey(ASAtom.getASAtom("Style"));
 	}
 
+	public COSObject getStyleDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Embedded");
+		}
+		return null;
+	}
+
+	public COSObject getStyleValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		if (object == null || object.empty()) {
+			object = getStyleDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getStyleHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		COSObject object = getStyleValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getStyleNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
-		if (object == null || object.empty()) {
-			return getStyleNameDefaultValue();
-		}
+		COSObject object = getStyleValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getStyleNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "Embedded";
 		}
 		return null;
 	}
@@ -115,9 +154,26 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 		return this.baseObject.knownKey(ASAtom.getASAtom("Toolbar"));
 	}
 
+	public COSObject getToolbarDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getToolbarValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Toolbar"));
+		if (object == null || object.empty()) {
+			object = getToolbarDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getToolbarHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Toolbar"));
+		COSObject object = getToolbarValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -126,9 +182,26 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 		return this.baseObject.knownKey(ASAtom.getASAtom("Transparent"));
 	}
 
+	public COSObject getTransparentDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getTransparentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Transparent"));
+		if (object == null || object.empty()) {
+			object = getTransparentDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getTransparentHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Transparent"));
+		COSObject object = getTransparentValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -137,25 +210,23 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -164,9 +235,14 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 		return this.baseObject.knownKey(ASAtom.getASAtom("Window"));
 	}
 
+	public COSObject getWindowValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Window"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWindowHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Window"));
+		COSObject object = getWindowValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

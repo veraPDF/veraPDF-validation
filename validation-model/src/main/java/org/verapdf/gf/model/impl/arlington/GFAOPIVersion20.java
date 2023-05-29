@@ -66,9 +66,14 @@ public class GFAOPIVersion20 extends GFAObject implements AOPIVersion20 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("2.0"));
 	}
 
+	public COSObject getentry20Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("2.0"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentry20HasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("2.0"));
+		COSObject object = getentry20Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

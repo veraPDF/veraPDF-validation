@@ -283,9 +283,14 @@ public class GFAResource extends GFAObject implements AResource {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
 	}
 
+	public COSObject getColorSpaceValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorSpaceHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -294,9 +299,14 @@ public class GFAResource extends GFAObject implements AResource {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ExtGState"));
 	}
 
+	public COSObject getExtGStateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtGState"));
+		return object;
+	}
+
 	@Override
 	public Boolean getExtGStateHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtGState"));
+		COSObject object = getExtGStateValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -305,9 +315,14 @@ public class GFAResource extends GFAObject implements AResource {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Font"));
 	}
 
+	public COSObject getFontValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Font"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFontHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Font"));
+		COSObject object = getFontValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -316,9 +331,14 @@ public class GFAResource extends GFAObject implements AResource {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Pattern"));
 	}
 
+	public COSObject getPatternValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pattern"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPatternHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pattern"));
+		COSObject object = getPatternValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -327,9 +347,14 @@ public class GFAResource extends GFAObject implements AResource {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ProcSet"));
 	}
 
+	public COSObject getProcSetValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProcSet"));
+		return object;
+	}
+
 	@Override
 	public Boolean getProcSetHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProcSet"));
+		COSObject object = getProcSetValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -338,9 +363,14 @@ public class GFAResource extends GFAObject implements AResource {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Properties"));
 	}
 
+	public COSObject getentryPropertiesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Properties"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryPropertiesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Properties"));
+		COSObject object = getentryPropertiesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -349,9 +379,14 @@ public class GFAResource extends GFAObject implements AResource {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Shading"));
 	}
 
+	public COSObject getShadingValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		return object;
+	}
+
 	@Override
 	public Boolean getShadingHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		COSObject object = getShadingValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -360,9 +395,14 @@ public class GFAResource extends GFAObject implements AResource {
 		return this.baseObject.knownKey(ASAtom.getASAtom("XObject"));
 	}
 
+	public COSObject getXObjectValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XObject"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXObjectHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XObject"));
+		COSObject object = getXObjectValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

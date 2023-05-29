@@ -211,9 +211,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A1"));
 	}
 
+	public COSObject getA1Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A1"));
+		return object;
+	}
+
 	@Override
 	public Boolean getA1HasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A1"));
+		COSObject object = getA1Value();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -222,9 +227,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A2"));
 	}
 
+	public COSObject getA2Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A2"));
+		return object;
+	}
+
 	@Override
 	public Boolean getA2HasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A2"));
+		COSObject object = getA2Value();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -233,9 +243,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AP"));
 	}
 
+	public COSObject getAPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAPHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -244,9 +259,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -255,9 +275,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N1"));
 	}
 
+	public COSObject getN1Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N1"));
+		return object;
+	}
+
 	@Override
 	public Boolean getN1HasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N1"));
+		COSObject object = getN1Value();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -266,9 +291,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N2"));
 	}
 
+	public COSObject getN2Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N2"));
+		return object;
+	}
+
 	@Override
 	public Boolean getN2HasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N2"));
+		COSObject object = getN2Value();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -277,29 +307,34 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(3L);
+		}
+		return null;
+	}
+
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null || object.empty()) {
+			object = getPDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getPIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPIntegerDefaultValue();
-		}
+		COSObject object = getPValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPIntegerDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 3L;
 		}
 		return null;
 	}
@@ -309,15 +344,20 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisSIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -326,25 +366,23 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -353,9 +391,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TP"));
 	}
 
+	public COSObject getTPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTPHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
+		COSObject object = getTPValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -364,9 +407,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TRL"));
 	}
 
+	public COSObject getTRLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TRL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTRLHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TRL"));
+		COSObject object = getTRLValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -375,9 +423,26 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TS"));
 	}
 
+	public COSObject getTSDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(12D);
+		}
+		return null;
+	}
+
+	public COSObject getTSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		if (object == null || object.empty()) {
+			object = getTSDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getTSHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		COSObject object = getTSValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -386,9 +451,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TY"));
 	}
 
+	public COSObject getTYValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TY"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTYHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TY"));
+		COSObject object = getTYValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -397,25 +467,23 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -424,9 +492,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
 	}
 
+	public COSObject getUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -435,9 +508,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("UT"));
 	}
 
+	public COSObject getUTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UT"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUTHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UT"));
+		COSObject object = getUTValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -446,9 +524,14 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType().isNumber();
 	}
 

@@ -23,21 +23,31 @@ public class GFAArrayOfTagsSubArray extends GFAObject implements AArrayOfTagsSub
 		super(baseObject, parentObject, keyName, "AArrayOfTagsSubArray");
 	}
 
-	@Override
-	public Boolean getentry0HasTypeInteger() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return object;
 	}
 
 	@Override
-	public Boolean getentry1HasTypeStringAscii() {
+	public Boolean getentry0HasTypeInteger() {
+		COSObject object = getentry0Value();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeStringAscii() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

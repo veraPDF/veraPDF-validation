@@ -64,51 +64,56 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 		return Collections.emptyList();
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getHasTypeBoolean() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
 	public Boolean getHasTypeDate() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getHasTypeInteger() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Boolean getHasTypeStringText() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

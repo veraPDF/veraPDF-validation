@@ -84,9 +84,14 @@ public class GFANamespace extends GFAObject implements ANamespace {
 		return this.baseObject.knownKey(ASAtom.getASAtom("NS"));
 	}
 
+	public COSObject getNSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
+		COSObject object = getNSValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -95,9 +100,14 @@ public class GFANamespace extends GFAObject implements ANamespace {
 		return this.baseObject.knownKey(ASAtom.getASAtom("RoleMapNS"));
 	}
 
+	public COSObject getRoleMapNSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RoleMapNS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRoleMapNSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RoleMapNS"));
+		COSObject object = getRoleMapNSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -106,15 +116,20 @@ public class GFANamespace extends GFAObject implements ANamespace {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Schema"));
 	}
 
+	public COSObject getSchemaValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSchemaHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		COSObject object = getSchemaValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getSchemaHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		COSObject object = getSchemaValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -123,25 +138,23 @@ public class GFANamespace extends GFAObject implements ANamespace {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

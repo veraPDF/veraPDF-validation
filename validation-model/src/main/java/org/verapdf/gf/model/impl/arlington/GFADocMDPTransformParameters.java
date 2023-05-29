@@ -28,31 +28,36 @@ public class GFADocMDPTransformParameters extends GFAObject implements ADocMDPTr
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
-	@Override
-	public Boolean getPHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getPIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPIntegerDefaultValue() {
+	public COSObject getPDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 2L;
+				return COSInteger.construct(2L);
+		}
+		return null;
+	}
+
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null || object.empty()) {
+			object = getPDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getPHasTypeInteger() {
+		COSObject object = getPValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getPIntegerValue() {
+		COSObject object = getPValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -62,25 +67,23 @@ public class GFADocMDPTransformParameters extends GFAObject implements ADocMDPTr
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -89,31 +92,36 @@ public class GFADocMDPTransformParameters extends GFAObject implements ADocMDPTr
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
-	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getVNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null || object.empty()) {
-			return getVNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getVNameDefaultValue() {
+	public COSObject getVDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "1.2";
+				return COSName.construct("1.2");
+		}
+		return null;
+	}
+
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null || object.empty()) {
+			object = getVDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getVHasTypeName() {
+		COSObject object = getVValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getVNameValue() {
+		COSObject object = getVValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}

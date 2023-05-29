@@ -63,27 +63,32 @@ public class GFAArrayOfCIDGlyphMetricsW2Entry extends GFAObject implements AArra
 		return Collections.emptyList();
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getHasTypeInteger() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Long getArraySize() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}

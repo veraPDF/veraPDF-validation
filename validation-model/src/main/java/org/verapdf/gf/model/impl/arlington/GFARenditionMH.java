@@ -63,9 +63,14 @@ public class GFARenditionMH extends GFAObject implements ARenditionMH {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

@@ -63,9 +63,14 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Date"));
 	}
 
+	public COSObject getDateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Date"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDateHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Date"));
+		COSObject object = getDateValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -74,9 +79,14 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
 	}
 
+	public COSObject getNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNameHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		COSObject object = getNameValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -85,9 +95,14 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("NonEFontNoWarn"));
 	}
 
+	public COSObject getNonEFontNoWarnValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NonEFontNoWarn"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNonEFontNoWarnHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NonEFontNoWarn"));
+		COSObject object = getNonEFontNoWarnValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -96,9 +111,14 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("OS"));
 	}
 
+	public COSObject getOSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		COSObject object = getOSValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -107,9 +127,28 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("PreRelease"));
 	}
 
+	public COSObject getPreReleaseDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getPreReleaseValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreRelease"));
+		if (object == null || object.empty()) {
+			object = getPreReleaseDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPreReleaseHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreRelease"));
+		COSObject object = getPreReleaseValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -118,9 +157,14 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -129,9 +173,28 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("TrustedMode"));
 	}
 
+	public COSObject getTrustedModeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getTrustedModeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrustedMode"));
+		if (object == null || object.empty()) {
+			object = getTrustedModeDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getTrustedModeHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrustedMode"));
+		COSObject object = getTrustedModeValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -140,9 +203,14 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType().isNumber();
 	}
 

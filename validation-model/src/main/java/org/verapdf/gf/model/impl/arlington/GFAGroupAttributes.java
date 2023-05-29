@@ -91,31 +91,29 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CS"));
 	}
 
+	public COSObject getCSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		COSObject object = getCSValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getCSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		COSObject object = getCSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getCSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
-		if (object == null || object.empty()) {
-			return getCSNameDefaultValue();
-		}
+		COSObject object = getCSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getCSNameDefaultValue() {
 		return null;
 	}
 
@@ -124,9 +122,29 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
 	}
 
+	public COSObject getIDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		if (object == null || object.empty()) {
+			object = getIDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getIHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		COSObject object = getIValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -135,9 +153,29 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 		return this.baseObject.knownKey(ASAtom.getASAtom("K"));
 	}
 
+	public COSObject getKDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getKValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		if (object == null || object.empty()) {
+			object = getKDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getKHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -146,25 +184,23 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -173,25 +209,23 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

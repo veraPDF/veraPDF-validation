@@ -63,9 +63,14 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("CF"));
 	}
 
+	public COSObject getCFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CF"));
+		COSObject object = getCFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -74,9 +79,14 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("EFF"));
 	}
 
+	public COSObject getEFFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEFFHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
+		COSObject object = getEFFValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -85,9 +95,28 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("EncryptMetadata"));
 	}
 
+	public COSObject getEncryptMetadataDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getEncryptMetadataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
+		if (object == null || object.empty()) {
+			object = getEncryptMetadataDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getEncryptMetadataHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
+		COSObject object = getEncryptMetadataValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -96,25 +125,7 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
-	@Override
-	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null || object.empty()) {
-			return getFilterNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getFilterNameDefaultValue() {
+	public COSObject getFilterDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -124,7 +135,30 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "Standard";
+				return COSName.construct("Standard");
+		}
+		return null;
+	}
+
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		if (object == null || object.empty()) {
+			object = getFilterDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getFilterHasTypeName() {
+		COSObject object = getFilterValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getFilterNameValue() {
+		COSObject object = getFilterValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -134,15 +168,20 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("KDFSalt"));
 	}
 
+	public COSObject getKDFSaltValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KDFSalt"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisKDFSaltIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KDFSalt"));
+		COSObject object = getKDFSaltValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getKDFSaltHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KDFSalt"));
+		COSObject object = getKDFSaltValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -151,32 +190,37 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
-	@Override
-	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getLengthIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		if (object == null || object.empty()) {
-			return getLengthIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getLengthIntegerDefaultValue() {
+	public COSObject getLengthDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 40L;
+				return COSInteger.construct(40L);
+		}
+		return null;
+	}
+
+	public COSObject getLengthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		if (object == null || object.empty()) {
+			object = getLengthDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getLengthHasTypeInteger() {
+		COSObject object = getLengthValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getLengthIntegerValue() {
+		COSObject object = getLengthValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -186,15 +230,20 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public Long getOStringSize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return (long) object.getString().length();
 		}
@@ -206,15 +255,20 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("OE"));
 	}
 
+	public COSObject getOEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OE"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOEHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OE"));
+		COSObject object = getOEValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public Long getOEStringSize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OE"));
+		COSObject object = getOEValue();
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return (long) object.getString().length();
 		}
@@ -226,25 +280,23 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getPBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPBitmaskDefaultValue();
-		}
+		COSObject object = getPValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getPBitmaskDefaultValue() {
 		return null;
 	}
 
@@ -253,9 +305,14 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("Perms"));
 	}
 
+	public COSObject getPermsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Perms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPermsHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Perms"));
+		COSObject object = getPermsValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -264,25 +321,23 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getRIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		if (object == null || object.empty()) {
-			return getRIntegerDefaultValue();
-		}
+		COSObject object = getRValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getRIntegerDefaultValue() {
 		return null;
 	}
 
@@ -291,9 +346,28 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("StmF"));
 	}
 
+	public COSObject getStmFDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Identity");
+		}
+		return null;
+	}
+
+	public COSObject getStmFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmF"));
+		if (object == null || object.empty()) {
+			object = getStmFDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getStmFHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmF"));
+		COSObject object = getStmFValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -302,9 +376,28 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("StrF"));
 	}
 
+	public COSObject getStrFDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Identity");
+		}
+		return null;
+	}
+
+	public COSObject getStrFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StrF"));
+		if (object == null || object.empty()) {
+			object = getStrFDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getStrFHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StrF"));
+		COSObject object = getStrFValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -313,9 +406,14 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("SubFilter"));
 	}
 
+	public COSObject getSubFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
+		COSObject object = getSubFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -324,15 +422,20 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
 	}
 
+	public COSObject getUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public Long getUStringSize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return (long) object.getString().length();
 		}
@@ -344,9 +447,14 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("UE"));
 	}
 
+	public COSObject getUEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UE"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUEHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UE"));
+		COSObject object = getUEValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -355,25 +463,23 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getVIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null || object.empty()) {
-			return getVIntegerDefaultValue();
-		}
+		COSObject object = getVValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getVIntegerDefaultValue() {
 		return null;
 	}
 

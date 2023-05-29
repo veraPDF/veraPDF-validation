@@ -28,9 +28,14 @@ public class GFAArrayOfURLStringsEntry extends GFAObject implements AArrayOfURLS
 		this.collectionName = collectionName;
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeStringText() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

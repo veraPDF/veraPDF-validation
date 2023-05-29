@@ -28,15 +28,20 @@ public class GFAStyleDict extends GFAObject implements AStyleDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Panose"));
 	}
 
+	public COSObject getPanoseValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Panose"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPanoseHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Panose"));
+		COSObject object = getPanoseValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public Long getPanoseStringSize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Panose"));
+		COSObject object = getPanoseValue();
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return (long) object.getString().length();
 		}

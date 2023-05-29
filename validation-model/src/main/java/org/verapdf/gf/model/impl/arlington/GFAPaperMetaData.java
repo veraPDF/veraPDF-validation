@@ -28,9 +28,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Caption"));
 	}
 
+	public COSObject getCaptionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Caption"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCaptionHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Caption"));
+		COSObject object = getCaptionValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -39,25 +44,23 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ECC"));
 	}
 
+	public COSObject getECCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ECC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getECCHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ECC"));
+		COSObject object = getECCValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getECCIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ECC"));
-		if (object == null || object.empty()) {
-			return getECCIntegerDefaultValue();
-		}
+		COSObject object = getECCValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getECCIntegerDefaultValue() {
 		return null;
 	}
 
@@ -66,25 +69,23 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Height"));
 	}
 
+	public COSObject getHeightValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
+		return object;
+	}
+
 	@Override
 	public Boolean getHeightHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
+		COSObject object = getHeightValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getHeightNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
-		if (object == null || object.empty()) {
-			return getHeightNumberDefaultValue();
-		}
+		COSObject object = getHeightValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getHeightNumberDefaultValue() {
 		return null;
 	}
 
@@ -93,29 +94,34 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Resolution"));
 	}
 
+	public COSObject getResolutionDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(300D);
+		}
+		return null;
+	}
+
+	public COSObject getResolutionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resolution"));
+		if (object == null || object.empty()) {
+			object = getResolutionDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getResolutionHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resolution"));
+		COSObject object = getResolutionValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getResolutionNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resolution"));
-		if (object == null || object.empty()) {
-			return getResolutionNumberDefaultValue();
-		}
+		COSObject object = getResolutionValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getResolutionNumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 300D;
 		}
 		return null;
 	}
@@ -125,25 +131,23 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Symbology"));
 	}
 
+	public COSObject getSymbologyValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Symbology"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSymbologyHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Symbology"));
+		COSObject object = getSymbologyValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSymbologyNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Symbology"));
-		if (object == null || object.empty()) {
-			return getSymbologyNameDefaultValue();
-		}
+		COSObject object = getSymbologyValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSymbologyNameDefaultValue() {
 		return null;
 	}
 
@@ -152,25 +156,23 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -179,25 +181,23 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
 	}
 
+	public COSObject getVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVersionHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		COSObject object = getVersionValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getVersionNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
-		if (object == null || object.empty()) {
-			return getVersionNumberDefaultValue();
-		}
+		COSObject object = getVersionValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getVersionNumberDefaultValue() {
 		return null;
 	}
 
@@ -206,25 +206,23 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Width"));
 	}
 
+	public COSObject getWidthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWidthHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
+		COSObject object = getWidthValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getWidthNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
-		if (object == null || object.empty()) {
-			return getWidthNumberDefaultValue();
-		}
+		COSObject object = getWidthValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getWidthNumberDefaultValue() {
 		return null;
 	}
 
@@ -233,25 +231,23 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("XSymWidth"));
 	}
 
+	public COSObject getXSymWidthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XSymWidth"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXSymWidthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XSymWidth"));
+		COSObject object = getXSymWidthValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getXSymWidthIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XSymWidth"));
-		if (object == null || object.empty()) {
-			return getXSymWidthIntegerDefaultValue();
-		}
+		COSObject object = getXSymWidthValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getXSymWidthIntegerDefaultValue() {
 		return null;
 	}
 
@@ -260,25 +256,23 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("YSymHeight"));
 	}
 
+	public COSObject getYSymHeightValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("YSymHeight"));
+		return object;
+	}
+
 	@Override
 	public Boolean getYSymHeightHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("YSymHeight"));
+		COSObject object = getYSymHeightValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getYSymHeightIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("YSymHeight"));
-		if (object == null || object.empty()) {
-			return getYSymHeightIntegerDefaultValue();
-		}
+		COSObject object = getYSymHeightValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getYSymHeightIntegerDefaultValue() {
 		return null;
 	}
 
@@ -287,9 +281,26 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("nCodeWordCol"));
 	}
 
+	public COSObject getnCodeWordColDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(0D);
+		}
+		return null;
+	}
+
+	public COSObject getnCodeWordColValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("nCodeWordCol"));
+		if (object == null || object.empty()) {
+			object = getnCodeWordColDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getnCodeWordColHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("nCodeWordCol"));
+		COSObject object = getnCodeWordColValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -298,9 +309,26 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("nCodeWordRow"));
 	}
 
+	public COSObject getnCodeWordRowDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(0D);
+		}
+		return null;
+	}
+
+	public COSObject getnCodeWordRowValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("nCodeWordRow"));
+		if (object == null || object.empty()) {
+			object = getnCodeWordRowDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getnCodeWordRowHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("nCodeWordRow"));
+		COSObject object = getnCodeWordRowValue();
 		return object != null && object.getType().isNumber();
 	}
 

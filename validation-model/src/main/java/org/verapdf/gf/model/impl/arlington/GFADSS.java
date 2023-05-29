@@ -132,9 +132,14 @@ public class GFADSS extends GFAObject implements ADSS {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CRLs"));
 	}
 
+	public COSObject getCRLsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRLs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCRLsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRLs"));
+		COSObject object = getCRLsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -143,9 +148,14 @@ public class GFADSS extends GFAObject implements ADSS {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Certs"));
 	}
 
+	public COSObject getCertsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Certs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCertsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Certs"));
+		COSObject object = getCertsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -154,9 +164,14 @@ public class GFADSS extends GFAObject implements ADSS {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OCSPs"));
 	}
 
+	public COSObject getOCSPsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSPs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOCSPsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSPs"));
+		COSObject object = getOCSPsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -165,25 +180,23 @@ public class GFADSS extends GFAObject implements ADSS {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -192,9 +205,14 @@ public class GFADSS extends GFAObject implements ADSS {
 		return this.baseObject.knownKey(ASAtom.getASAtom("VRI"));
 	}
 
+	public COSObject getVRIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VRI"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVRIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VRI"));
+		COSObject object = getVRIValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

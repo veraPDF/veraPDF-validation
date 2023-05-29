@@ -526,9 +526,30 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AntiAlias"));
 	}
 
+	public COSObject getAntiAliasDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getAntiAliasValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AntiAlias"));
+		if (object == null || object.empty()) {
+			object = getAntiAliasDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getAntiAliasHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AntiAlias"));
+		COSObject object = getAntiAliasValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -537,9 +558,14 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BBox"));
 	}
 
+	public COSObject getBBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		COSObject object = getBBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -556,9 +582,14 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Background"));
 	}
 
+	public COSObject getBackgroundValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBackgroundHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		COSObject object = getBackgroundValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -567,25 +598,23 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BitsPerComponent"));
 	}
 
+	public COSObject getBitsPerComponentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerComponent"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerComponent"));
+		COSObject object = getBitsPerComponentValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getBitsPerComponentIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerComponent"));
-		if (object == null || object.empty()) {
-			return getBitsPerComponentIntegerDefaultValue();
-		}
+		COSObject object = getBitsPerComponentValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getBitsPerComponentIntegerDefaultValue() {
 		return null;
 	}
 
@@ -594,25 +623,23 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BitsPerCoordinate"));
 	}
 
+	public COSObject getBitsPerCoordinateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerCoordinate"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBitsPerCoordinateHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerCoordinate"));
+		COSObject object = getBitsPerCoordinateValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getBitsPerCoordinateIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerCoordinate"));
-		if (object == null || object.empty()) {
-			return getBitsPerCoordinateIntegerDefaultValue();
-		}
+		COSObject object = getBitsPerCoordinateValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getBitsPerCoordinateIntegerDefaultValue() {
 		return null;
 	}
 
@@ -621,9 +648,14 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BitsPerFlag"));
 	}
 
+	public COSObject getBitsPerFlagValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerFlag"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBitsPerFlagHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerFlag"));
+		COSObject object = getBitsPerFlagValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -632,31 +664,29 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
 	}
 
+	public COSObject getColorSpaceValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getColorSpaceNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
-		if (object == null || object.empty()) {
-			return getColorSpaceNameDefaultValue();
-		}
+		COSObject object = getColorSpaceValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getColorSpaceNameDefaultValue() {
 		return null;
 	}
 
@@ -665,25 +695,23 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DL"));
 	}
 
+	public COSObject getDLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
+		COSObject object = getDLValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
-		if (object == null || object.empty()) {
-			return getDLIntegerDefaultValue();
-		}
+		COSObject object = getDLValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getDLIntegerDefaultValue() {
 		return null;
 	}
 
@@ -692,9 +720,14 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Decode"));
 	}
 
+	public COSObject getDecodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDecodeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		COSObject object = getDecodeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -703,21 +736,26 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DecodeParms"));
 	}
 
+	public COSObject getDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -729,15 +767,20 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -746,21 +789,26 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
 	}
 
+	public COSObject getFDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -772,37 +820,35 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
 	}
 
+	public COSObject getFFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (object == null || object.empty()) {
-			return getFFilterNameDefaultValue();
-		}
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -814,37 +860,35 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null || object.empty()) {
-			return getFilterNameDefaultValue();
-		}
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -856,27 +900,32 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Function"));
 	}
 
+	public COSObject getFunctionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisFunctionIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		COSObject object = getFunctionValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getFunctionHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		COSObject object = getFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFunctionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		COSObject object = getFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFunctionHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		COSObject object = getFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -885,9 +934,14 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
+	public COSObject getLengthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		COSObject object = getLengthValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -896,25 +950,23 @@ public class GFAShadingType7 extends GFAObject implements AShadingType7 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ShadingType"));
 	}
 
+	public COSObject getShadingTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ShadingType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getShadingTypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ShadingType"));
+		COSObject object = getShadingTypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getShadingTypeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ShadingType"));
-		if (object == null || object.empty()) {
-			return getShadingTypeIntegerDefaultValue();
-		}
+		COSObject object = getShadingTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getShadingTypeIntegerDefaultValue() {
 		return null;
 	}
 

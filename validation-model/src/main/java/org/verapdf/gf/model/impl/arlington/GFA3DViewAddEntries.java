@@ -326,9 +326,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("BG"));
 	}
 
+	public COSObject getBGValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBGHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		COSObject object = getBGValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -337,9 +342,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("C2W"));
 	}
 
+	public COSObject getC2WValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C2W"));
+		return object;
+	}
+
 	@Override
 	public Boolean getC2WHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C2W"));
+		COSObject object = getC2WValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -348,9 +358,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CO"));
 	}
 
+	public COSObject getCOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCOHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		COSObject object = getCOValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -359,9 +374,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("IN"));
 	}
 
+	public COSObject getINValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IN"));
+		return object;
+	}
+
 	@Override
 	public Boolean getINHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IN"));
+		COSObject object = getINValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -370,9 +390,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("LS"));
 	}
 
+	public COSObject getLSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LS"));
+		COSObject object = getLSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -381,9 +406,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("MA"));
 	}
 
+	public COSObject getMAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MA"));
+		COSObject object = getMAValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -392,25 +422,23 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("MS"));
 	}
 
+	public COSObject getMSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MS"));
+		COSObject object = getMSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getMSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MS"));
-		if (object == null || object.empty()) {
-			return getMSNameDefaultValue();
-		}
+		COSObject object = getMSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getMSNameDefaultValue() {
 		return null;
 	}
 
@@ -419,9 +447,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("NA"));
 	}
 
+	public COSObject getNAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		COSObject object = getNAValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -430,9 +463,25 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("NR"));
 	}
 
+	public COSObject getNRDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getNRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NR"));
+		if (object == null || object.empty()) {
+			object = getNRDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getNRHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NR"));
+		COSObject object = getNRValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -441,15 +490,20 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisOIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getOHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -458,9 +512,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -469,9 +528,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Params"));
 	}
 
+	public COSObject getParamsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Params"));
+		return object;
+	}
+
 	@Override
 	public Boolean getParamsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Params"));
+		COSObject object = getParamsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -480,9 +544,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("RM"));
 	}
 
+	public COSObject getRMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RM"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRMHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RM"));
+		COSObject object = getRMValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -491,9 +560,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("SA"));
 	}
 
+	public COSObject getSAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SA"));
+		COSObject object = getSAValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -502,15 +576,20 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Snapshot"));
 	}
 
+	public COSObject getSnapshotValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Snapshot"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisSnapshotIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Snapshot"));
+		COSObject object = getSnapshotValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getSnapshotHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Snapshot"));
+		COSObject object = getSnapshotValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -519,25 +598,23 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -546,15 +623,20 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("U3DPath"));
 	}
 
+	public COSObject getU3DPathValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
+		return object;
+	}
+
 	@Override
 	public Boolean getU3DPathHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
+		COSObject object = getU3DPathValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getU3DPathHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
+		COSObject object = getU3DPathValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -563,9 +645,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return this.baseObject.knownKey(ASAtom.getASAtom("XN"));
 	}
 
+	public COSObject getXNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XN"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXNHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XN"));
+		COSObject object = getXNValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 

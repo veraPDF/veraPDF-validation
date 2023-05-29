@@ -23,39 +23,43 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 		super(baseObject, parentObject, keyName, "ATrailerIDArray");
 	}
 
-	@Override
-	public Boolean getisentry0Indirect() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry0Indirect() {
+		COSObject object = getentry0Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStringByte() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
-	@Override
-	public Boolean getisentry1Indirect() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry1Indirect() {
+		COSObject object = getentry1Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStringByte() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 

@@ -60,49 +60,46 @@ public class GFAICCBasedColorSpace extends GFAObject implements AICCBasedColorSp
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getentry0HasTypeName() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeName() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NameDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getentry0NameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getisentry1Indirect() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry1Indirect() {
+		COSObject object = getentry1Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStream() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 

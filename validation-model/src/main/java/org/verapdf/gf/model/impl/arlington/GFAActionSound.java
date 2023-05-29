@@ -429,146 +429,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Mix"));
 	}
 
-	@Override
-	public Boolean getMixHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mix"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsNext() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
-	}
-
-	@Override
-	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsRepeat() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Repeat"));
-	}
-
-	@Override
-	public Boolean getRepeatHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Repeat"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsS() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
-	}
-
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsSound() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Sound"));
-	}
-
-	@Override
-	public Boolean getisSoundIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sound"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getSoundHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sound"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsSynchronous() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Synchronous"));
-	}
-
-	@Override
-	public Boolean getSynchronousHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Synchronous"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsType() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
-	}
-
-	@Override
-	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getcontainsVolume() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Volume"));
-	}
-
-	@Override
-	public Boolean getVolumeHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Volume"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getVolumeNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Volume"));
-		if (object == null || object.empty()) {
-			return getVolumeNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getVolumeNumberDefaultValue() {
+	public COSObject getMixDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -577,7 +438,223 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1.0D;
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getMixValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mix"));
+		if (object == null || object.empty()) {
+			object = getMixDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getMixHasTypeBoolean() {
+		COSObject object = getMixValue();
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsNext() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
+	}
+
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
+	@Override
+	public Boolean getNextHasTypeArray() {
+		COSObject object = getNextValue();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getNextHasTypeDictionary() {
+		COSObject object = getNextValue();
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsRepeat() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Repeat"));
+	}
+
+	public COSObject getRepeatDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getRepeatValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Repeat"));
+		if (object == null || object.empty()) {
+			object = getRepeatDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getRepeatHasTypeBoolean() {
+		COSObject object = getRepeatValue();
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
+	}
+
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = getSValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = getSValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsSound() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Sound"));
+	}
+
+	public COSObject getSoundValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sound"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisSoundIndirect() {
+		COSObject object = getSoundValue();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getSoundHasTypeStream() {
+		COSObject object = getSoundValue();
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsSynchronous() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Synchronous"));
+	}
+
+	public COSObject getSynchronousDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getSynchronousValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Synchronous"));
+		if (object == null || object.empty()) {
+			object = getSynchronousDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSynchronousHasTypeBoolean() {
+		COSObject object = getSynchronousValue();
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject object = getTypeValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject object = getTypeValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsVolume() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Volume"));
+	}
+
+	public COSObject getVolumeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(1.0D);
+		}
+		return null;
+	}
+
+	public COSObject getVolumeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Volume"));
+		if (object == null || object.empty()) {
+			object = getVolumeDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getVolumeHasTypeNumber() {
+		COSObject object = getVolumeValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getVolumeNumberValue() {
+		COSObject object = getVolumeValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}

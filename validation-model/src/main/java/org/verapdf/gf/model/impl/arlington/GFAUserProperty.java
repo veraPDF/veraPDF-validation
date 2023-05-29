@@ -72,9 +72,14 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -83,9 +88,27 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
 	}
 
+	public COSObject getHDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getHValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		if (object == null || object.empty()) {
+			object = getHDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getHHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		COSObject object = getHValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -94,9 +117,14 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
 
+	public COSObject getNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -105,57 +133,62 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisVIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getVHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getVHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
 	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getVHasTypeNull() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
 	public Boolean getVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Boolean getVHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Boolean getVHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 

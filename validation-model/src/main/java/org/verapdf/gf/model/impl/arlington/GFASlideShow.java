@@ -64,9 +64,14 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
 	}
 
+	public COSObject getResourcesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object;
+	}
+
 	@Override
 	public Boolean getResourcesHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -75,15 +80,20 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 		return this.baseObject.knownKey(ASAtom.getASAtom("StartResource"));
 	}
 
+	public COSObject getStartResourceValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StartResource"));
+		return object;
+	}
+
 	@Override
 	public Boolean getStartResourceHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StartResource"));
+		COSObject object = getStartResourceValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public Boolean getnameTreeResourcesContainsStartResourceString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StartResource"));
+		COSObject object = getStartResourceValue();
 		if (object == null || object.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
@@ -103,25 +113,23 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -130,25 +138,23 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

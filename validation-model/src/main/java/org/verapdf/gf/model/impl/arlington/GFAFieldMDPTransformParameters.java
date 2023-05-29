@@ -63,25 +63,23 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 		return this.baseObject.knownKey(ASAtom.getASAtom("Action"));
 	}
 
+	public COSObject getActionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
+		return object;
+	}
+
 	@Override
 	public Boolean getActionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
+		COSObject object = getActionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getActionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
-		if (object == null || object.empty()) {
-			return getActionNameDefaultValue();
-		}
+		COSObject object = getActionValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getActionNameDefaultValue() {
 		return null;
 	}
 
@@ -90,9 +88,14 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 		return this.baseObject.knownKey(ASAtom.getASAtom("Fields"));
 	}
 
+	public COSObject getFieldsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -101,25 +104,23 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -128,31 +129,36 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
-	@Override
-	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getVNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null || object.empty()) {
-			return getVNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getVNameDefaultValue() {
+	public COSObject getVDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "1.2";
+				return COSName.construct("1.2");
+		}
+		return null;
+	}
+
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null || object.empty()) {
+			object = getVDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getVHasTypeName() {
+		COSObject object = getVValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getVNameValue() {
+		COSObject object = getVValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}

@@ -417,21 +417,26 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getDHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -440,21 +445,26 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
 
+	public COSObject getNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisNIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getNHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getNHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -463,21 +473,26 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisRIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getRHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 

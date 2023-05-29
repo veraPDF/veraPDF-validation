@@ -28,9 +28,14 @@ public class GFAURI extends GFAObject implements AURI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Base"));
 	}
 
+	public COSObject getBaseValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Base"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBaseHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Base"));
+		COSObject object = getBaseValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

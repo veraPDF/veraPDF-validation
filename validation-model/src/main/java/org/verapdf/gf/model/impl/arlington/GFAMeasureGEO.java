@@ -254,9 +254,14 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Bounds"));
 	}
 
+	public COSObject getBoundsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Bounds"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBoundsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Bounds"));
+		COSObject object = getBoundsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -265,9 +270,14 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DCS"));
 	}
 
+	public COSObject getDCSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DCS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDCSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DCS"));
+		COSObject object = getDCSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -276,9 +286,14 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("GCS"));
 	}
 
+	public COSObject getGCSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GCS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getGCSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GCS"));
+		COSObject object = getGCSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -287,9 +302,14 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("GPTS"));
 	}
 
+	public COSObject getGPTSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GPTS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getGPTSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GPTS"));
+		COSObject object = getGPTSValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -298,9 +318,14 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("LPTS"));
 	}
 
+	public COSObject getLPTSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LPTS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLPTSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LPTS"));
+		COSObject object = getLPTSValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -309,9 +334,14 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PCSM"));
 	}
 
+	public COSObject getPCSMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PCSM"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPCSMHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PCSM"));
+		COSObject object = getPCSMValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -320,9 +350,14 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PDU"));
 	}
 
+	public COSObject getPDUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PDU"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPDUHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PDU"));
+		COSObject object = getPDUValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -331,25 +366,23 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -358,25 +391,23 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

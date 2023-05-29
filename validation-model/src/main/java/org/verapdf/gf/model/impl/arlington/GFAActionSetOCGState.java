@@ -295,15 +295,20 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -312,9 +317,28 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 		return this.baseObject.knownKey(ASAtom.getASAtom("PreserveRB"));
 	}
 
+	public COSObject getPreserveRBDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getPreserveRBValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreserveRB"));
+		if (object == null || object.empty()) {
+			object = getPreserveRBDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPreserveRBHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PreserveRB"));
+		COSObject object = getPreserveRBValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -323,25 +347,23 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -350,9 +372,14 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 		return this.baseObject.knownKey(ASAtom.getASAtom("State"));
 	}
 
+	public COSObject getStateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("State"));
+		return object;
+	}
+
 	@Override
 	public Boolean getStateHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("State"));
+		COSObject object = getStateValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -361,25 +388,23 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

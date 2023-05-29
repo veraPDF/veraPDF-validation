@@ -362,21 +362,26 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 		return this.baseObject.knownKey(ASAtom.getASAtom("JS"));
 	}
 
+	public COSObject getJSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisJSIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		COSObject object = getJSValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getJSHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		COSObject object = getJSValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Boolean getJSHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		COSObject object = getJSValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -385,15 +390,20 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -402,25 +412,23 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -429,25 +437,23 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

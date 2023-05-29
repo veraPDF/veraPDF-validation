@@ -23,39 +23,59 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 		super(baseObject, parentObject, keyName, "AArrayOf_4Numbers");
 	}
 
-	@Override
-	public Boolean getentry0HasTypeNumber() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType().isNumber();
+		return object;
 	}
 
 	@Override
-	public Boolean getentry1HasTypeNumber() {
+	public Boolean getentry0HasTypeNumber() {
+		COSObject object = getentry0Value();
+		return object != null && object.getType().isNumber();
+	}
+
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
-		return object != null && object.getType().isNumber();
+		return object;
 	}
 
 	@Override
-	public Boolean getentry2HasTypeNumber() {
+	public Boolean getentry1HasTypeNumber() {
+		COSObject object = getentry1Value();
+		return object != null && object.getType().isNumber();
+	}
+
+	public COSObject getentry2Value() {
 		if (this.baseObject.size() <= 2) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
-		return object != null && object.getType().isNumber();
+		return object;
 	}
 
 	@Override
-	public Boolean getentry3HasTypeNumber() {
+	public Boolean getentry2HasTypeNumber() {
+		COSObject object = getentry2Value();
+		return object != null && object.getType().isNumber();
+	}
+
+	public COSObject getentry3Value() {
 		if (this.baseObject.size() <= 3) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(3);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry3HasTypeNumber() {
+		COSObject object = getentry3Value();
 		return object != null && object.getType().isNumber();
 	}
 

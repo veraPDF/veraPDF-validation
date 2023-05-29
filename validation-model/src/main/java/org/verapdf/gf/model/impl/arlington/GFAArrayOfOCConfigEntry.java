@@ -60,9 +60,14 @@ public class GFAArrayOfOCConfigEntry extends GFAObject implements AArrayOfOCConf
 		return Collections.emptyList();
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

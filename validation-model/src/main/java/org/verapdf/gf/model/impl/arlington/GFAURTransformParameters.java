@@ -170,9 +170,14 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("Annots"));
 	}
 
+	public COSObject getAnnotsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annots"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAnnotsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annots"));
+		COSObject object = getAnnotsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -181,9 +186,14 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("Document"));
 	}
 
+	public COSObject getDocumentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Document"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDocumentHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Document"));
+		COSObject object = getDocumentValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -192,9 +202,14 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("EF"));
 	}
 
+	public COSObject getEFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
+		COSObject object = getEFValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -203,9 +218,14 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("Form"));
 	}
 
+	public COSObject getFormValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Form"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFormHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Form"));
+		COSObject object = getFormValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -214,9 +234,14 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("Msg"));
 	}
 
+	public COSObject getMsgValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Msg"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMsgHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Msg"));
+		COSObject object = getMsgValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -225,9 +250,27 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null || object.empty()) {
+			object = getPDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -236,9 +279,14 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("Signature"));
 	}
 
+	public COSObject getSignatureValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Signature"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSignatureHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Signature"));
+		COSObject object = getSignatureValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -247,25 +295,23 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -274,9 +320,28 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("2.2");
+		}
+		return null;
+	}
+
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null || object.empty()) {
+			object = getVDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 

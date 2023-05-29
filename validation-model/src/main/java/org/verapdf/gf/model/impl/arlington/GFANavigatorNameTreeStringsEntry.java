@@ -33,4 +33,9 @@ public class GFANavigatorNameTreeStringsEntry extends GFAObject implements ANavi
 		return PDNameTreeNode.create(new COSObject(baseObject)).size();
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 }

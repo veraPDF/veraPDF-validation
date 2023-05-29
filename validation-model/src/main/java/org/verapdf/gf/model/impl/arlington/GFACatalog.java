@@ -1259,9 +1259,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AA"));
 	}
 
+	public COSObject getAAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1270,15 +1275,20 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
 	}
 
+	public COSObject getAFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getAFArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -1290,9 +1300,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AcroForm"));
 	}
 
+	public COSObject getAcroFormValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AcroForm"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAcroFormHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AcroForm"));
+		COSObject object = getAcroFormValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1301,9 +1316,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Collection"));
 	}
 
+	public COSObject getCollectionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Collection"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCollectionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Collection"));
+		COSObject object = getCollectionValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1312,9 +1332,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DPartRoot"));
 	}
 
+	public COSObject getDPartRootValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRoot"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDPartRootHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRoot"));
+		COSObject object = getDPartRootValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1323,9 +1348,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DSS"));
 	}
 
+	public COSObject getDSSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDSSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSS"));
+		COSObject object = getDSSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1334,15 +1364,20 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dests"));
 	}
 
+	public COSObject getDestsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDestsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		COSObject object = getDestsValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDestsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		COSObject object = getDestsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1351,15 +1386,20 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Extensions"));
 	}
 
+	public COSObject getExtensionsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisExtensionsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
+		COSObject object = getExtensionsValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getExtensionsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
+		COSObject object = getExtensionsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1368,9 +1408,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
 	}
 
+	public COSObject getLangValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLangHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		COSObject object = getLangValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -1379,9 +1424,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Legal"));
 	}
 
+	public COSObject getLegalValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Legal"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLegalHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Legal"));
+		COSObject object = getLegalValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1390,9 +1440,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("MarkInfo"));
 	}
 
+	public COSObject getMarkInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MarkInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMarkInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MarkInfo"));
+		COSObject object = getMarkInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1401,15 +1456,20 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
 	}
 
+	public COSObject getMetadataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisMetadataIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getMetadataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -1418,9 +1478,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Names"));
 	}
 
+	public COSObject getNamesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNamesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
+		COSObject object = getNamesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1429,103 +1494,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("NeedsRendering"));
 	}
 
-	@Override
-	public Boolean getNeedsRenderingHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NeedsRendering"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getcontainsOCProperties() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OCProperties"));
-	}
-
-	@Override
-	public Boolean getOCPropertiesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCProperties"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsOpenAction() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OpenAction"));
-	}
-
-	@Override
-	public Boolean getOpenActionHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getOpenActionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsOutlines() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Outlines"));
-	}
-
-	@Override
-	public Boolean getisOutlinesIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getOutlinesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsOutputIntents() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("OutputIntents"));
-	}
-
-	@Override
-	public Boolean getOutputIntentsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
-	}
-
-	@Override
-	public Boolean getcontainsPageLabels() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PageLabels"));
-	}
-
-	@Override
-	public Boolean getPageLabelsHasTypeNumberTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getcontainsPageLayout() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PageLayout"));
-	}
-
-	@Override
-	public Boolean getPageLayoutHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLayout"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getPageLayoutNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLayout"));
-		if (object == null || object.empty()) {
-			return getPageLayoutNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getPageLayoutNameDefaultValue() {
+	public COSObject getNeedsRenderingDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
@@ -1536,7 +1505,157 @@ public class GFACatalog extends GFAObject implements ACatalog {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "SinglePage";
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getNeedsRenderingValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NeedsRendering"));
+		if (object == null || object.empty()) {
+			object = getNeedsRenderingDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getNeedsRenderingHasTypeBoolean() {
+		COSObject object = getNeedsRenderingValue();
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getcontainsOCProperties() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OCProperties"));
+	}
+
+	public COSObject getOCPropertiesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCProperties"));
+		return object;
+	}
+
+	@Override
+	public Boolean getOCPropertiesHasTypeDictionary() {
+		COSObject object = getOCPropertiesValue();
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsOpenAction() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OpenAction"));
+	}
+
+	public COSObject getOpenActionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		return object;
+	}
+
+	@Override
+	public Boolean getOpenActionHasTypeArray() {
+		COSObject object = getOpenActionValue();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getOpenActionHasTypeDictionary() {
+		COSObject object = getOpenActionValue();
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsOutlines() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Outlines"));
+	}
+
+	public COSObject getOutlinesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisOutlinesIndirect() {
+		COSObject object = getOutlinesValue();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getOutlinesHasTypeDictionary() {
+		COSObject object = getOutlinesValue();
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsOutputIntents() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("OutputIntents"));
+	}
+
+	public COSObject getOutputIntentsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+		return object;
+	}
+
+	@Override
+	public Boolean getOutputIntentsHasTypeArray() {
+		COSObject object = getOutputIntentsValue();
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean getcontainsPageLabels() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PageLabels"));
+	}
+
+	public COSObject getPageLabelsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
+		return object;
+	}
+
+	@Override
+	public Boolean getPageLabelsHasTypeNumberTree() {
+		COSObject object = getPageLabelsValue();
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getcontainsPageLayout() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PageLayout"));
+	}
+
+	public COSObject getPageLayoutDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("SinglePage");
+		}
+		return null;
+	}
+
+	public COSObject getPageLayoutValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLayout"));
+		if (object == null || object.empty()) {
+			object = getPageLayoutDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getPageLayoutHasTypeName() {
+		COSObject object = getPageLayoutValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getPageLayoutNameValue() {
+		COSObject object = getPageLayoutValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -1546,25 +1665,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PageMode"));
 	}
 
-	@Override
-	public Boolean getPageModeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageMode"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getPageModeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageMode"));
-		if (object == null || object.empty()) {
-			return getPageModeNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getPageModeNameDefaultValue() {
+	public COSObject getPageModeDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
@@ -1575,7 +1676,30 @@ public class GFACatalog extends GFAObject implements ACatalog {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "UseNone";
+				return COSName.construct("UseNone");
+		}
+		return null;
+	}
+
+	public COSObject getPageModeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageMode"));
+		if (object == null || object.empty()) {
+			object = getPageModeDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getPageModeHasTypeName() {
+		COSObject object = getPageModeValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getPageModeNameValue() {
+		COSObject object = getPageModeValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -1585,15 +1709,20 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Pages"));
 	}
 
+	public COSObject getPagesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPagesIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		COSObject object = getPagesValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPagesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		COSObject object = getPagesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1602,9 +1731,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Perms"));
 	}
 
+	public COSObject getPermsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Perms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPermsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Perms"));
+		COSObject object = getPermsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1613,9 +1747,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PieceInfo"));
 	}
 
+	public COSObject getPieceInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+		COSObject object = getPieceInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1624,9 +1763,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Requirements"));
 	}
 
+	public COSObject getRequirementsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Requirements"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRequirementsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Requirements"));
+		COSObject object = getRequirementsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -1635,9 +1779,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SpiderInfo"));
 	}
 
+	public COSObject getSpiderInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpiderInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSpiderInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpiderInfo"));
+		COSObject object = getSpiderInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1646,9 +1795,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("StructTreeRoot"));
 	}
 
+	public COSObject getStructTreeRootValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructTreeRoot"));
+		return object;
+	}
+
 	@Override
 	public Boolean getStructTreeRootHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructTreeRoot"));
+		COSObject object = getStructTreeRootValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1657,15 +1811,20 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Threads"));
 	}
 
+	public COSObject getThreadsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisThreadsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
+		COSObject object = getThreadsValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getThreadsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
+		COSObject object = getThreadsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -1674,25 +1833,23 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -1701,9 +1858,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URI"));
 	}
 
+	public COSObject getURIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
+		return object;
+	}
+
 	@Override
 	public Boolean getURIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
+		COSObject object = getURIValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1712,25 +1874,23 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
 	}
 
+	public COSObject getVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVersionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		COSObject object = getVersionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getVersionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
-		if (object == null || object.empty()) {
-			return getVersionNameDefaultValue();
-		}
+		COSObject object = getVersionValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getVersionNameDefaultValue() {
 		return null;
 	}
 
@@ -1739,9 +1899,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ViewerPreferences"));
 	}
 
+	public COSObject getViewerPreferencesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewerPreferences"));
+		return object;
+	}
+
 	@Override
 	public Boolean getViewerPreferencesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewerPreferences"));
+		COSObject object = getViewerPreferencesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

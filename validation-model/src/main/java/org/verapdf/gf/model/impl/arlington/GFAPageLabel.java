@@ -28,9 +28,14 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -39,25 +44,23 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -66,25 +69,7 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 		return this.baseObject.knownKey(ASAtom.getASAtom("St"));
 	}
 
-	@Override
-	public Boolean getStHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("St"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getStIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("St"));
-		if (object == null || object.empty()) {
-			return getStIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getStIntegerDefaultValue() {
+	public COSObject getStDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -92,7 +77,30 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1L;
+				return COSInteger.construct(1L);
+		}
+		return null;
+	}
+
+	public COSObject getStValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("St"));
+		if (object == null || object.empty()) {
+			object = getStDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getStHasTypeInteger() {
+		COSObject object = getStValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getStIntegerValue() {
+		COSObject object = getStValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -102,25 +110,23 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

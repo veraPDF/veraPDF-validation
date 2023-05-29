@@ -176,9 +176,14 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 		return this.baseObject.knownKey(ASAtom.getASAtom("DC"));
 	}
 
+	public COSObject getDCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DC"));
+		COSObject object = getDCValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -187,9 +192,14 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 		return this.baseObject.knownKey(ASAtom.getASAtom("DP"));
 	}
 
+	public COSObject getDPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DP"));
+		COSObject object = getDPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -198,9 +208,14 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 		return this.baseObject.knownKey(ASAtom.getASAtom("DS"));
 	}
 
+	public COSObject getDSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
+		COSObject object = getDSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -209,9 +224,14 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 		return this.baseObject.knownKey(ASAtom.getASAtom("WP"));
 	}
 
+	public COSObject getWPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WP"));
+		COSObject object = getWPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -220,9 +240,14 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 		return this.baseObject.knownKey(ASAtom.getASAtom("WS"));
 	}
 
+	public COSObject getWSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WS"));
+		COSObject object = getWSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

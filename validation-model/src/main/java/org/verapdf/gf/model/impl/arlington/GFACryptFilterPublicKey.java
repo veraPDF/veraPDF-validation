@@ -63,31 +63,36 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 		return this.baseObject.knownKey(ASAtom.getASAtom("AuthEvent"));
 	}
 
-	@Override
-	public Boolean getAuthEventHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthEvent"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getAuthEventNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthEvent"));
-		if (object == null || object.empty()) {
-			return getAuthEventNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getAuthEventNameDefaultValue() {
+	public COSObject getAuthEventDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "DocOpen";
+				return COSName.construct("DocOpen");
+		}
+		return null;
+	}
+
+	public COSObject getAuthEventValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthEvent"));
+		if (object == null || object.empty()) {
+			object = getAuthEventDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getAuthEventHasTypeName() {
+		COSObject object = getAuthEventValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getAuthEventNameValue() {
+		COSObject object = getAuthEventValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -97,31 +102,36 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 		return this.baseObject.knownKey(ASAtom.getASAtom("CFM"));
 	}
 
-	@Override
-	public Boolean getCFMHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CFM"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getCFMNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CFM"));
-		if (object == null || object.empty()) {
-			return getCFMNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getCFMNameDefaultValue() {
+	public COSObject getCFMDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "None";
+				return COSName.construct("None");
+		}
+		return null;
+	}
+
+	public COSObject getCFMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CFM"));
+		if (object == null || object.empty()) {
+			object = getCFMDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getCFMHasTypeName() {
+		COSObject object = getCFMValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getCFMNameValue() {
+		COSObject object = getCFMValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -131,9 +141,28 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 		return this.baseObject.knownKey(ASAtom.getASAtom("EncryptMetadata"));
 	}
 
+	public COSObject getEncryptMetadataDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getEncryptMetadataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
+		if (object == null || object.empty()) {
+			object = getEncryptMetadataDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getEncryptMetadataHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
+		COSObject object = getEncryptMetadataValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -142,25 +171,23 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
+	public COSObject getLengthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		COSObject object = getLengthValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getLengthIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		if (object == null || object.empty()) {
-			return getLengthIntegerDefaultValue();
-		}
+		COSObject object = getLengthValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getLengthIntegerDefaultValue() {
 		return null;
 	}
 
@@ -169,15 +196,20 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Recipients"));
 	}
 
+	public COSObject getRecipientsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Recipients"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRecipientsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Recipients"));
+		COSObject object = getRecipientsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getRecipientsHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Recipients"));
+		COSObject object = getRecipientsValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -186,25 +218,23 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

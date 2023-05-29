@@ -171,9 +171,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
+	public COSObject getAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -182,9 +187,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -193,9 +203,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -204,9 +219,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
 	}
 
+	public COSObject getLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		COSObject object = getLValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -215,9 +235,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -226,9 +251,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -237,25 +267,23 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getRIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		if (object == null || object.empty()) {
-			return getRIntegerDefaultValue();
-		}
+		COSObject object = getRValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getRIntegerDefaultValue() {
 		return null;
 	}
 
@@ -264,9 +292,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -275,25 +308,23 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -302,9 +333,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -313,9 +349,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Z"));
 	}
 
+	public COSObject getZValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Z"));
+		return object;
+	}
+
 	@Override
 	public Boolean getZHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Z"));
+		COSObject object = getZValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

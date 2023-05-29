@@ -28,29 +28,34 @@ public class GFARichMediaDeactivation extends GFAObject implements ARichMediaDea
 		return this.baseObject.knownKey(ASAtom.getASAtom("Condition"));
 	}
 
+	public COSObject getConditionDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("XD");
+		}
+		return null;
+	}
+
+	public COSObject getConditionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Condition"));
+		if (object == null || object.empty()) {
+			object = getConditionDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getConditionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Condition"));
+		COSObject object = getConditionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getConditionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Condition"));
-		if (object == null || object.empty()) {
-			return getConditionNameDefaultValue();
-		}
+		COSObject object = getConditionValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getConditionNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "XD";
 		}
 		return null;
 	}
@@ -60,25 +65,23 @@ public class GFARichMediaDeactivation extends GFAObject implements ARichMediaDea
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

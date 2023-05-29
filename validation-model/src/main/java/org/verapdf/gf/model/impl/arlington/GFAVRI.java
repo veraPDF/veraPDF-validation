@@ -132,9 +132,14 @@ public class GFAVRI extends GFAObject implements AVRI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CRL"));
 	}
 
+	public COSObject getCRLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCRLHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRL"));
+		COSObject object = getCRLValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -143,9 +148,14 @@ public class GFAVRI extends GFAObject implements AVRI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Cert"));
 	}
 
+	public COSObject getCertValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCertHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
+		COSObject object = getCertValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -154,9 +164,14 @@ public class GFAVRI extends GFAObject implements AVRI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OCSP"));
 	}
 
+	public COSObject getOCSPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOCSPHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSP"));
+		COSObject object = getOCSPValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -165,15 +180,20 @@ public class GFAVRI extends GFAObject implements AVRI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TS"));
 	}
 
+	public COSObject getTSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisTSIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		COSObject object = getTSValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getTSHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		COSObject object = getTSValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -182,9 +202,14 @@ public class GFAVRI extends GFAObject implements AVRI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TU"));
 	}
 
+	public COSObject getTUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTUHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
+		COSObject object = getTUValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -193,25 +218,23 @@ public class GFAVRI extends GFAObject implements AVRI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

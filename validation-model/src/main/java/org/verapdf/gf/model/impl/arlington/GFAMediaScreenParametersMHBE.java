@@ -90,9 +90,14 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 		return this.baseObject.knownKey(ASAtom.getASAtom("B"));
 	}
 
+	public COSObject getBValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		COSObject object = getBValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -101,9 +106,14 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -112,31 +122,36 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 		return this.baseObject.knownKey(ASAtom.getASAtom("M"));
 	}
 
-	@Override
-	public Boolean getMHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getMIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
-		if (object == null || object.empty()) {
-			return getMIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getMIntegerDefaultValue() {
+	public COSObject getMDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		if (object == null || object.empty()) {
+			object = getMDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getMHasTypeInteger() {
+		COSObject object = getMValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getMIntegerValue() {
+		COSObject object = getMValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -146,31 +161,36 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
-	@Override
-	public Boolean getOHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getONumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		if (object == null || object.empty()) {
-			return getONumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getONumberDefaultValue() {
+	public COSObject getODefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1.0D;
+				return COSReal.construct(1.0D);
+		}
+		return null;
+	}
+
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		if (object == null || object.empty()) {
+			object = getODefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getOHasTypeNumber() {
+		COSObject object = getOValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getONumberValue() {
+		COSObject object = getOValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}
@@ -180,31 +200,36 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
 	}
 
-	@Override
-	public Boolean getWHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getWIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
-		if (object == null || object.empty()) {
-			return getWIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getWIntegerDefaultValue() {
+	public COSObject getWDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 3L;
+				return COSInteger.construct(3L);
+		}
+		return null;
+	}
+
+	public COSObject getWValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		if (object == null || object.empty()) {
+			object = getWDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getWHasTypeInteger() {
+		COSObject object = getWValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getWIntegerValue() {
+		COSObject object = getWValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}

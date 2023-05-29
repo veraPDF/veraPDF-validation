@@ -184,15 +184,20 @@ public class GFABead extends GFAObject implements ABead {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
 
+	public COSObject getNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisNIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getNHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -201,15 +206,20 @@ public class GFABead extends GFAObject implements ABead {
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -218,9 +228,14 @@ public class GFABead extends GFAObject implements ABead {
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -237,15 +252,20 @@ public class GFABead extends GFAObject implements ABead {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
+	public COSObject getTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisTIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getTHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -254,25 +274,23 @@ public class GFABead extends GFAObject implements ABead {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -281,15 +299,20 @@ public class GFABead extends GFAObject implements ABead {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisVIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

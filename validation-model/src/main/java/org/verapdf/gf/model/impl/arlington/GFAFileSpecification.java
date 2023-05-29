@@ -199,28 +199,33 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("AFRelationship"));
 	}
 
+	public COSObject getAFRelationshipDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSName.construct("Unspecified");
+		}
+		return null;
+	}
+
+	public COSObject getAFRelationshipValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AFRelationship"));
+		if (object == null || object.empty()) {
+			object = getAFRelationshipDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getAFRelationshipHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AFRelationship"));
+		COSObject object = getAFRelationshipValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getAFRelationshipNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AFRelationship"));
-		if (object == null || object.empty()) {
-			return getAFRelationshipNameDefaultValue();
-		}
+		COSObject object = getAFRelationshipValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getAFRelationshipNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return "Unspecified";
 		}
 		return null;
 	}
@@ -230,9 +235,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("CI"));
 	}
 
+	public COSObject getCIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
+		COSObject object = getCIValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -241,9 +251,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("DOS"));
 	}
 
+	public COSObject getDOSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DOS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDOSHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DOS"));
+		COSObject object = getDOSValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -252,9 +267,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("Desc"));
 	}
 
+	public COSObject getDescValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Desc"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDescHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Desc"));
+		COSObject object = getDescValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -263,9 +283,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("EF"));
 	}
 
+	public COSObject getEFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
+		COSObject object = getEFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -274,9 +299,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("EP"));
 	}
 
+	public COSObject getEPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EP"));
+		COSObject object = getEPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -285,9 +315,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -296,25 +331,23 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("FS"));
 	}
 
+	public COSObject getFSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FS"));
+		COSObject object = getFSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FS"));
-		if (object == null || object.empty()) {
-			return getFSNameDefaultValue();
-		}
+		COSObject object = getFSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getFSNameDefaultValue() {
 		return null;
 	}
 
@@ -323,9 +356,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryIDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -334,9 +372,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("Mac"));
 	}
 
+	public COSObject getMacValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mac"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMacHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mac"));
+		COSObject object = getMacValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -345,9 +388,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("RF"));
 	}
 
+	public COSObject getRFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RF"));
+		COSObject object = getRFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -356,15 +404,20 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("Thumb"));
 	}
 
+	public COSObject getThumbValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisThumbIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getThumbHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -373,25 +426,23 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -400,9 +451,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("UF"));
 	}
 
+	public COSObject getUFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUFHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		COSObject object = getUFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -411,9 +467,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("Unix"));
 	}
 
+	public COSObject getUnixValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Unix"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUnixHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Unix"));
+		COSObject object = getUnixValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -422,9 +483,31 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null || object.empty()) {
+			object = getVDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 

@@ -89,15 +89,20 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 		return this.baseObject.knownKey(ASAtom.getASAtom("M3DREF"));
 	}
 
+	public COSObject getM3DREFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M3DREF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisM3DREFIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M3DREF"));
+		COSObject object = getM3DREFValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getM3DREFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M3DREF"));
+		COSObject object = getM3DREFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -106,25 +111,23 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -133,25 +136,23 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

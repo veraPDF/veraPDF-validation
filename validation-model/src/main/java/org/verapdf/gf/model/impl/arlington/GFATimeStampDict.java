@@ -28,30 +28,35 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
 	}
 
+	public COSObject getFfDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getFfValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		if (object == null || object.empty()) {
+			object = getFfDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getFfHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		COSObject object = getFfValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getFfIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		if (object == null || object.empty()) {
-			return getFfIntegerDefaultValue();
-		}
+		COSObject object = getFfValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFfIntegerDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0L;
 		}
 		return null;
 	}
@@ -61,9 +66,14 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
 	}
 
+	public COSObject getURLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getURLHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		COSObject object = getURLValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

@@ -306,9 +306,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Color"));
 	}
 
+	public COSObject getColorValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		COSObject object = getColorValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -317,9 +322,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorType"));
 	}
 
+	public COSObject getColorTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorType"));
+		COSObject object = getColorTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -328,9 +338,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Comments"));
 	}
 
+	public COSObject getCommentsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Comments"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCommentsHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Comments"));
+		COSObject object = getCommentsValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -339,9 +354,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CropFixed"));
 	}
 
+	public COSObject getCropFixedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropFixed"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCropFixedHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropFixed"));
+		COSObject object = getCropFixedValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -350,9 +370,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CropRect"));
 	}
 
+	public COSObject getCropRectValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropRect"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCropRectHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropRect"));
+		COSObject object = getCropRectValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -369,15 +394,20 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -386,15 +416,20 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("GrayMap"));
 	}
 
+	public COSObject getGrayMapValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GrayMap"));
+		return object;
+	}
+
 	@Override
 	public Boolean getGrayMapHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GrayMap"));
+		COSObject object = getGrayMapValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getGrayMapArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GrayMap"));
+		COSObject object = getGrayMapValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -406,9 +441,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryIDHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -417,9 +457,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("ImageType"));
 	}
 
+	public COSObject getImageTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ImageType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getImageTypeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ImageType"));
+		COSObject object = getImageTypeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -428,9 +473,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Overprint"));
 	}
 
+	public COSObject getOverprintValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Overprint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOverprintHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Overprint"));
+		COSObject object = getOverprintValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -439,9 +489,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Position"));
 	}
 
+	public COSObject getPositionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPositionHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		COSObject object = getPositionValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -450,9 +505,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Resolution"));
 	}
 
+	public COSObject getResolutionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resolution"));
+		return object;
+	}
+
 	@Override
 	public Boolean getResolutionHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resolution"));
+		COSObject object = getResolutionValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -461,9 +521,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Size"));
 	}
 
+	public COSObject getSizeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSizeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -472,9 +537,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Tags"));
 	}
 
+	public COSObject getTagsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tags"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTagsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tags"));
+		COSObject object = getTagsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -483,9 +553,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Tint"));
 	}
 
+	public COSObject getTintValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTintHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tint"));
+		COSObject object = getTintValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -494,9 +569,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Transparency"));
 	}
 
+	public COSObject getTransparencyValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Transparency"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTransparencyHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Transparency"));
+		COSObject object = getTransparencyValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -505,25 +585,23 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -532,25 +610,23 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
 	}
 
+	public COSObject getVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVersionHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		COSObject object = getVersionValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getVersionNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
-		if (object == null || object.empty()) {
-			return getVersionNumberDefaultValue();
-		}
+		COSObject object = getVersionValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getVersionNumberDefaultValue() {
 		return null;
 	}
 

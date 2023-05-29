@@ -147,15 +147,20 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dp"));
 	}
 
+	public COSObject getDpValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDpIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
+		COSObject object = getDpValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDpHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
+		COSObject object = getDpValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -164,15 +169,20 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -181,25 +191,23 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -208,25 +216,23 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

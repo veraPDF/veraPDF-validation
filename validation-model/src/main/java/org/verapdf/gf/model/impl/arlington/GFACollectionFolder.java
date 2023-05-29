@@ -186,9 +186,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CI"));
 	}
 
+	public COSObject getCIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
+		COSObject object = getCIValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -197,15 +202,20 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Child"));
 	}
 
+	public COSObject getChildValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisChildIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
+		COSObject object = getChildValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getChildHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
+		COSObject object = getChildValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -214,9 +224,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
 	}
 
+	public COSObject getCreationDateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		COSObject object = getCreationDateValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -225,9 +240,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Desc"));
 	}
 
+	public COSObject getDescValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Desc"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDescHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Desc"));
+		COSObject object = getDescValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -236,9 +256,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Free"));
 	}
 
+	public COSObject getFreeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Free"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFreeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Free"));
+		COSObject object = getFreeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -247,9 +272,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryIDHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -258,9 +288,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("ModDate"));
 	}
 
+	public COSObject getModDateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
+		return object;
+	}
+
 	@Override
 	public Boolean getModDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
+		COSObject object = getModDateValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -269,9 +304,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
 	}
 
+	public COSObject getNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		COSObject object = getNameValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -280,15 +320,20 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisNextIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -297,15 +342,20 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
 	}
 
+	public COSObject getParentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisParentIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -314,15 +364,20 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Thumb"));
 	}
 
+	public COSObject getThumbValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisThumbIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getThumbHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -331,25 +386,23 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

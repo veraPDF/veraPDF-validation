@@ -23,21 +23,31 @@ public class GFAArrayOf_2StringsText extends GFAObject implements AArrayOf_2Stri
 		super(baseObject, parentObject, keyName, "AArrayOf_2StringsText");
 	}
 
-	@Override
-	public Boolean getentry0HasTypeStringText() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return object;
 	}
 
 	@Override
-	public Boolean getentry1HasTypeStringText() {
+	public Boolean getentry0HasTypeStringText() {
+		COSObject object = getentry0Value();
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeStringText() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

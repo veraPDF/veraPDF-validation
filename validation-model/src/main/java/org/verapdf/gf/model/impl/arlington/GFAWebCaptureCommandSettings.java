@@ -94,9 +94,14 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -105,9 +110,14 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 		return this.baseObject.knownKey(ASAtom.getASAtom("G"));
 	}
 
+	public COSObject getGValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
+		return object;
+	}
+
 	@Override
 	public Boolean getGHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
+		COSObject object = getGValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

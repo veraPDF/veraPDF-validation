@@ -403,111 +403,107 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 		}
 	}
 
-	@Override
-	public Boolean getisentry0Indirect() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry0Indirect() {
+		COSObject object = getentry0Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStream() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
-	@Override
-	public Boolean getisentry1Indirect() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry1Indirect() {
+		COSObject object = getentry1Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry1HasTypeDictionary() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStream() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
-	@Override
-	public Boolean getisentry2Indirect() {
+	public COSObject getentry2Value() {
 		if (this.baseObject.size() <= 2) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry2Indirect() {
+		COSObject object = getentry2Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry2HasTypeDictionary() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = getentry2Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getentry2HasTypeStream() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = getentry2Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
-	@Override
-	public Boolean getisentry3Indirect() {
+	public COSObject getentry3Value() {
 		if (this.baseObject.size() <= 3) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(3);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry3Indirect() {
+		COSObject object = getentry3Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry3HasTypeDictionary() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = getentry3Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getentry3HasTypeStream() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = getentry3Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 

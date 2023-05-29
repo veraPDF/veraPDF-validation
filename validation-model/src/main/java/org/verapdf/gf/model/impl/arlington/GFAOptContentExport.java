@@ -28,25 +28,23 @@ public class GFAOptContentExport extends GFAObject implements AOptContentExport 
 		return this.baseObject.knownKey(ASAtom.getASAtom("ExportState"));
 	}
 
+	public COSObject getExportStateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExportState"));
+		return object;
+	}
+
 	@Override
 	public Boolean getExportStateHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExportState"));
+		COSObject object = getExportStateValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getExportStateNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExportState"));
-		if (object == null || object.empty()) {
-			return getExportStateNameDefaultValue();
-		}
+		COSObject object = getExportStateValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getExportStateNameDefaultValue() {
 		return null;
 	}
 

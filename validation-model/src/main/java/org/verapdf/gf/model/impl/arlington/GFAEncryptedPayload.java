@@ -28,9 +28,14 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -39,25 +44,23 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -66,9 +69,14 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
 	}
 
+	public COSObject getVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVersionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		COSObject object = getVersionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 

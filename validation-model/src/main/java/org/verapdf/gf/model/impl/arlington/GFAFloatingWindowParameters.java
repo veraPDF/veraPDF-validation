@@ -90,9 +90,14 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -101,31 +106,36 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
-	@Override
-	public Boolean getOHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getOIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		if (object == null || object.empty()) {
-			return getOIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getOIntegerDefaultValue() {
+	public COSObject getODefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1L;
+				return COSInteger.construct(1L);
+		}
+		return null;
+	}
+
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		if (object == null || object.empty()) {
+			object = getODefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getOHasTypeInteger() {
+		COSObject object = getOValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getOIntegerValue() {
+		COSObject object = getOValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -135,31 +145,36 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
-	@Override
-	public Boolean getPHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getPIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPIntegerDefaultValue() {
+	public COSObject getPDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 4L;
+				return COSInteger.construct(4L);
+		}
+		return null;
+	}
+
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null || object.empty()) {
+			object = getPDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getPHasTypeInteger() {
+		COSObject object = getPValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getPIntegerValue() {
+		COSObject object = getPValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -169,31 +184,36 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
-	@Override
-	public Boolean getRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getRIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		if (object == null || object.empty()) {
-			return getRIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getRIntegerDefaultValue() {
+	public COSObject getRDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		if (object == null || object.empty()) {
+			object = getRDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getRHasTypeInteger() {
+		COSObject object = getRValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getRIntegerValue() {
+		COSObject object = getRValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -203,31 +223,36 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("RT"));
 	}
 
-	@Override
-	public Boolean getRTHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getRTIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
-		if (object == null || object.empty()) {
-			return getRTIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getRTIntegerDefaultValue() {
+	public COSObject getRTDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getRTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RT"));
+		if (object == null || object.empty()) {
+			object = getRTDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getRTHasTypeInteger() {
+		COSObject object = getRTValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getRTIntegerValue() {
+		COSObject object = getRTValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -237,31 +262,36 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
-	@Override
-	public Boolean getTHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getTBooleanValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
-		if (object == null || object.empty()) {
-			return getTBooleanDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
-	}
-
-	public Boolean getTBooleanDefaultValue() {
+	public COSObject getTDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return true;
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		if (object == null || object.empty()) {
+			object = getTDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getTHasTypeBoolean() {
+		COSObject object = getTValue();
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getTBooleanValue() {
+		COSObject object = getTValue();
+		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
+			return object.getBoolean();
 		}
 		return null;
 	}
@@ -271,9 +301,14 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("TT"));
 	}
 
+	public COSObject getTTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TT"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTTHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TT"));
+		COSObject object = getTTValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -282,25 +317,23 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -309,9 +342,28 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 		return this.baseObject.knownKey(ASAtom.getASAtom("UC"));
 	}
 
+	public COSObject getUCDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getUCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UC"));
+		if (object == null || object.empty()) {
+			object = getUCDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getUCHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UC"));
+		COSObject object = getUCValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 

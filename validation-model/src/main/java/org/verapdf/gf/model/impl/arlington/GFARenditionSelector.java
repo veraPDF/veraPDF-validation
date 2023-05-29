@@ -117,9 +117,14 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
 	}
 
+	public COSObject getBEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		COSObject object = getBEValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -128,9 +133,14 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
 	}
 
+	public COSObject getMHValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		COSObject object = getMHValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -139,9 +149,14 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
 
+	public COSObject getNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -150,9 +165,14 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -161,25 +181,23 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -188,25 +206,23 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

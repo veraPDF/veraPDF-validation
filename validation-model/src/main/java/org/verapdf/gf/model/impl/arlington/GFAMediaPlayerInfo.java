@@ -117,9 +117,14 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BE"));
 	}
 
+	public COSObject getBEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		COSObject object = getBEValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -128,9 +133,14 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("MH"));
 	}
 
+	public COSObject getMHValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMHHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		COSObject object = getMHValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -139,9 +149,14 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PID"));
 	}
 
+	public COSObject getPIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPIDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PID"));
+		COSObject object = getPIDValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -150,25 +165,23 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

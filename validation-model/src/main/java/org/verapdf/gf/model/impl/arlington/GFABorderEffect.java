@@ -28,31 +28,36 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
 	}
 
-	@Override
-	public Boolean getIHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getINumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
-		if (object == null || object.empty()) {
-			return getINumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getINumberDefaultValue() {
+	public COSObject getIDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0D;
+				return COSReal.construct(0D);
+		}
+		return null;
+	}
+
+	public COSObject getIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		if (object == null || object.empty()) {
+			object = getIDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getIHasTypeNumber() {
+		COSObject object = getIValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getINumberValue() {
+		COSObject object = getIValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}
@@ -62,31 +67,36 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
+	public COSObject getSDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "S";
+				return COSName.construct("S");
+		}
+		return null;
+	}
+
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			object = getSDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = getSValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = getSValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}

@@ -100,51 +100,56 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 		return this.baseObject.knownKey(ASAtom.getASAtom("Data"));
 	}
 
+	public COSObject getDataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDataIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDataHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDataHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
 	public Boolean getDataHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getDataHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getDataHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getDataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Boolean getDataHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -153,32 +158,37 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 		return this.baseObject.knownKey(ASAtom.getASAtom("DigestMethod"));
 	}
 
+	public COSObject getDigestMethodDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+				return true ? COSName.construct("MD5") : gethasExtensionISO_TS_32001() ? COSName.construct("SHA256") : null;
+			case ARLINGTON2_0:
+				return gethasExtensionISO_TS_32001() ? COSName.construct("SHA256") : null;
+		}
+		return null;
+	}
+
+	public COSObject getDigestMethodValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestMethod"));
+		if (object == null || object.empty()) {
+			object = getDigestMethodDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getDigestMethodHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestMethod"));
+		COSObject object = getDigestMethodValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getDigestMethodNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestMethod"));
-		if (object == null || object.empty()) {
-			return getDigestMethodNameDefaultValue();
-		}
+		COSObject object = getDigestMethodValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getDigestMethodNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return gethasExtensionISO_TS_32001() ? "SHA256" : null;
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-				return true ? "MD5" : gethasExtensionISO_TS_32001() ? "SHA256" : null;
 		}
 		return null;
 	}
@@ -188,25 +198,23 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 		return this.baseObject.knownKey(ASAtom.getASAtom("TransformMethod"));
 	}
 
+	public COSObject getTransformMethodValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformMethod"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTransformMethodHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformMethod"));
+		COSObject object = getTransformMethodValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTransformMethodNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformMethod"));
-		if (object == null || object.empty()) {
-			return getTransformMethodNameDefaultValue();
-		}
+		COSObject object = getTransformMethodValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTransformMethodNameDefaultValue() {
 		return null;
 	}
 
@@ -215,9 +223,14 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 		return this.baseObject.knownKey(ASAtom.getASAtom("TransformParams"));
 	}
 
+	public COSObject getTransformParamsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformParams"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTransformParamsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformParams"));
+		COSObject object = getTransformParamsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -226,25 +239,23 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

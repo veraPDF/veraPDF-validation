@@ -91,9 +91,14 @@ public class GFAStructTreeRootNameTreeIDTreeEntry extends GFAObject implements A
 		}
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

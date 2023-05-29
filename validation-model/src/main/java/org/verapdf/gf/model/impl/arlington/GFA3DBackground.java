@@ -62,9 +62,14 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -73,30 +78,35 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CS"));
 	}
 
+	public COSObject getCSDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("DeviceRGB");
+		}
+		return null;
+	}
+
+	public COSObject getCSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		if (object == null || object.empty()) {
+			object = getCSDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getCSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		COSObject object = getCSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getCSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
-		if (object == null || object.empty()) {
-			return getCSNameDefaultValue();
-		}
+		COSObject object = getCSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getCSNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "DeviceRGB";
 		}
 		return null;
 	}
@@ -106,9 +116,27 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 		return this.baseObject.knownKey(ASAtom.getASAtom("EA"));
 	}
 
+	public COSObject getEADefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getEAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EA"));
+		if (object == null || object.empty()) {
+			object = getEADefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getEAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EA"));
+		COSObject object = getEAValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -117,30 +145,35 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("SC");
+		}
+		return null;
+	}
+
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			object = getSubtypeDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "SC";
 		}
 		return null;
 	}
@@ -150,25 +183,23 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

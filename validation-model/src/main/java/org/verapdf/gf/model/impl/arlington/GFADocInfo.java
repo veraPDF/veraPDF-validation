@@ -79,9 +79,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Author"));
 	}
 
+	public COSObject getAuthorValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Author"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAuthorHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Author"));
+		COSObject object = getAuthorValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -90,9 +95,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
 	}
 
+	public COSObject getCreationDateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		COSObject object = getCreationDateValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -101,9 +111,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Creator"));
 	}
 
+	public COSObject getCreatorValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCreatorHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
+		COSObject object = getCreatorValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -112,9 +127,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Keywords"));
 	}
 
+	public COSObject getKeywordsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Keywords"));
+		return object;
+	}
+
 	@Override
 	public Boolean getKeywordsHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Keywords"));
+		COSObject object = getKeywordsValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -123,9 +143,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ModDate"));
 	}
 
+	public COSObject getModDateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
+		return object;
+	}
+
 	@Override
 	public Boolean getModDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
+		COSObject object = getModDateValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -134,9 +159,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Producer"));
 	}
 
+	public COSObject getProducerValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Producer"));
+		return object;
+	}
+
 	@Override
 	public Boolean getProducerHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Producer"));
+		COSObject object = getProducerValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -145,9 +175,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subject"));
 	}
 
+	public COSObject getSubjectValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubjectHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
+		COSObject object = getSubjectValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -156,9 +191,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Title"));
 	}
 
+	public COSObject getTitleValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTitleHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
+		COSObject object = getTitleValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -167,25 +207,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Trapped"));
 	}
 
-	@Override
-	public Boolean getTrappedHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trapped"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getTrappedNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trapped"));
-		if (object == null || object.empty()) {
-			return getTrappedNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTrappedNameDefaultValue() {
+	public COSObject getTrappedDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -193,7 +215,30 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "Unknown";
+				return COSName.construct("Unknown");
+		}
+		return null;
+	}
+
+	public COSObject getTrappedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trapped"));
+		if (object == null || object.empty()) {
+			object = getTrappedDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getTrappedHasTypeName() {
+		COSObject object = getTrappedValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getTrappedNameValue() {
+		COSObject object = getTrappedValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}

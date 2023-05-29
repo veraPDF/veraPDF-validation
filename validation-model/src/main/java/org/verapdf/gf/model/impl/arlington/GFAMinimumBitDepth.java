@@ -28,31 +28,36 @@ public class GFAMinimumBitDepth extends GFAObject implements AMinimumBitDepth {
 		return this.baseObject.knownKey(ASAtom.getASAtom("M"));
 	}
 
-	@Override
-	public Boolean getMHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getMIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
-		if (object == null || object.empty()) {
-			return getMIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getMIntegerDefaultValue() {
+	public COSObject getMDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		if (object == null || object.empty()) {
+			object = getMDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getMHasTypeInteger() {
+		COSObject object = getMValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getMIntegerValue() {
+		COSObject object = getMValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -62,25 +67,23 @@ public class GFAMinimumBitDepth extends GFAObject implements AMinimumBitDepth {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -89,25 +92,23 @@ public class GFAMinimumBitDepth extends GFAObject implements AMinimumBitDepth {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getVIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null || object.empty()) {
-			return getVIntegerDefaultValue();
-		}
+		COSObject object = getVValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getVIntegerDefaultValue() {
 		return null;
 	}
 

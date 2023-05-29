@@ -122,15 +122,20 @@ public class GFAThread extends GFAObject implements AThread {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisFIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -139,9 +144,14 @@ public class GFAThread extends GFAObject implements AThread {
 		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
 	}
 
+	public COSObject getIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		COSObject object = getIValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -150,15 +160,20 @@ public class GFAThread extends GFAObject implements AThread {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
 	}
 
+	public COSObject getMetadataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisMetadataIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getMetadataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -167,25 +182,23 @@ public class GFAThread extends GFAObject implements AThread {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

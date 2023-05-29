@@ -23,77 +23,61 @@ public class GFAArrayOfXRefIndexIntegersSubArray extends GFAObject implements AA
 		super(baseObject, parentObject, keyName, "AArrayOfXRefIndexIntegersSubArray");
 	}
 
-	@Override
-	public Boolean getisentry0Indirect() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry0Indirect() {
+		COSObject object = getentry0Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry0HasTypeInteger() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getentry0IntegerValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0IntegerDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
 		return null;
 	}
 
-	public Long getentry0IntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getisentry1Indirect() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry1Indirect() {
+		COSObject object = getentry1Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry1HasTypeInteger() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getentry1IntegerValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1IntegerDefaultValue();
-		}
+		COSObject object = getentry1Value();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getentry1IntegerDefaultValue() {
 		return null;
 	}
 

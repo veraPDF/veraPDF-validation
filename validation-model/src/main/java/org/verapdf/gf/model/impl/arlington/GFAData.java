@@ -103,9 +103,14 @@ public class GFAData extends GFAObject implements AData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("LastModified"));
 	}
 
+	public COSObject getLastModifiedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LastModified"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LastModified"));
+		COSObject object = getLastModifiedValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -114,57 +119,62 @@ public class GFAData extends GFAObject implements AData {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Private"));
 	}
 
+	public COSObject getPrivateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPrivateIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 

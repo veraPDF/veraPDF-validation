@@ -115,31 +115,29 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
 	}
 
+	public COSObject getColorSpaceValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getColorSpaceNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
-		if (object == null || object.empty()) {
-			return getColorSpaceNameDefaultValue();
-		}
+		COSObject object = getColorSpaceValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getColorSpaceNameDefaultValue() {
 		return null;
 	}
 
@@ -148,9 +146,14 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Components"));
 	}
 
+	public COSObject getComponentsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Components"));
+		return object;
+	}
+
 	@Override
 	public Boolean getComponentsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Components"));
+		COSObject object = getComponentsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

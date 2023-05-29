@@ -117,9 +117,14 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("Configs"));
 	}
 
+	public COSObject getConfigsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getConfigsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configs"));
+		COSObject object = getConfigsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -128,9 +133,14 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -139,9 +149,14 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("OCGs"));
 	}
 
+	public COSObject getOCGsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOCGsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		COSObject object = getOCGsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

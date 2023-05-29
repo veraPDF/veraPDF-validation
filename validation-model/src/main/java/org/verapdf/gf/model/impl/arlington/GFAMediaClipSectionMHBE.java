@@ -138,9 +138,14 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 		return this.baseObject.knownKey(ASAtom.getASAtom("B"));
 	}
 
+	public COSObject getBValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		COSObject object = getBValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -149,9 +154,14 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
 	}
 
+	public COSObject getEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

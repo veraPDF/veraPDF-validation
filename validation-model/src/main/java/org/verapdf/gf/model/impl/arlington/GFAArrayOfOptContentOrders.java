@@ -81,21 +81,23 @@ public class GFAArrayOfOptContentOrders extends GFAObject implements AArrayOfOpt
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getentry0HasTypeDictionary() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeDictionary() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStringText() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

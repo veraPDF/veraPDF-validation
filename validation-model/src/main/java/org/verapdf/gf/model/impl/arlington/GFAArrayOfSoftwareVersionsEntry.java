@@ -28,25 +28,23 @@ public class GFAArrayOfSoftwareVersionsEntry extends GFAObject implements AArray
 		this.collectionName = collectionName;
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeInteger() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getIntegerValue() {
-		COSObject object = new COSObject(this.baseObject);
-		if (object == null || object.empty()) {
-			return getIntegerDefaultValue();
-		}
+		COSObject object = getValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getIntegerDefaultValue() {
 		return null;
 	}
 

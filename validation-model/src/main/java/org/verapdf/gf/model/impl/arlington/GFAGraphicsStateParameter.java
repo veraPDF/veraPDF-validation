@@ -928,9 +928,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("AAPL:AA"));
 	}
 
+	public COSObject getAAPLAAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:AA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAAPLAAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:AA"));
+		COSObject object = getAAPLAAValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -939,15 +944,37 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("AAPL:ST"));
 	}
 
+	public COSObject getAAPLSTDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("None");
+		}
+		return null;
+	}
+
+	public COSObject getAAPLSTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:ST"));
+		if (object == null || object.empty()) {
+			object = getAAPLSTDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getAAPLSTHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:ST"));
+		COSObject object = getAAPLSTValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getAAPLSTHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:ST"));
+		COSObject object = getAAPLSTValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -956,9 +983,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("AIS"));
 	}
 
+	public COSObject getAISValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AIS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAISHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AIS"));
+		COSObject object = getAISValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -967,21 +999,26 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("BG"));
 	}
 
+	public COSObject getBGValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisBGIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		COSObject object = getBGValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getBGHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		COSObject object = getBGValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getBGHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		COSObject object = getBGValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -990,27 +1027,48 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("BG2"));
 	}
 
+	public COSObject getBG2DefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Default");
+		}
+		return null;
+	}
+
+	public COSObject getBG2Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG2"));
+		if (object == null || object.empty()) {
+			object = getBG2DefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getisBG2Indirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG2"));
+		COSObject object = getBG2Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getBG2HasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG2"));
+		COSObject object = getBG2Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getBG2HasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG2"));
+		COSObject object = getBG2Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getBG2HasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG2"));
+		COSObject object = getBG2Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -1019,31 +1077,29 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("BM"));
 	}
 
+	public COSObject getBMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBMHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
+		COSObject object = getBMValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getBMHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
+		COSObject object = getBMValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getBMNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
-		if (object == null || object.empty()) {
-			return getBMNameDefaultValue();
-		}
+		COSObject object = getBMValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getBMNameDefaultValue() {
 		return null;
 	}
 
@@ -1052,25 +1108,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("CA"));
 	}
 
+	public COSObject getCAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCAHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
+		COSObject object = getCAValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getCANumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
-		if (object == null || object.empty()) {
-			return getCANumberDefaultValue();
-		}
+		COSObject object = getCAValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getCANumberDefaultValue() {
 		return null;
 	}
 
@@ -1079,9 +1133,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -1090,25 +1149,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("FL"));
 	}
 
+	public COSObject getFLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFLHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FL"));
+		COSObject object = getFLValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getFLNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FL"));
-		if (object == null || object.empty()) {
-			return getFLNumberDefaultValue();
-		}
+		COSObject object = getFLValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getFLNumberDefaultValue() {
 		return null;
 	}
 
@@ -1117,9 +1174,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("Font"));
 	}
 
+	public COSObject getFontValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Font"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFontHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Font"));
+		COSObject object = getFontValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -1128,27 +1190,32 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("HT"));
 	}
 
+	public COSObject getHTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisHTIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
+		COSObject object = getHTValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getHTHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
+		COSObject object = getHTValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getHTHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
+		COSObject object = getHTValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getHTHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
+		COSObject object = getHTValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -1157,9 +1224,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("HTO"));
 	}
 
+	public COSObject getHTOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HTO"));
+		return object;
+	}
+
 	@Override
 	public Boolean getHTOHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HTO"));
+		COSObject object = getHTOValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -1168,9 +1240,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("HTP"));
 	}
 
+	public COSObject getHTPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HTP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getHTPHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HTP"));
+		COSObject object = getHTPValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -1179,25 +1256,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("LC"));
 	}
 
+	public COSObject getLCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLCHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LC"));
+		COSObject object = getLCValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getLCIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LC"));
-		if (object == null || object.empty()) {
-			return getLCIntegerDefaultValue();
-		}
+		COSObject object = getLCValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getLCIntegerDefaultValue() {
 		return null;
 	}
 
@@ -1206,25 +1281,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("LJ"));
 	}
 
+	public COSObject getLJValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LJ"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLJHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LJ"));
+		COSObject object = getLJValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getLJIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LJ"));
-		if (object == null || object.empty()) {
-			return getLJIntegerDefaultValue();
-		}
+		COSObject object = getLJValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getLJIntegerDefaultValue() {
 		return null;
 	}
 
@@ -1233,25 +1306,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("LW"));
 	}
 
+	public COSObject getLWValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LW"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLWHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LW"));
+		COSObject object = getLWValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getLWNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LW"));
-		if (object == null || object.empty()) {
-			return getLWNumberDefaultValue();
-		}
+		COSObject object = getLWValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getLWNumberDefaultValue() {
 		return null;
 	}
 
@@ -1260,25 +1331,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("ML"));
 	}
 
+	public COSObject getMLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ML"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMLHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ML"));
+		COSObject object = getMLValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getMLNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ML"));
-		if (object == null || object.empty()) {
-			return getMLNumberDefaultValue();
-		}
+		COSObject object = getMLValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getMLNumberDefaultValue() {
 		return null;
 	}
 
@@ -1287,9 +1356,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("OP"));
 	}
 
+	public COSObject getOPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOPHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OP"));
+		COSObject object = getOPValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -1298,25 +1372,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("OPM"));
 	}
 
+	public COSObject getOPMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OPM"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOPMHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OPM"));
+		COSObject object = getOPMValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getOPMIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OPM"));
-		if (object == null || object.empty()) {
-			return getOPMIntegerDefaultValue();
-		}
+		COSObject object = getOPMValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getOPMIntegerDefaultValue() {
 		return null;
 	}
 
@@ -1325,25 +1397,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("RI"));
 	}
 
+	public COSObject getRIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRIHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
+		COSObject object = getRIValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getRINameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RI"));
-		if (object == null || object.empty()) {
-			return getRINameDefaultValue();
-		}
+		COSObject object = getRIValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getRINameDefaultValue() {
 		return null;
 	}
 
@@ -1352,9 +1422,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("SA"));
 	}
 
+	public COSObject getSAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSAHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SA"));
+		COSObject object = getSAValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -1363,25 +1438,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("SM"));
 	}
 
+	public COSObject getSMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SM"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSMHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SM"));
+		COSObject object = getSMValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getSMNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SM"));
-		if (object == null || object.empty()) {
-			return getSMNumberDefaultValue();
-		}
+		COSObject object = getSMValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getSMNumberDefaultValue() {
 		return null;
 	}
 
@@ -1390,31 +1463,29 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("SMask"));
 	}
 
+	public COSObject getSMaskValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSMaskHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
+		COSObject object = getSMaskValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getSMaskHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
+		COSObject object = getSMaskValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSMaskNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
-		if (object == null || object.empty()) {
-			return getSMaskNameDefaultValue();
-		}
+		COSObject object = getSMaskValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSMaskNameDefaultValue() {
 		return null;
 	}
 
@@ -1423,9 +1494,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("TK"));
 	}
 
+	public COSObject getTKValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TK"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTKHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TK"));
+		COSObject object = getTKValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -1434,33 +1510,38 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("TR"));
 	}
 
+	public COSObject getTRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisTRIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		COSObject object = getTRValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getTRHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		COSObject object = getTRValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getTRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		COSObject object = getTRValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getTRHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		COSObject object = getTRValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getTRHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		COSObject object = getTRValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -1469,33 +1550,54 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("TR2"));
 	}
 
+	public COSObject getTR2DefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Default");
+		}
+		return null;
+	}
+
+	public COSObject getTR2Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
+		if (object == null || object.empty()) {
+			object = getTR2DefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getisTR2Indirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
+		COSObject object = getTR2Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getTR2HasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
+		COSObject object = getTR2Value();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getTR2HasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
+		COSObject object = getTR2Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getTR2HasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
+		COSObject object = getTR2Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getTR2HasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
+		COSObject object = getTR2Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -1504,25 +1606,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -1531,21 +1631,26 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("UCR"));
 	}
 
+	public COSObject getUCRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisUCRIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
+		COSObject object = getUCRValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getUCRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
+		COSObject object = getUCRValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getUCRHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
+		COSObject object = getUCRValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -1554,27 +1659,48 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("UCR2"));
 	}
 
+	public COSObject getUCR2DefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Default");
+		}
+		return null;
+	}
+
+	public COSObject getUCR2Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR2"));
+		if (object == null || object.empty()) {
+			object = getUCR2DefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getisUCR2Indirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR2"));
+		COSObject object = getUCR2Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getUCR2HasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR2"));
+		COSObject object = getUCR2Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getUCR2HasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR2"));
+		COSObject object = getUCR2Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getUCR2HasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR2"));
+		COSObject object = getUCR2Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -1583,28 +1709,33 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("UseBlackPtComp"));
 	}
 
+	public COSObject getUseBlackPtCompDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSName.construct("Default");
+		}
+		return null;
+	}
+
+	public COSObject getUseBlackPtCompValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UseBlackPtComp"));
+		if (object == null || object.empty()) {
+			object = getUseBlackPtCompDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getUseBlackPtCompHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UseBlackPtComp"));
+		COSObject object = getUseBlackPtCompValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getUseBlackPtCompNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UseBlackPtComp"));
-		if (object == null || object.empty()) {
-			return getUseBlackPtCompNameDefaultValue();
-		}
+		COSObject object = getUseBlackPtCompValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getUseBlackPtCompNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return "Default";
 		}
 		return null;
 	}
@@ -1614,25 +1745,23 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("ca"));
 	}
 
+	public COSObject getcaValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ca"));
+		return object;
+	}
+
 	@Override
 	public Boolean getcaHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ca"));
+		COSObject object = getcaValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getcaNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ca"));
-		if (object == null || object.empty()) {
-			return getcaNumberDefaultValue();
-		}
+		COSObject object = getcaValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getcaNumberDefaultValue() {
 		return null;
 	}
 
@@ -1641,9 +1770,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return this.baseObject.knownKey(ASAtom.getASAtom("op"));
 	}
 
+	public COSObject getopValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("op"));
+		return object;
+	}
+
 	@Override
 	public Boolean getopHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("op"));
+		COSObject object = getopValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 

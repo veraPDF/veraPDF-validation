@@ -28,9 +28,14 @@ public class GFAOptContentCreatorInfo extends GFAObject implements AOptContentCr
 		return this.baseObject.knownKey(ASAtom.getASAtom("Creator"));
 	}
 
+	public COSObject getCreatorValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCreatorHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
+		COSObject object = getCreatorValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -39,25 +44,23 @@ public class GFAOptContentCreatorInfo extends GFAObject implements AOptContentCr
 		return this.baseObject.knownKey(ASAtom.getASAtom("SubType"));
 	}
 
+	public COSObject getSubTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubType"));
+		COSObject object = getSubTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubType"));
-		if (object == null || object.empty()) {
-			return getSubTypeNameDefaultValue();
-		}
+		COSObject object = getSubTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -66,25 +69,23 @@ public class GFAOptContentCreatorInfo extends GFAObject implements AOptContentCr
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 

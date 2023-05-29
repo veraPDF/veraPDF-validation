@@ -200,9 +200,14 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Color"));
 	}
 
+	public COSObject getColorValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		COSObject object = getColorValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -211,31 +216,29 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
 	}
 
+	public COSObject getColorSpaceValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getColorSpaceNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
-		if (object == null || object.empty()) {
-			return getColorSpaceNameDefaultValue();
-		}
+		COSObject object = getColorSpaceValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getColorSpaceNameDefaultValue() {
 		return null;
 	}
 
@@ -244,9 +247,14 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Offset"));
 	}
 
+	public COSObject getOffsetValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Offset"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOffsetHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Offset"));
+		COSObject object = getOffsetValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -255,25 +263,23 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Radius"));
 	}
 
+	public COSObject getRadiusValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Radius"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRadiusHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Radius"));
+		COSObject object = getRadiusValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getRadiusNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Radius"));
-		if (object == null || object.empty()) {
-			return getRadiusNumberDefaultValue();
-		}
+		COSObject object = getRadiusValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getRadiusNumberDefaultValue() {
 		return null;
 	}
 
@@ -282,25 +288,23 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -309,25 +313,23 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

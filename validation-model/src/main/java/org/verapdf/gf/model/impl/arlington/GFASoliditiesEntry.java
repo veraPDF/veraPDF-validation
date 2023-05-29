@@ -28,25 +28,23 @@ public class GFASoliditiesEntry extends GFAObject implements ASoliditiesEntry {
 		this.collectionName = collectionName;
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getNumberValue() {
-		COSObject object = new COSObject(this.baseObject);
-		if (object == null || object.empty()) {
-			return getNumberDefaultValue();
-		}
+		COSObject object = getValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getNumberDefaultValue() {
 		return null;
 	}
 

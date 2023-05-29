@@ -65,15 +65,20 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 		return this.baseObject.knownKey(ASAtom.getASAtom("CheckSum"));
 	}
 
+	public COSObject getCheckSumValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCheckSumHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
+		COSObject object = getCheckSumValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public Long getCheckSumStringSize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
+		COSObject object = getCheckSumValue();
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return (long) object.getString().length();
 		}
@@ -85,9 +90,14 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 		return this.baseObject.knownKey(ASAtom.getASAtom("CreationDate"));
 	}
 
+	public COSObject getCreationDateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
+		COSObject object = getCreationDateValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -96,9 +106,14 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 		return this.baseObject.knownKey(ASAtom.getASAtom("Mac"));
 	}
 
+	public COSObject getMacValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mac"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMacHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mac"));
+		COSObject object = getMacValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -107,9 +122,14 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 		return this.baseObject.knownKey(ASAtom.getASAtom("ModDate"));
 	}
 
+	public COSObject getModDateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
+		return object;
+	}
+
 	@Override
 	public Boolean getModDateHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ModDate"));
+		COSObject object = getModDateValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -118,25 +138,23 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 		return this.baseObject.knownKey(ASAtom.getASAtom("Size"));
 	}
 
+	public COSObject getSizeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSizeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getSizeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
-		if (object == null || object.empty()) {
-			return getSizeIntegerDefaultValue();
-		}
+		COSObject object = getSizeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getSizeIntegerDefaultValue() {
 		return null;
 	}
 

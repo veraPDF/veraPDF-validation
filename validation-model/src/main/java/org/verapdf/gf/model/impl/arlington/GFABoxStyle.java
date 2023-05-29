@@ -92,9 +92,14 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -103,9 +108,14 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -114,32 +124,37 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
+	public COSObject getSDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "S";
+				return COSName.construct("S");
+		}
+		return null;
+	}
+
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			object = getSDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = getSValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = getSValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -149,9 +164,29 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
 	}
 
+	public COSObject getWDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(1D);
+		}
+		return null;
+	}
+
+	public COSObject getWValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		if (object == null || object.empty()) {
+			object = getWDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getWHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		COSObject object = getWValue();
 		return object != null && object.getType().isNumber();
 	}
 

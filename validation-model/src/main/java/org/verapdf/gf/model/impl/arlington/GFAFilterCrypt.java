@@ -28,31 +28,36 @@ public class GFAFilterCrypt extends GFAObject implements AFilterCrypt {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
 	}
 
-	@Override
-	public Boolean getNameHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getNameNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
-		if (object == null || object.empty()) {
-			return getNameNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getNameNameDefaultValue() {
+	public COSObject getNameDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "Identity";
+				return COSName.construct("Identity");
+		}
+		return null;
+	}
+
+	public COSObject getNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		if (object == null || object.empty()) {
+			object = getNameDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getNameHasTypeName() {
+		COSObject object = getNameValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getNameNameValue() {
+		COSObject object = getNameValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -62,25 +67,23 @@ public class GFAFilterCrypt extends GFAObject implements AFilterCrypt {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

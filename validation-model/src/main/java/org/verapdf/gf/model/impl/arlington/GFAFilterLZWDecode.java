@@ -28,25 +28,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BitsPerComponent"));
 	}
 
-	@Override
-	public Boolean getBitsPerComponentHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerComponent"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getBitsPerComponentIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerComponent"));
-		if (object == null || object.empty()) {
-			return getBitsPerComponentIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getBitsPerComponentIntegerDefaultValue() {
+	public COSObject getBitsPerComponentDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
@@ -57,7 +39,30 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 8L;
+				return COSInteger.construct(8L);
+		}
+		return null;
+	}
+
+	public COSObject getBitsPerComponentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerComponent"));
+		if (object == null || object.empty()) {
+			object = getBitsPerComponentDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getBitsPerComponentHasTypeInteger() {
+		COSObject object = getBitsPerComponentValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getBitsPerComponentIntegerValue() {
+		COSObject object = getBitsPerComponentValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -67,25 +72,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Colors"));
 	}
 
-	@Override
-	public Boolean getColorsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colors"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getColorsIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colors"));
-		if (object == null || object.empty()) {
-			return getColorsIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getColorsIntegerDefaultValue() {
+	public COSObject getColorsDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
@@ -96,7 +83,30 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1L;
+				return COSInteger.construct(1L);
+		}
+		return null;
+	}
+
+	public COSObject getColorsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colors"));
+		if (object == null || object.empty()) {
+			object = getColorsDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getColorsHasTypeInteger() {
+		COSObject object = getColorsValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getColorsIntegerValue() {
+		COSObject object = getColorsValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -106,36 +116,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Columns"));
 	}
 
-	@Override
-	public Boolean getColumnsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Columns"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getcontainsEarlyChange() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EarlyChange"));
-	}
-
-	@Override
-	public Boolean getEarlyChangeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EarlyChange"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getEarlyChangeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EarlyChange"));
-		if (object == null || object.empty()) {
-			return getEarlyChangeIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getEarlyChangeIntegerDefaultValue() {
+	public COSObject getColumnsDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
@@ -146,7 +127,65 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1L;
+				return COSInteger.construct(1L);
+		}
+		return null;
+	}
+
+	public COSObject getColumnsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Columns"));
+		if (object == null || object.empty()) {
+			object = getColumnsDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getColumnsHasTypeInteger() {
+		COSObject object = getColumnsValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getcontainsEarlyChange() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("EarlyChange"));
+	}
+
+	public COSObject getEarlyChangeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(1L);
+		}
+		return null;
+	}
+
+	public COSObject getEarlyChangeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EarlyChange"));
+		if (object == null || object.empty()) {
+			object = getEarlyChangeDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getEarlyChangeHasTypeInteger() {
+		COSObject object = getEarlyChangeValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getEarlyChangeIntegerValue() {
+		COSObject object = getEarlyChangeValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -156,25 +195,23 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Predictor"));
 	}
 
+	public COSObject getPredictorValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPredictorHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
+		COSObject object = getPredictorValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getPredictorIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
-		if (object == null || object.empty()) {
-			return getPredictorIntegerDefaultValue();
-		}
+		COSObject object = getPredictorValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getPredictorIntegerDefaultValue() {
 		return null;
 	}
 

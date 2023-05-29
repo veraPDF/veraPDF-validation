@@ -90,9 +90,14 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 		return this.baseObject.knownKey(ASAtom.getASAtom("Category"));
 	}
 
+	public COSObject getCategoryValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Category"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCategoryHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Category"));
+		COSObject object = getCategoryValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -101,25 +106,23 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 		return this.baseObject.knownKey(ASAtom.getASAtom("Event"));
 	}
 
+	public COSObject getEventValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Event"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEventHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Event"));
+		COSObject object = getEventValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getEventNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Event"));
-		if (object == null || object.empty()) {
-			return getEventNameDefaultValue();
-		}
+		COSObject object = getEventValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getEventNameDefaultValue() {
 		return null;
 	}
 
@@ -128,9 +131,14 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 		return this.baseObject.knownKey(ASAtom.getASAtom("OCGs"));
 	}
 
+	public COSObject getOCGsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOCGsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		COSObject object = getOCGsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

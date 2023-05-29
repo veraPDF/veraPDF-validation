@@ -1772,9 +1772,14 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1783,9 +1788,14 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
 	}
 
+	public COSObject getEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1794,9 +1804,14 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 		return this.baseObject.knownKey(ASAtom.getASAtom("PC"));
 	}
 
+	public COSObject getPCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		COSObject object = getPCValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1805,9 +1820,14 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 		return this.baseObject.knownKey(ASAtom.getASAtom("PI"));
 	}
 
+	public COSObject getPIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PI"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PI"));
+		COSObject object = getPIValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1816,9 +1836,14 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 		return this.baseObject.knownKey(ASAtom.getASAtom("PO"));
 	}
 
+	public COSObject getPOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PO"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPOHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PO"));
+		COSObject object = getPOValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1827,9 +1852,14 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 		return this.baseObject.knownKey(ASAtom.getASAtom("PV"));
 	}
 
+	public COSObject getPVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PV"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PV"));
+		COSObject object = getPVValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1838,9 +1868,14 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
 	}
 
+	public COSObject getUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1849,9 +1884,14 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 		return this.baseObject.knownKey(ASAtom.getASAtom("X"));
 	}
 
+	public COSObject getXValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
+		COSObject object = getXValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

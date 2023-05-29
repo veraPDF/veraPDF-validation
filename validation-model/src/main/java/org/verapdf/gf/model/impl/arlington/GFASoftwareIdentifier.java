@@ -117,9 +117,14 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
 	}
 
+	public COSObject getHValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		return object;
+	}
+
 	@Override
 	public Boolean getHHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		COSObject object = getHValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -128,9 +133,28 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 		return this.baseObject.knownKey(ASAtom.getASAtom("HI"));
 	}
 
+	public COSObject getHIDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getHIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HI"));
+		if (object == null || object.empty()) {
+			object = getHIDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getHIHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HI"));
+		COSObject object = getHIValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -139,9 +163,14 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
 	}
 
+	public COSObject getLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		COSObject object = getLValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -150,9 +179,28 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 		return this.baseObject.knownKey(ASAtom.getASAtom("LI"));
 	}
 
+	public COSObject getLIDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getLIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LI"));
+		if (object == null || object.empty()) {
+			object = getLIDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getLIHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LI"));
+		COSObject object = getLIValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -161,9 +209,14 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 		return this.baseObject.knownKey(ASAtom.getASAtom("OS"));
 	}
 
+	public COSObject getOSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOSHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		COSObject object = getOSValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -172,25 +225,23 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -199,9 +250,14 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
 	}
 
+	public COSObject getUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

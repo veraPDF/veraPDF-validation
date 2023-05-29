@@ -108,27 +108,32 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Obj"));
 	}
 
+	public COSObject getObjValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisObjIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
+		COSObject object = getObjValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getObjHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
+		COSObject object = getObjValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getObjHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
+		COSObject object = getObjValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getObjHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
+		COSObject object = getObjValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -137,15 +142,20 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Pg"));
 	}
 
+	public COSObject getPgValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPgIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPgHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -154,25 +164,23 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

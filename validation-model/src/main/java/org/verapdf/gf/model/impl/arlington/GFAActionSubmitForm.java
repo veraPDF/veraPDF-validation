@@ -96,25 +96,23 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CharSet"));
 	}
 
+	public COSObject getCharSetValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CharSet"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCharSetHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CharSet"));
+		COSObject object = getCharSetValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public String getCharSetStringValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CharSet"));
-		if (object == null || object.empty()) {
-			return getCharSetStringDefaultValue();
-		}
+		COSObject object = getCharSetValue();
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getCharSetStringDefaultValue() {
 		return null;
 	}
 
@@ -123,15 +121,20 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -140,9 +143,14 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Fields"));
 	}
 
+	public COSObject getFieldsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -151,25 +159,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Flags"));
 	}
 
-	@Override
-	public Boolean getFlagsHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFlagsBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
-		if (object == null || object.empty()) {
-			return getFlagsBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFlagsBitmaskDefaultValue() {
+	public COSObject getFlagsDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -178,7 +168,30 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getFlagsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
+		if (object == null || object.empty()) {
+			object = getFlagsDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getFlagsHasTypeBitmask() {
+		COSObject object = getFlagsValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFlagsBitmaskValue() {
+		COSObject object = getFlagsValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -188,25 +201,23 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 

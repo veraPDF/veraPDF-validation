@@ -98,9 +98,14 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BlackPoint"));
 	}
 
+	public COSObject getBlackPointValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBlackPointHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		COSObject object = getBlackPointValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -109,25 +114,7 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Gamma"));
 	}
 
-	@Override
-	public Boolean getGammaHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Gamma"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getGammaNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Gamma"));
-		if (object == null || object.empty()) {
-			return getGammaNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getGammaNumberDefaultValue() {
+	public COSObject getGammaDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -137,7 +124,30 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1D;
+				return COSReal.construct(1D);
+		}
+		return null;
+	}
+
+	public COSObject getGammaValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Gamma"));
+		if (object == null || object.empty()) {
+			object = getGammaDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getGammaHasTypeNumber() {
+		COSObject object = getGammaValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getGammaNumberValue() {
+		COSObject object = getGammaValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}
@@ -147,9 +157,14 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("WhitePoint"));
 	}
 
+	public COSObject getWhitePointValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWhitePointHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		COSObject object = getWhitePointValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

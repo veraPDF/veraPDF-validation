@@ -252,9 +252,14 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CreatorInfo"));
 	}
 
+	public COSObject getCreatorInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreatorInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCreatorInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreatorInfo"));
+		COSObject object = getCreatorInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -263,9 +268,14 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Export"));
 	}
 
+	public COSObject getExportValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Export"));
+		return object;
+	}
+
 	@Override
 	public Boolean getExportHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Export"));
+		COSObject object = getExportValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -274,9 +284,14 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Language"));
 	}
 
+	public COSObject getLanguageValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Language"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLanguageHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Language"));
+		COSObject object = getLanguageValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -285,9 +300,14 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PageElement"));
 	}
 
+	public COSObject getPageElementValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageElement"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPageElementHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageElement"));
+		COSObject object = getPageElementValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -296,9 +316,14 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Print"));
 	}
 
+	public COSObject getPrintValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Print"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPrintHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Print"));
+		COSObject object = getPrintValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -307,9 +332,14 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("User"));
 	}
 
+	public COSObject getUserValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("User"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUserHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("User"));
+		COSObject object = getUserValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -318,9 +348,14 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("View"));
 	}
 
+	public COSObject getViewValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("View"));
+		return object;
+	}
+
 	@Override
 	public Boolean getViewHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("View"));
+		COSObject object = getViewValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -329,9 +364,14 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Zoom"));
 	}
 
+	public COSObject getZoomValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Zoom"));
+		return object;
+	}
+
 	@Override
 	public Boolean getZoomHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Zoom"));
+		COSObject object = getZoomValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

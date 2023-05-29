@@ -136,9 +136,14 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -147,9 +152,14 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("IC"));
 	}
 
+	public COSObject getICValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getICHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IC"));
+		COSObject object = getICValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -158,29 +168,34 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("IV"));
 	}
 
+	public COSObject getIVDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getIVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IV"));
+		if (object == null || object.empty()) {
+			object = getIVDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getIVHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IV"));
+		COSObject object = getIVValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
 	@Override
 	public Boolean getIVBooleanValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IV"));
-		if (object == null || object.empty()) {
-			return getIVBooleanDefaultValue();
-		}
+		COSObject object = getIVValue();
 		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
 			return object.getBoolean();
-		}
-		return null;
-	}
-
-	public Boolean getIVBooleanDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return true;
 		}
 		return null;
 	}
@@ -190,9 +205,14 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -201,9 +221,14 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PC"));
 	}
 
+	public COSObject getPCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		COSObject object = getPCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -212,29 +237,34 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PO"));
 	}
 
+	public COSObject getPODefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(0.5D);
+		}
+		return null;
+	}
+
+	public COSObject getPOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PO"));
+		if (object == null || object.empty()) {
+			object = getPODefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPOHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PO"));
+		COSObject object = getPOValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getPONumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PO"));
-		if (object == null || object.empty()) {
-			return getPONumberDefaultValue();
-		}
+		COSObject object = getPOValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getPONumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0.5D;
 		}
 		return null;
 	}
@@ -244,9 +274,26 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PV"));
 	}
 
+	public COSObject getPVDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getPVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PV"));
+		if (object == null || object.empty()) {
+			object = getPVDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPVHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PV"));
+		COSObject object = getPVValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -255,9 +302,25 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SC"));
 	}
 
+	public COSObject getSCDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getSCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SC"));
+		if (object == null || object.empty()) {
+			object = getSCDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getSCHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SC"));
+		COSObject object = getSCValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -266,9 +329,25 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ST"));
 	}
 
+	public COSObject getSTDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getSTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ST"));
+		if (object == null || object.empty()) {
+			object = getSTDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getSTHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ST"));
+		COSObject object = getSTValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -277,25 +356,23 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

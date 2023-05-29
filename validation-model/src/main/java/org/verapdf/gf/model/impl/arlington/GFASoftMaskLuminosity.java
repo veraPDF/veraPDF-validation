@@ -169,9 +169,14 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 		return this.baseObject.knownKey(ASAtom.getASAtom("BC"));
 	}
 
+	public COSObject getBCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
+		COSObject object = getBCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -180,15 +185,20 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 		return this.baseObject.knownKey(ASAtom.getASAtom("G"));
 	}
 
+	public COSObject getGValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisGIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
+		COSObject object = getGValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getGHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
+		COSObject object = getGValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -197,25 +207,23 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -224,50 +232,55 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 		return this.baseObject.knownKey(ASAtom.getASAtom("TR"));
 	}
 
-	@Override
-	public Boolean getisTRIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getTRHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_DICT;
-	}
-
-	@Override
-	public Boolean getTRHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Boolean getTRHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public String getTRNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
-		if (object == null || object.empty()) {
-			return getTRNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getTRNameDefaultValue() {
+	public COSObject getTRDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "Identity";
+				return COSName.construct("Identity");
+		}
+		return null;
+	}
+
+	public COSObject getTRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		if (object == null || object.empty()) {
+			object = getTRDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getisTRIndirect() {
+		COSObject object = getTRValue();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getTRHasTypeDictionary() {
+		COSObject object = getTRValue();
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean getTRHasTypeName() {
+		COSObject object = getTRValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Boolean getTRHasTypeStream() {
+		COSObject object = getTRValue();
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public String getTRNameValue() {
+		COSObject object = getTRValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -277,25 +290,23 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

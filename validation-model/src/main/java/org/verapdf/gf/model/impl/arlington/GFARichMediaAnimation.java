@@ -28,28 +28,33 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 		return this.baseObject.knownKey(ASAtom.getASAtom("AO"));
 	}
 
+	public COSObject getAODefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getAOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AO"));
+		if (object == null || object.empty()) {
+			object = getAODefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getAOHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AO"));
+		COSObject object = getAOValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getAOIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AO"));
-		if (object == null || object.empty()) {
-			return getAOIntegerDefaultValue();
-		}
+		COSObject object = getAOValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getAOIntegerDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return 0L;
 		}
 		return null;
 	}
@@ -59,9 +64,26 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 		return this.baseObject.knownKey(ASAtom.getASAtom("PlayCount"));
 	}
 
+	public COSObject getPlayCountDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(-1L);
+		}
+		return null;
+	}
+
+	public COSObject getPlayCountValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PlayCount"));
+		if (object == null || object.empty()) {
+			object = getPlayCountDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPlayCountHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PlayCount"));
+		COSObject object = getPlayCountValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -70,29 +92,34 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 		return this.baseObject.knownKey(ASAtom.getASAtom("Speed"));
 	}
 
+	public COSObject getSpeedDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(1D);
+		}
+		return null;
+	}
+
+	public COSObject getSpeedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Speed"));
+		if (object == null || object.empty()) {
+			object = getSpeedDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getSpeedHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Speed"));
+		COSObject object = getSpeedValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getSpeedNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Speed"));
-		if (object == null || object.empty()) {
-			return getSpeedNumberDefaultValue();
-		}
+		COSObject object = getSpeedValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getSpeedNumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 1D;
 		}
 		return null;
 	}
@@ -102,29 +129,34 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("None");
+		}
+		return null;
+	}
+
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			object = getSubtypeDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "None";
 		}
 		return null;
 	}
@@ -134,25 +166,23 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

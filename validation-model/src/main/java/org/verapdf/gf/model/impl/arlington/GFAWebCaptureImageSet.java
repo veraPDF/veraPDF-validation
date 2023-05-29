@@ -128,9 +128,14 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 		return this.baseObject.knownKey(ASAtom.getASAtom("CT"));
 	}
 
+	public COSObject getCTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CT"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCTHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CT"));
+		COSObject object = getCTValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -139,9 +144,14 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryIDHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -150,15 +160,20 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getOArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -170,37 +185,35 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 		return this.baseObject.knownKey(ASAtom.getASAtom("R"));
 	}
 
+	public COSObject getRValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getRIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
-		if (object == null || object.empty()) {
-			return getRIntegerDefaultValue();
-		}
+		COSObject object = getRValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
 		return null;
 	}
 
-	public Long getRIntegerDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getRArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -212,25 +225,23 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -239,15 +250,20 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 		return this.baseObject.knownKey(ASAtom.getASAtom("SI"));
 	}
 
+	public COSObject getSIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSIHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
+		COSObject object = getSIValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getSIHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
+		COSObject object = getSIValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -256,9 +272,14 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 		return this.baseObject.knownKey(ASAtom.getASAtom("TS"));
 	}
 
+	public COSObject getTSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTSHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		COSObject object = getTSValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -267,25 +288,23 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

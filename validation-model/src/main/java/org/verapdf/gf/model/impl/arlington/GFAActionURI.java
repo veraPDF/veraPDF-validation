@@ -399,9 +399,32 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("IsMap"));
 	}
 
+	public COSObject getIsMapDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getIsMapValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IsMap"));
+		if (object == null || object.empty()) {
+			object = getIsMapDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getIsMapHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IsMap"));
+		COSObject object = getIsMapValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -410,15 +433,20 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -427,25 +455,23 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -454,25 +480,23 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -481,9 +505,14 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URI"));
 	}
 
+	public COSObject getURIValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
+		return object;
+	}
+
 	@Override
 	public Boolean getURIHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
+		COSObject object = getURIValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

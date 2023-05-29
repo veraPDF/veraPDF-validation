@@ -116,9 +116,14 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Identity"));
 	}
 
+	public COSObject getIdentityValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Identity"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIdentityHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Identity"));
+		COSObject object = getIdentityValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -127,9 +132,14 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 		return this.baseObject.knownKey(ASAtom.getASAtom("StdCF"));
 	}
 
+	public COSObject getStdCFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StdCF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getStdCFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StdCF"));
+		COSObject object = getStdCFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

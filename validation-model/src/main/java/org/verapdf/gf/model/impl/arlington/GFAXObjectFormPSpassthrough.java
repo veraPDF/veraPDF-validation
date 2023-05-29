@@ -367,9 +367,32 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("BBox"));
 	}
 
+	public COSObject getBBoxDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSArray.construct(4, new double[]{0,0,0,0});
+		}
+		return null;
+	}
+
+	public COSObject getBBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		if (object == null || object.empty()) {
+			object = getBBoxDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		COSObject object = getBBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -386,21 +409,26 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("DecodeParms"));
 	}
 
+	public COSObject getDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -412,15 +440,20 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -429,21 +462,26 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
 	}
 
+	public COSObject getFDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -455,37 +493,35 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
 	}
 
+	public COSObject getFFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (object == null || object.empty()) {
-			return getFFilterNameDefaultValue();
-		}
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -497,37 +533,35 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null || object.empty()) {
-			return getFilterNameDefaultValue();
-		}
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -539,25 +573,23 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("FormType"));
 	}
 
+	public COSObject getFormTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FormType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFormTypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FormType"));
+		COSObject object = getFormTypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getFormTypeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FormType"));
-		if (object == null || object.empty()) {
-			return getFormTypeIntegerDefaultValue();
-		}
+		COSObject object = getFormTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getFormTypeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -566,9 +598,14 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
+	public COSObject getLengthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		COSObject object = getLengthValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -577,15 +614,20 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("Level1"));
 	}
 
+	public COSObject getLevel1Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisLevel1Indirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
+		COSObject object = getLevel1Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getLevel1HasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
+		COSObject object = getLevel1Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -594,9 +636,32 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("Matrix"));
 	}
 
+	public COSObject getMatrixDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSArray.construct(6, new double[]{1,0,0,1,0,0});
+		}
+		return null;
+	}
+
+	public COSObject getMatrixValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		if (object == null || object.empty()) {
+			object = getMatrixDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		COSObject object = getMatrixValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
 			return false;
 		}
@@ -613,15 +678,20 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("PS"));
 	}
 
+	public COSObject getPSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPSIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
+		COSObject object = getPSValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPSHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
+		COSObject object = getPSValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -630,25 +700,23 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -657,25 +725,23 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype2"));
 	}
 
+	public COSObject getSubtype2Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype2"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtype2HasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype2"));
+		COSObject object = getSubtype2Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtype2NameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype2"));
-		if (object == null || object.empty()) {
-			return getSubtype2NameDefaultValue();
-		}
+		COSObject object = getSubtype2Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtype2NameDefaultValue() {
 		return null;
 	}
 
@@ -684,25 +750,23 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

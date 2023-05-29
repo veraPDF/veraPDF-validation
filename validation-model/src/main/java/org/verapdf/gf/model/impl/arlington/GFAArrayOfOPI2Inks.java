@@ -65,31 +65,26 @@ public class GFAArrayOfOPI2Inks extends GFAObject implements AArrayOfOPI2Inks {
 		return Collections.unmodifiableList(list);
 	}
 
-	@Override
-	public Boolean getentry0HasTypeName() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeName() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NameDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getentry0NameDefaultValue() {
 		return null;
 	}
 

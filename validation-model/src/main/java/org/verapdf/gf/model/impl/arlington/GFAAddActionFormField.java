@@ -152,9 +152,14 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -163,9 +168,14 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -174,9 +184,14 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 		return this.baseObject.knownKey(ASAtom.getASAtom("K"));
 	}
 
+	public COSObject getKValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		return object;
+	}
+
 	@Override
 	public Boolean getKHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -185,9 +200,14 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

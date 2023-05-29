@@ -86,9 +86,14 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 		return this.baseObject.knownKey(ASAtom.getASAtom("Activation"));
 	}
 
+	public COSObject getActivationValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Activation"));
+		return object;
+	}
+
 	@Override
 	public Boolean getActivationHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Activation"));
+		COSObject object = getActivationValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -97,9 +102,14 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 		return this.baseObject.knownKey(ASAtom.getASAtom("Deactivation"));
 	}
 
+	public COSObject getDeactivationValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Deactivation"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDeactivationHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Deactivation"));
+		COSObject object = getDeactivationValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -108,25 +118,23 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

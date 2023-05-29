@@ -64,15 +64,20 @@ public class GFAFilterJBIG2Decode extends GFAObject implements AFilterJBIG2Decod
 		return this.baseObject.knownKey(ASAtom.getASAtom("JBIG2Globals"));
 	}
 
+	public COSObject getJBIG2GlobalsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JBIG2Globals"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisJBIG2GlobalsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JBIG2Globals"));
+		COSObject object = getJBIG2GlobalsValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getJBIG2GlobalsHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JBIG2Globals"));
+		COSObject object = getJBIG2GlobalsValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 

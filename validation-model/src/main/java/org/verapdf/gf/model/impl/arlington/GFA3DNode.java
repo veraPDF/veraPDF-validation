@@ -133,21 +133,26 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Data"));
 	}
 
+	public COSObject getDataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDataIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Boolean getDataHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -156,9 +161,14 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Instance"));
 	}
 
+	public COSObject getInstanceValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
+		return object;
+	}
+
 	@Override
 	public Boolean getInstanceHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
+		COSObject object = getInstanceValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -167,9 +177,14 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("M"));
 	}
 
+	public COSObject getMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		COSObject object = getMValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -178,9 +193,14 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
 
+	public COSObject getNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -189,25 +209,23 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getONumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		if (object == null || object.empty()) {
-			return getONumberDefaultValue();
-		}
+		COSObject object = getOValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getONumberDefaultValue() {
 		return null;
 	}
 
@@ -216,9 +234,14 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("RM"));
 	}
 
+	public COSObject getRMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RM"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRMHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RM"));
+		COSObject object = getRMValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -227,25 +250,23 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -254,9 +275,14 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 

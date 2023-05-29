@@ -28,9 +28,14 @@ public class GFAMediaClipDataMHBE extends GFAObject implements AMediaClipDataMHB
 		return this.baseObject.knownKey(ASAtom.getASAtom("BU"));
 	}
 
+	public COSObject getBUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BU"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBUHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BU"));
+		COSObject object = getBUValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

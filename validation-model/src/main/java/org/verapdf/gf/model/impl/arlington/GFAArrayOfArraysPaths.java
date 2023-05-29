@@ -75,21 +75,23 @@ public class GFAArrayOfArraysPaths extends GFAObject implements AArrayOfArraysPa
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getentry0HasTypeArray() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeArray() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getentry0ArraySize() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}

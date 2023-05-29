@@ -111,9 +111,14 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Height"));
 	}
 
+	public COSObject getHeightValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
+		return object;
+	}
+
 	@Override
 	public Boolean getHeightHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
+		COSObject object = getHeightValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -122,9 +127,14 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Position"));
 	}
 
+	public COSObject getPositionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPositionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		COSObject object = getPositionValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -133,25 +143,23 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -160,9 +168,14 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Width"));
 	}
 
+	public COSObject getWidthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWidthHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
+		COSObject object = getWidthValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

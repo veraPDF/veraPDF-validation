@@ -232,9 +232,31 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AccurateScreens"));
 	}
 
+	public COSObject getAccurateScreensDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getAccurateScreensValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AccurateScreens"));
+		if (object == null || object.empty()) {
+			object = getAccurateScreensDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getAccurateScreensHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AccurateScreens"));
+		COSObject object = getAccurateScreensValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -243,9 +265,14 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Angle"));
 	}
 
+	public COSObject getAngleValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Angle"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAngleHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Angle"));
+		COSObject object = getAngleValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -254,25 +281,23 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Frequency"));
 	}
 
+	public COSObject getFrequencyValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Frequency"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFrequencyHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Frequency"));
+		COSObject object = getFrequencyValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getFrequencyNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Frequency"));
-		if (object == null || object.empty()) {
-			return getFrequencyNumberDefaultValue();
-		}
+		COSObject object = getFrequencyValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getFrequencyNumberDefaultValue() {
 		return null;
 	}
 
@@ -281,9 +306,14 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("HalftoneName"));
 	}
 
+	public COSObject getHalftoneNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneName"));
+		return object;
+	}
+
 	@Override
 	public Boolean getHalftoneNameHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneName"));
+		COSObject object = getHalftoneNameValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -292,25 +322,23 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("HalftoneType"));
 	}
 
+	public COSObject getHalftoneTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getHalftoneTypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneType"));
+		COSObject object = getHalftoneTypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getHalftoneTypeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (object == null || object.empty()) {
-			return getHalftoneTypeIntegerDefaultValue();
-		}
+		COSObject object = getHalftoneTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getHalftoneTypeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -319,49 +347,47 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SpotFunction"));
 	}
 
+	public COSObject getSpotFunctionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisSpotFunctionIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		COSObject object = getSpotFunctionValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getSpotFunctionHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		COSObject object = getSpotFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getSpotFunctionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		COSObject object = getSpotFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getSpotFunctionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		COSObject object = getSpotFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getSpotFunctionHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		COSObject object = getSpotFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public String getSpotFunctionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
-		if (object == null || object.empty()) {
-			return getSpotFunctionNameDefaultValue();
-		}
+		COSObject object = getSpotFunctionValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSpotFunctionNameDefaultValue() {
 		return null;
 	}
 
@@ -370,43 +396,41 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TransferFunction"));
 	}
 
+	public COSObject getTransferFunctionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisTransferFunctionIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		COSObject object = getTransferFunctionValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getTransferFunctionHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		COSObject object = getTransferFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getTransferFunctionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		COSObject object = getTransferFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getTransferFunctionHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		COSObject object = getTransferFunctionValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public String getTransferFunctionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
-		if (object == null || object.empty()) {
-			return getTransferFunctionNameDefaultValue();
-		}
+		COSObject object = getTransferFunctionValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTransferFunctionNameDefaultValue() {
 		return null;
 	}
 
@@ -415,25 +439,23 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

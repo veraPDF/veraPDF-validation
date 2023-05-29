@@ -435,15 +435,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AuthCode"));
 	}
 
+	public COSObject getAuthCodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisAuthCodeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		COSObject object = getAuthCodeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getAuthCodeHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		COSObject object = getAuthCodeValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -452,25 +457,23 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DL"));
 	}
 
+	public COSObject getDLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
+		COSObject object = getDLValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
-		if (object == null || object.empty()) {
-			return getDLIntegerDefaultValue();
-		}
+		COSObject object = getDLValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getDLIntegerDefaultValue() {
 		return null;
 	}
 
@@ -479,27 +482,32 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DecodeParms"));
 	}
 
+	public COSObject getDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDecodeParmsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -511,9 +519,14 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Encrypt"));
 	}
 
+	public COSObject getEncryptValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEncryptHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		COSObject object = getEncryptValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -522,15 +535,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -539,21 +557,26 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
 	}
 
+	public COSObject getFDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -565,37 +588,35 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
 	}
 
+	public COSObject getFFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (object == null || object.empty()) {
-			return getFFilterNameDefaultValue();
-		}
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -607,43 +628,41 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisFilterIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null || object.empty()) {
-			return getFilterNameDefaultValue();
-		}
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -652,7 +671,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public String getFilterEntriesString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return null;
 		}
@@ -676,15 +695,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisentryIDIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentryIDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -693,21 +717,26 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Index"));
 	}
 
+	public COSObject getIndexValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Index"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisIndexIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Index"));
+		COSObject object = getIndexValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getIndexHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Index"));
+		COSObject object = getIndexValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getisIndexArraySortAscending2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Index"));
+		COSObject object = getIndexValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY) {
 			return false;
 		}
@@ -727,7 +756,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Long getIndexArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Index"));
+		COSObject object = getIndexValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -739,15 +768,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Info"));
 	}
 
+	public COSObject getInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisInfoIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		COSObject object = getInfoValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		COSObject object = getInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -756,25 +790,23 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
+	public COSObject getLengthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		COSObject object = getLengthValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getLengthIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		if (object == null || object.empty()) {
-			return getLengthIntegerDefaultValue();
-		}
+		COSObject object = getLengthValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getLengthIntegerDefaultValue() {
 		return null;
 	}
 
@@ -783,31 +815,29 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Prev"));
 	}
 
+	public COSObject getPrevValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPrevIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPrevHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getPrevIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
-		if (object == null || object.empty()) {
-			return getPrevIntegerDefaultValue();
-		}
+		COSObject object = getPrevValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getPrevIntegerDefaultValue() {
 		return null;
 	}
 
@@ -816,15 +846,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Root"));
 	}
 
+	public COSObject getRootValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisRootIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		COSObject object = getRootValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getRootHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		COSObject object = getRootValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -833,31 +868,29 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Size"));
 	}
 
+	public COSObject getSizeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisSizeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getSizeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getSizeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
-		if (object == null || object.empty()) {
-			return getSizeIntegerDefaultValue();
-		}
+		COSObject object = getSizeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getSizeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -866,31 +899,29 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisTypeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -899,15 +930,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
 	}
 
+	public COSObject getWValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisWIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		COSObject object = getWValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getWHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		COSObject object = getWValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

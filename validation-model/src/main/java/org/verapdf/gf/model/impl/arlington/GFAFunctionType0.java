@@ -471,25 +471,23 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BitsPerSample"));
 	}
 
+	public COSObject getBitsPerSampleValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerSample"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBitsPerSampleHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerSample"));
+		COSObject object = getBitsPerSampleValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getBitsPerSampleIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerSample"));
-		if (object == null || object.empty()) {
-			return getBitsPerSampleIntegerDefaultValue();
-		}
+		COSObject object = getBitsPerSampleValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getBitsPerSampleIntegerDefaultValue() {
 		return null;
 	}
 
@@ -498,25 +496,23 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DL"));
 	}
 
+	public COSObject getDLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
+		COSObject object = getDLValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
-		if (object == null || object.empty()) {
-			return getDLIntegerDefaultValue();
-		}
+		COSObject object = getDLValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getDLIntegerDefaultValue() {
 		return null;
 	}
 
@@ -525,15 +521,20 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Decode"));
 	}
 
+	public COSObject getDecodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDecodeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		COSObject object = getDecodeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getDecodeArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		COSObject object = getDecodeValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -545,21 +546,26 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DecodeParms"));
 	}
 
+	public COSObject getDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -571,15 +577,20 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Domain"));
 	}
 
+	public COSObject getDomainValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDomainHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		COSObject object = getDomainValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getDomainArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		COSObject object = getDomainValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -591,15 +602,20 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Encode"));
 	}
 
+	public COSObject getEncodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEncodeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+		COSObject object = getEncodeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getEncodeArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+		COSObject object = getEncodeValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -611,15 +627,20 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -628,21 +649,26 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
 	}
 
+	public COSObject getFDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -654,37 +680,35 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
 	}
 
+	public COSObject getFFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (object == null || object.empty()) {
-			return getFFilterNameDefaultValue();
-		}
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -696,37 +720,35 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null || object.empty()) {
-			return getFilterNameDefaultValue();
-		}
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -738,25 +760,23 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FunctionType"));
 	}
 
+	public COSObject getFunctionTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FunctionType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFunctionTypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FunctionType"));
+		COSObject object = getFunctionTypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getFunctionTypeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FunctionType"));
-		if (object == null || object.empty()) {
-			return getFunctionTypeIntegerDefaultValue();
-		}
+		COSObject object = getFunctionTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getFunctionTypeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -765,9 +785,14 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
+	public COSObject getLengthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		COSObject object = getLengthValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -776,25 +801,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Order"));
 	}
 
-	@Override
-	public Boolean getOrderHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Order"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getOrderIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Order"));
-		if (object == null || object.empty()) {
-			return getOrderIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getOrderIntegerDefaultValue() {
+	public COSObject getOrderDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -803,7 +810,30 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1L;
+				return COSInteger.construct(1L);
+		}
+		return null;
+	}
+
+	public COSObject getOrderValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Order"));
+		if (object == null || object.empty()) {
+			object = getOrderDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getOrderHasTypeInteger() {
+		COSObject object = getOrderValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getOrderIntegerValue() {
+		COSObject object = getOrderValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -813,15 +843,20 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Range"));
 	}
 
+	public COSObject getRangeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRangeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		COSObject object = getRangeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getRangeArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		COSObject object = getRangeValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -833,15 +868,20 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Size"));
 	}
 
+	public COSObject getSizeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSizeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getSizeArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}

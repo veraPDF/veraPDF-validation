@@ -126,9 +126,14 @@ public class GFAMovie extends GFAObject implements AMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Aspect"));
 	}
 
+	public COSObject getAspectValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Aspect"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAspectHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Aspect"));
+		COSObject object = getAspectValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -137,15 +142,20 @@ public class GFAMovie extends GFAObject implements AMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -154,48 +164,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Poster"));
 	}
 
-	@Override
-	public Boolean getisPosterIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getPosterHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
-	}
-
-	@Override
-	public Boolean getPosterHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
-		return object != null && object.getType() == COSObjType.COS_STREAM;
-	}
-
-	@Override
-	public Boolean getcontainsRotate() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Rotate"));
-	}
-
-	@Override
-	public Boolean getRotateHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getRotateIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
-		if (object == null || object.empty()) {
-			return getRotateIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getRotateIntegerDefaultValue() {
+	public COSObject getPosterDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -204,7 +173,75 @@ public class GFAMovie extends GFAObject implements AMovie {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getPosterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
+		if (object == null || object.empty()) {
+			object = getPosterDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getisPosterIndirect() {
+		COSObject object = getPosterValue();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getPosterHasTypeBoolean() {
+		COSObject object = getPosterValue();
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean getPosterHasTypeStream() {
+		COSObject object = getPosterValue();
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
+	public Boolean getcontainsRotate() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Rotate"));
+	}
+
+	public COSObject getRotateDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getRotateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
+		if (object == null || object.empty()) {
+			object = getRotateDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getRotateHasTypeInteger() {
+		COSObject object = getRotateValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getRotateIntegerValue() {
+		COSObject object = getRotateValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}

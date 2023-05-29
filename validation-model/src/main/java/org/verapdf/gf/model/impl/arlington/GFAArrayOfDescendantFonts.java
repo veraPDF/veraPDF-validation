@@ -83,12 +83,17 @@ public class GFAArrayOfDescendantFonts extends GFAObject implements AArrayOfDesc
 		}
 	}
 
-	@Override
-	public Boolean getentry0HasTypeDictionary() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeDictionary() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

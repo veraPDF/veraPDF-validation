@@ -246,25 +246,23 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BaseFont"));
 	}
 
+	public COSObject getBaseFontValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBaseFontHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
+		COSObject object = getBaseFontValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getBaseFontNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseFont"));
-		if (object == null || object.empty()) {
-			return getBaseFontNameDefaultValue();
-		}
+		COSObject object = getBaseFontValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getBaseFontNameDefaultValue() {
 		return null;
 	}
 
@@ -273,9 +271,14 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CIDSystemInfo"));
 	}
 
+	public COSObject getCIDSystemInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDSystemInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCIDSystemInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDSystemInfo"));
+		COSObject object = getCIDSystemInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -284,37 +287,35 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CIDToGIDMap"));
 	}
 
+	public COSObject getCIDToGIDMapValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisCIDToGIDMapIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		COSObject object = getCIDToGIDMapValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getCIDToGIDMapHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		COSObject object = getCIDToGIDMapValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getCIDToGIDMapHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		COSObject object = getCIDToGIDMapValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public String getCIDToGIDMapNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
-		if (object == null || object.empty()) {
-			return getCIDToGIDMapNameDefaultValue();
-		}
+		COSObject object = getCIDToGIDMapValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getCIDToGIDMapNameDefaultValue() {
 		return null;
 	}
 
@@ -323,9 +324,31 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DW"));
 	}
 
+	public COSObject getDWDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(1000D);
+		}
+		return null;
+	}
+
+	public COSObject getDWValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW"));
+		if (object == null || object.empty()) {
+			object = getDWDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getDWHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW"));
+		COSObject object = getDWValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -334,9 +357,14 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DW2"));
 	}
 
+	public COSObject getDW2Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW2"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDW2HasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW2"));
+		COSObject object = getDW2Value();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -345,15 +373,20 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FontDescriptor"));
 	}
 
+	public COSObject getFontDescriptorValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisFontDescriptorIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		COSObject object = getFontDescriptorValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getFontDescriptorHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		COSObject object = getFontDescriptorValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -362,25 +395,23 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -389,15 +420,20 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ToUnicode"));
 	}
 
+	public COSObject getToUnicodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisToUnicodeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		COSObject object = getToUnicodeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getToUnicodeHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		COSObject object = getToUnicodeValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -406,25 +442,23 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -433,9 +467,14 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("W"));
 	}
 
+	public COSObject getWValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		COSObject object = getWValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -444,9 +483,14 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("W2"));
 	}
 
+	public COSObject getW2Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W2"));
+		return object;
+	}
+
 	@Override
 	public Boolean getW2HasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W2"));
+		COSObject object = getW2Value();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

@@ -86,21 +86,26 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Data"));
 	}
 
+	public COSObject getDataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDataIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Boolean getDataHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -109,9 +114,14 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Instance"));
 	}
 
+	public COSObject getInstanceValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
+		return object;
+	}
+
 	@Override
 	public Boolean getInstanceHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
+		COSObject object = getInstanceValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

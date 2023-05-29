@@ -88,15 +88,20 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DPartRootNode"));
 	}
 
+	public COSObject getDPartRootNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRootNode"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisDPartRootNodeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRootNode"));
+		COSObject object = getDPartRootNodeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getDPartRootNodeHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRootNode"));
+		COSObject object = getDPartRootNodeValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -105,9 +110,14 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("NodeNameList"));
 	}
 
+	public COSObject getNodeNameListValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NodeNameList"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNodeNameListHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NodeNameList"));
+		COSObject object = getNodeNameListValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -116,25 +126,23 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("RecordLevel"));
 	}
 
+	public COSObject getRecordLevelValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RecordLevel"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRecordLevelHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RecordLevel"));
+		COSObject object = getRecordLevelValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getRecordLevelIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RecordLevel"));
-		if (object == null || object.empty()) {
-			return getRecordLevelIntegerDefaultValue();
-		}
+		COSObject object = getRecordLevelValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getRecordLevelIntegerDefaultValue() {
 		return null;
 	}
 
@@ -143,25 +151,23 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

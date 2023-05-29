@@ -28,9 +28,28 @@ public class GFATransition extends GFAObject implements ATransition {
 		return this.baseObject.knownKey(ASAtom.getASAtom("B"));
 	}
 
+	public COSObject getBDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getBValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		if (object == null || object.empty()) {
+			object = getBDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getBHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		COSObject object = getBValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -39,25 +58,7 @@ public class GFATransition extends GFAObject implements ATransition {
 		return this.baseObject.knownKey(ASAtom.getASAtom("D"));
 	}
 
-	@Override
-	public Boolean getDHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getDNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		if (object == null || object.empty()) {
-			return getDNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getDNumberDefaultValue() {
+	public COSObject getDDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -67,7 +68,30 @@ public class GFATransition extends GFAObject implements ATransition {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1D;
+				return COSReal.construct(1D);
+		}
+		return null;
+	}
+
+	public COSObject getDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		if (object == null || object.empty()) {
+			object = getDDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getDHasTypeNumber() {
+		COSObject object = getDValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getDNumberValue() {
+		COSObject object = getDValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}
@@ -77,31 +101,7 @@ public class GFATransition extends GFAObject implements ATransition {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Di"));
 	}
 
-	@Override
-	public Boolean getDiHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Di"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Boolean getDiHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Di"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public Long getDiIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Di"));
-		if (object == null || object.empty()) {
-			return getDiIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getDiIntegerDefaultValue() {
+	public COSObject getDiDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -111,24 +111,46 @@ public class GFATransition extends GFAObject implements ATransition {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getDiValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Di"));
+		if (object == null || object.empty()) {
+			object = getDiDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getDiHasTypeInteger() {
+		COSObject object = getDiValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean getDiHasTypeName() {
+		COSObject object = getDiValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public Long getDiIntegerValue() {
+		COSObject object = getDiValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
 
 	@Override
 	public String getDiNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Di"));
-		if (object == null || object.empty()) {
-			return getDiNameDefaultValue();
-		}
+		COSObject object = getDiValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getDiNameDefaultValue() {
 		return null;
 	}
 
@@ -137,25 +159,7 @@ public class GFATransition extends GFAObject implements ATransition {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dm"));
 	}
 
-	@Override
-	public Boolean getDmHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dm"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getDmNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dm"));
-		if (object == null || object.empty()) {
-			return getDmNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getDmNameDefaultValue() {
+	public COSObject getDmDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -165,7 +169,30 @@ public class GFATransition extends GFAObject implements ATransition {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "H";
+				return COSName.construct("H");
+		}
+		return null;
+	}
+
+	public COSObject getDmValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dm"));
+		if (object == null || object.empty()) {
+			object = getDmDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getDmHasTypeName() {
+		COSObject object = getDmValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getDmNameValue() {
+		COSObject object = getDmValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -175,25 +202,7 @@ public class GFATransition extends GFAObject implements ATransition {
 		return this.baseObject.knownKey(ASAtom.getASAtom("M"));
 	}
 
-	@Override
-	public Boolean getMHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getMNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
-		if (object == null || object.empty()) {
-			return getMNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getMNameDefaultValue() {
+	public COSObject getMDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -203,7 +212,30 @@ public class GFATransition extends GFAObject implements ATransition {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "I";
+				return COSName.construct("I");
+		}
+		return null;
+	}
+
+	public COSObject getMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		if (object == null || object.empty()) {
+			object = getMDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getMHasTypeName() {
+		COSObject object = getMValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getMNameValue() {
+		COSObject object = getMValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -213,25 +245,7 @@ public class GFATransition extends GFAObject implements ATransition {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
+	public COSObject getSDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -241,7 +255,30 @@ public class GFATransition extends GFAObject implements ATransition {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "R";
+				return COSName.construct("R");
+		}
+		return null;
+	}
+
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			object = getSDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = getSValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = getSValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -251,31 +288,36 @@ public class GFATransition extends GFAObject implements ATransition {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SS"));
 	}
 
-	@Override
-	public Boolean getSSHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SS"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getSSNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SS"));
-		if (object == null || object.empty()) {
-			return getSSNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getSSNumberDefaultValue() {
+	public COSObject getSSDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1.0D;
+				return COSReal.construct(1.0D);
+		}
+		return null;
+	}
+
+	public COSObject getSSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SS"));
+		if (object == null || object.empty()) {
+			object = getSSDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSSHasTypeNumber() {
+		COSObject object = getSSValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getSSNumberValue() {
+		COSObject object = getSSValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}
@@ -285,25 +327,23 @@ public class GFATransition extends GFAObject implements ATransition {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

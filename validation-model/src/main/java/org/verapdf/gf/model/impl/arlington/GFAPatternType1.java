@@ -386,9 +386,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BBox"));
 	}
 
+	public COSObject getBBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		COSObject object = getBBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -405,25 +410,23 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DL"));
 	}
 
+	public COSObject getDLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
+		COSObject object = getDLValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
-		if (object == null || object.empty()) {
-			return getDLIntegerDefaultValue();
-		}
+		COSObject object = getDLValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getDLIntegerDefaultValue() {
 		return null;
 	}
 
@@ -432,21 +435,26 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DecodeParms"));
 	}
 
+	public COSObject getDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -458,15 +466,20 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -475,21 +488,26 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FDecodeParms"));
 	}
 
+	public COSObject getFDecodeParmsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -501,37 +519,35 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FFilter"));
 	}
 
+	public COSObject getFFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (object == null || object.empty()) {
-			return getFFilterNameDefaultValue();
-		}
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -543,37 +559,35 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null || object.empty()) {
-			return getFilterNameDefaultValue();
-		}
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getFilterNameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -585,9 +599,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
+	public COSObject getLengthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		COSObject object = getLengthValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -596,9 +615,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Matrix"));
 	}
 
+	public COSObject getMatrixValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		COSObject object = getMatrixValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
 			return false;
 		}
@@ -615,25 +639,23 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PaintType"));
 	}
 
+	public COSObject getPaintTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PaintType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPaintTypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PaintType"));
+		COSObject object = getPaintTypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getPaintTypeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PaintType"));
-		if (object == null || object.empty()) {
-			return getPaintTypeIntegerDefaultValue();
-		}
+		COSObject object = getPaintTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getPaintTypeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -642,25 +664,23 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PatternType"));
 	}
 
+	public COSObject getPatternTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PatternType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPatternTypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PatternType"));
+		COSObject object = getPatternTypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getPatternTypeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PatternType"));
-		if (object == null || object.empty()) {
-			return getPatternTypeIntegerDefaultValue();
-		}
+		COSObject object = getPatternTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getPatternTypeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -669,9 +689,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
 	}
 
+	public COSObject getResourcesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object;
+	}
+
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -680,25 +705,23 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TilingType"));
 	}
 
+	public COSObject getTilingTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TilingType"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTilingTypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TilingType"));
+		COSObject object = getTilingTypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getTilingTypeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TilingType"));
-		if (object == null || object.empty()) {
-			return getTilingTypeIntegerDefaultValue();
-		}
+		COSObject object = getTilingTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getTilingTypeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -707,25 +730,23 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -734,9 +755,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("XStep"));
 	}
 
+	public COSObject getXStepValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XStep"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXStepHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XStep"));
+		COSObject object = getXStepValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -745,9 +771,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("XUID"));
 	}
 
+	public COSObject getXUIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XUID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXUIDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XUID"));
+		COSObject object = getXUIDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -756,9 +787,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 		return this.baseObject.knownKey(ASAtom.getASAtom("YStep"));
 	}
 
+	public COSObject getYStepValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("YStep"));
+		return object;
+	}
+
 	@Override
 	public Boolean getYStepHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("YStep"));
+		COSObject object = getYStepValue();
 		return object != null && object.getType().isNumber();
 	}
 

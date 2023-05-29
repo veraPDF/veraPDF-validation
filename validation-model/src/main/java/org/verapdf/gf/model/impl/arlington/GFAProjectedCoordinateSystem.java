@@ -28,9 +28,14 @@ public class GFAProjectedCoordinateSystem extends GFAObject implements AProjecte
 		return this.baseObject.knownKey(ASAtom.getASAtom("EPSG"));
 	}
 
+	public COSObject getEPSGValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EPSG"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEPSGHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EPSG"));
+		COSObject object = getEPSGValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -39,25 +44,23 @@ public class GFAProjectedCoordinateSystem extends GFAObject implements AProjecte
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -66,9 +69,14 @@ public class GFAProjectedCoordinateSystem extends GFAObject implements AProjecte
 		return this.baseObject.knownKey(ASAtom.getASAtom("WKT"));
 	}
 
+	public COSObject getWKTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WKT"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWKTHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WKT"));
+		COSObject object = getWKTValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

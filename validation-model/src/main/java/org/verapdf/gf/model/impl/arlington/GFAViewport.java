@@ -122,9 +122,14 @@ public class GFAViewport extends GFAObject implements AViewport {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BBox"));
 	}
 
+	public COSObject getBBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
+		COSObject object = getBBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -141,9 +146,14 @@ public class GFAViewport extends GFAObject implements AViewport {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Measure"));
 	}
 
+	public COSObject getMeasureValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMeasureHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+		COSObject object = getMeasureValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -152,9 +162,14 @@ public class GFAViewport extends GFAObject implements AViewport {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
 	}
 
+	public COSObject getNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		COSObject object = getNameValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -163,9 +178,14 @@ public class GFAViewport extends GFAObject implements AViewport {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PtData"));
 	}
 
+	public COSObject getPtDataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPtDataHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
+		COSObject object = getPtDataValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -174,25 +194,23 @@ public class GFAViewport extends GFAObject implements AViewport {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

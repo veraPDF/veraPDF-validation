@@ -28,30 +28,35 @@ public class GFAProjection extends GFAObject implements AProjection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CS"));
 	}
 
+	public COSObject getCSDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("ANF");
+		}
+		return null;
+	}
+
+	public COSObject getCSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		if (object == null || object.empty()) {
+			object = getCSDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getCSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		COSObject object = getCSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getCSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
-		if (object == null || object.empty()) {
-			return getCSNameDefaultValue();
-		}
+		COSObject object = getCSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getCSNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "ANF";
 		}
 		return null;
 	}
@@ -61,9 +66,14 @@ public class GFAProjection extends GFAObject implements AProjection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -72,25 +82,23 @@ public class GFAProjection extends GFAObject implements AProjection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FOV"));
 	}
 
+	public COSObject getFOVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FOV"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFOVHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FOV"));
+		COSObject object = getFOVValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getFOVNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FOV"));
-		if (object == null || object.empty()) {
-			return getFOVNumberDefaultValue();
-		}
+		COSObject object = getFOVValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getFOVNumberDefaultValue() {
 		return null;
 	}
 
@@ -99,30 +107,35 @@ public class GFAProjection extends GFAObject implements AProjection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
 
+	public COSObject getNDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(0D);
+		}
+		return null;
+	}
+
+	public COSObject getNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		if (object == null || object.empty()) {
+			object = getNDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getNHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getNNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		if (object == null || object.empty()) {
-			return getNNumberDefaultValue();
-		}
+		COSObject object = getNValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getNNumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0D;
 		}
 		return null;
 	}
@@ -132,29 +145,34 @@ public class GFAProjection extends GFAObject implements AProjection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OB"));
 	}
 
+	public COSObject getOBDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("Absolute");
+		}
+		return null;
+	}
+
+	public COSObject getOBValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OB"));
+		if (object == null || object.empty()) {
+			object = getOBDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getOBHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OB"));
+		COSObject object = getOBValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getOBNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OB"));
-		if (object == null || object.empty()) {
-			return getOBNameDefaultValue();
-		}
+		COSObject object = getOBValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getOBNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "Absolute";
 		}
 		return null;
 	}
@@ -164,30 +182,35 @@ public class GFAProjection extends GFAObject implements AProjection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OS"));
 	}
 
+	public COSObject getOSDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(1D);
+		}
+		return null;
+	}
+
+	public COSObject getOSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		if (object == null || object.empty()) {
+			object = getOSDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getOSHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		COSObject object = getOSValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getOSNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
-		if (object == null || object.empty()) {
-			return getOSNumberDefaultValue();
-		}
+		COSObject object = getOSValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getOSNumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 1D;
 		}
 		return null;
 	}
@@ -197,31 +220,29 @@ public class GFAProjection extends GFAObject implements AProjection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PS"));
 	}
 
+	public COSObject getPSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
+		COSObject object = getPSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getPSHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
+		COSObject object = getPSValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getPSNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
-		if (object == null || object.empty()) {
-			return getPSNumberDefaultValue();
-		}
+		COSObject object = getPSValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getPSNumberDefaultValue() {
 		return null;
 	}
 
@@ -230,25 +251,23 @@ public class GFAProjection extends GFAObject implements AProjection {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 

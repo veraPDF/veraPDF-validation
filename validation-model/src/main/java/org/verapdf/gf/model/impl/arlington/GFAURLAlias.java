@@ -65,15 +65,20 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getCArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -85,9 +90,14 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 		return this.baseObject.knownKey(ASAtom.getASAtom("U"));
 	}
 
+	public COSObject getUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

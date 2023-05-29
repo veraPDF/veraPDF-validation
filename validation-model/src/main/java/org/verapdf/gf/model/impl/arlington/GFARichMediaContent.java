@@ -111,9 +111,14 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Assets"));
 	}
 
+	public COSObject getAssetsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Assets"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAssetsHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Assets"));
+		COSObject object = getAssetsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -122,15 +127,20 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Configurations"));
 	}
 
+	public COSObject getConfigurationsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configurations"));
+		return object;
+	}
+
 	@Override
 	public Boolean getConfigurationsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configurations"));
+		COSObject object = getConfigurationsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getConfigurationsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configurations"));
+		COSObject object = getConfigurationsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}
@@ -142,25 +152,23 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -169,9 +177,14 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Views"));
 	}
 
+	public COSObject getViewsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Views"));
+		return object;
+	}
+
 	@Override
 	public Boolean getViewsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Views"));
+		COSObject object = getViewsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

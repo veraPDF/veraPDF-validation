@@ -86,9 +86,14 @@ public class GFASlideShowNameTreeResourcesEntry extends GFAObject implements ASl
 		}
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeStream() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 

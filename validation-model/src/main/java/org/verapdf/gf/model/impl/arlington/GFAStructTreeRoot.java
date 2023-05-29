@@ -268,15 +268,20 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
 	}
 
+	public COSObject getAFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -285,9 +290,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ClassMap"));
 	}
 
+	public COSObject getClassMapValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ClassMap"));
+		return object;
+	}
+
 	@Override
 	public Boolean getClassMapHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ClassMap"));
+		COSObject object = getClassMapValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -296,9 +306,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("IDTree"));
 	}
 
+	public COSObject getIDTreeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDTree"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIDTreeHasTypeNameTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDTree"));
+		COSObject object = getIDTreeValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -307,15 +322,20 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("K"));
 	}
 
+	public COSObject getKValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		return object;
+	}
+
 	@Override
 	public Boolean getKHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getKHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -324,9 +344,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Namespaces"));
 	}
 
+	public COSObject getNamespacesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Namespaces"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNamespacesHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Namespaces"));
+		COSObject object = getNamespacesValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -335,9 +360,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ParentTree"));
 	}
 
+	public COSObject getParentTreeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ParentTree"));
+		return object;
+	}
+
 	@Override
 	public Boolean getParentTreeHasTypeNumberTree() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ParentTree"));
+		COSObject object = getParentTreeValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -346,9 +376,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ParentTreeNextKey"));
 	}
 
+	public COSObject getParentTreeNextKeyValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ParentTreeNextKey"));
+		return object;
+	}
+
 	@Override
 	public Boolean getParentTreeNextKeyHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ParentTreeNextKey"));
+		COSObject object = getParentTreeNextKeyValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -357,27 +392,32 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PronunciationLexicon"));
 	}
 
+	public COSObject getPronunciationLexiconValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPronunciationLexiconIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
+		COSObject object = getPronunciationLexiconValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPronunciationLexiconHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
+		COSObject object = getPronunciationLexiconValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getPronunciationLexiconHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
+		COSObject object = getPronunciationLexiconValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getPronunciationLexiconHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
+		COSObject object = getPronunciationLexiconValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -386,9 +426,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("RoleMap"));
 	}
 
+	public COSObject getRoleMapValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RoleMap"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRoleMapHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RoleMap"));
+		COSObject object = getRoleMapValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -397,25 +442,23 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

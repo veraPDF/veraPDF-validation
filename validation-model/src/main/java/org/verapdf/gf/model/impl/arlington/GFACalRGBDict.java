@@ -160,9 +160,14 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BlackPoint"));
 	}
 
+	public COSObject getBlackPointValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBlackPointHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		COSObject object = getBlackPointValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -171,9 +176,14 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Gamma"));
 	}
 
+	public COSObject getGammaValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Gamma"));
+		return object;
+	}
+
 	@Override
 	public Boolean getGammaHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Gamma"));
+		COSObject object = getGammaValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -182,9 +192,14 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Matrix"));
 	}
 
+	public COSObject getMatrixValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMatrixHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		COSObject object = getMatrixValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -193,9 +208,14 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("WhitePoint"));
 	}
 
+	public COSObject getWhitePointValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWhitePointHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		COSObject object = getWhitePointValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

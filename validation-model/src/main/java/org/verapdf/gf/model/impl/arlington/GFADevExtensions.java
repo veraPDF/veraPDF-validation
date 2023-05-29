@@ -28,31 +28,29 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BaseVersion"));
 	}
 
+	public COSObject getBaseVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisBaseVersionIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
+		COSObject object = getBaseVersionValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getBaseVersionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
+		COSObject object = getBaseVersionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getBaseVersionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BaseVersion"));
-		if (object == null || object.empty()) {
-			return getBaseVersionNameDefaultValue();
-		}
+		COSObject object = getBaseVersionValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getBaseVersionNameDefaultValue() {
 		return null;
 	}
 
@@ -61,15 +59,20 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ExtensionLevel"));
 	}
 
+	public COSObject getExtensionLevelValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionLevel"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisExtensionLevelIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionLevel"));
+		COSObject object = getExtensionLevelValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getExtensionLevelHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionLevel"));
+		COSObject object = getExtensionLevelValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -78,15 +81,20 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ExtensionRevision"));
 	}
 
+	public COSObject getExtensionRevisionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionRevision"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisExtensionRevisionIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionRevision"));
+		COSObject object = getExtensionRevisionValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getExtensionRevisionHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtensionRevision"));
+		COSObject object = getExtensionRevisionValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -95,31 +103,29 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisTypeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -128,15 +134,20 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
 	}
 
+	public COSObject getURLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisURLIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		COSObject object = getURLValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getURLHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		COSObject object = getURLValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 

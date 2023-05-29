@@ -65,9 +65,14 @@ public class GFATrapRegion extends GFAObject implements ATrapRegion {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TP"));
 	}
 
+	public COSObject getTPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTPHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
+		COSObject object = getTPValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -76,9 +81,14 @@ public class GFATrapRegion extends GFAObject implements ATrapRegion {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TZ"));
 	}
 
+	public COSObject getTZValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TZ"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTZHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TZ"));
+		COSObject object = getTZValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

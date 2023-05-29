@@ -84,9 +84,14 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("CheckSum"));
 	}
 
+	public COSObject getCheckSumValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCheckSumHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CheckSum"));
+		COSObject object = getCheckSumValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -95,9 +100,14 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorantTable"));
 	}
 
+	public COSObject getColorantTableValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorantTable"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorantTableHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorantTable"));
+		COSObject object = getColorantTableValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -106,9 +116,14 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("ICCVersion"));
 	}
 
+	public COSObject getICCVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ICCVersion"));
+		return object;
+	}
+
 	@Override
 	public Boolean getICCVersionHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ICCVersion"));
+		COSObject object = getICCVersionValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -117,9 +132,14 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("ProfileCS"));
 	}
 
+	public COSObject getProfileCSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileCS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getProfileCSHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileCS"));
+		COSObject object = getProfileCSValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -128,9 +148,14 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("ProfileName"));
 	}
 
+	public COSObject getProfileNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileName"));
+		return object;
+	}
+
 	@Override
 	public Boolean getProfileNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileName"));
+		COSObject object = getProfileNameValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -139,15 +164,20 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 		return this.baseObject.knownKey(ASAtom.getASAtom("URLs"));
 	}
 
+	public COSObject getURLsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getURLsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLs"));
+		COSObject object = getURLsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Long getURLsArraySize() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLs"));
+		COSObject object = getURLsValue();
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();
 		}

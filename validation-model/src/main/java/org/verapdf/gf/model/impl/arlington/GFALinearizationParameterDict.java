@@ -80,31 +80,29 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 		return this.baseObject.knownKey(ASAtom.getASAtom("E"));
 	}
 
+	public COSObject getEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisEIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getEHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getEIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
-		if (object == null || object.empty()) {
-			return getEIntegerDefaultValue();
-		}
+		COSObject object = getEValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getEIntegerDefaultValue() {
 		return null;
 	}
 
@@ -113,15 +111,20 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
 	}
 
+	public COSObject getHValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisHIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		COSObject object = getHValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getHHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		COSObject object = getHValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -130,31 +133,29 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
 	}
 
+	public COSObject getLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisLIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		COSObject object = getLValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getLHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		COSObject object = getLValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getLIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		if (object == null || object.empty()) {
-			return getLIntegerDefaultValue();
-		}
+		COSObject object = getLValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getLIntegerDefaultValue() {
 		return null;
 	}
 
@@ -163,31 +164,29 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 		return this.baseObject.knownKey(ASAtom.getASAtom("Linearized"));
 	}
 
+	public COSObject getLinearizedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisLinearizedIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
+		COSObject object = getLinearizedValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getLinearizedHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
+		COSObject object = getLinearizedValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getLinearizedNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Linearized"));
-		if (object == null || object.empty()) {
-			return getLinearizedNumberDefaultValue();
-		}
+		COSObject object = getLinearizedValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getLinearizedNumberDefaultValue() {
 		return null;
 	}
 
@@ -196,31 +195,29 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
 
+	public COSObject getNValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisNIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getNHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getNIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
-		if (object == null || object.empty()) {
-			return getNIntegerDefaultValue();
-		}
+		COSObject object = getNValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getNIntegerDefaultValue() {
 		return null;
 	}
 
@@ -229,31 +226,29 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
 
+	public COSObject getOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisOIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getOHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getOIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
-		if (object == null || object.empty()) {
-			return getOIntegerDefaultValue();
-		}
+		COSObject object = getOValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getOIntegerDefaultValue() {
 		return null;
 	}
 
@@ -262,31 +257,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
-	@Override
-	public Boolean getisPIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.get() != null && object.get().isIndirect();
-	}
-
-	@Override
-	public Boolean getPHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getPIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPIntegerDefaultValue() {
+	public COSObject getPDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -295,7 +266,36 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null || object.empty()) {
+			object = getPDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getisPIndirect() {
+		COSObject object = getPValue();
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	@Override
+	public Boolean getPHasTypeInteger() {
+		COSObject object = getPValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getPIntegerValue() {
+		COSObject object = getPValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -305,31 +305,29 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
+	public COSObject getTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisTIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getTHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getTIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
-		if (object == null || object.empty()) {
-			return getTIntegerDefaultValue();
-		}
+		COSObject object = getTValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getTIntegerDefaultValue() {
 		return null;
 	}
 

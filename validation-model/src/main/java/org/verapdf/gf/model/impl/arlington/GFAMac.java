@@ -65,9 +65,14 @@ public class GFAMac extends GFAObject implements AMac {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Creator"));
 	}
 
+	public COSObject getCreatorValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCreatorHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
+		COSObject object = getCreatorValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -76,15 +81,20 @@ public class GFAMac extends GFAObject implements AMac {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ResFork"));
 	}
 
+	public COSObject getResForkValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ResFork"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisResForkIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ResFork"));
+		COSObject object = getResForkValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getResForkHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ResFork"));
+		COSObject object = getResForkValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -93,9 +103,14 @@ public class GFAMac extends GFAObject implements AMac {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 

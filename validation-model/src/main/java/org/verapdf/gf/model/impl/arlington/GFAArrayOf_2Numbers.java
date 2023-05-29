@@ -23,59 +23,49 @@ public class GFAArrayOf_2Numbers extends GFAObject implements AArrayOf_2Numbers 
 		super(baseObject, parentObject, keyName, "AArrayOf_2Numbers");
 	}
 
-	@Override
-	public Boolean getentry0HasTypeNumber() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeNumber() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getentry0NumberValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NumberDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
 		return null;
 	}
 
-	public Double getentry0NumberDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeNumber() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNumber() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getentry1NumberValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NumberDefaultValue();
-		}
+		COSObject object = getentry1Value();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getentry1NumberDefaultValue() {
 		return null;
 	}
 

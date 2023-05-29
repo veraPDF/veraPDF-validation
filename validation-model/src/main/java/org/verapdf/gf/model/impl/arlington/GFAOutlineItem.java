@@ -694,9 +694,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
+	public COSObject getAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -705,9 +710,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -716,9 +726,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Count"));
 	}
 
+	public COSObject getCountValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCountHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Count"));
+		COSObject object = getCountValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -727,21 +742,26 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dest"));
 	}
 
+	public COSObject getDestValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDestHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		COSObject object = getDestValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDestHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		COSObject object = getDestValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getDestHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		COSObject object = getDestValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -750,32 +770,37 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
-	@Override
-	public Boolean getFHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		if (object == null || object.empty()) {
-			return getFBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFBitmaskDefaultValue() {
+	public COSObject getFDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		if (object == null || object.empty()) {
+			object = getFDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getFHasTypeBitmask() {
+		COSObject object = getFValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFBitmaskValue() {
+		COSObject object = getFValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -785,15 +810,20 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("First"));
 	}
 
+	public COSObject getFirstValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisFirstIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+		COSObject object = getFirstValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getFirstHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+		COSObject object = getFirstValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -802,15 +832,20 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Last"));
 	}
 
+	public COSObject getLastValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisLastIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
+		COSObject object = getLastValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getLastHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
+		COSObject object = getLastValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -819,15 +854,20 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisNextIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -836,15 +876,20 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
 	}
 
+	public COSObject getParentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisParentIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -853,15 +898,20 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Prev"));
 	}
 
+	public COSObject getPrevValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPrevIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPrevHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -870,15 +920,20 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SE"));
 	}
 
+	public COSObject getSEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisSEIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
+		COSObject object = getSEValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getSEHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
+		COSObject object = getSEValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -887,9 +942,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Title"));
 	}
 
+	public COSObject getTitleValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTitleHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
+		COSObject object = getTitleValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

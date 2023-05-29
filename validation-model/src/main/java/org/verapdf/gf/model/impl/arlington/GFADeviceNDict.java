@@ -117,9 +117,14 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Colorants"));
 	}
 
+	public COSObject getColorantsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colorants"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorantsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colorants"));
+		COSObject object = getColorantsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -128,9 +133,14 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("MixingHints"));
 	}
 
+	public COSObject getMixingHintsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MixingHints"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMixingHintsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MixingHints"));
+		COSObject object = getMixingHintsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -139,9 +149,14 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Process"));
 	}
 
+	public COSObject getProcessValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Process"));
+		return object;
+	}
+
 	@Override
 	public Boolean getProcessHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Process"));
+		COSObject object = getProcessValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -150,30 +165,35 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("DeviceN");
+		}
+		return null;
+	}
+
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			object = getSubtypeDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "DeviceN";
 		}
 		return null;
 	}

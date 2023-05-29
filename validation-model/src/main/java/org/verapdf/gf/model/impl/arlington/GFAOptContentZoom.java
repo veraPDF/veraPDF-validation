@@ -28,31 +28,36 @@ public class GFAOptContentZoom extends GFAObject implements AOptContentZoom {
 		return this.baseObject.knownKey(ASAtom.getASAtom("max"));
 	}
 
-	@Override
-	public Boolean getmaxHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("max"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getmaxNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("max"));
-		if (object == null || object.empty()) {
-			return getmaxNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getmaxNumberDefaultValue() {
+	public COSObject getmaxDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 999999.9D;
+				return COSReal.construct(999999.9D);
+		}
+		return null;
+	}
+
+	public COSObject getmaxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("max"));
+		if (object == null || object.empty()) {
+			object = getmaxDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getmaxHasTypeNumber() {
+		COSObject object = getmaxValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getmaxNumberValue() {
+		COSObject object = getmaxValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}
@@ -62,31 +67,36 @@ public class GFAOptContentZoom extends GFAObject implements AOptContentZoom {
 		return this.baseObject.knownKey(ASAtom.getASAtom("min"));
 	}
 
-	@Override
-	public Boolean getminHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("min"));
-		return object != null && object.getType().isNumber();
-	}
-
-	@Override
-	public Double getminNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("min"));
-		if (object == null || object.empty()) {
-			return getminNumberDefaultValue();
-		}
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getminNumberDefaultValue() {
+	public COSObject getminDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0.0D;
+				return COSReal.construct(0.0D);
+		}
+		return null;
+	}
+
+	public COSObject getminValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("min"));
+		if (object == null || object.empty()) {
+			object = getminDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getminHasTypeNumber() {
+		COSObject object = getminValue();
+		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Double getminNumberValue() {
+		COSObject object = getminValue();
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
 		}
 		return null;
 	}

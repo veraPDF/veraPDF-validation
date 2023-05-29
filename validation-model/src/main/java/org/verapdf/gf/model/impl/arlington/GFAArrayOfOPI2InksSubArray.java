@@ -23,40 +23,40 @@ public class GFAArrayOfOPI2InksSubArray extends GFAObject implements AArrayOfOPI
 		super(baseObject, parentObject, keyName, "AArrayOfOPI2InksSubArray");
 	}
 
-	@Override
-	public Boolean getentry0HasTypeString() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return object;
 	}
 
 	@Override
-	public Boolean getentry1HasTypeNumber() {
+	public Boolean getentry0HasTypeString() {
+		COSObject object = getentry0Value();
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNumber() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getentry1NumberValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NumberDefaultValue();
-		}
+		COSObject object = getentry1Value();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getentry1NumberDefaultValue() {
 		return null;
 	}
 

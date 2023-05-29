@@ -28,25 +28,23 @@ public class GFAFilterDCTDecode extends GFAObject implements AFilterDCTDecode {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorTransform"));
 	}
 
+	public COSObject getColorTransformValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorTransform"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorTransformHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorTransform"));
+		COSObject object = getColorTransformValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getColorTransformIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorTransform"));
-		if (object == null || object.empty()) {
-			return getColorTransformIntegerDefaultValue();
-		}
+		COSObject object = getColorTransformValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getColorTransformIntegerDefaultValue() {
 		return null;
 	}
 

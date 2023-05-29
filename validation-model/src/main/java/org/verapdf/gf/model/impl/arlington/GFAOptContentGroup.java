@@ -90,15 +90,20 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Intent"));
 	}
 
+	public COSObject getIntentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIntentHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		COSObject object = getIntentValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getIntentHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		COSObject object = getIntentValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -107,9 +112,14 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Name"));
 	}
 
+	public COSObject getNameValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		COSObject object = getNameValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -118,25 +128,23 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -145,9 +153,14 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Usage"));
 	}
 
+	public COSObject getUsageValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Usage"));
+		return object;
+	}
+
 	@Override
 	public Boolean getUsageHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Usage"));
+		COSObject object = getUsageValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

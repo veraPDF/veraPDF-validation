@@ -220,9 +220,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("AddRevInfo"));
 	}
 
+	public COSObject getAddRevInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AddRevInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAddRevInfoHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AddRevInfo"));
+		COSObject object = getAddRevInfoValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -231,9 +236,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("AppearanceFilter"));
 	}
 
+	public COSObject getAppearanceFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AppearanceFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAppearanceFilterHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AppearanceFilter"));
+		COSObject object = getAppearanceFilterValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -242,9 +252,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Cert"));
 	}
 
+	public COSObject getCertValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCertHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
+		COSObject object = getCertValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -253,9 +268,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("DigestMethod"));
 	}
 
+	public COSObject getDigestMethodValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestMethod"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDigestMethodHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestMethod"));
+		COSObject object = getDigestMethodValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -264,29 +284,34 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
 	}
 
+	public COSObject getFfDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getFfValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		if (object == null || object.empty()) {
+			object = getFfDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getFfHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		COSObject object = getFfValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getFfBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		if (object == null || object.empty()) {
-			return getFfBitmaskDefaultValue();
-		}
+		COSObject object = getFfValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFfBitmaskDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 0L;
 		}
 		return null;
 	}
@@ -296,9 +321,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -307,9 +337,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("LegalAttestation"));
 	}
 
+	public COSObject getLegalAttestationValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LegalAttestation"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLegalAttestationHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LegalAttestation"));
+		COSObject object = getLegalAttestationValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -318,25 +353,23 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("LockDocument"));
 	}
 
+	public COSObject getLockDocumentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LockDocument"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLockDocumentHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LockDocument"));
+		COSObject object = getLockDocumentValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getLockDocumentNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LockDocument"));
-		if (object == null || object.empty()) {
-			return getLockDocumentNameDefaultValue();
-		}
+		COSObject object = getLockDocumentValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getLockDocumentNameDefaultValue() {
 		return null;
 	}
 
@@ -345,9 +378,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("MDP"));
 	}
 
+	public COSObject getMDPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MDP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMDPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MDP"));
+		COSObject object = getMDPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -356,9 +394,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Reasons"));
 	}
 
+	public COSObject getReasonsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Reasons"));
+		return object;
+	}
+
 	@Override
 	public Boolean getReasonsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Reasons"));
+		COSObject object = getReasonsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -367,9 +410,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("SubFilter"));
 	}
 
+	public COSObject getSubFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubFilterHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
+		COSObject object = getSubFilterValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -378,9 +426,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("TimeStamp"));
 	}
 
+	public COSObject getTimeStampValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TimeStamp"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTimeStampHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TimeStamp"));
+		COSObject object = getTimeStampValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -389,25 +442,23 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -416,25 +467,23 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getVIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null || object.empty()) {
-			return getVIntegerDefaultValue();
-		}
+		COSObject object = getVValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getVIntegerDefaultValue() {
 		return null;
 	}
 

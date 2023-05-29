@@ -91,9 +91,14 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("CF"));
 	}
 
+	public COSObject getCFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CF"));
+		COSObject object = getCFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -102,25 +107,23 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("EFF"));
 	}
 
+	public COSObject getEFFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEFFHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
+		COSObject object = getEFFValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getEFFNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
-		if (object == null || object.empty()) {
-			return getEFFNameDefaultValue();
-		}
+		COSObject object = getEFFValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getEFFNameDefaultValue() {
 		return null;
 	}
 
@@ -129,9 +132,28 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("EncryptMetadata"));
 	}
 
+	public COSObject getEncryptMetadataDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(true);
+		}
+		return null;
+	}
+
+	public COSObject getEncryptMetadataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
+		if (object == null || object.empty()) {
+			object = getEncryptMetadataDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getEncryptMetadataHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EncryptMetadata"));
+		COSObject object = getEncryptMetadataValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -140,25 +162,23 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("Filter"));
 	}
 
+	public COSObject getFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (object == null || object.empty()) {
-			return getFilterNameDefaultValue();
-		}
+		COSObject object = getFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getFilterNameDefaultValue() {
 		return null;
 	}
 
@@ -167,15 +187,20 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("KDFSalt"));
 	}
 
+	public COSObject getKDFSaltValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KDFSalt"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisKDFSaltIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KDFSalt"));
+		COSObject object = getKDFSaltValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getKDFSaltHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KDFSalt"));
+		COSObject object = getKDFSaltValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -184,32 +209,37 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("Length"));
 	}
 
-	@Override
-	public Boolean getLengthHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getLengthIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
-		if (object == null || object.empty()) {
-			return getLengthIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getLengthIntegerDefaultValue() {
+	public COSObject getLengthDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 40L;
+				return COSInteger.construct(40L);
+		}
+		return null;
+	}
+
+	public COSObject getLengthValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
+		if (object == null || object.empty()) {
+			object = getLengthDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getLengthHasTypeInteger() {
+		COSObject object = getLengthValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getLengthIntegerValue() {
+		COSObject object = getLengthValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -219,25 +249,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
-	@Override
-	public Boolean getPHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getPBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getPBitmaskDefaultValue() {
+	public COSObject getPDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -245,7 +257,30 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null || object.empty()) {
+			object = getPDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getPHasTypeBitmask() {
+		COSObject object = getPValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getPBitmaskValue() {
+		COSObject object = getPValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -255,9 +290,14 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("Recipients"));
 	}
 
+	public COSObject getRecipientsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Recipients"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRecipientsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Recipients"));
+		COSObject object = getRecipientsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -266,31 +306,36 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("StmF"));
 	}
 
-	@Override
-	public Boolean getStmFHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmF"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getStmFNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmF"));
-		if (object == null || object.empty()) {
-			return getStmFNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getStmFNameDefaultValue() {
+	public COSObject getStmFDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "Identity";
+				return COSName.construct("Identity");
+		}
+		return null;
+	}
+
+	public COSObject getStmFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmF"));
+		if (object == null || object.empty()) {
+			object = getStmFDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getStmFHasTypeName() {
+		COSObject object = getStmFValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getStmFNameValue() {
+		COSObject object = getStmFValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -300,31 +345,36 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("StrF"));
 	}
 
-	@Override
-	public Boolean getStrFHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StrF"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getStrFNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StrF"));
-		if (object == null || object.empty()) {
-			return getStrFNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getStrFNameDefaultValue() {
+	public COSObject getStrFDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "Identity";
+				return COSName.construct("Identity");
+		}
+		return null;
+	}
+
+	public COSObject getStrFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StrF"));
+		if (object == null || object.empty()) {
+			object = getStrFDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getStrFHasTypeName() {
+		COSObject object = getStrFValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getStrFNameValue() {
+		COSObject object = getStrFValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -334,25 +384,23 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("SubFilter"));
 	}
 
+	public COSObject getSubFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubFilterHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
+		COSObject object = getSubFilterValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubFilterNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
-		if (object == null || object.empty()) {
-			return getSubFilterNameDefaultValue();
-		}
+		COSObject object = getSubFilterValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubFilterNameDefaultValue() {
 		return null;
 	}
 
@@ -361,25 +409,23 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getVIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		if (object == null || object.empty()) {
-			return getVIntegerDefaultValue();
-		}
+		COSObject object = getVValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getVIntegerDefaultValue() {
 		return null;
 	}
 

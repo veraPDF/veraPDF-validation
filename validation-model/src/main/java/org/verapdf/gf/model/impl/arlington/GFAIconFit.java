@@ -65,9 +65,14 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
+	public COSObject getAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -76,9 +81,28 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 		return this.baseObject.knownKey(ASAtom.getASAtom("FB"));
 	}
 
+	public COSObject getFBDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getFBValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FB"));
+		if (object == null || object.empty()) {
+			object = getFBDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getFBHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FB"));
+		COSObject object = getFBValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -87,25 +111,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
-	@Override
-	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
+	public COSObject getSDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -113,7 +119,30 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "P";
+				return COSName.construct("P");
+		}
+		return null;
+	}
+
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		if (object == null || object.empty()) {
+			object = getSDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSHasTypeName() {
+		COSObject object = getSValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSNameValue() {
+		COSObject object = getSValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -123,25 +152,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SW"));
 	}
 
-	@Override
-	public Boolean getSWHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SW"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getSWNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SW"));
-		if (object == null || object.empty()) {
-			return getSWNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSWNameDefaultValue() {
+	public COSObject getSWDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -149,7 +160,30 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "A";
+				return COSName.construct("A");
+		}
+		return null;
+	}
+
+	public COSObject getSWValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SW"));
+		if (object == null || object.empty()) {
+			object = getSWDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getSWHasTypeName() {
+		COSObject object = getSWValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getSWNameValue() {
+		COSObject object = getSWValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}

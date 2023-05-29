@@ -28,9 +28,14 @@ public class GFAArrayOfBooleansGeneralEntry extends GFAObject implements AArrayO
 		this.collectionName = collectionName;
 	}
 
+	public COSObject getValue() {
+		COSObject object = new COSObject(this.baseObject);
+		return object;
+	}
+
 	@Override
 	public Boolean getHasTypeBoolean() {
-		COSObject object = new COSObject(this.baseObject);
+		COSObject object = getValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 

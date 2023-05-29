@@ -28,9 +28,26 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 		return this.baseObject.knownKey(ASAtom.getASAtom("PC"));
 	}
 
+	public COSObject getPCDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getPCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		if (object == null || object.empty()) {
+			object = getPCDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getPCHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		COSObject object = getPCValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -39,29 +56,34 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSName.construct("None");
+		}
+		return null;
+	}
+
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		if (object == null || object.empty()) {
+			object = getSubtypeDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return "None";
 		}
 		return null;
 	}
@@ -71,29 +93,34 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 		return this.baseObject.knownKey(ASAtom.getASAtom("TM"));
 	}
 
+	public COSObject getTMDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(1D);
+		}
+		return null;
+	}
+
+	public COSObject getTMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
+		if (object == null || object.empty()) {
+			object = getTMDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getTMHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
+		COSObject object = getTMValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getTMNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
-		if (object == null || object.empty()) {
-			return getTMNumberDefaultValue();
-		}
+		COSObject object = getTMValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getTMNumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return 1D;
 		}
 		return null;
 	}
@@ -103,25 +130,23 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

@@ -28,9 +28,14 @@ public class GFAOptContentLanguage extends GFAObject implements AOptContentLangu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
 	}
 
+	public COSObject getLangValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLangHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		COSObject object = getLangValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -39,31 +44,36 @@ public class GFAOptContentLanguage extends GFAObject implements AOptContentLangu
 		return this.baseObject.knownKey(ASAtom.getASAtom("Preferred"));
 	}
 
-	@Override
-	public Boolean getPreferredHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Preferred"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getPreferredNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Preferred"));
-		if (object == null || object.empty()) {
-			return getPreferredNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getPreferredNameDefaultValue() {
+	public COSObject getPreferredDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "OFF";
+				return COSName.construct("OFF");
+		}
+		return null;
+	}
+
+	public COSObject getPreferredValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Preferred"));
+		if (object == null || object.empty()) {
+			object = getPreferredDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getPreferredHasTypeName() {
+		COSObject object = getPreferredValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getPreferredNameValue() {
+		COSObject object = getPreferredValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}

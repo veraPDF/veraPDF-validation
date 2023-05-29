@@ -429,9 +429,14 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Fields"));
 	}
 
+	public COSObject getFieldsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -440,25 +445,7 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Flags"));
 	}
 
-	@Override
-	public Boolean getFlagsHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFlagsBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
-		if (object == null || object.empty()) {
-			return getFlagsBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFlagsBitmaskDefaultValue() {
+	public COSObject getFlagsDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -467,7 +454,30 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getFlagsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
+		if (object == null || object.empty()) {
+			object = getFlagsDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getFlagsHasTypeBitmask() {
+		COSObject object = getFlagsValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFlagsBitmaskValue() {
+		COSObject object = getFlagsValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -477,15 +487,20 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
 
+	public COSObject getNextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -494,25 +509,23 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
-		if (object == null || object.empty()) {
-			return getSNameDefaultValue();
-		}
+		COSObject object = getSValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSNameDefaultValue() {
 		return null;
 	}
 
@@ -521,25 +534,23 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

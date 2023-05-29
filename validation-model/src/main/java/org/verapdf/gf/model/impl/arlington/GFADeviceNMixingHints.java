@@ -114,9 +114,14 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 		return this.baseObject.knownKey(ASAtom.getASAtom("DotGain"));
 	}
 
+	public COSObject getDotGainValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DotGain"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDotGainHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DotGain"));
+		COSObject object = getDotGainValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -125,9 +130,14 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 		return this.baseObject.knownKey(ASAtom.getASAtom("PrintingOrder"));
 	}
 
+	public COSObject getPrintingOrderValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrintingOrder"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPrintingOrderHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrintingOrder"));
+		COSObject object = getPrintingOrderValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -136,9 +146,14 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 		return this.baseObject.knownKey(ASAtom.getASAtom("Solidities"));
 	}
 
+	public COSObject getSoliditiesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Solidities"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSoliditiesHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Solidities"));
+		COSObject object = getSoliditiesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

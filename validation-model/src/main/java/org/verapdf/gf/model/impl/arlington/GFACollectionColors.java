@@ -161,9 +161,14 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Background"));
 	}
 
+	public COSObject getBackgroundValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBackgroundHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		COSObject object = getBackgroundValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -172,9 +177,14 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CardBackground"));
 	}
 
+	public COSObject getCardBackgroundValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBackground"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCardBackgroundHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBackground"));
+		COSObject object = getCardBackgroundValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -183,9 +193,14 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CardBorder"));
 	}
 
+	public COSObject getCardBorderValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBorder"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCardBorderHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBorder"));
+		COSObject object = getCardBorderValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -194,9 +209,14 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return this.baseObject.knownKey(ASAtom.getASAtom("PrimaryText"));
 	}
 
+	public COSObject getPrimaryTextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrimaryText"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPrimaryTextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrimaryText"));
+		COSObject object = getPrimaryTextValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -205,9 +225,14 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return this.baseObject.knownKey(ASAtom.getASAtom("SecondaryText"));
 	}
 
+	public COSObject getSecondaryTextValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SecondaryText"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSecondaryTextHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SecondaryText"));
+		COSObject object = getSecondaryTextValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -216,25 +241,23 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

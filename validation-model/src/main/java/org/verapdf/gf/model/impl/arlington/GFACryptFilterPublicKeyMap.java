@@ -116,9 +116,14 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 		return this.baseObject.knownKey(ASAtom.getASAtom("DefEmbeddedFile"));
 	}
 
+	public COSObject getDefEmbeddedFileValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefEmbeddedFile"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDefEmbeddedFileHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefEmbeddedFile"));
+		COSObject object = getDefEmbeddedFileValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -127,9 +132,14 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 		return this.baseObject.knownKey(ASAtom.getASAtom("DefaultCryptFilter"));
 	}
 
+	public COSObject getDefaultCryptFilterValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultCryptFilter"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDefaultCryptFilterHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultCryptFilter"));
+		COSObject object = getDefaultCryptFilterValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

@@ -577,9 +577,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AA"));
 	}
 
+	public COSObject getAAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -588,15 +593,20 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
 	}
 
+	public COSObject getAFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -605,9 +615,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Annots"));
 	}
 
+	public COSObject getAnnotsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annots"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAnnotsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annots"));
+		COSObject object = getAnnotsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -616,9 +631,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ArtBox"));
 	}
 
+	public COSObject getArtBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getArtBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
+		COSObject object = getArtBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -635,9 +655,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("B"));
 	}
 
+	public COSObject getBValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		COSObject object = getBValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -646,9 +671,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BleedBox"));
 	}
 
+	public COSObject getBleedBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BleedBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBleedBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BleedBox"));
+		COSObject object = getBleedBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -665,9 +695,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BoxColorInfo"));
 	}
 
+	public COSObject getBoxColorInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BoxColorInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBoxColorInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BoxColorInfo"));
+		COSObject object = getBoxColorInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -676,21 +711,26 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Contents"));
 	}
 
+	public COSObject getContentsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisContentsIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		COSObject object = getContentsValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getContentsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		COSObject object = getContentsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getContentsHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		COSObject object = getContentsValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -706,14 +746,19 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return currentObject.knownKey(ASAtom.getASAtom("CropBox"));
 	}
 
-	@Override
-	public Boolean getCropBoxHasTypeRectangle() {
+	public COSObject getCropBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
 		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
 			object = currentObject.getKey(ASAtom.getASAtom("CropBox"));
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
+		return object;
+	}
+
+	@Override
+	public Boolean getCropBoxHasTypeRectangle() {
+		COSObject object = getCropBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -730,9 +775,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DPart"));
 	}
 
+	public COSObject getDPartValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPart"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDPartHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPart"));
+		COSObject object = getDPartValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -741,9 +791,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dur"));
 	}
 
+	public COSObject getDurValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dur"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDurHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dur"));
+		COSObject object = getDurValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -752,9 +807,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Group"));
 	}
 
+	public COSObject getGroupValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Group"));
+		return object;
+	}
+
 	@Override
 	public Boolean getGroupHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Group"));
+		COSObject object = getGroupValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -770,14 +830,37 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return currentObject.knownKey(ASAtom.getASAtom("Hid"));
 	}
 
-	@Override
-	public Boolean getHidHasTypeBoolean() {
+	public COSObject getHidDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSBoolean.construct(false);
+		}
+		return null;
+	}
+
+	public COSObject getHidValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Hid"));
 		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
 			object = currentObject.getKey(ASAtom.getASAtom("Hid"));
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
+		if (object == null || object.empty()) {
+			object = getHidDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getHidHasTypeBoolean() {
+		COSObject object = getHidValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -786,9 +869,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryIDHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -797,9 +885,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("LastModified"));
 	}
 
+	public COSObject getLastModifiedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LastModified"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LastModified"));
+		COSObject object = getLastModifiedValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
@@ -815,14 +908,19 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return currentObject.knownKey(ASAtom.getASAtom("MediaBox"));
 	}
 
-	@Override
-	public Boolean getMediaBoxHasTypeRectangle() {
+	public COSObject getMediaBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MediaBox"));
 		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
 			object = currentObject.getKey(ASAtom.getASAtom("MediaBox"));
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
+		return object;
+	}
+
+	@Override
+	public Boolean getMediaBoxHasTypeRectangle() {
+		COSObject object = getMediaBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -839,15 +937,20 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
 	}
 
+	public COSObject getMetadataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisMetadataIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getMetadataHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -856,9 +959,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OutputIntents"));
 	}
 
+	public COSObject getOutputIntentsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOutputIntentsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+		COSObject object = getOutputIntentsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -867,9 +975,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PZ"));
 	}
 
+	public COSObject getPZValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PZ"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPZHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PZ"));
+		COSObject object = getPZValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -878,15 +991,20 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
 	}
 
+	public COSObject getParentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisParentIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -895,9 +1013,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PieceInfo"));
 	}
 
+	public COSObject getPieceInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+		COSObject object = getPieceInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -906,9 +1029,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PresSteps"));
 	}
 
+	public COSObject getPresStepsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PresSteps"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPresStepsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PresSteps"));
+		COSObject object = getPresStepsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -924,14 +1052,19 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return currentObject.knownKey(ASAtom.getASAtom("Resources"));
 	}
 
-	@Override
-	public Boolean getResourcesHasTypeDictionary() {
+	public COSObject getResourcesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
 		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
 			object = currentObject.getKey(ASAtom.getASAtom("Resources"));
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
+		return object;
+	}
+
+	@Override
+	public Boolean getResourcesHasTypeDictionary() {
+		COSObject object = getResourcesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -947,35 +1080,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return currentObject.knownKey(ASAtom.getASAtom("Rotate"));
 	}
 
-	@Override
-	public Boolean getRotateHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("Rotate"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
-		}
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getRotateIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("Rotate"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
-		}
-		if (object == null || object.empty()) {
-			return getRotateIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getRotateIntegerDefaultValue() {
+	public COSObject getRotateDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_0:
 			case ARLINGTON1_1:
@@ -986,7 +1091,35 @@ public class GFAPageObject extends GFAObject implements APageObject {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getRotateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
+		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
+			object = currentObject.getKey(ASAtom.getASAtom("Rotate"));
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		if (object == null || object.empty()) {
+			object = getRotateDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getRotateHasTypeInteger() {
+		COSObject object = getRotateValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getRotateIntegerValue() {
+		COSObject object = getRotateValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -996,9 +1129,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SeparationInfo"));
 	}
 
+	public COSObject getSeparationInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SeparationInfo"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSeparationInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SeparationInfo"));
+		COSObject object = getSeparationInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1007,9 +1145,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("StructParents"));
 	}
 
+	public COSObject getStructParentsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructParents"));
+		return object;
+	}
+
 	@Override
 	public Boolean getStructParentsHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructParents"));
+		COSObject object = getStructParentsValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -1018,25 +1161,23 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Tabs"));
 	}
 
+	public COSObject getTabsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tabs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTabsHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tabs"));
+		COSObject object = getTabsValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTabsNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tabs"));
-		if (object == null || object.empty()) {
-			return getTabsNameDefaultValue();
-		}
+		COSObject object = getTabsValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTabsNameDefaultValue() {
 		return null;
 	}
 
@@ -1045,15 +1186,20 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TemplateInstantiated"));
 	}
 
+	public COSObject getTemplateInstantiatedValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TemplateInstantiated"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTemplateInstantiatedHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TemplateInstantiated"));
+		COSObject object = getTemplateInstantiatedValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getnameTreetrailerCatalogNamesPagesContainsTemplateInstantiatedString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TemplateInstantiated"));
+		COSObject object = getTemplateInstantiatedValue();
 		if (object == null || object.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
@@ -1079,7 +1225,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getnameTreetrailerCatalogNamesTemplatesContainsTemplateInstantiatedString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TemplateInstantiated"));
+		COSObject object = getTemplateInstantiatedValue();
 		if (object == null || object.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
@@ -1108,15 +1254,20 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Thumb"));
 	}
 
+	public COSObject getThumbValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisThumbIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getThumbHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -1125,9 +1276,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Trans"));
 	}
 
+	public COSObject getTransValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trans"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTransHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trans"));
+		COSObject object = getTransValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1136,9 +1292,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TrimBox"));
 	}
 
+	public COSObject getTrimBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrimBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTrimBoxHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrimBox"));
+		COSObject object = getTrimBoxValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -1155,25 +1316,23 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -1182,9 +1341,27 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("UserUnit"));
 	}
 
+	public COSObject getUserUnitDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSReal.construct(1.0D);
+		}
+		return null;
+	}
+
+	public COSObject getUserUnitValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UserUnit"));
+		if (object == null || object.empty()) {
+			object = getUserUnitDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getUserUnitHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UserUnit"));
+		COSObject object = getUserUnitValue();
 		return object != null && object.getType().isNumber();
 	}
 
@@ -1193,9 +1370,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return this.baseObject.knownKey(ASAtom.getASAtom("VP"));
 	}
 
+	public COSObject getVPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVPHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VP"));
+		COSObject object = getVPValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

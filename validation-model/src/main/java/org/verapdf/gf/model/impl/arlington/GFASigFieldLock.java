@@ -63,25 +63,23 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Action"));
 	}
 
+	public COSObject getActionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
+		return object;
+	}
+
 	@Override
 	public Boolean getActionHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
+		COSObject object = getActionValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getActionNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Action"));
-		if (object == null || object.empty()) {
-			return getActionNameDefaultValue();
-		}
+		COSObject object = getActionValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getActionNameDefaultValue() {
 		return null;
 	}
 
@@ -90,9 +88,14 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Fields"));
 	}
 
+	public COSObject getFieldsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -101,25 +104,23 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getPNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPNumberDefaultValue();
-		}
+		COSObject object = getPValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getPNumberDefaultValue() {
 		return null;
 	}
 
@@ -128,25 +129,23 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

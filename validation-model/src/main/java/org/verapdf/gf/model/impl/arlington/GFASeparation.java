@@ -119,9 +119,14 @@ public class GFASeparation extends GFAObject implements ASeparation {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ColorSpace"));
 	}
 
+	public COSObject getColorSpaceValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		return object;
+	}
+
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -130,15 +135,20 @@ public class GFASeparation extends GFAObject implements ASeparation {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DeviceColorant"));
 	}
 
+	public COSObject getDeviceColorantValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDeviceColorantHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
+		COSObject object = getDeviceColorantValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getDeviceColorantHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DeviceColorant"));
+		COSObject object = getDeviceColorantValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -147,9 +157,14 @@ public class GFASeparation extends GFAObject implements ASeparation {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Pages"));
 	}
 
+	public COSObject getPagesValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPagesHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		COSObject object = getPagesValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

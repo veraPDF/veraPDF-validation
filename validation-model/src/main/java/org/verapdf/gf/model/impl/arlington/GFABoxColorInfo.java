@@ -148,9 +148,14 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ArtBox"));
 	}
 
+	public COSObject getArtBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getArtBoxHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
+		COSObject object = getArtBoxValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -159,9 +164,14 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BleedBox"));
 	}
 
+	public COSObject getBleedBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BleedBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBleedBoxHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BleedBox"));
+		COSObject object = getBleedBoxValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -170,9 +180,14 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CropBox"));
 	}
 
+	public COSObject getCropBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCropBoxHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+		COSObject object = getCropBoxValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -181,9 +196,14 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TrimBox"));
 	}
 
+	public COSObject getTrimBoxValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrimBox"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTrimBoxHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrimBox"));
+		COSObject object = getTrimBoxValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 

@@ -55,58 +55,44 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getentry0HasTypeDictionary() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeDictionary() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getentry0HasTypeName() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStringByte() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NameDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getentry0NameDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public Boolean getnameTreetrailerCatalogNamesDestsContains0String() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		if (object == null || object.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
@@ -130,49 +116,46 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 		return nameTreeNode.getObject(object.getString()) != null;
 	}
 
-	@Override
-	public Boolean getentry1HasTypeName() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeName() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NameDefaultValue();
-		}
+		COSObject object = getentry1Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getentry1NameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeNull() {
+	public COSObject getentry2Value() {
 		if (this.baseObject.size() <= 2) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNull() {
+		COSObject object = getentry2Value();
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = getentry2Value();
 		return object != null && object.getType().isNumber();
 	}
 

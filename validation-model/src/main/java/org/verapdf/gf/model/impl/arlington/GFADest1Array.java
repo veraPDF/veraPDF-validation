@@ -63,86 +63,75 @@ public class GFADest1Array extends GFAObject implements ADest1Array {
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getentry0HasTypeDictionary() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeDictionary() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getentry0NumberValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NumberDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
 		return null;
 	}
 
-	public Double getentry0NumberDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeName() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeName() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NameDefaultValue();
-		}
+		COSObject object = getentry1Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getentry1NameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeNull() {
+	public COSObject getentry2Value() {
 		if (this.baseObject.size() <= 2) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNull() {
+		COSObject object = getentry2Value();
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = getentry2Value();
 		return object != null && object.getType().isNumber();
 	}
 

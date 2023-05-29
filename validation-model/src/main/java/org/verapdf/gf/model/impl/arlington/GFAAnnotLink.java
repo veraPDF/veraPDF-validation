@@ -772,9 +772,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("A"));
 	}
 
+	public COSObject getAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -783,15 +788,20 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
 	}
 
+	public COSObject getAFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -800,9 +810,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AP"));
 	}
 
+	public COSObject getAPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -811,9 +826,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AS"));
 	}
 
+	public COSObject getASValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getASHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
+		COSObject object = getASValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
@@ -822,28 +842,33 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BM"));
 	}
 
+	public COSObject getBMDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSName.construct("Normal");
+		}
+		return null;
+	}
+
+	public COSObject getBMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
+		if (object == null || object.empty()) {
+			object = getBMDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getBMHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
+		COSObject object = getBMValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getBMNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
-		if (object == null || object.empty()) {
-			return getBMNameDefaultValue();
-		}
+		COSObject object = getBMValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
-		}
-		return null;
-	}
-
-	public String getBMNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return "Normal";
 		}
 		return null;
 	}
@@ -853,9 +878,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BS"));
 	}
 
+	public COSObject getBSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BS"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BS"));
+		COSObject object = getBSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -864,9 +894,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Border"));
 	}
 
+	public COSObject getBorderValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBorderHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+		COSObject object = getBorderValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -875,9 +910,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("C"));
 	}
 
+	public COSObject getCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -886,28 +926,33 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("CA"));
 	}
 
+	public COSObject getCADefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSReal.construct(1.0D);
+		}
+		return null;
+	}
+
+	public COSObject getCAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
+		if (object == null || object.empty()) {
+			object = getCADefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getCAHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
+		COSObject object = getCAValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getCANumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
-		if (object == null || object.empty()) {
-			return getCANumberDefaultValue();
-		}
+		COSObject object = getCAValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getCANumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return 1.0D;
 		}
 		return null;
 	}
@@ -917,9 +962,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Contents"));
 	}
 
+	public COSObject getContentsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		return object;
+	}
+
 	@Override
 	public Boolean getContentsHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		COSObject object = getContentsValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -928,21 +978,26 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Dest"));
 	}
 
+	public COSObject getDestValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDestHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		COSObject object = getDestValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getDestHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		COSObject object = getDestValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public Boolean getDestHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		COSObject object = getDestValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -951,25 +1006,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
-	@Override
-	public Boolean getFHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		if (object == null || object.empty()) {
-			return getFBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFBitmaskDefaultValue() {
+	public COSObject getFDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_1:
 			case ARLINGTON1_2:
@@ -979,7 +1016,30 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		if (object == null || object.empty()) {
+			object = getFDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getFHasTypeBitmask() {
+		COSObject object = getFValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFBitmaskValue() {
+		COSObject object = getFValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -989,25 +1049,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
 	}
 
-	@Override
-	public Boolean getHHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getHNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
-		if (object == null || object.empty()) {
-			return getHNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getHNameDefaultValue() {
+	public COSObject getHDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -1016,7 +1058,30 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "I";
+				return COSName.construct("I");
+		}
+		return null;
+	}
+
+	public COSObject getHValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		if (object == null || object.empty()) {
+			object = getHDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getHHasTypeName() {
+		COSObject object = getHValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getHNameValue() {
+		COSObject object = getHValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -1026,9 +1091,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Lang"));
 	}
 
+	public COSObject getLangValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		return object;
+	}
+
 	@Override
 	public Boolean getLangHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
+		COSObject object = getLangValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -1037,15 +1107,20 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("M"));
 	}
 
+	public COSObject getMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMHasTypeDate() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		COSObject object = getMValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
 	}
 
 	@Override
 	public Boolean getMHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		COSObject object = getMValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -1054,9 +1129,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("NM"));
 	}
 
+	public COSObject getNMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NM"));
+		return object;
+	}
+
 	@Override
 	public Boolean getNMHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NM"));
+		COSObject object = getNMValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -1065,9 +1145,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OC"));
 	}
 
+	public COSObject getOCValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOCHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1076,15 +1161,20 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1093,9 +1183,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PA"));
 	}
 
+	public COSObject getPAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
+		COSObject object = getPAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -1104,9 +1199,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Path"));
 	}
 
+	public COSObject getPathValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Path"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPathHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Path"));
+		COSObject object = getPathValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -1115,9 +1215,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("QuadPoints"));
 	}
 
+	public COSObject getQuadPointsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("QuadPoints"));
+		return object;
+	}
+
 	@Override
 	public Boolean getQuadPointsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("QuadPoints"));
+		COSObject object = getQuadPointsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -1126,9 +1231,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Rect"));
 	}
 
+	public COSObject getRectValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRectHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
+		COSObject object = getRectValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -1145,9 +1255,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("StructParent"));
 	}
 
+	public COSObject getStructParentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructParent"));
+		return object;
+	}
+
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructParent"));
+		COSObject object = getStructParentValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -1156,25 +1271,23 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
-		if (object == null || object.empty()) {
-			return getSubtypeNameDefaultValue();
-		}
+		COSObject object = getSubtypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getSubtypeNameDefaultValue() {
 		return null;
 	}
 
@@ -1183,25 +1296,23 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -1210,28 +1321,33 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ca"));
 	}
 
+	public COSObject getcaDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return COSReal.construct(1.0D);
+		}
+		return null;
+	}
+
+	public COSObject getcaValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ca"));
+		if (object == null || object.empty()) {
+			object = getcaDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getcaHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ca"));
+		COSObject object = getcaValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getcaNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ca"));
-		if (object == null || object.empty()) {
-			return getcaNumberDefaultValue();
-		}
+		COSObject object = getcaValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
-		}
-		return null;
-	}
-
-	public Double getcaNumberDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return 1.0D;
 		}
 		return null;
 	}

@@ -329,9 +329,14 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DefaultCMYK"));
 	}
 
+	public COSObject getDefaultCMYKValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultCMYK"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDefaultCMYKHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultCMYK"));
+		COSObject object = getDefaultCMYKValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -340,9 +345,14 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DefaultGray"));
 	}
 
+	public COSObject getDefaultGrayValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultGray"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDefaultGrayHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultGray"));
+		COSObject object = getDefaultGrayValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -351,9 +361,14 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DefaultRGB"));
 	}
 
+	public COSObject getDefaultRGBValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDefaultRGBHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
+		COSObject object = getDefaultRGBValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

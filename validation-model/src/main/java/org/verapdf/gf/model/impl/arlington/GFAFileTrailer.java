@@ -211,15 +211,20 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AuthCode"));
 	}
 
+	public COSObject getAuthCodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisAuthCodeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		COSObject object = getAuthCodeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getAuthCodeHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		COSObject object = getAuthCodeValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -228,9 +233,14 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Encrypt"));
 	}
 
+	public COSObject getEncryptValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		return object;
+	}
+
 	@Override
 	public Boolean getEncryptHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		COSObject object = getEncryptValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -239,15 +249,20 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisentryIDIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentryIDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -256,15 +271,20 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Info"));
 	}
 
+	public COSObject getInfoValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisInfoIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		COSObject object = getInfoValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getInfoHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		COSObject object = getInfoValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -273,31 +293,29 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Prev"));
 	}
 
+	public COSObject getPrevValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPrevIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPrevHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getPrevIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
-		if (object == null || object.empty()) {
-			return getPrevIntegerDefaultValue();
-		}
+		COSObject object = getPrevValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getPrevIntegerDefaultValue() {
 		return null;
 	}
 
@@ -306,15 +324,20 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Root"));
 	}
 
+	public COSObject getRootValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisRootIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		COSObject object = getRootValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getRootHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		COSObject object = getRootValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -323,31 +346,29 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Size"));
 	}
 
+	public COSObject getSizeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisSizeIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getSizeHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getSizeIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
-		if (object == null || object.empty()) {
-			return getSizeIntegerDefaultValue();
-		}
+		COSObject object = getSizeValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getSizeIntegerDefaultValue() {
 		return null;
 	}
 
@@ -356,25 +377,23 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return this.baseObject.knownKey(ASAtom.getASAtom("XRefStm"));
 	}
 
+	public COSObject getXRefStmValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XRefStm"));
+		return object;
+	}
+
 	@Override
 	public Boolean getXRefStmHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XRefStm"));
+		COSObject object = getXRefStmValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getXRefStmIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XRefStm"));
-		if (object == null || object.empty()) {
-			return getXRefStmIntegerDefaultValue();
-		}
+		COSObject object = getXRefStmValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getXRefStmIntegerDefaultValue() {
 		return null;
 	}
 

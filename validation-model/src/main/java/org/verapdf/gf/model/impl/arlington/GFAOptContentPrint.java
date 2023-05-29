@@ -28,25 +28,23 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 		return this.baseObject.knownKey(ASAtom.getASAtom("PrintState"));
 	}
 
+	public COSObject getPrintStateValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrintState"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPrintStateHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrintState"));
+		COSObject object = getPrintStateValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getPrintStateNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrintState"));
-		if (object == null || object.empty()) {
-			return getPrintStateNameDefaultValue();
-		}
+		COSObject object = getPrintStateValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getPrintStateNameDefaultValue() {
 		return null;
 	}
 
@@ -55,9 +53,14 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
 
+	public COSObject getSubtypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
+		COSObject object = getSubtypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 

@@ -94,21 +94,26 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 		return this.baseObject.knownKey(ASAtom.getASAtom("OCGs"));
 	}
 
+	public COSObject getOCGsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOCGsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		COSObject object = getOCGsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getOCGsHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		COSObject object = getOCGsValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getOCGsHasTypeNull() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		COSObject object = getOCGsValue();
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
@@ -117,31 +122,36 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
-	@Override
-	public Boolean getPHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		return object != null && object.getType() == COSObjType.COS_NAME;
-	}
-
-	@Override
-	public String getPNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
-		if (object == null || object.empty()) {
-			return getPNameDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
-	}
-
-	public String getPNameDefaultValue() {
+	public COSObject getPDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return "AnyOn";
+				return COSName.construct("AnyOn");
+		}
+		return null;
+	}
+
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		if (object == null || object.empty()) {
+			object = getPDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getPHasTypeName() {
+		COSObject object = getPValue();
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	@Override
+	public String getPNameValue() {
+		COSObject object = getPValue();
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
 		}
 		return null;
 	}
@@ -151,25 +161,23 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -178,9 +186,14 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 		return this.baseObject.knownKey(ASAtom.getASAtom("VE"));
 	}
 
+	public COSObject getVEValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VE"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVEHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VE"));
+		COSObject object = getVEValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

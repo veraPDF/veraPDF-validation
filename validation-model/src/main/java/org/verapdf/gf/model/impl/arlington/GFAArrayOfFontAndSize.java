@@ -92,30 +92,37 @@ public class GFAArrayOfFontAndSize extends GFAObject implements AArrayOfFontAndS
 		}
 	}
 
-	@Override
-	public Boolean getisentry0Indirect() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry0Indirect() {
+		COSObject object = getentry0Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
-	@Override
-	public Boolean getentry1HasTypeNumber() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNumber() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType().isNumber();
 	}
 

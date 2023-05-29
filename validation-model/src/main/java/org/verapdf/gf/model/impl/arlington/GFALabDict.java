@@ -129,9 +129,14 @@ public class GFALabDict extends GFAObject implements ALabDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("BlackPoint"));
 	}
 
+	public COSObject getBlackPointValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getBlackPointHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		COSObject object = getBlackPointValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -140,9 +145,14 @@ public class GFALabDict extends GFAObject implements ALabDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Range"));
 	}
 
+	public COSObject getRangeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRangeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		COSObject object = getRangeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -151,9 +161,14 @@ public class GFALabDict extends GFAObject implements ALabDict {
 		return this.baseObject.knownKey(ASAtom.getASAtom("WhitePoint"));
 	}
 
+	public COSObject getWhitePointValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getWhitePointHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		COSObject object = getWhitePointValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 

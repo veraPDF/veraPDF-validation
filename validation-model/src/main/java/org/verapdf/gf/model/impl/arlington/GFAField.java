@@ -265,9 +265,14 @@ public class GFAField extends GFAObject implements AField {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AA"));
 	}
 
+	public COSObject getAAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		return object;
+	}
+
 	@Override
 	public Boolean getAAHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -276,25 +281,23 @@ public class GFAField extends GFAObject implements AField {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
 	}
 
+	public COSObject getFfValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFfHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		COSObject object = getFfValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getFfBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		if (object == null || object.empty()) {
-			return getFfBitmaskDefaultValue();
-		}
+		COSObject object = getFfValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getFfBitmaskDefaultValue() {
 		return null;
 	}
 
@@ -303,9 +306,14 @@ public class GFAField extends GFAObject implements AField {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Kids"));
 	}
 
+	public COSObject getKidsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		return object;
+	}
+
 	@Override
 	public Boolean getKidsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		COSObject object = getKidsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -314,9 +322,14 @@ public class GFAField extends GFAObject implements AField {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Parent"));
 	}
 
+	public COSObject getParentValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		return object;
+	}
+
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -325,9 +338,14 @@ public class GFAField extends GFAObject implements AField {
 		return this.baseObject.knownKey(ASAtom.getASAtom("T"));
 	}
 
+	public COSObject getTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -336,9 +354,14 @@ public class GFAField extends GFAObject implements AField {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TM"));
 	}
 
+	public COSObject getTMValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTMHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
+		COSObject object = getTMValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
@@ -347,9 +370,14 @@ public class GFAField extends GFAObject implements AField {
 		return this.baseObject.knownKey(ASAtom.getASAtom("TU"));
 	}
 
+	public COSObject getTUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTUHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
+		COSObject object = getTUValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

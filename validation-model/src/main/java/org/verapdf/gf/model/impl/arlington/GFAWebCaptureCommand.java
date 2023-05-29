@@ -94,9 +94,30 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 		return this.baseObject.knownKey(ASAtom.getASAtom("CT"));
 	}
 
+	public COSObject getCTDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSString.construct("application/x-www-form-urlencoded".getBytes());
+		}
+		return null;
+	}
+
+	public COSObject getCTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CT"));
+		if (object == null || object.empty()) {
+			object = getCTDefaultValue();
+		}
+		return object;
+	}
+
 	@Override
 	public Boolean getCTHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CT"));
+		COSObject object = getCTValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
@@ -105,25 +126,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
-	@Override
-	public Boolean getFHasTypeBitmask() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getFBitmaskValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
-		if (object == null || object.empty()) {
-			return getFBitmaskDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getFBitmaskDefaultValue() {
+	public COSObject getFDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -131,7 +134,30 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 0L;
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		if (object == null || object.empty()) {
+			object = getFDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getFHasTypeBitmask() {
+		COSObject object = getFValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getFBitmaskValue() {
+		COSObject object = getFValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -141,9 +167,14 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
 	}
 
+	public COSObject getHValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		return object;
+	}
+
 	@Override
 	public Boolean getHHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		COSObject object = getHValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -152,25 +183,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 		return this.baseObject.knownKey(ASAtom.getASAtom("L"));
 	}
 
-	@Override
-	public Boolean getLHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
-	}
-
-	@Override
-	public Long getLIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
-		if (object == null || object.empty()) {
-			return getLIntegerDefaultValue();
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
-	}
-
-	public Long getLIntegerDefaultValue() {
+	public COSObject getLDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -178,7 +191,30 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return 1L;
+				return COSInteger.construct(1L);
+		}
+		return null;
+	}
+
+	public COSObject getLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		if (object == null || object.empty()) {
+			object = getLDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public Boolean getLHasTypeInteger() {
+		COSObject object = getLValue();
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Long getLIntegerValue() {
+		COSObject object = getLValue();
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
 		}
 		return null;
 	}
@@ -188,21 +224,26 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 		return this.baseObject.knownKey(ASAtom.getASAtom("P"));
 	}
 
+	public COSObject getPValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Boolean getPHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -211,9 +252,14 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 		return this.baseObject.knownKey(ASAtom.getASAtom("S"));
 	}
 
+	public COSObject getSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -222,9 +268,14 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 		return this.baseObject.knownKey(ASAtom.getASAtom("URL"));
 	}
 
+	public COSObject getURLValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		return object;
+	}
+
 	@Override
 	public Boolean getURLHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
+		COSObject object = getURLValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 

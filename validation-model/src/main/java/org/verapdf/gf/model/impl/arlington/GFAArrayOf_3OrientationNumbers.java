@@ -23,57 +23,63 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 		super(baseObject, parentObject, keyName, "AArrayOf_3OrientationNumbers");
 	}
 
-	@Override
-	public Boolean getentry0HasTypeNull() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeNull() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
+		COSObject object = getentry0Value();
 		return object != null && object.getType().isNumber();
 	}
 
-	@Override
-	public Boolean getentry1HasTypeNull() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeNull() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = getentry1Value();
 		return object != null && object.getType().isNumber();
 	}
 
-	@Override
-	public Boolean getentry2HasTypeNull() {
+	public COSObject getentry2Value() {
 		if (this.baseObject.size() <= 2) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeNull() {
+		COSObject object = getentry2Value();
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
+		COSObject object = getentry2Value();
 		return object != null && object.getType().isNumber();
 	}
 

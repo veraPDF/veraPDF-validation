@@ -221,123 +221,104 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 		return Collections.emptyList();
 	}
 
-	@Override
-	public Boolean getentry0HasTypeName() {
+	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(0);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry0HasTypeName() {
+		COSObject object = getentry0Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		if (this.baseObject.size() <= 0) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(0);
-		if (object == null || object.empty()) {
-			return getentry0NameDefaultValue();
-		}
+		COSObject object = getentry0Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getentry0NameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry1HasTypeArray() {
+	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(1);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry1HasTypeArray() {
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getentry1HasTypeName() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
+		COSObject object = getentry1Value();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		if (this.baseObject.size() <= 1) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(1);
-		if (object == null || object.empty()) {
-			return getentry1NameDefaultValue();
-		}
+		COSObject object = getentry1Value();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
 		return null;
 	}
 
-	public String getentry1NameDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getentry2HasTypeInteger() {
+	public COSObject getentry2Value() {
 		if (this.baseObject.size() <= 2) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(2);
+		return object;
+	}
+
+	@Override
+	public Boolean getentry2HasTypeInteger() {
+		COSObject object = getentry2Value();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Long getentry2IntegerValue() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		if (object == null || object.empty()) {
-			return getentry2IntegerDefaultValue();
-		}
+		COSObject object = getentry2Value();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
 		return null;
 	}
 
-	public Long getentry2IntegerDefaultValue() {
-		return null;
-	}
-
-	@Override
-	public Boolean getisentry3Indirect() {
+	public COSObject getentry3Value() {
 		if (this.baseObject.size() <= 3) {
 			return null;
 		}
 		COSObject object = this.baseObject.at(3);
+		return object;
+	}
+
+	@Override
+	public Boolean getisentry3Indirect() {
+		COSObject object = getentry3Value();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getentry3HasTypeStream() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = getentry3Value();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
 	@Override
 	public Boolean getentry3HasTypeString() {
-		if (this.baseObject.size() <= 3) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(3);
+		COSObject object = getentry3Value();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 

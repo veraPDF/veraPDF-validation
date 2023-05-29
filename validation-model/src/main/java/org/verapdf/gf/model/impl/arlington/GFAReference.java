@@ -92,15 +92,20 @@ public class GFAReference extends GFAObject implements AReference {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -109,9 +114,14 @@ public class GFAReference extends GFAObject implements AReference {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ID"));
 	}
 
+	public COSObject getentryIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getentryIDHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -120,31 +130,29 @@ public class GFAReference extends GFAObject implements AReference {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Page"));
 	}
 
+	public COSObject getPageValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Page"));
+		return object;
+	}
+
 	@Override
 	public Boolean getPageHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Page"));
+		COSObject object = getPageValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
 	@Override
 	public Boolean getPageHasTypeStringText() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Page"));
+		COSObject object = getPageValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
 	@Override
 	public Long getPageIntegerValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Page"));
-		if (object == null || object.empty()) {
-			return getPageIntegerDefaultValue();
-		}
+		COSObject object = getPageValue();
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			return object.getInteger();
 		}
-		return null;
-	}
-
-	public Long getPageIntegerDefaultValue() {
 		return null;
 	}
 

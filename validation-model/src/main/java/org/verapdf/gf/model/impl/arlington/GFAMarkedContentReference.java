@@ -133,9 +133,14 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 		return this.baseObject.knownKey(ASAtom.getASAtom("MCID"));
 	}
 
+	public COSObject getMCIDValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MCID"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMCIDHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MCID"));
+		COSObject object = getMCIDValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
@@ -144,15 +149,20 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 		return this.baseObject.knownKey(ASAtom.getASAtom("Pg"));
 	}
 
+	public COSObject getPgValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisPgIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getPgHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
@@ -161,15 +171,20 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 		return this.baseObject.knownKey(ASAtom.getASAtom("Stm"));
 	}
 
+	public COSObject getStmValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Stm"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisStmIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Stm"));
+		COSObject object = getStmValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getStmHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Stm"));
+		COSObject object = getStmValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -178,27 +193,32 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 		return this.baseObject.knownKey(ASAtom.getASAtom("StmOwn"));
 	}
 
+	public COSObject getStmOwnValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
+		return object;
+	}
+
 	@Override
 	public Boolean getisStmOwnIndirect() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
+		COSObject object = getStmOwnValue();
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
 	@Override
 	public Boolean getStmOwnHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
+		COSObject object = getStmOwnValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getStmOwnHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
+		COSObject object = getStmOwnValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getStmOwnHasTypeStream() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
+		COSObject object = getStmOwnValue();
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
@@ -207,25 +227,23 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 

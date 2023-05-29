@@ -28,9 +28,14 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Ordering"));
 	}
 
+	public COSObject getOrderingValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ordering"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOrderingHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ordering"));
+		COSObject object = getOrderingValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
@@ -39,9 +44,14 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Registry"));
 	}
 
+	public COSObject getRegistryValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Registry"));
+		return object;
+	}
+
 	@Override
 	public Boolean getRegistryHasTypeStringAscii() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Registry"));
+		COSObject object = getRegistryValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
@@ -50,9 +60,14 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Supplement"));
 	}
 
+	public COSObject getSupplementValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Supplement"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSupplementHasTypeInteger() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Supplement"));
+		COSObject object = getSupplementValue();
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 

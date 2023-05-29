@@ -61,25 +61,23 @@ public class GFASolidities extends GFAObject implements ASolidities {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Default"));
 	}
 
+	public COSObject getDefaultValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		return object;
+	}
+
 	@Override
 	public Boolean getDefaultHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		COSObject object = getDefaultValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getDefaultNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
-		if (object == null || object.empty()) {
-			return getDefaultNumberDefaultValue();
-		}
+		COSObject object = getDefaultValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getDefaultNumberDefaultValue() {
 		return null;
 	}
 

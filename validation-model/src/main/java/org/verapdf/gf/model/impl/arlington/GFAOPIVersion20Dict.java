@@ -186,9 +186,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("CropRect"));
 	}
 
+	public COSObject getCropRectValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropRect"));
+		return object;
+	}
+
 	@Override
 	public Boolean getCropRectHasTypeRectangle() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropRect"));
+		COSObject object = getCropRectValue();
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -205,15 +210,20 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
+	public COSObject getFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		return object;
+	}
+
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -222,9 +232,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("IncludedImageDimensions"));
 	}
 
+	public COSObject getIncludedImageDimensionsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIncludedImageDimensionsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
+		COSObject object = getIncludedImageDimensionsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -233,25 +248,23 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("IncludedImageQuality"));
 	}
 
+	public COSObject getIncludedImageQualityValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageQuality"));
+		return object;
+	}
+
 	@Override
 	public Boolean getIncludedImageQualityHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageQuality"));
+		COSObject object = getIncludedImageQualityValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getIncludedImageQualityNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageQuality"));
-		if (object == null || object.empty()) {
-			return getIncludedImageQualityNumberDefaultValue();
-		}
+		COSObject object = getIncludedImageQualityValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getIncludedImageQualityNumberDefaultValue() {
 		return null;
 	}
 
@@ -260,31 +273,29 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Inks"));
 	}
 
+	public COSObject getInksValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Inks"));
+		return object;
+	}
+
 	@Override
 	public Boolean getInksHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Inks"));
+		COSObject object = getInksValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
 	@Override
 	public Boolean getInksHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Inks"));
+		COSObject object = getInksValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getInksNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Inks"));
-		if (object == null || object.empty()) {
-			return getInksNameDefaultValue();
-		}
+		COSObject object = getInksValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getInksNameDefaultValue() {
 		return null;
 	}
 
@@ -293,9 +304,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("MainImage"));
 	}
 
+	public COSObject getMainImageValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MainImage"));
+		return object;
+	}
+
 	@Override
 	public Boolean getMainImageHasTypeStringByte() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MainImage"));
+		COSObject object = getMainImageValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
@@ -304,9 +320,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Overprint"));
 	}
 
+	public COSObject getOverprintValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Overprint"));
+		return object;
+	}
+
 	@Override
 	public Boolean getOverprintHasTypeBoolean() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Overprint"));
+		COSObject object = getOverprintValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
@@ -315,9 +336,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Size"));
 	}
 
+	public COSObject getSizeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		return object;
+	}
+
 	@Override
 	public Boolean getSizeHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -326,9 +352,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Tags"));
 	}
 
+	public COSObject getTagsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tags"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTagsHasTypeArray() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tags"));
+		COSObject object = getTagsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
@@ -337,25 +368,23 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
 	}
 
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		COSObject object = getTypeValue();
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
-		if (object == null || object.empty()) {
-			return getTypeNameDefaultValue();
-		}
+		COSObject object = getTypeValue();
 		if (object != null && object.getType() == COSObjType.COS_NAME) {
 			return object.getString();
 		}
-		return null;
-	}
-
-	public String getTypeNameDefaultValue() {
 		return null;
 	}
 
@@ -364,25 +393,23 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 		return this.baseObject.knownKey(ASAtom.getASAtom("Version"));
 	}
 
+	public COSObject getVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		return object;
+	}
+
 	@Override
 	public Boolean getVersionHasTypeNumber() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		COSObject object = getVersionValue();
 		return object != null && object.getType().isNumber();
 	}
 
 	@Override
 	public Double getVersionNumberValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
-		if (object == null || object.empty()) {
-			return getVersionNumberDefaultValue();
-		}
+		COSObject object = getVersionValue();
 		if (object != null && object.getType().isNumber()) {
 			return object.getReal();
 		}
-		return null;
-	}
-
-	public Double getVersionNumberDefaultValue() {
 		return null;
 	}
 
