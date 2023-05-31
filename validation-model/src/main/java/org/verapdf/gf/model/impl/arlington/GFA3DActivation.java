@@ -44,7 +44,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	}
 
 	private List<ARichMediaWindow> getWindow1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Window"));
+		COSObject object = getWindowValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -343,6 +343,11 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	public Boolean getWindowHasTypeDictionary() {
 		COSObject object = getWindowValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

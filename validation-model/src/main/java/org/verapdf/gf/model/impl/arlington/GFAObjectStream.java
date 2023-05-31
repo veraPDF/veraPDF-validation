@@ -56,7 +56,7 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -110,7 +110,7 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	private List<AObjectStream> getExtends1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extends"));
+		COSObject object = getExtendsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,7 +135,7 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	private List<AFileSpecification> getF1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -160,7 +160,7 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -214,7 +214,7 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -239,7 +239,7 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

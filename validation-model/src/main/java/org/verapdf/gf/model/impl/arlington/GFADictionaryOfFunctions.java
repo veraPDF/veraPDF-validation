@@ -70,7 +70,7 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefault1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		COSObject object = getDefaultValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -46,7 +46,7 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getData1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -49,7 +49,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	private List<AStream> getData2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -71,7 +71,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	private List<ARichMediaInstance> getInstance2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
+		COSObject object = getInstanceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -94,7 +94,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	private List<AArrayOf3DTransMatrix> getM1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
+		COSObject object = getMValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -116,7 +116,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	private List<A3DRenderMode> getRM2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RM"));
+		COSObject object = getRMValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

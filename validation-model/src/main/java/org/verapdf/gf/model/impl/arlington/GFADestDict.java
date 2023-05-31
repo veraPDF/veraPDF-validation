@@ -52,7 +52,7 @@ public class GFADestDict extends GFAObject implements ADestDict {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -92,7 +92,7 @@ public class GFADestDict extends GFAObject implements ADestDict {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSD2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
+		COSObject object = getSDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

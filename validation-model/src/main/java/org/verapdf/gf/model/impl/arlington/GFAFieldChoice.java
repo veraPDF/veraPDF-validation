@@ -62,7 +62,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AAddActionFormField> getAA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -90,7 +90,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfStringsText> getDV1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		COSObject object = getDVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -116,7 +116,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfNonNegativeIntegersGeneral> getI1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		COSObject object = getIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -144,7 +144,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfFields> getKids1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		COSObject object = getKidsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -170,7 +170,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfFieldChoiceOpt> getOpt1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Opt"));
+		COSObject object = getOptValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -199,7 +199,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -274,7 +274,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -363,7 +363,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AStream> getRV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		COSObject object = getRVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -391,7 +391,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	private List<AArrayOfStringsText> getV1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -607,7 +607,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 		}
 		Long lastNumber = null;
 		for (int i = 0; i < object.size(); i += 1) {
-			COSObject elem = this.baseObject.at(i);
+			COSObject elem = object.at(i);
 			if (elem == null || elem.getType() != COSObjType.COS_INTEGER) {
 				return false;
 			}

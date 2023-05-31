@@ -45,7 +45,7 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	}
 
 	private List<ARoleMapNS> getRoleMapNS2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RoleMapNS"));
+		COSObject object = getRoleMapNSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -67,7 +67,7 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	}
 
 	private List<AFileSpecification> getSchema2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		COSObject object = getSchemaValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

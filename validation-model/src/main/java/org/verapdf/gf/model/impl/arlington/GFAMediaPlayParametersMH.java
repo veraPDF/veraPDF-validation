@@ -46,7 +46,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	}
 
 	private List<AMediaDuration> getD1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

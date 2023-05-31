@@ -69,7 +69,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -101,7 +101,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<AArrayOfImageAlternates> getAlternates1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alternates"));
+		COSObject object = getAlternatesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -128,7 +128,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		COSObject object = getDecodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -157,7 +157,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -201,7 +201,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -247,7 +247,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -309,7 +309,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<AFileSpecification> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -338,7 +338,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -382,7 +382,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -428,7 +428,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -490,7 +490,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<AArrayOfFilterNames> getFFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -517,7 +517,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<AArrayOfFilterNames> getFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -540,7 +540,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getMeasure1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+		COSObject object = getMeasureValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -588,7 +588,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<AMetadata> getMetadata1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -613,7 +613,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -662,7 +662,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOPI1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OPI"));
+		COSObject object = getOPIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -698,7 +698,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<APointData> getPtData1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
+		COSObject object = getPtDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -724,7 +724,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	private List<AXObjectImageSoftMask> getSMask1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
+		COSObject object = getSMaskValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1423,6 +1423,11 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	@Override
 	public Boolean getcontainsMask() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Mask"));
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

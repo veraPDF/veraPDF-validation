@@ -106,7 +106,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultCMYK1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultCMYK"));
+		COSObject object = getDefaultCMYKValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -162,7 +162,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultGray1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultGray"));
+		COSObject object = getDefaultGrayValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -175,7 +175,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultGray1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultGray"));
+		COSObject object = getDefaultGrayValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -213,7 +213,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultGray1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultGray"));
+		COSObject object = getDefaultGrayValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -272,7 +272,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultRGB1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
+		COSObject object = getDefaultRGBValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -285,7 +285,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefaultRGB1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
+		COSObject object = getDefaultRGBValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

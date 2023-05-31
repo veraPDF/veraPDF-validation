@@ -48,7 +48,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getMeasure1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+		COSObject object = getMeasureValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -61,7 +61,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getMeasure2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+		COSObject object = getMeasureValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -105,7 +105,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	private List<APointData> getPtData2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
+		COSObject object = getPtDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

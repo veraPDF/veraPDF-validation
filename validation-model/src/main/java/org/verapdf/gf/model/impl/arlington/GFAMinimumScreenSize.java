@@ -46,7 +46,7 @@ public class GFAMinimumScreenSize extends GFAObject implements AMinimumScreenSiz
 	}
 
 	private List<AArrayOf_2Integers> getV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

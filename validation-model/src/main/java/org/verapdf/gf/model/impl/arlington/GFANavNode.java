@@ -54,7 +54,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNA1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		COSObject object = getNAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -117,7 +117,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		COSObject object = getNAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -184,7 +184,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		COSObject object = getNAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -267,7 +267,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<ANavNode> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -294,7 +294,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPA1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
+		COSObject object = getPAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -357,7 +357,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
+		COSObject object = getPAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -424,7 +424,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
+		COSObject object = getPAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -507,7 +507,7 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	private List<ANavNode> getPrev1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

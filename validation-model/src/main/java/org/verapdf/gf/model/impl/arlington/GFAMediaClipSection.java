@@ -52,7 +52,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	private List<AArrayOfStringsText> getAlt1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alt"));
+		COSObject object = getAltValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	private List<AMediaClipSectionMHBE> getBE1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		COSObject object = getBEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -102,7 +102,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -149,7 +149,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	private List<AMediaClipSectionMHBE> getMH1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		COSObject object = getMHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

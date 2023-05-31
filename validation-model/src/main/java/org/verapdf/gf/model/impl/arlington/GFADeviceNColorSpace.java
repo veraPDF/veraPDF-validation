@@ -54,10 +54,10 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	private List<AArrayOfNamesGeneral> getentry11_3() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfNamesGeneral> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfNamesGeneral((COSArray)object.getDirectBase(), this.baseObject, "1"));
@@ -81,10 +81,10 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry21_3() {
-		if (this.baseObject.size() < 2) {
+		COSObject object = getentry2Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(2);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			org.verapdf.model.baselayer.Object result = getentry2Array1_3(object.getDirectBase(), "2");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -137,10 +137,10 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry31_3() {
-		if (this.baseObject.size() < 3) {
+		COSObject object = getentry3Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(3);
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getentry3Dictionary1_3(object.getDirectBase(), "3");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -213,10 +213,10 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	}
 
 	private List<ADeviceNDict> getentry41_3() {
-		if (this.baseObject.size() < 4) {
+		COSObject object = getentry4Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(4);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ADeviceNDict> list = new ArrayList<>(1);
 			list.add(new GFADeviceNDict((COSDictionary)object.getDirectBase(), this.baseObject, "4"));

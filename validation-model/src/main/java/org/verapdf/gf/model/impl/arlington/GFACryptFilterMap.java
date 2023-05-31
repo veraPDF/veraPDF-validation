@@ -74,7 +74,7 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	}
 
 	private List<ACryptFilter> getIdentity1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Identity"));
+		COSObject object = getIdentityValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -99,7 +99,7 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	}
 
 	private List<ACryptFilter> getStdCF1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StdCF"));
+		COSObject object = getStdCFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

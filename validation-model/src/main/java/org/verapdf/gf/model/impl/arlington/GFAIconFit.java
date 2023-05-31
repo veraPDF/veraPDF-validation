@@ -48,7 +48,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	}
 
 	private List<AArrayOf_2Numbers> getA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

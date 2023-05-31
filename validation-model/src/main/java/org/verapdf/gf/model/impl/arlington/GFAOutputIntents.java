@@ -53,7 +53,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	private List<AICCProfileStream> getDestOutputProfile1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DestOutputProfile"));
+		COSObject object = getDestOutputProfileValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	private List<ADestOutputProfileRef> getDestOutputProfileRef2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DestOutputProfileRef"));
+		COSObject object = getDestOutputProfileRefValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -97,7 +97,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	private List<ADeviceNMixingHints> getMixingHints2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MixingHints"));
+		COSObject object = getMixingHintsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -119,7 +119,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	private List<ASpectralData> getSpectralData2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpectralData"));
+		COSObject object = getSpectralDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

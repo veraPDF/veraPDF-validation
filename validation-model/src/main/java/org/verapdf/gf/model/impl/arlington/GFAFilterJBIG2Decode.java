@@ -47,7 +47,7 @@ public class GFAFilterJBIG2Decode extends GFAObject implements AFilterJBIG2Decod
 	}
 
 	private List<AStream> getJBIG2Globals1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JBIG2Globals"));
+		COSObject object = getJBIG2GlobalsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

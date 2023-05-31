@@ -50,7 +50,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	private List<AURLAlias> getAU1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AU"));
+		COSObject object = getAUValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	private List<AWebCaptureCommand> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

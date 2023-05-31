@@ -55,7 +55,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<AArrayOfFileSpecifications> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<ADPM> getDPM1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPM"));
+		COSObject object = getDPMValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -103,7 +103,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<AArrayOfDPartArrays> getDParts1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DParts"));
+		COSObject object = getDPartsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -127,7 +127,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<APageObject> getEnd1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("End"));
+		COSObject object = getEndValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -149,7 +149,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<AMetadata> getMetadata2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -173,7 +173,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -219,7 +219,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	private List<APageObject> getStart1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
+		COSObject object = getStartValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -399,6 +399,11 @@ public class GFADPart extends GFAObject implements ADPart {
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionPDF_VT2() {
+		return false;
 	}
 
 }

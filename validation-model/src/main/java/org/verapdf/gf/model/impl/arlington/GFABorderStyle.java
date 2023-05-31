@@ -49,7 +49,7 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	}
 
 	private List<AArrayOfDashPatterns> getD1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

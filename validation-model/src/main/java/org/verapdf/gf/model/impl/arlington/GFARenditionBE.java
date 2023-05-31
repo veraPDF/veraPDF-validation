@@ -46,7 +46,7 @@ public class GFARenditionBE extends GFAObject implements ARenditionBE {
 	}
 
 	private List<AMediaCriteria> getC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

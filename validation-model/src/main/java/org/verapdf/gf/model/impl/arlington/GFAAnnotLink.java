@@ -77,7 +77,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -118,7 +118,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -177,7 +177,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -234,7 +234,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -297,7 +297,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -364,7 +364,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -444,7 +444,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -477,7 +477,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AAppearance> getAP1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -501,7 +501,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<ABorderStyle> getBS1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BS"));
+		COSObject object = getBSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -531,7 +531,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+		COSObject object = getBorderValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -560,7 +560,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -590,7 +590,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		COSObject object = getDestValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -633,7 +633,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -682,7 +682,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<APageObject> getP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -709,7 +709,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AActionURI> getPA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
+		COSObject object = getPAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -731,7 +731,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOfArraysPaths> getPath2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Path"));
+		COSObject object = getPathValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -755,7 +755,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOfQuadPoints> getQuadPoints1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("QuadPoints"));
+		COSObject object = getQuadPointsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1353,7 +1353,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
-	public Boolean getcontainsAPNAny() {
+	public Boolean getAPNHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1362,11 +1362,11 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
-		return N.getKeySet() != null && !N.getKeySet().isEmpty();
+		return N != null && N.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsAPRAny() {
+	public Boolean getAPRHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1375,11 +1375,11 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
-		return R.getKeySet() != null && !R.getKeySet().isEmpty();
+		return R != null && R.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsAPDAny() {
+	public Boolean getAPDHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1388,7 +1388,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		COSObject D = AP.getKey(ASAtom.getASAtom("D"));
-		return D.getKeySet() != null && !D.getKeySet().isEmpty();
+		return D != null && D.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_24654() {
+		return false;
 	}
 
 }

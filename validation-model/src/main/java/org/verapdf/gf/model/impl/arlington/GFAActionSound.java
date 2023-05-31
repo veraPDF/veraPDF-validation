@@ -55,7 +55,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -119,7 +119,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -181,7 +181,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -249,7 +249,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -321,7 +321,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -412,7 +412,7 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	private List<ASoundObject> getSound1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sound"));
+		COSObject object = getSoundValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

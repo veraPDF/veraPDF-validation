@@ -45,7 +45,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

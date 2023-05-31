@@ -53,7 +53,7 @@ public class GFAOutline extends GFAObject implements AOutline {
 	}
 
 	private List<AOutlineItem> getFirst1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+		COSObject object = getFirstValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFAOutline extends GFAObject implements AOutline {
 	}
 
 	private List<AOutlineItem> getLast1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
+		COSObject object = getLastValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

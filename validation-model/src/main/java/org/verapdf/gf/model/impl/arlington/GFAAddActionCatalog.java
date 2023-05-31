@@ -55,7 +55,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getDC1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DC"));
+		COSObject object = getDCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getDP1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DP"));
+		COSObject object = getDPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -107,7 +107,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getDS1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
+		COSObject object = getDSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -133,7 +133,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getWP1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WP"));
+		COSObject object = getWPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -159,7 +159,7 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	private List<AActionECMAScript> getWS1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WS"));
+		COSObject object = getWSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -52,7 +52,7 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	}
 
 	private List<ABlackpointArray> getBlackPoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		COSObject object = getBlackPointValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	}
 
 	private List<AWhitepointArray> getWhitePoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		COSObject object = getWhitePointValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

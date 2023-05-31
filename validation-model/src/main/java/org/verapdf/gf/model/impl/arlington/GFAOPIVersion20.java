@@ -49,7 +49,7 @@ public class GFAOPIVersion20 extends GFAObject implements AOPIVersion20 {
 	}
 
 	private List<AOPIVersion20Dict> getentry201_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("2.0"));
+		COSObject object = getentry20Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}

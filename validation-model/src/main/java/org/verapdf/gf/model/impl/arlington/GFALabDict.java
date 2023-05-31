@@ -54,7 +54,7 @@ public class GFALabDict extends GFAObject implements ALabDict {
 	}
 
 	private List<ABlackpointArray> getBlackPoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		COSObject object = getBlackPointValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFALabDict extends GFAObject implements ALabDict {
 	}
 
 	private List<ALabRangeArray> getRange1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		COSObject object = getRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -112,7 +112,7 @@ public class GFALabDict extends GFAObject implements ALabDict {
 	}
 
 	private List<AWhitepointArray> getWhitePoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		COSObject object = getWhitePointValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

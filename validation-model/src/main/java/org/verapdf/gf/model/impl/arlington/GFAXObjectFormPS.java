@@ -62,7 +62,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -80,7 +80,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -120,7 +120,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -178,7 +178,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<AFileSpecification> getF1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -207,7 +207,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -247,7 +247,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -304,7 +304,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -333,7 +333,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -362,7 +362,7 @@ public class GFAXObjectFormPS extends GFAObject implements AXObjectFormPS {
 	}
 
 	private List<AStream> getLevel11_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Level1"));
+		COSObject object = getLevel1Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}

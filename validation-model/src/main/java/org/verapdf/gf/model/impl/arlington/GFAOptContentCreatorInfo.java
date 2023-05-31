@@ -89,4 +89,9 @@ public class GFAOptContentCreatorInfo extends GFAObject implements AOptContentCr
 		return null;
 	}
 
+	@Override
+	public Boolean gethasExtensionMalforms() {
+		return false;
+	}
+
 }

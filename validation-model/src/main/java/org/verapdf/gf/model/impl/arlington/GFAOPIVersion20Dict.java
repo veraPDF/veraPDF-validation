@@ -57,7 +57,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	private List<AFileSpecification> getF1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -85,7 +85,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	private List<AArrayOf_2Integers> getIncludedImageDimensions1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
+		COSObject object = getIncludedImageDimensionsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -113,7 +113,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	private List<AArrayOfOPI2Inks> getInks1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Inks"));
+		COSObject object = getInksValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -141,7 +141,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	private List<AArrayOf_2Numbers> getSize1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -169,7 +169,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	private List<AArrayOfTags> getTags1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tags"));
+		COSObject object = getTagsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

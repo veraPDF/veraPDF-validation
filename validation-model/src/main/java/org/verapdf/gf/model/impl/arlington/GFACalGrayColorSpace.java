@@ -50,10 +50,10 @@ public class GFACalGrayColorSpace extends GFAObject implements ACalGrayColorSpac
 	}
 
 	private List<ACalGrayDict> getentry11_1() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ACalGrayDict> list = new ArrayList<>(1);
 			list.add(new GFACalGrayDict((COSDictionary)object.getDirectBase(), this.baseObject, "1"));

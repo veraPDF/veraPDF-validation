@@ -50,7 +50,7 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	}
 
 	private List<A_UniversalDictionary> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	}
 
 	private List<A_UniversalDictionary> getG1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
+		COSObject object = getGValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

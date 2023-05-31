@@ -50,7 +50,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	private List<AArrayOfSoftwareVersions> getH1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		COSObject object = getHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	private List<AArrayOfSoftwareVersions> getL1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		COSObject object = getLValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -100,7 +100,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	private List<AArrayOfStringsByte> getOS1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		COSObject object = getOSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

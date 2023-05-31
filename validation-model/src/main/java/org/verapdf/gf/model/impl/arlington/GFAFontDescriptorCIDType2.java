@@ -57,7 +57,7 @@ public class GFAFontDescriptorCIDType2 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AStream> getCIDSet1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDSet"));
+		COSObject object = getCIDSetValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -85,7 +85,7 @@ public class GFAFontDescriptorCIDType2 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFDDict> getFD1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FD"));
+		COSObject object = getFDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -113,7 +113,7 @@ public class GFAFontDescriptorCIDType2 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFontFile> getFontFile1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile"));
+		COSObject object = getFontFileValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -141,7 +141,7 @@ public class GFAFontDescriptorCIDType2 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFontFile2> getFontFile21_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile2"));
+		COSObject object = getFontFile2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -169,7 +169,7 @@ public class GFAFontDescriptorCIDType2 extends GFAObject implements AFontDescrip
 	}
 
 	private List<AStyleDict> getStyle1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Style"));
+		COSObject object = getStyleValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

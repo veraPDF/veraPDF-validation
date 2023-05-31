@@ -46,7 +46,7 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 	}
 
 	private List<AArrayOfStringsText> getFields1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -147,6 +147,11 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

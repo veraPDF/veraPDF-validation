@@ -75,7 +75,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -108,7 +108,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -148,7 +148,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -204,7 +204,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AFileSpecification> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -232,7 +232,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -272,7 +272,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -328,7 +328,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -355,7 +355,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -381,7 +381,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AGroupAttributes> getGroup1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Group"));
+		COSObject object = getGroupValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -404,7 +404,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AMeasureRL> getMeasure1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
+		COSObject object = getMeasureValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -430,7 +430,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AMetadata> getMetadata1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -455,7 +455,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -504,7 +504,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOPI1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OPI"));
+		COSObject object = getOPIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -544,7 +544,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<APagePiece> getPieceInfo1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+		COSObject object = getPieceInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -567,7 +567,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<APointData> getPtData1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
+		COSObject object = getPtDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -593,7 +593,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AReference> getRef1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ref"));
+		COSObject object = getRefValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -620,7 +620,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AResource> getResources1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -647,7 +647,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AArrayOfNamesGeneral> getSeparationColorNames1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SeparationColorNames"));
+		COSObject object = getSeparationColorNamesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -674,7 +674,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	private List<AArrayOfTrapRegions> getTrapRegions1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrapRegions"));
+		COSObject object = getTrapRegionsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1337,6 +1337,11 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

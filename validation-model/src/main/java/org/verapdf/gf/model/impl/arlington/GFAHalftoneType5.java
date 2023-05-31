@@ -79,7 +79,7 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefault1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		COSObject object = getDefaultValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -119,7 +119,7 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDefault1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Default"));
+		COSObject object = getDefaultValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

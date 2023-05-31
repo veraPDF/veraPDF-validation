@@ -74,7 +74,7 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	}
 
 	private List<ACryptFilterPublicKey> getDefEmbeddedFile1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefEmbeddedFile"));
+		COSObject object = getDefEmbeddedFileValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -99,7 +99,7 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	}
 
 	private List<ACryptFilterPublicKey> getDefaultCryptFilter1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultCryptFilter"));
+		COSObject object = getDefaultCryptFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

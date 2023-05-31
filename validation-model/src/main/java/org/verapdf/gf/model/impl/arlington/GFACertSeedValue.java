@@ -56,7 +56,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsByte> getIssuer1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Issuer"));
+		COSObject object = getIssuerValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsASCII> getKeyUsage1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KeyUsage"));
+		COSObject object = getKeyUsageValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -104,7 +104,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsByte> getOID1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OID"));
+		COSObject object = getOIDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -126,7 +126,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsASCII> getSignaturePolicyCommitmentType2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyCommitmentType"));
+		COSObject object = getSignaturePolicyCommitmentTypeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -151,7 +151,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfStringsByte> getSubject1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subject"));
+		COSObject object = getSubjectValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -174,7 +174,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	private List<AArrayOfSubjectDN> getSubjectDN1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubjectDN"));
+		COSObject object = getSubjectDNValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

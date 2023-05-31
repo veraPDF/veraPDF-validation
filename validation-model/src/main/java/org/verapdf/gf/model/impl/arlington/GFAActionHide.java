@@ -55,7 +55,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -119,7 +119,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -181,7 +181,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -249,7 +249,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -321,7 +321,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -418,7 +418,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -464,7 +464,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -534,7 +534,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -608,7 +608,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -690,7 +690,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -776,7 +776,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -864,7 +864,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

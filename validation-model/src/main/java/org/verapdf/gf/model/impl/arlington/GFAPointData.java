@@ -46,7 +46,7 @@ public class GFAPointData extends GFAObject implements APointData {
 	}
 
 	private List<AArrayOfNamesInPtData> getNames1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
+		COSObject object = getNamesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -69,7 +69,7 @@ public class GFAPointData extends GFAObject implements APointData {
 	}
 
 	private List<AArrayOfArraysXPTSValues> getXPTS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XPTS"));
+		COSObject object = getXPTSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -161,6 +161,11 @@ public class GFAPointData extends GFAObject implements APointData {
 	public Boolean getXPTSHasTypeArray() {
 		COSObject object = getXPTSValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

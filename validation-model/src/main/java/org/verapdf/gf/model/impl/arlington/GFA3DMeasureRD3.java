@@ -62,7 +62,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA11_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A1"));
+		COSObject object = getA1Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -85,7 +85,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA21_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A2"));
+		COSObject object = getA2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -108,7 +108,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA31_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A3"));
+		COSObject object = getA3Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -131,7 +131,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA41_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A4"));
+		COSObject object = getA4Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -154,7 +154,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getAP1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -177,7 +177,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -200,7 +200,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AAnnotProjection> getS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -223,7 +223,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getTP1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
+		COSObject object = getTPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -246,7 +246,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getTX1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TX"));
+		COSObject object = getTXValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -269,7 +269,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getTY1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TY"));
+		COSObject object = getTYValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -724,6 +724,11 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	public Boolean getVHasTypeNumber() {
 		COSObject object = getVValue();
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

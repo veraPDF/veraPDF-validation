@@ -58,7 +58,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<ACertSeedValue> getCert1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
+		COSObject object = getCertValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AArrayOfDigestMethod> getDigestMethod1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestMethod"));
+		COSObject object = getDigestMethodValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -105,7 +105,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AArrayOfStringsText> getLegalAttestation1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LegalAttestation"));
+		COSObject object = getLegalAttestationValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -129,7 +129,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AMDPDict> getMDP1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MDP"));
+		COSObject object = getMDPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -154,7 +154,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AArrayOfStringsText> getReasons1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Reasons"));
+		COSObject object = getReasonsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -179,7 +179,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<AArrayOfSignatureSubFilterNames> getSubFilter1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
+		COSObject object = getSubFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -203,7 +203,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	private List<ATimeStampDict> getTimeStamp1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TimeStamp"));
+		COSObject object = getTimeStampValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -485,6 +485,11 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 			return object.getInteger();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

@@ -61,7 +61,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<ACharProcMap> getCharProcs1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CharProcs"));
+		COSObject object = getCharProcsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -91,7 +91,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<AEncoding> getEncoding1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		COSObject object = getEncodingValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -121,7 +121,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<AFontDescriptorType3> getFontDescriptor1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		COSObject object = getFontDescriptorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -149,7 +149,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<AResource> getResources1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -177,7 +177,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<AStream> getToUnicode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		COSObject object = getToUnicodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -207,7 +207,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getWidths1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Widths"));
+		COSObject object = getWidthsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

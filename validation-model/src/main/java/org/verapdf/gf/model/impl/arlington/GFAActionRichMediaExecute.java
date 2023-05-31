@@ -50,7 +50,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<ARichMediaCommand> getCMD1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CMD"));
+		COSObject object = getCMDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -74,7 +74,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -148,7 +148,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -234,7 +234,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<AAnnotRichMedia> getTA1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TA"));
+		COSObject object = getTAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -257,7 +257,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	private List<ARichMediaInstance> getTI1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TI"));
+		COSObject object = getTIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -399,6 +399,11 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

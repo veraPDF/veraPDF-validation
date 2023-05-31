@@ -50,7 +50,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	private List<AStream> getP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	private List<AWebCaptureCommandSettings> getS1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

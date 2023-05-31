@@ -48,7 +48,7 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 	}
 
 	private List<AArrayOfWebCaptureCommands> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

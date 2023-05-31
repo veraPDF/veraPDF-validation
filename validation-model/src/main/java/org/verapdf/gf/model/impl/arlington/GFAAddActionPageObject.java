@@ -55,7 +55,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getC1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -114,7 +114,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -171,7 +171,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -234,7 +234,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getC1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -301,7 +301,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getC2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -391,7 +391,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getO1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -450,7 +450,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getO1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -507,7 +507,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getO1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -570,7 +570,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getO1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -637,7 +637,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getO2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

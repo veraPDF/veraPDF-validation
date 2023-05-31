@@ -68,7 +68,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeAP> getAP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -94,7 +94,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeAlternatePresentations> getAlternatePresentations1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternatePresentations"));
+		COSObject object = getAlternatePresentationsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -122,7 +122,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeDests> getDests1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		COSObject object = getDestsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -148,7 +148,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeEmbeddedFiles> getEmbeddedFiles1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EmbeddedFiles"));
+		COSObject object = getEmbeddedFilesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -175,7 +175,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeIDS> getIDS1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDS"));
+		COSObject object = getIDSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -202,7 +202,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeJavaScript> getJavaScript1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScript"));
+		COSObject object = getJavaScriptValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -229,7 +229,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreePages> getPages1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		COSObject object = getPagesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -254,7 +254,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeRenditions> getRenditions1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Renditions"));
+		COSObject object = getRenditionsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -281,7 +281,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeTemplates> getTemplates1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Templates"));
+		COSObject object = getTemplatesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -308,7 +308,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeURLS> getURLS1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLS"));
+		COSObject object = getURLSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -331,7 +331,7 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	private List<ANameNameTreeXFAResources> getXFAResources1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFAResources"));
+		COSObject object = getXFAResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -517,6 +517,11 @@ public class GFAName extends GFAObject implements AName {
 	public Boolean getXFAResourcesHasTypeNameTree() {
 		COSObject object = getXFAResourcesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

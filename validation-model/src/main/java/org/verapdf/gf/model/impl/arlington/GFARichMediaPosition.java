@@ -178,4 +178,9 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 		return object != null && object.getType().isNumber();
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

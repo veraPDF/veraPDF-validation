@@ -52,7 +52,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	private List<AColorantsDict> getColorants1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colorants"));
+		COSObject object = getColorantsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -76,7 +76,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	private List<ADeviceNMixingHints> getMixingHints1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MixingHints"));
+		COSObject object = getMixingHintsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -100,7 +100,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	private List<ADeviceNProcess> getProcess1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Process"));
+		COSObject object = getProcessValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

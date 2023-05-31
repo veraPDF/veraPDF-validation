@@ -46,7 +46,7 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 	}
 
 	private List<AArrayOfBooleansGeneral> getA1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -69,7 +69,7 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 	}
 
 	private List<AArrayOfNamesGeneral> getS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

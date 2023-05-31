@@ -45,7 +45,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	}
 
 	private List<AArrayOf_4Integers> getByteRange2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		COSObject object = getByteRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -67,7 +67,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSigObjRef2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigObjRef"));
+		COSObject object = getSigObjRefValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -324,6 +324,11 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		}
 		COSObject entry3 = ByteRange.at(3);
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry3HasTypeInteger();
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32004() {
+		return false;
 	}
 
 }

@@ -60,7 +60,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentCreatorInfo> getCreatorInfo1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreatorInfo"));
+		COSObject object = getCreatorInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -85,7 +85,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentExport> getExport1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Export"));
+		COSObject object = getExportValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -110,7 +110,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentLanguage> getLanguage1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Language"));
+		COSObject object = getLanguageValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,7 +135,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentPageElement> getPageElement1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageElement"));
+		COSObject object = getPageElementValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -160,7 +160,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentPrint> getPrint1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Print"));
+		COSObject object = getPrintValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -185,7 +185,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentUser> getUser1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("User"));
+		COSObject object = getUserValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -210,7 +210,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentView> getView1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("View"));
+		COSObject object = getViewValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -235,7 +235,7 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	private List<AOptContentZoom> getZoom1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Zoom"));
+		COSObject object = getZoomValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

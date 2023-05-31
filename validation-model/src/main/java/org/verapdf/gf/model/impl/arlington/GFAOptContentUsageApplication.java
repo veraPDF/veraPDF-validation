@@ -48,7 +48,7 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	}
 
 	private List<AArrayOfNamesGeneral> getCategory1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Category"));
+		COSObject object = getCategoryValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -73,7 +73,7 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	}
 
 	private List<AArrayOfOCG> getOCGs1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		COSObject object = getOCGsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

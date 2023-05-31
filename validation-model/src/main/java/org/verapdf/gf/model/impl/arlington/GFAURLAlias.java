@@ -48,7 +48,7 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 	}
 
 	private List<AArrayOfArraysURLStrings> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

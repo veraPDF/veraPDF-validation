@@ -52,7 +52,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	private List<APageObject> getPg1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	private List<AXObjectFormType1> getStm1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Stm"));
+		COSObject object = getStmValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -106,7 +106,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getStmOwn1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StmOwn"));
+		COSObject object = getStmOwnValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

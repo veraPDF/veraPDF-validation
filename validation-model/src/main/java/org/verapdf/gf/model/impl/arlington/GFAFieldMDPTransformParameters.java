@@ -46,7 +46,7 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 	}
 
 	private List<AArrayOfStringsText> getFields1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

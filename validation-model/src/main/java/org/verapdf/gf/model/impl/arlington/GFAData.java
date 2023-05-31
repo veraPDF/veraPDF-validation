@@ -76,7 +76,7 @@ public class GFAData extends GFAObject implements AData {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPrivate1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Private"));
+		COSObject object = getPrivateValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

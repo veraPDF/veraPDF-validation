@@ -54,7 +54,7 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getObj1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Obj"));
+		COSObject object = getObjValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -91,7 +91,7 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 	}
 
 	private List<APageObject> getPg1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -46,7 +46,7 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<AArrayOfStringsText> getOS1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
+		COSObject object = getOSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

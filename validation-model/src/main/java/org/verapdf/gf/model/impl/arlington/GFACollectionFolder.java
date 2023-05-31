@@ -54,7 +54,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	private List<ACollectionItem> getCI1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
+		COSObject object = getCIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	private List<ACollectionFolder> getChild1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Child"));
+		COSObject object = getChildValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -100,7 +100,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	private List<AArrayOfNumbersGeneral> getFree1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Free"));
+		COSObject object = getFreeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -123,7 +123,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	private List<ACollectionFolder> getNext1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -146,7 +146,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	private List<ACollectionFolder> getParent1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -169,7 +169,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	private List<AThumbnail> getThumb1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -404,6 +404,11 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

@@ -45,7 +45,7 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getV1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

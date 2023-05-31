@@ -48,7 +48,7 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	}
 
 	private List<ARichMediaContentNameTreeAssets> getAssets1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Assets"));
+		COSObject object = getAssetsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -71,7 +71,7 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	}
 
 	private List<AArrayOfRichMediaConfiguration> getConfigurations1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configurations"));
+		COSObject object = getConfigurationsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -94,7 +94,7 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	}
 
 	private List<AArrayOf3DView> getViews1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Views"));
+		COSObject object = getViewsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -186,6 +186,11 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	public Boolean getViewsHasTypeArray() {
 		COSObject object = getViewsValue();
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

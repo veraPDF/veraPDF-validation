@@ -53,7 +53,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	private List<AArrayOf_2Numbers> getAspect1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Aspect"));
+		COSObject object = getAspectValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	private List<AFileSpecification> getF1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -109,7 +109,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	private List<AXObjectImage> getPoster1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Poster"));
+		COSObject object = getPosterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -58,7 +58,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	private List<AAddActionFormField> getAA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -86,7 +86,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	private List<AStream> getDV1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		COSObject object = getDVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -114,7 +114,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	private List<AArrayOfFields> getKids1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		COSObject object = getKidsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -143,7 +143,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -218,7 +218,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -307,7 +307,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	private List<AStream> getRV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		COSObject object = getRVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -335,7 +335,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	private List<AStream> getV1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

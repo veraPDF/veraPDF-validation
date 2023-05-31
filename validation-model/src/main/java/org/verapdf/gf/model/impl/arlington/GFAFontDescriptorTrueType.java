@@ -52,7 +52,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFontFileType1> getFontFile1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile"));
+		COSObject object = getFontFileValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -80,7 +80,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	}
 
 	private List<AFontFile2> getFontFile21_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile2"));
+		COSObject object = getFontFile2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}

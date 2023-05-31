@@ -51,7 +51,7 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	private List<AAnnotMovie> getAnnotation1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annotation"));
+		COSObject object = getAnnotationValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -147,7 +147,7 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -209,7 +209,7 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -277,7 +277,7 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -349,7 +349,7 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

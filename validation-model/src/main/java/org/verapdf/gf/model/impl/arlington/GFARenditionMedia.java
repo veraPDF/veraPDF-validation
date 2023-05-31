@@ -54,7 +54,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<ARenditionBE> getBE1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		COSObject object = getBEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -126,7 +126,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<ARenditionMH> getMH1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		COSObject object = getMHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -151,7 +151,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<AMediaPlayParameters> getP1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -176,7 +176,7 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	private List<AMediaScreenParameters> getSP1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SP"));
+		COSObject object = getSPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

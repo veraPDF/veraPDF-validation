@@ -52,10 +52,10 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry21_2() {
-		if (this.baseObject.size() < 2) {
+		COSObject object = getentry2Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(2);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			org.verapdf.model.baselayer.Object result = getentry2Array1_2(object.getDirectBase(), "2");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -92,10 +92,10 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry21_3() {
-		if (this.baseObject.size() < 2) {
+		COSObject object = getentry2Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(2);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			org.verapdf.model.baselayer.Object result = getentry2Array1_3(object.getDirectBase(), "2");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -150,10 +150,10 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry31_2() {
-		if (this.baseObject.size() < 3) {
+		COSObject object = getentry3Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(3);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AFunctionType0> list = new ArrayList<>(1);
 			list.add(new GFAFunctionType0((COSStream)object.getDirectBase(), this.baseObject, "3"));
@@ -163,10 +163,10 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry31_3() {
-		if (this.baseObject.size() < 3) {
+		COSObject object = getentry3Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(3);
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getentry3Dictionary1_3(object.getDirectBase(), "3");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);

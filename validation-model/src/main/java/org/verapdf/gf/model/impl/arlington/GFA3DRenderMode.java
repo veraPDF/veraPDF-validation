@@ -46,7 +46,7 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	private List<AArrayOf_4ColourSpaceEntries> getAC1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AC"));
+		COSObject object = getACValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -69,7 +69,7 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	private List<AArrayOf_4ColourSpaceEntries> getFC1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FC"));
+		COSObject object = getFCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

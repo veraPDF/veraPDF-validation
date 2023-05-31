@@ -52,7 +52,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<ARichMediaAnimation> getAnimation1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Animation"));
+		COSObject object = getAnimationValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<ARichMediaConfiguration> getConfiguration1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configuration"));
+		COSObject object = getConfigurationValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -98,7 +98,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<ARichMediaPresentation> getPresentation1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Presentation"));
+		COSObject object = getPresentationValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -121,7 +121,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<AArrayOfIndirectFileSpecifications> getScripts1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scripts"));
+		COSObject object = getScriptsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -144,7 +144,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getView1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("View"));
+		COSObject object = getViewValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -321,6 +321,11 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	public Boolean getViewHasTypeDictionary() {
 		COSObject object = getViewValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

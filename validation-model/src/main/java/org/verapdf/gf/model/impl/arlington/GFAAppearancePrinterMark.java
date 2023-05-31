@@ -51,7 +51,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -82,7 +82,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getN1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -113,7 +113,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getR1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

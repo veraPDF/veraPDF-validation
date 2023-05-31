@@ -65,7 +65,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<A3DBackground> getBG2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		COSObject object = getBGValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -87,7 +87,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOf3DTransMatrix> getC2W2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C2W"));
+		COSObject object = getC2WValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -109,7 +109,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<A3DLightingScheme> getLS2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LS"));
+		COSObject object = getLSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -131,7 +131,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOf3DMeasure> getMA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MA"));
+		COSObject object = getMAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -153,7 +153,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOf3DNode> getNA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
+		COSObject object = getNAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -175,7 +175,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AXObjectFormType1> getO2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -197,7 +197,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AProjection> getP2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -220,7 +220,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOfViewParams> getParams1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Params"));
+		COSObject object = getParamsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -242,7 +242,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<A3DRenderMode> getRM2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RM"));
+		COSObject object = getRMValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -264,7 +264,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOf3DCrossSection> getSA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SA"));
+		COSObject object = getSAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -287,7 +287,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AXObjectImage> getSnapshot1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Snapshot"));
+		COSObject object = getSnapshotValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -309,7 +309,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	}
 
 	private List<AArrayOfStringsText> getU3DPath2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U3DPath"));
+		COSObject object = getU3DPathValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -654,6 +654,11 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	public Boolean getXNHasTypeString() {
 		COSObject object = getXNValue();
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

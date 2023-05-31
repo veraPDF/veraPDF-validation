@@ -39,4 +39,9 @@ public class GFAArrayOfXPTSValuesEntry extends GFAObject implements AArrayOfXPTS
 		return object != null && object.getType().isNumber();
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

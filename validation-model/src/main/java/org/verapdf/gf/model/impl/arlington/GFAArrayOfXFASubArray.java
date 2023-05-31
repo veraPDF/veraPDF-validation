@@ -45,10 +45,10 @@ public class GFAArrayOfXFASubArray extends GFAObject implements AArrayOfXFASubAr
 	}
 
 	private List<AStream> getentry11_6() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
 			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "1"));

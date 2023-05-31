@@ -56,7 +56,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<ABead> getB1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		COSObject object = getBValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -85,7 +85,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<AThread> getD1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -114,7 +114,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<AFileSpecification> getF1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -146,7 +146,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -210,7 +210,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -272,7 +272,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -340,7 +340,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -412,7 +412,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -48,4 +48,9 @@ public class GFAArrayOfNamesInPtDataEntry extends GFAObject implements AArrayOfN
 		return null;
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

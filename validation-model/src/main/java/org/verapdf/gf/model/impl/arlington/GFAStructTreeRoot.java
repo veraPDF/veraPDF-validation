@@ -57,7 +57,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -89,7 +89,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<AClassMap> getClassMap1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ClassMap"));
+		COSObject object = getClassMapValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -116,7 +116,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<AStructTreeRootNameTreeIDTree> getIDTree1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDTree"));
+		COSObject object = getIDTreeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -143,7 +143,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getK1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -170,7 +170,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<AArrayOfNamespace> getNamespaces2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Namespaces"));
+		COSObject object = getNamespacesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -197,7 +197,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<AStructTreeRootNumberTreeParentTree> getParentTree1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ParentTree"));
+		COSObject object = getParentTreeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -219,7 +219,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPronunciationLexicon2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PronunciationLexicon"));
+		COSObject object = getPronunciationLexiconValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -251,7 +251,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	private List<ARoleMap> getRoleMap1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RoleMap"));
+		COSObject object = getRoleMapValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

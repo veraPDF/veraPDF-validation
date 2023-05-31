@@ -61,7 +61,7 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	}
 
 	private List<ACIDSystemInfo> getCIDSystemInfo1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDSystemInfo"));
+		COSObject object = getCIDSystemInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -89,7 +89,7 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	}
 
 	private List<AStream> getCIDToGIDMap1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIDToGIDMap"));
+		COSObject object = getCIDToGIDMapValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -117,7 +117,7 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	}
 
 	private List<AArrayOf_2Numbers> getDW21_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DW2"));
+		COSObject object = getDW2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -145,7 +145,7 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	}
 
 	private List<AFontDescriptorCIDType2> getFontDescriptor1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		COSObject object = getFontDescriptorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -173,7 +173,7 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	}
 
 	private List<AStream> getToUnicode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		COSObject object = getToUnicodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -201,7 +201,7 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	}
 
 	private List<AArrayOfCIDGlyphMetricsW> getW1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		COSObject object = getWValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -229,7 +229,7 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	}
 
 	private List<AArrayOfCIDGlyphMetricsW2> getW21_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W2"));
+		COSObject object = getW2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}

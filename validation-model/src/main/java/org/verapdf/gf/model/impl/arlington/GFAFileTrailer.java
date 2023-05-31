@@ -37,6 +37,8 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 				return getInfo();
 			case "Root":
 				return getRoot();
+			case "XRefStream":
+				return getXRefStream();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -52,7 +54,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<AAuthCode> getAuthCode2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		COSObject object = getAuthCodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +83,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEncrypt1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		COSObject object = getEncryptValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -134,7 +136,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<ATrailerIDArray> getentryID1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -164,7 +166,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<ADocInfo> getInfo1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		COSObject object = getInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -194,13 +196,38 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<ACatalog> getRoot1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		COSObject object = getRootValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ACatalog> list = new ArrayList<>(1);
 			list.add(new GFACatalog((COSDictionary)object.getDirectBase(), this.baseObject, "Root"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AXRefStream> getXRefStream() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getXRefStream1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AXRefStream> getXRefStream1_5() {
+		COSObject object = getXRefStreamValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AXRefStream> list = new ArrayList<>(1);
+			list.add(new GFAXRefStream((COSStream)object.getDirectBase(), this.baseObject, "XRefStream"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -398,6 +425,22 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	@Override
+	public Boolean getcontainsXRefStream() {
+		return getcontainsXRefStm();
+	}
+
+	public COSObject getXRefStreamValue() {
+		COSObject object = StaticResources.getDocument().getDocument().getObject(getXRefStmIntegerValue());
+		return object;
+	}
+
+	@Override
+	public Boolean getXRefStreamHasTypeStream() {
+		COSObject object = getXRefStreamValue();
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	@Override
 	public Long getEncryptVIntegerValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
@@ -424,6 +467,11 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		}
 		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
 		return V != null && V.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32004() {
+		return false;
 	}
 
 }

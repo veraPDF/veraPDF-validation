@@ -46,7 +46,7 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	}
 
 	private List<AFileSpecification> getAsset1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Asset"));
+		COSObject object = getAssetValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -69,7 +69,7 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	}
 
 	private List<ARichMediaParams> getParams1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Params"));
+		COSObject object = getParamsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -186,6 +186,16 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32007() {
+		return false;
 	}
 
 }

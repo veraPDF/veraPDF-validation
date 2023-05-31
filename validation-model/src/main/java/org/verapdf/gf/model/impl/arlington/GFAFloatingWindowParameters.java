@@ -48,7 +48,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	private List<AArrayOf_2Integers> getD1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -73,7 +73,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	private List<AArrayOfStringsText> getTT1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TT"));
+		COSObject object = getTTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

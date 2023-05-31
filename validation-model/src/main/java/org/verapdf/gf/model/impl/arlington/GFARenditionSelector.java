@@ -50,7 +50,7 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	private List<ARenditionBE> getBE1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		COSObject object = getBEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	private List<ARenditionMH> getMH1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		COSObject object = getMHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -100,7 +100,7 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	private List<AArrayOfRenditions> getR1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

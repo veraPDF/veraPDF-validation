@@ -57,7 +57,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getD1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -105,7 +105,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOf_2Numbers> getO1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -129,7 +129,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getS1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -153,7 +153,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getT1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -177,7 +177,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getX1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
+		COSObject object = getXValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -201,7 +201,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	private List<AArrayOfNumberFormats> getY1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Y"));
+		COSObject object = getYValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

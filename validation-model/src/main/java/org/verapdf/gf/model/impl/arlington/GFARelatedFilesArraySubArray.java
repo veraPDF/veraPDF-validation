@@ -48,10 +48,10 @@ public class GFARelatedFilesArraySubArray extends GFAObject implements ARelatedF
 	}
 
 	private List<AEmbeddedFileStream> getentry11_3() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AEmbeddedFileStream> list = new ArrayList<>(1);
 			list.add(new GFAEmbeddedFileStream((COSStream)object.getDirectBase(), this.baseObject, "1"));

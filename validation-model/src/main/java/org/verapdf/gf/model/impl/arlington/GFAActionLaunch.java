@@ -54,7 +54,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<AFileSpecification> getF1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -86,7 +86,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -150,7 +150,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -212,7 +212,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -280,7 +280,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -352,7 +352,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -444,7 +444,7 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 	}
 
 	private List<AMicrosoftWindowsLaunchParam> getWin1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Win"));
+		COSObject object = getWinValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

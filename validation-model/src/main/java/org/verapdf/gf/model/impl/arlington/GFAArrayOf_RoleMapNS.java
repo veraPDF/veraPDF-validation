@@ -43,10 +43,10 @@ public class GFAArrayOf_RoleMapNS extends GFAObject implements AArrayOf_RoleMapN
 	}
 
 	private List<ANamespace> getentry12_0() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ANamespace> list = new ArrayList<>(1);
 			list.add(new GFANamespace((COSDictionary)object.getDirectBase(), this.baseObject, "1"));

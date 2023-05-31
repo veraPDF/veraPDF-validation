@@ -46,7 +46,7 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	}
 
 	private List<AStream> getData1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -69,7 +69,7 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	}
 
 	private List<ARichMediaInstance> getInstance1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
+		COSObject object = getInstanceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -123,6 +123,11 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	public Boolean getInstanceHasTypeDictionary() {
 		COSObject object = getInstanceValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

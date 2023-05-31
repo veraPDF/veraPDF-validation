@@ -44,7 +44,7 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 	}
 
 	private List<AArrayOfRichMediaInstances> getInstances1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instances"));
+		COSObject object = getInstancesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -136,6 +136,11 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

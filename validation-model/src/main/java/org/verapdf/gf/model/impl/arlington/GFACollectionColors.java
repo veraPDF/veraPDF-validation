@@ -52,7 +52,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	}
 
 	private List<AArrayOf_3RGBNumbers> getBackground1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		COSObject object = getBackgroundValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	}
 
 	private List<AArrayOf_3RGBNumbers> getCardBackground1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBackground"));
+		COSObject object = getCardBackgroundValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -98,7 +98,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	}
 
 	private List<AArrayOf_3RGBNumbers> getCardBorder1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBorder"));
+		COSObject object = getCardBorderValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -121,7 +121,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	}
 
 	private List<AArrayOf_3RGBNumbers> getPrimaryText1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrimaryText"));
+		COSObject object = getPrimaryTextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -144,7 +144,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	}
 
 	private List<AArrayOf_3RGBNumbers> getSecondaryText1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SecondaryText"));
+		COSObject object = getSecondaryTextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -259,6 +259,11 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

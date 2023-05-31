@@ -75,7 +75,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AAAPL_ST> getAAPLST1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:ST"));
+		COSObject object = getAAPLSTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -104,7 +104,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getBG1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		COSObject object = getBGValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -117,7 +117,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getBG1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG"));
+		COSObject object = getBGValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -193,7 +193,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getBG21_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BG2"));
+		COSObject object = getBG2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -268,7 +268,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOfBlendModes> getBM1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
+		COSObject object = getBMValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -295,7 +295,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOfGSPDashPatterns> getD1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -322,7 +322,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOfFontAndSize> getFont1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Font"));
+		COSObject object = getFontValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -351,7 +351,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getHT1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
+		COSObject object = getHTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -413,7 +413,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getHT1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HT"));
+		COSObject object = getHTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -486,7 +486,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOf_2Numbers> getHTO2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HTO"));
+		COSObject object = getHTOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -514,7 +514,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<AArrayOf_2Integers> getHTP1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HTP"));
+		COSObject object = getHTPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -540,7 +540,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSMask1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
+		COSObject object = getSMaskValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -591,7 +591,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTR1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		COSObject object = getTRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -609,7 +609,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTR1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		COSObject object = getTRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -690,7 +690,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTR21_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR2"));
+		COSObject object = getTR2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -773,7 +773,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getUCR1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
+		COSObject object = getUCRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -786,7 +786,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getUCR1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR"));
+		COSObject object = getUCRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -862,7 +862,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getUCR21_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UCR2"));
+		COSObject object = getUCR2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1779,6 +1779,11 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public Boolean getopHasTypeBoolean() {
 		COSObject object = getopValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean gethasExtensionAAPL() {
+		return false;
 	}
 
 }

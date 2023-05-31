@@ -76,4 +76,9 @@ public class GFAArrayOfDPartsEntry extends GFAObject implements AArrayOfDPartsEn
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
+	@Override
+	public Boolean gethasExtensionPDF_VT2() {
+		return false;
+	}
+
 }

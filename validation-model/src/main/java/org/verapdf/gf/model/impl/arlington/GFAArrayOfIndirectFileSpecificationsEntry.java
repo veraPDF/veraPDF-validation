@@ -96,4 +96,9 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 		return nameTreeNode.getObject(object.getString()) != null;
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

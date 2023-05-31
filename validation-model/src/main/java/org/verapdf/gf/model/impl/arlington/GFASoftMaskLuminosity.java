@@ -51,7 +51,7 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	}
 
 	private List<AArrayOfNumbersGeneral> getBC1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
+		COSObject object = getBCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	}
 
 	private List<AXObjectFormType1> getG1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
+		COSObject object = getGValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -103,7 +103,7 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTR1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TR"));
+		COSObject object = getTRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

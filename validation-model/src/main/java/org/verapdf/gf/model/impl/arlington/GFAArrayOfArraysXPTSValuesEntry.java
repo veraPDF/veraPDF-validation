@@ -99,4 +99,9 @@ public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArray
 		return Names != null && Names.getType() == COSObjType.COS_ARRAY;
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

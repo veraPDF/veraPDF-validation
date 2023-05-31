@@ -46,7 +46,7 @@ public class GFAOptContentUser extends GFAObject implements AOptContentUser {
 	}
 
 	private List<AArrayOfStringsText> getName1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
+		COSObject object = getNameValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

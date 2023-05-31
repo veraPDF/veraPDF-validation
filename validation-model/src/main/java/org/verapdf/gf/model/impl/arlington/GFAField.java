@@ -52,7 +52,7 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	private List<AAddActionFormField> getAA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -80,7 +80,7 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	private List<AArrayOfFields> getKids1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		COSObject object = getKidsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -109,7 +109,7 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -184,7 +184,7 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

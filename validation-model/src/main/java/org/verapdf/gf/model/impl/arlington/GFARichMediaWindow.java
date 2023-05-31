@@ -48,7 +48,7 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	}
 
 	private List<ARichMediaHeight> getHeight1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
+		COSObject object = getHeightValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -71,7 +71,7 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	}
 
 	private List<ARichMediaPosition> getPosition1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		COSObject object = getPositionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -94,7 +94,7 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	}
 
 	private List<ARichMediaWidth> getWidth1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
+		COSObject object = getWidthValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -177,6 +177,11 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	public Boolean getWidthHasTypeDictionary() {
 		COSObject object = getWidthValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

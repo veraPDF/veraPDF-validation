@@ -50,7 +50,7 @@ public class GFAMediaPlayers extends GFAObject implements AMediaPlayers {
 	}
 
 	private List<AArrayOfMediaPlayerInfo> getA1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFAMediaPlayers extends GFAObject implements AMediaPlayers {
 	}
 
 	private List<AArrayOfMediaPlayerInfo> getMU1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MU"));
+		COSObject object = getMUValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -100,7 +100,7 @@ public class GFAMediaPlayers extends GFAObject implements AMediaPlayers {
 	}
 
 	private List<AArrayOfMediaPlayerInfo> getNU1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NU"));
+		COSObject object = getNUValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -62,7 +62,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -94,7 +94,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -126,7 +126,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<AArrayOfClassNamesRevisions> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -153,7 +153,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getK1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -204,7 +204,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<ANamespace> getNS2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
+		COSObject object = getNSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -231,7 +231,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -280,7 +280,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<APageObject> getPg1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pg"));
+		COSObject object = getPgValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -302,7 +302,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	private List<AArrayOfStructElem> getRef2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ref"));
+		COSObject object = getRefValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

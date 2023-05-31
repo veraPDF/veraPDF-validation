@@ -51,7 +51,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	}
 
 	private List<AFileSpecification> getF1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	}
 
 	private List<AArrayOfFieldID> getFields1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

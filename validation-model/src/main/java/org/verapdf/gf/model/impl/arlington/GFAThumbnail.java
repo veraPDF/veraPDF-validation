@@ -63,7 +63,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AIndexedColorSpace> getColorSpace1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -93,7 +93,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		COSObject object = getDecodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -122,7 +122,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -166,7 +166,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -212,7 +212,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -274,7 +274,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AFileSpecification> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -303,7 +303,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -347,7 +347,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -393,7 +393,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -455,7 +455,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AArrayOfFilterNames> getFFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -482,7 +482,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AArrayOfFilterNames> getFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

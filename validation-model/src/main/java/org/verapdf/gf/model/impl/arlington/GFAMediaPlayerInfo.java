@@ -50,7 +50,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	}
 
 	private List<A_UniversalDictionary> getBE1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		COSObject object = getBEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	}
 
 	private List<A_UniversalDictionary> getMH1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		COSObject object = getMHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -100,7 +100,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	}
 
 	private List<ASoftwareIdentifier> getPID1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PID"));
+		COSObject object = getPIDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -51,7 +51,7 @@ public class GFAEncoding extends GFAObject implements AEncoding {
 	}
 
 	private List<AArrayOfDifferences> getDifferences1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Differences"));
+		COSObject object = getDifferencesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

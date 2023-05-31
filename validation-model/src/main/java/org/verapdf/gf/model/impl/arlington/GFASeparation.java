@@ -50,7 +50,7 @@ public class GFASeparation extends GFAObject implements ASeparation {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -102,7 +102,7 @@ public class GFASeparation extends GFAObject implements ASeparation {
 	}
 
 	private List<AArrayOfPages> getPages1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		COSObject object = getPagesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

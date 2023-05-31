@@ -44,7 +44,7 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getM3DREF1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M3DREF"));
+		COSObject object = getM3DREFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -154,6 +154,11 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

@@ -56,7 +56,7 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getN1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -97,7 +97,7 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 	}
 
 	private List<APageObject> getP1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -126,7 +126,7 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 	}
 
 	private List<AThread> getT1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -155,7 +155,7 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getV1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

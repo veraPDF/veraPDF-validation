@@ -64,7 +64,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<A3DAnimationStyle> getAN1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AN"));
+		COSObject object = getANValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -86,7 +86,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,7 +135,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<A3DView> getDV1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		COSObject object = getDVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -159,7 +159,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -212,7 +212,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AFileSpecification> getF1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -236,7 +236,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -289,7 +289,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -313,7 +313,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -337,7 +337,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AStream> getOnInstantiate1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OnInstantiate"));
+		COSObject object = getOnInstantiateValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -361,7 +361,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<A3DStreamNameTreeResources> getResources1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -385,7 +385,7 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	private List<AArrayOf3DView> getVA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VA"));
+		COSObject object = getVAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

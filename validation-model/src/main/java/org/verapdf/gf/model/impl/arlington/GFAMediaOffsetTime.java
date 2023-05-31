@@ -46,7 +46,7 @@ public class GFAMediaOffsetTime extends GFAObject implements AMediaOffsetTime {
 	}
 
 	private List<ATimespan> getT1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

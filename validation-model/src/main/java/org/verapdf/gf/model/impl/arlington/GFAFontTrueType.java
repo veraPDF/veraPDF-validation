@@ -57,7 +57,7 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 	}
 
 	private List<AEncoding> getEncoding1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		COSObject object = getEncodingValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -87,7 +87,7 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 	}
 
 	private List<AFontDescriptorTrueType> getFontDescriptor1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		COSObject object = getFontDescriptorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -115,7 +115,7 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 	}
 
 	private List<AStream> getToUnicode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		COSObject object = getToUnicodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -145,7 +145,7 @@ public class GFAFontTrueType extends GFAObject implements AFontTrueType {
 	}
 
 	private List<AArrayOfNumbersGeneral> getWidths1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Widths"));
+		COSObject object = getWidthsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

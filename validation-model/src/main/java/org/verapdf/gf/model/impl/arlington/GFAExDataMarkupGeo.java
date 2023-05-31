@@ -73,4 +73,9 @@ public class GFAExDataMarkupGeo extends GFAObject implements AExDataMarkupGeo {
 		return null;
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

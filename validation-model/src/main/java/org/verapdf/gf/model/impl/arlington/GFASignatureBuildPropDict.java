@@ -52,7 +52,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<ASignatureBuildDataAppDict> getApp1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("App"));
+		COSObject object = getAppValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<ASignatureBuildDataDict> getFilter1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -102,7 +102,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<ASignatureBuildDataDict> getPubSec1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PubSec"));
+		COSObject object = getPubSecValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -127,7 +127,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	private List<ASignatureBuildDataSigQDict> getSigQ1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SigQ"));
+		COSObject object = getSigQValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -58,7 +58,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOCUsage> getAS1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
+		COSObject object = getASValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfNamesGeneral> getIntent1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		COSObject object = getIntentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -107,7 +107,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOptContentGroups> getLocked1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Locked"));
+		COSObject object = getLockedValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -132,7 +132,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOptContentGroups> getOFF1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OFF"));
+		COSObject object = getOFFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -157,7 +157,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOptContentGroups> getON1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ON"));
+		COSObject object = getONValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -182,7 +182,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfOptContentOrderElements> getOrder1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Order"));
+		COSObject object = getOrderValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -207,7 +207,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	private List<AArrayOfArraysRBGroups> getRBGroups1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RBGroups"));
+		COSObject object = getRBGroupsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

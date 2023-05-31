@@ -44,7 +44,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	private List<ARichMediaWindow> getWindow1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Window"));
+		COSObject object = getWindowValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -244,6 +244,11 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	public Boolean getWindowHasTypeDictionary() {
 		COSObject object = getWindowValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

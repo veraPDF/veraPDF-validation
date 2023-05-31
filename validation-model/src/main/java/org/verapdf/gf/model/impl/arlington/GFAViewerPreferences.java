@@ -46,7 +46,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	private List<AArrayOfNamesForEnforce> getEnforce1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Enforce"));
+		COSObject object = getEnforceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -69,7 +69,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	}
 
 	private List<AArrayOfIntegersGeneral> getPrintPageRange1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrintPageRange"));
+		COSObject object = getPrintPageRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -680,6 +680,11 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 		}
 		COSObject PageMode = Root.getKey(ASAtom.getASAtom("PageMode"));
 		return new GFACatalog(Root.getDirectBase(), null, null).getPageModeNameValue();
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

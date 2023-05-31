@@ -53,7 +53,7 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	}
 
 	private List<ABoxStyle> getArtBox1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
+		COSObject object = getArtBoxValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	}
 
 	private List<ABoxStyle> getBleedBox1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BleedBox"));
+		COSObject object = getBleedBoxValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -105,7 +105,7 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	}
 
 	private List<ABoxStyle> getCropBox1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
+		COSObject object = getCropBoxValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -131,7 +131,7 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	}
 
 	private List<ABoxStyle> getTrimBox1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrimBox"));
+		COSObject object = getTrimBoxValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -50,7 +50,7 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 	}
 
 	private List<AMediaPlayParametersBE> getBE1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		COSObject object = getBEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 	}
 
 	private List<AMediaPlayParametersMH> getMH1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
+		COSObject object = getMHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -100,7 +100,7 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 	}
 
 	private List<AMediaPlayers> getPL1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PL"));
+		COSObject object = getPLValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

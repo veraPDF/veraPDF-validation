@@ -48,7 +48,7 @@ public class GFATrapRegion extends GFAObject implements ATrapRegion {
 	}
 
 	private List<AArrayOf_ArrayOfNumbers> getTZ1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TZ"));
+		COSObject object = getTZValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

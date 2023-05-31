@@ -55,7 +55,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	private List<AArrayOfPageTreeNodeKids> getKids1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		COSObject object = getKidsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -85,7 +85,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -125,7 +125,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	private List<AResource> getResources1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -45,7 +45,7 @@ public class GFA3DReference extends GFAObject implements A3DReference {
 	}
 
 	private List<AStream> getentry3DD1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DD"));
+		COSObject object = getentry3DDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

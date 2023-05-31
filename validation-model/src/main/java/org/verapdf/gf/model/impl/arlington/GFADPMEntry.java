@@ -117,4 +117,9 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 
+	@Override
+	public Boolean gethasExtensionPDF_VT2() {
+		return false;
+	}
+
 }

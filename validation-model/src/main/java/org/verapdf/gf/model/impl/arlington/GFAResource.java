@@ -65,7 +65,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AColorSpaceMap> getColorSpace1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -93,7 +93,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AGraphicsStateParameterMap> getExtGState1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtGState"));
+		COSObject object = getExtGStateValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -123,7 +123,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AFontMap> getFont1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Font"));
+		COSObject object = getFontValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -151,7 +151,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<APatternMap> getPattern1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pattern"));
+		COSObject object = getPatternValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -181,7 +181,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AArrayOfNamesForProcSet> getProcSet1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProcSet"));
+		COSObject object = getProcSetValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -209,7 +209,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<A_UniversalDictionary> getentryProperties1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Properties"));
+		COSObject object = getentryPropertiesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -236,7 +236,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AShadingMap> getShading1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		COSObject object = getShadingValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -266,7 +266,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AXObjectMap> getXObject1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XObject"));
+		COSObject object = getXObjectValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

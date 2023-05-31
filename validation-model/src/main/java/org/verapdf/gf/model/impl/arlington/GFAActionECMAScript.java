@@ -50,7 +50,7 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	private List<AStream> getJS1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		COSObject object = getJSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -80,7 +80,7 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -142,7 +142,7 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -210,7 +210,7 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -282,7 +282,7 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

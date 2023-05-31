@@ -48,7 +48,7 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getB1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		COSObject object = getBValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -97,7 +97,7 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getE1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

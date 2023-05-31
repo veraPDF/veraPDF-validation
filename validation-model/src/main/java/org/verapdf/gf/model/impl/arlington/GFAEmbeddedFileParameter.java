@@ -48,7 +48,7 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	}
 
 	private List<AMac> getMac1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mac"));
+		COSObject object = getMacValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

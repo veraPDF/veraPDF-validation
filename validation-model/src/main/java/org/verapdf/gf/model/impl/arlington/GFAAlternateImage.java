@@ -50,7 +50,7 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 	}
 
 	private List<AXObjectImage> getImage1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Image"));
+		COSObject object = getImageValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

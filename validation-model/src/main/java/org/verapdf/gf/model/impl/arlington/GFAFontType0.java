@@ -53,7 +53,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	private List<AArrayOfDescendantFonts> getDescendantFonts1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DescendantFonts"));
+		COSObject object = getDescendantFontsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	private List<ACMapStream> getEncoding1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		COSObject object = getEncodingValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -109,7 +109,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	private List<AStream> getToUnicode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ToUnicode"));
+		COSObject object = getToUnicodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

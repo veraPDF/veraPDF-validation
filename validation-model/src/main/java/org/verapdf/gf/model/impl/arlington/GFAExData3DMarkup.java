@@ -46,7 +46,7 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	private List<AAnnot3D> getentry3DA1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DA"));
+		COSObject object = getentry3DAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -69,7 +69,7 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	private List<A3DView> getentry3DV1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DV"));
+		COSObject object = getentry3DVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

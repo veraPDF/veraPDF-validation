@@ -97,7 +97,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AAddActionCatalog> getAA1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -119,7 +119,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AArrayOfFileSpecifications> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -147,7 +147,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AInteractiveForm> getAcroForm1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AcroForm"));
+		COSObject object = getAcroFormValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -170,7 +170,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ACollection> getCollection1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Collection"));
+		COSObject object = getCollectionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -194,7 +194,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ADPartRoot> getDPartRoot1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRoot"));
+		COSObject object = getDPartRootValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -216,7 +216,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ADSS> getDSS2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSS"));
+		COSObject object = getDSSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -245,7 +245,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ADestsMap> getDests1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
+		COSObject object = getDestsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -268,7 +268,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AExtensions> getExtensions1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extensions"));
+		COSObject object = getExtensionsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -293,7 +293,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ALegalAttestation> getLegal1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Legal"));
+		COSObject object = getLegalValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -319,7 +319,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AMarkInfo> getMarkInfo1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MarkInfo"));
+		COSObject object = getMarkInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -345,7 +345,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AMetadata> getMetadata1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -373,7 +373,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AName> getNames1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
+		COSObject object = getNamesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -398,7 +398,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AOptContentProperties> getOCProperties1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCProperties"));
+		COSObject object = getOCPropertiesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -432,7 +432,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOpenAction1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		COSObject object = getOpenActionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -496,7 +496,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOpenAction1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		COSObject object = getOpenActionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -578,7 +578,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOpenAction1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		COSObject object = getOpenActionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -658,7 +658,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOpenAction1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		COSObject object = getOpenActionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -744,7 +744,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOpenAction1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		COSObject object = getOpenActionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -834,7 +834,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOpenAction2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
+		COSObject object = getOpenActionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -945,7 +945,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AOutline> getOutlines1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Outlines"));
+		COSObject object = getOutlinesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -971,7 +971,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AArrayOfOutputIntents> getOutputIntents1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+		COSObject object = getOutputIntentsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -998,7 +998,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<ACatalogNumberTreePageLabels> getPageLabels1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
+		COSObject object = getPageLabelsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1028,7 +1028,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<APageTreeNodeRoot> getPages1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
+		COSObject object = getPagesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1053,7 +1053,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<APermissions> getPerms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Perms"));
+		COSObject object = getPermsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1079,7 +1079,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<APagePiece> getPieceInfo1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+		COSObject object = getPieceInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1102,7 +1102,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AArrayOfRequirements> getRequirements1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Requirements"));
+		COSObject object = getRequirementsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1129,7 +1129,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AWebCaptureInfo> getSpiderInfo1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpiderInfo"));
+		COSObject object = getSpiderInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1156,7 +1156,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AStructTreeRoot> getStructTreeRoot1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructTreeRoot"));
+		COSObject object = getStructTreeRootValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1185,7 +1185,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AArrayOfThreads> getThreads1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Threads"));
+		COSObject object = getThreadsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1214,7 +1214,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AURI> getURI1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
+		COSObject object = getURIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1242,7 +1242,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AViewerPreferences> getViewerPreferences1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewerPreferences"));
+		COSObject object = getViewerPreferencesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1908,6 +1908,11 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public Boolean getViewerPreferencesHasTypeDictionary() {
 		COSObject object = getViewerPreferencesValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionPDF_VT2() {
+		return false;
 	}
 
 }

@@ -48,7 +48,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	private List<AArrayOfRichMediaCuePoints> getCuePoints1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CuePoints"));
+		COSObject object = getCuePointsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -71,7 +71,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	private List<AStream> getFlashVars1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FlashVars"));
+		COSObject object = getFlashVarsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -94,7 +94,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	private List<AStream> getSettings1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Settings"));
+		COSObject object = getSettingsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -254,6 +254,11 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

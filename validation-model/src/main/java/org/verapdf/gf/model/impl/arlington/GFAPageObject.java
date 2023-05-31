@@ -83,7 +83,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AAddActionPageObject> getAA1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -105,7 +105,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -140,7 +140,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfAnnots> getAnnots1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annots"));
+		COSObject object = getAnnotsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -169,7 +169,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfBeads> getB1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		COSObject object = getBValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -195,7 +195,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ABoxColorInfo> getBoxColorInfo1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BoxColorInfo"));
+		COSObject object = getBoxColorInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -225,7 +225,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getContents1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		COSObject object = getContentsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -254,7 +254,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ADPart> getDPart1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPart"));
+		COSObject object = getDPartValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -280,7 +280,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AGroupAttributes> getGroup1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Group"));
+		COSObject object = getGroupValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -306,7 +306,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AMetadata> getMetadata1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -328,7 +328,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfOutputIntents> getOutputIntents2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputIntents"));
+		COSObject object = getOutputIntentsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -358,7 +358,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -395,7 +395,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<APagePiece> getPieceInfo1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PieceInfo"));
+		COSObject object = getPieceInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -420,7 +420,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ANavNode> getPresSteps1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PresSteps"));
+		COSObject object = getPresStepsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -450,7 +450,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AResource> getResources1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -477,7 +477,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ASeparation> getSeparationInfo1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SeparationInfo"));
+		COSObject object = getSeparationInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -507,7 +507,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AThumbnail> getThumb1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -536,7 +536,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<ATransition> getTrans1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trans"));
+		COSObject object = getTransValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -560,7 +560,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfViewports> getVP1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VP"));
+		COSObject object = getVPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1414,6 +1414,11 @@ public class GFAPageObject extends GFAObject implements APageObject {
 				return false;
 			}
 		}
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionPDF_VT2() {
 		return false;
 	}
 

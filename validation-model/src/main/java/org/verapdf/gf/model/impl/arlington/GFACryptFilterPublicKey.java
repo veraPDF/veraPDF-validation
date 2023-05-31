@@ -46,7 +46,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	}
 
 	private List<AArrayOfStringsByte> getRecipients1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Recipients"));
+		COSObject object = getRecipientsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

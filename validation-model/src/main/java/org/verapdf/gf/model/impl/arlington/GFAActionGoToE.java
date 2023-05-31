@@ -51,7 +51,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -93,7 +93,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<AFileSpecification> getF1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -118,7 +118,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -190,7 +190,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -277,7 +277,7 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	private List<ATarget> getT1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -47,7 +47,7 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	}
 
 	private List<ASlideShowNameTreeResources> getResources1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

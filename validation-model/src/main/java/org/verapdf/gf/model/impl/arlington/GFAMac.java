@@ -48,7 +48,7 @@ public class GFAMac extends GFAObject implements AMac {
 	}
 
 	private List<AStream> getResFork1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ResFork"));
+		COSObject object = getResForkValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

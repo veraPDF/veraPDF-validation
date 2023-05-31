@@ -50,7 +50,7 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 	}
 
 	private List<AEmbeddedFileStream> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -73,7 +73,7 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 	}
 
 	private List<AEmbeddedFileStream> getUF1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UF"));
+		COSObject object = getUFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

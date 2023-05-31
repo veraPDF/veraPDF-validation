@@ -56,7 +56,7 @@ public class GFAFieldBtnCheckbox extends GFAObject implements AFieldBtnCheckbox 
 	}
 
 	private List<AAddActionFormField> getAA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -84,7 +84,7 @@ public class GFAFieldBtnCheckbox extends GFAObject implements AFieldBtnCheckbox 
 	}
 
 	private List<AArrayOfFields> getKids1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		COSObject object = getKidsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -110,7 +110,7 @@ public class GFAFieldBtnCheckbox extends GFAObject implements AFieldBtnCheckbox 
 	}
 
 	private List<AArrayOfStringsText> getOpt1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Opt"));
+		COSObject object = getOptValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -139,7 +139,7 @@ public class GFAFieldBtnCheckbox extends GFAObject implements AFieldBtnCheckbox 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -214,7 +214,7 @@ public class GFAFieldBtnCheckbox extends GFAObject implements AFieldBtnCheckbox 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -303,7 +303,7 @@ public class GFAFieldBtnCheckbox extends GFAObject implements AFieldBtnCheckbox 
 	}
 
 	private List<AStream> getRV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		COSObject object = getRVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

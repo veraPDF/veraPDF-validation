@@ -383,4 +383,9 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 		return null;
 	}
 
+	@Override
+	public Boolean gethasExtensionMalforms() {
+		return false;
+	}
+
 }

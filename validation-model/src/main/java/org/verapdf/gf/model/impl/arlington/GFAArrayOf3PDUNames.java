@@ -92,4 +92,9 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 		return null;
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

@@ -72,7 +72,7 @@ public class GFADPM extends GFAObject implements ADPM {
 	}
 
 	private List<A_UniversalDictionary> getGTS_Managed1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Managed"));
+		COSObject object = getGTS_ManagedValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -96,7 +96,7 @@ public class GFADPM extends GFAObject implements ADPM {
 	}
 
 	private List<A_UniversalDictionary> getGTS_Suspect1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Suspect"));
+		COSObject object = getGTS_SuspectValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -138,6 +138,11 @@ public class GFADPM extends GFAObject implements ADPM {
 	public Boolean getGTS_SuspectHasTypeDictionary() {
 		COSObject object = getGTS_SuspectValue();
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	@Override
+	public Boolean gethasExtensionPDF_VT2() {
+		return false;
 	}
 
 }

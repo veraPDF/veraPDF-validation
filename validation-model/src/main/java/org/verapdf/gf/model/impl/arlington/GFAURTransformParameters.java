@@ -54,7 +54,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamAnnotsArray> getAnnots1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annots"));
+		COSObject object = getAnnotsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamDocumentArray> getDocument1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Document"));
+		COSObject object = getDocumentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -103,7 +103,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamEFArray> getEF1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
+		COSObject object = getEFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -128,7 +128,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamFormArray> getForm1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Form"));
+		COSObject object = getFormValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -153,7 +153,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	private List<AURTransformParamSignatureArray> getSignature1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Signature"));
+		COSObject object = getSignatureValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

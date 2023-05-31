@@ -52,7 +52,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<AAnnotScreen> getAN1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AN"));
+		COSObject object = getANValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<AStream> getJS1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JS"));
+		COSObject object = getJSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -104,7 +104,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -172,7 +172,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -244,7 +244,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -332,7 +332,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getR1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

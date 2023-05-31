@@ -56,7 +56,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA11_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A1"));
+		COSObject object = getA1Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getA21_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A2"));
+		COSObject object = getA2Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -102,7 +102,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getAP1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -125,7 +125,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -148,7 +148,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	private List<AAnnotProjection> getS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
+		COSObject object = getSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -171,7 +171,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getTP1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TP"));
+		COSObject object = getTPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -194,7 +194,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	private List<AArrayOf_3Numbers> getTY1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TY"));
+		COSObject object = getTYValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -533,6 +533,11 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	public Boolean getVHasTypeNumber() {
 		COSObject object = getVValue();
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

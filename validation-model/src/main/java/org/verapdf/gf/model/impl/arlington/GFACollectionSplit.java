@@ -98,4 +98,9 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 		return null;
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

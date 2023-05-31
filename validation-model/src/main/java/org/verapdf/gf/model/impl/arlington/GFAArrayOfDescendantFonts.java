@@ -49,10 +49,10 @@ public class GFAArrayOfDescendantFonts extends GFAObject implements AArrayOfDesc
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry01_2() {
-		if (this.baseObject.size() < 0) {
+		COSObject object = getentry0Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(0);
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getentry0Dictionary1_2(object.getDirectBase(), "0");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);

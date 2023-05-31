@@ -50,7 +50,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -122,7 +122,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -210,7 +210,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TA"));
+		COSObject object = getTAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -223,7 +223,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TA"));
+		COSObject object = getTAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -269,7 +269,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	private List<A3DView> getV1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

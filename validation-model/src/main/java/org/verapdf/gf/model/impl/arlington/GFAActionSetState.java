@@ -49,7 +49,7 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

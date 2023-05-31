@@ -85,4 +85,9 @@ public class GFARichMediaDeactivation extends GFAObject implements ARichMediaDea
 		return null;
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

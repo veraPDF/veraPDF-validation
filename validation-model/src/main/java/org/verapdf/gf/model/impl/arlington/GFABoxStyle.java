@@ -49,7 +49,7 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 	}
 
 	private List<AArrayOfDashPatterns> getD1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -47,7 +47,7 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -98,7 +98,7 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	}
 
 	private List<AArrayOfNamesGeneral> getComponents1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Components"));
+		COSObject object = getComponentsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

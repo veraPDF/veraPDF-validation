@@ -62,7 +62,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAlternate1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Alternate"));
+		COSObject object = getAlternateValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -123,7 +123,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -163,7 +163,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -219,7 +219,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<AFileSpecification> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -247,7 +247,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -287,7 +287,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -343,7 +343,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -370,7 +370,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -396,7 +396,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<AMetadata> getMetadata1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -423,7 +423,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	private List<AArrayOfNumbersGeneral> getRange1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		COSObject object = getRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -55,7 +55,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	private List<AArrayOfDuration> getDuration1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Duration"));
+		COSObject object = getDurationValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	private List<AArrayOf_2Numbers> getFWPosition1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
+		COSObject object = getFWPositionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -111,7 +111,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	private List<AArrayOf_2Integers> getFWScale1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
+		COSObject object = getFWScaleValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -139,7 +139,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	private List<AArrayOfDuration> getStart1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Start"));
+		COSObject object = getStartValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

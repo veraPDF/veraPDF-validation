@@ -45,7 +45,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	private List<ATarget> getT1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
+		COSObject object = getTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -57,4 +57,9 @@ public class GFAArrayOfNamesForEnforceEntry extends GFAObject implements AArrayO
 		return new GFAViewerPreferences(this.parentObject.getDirectBase(), null, null).getPrintScalingNameValue();
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

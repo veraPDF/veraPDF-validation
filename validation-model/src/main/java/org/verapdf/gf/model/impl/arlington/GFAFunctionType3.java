@@ -56,7 +56,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getBounds1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Bounds"));
+		COSObject object = getBoundsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDomain1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		COSObject object = getDomainValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -110,7 +110,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getEncode1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+		COSObject object = getEncodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -137,7 +137,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	private List<AArrayOfFunctions> getFunctions1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Functions"));
+		COSObject object = getFunctionsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -164,7 +164,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getRange1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		COSObject object = getRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

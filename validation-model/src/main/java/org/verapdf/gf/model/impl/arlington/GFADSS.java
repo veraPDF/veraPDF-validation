@@ -49,7 +49,7 @@ public class GFADSS extends GFAObject implements ADSS {
 	}
 
 	private List<AArrayOfStreamsGeneral> getCRLs2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRLs"));
+		COSObject object = getCRLsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -71,7 +71,7 @@ public class GFADSS extends GFAObject implements ADSS {
 	}
 
 	private List<AArrayOfStreamsGeneral> getCerts2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Certs"));
+		COSObject object = getCertsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -93,7 +93,7 @@ public class GFADSS extends GFAObject implements ADSS {
 	}
 
 	private List<AArrayOfStreamsGeneral> getOCSPs2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSPs"));
+		COSObject object = getOCSPsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -115,7 +115,7 @@ public class GFADSS extends GFAObject implements ADSS {
 	}
 
 	private List<AVRIMap> getVRI2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VRI"));
+		COSObject object = getVRIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

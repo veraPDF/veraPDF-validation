@@ -51,10 +51,10 @@ public class GFADest1Array extends GFAObject implements ADest1Array {
 	}
 
 	private List<APageObject> getentry01_0() {
-		if (this.baseObject.size() < 0) {
+		COSObject object = getentry0Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(0);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<APageObject> list = new ArrayList<>(1);
 			list.add(new GFAPageObject((COSDictionary)object.getDirectBase(), this.baseObject, "0"));

@@ -56,7 +56,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOfNumbersGeneral> getBounds1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Bounds"));
+		COSObject object = getBoundsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDCS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DCS"));
+		COSObject object = getDCSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -124,7 +124,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getGCS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GCS"));
+		COSObject object = getGCSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -169,7 +169,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOfNumbersGeneral> getGPTS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GPTS"));
+		COSObject object = getGPTSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -192,7 +192,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOfNumbersGeneral> getLPTS1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LPTS"));
+		COSObject object = getLPTSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -214,7 +214,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOf3DTransMatrix> getPCSM2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PCSM"));
+		COSObject object = getPCSMValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -237,7 +237,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	private List<AArrayOf3PDUNames> getPDU1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PDU"));
+		COSObject object = getPDUValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -409,6 +409,11 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

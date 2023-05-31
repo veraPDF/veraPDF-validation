@@ -56,10 +56,10 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry01_2() {
-		if (this.baseObject.size() < 0) {
+		COSObject object = getentry0Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(0);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AFunctionType0> list = new ArrayList<>(1);
 			list.add(new GFAFunctionType0((COSStream)object.getDirectBase(), this.baseObject, "0"));
@@ -69,10 +69,10 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry01_3() {
-		if (this.baseObject.size() < 0) {
+		COSObject object = getentry0Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(0);
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getentry0Dictionary1_3(object.getDirectBase(), "0");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -147,10 +147,10 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry11_2() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AFunctionType0> list = new ArrayList<>(1);
 			list.add(new GFAFunctionType0((COSStream)object.getDirectBase(), this.baseObject, "1"));
@@ -160,10 +160,10 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry11_3() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getentry1Dictionary1_3(object.getDirectBase(), "1");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -238,10 +238,10 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry21_2() {
-		if (this.baseObject.size() < 2) {
+		COSObject object = getentry2Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(2);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AFunctionType0> list = new ArrayList<>(1);
 			list.add(new GFAFunctionType0((COSStream)object.getDirectBase(), this.baseObject, "2"));
@@ -251,10 +251,10 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry21_3() {
-		if (this.baseObject.size() < 2) {
+		COSObject object = getentry2Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(2);
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getentry2Dictionary1_3(object.getDirectBase(), "2");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -329,10 +329,10 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry31_2() {
-		if (this.baseObject.size() < 3) {
+		COSObject object = getentry3Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(3);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AFunctionType0> list = new ArrayList<>(1);
 			list.add(new GFAFunctionType0((COSStream)object.getDirectBase(), this.baseObject, "3"));
@@ -342,10 +342,10 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry31_3() {
-		if (this.baseObject.size() < 3) {
+		COSObject object = getentry3Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(3);
 		if (object.getType() == COSObjType.COS_DICT) {
 			org.verapdf.model.baselayer.Object result = getentry3Dictionary1_3(object.getDirectBase(), "3");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);

@@ -54,7 +54,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AMinimumBitDepth> getD1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AArrayOfStringsText> getL1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
+		COSObject object = getLValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -104,7 +104,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AArrayOfNamesGeneral> getP1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -129,7 +129,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AArrayOfSoftwareIdentifiers> getV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -154,7 +154,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	private List<AMinimumScreenSize> getZ1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Z"));
+		COSObject object = getZValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

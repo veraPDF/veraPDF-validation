@@ -49,7 +49,7 @@ public class GFAOPIVersion13 extends GFAObject implements AOPIVersion13 {
 	}
 
 	private List<AOPIVersion13Dict> getentry131_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("1.3"));
+		COSObject object = getentry13Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}

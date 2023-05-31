@@ -48,7 +48,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	private List<AArrayOf_3RGBNumbers> getB1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("B"));
+		COSObject object = getBValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -73,7 +73,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	private List<AFloatingWindowParameters> getF1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

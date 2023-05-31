@@ -47,7 +47,7 @@ public class GFARequirementsEncryption extends GFAObject implements ARequirement
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEncrypt2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		COSObject object = getEncryptValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -93,7 +93,7 @@ public class GFARequirementsEncryption extends GFAObject implements ARequirement
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		COSObject object = getRHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -120,7 +120,7 @@ public class GFARequirementsEncryption extends GFAObject implements ARequirement
 	}
 
 	private List<AExtensions> getV2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

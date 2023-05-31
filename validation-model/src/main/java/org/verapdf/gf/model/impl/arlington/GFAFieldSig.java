@@ -62,7 +62,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<AAddActionFormField> getAA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AA"));
+		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -89,7 +89,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDV1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		COSObject object = getDVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -138,7 +138,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<AArrayOfFields> getKids1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
+		COSObject object = getKidsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -163,7 +163,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<ASigFieldLock> getLock1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lock"));
+		COSObject object = getLockValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -190,7 +190,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -279,7 +279,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<AStream> getRV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		COSObject object = getRVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -304,7 +304,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<ASigFieldSeedValue> getSV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SV"));
+		COSObject object = getSVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -331,7 +331,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getV1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

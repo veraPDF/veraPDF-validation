@@ -54,7 +54,7 @@ public class GFAThread extends GFAObject implements AThread {
 	}
 
 	private List<ABeadFirst> getF1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFAThread extends GFAObject implements AThread {
 	}
 
 	private List<ADocInfo> getI1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
+		COSObject object = getIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -105,7 +105,7 @@ public class GFAThread extends GFAObject implements AThread {
 	}
 
 	private List<AMetadata> getMetadata2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

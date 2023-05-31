@@ -56,7 +56,7 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -103,7 +103,7 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	private List<AFileSpecification> getF1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,7 +135,7 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -199,7 +199,7 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -261,7 +261,7 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -329,7 +329,7 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -401,7 +401,7 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -486,7 +486,7 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSD2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
+		COSObject object = getSDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

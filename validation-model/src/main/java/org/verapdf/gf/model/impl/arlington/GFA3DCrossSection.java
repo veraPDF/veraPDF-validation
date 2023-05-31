@@ -50,7 +50,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	private List<AArrayOf_3CenterOfRotationNumbers> getC1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -73,7 +73,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	private List<AArrayOf_4ColourSpaceEntries> getIC1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IC"));
+		COSObject object = getICValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -96,7 +96,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	private List<AArrayOf_3OrientationNumbers> getO1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -119,7 +119,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	private List<AArrayOf_4ColourSpaceEntries> getPC1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		COSObject object = getPCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -53,7 +53,7 @@ public class GFAFontDescriptorType1 extends GFAObject implements AFontDescriptor
 	}
 
 	private List<AFontFileType1> getFontFile1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile"));
+		COSObject object = getFontFileValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFAFontDescriptorType1 extends GFAObject implements AFontDescriptor
 	}
 
 	private List<AFontFile3Type1> getFontFile31_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile3"));
+		COSObject object = getFontFile3Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}

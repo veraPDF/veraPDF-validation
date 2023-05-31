@@ -80,4 +80,9 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

@@ -44,7 +44,7 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -208,6 +208,11 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

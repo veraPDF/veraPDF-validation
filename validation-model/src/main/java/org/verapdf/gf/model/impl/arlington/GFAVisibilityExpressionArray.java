@@ -67,10 +67,10 @@ public class GFAVisibilityExpressionArray extends GFAObject implements AVisibili
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry11_6() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AVisibilityExpressionArray> list = new ArrayList<>(1);
 			list.add(new GFAVisibilityExpressionArray((COSArray)object.getDirectBase(), this.baseObject, "1"));

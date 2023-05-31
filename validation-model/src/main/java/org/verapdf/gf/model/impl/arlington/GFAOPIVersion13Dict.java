@@ -65,7 +65,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOfOPI13Color> getColor1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		COSObject object = getColorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -93,7 +93,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_4Numbers> getCropFixed1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropFixed"));
+		COSObject object = getCropFixedValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -121,7 +121,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AFileSpecification> getF1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -149,7 +149,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOfIntegersGeneral> getGrayMap1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GrayMap"));
+		COSObject object = getGrayMapValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -177,7 +177,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_2Integers> getImageType1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ImageType"));
+		COSObject object = getImageTypeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -205,7 +205,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_8Numbers> getPosition1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
+		COSObject object = getPositionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -233,7 +233,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_2Numbers> getResolution1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resolution"));
+		COSObject object = getResolutionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -261,7 +261,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOf_2Integers> getSize1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -289,7 +289,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	private List<AArrayOfTags> getTags1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tags"));
+		COSObject object = getTagsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

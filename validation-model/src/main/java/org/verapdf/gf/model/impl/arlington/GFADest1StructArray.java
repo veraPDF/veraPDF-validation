@@ -43,10 +43,10 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 	}
 
 	private List<AStructElem> getentry02_0() {
-		if (this.baseObject.size() < 0) {
+		COSObject object = getentry0Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(0);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AStructElem> list = new ArrayList<>(1);
 			list.add(new GFAStructElem((COSDictionary)object.getDirectBase(), this.baseObject, "0"));

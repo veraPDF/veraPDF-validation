@@ -64,7 +64,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getBackground1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		COSObject object = getBackgroundValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -91,7 +91,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -153,7 +153,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		COSObject object = getDecodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -181,7 +181,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -221,7 +221,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -277,7 +277,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<AFileSpecification> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -305,7 +305,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -345,7 +345,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -401,7 +401,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -428,7 +428,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -455,7 +455,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFunction1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		COSObject object = getFunctionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

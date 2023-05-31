@@ -61,7 +61,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		COSObject object = getDecodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -88,7 +88,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -134,7 +134,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -195,7 +195,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AFileSpecification> getF1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -222,7 +222,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -268,7 +268,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -329,7 +329,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AArrayOfFilterNames> getFFilter1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -355,7 +355,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AArrayOfFilterNames> getFilter1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -381,7 +381,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AArrayOfNumbersGeneral> getMatte1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matte"));
+		COSObject object = getMatteValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -407,7 +407,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	private List<AMetadata> getMetadata1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

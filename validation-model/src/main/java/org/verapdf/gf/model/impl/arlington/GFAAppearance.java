@@ -54,7 +54,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -106,7 +106,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -179,7 +179,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getN1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -231,7 +231,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getN1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
+		COSObject object = getNValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -304,7 +304,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getR1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -356,7 +356,7 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getR1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

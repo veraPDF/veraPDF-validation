@@ -48,7 +48,7 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	}
 
 	private List<AArrayOfNamesGeneral> getIntent1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
+		COSObject object = getIntentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -73,7 +73,7 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	}
 
 	private List<AOptContentUsage> getUsage1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Usage"));
+		COSObject object = getUsageValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

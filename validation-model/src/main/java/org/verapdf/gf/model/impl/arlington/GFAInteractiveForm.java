@@ -54,7 +54,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<AArrayOfFields> getCO1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
+		COSObject object = getCOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -82,7 +82,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<AResource> getDR1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DR"));
+		COSObject object = getDRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -110,7 +110,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<AArrayOfFields> getFields1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
+		COSObject object = getFieldsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -136,7 +136,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getXFA1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
+		COSObject object = getXFAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -149,7 +149,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getXFA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFA"));
+		COSObject object = getXFAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

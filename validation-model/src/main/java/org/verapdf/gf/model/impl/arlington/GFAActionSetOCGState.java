@@ -50,7 +50,7 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -118,7 +118,7 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -190,7 +190,7 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -278,7 +278,7 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	}
 
 	private List<AArrayOfOCGState> getState1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("State"));
+		COSObject object = getStateValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

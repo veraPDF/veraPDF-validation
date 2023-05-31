@@ -59,7 +59,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -91,7 +91,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AAppearanceTrapNet> getAP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -118,7 +118,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOfAnnotStates> getAnnotStates1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AnnotStates"));
+		COSObject object = getAnnotStatesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -145,7 +145,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+		COSObject object = getBorderValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -172,7 +172,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -199,7 +199,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOfFonts> getFontFauxing1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFauxing"));
+		COSObject object = getFontFauxingValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -224,7 +224,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -273,7 +273,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<APageObject> getP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -300,7 +300,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	private List<AArrayOfTrapNetVersionObjects> getVersion1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
+		COSObject object = getVersionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

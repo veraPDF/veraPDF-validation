@@ -48,7 +48,7 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getData1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Data"));
+		COSObject object = getDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 	}
 
 	private List<ADocMDPTransformParameters> getTransformParams1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformParams"));
+		COSObject object = getTransformParamsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

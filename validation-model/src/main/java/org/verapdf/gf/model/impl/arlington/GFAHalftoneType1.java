@@ -52,7 +52,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSpotFunction1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		COSObject object = getSpotFunctionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -70,7 +70,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSpotFunction1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpotFunction"));
+		COSObject object = getSpotFunctionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -153,7 +153,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTransferFunction1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		COSObject object = getTransferFunctionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -166,7 +166,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getTransferFunction1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransferFunction"));
+		COSObject object = getTransferFunctionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

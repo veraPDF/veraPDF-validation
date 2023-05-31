@@ -54,7 +54,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<ACollectionItem> getCI1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
+		COSObject object = getCIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AFileSpecEF> getEF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
+		COSObject object = getEFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -103,7 +103,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AEncryptedPayload> getEP2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EP"));
+		COSObject object = getEPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -132,7 +132,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AArrayOf_2StringsByte> getentryID1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -159,7 +159,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AFileSpecRF> getRF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RF"));
+		COSObject object = getRFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -182,7 +182,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	private List<AThumbnail> getThumb1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Thumb"));
+		COSObject object = getThumbValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -509,6 +509,11 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public Boolean getVHasTypeBoolean() {
 		COSObject object = getVValue();
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

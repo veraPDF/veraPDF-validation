@@ -49,7 +49,7 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	private List<AFileSpecification> getF1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	private List<AArrayOf_2StringsByte> getentryID1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -52,7 +52,7 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	private List<AArrayOfWebCaptureImages> getO1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
+		COSObject object = getOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	private List<AArrayOfIntegersGeneral> getR1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
+		COSObject object = getRValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -106,7 +106,7 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getSI1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
+		COSObject object = getSIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

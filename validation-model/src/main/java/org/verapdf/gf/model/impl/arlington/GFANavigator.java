@@ -50,7 +50,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	private List<ACollectionSchema> getInitialFields1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("InitialFields"));
+		COSObject object = getInitialFieldsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -72,7 +72,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	private List<AArrayOfNavigatorLayoutNames> getLayout2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Layout"));
+		COSObject object = getLayoutValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -95,7 +95,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	private List<ANavigatorNameTreeResources> getResources1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -118,7 +118,7 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	private List<ANavigatorNameTreeStrings> getStrings1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Strings"));
+		COSObject object = getStringsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -413,6 +413,11 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public Boolean getVersionHasTypeStringText() {
 		COSObject object = getVersionValue();
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

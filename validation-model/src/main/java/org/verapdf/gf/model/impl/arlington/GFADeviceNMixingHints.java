@@ -49,7 +49,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	}
 
 	private List<ADictionaryOfFunctions> getDotGain1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DotGain"));
+		COSObject object = getDotGainValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -73,7 +73,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	}
 
 	private List<AArrayOfNamesForPrintingOrder> getPrintingOrder1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrintingOrder"));
+		COSObject object = getPrintingOrderValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -97,7 +97,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	}
 
 	private List<ASolidities> getSolidities1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Solidities"));
+		COSObject object = getSoliditiesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

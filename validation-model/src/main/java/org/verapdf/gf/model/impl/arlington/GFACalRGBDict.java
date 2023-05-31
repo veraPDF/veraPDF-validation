@@ -56,7 +56,7 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	}
 
 	private List<ABlackpointArray> getBlackPoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BlackPoint"));
+		COSObject object = getBlackPointValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -85,7 +85,7 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	}
 
 	private List<AGammaArray> getGamma1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Gamma"));
+		COSObject object = getGammaValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -114,7 +114,7 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	}
 
 	private List<AArrayOf_9Numbers> getMatrix1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Matrix"));
+		COSObject object = getMatrixValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -143,7 +143,7 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	}
 
 	private List<AWhitepointArray> getWhitePoint1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
+		COSObject object = getWhitePointValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

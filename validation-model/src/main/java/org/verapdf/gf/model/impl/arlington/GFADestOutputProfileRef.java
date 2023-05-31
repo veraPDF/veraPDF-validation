@@ -45,7 +45,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	}
 
 	private List<AArrayOfNamesGeneral> getColorantTable2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorantTable"));
+		COSObject object = getColorantTableValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -67,7 +67,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	}
 
 	private List<AArrayOfURLs> getURLs2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLs"));
+		COSObject object = getURLsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

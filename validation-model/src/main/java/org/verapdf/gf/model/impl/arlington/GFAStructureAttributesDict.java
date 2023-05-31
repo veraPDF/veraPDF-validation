@@ -74,7 +74,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_3RGBNumbers> getBackgroundColor1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BackgroundColor"));
+		COSObject object = getBackgroundColorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -99,7 +99,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getBorderColor1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BorderColor"));
+		COSObject object = getBorderColorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -138,7 +138,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4BorderStyleNames> getBorderStyle1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BorderStyle"));
+		COSObject object = getBorderStyleValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -163,7 +163,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4BorderThicknessNumbers> getBorderThickness1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BorderThickness"));
+		COSObject object = getBorderThicknessValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -188,7 +188,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_3RGBNumbers> getColor1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		COSObject object = getColorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -212,7 +212,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfNumbersGeneral> getColumnGap1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColumnGap"));
+		COSObject object = getColumnGapValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -236,7 +236,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfNumbersGeneral> getColumnWidths1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColumnWidths"));
+		COSObject object = getColumnWidthsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -259,7 +259,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfStringsText> getContents1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
+		COSObject object = getContentsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -285,7 +285,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfStringsByte> getHeaders1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Headers"));
+		COSObject object = getHeadersValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -307,7 +307,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<ANamespace> getNS2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NS"));
+		COSObject object = getNSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -331,7 +331,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOfUserProperty> getP1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -356,7 +356,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4Integers> getPadding1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Padding"));
+		COSObject object = getPaddingValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -381,7 +381,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4BorderStyleNames> getTBorderStyle1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TBorderStyle"));
+		COSObject object = getTBorderStyleValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -406,7 +406,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_4Integers> getTPadding1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TPadding"));
+		COSObject object = getTPaddingValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -431,7 +431,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	private List<AArrayOf_3RGBNumbers> getTextDecorationColor1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TextDecorationColor"));
+		COSObject object = getTextDecorationColorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1983,6 +1983,11 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

@@ -50,7 +50,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	}
 
 	private List<AGraphicsStateParameter> getExtGState1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtGState"));
+		COSObject object = getExtGStateValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getShading1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Shading"));
+		COSObject object = getShadingValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

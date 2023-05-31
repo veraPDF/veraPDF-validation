@@ -48,10 +48,10 @@ public class GFAArrayOfAttributeRevisionsSubArray extends GFAObject implements A
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry01_3() {
-		if (this.baseObject.size() < 0) {
+		COSObject object = getentry0Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(0);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AStructureAttributesDict> list = new ArrayList<>(1);
 			list.add(new GFAStructureAttributesDict((COSDictionary)object.getDirectBase(), this.baseObject, "0"));

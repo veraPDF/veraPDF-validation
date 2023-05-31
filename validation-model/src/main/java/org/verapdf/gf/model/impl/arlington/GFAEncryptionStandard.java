@@ -46,7 +46,7 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	private List<ACryptFilterMap> getCF1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CF"));
+		COSObject object = getCFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

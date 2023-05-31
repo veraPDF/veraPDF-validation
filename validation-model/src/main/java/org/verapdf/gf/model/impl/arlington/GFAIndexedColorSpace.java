@@ -56,18 +56,18 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry11_0() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry11_1() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			org.verapdf.model.baselayer.Object result = getentry1Array1_1(object.getDirectBase(), "1");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -104,10 +104,10 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry11_2() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			org.verapdf.model.baselayer.Object result = getentry1Array1_2(object.getDirectBase(), "1");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -146,10 +146,10 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getentry11_3() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			org.verapdf.model.baselayer.Object result = getentry1Array1_3(object.getDirectBase(), "1");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
@@ -209,10 +209,10 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	private List<AStream> getentry31_0() {
-		if (this.baseObject.size() < 3) {
+		COSObject object = getentry3Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(3);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
 			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "3"));

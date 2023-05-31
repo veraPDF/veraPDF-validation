@@ -54,7 +54,7 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	private List<AActionECMAScript> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	private List<AActionECMAScript> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -108,7 +108,7 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	private List<AActionECMAScript> getK1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		COSObject object = getKValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,7 +135,7 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	private List<AActionECMAScript> getV1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -56,7 +56,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionColors> getColors1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Colors"));
+		COSObject object = getColorsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -79,7 +79,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionFolder> getFolders1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Folders"));
+		COSObject object = getFoldersValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -102,7 +102,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ANavigator> getNavigator1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Navigator"));
+		COSObject object = getNavigatorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -125,7 +125,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionNameTreeResources> getResources1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject object = getResourcesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -148,7 +148,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionSchema> getSchema1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
+		COSObject object = getSchemaValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -171,7 +171,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionSort> getSort1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Sort"));
+		COSObject object = getSortValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -194,7 +194,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	private List<ACollectionSplit> getSplit1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Split"));
+		COSObject object = getSplitValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -412,6 +412,11 @@ public class GFACollection extends GFAObject implements ACollection {
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

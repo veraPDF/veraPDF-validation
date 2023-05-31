@@ -50,10 +50,10 @@ public class GFAArrayOf_4AnnotBorderCharacteristics extends GFAObject implements
 	}
 
 	private List<AArrayOf_2DashNumbers> getentry31_1() {
-		if (this.baseObject.size() < 3) {
+		COSObject object = getentry3Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(3);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_2DashNumbers> list = new ArrayList<>(1);
 			list.add(new GFAArrayOf_2DashNumbers((COSArray)object.getDirectBase(), this.baseObject, "3"));

@@ -53,7 +53,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	private List<AArrayOfNumbersGeneral> getColor1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Color"));
+		COSObject object = getColorValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -82,7 +82,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -124,7 +124,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -183,7 +183,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	private List<AArrayOf_2Numbers> getOffset1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Offset"));
+		COSObject object = getOffsetValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -331,6 +331,11 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionAAPL() {
+		return false;
 	}
 
 }

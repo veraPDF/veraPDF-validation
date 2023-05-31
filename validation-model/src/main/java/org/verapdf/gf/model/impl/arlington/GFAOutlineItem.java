@@ -71,7 +71,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_1() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -112,7 +112,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -171,7 +171,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -228,7 +228,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -291,7 +291,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -358,7 +358,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getA2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -442,7 +442,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AArrayOf_3RGBNumbers> getC1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -472,7 +472,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
+		COSObject object = getDestValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -520,7 +520,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getFirst1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("First"));
+		COSObject object = getFirstValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -550,7 +550,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getLast1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Last"));
+		COSObject object = getLastValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -580,7 +580,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getNext1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -610,7 +610,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -650,7 +650,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getPrev1_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prev"));
+		COSObject object = getPrevValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -677,7 +677,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AStructElem> getSE1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SE"));
+		COSObject object = getSEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

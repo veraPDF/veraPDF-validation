@@ -65,7 +65,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AAuthCode> getAuthCode2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AuthCode"));
+		COSObject object = getAuthCodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -90,7 +90,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -142,7 +142,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEncrypt1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
+		COSObject object = getEncryptValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -191,7 +191,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AFileSpecification> getF1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -216,7 +216,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -268,7 +268,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -293,7 +293,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -318,7 +318,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<ATrailerIDArray> getentryID1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
+		COSObject object = getentryIDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -343,7 +343,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AArrayOfXRefIndexIntegers> getIndex1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Index"));
+		COSObject object = getIndexValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -368,7 +368,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<ADocInfo> getInfo1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Info"));
+		COSObject object = getInfoValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -393,7 +393,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<ACatalog> getRoot1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Root"));
+		COSObject object = getRootValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -418,7 +418,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AArrayOfXRefWIntegers> getW1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("W"));
+		COSObject object = getWValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -742,7 +742,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		}
 		Long lastNumber = null;
 		for (int i = 0; i < object.size(); i += 2) {
-			COSObject elem = this.baseObject.at(i);
+			COSObject elem = object.at(i);
 			if (elem == null || elem.getType() != COSObjType.COS_INTEGER) {
 				return false;
 			}
@@ -974,6 +974,11 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 		}
 		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
 		return V != null && V.getType() == COSObjType.COS_INTEGER;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32004() {
+		return false;
 	}
 
 }

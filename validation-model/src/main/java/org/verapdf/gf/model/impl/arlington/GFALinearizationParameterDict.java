@@ -49,7 +49,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getH1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
+		COSObject object = getHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

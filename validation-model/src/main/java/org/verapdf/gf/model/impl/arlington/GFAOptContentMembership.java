@@ -48,7 +48,7 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOCGs1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		COSObject object = getOCGsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -77,7 +77,7 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	private List<AVisibilityExpressionArray> getVE1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VE"));
+		COSObject object = getVEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

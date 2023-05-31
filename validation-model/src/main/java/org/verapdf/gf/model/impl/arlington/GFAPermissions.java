@@ -48,7 +48,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	}
 
 	private List<ASignature> getDocMDP1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DocMDP"));
+		COSObject object = getDocMDPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -73,7 +73,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	}
 
 	private List<ASignature> getUR31_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UR3"));
+		COSObject object = getUR3Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}

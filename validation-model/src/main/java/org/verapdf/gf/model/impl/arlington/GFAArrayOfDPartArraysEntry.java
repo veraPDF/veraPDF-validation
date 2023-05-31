@@ -70,4 +70,9 @@ public class GFAArrayOfDPartArraysEntry extends GFAObject implements AArrayOfDPa
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
+	@Override
+	public Boolean gethasExtensionPDF_VT2() {
+		return false;
+	}
+
 }

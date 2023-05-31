@@ -47,7 +47,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	}
 
 	private List<ADPart> getDPartRootNode1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPartRootNode"));
+		COSObject object = getDPartRootNodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -71,7 +71,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	}
 
 	private List<AArrayOfNamesGeneral> getNodeNameList1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NodeNameList"));
+		COSObject object = getNodeNameListValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

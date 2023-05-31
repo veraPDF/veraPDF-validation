@@ -49,7 +49,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	private List<AArrayOfStreamsGeneral> getCRL2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CRL"));
+		COSObject object = getCRLValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -71,7 +71,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	private List<AArrayOfStreamsGeneral> getCert2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
+		COSObject object = getCertValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -93,7 +93,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	private List<AArrayOfStreamsGeneral> getOCSP2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSP"));
+		COSObject object = getOCSPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -115,7 +115,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	private List<AStream> getTS2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
+		COSObject object = getTSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

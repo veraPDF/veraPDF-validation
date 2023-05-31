@@ -67,7 +67,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
+		COSObject object = getDecodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -95,7 +95,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,7 +135,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
+		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -192,7 +192,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDomain1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		COSObject object = getDomainValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -220,7 +220,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getEncode1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
+		COSObject object = getEncodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -247,7 +247,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AFileSpecification> getF1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
+		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -275,7 +275,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -315,7 +315,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
+		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -371,7 +371,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
+		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -398,7 +398,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
+		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -426,7 +426,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getRange1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		COSObject object = getRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -454,7 +454,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	private List<AArrayOfIntegersGeneral> getSize1_2() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
+		COSObject object = getSizeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

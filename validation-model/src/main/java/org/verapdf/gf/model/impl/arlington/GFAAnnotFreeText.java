@@ -67,7 +67,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -99,7 +99,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<AAppearance> getAP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -123,7 +123,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<ABorderEffect> getBE1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
+		COSObject object = getBEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -147,7 +147,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<ABorderStyle> getBS1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BS"));
+		COSObject object = getBSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -174,7 +174,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+		COSObject object = getBorderValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -201,7 +201,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -225,7 +225,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<AArrayOf_3or4CalloutLineNumbers> getCL1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CL"));
+		COSObject object = getCLValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -249,7 +249,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getExData1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExData"));
+		COSObject object = getExDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -287,7 +287,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getExData2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExData"));
+		COSObject object = getExDataValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -339,7 +339,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getIRT1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IRT"));
+		COSObject object = getIRTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -412,7 +412,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getIRT1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IRT"));
+		COSObject object = getIRTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -489,7 +489,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getIRT1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IRT"));
+		COSObject object = getIRTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -568,7 +568,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getIRT2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IRT"));
+		COSObject object = getIRTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -663,7 +663,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -712,7 +712,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<APageObject> getP1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -739,7 +739,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<AAnnotPopup> getPopup1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Popup"));
+		COSObject object = getPopupValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -764,7 +764,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	private List<AStream> getRC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
+		COSObject object = getRCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1712,7 +1712,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	@Override
-	public Boolean getcontainsAPNAny() {
+	public Boolean getAPNHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1721,11 +1721,11 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 			return null;
 		}
 		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
-		return N.getKeySet() != null && !N.getKeySet().isEmpty();
+		return N != null && N.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsAPRAny() {
+	public Boolean getAPRHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1734,11 +1734,11 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 			return null;
 		}
 		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
-		return R.getKeySet() != null && !R.getKeySet().isEmpty();
+		return R != null && R.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsAPDAny() {
+	public Boolean getAPDHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1747,7 +1747,7 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 			return null;
 		}
 		COSObject D = AP.getKey(ASAtom.getASAtom("D"));
-		return D.getKeySet() != null && !D.getKeySet().isEmpty();
+		return D != null && D.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override

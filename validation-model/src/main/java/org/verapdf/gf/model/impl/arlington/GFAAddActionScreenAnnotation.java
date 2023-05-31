@@ -62,7 +62,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -125,7 +125,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -192,7 +192,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getD2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -277,7 +277,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getE1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -340,7 +340,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getE1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -407,7 +407,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getE2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
+		COSObject object = getEValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -492,7 +492,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPC1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		COSObject object = getPCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -555,7 +555,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPC1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		COSObject object = getPCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -622,7 +622,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPC2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
+		COSObject object = getPCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -707,7 +707,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPI1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PI"));
+		COSObject object = getPIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -770,7 +770,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPI1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PI"));
+		COSObject object = getPIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -837,7 +837,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPI2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PI"));
+		COSObject object = getPIValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -922,7 +922,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPO1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PO"));
+		COSObject object = getPOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -985,7 +985,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPO1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PO"));
+		COSObject object = getPOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1052,7 +1052,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPO2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PO"));
+		COSObject object = getPOValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1137,7 +1137,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPV1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PV"));
+		COSObject object = getPVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1200,7 +1200,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPV1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PV"));
+		COSObject object = getPVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1267,7 +1267,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getPV2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PV"));
+		COSObject object = getPVValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1352,7 +1352,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getU1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1415,7 +1415,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getU1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1482,7 +1482,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getU2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
+		COSObject object = getUValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1567,7 +1567,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getX1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
+		COSObject object = getXValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1630,7 +1630,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getX1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
+		COSObject object = getXValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -1697,7 +1697,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getX2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
+		COSObject object = getXValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -43,7 +43,7 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getRH2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
+		COSObject object = getRHValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -58,7 +58,7 @@ public class GFAShadingType2 extends GFAObject implements AShadingType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getBackground1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Background"));
+		COSObject object = getBackgroundValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -85,7 +85,7 @@ public class GFAShadingType2 extends GFAObject implements AShadingType2 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
+		COSObject object = getColorSpaceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -147,7 +147,7 @@ public class GFAShadingType2 extends GFAObject implements AShadingType2 {
 	}
 
 	private List<AArrayOf_4Numbers> getCoords1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Coords"));
+		COSObject object = getCoordsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -174,7 +174,7 @@ public class GFAShadingType2 extends GFAObject implements AShadingType2 {
 	}
 
 	private List<AArrayOf_2Numbers> getDomain1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		COSObject object = getDomainValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -201,7 +201,7 @@ public class GFAShadingType2 extends GFAObject implements AShadingType2 {
 	}
 
 	private List<AArrayOf_2Booleans> getExtend1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extend"));
+		COSObject object = getExtendValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -228,7 +228,7 @@ public class GFAShadingType2 extends GFAObject implements AShadingType2 {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFunction1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Function"));
+		COSObject object = getFunctionValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -50,7 +50,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	}
 
 	private List<AArrayOfOCConfig> getConfigs1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Configs"));
+		COSObject object = getConfigsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -75,7 +75,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	}
 
 	private List<AOptContentConfig> getD1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
+		COSObject object = getDValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -100,7 +100,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	}
 
 	private List<AArrayOfOCGindirect> getOCGs1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
+		COSObject object = getOCGsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

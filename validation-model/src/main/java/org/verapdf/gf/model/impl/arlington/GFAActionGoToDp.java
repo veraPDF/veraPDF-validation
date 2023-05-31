@@ -45,7 +45,7 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 	}
 
 	private List<ADPart> getDp2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dp"));
+		COSObject object = getDpValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -67,7 +67,7 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getNext2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
+		COSObject object = getNextValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -134,4 +134,9 @@ public class GFARichMediaHeight extends GFAObject implements ARichMediaHeight {
 		return null;
 	}
 
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
 }

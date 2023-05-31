@@ -44,7 +44,7 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 	}
 
 	private List<ARichMediaCommandArray> getA1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A"));
+		COSObject object = getAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,6 +135,11 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

@@ -47,7 +47,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getCS1_4() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CS"));
+		COSObject object = getCSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

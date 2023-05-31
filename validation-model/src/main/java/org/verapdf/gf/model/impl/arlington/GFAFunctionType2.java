@@ -54,7 +54,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getC01_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C0"));
+		COSObject object = getC0Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -81,7 +81,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getC11_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C1"));
+		COSObject object = getC1Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -108,7 +108,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDomain1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
+		COSObject object = getDomainValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,7 +135,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getRange1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
+		COSObject object = getRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

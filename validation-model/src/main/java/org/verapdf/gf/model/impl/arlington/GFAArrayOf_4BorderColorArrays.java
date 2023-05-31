@@ -52,10 +52,10 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_3RGBNumbers> getentry01_5() {
-		if (this.baseObject.size() < 0) {
+		COSObject object = getentry0Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(0);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
 			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "0"));
@@ -77,10 +77,10 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_3RGBNumbers> getentry11_5() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
 			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "1"));
@@ -102,10 +102,10 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_3RGBNumbers> getentry21_5() {
-		if (this.baseObject.size() < 2) {
+		COSObject object = getentry2Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(2);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
 			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "2"));
@@ -127,10 +127,10 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	}
 
 	private List<AArrayOf_3RGBNumbers> getentry31_5() {
-		if (this.baseObject.size() < 3) {
+		COSObject object = getentry3Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(3);
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_3RGBNumbers> list = new ArrayList<>(1);
 			list.add(new GFAArrayOf_3RGBNumbers((COSArray)object.getDirectBase(), this.baseObject, "3"));

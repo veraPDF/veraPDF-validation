@@ -48,10 +48,10 @@ public class GFAICCBasedColorSpace extends GFAObject implements AICCBasedColorSp
 	}
 
 	private List<AICCProfileStream> getentry11_3() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AICCProfileStream> list = new ArrayList<>(1);
 			list.add(new GFAICCProfileStream((COSStream)object.getDirectBase(), this.baseObject, "1"));

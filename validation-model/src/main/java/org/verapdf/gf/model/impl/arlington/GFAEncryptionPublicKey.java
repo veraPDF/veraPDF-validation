@@ -48,7 +48,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getCF1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CF"));
+		COSObject object = getCFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -74,7 +74,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	}
 
 	private List<AArrayOfStringsByte> getRecipients1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Recipients"));
+		COSObject object = getRecipientsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -431,6 +431,11 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 
 	@Override
 	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32004() {
 		return false;
 	}
 

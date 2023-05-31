@@ -50,10 +50,10 @@ public class GFALabColorSpace extends GFAObject implements ALabColorSpace {
 	}
 
 	private List<ALabDict> getentry11_1() {
-		if (this.baseObject.size() < 1) {
+		COSObject object = getentry1Value();
+		if (object == null) {
 			return Collections.emptyList();
 		}
-		COSObject object = this.baseObject.at(1);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ALabDict> list = new ArrayList<>(1);
 			list.add(new GFALabDict((COSDictionary)object.getDirectBase(), this.baseObject, "1"));

@@ -55,7 +55,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -84,7 +84,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	private List<AAppearance> getAP1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		COSObject object = getAPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -108,7 +108,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Border"));
+		COSObject object = getBorderValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -132,7 +132,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
+		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -156,7 +156,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	private List<AFixedPrint> getFixedPrint1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FixedPrint"));
+		COSObject object = getFixedPrintValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -180,7 +180,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
+		COSObject object = getOCValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -226,7 +226,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	private List<APageObject> getP1_6() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
+		COSObject object = getPValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -719,7 +719,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
-	public Boolean getcontainsAPNAny() {
+	public Boolean getAPNHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -728,11 +728,11 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 			return null;
 		}
 		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
-		return N.getKeySet() != null && !N.getKeySet().isEmpty();
+		return N != null && N.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsAPRAny() {
+	public Boolean getAPRHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -741,11 +741,11 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 			return null;
 		}
 		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
-		return R.getKeySet() != null && !R.getKeySet().isEmpty();
+		return R != null && R.getType() == COSObjType.COS_DICT;
 	}
 
 	@Override
-	public Boolean getcontainsAPDAny() {
+	public Boolean getAPDHasTypeDictionary() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -754,7 +754,7 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 			return null;
 		}
 		COSObject D = AP.getKey(ASAtom.getASAtom("D"));
-		return D.getKeySet() != null && !D.getKeySet().isEmpty();
+		return D != null && D.getType() == COSObjType.COS_DICT;
 	}
 
 }

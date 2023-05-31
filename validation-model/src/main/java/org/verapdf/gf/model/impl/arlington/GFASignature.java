@@ -56,7 +56,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<AArrayOfIntegersGeneral> getByteRange1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
+		COSObject object = getByteRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -83,7 +83,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<AArrayOfStringsByte> getCert1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
+		COSObject object = getCertValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -110,7 +110,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<AArrayOf_3Integers> getChanges1_3() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Changes"));
+		COSObject object = getChangesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -135,7 +135,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<A_UniversalDictionary> getProp_Build1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prop_Build"));
+		COSObject object = getProp_BuildValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -160,7 +160,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	private List<AArrayOfSignatureReferences> getReference1_5() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Reference"));
+		COSObject object = getReferenceValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}

@@ -46,7 +46,7 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 	}
 
 	private List<ARichMediaActivation> getActivation1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Activation"));
+		COSObject object = getActivationValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -69,7 +69,7 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 	}
 
 	private List<ARichMediaDeactivation> getDeactivation1_7() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Deactivation"));
+		COSObject object = getDeactivationValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
@@ -136,6 +136,11 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }
