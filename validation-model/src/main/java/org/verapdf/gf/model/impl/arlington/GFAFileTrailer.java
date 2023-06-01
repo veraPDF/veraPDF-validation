@@ -430,7 +430,8 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	public COSObject getXRefStreamValue() {
-		COSObject object = StaticResources.getDocument().getDocument().getObject(getXRefStmIntegerValue());
+		Long offset = getXRefStmIntegerValue();
+		COSObject object = offset != null ? StaticResources.getDocument().getDocument().getObject(offset) : null;
 		return object;
 	}
 
