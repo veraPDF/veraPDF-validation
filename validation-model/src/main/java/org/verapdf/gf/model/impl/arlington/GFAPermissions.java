@@ -140,6 +140,33 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	}
 
 	@Override
+	public String getUR3Reference0TransformMethodNameValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject UR3 = this.baseObject.getKey(ASAtom.getASAtom("UR3"));
+		if (UR3 == null || !UR3.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Reference = UR3.getKey(ASAtom.getASAtom("Reference"));
+		if (Reference == null || Reference.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (Reference.size() <= 0) {
+			return null;
+		}
+		COSObject entry0 = Reference.at(0);
+		if (entry0 == null || !entry0.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject TransformMethod = entry0.getKey(ASAtom.getASAtom("TransformMethod"));
+		if (TransformMethod != null && TransformMethod.getType() == COSObjType.COS_NAME) {
+			return TransformMethod.getString();
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getDocMDPReferenceHasTypeArray() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
