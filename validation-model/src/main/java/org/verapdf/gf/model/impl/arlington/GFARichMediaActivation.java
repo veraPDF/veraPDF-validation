@@ -133,7 +133,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 		return Collections.emptyList();
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getView() {
+	private List<A3DViewAddEntries> getView() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -143,30 +143,17 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getView1_7() {
+	private List<A3DViewAddEntries> getView1_7() {
 		COSObject object = getViewValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getViewDictionary1_7(object.getDirectBase(), "View");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
+			List<A3DViewAddEntries> list = new ArrayList<>(1);
+			list.add(new GFA3DViewAddEntries((COSDictionary)object.getDirectBase(), this.baseObject, "View"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getViewDictionary1_7(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("Snapshot"))) {
-			return new GFA3DViewAddEntries(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Params"))) {
-			return new GFA3DViewAddEntries(base, this.baseObject, keyName);
-		}
-		return new GFA3DView(base, this.baseObject, keyName);
 	}
 
 	@Override

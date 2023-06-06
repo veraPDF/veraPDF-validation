@@ -83,7 +83,7 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOf3DView> getViews() {
+	private List<AArrayOf3DViewAddEntries> getViews() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -93,14 +93,14 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		}
 	}
 
-	private List<AArrayOf3DView> getViews1_7() {
+	private List<AArrayOf3DViewAddEntries> getViews1_7() {
 		COSObject object = getViewsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf3DView> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf3DView((COSArray)object.getDirectBase(), this.baseObject, "Views"));
+			List<AArrayOf3DViewAddEntries> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf3DViewAddEntries((COSArray)object.getDirectBase(), this.baseObject, "Views"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

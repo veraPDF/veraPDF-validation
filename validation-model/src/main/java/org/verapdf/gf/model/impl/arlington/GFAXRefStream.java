@@ -977,6 +977,26 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	@Override
+	public Boolean getcontainstrailerInfoModDate() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Info = trailer.getKey(ASAtom.getASAtom("Info"));
+		return Info.knownKey(ASAtom.getASAtom("ModDate"));
+	}
+
+	@Override
+	public Boolean getcontainstrailerCatalogPieceInfo() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
+		return Root.knownKey(ASAtom.getASAtom("PieceInfo"));
+	}
+
+	@Override
 	public Boolean gethasExtensionISO_TS_32004() {
 		return false;
 	}

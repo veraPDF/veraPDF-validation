@@ -69,11 +69,33 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 			return Collections.unmodifiableList(list);
 		}
 		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AXObjectFormType1> list = new ArrayList<>(1);
-			list.add(new GFAXObjectFormType1((COSStream)object.getDirectBase(), this.baseObject, "Obj"));
+			org.verapdf.model.baselayer.Object result = getObjStream1_3(object.getDirectBase(), "Obj");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getObjStream1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "Form":
+				return new GFAXObjectFormType1(base, this.baseObject, keyName);
+			case "Image":
+				return new GFAXObjectImage(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	private List<APageObject> getPg() {
