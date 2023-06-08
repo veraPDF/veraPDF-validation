@@ -249,25 +249,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Long getpagePAnnotsArraySize() {
 		COSObject object = getPValue();
-		Long pageNumber = null;
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			PDNamesDictionary names = StaticResources.getDocument().getCatalog().getNamesDictionary();
-			if (names == null) {
-				return null;
-			}
-			PDNameTreeNode dests = names.getDests();
-			if (dests == null) {
-				return null;
-			}
-			object = dests.getObject(object.getString());
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			pageNumber = object.getInteger();
-		}
-		if (pageNumber == null || pageNumber >= StaticResources.getDocument().getPages().size()) {
-			return null;
-		}
-		COSObject page = StaticResources.getDocument().getPages().get(pageNumber.intValue()).getObject();
+		COSObject page = getPageObject(object);
 		if (page == null || !page.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -281,25 +263,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Boolean getpagePAnnotsHasTypeArray() {
 		COSObject object = getPValue();
-		Long pageNumber = null;
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			PDNamesDictionary names = StaticResources.getDocument().getCatalog().getNamesDictionary();
-			if (names == null) {
-				return null;
-			}
-			PDNameTreeNode dests = names.getDests();
-			if (dests == null) {
-				return null;
-			}
-			object = dests.getObject(object.getString());
-		}
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			pageNumber = object.getInteger();
-		}
-		if (pageNumber == null || pageNumber >= StaticResources.getDocument().getPages().size()) {
-			return null;
-		}
-		COSObject page = StaticResources.getDocument().getPages().get(pageNumber.intValue()).getObject();
+		COSObject page = getPageObject(object);
 		if (page == null || !page.getType().isDictionaryBased()) {
 			return null;
 		}

@@ -81,10 +81,10 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 		if (object == null || object.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
 			return null;
 		}
-		COSObject RichMediaContent = this.parentObject.getKey(ASAtom.getASAtom("RichMediaContent"));
+		COSObject RichMediaContent = this.parentParentObject.getKey(ASAtom.getASAtom("RichMediaContent"));
 		if (RichMediaContent == null || !RichMediaContent.getType().isDictionaryBased()) {
 			return null;
 		}

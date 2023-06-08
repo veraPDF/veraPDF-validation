@@ -155,6 +155,28 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return false;
 	}
 
+	protected static COSObject getPageObject(COSObject object) {
+		Long pageNumber = null;
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			PDNamesDictionary names = StaticResources.getDocument().getCatalog().getNamesDictionary();
+			if (names == null) {
+				return null;
+			}
+			PDNameTreeNode dests = names.getDests();
+			if (dests == null) {
+				return null;
+			}
+			object = dests.getObject(object.getString());
+		}
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			pageNumber = object.getInteger();
+		}
+		if (pageNumber == null || pageNumber >= StaticResources.getDocument().getPages().size()) {
+			return null;
+		}
+		return StaticResources.getDocument().getPages().get(pageNumber.intValue()).getObject();
+	}
+
 	public static Set<COSKey> getKeysSet() {
 		if (keysSet.get() == null) {
 			keysSet.set(new HashSet<>());

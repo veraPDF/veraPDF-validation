@@ -23,6 +23,11 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 		super(baseObject, parentObject, keyName, "AArrayOf3PDUNames");
 	}
 
+	@Override
+	public Boolean getcontains0() {
+		return this.baseObject.size() > 0;
+	}
+
 	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -46,6 +51,11 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 		return null;
 	}
 
+	@Override
+	public Boolean getcontains1() {
+		return this.baseObject.size() > 1;
+	}
+
 	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -67,6 +77,11 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 			return object.getString();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean getcontains2() {
+		return this.baseObject.size() > 2;
 	}
 
 	public COSObject getentry2Value() {

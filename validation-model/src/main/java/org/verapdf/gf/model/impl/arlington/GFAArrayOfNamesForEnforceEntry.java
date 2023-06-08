@@ -50,10 +50,10 @@ public class GFAArrayOfNamesForEnforceEntry extends GFAObject implements AArrayO
 
 	@Override
 	public String getparentPrintScalingNameValue() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
 			return null;
 		}
-		COSObject PrintScaling = this.parentObject.getKey(ASAtom.getASAtom("PrintScaling"));
+		COSObject PrintScaling = this.parentParentObject.getKey(ASAtom.getASAtom("PrintScaling"));
 		return new GFAViewerPreferences(this.parentObject.getDirectBase(), null, null).getPrintScalingNameValue();
 	}
 

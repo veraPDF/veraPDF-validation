@@ -80,10 +80,10 @@ public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArray
 
 	@Override
 	public Long getparentNamesArraySize() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
 			return null;
 		}
-		COSObject Names = this.parentObject.getKey(ASAtom.getASAtom("Names"));
+		COSObject Names = this.parentParentObject.getKey(ASAtom.getASAtom("Names"));
 		if (Names != null && Names.getType() == COSObjType.COS_ARRAY) {
 			return (long) Names.size();
 		}
@@ -92,10 +92,10 @@ public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArray
 
 	@Override
 	public Boolean getparentNamesHasTypeArray() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
 			return null;
 		}
-		COSObject Names = this.parentObject.getKey(ASAtom.getASAtom("Names"));
+		COSObject Names = this.parentParentObject.getKey(ASAtom.getASAtom("Names"));
 		return Names != null && Names.getType() == COSObjType.COS_ARRAY;
 	}
 

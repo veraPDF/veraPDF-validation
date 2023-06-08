@@ -23,6 +23,11 @@ public class GFAArrayOf_3Numbers extends GFAObject implements AArrayOf_3Numbers 
 		super(baseObject, parentObject, keyName, "AArrayOf_3Numbers");
 	}
 
+	@Override
+	public Boolean getcontains0() {
+		return this.baseObject.size() > 0;
+	}
+
 	public COSObject getentry0Value() {
 		if (this.baseObject.size() <= 0) {
 			return null;
@@ -37,6 +42,11 @@ public class GFAArrayOf_3Numbers extends GFAObject implements AArrayOf_3Numbers 
 		return object != null && object.getType().isNumber();
 	}
 
+	@Override
+	public Boolean getcontains1() {
+		return this.baseObject.size() > 1;
+	}
+
 	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -49,6 +59,11 @@ public class GFAArrayOf_3Numbers extends GFAObject implements AArrayOf_3Numbers 
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
 		return object != null && object.getType().isNumber();
+	}
+
+	@Override
+	public Boolean getcontains2() {
+		return this.baseObject.size() > 2;
 	}
 
 	public COSObject getentry2Value() {
