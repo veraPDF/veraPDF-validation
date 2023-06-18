@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 
@@ -109,10 +102,10 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 			return null;
 		}
 		switch (subtypeValue.intValue()) {
-			case 6:
-				return new GFAHalftoneType6(base, this.baseObject, keyName);
 			case 10:
 				return new GFAHalftoneType10(base, this.baseObject, keyName);
+			case 6:
+				return new GFAHalftoneType6(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -149,12 +142,12 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 			return null;
 		}
 		switch (subtypeValue.intValue()) {
+			case 10:
+				return new GFAHalftoneType10(base, this.baseObject, keyName);
 			case 16:
 				return new GFAHalftoneType16(base, this.baseObject, keyName);
 			case 6:
 				return new GFAHalftoneType6(base, this.baseObject, keyName);
-			case 10:
-				return new GFAHalftoneType10(base, this.baseObject, keyName);
 			default:
 				return null;
 		}

@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFAActionSetState extends GFAObject implements AActionSetState {
 
@@ -79,16 +72,16 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "Movie":
-				return new GFAAnnotMovie(base, this.baseObject, keyName);
-			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
-			case "Text":
-				return new GFAAnnotText(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAAnnotSound(base, this.baseObject, keyName);
 			case "Link":
 				return new GFAAnnotLink(base, this.baseObject, keyName);
+			case "Movie":
+				return new GFAAnnotMovie(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAAnnotSound(base, this.baseObject, keyName);
+			case "Text":
+				return new GFAAnnotText(base, this.baseObject, keyName);
+			case "Widget":
+				return new GFAAnnotWidget(base, this.baseObject, keyName);
 			default:
 				return null;
 		}

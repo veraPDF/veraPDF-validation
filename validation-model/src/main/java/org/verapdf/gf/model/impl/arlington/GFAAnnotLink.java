@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
@@ -108,10 +101,10 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 				return new GFAActionGoToR(base, this.baseObject, keyName);
 			case "Launch":
 				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
 			case "Thread":
 				return new GFAActionThread(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -143,34 +136,34 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "Hide":
-				return new GFAActionHide(base, this.baseObject, keyName);
-			case "Movie":
-				return new GFAActionMovie(base, this.baseObject, keyName);
-			case "Named":
-				return new GFAActionNamed(base, this.baseObject, keyName);
 			case "GoTo":
 				return new GFAActionGoTo(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			case "NOP":
-				return new GFAActionNOP(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
 			case "GoToR":
 				return new GFAActionGoToR(base, this.baseObject, keyName);
+			case "Hide":
+				return new GFAActionHide(base, this.baseObject, keyName);
 			case "ImportData":
 				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
-			case "SetState":
-				return new GFAActionSetState(base, this.baseObject, keyName);
+			case "Launch":
+				return new GFAActionLaunch(base, this.baseObject, keyName);
+			case "Movie":
+				return new GFAActionMovie(base, this.baseObject, keyName);
+			case "NOP":
+				return new GFAActionNOP(base, this.baseObject, keyName);
+			case "Named":
+				return new GFAActionNamed(base, this.baseObject, keyName);
 			case "ResetForm":
 				return new GFAActionResetForm(base, this.baseObject, keyName);
+			case "SetState":
+				return new GFAActionSetState(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAActionSound(base, this.baseObject, keyName);
+			case "SubmitForm":
+				return new GFAActionSubmitForm(base, this.baseObject, keyName);
+			case "Thread":
+				return new GFAActionThread(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -202,32 +195,32 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		switch (subtypeValue) {
+			case "GoTo":
+				return new GFAActionGoTo(base, this.baseObject, keyName);
+			case "GoToR":
+				return new GFAActionGoToR(base, this.baseObject, keyName);
 			case "Hide":
 				return new GFAActionHide(base, this.baseObject, keyName);
+			case "ImportData":
+				return new GFAActionImportData(base, this.baseObject, keyName);
+			case "JavaScript":
+				return new GFAActionECMAScript(base, this.baseObject, keyName);
+			case "Launch":
+				return new GFAActionLaunch(base, this.baseObject, keyName);
 			case "Movie":
 				return new GFAActionMovie(base, this.baseObject, keyName);
 			case "Named":
 				return new GFAActionNamed(base, this.baseObject, keyName);
-			case "GoTo":
-				return new GFAActionGoTo(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
-			case "GoToR":
-				return new GFAActionGoToR(base, this.baseObject, keyName);
-			case "JavaScript":
-				return new GFAActionECMAScript(base, this.baseObject, keyName);
-			case "ImportData":
-				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
 			case "ResetForm":
 				return new GFAActionResetForm(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAActionSound(base, this.baseObject, keyName);
+			case "SubmitForm":
+				return new GFAActionSubmitForm(base, this.baseObject, keyName);
+			case "Thread":
+				return new GFAActionThread(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -259,38 +252,38 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		switch (subtypeValue) {
+			case "GoTo":
+				return new GFAActionGoTo(base, this.baseObject, keyName);
+			case "GoToR":
+				return new GFAActionGoToR(base, this.baseObject, keyName);
 			case "Hide":
 				return new GFAActionHide(base, this.baseObject, keyName);
+			case "ImportData":
+				return new GFAActionImportData(base, this.baseObject, keyName);
+			case "JavaScript":
+				return new GFAActionECMAScript(base, this.baseObject, keyName);
+			case "Launch":
+				return new GFAActionLaunch(base, this.baseObject, keyName);
 			case "Movie":
 				return new GFAActionMovie(base, this.baseObject, keyName);
 			case "Named":
 				return new GFAActionNamed(base, this.baseObject, keyName);
-			case "GoTo":
-				return new GFAActionGoTo(base, this.baseObject, keyName);
 			case "Rendition":
 				return new GFAActionRendition(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
-			case "SetOCGState":
-				return new GFAActionSetOCGState(base, this.baseObject, keyName);
-			case "GoToR":
-				return new GFAActionGoToR(base, this.baseObject, keyName);
-			case "JavaScript":
-				return new GFAActionECMAScript(base, this.baseObject, keyName);
-			case "ImportData":
-				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
-			case "Trans":
-				return new GFAActionTransition(base, this.baseObject, keyName);
 			case "ResetForm":
 				return new GFAActionResetForm(base, this.baseObject, keyName);
+			case "SetOCGState":
+				return new GFAActionSetOCGState(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAActionSound(base, this.baseObject, keyName);
+			case "SubmitForm":
+				return new GFAActionSubmitForm(base, this.baseObject, keyName);
+			case "Thread":
+				return new GFAActionThread(base, this.baseObject, keyName);
+			case "Trans":
+				return new GFAActionTransition(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -322,42 +315,42 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		switch (subtypeValue) {
+			case "GoTo":
+				return new GFAActionGoTo(base, this.baseObject, keyName);
+			case "GoTo3DView":
+				return new GFAActionGoTo3DView(base, this.baseObject, keyName);
+			case "GoToE":
+				return new GFAActionGoToE(base, this.baseObject, keyName);
+			case "GoToR":
+				return new GFAActionGoToR(base, this.baseObject, keyName);
 			case "Hide":
 				return new GFAActionHide(base, this.baseObject, keyName);
+			case "ImportData":
+				return new GFAActionImportData(base, this.baseObject, keyName);
+			case "JavaScript":
+				return new GFAActionECMAScript(base, this.baseObject, keyName);
+			case "Launch":
+				return new GFAActionLaunch(base, this.baseObject, keyName);
 			case "Movie":
 				return new GFAActionMovie(base, this.baseObject, keyName);
 			case "Named":
 				return new GFAActionNamed(base, this.baseObject, keyName);
-			case "GoTo":
-				return new GFAActionGoTo(base, this.baseObject, keyName);
 			case "Rendition":
 				return new GFAActionRendition(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
-			case "SetOCGState":
-				return new GFAActionSetOCGState(base, this.baseObject, keyName);
-			case "GoToR":
-				return new GFAActionGoToR(base, this.baseObject, keyName);
-			case "GoTo3DView":
-				return new GFAActionGoTo3DView(base, this.baseObject, keyName);
-			case "JavaScript":
-				return new GFAActionECMAScript(base, this.baseObject, keyName);
-			case "ImportData":
-				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
-			case "Trans":
-				return new GFAActionTransition(base, this.baseObject, keyName);
-			case "GoToE":
-				return new GFAActionGoToE(base, this.baseObject, keyName);
 			case "ResetForm":
 				return new GFAActionResetForm(base, this.baseObject, keyName);
+			case "SetOCGState":
+				return new GFAActionSetOCGState(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAActionSound(base, this.baseObject, keyName);
+			case "SubmitForm":
+				return new GFAActionSubmitForm(base, this.baseObject, keyName);
+			case "Thread":
+				return new GFAActionThread(base, this.baseObject, keyName);
+			case "Trans":
+				return new GFAActionTransition(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -389,46 +382,46 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		switch (subtypeValue) {
+			case "GoTo":
+				return new GFAActionGoTo(base, this.baseObject, keyName);
+			case "GoTo3DView":
+				return new GFAActionGoTo3DView(base, this.baseObject, keyName);
+			case "GoToDp":
+				return new GFAActionGoToDp(base, this.baseObject, keyName);
+			case "GoToE":
+				return new GFAActionGoToE(base, this.baseObject, keyName);
+			case "GoToR":
+				return new GFAActionGoToR(base, this.baseObject, keyName);
 			case "Hide":
 				return new GFAActionHide(base, this.baseObject, keyName);
+			case "ImportData":
+				return new GFAActionImportData(base, this.baseObject, keyName);
+			case "JavaScript":
+				return new GFAActionECMAScript(base, this.baseObject, keyName);
+			case "Launch":
+				return new GFAActionLaunch(base, this.baseObject, keyName);
 			case "Movie":
 				return new GFAActionMovie(base, this.baseObject, keyName);
 			case "Named":
 				return new GFAActionNamed(base, this.baseObject, keyName);
-			case "GoTo":
-				return new GFAActionGoTo(base, this.baseObject, keyName);
-			case "GoToDp":
-				return new GFAActionGoToDp(base, this.baseObject, keyName);
 			case "Rendition":
 				return new GFAActionRendition(base, this.baseObject, keyName);
-			case "RichMediaExecute":
-				return new GFAActionRichMediaExecute(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
-			case "SetOCGState":
-				return new GFAActionSetOCGState(base, this.baseObject, keyName);
-			case "GoToR":
-				return new GFAActionGoToR(base, this.baseObject, keyName);
-			case "GoTo3DView":
-				return new GFAActionGoTo3DView(base, this.baseObject, keyName);
-			case "JavaScript":
-				return new GFAActionECMAScript(base, this.baseObject, keyName);
-			case "ImportData":
-				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
-			case "Trans":
-				return new GFAActionTransition(base, this.baseObject, keyName);
-			case "GoToE":
-				return new GFAActionGoToE(base, this.baseObject, keyName);
 			case "ResetForm":
 				return new GFAActionResetForm(base, this.baseObject, keyName);
+			case "RichMediaExecute":
+				return new GFAActionRichMediaExecute(base, this.baseObject, keyName);
+			case "SetOCGState":
+				return new GFAActionSetOCGState(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAActionSound(base, this.baseObject, keyName);
+			case "SubmitForm":
+				return new GFAActionSubmitForm(base, this.baseObject, keyName);
+			case "Thread":
+				return new GFAActionThread(base, this.baseObject, keyName);
+			case "Trans":
+				return new GFAActionTransition(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -491,16 +484,20 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	private List<ABorderStyle> getBS() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBS1_6();
+				return getBS1_2();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ABorderStyle> getBS1_6() {
+	private List<ABorderStyle> getBS1_2() {
 		COSObject object = getBSValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -607,12 +604,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	private org.verapdf.model.baselayer.Object getDestArray1_0(COSBase base, String keyName) {
 		switch (base.size()) {
-			case 5:
-				return new GFADestXYZArray(base, this.baseObject, keyName);
 			case 2:
 				return new GFADest0Array(base, this.baseObject, keyName);
 			case 3:
 				return new GFADest1Array(base, this.baseObject, keyName);
+			case 5:
+				return new GFADestXYZArray(base, this.baseObject, keyName);
 			case 6:
 				return new GFADest4Array(base, this.baseObject, keyName);
 			default:

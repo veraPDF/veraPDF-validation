@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFAAnnotRedact extends GFAObject implements AAnnotRedact {
 
@@ -190,13 +183,13 @@ public class GFAAnnotRedact extends GFAObject implements AAnnotRedact {
 			return null;
 		}
 		switch (subtypeValue) {
+			case "Markup3D":
+				return new GFAExData3DMarkup(base, this.baseObject, keyName);
 			case "MarkupGeo":
 				if (((gethasExtensionADBE_Extn3() == true)) == false) {
 					return null;
 				}
 				return new GFAExDataMarkupGeo(base, this.baseObject, keyName);
-			case "Markup3D":
-				return new GFAExData3DMarkup(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -228,12 +221,12 @@ public class GFAAnnotRedact extends GFAObject implements AAnnotRedact {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "MarkupGeo":
-				return new GFAExDataMarkupGeo(base, this.baseObject, keyName);
-			case "Markup3D":
-				return new GFAExData3DMarkup(base, this.baseObject, keyName);
 			case "3DM":
 				return new GFAExDataProjection(base, this.baseObject, keyName);
+			case "Markup3D":
+				return new GFAExData3DMarkup(base, this.baseObject, keyName);
+			case "MarkupGeo":
+				return new GFAExDataMarkupGeo(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -299,54 +292,54 @@ public class GFAAnnotRedact extends GFAObject implements AAnnotRedact {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "Circle":
-				return new GFAAnnotCircle(base, this.baseObject, keyName);
-			case "Movie":
-				return new GFAAnnotMovie(base, this.baseObject, keyName);
-			case "StrikeOut":
-				return new GFAAnnotStrikeOut(base, this.baseObject, keyName);
-			case "Highlight":
-				return new GFAAnnotHighlight(base, this.baseObject, keyName);
-			case "Stamp":
-				return new GFAAnnotStamp(base, this.baseObject, keyName);
-			case "Screen":
-				return new GFAAnnotScreen(base, this.baseObject, keyName);
-			case "Ink":
-				return new GFAAnnotInk(base, this.baseObject, keyName);
-			case "FileAttachment":
-				return new GFAAnnotFileAttachment(base, this.baseObject, keyName);
-			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
-			case "Text":
-				return new GFAAnnotText(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAAnnotSound(base, this.baseObject, keyName);
-			case "Redact":
-				return new GFAAnnotRedact(base, this.baseObject, keyName);
-			case "Square":
-				return new GFAAnnotSquare(base, this.baseObject, keyName);
-			case "FreeText":
-				return new GFAAnnotFreeText(base, this.baseObject, keyName);
-			case "Line":
-				return new GFAAnnotLine(base, this.baseObject, keyName);
-			case "PrinterMark":
-				return new GFAAnnotPrinterMark(base, this.baseObject, keyName);
 			case "3D":
 				return new GFAAnnot3D(base, this.baseObject, keyName);
-			case "Underline":
-				return new GFAAnnotUnderline(base, this.baseObject, keyName);
-			case "Popup":
-				return new GFAAnnotPopup(base, this.baseObject, keyName);
-			case "Polygon":
-				return new GFAAnnotPolygon(base, this.baseObject, keyName);
-			case "Watermark":
-				return new GFAAnnotWatermark(base, this.baseObject, keyName);
-			case "Link":
-				return new GFAAnnotLink(base, this.baseObject, keyName);
 			case "Caret":
 				return new GFAAnnotCaret(base, this.baseObject, keyName);
+			case "Circle":
+				return new GFAAnnotCircle(base, this.baseObject, keyName);
+			case "FileAttachment":
+				return new GFAAnnotFileAttachment(base, this.baseObject, keyName);
+			case "FreeText":
+				return new GFAAnnotFreeText(base, this.baseObject, keyName);
+			case "Highlight":
+				return new GFAAnnotHighlight(base, this.baseObject, keyName);
+			case "Ink":
+				return new GFAAnnotInk(base, this.baseObject, keyName);
+			case "Line":
+				return new GFAAnnotLine(base, this.baseObject, keyName);
+			case "Link":
+				return new GFAAnnotLink(base, this.baseObject, keyName);
+			case "Movie":
+				return new GFAAnnotMovie(base, this.baseObject, keyName);
+			case "Polygon":
+				return new GFAAnnotPolygon(base, this.baseObject, keyName);
+			case "Popup":
+				return new GFAAnnotPopup(base, this.baseObject, keyName);
+			case "PrinterMark":
+				return new GFAAnnotPrinterMark(base, this.baseObject, keyName);
+			case "Redact":
+				return new GFAAnnotRedact(base, this.baseObject, keyName);
+			case "Screen":
+				return new GFAAnnotScreen(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAAnnotSound(base, this.baseObject, keyName);
+			case "Square":
+				return new GFAAnnotSquare(base, this.baseObject, keyName);
 			case "Squiggly":
 				return new GFAAnnotSquiggly(base, this.baseObject, keyName);
+			case "Stamp":
+				return new GFAAnnotStamp(base, this.baseObject, keyName);
+			case "StrikeOut":
+				return new GFAAnnotStrikeOut(base, this.baseObject, keyName);
+			case "Text":
+				return new GFAAnnotText(base, this.baseObject, keyName);
+			case "Underline":
+				return new GFAAnnotUnderline(base, this.baseObject, keyName);
+			case "Watermark":
+				return new GFAAnnotWatermark(base, this.baseObject, keyName);
+			case "Widget":
+				return new GFAAnnotWidget(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -378,58 +371,58 @@ public class GFAAnnotRedact extends GFAObject implements AAnnotRedact {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "Highlight":
-				return new GFAAnnotHighlight(base, this.baseObject, keyName);
-			case "Screen":
-				return new GFAAnnotScreen(base, this.baseObject, keyName);
-			case "Ink":
-				return new GFAAnnotInk(base, this.baseObject, keyName);
-			case "FileAttachment":
-				return new GFAAnnotFileAttachment(base, this.baseObject, keyName);
-			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
-			case "Projection":
-				return new GFAAnnotProjection(base, this.baseObject, keyName);
-			case "Underline":
-				return new GFAAnnotUnderline(base, this.baseObject, keyName);
-			case "Popup":
-				return new GFAAnnotPopup(base, this.baseObject, keyName);
-			case "Polygon":
-				return new GFAAnnotPolygon(base, this.baseObject, keyName);
-			case "Circle":
-				return new GFAAnnotCircle(base, this.baseObject, keyName);
-			case "Movie":
-				return new GFAAnnotMovie(base, this.baseObject, keyName);
-			case "StrikeOut":
-				return new GFAAnnotStrikeOut(base, this.baseObject, keyName);
-			case "Stamp":
-				return new GFAAnnotStamp(base, this.baseObject, keyName);
-			case "Text":
-				return new GFAAnnotText(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAAnnotSound(base, this.baseObject, keyName);
-			case "Redact":
-				return new GFAAnnotRedact(base, this.baseObject, keyName);
-			case "Square":
-				return new GFAAnnotSquare(base, this.baseObject, keyName);
-			case "FreeText":
-				return new GFAAnnotFreeText(base, this.baseObject, keyName);
-			case "Line":
-				return new GFAAnnotLine(base, this.baseObject, keyName);
-			case "PrinterMark":
-				return new GFAAnnotPrinterMark(base, this.baseObject, keyName);
 			case "3D":
 				return new GFAAnnot3D(base, this.baseObject, keyName);
-			case "RichMedia":
-				return new GFAAnnotRichMedia(base, this.baseObject, keyName);
-			case "Watermark":
-				return new GFAAnnotWatermark(base, this.baseObject, keyName);
-			case "Link":
-				return new GFAAnnotLink(base, this.baseObject, keyName);
 			case "Caret":
 				return new GFAAnnotCaret(base, this.baseObject, keyName);
+			case "Circle":
+				return new GFAAnnotCircle(base, this.baseObject, keyName);
+			case "FileAttachment":
+				return new GFAAnnotFileAttachment(base, this.baseObject, keyName);
+			case "FreeText":
+				return new GFAAnnotFreeText(base, this.baseObject, keyName);
+			case "Highlight":
+				return new GFAAnnotHighlight(base, this.baseObject, keyName);
+			case "Ink":
+				return new GFAAnnotInk(base, this.baseObject, keyName);
+			case "Line":
+				return new GFAAnnotLine(base, this.baseObject, keyName);
+			case "Link":
+				return new GFAAnnotLink(base, this.baseObject, keyName);
+			case "Movie":
+				return new GFAAnnotMovie(base, this.baseObject, keyName);
+			case "Polygon":
+				return new GFAAnnotPolygon(base, this.baseObject, keyName);
+			case "Popup":
+				return new GFAAnnotPopup(base, this.baseObject, keyName);
+			case "PrinterMark":
+				return new GFAAnnotPrinterMark(base, this.baseObject, keyName);
+			case "Projection":
+				return new GFAAnnotProjection(base, this.baseObject, keyName);
+			case "Redact":
+				return new GFAAnnotRedact(base, this.baseObject, keyName);
+			case "RichMedia":
+				return new GFAAnnotRichMedia(base, this.baseObject, keyName);
+			case "Screen":
+				return new GFAAnnotScreen(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAAnnotSound(base, this.baseObject, keyName);
+			case "Square":
+				return new GFAAnnotSquare(base, this.baseObject, keyName);
 			case "Squiggly":
 				return new GFAAnnotSquiggly(base, this.baseObject, keyName);
+			case "Stamp":
+				return new GFAAnnotStamp(base, this.baseObject, keyName);
+			case "StrikeOut":
+				return new GFAAnnotStrikeOut(base, this.baseObject, keyName);
+			case "Text":
+				return new GFAAnnotText(base, this.baseObject, keyName);
+			case "Underline":
+				return new GFAAnnotUnderline(base, this.baseObject, keyName);
+			case "Watermark":
+				return new GFAAnnotWatermark(base, this.baseObject, keyName);
+			case "Widget":
+				return new GFAAnnotWidget(base, this.baseObject, keyName);
 			default:
 				return null;
 		}

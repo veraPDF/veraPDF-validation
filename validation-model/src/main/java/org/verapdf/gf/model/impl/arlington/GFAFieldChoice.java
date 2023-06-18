@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
@@ -158,18 +151,20 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	private List<AArrayOfFieldChoiceOpt> getOpt() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getOpt1_4();
+				return getOpt1_2();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfFieldChoiceOpt> getOpt1_4() {
+	private List<AArrayOfFieldChoiceOpt> getOpt1_2() {
 		COSObject object = getOptValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -224,12 +219,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 			return new GFAField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
-			case "Tx":
-				return new GFAFieldTx(base, this.baseObject, keyName);
-			case "Ch":
-				return new GFAFieldChoice(base, this.baseObject, keyName);
 			case "Btn":
 				return getParentDictionaryBtn1_2(base, keyName);
+			case "Ch":
+				return new GFAFieldChoice(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAFieldTx(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -299,14 +294,14 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 			return new GFAField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
+			case "Btn":
+				return getParentDictionaryBtn1_3(base, keyName);
+			case "Ch":
+				return new GFAFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
 				return new GFAFieldSig(base, this.baseObject, keyName);
 			case "Tx":
 				return new GFAFieldTx(base, this.baseObject, keyName);
-			case "Ch":
-				return new GFAFieldChoice(base, this.baseObject, keyName);
-			case "Btn":
-				return getParentDictionaryBtn1_3(base, keyName);
 			default:
 				return null;
 		}

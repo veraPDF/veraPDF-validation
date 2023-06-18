@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFADestDict extends GFAObject implements ADestDict {
 
@@ -69,12 +62,12 @@ public class GFADestDict extends GFAObject implements ADestDict {
 
 	private org.verapdf.model.baselayer.Object getDArray1_1(COSBase base, String keyName) {
 		switch (base.size()) {
-			case 5:
-				return new GFADestXYZArray(base, this.baseObject, keyName);
 			case 2:
 				return new GFADest0Array(base, this.baseObject, keyName);
 			case 3:
 				return new GFADest1Array(base, this.baseObject, keyName);
+			case 5:
+				return new GFADestXYZArray(base, this.baseObject, keyName);
 			case 6:
 				return new GFADest4Array(base, this.baseObject, keyName);
 			default:
@@ -109,12 +102,12 @@ public class GFADestDict extends GFAObject implements ADestDict {
 
 	private org.verapdf.model.baselayer.Object getSDArray2_0(COSBase base, String keyName) {
 		switch (base.size()) {
-			case 5:
-				return new GFADestXYZStructArray(base, this.baseObject, keyName);
 			case 2:
 				return new GFADest0StructArray(base, this.baseObject, keyName);
 			case 3:
 				return new GFADest1StructArray(base, this.baseObject, keyName);
+			case 5:
+				return new GFADestXYZStructArray(base, this.baseObject, keyName);
 			case 6:
 				return new GFADest4StructArray(base, this.baseObject, keyName);
 			default:

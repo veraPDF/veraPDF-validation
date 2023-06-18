@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFAXObjectMapEntry extends GFAObject implements AXObjectMapEntry {
 
@@ -111,12 +104,12 @@ public class GFAXObjectMapEntry extends GFAObject implements AXObjectMapEntry {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "PS":
-				return getEntryStreamPS1_1(base, keyName);
 			case "Form":
 				return new GFAXObjectFormType1(base, this.baseObject, keyName);
 			case "Image":
 				return new GFAXObjectImage(base, this.baseObject, keyName);
+			case "PS":
+				return getEntryStreamPS1_1(base, keyName);
 			default:
 				return null;
 		}

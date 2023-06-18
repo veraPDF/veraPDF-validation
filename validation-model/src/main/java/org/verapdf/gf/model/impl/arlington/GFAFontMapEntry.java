@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFAFontMapEntry extends GFAObject implements AFontMapEntry {
 
@@ -79,14 +72,14 @@ public class GFAFontMapEntry extends GFAObject implements AFontMapEntry {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "Type3":
-				return new GFAFontType3(base, this.baseObject, keyName);
 			case "MMType1":
 				return new GFAFontMultipleMaster(base, this.baseObject, keyName);
-			case "Type1":
-				return new GFAFontType1(base, this.baseObject, keyName);
 			case "TrueType":
 				return new GFAFontTrueType(base, this.baseObject, keyName);
+			case "Type1":
+				return new GFAFontType1(base, this.baseObject, keyName);
+			case "Type3":
+				return new GFAFontType3(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -115,20 +108,20 @@ public class GFAFontMapEntry extends GFAObject implements AFontMapEntry {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "Type3":
-				return new GFAFontType3(base, this.baseObject, keyName);
 			case "CIDFontType0":
 				return new GFAFontCIDType0(base, this.baseObject, keyName);
 			case "CIDFontType2":
 				return new GFAFontCIDType2(base, this.baseObject, keyName);
 			case "MMType1":
 				return new GFAFontMultipleMaster(base, this.baseObject, keyName);
+			case "TrueType":
+				return new GFAFontTrueType(base, this.baseObject, keyName);
 			case "Type0":
 				return new GFAFontType0(base, this.baseObject, keyName);
 			case "Type1":
 				return new GFAFontType1(base, this.baseObject, keyName);
-			case "TrueType":
-				return new GFAFontTrueType(base, this.baseObject, keyName);
+			case "Type3":
+				return new GFAFontType3(base, this.baseObject, keyName);
 			default:
 				return null;
 		}

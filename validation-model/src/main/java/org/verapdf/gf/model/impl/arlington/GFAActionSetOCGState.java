@@ -1,7 +1,6 @@
 package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
-import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
@@ -10,12 +9,6 @@ import org.verapdf.pd.*;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
-import org.verapdf.model.tools.constants.Operators;
-import org.verapdf.operator.Operator;
-import org.verapdf.as.io.ASInputStream;
-import org.verapdf.parser.PDFStreamParser;
-import org.verapdf.pd.structure.NameTreeIterator;
-import java.io.IOException;
 
 public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGState {
 
@@ -80,38 +73,38 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 			return null;
 		}
 		switch (subtypeValue) {
+			case "GoTo":
+				return new GFAActionGoTo(base, this.baseObject, keyName);
+			case "GoToR":
+				return new GFAActionGoToR(base, this.baseObject, keyName);
 			case "Hide":
 				return new GFAActionHide(base, this.baseObject, keyName);
+			case "ImportData":
+				return new GFAActionImportData(base, this.baseObject, keyName);
+			case "JavaScript":
+				return new GFAActionECMAScript(base, this.baseObject, keyName);
+			case "Launch":
+				return new GFAActionLaunch(base, this.baseObject, keyName);
 			case "Movie":
 				return new GFAActionMovie(base, this.baseObject, keyName);
 			case "Named":
 				return new GFAActionNamed(base, this.baseObject, keyName);
-			case "GoTo":
-				return new GFAActionGoTo(base, this.baseObject, keyName);
 			case "Rendition":
 				return new GFAActionRendition(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
-			case "SetOCGState":
-				return new GFAActionSetOCGState(base, this.baseObject, keyName);
-			case "GoToR":
-				return new GFAActionGoToR(base, this.baseObject, keyName);
-			case "JavaScript":
-				return new GFAActionECMAScript(base, this.baseObject, keyName);
-			case "ImportData":
-				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
-			case "Trans":
-				return new GFAActionTransition(base, this.baseObject, keyName);
 			case "ResetForm":
 				return new GFAActionResetForm(base, this.baseObject, keyName);
+			case "SetOCGState":
+				return new GFAActionSetOCGState(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAActionSound(base, this.baseObject, keyName);
+			case "SubmitForm":
+				return new GFAActionSubmitForm(base, this.baseObject, keyName);
+			case "Thread":
+				return new GFAActionThread(base, this.baseObject, keyName);
+			case "Trans":
+				return new GFAActionTransition(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -148,42 +141,42 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 			return null;
 		}
 		switch (subtypeValue) {
+			case "GoTo":
+				return new GFAActionGoTo(base, this.baseObject, keyName);
+			case "GoTo3DView":
+				return new GFAActionGoTo3DView(base, this.baseObject, keyName);
+			case "GoToE":
+				return new GFAActionGoToE(base, this.baseObject, keyName);
+			case "GoToR":
+				return new GFAActionGoToR(base, this.baseObject, keyName);
 			case "Hide":
 				return new GFAActionHide(base, this.baseObject, keyName);
+			case "ImportData":
+				return new GFAActionImportData(base, this.baseObject, keyName);
+			case "JavaScript":
+				return new GFAActionECMAScript(base, this.baseObject, keyName);
+			case "Launch":
+				return new GFAActionLaunch(base, this.baseObject, keyName);
 			case "Movie":
 				return new GFAActionMovie(base, this.baseObject, keyName);
 			case "Named":
 				return new GFAActionNamed(base, this.baseObject, keyName);
-			case "GoTo":
-				return new GFAActionGoTo(base, this.baseObject, keyName);
 			case "Rendition":
 				return new GFAActionRendition(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
-			case "SetOCGState":
-				return new GFAActionSetOCGState(base, this.baseObject, keyName);
-			case "GoToR":
-				return new GFAActionGoToR(base, this.baseObject, keyName);
-			case "GoTo3DView":
-				return new GFAActionGoTo3DView(base, this.baseObject, keyName);
-			case "JavaScript":
-				return new GFAActionECMAScript(base, this.baseObject, keyName);
-			case "ImportData":
-				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
-			case "Trans":
-				return new GFAActionTransition(base, this.baseObject, keyName);
-			case "GoToE":
-				return new GFAActionGoToE(base, this.baseObject, keyName);
 			case "ResetForm":
 				return new GFAActionResetForm(base, this.baseObject, keyName);
+			case "SetOCGState":
+				return new GFAActionSetOCGState(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAActionSound(base, this.baseObject, keyName);
+			case "SubmitForm":
+				return new GFAActionSubmitForm(base, this.baseObject, keyName);
+			case "Thread":
+				return new GFAActionThread(base, this.baseObject, keyName);
+			case "Trans":
+				return new GFAActionTransition(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -220,46 +213,46 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 			return null;
 		}
 		switch (subtypeValue) {
+			case "GoTo":
+				return new GFAActionGoTo(base, this.baseObject, keyName);
+			case "GoTo3DView":
+				return new GFAActionGoTo3DView(base, this.baseObject, keyName);
+			case "GoToDp":
+				return new GFAActionGoToDp(base, this.baseObject, keyName);
+			case "GoToE":
+				return new GFAActionGoToE(base, this.baseObject, keyName);
+			case "GoToR":
+				return new GFAActionGoToR(base, this.baseObject, keyName);
 			case "Hide":
 				return new GFAActionHide(base, this.baseObject, keyName);
+			case "ImportData":
+				return new GFAActionImportData(base, this.baseObject, keyName);
+			case "JavaScript":
+				return new GFAActionECMAScript(base, this.baseObject, keyName);
+			case "Launch":
+				return new GFAActionLaunch(base, this.baseObject, keyName);
 			case "Movie":
 				return new GFAActionMovie(base, this.baseObject, keyName);
 			case "Named":
 				return new GFAActionNamed(base, this.baseObject, keyName);
-			case "GoTo":
-				return new GFAActionGoTo(base, this.baseObject, keyName);
-			case "GoToDp":
-				return new GFAActionGoToDp(base, this.baseObject, keyName);
 			case "Rendition":
 				return new GFAActionRendition(base, this.baseObject, keyName);
-			case "RichMediaExecute":
-				return new GFAActionRichMediaExecute(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
-			case "SetOCGState":
-				return new GFAActionSetOCGState(base, this.baseObject, keyName);
-			case "GoToR":
-				return new GFAActionGoToR(base, this.baseObject, keyName);
-			case "GoTo3DView":
-				return new GFAActionGoTo3DView(base, this.baseObject, keyName);
-			case "JavaScript":
-				return new GFAActionECMAScript(base, this.baseObject, keyName);
-			case "ImportData":
-				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
-			case "Trans":
-				return new GFAActionTransition(base, this.baseObject, keyName);
-			case "GoToE":
-				return new GFAActionGoToE(base, this.baseObject, keyName);
 			case "ResetForm":
 				return new GFAActionResetForm(base, this.baseObject, keyName);
+			case "RichMediaExecute":
+				return new GFAActionRichMediaExecute(base, this.baseObject, keyName);
+			case "SetOCGState":
+				return new GFAActionSetOCGState(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAActionSound(base, this.baseObject, keyName);
+			case "SubmitForm":
+				return new GFAActionSubmitForm(base, this.baseObject, keyName);
+			case "Thread":
+				return new GFAActionThread(base, this.baseObject, keyName);
+			case "Trans":
+				return new GFAActionTransition(base, this.baseObject, keyName);
+			case "URI":
+				return new GFAActionURI(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
