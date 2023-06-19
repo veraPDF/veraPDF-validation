@@ -945,11 +945,11 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	private org.verapdf.model.baselayer.Object getOPIDictionary1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("2.0"))) {
-			return new GFAOPIVersion20(base, this.baseObject, keyName);
-		}
 		if (base.knownKey(ASAtom.getASAtom("1.3"))) {
 			return new GFAOPIVersion13(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("2.0"))) {
+			return new GFAOPIVersion20(base, this.baseObject, keyName);
 		}
 		return null;
 	}

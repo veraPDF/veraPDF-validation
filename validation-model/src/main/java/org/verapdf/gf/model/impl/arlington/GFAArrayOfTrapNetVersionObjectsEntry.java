@@ -109,13 +109,34 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("Type"))) {
-			return getEntryDictionaryType1_3(base, keyName);
-		}
 		if (base.knownKey(ASAtom.getASAtom("ShadingType"))) {
 			return getEntryDictionaryShadingType1_3(base, keyName);
 		}
+		if (base.knownKey(ASAtom.getASAtom("Type"))) {
+			return getEntryDictionaryType1_3(base, keyName);
+		}
 		return null;
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryShadingType1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue()) {
+			case 1:
+				return new GFAShadingType1(base, this.baseObject, keyName);
+			case 2:
+				return new GFAShadingType2(base, this.baseObject, keyName);
+			case 3:
+				return new GFAShadingType3(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryType1_3(COSBase base, String keyName) {
@@ -229,33 +250,12 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryShadingType1_3(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue.intValue()) {
-			case 1:
-				return new GFAShadingType1(base, this.baseObject, keyName);
-			case 2:
-				return new GFAShadingType2(base, this.baseObject, keyName);
-			case 3:
-				return new GFAShadingType3(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
 	private org.verapdf.model.baselayer.Object getEntryStream1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("Type"))) {
-			return new GFAPatternType1(base, this.baseObject, keyName);
-		}
 		if (base.knownKey(ASAtom.getASAtom("ShadingType"))) {
 			return getEntryStreamShadingType1_3(base, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Type"))) {
+			return new GFAPatternType1(base, this.baseObject, keyName);
 		}
 		return new GFAStream(base, this.baseObject, keyName);
 	}
