@@ -27,13 +27,13 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 	@Override
 	public Boolean getentry0HasTypeNull() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -47,13 +47,13 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 	@Override
 	public Boolean getentry1HasTypeNull() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -67,13 +67,13 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 	@Override
 	public Boolean getentry2HasTypeNull() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

@@ -92,7 +92,7 @@ public class GFAStructTreeRootNameTreeIDTreeEntry extends GFAObject implements A
 	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

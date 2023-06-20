@@ -29,7 +29,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getCHasTypeNumber() {
 		COSObject object = getCValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getDHasTypeInteger() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getFHasTypeName() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getFDHasTypeBoolean() {
 		COSObject object = getFDValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getOHasTypeName() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -201,7 +201,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getPSHasTypeStringText() {
 		COSObject object = getPSValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -230,7 +230,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getRDHasTypeStringText() {
 		COSObject object = getRDValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -259,7 +259,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getRTHasTypeStringText() {
 		COSObject object = getRTValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -288,7 +288,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getSSHasTypeStringText() {
 		COSObject object = getSSValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -304,7 +304,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -329,7 +329,7 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	@Override
 	public Boolean getUHasTypeStringText() {
 		COSObject object = getUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 }

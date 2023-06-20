@@ -153,7 +153,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Boolean getC0HasTypeArray() {
 		COSObject object = getC0Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Boolean getC1HasTypeArray() {
 		COSObject object = getC1Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -203,7 +203,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Boolean getDomainHasTypeArray() {
 		COSObject object = getDomainValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -228,7 +228,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Boolean getFunctionTypeHasTypeInteger() {
 		COSObject object = getFunctionTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -253,7 +253,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Boolean getNHasTypeNumber() {
 		COSObject object = getNValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -269,7 +269,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Boolean getRangeHasTypeArray() {
 		COSObject object = getRangeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

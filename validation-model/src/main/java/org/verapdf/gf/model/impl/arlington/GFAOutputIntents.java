@@ -143,7 +143,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getDestOutputProfileHasTypeStream() {
 		COSObject object = getDestOutputProfileValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -159,7 +159,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getDestOutputProfileRefHasTypeDictionary() {
 		COSObject object = getDestOutputProfileRefValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -175,7 +175,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getInfoHasTypeStringText() {
 		COSObject object = getInfoValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -191,7 +191,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getMixingHintsHasTypeDictionary() {
 		COSObject object = getMixingHintsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -207,7 +207,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getOutputConditionHasTypeStringText() {
 		COSObject object = getOutputConditionValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -223,7 +223,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getOutputConditionIdentifierHasTypeStringText() {
 		COSObject object = getOutputConditionIdentifierValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -239,7 +239,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getRegistryNameHasTypeStringText() {
 		COSObject object = getRegistryNameValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -255,7 +255,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -280,7 +280,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getSpectralDataHasTypeDictionary() {
 		COSObject object = getSpectralDataValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -296,7 +296,7 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

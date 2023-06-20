@@ -88,7 +88,7 @@ public class GFANameNameTreeRenditionsEntry extends GFAObject implements ANameNa
 	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

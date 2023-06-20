@@ -413,13 +413,13 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStream() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -439,13 +439,13 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	@Override
 	public Boolean getentry1HasTypeDictionary() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStream() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -465,13 +465,13 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	@Override
 	public Boolean getentry2HasTypeDictionary() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeStream() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	public COSObject getentry3Value() {
@@ -491,13 +491,13 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	@Override
 	public Boolean getentry3HasTypeDictionary() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeStream() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

@@ -287,7 +287,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getA1HasTypeArray() {
 		COSObject object = getA1Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -303,7 +303,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getA2HasTypeArray() {
 		COSObject object = getA2Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -319,7 +319,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getA3HasTypeArray() {
 		COSObject object = getA3Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -335,7 +335,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getA4HasTypeArray() {
 		COSObject object = getA4Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -351,7 +351,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getAPHasTypeArray() {
 		COSObject object = getAPValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -367,7 +367,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -395,7 +395,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getELHasTypeNumber() {
 		COSObject object = getELValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -411,7 +411,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getN2HasTypeStringText() {
 		COSObject object = getN2Value();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -439,7 +439,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -476,7 +476,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getRHasTypeBoolean() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -498,7 +498,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getSHasTypeDictionary() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -526,7 +526,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getSCHasTypeBoolean() {
 		COSObject object = getSCValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -542,7 +542,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -567,7 +567,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getTPHasTypeArray() {
 		COSObject object = getTPValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -583,7 +583,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getTRLHasTypeStringText() {
 		COSObject object = getTRLValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -611,7 +611,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getTSHasTypeNumber() {
 		COSObject object = getTSValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -627,7 +627,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getTXHasTypeArray() {
 		COSObject object = getTXValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -643,7 +643,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getTYHasTypeArray() {
 		COSObject object = getTYValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -659,7 +659,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -684,7 +684,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getUHasTypeStringText() {
 		COSObject object = getUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -700,7 +700,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getUTHasTypeStringText() {
 		COSObject object = getUTValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -716,7 +716,7 @@ public class GFA3DMeasureRD3 extends GFAObject implements A3DMeasureRD3 {
 	@Override
 	public Boolean getVHasTypeNumber() {
 		COSObject object = getVValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

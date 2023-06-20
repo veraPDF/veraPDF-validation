@@ -60,7 +60,7 @@ public class GFAArrayOfDPartArraysEntry extends GFAObject implements AArrayOfDPa
 	@Override
 	public Boolean getHasTypeArray() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

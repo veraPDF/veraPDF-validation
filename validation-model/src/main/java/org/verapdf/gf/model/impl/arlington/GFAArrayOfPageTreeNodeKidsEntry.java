@@ -90,7 +90,7 @@ public class GFAArrayOfPageTreeNodeKidsEntry extends GFAObject implements AArray
 	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

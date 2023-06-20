@@ -386,15 +386,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject object = getBBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -410,13 +402,13 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -441,13 +433,13 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -463,13 +455,13 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -494,13 +486,13 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getFFilterHasTypeArray() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -534,13 +526,13 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -574,7 +566,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getFormTypeHasTypeInteger() {
 		COSObject object = getFormTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -599,7 +591,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -621,7 +613,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getLevel1HasTypeStream() {
 		COSObject object = getLevel1Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -655,15 +647,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject object = getMatrixValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeMatrix(object);
 	}
 
 	@Override
@@ -685,7 +669,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getPSHasTypeStream() {
 		COSObject object = getPSValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -701,7 +685,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -726,7 +710,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getSubtype2HasTypeName() {
 		COSObject object = getSubtype2Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -751,7 +735,7 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

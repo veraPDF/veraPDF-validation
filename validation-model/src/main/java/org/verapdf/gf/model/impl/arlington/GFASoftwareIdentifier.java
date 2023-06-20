@@ -118,7 +118,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	@Override
 	public Boolean getHHasTypeArray() {
 		COSObject object = getHValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -148,7 +148,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	@Override
 	public Boolean getHIHasTypeBoolean() {
 		COSObject object = getHIValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -164,7 +164,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	@Override
 	public Boolean getLHasTypeArray() {
 		COSObject object = getLValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	@Override
 	public Boolean getLIHasTypeBoolean() {
 		COSObject object = getLIValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	@Override
 	public Boolean getOSHasTypeArray() {
 		COSObject object = getOSValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -226,7 +226,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -251,7 +251,7 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	@Override
 	public Boolean getUHasTypeStringAscii() {
 		COSObject object = getUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 }

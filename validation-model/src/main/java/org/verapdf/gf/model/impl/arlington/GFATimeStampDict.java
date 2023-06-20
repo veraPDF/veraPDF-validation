@@ -42,7 +42,7 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 	@Override
 	public Boolean getFfHasTypeInteger() {
 		COSObject object = getFfValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 	@Override
 	public Boolean getURLHasTypeStringAscii() {
 		COSObject object = getURLValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 }

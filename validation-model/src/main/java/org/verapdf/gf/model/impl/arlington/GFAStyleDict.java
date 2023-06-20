@@ -29,7 +29,7 @@ public class GFAStyleDict extends GFAObject implements AStyleDict {
 	@Override
 	public Boolean getPanoseHasTypeStringByte() {
 		COSObject object = getPanoseValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override

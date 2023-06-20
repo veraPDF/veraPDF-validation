@@ -676,13 +676,13 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -698,15 +698,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject object = getBBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -722,7 +714,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getColorantsHasTypeDictionary() {
 		COSObject object = getColorantsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -738,7 +730,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject object = getDLValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -763,13 +755,13 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -794,13 +786,13 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -816,13 +808,13 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -847,13 +839,13 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getFFilterHasTypeArray() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -887,13 +879,13 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -927,7 +919,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getFormTypeHasTypeInteger() {
 		COSObject object = getFormTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -952,7 +944,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getGroupHasTypeDictionary() {
 		COSObject object = getGroupValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -968,7 +960,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
 		COSObject object = getLastModifiedValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -984,7 +976,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -1000,7 +992,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getMarkStyleHasTypeStringText() {
 		COSObject object = getMarkStyleValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -1031,15 +1023,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject object = getMatrixValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeMatrix(object);
 	}
 
 	@Override
@@ -1055,7 +1039,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getMeasureHasTypeDictionary() {
 		COSObject object = getMeasureValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1077,7 +1061,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject object = getMetadataValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -1093,7 +1077,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getNameHasTypeName() {
 		COSObject object = getNameValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1109,7 +1093,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getOCHasTypeDictionary() {
 		COSObject object = getOCValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1125,7 +1109,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getOPIHasTypeDictionary() {
 		COSObject object = getOPIValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1141,7 +1125,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
 		COSObject object = getPieceInfoValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1157,7 +1141,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getPtDataHasTypeDictionary() {
 		COSObject object = getPtDataValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1173,7 +1157,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getRefHasTypeDictionary() {
 		COSObject object = getRefValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1189,7 +1173,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
 		COSObject object = getResourcesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1205,7 +1189,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject object = getStructParentValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -1221,7 +1205,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getStructParentsHasTypeInteger() {
 		COSObject object = getStructParentsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -1237,7 +1221,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1262,7 +1246,7 @@ public class GFAXObjectFormPrinterMark extends GFAObject implements AXObjectForm
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

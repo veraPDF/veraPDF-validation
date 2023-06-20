@@ -117,7 +117,7 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	@Override
 	public Boolean getDefEmbeddedFileHasTypeDictionary() {
 		COSObject object = getDefEmbeddedFileValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	@Override
 	public Boolean getDefaultCryptFilterHasTypeDictionary() {
 		COSObject object = getDefaultCryptFilterValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

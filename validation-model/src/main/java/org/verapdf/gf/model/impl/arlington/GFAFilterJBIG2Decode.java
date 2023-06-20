@@ -71,7 +71,7 @@ public class GFAFilterJBIG2Decode extends GFAObject implements AFilterJBIG2Decod
 	@Override
 	public Boolean getJBIG2GlobalsHasTypeStream() {
 		COSObject object = getJBIG2GlobalsValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

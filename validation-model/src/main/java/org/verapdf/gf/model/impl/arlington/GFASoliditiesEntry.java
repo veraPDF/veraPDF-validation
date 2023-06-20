@@ -29,7 +29,7 @@ public class GFASoliditiesEntry extends GFAObject implements ASoliditiesEntry {
 	@Override
 	public Boolean getHasTypeNumber() {
 		COSObject object = getValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

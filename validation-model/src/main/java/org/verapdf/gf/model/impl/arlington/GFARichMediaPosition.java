@@ -41,7 +41,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	@Override
 	public Boolean getHAlignHasTypeName() {
 		COSObject object = getHAlignValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	@Override
 	public Boolean getHOffsetHasTypeNumber() {
 		COSObject object = getHOffsetValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	@Override
 	public Boolean getVAlignHasTypeName() {
 		COSObject object = getVAlignValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -168,7 +168,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	@Override
 	public Boolean getVOffsetHasTypeNumber() {
 		COSObject object = getVOffsetValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

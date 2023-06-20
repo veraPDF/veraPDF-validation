@@ -61,7 +61,7 @@ public class GFACollectionSchema extends GFAObject implements ACollectionSchema 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

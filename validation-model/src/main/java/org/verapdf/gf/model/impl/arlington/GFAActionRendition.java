@@ -378,7 +378,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	@Override
 	public Boolean getANHasTypeDictionary() {
 		COSObject object = getANValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -400,13 +400,13 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	@Override
 	public Boolean getJSHasTypeStream() {
 		COSObject object = getJSValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getJSHasTypeStringText() {
 		COSObject object = getJSValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -422,13 +422,13 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -444,7 +444,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	@Override
 	public Boolean getOPHasTypeInteger() {
 		COSObject object = getOPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -469,7 +469,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	@Override
 	public Boolean getRHasTypeDictionary() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -485,7 +485,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -510,7 +510,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

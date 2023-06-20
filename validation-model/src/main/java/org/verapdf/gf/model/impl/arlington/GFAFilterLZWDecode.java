@@ -48,7 +48,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
 		COSObject object = getBitsPerComponentValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	@Override
 	public Boolean getColorsHasTypeInteger() {
 		COSObject object = getColorsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -136,7 +136,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	@Override
 	public Boolean getColumnsHasTypeInteger() {
 		COSObject object = getColumnsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -171,7 +171,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	@Override
 	public Boolean getEarlyChangeHasTypeInteger() {
 		COSObject object = getEarlyChangeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -196,7 +196,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	@Override
 	public Boolean getPredictorHasTypeInteger() {
 		COSObject object = getPredictorValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

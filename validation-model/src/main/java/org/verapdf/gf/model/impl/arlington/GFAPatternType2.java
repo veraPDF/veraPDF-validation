@@ -150,7 +150,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	@Override
 	public Boolean getExtGStateHasTypeDictionary() {
 		COSObject object = getExtGStateValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -182,15 +182,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject object = getMatrixValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeMatrix(object);
 	}
 
 	@Override
@@ -206,7 +198,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	@Override
 	public Boolean getPatternTypeHasTypeInteger() {
 		COSObject object = getPatternTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -237,13 +229,13 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	@Override
 	public Boolean getShadingHasTypeDictionary() {
 		COSObject object = getShadingValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getShadingHasTypeStream() {
 		COSObject object = getShadingValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -259,7 +251,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

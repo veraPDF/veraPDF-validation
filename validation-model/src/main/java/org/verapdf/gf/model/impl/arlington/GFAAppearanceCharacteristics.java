@@ -282,7 +282,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getACHasTypeStringText() {
 		COSObject object = getACValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -298,7 +298,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getBCHasTypeArray() {
 		COSObject object = getBCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -314,7 +314,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getBGHasTypeArray() {
 		COSObject object = getBGValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -330,7 +330,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getCAHasTypeStringText() {
 		COSObject object = getCAValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -352,7 +352,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getIHasTypeStream() {
 		COSObject object = getIValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -368,7 +368,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getIFHasTypeDictionary() {
 		COSObject object = getIFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -390,7 +390,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getIXHasTypeStream() {
 		COSObject object = getIXValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -423,7 +423,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getRHasTypeInteger() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -439,7 +439,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getRCHasTypeStringText() {
 		COSObject object = getRCValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -461,7 +461,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getRIHasTypeStream() {
 		COSObject object = getRIValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -494,7 +494,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Boolean getTPHasTypeInteger() {
 		COSObject object = getTPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

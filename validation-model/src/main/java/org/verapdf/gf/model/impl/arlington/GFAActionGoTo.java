@@ -491,19 +491,19 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDHasTypeName() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getDHasTypeStringByte() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -519,13 +519,13 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -541,7 +541,7 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -566,7 +566,7 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	@Override
 	public Boolean getSDHasTypeArray() {
 		COSObject object = getSDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -582,7 +582,7 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

@@ -63,13 +63,13 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Boolean getAHasTypeInteger() {
 		COSObject object = getAValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getAHasTypeStringText() {
 		COSObject object = getAValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Boolean getNHasTypeStringByte() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -145,13 +145,13 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getPHasTypeStringByte() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -211,7 +211,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Boolean getRHasTypeName() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -236,7 +236,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Boolean getTHasTypeDictionary() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -261,7 +261,7 @@ public class GFATarget extends GFAObject implements ATarget {
 			return null;
 		}
 		COSObject Annots = page.getKey(ASAtom.getASAtom("Annots"));
-		return Annots != null && Annots.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(Annots);
 	}
 
 }

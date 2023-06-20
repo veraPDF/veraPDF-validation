@@ -287,13 +287,13 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -309,7 +309,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -334,7 +334,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	@Override
 	public Boolean getTAHasTypeDictionary() {
 		COSObject object = getTAValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -350,7 +350,7 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -375,25 +375,25 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	@Override
 	public Boolean getVHasTypeDictionary() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeInteger() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeName() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeStringText() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 }

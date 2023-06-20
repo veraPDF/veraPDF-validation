@@ -59,7 +59,7 @@ public class GFAArrayOf_RoleMapNS extends GFAObject implements AArrayOf_RoleMapN
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -79,7 +79,7 @@ public class GFAArrayOf_RoleMapNS extends GFAObject implements AArrayOf_RoleMapN
 	@Override
 	public Boolean getentry1HasTypeDictionary() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

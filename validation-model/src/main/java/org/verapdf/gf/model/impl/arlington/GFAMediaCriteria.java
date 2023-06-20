@@ -172,7 +172,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getAHasTypeBoolean() {
 		COSObject object = getAValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -188,7 +188,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getCHasTypeBoolean() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -204,7 +204,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -220,7 +220,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getLHasTypeArray() {
 		COSObject object = getLValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -236,7 +236,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getOHasTypeBoolean() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -252,7 +252,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getPHasTypeArray() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -268,7 +268,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getRHasTypeInteger() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -293,7 +293,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getSHasTypeBoolean() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -309,7 +309,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -334,7 +334,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getVHasTypeArray() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -350,7 +350,7 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	@Override
 	public Boolean getZHasTypeDictionary() {
 		COSObject object = getZValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

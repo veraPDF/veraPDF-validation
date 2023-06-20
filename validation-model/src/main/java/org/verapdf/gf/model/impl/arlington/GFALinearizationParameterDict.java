@@ -87,7 +87,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Boolean getEHasTypeInteger() {
 		COSObject object = getEValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Boolean getHHasTypeArray() {
 		COSObject object = getHValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -140,7 +140,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Boolean getLHasTypeInteger() {
 		COSObject object = getLValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -171,7 +171,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Boolean getLinearizedHasTypeNumber() {
 		COSObject object = getLinearizedValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -202,7 +202,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Boolean getNHasTypeInteger() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -233,7 +233,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Boolean getOHasTypeInteger() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -281,7 +281,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -312,7 +312,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Boolean getTHasTypeInteger() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

@@ -95,19 +95,19 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	@Override
 	public Boolean getOCGsHasTypeArray() {
 		COSObject object = getOCGsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getOCGsHasTypeDictionary() {
 		COSObject object = getOCGsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getOCGsHasTypeNull() {
 		COSObject object = getOCGsValue();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
@@ -137,7 +137,7 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	@Override
 	public Boolean getPHasTypeName() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -162,7 +162,7 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	@Override
 	public Boolean getVEHasTypeArray() {
 		COSObject object = getVEValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 }

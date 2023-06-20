@@ -91,13 +91,13 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	@Override
 	public Boolean getIntentHasTypeArray() {
 		COSObject object = getIntentValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getIntentHasTypeName() {
 		COSObject object = getIntentValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject object = getNameValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -154,7 +154,7 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	@Override
 	public Boolean getUsageHasTypeDictionary() {
 		COSObject object = getUsageValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

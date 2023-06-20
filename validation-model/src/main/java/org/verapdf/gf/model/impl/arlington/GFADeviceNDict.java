@@ -118,7 +118,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	@Override
 	public Boolean getColorantsHasTypeDictionary() {
 		COSObject object = getColorantsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	@Override
 	public Boolean getMixingHintsHasTypeDictionary() {
 		COSObject object = getMixingHintsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	@Override
 	public Boolean getProcessHasTypeDictionary() {
 		COSObject object = getProcessValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

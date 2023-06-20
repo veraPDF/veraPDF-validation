@@ -97,7 +97,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	@Override
 	public Boolean getDocMDPHasTypeDictionary() {
 		COSObject object = getDocMDPValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	@Override
 	public Boolean getUR3HasTypeDictionary() {
 		COSObject object = getUR3Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 			return null;
 		}
 		COSObject Reference = DocMDP.getKey(ASAtom.getASAtom("Reference"));
-		return Reference != null && Reference.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(Reference);
 	}
 
 }

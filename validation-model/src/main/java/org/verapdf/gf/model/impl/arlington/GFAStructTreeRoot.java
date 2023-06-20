@@ -269,13 +269,13 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -291,7 +291,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getClassMapHasTypeDictionary() {
 		COSObject object = getClassMapValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -307,7 +307,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getIDTreeHasTypeNameTree() {
 		COSObject object = getIDTreeValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeNameTree(object);
 	}
 
 	@Override
@@ -323,13 +323,13 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getKHasTypeArray() {
 		COSObject object = getKValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getKHasTypeDictionary() {
 		COSObject object = getKValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -345,7 +345,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getNamespacesHasTypeArray() {
 		COSObject object = getNamespacesValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -361,7 +361,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getParentTreeHasTypeNumberTree() {
 		COSObject object = getParentTreeValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeNumberTree(object);
 	}
 
 	@Override
@@ -377,7 +377,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getParentTreeNextKeyHasTypeInteger() {
 		COSObject object = getParentTreeNextKeyValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -399,19 +399,19 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getPronunciationLexiconHasTypeArray() {
 		COSObject object = getPronunciationLexiconValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getPronunciationLexiconHasTypeDictionary() {
 		COSObject object = getPronunciationLexiconValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getPronunciationLexiconHasTypeString() {
 		COSObject object = getPronunciationLexiconValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -427,7 +427,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getRoleMapHasTypeDictionary() {
 		COSObject object = getRoleMapValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -443,7 +443,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

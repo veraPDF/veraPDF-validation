@@ -118,7 +118,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	@Override
 	public Boolean getConfigsHasTypeArray() {
 		COSObject object = getConfigsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	@Override
 	public Boolean getOCGsHasTypeArray() {
 		COSObject object = getOCGsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 }

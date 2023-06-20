@@ -43,7 +43,7 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 	@Override
 	public Boolean getIHasTypeNumber() {
 		COSObject object = getIValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

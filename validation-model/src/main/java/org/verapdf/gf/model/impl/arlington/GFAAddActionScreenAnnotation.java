@@ -1773,7 +1773,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1789,7 +1789,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	@Override
 	public Boolean getEHasTypeDictionary() {
 		COSObject object = getEValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1805,7 +1805,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	@Override
 	public Boolean getPCHasTypeDictionary() {
 		COSObject object = getPCValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1821,7 +1821,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	@Override
 	public Boolean getPIHasTypeDictionary() {
 		COSObject object = getPIValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1837,7 +1837,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	@Override
 	public Boolean getPOHasTypeDictionary() {
 		COSObject object = getPOValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1853,7 +1853,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	@Override
 	public Boolean getPVHasTypeDictionary() {
 		COSObject object = getPVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1869,7 +1869,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	@Override
 	public Boolean getUHasTypeDictionary() {
 		COSObject object = getUValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1885,7 +1885,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 	@Override
 	public Boolean getXHasTypeDictionary() {
 		COSObject object = getXValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

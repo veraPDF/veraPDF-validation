@@ -61,13 +61,13 @@ public class GFAArrayOfOCGStateEntry extends GFAObject implements AArrayOfOCGSta
 	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getHasTypeName() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

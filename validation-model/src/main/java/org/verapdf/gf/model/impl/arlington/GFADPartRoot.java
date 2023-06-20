@@ -95,7 +95,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	@Override
 	public Boolean getDPartRootNodeHasTypeDictionary() {
 		COSObject object = getDPartRootNodeValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	@Override
 	public Boolean getNodeNameListHasTypeArray() {
 		COSObject object = getNodeNameListValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	@Override
 	public Boolean getRecordLevelHasTypeInteger() {
 		COSObject object = getRecordLevelValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

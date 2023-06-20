@@ -137,7 +137,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -153,7 +153,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getICHasTypeArray() {
 		COSObject object = getICValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -181,7 +181,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getIVHasTypeBoolean() {
 		COSObject object = getIVValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -206,7 +206,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getOHasTypeArray() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -222,7 +222,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getPCHasTypeArray() {
 		COSObject object = getPCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -250,7 +250,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getPOHasTypeNumber() {
 		COSObject object = getPOValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -287,7 +287,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getPVHasTypeBoolean() {
 		COSObject object = getPVValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -314,7 +314,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getSCHasTypeBoolean() {
 		COSObject object = getSCValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -341,7 +341,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getSTHasTypeBoolean() {
 		COSObject object = getSTValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -357,7 +357,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

@@ -97,7 +97,7 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 	@Override
 	public Boolean getFHasTypeStream() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 	@Override
 	public Boolean getUFHasTypeStream() {
 		COSObject object = getUFValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

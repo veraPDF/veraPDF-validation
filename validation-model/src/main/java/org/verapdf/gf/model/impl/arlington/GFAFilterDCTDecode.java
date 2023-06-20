@@ -29,7 +29,7 @@ public class GFAFilterDCTDecode extends GFAObject implements AFilterDCTDecode {
 	@Override
 	public Boolean getColorTransformHasTypeInteger() {
 		COSObject object = getColorTransformValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

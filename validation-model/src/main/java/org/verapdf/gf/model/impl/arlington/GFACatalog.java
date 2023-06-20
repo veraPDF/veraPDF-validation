@@ -1260,7 +1260,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject object = getAAValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1276,7 +1276,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -1301,7 +1301,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getAcroFormHasTypeDictionary() {
 		COSObject object = getAcroFormValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1317,7 +1317,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getCollectionHasTypeDictionary() {
 		COSObject object = getCollectionValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1333,7 +1333,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getDPartRootHasTypeDictionary() {
 		COSObject object = getDPartRootValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1349,7 +1349,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getDSSHasTypeDictionary() {
 		COSObject object = getDSSValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1371,7 +1371,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getDestsHasTypeDictionary() {
 		COSObject object = getDestsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1393,7 +1393,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getExtensionsHasTypeDictionary() {
 		COSObject object = getExtensionsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1409,7 +1409,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject object = getLangValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -1425,7 +1425,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getLegalHasTypeDictionary() {
 		COSObject object = getLegalValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1441,7 +1441,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getMarkInfoHasTypeDictionary() {
 		COSObject object = getMarkInfoValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1463,7 +1463,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject object = getMetadataValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -1479,7 +1479,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getNamesHasTypeDictionary() {
 		COSObject object = getNamesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1514,7 +1514,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getNeedsRenderingHasTypeBoolean() {
 		COSObject object = getNeedsRenderingValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -1530,7 +1530,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getOCPropertiesHasTypeDictionary() {
 		COSObject object = getOCPropertiesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1546,13 +1546,13 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getOpenActionHasTypeArray() {
 		COSObject object = getOpenActionValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getOpenActionHasTypeDictionary() {
 		COSObject object = getOpenActionValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1574,7 +1574,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getOutlinesHasTypeDictionary() {
 		COSObject object = getOutlinesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1590,7 +1590,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getOutputIntentsHasTypeArray() {
 		COSObject object = getOutputIntentsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -1606,7 +1606,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getPageLabelsHasTypeNumberTree() {
 		COSObject object = getPageLabelsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeNumberTree(object);
 	}
 
 	@Override
@@ -1641,7 +1641,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getPageLayoutHasTypeName() {
 		COSObject object = getPageLayoutValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1685,7 +1685,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getPageModeHasTypeName() {
 		COSObject object = getPageModeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1716,7 +1716,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getPagesHasTypeDictionary() {
 		COSObject object = getPagesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1732,7 +1732,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getPermsHasTypeDictionary() {
 		COSObject object = getPermsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1748,7 +1748,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
 		COSObject object = getPieceInfoValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1764,7 +1764,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getRequirementsHasTypeArray() {
 		COSObject object = getRequirementsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -1780,7 +1780,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getSpiderInfoHasTypeDictionary() {
 		COSObject object = getSpiderInfoValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1796,7 +1796,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getStructTreeRootHasTypeDictionary() {
 		COSObject object = getStructTreeRootValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1818,7 +1818,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getThreadsHasTypeArray() {
 		COSObject object = getThreadsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -1834,7 +1834,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1859,7 +1859,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getURIHasTypeDictionary() {
 		COSObject object = getURIValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1875,7 +1875,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getVersionHasTypeName() {
 		COSObject object = getVersionValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1900,7 +1900,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getViewerPreferencesHasTypeDictionary() {
 		COSObject object = getViewerPreferencesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override

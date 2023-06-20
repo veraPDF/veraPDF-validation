@@ -87,7 +87,7 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	@Override
 	public Boolean getAssetHasTypeDictionary() {
 		COSObject object = getAssetValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	@Override
 	public Boolean getParamsHasTypeDictionary() {
 		COSObject object = getParamsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	@Override
 	public Boolean getSceneHasTypeInteger() {
 		COSObject object = getSceneValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -144,7 +144,7 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

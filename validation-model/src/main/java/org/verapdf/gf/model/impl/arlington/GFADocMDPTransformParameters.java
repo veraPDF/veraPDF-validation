@@ -43,7 +43,7 @@ public class GFADocMDPTransformParameters extends GFAObject implements ADocMDPTr
 	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class GFADocMDPTransformParameters extends GFAObject implements ADocMDPTr
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class GFADocMDPTransformParameters extends GFAObject implements ADocMDPTr
 	@Override
 	public Boolean getVHasTypeName() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

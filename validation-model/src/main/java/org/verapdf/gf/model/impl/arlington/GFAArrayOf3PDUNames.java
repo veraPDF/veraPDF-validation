@@ -32,7 +32,7 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 	@Override
 	public Boolean getentry2HasTypeName() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

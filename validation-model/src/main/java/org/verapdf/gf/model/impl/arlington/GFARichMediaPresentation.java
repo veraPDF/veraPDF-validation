@@ -74,7 +74,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	@Override
 	public Boolean getNavigationPaneHasTypeBoolean() {
 		COSObject object = getNavigationPaneValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	@Override
 	public Boolean getPassContextClickHasTypeBoolean() {
 		COSObject object = getPassContextClickValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	@Override
 	public Boolean getStyleHasTypeName() {
 		COSObject object = getStyleValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -167,7 +167,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	@Override
 	public Boolean getToolbarHasTypeBoolean() {
 		COSObject object = getToolbarValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -195,7 +195,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	@Override
 	public Boolean getTransparentHasTypeBoolean() {
 		COSObject object = getTransparentValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -211,7 +211,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -236,7 +236,7 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	@Override
 	public Boolean getWindowHasTypeDictionary() {
 		COSObject object = getWindowValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override

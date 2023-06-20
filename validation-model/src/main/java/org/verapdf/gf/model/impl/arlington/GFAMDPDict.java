@@ -29,7 +29,7 @@ public class GFAMDPDict extends GFAObject implements AMDPDict {
 	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

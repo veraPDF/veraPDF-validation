@@ -43,7 +43,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Boolean getBHasTypeBoolean() {
 		COSObject object = getBValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Boolean getDHasTypeNumber() {
 		COSObject object = getDValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -120,13 +120,13 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Boolean getDiHasTypeInteger() {
 		COSObject object = getDiValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getDiHasTypeName() {
 		COSObject object = getDiValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Boolean getDmHasTypeName() {
 		COSObject object = getDmValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -221,7 +221,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Boolean getMHasTypeName() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -264,7 +264,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -303,7 +303,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Boolean getSSHasTypeNumber() {
 		COSObject object = getSSValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -328,7 +328,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

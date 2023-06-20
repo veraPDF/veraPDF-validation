@@ -92,7 +92,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getCFHasTypeDictionary() {
 		COSObject object = getCFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getEFFHasTypeName() {
 		COSObject object = getEFFValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -147,7 +147,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getEncryptMetadataHasTypeBoolean() {
 		COSObject object = getEncryptMetadataValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getKDFSaltHasTypeStringByte() {
 		COSObject object = getKDFSaltValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -225,7 +225,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -266,7 +266,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getPHasTypeBitmask() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -291,7 +291,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getRecipientsHasTypeArray() {
 		COSObject object = getRecipientsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -321,7 +321,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getStmFHasTypeName() {
 		COSObject object = getStmFValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -360,7 +360,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getStrFHasTypeName() {
 		COSObject object = getStrFValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -385,7 +385,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getSubFilterHasTypeName() {
 		COSObject object = getSubFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -410,7 +410,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Boolean getVHasTypeInteger() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

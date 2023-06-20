@@ -27,7 +27,7 @@ public class GFAArrayOfClassNamesRevisionsSubArray extends GFAObject implements 
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -41,7 +41,7 @@ public class GFAArrayOfClassNamesRevisionsSubArray extends GFAObject implements 
 	@Override
 	public Boolean getentry1HasTypeInteger() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

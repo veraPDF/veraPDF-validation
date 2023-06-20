@@ -115,7 +115,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	@Override
 	public Boolean getDotGainHasTypeDictionary() {
 		COSObject object = getDotGainValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	@Override
 	public Boolean getPrintingOrderHasTypeArray() {
 		COSObject object = getPrintingOrderValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -147,7 +147,7 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	@Override
 	public Boolean getSoliditiesHasTypeDictionary() {
 		COSObject object = getSoliditiesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

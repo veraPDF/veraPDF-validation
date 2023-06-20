@@ -88,7 +88,7 @@ public class GFAVisibilityExpressionArray extends GFAObject implements AVisibili
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -111,13 +111,13 @@ public class GFAVisibilityExpressionArray extends GFAObject implements AVisibili
 	@Override
 	public Boolean getentry1HasTypeArray() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeDictionary() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

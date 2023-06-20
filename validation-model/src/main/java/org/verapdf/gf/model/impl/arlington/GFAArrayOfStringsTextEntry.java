@@ -29,7 +29,7 @@ public class GFAArrayOfStringsTextEntry extends GFAObject implements AArrayOfStr
 	@Override
 	public Boolean getHasTypeStringText() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 }

@@ -29,7 +29,7 @@ public class GFAMediaOffsetMarker extends GFAObject implements AMediaOffsetMarke
 	@Override
 	public Boolean getMHasTypeStringText() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class GFAMediaOffsetMarker extends GFAObject implements AMediaOffsetMarke
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class GFAMediaOffsetMarker extends GFAObject implements AMediaOffsetMarke
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class GFAArrayOf_8Numbers extends GFAObject implements AArrayOf_8Numbers 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -41,7 +41,7 @@ public class GFAArrayOf_8Numbers extends GFAObject implements AArrayOf_8Numbers 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -55,7 +55,7 @@ public class GFAArrayOf_8Numbers extends GFAObject implements AArrayOf_8Numbers 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry3Value() {
@@ -69,7 +69,7 @@ public class GFAArrayOf_8Numbers extends GFAObject implements AArrayOf_8Numbers 
 	@Override
 	public Boolean getentry3HasTypeNumber() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry4Value() {
@@ -83,7 +83,7 @@ public class GFAArrayOf_8Numbers extends GFAObject implements AArrayOf_8Numbers 
 	@Override
 	public Boolean getentry4HasTypeNumber() {
 		COSObject object = getentry4Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry5Value() {
@@ -97,7 +97,7 @@ public class GFAArrayOf_8Numbers extends GFAObject implements AArrayOf_8Numbers 
 	@Override
 	public Boolean getentry5HasTypeNumber() {
 		COSObject object = getentry5Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry6Value() {
@@ -111,7 +111,7 @@ public class GFAArrayOf_8Numbers extends GFAObject implements AArrayOf_8Numbers 
 	@Override
 	public Boolean getentry6HasTypeNumber() {
 		COSObject object = getentry6Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry7Value() {
@@ -125,7 +125,7 @@ public class GFAArrayOf_8Numbers extends GFAObject implements AArrayOf_8Numbers 
 	@Override
 	public Boolean getentry7HasTypeNumber() {
 		COSObject object = getentry7Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

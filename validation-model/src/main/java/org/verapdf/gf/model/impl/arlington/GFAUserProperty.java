@@ -73,7 +73,7 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	@Override
 	public Boolean getFHasTypeStringText() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	@Override
 	public Boolean getHHasTypeBoolean() {
 		COSObject object = getHValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	@Override
 	public Boolean getNHasTypeStringText() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -140,49 +140,49 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	@Override
 	public Boolean getVHasTypeArray() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeBoolean() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeDictionary() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeName() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeNull() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeNumber() {
 		COSObject object = getVValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeStream() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeString() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override

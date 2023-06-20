@@ -97,7 +97,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public Boolean getCharSetHasTypeString() {
 		COSObject object = getCharSetValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -122,13 +122,13 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -144,7 +144,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public Boolean getFieldsHasTypeArray() {
 		COSObject object = getFieldsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -177,7 +177,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public Boolean getFlagsHasTypeBitmask() {
 		COSObject object = getFlagsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -202,7 +202,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

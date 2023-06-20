@@ -127,7 +127,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	@Override
 	public Boolean getBaseFontHasTypeName() {
 		COSObject object = getBaseFontValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	@Override
 	public Boolean getDescendantFontsHasTypeArray() {
 		COSObject object = getDescendantFontsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -165,13 +165,13 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	@Override
 	public Boolean getEncodingHasTypeName() {
 		COSObject object = getEncodingValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getEncodingHasTypeStream() {
 		COSObject object = getEncodingValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -196,7 +196,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -227,7 +227,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	@Override
 	public Boolean getToUnicodeHasTypeStream() {
 		COSObject object = getToUnicodeValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -243,7 +243,7 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

@@ -162,7 +162,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public Boolean getAnimationHasTypeDictionary() {
 		COSObject object = getAnimationValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -190,7 +190,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public Boolean getConditionHasTypeName() {
 		COSObject object = getConditionValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -221,7 +221,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public Boolean getConfigurationHasTypeDictionary() {
 		COSObject object = getConfigurationValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -237,7 +237,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public Boolean getPresentationHasTypeDictionary() {
 		COSObject object = getPresentationValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -253,7 +253,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public Boolean getScriptsHasTypeArray() {
 		COSObject object = getScriptsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -269,7 +269,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -300,7 +300,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	@Override
 	public Boolean getViewHasTypeDictionary() {
 		COSObject object = getViewValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override

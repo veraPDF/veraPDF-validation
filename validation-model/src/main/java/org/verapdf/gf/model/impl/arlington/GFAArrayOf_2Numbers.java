@@ -27,7 +27,7 @@ public class GFAArrayOf_2Numbers extends GFAObject implements AArrayOf_2Numbers 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class GFAArrayOf_2Numbers extends GFAObject implements AArrayOf_2Numbers 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

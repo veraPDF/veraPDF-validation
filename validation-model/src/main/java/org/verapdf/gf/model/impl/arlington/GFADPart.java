@@ -237,7 +237,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -253,7 +253,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getDPMHasTypeDictionary() {
 		COSObject object = getDPMValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -269,7 +269,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getDPartsHasTypeArray() {
 		COSObject object = getDPartsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -300,7 +300,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getEndHasTypeDictionary() {
 		COSObject object = getEndValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -322,7 +322,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject object = getMetadataValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -344,7 +344,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject object = getParentValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -366,7 +366,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getStartHasTypeDictionary() {
 		COSObject object = getStartValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -382,7 +382,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

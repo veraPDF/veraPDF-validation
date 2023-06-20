@@ -29,7 +29,7 @@ public class GFATimespan extends GFAObject implements ATimespan {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class GFATimespan extends GFAObject implements ATimespan {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class GFATimespan extends GFAObject implements ATimespan {
 	@Override
 	public Boolean getVHasTypeNumber() {
 		COSObject object = getVValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

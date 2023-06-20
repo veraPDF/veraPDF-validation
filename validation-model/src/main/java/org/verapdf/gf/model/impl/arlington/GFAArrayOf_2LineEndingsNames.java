@@ -27,7 +27,7 @@ public class GFAArrayOf_2LineEndingsNames extends GFAObject implements AArrayOf_
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class GFAArrayOf_2LineEndingsNames extends GFAObject implements AArrayOf_
 	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

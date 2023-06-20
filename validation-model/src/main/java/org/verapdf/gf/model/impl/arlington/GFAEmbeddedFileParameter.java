@@ -66,7 +66,7 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	@Override
 	public Boolean getCheckSumHasTypeString() {
 		COSObject object = getCheckSumValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
 		COSObject object = getCreationDateValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	@Override
 	public Boolean getMacHasTypeDictionary() {
 		COSObject object = getMacValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	@Override
 	public Boolean getModDateHasTypeDate() {
 		COSObject object = getModDateValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	@Override
 	public Boolean getSizeHasTypeInteger() {
 		COSObject object = getSizeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

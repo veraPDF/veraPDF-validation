@@ -93,13 +93,13 @@ public class GFAReference extends GFAObject implements AReference {
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public class GFAReference extends GFAObject implements AReference {
 	@Override
 	public Boolean getentryIDHasTypeArray() {
 		COSObject object = getentryIDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -131,13 +131,13 @@ public class GFAReference extends GFAObject implements AReference {
 	@Override
 	public Boolean getPageHasTypeInteger() {
 		COSObject object = getPageValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getPageHasTypeStringText() {
 		COSObject object = getPageValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override

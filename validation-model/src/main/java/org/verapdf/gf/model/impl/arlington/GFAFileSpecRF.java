@@ -97,7 +97,7 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	@Override
 	public Boolean getFHasTypeArray() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	@Override
 	public Boolean getUFHasTypeArray() {
 		COSObject object = getUFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

@@ -27,13 +27,13 @@ public class GFAArrayOf_4BorderThicknessNumbers extends GFAObject implements AAr
 	@Override
 	public Boolean getentry0HasTypeNull() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -56,13 +56,13 @@ public class GFAArrayOf_4BorderThicknessNumbers extends GFAObject implements AAr
 	@Override
 	public Boolean getentry1HasTypeNull() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -85,13 +85,13 @@ public class GFAArrayOf_4BorderThicknessNumbers extends GFAObject implements AAr
 	@Override
 	public Boolean getentry2HasTypeNull() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -114,13 +114,13 @@ public class GFAArrayOf_4BorderThicknessNumbers extends GFAObject implements AAr
 	@Override
 	public Boolean getentry3HasTypeNull() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeNumber() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

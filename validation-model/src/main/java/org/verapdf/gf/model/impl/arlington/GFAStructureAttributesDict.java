@@ -449,15 +449,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject object = getBBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -473,7 +465,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getBackgroundColorHasTypeArray() {
 		COSObject object = getBackgroundColorValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -504,7 +496,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getBaselineShiftHasTypeNumber() {
 		COSObject object = getBaselineShiftValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -535,7 +527,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getBlockAlignHasTypeName() {
 		COSObject object = getBlockAlignValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -560,7 +552,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getBorderColorHasTypeArray() {
 		COSObject object = getBorderColorValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -590,13 +582,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getBorderStyleHasTypeArray() {
 		COSObject object = getBorderStyleValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getBorderStyleHasTypeName() {
 		COSObject object = getBorderStyleValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -635,13 +627,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getBorderThicknessHasTypeArray() {
 		COSObject object = getBorderThicknessValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getBorderThicknessHasTypeNumber() {
 		COSObject object = getBorderThicknessValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -669,7 +661,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getCheckedHasTypeName() {
 		COSObject object = getCheckedValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -709,7 +701,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getColSpanHasTypeInteger() {
 		COSObject object = getColSpanValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -725,7 +717,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getColorHasTypeArray() {
 		COSObject object = getColorValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -754,7 +746,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getColumnCountHasTypeInteger() {
 		COSObject object = getColumnCountValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -770,13 +762,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getColumnGapHasTypeArray() {
 		COSObject object = getColumnGapValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getColumnGapHasTypeNumber() {
 		COSObject object = getColumnGapValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -792,13 +784,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getColumnWidthsHasTypeArray() {
 		COSObject object = getColumnWidthsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getColumnWidthsHasTypeNumber() {
 		COSObject object = getColumnWidthsValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -814,13 +806,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getContentsHasTypeArray() {
 		COSObject object = getContentsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getContentsHasTypeStringText() {
 		COSObject object = getContentsValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -836,7 +828,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getContinuedFormHasTypeStringByte() {
 		COSObject object = getContinuedFormValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -863,7 +855,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getContinuedListHasTypeBoolean() {
 		COSObject object = getContinuedListValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -879,7 +871,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getDescHasTypeStringText() {
 		COSObject object = getDescValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -910,7 +902,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getEndIndentHasTypeNumber() {
 		COSObject object = getEndIndentValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -940,13 +932,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getGlyphOrientationVerticalHasTypeInteger() {
 		COSObject object = getGlyphOrientationVerticalValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getGlyphOrientationVerticalHasTypeName() {
 		COSObject object = getGlyphOrientationVerticalValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -980,7 +972,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getHeadersHasTypeArray() {
 		COSObject object = getHeadersValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -1011,13 +1003,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getHeightHasTypeName() {
 		COSObject object = getHeightValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getHeightHasTypeNumber() {
 		COSObject object = getHeightValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1048,7 +1040,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getInlineAlignHasTypeName() {
 		COSObject object = getInlineAlignValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1088,13 +1080,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getLineHeightHasTypeName() {
 		COSObject object = getLineHeightValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getLineHeightHasTypeNumber() {
 		COSObject object = getLineHeightValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1134,7 +1126,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getListNumberingHasTypeName() {
 		COSObject object = getListNumberingValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1165,7 +1157,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getNSHasTypeDictionary() {
 		COSObject object = getNSValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1181,7 +1173,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getOHasTypeName() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1206,7 +1198,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getPHasTypeArray() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -1236,13 +1228,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getPaddingHasTypeArray() {
 		COSObject object = getPaddingValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getPaddingHasTypeNumber() {
 		COSObject object = getPaddingValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1258,7 +1250,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getPlacementHasTypeName() {
 		COSObject object = getPlacementValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1283,7 +1275,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getRoleHasTypeName() {
 		COSObject object = getRoleValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1323,7 +1315,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getRowSpanHasTypeInteger() {
 		COSObject object = getRowSpanValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -1353,7 +1345,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getRubyAlignHasTypeName() {
 		COSObject object = getRubyAlignValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1392,7 +1384,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getRubyPositionHasTypeName() {
 		COSObject object = getRubyPositionValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1417,7 +1409,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getScopeHasTypeName() {
 		COSObject object = getScopeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1442,7 +1434,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getShortHasTypeStringText() {
 		COSObject object = getShortValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -1473,7 +1465,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getSpaceAfterHasTypeNumber() {
 		COSObject object = getSpaceAfterValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1504,7 +1496,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getSpaceBeforeHasTypeNumber() {
 		COSObject object = getSpaceBeforeValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1535,7 +1527,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getStartIndentHasTypeNumber() {
 		COSObject object = getStartIndentValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1551,7 +1543,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1576,7 +1568,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getSummaryHasTypeStringText() {
 		COSObject object = getSummaryValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -1606,13 +1598,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTBorderStyleHasTypeArray() {
 		COSObject object = getTBorderStyleValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getTBorderStyleHasTypeName() {
 		COSObject object = getTBorderStyleValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1651,13 +1643,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTPaddingHasTypeArray() {
 		COSObject object = getTPaddingValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getTPaddingHasTypeInteger() {
 		COSObject object = getTPaddingValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -1688,7 +1680,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTextAlignHasTypeName() {
 		COSObject object = getTextAlignValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1713,7 +1705,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTextDecorationColorHasTypeArray() {
 		COSObject object = getTextDecorationColorValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -1729,7 +1721,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTextDecorationThicknessHasTypeNumber() {
 		COSObject object = getTextDecorationThicknessValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1760,7 +1752,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTextDecorationTypeHasTypeName() {
 		COSObject object = getTextDecorationTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1800,7 +1792,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTextIndentHasTypeNumber() {
 		COSObject object = getTextIndentValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1827,7 +1819,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTextPositionHasTypeName() {
 		COSObject object = getTextPositionValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1852,7 +1844,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1892,13 +1884,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getWidthHasTypeName() {
 		COSObject object = getWidthValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getWidthHasTypeNumber() {
 		COSObject object = getWidthValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1929,7 +1921,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getWritingModeHasTypeName() {
 		COSObject object = getWritingModeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1966,7 +1958,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Boolean getcheckedHasTypeName() {
 		COSObject object = getcheckedValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

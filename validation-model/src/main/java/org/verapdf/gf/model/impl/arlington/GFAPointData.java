@@ -87,7 +87,7 @@ public class GFAPointData extends GFAObject implements APointData {
 	@Override
 	public Boolean getNamesHasTypeArray() {
 		COSObject object = getNamesValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class GFAPointData extends GFAObject implements APointData {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class GFAPointData extends GFAObject implements APointData {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -153,7 +153,7 @@ public class GFAPointData extends GFAObject implements APointData {
 	@Override
 	public Boolean getXPTSHasTypeArray() {
 		COSObject object = getXPTSValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

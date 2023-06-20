@@ -543,7 +543,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getAntiAliasHasTypeBoolean() {
 		COSObject object = getAntiAliasValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -559,15 +559,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject object = getBBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -583,7 +575,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getBackgroundHasTypeArray() {
 		COSObject object = getBackgroundValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -599,7 +591,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
 		COSObject object = getBitsPerComponentValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -624,7 +616,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getBitsPerCoordinateHasTypeInteger() {
 		COSObject object = getBitsPerCoordinateValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -649,7 +641,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getBitsPerFlagHasTypeInteger() {
 		COSObject object = getBitsPerFlagValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -665,13 +657,13 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
 		COSObject object = getColorSpaceValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
 		COSObject object = getColorSpaceValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -696,7 +688,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject object = getDLValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -721,7 +713,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getDecodeHasTypeArray() {
 		COSObject object = getDecodeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -737,13 +729,13 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -768,13 +760,13 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -790,13 +782,13 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -821,13 +813,13 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getFFilterHasTypeArray() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -861,13 +853,13 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -907,19 +899,19 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getFunctionHasTypeArray() {
 		COSObject object = getFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFunctionHasTypeDictionary() {
 		COSObject object = getFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFunctionHasTypeStream() {
 		COSObject object = getFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -935,7 +927,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -951,7 +943,7 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	@Override
 	public Boolean getShadingTypeHasTypeInteger() {
 		COSObject object = getShadingTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

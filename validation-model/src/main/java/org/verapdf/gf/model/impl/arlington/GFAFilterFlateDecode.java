@@ -46,7 +46,7 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
 		COSObject object = getBitsPerComponentValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	@Override
 	public Boolean getColorsHasTypeInteger() {
 		COSObject object = getColorsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	@Override
 	public Boolean getColumnsHasTypeInteger() {
 		COSObject object = getColumnsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -146,7 +146,7 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	@Override
 	public Boolean getPredictorHasTypeInteger() {
 		COSObject object = getPredictorValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

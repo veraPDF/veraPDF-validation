@@ -27,7 +27,7 @@ public class GFAArrayOf_2StringsByte extends GFAObject implements AArrayOf_2Stri
 	@Override
 	public Boolean getentry0HasTypeStringByte() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -41,7 +41,7 @@ public class GFAArrayOf_2StringsByte extends GFAObject implements AArrayOf_2Stri
 	@Override
 	public Boolean getentry1HasTypeStringByte() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 }

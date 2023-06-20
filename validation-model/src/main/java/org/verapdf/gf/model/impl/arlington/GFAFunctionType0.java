@@ -472,7 +472,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getBitsPerSampleHasTypeInteger() {
 		COSObject object = getBitsPerSampleValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -497,7 +497,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject object = getDLValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -522,7 +522,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getDecodeHasTypeArray() {
 		COSObject object = getDecodeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -547,13 +547,13 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -578,7 +578,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getDomainHasTypeArray() {
 		COSObject object = getDomainValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -603,7 +603,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getEncodeHasTypeArray() {
 		COSObject object = getEncodeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -628,13 +628,13 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -650,13 +650,13 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -681,13 +681,13 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getFFilterHasTypeArray() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -721,13 +721,13 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -761,7 +761,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getFunctionTypeHasTypeInteger() {
 		COSObject object = getFunctionTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -786,7 +786,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -819,7 +819,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getOrderHasTypeInteger() {
 		COSObject object = getOrderValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -844,7 +844,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getRangeHasTypeArray() {
 		COSObject object = getRangeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -869,7 +869,7 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	@Override
 	public Boolean getSizeHasTypeArray() {
 		COSObject object = getSizeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

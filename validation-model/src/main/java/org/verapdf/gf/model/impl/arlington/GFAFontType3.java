@@ -225,7 +225,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getCharProcsHasTypeDictionary() {
 		COSObject object = getCharProcsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -241,7 +241,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getEncodingHasTypeDictionary() {
 		COSObject object = getEncodingValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -257,7 +257,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getFirstCharHasTypeInteger() {
 		COSObject object = getFirstCharValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -282,15 +282,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getFontBBoxHasTypeRectangle() {
 		COSObject object = getFontBBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -312,7 +304,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getFontDescriptorHasTypeDictionary() {
 		COSObject object = getFontDescriptorValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -328,15 +320,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getFontMatrixHasTypeMatrix() {
 		COSObject object = getFontMatrixValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeMatrix(object);
 	}
 
 	@Override
@@ -352,7 +336,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getLastCharHasTypeInteger() {
 		COSObject object = getLastCharValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -377,7 +361,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getNameHasTypeName() {
 		COSObject object = getNameValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -402,7 +386,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
 		COSObject object = getResourcesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -418,7 +402,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -449,7 +433,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getToUnicodeHasTypeStream() {
 		COSObject object = getToUnicodeValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -465,7 +449,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -490,7 +474,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Boolean getWidthsHasTypeArray() {
 		COSObject object = getWidthsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

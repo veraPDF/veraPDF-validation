@@ -91,7 +91,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	@Override
 	public Boolean getBHasTypeArray() {
 		COSObject object = getBValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -137,7 +137,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	@Override
 	public Boolean getMHasTypeInteger() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -176,7 +176,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	@Override
 	public Boolean getOHasTypeNumber() {
 		COSObject object = getOValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -215,7 +215,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	@Override
 	public Boolean getWHasTypeInteger() {
 		COSObject object = getWValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

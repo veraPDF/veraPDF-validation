@@ -59,19 +59,19 @@ public class GFADest0StructArray extends GFAObject implements ADest0StructArray 
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStringByte() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class GFADest0StructArray extends GFAObject implements ADest0StructArray 
 	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

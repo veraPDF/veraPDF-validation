@@ -101,7 +101,7 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	@Override
 	public Boolean getCountHasTypeInteger() {
 		COSObject object = getCountValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -126,15 +126,7 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	@Override
 	public Boolean getCropBoxHasTypeRectangle() {
 		COSObject object = getCropBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -150,7 +142,7 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	@Override
 	public Boolean getKidsHasTypeArray() {
 		COSObject object = getKidsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -166,15 +158,7 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	@Override
 	public Boolean getMediaBoxHasTypeRectangle() {
 		COSObject object = getMediaBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -190,7 +174,7 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
 		COSObject object = getResourcesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -225,7 +209,7 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	@Override
 	public Boolean getRotateHasTypeInteger() {
 		COSObject object = getRotateValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -250,7 +234,7 @@ public class GFAPageTreeNodeRoot extends GFAObject implements APageTreeNodeRoot 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

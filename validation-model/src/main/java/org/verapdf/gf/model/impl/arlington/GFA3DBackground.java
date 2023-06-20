@@ -63,7 +63,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	@Override
 	public Boolean getCSHasTypeName() {
 		COSObject object = getCSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	@Override
 	public Boolean getEAHasTypeBoolean() {
 		COSObject object = getEAValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -159,7 +159,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -184,7 +184,7 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

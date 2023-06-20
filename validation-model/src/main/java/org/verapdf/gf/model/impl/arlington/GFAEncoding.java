@@ -69,7 +69,7 @@ public class GFAEncoding extends GFAObject implements AEncoding {
 	@Override
 	public Boolean getBaseEncodingHasTypeName() {
 		COSObject object = getBaseEncodingValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class GFAEncoding extends GFAObject implements AEncoding {
 	@Override
 	public Boolean getDifferencesHasTypeArray() {
 		COSObject object = getDifferencesValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class GFAEncoding extends GFAObject implements AEncoding {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

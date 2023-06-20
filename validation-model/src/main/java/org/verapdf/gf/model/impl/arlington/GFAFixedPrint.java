@@ -42,7 +42,7 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 	@Override
 	public Boolean getHHasTypeNumber() {
 		COSObject object = getHValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -71,15 +71,7 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject object = getMatrixValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeMatrix(object);
 	}
 
 	@Override
@@ -95,7 +87,7 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -133,7 +125,7 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 	@Override
 	public Boolean getVHasTypeNumber() {
 		COSObject object = getVValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

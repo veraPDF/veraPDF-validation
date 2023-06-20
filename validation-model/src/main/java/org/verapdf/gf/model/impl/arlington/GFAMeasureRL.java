@@ -219,7 +219,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getAHasTypeArray() {
 		COSObject object = getAValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -235,7 +235,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getCYXHasTypeNumber() {
 		COSObject object = getCYXValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -251,7 +251,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -267,7 +267,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getOHasTypeArray() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -283,7 +283,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getRHasTypeStringText() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -299,7 +299,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getSHasTypeArray() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -315,7 +315,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -340,7 +340,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getTHasTypeArray() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -356,7 +356,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -381,7 +381,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getXHasTypeArray() {
 		COSObject object = getXValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -397,7 +397,7 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	@Override
 	public Boolean getYHasTypeArray() {
 		COSObject object = getYValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 }

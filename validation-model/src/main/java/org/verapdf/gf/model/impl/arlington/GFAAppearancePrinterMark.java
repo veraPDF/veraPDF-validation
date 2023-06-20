@@ -142,13 +142,13 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getDHasTypeStream() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -170,13 +170,13 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	@Override
 	public Boolean getNHasTypeDictionary() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getNHasTypeStream() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -198,13 +198,13 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	@Override
 	public Boolean getRHasTypeDictionary() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getRHasTypeStream() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

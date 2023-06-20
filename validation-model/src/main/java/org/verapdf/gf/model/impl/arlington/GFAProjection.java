@@ -42,7 +42,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Boolean getCSHasTypeName() {
 		COSObject object = getCSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Boolean getFHasTypeNumber() {
 		COSObject object = getFValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Boolean getFOVHasTypeNumber() {
 		COSObject object = getFOVValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Boolean getNHasTypeNumber() {
 		COSObject object = getNValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -158,7 +158,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Boolean getOBHasTypeName() {
 		COSObject object = getOBValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -196,7 +196,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Boolean getOSHasTypeNumber() {
 		COSObject object = getOSValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -221,13 +221,13 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Boolean getPSHasTypeName() {
 		COSObject object = getPSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getPSHasTypeNumber() {
 		COSObject object = getPSValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -252,7 +252,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

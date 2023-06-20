@@ -29,7 +29,7 @@ public class GFAURTransformParamAnnotsArrayEntry extends GFAObject implements AU
 	@Override
 	public Boolean getHasTypeName() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

@@ -387,15 +387,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject object = getBBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -411,7 +403,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject object = getDLValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -436,13 +428,13 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -467,13 +459,13 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -489,13 +481,13 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -520,13 +512,13 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getFFilterHasTypeArray() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -560,13 +552,13 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -600,7 +592,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -616,15 +608,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject object = getMatrixValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeMatrix(object);
 	}
 
 	@Override
@@ -640,7 +624,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getPaintTypeHasTypeInteger() {
 		COSObject object = getPaintTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -665,7 +649,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getPatternTypeHasTypeInteger() {
 		COSObject object = getPatternTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -690,7 +674,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
 		COSObject object = getResourcesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -706,7 +690,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getTilingTypeHasTypeInteger() {
 		COSObject object = getTilingTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -731,7 +715,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -756,7 +740,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getXStepHasTypeNumber() {
 		COSObject object = getXStepValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -772,7 +756,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getXUIDHasTypeArray() {
 		COSObject object = getXUIDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -788,7 +772,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Boolean getYStepHasTypeNumber() {
 		COSObject object = getYStepValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

@@ -95,13 +95,13 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	@Override
 	public Boolean getAUHasTypeDictionary() {
 		COSObject object = getAUValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getAUHasTypeStringAscii() {
 		COSObject object = getAUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	@Override
 	public Boolean getEHasTypeDate() {
 		COSObject object = getEValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -171,7 +171,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	@Override
 	public Boolean getSHasTypeInteger() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -196,7 +196,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	@Override
 	public Boolean getTSHasTypeDate() {
 		COSObject object = getTSValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override

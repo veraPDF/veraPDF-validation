@@ -85,7 +85,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	@Override
 	public Boolean getCheckSumHasTypeString() {
 		COSObject object = getCheckSumValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -101,7 +101,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	@Override
 	public Boolean getColorantTableHasTypeArray() {
 		COSObject object = getColorantTableValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	@Override
 	public Boolean getICCVersionHasTypeString() {
 		COSObject object = getICCVersionValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	@Override
 	public Boolean getProfileCSHasTypeString() {
 		COSObject object = getProfileCSValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	@Override
 	public Boolean getProfileNameHasTypeStringText() {
 		COSObject object = getProfileNameValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	@Override
 	public Boolean getURLsHasTypeArray() {
 		COSObject object = getURLsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

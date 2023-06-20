@@ -95,7 +95,7 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	@Override
 	public Boolean getGHasTypeDictionary() {
 		COSObject object = getGValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

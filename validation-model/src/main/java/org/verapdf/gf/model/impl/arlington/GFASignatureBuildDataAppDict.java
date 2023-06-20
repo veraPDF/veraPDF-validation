@@ -64,7 +64,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getDateHasTypeStringText() {
 		COSObject object = getDateValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getNameHasTypeName() {
 		COSObject object = getNameValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getNonEFontNoWarnHasTypeBoolean() {
 		COSObject object = getNonEFontNoWarnValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getOSHasTypeArray() {
 		COSObject object = getOSValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getPreReleaseHasTypeBoolean() {
 		COSObject object = getPreReleaseValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -158,7 +158,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getRHasTypeNumber() {
 		COSObject object = getRValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -174,7 +174,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getRExHasTypeStringText() {
 		COSObject object = getRExValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -204,7 +204,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getTrustedModeHasTypeBoolean() {
 		COSObject object = getTrustedModeValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -220,7 +220,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 	@Override
 	public Boolean getVHasTypeNumber() {
 		COSObject object = getVValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

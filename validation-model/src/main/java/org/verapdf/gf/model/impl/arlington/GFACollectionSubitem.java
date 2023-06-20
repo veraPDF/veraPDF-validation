@@ -29,19 +29,19 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 	@Override
 	public Boolean getDHasTypeDate() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
 	public Boolean getDHasTypeNumber() {
 		COSObject object = getDValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
 	public Boolean getDHasTypeStringText() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 	@Override
 	public Boolean getPHasTypeStringText() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

@@ -43,7 +43,7 @@ public class GFAMinimumBitDepth extends GFAObject implements AMinimumBitDepth {
 	@Override
 	public Boolean getMHasTypeInteger() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class GFAMinimumBitDepth extends GFAObject implements AMinimumBitDepth {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class GFAMinimumBitDepth extends GFAObject implements AMinimumBitDepth {
 	@Override
 	public Boolean getVHasTypeInteger() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

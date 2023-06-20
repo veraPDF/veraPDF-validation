@@ -64,19 +64,19 @@ public class GFAArrayOfCIDGlyphMetricsWEntry extends GFAObject implements AArray
 	@Override
 	public Boolean getHasTypeArray() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getHasTypeInteger() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getHasTypeNumber() {
 		COSObject object = getValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

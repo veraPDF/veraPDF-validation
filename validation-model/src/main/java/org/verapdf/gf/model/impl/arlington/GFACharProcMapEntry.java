@@ -72,7 +72,7 @@ public class GFACharProcMapEntry extends GFAObject implements ACharProcMapEntry 
 	@Override
 	public Boolean getHasTypeStream() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

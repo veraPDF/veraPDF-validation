@@ -425,7 +425,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
 		COSObject object = getBitsPerComponentValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -450,7 +450,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
 		COSObject object = getColorSpaceValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -475,7 +475,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject object = getDLValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -500,7 +500,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getDecodeHasTypeArray() {
 		COSObject object = getDecodeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -516,13 +516,13 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -547,13 +547,13 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -569,13 +569,13 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
 		COSObject object = getFDecodeParmsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -600,13 +600,13 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getFFilterHasTypeArray() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
 		COSObject object = getFFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -640,13 +640,13 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -701,7 +701,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getHeightHasTypeInteger() {
 		COSObject object = getHeightValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -741,7 +741,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getImageMaskHasTypeBoolean() {
 		COSObject object = getImageMaskValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -766,7 +766,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getIntentHasTypeName() {
 		COSObject object = getIntentValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -797,7 +797,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getInterpolateHasTypeBoolean() {
 		COSObject object = getInterpolateValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -813,7 +813,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -829,7 +829,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getMatteHasTypeArray() {
 		COSObject object = getMatteValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -860,7 +860,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject object = getMetadataValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -876,7 +876,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getNameHasTypeName() {
 		COSObject object = getNameValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -892,7 +892,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -917,7 +917,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -942,7 +942,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public Boolean getWidthHasTypeInteger() {
 		COSObject object = getWidthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -984,7 +984,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 			return null;
 		}
 		COSObject Width = this.parentObject.getKey(ASAtom.getASAtom("Width"));
-		return Width != null && Width.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(Width);
 	}
 
 	@Override
@@ -993,7 +993,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 			return null;
 		}
 		COSObject Height = this.parentObject.getKey(ASAtom.getASAtom("Height"));
-		return Height != null && Height.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(Height);
 	}
 
 }

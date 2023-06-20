@@ -29,7 +29,7 @@ public class GFAArrayOfDigestMethodEntry extends GFAObject implements AArrayOfDi
 	@Override
 	public Boolean getHasTypeName() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

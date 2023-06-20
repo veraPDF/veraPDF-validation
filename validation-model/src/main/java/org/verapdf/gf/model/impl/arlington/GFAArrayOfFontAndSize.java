@@ -102,7 +102,7 @@ public class GFAArrayOfFontAndSize extends GFAObject implements AArrayOfFontAndS
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -116,7 +116,7 @@ public class GFAArrayOfFontAndSize extends GFAObject implements AArrayOfFontAndS
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

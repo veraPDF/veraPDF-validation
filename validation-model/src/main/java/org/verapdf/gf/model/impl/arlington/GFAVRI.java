@@ -133,7 +133,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	@Override
 	public Boolean getCRLHasTypeArray() {
 		COSObject object = getCRLValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	@Override
 	public Boolean getCertHasTypeArray() {
 		COSObject object = getCertValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	@Override
 	public Boolean getOCSPHasTypeArray() {
 		COSObject object = getOCSPValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	@Override
 	public Boolean getTSHasTypeStream() {
 		COSObject object = getTSValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -203,7 +203,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	@Override
 	public Boolean getTUHasTypeDate() {
 		COSObject object = getTUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -219,7 +219,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -261,7 +261,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 			return null;
 		}
 		COSObject CRLs = this.parentObject.getKey(ASAtom.getASAtom("CRLs"));
-		return CRLs != null && CRLs.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(CRLs);
 	}
 
 	@Override
@@ -270,7 +270,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 			return null;
 		}
 		COSObject OCSPs = this.parentObject.getKey(ASAtom.getASAtom("OCSPs"));
-		return OCSPs != null && OCSPs.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(OCSPs);
 	}
 
 }

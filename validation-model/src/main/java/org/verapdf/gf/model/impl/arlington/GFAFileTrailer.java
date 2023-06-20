@@ -245,7 +245,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getAuthCodeHasTypeDictionary() {
 		COSObject object = getAuthCodeValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -261,7 +261,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getEncryptHasTypeDictionary() {
 		COSObject object = getEncryptValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -283,7 +283,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getentryIDHasTypeArray() {
 		COSObject object = getentryIDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -305,7 +305,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getInfoHasTypeDictionary() {
 		COSObject object = getInfoValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -327,7 +327,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getPrevHasTypeInteger() {
 		COSObject object = getPrevValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -358,7 +358,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getRootHasTypeDictionary() {
 		COSObject object = getRootValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -380,7 +380,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getSizeHasTypeInteger() {
 		COSObject object = getSizeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -405,7 +405,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getXRefStmHasTypeInteger() {
 		COSObject object = getXRefStmValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -431,7 +431,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getXRefStreamHasTypeStream() {
 		COSObject object = getXRefStreamValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -460,7 +460,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 			return null;
 		}
 		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
-		return V != null && V.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(V);
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public Boolean getAOHasTypeInteger() {
 		COSObject object = getAOValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public Boolean getPlayCountHasTypeInteger() {
 		COSObject object = getPlayCountValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public Boolean getSpeedHasTypeNumber() {
 		COSObject object = getSpeedValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -167,7 +167,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

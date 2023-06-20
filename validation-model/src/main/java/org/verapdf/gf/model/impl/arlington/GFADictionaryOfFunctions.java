@@ -143,13 +143,13 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 	@Override
 	public Boolean getDefaultHasTypeDictionary() {
 		COSObject object = getDefaultValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getDefaultHasTypeStream() {
 		COSObject object = getDefaultValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

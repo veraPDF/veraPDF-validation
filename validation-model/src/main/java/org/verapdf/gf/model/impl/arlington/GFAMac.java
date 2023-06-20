@@ -66,7 +66,7 @@ public class GFAMac extends GFAObject implements AMac {
 	@Override
 	public Boolean getCreatorHasTypeInteger() {
 		COSObject object = getCreatorValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class GFAMac extends GFAObject implements AMac {
 	@Override
 	public Boolean getResForkHasTypeStream() {
 		COSObject object = getResForkValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class GFAMac extends GFAObject implements AMac {
 	@Override
 	public Boolean getSubtypeHasTypeInteger() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 }

@@ -62,7 +62,7 @@ public class GFASolidities extends GFAObject implements ASolidities {
 	@Override
 	public Boolean getDefaultHasTypeNumber() {
 		COSObject object = getDefaultValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

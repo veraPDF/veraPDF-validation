@@ -27,13 +27,13 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNull() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
@@ -56,13 +56,13 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeNull() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
@@ -85,13 +85,13 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	@Override
 	public Boolean getentry2HasTypeName() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNull() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
@@ -114,13 +114,13 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	@Override
 	public Boolean getentry3HasTypeName() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeNull() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override

@@ -113,7 +113,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public Boolean getByteRangeHasTypeArray() {
 		COSObject object = getByteRangeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public Boolean getMACHasTypeStringByte() {
 		COSObject object = getMACValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -157,7 +157,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public Boolean getMACLocationHasTypeName() {
 		COSObject object = getMACLocationValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -188,7 +188,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public Boolean getSigObjRefHasTypeDictionary() {
 		COSObject object = getSigObjRefValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override

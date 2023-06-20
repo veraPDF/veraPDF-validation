@@ -187,15 +187,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getCropRectHasTypeRectangle() {
 		COSObject object = getCropRectValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -211,13 +203,13 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -233,7 +225,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getIncludedImageDimensionsHasTypeArray() {
 		COSObject object = getIncludedImageDimensionsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -249,7 +241,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getIncludedImageQualityHasTypeNumber() {
 		COSObject object = getIncludedImageQualityValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -274,13 +266,13 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getInksHasTypeArray() {
 		COSObject object = getInksValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getInksHasTypeName() {
 		COSObject object = getInksValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -305,7 +297,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getMainImageHasTypeStringByte() {
 		COSObject object = getMainImageValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -321,7 +313,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getOverprintHasTypeBoolean() {
 		COSObject object = getOverprintValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -337,7 +329,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getSizeHasTypeArray() {
 		COSObject object = getSizeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -353,7 +345,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getTagsHasTypeArray() {
 		COSObject object = getTagsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -369,7 +361,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -394,7 +386,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getVersionHasTypeNumber() {
 		COSObject object = getVersionValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

@@ -64,13 +64,13 @@ public class GFAArrayOfFieldChoiceOptEntry extends GFAObject implements AArrayOf
 	@Override
 	public Boolean getHasTypeArray() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getHasTypeStringText() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 }

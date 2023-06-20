@@ -59,6 +59,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 
 	private List<AFontFile2> getFontFile2() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -66,13 +67,13 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getFontFile21_2();
+				return getFontFile21_1();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AFontFile2> getFontFile21_2() {
+	private List<AFontFile2> getFontFile21_1() {
 		COSObject object = getFontFile2Value();
 		if (object == null) {
 			return Collections.emptyList();
@@ -98,7 +99,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getAscentHasTypeNumber() {
 		COSObject object = getAscentValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -133,7 +134,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getAvgWidthHasTypeNumber() {
 		COSObject object = getAvgWidthValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -149,7 +150,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getCapHeightHasTypeNumber() {
 		COSObject object = getCapHeightValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -165,7 +166,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getDescentHasTypeNumber() {
 		COSObject object = getDescentValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -190,7 +191,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getFlagsHasTypeBitmask() {
 		COSObject object = getFlagsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -215,15 +216,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getFontBBoxHasTypeRectangle() {
 		COSObject object = getFontBBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -239,7 +232,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getFontFamilyHasTypeStringByte() {
 		COSObject object = getFontFamilyValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -261,7 +254,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getFontFileHasTypeStream() {
 		COSObject object = getFontFileValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -283,7 +276,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getFontFile2HasTypeStream() {
 		COSObject object = getFontFile2Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -299,7 +292,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getFontNameHasTypeName() {
 		COSObject object = getFontNameValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -324,7 +317,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getFontStretchHasTypeName() {
 		COSObject object = getFontStretchValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -349,7 +342,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getFontWeightHasTypeInteger() {
 		COSObject object = getFontWeightValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -374,7 +367,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getItalicAngleHasTypeNumber() {
 		COSObject object = getItalicAngleValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -409,7 +402,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getLeadingHasTypeNumber() {
 		COSObject object = getLeadingValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -444,7 +437,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getMaxWidthHasTypeNumber() {
 		COSObject object = getMaxWidthValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -479,7 +472,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getMissingWidthHasTypeNumber() {
 		COSObject object = getMissingWidthValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -514,7 +507,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getStemHHasTypeNumber() {
 		COSObject object = getStemHValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -530,7 +523,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getStemVHasTypeNumber() {
 		COSObject object = getStemVValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -546,7 +539,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -590,7 +583,7 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 	@Override
 	public Boolean getXHeightHasTypeNumber() {
 		COSObject object = getXHeightValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

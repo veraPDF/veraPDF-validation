@@ -29,7 +29,7 @@ public class GFAArrayOfStringsASCIIEntry extends GFAObject implements AArrayOfSt
 	@Override
 	public Boolean getHasTypeStringAscii() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 }

@@ -212,7 +212,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getColorsHasTypeDictionary() {
 		COSObject object = getColorsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -228,7 +228,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getDHasTypeStringByte() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -250,7 +250,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getFoldersHasTypeDictionary() {
 		COSObject object = getFoldersValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -272,7 +272,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getNavigatorHasTypeDictionary() {
 		COSObject object = getNavigatorValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -294,7 +294,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getResourcesHasTypeNameTree() {
 		COSObject object = getResourcesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeNameTree(object);
 	}
 
 	@Override
@@ -310,7 +310,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getSchemaHasTypeDictionary() {
 		COSObject object = getSchemaValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -326,7 +326,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getSortHasTypeDictionary() {
 		COSObject object = getSortValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -342,7 +342,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getSplitHasTypeDictionary() {
 		COSObject object = getSplitValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -358,7 +358,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -395,7 +395,7 @@ public class GFACollection extends GFAObject implements ACollection {
 	@Override
 	public Boolean getViewHasTypeName() {
 		COSObject object = getViewValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

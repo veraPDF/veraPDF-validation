@@ -117,7 +117,7 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	@Override
 	public Boolean getIdentityHasTypeDictionary() {
 		COSObject object = getIdentityValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	@Override
 	public Boolean getStdCFHasTypeDictionary() {
 		COSObject object = getStdCFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override

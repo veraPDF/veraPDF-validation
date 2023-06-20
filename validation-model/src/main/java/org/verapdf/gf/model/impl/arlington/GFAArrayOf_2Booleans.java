@@ -27,7 +27,7 @@ public class GFAArrayOf_2Booleans extends GFAObject implements AArrayOf_2Boolean
 	@Override
 	public Boolean getentry0HasTypeBoolean() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -41,7 +41,7 @@ public class GFAArrayOf_2Booleans extends GFAObject implements AArrayOf_2Boolean
 	@Override
 	public Boolean getentry1HasTypeBoolean() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 }

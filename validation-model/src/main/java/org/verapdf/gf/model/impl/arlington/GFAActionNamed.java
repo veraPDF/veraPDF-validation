@@ -400,7 +400,7 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 	@Override
 	public Boolean getNHasTypeName() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -425,13 +425,13 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -447,7 +447,7 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -472,7 +472,7 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

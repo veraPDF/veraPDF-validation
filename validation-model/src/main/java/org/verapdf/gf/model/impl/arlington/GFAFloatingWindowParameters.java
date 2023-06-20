@@ -91,7 +91,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getOHasTypeInteger() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -160,7 +160,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -199,7 +199,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getRHasTypeInteger() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -238,7 +238,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getRTHasTypeInteger() {
 		COSObject object = getRTValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -277,7 +277,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getTHasTypeBoolean() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -302,7 +302,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getTTHasTypeArray() {
 		COSObject object = getTTValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -318,7 +318,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -357,7 +357,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getUCHasTypeBoolean() {
 		COSObject object = getUCValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override

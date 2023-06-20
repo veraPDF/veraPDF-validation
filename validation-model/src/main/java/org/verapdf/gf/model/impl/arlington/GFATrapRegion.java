@@ -66,7 +66,7 @@ public class GFATrapRegion extends GFAObject implements ATrapRegion {
 	@Override
 	public Boolean getTPHasTypeName() {
 		COSObject object = getTPValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class GFATrapRegion extends GFAObject implements ATrapRegion {
 	@Override
 	public Boolean getTZHasTypeArray() {
 		COSObject object = getTZValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 }

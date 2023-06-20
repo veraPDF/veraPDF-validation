@@ -67,7 +67,7 @@ public class GFAOPIVersion13 extends GFAObject implements AOPIVersion13 {
 	@Override
 	public Boolean getentry13HasTypeDictionary() {
 		COSObject object = getentry13Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

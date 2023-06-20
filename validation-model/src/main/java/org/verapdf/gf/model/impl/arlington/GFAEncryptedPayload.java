@@ -29,7 +29,7 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 	@Override
 	public Boolean getVersionHasTypeName() {
 		COSObject object = getVersionValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 }

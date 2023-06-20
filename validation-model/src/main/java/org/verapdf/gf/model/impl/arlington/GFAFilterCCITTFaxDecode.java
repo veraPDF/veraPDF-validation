@@ -48,7 +48,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getBlackIs1HasTypeBoolean() {
 		COSObject object = getBlackIs1Value();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getBlackls1HasTypeBoolean() {
 		COSObject object = getBlackls1Value();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getColumnsHasTypeInteger() {
 		COSObject object = getColumnsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -162,7 +162,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getDamagedRowsBeforeErrorHasTypeInteger() {
 		COSObject object = getDamagedRowsBeforeErrorValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -206,7 +206,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getEncodedByteAlignHasTypeBoolean() {
 		COSObject object = getEncodedByteAlignValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -241,7 +241,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getEndOfBlockHasTypeBoolean() {
 		COSObject object = getEndOfBlockValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -276,7 +276,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getEndOfLineHasTypeBoolean() {
 		COSObject object = getEndOfLineValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -320,7 +320,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getKHasTypeInteger() {
 		COSObject object = getKValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -364,7 +364,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getRowsHasTypeInteger() {
 		COSObject object = getRowsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

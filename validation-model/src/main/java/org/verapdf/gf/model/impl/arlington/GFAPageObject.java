@@ -583,7 +583,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject object = getAAValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -599,13 +599,13 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -621,7 +621,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getAnnotsHasTypeArray() {
 		COSObject object = getAnnotsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -637,15 +637,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getArtBoxHasTypeRectangle() {
 		COSObject object = getArtBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -661,7 +653,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getBHasTypeArray() {
 		COSObject object = getBValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -677,15 +669,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getBleedBoxHasTypeRectangle() {
 		COSObject object = getBleedBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -701,7 +685,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getBoxColorInfoHasTypeDictionary() {
 		COSObject object = getBoxColorInfoValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -723,13 +707,13 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getContentsHasTypeArray() {
 		COSObject object = getContentsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getContentsHasTypeStream() {
 		COSObject object = getContentsValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -757,15 +741,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getCropBoxHasTypeRectangle() {
 		COSObject object = getCropBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -781,7 +757,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getDPartHasTypeDictionary() {
 		COSObject object = getDPartValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -797,7 +773,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getDurHasTypeNumber() {
 		COSObject object = getDurValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -813,7 +789,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getGroupHasTypeDictionary() {
 		COSObject object = getGroupValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -859,7 +835,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getHidHasTypeBoolean() {
 		COSObject object = getHidValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -875,7 +851,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getentryIDHasTypeStringByte() {
 		COSObject object = getentryIDValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -891,7 +867,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
 		COSObject object = getLastModifiedValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -919,15 +895,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getMediaBoxHasTypeRectangle() {
 		COSObject object = getMediaBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -949,7 +917,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject object = getMetadataValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -965,7 +933,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getOutputIntentsHasTypeArray() {
 		COSObject object = getOutputIntentsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -981,7 +949,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getPZHasTypeNumber() {
 		COSObject object = getPZValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1003,7 +971,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject object = getParentValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1019,7 +987,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
 		COSObject object = getPieceInfoValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1035,7 +1003,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getPresStepsHasTypeDictionary() {
 		COSObject object = getPresStepsValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1063,7 +1031,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
 		COSObject object = getResourcesValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1110,7 +1078,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getRotateHasTypeInteger() {
 		COSObject object = getRotateValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -1135,7 +1103,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getSeparationInfoHasTypeDictionary() {
 		COSObject object = getSeparationInfoValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1151,7 +1119,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getStructParentsHasTypeInteger() {
 		COSObject object = getStructParentsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -1167,7 +1135,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getTabsHasTypeName() {
 		COSObject object = getTabsValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1192,7 +1160,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getTemplateInstantiatedHasTypeName() {
 		COSObject object = getTemplateInstantiatedValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1266,7 +1234,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getThumbHasTypeStream() {
 		COSObject object = getThumbValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -1282,7 +1250,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getTransHasTypeDictionary() {
 		COSObject object = getTransValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -1298,15 +1266,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getTrimBoxHasTypeRectangle() {
 		COSObject object = getTrimBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -1322,7 +1282,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -1360,7 +1320,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getUserUnitHasTypeNumber() {
 		COSObject object = getUserUnitValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -1376,7 +1336,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getVPHasTypeArray() {
 		COSObject object = getVPValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

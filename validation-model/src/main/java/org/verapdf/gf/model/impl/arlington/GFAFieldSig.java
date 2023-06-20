@@ -371,7 +371,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject object = getAAValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -399,7 +399,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getDAHasTypeString() {
 		COSObject object = getDAValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -415,7 +415,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getDSHasTypeStringText() {
 		COSObject object = getDSValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -443,7 +443,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getDVHasTypeDictionary() {
 		COSObject object = getDVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -471,7 +471,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getFTHasTypeName() {
 		COSObject object = getFTValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -508,7 +508,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getFfHasTypeBitmask() {
 		COSObject object = getFfValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -533,7 +533,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getKidsHasTypeArray() {
 		COSObject object = getKidsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -555,7 +555,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getLockHasTypeDictionary() {
 		COSObject object = getLockValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -571,7 +571,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject object = getParentValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -603,7 +603,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getQHasTypeInteger() {
 		COSObject object = getQValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -634,13 +634,13 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getRVHasTypeStream() {
 		COSObject object = getRVValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getRVHasTypeStringText() {
 		COSObject object = getRVValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -662,7 +662,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getSVHasTypeDictionary() {
 		COSObject object = getSVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -678,7 +678,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -694,7 +694,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getTMHasTypeStringText() {
 		COSObject object = getTMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -710,7 +710,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getTUHasTypeStringText() {
 		COSObject object = getTUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -738,7 +738,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	@Override
 	public Boolean getVHasTypeDictionary() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

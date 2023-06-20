@@ -75,13 +75,13 @@ public class GFAArrayOfAttributeRevisionsSubArray extends GFAObject implements A
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStream() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -95,7 +95,7 @@ public class GFAArrayOfAttributeRevisionsSubArray extends GFAObject implements A
 	@Override
 	public Boolean getentry1HasTypeInteger() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class GFAArrayOf_2DashNumbers extends GFAObject implements AArrayOf_2Dash
 	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -41,7 +41,7 @@ public class GFAArrayOf_2DashNumbers extends GFAObject implements AArrayOf_2Dash
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

@@ -29,7 +29,7 @@ public class GFAArrayOfNumbersGeneralEntry extends GFAObject implements AArrayOf
 	@Override
 	public Boolean getHasTypeNumber() {
 		COSObject object = getValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

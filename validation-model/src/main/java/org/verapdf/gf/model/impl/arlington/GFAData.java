@@ -104,7 +104,7 @@ public class GFAData extends GFAObject implements AData {
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
 		COSObject object = getLastModifiedValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -126,49 +126,49 @@ public class GFAData extends GFAObject implements AData {
 	@Override
 	public Boolean getPrivateHasTypeArray() {
 		COSObject object = getPrivateValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeBoolean() {
 		COSObject object = getPrivateValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeDictionary() {
 		COSObject object = getPrivateValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeInteger() {
 		COSObject object = getPrivateValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeName() {
 		COSObject object = getPrivateValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeNumber() {
 		COSObject object = getPrivateValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeStream() {
 		COSObject object = getPrivateValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeString() {
 		COSObject object = getPrivateValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 }

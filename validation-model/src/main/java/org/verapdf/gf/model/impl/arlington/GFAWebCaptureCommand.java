@@ -111,7 +111,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Boolean getCTHasTypeStringAscii() {
 		COSObject object = getCTValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -168,7 +168,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Boolean getHHasTypeString() {
 		COSObject object = getHValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -200,7 +200,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Boolean getLHasTypeInteger() {
 		COSObject object = getLValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -231,13 +231,13 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Boolean getPHasTypeStream() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getPHasTypeString() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -253,7 +253,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Boolean getSHasTypeDictionary() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -269,7 +269,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Boolean getURLHasTypeStringAscii() {
 		COSObject object = getURLValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 }

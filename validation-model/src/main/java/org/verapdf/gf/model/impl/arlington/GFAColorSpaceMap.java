@@ -330,7 +330,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	@Override
 	public Boolean getDefaultCMYKHasTypeArray() {
 		COSObject object = getDefaultCMYKValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -346,7 +346,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	@Override
 	public Boolean getDefaultGrayHasTypeArray() {
 		COSObject object = getDefaultGrayValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -362,7 +362,7 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	@Override
 	public Boolean getDefaultRGBHasTypeArray() {
 		COSObject object = getDefaultRGBValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 }

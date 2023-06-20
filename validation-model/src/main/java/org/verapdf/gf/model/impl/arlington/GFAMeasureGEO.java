@@ -255,7 +255,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getBoundsHasTypeArray() {
 		COSObject object = getBoundsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -271,7 +271,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getDCSHasTypeDictionary() {
 		COSObject object = getDCSValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -287,7 +287,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getGCSHasTypeDictionary() {
 		COSObject object = getGCSValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -303,7 +303,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getGPTSHasTypeArray() {
 		COSObject object = getGPTSValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -319,7 +319,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getLPTSHasTypeArray() {
 		COSObject object = getLPTSValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -335,7 +335,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getPCSMHasTypeArray() {
 		COSObject object = getPCSMValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -351,7 +351,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getPDUHasTypeArray() {
 		COSObject object = getPDUValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -367,7 +367,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -392,7 +392,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

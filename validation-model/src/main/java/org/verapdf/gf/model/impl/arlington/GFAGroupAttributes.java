@@ -92,13 +92,13 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	@Override
 	public Boolean getCSHasTypeArray() {
 		COSObject object = getCSValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getCSHasTypeName() {
 		COSObject object = getCSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	@Override
 	public Boolean getIHasTypeBoolean() {
 		COSObject object = getIValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	@Override
 	public Boolean getKHasTypeBoolean() {
 		COSObject object = getKValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -185,7 +185,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

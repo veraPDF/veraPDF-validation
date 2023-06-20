@@ -41,7 +41,7 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 	@Override
 	public Boolean getDefaultHasTypeInteger() {
 		COSObject object = getDefaultValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 	@Override
 	public Boolean getMaxHasTypeInteger() {
 		COSObject object = getMaxValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public class GFARichMediaWidth extends GFAObject implements ARichMediaWidth {
 	@Override
 	public Boolean getMinHasTypeInteger() {
 		COSObject object = getMinValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

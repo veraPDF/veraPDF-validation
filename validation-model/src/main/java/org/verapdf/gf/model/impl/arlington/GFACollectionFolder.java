@@ -187,7 +187,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getCIHasTypeDictionary() {
 		COSObject object = getCIValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -209,7 +209,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getChildHasTypeDictionary() {
 		COSObject object = getChildValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -225,7 +225,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
 		COSObject object = getCreationDateValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -241,7 +241,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getDescHasTypeStringText() {
 		COSObject object = getDescValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -257,7 +257,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getFreeHasTypeArray() {
 		COSObject object = getFreeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -273,7 +273,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getentryIDHasTypeInteger() {
 		COSObject object = getentryIDValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -289,7 +289,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getModDateHasTypeDate() {
 		COSObject object = getModDateValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -305,7 +305,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject object = getNameValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -327,7 +327,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -349,7 +349,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject object = getParentValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -371,7 +371,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getThumbHasTypeStream() {
 		COSObject object = getThumbValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -387,7 +387,7 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

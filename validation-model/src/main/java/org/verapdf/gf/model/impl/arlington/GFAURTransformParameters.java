@@ -171,7 +171,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getAnnotsHasTypeArray() {
 		COSObject object = getAnnotsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getDocumentHasTypeArray() {
 		COSObject object = getDocumentValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -203,7 +203,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getEFHasTypeArray() {
 		COSObject object = getEFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -219,7 +219,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getFormHasTypeArray() {
 		COSObject object = getFormValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -235,7 +235,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getMsgHasTypeStringText() {
 		COSObject object = getMsgValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -264,7 +264,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getPHasTypeBoolean() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -280,7 +280,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getSignatureHasTypeArray() {
 		COSObject object = getSignatureValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -296,7 +296,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -335,7 +335,7 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	@Override
 	public Boolean getVHasTypeName() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 }

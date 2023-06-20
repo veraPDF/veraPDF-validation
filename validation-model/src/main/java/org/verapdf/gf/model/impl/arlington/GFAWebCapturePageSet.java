@@ -100,7 +100,7 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getCTHasTypeStringAscii() {
 		COSObject object = getCTValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getentryIDHasTypeStringByte() {
 		COSObject object = getentryIDValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -132,7 +132,7 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getOHasTypeArray() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -148,7 +148,7 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -173,13 +173,13 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getSIHasTypeArray() {
 		COSObject object = getSIValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getSIHasTypeDictionary() {
 		COSObject object = getSIValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -195,7 +195,7 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -211,7 +211,7 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getTIDHasTypeStringByte() {
 		COSObject object = getTIDValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -227,7 +227,7 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getTSHasTypeDate() {
 		COSObject object = getTSValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -243,7 +243,7 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

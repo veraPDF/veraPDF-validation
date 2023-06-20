@@ -100,7 +100,7 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	@Override
 	public Boolean getASHasTypeName() {
 		COSObject object = getASValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -147,13 +147,13 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	@Override
 	public Boolean getTHasTypeArray() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getTHasTypeDictionary() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

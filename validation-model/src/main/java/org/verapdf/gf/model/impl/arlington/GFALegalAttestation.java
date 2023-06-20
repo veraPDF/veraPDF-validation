@@ -29,7 +29,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getAlternateImagesHasTypeInteger() {
 		COSObject object = getAlternateImagesValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getAnnotationsHasTypeInteger() {
 		COSObject object = getAnnotationsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getAttestationHasTypeStringText() {
 		COSObject object = getAttestationValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getDevDepGS_BGHasTypeInteger() {
 		COSObject object = getDevDepGS_BGValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getDevDepGS_FLHasTypeInteger() {
 		COSObject object = getDevDepGS_FLValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -145,7 +145,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getDevDepGS_HTHasTypeInteger() {
 		COSObject object = getDevDepGS_HTValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -170,7 +170,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getDevDepGS_OPHasTypeInteger() {
 		COSObject object = getDevDepGS_OPValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -195,7 +195,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getDevDepGS_TRHasTypeInteger() {
 		COSObject object = getDevDepGS_TRValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -220,7 +220,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getDevDepGS_UCRHasTypeInteger() {
 		COSObject object = getDevDepGS_UCRValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -245,7 +245,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getExternalOPIdictsHasTypeInteger() {
 		COSObject object = getExternalOPIdictsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -270,7 +270,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getExternalRefXobjectsHasTypeInteger() {
 		COSObject object = getExternalRefXobjectsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -295,7 +295,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getExternalStreamsHasTypeInteger() {
 		COSObject object = getExternalStreamsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -320,7 +320,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getGoToRemoteActionsHasTypeInteger() {
 		COSObject object = getGoToRemoteActionsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -345,7 +345,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getHideAnnotationActionsHasTypeInteger() {
 		COSObject object = getHideAnnotationActionsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -370,7 +370,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getJavaScriptActionsHasTypeInteger() {
 		COSObject object = getJavaScriptActionsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -395,7 +395,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getLaunchActionsHasTypeInteger() {
 		COSObject object = getLaunchActionsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -420,7 +420,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getMovieActionsHasTypeInteger() {
 		COSObject object = getMovieActionsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -445,7 +445,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getNonEmbeddedFontsHasTypeInteger() {
 		COSObject object = getNonEmbeddedFontsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -470,7 +470,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getOptionalContentHasTypeBoolean() {
 		COSObject object = getOptionalContentValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -486,7 +486,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getSoundActionsHasTypeInteger() {
 		COSObject object = getSoundActionsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -511,7 +511,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getTrueTypeFontsHasTypeInteger() {
 		COSObject object = getTrueTypeFontsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -536,7 +536,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Boolean getURIActionsHasTypeInteger() {
 		COSObject object = getURIActionsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

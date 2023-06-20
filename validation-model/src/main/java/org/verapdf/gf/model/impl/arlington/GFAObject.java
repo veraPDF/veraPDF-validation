@@ -171,6 +171,94 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return StaticResources.getDocument().getPages().get(pageNumber.intValue()).getObject();
 	}
 
+	public Boolean getHasTypeArray(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_ARRAY;
+	}
+
+	public Boolean getHasTypeBitmask(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	public Boolean getHasTypeBoolean(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	public Boolean getHasTypeDate(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(PDF_DATE_FORMAT_REGEX);
+	}
+
+	public Boolean getHasTypeDictionary(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	public Boolean getHasTypeInteger(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_INTEGER;
+	}
+
+	public Boolean getHasTypeMatrix(COSObject object) {
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public Boolean getHasTypeName(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_NAME;
+	}
+
+	public Boolean getHasTypeNameTree(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	public Boolean getHasTypeNull(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	public Boolean getHasTypeNumber(COSObject object) {
+		return object != null && object.getType().isNumber();
+	}
+
+	public Boolean getHasTypeNumberTree(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	public Boolean getHasTypeRectangle(COSObject object) {
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return false;
+		}
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public Boolean getHasTypeStream(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_STREAM;
+	}
+
+	public Boolean getHasTypeString(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	public Boolean getHasTypeStringAscii(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+	}
+
+	public Boolean getHasTypeStringByte(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	public Boolean getHasTypeStringText(COSObject object) {
+		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+	}
+
 	public static Set<COSKey> getKeysSet() {
 		if (keysSet.get() == null) {
 			keysSet.set(new HashSet<>());

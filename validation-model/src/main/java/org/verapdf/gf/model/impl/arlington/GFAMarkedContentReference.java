@@ -134,7 +134,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	@Override
 	public Boolean getMCIDHasTypeInteger() {
 		COSObject object = getMCIDValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	@Override
 	public Boolean getPgHasTypeDictionary() {
 		COSObject object = getPgValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	@Override
 	public Boolean getStmHasTypeStream() {
 		COSObject object = getStmValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -200,19 +200,19 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	@Override
 	public Boolean getStmOwnHasTypeArray() {
 		COSObject object = getStmOwnValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getStmOwnHasTypeDictionary() {
 		COSObject object = getStmOwnValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getStmOwnHasTypeStream() {
 		COSObject object = getStmOwnValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -228,7 +228,7 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

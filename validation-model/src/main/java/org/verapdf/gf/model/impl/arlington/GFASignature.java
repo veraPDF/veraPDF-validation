@@ -178,7 +178,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getByteRangeHasTypeArray() {
 		COSObject object = getByteRangeValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -194,13 +194,13 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getCertHasTypeArray() {
 		COSObject object = getCertValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getCertHasTypeStringByte() {
 		COSObject object = getCertValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -216,7 +216,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getChangesHasTypeArray() {
 		COSObject object = getChangesValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -232,7 +232,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getContactInfoHasTypeStringText() {
 		COSObject object = getContactInfoValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -248,7 +248,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getContentsHasTypeStringByte() {
 		COSObject object = getContentsValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -270,7 +270,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -295,7 +295,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getLocationHasTypeStringText() {
 		COSObject object = getLocationValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -311,7 +311,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getMHasTypeDate() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -327,7 +327,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject object = getNameValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -343,7 +343,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getProp_AuthTimeHasTypeInteger() {
 		COSObject object = getProp_AuthTimeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -368,7 +368,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getProp_AuthTypeHasTypeName() {
 		COSObject object = getProp_AuthTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -384,7 +384,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getProp_BuildHasTypeDictionary() {
 		COSObject object = getProp_BuildValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -400,7 +400,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getRHasTypeInteger() {
 		COSObject object = getRValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -416,7 +416,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getReasonHasTypeStringText() {
 		COSObject object = getReasonValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -432,7 +432,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getReferenceHasTypeArray() {
 		COSObject object = getReferenceValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -448,7 +448,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getSubFilterHasTypeName() {
 		COSObject object = getSubFilterValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -473,7 +473,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -512,7 +512,7 @@ public class GFASignature extends GFAObject implements ASignature {
 	@Override
 	public Boolean getVHasTypeInteger() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 }

@@ -80,43 +80,43 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	@Override
 	public Boolean getDataHasTypeArray() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDataHasTypeBoolean() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
 	public Boolean getDataHasTypeDictionary() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getDataHasTypeInteger() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
 	public Boolean getDataHasTypeName() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getDataHasTypeStream() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getDataHasTypeString() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -147,7 +147,7 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	@Override
 	public Boolean getDigestMethodHasTypeName() {
 		COSObject object = getDigestMethodValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -172,7 +172,7 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	@Override
 	public Boolean getTransformMethodHasTypeName() {
 		COSObject object = getTransformMethodValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -197,7 +197,7 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

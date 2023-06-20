@@ -266,7 +266,7 @@ public class GFAField extends GFAObject implements AField {
 	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject object = getAAValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -282,7 +282,7 @@ public class GFAField extends GFAObject implements AField {
 	@Override
 	public Boolean getFfHasTypeBitmask() {
 		COSObject object = getFfValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -307,7 +307,7 @@ public class GFAField extends GFAObject implements AField {
 	@Override
 	public Boolean getKidsHasTypeArray() {
 		COSObject object = getKidsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -323,7 +323,7 @@ public class GFAField extends GFAObject implements AField {
 	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject object = getParentValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -339,7 +339,7 @@ public class GFAField extends GFAObject implements AField {
 	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -355,7 +355,7 @@ public class GFAField extends GFAObject implements AField {
 	@Override
 	public Boolean getTMHasTypeStringText() {
 		COSObject object = getTMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -371,7 +371,7 @@ public class GFAField extends GFAObject implements AField {
 	@Override
 	public Boolean getTUHasTypeStringText() {
 		COSObject object = getTUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 }

@@ -67,13 +67,13 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -119,13 +119,13 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	@Override
 	public Boolean getentry2HasTypeNull() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry3Value() {
@@ -139,13 +139,13 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	@Override
 	public Boolean getentry3HasTypeNull() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeNumber() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry4Value() {
@@ -159,13 +159,13 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	@Override
 	public Boolean getentry4HasTypeNull() {
 		COSObject object = getentry4Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	@Override
 	public Boolean getentry4HasTypeNumber() {
 		COSObject object = getentry4Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

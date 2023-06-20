@@ -29,7 +29,7 @@ public class GFAOptContentView extends GFAObject implements AOptContentView {
 	@Override
 	public Boolean getViewStateHasTypeName() {
 		COSObject object = getViewStateValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

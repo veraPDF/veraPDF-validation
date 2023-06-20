@@ -130,13 +130,13 @@ public class GFAArrayOfFunctionsEntry extends GFAObject implements AArrayOfFunct
 	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getHasTypeStream() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

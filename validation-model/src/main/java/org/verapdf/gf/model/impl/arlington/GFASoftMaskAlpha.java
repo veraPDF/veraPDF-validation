@@ -170,7 +170,7 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	@Override
 	public Boolean getBCHasTypeArray() {
 		COSObject object = getBCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	@Override
 	public Boolean getGHasTypeStream() {
 		COSObject object = getGValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -208,7 +208,7 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -254,19 +254,19 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	@Override
 	public Boolean getTRHasTypeDictionary() {
 		COSObject object = getTRValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getTRHasTypeName() {
 		COSObject object = getTRValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getTRHasTypeStream() {
 		COSObject object = getTRValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -291,7 +291,7 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

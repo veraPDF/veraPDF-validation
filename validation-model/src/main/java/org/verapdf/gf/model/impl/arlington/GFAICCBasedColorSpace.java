@@ -64,7 +64,7 @@ public class GFAICCBasedColorSpace extends GFAObject implements AICCBasedColorSp
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class GFAICCBasedColorSpace extends GFAObject implements AICCBasedColorSp
 	@Override
 	public Boolean getentry1HasTypeStream() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

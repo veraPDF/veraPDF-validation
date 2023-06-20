@@ -167,7 +167,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	@Override
 	public Boolean getAltHasTypeArray() {
 		COSObject object = getAltValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -183,7 +183,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	@Override
 	public Boolean getBEHasTypeDictionary() {
 		COSObject object = getBEValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -199,7 +199,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -215,7 +215,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	@Override
 	public Boolean getMHHasTypeDictionary() {
 		COSObject object = getMHValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -231,7 +231,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	@Override
 	public Boolean getNHasTypeStringText() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -247,7 +247,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -272,7 +272,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

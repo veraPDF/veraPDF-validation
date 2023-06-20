@@ -145,7 +145,7 @@ public class GFAPatternColorSpace extends GFAObject implements APatternColorSpac
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -168,13 +168,13 @@ public class GFAPatternColorSpace extends GFAObject implements APatternColorSpac
 	@Override
 	public Boolean getentry1HasTypeArray() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

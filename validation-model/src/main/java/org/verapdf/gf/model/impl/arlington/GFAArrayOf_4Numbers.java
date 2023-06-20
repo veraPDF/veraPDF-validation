@@ -27,7 +27,7 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -41,7 +41,7 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -55,7 +55,7 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	public COSObject getentry3Value() {
@@ -69,7 +69,7 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 	@Override
 	public Boolean getentry3HasTypeNumber() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

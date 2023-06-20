@@ -79,7 +79,7 @@ public class GFAArrayOfArraysPaths extends GFAObject implements AArrayOfArraysPa
 	@Override
 	public Boolean getentry0HasTypeArray() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override

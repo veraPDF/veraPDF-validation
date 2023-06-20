@@ -101,7 +101,7 @@ public class GFARequirementsGeospatial3D extends GFAObject implements ARequireme
 	@Override
 	public Boolean getPenaltyHasTypeInteger() {
 		COSObject object = getPenaltyValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -126,13 +126,13 @@ public class GFARequirementsGeospatial3D extends GFAObject implements ARequireme
 	@Override
 	public Boolean getRHHasTypeArray() {
 		COSObject object = getRHValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getRHHasTypeDictionary() {
 		COSObject object = getRHValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -148,7 +148,7 @@ public class GFARequirementsGeospatial3D extends GFAObject implements ARequireme
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -173,7 +173,7 @@ public class GFARequirementsGeospatial3D extends GFAObject implements ARequireme
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -198,13 +198,13 @@ public class GFARequirementsGeospatial3D extends GFAObject implements ARequireme
 	@Override
 	public Boolean getVHasTypeDictionary() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getVHasTypeName() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 }

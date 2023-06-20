@@ -275,7 +275,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	@Override
 	public Boolean getCMDHasTypeDictionary() {
 		COSObject object = getCMDValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -291,13 +291,13 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -313,7 +313,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -344,7 +344,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	@Override
 	public Boolean getTAHasTypeDictionary() {
 		COSObject object = getTAValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -366,7 +366,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	@Override
 	public Boolean getTIHasTypeDictionary() {
 		COSObject object = getTIValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -382,7 +382,7 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

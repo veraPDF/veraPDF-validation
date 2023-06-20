@@ -87,13 +87,13 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	@Override
 	public Boolean getentry3DAHasTypeDictionary() {
 		COSObject object = getentry3DAValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getentry3DAHasTypeStringText() {
 		COSObject object = getentry3DAValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	@Override
 	public Boolean getentry3DVHasTypeDictionary() {
 		COSObject object = getentry3DVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	@Override
 	public Boolean getMD5HasTypeStringByte() {
 		COSObject object = getMD5Value();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -166,7 +166,7 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

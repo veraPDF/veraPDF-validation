@@ -61,13 +61,13 @@ public class GFAArrayOfOCGEntry extends GFAObject implements AArrayOfOCGEntry {
 	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getHasTypeNull() {
 		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 }

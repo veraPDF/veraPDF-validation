@@ -67,7 +67,7 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -167,7 +167,7 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	@Override
 	public Boolean getWHasTypeNumber() {
 		COSObject object = getWValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

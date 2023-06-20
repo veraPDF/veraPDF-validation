@@ -250,7 +250,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	@Override
 	public Boolean getAccurateScreensHasTypeBoolean() {
 		COSObject object = getAccurateScreensValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -266,7 +266,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	@Override
 	public Boolean getAngleHasTypeNumber() {
 		COSObject object = getAngleValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -282,7 +282,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	@Override
 	public Boolean getFrequencyHasTypeNumber() {
 		COSObject object = getFrequencyValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -307,7 +307,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	@Override
 	public Boolean getHalftoneNameHasTypeStringByte() {
 		COSObject object = getHalftoneNameValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -323,7 +323,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	@Override
 	public Boolean getHalftoneTypeHasTypeInteger() {
 		COSObject object = getHalftoneTypeValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -354,25 +354,25 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	@Override
 	public Boolean getSpotFunctionHasTypeArray() {
 		COSObject object = getSpotFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getSpotFunctionHasTypeDictionary() {
 		COSObject object = getSpotFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getSpotFunctionHasTypeName() {
 		COSObject object = getSpotFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getSpotFunctionHasTypeStream() {
 		COSObject object = getSpotFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -403,19 +403,19 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	@Override
 	public Boolean getTransferFunctionHasTypeDictionary() {
 		COSObject object = getTransferFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getTransferFunctionHasTypeName() {
 		COSObject object = getTransferFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getTransferFunctionHasTypeStream() {
 		COSObject object = getTransferFunctionValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -440,7 +440,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -470,7 +470,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 			return null;
 		}
 		COSObject HalftoneType = this.parentObject.getKey(ASAtom.getASAtom("HalftoneType"));
-		return HalftoneType != null && HalftoneType.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(HalftoneType);
 	}
 
 }

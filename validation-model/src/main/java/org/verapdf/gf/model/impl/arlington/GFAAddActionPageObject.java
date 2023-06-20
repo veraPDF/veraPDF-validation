@@ -713,7 +713,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -729,7 +729,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	@Override
 	public Boolean getOHasTypeDictionary() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

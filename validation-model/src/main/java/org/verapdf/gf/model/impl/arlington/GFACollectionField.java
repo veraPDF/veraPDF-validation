@@ -41,7 +41,7 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	@Override
 	public Boolean getEHasTypeBoolean() {
 		COSObject object = getEValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	@Override
 	public Boolean getNHasTypeStringText() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	@Override
 	public Boolean getOHasTypeInteger() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	@Override
 	public Boolean getVHasTypeBoolean() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 }

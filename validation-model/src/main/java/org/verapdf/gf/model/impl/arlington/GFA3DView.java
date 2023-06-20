@@ -291,7 +291,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getBGHasTypeDictionary() {
 		COSObject object = getBGValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -307,7 +307,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getC2WHasTypeArray() {
 		COSObject object = getC2WValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -323,7 +323,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getCOHasTypeNumber() {
 		COSObject object = getCOValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -339,7 +339,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getINHasTypeStringText() {
 		COSObject object = getINValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -355,7 +355,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getLSHasTypeDictionary() {
 		COSObject object = getLSValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -371,7 +371,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getMAHasTypeArray() {
 		COSObject object = getMAValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -387,7 +387,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getMSHasTypeName() {
 		COSObject object = getMSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -412,7 +412,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getNAHasTypeArray() {
 		COSObject object = getNAValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -440,7 +440,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getNRHasTypeBoolean() {
 		COSObject object = getNRValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -462,7 +462,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getOHasTypeStream() {
 		COSObject object = getOValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -478,7 +478,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -494,7 +494,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getRMHasTypeDictionary() {
 		COSObject object = getRMValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -510,7 +510,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getSAHasTypeArray() {
 		COSObject object = getSAValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -526,7 +526,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -551,13 +551,13 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getU3DPathHasTypeArray() {
 		COSObject object = getU3DPathValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getU3DPathHasTypeStringText() {
 		COSObject object = getU3DPathValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -573,7 +573,7 @@ public class GFA3DView extends GFAObject implements A3DView {
 	@Override
 	public Boolean getXNHasTypeStringText() {
 		COSObject object = getXNValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 }

@@ -128,7 +128,7 @@ public class GFADestDict extends GFAObject implements ADestDict {
 	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -144,7 +144,7 @@ public class GFADestDict extends GFAObject implements ADestDict {
 	@Override
 	public Boolean getSDHasTypeArray() {
 		COSObject object = getSDValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 }

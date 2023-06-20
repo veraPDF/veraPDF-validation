@@ -201,7 +201,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	@Override
 	public Boolean getColorHasTypeArray() {
 		COSObject object = getColorValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -217,13 +217,13 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
 		COSObject object = getColorSpaceValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
 		COSObject object = getColorSpaceValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -248,7 +248,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	@Override
 	public Boolean getOffsetHasTypeArray() {
 		COSObject object = getOffsetValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -264,7 +264,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	@Override
 	public Boolean getRadiusHasTypeNumber() {
 		COSObject object = getRadiusValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -289,7 +289,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -314,7 +314,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

@@ -32,7 +32,7 @@ public class GFAArrayOf_3Numbers extends GFAObject implements AArrayOf_3Numbers 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class GFAArrayOf_3Numbers extends GFAObject implements AArrayOf_3Numbers 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class GFAArrayOf_3Numbers extends GFAObject implements AArrayOf_3Numbers 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

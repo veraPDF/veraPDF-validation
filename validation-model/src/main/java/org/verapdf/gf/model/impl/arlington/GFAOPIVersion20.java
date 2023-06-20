@@ -67,7 +67,7 @@ public class GFAOPIVersion20 extends GFAObject implements AOPIVersion20 {
 	@Override
 	public Boolean getentry20HasTypeDictionary() {
 		COSObject object = getentry20Value();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

@@ -66,7 +66,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	@Override
 	public Boolean getAHasTypeArray() {
 		COSObject object = getAValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	@Override
 	public Boolean getFBHasTypeBoolean() {
 		COSObject object = getFBValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	@Override
 	public Boolean getSWHasTypeName() {
 		COSObject object = getSWValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

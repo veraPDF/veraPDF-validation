@@ -124,7 +124,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	@Override
 	public Boolean getBindingHasTypeName() {
 		COSObject object = getBindingValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	@Override
 	public Boolean getBindingMaterialHasTypeStringText() {
 		COSObject object = getBindingMaterialValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	@Override
 	public Boolean getCuePointsHasTypeArray() {
 		COSObject object = getCuePointsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -187,13 +187,13 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	@Override
 	public Boolean getFlashVarsHasTypeStream() {
 		COSObject object = getFlashVarsValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getFlashVarsHasTypeStringText() {
 		COSObject object = getFlashVarsValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -215,13 +215,13 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	@Override
 	public Boolean getSettingsHasTypeStream() {
 		COSObject object = getSettingsValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getSettingsHasTypeStringText() {
 		COSObject object = getSettingsValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -237,7 +237,7 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

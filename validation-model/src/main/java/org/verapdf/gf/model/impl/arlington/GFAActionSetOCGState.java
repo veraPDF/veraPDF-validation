@@ -296,13 +296,13 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -332,7 +332,7 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	@Override
 	public Boolean getPreserveRBHasTypeBoolean() {
 		COSObject object = getPreserveRBValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -348,7 +348,7 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	@Override
 	public Boolean getSHasTypeName() {
 		COSObject object = getSValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -373,7 +373,7 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	@Override
 	public Boolean getStateHasTypeArray() {
 		COSObject object = getStateValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -389,7 +389,7 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

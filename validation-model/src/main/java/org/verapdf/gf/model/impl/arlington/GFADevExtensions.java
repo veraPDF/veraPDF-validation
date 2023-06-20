@@ -35,7 +35,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getBaseVersionHasTypeName() {
 		COSObject object = getBaseVersionValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getExtensionLevelHasTypeInteger() {
 		COSObject object = getExtensionLevelValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getExtensionRevisionHasTypeStringText() {
 		COSObject object = getExtensionRevisionValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getURLHasTypeString() {
 		COSObject object = getURLValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 }

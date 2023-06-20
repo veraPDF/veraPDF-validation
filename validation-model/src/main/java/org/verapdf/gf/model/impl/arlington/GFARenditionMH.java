@@ -64,7 +64,7 @@ public class GFARenditionMH extends GFAObject implements ARenditionMH {
 	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

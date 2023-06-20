@@ -143,13 +143,13 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	@Override
 	public Boolean getentry0HasTypeArray() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNull() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -163,13 +163,13 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	@Override
 	public Boolean getentry1HasTypeArray() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeNull() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -183,13 +183,13 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	@Override
 	public Boolean getentry2HasTypeArray() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNull() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 	public COSObject getentry3Value() {
@@ -203,13 +203,13 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 	@Override
 	public Boolean getentry3HasTypeArray() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeNull() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_NULL;
+		return getHasTypeNull(object);
 	}
 
 }

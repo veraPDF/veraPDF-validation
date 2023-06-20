@@ -29,7 +29,7 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 	@Override
 	public Boolean getEPSGHasTypeInteger() {
 		COSObject object = getEPSGValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 	@Override
 	public Boolean getWKTHasTypeStringAscii() {
 		COSObject object = getWKTValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 	@Override

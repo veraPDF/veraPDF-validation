@@ -191,7 +191,7 @@ public class GFABead extends GFAObject implements ABead {
 	@Override
 	public Boolean getNHasTypeDictionary() {
 		COSObject object = getNValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -213,7 +213,7 @@ public class GFABead extends GFAObject implements ABead {
 	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -229,15 +229,7 @@ public class GFABead extends GFAObject implements ABead {
 	@Override
 	public Boolean getRHasTypeRectangle() {
 		COSObject object = getRValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -259,7 +251,7 @@ public class GFABead extends GFAObject implements ABead {
 	@Override
 	public Boolean getTHasTypeDictionary() {
 		COSObject object = getTValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -275,7 +267,7 @@ public class GFABead extends GFAObject implements ABead {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -306,7 +298,7 @@ public class GFABead extends GFAObject implements ABead {
 	@Override
 	public Boolean getVHasTypeDictionary() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

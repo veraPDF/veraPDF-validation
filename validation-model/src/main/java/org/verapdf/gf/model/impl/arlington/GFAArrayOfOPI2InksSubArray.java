@@ -27,7 +27,7 @@ public class GFAArrayOfOPI2InksSubArray extends GFAObject implements AArrayOfOPI
 	@Override
 	public Boolean getentry0HasTypeString() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -41,7 +41,7 @@ public class GFAArrayOfOPI2InksSubArray extends GFAObject implements AArrayOfOPI
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

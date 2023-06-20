@@ -29,7 +29,7 @@ public class GFAOptContentPageElement extends GFAObject implements AOptContentPa
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

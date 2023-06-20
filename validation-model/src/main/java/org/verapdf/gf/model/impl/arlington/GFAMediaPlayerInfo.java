@@ -118,7 +118,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	@Override
 	public Boolean getBEHasTypeDictionary() {
 		COSObject object = getBEValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	@Override
 	public Boolean getMHHasTypeDictionary() {
 		COSObject object = getMHValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	@Override
 	public Boolean getPIDHasTypeDictionary() {
 		COSObject object = getPIDValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -166,7 +166,7 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

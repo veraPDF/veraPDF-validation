@@ -33,7 +33,7 @@ public class GFAArrayOfXRefIndexIntegersSubArray extends GFAObject implements AA
 	@Override
 	public Boolean getentry0HasTypeInteger() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class GFAArrayOfXRefIndexIntegersSubArray extends GFAObject implements AA
 	@Override
 	public Boolean getentry1HasTypeInteger() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

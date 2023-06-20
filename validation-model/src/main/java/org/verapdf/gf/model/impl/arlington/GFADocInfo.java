@@ -80,7 +80,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getAuthorHasTypeStringText() {
 		COSObject object = getAuthorValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
 		COSObject object = getCreationDateValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getCreatorHasTypeStringText() {
 		COSObject object = getCreatorValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getKeywordsHasTypeStringText() {
 		COSObject object = getKeywordsValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -144,7 +144,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getModDateHasTypeDate() {
 		COSObject object = getModDateValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -160,7 +160,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getProducerHasTypeStringText() {
 		COSObject object = getProducerValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -176,7 +176,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getSubjectHasTypeStringText() {
 		COSObject object = getSubjectValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getTitleHasTypeStringText() {
 		COSObject object = getTitleValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -224,7 +224,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public Boolean getTrappedHasTypeName() {
 		COSObject object = getTrappedValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

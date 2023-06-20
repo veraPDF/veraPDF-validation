@@ -64,7 +64,7 @@ public class GFAArrayOfGSPDashPatterns extends GFAObject implements AArrayOfGSPD
 	@Override
 	public Boolean getentry0HasTypeArray() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -78,7 +78,7 @@ public class GFAArrayOfGSPDashPatterns extends GFAObject implements AArrayOfGSPD
 	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 }

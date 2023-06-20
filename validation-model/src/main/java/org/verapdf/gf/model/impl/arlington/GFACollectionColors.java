@@ -162,7 +162,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	@Override
 	public Boolean getBackgroundHasTypeArray() {
 		COSObject object = getBackgroundValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	@Override
 	public Boolean getCardBackgroundHasTypeArray() {
 		COSObject object = getCardBackgroundValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	@Override
 	public Boolean getCardBorderHasTypeArray() {
 		COSObject object = getCardBorderValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	@Override
 	public Boolean getPrimaryTextHasTypeArray() {
 		COSObject object = getPrimaryTextValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -226,7 +226,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	@Override
 	public Boolean getSecondaryTextHasTypeArray() {
 		COSObject object = getSecondaryTextValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -242,7 +242,7 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

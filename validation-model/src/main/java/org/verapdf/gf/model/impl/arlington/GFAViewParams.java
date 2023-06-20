@@ -93,13 +93,13 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	@Override
 	public Boolean getDataHasTypeStream() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getDataHasTypeStringText() {
 		COSObject object = getDataValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	@Override
 	public Boolean getInstanceHasTypeDictionary() {
 		COSObject object = getInstanceValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override

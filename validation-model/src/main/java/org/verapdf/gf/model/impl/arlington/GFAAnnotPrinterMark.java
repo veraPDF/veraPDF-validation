@@ -227,13 +227,13 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -249,7 +249,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject object = getAPValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -265,7 +265,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getASHasTypeName() {
 		COSObject object = getASValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -292,7 +292,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject object = getBMValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -317,7 +317,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject object = getBorderValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -333,7 +333,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -360,7 +360,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject object = getCAValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -385,7 +385,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getContentsHasTypeStringText() {
 		COSObject object = getContentsValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -416,7 +416,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -441,7 +441,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject object = getLangValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -457,13 +457,13 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getMHasTypeDate() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
 	public Boolean getMHasTypeStringText() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -479,7 +479,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getMNHasTypeName() {
 		COSObject object = getMNValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -504,7 +504,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getNMHasTypeStringText() {
 		COSObject object = getNMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -520,7 +520,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getOCHasTypeDictionary() {
 		COSObject object = getOCValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -542,7 +542,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -558,15 +558,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getRectHasTypeRectangle() {
 		COSObject object = getRectValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -616,7 +608,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject object = getStructParentValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -632,7 +624,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -657,7 +649,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -693,7 +685,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 	@Override
 	public Boolean getcaHasTypeNumber() {
 		COSObject object = getcaValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -715,7 +707,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 			return null;
 		}
 		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
-		return N != null && N.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(N);
 	}
 
 	@Override
@@ -728,7 +720,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 			return null;
 		}
 		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
-		return R != null && R.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(R);
 	}
 
 	@Override
@@ -741,7 +733,7 @@ public class GFAAnnotPrinterMark extends GFAObject implements AAnnotPrinterMark 
 			return null;
 		}
 		COSObject D = AP.getKey(ASAtom.getASAtom("D"));
-		return D != null && D.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(D);
 	}
 
 }

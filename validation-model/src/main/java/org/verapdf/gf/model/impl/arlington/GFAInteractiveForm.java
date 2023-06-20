@@ -172,7 +172,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getCOHasTypeArray() {
 		COSObject object = getCOValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -188,7 +188,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getDAHasTypeString() {
 		COSObject object = getDAValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -204,7 +204,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getDRHasTypeDictionary() {
 		COSObject object = getDRValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -220,7 +220,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getFieldsHasTypeArray() {
 		COSObject object = getFieldsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -253,7 +253,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getNeedAppearancesHasTypeBoolean() {
 		COSObject object = getNeedAppearancesValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -269,7 +269,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getQHasTypeInteger() {
 		COSObject object = getQValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -310,7 +310,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getSigFlagsHasTypeBitmask() {
 		COSObject object = getSigFlagsValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -341,13 +341,13 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getXFAHasTypeArray() {
 		COSObject object = getXFAValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getXFAHasTypeStream() {
 		COSObject object = getXFAValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 }

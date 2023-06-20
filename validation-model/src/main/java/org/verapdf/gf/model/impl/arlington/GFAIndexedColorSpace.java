@@ -225,7 +225,7 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -248,13 +248,13 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	@Override
 	public Boolean getentry1HasTypeArray() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -277,7 +277,7 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	@Override
 	public Boolean getentry2HasTypeInteger() {
 		COSObject object = getentry2Value();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -306,13 +306,13 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	@Override
 	public Boolean getentry3HasTypeStream() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeString() {
 		COSObject object = getentry3Value();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 }

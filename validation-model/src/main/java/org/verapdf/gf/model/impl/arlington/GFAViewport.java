@@ -123,15 +123,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject object = getBBoxValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -147,7 +139,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	@Override
 	public Boolean getMeasureHasTypeDictionary() {
 		COSObject object = getMeasureValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -163,7 +155,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject object = getNameValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -179,7 +171,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	@Override
 	public Boolean getPtDataHasTypeDictionary() {
 		COSObject object = getPtDataValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -195,7 +187,7 @@ public class GFAViewport extends GFAObject implements AViewport {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

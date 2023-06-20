@@ -75,7 +75,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getAHasTypeName() {
 		COSObject object = getAValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getAISHasTypeName() {
 		COSObject object = getAISValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getDHasTypeName() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -189,7 +189,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getDISHasTypeName() {
 		COSObject object = getDISValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -226,7 +226,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getNPHasTypeBoolean() {
 		COSObject object = getNPValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -254,7 +254,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getStyleHasTypeName() {
 		COSObject object = getStyleValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -291,7 +291,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getTBHasTypeBoolean() {
 		COSObject object = getTBValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -319,7 +319,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getTransparentHasTypeBoolean() {
 		COSObject object = getTransparentValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -335,7 +335,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public Boolean getWindowHasTypeDictionary() {
 		COSObject object = getWindowValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override

@@ -151,7 +151,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	@Override
 	public Boolean getAppHasTypeDictionary() {
 		COSObject object = getAppValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -173,7 +173,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	@Override
 	public Boolean getFilterHasTypeDictionary() {
 		COSObject object = getFilterValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -195,7 +195,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	@Override
 	public Boolean getPubSecHasTypeDictionary() {
 		COSObject object = getPubSecValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -217,7 +217,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	@Override
 	public Boolean getSigQHasTypeDictionary() {
 		COSObject object = getSigQValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 }

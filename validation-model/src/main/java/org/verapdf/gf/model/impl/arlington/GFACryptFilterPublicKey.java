@@ -78,7 +78,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public Boolean getAuthEventHasTypeName() {
 		COSObject object = getAuthEventValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public Boolean getCFMHasTypeName() {
 		COSObject object = getCFMValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public Boolean getEncryptMetadataHasTypeBoolean() {
 		COSObject object = getEncryptMetadataValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -172,7 +172,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -197,13 +197,13 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public Boolean getRecipientsHasTypeArray() {
 		COSObject object = getRecipientsValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getRecipientsHasTypeStringByte() {
 		COSObject object = getRecipientsValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -219,7 +219,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

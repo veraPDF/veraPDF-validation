@@ -33,7 +33,7 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 	@Override
 	public Boolean getentry0HasTypeStringByte() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -53,7 +53,7 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 	@Override
 	public Boolean getentry1HasTypeStringByte() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override

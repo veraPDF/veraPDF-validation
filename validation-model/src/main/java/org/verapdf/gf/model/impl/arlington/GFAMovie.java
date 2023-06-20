@@ -127,7 +127,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	@Override
 	public Boolean getAspectHasTypeArray() {
 		COSObject object = getAspectValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -143,13 +143,13 @@ public class GFAMovie extends GFAObject implements AMovie {
 	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -188,13 +188,13 @@ public class GFAMovie extends GFAObject implements AMovie {
 	@Override
 	public Boolean getPosterHasTypeBoolean() {
 		COSObject object = getPosterValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
 	public Boolean getPosterHasTypeStream() {
 		COSObject object = getPosterValue();
-		return object != null && object.getType() == COSObjType.COS_STREAM;
+		return getHasTypeStream(object);
 	}
 
 	@Override
@@ -227,7 +227,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	@Override
 	public Boolean getRotateHasTypeInteger() {
 		COSObject object = getRotateValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

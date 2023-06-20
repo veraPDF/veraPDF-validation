@@ -27,7 +27,7 @@ public class GFAArrayOf_2StringsText extends GFAObject implements AArrayOf_2Stri
 	@Override
 	public Boolean getentry0HasTypeStringText() {
 		COSObject object = getentry0Value();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -41,7 +41,7 @@ public class GFAArrayOf_2StringsText extends GFAObject implements AArrayOf_2Stri
 	@Override
 	public Boolean getentry1HasTypeStringText() {
 		COSObject object = getentry1Value();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 }

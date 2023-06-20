@@ -78,7 +78,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Boolean getAHasTypeBoolean() {
 		COSObject object = getAValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Boolean getCHasTypeBoolean() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+		return getHasTypeBoolean(object);
 	}
 
 	@Override
@@ -124,7 +124,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject object = getDValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -154,7 +154,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Boolean getFHasTypeInteger() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -193,7 +193,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Boolean getRCHasTypeNumber() {
 		COSObject object = getRCValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -232,7 +232,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Boolean getVHasTypeInteger() {
 		COSObject object = getVValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override

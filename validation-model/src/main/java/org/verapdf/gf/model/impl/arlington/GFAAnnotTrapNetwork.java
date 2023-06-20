@@ -318,13 +318,13 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
 		COSObject object = getAFValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -340,7 +340,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject object = getAPValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -356,7 +356,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getASHasTypeName() {
 		COSObject object = getASValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -372,7 +372,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getAnnotStatesHasTypeArray() {
 		COSObject object = getAnnotStatesValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -399,7 +399,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject object = getBMValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -424,7 +424,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject object = getBorderValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -440,7 +440,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -467,7 +467,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject object = getCAValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -492,7 +492,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getContentsHasTypeString() {
 		COSObject object = getContentsValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -508,7 +508,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -533,7 +533,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getFontFauxingHasTypeArray() {
 		COSObject object = getFontFauxingValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -549,7 +549,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getLangHasTypeString() {
 		COSObject object = getLangValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -565,7 +565,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
 		COSObject object = getLastModifiedValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
@@ -581,13 +581,13 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getMHasTypeDate() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX);
+		return getHasTypeDate(object);
 	}
 
 	@Override
 	public Boolean getMHasTypeString() {
 		COSObject object = getMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -603,7 +603,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getNMHasTypeString() {
 		COSObject object = getNMValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeString(object);
 	}
 
 	@Override
@@ -619,7 +619,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getOCHasTypeDictionary() {
 		COSObject object = getOCValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -641,7 +641,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject object = getPValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -657,15 +657,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getRectHasTypeRectangle() {
 		COSObject object = getRectValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return false;
-		}
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem == null || (elem.getType() != COSObjType.COS_REAL && elem.getType() != COSObjType.COS_INTEGER)) {
-				return false;
-			}
-		}
-		return true;
+		return getHasTypeRectangle(object);
 	}
 
 	@Override
@@ -681,7 +673,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject object = getStructParentValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -697,7 +689,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject object = getSubtypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -722,7 +714,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -747,7 +739,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getVersionHasTypeArray() {
 		COSObject object = getVersionValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -774,7 +766,7 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	@Override
 	public Boolean getcaHasTypeNumber() {
 		COSObject object = getcaValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

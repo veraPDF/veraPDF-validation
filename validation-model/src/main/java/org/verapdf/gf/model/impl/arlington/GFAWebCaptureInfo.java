@@ -66,7 +66,7 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 	@Override
 	public Boolean getVHasTypeNumber() {
 		COSObject object = getVValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override

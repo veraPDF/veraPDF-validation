@@ -41,7 +41,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getDSmHasTypeNumber() {
 		COSObject object = getDSmValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getDSnHasTypeNumber() {
 		COSObject object = getDSnValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getDUHasTypeStringText() {
 		COSObject object = getDUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getTSmHasTypeNumber() {
 		COSObject object = getTSmValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getTSnHasTypeNumber() {
 		COSObject object = getTSnValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -157,7 +157,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getTUHasTypeStringText() {
 		COSObject object = getTUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override
@@ -185,7 +185,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getUSmHasTypeNumber() {
 		COSObject object = getUSmValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -213,7 +213,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getUSnHasTypeNumber() {
 		COSObject object = getUSnValue();
-		return object != null && object.getType().isNumber();
+		return getHasTypeNumber(object);
 	}
 
 	@Override
@@ -229,7 +229,7 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	@Override
 	public Boolean getUUHasTypeStringText() {
 		COSObject object = getUUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 	@Override

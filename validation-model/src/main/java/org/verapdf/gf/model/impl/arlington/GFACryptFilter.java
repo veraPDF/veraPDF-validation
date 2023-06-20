@@ -43,7 +43,7 @@ public class GFACryptFilter extends GFAObject implements ACryptFilter {
 	@Override
 	public Boolean getAuthEventHasTypeName() {
 		COSObject object = getAuthEventValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class GFACryptFilter extends GFAObject implements ACryptFilter {
 	@Override
 	public Boolean getCFMHasTypeName() {
 		COSObject object = getCFMValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class GFACryptFilter extends GFAObject implements ACryptFilter {
 	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject object = getLengthValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -132,7 +132,7 @@ public class GFACryptFilter extends GFAObject implements ACryptFilter {
 	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject object = getTypeValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override

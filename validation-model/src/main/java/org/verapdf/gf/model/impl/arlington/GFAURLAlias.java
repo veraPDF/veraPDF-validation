@@ -66,7 +66,7 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 	@Override
 	public Boolean getUHasTypeStringAscii() {
 		COSObject object = getUValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
+		return getHasTypeStringAscii(object);
 	}
 
 }

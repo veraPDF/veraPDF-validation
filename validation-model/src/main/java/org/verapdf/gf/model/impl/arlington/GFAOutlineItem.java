@@ -695,7 +695,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getAHasTypeDictionary() {
 		COSObject object = getAValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -711,7 +711,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject object = getCValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
@@ -727,7 +727,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getCountHasTypeInteger() {
 		COSObject object = getCountValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeInteger(object);
 	}
 
 	@Override
@@ -743,19 +743,19 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getDestHasTypeArray() {
 		COSObject object = getDestValue();
-		return object != null && object.getType() == COSObjType.COS_ARRAY;
+		return getHasTypeArray(object);
 	}
 
 	@Override
 	public Boolean getDestHasTypeName() {
 		COSObject object = getDestValue();
-		return object != null && object.getType() == COSObjType.COS_NAME;
+		return getHasTypeName(object);
 	}
 
 	@Override
 	public Boolean getDestHasTypeStringByte() {
 		COSObject object = getDestValue();
-		return object != null && object.getType() == COSObjType.COS_STRING;
+		return getHasTypeStringByte(object);
 	}
 
 	@Override
@@ -786,7 +786,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject object = getFValue();
-		return object != null && object.getType() == COSObjType.COS_INTEGER;
+		return getHasTypeBitmask(object);
 	}
 
 	@Override
@@ -817,7 +817,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getFirstHasTypeDictionary() {
 		COSObject object = getFirstValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -839,7 +839,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getLastHasTypeDictionary() {
 		COSObject object = getLastValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -861,7 +861,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject object = getNextValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -883,7 +883,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject object = getParentValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -905,7 +905,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getPrevHasTypeDictionary() {
 		COSObject object = getPrevValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -927,7 +927,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getSEHasTypeDictionary() {
 		COSObject object = getSEValue();
-		return object != null && object.getType() == COSObjType.COS_DICT;
+		return getHasTypeDictionary(object);
 	}
 
 	@Override
@@ -943,7 +943,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Boolean getTitleHasTypeStringText() {
 		COSObject object = getTitleValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
+		return getHasTypeStringText(object);
 	}
 
 }
