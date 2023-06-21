@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -275,10 +275,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Long getDPartsArraySize() {
 		COSObject object = getDPartsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -294,7 +291,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getisEndIndirect() {
 		COSObject object = getEndValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -316,7 +313,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getisMetadataIndirect() {
 		COSObject object = getMetadataValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -338,7 +335,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getisParentIndirect() {
 		COSObject object = getParentValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -360,7 +357,7 @@ public class GFADPart extends GFAObject implements ADPart {
 	@Override
 	public Boolean getisStartIndirect() {
 		COSObject object = getStartValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

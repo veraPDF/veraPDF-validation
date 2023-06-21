@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -1163,10 +1163,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	@Override
 	public Long getDecodeParmsArraySize() {
 		COSObject object = getDecodeParmsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -1216,10 +1213,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	@Override
 	public Long getFDecodeParmsArraySize() {
 		COSObject object = getFDecodeParmsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -1256,10 +1250,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	@Override
 	public Long getFFilterArraySize() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -1296,10 +1287,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	@Override
 	public Long getFilterArraySize() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -1552,7 +1540,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	@Override
 	public Boolean getisMaskIndirect() {
 		COSObject object = getMaskValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1596,7 +1584,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	@Override
 	public Boolean getisMetadataIndirect() {
 		COSObject object = getMetadataValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1682,7 +1670,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	@Override
 	public Boolean getisSMaskIndirect() {
 		COSObject object = getSMaskValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

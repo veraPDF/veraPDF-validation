@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -239,7 +239,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getisAuthCodeIndirect() {
 		COSObject object = getAuthCodeValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -277,7 +277,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getisentryIDIndirect() {
 		COSObject object = getentryIDValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -299,7 +299,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getisInfoIndirect() {
 		COSObject object = getInfoValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -321,7 +321,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getisPrevIndirect() {
 		COSObject object = getPrevValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -352,7 +352,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getisRootIndirect() {
 		COSObject object = getRootValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -374,7 +374,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getisSizeIndirect() {
 		COSObject object = getSizeValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

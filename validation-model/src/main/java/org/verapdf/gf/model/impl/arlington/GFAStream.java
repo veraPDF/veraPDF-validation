@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -525,10 +525,7 @@ public class GFAStream extends GFAObject implements AStream {
 	@Override
 	public Long getDecodeParmsArraySize() {
 		COSObject object = getDecodeParmsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -578,10 +575,7 @@ public class GFAStream extends GFAObject implements AStream {
 	@Override
 	public Long getFDecodeParmsArraySize() {
 		COSObject object = getFDecodeParmsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -618,10 +612,7 @@ public class GFAStream extends GFAObject implements AStream {
 	@Override
 	public Long getFFilterArraySize() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -658,10 +649,7 @@ public class GFAStream extends GFAObject implements AStream {
 	@Override
 	public Long getFilterArraySize() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override

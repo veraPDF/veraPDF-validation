@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -181,7 +181,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 	@Override
 	public Boolean getisTSIndirect() {
 		COSObject object = getTSValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -237,10 +237,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 			return null;
 		}
 		COSObject CRLs = this.parentObject.getKey(ASAtom.getASAtom("CRLs"));
-		if (CRLs != null && CRLs.getType() == COSObjType.COS_ARRAY) {
-			return (long) CRLs.size();
-		}
-		return null;
+		return getArraySize(CRLs);
 	}
 
 	@Override
@@ -249,10 +246,7 @@ public class GFAVRI extends GFAObject implements AVRI {
 			return null;
 		}
 		COSObject OCSPs = this.parentObject.getKey(ASAtom.getASAtom("OCSPs"));
-		if (OCSPs != null && OCSPs.getType() == COSObjType.COS_ARRAY) {
-			return (long) OCSPs.size();
-		}
-		return null;
+		return getArraySize(OCSPs);
 	}
 
 	@Override

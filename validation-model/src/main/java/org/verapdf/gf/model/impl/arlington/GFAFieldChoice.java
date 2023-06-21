@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -597,21 +597,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	@Override
 	public Boolean getisIArraySortAscending1() {
 		COSObject object = getIValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY) {
-			return false;
-		}
-		Long lastNumber = null;
-		for (int i = 0; i < object.size(); i += 1) {
-			COSObject elem = object.at(i);
-			if (elem == null || elem.getType() != COSObjType.COS_INTEGER) {
-				return false;
-			}
-			if (lastNumber != null && lastNumber > elem.getInteger()) {
-				return false;
-			}
-			lastNumber = elem.getInteger();
-		}
-		return true;
+		return getisArraySortAscending(object, 1);
 	}
 
 	@Override
@@ -661,10 +647,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	@Override
 	public Long getOptArraySize() {
 		COSObject object = getOptValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -738,7 +721,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	@Override
 	public Boolean getisRVIndirect() {
 		COSObject object = getRVValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

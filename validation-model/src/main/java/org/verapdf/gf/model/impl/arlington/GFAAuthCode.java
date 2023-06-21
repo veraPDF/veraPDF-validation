@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -107,7 +107,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public Boolean getisByteRangeIndirect() {
 		COSObject object = getByteRangeValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public Boolean getisMACIndirect() {
 		COSObject object = getMACValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public Boolean getisMACLocationIndirect() {
 		COSObject object = getMACLocationValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -182,7 +182,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public Boolean getisSigObjRefIndirect() {
 		COSObject object = getSigObjRefValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

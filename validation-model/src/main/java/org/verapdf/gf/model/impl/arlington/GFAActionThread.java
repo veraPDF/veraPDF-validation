@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -493,7 +493,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	@Override
 	public Boolean getisBIndirect() {
 		COSObject object = getBValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -530,7 +530,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	@Override
 	public Boolean getisDIndirect() {
 		COSObject object = getDValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -665,10 +665,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 			return null;
 		}
 		COSObject Threads = Root.getKey(ASAtom.getASAtom("Threads"));
-		if (Threads != null && Threads.getType() == COSObjType.COS_ARRAY) {
-			return (long) Threads.size();
-		}
-		return null;
+		return getArraySize(Threads);
 	}
 
 	@Override

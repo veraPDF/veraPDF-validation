@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -701,7 +701,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getisContentsIndirect() {
 		COSObject object = getContentsValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -911,7 +911,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getisMetadataIndirect() {
 		COSObject object = getMetadataValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -965,7 +965,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getisParentIndirect() {
 		COSObject object = getParentValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1228,7 +1228,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Boolean getisThumbIndirect() {
 		COSObject object = getThumbValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

@@ -2,14 +2,15 @@ package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
 import org.verapdf.model.alayer.*;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.model.GenericModelObject;
+import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.PDCatalog;
+import org.verapdf.pd.PDNamesDictionary;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
-import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFAObject extends GenericModelObject implements AObject {
 
@@ -54,9 +55,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	@Override
 	public String getkeysString() {
-		return this.baseObject.getKeySet().stream()
-				.map(ASAtom::getValue)
-				.collect(Collectors.joining("&"));
+		return getkeysString(new COSObject(this.baseObject));
 	}
 
 	@Override
@@ -104,6 +103,71 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return !standardFonts.contains(baseFont.getString());
 	}
 
+	public static Double getRectHeight(COSObject object) {
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return null;
+		}
+		COSObject bottom = object.at(1);
+		COSObject top = object.at(3);
+		if (bottom == null || (bottom.getType() != COSObjType.COS_INTEGER && bottom.getType() != COSObjType.COS_REAL)) {
+			return null;
+		}
+		if (top == null || (top.getType() != COSObjType.COS_INTEGER && top.getType() != COSObjType.COS_REAL)) {
+			return null;
+		}
+		return top.getReal() - bottom.getReal();
+	}
+
+	public static Double getRectWidth(COSObject object) {
+		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
+			return null;
+		}
+		COSObject left = object.at(0);
+		COSObject right = object.at(2);
+		if (left == null || (left.getType() != COSObjType.COS_INTEGER && left.getType() != COSObjType.COS_REAL)) {
+			return null;
+		}
+		if (right == null || (right.getType() != COSObjType.COS_INTEGER && right.getType() != COSObjType.COS_REAL)) {
+			return null;
+		}
+		return right.getReal() - left.getReal();
+	}
+
+	public static Boolean getisIndirect(COSObject object) {
+		return object != null && object.get() != null && object.get().isIndirect();
+	}
+
+	public static Long getArraySize(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
+			return (long) object.size();
+		}
+		return null;
+	}
+
+	public static Boolean getisArraySortAscending(COSObject object, int number) {
+		if (object == null || object.getType() != COSObjType.COS_ARRAY) {
+			return false;
+		}
+		Long previousNumber = null;
+		for (int i = 0; i < object.size(); i += number) {
+			COSObject elem = object.at(i);
+			if (elem == null || elem.getType() != COSObjType.COS_INTEGER) {
+				return false;
+			}
+			if (previousNumber != null && previousNumber > elem.getInteger()) {
+				return false;
+			}
+			previousNumber = elem.getInteger();
+		}
+		return true;
+	}
+
+	public static String getkeysString(COSObject object) {
+		return object.getKeySet().stream()
+				.map(ASAtom::getValue)
+				.collect(Collectors.joining("&"));
+	}
+
 	@Override
 	public Boolean getisEncryptedWrapper() {
 		PDDocument document = StaticResources.getDocument();
@@ -132,7 +196,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return false;
 	}
 
-	public static Boolean hasCycle(COSObject object,ASAtom entryName) {
+	public static Boolean hasCycle(COSObject object, ASAtom entryName) {
 		if (object == null) {
 			return false;
 		}
@@ -171,31 +235,31 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return StaticResources.getDocument().getPages().get(pageNumber.intValue()).getObject();
 	}
 
-	public Boolean getHasTypeArray(COSObject object) {
+	public static Boolean getHasTypeArray(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
-	public Boolean getHasTypeBitmask(COSObject object) {
+	public static Boolean getHasTypeBitmask(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
-	public Boolean getHasTypeBoolean(COSObject object) {
+	public static Boolean getHasTypeBoolean(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
 	}
 
-	public Boolean getHasTypeDate(COSObject object) {
+	public static Boolean getHasTypeDate(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(PDF_DATE_FORMAT_REGEX);
 	}
 
-	public Boolean getHasTypeDictionary(COSObject object) {
+	public static Boolean getHasTypeDictionary(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
-	public Boolean getHasTypeInteger(COSObject object) {
+	public static Boolean getHasTypeInteger(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
-	public Boolean getHasTypeMatrix(COSObject object) {
+	public static Boolean getHasTypeMatrix(COSObject object) {
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 6) {
 			return false;
 		}
@@ -207,27 +271,27 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return true;
 	}
 
-	public Boolean getHasTypeName(COSObject object) {
+	public static Boolean getHasTypeName(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
 
-	public Boolean getHasTypeNameTree(COSObject object) {
+	public static Boolean getHasTypeNameTree(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
-	public Boolean getHasTypeNull(COSObject object) {
+	public static Boolean getHasTypeNull(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_NULL;
 	}
 
-	public Boolean getHasTypeNumber(COSObject object) {
+	public static Boolean getHasTypeNumber(COSObject object) {
 		return object != null && object.getType().isNumber();
 	}
 
-	public Boolean getHasTypeNumberTree(COSObject object) {
+	public static Boolean getHasTypeNumberTree(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_DICT;
 	}
 
-	public Boolean getHasTypeRectangle(COSObject object) {
+	public static Boolean getHasTypeRectangle(COSObject object) {
 		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
 			return false;
 		}
@@ -239,23 +303,23 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return true;
 	}
 
-	public Boolean getHasTypeStream(COSObject object) {
+	public static Boolean getHasTypeStream(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
-	public Boolean getHasTypeString(COSObject object) {
+	public static Boolean getHasTypeString(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
-	public Boolean getHasTypeStringAscii(COSObject object) {
+	public static Boolean getHasTypeStringAscii(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
-	public Boolean getHasTypeStringByte(COSObject object) {
+	public static Boolean getHasTypeStringByte(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STRING;
 	}
 
-	public Boolean getHasTypeStringText(COSObject object) {
+	public static Boolean getHasTypeStringText(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isTextString();
 	}
 

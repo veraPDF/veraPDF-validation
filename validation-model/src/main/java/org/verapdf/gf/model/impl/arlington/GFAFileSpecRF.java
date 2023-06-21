@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -91,7 +91,7 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	@Override
 	public Boolean getisFIndirect() {
 		COSObject object = getFValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -103,10 +103,7 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	@Override
 	public Long getFArraySize() {
 		COSObject object = getFValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -122,7 +119,7 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	@Override
 	public Boolean getisUFIndirect() {
 		COSObject object = getUFValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -134,10 +131,7 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	@Override
 	public Long getUFArraySize() {
 		COSObject object = getUFValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 }

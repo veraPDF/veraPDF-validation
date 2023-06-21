@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -320,7 +320,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	@Override
 	public Boolean getisAIndirect() {
 		COSObject object = getAValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -344,10 +344,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	@Override
 	public Long getAArraySize() {
 		COSObject object = getAValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -515,7 +512,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	@Override
 	public Boolean getisNSIndirect() {
 		COSObject object = getNSValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -537,7 +534,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	@Override
 	public Boolean getisPIndirect() {
 		COSObject object = getPValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -559,7 +556,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	@Override
 	public Boolean getisPgIndirect() {
 		COSObject object = getPgValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

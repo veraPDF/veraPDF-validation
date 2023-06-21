@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -436,7 +436,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisAuthCodeIndirect() {
 		COSObject object = getAuthCodeValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -483,7 +483,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisDecodeParmsIndirect() {
 		COSObject object = getDecodeParmsValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -501,10 +501,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Long getDecodeParmsArraySize() {
 		COSObject object = getDecodeParmsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -570,10 +567,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Long getFDecodeParmsArraySize() {
 		COSObject object = getFDecodeParmsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -610,10 +604,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Long getFFilterArraySize() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -629,7 +620,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisFilterIndirect() {
 		COSObject object = getFilterValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -656,10 +647,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Long getFilterArraySize() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -696,7 +684,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisentryIDIndirect() {
 		COSObject object = getentryIDValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -718,7 +706,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisIndexIndirect() {
 		COSObject object = getIndexValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -730,30 +718,13 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisIndexArraySortAscending2() {
 		COSObject object = getIndexValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY) {
-			return false;
-		}
-		Long lastNumber = null;
-		for (int i = 0; i < object.size(); i += 2) {
-			COSObject elem = object.at(i);
-			if (elem == null || elem.getType() != COSObjType.COS_INTEGER) {
-				return false;
-			}
-			if (lastNumber != null && lastNumber > elem.getInteger()) {
-				return false;
-			}
-			lastNumber = elem.getInteger();
-		}
-		return true;
+		return getisArraySortAscending(object, 2);
 	}
 
 	@Override
 	public Long getIndexArraySize() {
 		COSObject object = getIndexValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -769,7 +740,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisInfoIndirect() {
 		COSObject object = getInfoValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -816,7 +787,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisPrevIndirect() {
 		COSObject object = getPrevValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -847,7 +818,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisRootIndirect() {
 		COSObject object = getRootValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -869,7 +840,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisSizeIndirect() {
 		COSObject object = getSizeValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -900,7 +871,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisTypeIndirect() {
 		COSObject object = getTypeValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -931,7 +902,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Boolean getisWIndirect() {
 		COSObject object = getWValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

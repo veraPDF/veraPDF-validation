@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -91,7 +91,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	@Override
 	public Boolean getisDocMDPIndirect() {
 		COSObject object = getDocMDPValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -126,10 +126,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 			return null;
 		}
 		COSObject Reference = DocMDP.getKey(ASAtom.getASAtom("Reference"));
-		if (Reference != null && Reference.getType() == COSObjType.COS_ARRAY) {
-			return (long) Reference.size();
-		}
-		return null;
+		return getArraySize(Reference);
 	}
 
 	@Override

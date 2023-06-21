@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -1282,10 +1282,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Long getAFArraySize() {
 		COSObject object = getAFValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -1365,7 +1362,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getisDestsIndirect() {
 		COSObject object = getDestsValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1387,7 +1384,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getisExtensionsIndirect() {
 		COSObject object = getExtensionsValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1457,7 +1454,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getisMetadataIndirect() {
 		COSObject object = getMetadataValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1568,7 +1565,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getisOutlinesIndirect() {
 		COSObject object = getOutlinesValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1710,7 +1707,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getisPagesIndirect() {
 		COSObject object = getPagesValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1812,7 +1809,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	@Override
 	public Boolean getisThreadsIndirect() {
 		COSObject object = getThreadsValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

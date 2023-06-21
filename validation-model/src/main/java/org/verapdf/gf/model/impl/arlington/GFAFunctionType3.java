@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -188,10 +188,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	@Override
 	public Long getBoundsArraySize() {
 		COSObject object = getBoundsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -213,10 +210,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	@Override
 	public Long getDomainArraySize() {
 		COSObject object = getDomainValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -238,10 +232,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	@Override
 	public Long getEncodeArraySize() {
 		COSObject object = getEncodeValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -288,10 +279,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	@Override
 	public Long getFunctionsArraySize() {
 		COSObject object = getFunctionsValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -313,10 +301,7 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	@Override
 	public Long getRangeArraySize() {
 		COSObject object = getRangeValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 }

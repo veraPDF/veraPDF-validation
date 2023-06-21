@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -1000,7 +1000,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Boolean getisBGIndirect() {
 		COSObject object = getBGValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1044,7 +1044,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Boolean getisBG2Indirect() {
 		COSObject object = getBG2Value();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1191,7 +1191,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Boolean getisHTIndirect() {
 		COSObject object = getHTValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1511,7 +1511,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Boolean getisTRIndirect() {
 		COSObject object = getTRValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1567,7 +1567,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Boolean getisTR2Indirect() {
 		COSObject object = getTR2Value();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1632,7 +1632,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Boolean getisUCRIndirect() {
 		COSObject object = getUCRValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1676,7 +1676,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Boolean getisUCR2Indirect() {
 		COSObject object = getUCR2Value();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

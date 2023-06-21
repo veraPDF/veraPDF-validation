@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -159,10 +159,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Long getC0ArraySize() {
 		COSObject object = getC0Value();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -184,10 +181,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Long getC1ArraySize() {
 		COSObject object = getC1Value();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -209,10 +203,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Long getDomainArraySize() {
 		COSObject object = getDomainValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 	@Override
@@ -275,10 +266,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Long getRangeArraySize() {
 		COSObject object = getRangeValue();
-		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
-			return (long) object.size();
-		}
-		return null;
+		return getArraySize(object);
 	}
 
 }

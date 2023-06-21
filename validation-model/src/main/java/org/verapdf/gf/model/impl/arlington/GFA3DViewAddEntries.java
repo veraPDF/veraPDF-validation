@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -491,7 +491,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	@Override
 	public Boolean getisOIndirect() {
 		COSObject object = getOValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -577,7 +577,7 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	@Override
 	public Boolean getisSnapshotIndirect() {
 		COSObject object = getSnapshotValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

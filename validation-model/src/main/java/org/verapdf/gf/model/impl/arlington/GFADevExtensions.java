@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -29,7 +29,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getisBaseVersionIndirect() {
 		COSObject object = getBaseVersionValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getisExtensionLevelIndirect() {
 		COSObject object = getExtensionLevelValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getisExtensionRevisionIndirect() {
 		COSObject object = getExtensionRevisionValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getisTypeIndirect() {
 		COSObject object = getTypeValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	@Override
 	public Boolean getisURLIndirect() {
 		COSObject object = getURLValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

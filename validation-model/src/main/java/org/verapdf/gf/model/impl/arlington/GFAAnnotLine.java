@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -1454,7 +1454,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Boolean getisPIndirect() {
 		COSObject object = getPValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1476,7 +1476,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Boolean getisPopupIndirect() {
 		COSObject object = getPopupValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1498,7 +1498,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Boolean getisRCIndirect() {
 		COSObject object = getRCValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -1570,35 +1570,13 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Double getRectRectHeight() {
 		COSObject object = getRectValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return null;
-		}
-		COSObject bottom = object.at(1);
-		COSObject top = object.at(3);
-		if (bottom == null || (bottom.getType() != COSObjType.COS_INTEGER && bottom.getType() != COSObjType.COS_REAL)) {
-			return null;
-		}
-		if (top == null || (top.getType() != COSObjType.COS_INTEGER && top.getType() != COSObjType.COS_REAL)) {
-			return null;
-		}
-		return top.getReal() - bottom.getReal();
+		return getRectHeight(object);
 	}
 
 	@Override
 	public Double getRectRectWidth() {
 		COSObject object = getRectValue();
-		if (object == null || object.getType() != COSObjType.COS_ARRAY || object.size() != 4) {
-			return null;
-		}
-		COSObject left = object.at(0);
-		COSObject right = object.at(2);
-		if (left == null || (left.getType() != COSObjType.COS_INTEGER && left.getType() != COSObjType.COS_REAL)) {
-			return null;
-		}
-		if (right == null || (right.getType() != COSObjType.COS_INTEGER && right.getType() != COSObjType.COS_REAL)) {
-			return null;
-		}
-		return right.getReal() - left.getReal();
+		return getRectWidth(object);
 	}
 
 	@Override

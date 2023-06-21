@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -136,7 +136,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	@Override
 	public Boolean getisDIndirect() {
 		COSObject object = getDValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -164,7 +164,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	@Override
 	public Boolean getisNIndirect() {
 		COSObject object = getNValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	@Override
 	public Boolean getisRIndirect() {
 		COSObject object = getRValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override

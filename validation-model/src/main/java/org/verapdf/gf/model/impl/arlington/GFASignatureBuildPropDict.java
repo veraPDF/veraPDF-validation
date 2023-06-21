@@ -5,7 +5,7 @@ import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
-import org.verapdf.pd.*;
+import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
@@ -145,7 +145,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	@Override
 	public Boolean getisAppIndirect() {
 		COSObject object = getAppValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -167,7 +167,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	@Override
 	public Boolean getisFilterIndirect() {
 		COSObject object = getFilterValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -189,7 +189,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	@Override
 	public Boolean getisPubSecIndirect() {
 		COSObject object = getPubSecValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
@@ -211,7 +211,7 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	@Override
 	public Boolean getisSigQIndirect() {
 		COSObject object = getSigQValue();
-		return object != null && object.get() != null && object.get().isIndirect();
+		return getisIndirect(object);
 	}
 
 	@Override
