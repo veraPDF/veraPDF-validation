@@ -163,7 +163,8 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	public static String getkeysString(COSObject object) {
-		return object.getKeySet().stream()
+		Set<ASAtom> set = object.getKeySet();
+		return set == null ? "" : set.stream()
 				.map(ASAtom::getValue)
 				.collect(Collectors.joining("&"));
 	}
