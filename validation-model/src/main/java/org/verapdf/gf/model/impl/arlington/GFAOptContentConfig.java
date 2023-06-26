@@ -261,10 +261,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	@Override
 	public String getBaseStateNameValue() {
 		COSObject object = getBaseStateValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -322,10 +319,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	@Override
 	public String getIntentNameValue() {
 		COSObject object = getIntentValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -361,10 +355,7 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	@Override
 	public String getListModeNameValue() {
 		COSObject object = getListModeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

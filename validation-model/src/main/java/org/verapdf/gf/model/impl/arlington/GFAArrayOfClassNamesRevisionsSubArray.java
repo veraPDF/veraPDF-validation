@@ -47,10 +47,7 @@ public class GFAArrayOfClassNamesRevisionsSubArray extends GFAObject implements 
 	@Override
 	public Long getentry1IntegerValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

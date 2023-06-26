@@ -94,10 +94,7 @@ public class GFAVisibilityExpressionArray extends GFAObject implements AVisibili
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry1Value() {

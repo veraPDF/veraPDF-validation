@@ -500,10 +500,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	@Override
 	public Long getTPIntegerValue() {
 		COSObject object = getTPValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

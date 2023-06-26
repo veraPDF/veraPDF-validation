@@ -106,10 +106,7 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	@Override
 	public String getSNameValue() {
 		COSObject object = getSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -131,10 +128,7 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -173,10 +167,7 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	@Override
 	public Double getWNumberValue() {
 		COSObject object = getWValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

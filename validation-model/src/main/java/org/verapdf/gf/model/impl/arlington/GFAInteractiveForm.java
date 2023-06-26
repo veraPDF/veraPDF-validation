@@ -275,10 +275,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Long getQIntegerValue() {
 		COSObject object = getQValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -316,10 +313,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Long getSigFlagsBitmaskValue() {
 		COSObject object = getSigFlagsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override

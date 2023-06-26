@@ -469,10 +469,7 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 	@Override
 	public Long getFlagsBitmaskValue() {
 		COSObject object = getFlagsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -516,10 +513,7 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 	@Override
 	public String getSNameValue() {
 		COSObject object = getSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -541,10 +535,7 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

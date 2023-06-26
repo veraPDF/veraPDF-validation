@@ -33,10 +33,7 @@ public class GFAArrayOf_2Integers extends GFAObject implements AArrayOf_2Integer
 	@Override
 	public Long getentry0IntegerValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -56,10 +53,7 @@ public class GFAArrayOf_2Integers extends GFAObject implements AArrayOf_2Integer
 	@Override
 	public Long getentry1IntegerValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

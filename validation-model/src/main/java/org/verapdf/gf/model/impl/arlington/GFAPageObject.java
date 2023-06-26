@@ -1007,10 +1007,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public Long getRotateIntegerValue() {
 		COSObject object = getRotateValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -1064,10 +1061,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public String getTabsNameValue() {
 		COSObject object = getTabsValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1211,10 +1205,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

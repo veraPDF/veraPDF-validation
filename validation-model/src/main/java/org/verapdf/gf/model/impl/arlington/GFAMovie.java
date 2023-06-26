@@ -233,10 +233,7 @@ public class GFAMovie extends GFAObject implements AMovie {
 	@Override
 	public Long getRotateIntegerValue() {
 		COSObject object = getRotateValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

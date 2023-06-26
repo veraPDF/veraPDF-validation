@@ -421,10 +421,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -530,10 +527,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -567,10 +561,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -614,10 +605,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 	@Override
 	public Long getHalftoneTypeIntegerValue() {
 		COSObject object = getHalftoneTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -673,10 +661,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 	@Override
 	public String getTransferFunctionNameValue() {
 		COSObject object = getTransferFunctionValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -698,10 +683,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -723,10 +705,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 	@Override
 	public Long getXsquareIntegerValue() {
 		COSObject object = getXsquareValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -748,10 +727,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 	@Override
 	public Long getYsquareIntegerValue() {
 		COSObject object = getYsquareValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -760,10 +736,7 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 			return null;
 		}
 		COSObject HalftoneType = this.parentObject.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (HalftoneType != null && HalftoneType.getType() == COSObjType.COS_INTEGER) {
-			return HalftoneType.getInteger();
-		}
-		return null;
+		return getIntegerValue(HalftoneType);
 	}
 
 	@Override

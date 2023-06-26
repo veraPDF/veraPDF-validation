@@ -235,10 +235,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -278,10 +275,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 	@Override
 	public String getentry2NameValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry3Value() {

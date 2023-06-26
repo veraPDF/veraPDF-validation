@@ -48,10 +48,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public String getCSNameValue() {
 		COSObject object = getCSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -89,10 +86,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Double getFOVNumberValue() {
 		COSObject object = getFOVValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -127,10 +121,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Double getNNumberValue() {
 		COSObject object = getNValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -164,10 +155,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public String getOBNameValue() {
 		COSObject object = getOBValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -202,10 +190,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Double getOSNumberValue() {
 		COSObject object = getOSValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -233,10 +218,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public Double getPSNumberValue() {
 		COSObject object = getPSValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -258,10 +240,7 @@ public class GFAProjection extends GFAObject implements AProjection {
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

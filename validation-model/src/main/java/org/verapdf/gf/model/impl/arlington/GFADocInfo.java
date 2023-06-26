@@ -230,10 +230,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	@Override
 	public String getTrappedNameValue() {
 		COSObject object = getTrappedValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

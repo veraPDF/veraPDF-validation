@@ -108,10 +108,7 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 	@Override
 	public Boolean getUserPropertiesBooleanValue() {
 		COSObject object = getUserPropertiesValue();
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
+		return getBooleanValue(object);
 	}
 
 }

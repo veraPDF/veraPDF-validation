@@ -133,10 +133,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	@Override
 	public Long getRecordLevelIntegerValue() {
 		COSObject object = getRecordLevelValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -158,10 +155,7 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

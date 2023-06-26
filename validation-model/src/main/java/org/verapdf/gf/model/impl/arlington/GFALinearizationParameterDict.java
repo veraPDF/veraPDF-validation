@@ -93,10 +93,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Long getEIntegerValue() {
 		COSObject object = getEValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -146,10 +143,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Long getLIntegerValue() {
 		COSObject object = getLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -177,10 +171,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Double getLinearizedNumberValue() {
 		COSObject object = getLinearizedValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -208,10 +199,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Long getNIntegerValue() {
 		COSObject object = getNValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -239,10 +227,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Long getOIntegerValue() {
 		COSObject object = getOValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -287,10 +272,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Long getPIntegerValue() {
 		COSObject object = getPValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -318,10 +300,7 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	@Override
 	public Long getTIntegerValue() {
 		COSObject object = getTValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

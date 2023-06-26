@@ -75,10 +75,7 @@ public class GFAArrayOfOPI2Inks extends GFAObject implements AArrayOfOPI2Inks {
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

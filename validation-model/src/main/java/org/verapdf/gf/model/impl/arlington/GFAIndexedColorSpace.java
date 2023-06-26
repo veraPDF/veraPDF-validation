@@ -218,10 +218,7 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -247,10 +244,7 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	@Override
 	public String getentry1NameValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -270,10 +264,7 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	@Override
 	public Long getentry2IntegerValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	public COSObject getentry3Value() {

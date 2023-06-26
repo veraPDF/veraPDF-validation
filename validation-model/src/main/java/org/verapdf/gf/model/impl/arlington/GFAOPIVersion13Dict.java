@@ -581,10 +581,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -606,10 +603,7 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	@Override
 	public Double getVersionNumberValue() {
 		COSObject object = getVersionValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

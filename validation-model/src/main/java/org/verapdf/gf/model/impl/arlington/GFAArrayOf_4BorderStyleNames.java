@@ -39,10 +39,7 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -68,10 +65,7 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	@Override
 	public String getentry1NameValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -97,10 +91,7 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	@Override
 	public String getentry2NameValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry3Value() {
@@ -126,10 +117,7 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 	@Override
 	public String getentry3NameValue() {
 		COSObject object = getentry3Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

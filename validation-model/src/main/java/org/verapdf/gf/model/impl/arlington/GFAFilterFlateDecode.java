@@ -52,10 +52,7 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	@Override
 	public Long getBitsPerComponentIntegerValue() {
 		COSObject object = getBitsPerComponentValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -94,10 +91,7 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	@Override
 	public Long getColorsIntegerValue() {
 		COSObject object = getColorsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -152,10 +146,7 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	@Override
 	public Long getPredictorIntegerValue() {
 		COSObject object = getPredictorValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

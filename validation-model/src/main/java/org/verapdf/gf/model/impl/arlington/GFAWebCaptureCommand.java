@@ -149,10 +149,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Long getFBitmaskValue() {
 		COSObject object = getFValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -206,10 +203,7 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	@Override
 	public Long getLIntegerValue() {
 		COSObject object = getLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

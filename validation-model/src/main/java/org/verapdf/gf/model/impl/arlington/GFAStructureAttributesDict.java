@@ -533,10 +533,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getBlockAlignNameValue() {
 		COSObject object = getBlockAlignValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -594,10 +591,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getBorderStyleNameValue() {
 		COSObject object = getBorderStyleValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -667,10 +661,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getCheckedNameValue() {
 		COSObject object = getCheckedValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -944,19 +935,13 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public Long getGlyphOrientationVerticalIntegerValue() {
 		COSObject object = getGlyphOrientationVerticalValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
 	public String getGlyphOrientationVerticalNameValue() {
 		COSObject object = getGlyphOrientationVerticalValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1046,10 +1031,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getInlineAlignNameValue() {
 		COSObject object = getInlineAlignValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1092,10 +1074,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getLineHeightNameValue() {
 		COSObject object = getLineHeightValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1132,10 +1111,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getListNumberingNameValue() {
 		COSObject object = getListNumberingValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1179,10 +1155,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getONameValue() {
 		COSObject object = getOValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1256,10 +1229,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getPlacementNameValue() {
 		COSObject object = getPlacementValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1281,10 +1251,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getRoleNameValue() {
 		COSObject object = getRoleValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1351,10 +1318,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getRubyAlignNameValue() {
 		COSObject object = getRubyAlignValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1390,10 +1354,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getRubyPositionNameValue() {
 		COSObject object = getRubyPositionValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1415,10 +1376,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getScopeNameValue() {
 		COSObject object = getScopeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1549,10 +1507,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1610,10 +1565,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getTBorderStyleNameValue() {
 		COSObject object = getTBorderStyleValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1686,10 +1638,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getTextAlignNameValue() {
 		COSObject object = getTextAlignValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1758,10 +1707,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getTextDecorationTypeNameValue() {
 		COSObject object = getTextDecorationTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1825,10 +1771,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getTextPositionNameValue() {
 		COSObject object = getTextPositionValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1850,10 +1793,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1927,10 +1867,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getWritingModeNameValue() {
 		COSObject object = getWritingModeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1964,10 +1901,7 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	@Override
 	public String getcheckedNameValue() {
 		COSObject object = getcheckedValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

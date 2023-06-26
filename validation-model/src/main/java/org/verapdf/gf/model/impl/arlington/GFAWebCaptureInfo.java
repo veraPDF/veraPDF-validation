@@ -88,10 +88,7 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 	@Override
 	public Double getVNumberValue() {
 		COSObject object = getVValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

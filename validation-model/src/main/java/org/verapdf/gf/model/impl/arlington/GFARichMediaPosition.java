@@ -47,10 +47,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	@Override
 	public String getHAlignNameValue() {
 		COSObject object = getHAlignValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -100,10 +97,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -137,10 +131,7 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	@Override
 	public String getVAlignNameValue() {
 		COSObject object = getVAlignValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

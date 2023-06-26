@@ -216,10 +216,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	@Override
 	public Double getONumberValue() {
 		COSObject object = getOValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -257,10 +254,7 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

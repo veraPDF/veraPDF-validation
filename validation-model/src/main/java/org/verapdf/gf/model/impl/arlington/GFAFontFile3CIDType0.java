@@ -333,10 +333,7 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -442,10 +439,7 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -479,10 +473,7 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -526,10 +517,7 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	@Override
 	public Long getLength1IntegerValue() {
 		COSObject object = getLength1Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -551,10 +539,7 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	@Override
 	public Long getLength2IntegerValue() {
 		COSObject object = getLength2Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -576,10 +561,7 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	@Override
 	public Long getLength3IntegerValue() {
 		COSObject object = getLength3Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -601,10 +583,7 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

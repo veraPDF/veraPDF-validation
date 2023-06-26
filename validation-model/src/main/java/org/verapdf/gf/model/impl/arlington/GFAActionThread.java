@@ -511,10 +511,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	@Override
 	public Long getBIntegerValue() {
 		COSObject object = getBValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -554,10 +551,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	@Override
 	public Long getDIntegerValue() {
 		COSObject object = getDValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -623,10 +617,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	@Override
 	public String getSNameValue() {
 		COSObject object = getSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -648,10 +639,7 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

@@ -72,10 +72,7 @@ public class GFAArrayOf_4AnnotBorderCharacteristics extends GFAObject implements
 	@Override
 	public Double getentry0NumberValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -95,10 +92,7 @@ public class GFAArrayOf_4AnnotBorderCharacteristics extends GFAObject implements
 	@Override
 	public Double getentry1NumberValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -118,10 +112,7 @@ public class GFAArrayOf_4AnnotBorderCharacteristics extends GFAObject implements
 	@Override
 	public Double getentry2NumberValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry3Value() {

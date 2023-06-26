@@ -152,10 +152,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	@Override
 	public String getEncodingNameValue() {
 		COSObject object = getEncodingValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -177,10 +174,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	@Override
 	public Long getFirstCharIntegerValue() {
 		COSObject object = getFirstCharValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -224,10 +218,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	@Override
 	public Long getLastCharIntegerValue() {
 		COSObject object = getLastCharValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -265,10 +256,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -312,10 +300,7 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

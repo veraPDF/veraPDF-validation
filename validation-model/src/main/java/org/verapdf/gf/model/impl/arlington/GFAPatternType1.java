@@ -409,10 +409,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -518,10 +515,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -555,10 +549,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -618,10 +609,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Long getPaintTypeIntegerValue() {
 		COSObject object = getPaintTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -643,10 +631,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Long getPatternTypeIntegerValue() {
 		COSObject object = getPatternTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -684,10 +669,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public Long getTilingTypeIntegerValue() {
 		COSObject object = getTilingTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -709,10 +691,7 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

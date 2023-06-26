@@ -84,10 +84,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public String getAuthEventNameValue() {
 		COSObject object = getAuthEventValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -123,10 +120,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public String getCFMNameValue() {
 		COSObject object = getCFMValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -178,10 +172,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public Long getLengthIntegerValue() {
 		COSObject object = getLengthValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -225,10 +216,7 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

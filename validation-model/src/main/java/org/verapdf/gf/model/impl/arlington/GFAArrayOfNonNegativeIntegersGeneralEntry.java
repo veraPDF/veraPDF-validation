@@ -35,10 +35,7 @@ public class GFAArrayOfNonNegativeIntegersGeneralEntry extends GFAObject impleme
 	@Override
 	public Long getIntegerValue() {
 		COSObject object = getValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

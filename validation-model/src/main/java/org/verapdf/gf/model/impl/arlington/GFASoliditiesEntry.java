@@ -35,10 +35,7 @@ public class GFASoliditiesEntry extends GFAObject implements ASoliditiesEntry {
 	@Override
 	public Double getNumberValue() {
 		COSObject object = getValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

@@ -180,10 +180,7 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 	@Override
 	public String getDigestMethodNameValue() {
 		COSObject object = getDigestMethodValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -205,10 +202,7 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 	@Override
 	public String getTransformMethodNameValue() {
 		COSObject object = getTransformMethodValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -246,10 +240,7 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

@@ -523,10 +523,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	@Override
 	public String getFTNameValue() {
 		COSObject object = getFTValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -560,10 +557,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	@Override
 	public Long getFfBitmaskValue() {
 		COSObject object = getFfValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -702,10 +696,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	@Override
 	public Long getQIntegerValue() {
 		COSObject object = getQValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -800,10 +791,7 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	@Override
 	public Long getTIIntegerValue() {
 		COSObject object = getTIValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

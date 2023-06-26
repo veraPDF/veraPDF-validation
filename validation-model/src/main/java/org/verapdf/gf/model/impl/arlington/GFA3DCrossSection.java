@@ -187,10 +187,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Boolean getIVBooleanValue() {
 		COSObject object = getIVValue();
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
+		return getBooleanValue(object);
 	}
 
 	@Override
@@ -256,10 +253,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public Double getPONumberValue() {
 		COSObject object = getPOValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -363,10 +357,7 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

@@ -326,10 +326,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	@Override
 	public Long getPIntegerValue() {
 		COSObject object = getPValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -373,10 +370,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -474,10 +468,7 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

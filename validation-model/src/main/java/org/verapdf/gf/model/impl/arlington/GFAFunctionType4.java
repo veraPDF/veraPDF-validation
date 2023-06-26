@@ -386,10 +386,7 @@ public class GFAFunctionType4 extends GFAObject implements AFunctionType4 {
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -517,10 +514,7 @@ public class GFAFunctionType4 extends GFAObject implements AFunctionType4 {
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -554,10 +548,7 @@ public class GFAFunctionType4 extends GFAObject implements AFunctionType4 {
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -585,10 +576,7 @@ public class GFAFunctionType4 extends GFAObject implements AFunctionType4 {
 	@Override
 	public Long getFunctionTypeIntegerValue() {
 		COSObject object = getFunctionTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

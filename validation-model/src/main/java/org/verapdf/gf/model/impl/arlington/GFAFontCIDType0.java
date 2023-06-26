@@ -253,10 +253,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	@Override
 	public String getBaseFontNameValue() {
 		COSObject object = getBaseFontValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -306,10 +303,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	@Override
 	public String getCIDToGIDMapNameValue() {
 		COSObject object = getCIDToGIDMapValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -402,10 +396,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -449,10 +440,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

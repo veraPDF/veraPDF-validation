@@ -212,10 +212,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	@Override
 	public Long getFfBitmaskValue() {
 		COSObject object = getFfValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -301,10 +298,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	@Override
 	public String getSignaturePolicyHashAlgorithmNameValue() {
 		COSObject object = getSignaturePolicyHashAlgorithmValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -390,10 +384,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -443,10 +434,7 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	@Override
 	public String getURLTypeNameValue() {
 		COSObject object = getURLTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

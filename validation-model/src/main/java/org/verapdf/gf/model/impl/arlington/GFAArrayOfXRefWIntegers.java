@@ -39,10 +39,7 @@ public class GFAArrayOfXRefWIntegers extends GFAObject implements AArrayOfXRefWI
 	@Override
 	public Long getentry0IntegerValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -68,10 +65,7 @@ public class GFAArrayOfXRefWIntegers extends GFAObject implements AArrayOfXRefWI
 	@Override
 	public Long getentry1IntegerValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -97,10 +91,7 @@ public class GFAArrayOfXRefWIntegers extends GFAObject implements AArrayOfXRefWI
 	@Override
 	public Long getentry2IntegerValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

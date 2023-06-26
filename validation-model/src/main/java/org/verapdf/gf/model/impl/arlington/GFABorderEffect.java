@@ -49,10 +49,7 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 	@Override
 	public Double getINumberValue() {
 		COSObject object = getIValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -88,10 +85,7 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 	@Override
 	public String getSNameValue() {
 		COSObject object = getSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

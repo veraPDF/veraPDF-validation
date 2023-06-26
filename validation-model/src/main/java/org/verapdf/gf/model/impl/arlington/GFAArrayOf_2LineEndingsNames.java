@@ -33,10 +33,7 @@ public class GFAArrayOf_2LineEndingsNames extends GFAObject implements AArrayOf_
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -56,10 +53,7 @@ public class GFAArrayOf_2LineEndingsNames extends GFAObject implements AArrayOf_
 	@Override
 	public String getentry1NameValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

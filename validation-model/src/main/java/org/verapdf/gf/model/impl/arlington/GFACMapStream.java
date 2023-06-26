@@ -425,10 +425,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -534,10 +531,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -571,10 +565,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -618,10 +609,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -655,10 +643,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	@Override
 	public String getUseCMapNameValue() {
 		COSObject object = getUseCMapValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -697,10 +682,7 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	@Override
 	public Long getWModeIntegerValue() {
 		COSObject object = getWModeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

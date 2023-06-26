@@ -142,10 +142,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String getDirectionNameValue() {
 		COSObject object = getDirectionValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -198,10 +195,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String getDuplexNameValue() {
 		COSObject object = getDuplexValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -388,10 +382,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String getNonFullScreenPageModeNameValue() {
 		COSObject object = getNonFullScreenPageModeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -413,10 +404,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public Long getNumCopiesIntegerValue() {
 		COSObject object = getNumCopiesValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -481,10 +469,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String getPrintAreaNameValue() {
 		COSObject object = getPrintAreaValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -521,10 +506,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String getPrintClipNameValue() {
 		COSObject object = getPrintClipValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -575,10 +557,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String getPrintScalingNameValue() {
 		COSObject object = getPrintScalingValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -615,10 +594,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String getViewAreaNameValue() {
 		COSObject object = getViewAreaValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -655,10 +631,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String getViewClipNameValue() {
 		COSObject object = getViewClipValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

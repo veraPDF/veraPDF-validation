@@ -38,10 +38,7 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -66,10 +63,7 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 	@Override
 	public String getentry1NameValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -94,10 +88,7 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 	@Override
 	public String getentry2NameValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

@@ -247,10 +247,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Double getIncludedImageQualityNumberValue() {
 		COSObject object = getIncludedImageQualityValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -278,10 +275,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public String getInksNameValue() {
 		COSObject object = getInksValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -367,10 +361,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -392,10 +383,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Double getVersionNumberValue() {
 		COSObject object = getVersionValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override

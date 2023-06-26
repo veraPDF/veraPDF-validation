@@ -47,10 +47,7 @@ public class GFAArrayOfOPI2InksSubArray extends GFAObject implements AArrayOfOPI
 	@Override
 	public Double getentry1NumberValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

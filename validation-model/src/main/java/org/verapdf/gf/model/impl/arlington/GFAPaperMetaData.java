@@ -51,10 +51,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public Long getECCIntegerValue() {
 		COSObject object = getECCValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -76,10 +73,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public Double getHeightNumberValue() {
 		COSObject object = getHeightValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -113,10 +107,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public Double getResolutionNumberValue() {
 		COSObject object = getResolutionValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -138,10 +129,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public String getSymbologyNameValue() {
 		COSObject object = getSymbologyValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -163,10 +151,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -188,10 +173,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public Double getVersionNumberValue() {
 		COSObject object = getVersionValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -213,10 +195,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public Double getWidthNumberValue() {
 		COSObject object = getWidthValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -238,10 +217,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public Long getXSymWidthIntegerValue() {
 		COSObject object = getXSymWidthValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -263,10 +239,7 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	@Override
 	public Long getYSymHeightIntegerValue() {
 		COSObject object = getYSymHeightValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

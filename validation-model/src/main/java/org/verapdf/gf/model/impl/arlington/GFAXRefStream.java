@@ -464,10 +464,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -595,10 +592,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -638,10 +632,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -753,10 +744,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Long getLengthIntegerValue() {
 		COSObject object = getLengthValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -784,10 +772,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Long getPrevIntegerValue() {
 		COSObject object = getPrevValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -837,10 +822,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public Long getSizeIntegerValue() {
 		COSObject object = getSizeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -868,10 +850,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -906,10 +885,7 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 			return null;
 		}
 		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
-		if (V != null && V.getType() == COSObjType.COS_INTEGER) {
-			return V.getInteger();
-		}
-		return null;
+		return getIntegerValue(V);
 	}
 
 	@Override

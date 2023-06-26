@@ -714,10 +714,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	@Override
 	public Long getFBitmaskValue() {
 		COSObject object = getFValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override

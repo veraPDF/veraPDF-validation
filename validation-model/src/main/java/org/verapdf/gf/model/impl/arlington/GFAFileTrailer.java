@@ -307,10 +307,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Long getPrevIntegerValue() {
 		COSObject object = getPrevValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -360,10 +357,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Long getSizeIntegerValue() {
 		COSObject object = getSizeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -385,10 +379,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Long getXRefStmIntegerValue() {
 		COSObject object = getXRefStmValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -418,10 +409,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 			return null;
 		}
 		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
-		if (V != null && V.getType() == COSObjType.COS_INTEGER) {
-			return V.getInteger();
-		}
-		return null;
+		return getIntegerValue(V);
 	}
 
 	@Override

@@ -79,10 +79,7 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

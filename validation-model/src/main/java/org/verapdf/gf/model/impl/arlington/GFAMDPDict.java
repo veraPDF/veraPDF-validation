@@ -35,10 +35,7 @@ public class GFAMDPDict extends GFAObject implements AMDPDict {
 	@Override
 	public Long getPIntegerValue() {
 		COSObject object = getPValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

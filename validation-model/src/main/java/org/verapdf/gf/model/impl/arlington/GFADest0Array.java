@@ -66,10 +66,7 @@ public class GFADest0Array extends GFAObject implements ADest0Array {
 	@Override
 	public Double getentry0NumberValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -89,10 +86,7 @@ public class GFADest0Array extends GFAObject implements ADest0Array {
 	@Override
 	public String getentry1NameValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

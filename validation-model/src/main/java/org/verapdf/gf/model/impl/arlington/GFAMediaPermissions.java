@@ -49,10 +49,7 @@ public class GFAMediaPermissions extends GFAObject implements AMediaPermissions 
 	@Override
 	public String getTFStringAsciiValue() {
 		COSObject object = getTFValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return ((COSString)object.getDirectBase()).getASCIIString();
-		}
-		return null;
+		return getStringAsciiValue(object);
 	}
 
 	@Override
@@ -74,10 +71,7 @@ public class GFAMediaPermissions extends GFAObject implements AMediaPermissions 
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

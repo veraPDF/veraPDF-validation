@@ -75,10 +75,7 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -112,10 +109,7 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	@Override
 	public Double getTMNumberValue() {
 		COSObject object = getTMValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -137,10 +131,7 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

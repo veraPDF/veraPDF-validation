@@ -48,10 +48,7 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 	@Override
 	public Long getFfIntegerValue() {
 		COSObject object = getFfValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

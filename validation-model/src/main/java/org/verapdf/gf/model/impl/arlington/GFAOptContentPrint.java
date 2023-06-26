@@ -35,10 +35,7 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 	@Override
 	public String getPrintStateNameValue() {
 		COSObject object = getPrintStateValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

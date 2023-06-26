@@ -35,10 +35,7 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 	@Override
 	public String getDirectionNameValue() {
 		COSObject object = getDirectionValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -60,10 +57,7 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 	@Override
 	public Double getPositionNumberValue() {
 		COSObject object = getPositionValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -85,10 +79,7 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

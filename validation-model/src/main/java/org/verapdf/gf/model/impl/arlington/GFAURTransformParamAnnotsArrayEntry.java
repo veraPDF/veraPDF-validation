@@ -35,10 +35,7 @@ public class GFAURTransformParamAnnotsArrayEntry extends GFAObject implements AU
 	@Override
 	public String getNameValue() {
 		COSObject object = getValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

@@ -114,10 +114,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public String getEFFNameValue() {
 		COSObject object = getEFFValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -169,10 +166,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -231,10 +225,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Long getLengthIntegerValue() {
 		COSObject object = getLengthValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -272,10 +263,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Long getPBitmaskValue() {
 		COSObject object = getPValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -327,10 +315,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public String getStmFNameValue() {
 		COSObject object = getStmFValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -366,10 +351,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public String getStrFNameValue() {
 		COSObject object = getStrFValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -391,10 +373,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public String getSubFilterNameValue() {
 		COSObject object = getSubFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -416,10 +395,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 	@Override
 	public Long getVIntegerValue() {
 		COSObject object = getVValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

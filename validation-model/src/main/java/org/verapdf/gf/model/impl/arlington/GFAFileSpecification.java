@@ -217,10 +217,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	@Override
 	public String getAFRelationshipNameValue() {
 		COSObject object = getAFRelationshipValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -338,10 +335,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	@Override
 	public String getFSNameValue() {
 		COSObject object = getFSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -433,10 +427,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

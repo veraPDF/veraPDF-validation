@@ -786,10 +786,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	@Override
 	public Long getBitsPerComponentIntegerValue() {
 		COSObject object = getBitsPerComponentValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -811,10 +808,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -942,10 +936,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -979,10 +970,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1058,10 +1046,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	@Override
 	public Boolean getImageMaskBooleanValue() {
 		COSObject object = getImageMaskValue();
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
+		return getBooleanValue(object);
 	}
 
 	@Override
@@ -1303,10 +1288,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1328,10 +1310,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1368,10 +1347,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 			return null;
 		}
 		COSObject entry1 = Decode.at(1);
-		if (entry1 != null && entry1.getType() == COSObjType.COS_INTEGER) {
-			return entry1.getInteger();
-		}
-		return null;
+		return getIntegerValue(entry1);
 	}
 
 	@Override
@@ -1387,10 +1363,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 			return null;
 		}
 		COSObject entry0 = Decode.at(0);
-		if (entry0 != null && entry0.getType() == COSObjType.COS_INTEGER) {
-			return entry0.getInteger();
-		}
-		return null;
+		return getIntegerValue(entry0);
 	}
 
 	@Override

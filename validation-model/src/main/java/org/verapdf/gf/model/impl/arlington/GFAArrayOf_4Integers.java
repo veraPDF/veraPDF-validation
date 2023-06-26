@@ -33,10 +33,7 @@ public class GFAArrayOf_4Integers extends GFAObject implements AArrayOf_4Integer
 	@Override
 	public Long getentry0IntegerValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -56,10 +53,7 @@ public class GFAArrayOf_4Integers extends GFAObject implements AArrayOf_4Integer
 	@Override
 	public Long getentry1IntegerValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -79,10 +73,7 @@ public class GFAArrayOf_4Integers extends GFAObject implements AArrayOf_4Integer
 	@Override
 	public Long getentry2IntegerValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	public COSObject getentry3Value() {
@@ -102,10 +93,7 @@ public class GFAArrayOf_4Integers extends GFAObject implements AArrayOf_4Integer
 	@Override
 	public Long getentry3IntegerValue() {
 		COSObject object = getentry3Value();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

@@ -35,10 +35,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getAlternateImagesIntegerValue() {
 		COSObject object = getAlternateImagesValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -60,10 +57,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getAnnotationsIntegerValue() {
 		COSObject object = getAnnotationsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -101,10 +95,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getDevDepGS_BGIntegerValue() {
 		COSObject object = getDevDepGS_BGValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -126,10 +117,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getDevDepGS_FLIntegerValue() {
 		COSObject object = getDevDepGS_FLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -151,10 +139,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getDevDepGS_HTIntegerValue() {
 		COSObject object = getDevDepGS_HTValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -176,10 +161,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getDevDepGS_OPIntegerValue() {
 		COSObject object = getDevDepGS_OPValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -201,10 +183,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getDevDepGS_TRIntegerValue() {
 		COSObject object = getDevDepGS_TRValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -226,10 +205,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getDevDepGS_UCRIntegerValue() {
 		COSObject object = getDevDepGS_UCRValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -251,10 +227,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getExternalOPIdictsIntegerValue() {
 		COSObject object = getExternalOPIdictsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -276,10 +249,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getExternalRefXobjectsIntegerValue() {
 		COSObject object = getExternalRefXobjectsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -301,10 +271,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getExternalStreamsIntegerValue() {
 		COSObject object = getExternalStreamsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -326,10 +293,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getGoToRemoteActionsIntegerValue() {
 		COSObject object = getGoToRemoteActionsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -351,10 +315,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getHideAnnotationActionsIntegerValue() {
 		COSObject object = getHideAnnotationActionsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -376,10 +337,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getJavaScriptActionsIntegerValue() {
 		COSObject object = getJavaScriptActionsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -401,10 +359,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getLaunchActionsIntegerValue() {
 		COSObject object = getLaunchActionsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -426,10 +381,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getMovieActionsIntegerValue() {
 		COSObject object = getMovieActionsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -451,10 +403,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getNonEmbeddedFontsIntegerValue() {
 		COSObject object = getNonEmbeddedFontsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -492,10 +441,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getSoundActionsIntegerValue() {
 		COSObject object = getSoundActionsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -517,10 +463,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getTrueTypeFontsIntegerValue() {
 		COSObject object = getTrueTypeFontsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -542,10 +485,7 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	@Override
 	public Long getURIActionsIntegerValue() {
 		COSObject object = getURIActionsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

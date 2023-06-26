@@ -127,10 +127,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Long getOIntegerValue() {
 		COSObject object = getOValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -166,10 +163,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Long getPIntegerValue() {
 		COSObject object = getPValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -205,10 +199,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Long getRIntegerValue() {
 		COSObject object = getRValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -244,10 +235,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Long getRTIntegerValue() {
 		COSObject object = getRTValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -283,10 +271,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public Boolean getTBooleanValue() {
 		COSObject object = getTValue();
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
+		return getBooleanValue(object);
 	}
 
 	@Override
@@ -324,10 +309,7 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

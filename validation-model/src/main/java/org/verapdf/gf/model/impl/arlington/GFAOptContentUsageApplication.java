@@ -113,10 +113,7 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	@Override
 	public String getEventNameValue() {
 		COSObject object = getEventValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

@@ -104,10 +104,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	@Override
 	public String getCSNameValue() {
 		COSObject object = getCSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -191,10 +188,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	@Override
 	public String getSNameValue() {
 		COSObject object = getSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -216,10 +210,7 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

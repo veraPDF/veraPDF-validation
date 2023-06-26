@@ -128,10 +128,7 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	@Override
 	public String getColorSpaceNameValue() {
 		COSObject object = getColorSpaceValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

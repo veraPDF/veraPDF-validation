@@ -75,19 +75,13 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Long getAIntegerValue() {
 		COSObject object = getAValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
 	public String getAStringTextValue() {
 		COSObject object = getAValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return object.getString();
-		}
-		return null;
+		return getStringTextValue(object);
 	}
 
 	@Override
@@ -157,19 +151,13 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public Long getPIntegerValue() {
 		COSObject object = getPValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
 	public String getPStringByteValue() {
 		COSObject object = getPValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return object.getString();
-		}
-		return null;
+		return getStringByteValue(object);
 	}
 
 	@Override
@@ -217,10 +205,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	@Override
 	public String getRNameValue() {
 		COSObject object = getRValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

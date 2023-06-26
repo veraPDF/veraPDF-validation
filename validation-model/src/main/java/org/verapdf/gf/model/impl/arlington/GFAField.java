@@ -288,10 +288,7 @@ public class GFAField extends GFAObject implements AField {
 	@Override
 	public Long getFfBitmaskValue() {
 		COSObject object = getFfValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override

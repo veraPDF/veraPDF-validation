@@ -110,10 +110,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	@Override
 	public Long getCountIntegerValue() {
 		COSObject object = getCountValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -276,10 +273,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	@Override
 	public Long getRotateIntegerValue() {
 		COSObject object = getRotateValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -301,10 +295,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

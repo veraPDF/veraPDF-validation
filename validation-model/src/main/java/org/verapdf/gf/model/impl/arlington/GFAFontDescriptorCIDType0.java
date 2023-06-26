@@ -280,10 +280,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	@Override
 	public Double getDescentNumberValue() {
 		COSObject object = getDescentValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -321,10 +318,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	@Override
 	public Long getFlagsBitmaskValue() {
 		COSObject object = getFlagsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -422,10 +416,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	@Override
 	public String getFontNameNameValue() {
 		COSObject object = getFontNameValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -447,10 +438,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	@Override
 	public String getFontStretchNameValue() {
 		COSObject object = getFontStretchValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -472,10 +460,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	@Override
 	public Long getFontWeightIntegerValue() {
 		COSObject object = getFontWeightValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -693,10 +678,7 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

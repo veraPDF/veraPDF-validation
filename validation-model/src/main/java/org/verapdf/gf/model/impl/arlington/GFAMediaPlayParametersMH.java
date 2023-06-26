@@ -160,10 +160,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Long getFIntegerValue() {
 		COSObject object = getFValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -199,10 +196,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Double getRCNumberValue() {
 		COSObject object = getRCValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -238,10 +232,7 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	@Override
 	public Long getVIntegerValue() {
 		COSObject object = getVValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

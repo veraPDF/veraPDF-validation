@@ -259,12 +259,33 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}
 
+	public static Long getBitmaskValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
+	}
+
 	public static Boolean getHasTypeBitmask(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_INTEGER;
 	}
 
+	public static Boolean getBooleanValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
+			return object.getBoolean();
+		}
+		return null;
+	}
+
 	public static Boolean getHasTypeBoolean(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_BOOLEAN;
+	}
+
+	public static String getDateValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX)) {
+			return object.getString();
+		}
+		return null;
 	}
 
 	public static Boolean getHasTypeDate(COSObject object) {
@@ -273,6 +294,13 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	public static Boolean getHasTypeDictionary(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_DICT;
+	}
+
+	public static Long getIntegerValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
+			return object.getInteger();
+		}
+		return null;
 	}
 
 	public static Boolean getHasTypeInteger(COSObject object) {
@@ -291,6 +319,13 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return true;
 	}
 
+	public static String getNameValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		return null;
+	}
+
 	public static Boolean getHasTypeName(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_NAME;
 	}
@@ -301,6 +336,13 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	public static Boolean getHasTypeNull(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_NULL;
+	}
+
+	public static Double getNumberValue(COSObject object) {
+		if (object != null && object.getType().isNumber()) {
+			return object.getReal();
+		}
+		return null;
 	}
 
 	public static Boolean getHasTypeNumber(COSObject object) {
@@ -327,16 +369,44 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return object != null && object.getType() == COSObjType.COS_STREAM;
 	}
 
+	public static String getStringValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			return object.getString();
+		}
+		return null;
+	}
+
 	public static Boolean getHasTypeString(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	public static String getStringAsciiValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			return ((COSString)object.getDirectBase()).getASCIIString();
+		}
+		return null;
 	}
 
 	public static Boolean getHasTypeStringAscii(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STRING && ((COSString)object.getDirectBase()).isASCIIString();
 	}
 
+	public static String getStringByteValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			return object.getString();
+		}
+		return null;
+	}
+
 	public static Boolean getHasTypeStringByte(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_STRING;
+	}
+
+	public static String getStringTextValue(COSObject object) {
+		if (object != null && object.getType() == COSObjType.COS_STRING) {
+			return object.getString();
+		}
+		return null;
 	}
 
 	public static Boolean getHasTypeStringText(COSObject object) {

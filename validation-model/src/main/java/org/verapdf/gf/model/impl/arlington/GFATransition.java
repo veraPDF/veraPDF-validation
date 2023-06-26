@@ -83,10 +83,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Double getDNumberValue() {
 		COSObject object = getDValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -132,19 +129,13 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Long getDiIntegerValue() {
 		COSObject object = getDiValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
 	public String getDiNameValue() {
 		COSObject object = getDiValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -184,10 +175,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public String getDmNameValue() {
 		COSObject object = getDmValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -227,10 +215,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public String getMNameValue() {
 		COSObject object = getMValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -270,10 +255,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public String getSNameValue() {
 		COSObject object = getSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -309,10 +291,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public Double getSSNumberValue() {
 		COSObject object = getSSValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -334,10 +313,7 @@ public class GFATransition extends GFAObject implements ATransition {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

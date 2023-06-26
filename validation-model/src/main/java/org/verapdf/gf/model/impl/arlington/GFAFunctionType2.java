@@ -225,10 +225,7 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	@Override
 	public Long getFunctionTypeIntegerValue() {
 		COSObject object = getFunctionTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

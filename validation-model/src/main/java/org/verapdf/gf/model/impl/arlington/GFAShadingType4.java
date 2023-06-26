@@ -597,10 +597,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	@Override
 	public Long getBitsPerComponentIntegerValue() {
 		COSObject object = getBitsPerComponentValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -622,10 +619,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	@Override
 	public Long getBitsPerCoordinateIntegerValue() {
 		COSObject object = getBitsPerCoordinateValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -647,10 +641,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	@Override
 	public Long getBitsPerFlagIntegerValue() {
 		COSObject object = getBitsPerFlagValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -678,10 +669,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	@Override
 	public String getColorSpaceNameValue() {
 		COSObject object = getColorSpaceValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -703,10 +691,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -828,10 +813,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -865,10 +847,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -946,10 +925,7 @@ public class GFAShadingType4 extends GFAObject implements AShadingType4 {
 	@Override
 	public Long getShadingTypeIntegerValue() {
 		COSObject object = getShadingTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

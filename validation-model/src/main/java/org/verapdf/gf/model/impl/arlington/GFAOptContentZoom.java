@@ -49,10 +49,7 @@ public class GFAOptContentZoom extends GFAObject implements AOptContentZoom {
 	@Override
 	public Double getmaxNumberValue() {
 		COSObject object = getmaxValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -88,10 +85,7 @@ public class GFAOptContentZoom extends GFAObject implements AOptContentZoom {
 	@Override
 	public Double getminNumberValue() {
 		COSObject object = getminValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

@@ -33,10 +33,7 @@ public class GFAArrayOf_4ColourSpaceEntries extends GFAObject implements AArrayO
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -56,10 +53,7 @@ public class GFAArrayOf_4ColourSpaceEntries extends GFAObject implements AArrayO
 	@Override
 	public Double getentry1NumberValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry2Value() {
@@ -79,10 +73,7 @@ public class GFAArrayOf_4ColourSpaceEntries extends GFAObject implements AArrayO
 	@Override
 	public Double getentry2NumberValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry3Value() {
@@ -102,10 +93,7 @@ public class GFAArrayOf_4ColourSpaceEntries extends GFAObject implements AArrayO
 	@Override
 	public Double getentry3NumberValue() {
 		COSObject object = getentry3Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

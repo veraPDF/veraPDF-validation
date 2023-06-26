@@ -85,10 +85,7 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 	@Override
 	public String getOStringAsciiValue() {
 		COSObject object = getOValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return ((COSString)object.getDirectBase()).getASCIIString();
-		}
-		return null;
+		return getStringAsciiValue(object);
 	}
 
 	@Override

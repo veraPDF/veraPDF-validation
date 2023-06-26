@@ -35,10 +35,7 @@ public class GFAFilterDCTDecode extends GFAObject implements AFilterDCTDecode {
 	@Override
 	public Long getColorTransformIntegerValue() {
 		COSObject object = getColorTransformValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

@@ -736,10 +736,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	@Override
 	public Long getDLIntegerValue() {
 		COSObject object = getDLValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -845,10 +842,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	@Override
 	public String getFFilterNameValue() {
 		COSObject object = getFFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -882,10 +876,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	@Override
 	public String getFilterNameValue() {
 		COSObject object = getFilterValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -913,10 +904,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	@Override
 	public Long getFormTypeIntegerValue() {
 		COSObject object = getFormTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -1104,10 +1092,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	@Override
 	public String getPCMNameValue() {
 		COSObject object = getPCMValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1241,10 +1226,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1298,10 +1280,7 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

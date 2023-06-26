@@ -211,10 +211,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Long getFirstCharIntegerValue() {
 		COSObject object = getFirstCharValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -290,10 +287,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public Long getLastCharIntegerValue() {
 		COSObject object = getLastCharValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -315,10 +309,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public String getNameNameValue() {
 		COSObject object = getNameValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -356,10 +347,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -403,10 +391,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

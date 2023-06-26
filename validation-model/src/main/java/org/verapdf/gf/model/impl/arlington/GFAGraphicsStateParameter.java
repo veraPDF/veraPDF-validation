@@ -1090,10 +1090,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public String getBMNameValue() {
 		COSObject object = getBMValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1115,10 +1112,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Double getCANumberValue() {
 		COSObject object = getCAValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -1156,10 +1150,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Double getFLNumberValue() {
 		COSObject object = getFLValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -1263,10 +1254,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Long getLCIntegerValue() {
 		COSObject object = getLCValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -1288,10 +1276,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Long getLJIntegerValue() {
 		COSObject object = getLJValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -1313,10 +1298,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Double getLWNumberValue() {
 		COSObject object = getLWValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -1338,10 +1320,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Double getMLNumberValue() {
 		COSObject object = getMLValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -1379,10 +1358,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Long getOPMIntegerValue() {
 		COSObject object = getOPMValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -1404,10 +1380,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public String getRINameValue() {
 		COSObject object = getRIValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1445,10 +1418,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Double getSMNumberValue() {
 		COSObject object = getSMValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -1476,10 +1446,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public String getSMaskNameValue() {
 		COSObject object = getSMaskValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1613,10 +1580,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1727,10 +1691,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public String getUseBlackPtCompNameValue() {
 		COSObject object = getUseBlackPtCompValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1752,10 +1713,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	@Override
 	public Double getcaNumberValue() {
 		COSObject object = getcaValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override

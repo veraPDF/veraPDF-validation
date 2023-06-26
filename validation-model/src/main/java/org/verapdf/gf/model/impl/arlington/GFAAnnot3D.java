@@ -560,10 +560,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	@Override
 	public String getBMNameValue() {
 		COSObject object = getBMValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -628,10 +625,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	@Override
 	public Double getCANumberValue() {
 		COSObject object = getCAValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -682,10 +676,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	@Override
 	public Long getFBitmaskValue() {
 		COSObject object = getFValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -859,10 +850,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -884,10 +872,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -920,10 +905,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	@Override
 	public Double getcaNumberValue() {
 		COSObject object = getcaValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override

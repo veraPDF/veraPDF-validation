@@ -51,10 +51,7 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	@Override
 	public Double getentry0NumberValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry1DefaultValue() {
@@ -92,10 +89,7 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	@Override
 	public Double getentry1NumberValue() {
 		COSObject object = getentry1Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry2DefaultValue() {
@@ -133,10 +127,7 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	@Override
 	public Double getentry2NumberValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	public COSObject getentry3DefaultValue() {
@@ -174,10 +165,7 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	@Override
 	public Double getentry3NumberValue() {
 		COSObject object = getentry3Value();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

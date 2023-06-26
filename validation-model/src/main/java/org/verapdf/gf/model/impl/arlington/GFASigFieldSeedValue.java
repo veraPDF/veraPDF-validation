@@ -303,10 +303,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	@Override
 	public Long getFfBitmaskValue() {
 		COSObject object = getFfValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -360,10 +357,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	@Override
 	public String getLockDocumentNameValue() {
 		COSObject object = getLockDocumentValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -449,10 +443,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -474,10 +465,7 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	@Override
 	public Long getVIntegerValue() {
 		COSObject object = getVValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

@@ -234,10 +234,7 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	@Override
 	public String getentry0NameValue() {
 		COSObject object = getentry0Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry1Value() {
@@ -277,10 +274,7 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	@Override
 	public String getentry2NameValue() {
 		COSObject object = getentry2Value();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	public COSObject getentry3Value() {

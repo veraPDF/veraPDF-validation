@@ -318,10 +318,7 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 	@Override
 	public String getColorSpaceNameValue() {
 		COSObject object = getColorSpaceValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -425,10 +422,7 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 	@Override
 	public Long getShadingTypeIntegerValue() {
 		COSObject object = getShadingTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

@@ -177,10 +177,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	@Override
 	public Long getSIntegerValue() {
 		COSObject object = getSValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -205,10 +202,7 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 			return null;
 		}
 		COSObject S = this.parentObject.getKey(ASAtom.getASAtom("S"));
-		if (S != null && S.getType() == COSObjType.COS_NAME) {
-			return S.getString();
-		}
-		return null;
+		return getNameValue(S);
 	}
 
 }

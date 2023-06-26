@@ -143,10 +143,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	@Override
 	public Long getMIntegerValue() {
 		COSObject object = getMValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -182,10 +179,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	@Override
 	public Double getONumberValue() {
 		COSObject object = getOValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -221,10 +215,7 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	@Override
 	public Long getWIntegerValue() {
 		COSObject object = getWValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

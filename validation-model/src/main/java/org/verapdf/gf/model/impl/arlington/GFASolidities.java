@@ -68,10 +68,7 @@ public class GFASolidities extends GFAObject implements ASolidities {
 	@Override
 	public Double getDefaultNumberValue() {
 		COSObject object = getDefaultValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 }

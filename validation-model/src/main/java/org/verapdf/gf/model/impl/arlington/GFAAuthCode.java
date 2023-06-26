@@ -163,10 +163,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	@Override
 	public String getMACLocationNameValue() {
 		COSObject object = getMACLocationValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

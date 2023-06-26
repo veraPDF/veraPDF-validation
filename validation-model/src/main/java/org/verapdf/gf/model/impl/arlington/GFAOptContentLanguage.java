@@ -65,10 +65,7 @@ public class GFAOptContentLanguage extends GFAObject implements AOptContentLangu
 	@Override
 	public String getPreferredNameValue() {
 		COSObject object = getPreferredValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

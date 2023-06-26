@@ -139,10 +139,7 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	@Override
 	public Double getGammaNumberValue() {
 		COSObject object = getGammaValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override

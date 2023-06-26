@@ -150,10 +150,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 			return null;
 		}
 		COSObject TransformMethod = entry0.getKey(ASAtom.getASAtom("TransformMethod"));
-		if (TransformMethod != null && TransformMethod.getType() == COSObjType.COS_NAME) {
-			return TransformMethod.getString();
-		}
-		return null;
+		return getNameValue(TransformMethod);
 	}
 
 	@Override

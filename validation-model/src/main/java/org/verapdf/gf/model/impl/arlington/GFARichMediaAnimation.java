@@ -46,10 +46,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public Long getAOIntegerValue() {
 		COSObject object = getAOValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -111,10 +108,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public Double getSpeedNumberValue() {
 		COSObject object = getSpeedValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -148,10 +142,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -173,10 +164,7 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override

@@ -88,10 +88,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Long getColumnsIntegerValue() {
 		COSObject object = getColumnsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -120,10 +117,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Long getDamagedRowsBeforeErrorIntegerValue() {
 		COSObject object = getDamagedRowsBeforeErrorValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -198,10 +192,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Boolean getEndOfLineBooleanValue() {
 		COSObject object = getEndOfLineValue();
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
+		return getBooleanValue(object);
 	}
 
 	@Override
@@ -230,10 +221,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Long getKIntegerValue() {
 		COSObject object = getKValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -262,10 +250,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	@Override
 	public Long getRowsIntegerValue() {
 		COSObject object = getRowsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override

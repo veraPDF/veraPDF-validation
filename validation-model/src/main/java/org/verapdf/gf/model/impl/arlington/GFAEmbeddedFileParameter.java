@@ -145,10 +145,7 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	@Override
 	public Long getSizeIntegerValue() {
 		COSObject object = getSizeValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 }

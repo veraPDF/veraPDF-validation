@@ -643,10 +643,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	@Override
 	public Long getRIntegerValue() {
 		COSObject object = getRValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -716,10 +713,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

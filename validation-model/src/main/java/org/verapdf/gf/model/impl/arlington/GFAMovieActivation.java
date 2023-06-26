@@ -175,10 +175,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Long getDurationIntegerValue() {
 		COSObject object = getDurationValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -258,10 +255,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public String getModeNameValue() {
 		COSObject object = getModeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -378,10 +372,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Long getStartIntegerValue() {
 		COSObject object = getStartValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getIntegerValue(object);
 	}
 
 	@Override
@@ -462,10 +453,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Double getVolumeNumberValue() {
 		COSObject object = getVolumeValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override

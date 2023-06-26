@@ -900,10 +900,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public String getBMNameValue() {
 		COSObject object = getBMValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -988,10 +985,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Double getCANumberValue() {
 		COSObject object = getCAValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -1041,10 +1035,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public String getCPNameValue() {
 		COSObject object = getCPValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1079,10 +1070,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Boolean getCapBooleanValue() {
 		COSObject object = getCapValue();
-		if (object != null && object.getType() == COSObjType.COS_BOOLEAN) {
-			return object.getBoolean();
-		}
-		return null;
+		return getBooleanValue(object);
 	}
 
 	@Override
@@ -1168,10 +1156,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Long getFBitmaskValue() {
 		COSObject object = getFValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -1225,10 +1210,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public String getITNameValue() {
 		COSObject object = getITValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1324,10 +1306,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Double getLLENumberValue() {
 		COSObject object = getLLEValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -1349,10 +1328,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Double getLLONumberValue() {
 		COSObject object = getLLOValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override
@@ -1545,10 +1521,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public String getRTNameValue() {
 		COSObject object = getRTValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1630,10 +1603,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public String getSubtypeNameValue() {
 		COSObject object = getSubtypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1671,10 +1641,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public String getTypeNameValue() {
 		COSObject object = getTypeValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -1707,10 +1674,7 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	@Override
 	public Double getcaNumberValue() {
 		COSObject object = getcaValue();
-		if (object != null && object.getType().isNumber()) {
-			return object.getReal();
-		}
-		return null;
+		return getNumberValue(object);
 	}
 
 	@Override

@@ -103,10 +103,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public String getCharSetStringValue() {
 		COSObject object = getCharSetValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return object.getString();
-		}
-		return null;
+		return getStringValue(object);
 	}
 
 	@Override
@@ -183,10 +180,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public Long getFlagsBitmaskValue() {
 		COSObject object = getFlagsValue();
-		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
-			return object.getInteger();
-		}
-		return null;
+		return getBitmaskValue(object);
 	}
 
 	@Override
@@ -208,10 +202,7 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	@Override
 	public String getSNameValue() {
 		COSObject object = getSValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 }

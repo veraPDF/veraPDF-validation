@@ -81,10 +81,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public String getANameValue() {
 		COSObject object = getAValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -119,10 +116,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public String getAISNameValue() {
 		COSObject object = getAISValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -157,10 +151,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public String getDNameValue() {
 		COSObject object = getDValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -195,10 +186,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public String getDISNameValue() {
 		COSObject object = getDISValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
@@ -260,10 +248,7 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 	@Override
 	public String getStyleNameValue() {
 		COSObject object = getStyleValue();
-		if (object != null && object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		return null;
+		return getNameValue(object);
 	}
 
 	@Override
