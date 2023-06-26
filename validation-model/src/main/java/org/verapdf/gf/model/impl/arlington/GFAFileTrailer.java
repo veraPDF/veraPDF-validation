@@ -142,20 +142,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<ADocInfo> getInfo() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getInfo1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getInfo1_0();
 	}
 
 	private List<ADocInfo> getInfo1_0() {
@@ -172,20 +159,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	private List<ACatalog> getRoot() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getRoot1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getRoot1_0();
 	}
 
 	private List<ACatalog> getRoot1_0() {

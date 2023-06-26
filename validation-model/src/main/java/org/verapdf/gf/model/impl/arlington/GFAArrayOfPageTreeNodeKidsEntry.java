@@ -32,20 +32,7 @@ public class GFAArrayOfPageTreeNodeKidsEntry extends GFAObject implements AArray
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getEntry1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getEntry1_0();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_0() {

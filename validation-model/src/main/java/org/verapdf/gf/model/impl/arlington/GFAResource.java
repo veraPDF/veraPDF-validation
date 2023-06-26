@@ -41,20 +41,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AColorSpaceMap> getColorSpace() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getColorSpace1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getColorSpace1_0();
 	}
 
 	private List<AColorSpaceMap> getColorSpace1_0() {
@@ -99,20 +86,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AFontMap> getFont() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFont1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getFont1_0();
 	}
 
 	private List<AFontMap> getFont1_0() {
@@ -157,20 +131,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AArrayOfNamesForProcSet> getProcSet() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getProcSet1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getProcSet1_0();
 	}
 
 	private List<AArrayOfNamesForProcSet> getProcSet1_0() {
@@ -242,20 +203,7 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	private List<AXObjectMap> getXObject() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getXObject1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getXObject1_0();
 	}
 
 	private List<AXObjectMap> getXObject1_0() {

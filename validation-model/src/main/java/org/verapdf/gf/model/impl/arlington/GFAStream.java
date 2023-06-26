@@ -446,20 +446,7 @@ public class GFAStream extends GFAObject implements AStream {
 	}
 
 	private List<AArrayOfFilterNames> getFilter() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFilter1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getFilter1_0();
 	}
 
 	private List<AArrayOfFilterNames> getFilter1_0() {

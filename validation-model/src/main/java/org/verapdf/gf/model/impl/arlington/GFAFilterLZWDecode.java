@@ -22,19 +22,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	public COSObject getBitsPerComponentDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(8L);
-		}
-		return null;
+		return COSInteger.construct(8L);
 	}
 
 	public COSObject getBitsPerComponentValue() {
@@ -66,19 +54,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	public COSObject getColorsDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(1L);
-		}
-		return null;
+		return COSInteger.construct(1L);
 	}
 
 	public COSObject getColorsValue() {
@@ -110,19 +86,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	public COSObject getColumnsDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(1L);
-		}
-		return null;
+		return COSInteger.construct(1L);
 	}
 
 	public COSObject getColumnsValue() {
@@ -145,19 +109,7 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	public COSObject getEarlyChangeDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(1L);
-		}
-		return null;
+		return COSInteger.construct(1L);
 	}
 
 	public COSObject getEarlyChangeValue() {

@@ -22,19 +22,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getBlackIs1DefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(false);
-		}
-		return null;
+		return COSBoolean.construct(false);
 	}
 
 	public COSObject getBlackIs1Value() {
@@ -57,19 +45,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getBlackls1DefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(false);
-		}
-		return null;
+		return COSBoolean.construct(false);
 	}
 
 	public COSObject getBlackls1Value() {
@@ -92,19 +68,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getColumnsDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(1728L);
-		}
-		return null;
+		return COSInteger.construct(1728L);
 	}
 
 	public COSObject getColumnsValue() {
@@ -136,19 +100,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getDamagedRowsBeforeErrorDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(0L);
-		}
-		return null;
+		return COSInteger.construct(0L);
 	}
 
 	public COSObject getDamagedRowsBeforeErrorValue() {
@@ -180,19 +132,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getEncodedByteAlignDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(false);
-		}
-		return null;
+		return COSBoolean.construct(false);
 	}
 
 	public COSObject getEncodedByteAlignValue() {
@@ -215,19 +155,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getEndOfBlockDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(true);
-		}
-		return null;
+		return COSBoolean.construct(true);
 	}
 
 	public COSObject getEndOfBlockValue() {
@@ -250,19 +178,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getEndOfLineDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(false);
-		}
-		return null;
+		return COSBoolean.construct(false);
 	}
 
 	public COSObject getEndOfLineValue() {
@@ -294,19 +210,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getKDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(0L);
-		}
-		return null;
+		return COSInteger.construct(0L);
 	}
 
 	public COSObject getKValue() {
@@ -338,19 +242,7 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 	}
 
 	public COSObject getRowsDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(0L);
-		}
-		return null;
+		return COSInteger.construct(0L);
 	}
 
 	public COSObject getRowsValue() {

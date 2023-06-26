@@ -100,20 +100,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getBorder1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getBorder1_0();
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_0() {
@@ -1042,19 +1029,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public COSObject getNameDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSName.construct("Note");
-		}
-		return null;
+		return COSName.construct("Note");
 	}
 
 	public COSObject getNameValue() {
@@ -1102,19 +1077,7 @@ public class GFAAnnotText extends GFAObject implements AAnnotText {
 	}
 
 	public COSObject getOpenDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(false);
-		}
-		return null;
+		return COSBoolean.construct(false);
 	}
 
 	public COSObject getOpenValue() {

@@ -200,22 +200,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 			return null;
 		}
 		COSObject entry1 = this.parentObject.at(1);
-		if (entry1 == null) {
-			return null;
-		}
-		if (entry1.getType() == COSObjType.COS_NAME) {
-			return entry1.getString();
-		}
-		if (entry1.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		List<String> names = new LinkedList<>();
-		for (COSObject elem : (COSArray)entry1.getDirectBase()) {
-			if (elem.getType() == COSObjType.COS_NAME) {
-				names.add(elem.getString());
-			}
-		}
-		return String.join("&", names);
+		return getEntriesString(entry1);
 	}
 
 }

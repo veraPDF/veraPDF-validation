@@ -37,20 +37,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<ACharProcMap> getCharProcs() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getCharProcs1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getCharProcs1_0();
 	}
 
 	private List<ACharProcMap> getCharProcs1_0() {
@@ -67,20 +54,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<AEncoding> getEncoding() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getEncoding1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getEncoding1_0();
 	}
 
 	private List<AEncoding> getEncoding1_0() {
@@ -97,20 +71,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<AFontDescriptorType3> getFontDescriptor() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFontDescriptor1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getFontDescriptor1_0();
 	}
 
 	private List<AFontDescriptorType3> getFontDescriptor1_0() {
@@ -183,20 +144,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 	}
 
 	private List<AArrayOfNumbersGeneral> getWidths() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getWidths1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getWidths1_0();
 	}
 
 	private List<AArrayOfNumbersGeneral> getWidths1_0() {

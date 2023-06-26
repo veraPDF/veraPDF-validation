@@ -27,20 +27,7 @@ public class GFAArrayOfFilterNames extends GFAObject implements AArrayOfFilterNa
 	}
 
 	private List<AArrayOfFilterNamesEntry> getEntries() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getEntries1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getEntries1_0();
 	}
 
 	private List<AArrayOfFilterNamesEntry> getEntries1_0() {

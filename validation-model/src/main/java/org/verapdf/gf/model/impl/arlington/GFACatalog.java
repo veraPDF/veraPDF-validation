@@ -921,20 +921,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<AOutline> getOutlines() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getOutlines1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getOutlines1_0();
 	}
 
 	private List<AOutline> getOutlines1_0() {
@@ -1004,20 +991,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	private List<APageTreeNodeRoot> getPages() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPages1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getPages1_0();
 	}
 
 	private List<APageTreeNodeRoot> getPages1_0() {
@@ -1485,19 +1459,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	public COSObject getNeedsRenderingDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(false);
-		}
-		return null;
+		return COSBoolean.construct(false);
 	}
 
 	public COSObject getNeedsRenderingValue() {
@@ -1612,19 +1574,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	public COSObject getPageLayoutDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSName.construct("SinglePage");
-		}
-		return null;
+		return COSName.construct("SinglePage");
 	}
 
 	public COSObject getPageLayoutValue() {
@@ -1656,19 +1606,7 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	public COSObject getPageModeDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSName.construct("UseNone");
-		}
-		return null;
+		return COSName.construct("UseNone");
 	}
 
 	public COSObject getPageModeValue() {

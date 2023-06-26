@@ -282,20 +282,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDecode1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getDecode1_0();
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode1_0() {
@@ -734,20 +721,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	private List<AArrayOfFilterNames> getFilter() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFilter1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getFilter1_0();
 	}
 
 	private List<AArrayOfFilterNames> getFilter1_0() {
@@ -1293,22 +1267,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	@Override
 	public String getFilterEntriesString() {
 		COSObject object = getFilterValue();
-		if (object == null) {
-			return null;
-		}
-		if (object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		if (object.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		List<String> names = new LinkedList<>();
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem.getType() == COSObjType.COS_NAME) {
-				names.add(elem.getString());
-			}
-		}
-		return String.join("&", names);
+		return getEntriesString(object);
 	}
 
 	@Override
@@ -1422,19 +1381,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	public COSObject getImageMaskDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(false);
-		}
-		return null;
+		return COSBoolean.construct(false);
 	}
 
 	public COSObject getImageMaskValue() {
@@ -1482,19 +1429,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	public COSObject getInterpolateDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSBoolean.construct(false);
-		}
-		return null;
+		return COSBoolean.construct(false);
 	}
 
 	public COSObject getInterpolateValue() {

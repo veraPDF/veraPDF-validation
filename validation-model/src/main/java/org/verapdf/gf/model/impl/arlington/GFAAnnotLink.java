@@ -511,20 +511,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getBorder1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getBorder1_0();
 	}
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_0() {
@@ -570,20 +557,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDest1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getDest1_0();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest1_0() {

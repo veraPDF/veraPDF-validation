@@ -169,6 +169,25 @@ public class GFAObject extends GenericModelObject implements AObject {
 				.collect(Collectors.joining("&"));
 	}
 
+	public static String getEntriesString(COSObject object) {
+		if (object == null) {
+			return null;
+		}
+		if (object.getType() == COSObjType.COS_NAME) {
+			return object.getString();
+		}
+		if (object.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		List<String> names = new LinkedList<>();
+		for (COSObject elem : (COSArray)object.getDirectBase()) {
+			if (elem.getType() == COSObjType.COS_NAME) {
+				names.add(elem.getString());
+			}
+		}
+		return String.join("&", names);
+	}
+
 	@Override
 	public Boolean getisEncryptedWrapper() {
 		PDDocument document = StaticResources.getDocument();

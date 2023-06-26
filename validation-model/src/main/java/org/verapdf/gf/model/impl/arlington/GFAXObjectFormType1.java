@@ -357,20 +357,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFilter1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getFilter1_0();
 	}
 
 	private List<AArrayOfCompressionFilterNames> getFilter1_0() {
@@ -676,20 +663,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	private List<AArrayOfIntegersGeneral> getXUID() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getXUID1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getXUID1_0();
 	}
 
 	private List<AArrayOfIntegersGeneral> getXUID1_0() {
@@ -1072,19 +1046,7 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	public COSObject getMatrixDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSArray.construct(6, new double[]{1,0,0,1,0,0});
-		}
-		return null;
+		return COSArray.construct(6, new double[]{1,0,0,1,0,0});
 	}
 
 	public COSObject getMatrixValue() {

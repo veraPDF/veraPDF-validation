@@ -27,20 +27,7 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 	}
 
 	private List<APageObject> getentry0() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getentry01_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getentry01_0();
 	}
 
 	private List<APageObject> getentry01_0() {

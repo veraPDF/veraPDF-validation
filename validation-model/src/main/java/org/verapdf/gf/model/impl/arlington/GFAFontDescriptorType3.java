@@ -38,19 +38,7 @@ public class GFAFontDescriptorType3 extends GFAObject implements AFontDescriptor
 	}
 
 	public COSObject getAvgWidthDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSReal.construct(0D);
-		}
-		return null;
+		return COSReal.construct(0D);
 	}
 
 	public COSObject getAvgWidthValue() {
@@ -262,19 +250,7 @@ public class GFAFontDescriptorType3 extends GFAObject implements AFontDescriptor
 	}
 
 	public COSObject getLeadingDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSReal.construct(0D);
-		}
-		return null;
+		return COSReal.construct(0D);
 	}
 
 	public COSObject getLeadingValue() {
@@ -297,19 +273,7 @@ public class GFAFontDescriptorType3 extends GFAObject implements AFontDescriptor
 	}
 
 	public COSObject getMaxWidthDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSReal.construct(0D);
-		}
-		return null;
+		return COSReal.construct(0D);
 	}
 
 	public COSObject getMaxWidthValue() {
@@ -332,19 +296,7 @@ public class GFAFontDescriptorType3 extends GFAObject implements AFontDescriptor
 	}
 
 	public COSObject getMissingWidthDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSReal.construct(0D);
-		}
-		return null;
+		return COSReal.construct(0D);
 	}
 
 	public COSObject getMissingWidthValue() {
@@ -367,19 +319,7 @@ public class GFAFontDescriptorType3 extends GFAObject implements AFontDescriptor
 	}
 
 	public COSObject getStemHDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSReal.construct(0D);
-		}
-		return null;
+		return COSReal.construct(0D);
 	}
 
 	public COSObject getStemHValue() {
@@ -443,19 +383,7 @@ public class GFAFontDescriptorType3 extends GFAObject implements AFontDescriptor
 	}
 
 	public COSObject getXHeightDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSReal.construct(0D);
-		}
-		return null;
+		return COSReal.construct(0D);
 	}
 
 	public COSObject getXHeightValue() {

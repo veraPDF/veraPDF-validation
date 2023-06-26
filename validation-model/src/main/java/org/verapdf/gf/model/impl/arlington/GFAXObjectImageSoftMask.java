@@ -658,22 +658,7 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public String getFilterEntriesString() {
 		COSObject object = getFilterValue();
-		if (object == null) {
-			return null;
-		}
-		if (object.getType() == COSObjType.COS_NAME) {
-			return object.getString();
-		}
-		if (object.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		List<String> names = new LinkedList<>();
-		for (COSObject elem : (COSArray)object.getDirectBase()) {
-			if (elem.getType() == COSObjType.COS_NAME) {
-				names.add(elem.getString());
-			}
-		}
-		return String.join("&", names);
+		return getEntriesString(object);
 	}
 
 	@Override

@@ -39,20 +39,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AIndexedColorSpace> getColorSpace() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getColorSpace1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getColorSpace1_0();
 	}
 
 	private List<AIndexedColorSpace> getColorSpace1_0() {
@@ -69,20 +56,7 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDecode1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getDecode1_0();
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode1_0() {

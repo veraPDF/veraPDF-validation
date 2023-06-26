@@ -448,20 +448,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getDest1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getDest1_0();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest1_0() {
@@ -496,20 +483,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getFirst() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getFirst1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getFirst1_0();
 	}
 
 	private List<AOutlineItem> getFirst1_0() {
@@ -526,20 +500,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getLast() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getLast1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getLast1_0();
 	}
 
 	private List<AOutlineItem> getLast1_0() {
@@ -556,20 +517,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getNext() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getNext1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getNext1_0();
 	}
 
 	private List<AOutlineItem> getNext1_0() {
@@ -586,20 +534,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getParent1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getParent1_0();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_0() {
@@ -626,20 +561,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private List<AOutlineItem> getPrev() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getPrev1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getPrev1_0();
 	}
 
 	private List<AOutlineItem> getPrev1_0() {

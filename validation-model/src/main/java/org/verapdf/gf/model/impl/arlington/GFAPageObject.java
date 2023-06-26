@@ -121,20 +121,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AArrayOfAnnots> getAnnots() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getAnnots1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getAnnots1_0();
 	}
 
 	private List<AArrayOfAnnots> getAnnots1_0() {
@@ -206,20 +193,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getContents() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getContents1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getContents1_0();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getContents1_0() {
@@ -339,20 +313,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getParent1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getParent1_0();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_0() {
@@ -431,20 +392,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AResource> getResources() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getResources1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getResources1_0();
 	}
 
 	private List<AResource> getResources1_0() {
@@ -488,20 +436,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<AThumbnail> getThumb() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getThumb1_0();
-			default:
-				return Collections.emptyList();
-		}
+		return getThumb1_0();
 	}
 
 	private List<AThumbnail> getThumb1_0() {
@@ -1047,19 +982,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	public COSObject getRotateDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_0:
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return COSInteger.construct(0L);
-		}
-		return null;
+		return COSInteger.construct(0L);
 	}
 
 	public COSObject getRotateValue() {
