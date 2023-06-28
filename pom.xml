@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    This file is part of veraPDF Validation, a module of the veraPDF project.
+    This file is part of veraPDF Validation Project, a module of the veraPDF project.
     Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
     All rights reserved.
 
-    veraPDF Validation is free software: you can redistribute it and/or modify
+    veraPDF Validation Project is free software: you can redistribute it and/or modify
     it under the terms of either:
 
     The GNU General public license GPLv3+.
     You should have received a copy of the GNU General Public License
-    along with veraPDF Validation as the LICENSE.GPL file in the root of the source
+    along with veraPDF Validation Project as the LICENSE.GPL file in the root of the source
     tree.  If not, see http://www.gnu.org/licenses/ or
     https://www.gnu.org/licenses/gpl-3.0.en.html.
 
     The Mozilla Public License MPLv2+.
     You should have received a copy of the Mozilla Public License along with
-    veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
+    veraPDF Validation Project as the LICENSE.MPL file in the root of the source tree.
     If a copy of the MPL was not distributed with this file, you can obtain one at
     http://mozilla.org/MPL/2.0/.
 
@@ -28,21 +28,21 @@
   <parent>
     <groupId>org.verapdf</groupId>
     <artifactId>verapdf-parent</artifactId>
-    <version>1.14.4</version>
+    <version>1.24.1</version>
   </parent>
 
   <groupId>org.verapdf</groupId>
   <artifactId>validation</artifactId>
-  <version>1.14.0</version>
+  <version>1.24.0</version>
   <packaging>pom</packaging>
 
   <name>veraPDF Validation Project</name>
   <description>veraPDF validation, feature extraction and metadata repair based on PDF parser.</description>
 
   <scm>
-    <url>https://github.com/veraPDF/veraPDF-valdation/</url>
-    <connection>scm:git:https://github.com/veraPDF/veraPDF-valdation.git</connection>
-    <developerConnection>scm:git:git@github.com:veraPDF/veraPDF-valdation.git</developerConnection>
+    <url>https://github.com/veraPDF/veraPDF-validation/</url>
+    <connection>scm:git:https://github.com/veraPDF/veraPDF-validation.git</connection>
+    <developerConnection>scm:git:git@github.com:veraPDF/veraPDF-validation.git</developerConnection>
   </scm>
 
   <repositories>
@@ -71,12 +71,14 @@
     <module>validation-model</module>
     <module>feature-reporting</module>
     <module>metadata-fixer</module>
+    <module>wcag-validation</module>
   </modules>
 
   <properties>
-    <verapdf.parser.version>[1.14.0,1.15.0)</verapdf.parser.version>
-    <verapdf.pdfmodel.version>[1.14.0,1.15.0)</verapdf.pdfmodel.version>
-    <verapdf.library.version>[1.14.0,1.15.0)</verapdf.library.version>
+    <verapdf.parser.version>[1.24.0,1.25.0)</verapdf.parser.version>
+    <verapdf.pdfmodel.version>[1.24.0,1.25.0)</verapdf.pdfmodel.version>
+    <verapdf.library.version>[1.24.0,1.25.0)</verapdf.library.version>
+    <verapdf.wcag.algs.version>[1.24.0,1.25.0)</verapdf.wcag.algs.version>
   </properties>
 
   <dependencyManagement>

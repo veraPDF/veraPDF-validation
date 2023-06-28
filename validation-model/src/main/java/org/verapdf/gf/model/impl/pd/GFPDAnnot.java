@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -24,25 +24,47 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSInteger;
 import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSString;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSName;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.cos.GFCosBM;
+import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
+import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
+import org.verapdf.gf.model.impl.pd.annotations.GFPD3DAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.GFPDLinkAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.GFPDPrinterMarkAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.GFPDTrapNetAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.GFPDWidgetAnnot;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosBM;
+import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.pdlayer.PDAction;
+import org.verapdf.model.pdlayer.PDAdditionalActions;
 import org.verapdf.model.pdlayer.PDAnnot;
 import org.verapdf.model.pdlayer.PDContentStream;
+import org.verapdf.pd.PDPage;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDAppearanceEntry;
 import org.verapdf.pd.PDAppearanceStream;
 import org.verapdf.pd.PDGroup;
 import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
+import org.verapdf.pd.annotations.PDWidgetAnnotation;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Maksim Bezrukov
@@ -58,19 +80,32 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final String IC = "IC";
 	public static final String A = "A";
 	public static final String ADDITIONAL_ACTION = "AA";
+	public static final String LANG = "Lang";
+	public static final String BM = "BM";
+	public static final String LINK = "Link";
+	public static final String PRINTER_MARK = "PrinterMark";
+	public static final String WIDGET = "Widget";
+	public static final String TRAP_NET = "TrapNet";
+	public static final String TYPE_3D = "3D";
 
-	public static final int MAX_COUNT_OF_ACTIONS = 10;
 	public static final int X_AXIS = 0;
 	public static final int Y_AXIS = 1;
 
-	private final PDResourcesHandler resources;
+	protected final PDResourcesHandler resources;
+	private final PDPage page;
 
+	private List<CosBM> blendMode = null;
 	private List<PDContentStream> appearance = null;
 	private boolean containsTransparency = false;
 
-	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources) {
-		super(annot, ANNOTATION_TYPE);
+	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
+		this(annot, pageResources, page, ANNOTATION_TYPE);
+	}
+
+	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page, String type) {
+		super(annot, type);
 		this.resources = pageResources;
+		this.page = page;
 	}
 
 	@Override
@@ -83,14 +118,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public String getAP() {
 		COSObject apLocal = ((PDAnnotation) simplePDObject).getCOSAP();
 		if (apLocal != null) {
-			StringBuilder result = new StringBuilder();
-			for (ASAtom key : apLocal.getKeySet()) {
-				result.append(key.getValue());
-				result.append(' ');
-			}
-			//remove last whitespace character
-			return result.length() <= 0 ? result.toString() :
-					result.substring(0, result.length() - 1);
+			return apLocal.getKeySet().stream().map(ASAtom::getValue).collect(Collectors.joining("&"));
 		}
 		return null;
 	}
@@ -138,6 +166,94 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return this.simplePDObject.knownKey(ASAtom.AA);
 	}
 
+	@Override
+	public String getstructParentType() {
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
+		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
+		if (structTreeRoot != null && structParent != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
+			if (structureElement != null && structureElement.getType() == COSObjType.COS_DICT) {
+				return structureElement.getNameKeyStringValue(ASAtom.S);
+			}
+		}
+		return null;
+	}
+
+	private List<CosLang> getLang() {
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
+		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
+		if (structTreeRoot != null && structParent != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
+			if (structureElement != null) {
+				COSObject baseLang = structureElement.getKey(ASAtom.LANG);
+				if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
+					List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+					list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
+					return Collections.unmodifiableList(list);
+				}
+			}
+		}
+		return Collections.emptyList();
+	}
+
+	private List<CosBM> getBM() {
+		if (blendMode == null) {
+			blendMode = parseBM();
+		}
+		return blendMode;
+	}
+
+	private List<CosBM> parseBM() {
+		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
+			return Collections.emptyList();
+		}
+		COSObject BM = ((PDAnnotation)simplePDObject).getBM();
+		if (BM != null && BM.getType() == COSObjType.COS_NAME) {
+			if (!ASAtom.NORMAL.equals(BM.getName())) {
+				this.containsTransparency = true;
+			}
+			List<CosBM> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosBM((COSName)BM.getDirectBase()));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public String getContents() {
+		return ((PDAnnotation) simplePDObject).getContents();
+	}
+
+	@Override
+	public String getAlt() {
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
+		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
+		if (structTreeRoot != null && structParent != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
+			if (structureElement != null) {
+				COSObject baseAlt = structureElement.getKey(ASAtom.ALT);
+				if (baseAlt != null && baseAlt.getType() == COSObjType.COS_STRING) {
+					return baseAlt.getDirectBase().toString();
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getisOutsideCropBox() {
+		double[] cropBox = page.getCropBox();
+		double[] rectangle = ((PDAnnotation)simplePDObject).getRect();
+		if (rectangle != null && rectangle.length >= 4) {
+			return cropBox[1] >= rectangle[3] || cropBox[0] >= rectangle[2]
+					|| cropBox[3] <= rectangle[1] || cropBox[2] <= rectangle[0];
+		}
+		return null;
+	}
+
 	private static Double getDifference(double[] array, int shift) {
 		if (array != null && array.length > shift + 2) {
 			return Double.valueOf(array[shift + 2] - array[shift]);
@@ -163,47 +279,20 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 				return this.getC();
 			case APPEARANCE:
 				return this.getAppearance();
+			case LANG:
+				return this.getLang();
+			case BM:
+				return this.getBM();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<PDAction> getAdditionalActions() {
+	private List<PDAdditionalActions> getAdditionalActions() {
 		PDAnnotationAdditionalActions additionalActions = ((PDAnnotation) simplePDObject).getAdditionalActions();
 		if (additionalActions != null) {
-			List<PDAction> actions = new ArrayList<>(MAX_COUNT_OF_ACTIONS);
-			org.verapdf.pd.actions.PDAction buffer;
-
-			buffer = additionalActions.getBl();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getD();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getE();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getFo();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getPC();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getPI();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getPO();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getPV();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getU();
-			this.addAction(actions, buffer);
-
-			buffer = additionalActions.getX();
-			this.addAction(actions, buffer);
-
+			List<PDAdditionalActions> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			actions.add(new GFPDAdditionalActions(additionalActions));
 			return Collections.unmodifiableList(actions);
 		}
 		return Collections.emptyList();
@@ -267,6 +356,9 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		if (this.appearance == null) {
 			this.appearance = parseAppearance();
 		}
+		if (this.blendMode == null) {
+			this.blendMode = parseBM();
+		}
 		return this.containsTransparency;
 	}
 
@@ -300,12 +392,43 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private void addAppearance(List<PDContentStream> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
-			GFPDContentStream stream = new GFPDContentStream(toAdd, resources, null,
-					new StructureElementAccessObject(this.simpleCOSObject));
+			List<CosLang> annotLang = getLang();
+			GFPDContentStream stream;
+			if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily()) &&
+			    !PDFAFlavour.WCAG2_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
+				stream = new GFPDContentStream(toAdd, resources, null,
+						new StructureElementAccessObject(this.simpleCOSObject), getstructParentType(), "");
+			} else {
+				stream = new GFPDSemanticContentStream(toAdd, resources, null,
+						new StructureElementAccessObject(this.simpleCOSObject), getstructParentType(), "",
+						annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue());
+			}
 			this.containsTransparency |= stream.isContainsTransparency();
 			PDGroup group = toAdd.getGroup();
 			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());
 			list.add(stream);
+		}
+	}
+
+	public static GFPDAnnot createAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
+		ASAtom subtype = annot.getSubtype();
+		if (subtype == null) {
+			return new GFPDAnnot(annot, pageResources, page);
+		}
+		String subtypeString = subtype.getValue();
+		switch (subtypeString) {
+			case WIDGET:
+				return new GFPDWidgetAnnot((PDWidgetAnnotation) annot, pageResources, page);
+			case TYPE_3D:
+				return new GFPD3DAnnot(annot, pageResources, page);
+			case TRAP_NET:
+				return new GFPDTrapNetAnnot(annot, pageResources, page);
+			case LINK:
+				return new GFPDLinkAnnot(annot, pageResources, page);
+			case PRINTER_MARK:
+				return new GFPDPrinterMarkAnnot(annot, pageResources, page);
+			default:
+				return new GFPDAnnot(annot, pageResources, page);
 		}
 	}
 }

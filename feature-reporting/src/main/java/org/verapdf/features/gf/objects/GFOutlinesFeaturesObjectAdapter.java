@@ -1,20 +1,20 @@
 /**
- * This file is part of feature-reporting, a module of the veraPDF project.
+ * This file is part of veraPDF Feature Reporting, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * feature-reporting is free software: you can redistribute it and/or modify
+ * veraPDF Feature Reporting is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with feature-reporting as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Feature Reporting as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * feature-reporting as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Feature Reporting as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -48,33 +48,9 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 		this.outline = outline;
 	}
 
-	private static List<PDOutlineItem> getPDChildren(PDOutlineDictionary dictionary) {
-		List<PDOutlineItem> res = new ArrayList<>();
-		PDOutlineItem curr = dictionary.getFirst();
-		while (curr != null) {
-			res.add(curr);
-			curr = curr.getNext();
-		}
-		return res;
-	}
-
-	private static List<OutlineFeaturesObjectAdapter> getChildren(PDOutlineDictionary dict) {
-		if (dict != null && !dict.empty()) {
-			List<PDOutlineItem> children = getPDChildren(dict);
-			List<OutlineFeaturesObjectAdapter> res = new ArrayList<>();
-			for (PDOutlineItem item : children) {
-				if (item != null) {
-					res.add(new GFOutlineFeaturesObjectAdapter(item));
-				}
-			}
-			return Collections.unmodifiableList(res);
-		}
-		return Collections.emptyList();
-	}
-
 	@Override
 	public List<OutlineFeaturesObjectAdapter> getChildren() {
-		return getChildren(outline);
+		return GFOutlineFeaturesObjectAdapter.getChildren(outline);
 	}
 
 	@Override
@@ -135,7 +111,31 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 
 		@Override
 		public List<OutlineFeaturesObjectAdapter> getChildren() {
-			return GFOutlinesFeaturesObjectAdapter.getChildren(outline);
+			return getChildren(outline);
+		}
+
+		private static List<OutlineFeaturesObjectAdapter> getChildren(PDOutlineDictionary dict) {
+			if (dict != null && !dict.empty()) {
+				List<PDOutlineItem> children = getPDChildren(dict);
+				List<OutlineFeaturesObjectAdapter> res = new ArrayList<>();
+				for (PDOutlineItem item : children) {
+					if (item != null) {
+						res.add(new GFOutlineFeaturesObjectAdapter(item));
+					}
+				}
+				return Collections.unmodifiableList(res);
+			}
+			return Collections.emptyList();
+		}
+
+		private static List<PDOutlineItem> getPDChildren(PDOutlineDictionary dictionary) {
+			List<PDOutlineItem> res = new ArrayList<>();
+			PDOutlineItem curr = dictionary.getFirst();
+			while (curr != null) {
+				res.add(curr);
+				curr = curr.getNext();
+			}
+			return res;
 		}
 	}
 }

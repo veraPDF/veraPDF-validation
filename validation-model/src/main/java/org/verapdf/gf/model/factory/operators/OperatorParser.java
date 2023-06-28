@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -27,8 +27,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.gf.model.impl.operator.color.GFOpColor;
-import org.verapdf.gf.model.impl.operator.color.GFOpSetColor;
+import org.verapdf.gf.model.impl.operator.color.*;
 import org.verapdf.gf.model.impl.operator.generalgs.*;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_BI;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
@@ -45,11 +44,9 @@ import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
 import org.verapdf.gf.model.impl.operator.specialgs.GFOp_Q_grestore;
 import org.verapdf.gf.model.impl.operator.specialgs.GFOp_cm;
 import org.verapdf.gf.model.impl.operator.specialgs.GFOp_q_gsave;
-import org.verapdf.gf.model.impl.operator.textobject.GFOpTextObject;
-import org.verapdf.gf.model.impl.operator.textposition.GFOpTextPosition;
-import org.verapdf.gf.model.impl.operator.textposition.GFOp_TD_Big;
-import org.verapdf.gf.model.impl.operator.textposition.GFOp_Td;
-import org.verapdf.gf.model.impl.operator.textposition.GFOp_Tm;
+import org.verapdf.gf.model.impl.operator.textobject.GFOp_BT;
+import org.verapdf.gf.model.impl.operator.textobject.GFOp_ET;
+import org.verapdf.gf.model.impl.operator.textposition.*;
 import org.verapdf.gf.model.impl.operator.textshow.*;
 import org.verapdf.gf.model.impl.operator.textstate.*;
 import org.verapdf.gf.model.impl.operator.type3font.GFOp_d0;
@@ -70,8 +67,11 @@ import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.patterns.PDPattern;
+import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.util.*;
 import java.util.logging.*;
@@ -86,18 +86,20 @@ class OperatorParser {
 	private static final Logger LOGGER = Logger.getLogger(OperatorParser.class.getName());
 
 	private final Deque<GraphicState> graphicStateStack = new ArrayDeque<>();
-	private GraphicState graphicState;
+	private final GraphicState graphicState;
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
-	private Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
-	private StructureElementAccessObject structureElementAccessObject;
-	private TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
+	private final Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
+	private final StructureElementAccessObject structureElementAccessObject;
+	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
+	private final String parentStructureTag;
+	private final String parentsTags;
 
 	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
 				   StructureElementAccessObject structureElementAccessObject,
-				   PDResourcesHandler resourcesHandler) {
+				   PDResourcesHandler resourcesHandler, String parentStructureTag, String parentsTags) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -105,6 +107,8 @@ class OperatorParser {
 		}
 		this.graphicState.setInitialGraphicState(this.graphicState);
 		this.structureElementAccessObject = structureElementAccessObject;
+		this.parentStructureTag = parentStructureTag;
+		this.parentsTags = parentsTags;
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -151,7 +155,7 @@ class OperatorParser {
 
 			// MARKED CONTENT
 			case Operators.BMC:
-				GFOp_BMC bmcOp = new GFOp_BMC(arguments, resourcesHandler);
+				GFOp_BMC bmcOp = new GFOp_BMC(arguments, getCurrentMarkedContent(), parentsTags);
 				processedOperators.add(bmcOp);
 				this.markedContentStack.push(bmcOp);
 				break;
@@ -161,7 +165,7 @@ class OperatorParser {
 						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
 					checkAFKey(arguments, resourcesHandler);
 				}
-				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler);
+				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags);
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
 				break;
@@ -169,6 +173,8 @@ class OperatorParser {
 				processedOperators.add(new GFOp_EMC(arguments));
 				if (!this.markedContentStack.empty()) {
 					this.markedContentStack.pop();
+				} else {
+					LOGGER.log(Level.WARNING, "Operator (EMC) not inside marked content");
 				}
 				break;
 			case Operators.MP:
@@ -191,7 +197,9 @@ class OperatorParser {
 				if (this.graphicState.isProcessColorOperators()) {
 					processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
 					                  ASAtom.DEVICEGRAY, true);
-					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+					org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+							graphicState.getStrokeColorSpace(), resourcesHandler, graphicState);
+					processedOperators.add(new GFOp_G_stroke(arguments, colorSpace));
 				}
 				break;
 			}
@@ -199,7 +207,9 @@ class OperatorParser {
 				if (this.graphicState.isProcessColorOperators()) {
 					processColorSpace(this.graphicState, resourcesHandler, PDDeviceGray.INSTANCE,
 					                  ASAtom.DEVICEGRAY, false);
-					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+					org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+							graphicState.getFillColorSpace(), resourcesHandler, graphicState);
+					processedOperators.add(new GFOp_g_fill(arguments, colorSpace));
 				}
 				break;
 			}
@@ -207,7 +217,9 @@ class OperatorParser {
 				if (this.graphicState.isProcessColorOperators()) {
 					processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
 					                  ASAtom.DEVICERGB, true);
-					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+					org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+							graphicState.getStrokeColorSpace(), resourcesHandler, graphicState);
+					processedOperators.add(new GFOp_RG_stroke(arguments, colorSpace));
 				}
 				break;
 			}
@@ -215,7 +227,9 @@ class OperatorParser {
 				if (this.graphicState.isProcessColorOperators()) {
 					processColorSpace(this.graphicState, resourcesHandler, PDDeviceRGB.INSTANCE,
 					                  ASAtom.DEVICERGB, false);
-					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+					org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+							graphicState.getFillColorSpace(), resourcesHandler, graphicState);
+					processedOperators.add(new GFOp_rg_fill(arguments, colorSpace));
 				}
 				break;
 			}
@@ -223,7 +237,9 @@ class OperatorParser {
 				if (this.graphicState.isProcessColorOperators()) {
 					processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
 					                  ASAtom.DEVICECMYK, true);
-					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+					org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+							graphicState.getStrokeColorSpace(), resourcesHandler, graphicState);
+					processedOperators.add(new GFOp_K_stroke(arguments, colorSpace));
 				}
 				break;
 			}
@@ -231,7 +247,9 @@ class OperatorParser {
 				if (this.graphicState.isProcessColorOperators()) {
 					processColorSpace(this.graphicState, resourcesHandler, PDDeviceCMYK.INSTANCE,
 					                  ASAtom.DEVICECMYK, false);
-					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+					org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+							graphicState.getFillColorSpace(), resourcesHandler, graphicState);
+					processedOperators.add(new GFOp_k_fill(arguments, colorSpace));
 				}
 				break;
 			}
@@ -250,30 +268,38 @@ class OperatorParser {
 			case Operators.SCN_STROKE:
 				if (this.graphicState.isProcessColorOperators()) {
 					processPatternColorSpace(arguments, this.graphicState, resourcesHandler, true);
-					processedOperators.add(getStrokeColorOperator(arguments, resourcesHandler, graphicState));
+					org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+							graphicState.getStrokeColorSpace(), resourcesHandler, graphicState);
+					processedOperators.add(new GFOp_SCN_stroke(arguments, colorSpace));
 				}
 				break;
 			case Operators.SCN_FILL:
 				if (this.graphicState.isProcessColorOperators()) {
 					processPatternColorSpace(arguments, this.graphicState, resourcesHandler,false);
-					processedOperators.add(getFillColorOperator(arguments, resourcesHandler, graphicState));
+					org.verapdf.model.pdlayer.PDColorSpace colorSpace = ColorSpaceFactory.getColorSpace(
+							graphicState.getFillColorSpace(), resourcesHandler, graphicState);
+					processedOperators.add(new GFOp_scn_fill(arguments, colorSpace));
 				}
 				break;
 			case Operators.SC_STROKE:
+				if (this.graphicState.isProcessColorOperators()) {
+					processedOperators.add(new GFOp_SC_stroke(arguments));
+				}
+				break;
 			case Operators.SC_FILL:
 				if (this.graphicState.isProcessColorOperators()) {
-					processedOperators.add(new GFOpSetColor(arguments));
+					processedOperators.add(new GFOp_sc_fill(arguments));
 				}
 				break;
 
 			// TEXT OBJECT
 			case Operators.ET:
 				insideText = false;
-				processedOperators.add(new GFOpTextObject(arguments));
+				processedOperators.add(new GFOp_ET(arguments));
 				break;
 			case Operators.BT:
 				insideText = true;
-				processedOperators.add(new GFOpTextObject(arguments));
+				processedOperators.add(new GFOp_BT(arguments));
 				break;
 
 			// TEXT POSITION
@@ -287,7 +313,7 @@ class OperatorParser {
 				processedOperators.add(new GFOp_Tm(arguments));
 				break;
 			case Operators.T_STAR:
-				processedOperators.add(new GFOpTextPosition(arguments));
+				processedOperators.add(new GFOp_T_Star(arguments));
 				break;
 
 			// TEXT SHOW
@@ -326,6 +352,12 @@ class OperatorParser {
 				break;
 			case Operators.TF:
 				this.graphicState.setFont(resourcesHandler.getFont(getFirstCOSName(arguments)));
+				if (arguments.size() > 1) {
+					COSBase scaleFactor = arguments.get(1);
+					if (scaleFactor.getType().isNumber()) {
+						this.graphicState.setScaleFactor(scaleFactor.getReal());
+					}
+				}
 				processedOperators.add(new GFOp_Tf(arguments));
 				break;
 			case Operators.TC:
@@ -440,6 +472,7 @@ class OperatorParser {
 				GFOp_S_stroke s_stroke = new GFOp_S_stroke(arguments, this.graphicState, resourcesHandler);
 				addColorSpace(s_stroke, this.transparencyGraphicState);
 				processedOperators.add(s_stroke);
+				break;
 
 			// SHADING
 			case Operators.SH:
@@ -478,8 +511,18 @@ class OperatorParser {
 
 			// XOBJECT
 			case Operators.DO:
+				Long mcid = null;
+				String parentsTags = "";
+				if (!markedContentStack.empty()) {
+					mcid = markedContentStack.peek().getInheritedMCID();
+					parentsTags = markedContentStack.peek().getParentsTags();
+				}
+				String parentStructureTag = getParentStructureTag(structureElementAccessObject, mcid);
+				if (parentStructureTag == null) {
+					parentStructureTag = this.parentStructureTag;
+				}
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-						resourcesHandler, this.graphicState.clone());
+						resourcesHandler, this.graphicState.clone(), parentStructureTag, parentsTags);
 				List<org.verapdf.model.pdlayer.PDXObject> pdxObjects = op_do.getXObject();
 				if (!pdxObjects.isEmpty()) {
 					GFPDXObject xobj = (GFPDXObject) pdxObjects.get(0);
@@ -489,7 +532,7 @@ class OperatorParser {
 				break;
 
 			default:
-				processedOperators.add(new GFOp_Undefined(arguments));
+				processedOperators.add(new GFOp_Undefined(operatorName, arguments));
 				break;
 		}
 	}
@@ -552,8 +595,7 @@ class OperatorParser {
 
 	private static void processInlineImage(List<org.verapdf.model.operator.Operator> processedOperators,
 										   InlineImageOperator rawOperator, PDResourcesHandler resourcesHandler,
-										   List<COSBase> arguments,
-										   GraphicState gs) {
+										   List<COSBase> arguments, GraphicState gs) {
 		COSDictionary imageParameters = rawOperator.getImageParameters();
 		if (imageParameters != null
 		    && (gs.isProcessColorOperators() || Boolean.TRUE.equals(imageParameters.getBooleanKey(ASAtom.IM)))) {
@@ -569,7 +611,11 @@ class OperatorParser {
 		if (!arguments.isEmpty()) {
 			COSBase renderingMode = arguments.get(0);
 			if (renderingMode instanceof COSInteger) {
-				return RenderingMode.getRenderingMode(renderingMode.getInteger().intValue());
+				RenderingMode mode = RenderingMode.getRenderingMode(renderingMode.getInteger().intValue());
+				if (mode != null) {
+					return mode;
+				}
+				LOGGER.log(Level.WARNING, "Wrong argument of Tr operator in stream");
 			}
 		}
 		return RenderingMode.FILL;
@@ -641,6 +687,18 @@ class OperatorParser {
 		if (this.markedContentStack.empty()) {
 			return null;
 		}
-		return this.markedContentStack.firstElement();
+		return this.markedContentStack.peek();
+	}
+
+	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject, Long mcid) {
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
+		if (structTreeRoot != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
+			if (structureElement != null && !structureElement.empty()) {
+				return structureElement.getNameKeyStringValue(ASAtom.S);
+			}
+		}
+		return null;
 	}
 }

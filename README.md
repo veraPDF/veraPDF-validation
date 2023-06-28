@@ -1,18 +1,15 @@
 veraPDF-validation
 ==================
-*Greenfield PDF/A validation, feature reporting and metadata repair developed for veraPDF*
+*Greenfield PDF/A and PDF/UA validation, feature reporting and metadata repair developed for veraPDF*
 
-[![Build Status](https://travis-ci.org/veraPDF/veraPDF-validation.svg?branch=integration)](https://travis-ci.org/veraPDF/valdation "Travis-CI")
-[![Build Status](http://jenkins.openpreservation.org/buildStatus/icon?job=veraPDF-validation)](http://jenkins.openpreservation.org/job/veraPDF-validation/ "OPF Jenkins Release")
-[![Build Status](http://jenkins.openpreservation.org/buildStatus/icon?job=veraPDF-validation-dev)](http://jenkins.openpreservation.org/job/veraPDF-validation-dev/ "OPF Jenkins Development")
-[![Maven Central](https://img.shields.io/maven-central/v/org.verapdf/validation.svg)](http://repo1.maven.org/maven2/org/verapdf/validation/ "Maven central")
-[![CodeCov Coverage](https://img.shields.io/codecov/c/github/veraPDF/veraPDF-validation.svg)](https://codecov.io/gh/veraPDF/veraPDF-validation/ "CodeCov coverage")
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1d81323d73c04d2794032b6d6770a6ef)](https://www.codacy.com/app/veraPDF/veraPDF-validation?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=veraPDF/veraPDF-validation&amp;utm_campaign=Badge_Grade "Codacy grade")
+[![Build Status](https://jenkins.openpreservation.org/job/veraPDF/job/1.24/job/validation/badge/icon)](https://jenkins.openpreservation.org/job/veraPDF/job/1.24/job/validation/ "OPF Jenkins")
+[![Maven Central](https://img.shields.io/maven-central/v/org.verapdf/validation.svg)](https://repo1.maven.org/maven2/org/verapdf/validation/ "Maven central")
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/34416471585a474e85e7821d61048d1c)](https://app.codacy.com/gh/veraPDF/veraPDF-validation/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade "Codacy grade")
 
-[![GitHub issues](https://img.shields.io/github/issues/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/issues "Open issues on GitHub")
-[![GitHub issues](https://img.shields.io/github/issues-closed/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/issues-closed "Open issues on GitHub")
-[![GitHub issues](https://img.shields.io/github/issues-pr/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/issues-pr "Open issues on GitHub")
-[![GitHub issues](https://img.shields.io/github/issues-pr-closed/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/issues-pr-closed "Open issues on GitHub")
+[![GitHub issues](https://img.shields.io/github/issues/veraPDF/veraPDF-library.svg)](https://github.com/veraPDF/veraPDF-library/issues "Open issues on GitHub")
+[![GitHub issues](https://img.shields.io/github/issues-closed/veraPDF/veraPDF-library.svg)](https://github.com/veraPDF/veraPDF-library/issues?q=is%3Aissue+is%3Aclosed "Closed issues on GitHub")
+[![GitHub issues](https://img.shields.io/github/issues-pr/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/pulls "Open pull requests on GitHub")
+[![GitHub issues](https://img.shields.io/github/issues-pr-closed/veraPDF/veraPDF-validation.svg)](https://github.com/veraPDF/veraPDF-validation/pulls?q=is%3Apr+is%3Aclosed "Closed pull requests on GitHub")
 
 Licensing
 ---------
@@ -31,7 +28,7 @@ Quick Start
 
 In order to build this project you'll need:
 
- * Java 7, which can be downloaded [from Oracle](http://www.oracle.com/technetwork/java/javase/downloads/index.html), or for Linux users [OpenJDK](http://openjdk.java.net/install/index.html).
+ * Java 8 - 17, which can be downloaded [from Oracle](https://www.oracle.com/technetwork/java/javase/downloads/index.html), or for Linux users [OpenJDK](https://openjdk.java.net/install/index.html).
  * [Maven v3+](https://maven.apache.org/)
 
 ### Building the veraPDF Validation Model

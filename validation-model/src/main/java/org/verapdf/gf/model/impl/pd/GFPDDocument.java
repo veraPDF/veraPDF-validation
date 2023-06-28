@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -27,6 +27,7 @@ import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
+import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.signature.GFPDPerms;
 import org.verapdf.gf.model.tools.OutlinesHelper;
 import org.verapdf.model.baselayer.Object;
@@ -35,10 +36,15 @@ import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.actions.PDCatalogAdditionalActions;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
+import org.verapdf.tools.StaticResources;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static org.verapdf.gf.model.impl.pd.GFPDPage.SQUARE_ORIENTATION;
 
 /**
  * @author Timur Kamalov
@@ -96,9 +102,9 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
      */
     public static final String PERMS = "Perms";
 
-    public static final int MAX_NUMBER_OF_ACTIONS = 5;
-
     private final PDCatalog catalog;
+
+    private OutputIntents outputIntents = null;
 
     public GFPDDocument(org.verapdf.pd.PDDocument document) {
         super(document, PD_DOCUMENT_TYPE);
@@ -126,12 +132,23 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     @Override
     public Boolean getvalidPDF() {
-        return Boolean.valueOf(StaticContainers.getValidPDF());
+        return StaticContainers.getValidPDF();
     }
 
     @Override
     public Boolean getcontainsAA() {
         return this.catalog != null && this.catalog.getObject().getType().isDictionaryBased() && this.catalog.knownKey(ASAtom.AA);
+    }
+
+    @Override
+    public String getoutputColorSpace() {
+        if (this.outputIntents == null) {
+            this.outputIntents = parseOutputIntents();
+        }
+        if (this.outputIntents != null) {
+            return ((GFOutputIntents)outputIntents).getColorSpace();
+        }
+        return null;
     }
 
     @Override
@@ -177,29 +194,12 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.unmodifiableList(actions);
     }
 
-    private List<PDAction> getActions() {
+    private List<PDAdditionalActions> getActions() {
         if (this.catalog != null) {
             PDCatalogAdditionalActions additionalActions = this.catalog.getAdditionalActions();
             if (additionalActions != null) {
-                List<PDAction> actions = new ArrayList<>(MAX_NUMBER_OF_ACTIONS);
-
-                org.verapdf.pd.actions.PDAction raw;
-
-                raw = additionalActions.getDP();
-                this.addAction(actions, raw);
-
-                raw = additionalActions.getDS();
-                this.addAction(actions, raw);
-
-                raw = additionalActions.getWP();
-                this.addAction(actions, raw);
-
-                raw = additionalActions.getWS();
-                this.addAction(actions, raw);
-
-                raw = additionalActions.getWC();
-                this.addAction(actions, raw);
-
+                List<PDAdditionalActions> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+                actions.add(new GFPDAdditionalActions(additionalActions));
                 return Collections.unmodifiableList(actions);
             }
         }
@@ -208,7 +208,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
 	private static List<PDPage> getPages() {
 		List<PDPage> result = new ArrayList<>();
-		List<org.verapdf.pd.PDPage> rawPages = StaticContainers.getDocument().getPages();
+		List<org.verapdf.pd.PDPage> rawPages = StaticResources.getDocument().getPages();
 		for (org.verapdf.pd.PDPage rawPage : rawPages) {
 			result.add(new GFPDPage(rawPage));
 		}
@@ -218,7 +218,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     private List<PDMetadata> getMetadata() {
         if (this.catalog != null) {
             org.verapdf.pd.PDMetadata meta = this.catalog.getMetadata();
-            if (meta != null && GFPDMetadata.isMetadataObject(meta.getObject())) {
+            if (meta != null && org.verapdf.pd.PDMetadata.isMetadataObject(meta.getObject())) {
                 List<PDMetadata> metadata = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
                 metadata.add(new GFPDMetadata(meta, Boolean.TRUE));
                 return Collections.unmodifiableList(metadata);
@@ -227,16 +227,24 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
-    private List<PDOutputIntent> getOutputIntents() {
-        List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
-        if (outInts.size() > 0) {
-            List<PDOutputIntent> res = new ArrayList<>(outInts.size());
-            for (org.verapdf.pd.PDOutputIntent outInt : outInts) {
-                res.add(new GFPDOutputIntent(outInt));
-            }
-            return Collections.unmodifiableList(res);
+    private List<OutputIntents> getOutputIntents() {
+        if (this.outputIntents == null) {
+            this.outputIntents = parseOutputIntents();
+        }
+        if (this.outputIntents != null) {
+            List<OutputIntents> array = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            array.add(this.outputIntents);
+            return array;
         }
         return Collections.emptyList();
+    }
+
+    private OutputIntents parseOutputIntents() {
+        List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
+        if (outInts.size() > 0) {
+            return new GFOutputIntents(outInts);
+        }
+        return null;
     }
 
     private List<PDAcroForm> getAcroForms() {
@@ -260,7 +268,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     }
 
     private List<PDPerms> getPerms() {
-        if(this.catalog != null) {
+        if (this.catalog != null) {
             COSObject perms = this.catalog.getKey(ASAtom.PERMS);
             if (perms != null && perms.getType().isDictionaryBased()) {
                 List<PDPerms> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
@@ -298,4 +306,23 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
+    @Override
+    public String getVersion() {
+        return catalog != null ? catalog.getVersion() : null;
+    }
+
+    @Override
+    public String getmostCommonOrientation() {
+        List<String> twoTheMostFrequent = getPages()
+                .stream()
+                .map(PDPage::getorientation)
+                .collect(Collectors.groupingBy(a -> a, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(2)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        return SQUARE_ORIENTATION.equals(twoTheMostFrequent.get(0)) && twoTheMostFrequent.size() == 2 ? twoTheMostFrequent.get(1) : twoTheMostFrequent.get(0);
+    }
 }

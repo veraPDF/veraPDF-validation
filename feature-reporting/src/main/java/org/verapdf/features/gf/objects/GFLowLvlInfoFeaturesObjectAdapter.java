@@ -1,20 +1,20 @@
 /**
- * This file is part of feature-reporting, a module of the veraPDF project.
+ * This file is part of veraPDF Feature Reporting, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * feature-reporting is free software: you can redistribute it and/or modify
+ * veraPDF Feature Reporting is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with feature-reporting as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Feature Reporting as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * feature-reporting as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Feature Reporting as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -63,7 +63,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
     /**
      * Constructs new low level info feature object adapter.
      *
-     * @param document pdfbox class represents document object
+     * @param document class represents document object
      */
     public GFLowLvlInfoFeaturesObjectAdapter(COSDocument document) {
         init(document);
@@ -93,8 +93,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
             if (pdDocument != null) {
                 PDCatalog catalog = pdDocument.getCatalog();
                 if (catalog != null) {
-                    ASAtom nameKey = catalog.getNameKey(ASAtom.VERSION);
-                    this.catalogVersion = nameKey == null ? null : nameKey.getValue();
+                    this.catalogVersion = catalog.getNameKeyStringValue(ASAtom.VERSION);
                     this.isTagged = catalog.getStructTreeRoot() != null;
                 }
             }

@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -47,12 +47,12 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	public static final String F_DECODE_PARMS = "FDecodeParms";
 
 	private final Long length;
+	private final Long realLength;
 	private final String fileSpec;
 	private final String fFilter;
 	private final String fDecodeParams;
 	private final boolean streamKeywordCRLFCompliant;
 	private final boolean endstreamKeywordEOLCompliant;
-	private final boolean isLengthCorrect;
 
 	/**
 	 * Default constructor
@@ -64,11 +64,11 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		COSObject fileSpec = stream.getKey(ASAtom.F);
 		this.fileSpec = fileSpec.empty() ? null : fileSpec.toString();
 		this.fFilter = parseFilters(stream.getKey(ASAtom.F_FILTER).get());
-		String fDecodeParams = stream.getStringKey(ASAtom.F_DECODE_PARMS);
-		this.fDecodeParams = fDecodeParams == null || fDecodeParams.isEmpty() ? null : fDecodeParams;
+		COSObject fDecodeParams = stream.getKey(ASAtom.F_DECODE_PARMS);
+		this.fDecodeParams = fDecodeParams.empty() ? null : fDecodeParams.toString();
 		this.streamKeywordCRLFCompliant = stream.isStreamKeywordCRLFCompliant().booleanValue();
 		this.endstreamKeywordEOLCompliant = stream.isEndstreamKeywordCRLFCompliant().booleanValue();
-		this.isLengthCorrect = this.length != null && this.length.equals(stream.getRealStreamSize());
+		this.realLength = stream.getRealStreamSize();
 	}
 
 	/**
@@ -78,6 +78,9 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	public Long getLength() {
 		return this.length;
 	}
+
+	@Override
+	public Long getrealLength() { return realLength; }
 
 	/**
 	 * @return string representation of file specification if its present
@@ -110,20 +113,12 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	 */
 	@Override
 	public Boolean getstreamKeywordCRLFCompliant() {
-		return Boolean.valueOf(this.streamKeywordCRLFCompliant);
+		return this.streamKeywordCRLFCompliant;
 	}
 
 	@Override
 	public Boolean getendstreamKeywordEOLCompliant() {
-		return Boolean.valueOf(this.endstreamKeywordEOLCompliant);
-	}
-
-	/**
-	 * true if the value of Length key matches the actual length of the stream
-	 */
-	@Override
-	public Boolean getisLengthCorrect() {
-		return Boolean.valueOf(this.isLengthCorrect);
+		return this.endstreamKeywordEOLCompliant;
 	}
 
 	@Override

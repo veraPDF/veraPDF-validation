@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
- * <p>
- * validation-model is free software: you can redistribute it and/or modify
+ *
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
- * <p>
+ *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
- * <p>
+ *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -23,11 +23,10 @@ package org.verapdf.gf.model.impl.containers;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
-import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDFont;
-import org.verapdf.pd.PDDocument;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.*;
@@ -37,31 +36,39 @@ import java.util.*;
  */
 public class StaticContainers {
 
-	private static ThreadLocal<PDDocument> document = new ThreadLocal<>();
-	private static ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
+	private static final ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
 
 	// TaggedPDF
-	private static ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
+	private static final ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
 
-	//PBoxPDSeparation
-	private static ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
-	private static ThreadLocal<List<String>> inconsistentSeparations = new ThreadLocal<>();
+	//GFPDSeparation
+	private static final ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
+	private static final ThreadLocal<List<String>> inconsistentSeparations = new ThreadLocal<>();
 
 	//ColorSpaceFactory
-	private static ThreadLocal<Map<String, PDColorSpace>> cachedColorSpaces = new ThreadLocal<>();
+	private static final ThreadLocal<Map<String, PDColorSpace>> cachedColorSpaces = new ThreadLocal<>();
 
 	//FontFactory
-	private static ThreadLocal<Map<String, PDFont>> cachedFonts = new ThreadLocal<>();
+	private static final ThreadLocal<Map<String, PDFont>> cachedFonts = new ThreadLocal<>();
 
-	private static ThreadLocal<Set<COSKey>> fileSpecificationKeys = new ThreadLocal<>();
+	private static final ThreadLocal<Set<COSKey>> fileSpecificationKeys = new ThreadLocal<>();
 
-	private static ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
-	private static ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
+	private static final ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
+	private static final ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
 
-	private static ThreadLocal<Map<String, Glyph>> cachedGlyphs = new ThreadLocal<>();
+	private static final ThreadLocal<Map<String, Map<String, Glyph>>> cachedGlyphs = new ThreadLocal<>();
+
+	//SENote
+	private static final ThreadLocal<Set<String>> noteIDSet = new ThreadLocal<>();
+
+	private static final ThreadLocal<Integer> lastHeadingNestingLevel = new ThreadLocal<>();
+
+	private static final ThreadLocal<org.verapdf.pd.colors.PDColorSpace> currentTransparencyColorSpace = new ThreadLocal<>();
+
+	//PDXForm
+	private static final ThreadLocal<Set<COSKey>> xFormKeysSet = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
-		document.set(null);
 		flavour.set(null);
 		roleMapHelper.set(null);
 		separations.set(new HashMap<>());
@@ -71,15 +78,11 @@ public class StaticContainers {
 		fileSpecificationKeys.set(new HashSet<>());
 		transparencyVisitedContentStreams.set(new Stack<>());
 		cachedGlyphs.set(new HashMap<>());
+		noteIDSet.set(new HashSet<>());
 		validPDF.set(true);
-	}
-
-	public static PDDocument getDocument() {
-		return document.get();
-	}
-
-	public static void setDocument(PDDocument document) {
-		StaticContainers.document.set(document);
+		lastHeadingNestingLevel.set(0);
+		currentTransparencyColorSpace.set(null);
+		xFormKeysSet.set(new HashSet<>());
 	}
 
 	public static PDFAFlavour getFlavour() {
@@ -95,7 +98,6 @@ public class StaticContainers {
 	}
 
 	public static void setRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
-		StaticContainers.roleMapHelper = new ThreadLocal<>();
 		roleMapHelper.set(new TaggedPDFRoleMapHelper(roleMap));
 	}
 
@@ -158,6 +160,28 @@ public class StaticContainers {
 		StaticContainers.fileSpecificationKeys.set(fileSpecificationKeys);
 	}
 
+	public static Set<String> getNoteIDSet() {
+		if (noteIDSet.get() == null) {
+			noteIDSet.set(new HashSet<>());
+		}
+		return noteIDSet.get();
+	}
+
+	public static void setNoteIDSet(Set<String> noteIDSet) {
+		StaticContainers.noteIDSet.set(noteIDSet);
+	}
+
+	public static Set<COSKey> getXFormKeysSet() {
+		if (xFormKeysSet.get() == null) {
+			xFormKeysSet.set(new HashSet<>());
+		}
+		return xFormKeysSet.get();
+	}
+
+	public static void setXFormKeysSet(Set<COSKey> xFormKeysSet) {
+		StaticContainers.xFormKeysSet.set(xFormKeysSet);
+	}
+
 	public static Stack<COSKey> getTransparencyVisitedContentStreams() {
 		if (transparencyVisitedContentStreams.get() == null) {
 			transparencyVisitedContentStreams.set(new Stack<>());
@@ -177,14 +201,30 @@ public class StaticContainers {
 		StaticContainers.validPDF.set(validPDF);
 	}
 
-	public static Map<String, Glyph> getCachedGlyphs() {
+	public static Integer getLastHeadingNestingLevel() {
+		return lastHeadingNestingLevel.get();
+	}
+
+	public static void setLastHeadingNestingLevel(Integer lastHeadingNestingLevel) {
+		StaticContainers.lastHeadingNestingLevel.set(lastHeadingNestingLevel);
+	}
+
+	public static org.verapdf.pd.colors.PDColorSpace getCurrentTransparencyColorSpace() {
+		return currentTransparencyColorSpace.get();
+	}
+
+	public static void setCurrentTransparencyColorSpace(org.verapdf.pd.colors.PDColorSpace currentTransparencyColorSpace) {
+		StaticContainers.currentTransparencyColorSpace.set(currentTransparencyColorSpace);
+	}
+
+	public static Map<String, Map<String, Glyph>> getCachedGlyphs() {
 		if (cachedGlyphs.get() == null) {
 			cachedGlyphs.set(new HashMap<>());
 		}
 		return cachedGlyphs.get();
 	}
 
-	public static void setCachedGlyphs(Map<String, Glyph> cachedGlyphs) {
+	public static void setCachedGlyphs(Map<String, Map<String, Glyph>> cachedGlyphs) {
 		StaticContainers.cachedGlyphs.set(cachedGlyphs);
 	}
 }

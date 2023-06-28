@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -35,10 +35,17 @@ import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.patterns.PDPattern;
 import org.verapdf.pd.patterns.PDShading;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * @author Timur Kamalov
  */
 public class PDResourcesHandler {
+
+	private static final Logger LOGGER = Logger.getLogger(PDResourcesHandler.class.getCanonicalName());
 
 	public static final PDResourcesHandler EMPTY = PDResourcesHandler.getInstance(new PDResources(COSDictionary.construct()), false);
 
@@ -46,6 +53,9 @@ public class PDResourcesHandler {
 	private final boolean inheritedResources;
 
 	private final PDResources objectResources;
+
+	private Set<ASAtom> undefinedResourceNames = new HashSet<>();
+	private Set<ASAtom> inheritedResourceNames = new HashSet<>();
 
 	private PDResourcesHandler(PDResources pageResources, boolean inheritedResources) {
 		this.pageResources = pageResources;
@@ -82,16 +92,20 @@ public class PDResourcesHandler {
 	}
 
 	public PDFont getFont(ASAtom name) {
-		PDFont font;
+		PDFont font = null;
 		if (this.objectResources != null) {
 			font = this.objectResources.getFont(name);
-			if (font == null) {
+			if (font == null && this.pageResources != null) {
 				font = this.pageResources.getFont(name);
-				setInherited(font, true);
+				setInherited(font, name, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			font = this.pageResources.getFont(name);
-			setInherited(font, inheritedResources);
+			setInherited(font, name, inheritedResources);
+		}
+		if (font == null) {
+			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined font " + name + " in a content stream");
 		}
 		return font;
 	}
@@ -104,22 +118,32 @@ public class PDResourcesHandler {
 	}
 
 	public PDColorSpace getColorSpace(ASAtom name) {
-		PDColorSpace colorSpace;
+		return getColorSpace(name, true);
+	}
+
+	public PDColorSpace getColorSpace(ASAtom name, boolean checkUndefined) {
+		PDColorSpace colorSpace = null;
 		if (this.objectResources != null) {
 			if (isDefaultColorSpaceUsed(name)) {
-				return this.objectResources.getDefaultColorSpace(name);
+				colorSpace = this.objectResources.getDefaultColorSpace(name);
+			} else {
+				colorSpace = this.objectResources.getColorSpace(name);
+				if (colorSpace == null && this.pageResources != null) {
+					colorSpace = this.pageResources.getColorSpace(name);
+					colorSpace = setColorSpaceInherited(colorSpace, name, true);
+				}
 			}
-			colorSpace = this.objectResources.getColorSpace(name);
-			if (colorSpace == null) {
-				colorSpace = this.pageResources.getColorSpace(name);
-				colorSpace = setColorSpaceInherited(colorSpace, true);
-			}
-		} else {
+		} else if (this.pageResources != null) {
 			if (isDefaultColorSpaceUsed(name)) {
-				return this.pageResources.getDefaultColorSpace(name);
+				colorSpace = this.pageResources.getDefaultColorSpace(name);
+			} else {
+				colorSpace = this.pageResources.getColorSpace(name);
+				colorSpace = setColorSpaceInherited(colorSpace, name, inheritedResources);
 			}
-			colorSpace = this.pageResources.getColorSpace(name);
-			colorSpace = setColorSpaceInherited(colorSpace, inheritedResources);
+		}
+		if (colorSpace == null && checkUndefined) {
+			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined color space " + name + " in a content stream");
 		}
 		return colorSpace;
 	}
@@ -132,16 +156,20 @@ public class PDResourcesHandler {
 	}
 
 	public PDPattern getPattern(ASAtom name) {
-		PDPattern pattern;
+		PDPattern pattern = null;
 		if (this.objectResources != null) {
 			pattern = this.objectResources.getPattern(name);
-			if (pattern == null) {
+			if (pattern == null && this.pageResources != null) {
 				pattern = this.pageResources.getPattern(name);
-				setInherited(pattern, true);
+				setInherited(pattern, name, true);
 			}
-		} else {
+		} else if (this.pageResources != null){
 			pattern = this.pageResources.getPattern(name);
-			setInherited(pattern, inheritedResources);
+			setInherited(pattern, name, inheritedResources);
+		}
+		if (pattern == null) {
+			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined pattern " + name + " in a content stream");
 		}
 		return pattern;
 	}
@@ -154,16 +182,20 @@ public class PDResourcesHandler {
 	}
 
 	public PDShading getShading(ASAtom name) {
-		PDShading shading;
+		PDShading shading = null;
 		if (this.objectResources != null) {
 			shading = this.objectResources.getShading(name);
-			if (shading == null) {
+			if (shading == null && this.pageResources != null) {
 				shading = this.pageResources.getShading(name);
-				setInherited(shading, true);
+				setInherited(shading, name, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			shading = this.pageResources.getShading(name);
-			setInherited(shading, inheritedResources);
+			setInherited(shading, name, inheritedResources);
+		}
+		if (shading == null) {
+			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined shading " + name + " in a content stream");
 		}
 		return shading;
 	}
@@ -176,16 +208,20 @@ public class PDResourcesHandler {
 	}
 
 	public PDXObject getXObject(ASAtom name) {
-		PDXObject xObject;
+		PDXObject xObject = null;
 		if (this.objectResources != null) {
 			xObject = this.objectResources.getXObject(name);
-			if (xObject == null) {
+			if (xObject == null && this.pageResources != null) {
 				xObject = this.pageResources.getXObject(name);
-				setInherited(xObject, true);
+				setInherited(xObject, name, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			xObject = this.pageResources.getXObject(name);
-			setInherited(xObject, inheritedResources);
+			setInherited(xObject, name, inheritedResources);
+		}
+		if (xObject == null) {
+			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined XObject " + name + " in a content stream");
 		}
 		return xObject;
 	}
@@ -198,16 +234,20 @@ public class PDResourcesHandler {
 	}
 
 	public PDExtGState getExtGState(ASAtom name) {
-		PDExtGState state;
+		PDExtGState state = null;
 		if (this.objectResources != null) {
 			state = this.objectResources.getExtGState(name);
-			if (state == null) {
+			if (state == null && this.pageResources != null) {
 				state = this.pageResources.getExtGState(name);
-				setInherited(state, true);
+				setInherited(state, name, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			state = this.pageResources.getExtGState(name);
-			setInherited(state, inheritedResources);
+			setInherited(state, name, inheritedResources);
+		}
+		if (state == null) {
+			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined graphics state " + name + " in a content stream");
 		}
 		return state;
 	}
@@ -220,21 +260,25 @@ public class PDResourcesHandler {
 	}
 
 	public PDResource getProperties(ASAtom name) {
-		PDResource res;
+		PDResource res = null;
 		if (this.objectResources != null) {
 			res = this.objectResources.getProperties(name);
-			if (res == null) {
+			if (res == null && this.pageResources != null) {
 				res = this.pageResources.getProperties(name);
-				setInherited(res, true);
+				setInherited(res, name, true);
 			}
-		} else {
+		} else if (this.pageResources != null) {
 			res = this.pageResources.getProperties(name);
-			setInherited(res, inheritedResources);
+			setInherited(res, name, inheritedResources);
+		}
+		if (res == null) {
+			undefinedResourceNames.add(name);
+			LOGGER.log(Level.SEVERE, "Undefined property " + name + " in a content stream");
 		}
 		return res;
 	}
 
-	public PDColorSpace setColorSpaceInherited(PDColorSpace colorSpace, boolean isInherited) {
+	public PDColorSpace setColorSpaceInherited(PDColorSpace colorSpace, ASAtom name, boolean isInherited) {
 		if (isInherited) {
 			if (colorSpace == PDDeviceCMYK.INSTANCE) {
 				return PDDeviceCMYK.INHERITED_INSTANCE;
@@ -244,14 +288,17 @@ public class PDResourcesHandler {
 				return PDDeviceGray.INHERITED_INSTANCE;
 			}
 		}
-		setInherited(colorSpace, isInherited);
+		setInherited(colorSpace, name, isInherited);
 		return colorSpace;
 
 	}
 
-	public void setInherited(PDResource resource, boolean value) {
+	public void setInherited(PDResource resource, ASAtom name, boolean value) {
 		if (resource != null) {
 			resource.setInherited(value);
+			if (value) {
+				inheritedResourceNames.add(name);
+			}
 		}
 	}
 
@@ -285,4 +332,11 @@ public class PDResourcesHandler {
 				ASAtom.DEVICEGRAY.equals(name) || ASAtom.DEVICECMYK.equals(name);
 	}
 
+	public Set<ASAtom> getUndefinedResourceNames() {
+		return undefinedResourceNames;
+	}
+
+	public Set<ASAtom> getInheritedResourceNames() {
+		return inheritedResourceNames;
+	}
 }

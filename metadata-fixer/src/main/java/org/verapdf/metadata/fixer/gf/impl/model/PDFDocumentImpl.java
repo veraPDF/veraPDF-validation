@@ -1,27 +1,28 @@
 /**
- * This file is part of metadata-fixer, a module of the veraPDF project.
+ * This file is part of veraPDF Metadata Fixer, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * metadata-fixer is free software: you can redistribute it and/or modify
+ * veraPDF Metadata Fixer is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with metadata-fixer as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Metadata Fixer as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * metadata-fixer as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Metadata Fixer as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
 package org.verapdf.metadata.fixer.gf.impl.model;
 
-import com.adobe.xmp.XMPException;
-import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.metadata.fixer.entity.InfoDictionary;
@@ -80,12 +81,13 @@ public class PDFDocumentImpl implements PDFDocument {
 	private MetadataImpl parseMetadata() {
 		PDCatalog catalog = this.document.getCatalog();
 		PDMetadata meta = catalog.getMetadata();
-		if (meta == null) {
-			COSObject stream = COSStream.construct();
-			catalog.setKey(ASAtom.METADATA, stream);
-			this.document.getDocument().addObject(stream);
+		if (meta == null || !PDMetadata.isMetadataObject(meta.getObject())) {
+			COSObject indirectStream = COSIndirect.construct(COSStream.construct(), document.getDocument());
+			catalog.setKey(ASAtom.METADATA, indirectStream);
+			this.document.getDocument().addChangedObject(catalog.getObject());
+			this.document.getDocument().addObject(indirectStream);
 			VeraPDFMeta xmp = VeraPDFMeta.create();
-			return new MetadataImpl(xmp, stream, this.document.getDocument(),
+			return new MetadataImpl(xmp, indirectStream, this.document.getDocument(),
 					true);
 		}
 		return parseMetadata(meta, this.document);
@@ -142,17 +144,16 @@ public class PDFDocumentImpl implements PDFDocument {
 	 */
 	@Override
 	public MetadataFixerResult saveDocumentIncremental(final MetadataFixerResultImpl.RepairStatus status,
-													   OutputStream output) {
+													   OutputStream output, PDFAFlavour flavour) {
 		MetadataFixerResultImpl.Builder builder = new MetadataFixerResultImpl.Builder();
 		try {
 			PDMetadata meta = this.document.getCatalog().getMetadata();
 			boolean isMetaPresent = meta != null && this.isNeedToBeUpdated();
 			boolean isMetaAdd = meta == null && this.metadata != null;
 			if (isMetaPresent || isMetaAdd) {
-				this.metadata.updateMetadataStream();
+				this.metadata.updateMetadataStream(builder, flavour);
 				if (isMetaAdd) {
-					this.document.getDocument().addChangedObject(
-							this.document.getCatalog().getObject());
+					this.document.getDocument().addChangedObject(this.document.getCatalog().getObject());
 				}
 				this.document.saveTo(output);
 				output.close();

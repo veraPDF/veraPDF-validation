@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -22,13 +22,12 @@ package org.verapdf.gf.model.impl.external;
 
 import org.verapdf.cos.COSString;
 import org.verapdf.model.external.PKCSDataObject;
-import sun.security.pkcs.ContentInfo;
-import sun.security.pkcs.PKCS7;
-import sun.security.pkcs.SignerInfo;
-import sun.security.x509.AlgorithmId;
+import org.verapdf.pdfa.parsers.pkcs7.X509CertificateImpl;
+import org.verapdf.pdfa.parsers.pkcs7.PKCS7;
 
 import java.io.IOException;
-import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,7 +39,7 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
     private static final Logger LOGGER = Logger.getLogger(GFPKCSDataObject.class.getCanonicalName());
 
     /**
-     * Type name for {@code PBoxPKCSDataObject}
+     * Type name for {@code GFPKCSDataObject}
      */
     public static final String PKCS_DATA_OBJECT_TYPE = "PKCSDataObject";
 
@@ -52,13 +51,8 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
     public GFPKCSDataObject(COSString pkcsData) {
         super(PKCS_DATA_OBJECT_TYPE);
         try {
-            if (!pkcsData.isHexadecimal()) {
-                pkcs7 = new PKCS7(pkcsData.get());
-            } else {
-                byte[] decodedData = pkcsData.get();
-                pkcs7 = new PKCS7(decodedData);
-            }
-        } catch (IOException e) {
+            pkcs7 = new PKCS7(pkcsData.get());
+        } catch (IOException | ArrayIndexOutOfBoundsException e) {
             LOGGER.log(Level.FINE, "Passed PKCS7 object can't be read", e);
             pkcs7 = getEmptyPKCS7();
         }
@@ -69,7 +63,7 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
      */
     @Override
     public Long getSignerInfoCount() {
-        return new Long(pkcs7.getSignerInfos().length);
+        return (long) pkcs7.getSignerInfosLength();
     }
 
     /**
@@ -78,21 +72,19 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
      */
     @Override
     public Boolean getsigningCertificatePresent() {
-        X509Certificate[] certificates = pkcs7.getCertificates();
-        if (certificates.length == 0) {
+        List<X509CertificateImpl> certificates = pkcs7.getCertificates();
+        if (certificates.isEmpty()) {
             return Boolean.FALSE;
         }
-		for (X509Certificate cert : certificates) {
-		    if (cert == null) {
-	            return Boolean.FALSE;
-		    }
-		}
+        for (X509CertificateImpl cert : certificates) {
+            if (cert == null) {
+                return Boolean.FALSE;
+            }
+        }
         return Boolean.TRUE;
     }
 
     private static PKCS7 getEmptyPKCS7() {
-        return new PKCS7(new AlgorithmId[]{}, new ContentInfo(new byte[]{}),
-                new X509Certificate[]{}, new SignerInfo[]{});
+        return new PKCS7(new ArrayList<>());
     }
-
 }

@@ -1,27 +1,29 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
 package org.verapdf.gf.model;
 
-import com.adobe.xmp.XMPException;
-import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.parser.PDFFlavour;
+import org.verapdf.tools.StaticResources;
+import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.ReleaseDetails;
 import org.verapdf.component.ComponentDetails;
 import org.verapdf.component.Components;
@@ -61,14 +63,19 @@ public class GFModelParser implements PDFAParser {
 			greenfieldDetails.getVersion(), "veraPDF greenfield PDF parser.");
 	private static final Logger logger = Logger.getLogger(GFModelParser.class.getCanonicalName());
 
+	private static final String PDFUA_PREFIX = "ua";
+
 	private PDDocument document;
 
 	private final PDFAFlavour flavour;
 
-	private GFModelParser(final InputStream docStream, PDFAFlavour flavour) throws IOException {
+	private GFModelParser(final InputStream docStream, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
+			throws IOException {
 		try {
+			clearStaticContainers();
+			initializeStaticResources(password);
 			this.document = new PDDocument(docStream);
-			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
+			this.flavour = detectFlavour(this.document, flavour, defaultFlavour);
 			initializeStaticContainers(this.document, this.flavour);
 		} catch (Throwable t) {
 			this.close();
@@ -76,21 +83,45 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
-	private GFModelParser(final File pdfFile, PDFAFlavour flavour) throws IOException {
+	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
+			throws IOException {
 		try {
+			clearStaticContainers();
+			initializeStaticResources(password);
 			this.document = new PDDocument(pdfFile.getAbsolutePath());
-			this.flavour = (flavour == PDFAFlavour.NO_FLAVOUR) ? obtainFlavour(this.document) : flavour;
+			this.flavour = detectFlavour(this.document, flavour, defaultFlavour);
 			initializeStaticContainers(this.document, this.flavour);
 		} catch (Throwable t) {
 			this.close();
 			throw t;
 		}
+	}
+
+	private static PDFAFlavour detectFlavour(PDDocument document, PDFAFlavour flavour, PDFAFlavour defaultFlavour) {
+		return flavour == PDFAFlavour.NO_FLAVOUR ? obtainFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR ?
+				defaultFlavour : Foundries.defaultInstance().defaultFlavour()) : flavour;
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(toLoad, flavour, PDFAFlavour.NO_FLAVOUR);
+	}
+
+	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, PDFAFlavour defaultFlavour)
+			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(toLoad, flavour, defaultFlavour, null);
+	}
+
+	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, String password)
+			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(toLoad, flavour, PDFAFlavour.NO_FLAVOUR, password);
+	}
+
+	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, PDFAFlavour defaultFlavour,
+													   String password)
+			throws ModelParsingException, EncryptedPdfException {
 		try {
-			return new GFModelParser(toLoad, flavour);
+			return new GFModelParser(toLoad, flavour, defaultFlavour, password);
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
@@ -100,8 +131,24 @@ public class GFModelParser implements PDFAParser {
 
 	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR);
+	}
+
+	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour)
+			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(pdfFile, flavour, defaultFlavour, null);
+	}
+
+	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, String password)
+			throws ModelParsingException, EncryptedPdfException {
+		return createModelWithFlavour(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR, password);
+	}
+
+	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour,
+	                                                   String password)
+			throws ModelParsingException, EncryptedPdfException {
 		try {
-			return new GFModelParser(pdfFile, flavour);
+			return new GFModelParser(pdfFile, flavour, defaultFlavour, password);
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
@@ -109,13 +156,12 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
-	private static PDFAFlavour obtainFlavour(PDDocument document) {
-		PDMetadata metadata;
-		PDFAFlavour defaultFlavour = Foundries.defaultInstance().defaultFlavour();
+	private static PDFAFlavour obtainFlavour(PDDocument document, PDFAFlavour defaultFlavour) {
+
 		if (document == null || document.getCatalog() == null) {
 			return defaultFlavour;
 		}
-		metadata = document.getCatalog().getMetadata();
+		PDMetadata metadata = document.getCatalog().getMetadata();
 		if (metadata == null) {
 			return defaultFlavour;
 		}
@@ -123,16 +169,19 @@ public class GFModelParser implements PDFAParser {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			Integer identificationPart = veraPDFMeta.getIdentificationPart();
 			String identificationConformance = veraPDFMeta.getIdentificationConformance();
+			String prefix = "";
+			if (identificationPart == null && identificationConformance == null) {
+				identificationPart = veraPDFMeta.getUAIdentificationPart();
+				if (identificationPart != null) {
+					prefix = PDFUA_PREFIX;
+				}
+			}
 			if (identificationConformance == null) {
 				identificationConformance = "";
 			}
-			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
+			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(prefix + identificationPart + identificationConformance);
 			// TODO: remove that logic after updating NO_FLAVOUR into base pdf validation flavour
 			if (pdfaFlavour == PDFAFlavour.NO_FLAVOUR) {
-				return defaultFlavour;
-			}
-			// TODO: remove that logic after adding PDF/A-4 validation profile
-			if (pdfaFlavour == PDFAFlavour.PDFA_4) {
 				return defaultFlavour;
 			}
 			return pdfaFlavour;
@@ -146,9 +195,18 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
-		StaticContainers.clearAllContainers();
-		StaticContainers.setDocument(document);
+		StaticResources.setDocument(document);
 		StaticContainers.setFlavour(flavour);
+		StaticResources.setFlavour(flavour != null ? PDFFlavour.valueOf(flavour.name()) : null);
+	}
+
+	private static void initializeStaticResources(String password) {
+		StaticResources.setPassword(password);
+	}
+
+	private static void clearStaticContainers() {
+		StaticContainers.clearAllContainers();
+		StaticResources.clear();
 	}
 
 	/**

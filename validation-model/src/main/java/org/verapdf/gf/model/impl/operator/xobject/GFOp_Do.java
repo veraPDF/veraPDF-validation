@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -49,14 +49,19 @@ public class GFOp_Do extends GFOperator implements Op_Do {
     private final org.verapdf.pd.images.PDXObject pbXObject;
 	private final PDResourcesHandler resourcesHandler;
 	private final GraphicState inheritedGraphicState;
+	private final String parentStructureTag;
+	private final String parentsTags;
 
-    public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pbXObject,
-				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState) {
-        super(arguments, OP_DO_TYPE);
-        this.pbXObject = pbXObject;
+	public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pbXObject,
+				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
+				   String parentStructureTag, String parentsTags) {
+		super(arguments, OP_DO_TYPE);
+		this.pbXObject = pbXObject;
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
-    }
+		this.parentStructureTag = parentStructureTag;
+		this.parentsTags = parentsTags;
+	}
 
     @Override
     public List<? extends Object> getLinkedObjects(String link) {
@@ -71,8 +76,11 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	 */
 	public List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
 		if (this.xObjects == null) {
+			if (this.pbXObject == null) {
+				return Collections.emptyList();
+			}
 			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler,
-					inheritedGraphicState);
+					inheritedGraphicState, this.parentStructureTag, this.parentsTags);
 			if (typedPDXObject != null) {
 				List<PDXObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 				list.add(typedPDXObject);

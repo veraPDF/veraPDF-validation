@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -90,7 +90,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public Boolean getisSymbolic() {
-        return Boolean.valueOf(this.pdFont.isSymbolic());
+        return this.pdFont.isSymbolic();
     }
 
     /**
@@ -103,13 +103,22 @@ public class GFPDFont extends GFPDResource implements PDFont {
 
     @Override
     public String getfontFileSubtype() {
-	if (this.pdFont != null) {
-		ASAtom subtype = this.pdFont.getProgramSubtype();
-		if (subtype != null) {
-        		return subtype.getValue();
-		}
-	}
-	return null;
+        if (this.pdFont != null) {
+            ASAtom subtype = this.pdFont.getProgramSubtype();
+            if (subtype != null) {
+                return subtype.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean getisItalic() {
+        org.verapdf.pd.font.PDFontDescriptor fontDescriptor = this.pdFont.getFontDescriptor();
+        if (fontDescriptor != null) {
+            return fontDescriptor.isItalic();
+        }
+        return null;
     }
 
     @Override
@@ -133,14 +142,14 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     private List<FontProgram> getFontProgram() {
         org.verapdf.pd.font.FontProgram fontProgram = this.pdFont.getFontProgram();
-        if(fontProgram != null && this.fontProgramParsed) {
+        if (fontProgram != null && this.fontProgramParsed) {
             ASAtom subType = this.pdFont.getSubtype();
             if (ASAtom.TRUE_TYPE == subType) {
                 GFTrueTypeFontProgram font = new GFTrueTypeFontProgram(
                         fontProgram);
                 return getFontProgramList(font);
             }
-			if(TYPE0_STRING.equals(this.getSubtype())) {
+			if (TYPE0_STRING.equals(this.getSubtype())) {
 			    GFFontProgram font = new GFFontProgram(fontProgram,
 			            (GFPDFont) ((GFPDType0Font) this).getLinkedObjects(GFPDType0Font.DESCENDANT_FONTS).get(0));
 			    return getFontProgramList(font);

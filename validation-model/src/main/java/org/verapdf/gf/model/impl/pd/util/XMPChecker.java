@@ -1,27 +1,27 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
 package org.verapdf.gf.model.impl.pd.util;
 
-import com.adobe.xmp.XMPException;
-import com.adobe.xmp.impl.VeraPDFMeta;
+import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDocument;
 import org.verapdf.cos.COSObjType;
@@ -105,7 +105,7 @@ public final class XMPChecker {
         return Boolean.FALSE;
     }
 
-    private static InputStream getMetadataStream(COSDocument document) throws IOException {
+    public static InputStream getMetadataStream(COSDocument document) throws IOException {
         PDMetadata meta = document.getPDDocument().getMetadata();
         if (meta != null) {
             return meta.getStream();
@@ -168,7 +168,7 @@ public final class XMPChecker {
         boolean isXMPBasicMatch = checkProperty(info, properties, ASAtom.CREATOR)
                 && checkProperty(info, properties, ASAtom.CREATION_DATE)
                 && checkProperty(info, properties, ASAtom.MOD_DATE);
-        return Boolean.valueOf(isXMPBasicMatch);
+        return isXMPBasicMatch;
     }
 
     private static boolean checkProperty(COSObject info,
@@ -178,7 +178,7 @@ public final class XMPChecker {
             return true;
         } else if (item.getType() == COSObjType.COS_STRING) {
             return checkCOSStringProperty(item, properties,
-                    checksRule).booleanValue();
+                    checksRule);
         }
         return false;
     }
@@ -188,14 +188,13 @@ public final class XMPChecker {
         final Object value = properties.get(checksRule);
         if (value != null) {
             if (value instanceof String) {
-                return Boolean.valueOf(checkStringsIgnoreInfoTrailingZero(value, string.getString()));
+                return checkStringsIgnoreInfoTrailingZero(value, string.getString());
             } else if (value instanceof List) {
                 List<?> list = (List<?>) value;
-                return Boolean.valueOf(list.size() == 1 && checkStringsIgnoreInfoTrailingZero(list.get(0), string.getString()));
+                return list.size() == 1 && checkStringsIgnoreInfoTrailingZero(list.get(0), string.getString());
             } else if (value instanceof Calendar) {
                 final Calendar valueDate = TypeConverter.parseDate(string.getString());
-                return Boolean.valueOf(valueDate != null
-                        && valueDate.compareTo((Calendar) value) == 0);
+                return valueDate != null && valueDate.compareTo((Calendar) value) == 0;
             }
         }
         return Boolean.FALSE;
@@ -206,5 +205,12 @@ public final class XMPChecker {
             fromInfo = fromInfo.substring(0, fromInfo.length() - 1);
         }
         return fromXMP.equals(fromInfo);
+    }
+
+    public static String getStringWithoutTrailingZero(String string) {
+        if (string != null && string.endsWith("\0")) {
+            return string.substring(0, string.length() - 1);
+        }
+        return string;
     }
 }

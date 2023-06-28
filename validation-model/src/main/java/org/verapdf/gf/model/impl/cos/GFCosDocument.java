@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -25,11 +25,13 @@ import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDDocument;
 import org.verapdf.gf.model.impl.pd.util.XMPChecker;
+import org.verapdf.gf.model.impl.sa.GFSAPDFDocument;
 import org.verapdf.gf.model.tools.FileSpecificationKeysHelper;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.*;
 import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -49,12 +51,15 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	private static final String XREF = "xref";
 	private static final String INDIRECT_OBJECTS = "indirectObjects";
 	private static final String DOCUMENT = "document";
+	private static final String DOC = "doc";
 	private static final String EMBEDDED_FILES = "EmbeddedFiles";
+
+	private static final String GFSAPDFDOCUMENT_CLASS_NAME = "org.verapdf.gf.model.impl.sa.GFSAPDFDocument";
 
 	private final COSDictionary catalog;
 
 	private final long indirectObjectCount;
-	private final float version;
+	private final float headerVersion;
 	private final long headerOffset;
 	private final String header;
 	private final int headerCommentByte1;
@@ -79,7 +84,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 		COSHeader cosHeader = cosDocument.getHeader();
 		this.indirectObjectCount = cosDocument.getObjects().size();
-		this.version = cosHeader.getVersion();
+		this.headerVersion = cosHeader.getVersion();
 		this.headerOffset = cosHeader.getHeaderOffset();
 		this.header = cosHeader.getHeader();
 		this.headerCommentByte1 = cosHeader.getHeaderCommentByte1();
@@ -114,8 +119,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 * @return version of pdf document
 	 */
 	@Override
-	public Double getversion() {
-		return Double.valueOf(this.version);
+	public Double getheaderVersion() {
+		return Double.valueOf(this.headerVersion);
 	}
 
 	@Override
@@ -153,7 +158,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Boolean getisOptionalContentPresent() {
-		return Boolean.valueOf(isOptionalContentPresent);
+		return isOptionalContentPresent;
 	}
 
 	/**
@@ -186,9 +191,24 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		}
 	}
 
+	@Override
+	public String getfirstPageIDValue() {
+		COSObject id = cosDocument.getFirstTrailer().getKey(ASAtom.ID);
+		return id != null ? id.toString() : null;
+	}
+
+	@Override
+	public String getlastIDValue() {
+		COSObject id = cosDocument.getLastTrailer().getKey(ASAtom.ID);
+		return id != null ? id.toString() : null;
+	}
+
 	private static String getTrailerID(COSObject ids) {
 		if (ids != null && ids.getType() == COSObjType.COS_ARRAY) {
 			COSArray idArray = (COSArray) ids.getDirectBase();
+			if (idArray.size() != 2) {
+				LOGGER.log(Level.WARNING, "Value of ID is not an array of two byte strings");
+			}
 			StringBuilder builder = new StringBuilder();
 			for (COSObject id : idArray) {
 				if (id.getType() == COSObjType.COS_STRING) {
@@ -210,7 +230,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Boolean getisLinearized() {
-		return Boolean.valueOf(this.isLinearised);
+		return this.isLinearised;
 	}
 
 	/**
@@ -226,7 +246,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
 			if (markInfoObject == null || markInfoObject.empty()) {
-				return Boolean.FALSE;
+				return null;
 			}
 			COSBase markInfo = markInfoObject.getDirectBase();
 			if (markInfo.getType() == COSObjType.COS_DICT) {
@@ -234,9 +254,74 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			}
 			LOGGER.log(Level.WARNING,
 					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
-			return Boolean.FALSE;
+			return null;
 		}
-		return Boolean.FALSE;
+		return null;
+	}
+
+	@Override
+	public Boolean getDisplayDocTitle() {
+		if (this.catalog != null) {
+			COSObject viewerPrefObject = this.catalog.getKey(ASAtom.VIEWER_PREFERENCES);
+			if (viewerPrefObject == null || viewerPrefObject.empty()) {
+				return null;
+			}
+			COSBase viewerPref = viewerPrefObject.getDirectBase();
+			if (viewerPref.getType() == COSObjType.COS_DICT) {
+				return viewerPref.getBooleanKey(ASAtom.DISPLAY_DOC_TITLE);
+			}
+			LOGGER.log(Level.WARNING,
+					"viewerPref must be a 'COSDictionary' but got: " + viewerPrefObject.getType());
+			return null;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsPieceInfo() {
+		return this.catalog != null && this.catalog.knownKey(ASAtom.PIECE_INFO);
+	}
+
+	@Override
+	public String getMarkInfo() {
+		if (this.catalog != null) {
+			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
+			return markInfoObject != null ? markInfoObject.toString() : null;
+		}
+		return null;
+	}
+
+	@Override
+	public String getViewerPreferences() {
+		if (this.catalog != null) {
+			COSObject viewerPrefObject = this.catalog.getKey(ASAtom.VIEWER_PREFERENCES);
+			return viewerPrefObject != null ? viewerPrefObject.toString() : null;
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getcontainsInfo() {
+		COSObject info = cosDocument.getTrailer().getInfo();
+		return info != null && !info.empty();
+	}
+
+	@Override
+	public Boolean getSuspects() {
+		if (this.catalog != null) {
+			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
+			if (markInfoObject == null || markInfoObject.empty()) {
+				return null;
+			}
+			COSBase markInfo = markInfoObject.getDirectBase();
+			if (markInfo.getType() == COSObjType.COS_DICT) {
+				return markInfo.getBooleanKey(ASAtom.SUSPECTS);
+			}
+			LOGGER.log(Level.WARNING,
+					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
+			return null;
+		}
+		return null;
 	}
 
 	@Override
@@ -256,21 +341,21 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private static String getRequirementsString(COSArray reqArray) {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		Iterator<COSObject> iterator = reqArray.iterator();
 		while (iterator.hasNext()) {
 			COSObject element = iterator.next();
 			COSBase base = element.getDirectBase();
 			if (base.getType() == COSObjType.COS_DICT) {
-				result += getRequirementsString((COSDictionary) base);
-				result += " ";
+				result.append(getRequirementsString((COSDictionary) base));
+				result.append(" ");
 			}
 		}
-		return result;
+		return result.toString();
 	}
 
 	private static String getRequirementsString(COSDictionary reqDict) {
-		return reqDict.getStringKey(ASAtom.S);
+		return reqDict.getNameKeyStringValue(ASAtom.S);
 	}
 
 	/**
@@ -280,7 +365,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	@Override
 	public Boolean getNeedsRendering() {
 		if (!catalog.knownKey(ASAtom.NEEDS_RENDERING).booleanValue()) {
-			return Boolean.valueOf(false);
+			return Boolean.FALSE;
 		}
 		return catalog.getBooleanKey(ASAtom.NEEDS_RENDERING);
 	}
@@ -293,7 +378,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 				return names.knownKey(ASAtom.EMBEDDED_FILES);
 			 }
 		}
-		return Boolean.valueOf(false);
+		return Boolean.FALSE;
 	}
 
 	@Override
@@ -309,6 +394,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 			return this.getXRefs();
 		case EMBEDDED_FILES:
 			return this.getEmbeddedFiles();
+		case DOC:
+			return this.getdocument();
 		default:
 			return super.getLinkedObjects(link);
 		}
@@ -369,12 +456,31 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 * link to the high-level PDF Document structure
 	 */
 	private static List<org.verapdf.model.pdlayer.PDDocument> getDocument() {
-		if (StaticContainers.getDocument() != null) {
+		if (StaticResources.getDocument() != null) {
 			List<org.verapdf.model.pdlayer.PDDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFPDDocument(StaticContainers.getDocument()));
+			list.add(new GFPDDocument(StaticResources.getDocument()));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.salayer.SAPDFDocument> getdocument() {
+		if (StaticContainers.getFlavour() == PDFAFlavour.WCAG2_1 &&
+				StaticResources.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
+			List<org.verapdf.model.salayer.SAPDFDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFSAPDFDocument(StaticResources.getDocument()));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private static boolean isPresent(String className) {
+		try {
+			Class.forName(className);
+			return true;
+		} catch (Throwable ex) {
+			return false;
+		}
 	}
 
 	/**
@@ -382,8 +488,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	private List<CosXRef> getXRefs() {
 		List<CosXRef> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		list.add(new GFCosXRef(Boolean.valueOf(cosDocument.isSubsectionHeaderSpaceSeparated()),
-				Boolean.valueOf(cosDocument.isXrefEOLMarkersComplyPDFA())));
+		list.add(new GFCosXRef(cosDocument.isSubsectionHeaderSpaceSeparated(),
+				cosDocument.isXrefEOLMarkersComplyPDFA()));
 		return Collections.unmodifiableList(list);
 	}
 

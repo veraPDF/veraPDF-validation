@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -56,24 +56,22 @@ public class FontFactory {
 		// Disable default constructor
 	}
 
-	public static PDFont parseFont(org.verapdf.pd.font.PDFont rawFont,
-								   RenderingMode renderingMode, PDResourcesHandler resources,
-								   GraphicState inheritedGraphicState) {
+	public static PDFont parseFont(org.verapdf.pd.font.PDFont rawFont, RenderingMode renderingMode,
+								   PDResourcesHandler resources, GraphicState inheritedGraphicState) {
 		if (rawFont == null) {
 			return new GFPDEmptyFont();
 		}
 		if (TYPE_3.equals(rawFont.getSubtype().getValue())) {
 			PDResources fontResources = ((PDType3Font) rawFont).getResources();
 			PDResourcesHandler pdResources = resources.getExtendedResources(fontResources);
-			return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources,
-					inheritedGraphicState);
+			return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources, inheritedGraphicState);
 		}
 		String id = GFIDGenerator.generateID(rawFont, renderingMode);
 		PDFont res = StaticContainers.getCachedFonts().get(id);
 		if (res == null) {
 			switch (rawFont.getSubtype().getValue()) {
 				case TYPE_0:
-					res =  new GFPDType0Font((PDType0Font) rawFont, renderingMode);
+					res = new GFPDType0Font((PDType0Font) rawFont, renderingMode);
 					break;
 				case TYPE_1:
 				case MM_TYPE_1:

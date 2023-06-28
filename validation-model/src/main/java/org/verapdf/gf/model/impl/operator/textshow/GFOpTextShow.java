@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -37,6 +37,7 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.tools.StaticResources;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -73,6 +74,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private final PDColorSpace rawStrokeColorSpace;
 
 	private final org.verapdf.pd.font.PDFont font;
+	private final Double scaleFactor;
 
 	private final RenderingMode renderingMode;
 
@@ -90,12 +92,13 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private List<org.verapdf.model.pdlayer.PDColorSpace> strokeCS = null;
 
 	protected GFOpTextShow(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
-						   final String opType, GFOpMarkedContent markedContent,
-						   StructureElementAccessObject structureElementAccessObject) {
+						   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject,
+						   final String opType) {
 		super(arguments, opType);
 		this.rawFillColorSpace = state.getFillColorSpace();
 		this.rawStrokeColorSpace = state.getStrokeColorSpace();
 		this.font = state.getFont();
+		this.scaleFactor = state.getScaleFactor();
 		this.renderingMode = state.getRenderingMode();
 		this.opm = state.getOpm();
 		this.overprintingFlagStroke = state.isOverprintingFlagStroke();
@@ -129,6 +132,10 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		return this.fonts;
 	}
 
+	public Double getScaleFactor() {
+		return scaleFactor;
+	}
+
 	public PDFont getVeraModelFont() {
 		if (this.fonts == null) {
 			this.fonts = parseFont();
@@ -142,7 +149,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		}
 		FontProgram fontProgram = font.getFontProgram();
 		if (fontProgram instanceof CFFFontProgram) {
-			StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
+			StaticResources.getDocument().getDocument().getResourceHandler().addResource(
 					fontProgram.getFontProgramResource());
 		}
 
@@ -152,10 +159,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 			try (InputStream inputStream = new ByteArrayInputStream(string)) {
 				while (inputStream.available() > 0) {
 					int code = font.readCode(inputStream);
-					Glyph glyph;
-					glyph = GFGlyph.getGlyph(font, code, this.renderingMode.getValue(),
+					Glyph glyph = GFGlyph.getGlyph(font, code, this.renderingMode.getValue(),
 							markedContent, structureElementAccessObject);
-						res.add(glyph);
+					res.add(glyph);
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
@@ -167,6 +173,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getFillColorSpace() {
+		if (!inheritedGraphicState.isProcessColorOperators()) {
+			return Collections.emptyList();
+		}
 		if (this.fillCS == null) {
 			this.fillCS = parseFillColorSpace();
 		}
@@ -174,6 +183,9 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getStrokeColorSpace() {
+		if (!inheritedGraphicState.isProcessColorOperators()) {
+			return Collections.emptyList();
+		}
 		if (this.strokeCS == null) {
 			this.strokeCS = parseStrokeColorSpace();
 		}

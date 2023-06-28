@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -27,7 +27,8 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
-import org.verapdf.gf.model.impl.pd.util.TaggedPDFRoleMapHelper;
+import org.verapdf.parser.PDFFlavour;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
@@ -55,7 +56,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 	private static final Logger LOGGER = Logger.getLogger(GFEmbeddedFile.class.getCanonicalName());
 
-	/** Type name for {@code PBoxEmbeddedFile} */
+	/** Type name for {@code GFEmbeddedFile} */
 	public static final String EMBEDDED_FILE_TYPE = "EmbeddedFile";
 
 	private final COSStream stream;
@@ -68,8 +69,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	@Override
 	public String getSubtype() {
 		if (this.stream != null) {
-			ASAtom s = this.stream.getNameKey(ASAtom.SUBTYPE);
-			return s == null ? null : s.getValue();
+			return this.stream.getNameKeyStringValue(ASAtom.SUBTYPE);
 		}
 		return null;
 	}
@@ -91,16 +91,40 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
 		}
 		restoreSavedSCState();
-		return Boolean.valueOf(retVal);
+		return retVal;
+	}
+
+	@Override
+	public Boolean getisValidPDFA124() {
+		if (this.stream == null) {
+			return Boolean.TRUE;
+		}
+		boolean retVal = false;
+		saveStaticContainersState();
+		try (InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE)) {
+			retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_1_B);
+			if (!retVal) {
+				unfilteredStream.reset();
+				retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_2_B);
+			}
+			if (!retVal) {
+				unfilteredStream.reset();
+				retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_4);
+			}
+		} catch (VeraPDFException | IOException e) {
+			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
+		}
+		restoreSavedSCState();
+		return retVal;
 	}
 
 	private static boolean isValidPdfaStream(final InputStream toValidate, final PDFAFlavour flavour)
 			throws VeraPDFException {
 		try (GFModelParser parser = GFModelParser.createModelWithFlavour(toValidate, flavour)) {
-			PDFAValidator validator1b = ValidatorFactory.createValidator(flavour, false, 1);
-			ValidationResult result1b = validator1b.validate(parser);
+			PDFAValidator validator = ValidatorFactory.createValidator(flavour, false, 1);
+			ValidationResult result = validator.validate(parser);
 			parser.close();
-			return result1b.isCompliant();
+			return result.isCompliant();
 		}
 	}
 
@@ -108,15 +132,20 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	// documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
+	private String password;
 	private TaggedPDFRoleMapHelper roleMapHelper;
 	private Map<String, List<GFPDSeparation>> separations;
 	private List<String> inconsistentSeparations;
 	private Map<String, PDColorSpace> cachedColorSpaces;
+	private Set<String> noteIDSet;
+	private Set<COSKey> xFormKeysSet;
 	private Set<COSKey> fileSpecificationKeys;
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
-	private Map<String, Glyph> cachedGlyphs;
+	private Map<String, Map<String, Glyph>> cachedGlyphs;
 	private boolean validPDF;
+	private Integer lastHeadingNestingLevel;
+	private org.verapdf.pd.colors.PDColorSpace currentTransparencyColorSpace;
 
 	// StaticResources have to be saved too
 	private Map<String, CMap> cMapCache;
@@ -124,17 +153,22 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Map<String, FontProgram> cachedFonts;
 
 	private void saveStaticContainersState() {
-		this.document = StaticContainers.getDocument();
+		this.document = StaticResources.getDocument();
 		this.flavour = StaticContainers.getFlavour();
+		this.password = StaticResources.getPassword();
 		this.separations = StaticContainers.getSeparations();
 		this.inconsistentSeparations = StaticContainers.getInconsistentSeparations();
 		this.cachedColorSpaces = StaticContainers.getCachedColorSpaces();
 		this.cachedPDFonts = StaticContainers.getCachedFonts();
 		this.roleMapHelper = StaticContainers.getRoleMapHelper();
 		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
+		this.noteIDSet = StaticContainers.getNoteIDSet();
+		this.xFormKeysSet = StaticContainers.getXFormKeysSet();
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
 		this.validPDF = StaticContainers.getValidPDF();
+		this.lastHeadingNestingLevel = StaticContainers.getLastHeadingNestingLevel();
 		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
+		this.currentTransparencyColorSpace = StaticContainers.getCurrentTransparencyColorSpace();
 
 		Map<String, CMap> cMaps = StaticResources.getcMapCache();
 		this.cMapCache = cMaps == null ? null : new HashMap<>(cMaps);
@@ -147,7 +181,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	}
 
 	private void restoreSavedSCState() {
-		StaticContainers.setDocument(this.document);
 		StaticContainers.setFlavour(this.flavour);
 		StaticContainers.setSeparations(this.separations);
 		StaticContainers.setInconsistentSeparations(this.inconsistentSeparations);
@@ -155,12 +188,18 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setCachedFonts(this.cachedPDFonts);
 		StaticContainers.setRoleMapHelper(this.roleMapHelper);
 		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
+		StaticContainers.setNoteIDSet(this.noteIDSet);
+		StaticContainers.setXFormKeysSet(this.xFormKeysSet);
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
 		StaticContainers.setValidPDF(this.validPDF);
+		StaticContainers.setLastHeadingNestingLevel(this.lastHeadingNestingLevel);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
-
+		StaticContainers.setCurrentTransparencyColorSpace(this.currentTransparencyColorSpace);
+		StaticResources.setDocument(this.document);
+		StaticResources.setPassword(this.password);
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
+		StaticResources.setFlavour(this.flavour != null ? PDFFlavour.valueOf(this.flavour.name()) : null);
 	}
 }

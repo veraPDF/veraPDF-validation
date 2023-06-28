@@ -1,20 +1,20 @@
 /**
- * This file is part of metadata-fixer, a module of the veraPDF project.
+ * This file is part of veraPDF Metadata Fixer, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * metadata-fixer is free software: you can redistribute it and/or modify
+ * veraPDF Metadata Fixer is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with metadata-fixer as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Metadata Fixer as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * metadata-fixer as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Metadata Fixer as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -41,6 +41,8 @@ import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.profiles.ProfileDirectory;
 import org.verapdf.pdfa.validation.profiles.Profiles;
 import org.verapdf.pdfa.validation.profiles.ValidationProfile;
+import org.verapdf.xmp.XMPDateTimeFactory;
+import org.verapdf.xmp.XMPException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -108,6 +110,9 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 						if (fixIdentification) {
 							metadata.removePDFIdentificationSchema(resultBuilder,
 									result.getPDFAFlavour());
+							if (document.isNeedToBeUpdated()) {
+								removeMetadataFilters(resultBuilder, document, result.getPDFAFlavour());
+							}
 						}
 						break;
 					}
@@ -117,7 +122,8 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 
 				updateModificationDate(document, resultBuilder);
 
-				MetadataFixerResult partialResult = document.saveDocumentIncremental(resultBuilder.getStatus(), output);
+				MetadataFixerResult partialResult = document.saveDocumentIncremental(resultBuilder.getStatus(), output,
+						result.getPDFAFlavour());
 				resultBuilder.status(partialResult.getRepairStatus());
 				for (String fix : partialResult.getAppliedFixes()) {
 					resultBuilder.addFix(fix);
@@ -152,8 +158,8 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 		return ValidationStatus.INVALID_METADATA;
 	}
 
-	private static void executeInvalidMetadataCase(PDFDocument document, Metadata metadata,
-												   MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour, boolean fixIdentification) {
+	private static void removeMetadataFilters(MetadataFixerResultImpl.Builder resultBuilder,
+											  PDFDocument document, PDFAFlavour flavour) {
 		if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
 			int removedFilters = document.removeFiltersForAllMetadataObjects();
 			if (removedFilters > 0) {
@@ -162,6 +168,12 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 				throw new IllegalStateException("Problem while removing filters from metadata streams");
 			}
 		}
+	}
+
+	private static void executeInvalidMetadataCase(PDFDocument document, Metadata metadata,
+												   MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour,
+												   boolean fixIdentification) {
+		removeMetadataFilters(resultBuilder, document, flavour);
 		fixMetadata(resultBuilder, document, flavour);
 		if (fixIdentification) {
 			metadata.addPDFIdentificationSchema(resultBuilder, flavour);
@@ -232,14 +244,25 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 	private static void fixCalendarProperty(MetadataFixerResultImpl.Builder resultBuilder, BasicSchema schema,
 											InfoDictionary info, String metaValue, String infoValue, String attribute) {
 		if (infoValue != null) {
-			String key = attributes.get(attribute);
-			String utcInfoValue = DateConverter.toUTCString(infoValue);
-			if (metaValue == null) {
+			Calendar metaCalendar = null;
+			try {
+				metaCalendar = XMPDateTimeFactory.createFromISO8601(metaValue).getCalendar();
+			} catch (XMPException ignored) {
+			}
+			if (metaCalendar == null) {
 				doSaveAction(schema, attribute, infoValue);
-				resultBuilder.addFix("Added '" + key + "' to metadata from info dictionary");
-			} else if (!metaValue.equals(utcInfoValue) || !infoValue.matches(PDF_DATE_FORMAT_REGEX)) {
-				doSaveAction(info, attribute, metaValue);
-				resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
+				resultBuilder.addFix("Added '" + attributes.get(attribute) + "' to metadata from info dictionary");
+			} else {
+				if (metaCalendar.get(Calendar.MILLISECOND) != 0) {
+					metaCalendar.set(Calendar.MILLISECOND, 0);
+					doSaveAction(schema, attribute, DateConverter.toPDFDateFormat(metaCalendar));
+					resultBuilder.addFix("Set milliseconds of '" + attribute + "' in metadata to 0");
+				}
+				Calendar infoCalendar = DateConverter.toCalendar(infoValue);
+				if (!infoValue.matches(PDF_DATE_FORMAT_REGEX) || metaCalendar.compareTo(infoCalendar) != 0) {
+					doSaveAction(info, attribute, DateConverter.toXMPDateFormat(metaCalendar));
+					resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
+				}
 			}
 		}
 	}
@@ -283,11 +306,11 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 		if (document.isNeedToBeUpdated() && schema != null) {
 			Calendar time = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 			if (schema.getModificationDate() != null) {
-				doSaveAction(schema, METADATA_MODIFICATION_DATE, DateConverter.toPDFFormat(time));
+				doSaveAction(schema, METADATA_MODIFICATION_DATE, DateConverter.toPDFDateFormat(time));
 				resultBuilder.addFix("Set new modification date to metadata");
 			}
 			if (info != null && info.getModificationDate() != null) {
-				doSaveAction(info, METADATA_MODIFICATION_DATE, DateConverter.toUTCString(time));
+				doSaveAction(info, METADATA_MODIFICATION_DATE, DateConverter.toXMPDateFormat(time));
 				resultBuilder.addFix("Set new modification date to info dictionary");
 			}
 		}

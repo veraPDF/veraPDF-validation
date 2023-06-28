@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -22,24 +22,26 @@ package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.model.pdlayer.PDStructTreeRoot;
+import org.verapdf.tools.TaggedPDFHelper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 
-	/** Type name for {@code PBoxPDStructTreeRoot} */
+	/** Type name for {@code GFPDStructTreeRoot} */
 	public static final String STRUCT_TREE_ROOT_TYPE = "PDStructTreeRoot";
 
 	/** Link name for {@code K} key */
@@ -58,6 +60,35 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	public GFPDStructTreeRoot(org.verapdf.pd.structure.PDStructTreeRoot treeRoot) {
 		super(treeRoot, STRUCT_TREE_ROOT_TYPE);
 		StaticContainers.setRoleMapHelper(treeRoot.getRoleMap());
+	}
+
+	@Override
+	public String getkidsStandardTypes() {
+		return this.getChildren()
+		           .stream()
+		           .map(PDStructElem::getstandardType)
+		           .filter(Objects::nonNull)
+		           .collect(Collectors.joining("&"));
+	}
+
+	@Override
+	public Boolean gethasContentItems() {
+		COSObject children = this.simplePDObject.getKey(ASAtom.K);
+		if (children == null) {
+			return false;
+		}
+		if (TaggedPDFHelper.isContentItem(children)) {
+			return true;
+		}
+		if (children.getType() == COSObjType.COS_ARRAY && children.size().intValue() > 0) {
+			for (int i = 0; i < children.size().intValue(); ++i) {
+				COSObject elem = children.at(i);
+				if (TaggedPDFHelper.isContentItem(elem)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -80,11 +111,12 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	}
 
 	private List<PDStructElem> parseChildren() {
-		List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getChildren();
+		List<org.verapdf.pd.structure.PDStructElem> elements =
+				((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getStructChildren();
 		if (!elements.isEmpty()) {
 			List<PDStructElem> res = new ArrayList<>(elements.size());
 			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				res.add(new GFPDStructElem(element));
+				res.add(GFSEFactory.createTypedStructElem(element));
 			}
 			return Collections.unmodifiableList(res);
 		}
@@ -108,7 +140,7 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	}
 
 	@Override
-	public String gettopLevelFirstElementStandartType() {
+	public String gettopLevelFirstElementStandardType() {
 		if (this.children == null) {
 			this.children = parseChildren();
 		}

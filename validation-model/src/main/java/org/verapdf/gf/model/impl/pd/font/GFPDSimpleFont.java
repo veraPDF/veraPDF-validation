@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -32,8 +32,6 @@ import org.verapdf.model.pdlayer.PDSimpleFont;
  * @author Sergey Shemyakov
  */
 public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
-
-    public static final String CUSTOM_ENCODING = "Custom";
 
     protected GFPDSimpleFont(org.verapdf.pd.font.PDSimpleFont font,
                              RenderingMode renderingMode, final String type) {
@@ -81,13 +79,11 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
     /**
      * @return String representation of the font encoding:
      * null if the /Encoding entry is not present in the font dictionary;
-     * if /Encoding entry in the font dictionary if of Name type, then
+     * if /Encoding entry in the font dictionary of Name type, then
      * the value of this entry;
      * if /Encoding entry is a dictionary, which does not contain /Differences
      * array, then the value of /BaseEncoding entry in this dictionary
      * (or null, if /BaseEncoding is also not present);
-     * the string "Custom", of the /Encoding entry is a dictionary containing
-     * /Differences key.
      */
     @Override
     public String getEncoding() {
@@ -98,13 +94,12 @@ public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
         if (encoding.getType() == COSObjType.COS_NAME) {
             return encoding.getString();
         }
-        if (encoding.knownKey(ASAtom.DIFFERENCES).booleanValue()) {
-            return CUSTOM_ENCODING;
-        }
-        COSObject baseEncoding = encoding.getKey(ASAtom.BASE_ENCODING);
-        if (baseEncoding.empty()) {
-            return null;
-        }
-        return baseEncoding.getString();
+        return encoding.getKey(ASAtom.BASE_ENCODING).getString();
+    }
+
+    @Override
+    public Boolean getcontainsDifferences() {
+        COSObject encoding = this.pdFont.getEncoding();
+        return encoding.getType() == COSObjType.COS_DICT && encoding.knownKey(ASAtom.DIFFERENCES);
     }
 }

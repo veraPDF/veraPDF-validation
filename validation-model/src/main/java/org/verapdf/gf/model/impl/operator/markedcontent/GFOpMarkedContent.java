@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -22,11 +22,14 @@ package org.verapdf.gf.model.impl.operator.markedcontent;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
+import org.verapdf.gf.model.impl.cos.GFCosActualText;
 import org.verapdf.gf.model.impl.cos.GFCosDict;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosName;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosActualText;
 import org.verapdf.model.coslayer.CosDict;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosName;
@@ -48,15 +51,21 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
     public static final String PROPERTIES = "properties";
 	/** Name of link to Lang value from the properties dictionary */
 	public static final String LANG = "Lang";
+	/** Name of link to ActualText value from the properties dictionary */
+	public static final String ACTUAL_TEXT = "actualText";
 
 	private COSDictionary propertiesDict;
+	private final GFOpMarkedContent markedContent;
+	private final String parentsTags;
 
-    public GFOpMarkedContent(List<COSBase> arguments, final String opType, PDResourcesHandler resources) {
+	public GFOpMarkedContent(List<COSBase> arguments, final String opType,
+							 GFOpMarkedContent markedContent, String parentsTags) {
         super(arguments, opType);
-		initializePropertiesDict(resources);
-    }
+		this.markedContent = markedContent;
+		this.parentsTags = parentsTags;
+	}
 
-	private void initializePropertiesDict(PDResourcesHandler resources) {
+	protected void initializePropertiesDict(PDResourcesHandler resources) {
 		if (!this.arguments.isEmpty()) {
 			COSBase lastArg = this.arguments.get(this.arguments.size() - 1);
 			COSObjType lastArgType = lastArg.getType();
@@ -74,7 +83,17 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		}
 	}
 
-    protected List<CosName> getTag() {
+	@Override
+	public List<? extends Object> getLinkedObjects(String link) {
+		switch (link) {
+			case ACTUAL_TEXT:
+				return this.getactualText();
+			default:
+				return super.getLinkedObjects(link);
+		}
+	}
+
+    public List<CosName> getTag() {
         if (this.arguments.size() > 1) {
 			COSBase name = this.arguments.get(this.arguments.size() - 2);
 			if (name.getType() == COSObjType.COS_NAME) {
@@ -95,7 +114,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
         return Collections.emptyList();
     }
 
-	protected List<CosLang> getLang() {
+	public List<CosLang> getLang() {
     	COSObject lang = getAttribute(ASAtom.LANG, COSObjType.COS_STRING);
     	if (lang != null) {
 			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
@@ -103,6 +122,60 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	public String getParentsTags() {
+		List<CosName> tagList = getTag();
+		String tag = "";
+		if (tagList.size() != 0) {
+			tag = tagList.get(0).getinternalRepresentation();
+		}
+		String parentsTags = "";
+		if (markedContent != null) {
+			parentsTags = markedContent.getParentsTags();
+		}
+		if (parentsTags.isEmpty()) {
+			parentsTags = this.parentsTags;
+		} else if (!this.parentsTags.isEmpty()) {
+			parentsTags = this.parentsTags + "&" + parentsTags;
+		}
+		if (tag.isEmpty()) {
+			return parentsTags;
+		}
+		if (parentsTags.isEmpty()) {
+			return tag;
+		}
+		return parentsTags + "&" + tag;
+	}
+
+	public String getParentLang() {
+		if (markedContent == null) {
+			return null;
+		}
+		List<CosLang> lang =  markedContent.getLang();
+		if (lang != null && lang.size() != 0) {
+			return lang.get(0).getunicodeValue();
+		}
+		if (GFOp_BDC.OP_BDC_TYPE.equals(markedContent.getObjectType())) {
+			String structParentLang = ((GFOp_BDC)markedContent).getstructParentLang();
+			if (structParentLang != null) {
+				return structParentLang;
+			}
+		}
+		return markedContent.getParentLang();
+	}
+
+	public String getParentStructureTag() {
+		if (markedContent != null) {
+			if (GFOp_BDC.OP_BDC_TYPE.equals(markedContent.getObjectType())) {
+				String structTag = ((GFOp_BDC)markedContent).getstructureTag();
+				if (structTag != null) {
+					return structTag;
+				}
+			}
+			return markedContent.getParentStructureTag();
+		}
+		return null;
 	}
 
 	/**
@@ -113,6 +186,16 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	public COSString getActualText() {
 		COSObject actualText = getAttribute(ASAtom.ACTUAL_TEXT, COSObjType.COS_STRING);
 		return actualText == null ? null : (COSString) actualText.get();
+	}
+
+	public COSString getE() {
+		COSObject e = getAttribute(ASAtom.E, COSObjType.COS_STRING);
+		return e == null ? null : (COSString) e.get();
+	}
+
+	public COSString getAlt() {
+		COSObject alt = getAttribute(ASAtom.ALT, COSObjType.COS_STRING);
+		return alt == null ? null : (COSString) alt.get();
 	}
 
 	/**
@@ -139,4 +222,35 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	public int hashCode() {
 		return propertiesDict == null ? 0 : propertiesDict.hashCode();
 	}
+
+	private List<CosActualText> getactualText() {
+		COSString actualText = getActualText();
+		if (actualText != null) {
+			List<CosActualText> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosActualText(actualText));
+			return list;
+		}
+		return Collections.emptyList();
+	}
+
+	public COSString getInheritedActualText() {
+		if (markedContent != null) {
+			COSString actualText = markedContent.getInheritedActualText();
+			if (actualText != null) {
+				return actualText;
+			}
+		}
+		return getActualText();
+	}
+
+	public Long getInheritedMCID() {
+		if (markedContent != null) {
+			Long mcid = markedContent.getInheritedMCID();
+			if (mcid != null) {
+				return mcid;
+			}
+		}
+		return getMCID();
+	}
+
 }

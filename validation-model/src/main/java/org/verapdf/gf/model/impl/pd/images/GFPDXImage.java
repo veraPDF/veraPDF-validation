@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -33,6 +33,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosRenderingIntent;
 import org.verapdf.model.external.JPEG2000;
 import org.verapdf.model.pdlayer.PDColorSpace;
+import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.model.pdlayer.PDXImage;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	public static final String ALTERNATES = "Alternates";
 	public static final String INTENT = "Intent";
 	public static final String JPX_STREAM = "jpxStream";
+	public static final String S_MASK = "SMask";
 
 	private List<JPEG2000> jpeg2000List = null;
 	private org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
@@ -66,7 +68,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 
 	@Override
 	public Boolean getInterpolate() {
-		return Boolean.valueOf(((org.verapdf.pd.images.PDXImage) simplePDObject).isInterpolate());
+		return ((org.verapdf.pd.images.PDXImage) simplePDObject).isInterpolate();
 	}
 
 	@Override
@@ -85,9 +87,21 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 				return this.getAlternates();
 			case JPX_STREAM:
 				return this.getJPXStream();
+			case S_MASK:
+				return this.getSMask();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	protected List<PDSMaskImage> getSMask() {
+		org.verapdf.pd.images.PDXImage smask = ((org.verapdf.pd.images.PDXObject) simplePDObject).getSMask();
+		if (smask != null) {
+			List<PDSMaskImage> mask = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			mask.add(new GFPDSMaskImage(smask, this.resourcesHandler));
+			return Collections.unmodifiableList(mask);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<CosRenderingIntent> getIntent() {
@@ -109,19 +123,25 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 		if (!image.getImageMask()) {
 			List<PDColorSpace> colorSpaces =
 					new ArrayList<>(GFPDObject.MAX_NUMBER_OF_ELEMENTS);
-			org.verapdf.pd.colors.PDColorSpace buffer;
+			org.verapdf.pd.colors.PDColorSpace colorSpace;
 			ASAtom csName = image.getImageCSName();
 			if (csName != null) {
-				buffer = resourcesHandler.getColorSpace(csName);
-				if (buffer != null) {
-					colorSpaces.add(ColorSpaceFactory.getColorSpace(buffer));
+				colorSpace = resourcesHandler.getColorSpace(csName);
+				if (colorSpace != null) {
+					colorSpaces.add(ColorSpaceFactory.getColorSpace(colorSpace));
 					return Collections.unmodifiableList(colorSpaces);
 				}
 			} else {
-				buffer = image.getImageCS();
-				if (buffer != null) {
-					colorSpaces.add(ColorSpaceFactory.getColorSpace(buffer));
-					return Collections.unmodifiableList(colorSpaces);
+				colorSpace = image.getImageCS();
+				if (colorSpace != null) {
+					colorSpace = resourcesHandler.getColorSpace(colorSpace.getType(), false);
+					if (colorSpace == null) {
+						colorSpace = image.getImageCS();
+					}
+					if (colorSpace != null) {
+						colorSpaces.add(ColorSpaceFactory.getColorSpace(colorSpace));
+						return Collections.unmodifiableList(colorSpaces);
+					}
 				}
 			}
 		} else if (this.inheritedFillCS != null) {
@@ -154,8 +174,10 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	private List<JPEG2000> parseJPXStream() {
 		org.verapdf.external.JPEG2000 jpeg = ((org.verapdf.pd.images.PDXImage) this.simplePDObject).getJPXStream();
 		if (jpeg != null) {
+			COSObject colorSpace = simplePDObject.getKey(ASAtom.COLORSPACE);
 			List<JPEG2000> list = new ArrayList<>(GFPDObject.MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFJPEG2000(jpeg));
+			list.add(new GFJPEG2000(jpeg,
+					colorSpace != null && !colorSpace.empty() && colorSpace.getType() != COSObjType.COS_NULL));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

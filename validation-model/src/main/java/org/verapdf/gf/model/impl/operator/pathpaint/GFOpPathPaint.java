@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -60,14 +60,14 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 							final PDResourcesHandler resourcesHandler, final String operatorType) {
 		this(arguments, state.getFillColorSpace(), state.getStrokeColorSpace(),
 				state.getOpm(), state.isOverprintingFlagStroke(), state.isOverprintingFlagNonStroke(),
-				resourcesHandler, operatorType, state);
+				resourcesHandler, state, operatorType);
     }
 
 	protected GFOpPathPaint(List<COSBase> arguments,
 							final PDColorSpace rawFillColorSpace, final PDColorSpace rawStrokeColorSpace,
 							int opm, boolean overprintingFlagStroke, boolean overprintingFlagNonStroke,
-							final PDResourcesHandler resourcesHandler, final String operatorType,
-							GraphicState inheritedGraphicState) {
+							final PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
+							final String operatorType) {
 		super(arguments, operatorType);
 		this.rawFillColorSpace = rawFillColorSpace;
 		this.rawStrokeColorSpace = rawStrokeColorSpace;
@@ -79,6 +79,9 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 	}
 
 	protected List<org.verapdf.model.pdlayer.PDColorSpace> getFillCS() {
+		if (!this.inheritedGraphicState.isProcessColorOperators()) {
+			return Collections.emptyList();
+		}
 		if (this.fillCS == null) {
 			this.fillCS = getColorSpace(this.rawFillColorSpace, this.overprintingFlagNonStroke);
 		}
@@ -86,6 +89,9 @@ public abstract class GFOpPathPaint extends GFOperator implements OpPathPaint {
 	}
 
 	protected List<org.verapdf.model.pdlayer.PDColorSpace> getStrokeCS() {
+		if (!this.inheritedGraphicState.isProcessColorOperators()) {
+			return Collections.emptyList();
+		}
 		if (this.strokeCS == null) {
 			this.strokeCS = getColorSpace(this.rawStrokeColorSpace, this.overprintingFlagStroke);
 		}

@@ -1,37 +1,37 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
 package org.verapdf.gf.model.impl.pd.colors;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSArray;
-import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.gf.model.factory.functions.FunctionFactory;
+import org.verapdf.gf.model.impl.pd.functions.GFPDFunction;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDDeviceN;
 import org.verapdf.model.pdlayer.PDSeparation;
+import org.verapdf.pd.function.PDFunction;
 
 import java.util.*;
 
@@ -42,6 +42,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
 	public static final String DEVICE_N_TYPE = "PDDeviceN";
 
+	public static final String TINT_TRANSFORM = "tintTransform";
 	public static final String ALTERNATE = "alternate";
 	public static final String COLORANT_NAMES = "colorantNames";
 	public static final String COLORANTS = "Colorants";
@@ -67,9 +68,9 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
 	private static boolean areColorantsPresent(org.verapdf.pd.colors.PDDeviceN simplePDObject) {
 		COSObject attributes = simplePDObject.getAttributes();
+		List<COSObject> colorantsArray = simplePDObject.getNames();
 		if (attributes != null && attributes.getType() == COSObjType.COS_DICT) {
 			COSObject colorantsDict = attributes.getKey(ASAtom.COLORANTS);
-			List<COSObject> colorantsArray = simplePDObject.getNames();
 			Set<ASAtom> componentNames = new HashSet<>();
 			if (colorantsDict != null && colorantsDict.getType() == COSObjType.COS_DICT) {
 				componentNames.addAll(colorantsDict.getKeySet());
@@ -84,7 +85,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 			}
 			return GFPDDeviceN.areColorantsPresent(componentNames, colorantsArray);
 		}
-		return false;
+		return GFPDDeviceN.areColorantsPresent(Collections.emptySet(), colorantsArray);
 	}
 
 	private static COSArray getProcessComponents(COSObject attributes) {
@@ -100,8 +101,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
 	private static boolean areColorantsPresent(Set<ASAtom> colorantDictionaryEntries,
 	                                           List<COSObject> colorantsArray) {
-		for (int i = 0; i < colorantsArray.size(); ++i) {
-			COSObject object = colorantsArray.get(i);
+		for (COSObject object : colorantsArray) {
 			if (object != null && !isNone(object) && !IGNORED_COLORANTS.contains(object.getName()) &&
 			    !colorantDictionaryEntries.contains(object.getName())) {
 				return false;
@@ -116,7 +116,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 
 	@Override
 	public Boolean getareColorantsPresent() {
-		return Boolean.valueOf(this.areColorantsPresent);
+		return this.areColorantsPresent;
 	}
 
 	@Override
@@ -130,6 +130,8 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 				return this.getColorants();
 			case PROCESS_COLOR:
 				return this.getProcessColor();
+			case TINT_TRANSFORM:
+				return this.getTintTransform();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -182,26 +184,23 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 	}
 
 	private List<PDSeparation> getColorants() {
-		COSObject attributes = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getAttributes();
-		if (attributes != null && attributes.getType() == COSObjType.COS_DICT) {
-			COSObject colorantsDict = attributes.getKey(ASAtom.COLORANTS);
-			if (colorantsDict.getType() == COSObjType.COS_DICT && colorantsDict.size().intValue() > 0) {
-				return GFPDDeviceN.getColorants(colorantsDict);
+		List<PDSeparation> result = new LinkedList<>();
+		List<org.verapdf.pd.colors.PDColorSpace> colorants = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getColorants();
+		for (org.verapdf.pd.colors.PDColorSpace colorSpace : colorants) {
+			if (ASAtom.SEPARATION.equals(colorSpace.getType())) {
+				result.add((GFPDSeparation) ColorSpaceFactory.getColorSpace(colorSpace));
 			}
 		}
-		return Collections.emptyList();
+		return result;
 	}
 
-	private static List<PDSeparation> getColorants(COSObject colorantsDict) {
-		List<PDSeparation> list = new ArrayList<>(colorantsDict.size().intValue());
-		for (COSObject value : colorantsDict.getValues()) {
-			org.verapdf.pd.colors.PDColorSpace colorSpace = org.verapdf.factory.colors.ColorSpaceFactory
-					.getColorSpace(value);
-			if (ASAtom.SEPARATION.equals(colorSpace.getType())) {
-				list.add((GFPDSeparation) ColorSpaceFactory.getColorSpace(colorSpace));
-			}
+	private List<GFPDFunction> getTintTransform() {
+		PDFunction pdFunction = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getTintTransform();
+		if (pdFunction == null) {
+			return Collections.emptyList();
 		}
-		return Collections.unmodifiableList(list);
+		GFPDFunction gfpdFunction = FunctionFactory.createFunction(pdFunction);
+		return Collections.singletonList(gfpdFunction);
 	}
 
 	private boolean isNullOrNotDictionary(COSObject toCheck) {

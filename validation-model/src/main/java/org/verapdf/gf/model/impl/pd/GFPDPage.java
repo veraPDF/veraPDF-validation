@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -24,13 +24,16 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSArray;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosBBox;
+import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
 import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.actions.PDPageAdditionalActions;
+import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,12 +87,27 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 * Link name for page art box
 	 */
 	private static final String ART_BOX = "ArtBox";
+	/**
+	 * Link name for all output intents
+	 */
+	public static final String OUTPUT_INTENTS = "outputIntents";
+	/**
+	 * Link name for font names, names of colourants in Separation and DeviceN colour spaces
+	 */
+	private static final String RESOURCES = "resources";
 
-	public static final int MAX_NUMBER_OF_ACTIONS = 2;
+	public static final String PORTRAIT_ORIENTATION = "Portrait";
+	public static final String LANDSCAPE_ORIENTATION = "Landscape";
+	public static final String SQUARE_ORIENTATION = "Square";
+
+	public static final String TRANSPARENCY_COLOR_SPACE = "transparencyColorSpace";
+	public static final String PARENT_TRANSPARENCY_COLOR_SPACE = "parentTransparencyColorSpace";
 
 	private boolean containsTransparency = false;
 	private List<PDContentStream> contentStreams = null;
 	private List<PDAnnot> annotations = null;
+	private OutputIntents outputIntents = null;
+	private final PDColorSpace blendingColorSpace;
 
 	/**
 	 * Default constructor
@@ -98,6 +116,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 */
 	public GFPDPage(org.verapdf.pd.PDPage pdPage) {
 		super(pdPage, PD_PAGE_TYPE);
+		this.blendingColorSpace = getBlendingColorSpace();
 	}
 
 	@Override
@@ -121,9 +140,40 @@ public class GFPDPage extends GFPDObject implements PDPage {
 				return this.getTrimBox();
 			case ART_BOX:
 				return this.getArtBox();
+			case OUTPUT_INTENTS:
+				return this.getOutputIntents();
+			case TRANSPARENCY_COLOR_SPACE:
+				return this.getTransparencyColorSpace();
+			case PARENT_TRANSPARENCY_COLOR_SPACE:
+				return this.getParentTransparencyColorSpace();
+			case RESOURCES:
+				return this.getResources();
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<OutputIntents> getOutputIntents() {
+		if (this.outputIntents == null) {
+			this.outputIntents = parseOutputIntents();
+		}
+		if (this.outputIntents != null) {
+			List<OutputIntents> outIntents = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			outIntents.add(this.outputIntents);
+			return outIntents;
+		}
+		return Collections.emptyList();
+	}
+
+	private OutputIntents parseOutputIntents() {
+		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
+			return null;
+		}
+		List<org.verapdf.pd.PDOutputIntent> outInts = ((org.verapdf.pd.PDPage) this.simplePDObject).getOutputIntents();
+		if (outInts.size() > 0) {
+			return new GFOutputIntents(outInts);
+		}
+		return null;
 	}
 
 	private List<PDGroup> getGroup() {
@@ -131,9 +181,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		org.verapdf.pd.PDGroup group = page.getGroup();
 		if (group != null) {
 			List<PDGroup> res = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(),
-					page.isInheritedResources().booleanValue());
-			res.add(new GFPDGroup(group, resourcesHandler.getPageResources()));
+			res.add(new GFPDGroup(group, page.getResources()));
 			return Collections.unmodifiableList(res);
 		}
 		return Collections.emptyList();
@@ -152,10 +200,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
 		if (annots.size() > 0) {
 			List<PDAnnot> res = new ArrayList<>(annots.size());
+			org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
+			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
 			for (PDAnnotation annot : annots) {
-				org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-				PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
-				GFPDAnnot annotation = new GFPDAnnot(annot, resourcesHandler);
+				GFPDAnnot annotation = GFPDAnnot.createAnnot(annot, resourcesHandler, page);
 				this.containsTransparency |= annotation.isContainsTransparency();
 				res.add(annotation);
 			}
@@ -164,20 +212,12 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		return Collections.emptyList();
 	}
 
-	private List<PDAction> getActions() {
+	private List<PDAdditionalActions> getActions() {
 		PDPageAdditionalActions additionalActions =
 				((org.verapdf.pd.PDPage) this.simplePDObject).getAdditionalActions();
 		if (additionalActions != null) {
-			List<PDAction> actions = new ArrayList<>(MAX_NUMBER_OF_ACTIONS);
-
-			org.verapdf.pd.actions.PDAction raw;
-
-			raw = additionalActions.getC();
-			this.addAction(actions, raw);
-
-			raw = additionalActions.getO();
-			this.addAction(actions, raw);
-
+			List<PDAdditionalActions> actions = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			actions.add(new GFPDAdditionalActions(additionalActions));
 			return Collections.unmodifiableList(actions);
 		}
 		return Collections.emptyList();
@@ -194,10 +234,17 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		StaticContainers.getTransparencyVisitedContentStreams().clear();
 		List<PDContentStream> pdContentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
+		GFPDContentStream pdContentStream;
 		if (page.getContent() != null) {
 			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
-			GFPDContentStream pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
-					new StructureElementAccessObject(this.simpleCOSObject));
+			if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily()) &&
+			    !PDFAFlavour.WCAG2_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
+				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
+						new StructureElementAccessObject(this.simpleCOSObject));
+			} else {
+				pdContentStream = new GFPDSemanticContentStream(page.getContent(), resourcesHandler, null,
+						new StructureElementAccessObject(this.simpleCOSObject));
+			}
 			this.containsTransparency |= pdContentStream.isContainsTransparency();
 			pdContentStreams.add(pdContentStream);
 		}
@@ -239,7 +286,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 */
 	@Override
 	public Boolean getcontainsPresSteps() {
-		return Boolean.valueOf(((org.verapdf.pd.PDPage) simplePDObject).getCOSPresSteps() != null);
+		return ((org.verapdf.pd.PDPage) simplePDObject).getCOSPresSteps() != null;
 	}
 
 	/**
@@ -247,13 +294,14 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	 */
 	@Override
 	public Boolean getcontainsTransparency() {
+		StaticContainers.setCurrentTransparencyColorSpace(blendingColorSpace);
 		if (this.contentStreams == null) {
 			this.contentStreams = parseContentStream();
 		}
 		if (this.annotations == null) {
 			this.annotations = parseAnnotataions();
 		}
-		return Boolean.valueOf(this.containsTransparency);
+		return this.containsTransparency;
 	}
 
 	/**
@@ -262,12 +310,84 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	@Override
 	public Boolean getcontainsGroupCS() {
 		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) this.simplePDObject).getGroup();
-		return Boolean.valueOf(group != null && group.getColorSpace() != null);
+		return group != null && group.getColorSpace() != null;
 	}
 
 	@Override
 	public Boolean getcontainsAA() {
-		return this.simplePDObject == null ? Boolean.valueOf(false) :
+		return this.simplePDObject == null ? Boolean.FALSE :
 				this.simplePDObject.knownKey(ASAtom.AA);
+	}
+
+	@Override
+	public String getTabs() {
+		return ((org.verapdf.pd.PDPage)this.simplePDObject).getTabs();
+	}
+
+	@Override
+	public String getorientation() {
+		CosBBox mediaBox = new GFCosBBox(((org.verapdf.pd.PDPage) simplePDObject).getCOSMediaBox());
+		double height = mediaBox.gettop() - mediaBox.getbottom();
+		double width = mediaBox.getright() - mediaBox.getleft();
+		long rotation = ((org.verapdf.pd.PDPage) simplePDObject).getRotation();
+		if ((height > width && rotation % 180 == 0) || (height < width && rotation % 180 == 90)) {
+			return PORTRAIT_ORIENTATION;
+		}
+		if ((height < width && rotation % 180 == 0) || (height > width && rotation % 180 == 90)) {
+			return LANDSCAPE_ORIENTATION;
+		}
+		return SQUARE_ORIENTATION;
+	}
+
+	@Override
+	public String getoutputColorSpace() {
+		if (this.outputIntents == null) {
+			this.outputIntents = parseOutputIntents();
+		}
+		if (this.outputIntents != null) {
+			return ((GFOutputIntents)outputIntents).getColorSpace();
+		}
+		return null;
+	}
+
+	@Override
+	public Long getpageNumber() {
+		return (long) ((org.verapdf.pd.PDPage) this.simplePDObject).getPageNumber();
+	}
+
+	public PDColorSpace getBlendingColorSpace() {
+		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.PDPage) this.simplePDObject).getGroup();
+		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype())) {
+			return null;
+		}
+		return group.getColorSpace();
+	}
+
+	private List<TransparencyColorSpace> getTransparencyColorSpace() {
+		if (blendingColorSpace != null) {
+			List<TransparencyColorSpace> xFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			xFormTransparencyGroup.add(new GFTransparencyColorSpace(blendingColorSpace));
+			return Collections.unmodifiableList(xFormTransparencyGroup);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<TransparencyColorSpace> getParentTransparencyColorSpace() {
+		if (blendingColorSpace != null) {
+			List<TransparencyColorSpace> parentXFormTransparencyGroup = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			parentXFormTransparencyGroup.add(new GFTransparencyColorSpace(null));
+			StaticContainers.setCurrentTransparencyColorSpace(blendingColorSpace);
+			return Collections.unmodifiableList(parentXFormTransparencyGroup);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<PDResources> getResources() {
+		List<PDResources> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+		org.verapdf.pd.PDResources resources = ((org.verapdf.pd.PDPage) this.simplePDObject).getResources();
+		if (resources != null) {
+			result.add(new GFPDResources(resources));
+		}
+		return result;
 	}
 }

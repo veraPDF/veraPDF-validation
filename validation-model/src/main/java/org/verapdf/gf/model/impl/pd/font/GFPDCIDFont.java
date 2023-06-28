@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -29,14 +29,16 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosStream;
+import org.verapdf.model.operator.CIDGlyph;
+import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
-import org.verapdf.pd.font.PDFontDescriptor;
 import org.verapdf.pd.font.cff.CFFCIDFontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.font.truetype.CIDFontType2Program;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 
 import java.io.IOException;
 import java.util.*;
@@ -58,16 +60,20 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
     public static final String IDENTITY = "Identity";
     public static final String CUSTOM = "Custom";
+    public static final int maxSize = 16384;
+    public static final int bufferSize = 2048;
+    private final String externalFontID;
 
-    public GFPDCIDFont(PDFont font, RenderingMode renderingMode) {
+    public GFPDCIDFont(PDFont font, RenderingMode renderingMode, String externalFontID) {
         super(font, renderingMode, CID_FONT_TYPE);
-        if(font != null) {
+        this.externalFontID = externalFontID;
+        if (font != null) {
             FontProgram program = font.getFontProgram();
             if (program != null) {
-                StaticContainers.getDocument().getDocument().getResourceHandler().addResource(
+                StaticResources.getDocument().getDocument().getResourceHandler().addResource(
                         program.getFontProgramResource());
             }
-            if(program != null) {
+            if (program != null) {
                 try {
                     if (!program.isAttemptedParsing()) {
                         program.parseFont();
@@ -129,8 +135,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
      */
     @Override
     public Boolean getcidSetListsAllGlyphs() {
-        if(!fontProgramParsed) {
-            return Boolean.valueOf(false);
+        if (!fontProgramParsed) {
+            return Boolean.FALSE;
         }
 
         try {
@@ -146,30 +152,31 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
                 FontProgram cidFont = this.pdFont.getFontProgram();
 
-                // we skip i = 0 which corresponds to .notdef glyph
-                for (int i = 1; i < bitSet.size(); i++) {
-                    if (bitSet.get(i) && !cidFont.containsCID(i)) {
-                        return Boolean.FALSE;
-                    }
-                }
-
                 PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
                     //on this levels we need to ensure that all glyphs present in font program are described in cid set
-                    List<Integer> fontCIDs;
-                    if (cidFont instanceof CIDFontType2Program) {
-                        fontCIDs = ((CIDFontType2Program) cidFont).getCIDList();
-                    } else if (cidFont instanceof CFFFontProgram) {
-                        fontCIDs = ((CFFFontProgram) cidFont).getCIDList();
-                    } else if (cidFont instanceof CFFCIDFontProgram) {
-                        fontCIDs = ((CFFCIDFontProgram) cidFont).getCIDList();
-                    } else {
-                        fontCIDs = Collections.emptyList();
-                    }
-                    for (int i = 0; i < fontCIDs.size(); ++i) {
-                        int cid = fontCIDs.get(i);
+                    List<Integer> fontCIDs = cidFont != null ? cidFont.getCIDList() : Collections.emptyList();
+                    for (int cid : fontCIDs) {
                         if (cid != 0 && !bitSet.get(cid)) {
                             return Boolean.FALSE;
+                        }
+                    }
+                    // we skip i = 0 which corresponds to .notdef glyph
+                    for (int i = 1; i < bitSet.length(); i++) {
+                        if (bitSet.get(i) && !cidFont.containsCID(i)) {
+                            return Boolean.FALSE;
+                        }
+                    }
+                } else {
+                    Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(externalFontID);
+                    if (map != null) {
+                        for (Glyph glyph : map.values()) {
+                            if (glyph instanceof CIDGlyph) {
+                                int cid = ((CIDGlyph)glyph).getCID().intValue();
+                                if (cid != 0 && cidFont.containsCID(cid) && !bitSet.get(cid)) {
+                                    return false;
+                                }
+                            }
                         }
                     }
                 }
@@ -182,26 +189,34 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     }
 
     private COSStream getCIDSetStream() {
-        PDFontDescriptor fontDescriptor = this.pdFont.getFontDescriptor();
-        COSStream cidSet;
-        if (fontDescriptor != null) {
-            cidSet = ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
-            return cidSet;
-        }
-        return null;
+        return ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
     }
 
     private static byte[] getCIDsFromCIDSet(ASInputStream cidSet) throws IOException {
-        byte[] cidSetBytes = new byte[2048];
-        int read = cidSet.read(cidSetBytes);
-        return read == -1 ? new byte[0] : Arrays.copyOf(cidSetBytes, read);
+        byte[] cidSetBytes = new byte[maxSize];
+        byte[] temp = new byte[bufferSize];
+        int size = 0;
+        int read = cidSet.read(temp, bufferSize);
+        while (read != -1) {
+            if (size + read >= maxSize) {
+                System.arraycopy(temp, 0, cidSetBytes, size, maxSize - size);
+                return cidSetBytes;
+            }
+            System.arraycopy(temp, 0, cidSetBytes, size, read);
+            size += read;
+            if (read < bufferSize) {
+                return Arrays.copyOf(cidSetBytes, size);
+            }
+            read = cidSet.read(temp, bufferSize);
+        }
+        return Arrays.copyOf(cidSetBytes, size);
     }
 
     private static BitSet toBitSetBigEndian(byte[] source) {
         BitSet bitSet = new BitSet(source.length * 8);
         int i = 0;
-        for (int j = 0; j < source.length; j++) {
-            int b = source[j] >= 0 ? source[j] : 256 + source[j];
+        for (byte value : source) {
+            int b = value >= 0 ? value : 256 + value;
             for (int k = 0; k < 8; k++) {
                 bitSet.set(i++, (b & 0x80) != 0);
                 b = b << 1;

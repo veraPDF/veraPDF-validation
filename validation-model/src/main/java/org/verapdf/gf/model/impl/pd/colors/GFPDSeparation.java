@@ -1,20 +1,20 @@
 /**
- * This file is part of validation-model, a module of the veraPDF project.
+ * This file is part of veraPDF Validation, a module of the veraPDF project.
  * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * validation-model is free software: you can redistribute it and/or modify
+ * veraPDF Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with validation-model as the LICENSE.GPL file in the root of the source
+ * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * validation-model as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -24,12 +24,15 @@ import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
+import org.verapdf.gf.model.factory.functions.FunctionFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
+import org.verapdf.gf.model.impl.pd.functions.GFPDFunction;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDSeparation;
+import org.verapdf.pd.function.PDFunction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +44,7 @@ import java.util.List;
 public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
     public static final String SEPARATION_TYPE = "PDSeparation";
 
+    public static final String TINT_TRANSFORM = "tintTransform";
     public static final String ALTERNATE = "alternate";
     public static final String COLORANT_NAME = "colorantName";
 
@@ -73,12 +77,12 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
                 COSObject alternateSpaceToCompare =
                         ((org.verapdf.pd.colors.PDSeparation) gfPDSeparation.simplePDObject).getAlternate().getObject();
                 COSObject tintTransformToCompare =
-                        ((org.verapdf.pd.colors.PDSeparation) gfPDSeparation.simplePDObject).getTintTransform();
+                        ((org.verapdf.pd.colors.PDSeparation) gfPDSeparation.simplePDObject).getCosTintTransform();
 
                 COSObject alternateSpaceCurrent =
                         ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getAlternate().getObject();
                 COSObject tintTransformCurrent =
-                        ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getTintTransform();
+                        ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getCosTintTransform();
 
                 if (!alternateSpaceToCompare.equals(alternateSpaceCurrent) || !tintTransformToCompare.equals(tintTransformCurrent)) {
                     StaticContainers.getInconsistentSeparations().add(name);
@@ -97,6 +101,8 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
                 return this.getAlternate();
             case COLORANT_NAME:
                 return this.getColorantName();
+            case TINT_TRANSFORM:
+                return this.getTintTransform();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -125,5 +131,23 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
             return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();
+    }
+
+    private List<GFPDFunction> getTintTransform() {
+        PDFunction pdFunction = ((org.verapdf.pd.colors.PDSeparation) this.simplePDObject).getTintTransform();
+        if (pdFunction == null) {
+            return Collections.emptyList();
+        }
+        GFPDFunction gfpdFunction = FunctionFactory.createFunction(pdFunction);
+        return Collections.singletonList(gfpdFunction);
+    }
+
+    @Override
+    public String getname() {
+        COSObject name = ((org.verapdf.pd.colors.PDSeparation) this.simplePDObject).getColorantName();
+        if (name.getType() == COSObjType.COS_NAME) {
+            return ((COSName)name.getDirectBase()).getUnicodeValue();
+        }
+        return null;
     }
 }
