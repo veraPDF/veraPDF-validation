@@ -127,10 +127,8 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	public COSObject getCropBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropBox"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("CropBox"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("CropBox"));
 		}
 		return object;
 	}
@@ -171,10 +169,8 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	public COSObject getMediaBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MediaBox"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("MediaBox"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("MediaBox"));
 		}
 		return object;
 	}
@@ -221,10 +217,8 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	public COSObject getResourcesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("Resources"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("Resources"));
 		}
 		return object;
 	}
@@ -253,10 +247,8 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	public COSObject getRotateValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rotate"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("Rotate"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("Rotate"));
 		}
 		if (object == null || object.empty()) {
 			object = getRotateDefaultValue();

@@ -21,11 +21,6 @@ public class GFAArrayOfNamesForProcSetEntry extends GFAObject implements AArrayO
 		this.collectionName = collectionName;
 	}
 
-	@Override
-	public Boolean getcontains() {
-		return this.baseObject.knownKey(ASAtom.getASAtom(""));
-	}
-
 	public COSObject getValue() {
 		COSObject object = new COSObject(this.baseObject);
 		return object;

@@ -338,10 +338,8 @@ public class GFAFieldBtnRadio extends GFAObject implements AFieldBtnRadio {
 
 	public COSObject getDAValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("DA"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("DA"));
 		}
 		return object;
 	}
@@ -382,10 +380,8 @@ public class GFAFieldBtnRadio extends GFAObject implements AFieldBtnRadio {
 
 	public COSObject getDVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("DV"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("DV"));
 		}
 		return object;
 	}
@@ -410,10 +406,8 @@ public class GFAFieldBtnRadio extends GFAObject implements AFieldBtnRadio {
 
 	public COSObject getFTValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FT"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("FT"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("FT"));
 		}
 		return object;
 	}
@@ -444,10 +438,8 @@ public class GFAFieldBtnRadio extends GFAObject implements AFieldBtnRadio {
 
 	public COSObject getFfValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("Ff"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("Ff"));
 		}
 		return object;
 	}
@@ -494,10 +486,8 @@ public class GFAFieldBtnRadio extends GFAObject implements AFieldBtnRadio {
 
 	public COSObject getOptValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Opt"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("Opt"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("Opt"));
 		}
 		return object;
 	}
@@ -667,10 +657,8 @@ public class GFAFieldBtnRadio extends GFAObject implements AFieldBtnRadio {
 
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
-		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
-		while ((object == null || object.empty()) && (currentObject != null && !currentObject.empty())) {
-			object = currentObject.getKey(ASAtom.getASAtom("V"));
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("V"));
 		}
 		if (object == null || object.empty()) {
 			object = getVDefaultValue();
