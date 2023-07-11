@@ -77,6 +77,11 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	}
 
 	@Override
+	public Long getBitsPerComponent() {
+		return ((org.verapdf.pd.images.PDXImage) simplePDObject).getBitsPerComponent();
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case INTENT:
