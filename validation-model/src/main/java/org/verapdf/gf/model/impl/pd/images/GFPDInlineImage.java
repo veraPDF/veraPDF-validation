@@ -87,6 +87,11 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 	}
 
 	@Override
+	public Long getBitsPerComponent() {
+		return ((org.verapdf.pd.images.PDInlineImage) simplePDObject).getBitsPerComponent();
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case GFPDXImage.INTENT:
