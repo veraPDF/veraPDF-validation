@@ -51,7 +51,7 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfIntegersGeneral> getPrintPageRange() {
+	private List<AArrayOfIntegersGreaterThanZero> getPrintPageRange() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
@@ -61,14 +61,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 		}
 	}
 
-	private List<AArrayOfIntegersGeneral> getPrintPageRange1_7() {
+	private List<AArrayOfIntegersGreaterThanZero> getPrintPageRange1_7() {
 		COSObject object = getPrintPageRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfIntegersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfIntegersGeneral((COSArray)object.getDirectBase(), this.baseObject, "PrintPageRange"));
+			List<AArrayOfIntegersGreaterThanZero> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfIntegersGreaterThanZero((COSArray)object.getDirectBase(), this.baseObject, "PrintPageRange"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

@@ -155,12 +155,6 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
-	public String getPStringByteValue() {
-		COSObject object = getPValue();
-		return getStringByteValue(object);
-	}
-
-	@Override
 	public Boolean getnameTreetrailerCatalogNamesDestsContainsPString() {
 		COSObject object = getPValue();
 		if (object == null || object.getType() != COSObjType.COS_STRING) {
