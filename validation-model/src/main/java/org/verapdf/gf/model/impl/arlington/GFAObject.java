@@ -265,6 +265,14 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return StaticResources.getDocument().getPages().get(pageNumber.intValue()).getObject();
 	}
 
+	public Boolean isContainsInheritableValue(ASAtom key) {
+		COSObject currentObject = new COSObject(this.baseObject);
+		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(key)) {
+			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		}
+		return currentObject != null && currentObject.knownKey(key);
+	}
+
 	public static Boolean getHasTypeArray(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}

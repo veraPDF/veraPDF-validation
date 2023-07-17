@@ -653,14 +653,10 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsCropBox() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("CropBox"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("CropBox"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("CropBox"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("CropBox"));
 	}
 
 	public COSObject getCropBoxValue() {
@@ -727,14 +723,10 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsHid() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Hid"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("Hid"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("Hid"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("Hid"));
 	}
 
 	public COSObject getHidDefaultValue() {
@@ -803,14 +795,10 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsMediaBox() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("MediaBox"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("MediaBox"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("MediaBox"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("MediaBox"));
 	}
 
 	public COSObject getMediaBoxValue() {
@@ -937,14 +925,10 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsResources() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Resources"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("Resources"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("Resources"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
 	}
 
 	public COSObject getResourcesValue() {
@@ -963,14 +947,10 @@ public class GFAPageObject extends GFAObject implements APageObject {
 
 	@Override
 	public Boolean getcontainsRotate() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Rotate"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("Rotate"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("Rotate"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("Rotate"));
 	}
 
 	public COSObject getRotateDefaultValue() {

@@ -416,14 +416,10 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsDA() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("DA"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("DA"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("DA"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
 	}
 
 	public COSObject getDAValue() {
@@ -458,14 +454,10 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsDV() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("DV"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("DV"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("DV"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("DV"));
 	}
 
 	public COSObject getDVValue() {
@@ -490,14 +482,10 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsFT() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("FT"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("FT"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("FT"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("FT"));
 	}
 
 	public COSObject getFTValue() {
@@ -522,14 +510,10 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsFf() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Ff"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("Ff"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("Ff"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
 	}
 
 	public COSObject getFfValue() {
@@ -554,14 +538,10 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsI() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("I"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("I"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("I"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("I"));
 	}
 
 	public COSObject getIValue() {
@@ -602,14 +582,10 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsOpt() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("Opt"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("Opt"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("Opt"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("Opt"));
 	}
 
 	public COSObject getOptValue() {
@@ -733,14 +709,10 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsTI() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("TI"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("TI"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("TI"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("TI"));
 	}
 
 	public COSObject getTIDefaultValue() {
@@ -814,14 +786,10 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 
 	@Override
 	public Boolean getcontainsV() {
-		COSObject currentObject = new COSObject(this.baseObject);
-		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(ASAtom.getASAtom("V"))) {
-			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
+		if (isContainsInheritableValue(ASAtom.getASAtom("V"))) {
+			return true;
 		}
-		if (currentObject == null || currentObject.empty()) {
-			return false;
-		}
-		return currentObject.knownKey(ASAtom.getASAtom("V"));
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
 	}
 
 	public COSObject getVValue() {

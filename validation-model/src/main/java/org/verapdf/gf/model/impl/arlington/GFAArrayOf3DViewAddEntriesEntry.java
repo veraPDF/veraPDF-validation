@@ -33,16 +33,15 @@ public class GFAArrayOf3DViewAddEntriesEntry extends GFAObject implements AArray
 
 	private List<A3DViewAddEntries> getEntry() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntry1_6();
+				return getEntry1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<A3DViewAddEntries> getEntry1_6() {
+	private List<A3DViewAddEntries> getEntry1_7() {
 		COSObject object = new COSObject(this.baseObject);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<A3DViewAddEntries> list = new ArrayList<>(1);
@@ -67,6 +66,11 @@ public class GFAArrayOf3DViewAddEntriesEntry extends GFAObject implements AArray
 	public Boolean getHasTypeDictionary() {
 		COSObject object = getValue();
 		return getHasTypeDictionary(object);
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
 	}
 
 }

@@ -28,16 +28,15 @@ public class GFAArrayOf3DViewAddEntries extends GFAObject implements AArrayOf3DV
 
 	private List<AArrayOf3DViewAddEntriesEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntries1_6();
+				return getEntries1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf3DViewAddEntriesEntry> getEntries1_6() {
+	private List<AArrayOf3DViewAddEntriesEntry> getEntries1_7() {
 		List<AArrayOf3DViewAddEntriesEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
