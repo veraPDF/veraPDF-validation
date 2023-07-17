@@ -270,7 +270,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(key)) {
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
-		return currentObject != null && currentObject.knownKey(key);
+		return currentObject != null && !currentObject.empty() && currentObject.knownKey(key);
 	}
 
 	public static Boolean getHasTypeArray(COSObject object) {
