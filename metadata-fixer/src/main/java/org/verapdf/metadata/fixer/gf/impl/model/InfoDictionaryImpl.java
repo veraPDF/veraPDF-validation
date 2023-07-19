@@ -68,6 +68,11 @@ public class InfoDictionaryImpl implements InfoDictionary {
 	}
 
 	@Override
+	public int getAuthorSize() {
+		return this.info.knownKey(ASAtom.AUTHOR) ? 1 : 0;
+	}
+
+	@Override
 	public void setAuthor(String author) {
 		this.info.setStringKey(ASAtom.AUTHOR, author);
 	}
