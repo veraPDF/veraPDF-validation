@@ -234,9 +234,15 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 			if (metaValue == null) {
 				doSaveAction(schema, attribute, infoValue);
 				resultBuilder.addFix("Added '" + key + "' to metadata from info dictionary");
-			} else if (!metaValue.equals(infoValue)) {
-				doSaveAction(info, attribute, metaValue);
-				resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
+			} else {
+				if (METADATA_AUTHOR.equals(attribute) && ((DublinCore)schema).getAuthorSize() > 1) {
+					doSaveAction(schema, attribute, metaValue);
+					resultBuilder.addFix("Merged several creators into one in metadata");
+				}
+				if (!metaValue.equals(infoValue)) {
+					doSaveAction(info, attribute, metaValue);
+					resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
+				}
 			}
 		}
 	}
