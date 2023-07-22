@@ -28,6 +28,8 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 				return getentryID();
 			case "Info":
 				return getInfo();
+			case "LinearizationParameterDict":
+				return getLinearizationParameterDict();
 			case "Root":
 				return getRoot();
 			case "XRefStream":
@@ -158,6 +160,34 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return Collections.emptyList();
 	}
 
+	private List<ALinearizationParameterDict> getLinearizationParameterDict() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getLinearizationParameterDict1_2();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ALinearizationParameterDict> getLinearizationParameterDict1_2() {
+		COSObject object = getLinearizationParameterDictValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ALinearizationParameterDict> list = new ArrayList<>(1);
+			list.add(new GFALinearizationParameterDict((COSDictionary)object.getDirectBase(), this.baseObject, "LinearizationParameterDict"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<ACatalog> getRoot() {
 		return getRoot1_0();
 	}
@@ -279,6 +309,22 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	@Override
 	public Boolean getInfoHasTypeDictionary() {
 		COSObject object = getInfoValue();
+		return getHasTypeDictionary(object);
+	}
+
+	@Override
+	public Boolean getcontainsLinearizationParameterDict() {
+		return getLinearizationParameterDictValue() != null;
+	}
+
+	public COSObject getLinearizationParameterDictValue() {
+		COSObject object = StaticResources.getDocument().getDocument().getLinearizationDictionary();
+		return object;
+	}
+
+	@Override
+	public Boolean getLinearizationParameterDictHasTypeDictionary() {
+		COSObject object = getLinearizationParameterDictValue();
 		return getHasTypeDictionary(object);
 	}
 
