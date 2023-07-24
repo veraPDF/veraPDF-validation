@@ -30,6 +30,8 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 				return getInfo();
 			case "LinearizationParameterDict":
 				return getLinearizationParameterDict();
+			case "ObjectStreams":
+				return getObjectStreams();
 			case "Root":
 				return getRoot();
 			case "XRefStream":
@@ -188,6 +190,31 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return Collections.emptyList();
 	}
 
+	private List<AArrayOfObjectStreams> getObjectStreams() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getObjectStreams1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfObjectStreams> getObjectStreams1_5() {
+		COSObject object = getObjectStreamsValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfObjectStreams> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfObjectStreams((COSArray)object.getDirectBase(), this.baseObject, "ObjectStreams"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<ACatalog> getRoot() {
 		return getRoot1_0();
 	}
@@ -326,6 +353,22 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	public Boolean getLinearizationParameterDictHasTypeDictionary() {
 		COSObject object = getLinearizationParameterDictValue();
 		return getHasTypeDictionary(object);
+	}
+
+	@Override
+	public Boolean getcontainsObjectStreams() {
+		return getObjectStreamsValue() != null;
+	}
+
+	public COSObject getObjectStreamsValue() {
+		COSObject object = new COSObject(new COSArray(StaticResources.getDocument().getDocument().getObjectStreamsList()));
+		return object;
+	}
+
+	@Override
+	public Boolean getObjectStreamsHasTypeArray() {
+		COSObject object = getObjectStreamsValue();
+		return getHasTypeArray(object);
 	}
 
 	@Override
