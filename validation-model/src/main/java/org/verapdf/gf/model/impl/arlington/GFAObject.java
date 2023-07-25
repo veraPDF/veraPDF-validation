@@ -221,7 +221,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 			return false;
 		}
 		Set<COSKey> visitedKeys = new HashSet<>();
-		while (object.knownKey(entryName)) {
+		while (!object.empty() && object.knownKey(entryName)) {
 			if (object.getKey() != null) {
 				if (visitedKeys.contains(object.getKey())) {
 					return true;
