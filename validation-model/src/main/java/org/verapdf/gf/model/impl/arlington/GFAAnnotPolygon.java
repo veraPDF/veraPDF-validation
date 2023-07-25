@@ -250,7 +250,7 @@ public class GFAAnnotPolygon extends GFAObject implements AAnnotPolygon {
 			case "Markup3D":
 				return new GFAExData3DMarkup(base, this.baseObject, keyName);
 			case "MarkupGeo":
-				if (((gethasExtensionADBE_Extn3() == true)) == false) {
+				if (gethasExtensionADBE_Extn3() != true) {
 					return null;
 				}
 				return new GFAExDataMarkupGeo(base, this.baseObject, keyName);

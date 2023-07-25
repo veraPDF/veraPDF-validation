@@ -148,7 +148,7 @@ public class GFAArrayOfRequirementsEntry extends GFAObject implements AArrayOfRe
 			case "RichMedia":
 				return new GFARequirementsRichMedia(base, this.baseObject, keyName);
 			case "STEP":
-				if (((gethasExtensionISO_TS_24064() == true)) == false) {
+				if (gethasExtensionISO_TS_24064() != true) {
 					return null;
 				}
 				return new GFARequirementsSTEP(base, this.baseObject, keyName);

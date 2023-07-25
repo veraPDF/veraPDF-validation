@@ -457,14 +457,14 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 			case "PrinterMark":
 				return new GFAAnnotPrinterMark(base, this.baseObject, keyName);
 			case "Projection":
-				if (((gethasExtensionADBE_Extn3() == true)) == false) {
+				if (gethasExtensionADBE_Extn3() != true) {
 					return null;
 				}
 				return new GFAAnnotProjection(base, this.baseObject, keyName);
 			case "Redact":
 				return new GFAAnnotRedact(base, this.baseObject, keyName);
 			case "RichMedia":
-				if (((gethasExtensionADBE_Extn3() == true)) == false) {
+				if (gethasExtensionADBE_Extn3() != true) {
 					return null;
 				}
 				return new GFAAnnotRichMedia(base, this.baseObject, keyName);
