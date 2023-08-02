@@ -95,12 +95,6 @@ public class GFAStructTreeRootNumberTreeParentTreeEntry extends GFAObject implem
 	}
 
 	@Override
-	public Boolean getHasTypeArray() {
-		COSObject object = getValue();
-		return getHasTypeArray(object);
-	}
-
-	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject object = getValue();
 		return getHasTypeDictionary(object);

@@ -339,36 +339,14 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return getHasTypeDictionary(object);
 	}
 
-	@Override
-	public Boolean getcontainsLinearizationParameterDict() {
-		return getLinearizationParameterDictValue() != null;
-	}
-
 	public COSObject getLinearizationParameterDictValue() {
 		COSObject object = StaticResources.getDocument().getDocument().getLinearizationDictionary();
 		return object;
 	}
 
-	@Override
-	public Boolean getLinearizationParameterDictHasTypeDictionary() {
-		COSObject object = getLinearizationParameterDictValue();
-		return getHasTypeDictionary(object);
-	}
-
-	@Override
-	public Boolean getcontainsObjectStreams() {
-		return getObjectStreamsValue() != null;
-	}
-
 	public COSObject getObjectStreamsValue() {
 		COSObject object = new COSObject(new COSArray(StaticResources.getDocument().getDocument().getObjectStreamsList()));
 		return object;
-	}
-
-	@Override
-	public Boolean getObjectStreamsHasTypeArray() {
-		COSObject object = getObjectStreamsValue();
-		return getHasTypeArray(object);
 	}
 
 	@Override
