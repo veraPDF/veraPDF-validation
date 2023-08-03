@@ -344,4 +344,17 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 		return getHasTypeStream(object);
 	}
 
+	@Override
+	public Boolean getcontainsDRFontAny() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject DR = this.baseObject.getKey(ASAtom.getASAtom("DR"));
+		if (DR == null || !DR.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Font = DR.getKey(ASAtom.getASAtom("Font"));
+		return Font.getKeySet() != null && !Font.getKeySet().isEmpty();
+	}
+
 }
