@@ -137,6 +137,10 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return object != null && object.get() != null && object.get().isIndirect();
 	}
 
+	public static Boolean getimageIsStructContentItem(COSObject object) {
+		return object.isIndirect() && GFAObject.getKeysSet().contains(object.getKey());
+	}
+
 	public static Long getArraySize(COSObject object) {
 		if (object != null && object.getType() == COSObjType.COS_ARRAY) {
 			return (long) object.size();

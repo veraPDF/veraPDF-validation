@@ -1693,7 +1693,7 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 
 	@Override
 	public Boolean getimageIsStructContentItem() {
-		return GFAObject.getKeysSet().contains(this.baseObject.getKey());
+		return getimageIsStructContentItem(new COSObject(this.baseObject));
 	}
 
 	@Override

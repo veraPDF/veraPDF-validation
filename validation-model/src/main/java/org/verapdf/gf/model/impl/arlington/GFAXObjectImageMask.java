@@ -1331,7 +1331,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 
 	@Override
 	public Boolean getimageIsStructContentItem() {
-		return GFAObject.getKeysSet().contains(this.baseObject.getKey());
+		return getimageIsStructContentItem(new COSObject(this.baseObject));
 	}
 
 	@Override
