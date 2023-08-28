@@ -153,12 +153,12 @@ public class GFASignatureReferenceFieldMDP extends GFAObject implements ASignatu
 
 	public COSObject getDigestMethodDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return gethasExtensionISO_TS_32001() ? COSName.construct("SHA256") : null;
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 				return true ? COSName.construct("MD5") : gethasExtensionISO_TS_32001() ? COSName.construct("SHA256") : null;
-			case ARLINGTON2_0:
-				return gethasExtensionISO_TS_32001() ? COSName.construct("SHA256") : null;
 		}
 		return null;
 	}
