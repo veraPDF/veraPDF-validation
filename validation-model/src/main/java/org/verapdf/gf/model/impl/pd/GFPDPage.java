@@ -237,7 +237,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		GFPDContentStream pdContentStream;
 		if (page.getContent() != null) {
 			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
-			if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily()) &&
+			if (!PDFAFlavour.IsoStandardSeries.ISO_14289.equals(StaticContainers.getFlavour().getPart().getSeries()) &&
 			    !PDFAFlavour.WCAG2_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
 				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
 						new StructureElementAccessObject(this.simpleCOSObject));
