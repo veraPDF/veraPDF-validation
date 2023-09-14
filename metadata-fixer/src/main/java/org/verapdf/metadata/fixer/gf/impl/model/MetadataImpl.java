@@ -113,7 +113,7 @@ public class MetadataImpl implements Metadata {
         if (isValidPDFAIdentification() && isWrongPDFAIdentification(flavour)) {
             return;
         }
-        if (this.metadata.deleteIdentificationSchema()) {
+        if (this.metadata.deletePDFAIdentificationSchema()) {
             this.setNeedToBeUpdated(true);
             resultBuilder.addFix("Identification schema removed");
             resultBuilder.status(MetadataFixerResult.RepairStatus.ID_REMOVED);
@@ -122,10 +122,10 @@ public class MetadataImpl implements Metadata {
 
     public void removePDFUAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         try {
-            if (!Objects.equals(flavour.getPart().getPartNumber(), this.metadata.getUAIdentificationPart())) {
+            if (!Objects.equals(flavour.getPart().getPartNumber(), this.metadata.getPDFUAIdentificationPart())) {
                 return;
             }
-            if (this.metadata.deleteUAIdentificationSchema()) {
+            if (this.metadata.deletePDFUAIdentificationSchema()) {
                 this.setNeedToBeUpdated(true);
                 resultBuilder.addFix("PDF/UA Identification schema removed");
                 resultBuilder.status(MetadataFixerResult.RepairStatus.ID_REMOVED);
@@ -174,8 +174,8 @@ public class MetadataImpl implements Metadata {
     public void addPDFUAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         try {
             int part = flavour.getPart().getPartNumber();
-            if (!Objects.equals(this.metadata.getUAIdentificationPart(), part)) {
-                this.metadata.setUAIdentificationPart(part);
+            if (!Objects.equals(this.metadata.getPDFUAIdentificationPart(), part)) {
+                this.metadata.setPDFUAIdentificationPart(part);
                 this.setNeedToBeUpdated(true);
                 resultBuilder.addFix("Identification schema added");
             }
@@ -191,8 +191,8 @@ public class MetadataImpl implements Metadata {
         int part = flavour.getPart().getPartNumber();
         String conformance = flavour != PDFAFlavour.PDFA_4 ? flavour.getLevel().getCode().toUpperCase() : null;
         try {
-            this.metadata.setIdentificationPart(part);
-            this.metadata.setIdentificationConformance(conformance);
+            this.metadata.setPDFAIdentificationPart(part);
+            this.metadata.setPDFAIdentificationConformance(conformance);
             this.setNeedToBeUpdated(true);
             resultBuilder.addFix("Identification schema added");
         } catch (XMPException e) {
@@ -207,12 +207,12 @@ public class MetadataImpl implements Metadata {
         try {
             VeraPDFXMPNode rev = this.metadata.getProperty(XMPConst.NS_PDFA_ID, VeraPDFMeta.REVISION_YEAR);
             if (rev == null) {
-                this.metadata.setIdentificationRevisionYear(YEAR_2020);
+                this.metadata.setPDFAIdentificationRevisionYear(YEAR_2020);
                 this.setNeedToBeUpdated(true);
                 resultBuilder.addFix(VeraPDFMeta.REVISION_YEAR + " property with value " + YEAR_2020 +
                         " add to Identification schema");
             } else if (!rev.getValue().matches(YEAR_REGEX)) {
-                this.metadata.setIdentificationRevisionYear(YEAR_2020);
+                this.metadata.setPDFAIdentificationRevisionYear(YEAR_2020);
                 this.setNeedToBeUpdated(true);
                 resultBuilder.addFix("Set " + VeraPDFMeta.REVISION_YEAR +
                         " property value to " + YEAR_2020 + " in Identification schema");
@@ -245,8 +245,8 @@ public class MetadataImpl implements Metadata {
         try {
             int part = flavour.getPart().getPartNumber();
             String conformance = flavour != PDFAFlavour.PDFA_4 ? flavour.getLevel().getCode().toUpperCase() : null;
-            Integer schemaPart = this.metadata.getIdentificationPart();
-            String schemaConformance = this.metadata.getIdentificationConformance();
+            Integer schemaPart = this.metadata.getPDFAIdentificationPart();
+            String schemaConformance = this.metadata.getPDFAIdentificationConformance();
             return schemaPart != part ||
                     (part == 4 && !Objects.equals(conformance, schemaConformance)) ||
                     ((part == 1 || part == 2 || part == 3) && compare(conformance, schemaConformance) > 0);
@@ -258,11 +258,11 @@ public class MetadataImpl implements Metadata {
 
     private boolean isValidPDFAIdentification() {
         try {
-            Integer identificationPart = this.metadata.getIdentificationPart();
+            Integer identificationPart = this.metadata.getPDFAIdentificationPart();
             if (identificationPart == null) {
                 return false;
             }
-            String identificationConformance = this.metadata.getIdentificationConformance();
+            String identificationConformance = this.metadata.getPDFAIdentificationConformance();
             if (identificationPart == 1) {
                 return "A".equals(identificationConformance) || "B".equals(identificationConformance);
             } else if (identificationPart == 2 || identificationPart == 3) {
