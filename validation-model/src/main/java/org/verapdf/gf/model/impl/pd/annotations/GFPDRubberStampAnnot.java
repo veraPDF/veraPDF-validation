@@ -31,7 +31,7 @@ import org.verapdf.pd.PDPage;
  */
 public class GFPDRubberStampAnnot extends GFPDMarkupAnnot implements PDRubberStampAnnot {
 
-	public static final String RUBBER_STAMP_ANNOTATION_TYPE = "PDRubberAnnot";
+	public static final String RUBBER_STAMP_ANNOTATION_TYPE = "PDRubberStampAnnot";
 
 	public GFPDRubberStampAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, pageResources, page, RUBBER_STAMP_ANNOTATION_TYPE);
