@@ -28,16 +28,13 @@ import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSName;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.cos.GFCosBM;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
-import org.verapdf.gf.model.impl.pd.annotations.GFPD3DAnnot;
-import org.verapdf.gf.model.impl.pd.annotations.GFPDLinkAnnot;
-import org.verapdf.gf.model.impl.pd.annotations.GFPDPrinterMarkAnnot;
-import org.verapdf.gf.model.impl.pd.annotations.GFPDTrapNetAnnot;
-import org.verapdf.gf.model.impl.pd.annotations.GFPDWidgetAnnot;
+import org.verapdf.gf.model.impl.pd.annotations.*;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBM;
@@ -82,11 +79,32 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final String ADDITIONAL_ACTION = "AA";
 	public static final String LANG = "Lang";
 	public static final String BM = "BM";
-	public static final String LINK = "Link";
-	public static final String PRINTER_MARK = "PrinterMark";
-	public static final String WIDGET = "Widget";
-	public static final String TRAP_NET = "TrapNet";
 	public static final String TYPE_3D = "3D";
+	public static final String CARET = "Caret";
+	public static final String CIRCLE = "Circle";
+	public static final String FILE_ATTACHMENT = "FileAttachment";
+	public static final String FREE_TEXT = "FreeText";
+	public static final String HIGHLIGHT = "Highlight";
+	public static final String INK = "Ink";
+	public static final String LINE = "Line";
+	public static final String LINK = "Link";
+	public static final String MOVIE = "Movie";
+	public static final String POLYGON = "Polygon";
+	public static final String POLYLINE = "PolyLine";
+	public static final String POPUP = "Popup";
+	public static final String PRINTER_MARK = "PrinterMark";
+	public static final String REDACT = "Redact";
+	public static final String RICH_MEDIA = "RichMedia";
+	public static final String SCREEN = "Screen";
+	public static final String SOUND = "Sound";
+	public static final String STAMP = "Stamp";
+	public static final String STRIKE_OUT = "StrikeOut";
+	public static final String SQUARE = "Square";
+	public static final String SQUIGGLY = "Squiggly";
+	public static final String TEXT = "Text";
+	public static final String TRAP_NET = "TrapNet";
+	public static final String UNDERLINE = "Underline";
+	public static final String WIDGET = "Widget";
 
 	public static final int X_AXIS = 0;
 	public static final int Y_AXIS = 1;
@@ -178,6 +196,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String getstructParentStandardType() {
+		return StaticStorages.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getstructParentType()));
 	}
 
 	private List<CosLang> getLang() {
@@ -417,16 +440,46 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		}
 		String subtypeString = subtype.getValue();
 		switch (subtypeString) {
-			case WIDGET:
-				return new GFPDWidgetAnnot((PDWidgetAnnotation) annot, pageResources, page);
 			case TYPE_3D:
 				return new GFPD3DAnnot(annot, pageResources, page);
-			case TRAP_NET:
-				return new GFPDTrapNetAnnot(annot, pageResources, page);
+			case FILE_ATTACHMENT:
+				return new GFPDFileAttachmentAnnot(annot, pageResources, page);
+			case INK:
+				return new GFPDInkAnnot(annot, pageResources, page);
 			case LINK:
 				return new GFPDLinkAnnot(annot, pageResources, page);
+			case MOVIE:
+				return new GFPDMovieAnnot(annot, pageResources, page);
+			case POPUP:
+				return new GFPDPopupAnnot(annot, pageResources, page);
 			case PRINTER_MARK:
 				return new GFPDPrinterMarkAnnot(annot, pageResources, page);
+			case RICH_MEDIA:
+				return new GFPDRichMediaAnnot(annot, pageResources, page);
+			case SCREEN:
+				return new GFPDScreenAnnot(annot, pageResources, page);
+			case SOUND:
+				return new GFPDSoundAnnot(annot, pageResources, page);
+			case STAMP:
+				return new GFPDRubberStampAnnot(annot, pageResources, page);
+			case TRAP_NET:
+				return new GFPDTrapNetAnnot(annot, pageResources, page);
+			case WIDGET:
+				return new GFPDWidgetAnnot((PDWidgetAnnotation) annot, pageResources, page);
+			case CARET:
+			case CIRCLE:
+			case FREE_TEXT:
+			case HIGHLIGHT:
+			case LINE:
+			case POLYGON:
+			case POLYLINE:
+			case REDACT:
+			case STRIKE_OUT:
+			case SQUARE:
+			case SQUIGGLY:
+			case TEXT:
+			case UNDERLINE:
+				return new GFPDMarkupAnnot(annot, pageResources, page);
 			default:
 				return new GFPDAnnot(annot, pageResources, page);
 		}
