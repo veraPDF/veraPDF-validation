@@ -175,11 +175,11 @@ public class GFModelParser implements PDFAParser {
 		}
 		try (InputStream is = metadata.getStream()) {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
-			Integer identificationPart = veraPDFMeta.getIdentificationPart();
-			String identificationConformance = veraPDFMeta.getIdentificationConformance();
+			Integer identificationPart = veraPDFMeta.getPDFAIdentificationPart();
+			String identificationConformance = veraPDFMeta.getPDFAIdentificationConformance();
 			String prefix = "";
 			if (identificationPart == null && identificationConformance == null) {
-				identificationPart = veraPDFMeta.getUAIdentificationPart();
+				identificationPart = veraPDFMeta.getPDFUAIdentificationPart();
 				if (identificationPart != null) {
 					prefix = PDFUA_PREFIX;
 				}
