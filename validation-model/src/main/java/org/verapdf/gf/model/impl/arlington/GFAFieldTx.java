@@ -317,17 +317,26 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
+				return getV1_2();
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getV1_2();
+				return getV1_5();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
 	private List<AStream> getV1_2() {
+		COSObject object = getVValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AStream> getV1_5() {
 		COSObject object = getVValue();
 		if (object == null) {
 			return Collections.emptyList();
