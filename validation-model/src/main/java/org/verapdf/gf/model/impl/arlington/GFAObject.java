@@ -87,6 +87,38 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	@Override
+	public String getobjectType() {
+		if (baseObject.getType() == COSObjType.COS_ARRAY) {
+			return "Array";
+		}
+		if (baseObject.getType() == COSObjType.COS_BOOLEAN) {
+			return "Boolean";
+		}
+		if (baseObject.getType() == COSObjType.COS_DICT) {
+			return "Dictionary";
+		}
+		if (baseObject.getType() == COSObjType.COS_INTEGER) {
+			return "Integer";
+		}
+		if (baseObject.getType() == COSObjType.COS_NAME) {
+			return "Name";
+		}
+		if (baseObject.getType() == COSObjType.COS_NULL) {
+			return "Null";
+		}
+		if (baseObject.getType() == COSObjType.COS_REAL) {
+			return "Number";
+		}
+		if (baseObject.getType() == COSObjType.COS_STREAM) {
+			return "Stream";
+		}
+		if (baseObject.getType() == COSObjType.COS_STRING) {
+			return "String";
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getnotStandard14Font() {
 		COSObject type = baseObject.getKey(ASAtom.TYPE);
 		if (type == null || type.getType() != COSObjType.COS_NAME || type.getName() != ASAtom.FONT) {
