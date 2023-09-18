@@ -1723,6 +1723,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public Boolean getisStructTreeRootIndirect() {
+		COSObject object = getStructTreeRootValue();
+		return getisIndirect(object);
+	}
+
+	@Override
 	public Boolean getStructTreeRootHasTypeDictionary() {
 		COSObject object = getStructTreeRootValue();
 		return getHasTypeDictionary(object);
