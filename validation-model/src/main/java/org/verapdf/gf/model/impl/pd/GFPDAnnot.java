@@ -28,7 +28,6 @@ import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSName;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.cos.GFCosBM;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosNumber;
@@ -200,7 +199,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public String getstructParentStandardType() {
-		return StaticStorages.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getstructParentType()));
+		return StaticContainers.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getstructParentType()));
 	}
 
 	private List<CosLang> getLang() {
