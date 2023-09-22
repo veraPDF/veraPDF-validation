@@ -20,6 +20,9 @@
  */
 package org.verapdf.gf.model.impl.pd.annotations;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDFileAttachmentAnnot;
 import org.verapdf.pd.PDAnnotation;
@@ -34,6 +37,20 @@ public class GFPDFileAttachmentAnnot extends GFPDMarkupAnnot implements PDFileAt
 
 	public GFPDFileAttachmentAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, pageResources, page, FILE_ATTACHMENT_RUBBER_TYPE);
+	}
+
+	@Override
+	public Boolean getcontainsFS() {
+		return simplePDObject.knownKey(ASAtom.FS);
+	}
+
+	@Override
+	public Boolean getfileSpecContainsAFRelationship() {
+		COSObject fs = simplePDObject.getKey(ASAtom.FS);
+		if (fs != null && fs.getType() == COSObjType.COS_DICT) {
+			return fs.knownKey(ASAtom.AF_RELATIONSHIP);
+		}
+		return false;
 	}
 
 }

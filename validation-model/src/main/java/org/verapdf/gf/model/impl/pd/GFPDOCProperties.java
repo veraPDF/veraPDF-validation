@@ -66,7 +66,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 	}
 
 	private List<PDOCConfig> getD() {
-		List<PDOCConfig> result = new ArrayList<>();
+		List<PDOCConfig> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 
 		COSObject contentProperties = this.simplePDObject.getObject();
 		if (contentProperties.getType() == COSObjType.COS_DICT) {
