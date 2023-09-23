@@ -20,10 +20,10 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
-import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
+import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSAFactory {
@@ -150,7 +150,7 @@ public class GFSAFactory {
     public static String getStructureElementStandardType(PDStructElem pdStructElem){
         StructureType type = pdStructElem.getStructureType();
         if (type != null) {
-            return StaticStorages.getRoleMapHelper().getStandardType(type.getType());
+            return StaticResources.getRoleMapHelper().getStandardType(type.getType());
         }
         return null;
     }

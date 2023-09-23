@@ -156,11 +156,11 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.document = StaticResources.getDocument();
 		this.flavour = StaticContainers.getFlavour();
 		this.password = StaticResources.getPassword();
+		this.roleMapHelper = StaticResources.getRoleMapHelper();
 		this.separations = StaticContainers.getSeparations();
 		this.inconsistentSeparations = StaticContainers.getInconsistentSeparations();
 		this.cachedColorSpaces = StaticContainers.getCachedColorSpaces();
 		this.cachedPDFonts = StaticContainers.getCachedFonts();
-		this.roleMapHelper = StaticContainers.getRoleMapHelper();
 		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
 		this.noteIDSet = StaticContainers.getNoteIDSet();
 		this.xFormKeysSet = StaticContainers.getXFormKeysSet();
@@ -186,7 +186,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setInconsistentSeparations(this.inconsistentSeparations);
 		StaticContainers.setCachedColorSpaces(this.cachedColorSpaces);
 		StaticContainers.setCachedFonts(this.cachedPDFonts);
-		StaticContainers.setRoleMapHelper(this.roleMapHelper);
 		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
 		StaticContainers.setNoteIDSet(this.noteIDSet);
 		StaticContainers.setXFormKeysSet(this.xFormKeysSet);
@@ -197,6 +196,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setCurrentTransparencyColorSpace(this.currentTransparencyColorSpace);
 		StaticResources.setDocument(this.document);
 		StaticResources.setPassword(this.password);
+		StaticResources.setRoleMapHelper(this.roleMapHelper);
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
