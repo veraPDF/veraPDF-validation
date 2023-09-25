@@ -21,12 +21,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSArray;
-import org.verapdf.cos.COSInteger;
-import org.verapdf.cos.COSObject;
-import org.verapdf.cos.COSString;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSName;
+import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosBM;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
@@ -34,6 +29,7 @@ import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.annotations.*;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBM;
@@ -51,10 +47,12 @@ import org.verapdf.pd.PDGroup;
 import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
 import org.verapdf.pd.annotations.PDWidgetAnnotation;
 import org.verapdf.pd.structure.PDNumberTreeNode;
+import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.StaticResources;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -185,21 +183,34 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public String getstructParentType() {
-		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
-		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
-		if (structTreeRoot != null && structParent != null) {
-			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
-			if (structureElement != null && structureElement.getType() == COSObjType.COS_DICT) {
-				return structureElement.getNameKeyStringValue(ASAtom.S);
+		COSObject parentDictionary = getParentDictionary();
+		return parentDictionary != null ? parentDictionary.getNameKeyStringValue(ASAtom.S) : null;
+	}
+
+	@Override
+	public String getstructParentStandardType() {
+		TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+		if (taggedPDFRoleMapHelper != null) {
+			COSObject parentDictionary = getParentDictionary();
+			if (parentDictionary != null) {
+				PDStructElem structElem = new PDStructElem(parentDictionary, taggedPDFRoleMapHelper.getRoleMap());
+				return GFSEFactory.getStructureElementStandardType(structElem);
 			}
 		}
 		return null;
 	}
 
-	@Override
-	public String getstructParentStandardType() {
-		return StaticContainers.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getstructParentType()));
+	private COSObject getParentDictionary() {
+		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
+		Long structParent = ((PDAnnotation) this.simplePDObject).getStructParent();
+		if (structTreeRoot != null && structParent != null) {
+			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
+			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
+			if (structureElement != null && structureElement.getType() == COSObjType.COS_DICT) {
+				return structureElement;
+			}
+		}
+		return null;
 	}
 
 	private List<CosLang> getLang() {
