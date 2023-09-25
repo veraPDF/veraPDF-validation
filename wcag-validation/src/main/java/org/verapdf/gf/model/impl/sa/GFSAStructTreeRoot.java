@@ -49,7 +49,6 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 	public GFSAStructTreeRoot(org.verapdf.pd.structure.PDStructTreeRoot treeRoot) {
 		super(STRUCT_TREE_ROOT_TYPE);
 		this.treeRoot = treeRoot;
-		StaticStorages.setRoleMapHelper(treeRoot.getRoleMap());
 		node = new GFSARoot(this);
 	}
 

@@ -24,7 +24,6 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
@@ -59,7 +58,6 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	 */
 	public GFPDStructTreeRoot(org.verapdf.pd.structure.PDStructTreeRoot treeRoot) {
 		super(treeRoot, STRUCT_TREE_ROOT_TYPE);
-		StaticContainers.setRoleMapHelper(treeRoot.getRoleMap());
 	}
 
 	@Override
@@ -125,8 +123,7 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 
 	private List<CosUnicodeName> getRoleMapNames() {
 		if (this.simplePDObject != null) {
-			Map<ASAtom, ASAtom> roleMap = ((org.verapdf.pd.structure.PDStructTreeRoot)
-					simplePDObject).getRoleMap();
+			Map<ASAtom, ASAtom> roleMap = ((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getRoleMap();
 			if (roleMap != null) {
 				List<CosUnicodeName> res = new ArrayList<>();
 				for (Map.Entry<ASAtom, ASAtom> entry : roleMap.entrySet()) {
