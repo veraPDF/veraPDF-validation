@@ -20,36 +20,17 @@
  */
 package org.verapdf.gf.model.impl.containers;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.factory.chunks.ChunkContainer;
-import org.verapdf.tools.TaggedPDFRoleMapHelper;
-
-import java.util.*;
 
 /**
  * @author Maxim Plushchov
  */
 public class StaticStorages {
 
-	private static final ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
-
 	private static final ThreadLocal<ChunkContainer> chunks = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
-		roleMapHelper.set(null);
 		chunks.set(new ChunkContainer());
-	}
-
-	public static TaggedPDFRoleMapHelper getRoleMapHelper() {
-		return roleMapHelper.get();
-	}
-
-	public static void setRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
-		roleMapHelper.set(new TaggedPDFRoleMapHelper(roleMap));
-	}
-
-	public static void setRoleMapHelper(TaggedPDFRoleMapHelper roleMapHelper) {
-		StaticStorages.roleMapHelper.set(roleMapHelper);
 	}
 
 	public static ChunkContainer getChunks() {

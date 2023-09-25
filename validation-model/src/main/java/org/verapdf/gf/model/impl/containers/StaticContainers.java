@@ -38,9 +38,6 @@ public class StaticContainers {
 
 	private static final ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
 
-	// TaggedPDF
-	private static final ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
-
 	//GFPDSeparation
 	private static final ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
 	private static final ThreadLocal<List<String>> inconsistentSeparations = new ThreadLocal<>();
@@ -70,7 +67,6 @@ public class StaticContainers {
 
 	public static void clearAllContainers() {
 		flavour.set(null);
-		roleMapHelper.set(null);
 		separations.set(new HashMap<>());
 		inconsistentSeparations.set(new ArrayList<>());
 		cachedColorSpaces.set(new HashMap<>());
@@ -91,18 +87,6 @@ public class StaticContainers {
 
 	public static void setFlavour(PDFAFlavour flavour) {
 		StaticContainers.flavour.set(flavour);
-	}
-
-	public static TaggedPDFRoleMapHelper getRoleMapHelper() {
-		return roleMapHelper.get();
-	}
-
-	public static void setRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
-		roleMapHelper.set(new TaggedPDFRoleMapHelper(roleMap));
-	}
-
-	public static void setRoleMapHelper(TaggedPDFRoleMapHelper roleMapHelper) {
-		StaticContainers.roleMapHelper.set(roleMapHelper);
 	}
 
 	public static Map<String, List<GFPDSeparation>> getSeparations() {

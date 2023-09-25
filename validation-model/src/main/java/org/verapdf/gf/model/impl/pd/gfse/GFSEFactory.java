@@ -25,6 +25,7 @@ import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSEFactory {
@@ -161,7 +162,7 @@ public class GFSEFactory {
                 PDFAFlavour.Specification.ISO_19005_4) {
             StructureType type = pdStructElem.getStructureType();
             if (type != null) {
-                return StaticContainers.getRoleMapHelper().getStandardType(type.getType());
+                return StaticResources.getRoleMapHelper().getStandardType(type.getType());
             }
         }
         return null;

@@ -40,6 +40,7 @@ import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
 
@@ -221,7 +222,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	@Override
 	public Boolean getcircularMappingExist() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
-		return type != null ? StaticContainers.getRoleMapHelper().circularMappingExist(type.getType()) : null;
+		return type != null ? StaticResources.getRoleMapHelper().circularMappingExist(type.getType()) : null;
 	}
 
 	@Override

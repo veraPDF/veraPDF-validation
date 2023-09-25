@@ -21,13 +21,13 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.selayer.SEContentItem;
+import org.verapdf.tools.StaticResources;
 
 import java.util.Collections;
 import java.util.List;
@@ -103,7 +103,7 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
 
     @Override
     public String getparentStandardTag() {
-        return StaticContainers.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getparentStructureTag()));
+        return StaticResources.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getparentStructureTag()));
     }
 
 }
