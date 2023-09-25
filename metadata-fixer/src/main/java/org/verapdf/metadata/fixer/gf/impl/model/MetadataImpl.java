@@ -55,6 +55,7 @@ public class MetadataImpl implements Metadata {
     private static final Logger LOGGER = Logger.getLogger(MetadataImpl.class.getCanonicalName());
 
     private static final String YEAR_2020 = "2020";
+    private static final String YEAR_202X = "0000";
     private static final String YEAR_REGEX = "^\\d{4}$";
 
     private final VeraPDFMeta metadata;
@@ -102,7 +103,7 @@ public class MetadataImpl implements Metadata {
 
     @Override
     public void removePDFIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (flavour == PDFAFlavour.PDFUA_1) {
+        if (PDFAFlavour.IsoStandardSeries.ISO_14289.equals(flavour.getPart().getSeries())) {
             removePDFUAIdentificationSchema(resultBuilder, flavour);
         } else {
             removePDFAIdentificationSchema(resultBuilder, flavour);
@@ -137,13 +138,13 @@ public class MetadataImpl implements Metadata {
 
     @Override
     public void addPDFIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (flavour == PDFAFlavour.PDFUA_1) {
+        if (PDFAFlavour.IsoStandardSeries.ISO_14289.equals(flavour.getPart().getSeries())) {
             addPDFUAIdentificationSchema(resultBuilder, flavour);
         } else {
             addPDFAIdentificationSchema(resultBuilder, flavour);
-            fixRevProperty(resultBuilder, flavour);
             checkAndFixPrefixes(resultBuilder, flavour);
         }
+        fixRevProperty(resultBuilder, flavour);
     }
 
     public void checkAndFixPrefixes(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
@@ -201,18 +202,19 @@ public class MetadataImpl implements Metadata {
     }
 
     private void fixRevProperty(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_4) {
+        if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_4 && flavour != PDFAFlavour.PDFUA_2) {
             return;
         }
+        String namespaceURI = flavour == PDFAFlavour.PDFUA_2 ? XMPConst.NS_PDFUA_ID : XMPConst.NS_PDFA_ID;
         try {
-            VeraPDFXMPNode rev = this.metadata.getProperty(XMPConst.NS_PDFA_ID, VeraPDFMeta.REVISION_YEAR);
+            VeraPDFXMPNode rev = this.metadata.getProperty(namespaceURI, VeraPDFMeta.REVISION_YEAR);
             if (rev == null) {
-                this.metadata.setPDFAIdentificationRevisionYear(YEAR_2020);
+                this.metadata.setIdentificationRevisionYear(namespaceURI, YEAR_202X);
                 this.setNeedToBeUpdated(true);
                 resultBuilder.addFix(VeraPDFMeta.REVISION_YEAR + " property with value " + YEAR_2020 +
                         " add to Identification schema");
             } else if (!rev.getValue().matches(YEAR_REGEX)) {
-                this.metadata.setPDFAIdentificationRevisionYear(YEAR_2020);
+                this.metadata.setIdentificationRevisionYear(namespaceURI, YEAR_202X);
                 this.setNeedToBeUpdated(true);
                 resultBuilder.addFix("Set " + VeraPDFMeta.REVISION_YEAR +
                         " property value to " + YEAR_2020 + " in Identification schema");
