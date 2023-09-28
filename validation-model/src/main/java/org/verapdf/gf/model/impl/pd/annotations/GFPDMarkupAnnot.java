@@ -20,8 +20,10 @@
  */
 package org.verapdf.gf.model.impl.pd.annotations;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.pd.GFPDAnnot;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.gf.model.tools.DictionaryKeysHelper;
 import org.verapdf.model.pdlayer.PDMarkupAnnot;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDPage;
@@ -41,4 +43,13 @@ public class GFPDMarkupAnnot extends GFPDAnnot implements PDMarkupAnnot {
 		super(annot, pageResources, page, type);
 	}
 
+	@Override
+	public String getRC() {
+		return DictionaryKeysHelper.getRichTextStringOrStreamEntryStringRepresentation(simpleCOSObject, ASAtom.RC);
+	}
+
+	@Override
+	public Boolean getcontainsRC() {
+		return simpleCOSObject.knownKey(ASAtom.RC);
+	}
 }
