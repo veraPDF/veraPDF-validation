@@ -90,8 +90,8 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 
 	@Override
 	public Boolean getCategoryHasTypeArray() {
-		COSObject object = getCategoryValue();
-		return getHasTypeArray(object);
+		COSObject Category = getCategoryValue();
+		return getHasTypeArray(Category);
 	}
 
 	@Override
@@ -106,14 +106,14 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 
 	@Override
 	public Boolean getEventHasTypeName() {
-		COSObject object = getEventValue();
-		return getHasTypeName(object);
+		COSObject Event = getEventValue();
+		return getHasTypeName(Event);
 	}
 
 	@Override
 	public String getEventNameValue() {
-		COSObject object = getEventValue();
-		return getNameValue(object);
+		COSObject Event = getEventValue();
+		return getNameValue(Event);
 	}
 
 	@Override
@@ -128,8 +128,8 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 
 	@Override
 	public Boolean getOCGsHasTypeArray() {
-		COSObject object = getOCGsValue();
-		return getHasTypeArray(object);
+		COSObject OCGs = getOCGsValue();
+		return getHasTypeArray(OCGs);
 	}
 
 }

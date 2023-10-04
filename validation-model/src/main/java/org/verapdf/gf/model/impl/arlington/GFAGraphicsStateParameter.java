@@ -928,8 +928,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getAAPLAAHasTypeBoolean() {
-		COSObject object = getAAPLAAValue();
-		return getHasTypeBoolean(object);
+		COSObject AAPLAA = getAAPLAAValue();
+		return getHasTypeBoolean(AAPLAA);
 	}
 
 	@Override
@@ -961,14 +961,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getAAPLSTHasTypeDictionary() {
-		COSObject object = getAAPLSTValue();
-		return getHasTypeDictionary(object);
+		COSObject AAPLST = getAAPLSTValue();
+		return getHasTypeDictionary(AAPLST);
 	}
 
 	@Override
 	public Boolean getAAPLSTHasTypeName() {
-		COSObject object = getAAPLSTValue();
-		return getHasTypeName(object);
+		COSObject AAPLST = getAAPLSTValue();
+		return getHasTypeName(AAPLST);
 	}
 
 	@Override
@@ -983,8 +983,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getAISHasTypeBoolean() {
-		COSObject object = getAISValue();
-		return getHasTypeBoolean(object);
+		COSObject AIS = getAISValue();
+		return getHasTypeBoolean(AIS);
 	}
 
 	@Override
@@ -999,20 +999,20 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getisBGIndirect() {
-		COSObject object = getBGValue();
-		return getisIndirect(object);
+		COSObject BG = getBGValue();
+		return getisIndirect(BG);
 	}
 
 	@Override
 	public Boolean getBGHasTypeDictionary() {
-		COSObject object = getBGValue();
-		return getHasTypeDictionary(object);
+		COSObject BG = getBGValue();
+		return getHasTypeDictionary(BG);
 	}
 
 	@Override
 	public Boolean getBGHasTypeStream() {
-		COSObject object = getBGValue();
-		return getHasTypeStream(object);
+		COSObject BG = getBGValue();
+		return getHasTypeStream(BG);
 	}
 
 	@Override
@@ -1043,26 +1043,26 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getisBG2Indirect() {
-		COSObject object = getBG2Value();
-		return getisIndirect(object);
+		COSObject BG2 = getBG2Value();
+		return getisIndirect(BG2);
 	}
 
 	@Override
 	public Boolean getBG2HasTypeDictionary() {
-		COSObject object = getBG2Value();
-		return getHasTypeDictionary(object);
+		COSObject BG2 = getBG2Value();
+		return getHasTypeDictionary(BG2);
 	}
 
 	@Override
 	public Boolean getBG2HasTypeName() {
-		COSObject object = getBG2Value();
-		return getHasTypeName(object);
+		COSObject BG2 = getBG2Value();
+		return getHasTypeName(BG2);
 	}
 
 	@Override
 	public Boolean getBG2HasTypeStream() {
-		COSObject object = getBG2Value();
-		return getHasTypeStream(object);
+		COSObject BG2 = getBG2Value();
+		return getHasTypeStream(BG2);
 	}
 
 	@Override
@@ -1077,20 +1077,20 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getBMHasTypeArray() {
-		COSObject object = getBMValue();
-		return getHasTypeArray(object);
+		COSObject BM = getBMValue();
+		return getHasTypeArray(BM);
 	}
 
 	@Override
 	public Boolean getBMHasTypeName() {
-		COSObject object = getBMValue();
-		return getHasTypeName(object);
+		COSObject BM = getBMValue();
+		return getHasTypeName(BM);
 	}
 
 	@Override
 	public String getBMNameValue() {
-		COSObject object = getBMValue();
-		return getNameValue(object);
+		COSObject BM = getBMValue();
+		return getNameValue(BM);
 	}
 
 	@Override
@@ -1105,14 +1105,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getCAHasTypeNumber() {
-		COSObject object = getCAValue();
-		return getHasTypeNumber(object);
+		COSObject CA = getCAValue();
+		return getHasTypeNumber(CA);
 	}
 
 	@Override
 	public Double getCANumberValue() {
-		COSObject object = getCAValue();
-		return getNumberValue(object);
+		COSObject CA = getCAValue();
+		return getNumberValue(CA);
 	}
 
 	@Override
@@ -1127,8 +1127,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = getDValue();
-		return getHasTypeArray(object);
+		COSObject D = getDValue();
+		return getHasTypeArray(D);
 	}
 
 	@Override
@@ -1143,14 +1143,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getFLHasTypeNumber() {
-		COSObject object = getFLValue();
-		return getHasTypeNumber(object);
+		COSObject FL = getFLValue();
+		return getHasTypeNumber(FL);
 	}
 
 	@Override
 	public Double getFLNumberValue() {
-		COSObject object = getFLValue();
-		return getNumberValue(object);
+		COSObject FL = getFLValue();
+		return getNumberValue(FL);
 	}
 
 	@Override
@@ -1165,8 +1165,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getFontHasTypeArray() {
-		COSObject object = getFontValue();
-		return getHasTypeArray(object);
+		COSObject Font = getFontValue();
+		return getHasTypeArray(Font);
 	}
 
 	@Override
@@ -1181,26 +1181,26 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getisHTIndirect() {
-		COSObject object = getHTValue();
-		return getisIndirect(object);
+		COSObject HT = getHTValue();
+		return getisIndirect(HT);
 	}
 
 	@Override
 	public Boolean getHTHasTypeDictionary() {
-		COSObject object = getHTValue();
-		return getHasTypeDictionary(object);
+		COSObject HT = getHTValue();
+		return getHasTypeDictionary(HT);
 	}
 
 	@Override
 	public Boolean getHTHasTypeName() {
-		COSObject object = getHTValue();
-		return getHasTypeName(object);
+		COSObject HT = getHTValue();
+		return getHasTypeName(HT);
 	}
 
 	@Override
 	public Boolean getHTHasTypeStream() {
-		COSObject object = getHTValue();
-		return getHasTypeStream(object);
+		COSObject HT = getHTValue();
+		return getHasTypeStream(HT);
 	}
 
 	@Override
@@ -1215,8 +1215,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getHTOHasTypeArray() {
-		COSObject object = getHTOValue();
-		return getHasTypeArray(object);
+		COSObject HTO = getHTOValue();
+		return getHasTypeArray(HTO);
 	}
 
 	@Override
@@ -1231,8 +1231,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getHTPHasTypeArray() {
-		COSObject object = getHTPValue();
-		return getHasTypeArray(object);
+		COSObject HTP = getHTPValue();
+		return getHasTypeArray(HTP);
 	}
 
 	@Override
@@ -1247,14 +1247,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getLCHasTypeInteger() {
-		COSObject object = getLCValue();
-		return getHasTypeInteger(object);
+		COSObject LC = getLCValue();
+		return getHasTypeInteger(LC);
 	}
 
 	@Override
 	public Long getLCIntegerValue() {
-		COSObject object = getLCValue();
-		return getIntegerValue(object);
+		COSObject LC = getLCValue();
+		return getIntegerValue(LC);
 	}
 
 	@Override
@@ -1269,14 +1269,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getLJHasTypeInteger() {
-		COSObject object = getLJValue();
-		return getHasTypeInteger(object);
+		COSObject LJ = getLJValue();
+		return getHasTypeInteger(LJ);
 	}
 
 	@Override
 	public Long getLJIntegerValue() {
-		COSObject object = getLJValue();
-		return getIntegerValue(object);
+		COSObject LJ = getLJValue();
+		return getIntegerValue(LJ);
 	}
 
 	@Override
@@ -1291,14 +1291,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getLWHasTypeNumber() {
-		COSObject object = getLWValue();
-		return getHasTypeNumber(object);
+		COSObject LW = getLWValue();
+		return getHasTypeNumber(LW);
 	}
 
 	@Override
 	public Double getLWNumberValue() {
-		COSObject object = getLWValue();
-		return getNumberValue(object);
+		COSObject LW = getLWValue();
+		return getNumberValue(LW);
 	}
 
 	@Override
@@ -1313,14 +1313,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getMLHasTypeNumber() {
-		COSObject object = getMLValue();
-		return getHasTypeNumber(object);
+		COSObject ML = getMLValue();
+		return getHasTypeNumber(ML);
 	}
 
 	@Override
 	public Double getMLNumberValue() {
-		COSObject object = getMLValue();
-		return getNumberValue(object);
+		COSObject ML = getMLValue();
+		return getNumberValue(ML);
 	}
 
 	@Override
@@ -1335,8 +1335,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getOPHasTypeBoolean() {
-		COSObject object = getOPValue();
-		return getHasTypeBoolean(object);
+		COSObject OP = getOPValue();
+		return getHasTypeBoolean(OP);
 	}
 
 	@Override
@@ -1351,14 +1351,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getOPMHasTypeInteger() {
-		COSObject object = getOPMValue();
-		return getHasTypeInteger(object);
+		COSObject OPM = getOPMValue();
+		return getHasTypeInteger(OPM);
 	}
 
 	@Override
 	public Long getOPMIntegerValue() {
-		COSObject object = getOPMValue();
-		return getIntegerValue(object);
+		COSObject OPM = getOPMValue();
+		return getIntegerValue(OPM);
 	}
 
 	@Override
@@ -1373,14 +1373,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getRIHasTypeName() {
-		COSObject object = getRIValue();
-		return getHasTypeName(object);
+		COSObject RI = getRIValue();
+		return getHasTypeName(RI);
 	}
 
 	@Override
 	public String getRINameValue() {
-		COSObject object = getRIValue();
-		return getNameValue(object);
+		COSObject RI = getRIValue();
+		return getNameValue(RI);
 	}
 
 	@Override
@@ -1395,8 +1395,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getSAHasTypeBoolean() {
-		COSObject object = getSAValue();
-		return getHasTypeBoolean(object);
+		COSObject SA = getSAValue();
+		return getHasTypeBoolean(SA);
 	}
 
 	@Override
@@ -1411,14 +1411,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getSMHasTypeNumber() {
-		COSObject object = getSMValue();
-		return getHasTypeNumber(object);
+		COSObject SM = getSMValue();
+		return getHasTypeNumber(SM);
 	}
 
 	@Override
 	public Double getSMNumberValue() {
-		COSObject object = getSMValue();
-		return getNumberValue(object);
+		COSObject SM = getSMValue();
+		return getNumberValue(SM);
 	}
 
 	@Override
@@ -1433,20 +1433,20 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getSMaskHasTypeDictionary() {
-		COSObject object = getSMaskValue();
-		return getHasTypeDictionary(object);
+		COSObject SMask = getSMaskValue();
+		return getHasTypeDictionary(SMask);
 	}
 
 	@Override
 	public Boolean getSMaskHasTypeName() {
-		COSObject object = getSMaskValue();
-		return getHasTypeName(object);
+		COSObject SMask = getSMaskValue();
+		return getHasTypeName(SMask);
 	}
 
 	@Override
 	public String getSMaskNameValue() {
-		COSObject object = getSMaskValue();
-		return getNameValue(object);
+		COSObject SMask = getSMaskValue();
+		return getNameValue(SMask);
 	}
 
 	@Override
@@ -1461,8 +1461,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getTKHasTypeBoolean() {
-		COSObject object = getTKValue();
-		return getHasTypeBoolean(object);
+		COSObject TK = getTKValue();
+		return getHasTypeBoolean(TK);
 	}
 
 	@Override
@@ -1477,32 +1477,32 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getisTRIndirect() {
-		COSObject object = getTRValue();
-		return getisIndirect(object);
+		COSObject TR = getTRValue();
+		return getisIndirect(TR);
 	}
 
 	@Override
 	public Boolean getTRHasTypeArray() {
-		COSObject object = getTRValue();
-		return getHasTypeArray(object);
+		COSObject TR = getTRValue();
+		return getHasTypeArray(TR);
 	}
 
 	@Override
 	public Boolean getTRHasTypeDictionary() {
-		COSObject object = getTRValue();
-		return getHasTypeDictionary(object);
+		COSObject TR = getTRValue();
+		return getHasTypeDictionary(TR);
 	}
 
 	@Override
 	public Boolean getTRHasTypeName() {
-		COSObject object = getTRValue();
-		return getHasTypeName(object);
+		COSObject TR = getTRValue();
+		return getHasTypeName(TR);
 	}
 
 	@Override
 	public Boolean getTRHasTypeStream() {
-		COSObject object = getTRValue();
-		return getHasTypeStream(object);
+		COSObject TR = getTRValue();
+		return getHasTypeStream(TR);
 	}
 
 	@Override
@@ -1533,32 +1533,32 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getisTR2Indirect() {
-		COSObject object = getTR2Value();
-		return getisIndirect(object);
+		COSObject TR2 = getTR2Value();
+		return getisIndirect(TR2);
 	}
 
 	@Override
 	public Boolean getTR2HasTypeArray() {
-		COSObject object = getTR2Value();
-		return getHasTypeArray(object);
+		COSObject TR2 = getTR2Value();
+		return getHasTypeArray(TR2);
 	}
 
 	@Override
 	public Boolean getTR2HasTypeDictionary() {
-		COSObject object = getTR2Value();
-		return getHasTypeDictionary(object);
+		COSObject TR2 = getTR2Value();
+		return getHasTypeDictionary(TR2);
 	}
 
 	@Override
 	public Boolean getTR2HasTypeName() {
-		COSObject object = getTR2Value();
-		return getHasTypeName(object);
+		COSObject TR2 = getTR2Value();
+		return getHasTypeName(TR2);
 	}
 
 	@Override
 	public Boolean getTR2HasTypeStream() {
-		COSObject object = getTR2Value();
-		return getHasTypeStream(object);
+		COSObject TR2 = getTR2Value();
+		return getHasTypeStream(TR2);
 	}
 
 	@Override
@@ -1573,14 +1573,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -1595,20 +1595,20 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getisUCRIndirect() {
-		COSObject object = getUCRValue();
-		return getisIndirect(object);
+		COSObject UCR = getUCRValue();
+		return getisIndirect(UCR);
 	}
 
 	@Override
 	public Boolean getUCRHasTypeDictionary() {
-		COSObject object = getUCRValue();
-		return getHasTypeDictionary(object);
+		COSObject UCR = getUCRValue();
+		return getHasTypeDictionary(UCR);
 	}
 
 	@Override
 	public Boolean getUCRHasTypeStream() {
-		COSObject object = getUCRValue();
-		return getHasTypeStream(object);
+		COSObject UCR = getUCRValue();
+		return getHasTypeStream(UCR);
 	}
 
 	@Override
@@ -1639,26 +1639,26 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getisUCR2Indirect() {
-		COSObject object = getUCR2Value();
-		return getisIndirect(object);
+		COSObject UCR2 = getUCR2Value();
+		return getisIndirect(UCR2);
 	}
 
 	@Override
 	public Boolean getUCR2HasTypeDictionary() {
-		COSObject object = getUCR2Value();
-		return getHasTypeDictionary(object);
+		COSObject UCR2 = getUCR2Value();
+		return getHasTypeDictionary(UCR2);
 	}
 
 	@Override
 	public Boolean getUCR2HasTypeName() {
-		COSObject object = getUCR2Value();
-		return getHasTypeName(object);
+		COSObject UCR2 = getUCR2Value();
+		return getHasTypeName(UCR2);
 	}
 
 	@Override
 	public Boolean getUCR2HasTypeStream() {
-		COSObject object = getUCR2Value();
-		return getHasTypeStream(object);
+		COSObject UCR2 = getUCR2Value();
+		return getHasTypeStream(UCR2);
 	}
 
 	@Override
@@ -1684,14 +1684,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getUseBlackPtCompHasTypeName() {
-		COSObject object = getUseBlackPtCompValue();
-		return getHasTypeName(object);
+		COSObject UseBlackPtComp = getUseBlackPtCompValue();
+		return getHasTypeName(UseBlackPtComp);
 	}
 
 	@Override
 	public String getUseBlackPtCompNameValue() {
-		COSObject object = getUseBlackPtCompValue();
-		return getNameValue(object);
+		COSObject UseBlackPtComp = getUseBlackPtCompValue();
+		return getNameValue(UseBlackPtComp);
 	}
 
 	@Override
@@ -1706,14 +1706,14 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getcaHasTypeNumber() {
-		COSObject object = getcaValue();
-		return getHasTypeNumber(object);
+		COSObject ca = getcaValue();
+		return getHasTypeNumber(ca);
 	}
 
 	@Override
 	public Double getcaNumberValue() {
-		COSObject object = getcaValue();
-		return getNumberValue(object);
+		COSObject ca = getcaValue();
+		return getNumberValue(ca);
 	}
 
 	@Override
@@ -1728,8 +1728,8 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	@Override
 	public Boolean getopHasTypeBoolean() {
-		COSObject object = getopValue();
-		return getHasTypeBoolean(object);
+		COSObject op = getopValue();
+		return getHasTypeBoolean(op);
 	}
 
 	@Override

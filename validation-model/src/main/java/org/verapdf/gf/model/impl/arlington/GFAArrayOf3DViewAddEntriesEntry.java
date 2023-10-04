@@ -58,14 +58,14 @@ public class GFAArrayOf3DViewAddEntriesEntry extends GFAObject implements AArray
 
 	@Override
 	public Boolean getisIndirect() {
-		COSObject object = getValue();
-		return getisIndirect(object);
+		COSObject entry = getValue();
+		return getisIndirect(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override

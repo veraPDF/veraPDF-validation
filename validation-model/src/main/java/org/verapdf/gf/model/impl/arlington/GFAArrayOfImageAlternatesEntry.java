@@ -62,8 +62,8 @@ public class GFAArrayOfImageAlternatesEntry extends GFAObject implements AArrayO
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

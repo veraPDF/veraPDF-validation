@@ -130,26 +130,26 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 
 	@Override
 	public Boolean getisObjIndirect() {
-		COSObject object = getObjValue();
-		return getisIndirect(object);
+		COSObject Obj = getObjValue();
+		return getisIndirect(Obj);
 	}
 
 	@Override
 	public Boolean getObjHasTypeArray() {
-		COSObject object = getObjValue();
-		return getHasTypeArray(object);
+		COSObject Obj = getObjValue();
+		return getHasTypeArray(Obj);
 	}
 
 	@Override
 	public Boolean getObjHasTypeDictionary() {
-		COSObject object = getObjValue();
-		return getHasTypeDictionary(object);
+		COSObject Obj = getObjValue();
+		return getHasTypeDictionary(Obj);
 	}
 
 	@Override
 	public Boolean getObjHasTypeStream() {
-		COSObject object = getObjValue();
-		return getHasTypeStream(object);
+		COSObject Obj = getObjValue();
+		return getHasTypeStream(Obj);
 	}
 
 	@Override
@@ -164,14 +164,14 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 
 	@Override
 	public Boolean getisPgIndirect() {
-		COSObject object = getPgValue();
-		return getisIndirect(object);
+		COSObject Pg = getPgValue();
+		return getisIndirect(Pg);
 	}
 
 	@Override
 	public Boolean getPgHasTypeDictionary() {
-		COSObject object = getPgValue();
-		return getHasTypeDictionary(object);
+		COSObject Pg = getPgValue();
+		return getHasTypeDictionary(Pg);
 	}
 
 	@Override
@@ -186,14 +186,14 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

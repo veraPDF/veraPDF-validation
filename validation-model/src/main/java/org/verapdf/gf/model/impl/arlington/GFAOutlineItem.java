@@ -616,8 +616,8 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getAHasTypeDictionary() {
-		COSObject object = getAValue();
-		return getHasTypeDictionary(object);
+		COSObject A = getAValue();
+		return getHasTypeDictionary(A);
 	}
 
 	@Override
@@ -632,8 +632,8 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
@@ -648,8 +648,8 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getCountHasTypeInteger() {
-		COSObject object = getCountValue();
-		return getHasTypeInteger(object);
+		COSObject Count = getCountValue();
+		return getHasTypeInteger(Count);
 	}
 
 	@Override
@@ -664,20 +664,20 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getDestHasTypeArray() {
-		COSObject object = getDestValue();
-		return getHasTypeArray(object);
+		COSObject Dest = getDestValue();
+		return getHasTypeArray(Dest);
 	}
 
 	@Override
 	public Boolean getDestHasTypeName() {
-		COSObject object = getDestValue();
-		return getHasTypeName(object);
+		COSObject Dest = getDestValue();
+		return getHasTypeName(Dest);
 	}
 
 	@Override
 	public Boolean getDestHasTypeStringByte() {
-		COSObject object = getDestValue();
-		return getHasTypeStringByte(object);
+		COSObject Dest = getDestValue();
+		return getHasTypeStringByte(Dest);
 	}
 
 	@Override
@@ -707,14 +707,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getFHasTypeBitmask() {
-		COSObject object = getFValue();
-		return getHasTypeBitmask(object);
+		COSObject F = getFValue();
+		return getHasTypeBitmask(F);
 	}
 
 	@Override
 	public Long getFBitmaskValue() {
-		COSObject object = getFValue();
-		return getBitmaskValue(object);
+		COSObject F = getFValue();
+		return getBitmaskValue(F);
 	}
 
 	@Override
@@ -729,14 +729,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getisFirstIndirect() {
-		COSObject object = getFirstValue();
-		return getisIndirect(object);
+		COSObject First = getFirstValue();
+		return getisIndirect(First);
 	}
 
 	@Override
 	public Boolean getFirstHasTypeDictionary() {
-		COSObject object = getFirstValue();
-		return getHasTypeDictionary(object);
+		COSObject First = getFirstValue();
+		return getHasTypeDictionary(First);
 	}
 
 	@Override
@@ -751,14 +751,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getisLastIndirect() {
-		COSObject object = getLastValue();
-		return getisIndirect(object);
+		COSObject Last = getLastValue();
+		return getisIndirect(Last);
 	}
 
 	@Override
 	public Boolean getLastHasTypeDictionary() {
-		COSObject object = getLastValue();
-		return getHasTypeDictionary(object);
+		COSObject Last = getLastValue();
+		return getHasTypeDictionary(Last);
 	}
 
 	@Override
@@ -773,14 +773,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getisNextIndirect() {
-		COSObject object = getNextValue();
-		return getisIndirect(object);
+		COSObject Next = getNextValue();
+		return getisIndirect(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -795,14 +795,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getisParentIndirect() {
-		COSObject object = getParentValue();
-		return getisIndirect(object);
+		COSObject Parent = getParentValue();
+		return getisIndirect(Parent);
 	}
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = getParentValue();
-		return getHasTypeDictionary(object);
+		COSObject Parent = getParentValue();
+		return getHasTypeDictionary(Parent);
 	}
 
 	@Override
@@ -817,14 +817,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getisPrevIndirect() {
-		COSObject object = getPrevValue();
-		return getisIndirect(object);
+		COSObject Prev = getPrevValue();
+		return getisIndirect(Prev);
 	}
 
 	@Override
 	public Boolean getPrevHasTypeDictionary() {
-		COSObject object = getPrevValue();
-		return getHasTypeDictionary(object);
+		COSObject Prev = getPrevValue();
+		return getHasTypeDictionary(Prev);
 	}
 
 	@Override
@@ -839,14 +839,14 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getisSEIndirect() {
-		COSObject object = getSEValue();
-		return getisIndirect(object);
+		COSObject SE = getSEValue();
+		return getisIndirect(SE);
 	}
 
 	@Override
 	public Boolean getSEHasTypeDictionary() {
-		COSObject object = getSEValue();
-		return getHasTypeDictionary(object);
+		COSObject SE = getSEValue();
+		return getHasTypeDictionary(SE);
 	}
 
 	@Override
@@ -861,8 +861,8 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	@Override
 	public Boolean getTitleHasTypeStringText() {
-		COSObject object = getTitleValue();
-		return getHasTypeStringText(object);
+		COSObject Title = getTitleValue();
+		return getHasTypeStringText(Title);
 	}
 
 }

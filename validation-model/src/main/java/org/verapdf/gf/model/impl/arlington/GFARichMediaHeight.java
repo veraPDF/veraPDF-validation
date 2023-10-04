@@ -40,14 +40,14 @@ public class GFARichMediaHeight extends GFAObject implements ARichMediaHeight {
 
 	@Override
 	public Boolean getDefaultHasTypeInteger() {
-		COSObject object = getDefaultValue();
-		return getHasTypeInteger(object);
+		COSObject Default = getDefaultValue();
+		return getHasTypeInteger(Default);
 	}
 
 	@Override
 	public Long getDefaultIntegerValue() {
-		COSObject object = getDefaultValue();
-		return getIntegerValue(object);
+		COSObject Default = getDefaultValue();
+		return getIntegerValue(Default);
 	}
 
 	@Override
@@ -74,14 +74,14 @@ public class GFARichMediaHeight extends GFAObject implements ARichMediaHeight {
 
 	@Override
 	public Boolean getMaxHasTypeInteger() {
-		COSObject object = getMaxValue();
-		return getHasTypeInteger(object);
+		COSObject Max = getMaxValue();
+		return getHasTypeInteger(Max);
 	}
 
 	@Override
 	public Long getMaxIntegerValue() {
-		COSObject object = getMaxValue();
-		return getIntegerValue(object);
+		COSObject Max = getMaxValue();
+		return getIntegerValue(Max);
 	}
 
 	@Override
@@ -108,14 +108,14 @@ public class GFARichMediaHeight extends GFAObject implements ARichMediaHeight {
 
 	@Override
 	public Boolean getMinHasTypeInteger() {
-		COSObject object = getMinValue();
-		return getHasTypeInteger(object);
+		COSObject Min = getMinValue();
+		return getHasTypeInteger(Min);
 	}
 
 	@Override
 	public Long getMinIntegerValue() {
-		COSObject object = getMinValue();
-		return getIntegerValue(object);
+		COSObject Min = getMinValue();
+		return getIntegerValue(Min);
 	}
 
 	@Override

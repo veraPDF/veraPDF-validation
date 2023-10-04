@@ -60,8 +60,8 @@ public class GFACryptFilterMapEntry extends GFAObject implements ACryptFilterMap
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

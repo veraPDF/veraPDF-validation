@@ -186,8 +186,8 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getCropRectHasTypeRectangle() {
-		COSObject object = getCropRectValue();
-		return getHasTypeRectangle(object);
+		COSObject CropRect = getCropRectValue();
+		return getHasTypeRectangle(CropRect);
 	}
 
 	@Override
@@ -202,14 +202,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -224,8 +224,8 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getIncludedImageDimensionsHasTypeArray() {
-		COSObject object = getIncludedImageDimensionsValue();
-		return getHasTypeArray(object);
+		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
+		return getHasTypeArray(IncludedImageDimensions);
 	}
 
 	@Override
@@ -240,14 +240,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getIncludedImageQualityHasTypeNumber() {
-		COSObject object = getIncludedImageQualityValue();
-		return getHasTypeNumber(object);
+		COSObject IncludedImageQuality = getIncludedImageQualityValue();
+		return getHasTypeNumber(IncludedImageQuality);
 	}
 
 	@Override
 	public Double getIncludedImageQualityNumberValue() {
-		COSObject object = getIncludedImageQualityValue();
-		return getNumberValue(object);
+		COSObject IncludedImageQuality = getIncludedImageQualityValue();
+		return getNumberValue(IncludedImageQuality);
 	}
 
 	@Override
@@ -262,20 +262,20 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getInksHasTypeArray() {
-		COSObject object = getInksValue();
-		return getHasTypeArray(object);
+		COSObject Inks = getInksValue();
+		return getHasTypeArray(Inks);
 	}
 
 	@Override
 	public Boolean getInksHasTypeName() {
-		COSObject object = getInksValue();
-		return getHasTypeName(object);
+		COSObject Inks = getInksValue();
+		return getHasTypeName(Inks);
 	}
 
 	@Override
 	public String getInksNameValue() {
-		COSObject object = getInksValue();
-		return getNameValue(object);
+		COSObject Inks = getInksValue();
+		return getNameValue(Inks);
 	}
 
 	@Override
@@ -290,8 +290,8 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getMainImageHasTypeStringByte() {
-		COSObject object = getMainImageValue();
-		return getHasTypeStringByte(object);
+		COSObject MainImage = getMainImageValue();
+		return getHasTypeStringByte(MainImage);
 	}
 
 	@Override
@@ -306,8 +306,8 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getOverprintHasTypeBoolean() {
-		COSObject object = getOverprintValue();
-		return getHasTypeBoolean(object);
+		COSObject Overprint = getOverprintValue();
+		return getHasTypeBoolean(Overprint);
 	}
 
 	@Override
@@ -322,8 +322,8 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getSizeHasTypeArray() {
-		COSObject object = getSizeValue();
-		return getHasTypeArray(object);
+		COSObject Size = getSizeValue();
+		return getHasTypeArray(Size);
 	}
 
 	@Override
@@ -338,8 +338,8 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getTagsHasTypeArray() {
-		COSObject object = getTagsValue();
-		return getHasTypeArray(object);
+		COSObject Tags = getTagsValue();
+		return getHasTypeArray(Tags);
 	}
 
 	@Override
@@ -354,14 +354,14 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -376,141 +376,61 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 
 	@Override
 	public Boolean getVersionHasTypeNumber() {
-		COSObject object = getVersionValue();
-		return getHasTypeNumber(object);
+		COSObject Version = getVersionValue();
+		return getHasTypeNumber(Version);
 	}
 
 	@Override
 	public Double getVersionNumberValue() {
-		COSObject object = getVersionValue();
-		return getNumberValue(object);
+		COSObject Version = getVersionValue();
+		return getNumberValue(Version);
 	}
 
 	@Override
 	public Long getIncludedImageDimensions1IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject IncludedImageDimensions = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
-		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (IncludedImageDimensions.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = IncludedImageDimensions.at(1);
+		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry1IntegerValue();
 	}
 
 	@Override
 	public Double getSize0NumberValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Size = this.baseObject.getKey(ASAtom.getASAtom("Size"));
-		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Size.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = Size.at(0);
+		COSObject Size = getSizeValue();
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry0NumberValue();
 	}
 
 	@Override
 	public Long getIncludedImageDimensions0IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject IncludedImageDimensions = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
-		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (IncludedImageDimensions.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = IncludedImageDimensions.at(0);
+		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0IntegerValue();
 	}
 
 	@Override
 	public Double getSize1NumberValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Size = this.baseObject.getKey(ASAtom.getASAtom("Size"));
-		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Size.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = Size.at(1);
+		COSObject Size = getSizeValue();
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry1NumberValue();
 	}
 
 	@Override
 	public Boolean getIncludedImageDimensions1HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject IncludedImageDimensions = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
-		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (IncludedImageDimensions.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = IncludedImageDimensions.at(1);
+		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry1HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getSize0HasTypeNumber() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Size = this.baseObject.getKey(ASAtom.getASAtom("Size"));
-		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Size.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = Size.at(0);
+		COSObject Size = getSizeValue();
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry0HasTypeNumber();
 	}
 
 	@Override
 	public Boolean getIncludedImageDimensions0HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject IncludedImageDimensions = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageDimensions"));
-		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (IncludedImageDimensions.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = IncludedImageDimensions.at(0);
+		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getSize1HasTypeNumber() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Size = this.baseObject.getKey(ASAtom.getASAtom("Size"));
-		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Size.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = Size.at(1);
+		COSObject Size = getSizeValue();
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry1HasTypeNumber();
 	}
 

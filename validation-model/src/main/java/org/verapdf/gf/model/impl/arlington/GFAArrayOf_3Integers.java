@@ -26,14 +26,14 @@ public class GFAArrayOf_3Integers extends GFAObject implements AArrayOf_3Integer
 
 	@Override
 	public Boolean getentry0HasTypeInteger() {
-		COSObject object = getentry0Value();
-		return getHasTypeInteger(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeInteger(entry0);
 	}
 
 	@Override
 	public Long getentry0IntegerValue() {
-		COSObject object = getentry0Value();
-		return getIntegerValue(object);
+		COSObject entry0 = getentry0Value();
+		return getIntegerValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -46,14 +46,14 @@ public class GFAArrayOf_3Integers extends GFAObject implements AArrayOf_3Integer
 
 	@Override
 	public Boolean getentry1HasTypeInteger() {
-		COSObject object = getentry1Value();
-		return getHasTypeInteger(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeInteger(entry1);
 	}
 
 	@Override
 	public Long getentry1IntegerValue() {
-		COSObject object = getentry1Value();
-		return getIntegerValue(object);
+		COSObject entry1 = getentry1Value();
+		return getIntegerValue(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -66,14 +66,14 @@ public class GFAArrayOf_3Integers extends GFAObject implements AArrayOf_3Integer
 
 	@Override
 	public Boolean getentry2HasTypeInteger() {
-		COSObject object = getentry2Value();
-		return getHasTypeInteger(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeInteger(entry2);
 	}
 
 	@Override
 	public Long getentry2IntegerValue() {
-		COSObject object = getentry2Value();
-		return getIntegerValue(object);
+		COSObject entry2 = getentry2Value();
+		return getIntegerValue(entry2);
 	}
 
 }

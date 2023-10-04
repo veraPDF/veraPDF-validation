@@ -26,14 +26,14 @@ public class GFAArrayOf_2Integers extends GFAObject implements AArrayOf_2Integer
 
 	@Override
 	public Boolean getentry0HasTypeInteger() {
-		COSObject object = getentry0Value();
-		return getHasTypeInteger(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeInteger(entry0);
 	}
 
 	@Override
 	public Long getentry0IntegerValue() {
-		COSObject object = getentry0Value();
-		return getIntegerValue(object);
+		COSObject entry0 = getentry0Value();
+		return getIntegerValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -46,14 +46,14 @@ public class GFAArrayOf_2Integers extends GFAObject implements AArrayOf_2Integer
 
 	@Override
 	public Boolean getentry1HasTypeInteger() {
-		COSObject object = getentry1Value();
-		return getHasTypeInteger(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeInteger(entry1);
 	}
 
 	@Override
 	public Long getentry1IntegerValue() {
-		COSObject object = getentry1Value();
-		return getIntegerValue(object);
+		COSObject entry1 = getentry1Value();
+		return getIntegerValue(entry1);
 	}
 
 }

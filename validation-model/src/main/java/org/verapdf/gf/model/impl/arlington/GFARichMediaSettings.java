@@ -86,8 +86,8 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 
 	@Override
 	public Boolean getActivationHasTypeDictionary() {
-		COSObject object = getActivationValue();
-		return getHasTypeDictionary(object);
+		COSObject Activation = getActivationValue();
+		return getHasTypeDictionary(Activation);
 	}
 
 	@Override
@@ -102,8 +102,8 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 
 	@Override
 	public Boolean getDeactivationHasTypeDictionary() {
-		COSObject object = getDeactivationValue();
-		return getHasTypeDictionary(object);
+		COSObject Deactivation = getDeactivationValue();
+		return getHasTypeDictionary(Deactivation);
 	}
 
 	@Override
@@ -118,14 +118,14 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

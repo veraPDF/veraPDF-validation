@@ -84,8 +84,8 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 
 	@Override
 	public Boolean getCheckSumHasTypeString() {
-		COSObject object = getCheckSumValue();
-		return getHasTypeString(object);
+		COSObject CheckSum = getCheckSumValue();
+		return getHasTypeString(CheckSum);
 	}
 
 	@Override
@@ -100,8 +100,8 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 
 	@Override
 	public Boolean getColorantTableHasTypeArray() {
-		COSObject object = getColorantTableValue();
-		return getHasTypeArray(object);
+		COSObject ColorantTable = getColorantTableValue();
+		return getHasTypeArray(ColorantTable);
 	}
 
 	@Override
@@ -116,8 +116,8 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 
 	@Override
 	public Boolean getICCVersionHasTypeString() {
-		COSObject object = getICCVersionValue();
-		return getHasTypeString(object);
+		COSObject ICCVersion = getICCVersionValue();
+		return getHasTypeString(ICCVersion);
 	}
 
 	@Override
@@ -132,8 +132,8 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 
 	@Override
 	public Boolean getProfileCSHasTypeString() {
-		COSObject object = getProfileCSValue();
-		return getHasTypeString(object);
+		COSObject ProfileCS = getProfileCSValue();
+		return getHasTypeString(ProfileCS);
 	}
 
 	@Override
@@ -148,8 +148,8 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 
 	@Override
 	public Boolean getProfileNameHasTypeStringText() {
-		COSObject object = getProfileNameValue();
-		return getHasTypeStringText(object);
+		COSObject ProfileName = getProfileNameValue();
+		return getHasTypeStringText(ProfileName);
 	}
 
 	@Override
@@ -164,14 +164,14 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 
 	@Override
 	public Boolean getURLsHasTypeArray() {
-		COSObject object = getURLsValue();
-		return getHasTypeArray(object);
+		COSObject URLs = getURLsValue();
+		return getHasTypeArray(URLs);
 	}
 
 	@Override
 	public Long getURLsArraySize() {
-		COSObject object = getURLsValue();
-		return getArraySize(object);
+		COSObject URLs = getURLsValue();
+		return getArraySize(URLs);
 	}
 
 }

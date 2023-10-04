@@ -67,8 +67,8 @@ public class GFACatalogNumberTreePageLabelsEntry extends GFAObject implements AC
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

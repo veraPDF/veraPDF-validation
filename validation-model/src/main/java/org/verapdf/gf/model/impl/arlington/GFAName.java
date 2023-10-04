@@ -348,8 +348,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getAPHasTypeNameTree() {
-		COSObject object = getAPValue();
-		return getHasTypeNameTree(object);
+		COSObject AP = getAPValue();
+		return getHasTypeNameTree(AP);
 	}
 
 	@Override
@@ -364,8 +364,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getAlternatePresentationsHasTypeNameTree() {
-		COSObject object = getAlternatePresentationsValue();
-		return getHasTypeNameTree(object);
+		COSObject AlternatePresentations = getAlternatePresentationsValue();
+		return getHasTypeNameTree(AlternatePresentations);
 	}
 
 	@Override
@@ -380,8 +380,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getDestsHasTypeNameTree() {
-		COSObject object = getDestsValue();
-		return getHasTypeNameTree(object);
+		COSObject Dests = getDestsValue();
+		return getHasTypeNameTree(Dests);
 	}
 
 	@Override
@@ -396,8 +396,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getEmbeddedFilesHasTypeNameTree() {
-		COSObject object = getEmbeddedFilesValue();
-		return getHasTypeNameTree(object);
+		COSObject EmbeddedFiles = getEmbeddedFilesValue();
+		return getHasTypeNameTree(EmbeddedFiles);
 	}
 
 	@Override
@@ -412,8 +412,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getIDSHasTypeNameTree() {
-		COSObject object = getIDSValue();
-		return getHasTypeNameTree(object);
+		COSObject IDS = getIDSValue();
+		return getHasTypeNameTree(IDS);
 	}
 
 	@Override
@@ -428,8 +428,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getJavaScriptHasTypeNameTree() {
-		COSObject object = getJavaScriptValue();
-		return getHasTypeNameTree(object);
+		COSObject JavaScript = getJavaScriptValue();
+		return getHasTypeNameTree(JavaScript);
 	}
 
 	@Override
@@ -444,8 +444,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getPagesHasTypeNameTree() {
-		COSObject object = getPagesValue();
-		return getHasTypeNameTree(object);
+		COSObject Pages = getPagesValue();
+		return getHasTypeNameTree(Pages);
 	}
 
 	@Override
@@ -460,8 +460,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getRenditionsHasTypeNameTree() {
-		COSObject object = getRenditionsValue();
-		return getHasTypeNameTree(object);
+		COSObject Renditions = getRenditionsValue();
+		return getHasTypeNameTree(Renditions);
 	}
 
 	@Override
@@ -476,8 +476,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getTemplatesHasTypeNameTree() {
-		COSObject object = getTemplatesValue();
-		return getHasTypeNameTree(object);
+		COSObject Templates = getTemplatesValue();
+		return getHasTypeNameTree(Templates);
 	}
 
 	@Override
@@ -492,8 +492,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getURLSHasTypeNameTree() {
-		COSObject object = getURLSValue();
-		return getHasTypeNameTree(object);
+		COSObject URLS = getURLSValue();
+		return getHasTypeNameTree(URLS);
 	}
 
 	@Override
@@ -508,8 +508,8 @@ public class GFAName extends GFAObject implements AName {
 
 	@Override
 	public Boolean getXFAResourcesHasTypeNameTree() {
-		COSObject object = getXFAResourcesValue();
-		return getHasTypeNameTree(object);
+		COSObject XFAResources = getXFAResourcesValue();
+		return getHasTypeNameTree(XFAResources);
 	}
 
 	@Override

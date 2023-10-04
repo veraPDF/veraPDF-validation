@@ -161,8 +161,8 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 
 	@Override
 	public Boolean getAnimationHasTypeDictionary() {
-		COSObject object = getAnimationValue();
-		return getHasTypeDictionary(object);
+		COSObject Animation = getAnimationValue();
+		return getHasTypeDictionary(Animation);
 	}
 
 	@Override
@@ -189,14 +189,14 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 
 	@Override
 	public Boolean getConditionHasTypeName() {
-		COSObject object = getConditionValue();
-		return getHasTypeName(object);
+		COSObject Condition = getConditionValue();
+		return getHasTypeName(Condition);
 	}
 
 	@Override
 	public String getConditionNameValue() {
-		COSObject object = getConditionValue();
-		return getNameValue(object);
+		COSObject Condition = getConditionValue();
+		return getNameValue(Condition);
 	}
 
 	@Override
@@ -211,14 +211,14 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 
 	@Override
 	public Boolean getisConfigurationIndirect() {
-		COSObject object = getConfigurationValue();
-		return getisIndirect(object);
+		COSObject Configuration = getConfigurationValue();
+		return getisIndirect(Configuration);
 	}
 
 	@Override
 	public Boolean getConfigurationHasTypeDictionary() {
-		COSObject object = getConfigurationValue();
-		return getHasTypeDictionary(object);
+		COSObject Configuration = getConfigurationValue();
+		return getHasTypeDictionary(Configuration);
 	}
 
 	@Override
@@ -233,8 +233,8 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 
 	@Override
 	public Boolean getPresentationHasTypeDictionary() {
-		COSObject object = getPresentationValue();
-		return getHasTypeDictionary(object);
+		COSObject Presentation = getPresentationValue();
+		return getHasTypeDictionary(Presentation);
 	}
 
 	@Override
@@ -249,8 +249,8 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 
 	@Override
 	public Boolean getScriptsHasTypeArray() {
-		COSObject object = getScriptsValue();
-		return getHasTypeArray(object);
+		COSObject Scripts = getScriptsValue();
+		return getHasTypeArray(Scripts);
 	}
 
 	@Override
@@ -265,14 +265,14 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -287,14 +287,14 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 
 	@Override
 	public Boolean getisViewIndirect() {
-		COSObject object = getViewValue();
-		return getisIndirect(object);
+		COSObject View = getViewValue();
+		return getisIndirect(View);
 	}
 
 	@Override
 	public Boolean getViewHasTypeDictionary() {
-		COSObject object = getViewValue();
-		return getHasTypeDictionary(object);
+		COSObject View = getViewValue();
+		return getHasTypeDictionary(View);
 	}
 
 	@Override

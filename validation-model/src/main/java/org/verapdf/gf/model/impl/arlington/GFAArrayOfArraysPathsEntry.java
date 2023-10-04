@@ -57,14 +57,14 @@ public class GFAArrayOfArraysPathsEntry extends GFAObject implements AArrayOfArr
 
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = getValue();
-		return getHasTypeArray(object);
+		COSObject entry = getValue();
+		return getHasTypeArray(entry);
 	}
 
 	@Override
 	public Long getArraySize() {
-		COSObject object = getValue();
-		return getArraySize(object);
+		COSObject entry = getValue();
+		return getArraySize(entry);
 	}
 
 }

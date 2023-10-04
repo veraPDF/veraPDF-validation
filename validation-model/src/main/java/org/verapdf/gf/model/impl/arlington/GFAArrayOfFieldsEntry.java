@@ -234,8 +234,8 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

@@ -63,8 +63,8 @@ public class GFARichMediaContentNameTreeAssetsEntry extends GFAObject implements
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

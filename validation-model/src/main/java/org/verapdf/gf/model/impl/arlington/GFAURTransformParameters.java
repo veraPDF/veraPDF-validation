@@ -170,8 +170,8 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getAnnotsHasTypeArray() {
-		COSObject object = getAnnotsValue();
-		return getHasTypeArray(object);
+		COSObject Annots = getAnnotsValue();
+		return getHasTypeArray(Annots);
 	}
 
 	@Override
@@ -186,8 +186,8 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getDocumentHasTypeArray() {
-		COSObject object = getDocumentValue();
-		return getHasTypeArray(object);
+		COSObject Document = getDocumentValue();
+		return getHasTypeArray(Document);
 	}
 
 	@Override
@@ -202,8 +202,8 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getEFHasTypeArray() {
-		COSObject object = getEFValue();
-		return getHasTypeArray(object);
+		COSObject EF = getEFValue();
+		return getHasTypeArray(EF);
 	}
 
 	@Override
@@ -218,8 +218,8 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getFormHasTypeArray() {
-		COSObject object = getFormValue();
-		return getHasTypeArray(object);
+		COSObject Form = getFormValue();
+		return getHasTypeArray(Form);
 	}
 
 	@Override
@@ -234,8 +234,8 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getMsgHasTypeStringText() {
-		COSObject object = getMsgValue();
-		return getHasTypeStringText(object);
+		COSObject Msg = getMsgValue();
+		return getHasTypeStringText(Msg);
 	}
 
 	@Override
@@ -263,8 +263,8 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getPHasTypeBoolean() {
-		COSObject object = getPValue();
-		return getHasTypeBoolean(object);
+		COSObject P = getPValue();
+		return getHasTypeBoolean(P);
 	}
 
 	@Override
@@ -279,8 +279,8 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getSignatureHasTypeArray() {
-		COSObject object = getSignatureValue();
-		return getHasTypeArray(object);
+		COSObject Signature = getSignatureValue();
+		return getHasTypeArray(Signature);
 	}
 
 	@Override
@@ -295,14 +295,14 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -331,8 +331,8 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 
 	@Override
 	public Boolean getVHasTypeName() {
-		COSObject object = getVValue();
-		return getHasTypeName(object);
+		COSObject V = getVValue();
+		return getHasTypeName(V);
 	}
 
 }

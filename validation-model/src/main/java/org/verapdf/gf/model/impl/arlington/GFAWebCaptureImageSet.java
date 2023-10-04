@@ -128,8 +128,8 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 
 	@Override
 	public Boolean getCTHasTypeString() {
-		COSObject object = getCTValue();
-		return getHasTypeString(object);
+		COSObject CT = getCTValue();
+		return getHasTypeString(CT);
 	}
 
 	@Override
@@ -144,8 +144,8 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 
 	@Override
 	public Boolean getentryIDHasTypeString() {
-		COSObject object = getentryIDValue();
-		return getHasTypeString(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeString(entryID);
 	}
 
 	@Override
@@ -160,14 +160,14 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 
 	@Override
 	public Boolean getOHasTypeArray() {
-		COSObject object = getOValue();
-		return getHasTypeArray(object);
+		COSObject O = getOValue();
+		return getHasTypeArray(O);
 	}
 
 	@Override
 	public Long getOArraySize() {
-		COSObject object = getOValue();
-		return getArraySize(object);
+		COSObject O = getOValue();
+		return getArraySize(O);
 	}
 
 	@Override
@@ -182,26 +182,26 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 
 	@Override
 	public Boolean getRHasTypeArray() {
-		COSObject object = getRValue();
-		return getHasTypeArray(object);
+		COSObject R = getRValue();
+		return getHasTypeArray(R);
 	}
 
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = getRValue();
-		return getHasTypeInteger(object);
+		COSObject R = getRValue();
+		return getHasTypeInteger(R);
 	}
 
 	@Override
 	public Long getRIntegerValue() {
-		COSObject object = getRValue();
-		return getIntegerValue(object);
+		COSObject R = getRValue();
+		return getIntegerValue(R);
 	}
 
 	@Override
 	public Long getRArraySize() {
-		COSObject object = getRValue();
-		return getArraySize(object);
+		COSObject R = getRValue();
+		return getArraySize(R);
 	}
 
 	@Override
@@ -216,14 +216,14 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -238,14 +238,14 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 
 	@Override
 	public Boolean getSIHasTypeArray() {
-		COSObject object = getSIValue();
-		return getHasTypeArray(object);
+		COSObject SI = getSIValue();
+		return getHasTypeArray(SI);
 	}
 
 	@Override
 	public Boolean getSIHasTypeDictionary() {
-		COSObject object = getSIValue();
-		return getHasTypeDictionary(object);
+		COSObject SI = getSIValue();
+		return getHasTypeDictionary(SI);
 	}
 
 	@Override
@@ -260,8 +260,8 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 
 	@Override
 	public Boolean getTSHasTypeDate() {
-		COSObject object = getTSValue();
-		return getHasTypeDate(object);
+		COSObject TS = getTSValue();
+		return getHasTypeDate(TS);
 	}
 
 	@Override
@@ -276,14 +276,14 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

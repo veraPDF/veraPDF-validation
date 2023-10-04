@@ -28,8 +28,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getAscentHasTypeNumber() {
-		COSObject object = getAscentValue();
-		return getHasTypeNumber(object);
+		COSObject Ascent = getAscentValue();
+		return getHasTypeNumber(Ascent);
 	}
 
 	@Override
@@ -61,8 +61,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getAvgWidthHasTypeNumber() {
-		COSObject object = getAvgWidthValue();
-		return getHasTypeNumber(object);
+		COSObject AvgWidth = getAvgWidthValue();
+		return getHasTypeNumber(AvgWidth);
 	}
 
 	@Override
@@ -77,8 +77,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getCapHeightHasTypeNumber() {
-		COSObject object = getCapHeightValue();
-		return getHasTypeNumber(object);
+		COSObject CapHeight = getCapHeightValue();
+		return getHasTypeNumber(CapHeight);
 	}
 
 	@Override
@@ -93,8 +93,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getCharSetHasTypeString() {
-		COSObject object = getCharSetValue();
-		return getHasTypeString(object);
+		COSObject CharSet = getCharSetValue();
+		return getHasTypeString(CharSet);
 	}
 
 	@Override
@@ -109,14 +109,14 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getDescentHasTypeNumber() {
-		COSObject object = getDescentValue();
-		return getHasTypeNumber(object);
+		COSObject Descent = getDescentValue();
+		return getHasTypeNumber(Descent);
 	}
 
 	@Override
 	public Double getDescentNumberValue() {
-		COSObject object = getDescentValue();
-		return getNumberValue(object);
+		COSObject Descent = getDescentValue();
+		return getNumberValue(Descent);
 	}
 
 	@Override
@@ -131,14 +131,14 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getFlagsHasTypeBitmask() {
-		COSObject object = getFlagsValue();
-		return getHasTypeBitmask(object);
+		COSObject Flags = getFlagsValue();
+		return getHasTypeBitmask(Flags);
 	}
 
 	@Override
 	public Long getFlagsBitmaskValue() {
-		COSObject object = getFlagsValue();
-		return getBitmaskValue(object);
+		COSObject Flags = getFlagsValue();
+		return getBitmaskValue(Flags);
 	}
 
 	@Override
@@ -153,8 +153,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getFontBBoxHasTypeRectangle() {
-		COSObject object = getFontBBoxValue();
-		return getHasTypeRectangle(object);
+		COSObject FontBBox = getFontBBoxValue();
+		return getHasTypeRectangle(FontBBox);
 	}
 
 	@Override
@@ -169,8 +169,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getFontNameHasTypeName() {
-		COSObject object = getFontNameValue();
-		return getHasTypeName(object);
+		COSObject FontName = getFontNameValue();
+		return getHasTypeName(FontName);
 	}
 
 	@Override
@@ -185,8 +185,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getItalicAngleHasTypeNumber() {
-		COSObject object = getItalicAngleValue();
-		return getHasTypeNumber(object);
+		COSObject ItalicAngle = getItalicAngleValue();
+		return getHasTypeNumber(ItalicAngle);
 	}
 
 	@Override
@@ -218,8 +218,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getLeadingHasTypeNumber() {
-		COSObject object = getLeadingValue();
-		return getHasTypeNumber(object);
+		COSObject Leading = getLeadingValue();
+		return getHasTypeNumber(Leading);
 	}
 
 	@Override
@@ -251,8 +251,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getMaxWidthHasTypeNumber() {
-		COSObject object = getMaxWidthValue();
-		return getHasTypeNumber(object);
+		COSObject MaxWidth = getMaxWidthValue();
+		return getHasTypeNumber(MaxWidth);
 	}
 
 	@Override
@@ -284,8 +284,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getMissingWidthHasTypeNumber() {
-		COSObject object = getMissingWidthValue();
-		return getHasTypeNumber(object);
+		COSObject MissingWidth = getMissingWidthValue();
+		return getHasTypeNumber(MissingWidth);
 	}
 
 	@Override
@@ -317,8 +317,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getStemHHasTypeNumber() {
-		COSObject object = getStemHValue();
-		return getHasTypeNumber(object);
+		COSObject StemH = getStemHValue();
+		return getHasTypeNumber(StemH);
 	}
 
 	@Override
@@ -333,8 +333,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getStemVHasTypeNumber() {
-		COSObject object = getStemVValue();
-		return getHasTypeNumber(object);
+		COSObject StemV = getStemVValue();
+		return getHasTypeNumber(StemV);
 	}
 
 	@Override
@@ -349,14 +349,14 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -388,8 +388,8 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 
 	@Override
 	public Boolean getXHeightHasTypeNumber() {
-		COSObject object = getXHeightValue();
-		return getHasTypeNumber(object);
+		COSObject XHeight = getXHeightValue();
+		return getHasTypeNumber(XHeight);
 	}
 
 }

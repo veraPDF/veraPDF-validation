@@ -86,20 +86,20 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 
 	@Override
 	public Boolean getisDataIndirect() {
-		COSObject object = getDataValue();
-		return getisIndirect(object);
+		COSObject Data = getDataValue();
+		return getisIndirect(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeStream() {
-		COSObject object = getDataValue();
-		return getHasTypeStream(object);
+		COSObject Data = getDataValue();
+		return getHasTypeStream(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeStringText() {
-		COSObject object = getDataValue();
-		return getHasTypeStringText(object);
+		COSObject Data = getDataValue();
+		return getHasTypeStringText(Data);
 	}
 
 	@Override
@@ -114,8 +114,8 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 
 	@Override
 	public Boolean getInstanceHasTypeDictionary() {
-		COSObject object = getInstanceValue();
-		return getHasTypeDictionary(object);
+		COSObject Instance = getInstanceValue();
+		return getHasTypeDictionary(Instance);
 	}
 
 	@Override

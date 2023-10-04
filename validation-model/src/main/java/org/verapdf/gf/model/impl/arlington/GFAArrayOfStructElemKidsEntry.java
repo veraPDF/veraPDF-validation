@@ -86,14 +86,14 @@ public class GFAArrayOfStructElemKidsEntry extends GFAObject implements AArrayOf
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeInteger() {
-		COSObject object = getValue();
-		return getHasTypeInteger(object);
+		COSObject entry = getValue();
+		return getHasTypeInteger(entry);
 	}
 
 }

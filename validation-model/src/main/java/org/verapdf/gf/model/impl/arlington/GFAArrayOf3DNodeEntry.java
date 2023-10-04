@@ -58,8 +58,8 @@ public class GFAArrayOf3DNodeEntry extends GFAObject implements AArrayOf3DNodeEn
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

@@ -73,8 +73,8 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 
 	@Override
 	public Boolean getNavigationPaneHasTypeBoolean() {
-		COSObject object = getNavigationPaneValue();
-		return getHasTypeBoolean(object);
+		COSObject NavigationPane = getNavigationPaneValue();
+		return getHasTypeBoolean(NavigationPane);
 	}
 
 	@Override
@@ -101,8 +101,8 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 
 	@Override
 	public Boolean getPassContextClickHasTypeBoolean() {
-		COSObject object = getPassContextClickValue();
-		return getHasTypeBoolean(object);
+		COSObject PassContextClick = getPassContextClickValue();
+		return getHasTypeBoolean(PassContextClick);
 	}
 
 	@Override
@@ -129,14 +129,14 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 
 	@Override
 	public Boolean getStyleHasTypeName() {
-		COSObject object = getStyleValue();
-		return getHasTypeName(object);
+		COSObject Style = getStyleValue();
+		return getHasTypeName(Style);
 	}
 
 	@Override
 	public String getStyleNameValue() {
-		COSObject object = getStyleValue();
-		return getNameValue(object);
+		COSObject Style = getStyleValue();
+		return getNameValue(Style);
 	}
 
 	@Override
@@ -163,8 +163,8 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 
 	@Override
 	public Boolean getToolbarHasTypeBoolean() {
-		COSObject object = getToolbarValue();
-		return getHasTypeBoolean(object);
+		COSObject Toolbar = getToolbarValue();
+		return getHasTypeBoolean(Toolbar);
 	}
 
 	@Override
@@ -191,8 +191,8 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 
 	@Override
 	public Boolean getTransparentHasTypeBoolean() {
-		COSObject object = getTransparentValue();
-		return getHasTypeBoolean(object);
+		COSObject Transparent = getTransparentValue();
+		return getHasTypeBoolean(Transparent);
 	}
 
 	@Override
@@ -207,14 +207,14 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -229,8 +229,8 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 
 	@Override
 	public Boolean getWindowHasTypeDictionary() {
-		COSObject object = getWindowValue();
-		return getHasTypeDictionary(object);
+		COSObject Window = getWindowValue();
+		return getHasTypeDictionary(Window);
 	}
 
 	@Override

@@ -106,8 +106,8 @@ public class GFANameNameTreeAPEntry extends GFAObject implements ANameNameTreeAP
 
 	@Override
 	public Boolean getHasTypeStream() {
-		COSObject object = getValue();
-		return getHasTypeStream(object);
+		COSObject entry = getValue();
+		return getHasTypeStream(entry);
 	}
 
 }

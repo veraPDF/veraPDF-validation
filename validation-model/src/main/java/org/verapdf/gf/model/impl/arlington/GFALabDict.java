@@ -129,8 +129,8 @@ public class GFALabDict extends GFAObject implements ALabDict {
 
 	@Override
 	public Boolean getBlackPointHasTypeArray() {
-		COSObject object = getBlackPointValue();
-		return getHasTypeArray(object);
+		COSObject BlackPoint = getBlackPointValue();
+		return getHasTypeArray(BlackPoint);
 	}
 
 	@Override
@@ -145,8 +145,8 @@ public class GFALabDict extends GFAObject implements ALabDict {
 
 	@Override
 	public Boolean getRangeHasTypeArray() {
-		COSObject object = getRangeValue();
-		return getHasTypeArray(object);
+		COSObject Range = getRangeValue();
+		return getHasTypeArray(Range);
 	}
 
 	@Override
@@ -161,8 +161,8 @@ public class GFALabDict extends GFAObject implements ALabDict {
 
 	@Override
 	public Boolean getWhitePointHasTypeArray() {
-		COSObject object = getWhitePointValue();
-		return getHasTypeArray(object);
+		COSObject WhitePoint = getWhitePointValue();
+		return getHasTypeArray(WhitePoint);
 	}
 
 }

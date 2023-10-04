@@ -103,8 +103,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getCenterWindowHasTypeBoolean() {
-		COSObject object = getCenterWindowValue();
-		return getHasTypeBoolean(object);
+		COSObject CenterWindow = getCenterWindowValue();
+		return getHasTypeBoolean(CenterWindow);
 	}
 
 	@Override
@@ -135,14 +135,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getDirectionHasTypeName() {
-		COSObject object = getDirectionValue();
-		return getHasTypeName(object);
+		COSObject Direction = getDirectionValue();
+		return getHasTypeName(Direction);
 	}
 
 	@Override
 	public String getDirectionNameValue() {
-		COSObject object = getDirectionValue();
-		return getNameValue(object);
+		COSObject Direction = getDirectionValue();
+		return getNameValue(Direction);
 	}
 
 	@Override
@@ -172,8 +172,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getDisplayDocTitleHasTypeBoolean() {
-		COSObject object = getDisplayDocTitleValue();
-		return getHasTypeBoolean(object);
+		COSObject DisplayDocTitle = getDisplayDocTitleValue();
+		return getHasTypeBoolean(DisplayDocTitle);
 	}
 
 	@Override
@@ -188,14 +188,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getDuplexHasTypeName() {
-		COSObject object = getDuplexValue();
-		return getHasTypeName(object);
+		COSObject Duplex = getDuplexValue();
+		return getHasTypeName(Duplex);
 	}
 
 	@Override
 	public String getDuplexNameValue() {
-		COSObject object = getDuplexValue();
-		return getNameValue(object);
+		COSObject Duplex = getDuplexValue();
+		return getNameValue(Duplex);
 	}
 
 	@Override
@@ -210,8 +210,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getEnforceHasTypeArray() {
-		COSObject object = getEnforceValue();
-		return getHasTypeArray(object);
+		COSObject Enforce = getEnforceValue();
+		return getHasTypeArray(Enforce);
 	}
 
 	@Override
@@ -243,8 +243,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getFitWindowHasTypeBoolean() {
-		COSObject object = getFitWindowValue();
-		return getHasTypeBoolean(object);
+		COSObject FitWindow = getFitWindowValue();
+		return getHasTypeBoolean(FitWindow);
 	}
 
 	@Override
@@ -276,8 +276,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getHideMenubarHasTypeBoolean() {
-		COSObject object = getHideMenubarValue();
-		return getHasTypeBoolean(object);
+		COSObject HideMenubar = getHideMenubarValue();
+		return getHasTypeBoolean(HideMenubar);
 	}
 
 	@Override
@@ -309,8 +309,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getHideToolbarHasTypeBoolean() {
-		COSObject object = getHideToolbarValue();
-		return getHasTypeBoolean(object);
+		COSObject HideToolbar = getHideToolbarValue();
+		return getHasTypeBoolean(HideToolbar);
 	}
 
 	@Override
@@ -342,8 +342,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getHideWindowUIHasTypeBoolean() {
-		COSObject object = getHideWindowUIValue();
-		return getHasTypeBoolean(object);
+		COSObject HideWindowUI = getHideWindowUIValue();
+		return getHasTypeBoolean(HideWindowUI);
 	}
 
 	@Override
@@ -375,14 +375,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getNonFullScreenPageModeHasTypeName() {
-		COSObject object = getNonFullScreenPageModeValue();
-		return getHasTypeName(object);
+		COSObject NonFullScreenPageMode = getNonFullScreenPageModeValue();
+		return getHasTypeName(NonFullScreenPageMode);
 	}
 
 	@Override
 	public String getNonFullScreenPageModeNameValue() {
-		COSObject object = getNonFullScreenPageModeValue();
-		return getNameValue(object);
+		COSObject NonFullScreenPageMode = getNonFullScreenPageModeValue();
+		return getNameValue(NonFullScreenPageMode);
 	}
 
 	@Override
@@ -397,14 +397,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getNumCopiesHasTypeInteger() {
-		COSObject object = getNumCopiesValue();
-		return getHasTypeInteger(object);
+		COSObject NumCopies = getNumCopiesValue();
+		return getHasTypeInteger(NumCopies);
 	}
 
 	@Override
 	public Long getNumCopiesIntegerValue() {
-		COSObject object = getNumCopiesValue();
-		return getIntegerValue(object);
+		COSObject NumCopies = getNumCopiesValue();
+		return getIntegerValue(NumCopies);
 	}
 
 	@Override
@@ -431,8 +431,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getPickTrayByPDFSizeHasTypeBoolean() {
-		COSObject object = getPickTrayByPDFSizeValue();
-		return getHasTypeBoolean(object);
+		COSObject PickTrayByPDFSize = getPickTrayByPDFSizeValue();
+		return getHasTypeBoolean(PickTrayByPDFSize);
 	}
 
 	@Override
@@ -462,14 +462,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getPrintAreaHasTypeName() {
-		COSObject object = getPrintAreaValue();
-		return getHasTypeName(object);
+		COSObject PrintArea = getPrintAreaValue();
+		return getHasTypeName(PrintArea);
 	}
 
 	@Override
 	public String getPrintAreaNameValue() {
-		COSObject object = getPrintAreaValue();
-		return getNameValue(object);
+		COSObject PrintArea = getPrintAreaValue();
+		return getNameValue(PrintArea);
 	}
 
 	@Override
@@ -499,14 +499,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getPrintClipHasTypeName() {
-		COSObject object = getPrintClipValue();
-		return getHasTypeName(object);
+		COSObject PrintClip = getPrintClipValue();
+		return getHasTypeName(PrintClip);
 	}
 
 	@Override
 	public String getPrintClipNameValue() {
-		COSObject object = getPrintClipValue();
-		return getNameValue(object);
+		COSObject PrintClip = getPrintClipValue();
+		return getNameValue(PrintClip);
 	}
 
 	@Override
@@ -521,8 +521,8 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getPrintPageRangeHasTypeArray() {
-		COSObject object = getPrintPageRangeValue();
-		return getHasTypeArray(object);
+		COSObject PrintPageRange = getPrintPageRangeValue();
+		return getHasTypeArray(PrintPageRange);
 	}
 
 	@Override
@@ -550,14 +550,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getPrintScalingHasTypeName() {
-		COSObject object = getPrintScalingValue();
-		return getHasTypeName(object);
+		COSObject PrintScaling = getPrintScalingValue();
+		return getHasTypeName(PrintScaling);
 	}
 
 	@Override
 	public String getPrintScalingNameValue() {
-		COSObject object = getPrintScalingValue();
-		return getNameValue(object);
+		COSObject PrintScaling = getPrintScalingValue();
+		return getNameValue(PrintScaling);
 	}
 
 	@Override
@@ -587,14 +587,14 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getViewAreaHasTypeName() {
-		COSObject object = getViewAreaValue();
-		return getHasTypeName(object);
+		COSObject ViewArea = getViewAreaValue();
+		return getHasTypeName(ViewArea);
 	}
 
 	@Override
 	public String getViewAreaNameValue() {
-		COSObject object = getViewAreaValue();
-		return getNameValue(object);
+		COSObject ViewArea = getViewAreaValue();
+		return getNameValue(ViewArea);
 	}
 
 	@Override
@@ -624,28 +624,29 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 
 	@Override
 	public Boolean getViewClipHasTypeName() {
-		COSObject object = getViewClipValue();
-		return getHasTypeName(object);
+		COSObject ViewClip = getViewClipValue();
+		return getHasTypeName(ViewClip);
 	}
 
 	@Override
 	public String getViewClipNameValue() {
-		COSObject object = getViewClipValue();
-		return getNameValue(object);
+		COSObject ViewClip = getViewClipValue();
+		return getNameValue(ViewClip);
 	}
 
-	@Override
-	public String gettrailerCatalogPageModeNameValue() {
+	public COSObject gettrailerCatalogValue() {
 		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
 		if (trailer == null || !trailer.getType().isDictionaryBased()) {
 			return null;
 		}
 		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
-		if (Root == null || !Root.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject PageMode = Root.getKey(ASAtom.getASAtom("PageMode"));
-		return new GFACatalog(Root.getDirectBase(), null, null).getPageModeNameValue();
+		return Root;
+	}
+
+	@Override
+	public String gettrailerCatalogPageModeNameValue() {
+		COSObject trailerCatalog = gettrailerCatalogValue();
+		return new GFACatalog(trailerCatalog.getDirectBase(), null, null).getPageModeNameValue();
 	}
 
 	@Override

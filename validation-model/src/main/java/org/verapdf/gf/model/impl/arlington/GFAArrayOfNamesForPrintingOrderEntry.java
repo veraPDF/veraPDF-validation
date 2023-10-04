@@ -28,8 +28,8 @@ public class GFAArrayOfNamesForPrintingOrderEntry extends GFAObject implements A
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 }

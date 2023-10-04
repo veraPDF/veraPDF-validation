@@ -26,8 +26,8 @@ public class GFAArrayOfOPI2InksSubArray extends GFAObject implements AArrayOfOPI
 
 	@Override
 	public Boolean getentry0HasTypeString() {
-		COSObject object = getentry0Value();
-		return getHasTypeString(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeString(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -40,14 +40,14 @@ public class GFAArrayOfOPI2InksSubArray extends GFAObject implements AArrayOfOPI
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
-		COSObject object = getentry1Value();
-		return getHasTypeNumber(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNumber(entry1);
 	}
 
 	@Override
 	public Double getentry1NumberValue() {
-		COSObject object = getentry1Value();
-		return getNumberValue(object);
+		COSObject entry1 = getentry1Value();
+		return getNumberValue(entry1);
 	}
 
 }

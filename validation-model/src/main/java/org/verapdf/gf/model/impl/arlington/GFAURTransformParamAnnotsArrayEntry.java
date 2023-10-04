@@ -28,14 +28,14 @@ public class GFAURTransformParamAnnotsArrayEntry extends GFAObject implements AU
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 	@Override
 	public String getNameValue() {
-		COSObject object = getValue();
-		return getNameValue(object);
+		COSObject entry = getValue();
+		return getNameValue(entry);
 	}
 
 }

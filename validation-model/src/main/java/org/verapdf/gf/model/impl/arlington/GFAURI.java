@@ -28,8 +28,8 @@ public class GFAURI extends GFAObject implements AURI {
 
 	@Override
 	public Boolean getBaseHasTypeStringAscii() {
-		COSObject object = getBaseValue();
-		return getHasTypeStringAscii(object);
+		COSObject Base = getBaseValue();
+		return getHasTypeStringAscii(Base);
 	}
 
 }

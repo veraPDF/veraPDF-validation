@@ -1233,8 +1233,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getAAHasTypeDictionary() {
-		COSObject object = getAAValue();
-		return getHasTypeDictionary(object);
+		COSObject AA = getAAValue();
+		return getHasTypeDictionary(AA);
 	}
 
 	@Override
@@ -1249,14 +1249,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
 	public Long getAFArraySize() {
-		COSObject object = getAFValue();
-		return getArraySize(object);
+		COSObject AF = getAFValue();
+		return getArraySize(AF);
 	}
 
 	@Override
@@ -1271,8 +1271,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getAcroFormHasTypeDictionary() {
-		COSObject object = getAcroFormValue();
-		return getHasTypeDictionary(object);
+		COSObject AcroForm = getAcroFormValue();
+		return getHasTypeDictionary(AcroForm);
 	}
 
 	@Override
@@ -1287,8 +1287,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getCollectionHasTypeDictionary() {
-		COSObject object = getCollectionValue();
-		return getHasTypeDictionary(object);
+		COSObject Collection = getCollectionValue();
+		return getHasTypeDictionary(Collection);
 	}
 
 	@Override
@@ -1303,8 +1303,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getDPartRootHasTypeDictionary() {
-		COSObject object = getDPartRootValue();
-		return getHasTypeDictionary(object);
+		COSObject DPartRoot = getDPartRootValue();
+		return getHasTypeDictionary(DPartRoot);
 	}
 
 	@Override
@@ -1319,8 +1319,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getDSSHasTypeDictionary() {
-		COSObject object = getDSSValue();
-		return getHasTypeDictionary(object);
+		COSObject DSS = getDSSValue();
+		return getHasTypeDictionary(DSS);
 	}
 
 	@Override
@@ -1335,14 +1335,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getisDestsIndirect() {
-		COSObject object = getDestsValue();
-		return getisIndirect(object);
+		COSObject Dests = getDestsValue();
+		return getisIndirect(Dests);
 	}
 
 	@Override
 	public Boolean getDestsHasTypeDictionary() {
-		COSObject object = getDestsValue();
-		return getHasTypeDictionary(object);
+		COSObject Dests = getDestsValue();
+		return getHasTypeDictionary(Dests);
 	}
 
 	@Override
@@ -1357,14 +1357,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getisExtensionsIndirect() {
-		COSObject object = getExtensionsValue();
-		return getisIndirect(object);
+		COSObject Extensions = getExtensionsValue();
+		return getisIndirect(Extensions);
 	}
 
 	@Override
 	public Boolean getExtensionsHasTypeDictionary() {
-		COSObject object = getExtensionsValue();
-		return getHasTypeDictionary(object);
+		COSObject Extensions = getExtensionsValue();
+		return getHasTypeDictionary(Extensions);
 	}
 
 	@Override
@@ -1379,8 +1379,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getLangHasTypeStringText() {
-		COSObject object = getLangValue();
-		return getHasTypeStringText(object);
+		COSObject Lang = getLangValue();
+		return getHasTypeStringText(Lang);
 	}
 
 	@Override
@@ -1395,8 +1395,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getLegalHasTypeDictionary() {
-		COSObject object = getLegalValue();
-		return getHasTypeDictionary(object);
+		COSObject Legal = getLegalValue();
+		return getHasTypeDictionary(Legal);
 	}
 
 	@Override
@@ -1411,8 +1411,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getMarkInfoHasTypeDictionary() {
-		COSObject object = getMarkInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject MarkInfo = getMarkInfoValue();
+		return getHasTypeDictionary(MarkInfo);
 	}
 
 	@Override
@@ -1427,14 +1427,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getisMetadataIndirect() {
-		COSObject object = getMetadataValue();
-		return getisIndirect(object);
+		COSObject Metadata = getMetadataValue();
+		return getisIndirect(Metadata);
 	}
 
 	@Override
 	public Boolean getMetadataHasTypeStream() {
-		COSObject object = getMetadataValue();
-		return getHasTypeStream(object);
+		COSObject Metadata = getMetadataValue();
+		return getHasTypeStream(Metadata);
 	}
 
 	@Override
@@ -1449,8 +1449,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getNamesHasTypeDictionary() {
-		COSObject object = getNamesValue();
-		return getHasTypeDictionary(object);
+		COSObject Names = getNamesValue();
+		return getHasTypeDictionary(Names);
 	}
 
 	@Override
@@ -1472,8 +1472,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getNeedsRenderingHasTypeBoolean() {
-		COSObject object = getNeedsRenderingValue();
-		return getHasTypeBoolean(object);
+		COSObject NeedsRendering = getNeedsRenderingValue();
+		return getHasTypeBoolean(NeedsRendering);
 	}
 
 	@Override
@@ -1488,8 +1488,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getOCPropertiesHasTypeDictionary() {
-		COSObject object = getOCPropertiesValue();
-		return getHasTypeDictionary(object);
+		COSObject OCProperties = getOCPropertiesValue();
+		return getHasTypeDictionary(OCProperties);
 	}
 
 	@Override
@@ -1504,14 +1504,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getOpenActionHasTypeArray() {
-		COSObject object = getOpenActionValue();
-		return getHasTypeArray(object);
+		COSObject OpenAction = getOpenActionValue();
+		return getHasTypeArray(OpenAction);
 	}
 
 	@Override
 	public Boolean getOpenActionHasTypeDictionary() {
-		COSObject object = getOpenActionValue();
-		return getHasTypeDictionary(object);
+		COSObject OpenAction = getOpenActionValue();
+		return getHasTypeDictionary(OpenAction);
 	}
 
 	@Override
@@ -1526,14 +1526,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getisOutlinesIndirect() {
-		COSObject object = getOutlinesValue();
-		return getisIndirect(object);
+		COSObject Outlines = getOutlinesValue();
+		return getisIndirect(Outlines);
 	}
 
 	@Override
 	public Boolean getOutlinesHasTypeDictionary() {
-		COSObject object = getOutlinesValue();
-		return getHasTypeDictionary(object);
+		COSObject Outlines = getOutlinesValue();
+		return getHasTypeDictionary(Outlines);
 	}
 
 	@Override
@@ -1548,8 +1548,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getOutputIntentsHasTypeArray() {
-		COSObject object = getOutputIntentsValue();
-		return getHasTypeArray(object);
+		COSObject OutputIntents = getOutputIntentsValue();
+		return getHasTypeArray(OutputIntents);
 	}
 
 	@Override
@@ -1564,8 +1564,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getPageLabelsHasTypeNumberTree() {
-		COSObject object = getPageLabelsValue();
-		return getHasTypeNumberTree(object);
+		COSObject PageLabels = getPageLabelsValue();
+		return getHasTypeNumberTree(PageLabels);
 	}
 
 	@Override
@@ -1587,14 +1587,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getPageLayoutHasTypeName() {
-		COSObject object = getPageLayoutValue();
-		return getHasTypeName(object);
+		COSObject PageLayout = getPageLayoutValue();
+		return getHasTypeName(PageLayout);
 	}
 
 	@Override
 	public String getPageLayoutNameValue() {
-		COSObject object = getPageLayoutValue();
-		return getNameValue(object);
+		COSObject PageLayout = getPageLayoutValue();
+		return getNameValue(PageLayout);
 	}
 
 	@Override
@@ -1616,14 +1616,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getPageModeHasTypeName() {
-		COSObject object = getPageModeValue();
-		return getHasTypeName(object);
+		COSObject PageMode = getPageModeValue();
+		return getHasTypeName(PageMode);
 	}
 
 	@Override
 	public String getPageModeNameValue() {
-		COSObject object = getPageModeValue();
-		return getNameValue(object);
+		COSObject PageMode = getPageModeValue();
+		return getNameValue(PageMode);
 	}
 
 	@Override
@@ -1638,14 +1638,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getisPagesIndirect() {
-		COSObject object = getPagesValue();
-		return getisIndirect(object);
+		COSObject Pages = getPagesValue();
+		return getisIndirect(Pages);
 	}
 
 	@Override
 	public Boolean getPagesHasTypeDictionary() {
-		COSObject object = getPagesValue();
-		return getHasTypeDictionary(object);
+		COSObject Pages = getPagesValue();
+		return getHasTypeDictionary(Pages);
 	}
 
 	@Override
@@ -1660,8 +1660,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getPermsHasTypeDictionary() {
-		COSObject object = getPermsValue();
-		return getHasTypeDictionary(object);
+		COSObject Perms = getPermsValue();
+		return getHasTypeDictionary(Perms);
 	}
 
 	@Override
@@ -1676,8 +1676,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
-		COSObject object = getPieceInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject PieceInfo = getPieceInfoValue();
+		return getHasTypeDictionary(PieceInfo);
 	}
 
 	@Override
@@ -1692,8 +1692,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getRequirementsHasTypeArray() {
-		COSObject object = getRequirementsValue();
-		return getHasTypeArray(object);
+		COSObject Requirements = getRequirementsValue();
+		return getHasTypeArray(Requirements);
 	}
 
 	@Override
@@ -1708,8 +1708,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getSpiderInfoHasTypeDictionary() {
-		COSObject object = getSpiderInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject SpiderInfo = getSpiderInfoValue();
+		return getHasTypeDictionary(SpiderInfo);
 	}
 
 	@Override
@@ -1724,14 +1724,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getisStructTreeRootIndirect() {
-		COSObject object = getStructTreeRootValue();
-		return getisIndirect(object);
+		COSObject StructTreeRoot = getStructTreeRootValue();
+		return getisIndirect(StructTreeRoot);
 	}
 
 	@Override
 	public Boolean getStructTreeRootHasTypeDictionary() {
-		COSObject object = getStructTreeRootValue();
-		return getHasTypeDictionary(object);
+		COSObject StructTreeRoot = getStructTreeRootValue();
+		return getHasTypeDictionary(StructTreeRoot);
 	}
 
 	@Override
@@ -1746,14 +1746,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getisThreadsIndirect() {
-		COSObject object = getThreadsValue();
-		return getisIndirect(object);
+		COSObject Threads = getThreadsValue();
+		return getisIndirect(Threads);
 	}
 
 	@Override
 	public Boolean getThreadsHasTypeArray() {
-		COSObject object = getThreadsValue();
-		return getHasTypeArray(object);
+		COSObject Threads = getThreadsValue();
+		return getHasTypeArray(Threads);
 	}
 
 	@Override
@@ -1768,14 +1768,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -1790,8 +1790,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getURIHasTypeDictionary() {
-		COSObject object = getURIValue();
-		return getHasTypeDictionary(object);
+		COSObject URI = getURIValue();
+		return getHasTypeDictionary(URI);
 	}
 
 	@Override
@@ -1806,14 +1806,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getVersionHasTypeName() {
-		COSObject object = getVersionValue();
-		return getHasTypeName(object);
+		COSObject Version = getVersionValue();
+		return getHasTypeName(Version);
 	}
 
 	@Override
 	public String getVersionNameValue() {
-		COSObject object = getVersionValue();
-		return getNameValue(object);
+		COSObject Version = getVersionValue();
+		return getNameValue(Version);
 	}
 
 	@Override
@@ -1828,8 +1828,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	@Override
 	public Boolean getViewerPreferencesHasTypeDictionary() {
-		COSObject object = getViewerPreferencesValue();
-		return getHasTypeDictionary(object);
+		COSObject ViewerPreferences = getViewerPreferencesValue();
+		return getHasTypeDictionary(ViewerPreferences);
 	}
 
 	@Override

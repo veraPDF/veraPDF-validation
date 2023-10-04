@@ -95,14 +95,14 @@ public class GFAArrayOfFontAndSize extends GFAObject implements AArrayOfFontAndS
 
 	@Override
 	public Boolean getisentry0Indirect() {
-		COSObject object = getentry0Value();
-		return getisIndirect(object);
+		COSObject entry0 = getentry0Value();
+		return getisIndirect(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
-		COSObject object = getentry0Value();
-		return getHasTypeDictionary(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeDictionary(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -115,8 +115,8 @@ public class GFAArrayOfFontAndSize extends GFAObject implements AArrayOfFontAndS
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
-		COSObject object = getentry1Value();
-		return getHasTypeNumber(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNumber(entry1);
 	}
 
 }

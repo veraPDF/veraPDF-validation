@@ -361,8 +361,8 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getAAHasTypeDictionary() {
-		COSObject object = getAAValue();
-		return getHasTypeDictionary(object);
+		COSObject AA = getAAValue();
+		return getHasTypeDictionary(AA);
 	}
 
 	@Override
@@ -383,8 +383,8 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getDAHasTypeString() {
-		COSObject object = getDAValue();
-		return getHasTypeString(object);
+		COSObject DA = getDAValue();
+		return getHasTypeString(DA);
 	}
 
 	@Override
@@ -399,8 +399,8 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getDSHasTypeStringText() {
-		COSObject object = getDSValue();
-		return getHasTypeStringText(object);
+		COSObject DS = getDSValue();
+		return getHasTypeStringText(DS);
 	}
 
 	@Override
@@ -421,20 +421,20 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getisDVIndirect() {
-		COSObject object = getDVValue();
-		return getisIndirect(object);
+		COSObject DV = getDVValue();
+		return getisIndirect(DV);
 	}
 
 	@Override
 	public Boolean getDVHasTypeStream() {
-		COSObject object = getDVValue();
-		return getHasTypeStream(object);
+		COSObject DV = getDVValue();
+		return getHasTypeStream(DV);
 	}
 
 	@Override
 	public Boolean getDVHasTypeStringText() {
-		COSObject object = getDVValue();
-		return getHasTypeStringText(object);
+		COSObject DV = getDVValue();
+		return getHasTypeStringText(DV);
 	}
 
 	@Override
@@ -455,14 +455,14 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getFTHasTypeName() {
-		COSObject object = getFTValue();
-		return getHasTypeName(object);
+		COSObject FT = getFTValue();
+		return getHasTypeName(FT);
 	}
 
 	@Override
 	public String getFTNameValue() {
-		COSObject object = getFTValue();
-		return getNameValue(object);
+		COSObject FT = getFTValue();
+		return getNameValue(FT);
 	}
 
 	@Override
@@ -483,14 +483,14 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getFfHasTypeBitmask() {
-		COSObject object = getFfValue();
-		return getHasTypeBitmask(object);
+		COSObject Ff = getFfValue();
+		return getHasTypeBitmask(Ff);
 	}
 
 	@Override
 	public Long getFfBitmaskValue() {
-		COSObject object = getFfValue();
-		return getBitmaskValue(object);
+		COSObject Ff = getFfValue();
+		return getBitmaskValue(Ff);
 	}
 
 	@Override
@@ -505,8 +505,8 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getKidsHasTypeArray() {
-		COSObject object = getKidsValue();
-		return getHasTypeArray(object);
+		COSObject Kids = getKidsValue();
+		return getHasTypeArray(Kids);
 	}
 
 	@Override
@@ -527,14 +527,14 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getMaxLenHasTypeInteger() {
-		COSObject object = getMaxLenValue();
-		return getHasTypeInteger(object);
+		COSObject MaxLen = getMaxLenValue();
+		return getHasTypeInteger(MaxLen);
 	}
 
 	@Override
 	public Long getMaxLenIntegerValue() {
-		COSObject object = getMaxLenValue();
-		return getIntegerValue(object);
+		COSObject MaxLen = getMaxLenValue();
+		return getIntegerValue(MaxLen);
 	}
 
 	@Override
@@ -549,8 +549,8 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = getParentValue();
-		return getHasTypeDictionary(object);
+		COSObject Parent = getParentValue();
+		return getHasTypeDictionary(Parent);
 	}
 
 	@Override
@@ -582,14 +582,14 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getQHasTypeInteger() {
-		COSObject object = getQValue();
-		return getHasTypeInteger(object);
+		COSObject Q = getQValue();
+		return getHasTypeInteger(Q);
 	}
 
 	@Override
 	public Long getQIntegerValue() {
-		COSObject object = getQValue();
-		return getIntegerValue(object);
+		COSObject Q = getQValue();
+		return getIntegerValue(Q);
 	}
 
 	@Override
@@ -604,20 +604,20 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getisRVIndirect() {
-		COSObject object = getRVValue();
-		return getisIndirect(object);
+		COSObject RV = getRVValue();
+		return getisIndirect(RV);
 	}
 
 	@Override
 	public Boolean getRVHasTypeStream() {
-		COSObject object = getRVValue();
-		return getHasTypeStream(object);
+		COSObject RV = getRVValue();
+		return getHasTypeStream(RV);
 	}
 
 	@Override
 	public Boolean getRVHasTypeStringText() {
-		COSObject object = getRVValue();
-		return getHasTypeStringText(object);
+		COSObject RV = getRVValue();
+		return getHasTypeStringText(RV);
 	}
 
 	@Override
@@ -632,8 +632,8 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = getTValue();
-		return getHasTypeStringText(object);
+		COSObject T = getTValue();
+		return getHasTypeStringText(T);
 	}
 
 	@Override
@@ -648,8 +648,8 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getTMHasTypeStringText() {
-		COSObject object = getTMValue();
-		return getHasTypeStringText(object);
+		COSObject TM = getTMValue();
+		return getHasTypeStringText(TM);
 	}
 
 	@Override
@@ -664,8 +664,8 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getTUHasTypeStringText() {
-		COSObject object = getTUValue();
-		return getHasTypeStringText(object);
+		COSObject TU = getTUValue();
+		return getHasTypeStringText(TU);
 	}
 
 	@Override
@@ -686,20 +686,20 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	@Override
 	public Boolean getisVIndirect() {
-		COSObject object = getVValue();
-		return getisIndirect(object);
+		COSObject V = getVValue();
+		return getisIndirect(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeStream() {
-		COSObject object = getVValue();
-		return getHasTypeStream(object);
+		COSObject V = getVValue();
+		return getHasTypeStream(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeStringText() {
-		COSObject object = getVValue();
-		return getHasTypeStringText(object);
+		COSObject V = getVValue();
+		return getHasTypeStringText(V);
 	}
 
 }

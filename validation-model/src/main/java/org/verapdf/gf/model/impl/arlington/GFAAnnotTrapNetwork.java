@@ -317,14 +317,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = getAFValue();
-		return getHasTypeDictionary(object);
+		COSObject AF = getAFValue();
+		return getHasTypeDictionary(AF);
 	}
 
 	@Override
@@ -339,8 +339,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getAPHasTypeDictionary() {
-		COSObject object = getAPValue();
-		return getHasTypeDictionary(object);
+		COSObject AP = getAPValue();
+		return getHasTypeDictionary(AP);
 	}
 
 	@Override
@@ -355,8 +355,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getASHasTypeName() {
-		COSObject object = getASValue();
-		return getHasTypeName(object);
+		COSObject AS = getASValue();
+		return getHasTypeName(AS);
 	}
 
 	@Override
@@ -371,8 +371,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getAnnotStatesHasTypeArray() {
-		COSObject object = getAnnotStatesValue();
-		return getHasTypeArray(object);
+		COSObject AnnotStates = getAnnotStatesValue();
+		return getHasTypeArray(AnnotStates);
 	}
 
 	@Override
@@ -398,14 +398,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getBMHasTypeName() {
-		COSObject object = getBMValue();
-		return getHasTypeName(object);
+		COSObject BM = getBMValue();
+		return getHasTypeName(BM);
 	}
 
 	@Override
 	public String getBMNameValue() {
-		COSObject object = getBMValue();
-		return getNameValue(object);
+		COSObject BM = getBMValue();
+		return getNameValue(BM);
 	}
 
 	@Override
@@ -420,8 +420,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getBorderHasTypeArray() {
-		COSObject object = getBorderValue();
-		return getHasTypeArray(object);
+		COSObject Border = getBorderValue();
+		return getHasTypeArray(Border);
 	}
 
 	@Override
@@ -436,8 +436,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
@@ -463,14 +463,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getCAHasTypeNumber() {
-		COSObject object = getCAValue();
-		return getHasTypeNumber(object);
+		COSObject CA = getCAValue();
+		return getHasTypeNumber(CA);
 	}
 
 	@Override
 	public Double getCANumberValue() {
-		COSObject object = getCAValue();
-		return getNumberValue(object);
+		COSObject CA = getCAValue();
+		return getNumberValue(CA);
 	}
 
 	@Override
@@ -485,8 +485,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getContentsHasTypeString() {
-		COSObject object = getContentsValue();
-		return getHasTypeString(object);
+		COSObject Contents = getContentsValue();
+		return getHasTypeString(Contents);
 	}
 
 	@Override
@@ -501,14 +501,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getFHasTypeBitmask() {
-		COSObject object = getFValue();
-		return getHasTypeBitmask(object);
+		COSObject F = getFValue();
+		return getHasTypeBitmask(F);
 	}
 
 	@Override
 	public Long getFBitmaskValue() {
-		COSObject object = getFValue();
-		return getBitmaskValue(object);
+		COSObject F = getFValue();
+		return getBitmaskValue(F);
 	}
 
 	@Override
@@ -523,8 +523,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getFontFauxingHasTypeArray() {
-		COSObject object = getFontFauxingValue();
-		return getHasTypeArray(object);
+		COSObject FontFauxing = getFontFauxingValue();
+		return getHasTypeArray(FontFauxing);
 	}
 
 	@Override
@@ -539,8 +539,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getLangHasTypeString() {
-		COSObject object = getLangValue();
-		return getHasTypeString(object);
+		COSObject Lang = getLangValue();
+		return getHasTypeString(Lang);
 	}
 
 	@Override
@@ -555,8 +555,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
-		COSObject object = getLastModifiedValue();
-		return getHasTypeDate(object);
+		COSObject LastModified = getLastModifiedValue();
+		return getHasTypeDate(LastModified);
 	}
 
 	@Override
@@ -571,14 +571,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getMHasTypeDate() {
-		COSObject object = getMValue();
-		return getHasTypeDate(object);
+		COSObject M = getMValue();
+		return getHasTypeDate(M);
 	}
 
 	@Override
 	public Boolean getMHasTypeString() {
-		COSObject object = getMValue();
-		return getHasTypeString(object);
+		COSObject M = getMValue();
+		return getHasTypeString(M);
 	}
 
 	@Override
@@ -593,8 +593,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getNMHasTypeString() {
-		COSObject object = getNMValue();
-		return getHasTypeString(object);
+		COSObject NM = getNMValue();
+		return getHasTypeString(NM);
 	}
 
 	@Override
@@ -609,8 +609,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getOCHasTypeDictionary() {
-		COSObject object = getOCValue();
-		return getHasTypeDictionary(object);
+		COSObject OC = getOCValue();
+		return getHasTypeDictionary(OC);
 	}
 
 	@Override
@@ -625,14 +625,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = getPValue();
-		return getisIndirect(object);
+		COSObject P = getPValue();
+		return getisIndirect(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -647,8 +647,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getRectHasTypeRectangle() {
-		COSObject object = getRectValue();
-		return getHasTypeRectangle(object);
+		COSObject Rect = getRectValue();
+		return getHasTypeRectangle(Rect);
 	}
 
 	@Override
@@ -663,8 +663,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
-		COSObject object = getStructParentValue();
-		return getHasTypeInteger(object);
+		COSObject StructParent = getStructParentValue();
+		return getHasTypeInteger(StructParent);
 	}
 
 	@Override
@@ -679,14 +679,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -701,14 +701,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -723,8 +723,8 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getVersionHasTypeArray() {
-		COSObject object = getVersionValue();
-		return getHasTypeArray(object);
+		COSObject Version = getVersionValue();
+		return getHasTypeArray(Version);
 	}
 
 	@Override
@@ -750,14 +750,14 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	@Override
 	public Boolean getcaHasTypeNumber() {
-		COSObject object = getcaValue();
-		return getHasTypeNumber(object);
+		COSObject ca = getcaValue();
+		return getHasTypeNumber(ca);
 	}
 
 	@Override
 	public Double getcaNumberValue() {
-		COSObject object = getcaValue();
-		return getNumberValue(object);
+		COSObject ca = getcaValue();
+		return getNumberValue(ca);
 	}
 
 }

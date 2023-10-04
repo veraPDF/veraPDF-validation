@@ -126,8 +126,8 @@ public class GFAMovie extends GFAObject implements AMovie {
 
 	@Override
 	public Boolean getAspectHasTypeArray() {
-		COSObject object = getAspectValue();
-		return getHasTypeArray(object);
+		COSObject Aspect = getAspectValue();
+		return getHasTypeArray(Aspect);
 	}
 
 	@Override
@@ -142,14 +142,14 @@ public class GFAMovie extends GFAObject implements AMovie {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -181,20 +181,20 @@ public class GFAMovie extends GFAObject implements AMovie {
 
 	@Override
 	public Boolean getisPosterIndirect() {
-		COSObject object = getPosterValue();
-		return getisIndirect(object);
+		COSObject Poster = getPosterValue();
+		return getisIndirect(Poster);
 	}
 
 	@Override
 	public Boolean getPosterHasTypeBoolean() {
-		COSObject object = getPosterValue();
-		return getHasTypeBoolean(object);
+		COSObject Poster = getPosterValue();
+		return getHasTypeBoolean(Poster);
 	}
 
 	@Override
 	public Boolean getPosterHasTypeStream() {
-		COSObject object = getPosterValue();
-		return getHasTypeStream(object);
+		COSObject Poster = getPosterValue();
+		return getHasTypeStream(Poster);
 	}
 
 	@Override
@@ -226,14 +226,14 @@ public class GFAMovie extends GFAObject implements AMovie {
 
 	@Override
 	public Boolean getRotateHasTypeInteger() {
-		COSObject object = getRotateValue();
-		return getHasTypeInteger(object);
+		COSObject Rotate = getRotateValue();
+		return getHasTypeInteger(Rotate);
 	}
 
 	@Override
 	public Long getRotateIntegerValue() {
-		COSObject object = getRotateValue();
-		return getIntegerValue(object);
+		COSObject Rotate = getRotateValue();
+		return getIntegerValue(Rotate);
 	}
 
 }

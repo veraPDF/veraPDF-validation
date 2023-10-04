@@ -28,8 +28,8 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getCaptionHasTypeStringText() {
-		COSObject object = getCaptionValue();
-		return getHasTypeStringText(object);
+		COSObject Caption = getCaptionValue();
+		return getHasTypeStringText(Caption);
 	}
 
 	@Override
@@ -44,14 +44,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getECCHasTypeInteger() {
-		COSObject object = getECCValue();
-		return getHasTypeInteger(object);
+		COSObject ECC = getECCValue();
+		return getHasTypeInteger(ECC);
 	}
 
 	@Override
 	public Long getECCIntegerValue() {
-		COSObject object = getECCValue();
-		return getIntegerValue(object);
+		COSObject ECC = getECCValue();
+		return getIntegerValue(ECC);
 	}
 
 	@Override
@@ -66,14 +66,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getHeightHasTypeNumber() {
-		COSObject object = getHeightValue();
-		return getHasTypeNumber(object);
+		COSObject Height = getHeightValue();
+		return getHasTypeNumber(Height);
 	}
 
 	@Override
 	public Double getHeightNumberValue() {
-		COSObject object = getHeightValue();
-		return getNumberValue(object);
+		COSObject Height = getHeightValue();
+		return getNumberValue(Height);
 	}
 
 	@Override
@@ -100,14 +100,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getResolutionHasTypeNumber() {
-		COSObject object = getResolutionValue();
-		return getHasTypeNumber(object);
+		COSObject Resolution = getResolutionValue();
+		return getHasTypeNumber(Resolution);
 	}
 
 	@Override
 	public Double getResolutionNumberValue() {
-		COSObject object = getResolutionValue();
-		return getNumberValue(object);
+		COSObject Resolution = getResolutionValue();
+		return getNumberValue(Resolution);
 	}
 
 	@Override
@@ -122,14 +122,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getSymbologyHasTypeName() {
-		COSObject object = getSymbologyValue();
-		return getHasTypeName(object);
+		COSObject Symbology = getSymbologyValue();
+		return getHasTypeName(Symbology);
 	}
 
 	@Override
 	public String getSymbologyNameValue() {
-		COSObject object = getSymbologyValue();
-		return getNameValue(object);
+		COSObject Symbology = getSymbologyValue();
+		return getNameValue(Symbology);
 	}
 
 	@Override
@@ -144,14 +144,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -166,14 +166,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getVersionHasTypeNumber() {
-		COSObject object = getVersionValue();
-		return getHasTypeNumber(object);
+		COSObject Version = getVersionValue();
+		return getHasTypeNumber(Version);
 	}
 
 	@Override
 	public Double getVersionNumberValue() {
-		COSObject object = getVersionValue();
-		return getNumberValue(object);
+		COSObject Version = getVersionValue();
+		return getNumberValue(Version);
 	}
 
 	@Override
@@ -188,14 +188,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getWidthHasTypeNumber() {
-		COSObject object = getWidthValue();
-		return getHasTypeNumber(object);
+		COSObject Width = getWidthValue();
+		return getHasTypeNumber(Width);
 	}
 
 	@Override
 	public Double getWidthNumberValue() {
-		COSObject object = getWidthValue();
-		return getNumberValue(object);
+		COSObject Width = getWidthValue();
+		return getNumberValue(Width);
 	}
 
 	@Override
@@ -210,14 +210,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getXSymWidthHasTypeInteger() {
-		COSObject object = getXSymWidthValue();
-		return getHasTypeInteger(object);
+		COSObject XSymWidth = getXSymWidthValue();
+		return getHasTypeInteger(XSymWidth);
 	}
 
 	@Override
 	public Long getXSymWidthIntegerValue() {
-		COSObject object = getXSymWidthValue();
-		return getIntegerValue(object);
+		COSObject XSymWidth = getXSymWidthValue();
+		return getIntegerValue(XSymWidth);
 	}
 
 	@Override
@@ -232,14 +232,14 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getYSymHeightHasTypeInteger() {
-		COSObject object = getYSymHeightValue();
-		return getHasTypeInteger(object);
+		COSObject YSymHeight = getYSymHeightValue();
+		return getHasTypeInteger(YSymHeight);
 	}
 
 	@Override
 	public Long getYSymHeightIntegerValue() {
-		COSObject object = getYSymHeightValue();
-		return getIntegerValue(object);
+		COSObject YSymHeight = getYSymHeightValue();
+		return getIntegerValue(YSymHeight);
 	}
 
 	@Override
@@ -266,8 +266,8 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getnCodeWordColHasTypeNumber() {
-		COSObject object = getnCodeWordColValue();
-		return getHasTypeNumber(object);
+		COSObject nCodeWordCol = getnCodeWordColValue();
+		return getHasTypeNumber(nCodeWordCol);
 	}
 
 	@Override
@@ -294,8 +294,8 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 
 	@Override
 	public Boolean getnCodeWordRowHasTypeNumber() {
-		COSObject object = getnCodeWordRowValue();
-		return getHasTypeNumber(object);
+		COSObject nCodeWordRow = getnCodeWordRowValue();
+		return getHasTypeNumber(nCodeWordRow);
 	}
 
 	@Override

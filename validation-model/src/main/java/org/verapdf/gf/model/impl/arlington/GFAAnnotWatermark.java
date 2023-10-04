@@ -243,14 +243,14 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = getAFValue();
-		return getHasTypeDictionary(object);
+		COSObject AF = getAFValue();
+		return getHasTypeDictionary(AF);
 	}
 
 	@Override
@@ -265,8 +265,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getAPHasTypeDictionary() {
-		COSObject object = getAPValue();
-		return getHasTypeDictionary(object);
+		COSObject AP = getAPValue();
+		return getHasTypeDictionary(AP);
 	}
 
 	@Override
@@ -281,8 +281,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getASHasTypeName() {
-		COSObject object = getASValue();
-		return getHasTypeName(object);
+		COSObject AS = getASValue();
+		return getHasTypeName(AS);
 	}
 
 	@Override
@@ -308,14 +308,14 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getBMHasTypeName() {
-		COSObject object = getBMValue();
-		return getHasTypeName(object);
+		COSObject BM = getBMValue();
+		return getHasTypeName(BM);
 	}
 
 	@Override
 	public String getBMNameValue() {
-		COSObject object = getBMValue();
-		return getNameValue(object);
+		COSObject BM = getBMValue();
+		return getNameValue(BM);
 	}
 
 	@Override
@@ -330,8 +330,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getBorderHasTypeArray() {
-		COSObject object = getBorderValue();
-		return getHasTypeArray(object);
+		COSObject Border = getBorderValue();
+		return getHasTypeArray(Border);
 	}
 
 	@Override
@@ -346,8 +346,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
@@ -373,14 +373,14 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getCAHasTypeNumber() {
-		COSObject object = getCAValue();
-		return getHasTypeNumber(object);
+		COSObject CA = getCAValue();
+		return getHasTypeNumber(CA);
 	}
 
 	@Override
 	public Double getCANumberValue() {
-		COSObject object = getCAValue();
-		return getNumberValue(object);
+		COSObject CA = getCAValue();
+		return getNumberValue(CA);
 	}
 
 	@Override
@@ -395,8 +395,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getContentsHasTypeStringText() {
-		COSObject object = getContentsValue();
-		return getHasTypeStringText(object);
+		COSObject Contents = getContentsValue();
+		return getHasTypeStringText(Contents);
 	}
 
 	@Override
@@ -424,14 +424,14 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getFHasTypeBitmask() {
-		COSObject object = getFValue();
-		return getHasTypeBitmask(object);
+		COSObject F = getFValue();
+		return getHasTypeBitmask(F);
 	}
 
 	@Override
 	public Long getFBitmaskValue() {
-		COSObject object = getFValue();
-		return getBitmaskValue(object);
+		COSObject F = getFValue();
+		return getBitmaskValue(F);
 	}
 
 	@Override
@@ -446,8 +446,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getFixedPrintHasTypeDictionary() {
-		COSObject object = getFixedPrintValue();
-		return getHasTypeDictionary(object);
+		COSObject FixedPrint = getFixedPrintValue();
+		return getHasTypeDictionary(FixedPrint);
 	}
 
 	@Override
@@ -462,8 +462,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getLangHasTypeStringText() {
-		COSObject object = getLangValue();
-		return getHasTypeStringText(object);
+		COSObject Lang = getLangValue();
+		return getHasTypeStringText(Lang);
 	}
 
 	@Override
@@ -478,14 +478,14 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getMHasTypeDate() {
-		COSObject object = getMValue();
-		return getHasTypeDate(object);
+		COSObject M = getMValue();
+		return getHasTypeDate(M);
 	}
 
 	@Override
 	public Boolean getMHasTypeStringText() {
-		COSObject object = getMValue();
-		return getHasTypeStringText(object);
+		COSObject M = getMValue();
+		return getHasTypeStringText(M);
 	}
 
 	@Override
@@ -500,8 +500,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getNMHasTypeStringText() {
-		COSObject object = getNMValue();
-		return getHasTypeStringText(object);
+		COSObject NM = getNMValue();
+		return getHasTypeStringText(NM);
 	}
 
 	@Override
@@ -516,8 +516,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getOCHasTypeDictionary() {
-		COSObject object = getOCValue();
-		return getHasTypeDictionary(object);
+		COSObject OC = getOCValue();
+		return getHasTypeDictionary(OC);
 	}
 
 	@Override
@@ -532,14 +532,14 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = getPValue();
-		return getisIndirect(object);
+		COSObject P = getPValue();
+		return getisIndirect(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -554,20 +554,20 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getRectHasTypeRectangle() {
-		COSObject object = getRectValue();
-		return getHasTypeRectangle(object);
+		COSObject Rect = getRectValue();
+		return getHasTypeRectangle(Rect);
 	}
 
 	@Override
 	public Double getRectRectHeight() {
-		COSObject object = getRectValue();
-		return getRectHeight(object);
+		COSObject Rect = getRectValue();
+		return getRectHeight(Rect);
 	}
 
 	@Override
 	public Double getRectRectWidth() {
-		COSObject object = getRectValue();
-		return getRectWidth(object);
+		COSObject Rect = getRectValue();
+		return getRectWidth(Rect);
 	}
 
 	@Override
@@ -582,8 +582,8 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
-		COSObject object = getStructParentValue();
-		return getHasTypeInteger(object);
+		COSObject StructParent = getStructParentValue();
+		return getHasTypeInteger(StructParent);
 	}
 
 	@Override
@@ -598,14 +598,14 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -620,14 +620,14 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -653,44 +653,17 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 
 	@Override
 	public Boolean getcaHasTypeNumber() {
-		COSObject object = getcaValue();
-		return getHasTypeNumber(object);
+		COSObject ca = getcaValue();
+		return getHasTypeNumber(ca);
 	}
 
 	@Override
 	public Double getcaNumberValue() {
-		COSObject object = getcaValue();
-		return getNumberValue(object);
+		COSObject ca = getcaValue();
+		return getNumberValue(ca);
 	}
 
-	@Override
-	public Boolean getAPNHasTypeDictionary() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		if (AP == null || !AP.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
-		return getHasTypeDictionary(N);
-	}
-
-	@Override
-	public Boolean getAPRHasTypeDictionary() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		if (AP == null || !AP.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
-		return getHasTypeDictionary(R);
-	}
-
-	@Override
-	public Boolean getAPDHasTypeDictionary() {
+	public COSObject getAPDValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -699,7 +672,49 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 			return null;
 		}
 		COSObject D = AP.getKey(ASAtom.getASAtom("D"));
-		return getHasTypeDictionary(D);
+		return D;
+	}
+
+	public COSObject getAPNValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		if (AP == null || !AP.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
+		return N;
+	}
+
+	public COSObject getAPRValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		if (AP == null || !AP.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
+		return R;
+	}
+
+	@Override
+	public Boolean getAPNHasTypeDictionary() {
+		COSObject APN = getAPNValue();
+		return getHasTypeDictionary(APN);
+	}
+
+	@Override
+	public Boolean getAPRHasTypeDictionary() {
+		COSObject APR = getAPRValue();
+		return getHasTypeDictionary(APR);
+	}
+
+	@Override
+	public Boolean getAPDHasTypeDictionary() {
+		COSObject APD = getAPDValue();
+		return getHasTypeDictionary(APD);
 	}
 
 }

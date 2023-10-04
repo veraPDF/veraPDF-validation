@@ -132,8 +132,8 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	@Override
 	public Boolean getCRLHasTypeArray() {
-		COSObject object = getCRLValue();
-		return getHasTypeArray(object);
+		COSObject CRL = getCRLValue();
+		return getHasTypeArray(CRL);
 	}
 
 	@Override
@@ -148,8 +148,8 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	@Override
 	public Boolean getCertHasTypeArray() {
-		COSObject object = getCertValue();
-		return getHasTypeArray(object);
+		COSObject Cert = getCertValue();
+		return getHasTypeArray(Cert);
 	}
 
 	@Override
@@ -164,8 +164,8 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	@Override
 	public Boolean getOCSPHasTypeArray() {
-		COSObject object = getOCSPValue();
-		return getHasTypeArray(object);
+		COSObject OCSP = getOCSPValue();
+		return getHasTypeArray(OCSP);
 	}
 
 	@Override
@@ -180,14 +180,14 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	@Override
 	public Boolean getisTSIndirect() {
-		COSObject object = getTSValue();
-		return getisIndirect(object);
+		COSObject TS = getTSValue();
+		return getisIndirect(TS);
 	}
 
 	@Override
 	public Boolean getTSHasTypeStream() {
-		COSObject object = getTSValue();
-		return getHasTypeStream(object);
+		COSObject TS = getTSValue();
+		return getHasTypeStream(TS);
 	}
 
 	@Override
@@ -202,8 +202,8 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	@Override
 	public Boolean getTUHasTypeDate() {
-		COSObject object = getTUValue();
-		return getHasTypeDate(object);
+		COSObject TU = getTUValue();
+		return getHasTypeDate(TU);
 	}
 
 	@Override
@@ -218,50 +218,54 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
+	}
+
+	public COSObject getparentCRLsValue() {
+		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject CRLs = this.parentObject.getKey(ASAtom.getASAtom("CRLs"));
+		return CRLs;
+	}
+
+	public COSObject getparentOCSPsValue() {
+		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject OCSPs = this.parentObject.getKey(ASAtom.getASAtom("OCSPs"));
+		return OCSPs;
 	}
 
 	@Override
 	public Long getparentCRLsArraySize() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject CRLs = this.parentObject.getKey(ASAtom.getASAtom("CRLs"));
-		return getArraySize(CRLs);
+		COSObject parentCRLs = getparentCRLsValue();
+		return getArraySize(parentCRLs);
 	}
 
 	@Override
 	public Long getparentOCSPsArraySize() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject OCSPs = this.parentObject.getKey(ASAtom.getASAtom("OCSPs"));
-		return getArraySize(OCSPs);
+		COSObject parentOCSPs = getparentOCSPsValue();
+		return getArraySize(parentOCSPs);
 	}
 
 	@Override
 	public Boolean getparentCRLsHasTypeArray() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject CRLs = this.parentObject.getKey(ASAtom.getASAtom("CRLs"));
-		return getHasTypeArray(CRLs);
+		COSObject parentCRLs = getparentCRLsValue();
+		return getHasTypeArray(parentCRLs);
 	}
 
 	@Override
 	public Boolean getparentOCSPsHasTypeArray() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject OCSPs = this.parentObject.getKey(ASAtom.getASAtom("OCSPs"));
-		return getHasTypeArray(OCSPs);
+		COSObject parentOCSPs = getparentOCSPsValue();
+		return getHasTypeArray(parentOCSPs);
 	}
 
 }

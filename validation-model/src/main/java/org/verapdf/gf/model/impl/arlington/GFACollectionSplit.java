@@ -28,14 +28,14 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 
 	@Override
 	public Boolean getDirectionHasTypeName() {
-		COSObject object = getDirectionValue();
-		return getHasTypeName(object);
+		COSObject Direction = getDirectionValue();
+		return getHasTypeName(Direction);
 	}
 
 	@Override
 	public String getDirectionNameValue() {
-		COSObject object = getDirectionValue();
-		return getNameValue(object);
+		COSObject Direction = getDirectionValue();
+		return getNameValue(Direction);
 	}
 
 	@Override
@@ -50,14 +50,14 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 
 	@Override
 	public Boolean getPositionHasTypeNumber() {
-		COSObject object = getPositionValue();
-		return getHasTypeNumber(object);
+		COSObject Position = getPositionValue();
+		return getHasTypeNumber(Position);
 	}
 
 	@Override
 	public Double getPositionNumberValue() {
-		COSObject object = getPositionValue();
-		return getNumberValue(object);
+		COSObject Position = getPositionValue();
+		return getNumberValue(Position);
 	}
 
 	@Override
@@ -72,14 +72,14 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

@@ -306,8 +306,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getColorHasTypeArray() {
-		COSObject object = getColorValue();
-		return getHasTypeArray(object);
+		COSObject Color = getColorValue();
+		return getHasTypeArray(Color);
 	}
 
 	@Override
@@ -322,8 +322,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getColorTypeHasTypeName() {
-		COSObject object = getColorTypeValue();
-		return getHasTypeName(object);
+		COSObject ColorType = getColorTypeValue();
+		return getHasTypeName(ColorType);
 	}
 
 	@Override
@@ -338,8 +338,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getCommentsHasTypeStringText() {
-		COSObject object = getCommentsValue();
-		return getHasTypeStringText(object);
+		COSObject Comments = getCommentsValue();
+		return getHasTypeStringText(Comments);
 	}
 
 	@Override
@@ -354,8 +354,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getCropFixedHasTypeArray() {
-		COSObject object = getCropFixedValue();
-		return getHasTypeArray(object);
+		COSObject CropFixed = getCropFixedValue();
+		return getHasTypeArray(CropFixed);
 	}
 
 	@Override
@@ -370,8 +370,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getCropRectHasTypeRectangle() {
-		COSObject object = getCropRectValue();
-		return getHasTypeRectangle(object);
+		COSObject CropRect = getCropRectValue();
+		return getHasTypeRectangle(CropRect);
 	}
 
 	@Override
@@ -386,14 +386,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -408,14 +408,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getGrayMapHasTypeArray() {
-		COSObject object = getGrayMapValue();
-		return getHasTypeArray(object);
+		COSObject GrayMap = getGrayMapValue();
+		return getHasTypeArray(GrayMap);
 	}
 
 	@Override
 	public Long getGrayMapArraySize() {
-		COSObject object = getGrayMapValue();
-		return getArraySize(object);
+		COSObject GrayMap = getGrayMapValue();
+		return getArraySize(GrayMap);
 	}
 
 	@Override
@@ -430,8 +430,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getentryIDHasTypeStringByte() {
-		COSObject object = getentryIDValue();
-		return getHasTypeStringByte(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeStringByte(entryID);
 	}
 
 	@Override
@@ -446,8 +446,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getImageTypeHasTypeArray() {
-		COSObject object = getImageTypeValue();
-		return getHasTypeArray(object);
+		COSObject ImageType = getImageTypeValue();
+		return getHasTypeArray(ImageType);
 	}
 
 	@Override
@@ -462,8 +462,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getOverprintHasTypeBoolean() {
-		COSObject object = getOverprintValue();
-		return getHasTypeBoolean(object);
+		COSObject Overprint = getOverprintValue();
+		return getHasTypeBoolean(Overprint);
 	}
 
 	@Override
@@ -478,8 +478,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getPositionHasTypeArray() {
-		COSObject object = getPositionValue();
-		return getHasTypeArray(object);
+		COSObject Position = getPositionValue();
+		return getHasTypeArray(Position);
 	}
 
 	@Override
@@ -494,8 +494,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getResolutionHasTypeArray() {
-		COSObject object = getResolutionValue();
-		return getHasTypeArray(object);
+		COSObject Resolution = getResolutionValue();
+		return getHasTypeArray(Resolution);
 	}
 
 	@Override
@@ -510,8 +510,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getSizeHasTypeArray() {
-		COSObject object = getSizeValue();
-		return getHasTypeArray(object);
+		COSObject Size = getSizeValue();
+		return getHasTypeArray(Size);
 	}
 
 	@Override
@@ -526,8 +526,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getTagsHasTypeArray() {
-		COSObject object = getTagsValue();
-		return getHasTypeArray(object);
+		COSObject Tags = getTagsValue();
+		return getHasTypeArray(Tags);
 	}
 
 	@Override
@@ -542,8 +542,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getTintHasTypeNumber() {
-		COSObject object = getTintValue();
-		return getHasTypeNumber(object);
+		COSObject Tint = getTintValue();
+		return getHasTypeNumber(Tint);
 	}
 
 	@Override
@@ -558,8 +558,8 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getTransparencyHasTypeBoolean() {
-		COSObject object = getTransparencyValue();
-		return getHasTypeBoolean(object);
+		COSObject Transparency = getTransparencyValue();
+		return getHasTypeBoolean(Transparency);
 	}
 
 	@Override
@@ -574,14 +574,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -596,14 +596,14 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 
 	@Override
 	public Boolean getVersionHasTypeNumber() {
-		COSObject object = getVersionValue();
-		return getHasTypeNumber(object);
+		COSObject Version = getVersionValue();
+		return getHasTypeNumber(Version);
 	}
 
 	@Override
 	public Double getVersionNumberValue() {
-		COSObject object = getVersionValue();
-		return getNumberValue(object);
+		COSObject Version = getVersionValue();
+		return getNumberValue(Version);
 	}
 
 }

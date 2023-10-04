@@ -111,8 +111,8 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 
 	@Override
 	public Boolean getHeightHasTypeDictionary() {
-		COSObject object = getHeightValue();
-		return getHasTypeDictionary(object);
+		COSObject Height = getHeightValue();
+		return getHasTypeDictionary(Height);
 	}
 
 	@Override
@@ -127,8 +127,8 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 
 	@Override
 	public Boolean getPositionHasTypeDictionary() {
-		COSObject object = getPositionValue();
-		return getHasTypeDictionary(object);
+		COSObject Position = getPositionValue();
+		return getHasTypeDictionary(Position);
 	}
 
 	@Override
@@ -143,14 +143,14 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -165,8 +165,8 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 
 	@Override
 	public Boolean getWidthHasTypeDictionary() {
-		COSObject object = getWidthValue();
-		return getHasTypeDictionary(object);
+		COSObject Width = getWidthValue();
+		return getHasTypeDictionary(Width);
 	}
 
 	@Override

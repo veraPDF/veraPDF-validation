@@ -92,14 +92,14 @@ public class GFAReference extends GFAObject implements AReference {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -114,8 +114,8 @@ public class GFAReference extends GFAObject implements AReference {
 
 	@Override
 	public Boolean getentryIDHasTypeArray() {
-		COSObject object = getentryIDValue();
-		return getHasTypeArray(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeArray(entryID);
 	}
 
 	@Override
@@ -130,20 +130,20 @@ public class GFAReference extends GFAObject implements AReference {
 
 	@Override
 	public Boolean getPageHasTypeInteger() {
-		COSObject object = getPageValue();
-		return getHasTypeInteger(object);
+		COSObject Page = getPageValue();
+		return getHasTypeInteger(Page);
 	}
 
 	@Override
 	public Boolean getPageHasTypeStringText() {
-		COSObject object = getPageValue();
-		return getHasTypeStringText(object);
+		COSObject Page = getPageValue();
+		return getHasTypeStringText(Page);
 	}
 
 	@Override
 	public Long getPageIntegerValue() {
-		COSObject object = getPageValue();
-		return getIntegerValue(object);
+		COSObject Page = getPageValue();
+		return getIntegerValue(Page);
 	}
 
 }

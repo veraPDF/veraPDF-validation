@@ -64,8 +64,8 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 
 	@Override
 	public Boolean getResourcesHasTypeNameTree() {
-		COSObject object = getResourcesValue();
-		return getHasTypeNameTree(object);
+		COSObject Resources = getResourcesValue();
+		return getHasTypeNameTree(Resources);
 	}
 
 	@Override
@@ -80,25 +80,22 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 
 	@Override
 	public Boolean getStartResourceHasTypeStringByte() {
-		COSObject object = getStartResourceValue();
-		return getHasTypeStringByte(object);
+		COSObject StartResource = getStartResourceValue();
+		return getHasTypeStringByte(StartResource);
 	}
 
 	@Override
 	public Boolean getnameTreeResourcesContainsStartResourceString() {
-		COSObject object = getStartResourceValue();
-		if (object == null || object.getType() != COSObjType.COS_STRING) {
+		COSObject StartResource = getStartResourceValue();
+		if (StartResource == null || StartResource.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Resources = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		COSObject Resources = getResourcesValue();
 		if (Resources == null || Resources.getType() != COSObjType.COS_DICT) {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(Resources);
-		return nameTreeNode.getObject(object.getString()) != null;
+		return nameTreeNode.getObject(StartResource.getString()) != null;
 	}
 
 	@Override
@@ -113,14 +110,14 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -135,14 +132,14 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

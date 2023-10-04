@@ -618,14 +618,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = getAFValue();
-		return getHasTypeDictionary(object);
+		COSObject AF = getAFValue();
+		return getHasTypeDictionary(AF);
 	}
 
 	@Override
@@ -640,8 +640,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getAPHasTypeDictionary() {
-		COSObject object = getAPValue();
-		return getHasTypeDictionary(object);
+		COSObject AP = getAPValue();
+		return getHasTypeDictionary(AP);
 	}
 
 	@Override
@@ -656,8 +656,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getASHasTypeName() {
-		COSObject object = getASValue();
-		return getHasTypeName(object);
+		COSObject AS = getASValue();
+		return getHasTypeName(AS);
 	}
 
 	@Override
@@ -683,14 +683,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getBMHasTypeName() {
-		COSObject object = getBMValue();
-		return getHasTypeName(object);
+		COSObject BM = getBMValue();
+		return getHasTypeName(BM);
 	}
 
 	@Override
 	public String getBMNameValue() {
-		COSObject object = getBMValue();
-		return getNameValue(object);
+		COSObject BM = getBMValue();
+		return getNameValue(BM);
 	}
 
 	@Override
@@ -705,8 +705,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getBorderHasTypeArray() {
-		COSObject object = getBorderValue();
-		return getHasTypeArray(object);
+		COSObject Border = getBorderValue();
+		return getHasTypeArray(Border);
 	}
 
 	@Override
@@ -721,8 +721,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
@@ -751,14 +751,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getCAHasTypeNumber() {
-		COSObject object = getCAValue();
-		return getHasTypeNumber(object);
+		COSObject CA = getCAValue();
+		return getHasTypeNumber(CA);
 	}
 
 	@Override
 	public Double getCANumberValue() {
-		COSObject object = getCAValue();
-		return getNumberValue(object);
+		COSObject CA = getCAValue();
+		return getNumberValue(CA);
 	}
 
 	@Override
@@ -773,8 +773,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getContentsHasTypeStringText() {
-		COSObject object = getContentsValue();
-		return getHasTypeStringText(object);
+		COSObject Contents = getContentsValue();
+		return getHasTypeStringText(Contents);
 	}
 
 	@Override
@@ -789,8 +789,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = getCreationDateValue();
-		return getHasTypeDate(object);
+		COSObject CreationDate = getCreationDateValue();
+		return getHasTypeDate(CreationDate);
 	}
 
 	@Override
@@ -805,8 +805,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getExDataHasTypeDictionary() {
-		COSObject object = getExDataValue();
-		return getHasTypeDictionary(object);
+		COSObject ExData = getExDataValue();
+		return getHasTypeDictionary(ExData);
 	}
 
 	@Override
@@ -835,14 +835,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getFHasTypeBitmask() {
-		COSObject object = getFValue();
-		return getHasTypeBitmask(object);
+		COSObject F = getFValue();
+		return getHasTypeBitmask(F);
 	}
 
 	@Override
 	public Long getFBitmaskValue() {
-		COSObject object = getFValue();
-		return getBitmaskValue(object);
+		COSObject F = getFValue();
+		return getBitmaskValue(F);
 	}
 
 	@Override
@@ -857,8 +857,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getIRTHasTypeDictionary() {
-		COSObject object = getIRTValue();
-		return getHasTypeDictionary(object);
+		COSObject IRT = getIRTValue();
+		return getHasTypeDictionary(IRT);
 	}
 
 	@Override
@@ -873,8 +873,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getITHasTypeName() {
-		COSObject object = getITValue();
-		return getHasTypeName(object);
+		COSObject IT = getITValue();
+		return getHasTypeName(IT);
 	}
 
 	@Override
@@ -889,8 +889,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getLangHasTypeStringText() {
-		COSObject object = getLangValue();
-		return getHasTypeStringText(object);
+		COSObject Lang = getLangValue();
+		return getHasTypeStringText(Lang);
 	}
 
 	@Override
@@ -905,14 +905,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getMHasTypeDate() {
-		COSObject object = getMValue();
-		return getHasTypeDate(object);
+		COSObject M = getMValue();
+		return getHasTypeDate(M);
 	}
 
 	@Override
 	public Boolean getMHasTypeStringText() {
-		COSObject object = getMValue();
-		return getHasTypeStringText(object);
+		COSObject M = getMValue();
+		return getHasTypeStringText(M);
 	}
 
 	@Override
@@ -927,8 +927,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getNMHasTypeStringText() {
-		COSObject object = getNMValue();
-		return getHasTypeStringText(object);
+		COSObject NM = getNMValue();
+		return getHasTypeStringText(NM);
 	}
 
 	@Override
@@ -943,8 +943,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getOCHasTypeDictionary() {
-		COSObject object = getOCValue();
-		return getHasTypeDictionary(object);
+		COSObject OC = getOCValue();
+		return getHasTypeDictionary(OC);
 	}
 
 	@Override
@@ -959,14 +959,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = getPValue();
-		return getisIndirect(object);
+		COSObject P = getPValue();
+		return getisIndirect(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -981,14 +981,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getisPopupIndirect() {
-		COSObject object = getPopupValue();
-		return getisIndirect(object);
+		COSObject Popup = getPopupValue();
+		return getisIndirect(Popup);
 	}
 
 	@Override
 	public Boolean getPopupHasTypeDictionary() {
-		COSObject object = getPopupValue();
-		return getHasTypeDictionary(object);
+		COSObject Popup = getPopupValue();
+		return getHasTypeDictionary(Popup);
 	}
 
 	@Override
@@ -1003,20 +1003,20 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getisRCIndirect() {
-		COSObject object = getRCValue();
-		return getisIndirect(object);
+		COSObject RC = getRCValue();
+		return getisIndirect(RC);
 	}
 
 	@Override
 	public Boolean getRCHasTypeStream() {
-		COSObject object = getRCValue();
-		return getHasTypeStream(object);
+		COSObject RC = getRCValue();
+		return getHasTypeStream(RC);
 	}
 
 	@Override
 	public Boolean getRCHasTypeStringText() {
-		COSObject object = getRCValue();
-		return getHasTypeStringText(object);
+		COSObject RC = getRCValue();
+		return getHasTypeStringText(RC);
 	}
 
 	@Override
@@ -1031,8 +1031,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getRDHasTypeRectangle() {
-		COSObject object = getRDValue();
-		return getHasTypeRectangle(object);
+		COSObject RD = getRDValue();
+		return getHasTypeRectangle(RD);
 	}
 
 	@Override
@@ -1060,14 +1060,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getRTHasTypeName() {
-		COSObject object = getRTValue();
-		return getHasTypeName(object);
+		COSObject RT = getRTValue();
+		return getHasTypeName(RT);
 	}
 
 	@Override
 	public String getRTNameValue() {
-		COSObject object = getRTValue();
-		return getNameValue(object);
+		COSObject RT = getRTValue();
+		return getNameValue(RT);
 	}
 
 	@Override
@@ -1082,20 +1082,20 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getRectHasTypeRectangle() {
-		COSObject object = getRectValue();
-		return getHasTypeRectangle(object);
+		COSObject Rect = getRectValue();
+		return getHasTypeRectangle(Rect);
 	}
 
 	@Override
 	public Double getRectRectHeight() {
-		COSObject object = getRectValue();
-		return getRectHeight(object);
+		COSObject Rect = getRectValue();
+		return getRectHeight(Rect);
 	}
 
 	@Override
 	public Double getRectRectWidth() {
-		COSObject object = getRectValue();
-		return getRectWidth(object);
+		COSObject Rect = getRectValue();
+		return getRectWidth(Rect);
 	}
 
 	@Override
@@ -1110,8 +1110,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
-		COSObject object = getStructParentValue();
-		return getHasTypeInteger(object);
+		COSObject StructParent = getStructParentValue();
+		return getHasTypeInteger(StructParent);
 	}
 
 	@Override
@@ -1126,8 +1126,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getSubjHasTypeStringText() {
-		COSObject object = getSubjValue();
-		return getHasTypeStringText(object);
+		COSObject Subj = getSubjValue();
+		return getHasTypeStringText(Subj);
 	}
 
 	@Override
@@ -1142,14 +1142,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -1178,14 +1178,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getSyHasTypeName() {
-		COSObject object = getSyValue();
-		return getHasTypeName(object);
+		COSObject Sy = getSyValue();
+		return getHasTypeName(Sy);
 	}
 
 	@Override
 	public String getSyNameValue() {
-		COSObject object = getSyValue();
-		return getNameValue(object);
+		COSObject Sy = getSyValue();
+		return getNameValue(Sy);
 	}
 
 	@Override
@@ -1200,8 +1200,8 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = getTValue();
-		return getHasTypeStringText(object);
+		COSObject T = getTValue();
+		return getHasTypeStringText(T);
 	}
 
 	@Override
@@ -1216,14 +1216,14 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -1249,50 +1249,53 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 
 	@Override
 	public Boolean getcaHasTypeNumber() {
-		COSObject object = getcaValue();
-		return getHasTypeNumber(object);
+		COSObject ca = getcaValue();
+		return getHasTypeNumber(ca);
 	}
 
 	@Override
 	public Double getcaNumberValue() {
-		COSObject object = getcaValue();
-		return getNumberValue(object);
+		COSObject ca = getcaValue();
+		return getNumberValue(ca);
 	}
 
-	@Override
-	public Double getRD2NumberValue() {
+	public COSObject getAPDValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY) {
+		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		if (AP == null || !AP.getType().isDictionaryBased()) {
 			return null;
 		}
-		if (RD.size() <= 2) {
-			return null;
-		}
-		COSObject entry2 = RD.at(2);
-		return getNumberValue(entry2);
+		COSObject D = AP.getKey(ASAtom.getASAtom("D"));
+		return D;
 	}
 
-	@Override
-	public Double getRD3NumberValue() {
+	public COSObject getAPNValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY) {
+		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		if (AP == null || !AP.getType().isDictionaryBased()) {
 			return null;
 		}
-		if (RD.size() <= 3) {
-			return null;
-		}
-		COSObject entry3 = RD.at(3);
-		return getNumberValue(entry3);
+		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
+		return N;
 	}
 
-	@Override
-	public Double getRD0NumberValue() {
+	public COSObject getAPRValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		if (AP == null || !AP.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
+		return R;
+	}
+
+	public COSObject getRD0Value() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1304,11 +1307,10 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 			return null;
 		}
 		COSObject entry0 = RD.at(0);
-		return getNumberValue(entry0);
+		return entry0;
 	}
 
-	@Override
-	public Double getRD1NumberValue() {
+	public COSObject getRD1Value() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1320,46 +1322,79 @@ public class GFAAnnotCaret extends GFAObject implements AAnnotCaret {
 			return null;
 		}
 		COSObject entry1 = RD.at(1);
-		return getNumberValue(entry1);
+		return entry1;
+	}
+
+	public COSObject getRD2Value() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (RD.size() <= 2) {
+			return null;
+		}
+		COSObject entry2 = RD.at(2);
+		return entry2;
+	}
+
+	public COSObject getRD3Value() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (RD.size() <= 3) {
+			return null;
+		}
+		COSObject entry3 = RD.at(3);
+		return entry3;
+	}
+
+	@Override
+	public Double getRD2NumberValue() {
+		COSObject RD2 = getRD2Value();
+		return getNumberValue(RD2);
+	}
+
+	@Override
+	public Double getRD3NumberValue() {
+		COSObject RD3 = getRD3Value();
+		return getNumberValue(RD3);
+	}
+
+	@Override
+	public Double getRD0NumberValue() {
+		COSObject RD0 = getRD0Value();
+		return getNumberValue(RD0);
+	}
+
+	@Override
+	public Double getRD1NumberValue() {
+		COSObject RD1 = getRD1Value();
+		return getNumberValue(RD1);
 	}
 
 	@Override
 	public Boolean getAPNHasTypeDictionary() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		if (AP == null || !AP.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
-		return getHasTypeDictionary(N);
+		COSObject APN = getAPNValue();
+		return getHasTypeDictionary(APN);
 	}
 
 	@Override
 	public Boolean getAPRHasTypeDictionary() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		if (AP == null || !AP.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
-		return getHasTypeDictionary(R);
+		COSObject APR = getAPRValue();
+		return getHasTypeDictionary(APR);
 	}
 
 	@Override
 	public Boolean getAPDHasTypeDictionary() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		if (AP == null || !AP.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject D = AP.getKey(ASAtom.getASAtom("D"));
-		return getHasTypeDictionary(D);
+		COSObject APD = getAPDValue();
+		return getHasTypeDictionary(APD);
 	}
 
 	@Override

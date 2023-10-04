@@ -386,8 +386,8 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getCIDSystemInfoHasTypeDictionary() {
-		COSObject object = getCIDSystemInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject CIDSystemInfo = getCIDSystemInfoValue();
+		return getHasTypeDictionary(CIDSystemInfo);
 	}
 
 	@Override
@@ -402,8 +402,8 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getCMapNameHasTypeName() {
-		COSObject object = getCMapNameValue();
-		return getHasTypeName(object);
+		COSObject CMapName = getCMapNameValue();
+		return getHasTypeName(CMapName);
 	}
 
 	@Override
@@ -418,14 +418,14 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = getDLValue();
-		return getHasTypeInteger(object);
+		COSObject DL = getDLValue();
+		return getHasTypeInteger(DL);
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = getDLValue();
-		return getIntegerValue(object);
+		COSObject DL = getDLValue();
+		return getIntegerValue(DL);
 	}
 
 	@Override
@@ -440,20 +440,20 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeArray(DecodeParms);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeDictionary(DecodeParms);
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = getDecodeParmsValue();
-		return getArraySize(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getArraySize(DecodeParms);
 	}
 
 	@Override
@@ -468,14 +468,14 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -490,20 +490,20 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeArray(FDecodeParms);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeDictionary(FDecodeParms);
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = getFDecodeParmsValue();
-		return getArraySize(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getArraySize(FDecodeParms);
 	}
 
 	@Override
@@ -518,26 +518,26 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = getFFilterValue();
-		return getHasTypeArray(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeArray(FFilter);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = getFFilterValue();
-		return getHasTypeName(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeName(FFilter);
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = getFFilterValue();
-		return getNameValue(object);
+		COSObject FFilter = getFFilterValue();
+		return getNameValue(FFilter);
 	}
 
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = getFFilterValue();
-		return getArraySize(object);
+		COSObject FFilter = getFFilterValue();
+		return getArraySize(FFilter);
 	}
 
 	@Override
@@ -552,26 +552,26 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = getFilterValue();
-		return getHasTypeArray(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeArray(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = getFilterValue();
-		return getNameValue(object);
+		COSObject Filter = getFilterValue();
+		return getNameValue(Filter);
 	}
 
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = getFilterValue();
-		return getArraySize(object);
+		COSObject Filter = getFilterValue();
+		return getArraySize(Filter);
 	}
 
 	@Override
@@ -586,8 +586,8 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = getLengthValue();
-		return getHasTypeInteger(object);
+		COSObject Length = getLengthValue();
+		return getHasTypeInteger(Length);
 	}
 
 	@Override
@@ -602,14 +602,14 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -624,26 +624,26 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getisUseCMapIndirect() {
-		COSObject object = getUseCMapValue();
-		return getisIndirect(object);
+		COSObject UseCMap = getUseCMapValue();
+		return getisIndirect(UseCMap);
 	}
 
 	@Override
 	public Boolean getUseCMapHasTypeName() {
-		COSObject object = getUseCMapValue();
-		return getHasTypeName(object);
+		COSObject UseCMap = getUseCMapValue();
+		return getHasTypeName(UseCMap);
 	}
 
 	@Override
 	public Boolean getUseCMapHasTypeStream() {
-		COSObject object = getUseCMapValue();
-		return getHasTypeStream(object);
+		COSObject UseCMap = getUseCMapValue();
+		return getHasTypeStream(UseCMap);
 	}
 
 	@Override
 	public String getUseCMapNameValue() {
-		COSObject object = getUseCMapValue();
-		return getNameValue(object);
+		COSObject UseCMap = getUseCMapValue();
+		return getNameValue(UseCMap);
 	}
 
 	@Override
@@ -675,14 +675,14 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 
 	@Override
 	public Boolean getWModeHasTypeInteger() {
-		COSObject object = getWModeValue();
-		return getHasTypeInteger(object);
+		COSObject WMode = getWModeValue();
+		return getHasTypeInteger(WMode);
 	}
 
 	@Override
 	public Long getWModeIntegerValue() {
-		COSObject object = getWModeValue();
-		return getIntegerValue(object);
+		COSObject WMode = getWModeValue();
+		return getIntegerValue(WMode);
 	}
 
 }

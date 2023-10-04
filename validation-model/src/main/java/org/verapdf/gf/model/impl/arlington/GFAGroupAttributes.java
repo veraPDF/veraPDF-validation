@@ -91,20 +91,20 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 
 	@Override
 	public Boolean getCSHasTypeArray() {
-		COSObject object = getCSValue();
-		return getHasTypeArray(object);
+		COSObject CS = getCSValue();
+		return getHasTypeArray(CS);
 	}
 
 	@Override
 	public Boolean getCSHasTypeName() {
-		COSObject object = getCSValue();
-		return getHasTypeName(object);
+		COSObject CS = getCSValue();
+		return getHasTypeName(CS);
 	}
 
 	@Override
 	public String getCSNameValue() {
-		COSObject object = getCSValue();
-		return getNameValue(object);
+		COSObject CS = getCSValue();
+		return getNameValue(CS);
 	}
 
 	@Override
@@ -134,8 +134,8 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 
 	@Override
 	public Boolean getIHasTypeBoolean() {
-		COSObject object = getIValue();
-		return getHasTypeBoolean(object);
+		COSObject I = getIValue();
+		return getHasTypeBoolean(I);
 	}
 
 	@Override
@@ -165,8 +165,8 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 
 	@Override
 	public Boolean getKHasTypeBoolean() {
-		COSObject object = getKValue();
-		return getHasTypeBoolean(object);
+		COSObject K = getKValue();
+		return getHasTypeBoolean(K);
 	}
 
 	@Override
@@ -181,14 +181,14 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -203,14 +203,14 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

@@ -26,8 +26,8 @@ public class GFAArrayOfTagsSubArray extends GFAObject implements AArrayOfTagsSub
 
 	@Override
 	public Boolean getentry0HasTypeInteger() {
-		COSObject object = getentry0Value();
-		return getHasTypeInteger(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeInteger(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -40,8 +40,8 @@ public class GFAArrayOfTagsSubArray extends GFAObject implements AArrayOfTagsSub
 
 	@Override
 	public Boolean getentry1HasTypeStringAscii() {
-		COSObject object = getentry1Value();
-		return getHasTypeStringAscii(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeStringAscii(entry1);
 	}
 
 }

@@ -28,8 +28,8 @@ public class GFAOptContentCreatorInfo extends GFAObject implements AOptContentCr
 
 	@Override
 	public Boolean getCreatorHasTypeStringText() {
-		COSObject object = getCreatorValue();
-		return getHasTypeStringText(object);
+		COSObject Creator = getCreatorValue();
+		return getHasTypeStringText(Creator);
 	}
 
 	@Override
@@ -44,14 +44,14 @@ public class GFAOptContentCreatorInfo extends GFAObject implements AOptContentCr
 
 	@Override
 	public Boolean getSubTypeHasTypeName() {
-		COSObject object = getSubTypeValue();
-		return getHasTypeName(object);
+		COSObject SubType = getSubTypeValue();
+		return getHasTypeName(SubType);
 	}
 
 	@Override
 	public String getSubTypeNameValue() {
-		COSObject object = getSubTypeValue();
-		return getNameValue(object);
+		COSObject SubType = getSubTypeValue();
+		return getNameValue(SubType);
 	}
 
 	@Override
@@ -66,14 +66,14 @@ public class GFAOptContentCreatorInfo extends GFAObject implements AOptContentCr
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override

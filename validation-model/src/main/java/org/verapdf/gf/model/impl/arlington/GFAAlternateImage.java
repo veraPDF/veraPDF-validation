@@ -130,8 +130,8 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 
 	@Override
 	public Boolean getDefaultForPrintingHasTypeBoolean() {
-		COSObject object = getDefaultForPrintingValue();
-		return getHasTypeBoolean(object);
+		COSObject DefaultForPrinting = getDefaultForPrintingValue();
+		return getHasTypeBoolean(DefaultForPrinting);
 	}
 
 	@Override
@@ -146,14 +146,14 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 
 	@Override
 	public Boolean getisImageIndirect() {
-		COSObject object = getImageValue();
-		return getisIndirect(object);
+		COSObject Image = getImageValue();
+		return getisIndirect(Image);
 	}
 
 	@Override
 	public Boolean getImageHasTypeStream() {
-		COSObject object = getImageValue();
-		return getHasTypeStream(object);
+		COSObject Image = getImageValue();
+		return getHasTypeStream(Image);
 	}
 
 	@Override
@@ -168,8 +168,8 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 
 	@Override
 	public Boolean getOCHasTypeDictionary() {
-		COSObject object = getOCValue();
-		return getHasTypeDictionary(object);
+		COSObject OC = getOCValue();
+		return getHasTypeDictionary(OC);
 	}
 
 }

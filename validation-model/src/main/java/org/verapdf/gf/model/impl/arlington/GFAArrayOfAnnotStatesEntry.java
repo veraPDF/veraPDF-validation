@@ -28,14 +28,14 @@ public class GFAArrayOfAnnotStatesEntry extends GFAObject implements AArrayOfAnn
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeNull() {
-		COSObject object = getValue();
-		return getHasTypeNull(object);
+		COSObject entry = getValue();
+		return getHasTypeNull(entry);
 	}
 
 }

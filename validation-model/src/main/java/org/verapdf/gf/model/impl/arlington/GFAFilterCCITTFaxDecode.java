@@ -35,8 +35,8 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getBlackIs1HasTypeBoolean() {
-		COSObject object = getBlackIs1Value();
-		return getHasTypeBoolean(object);
+		COSObject BlackIs1 = getBlackIs1Value();
+		return getHasTypeBoolean(BlackIs1);
 	}
 
 	@Override
@@ -58,8 +58,8 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getBlackls1HasTypeBoolean() {
-		COSObject object = getBlackls1Value();
-		return getHasTypeBoolean(object);
+		COSObject Blackls1 = getBlackls1Value();
+		return getHasTypeBoolean(Blackls1);
 	}
 
 	@Override
@@ -81,14 +81,14 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getColumnsHasTypeInteger() {
-		COSObject object = getColumnsValue();
-		return getHasTypeInteger(object);
+		COSObject Columns = getColumnsValue();
+		return getHasTypeInteger(Columns);
 	}
 
 	@Override
 	public Long getColumnsIntegerValue() {
-		COSObject object = getColumnsValue();
-		return getIntegerValue(object);
+		COSObject Columns = getColumnsValue();
+		return getIntegerValue(Columns);
 	}
 
 	@Override
@@ -110,14 +110,14 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getDamagedRowsBeforeErrorHasTypeInteger() {
-		COSObject object = getDamagedRowsBeforeErrorValue();
-		return getHasTypeInteger(object);
+		COSObject DamagedRowsBeforeError = getDamagedRowsBeforeErrorValue();
+		return getHasTypeInteger(DamagedRowsBeforeError);
 	}
 
 	@Override
 	public Long getDamagedRowsBeforeErrorIntegerValue() {
-		COSObject object = getDamagedRowsBeforeErrorValue();
-		return getIntegerValue(object);
+		COSObject DamagedRowsBeforeError = getDamagedRowsBeforeErrorValue();
+		return getIntegerValue(DamagedRowsBeforeError);
 	}
 
 	@Override
@@ -139,8 +139,8 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getEncodedByteAlignHasTypeBoolean() {
-		COSObject object = getEncodedByteAlignValue();
-		return getHasTypeBoolean(object);
+		COSObject EncodedByteAlign = getEncodedByteAlignValue();
+		return getHasTypeBoolean(EncodedByteAlign);
 	}
 
 	@Override
@@ -162,8 +162,8 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getEndOfBlockHasTypeBoolean() {
-		COSObject object = getEndOfBlockValue();
-		return getHasTypeBoolean(object);
+		COSObject EndOfBlock = getEndOfBlockValue();
+		return getHasTypeBoolean(EndOfBlock);
 	}
 
 	@Override
@@ -185,14 +185,14 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getEndOfLineHasTypeBoolean() {
-		COSObject object = getEndOfLineValue();
-		return getHasTypeBoolean(object);
+		COSObject EndOfLine = getEndOfLineValue();
+		return getHasTypeBoolean(EndOfLine);
 	}
 
 	@Override
 	public Boolean getEndOfLineBooleanValue() {
-		COSObject object = getEndOfLineValue();
-		return getBooleanValue(object);
+		COSObject EndOfLine = getEndOfLineValue();
+		return getBooleanValue(EndOfLine);
 	}
 
 	@Override
@@ -214,14 +214,14 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getKHasTypeInteger() {
-		COSObject object = getKValue();
-		return getHasTypeInteger(object);
+		COSObject K = getKValue();
+		return getHasTypeInteger(K);
 	}
 
 	@Override
 	public Long getKIntegerValue() {
-		COSObject object = getKValue();
-		return getIntegerValue(object);
+		COSObject K = getKValue();
+		return getIntegerValue(K);
 	}
 
 	@Override
@@ -243,14 +243,14 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 
 	@Override
 	public Boolean getRowsHasTypeInteger() {
-		COSObject object = getRowsValue();
-		return getHasTypeInteger(object);
+		COSObject Rows = getRowsValue();
+		return getHasTypeInteger(Rows);
 	}
 
 	@Override
 	public Long getRowsIntegerValue() {
-		COSObject object = getRowsValue();
-		return getIntegerValue(object);
+		COSObject Rows = getRowsValue();
+		return getIntegerValue(Rows);
 	}
 
 	@Override

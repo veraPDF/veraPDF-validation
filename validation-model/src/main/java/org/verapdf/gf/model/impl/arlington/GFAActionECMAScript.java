@@ -362,20 +362,20 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 
 	@Override
 	public Boolean getisJSIndirect() {
-		COSObject object = getJSValue();
-		return getisIndirect(object);
+		COSObject JS = getJSValue();
+		return getisIndirect(JS);
 	}
 
 	@Override
 	public Boolean getJSHasTypeStream() {
-		COSObject object = getJSValue();
-		return getHasTypeStream(object);
+		COSObject JS = getJSValue();
+		return getHasTypeStream(JS);
 	}
 
 	@Override
 	public Boolean getJSHasTypeStringText() {
-		COSObject object = getJSValue();
-		return getHasTypeStringText(object);
+		COSObject JS = getJSValue();
+		return getHasTypeStringText(JS);
 	}
 
 	@Override
@@ -390,14 +390,14 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -412,14 +412,14 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -434,14 +434,14 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

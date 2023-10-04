@@ -193,8 +193,8 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 
 	@Override
 	public Boolean getBEHasTypeDictionary() {
-		COSObject object = getBEValue();
-		return getHasTypeDictionary(object);
+		COSObject BE = getBEValue();
+		return getHasTypeDictionary(BE);
 	}
 
 	@Override
@@ -209,8 +209,8 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 
 	@Override
 	public Boolean getCHasTypeDictionary() {
-		COSObject object = getCValue();
-		return getHasTypeDictionary(object);
+		COSObject C = getCValue();
+		return getHasTypeDictionary(C);
 	}
 
 	@Override
@@ -225,8 +225,8 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 
 	@Override
 	public Boolean getMHHasTypeDictionary() {
-		COSObject object = getMHValue();
-		return getHasTypeDictionary(object);
+		COSObject MH = getMHValue();
+		return getHasTypeDictionary(MH);
 	}
 
 	@Override
@@ -241,8 +241,8 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 
 	@Override
 	public Boolean getNHasTypeStringText() {
-		COSObject object = getNValue();
-		return getHasTypeStringText(object);
+		COSObject N = getNValue();
+		return getHasTypeStringText(N);
 	}
 
 	@Override
@@ -257,8 +257,8 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -273,14 +273,14 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -295,8 +295,8 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 
 	@Override
 	public Boolean getSPHasTypeDictionary() {
-		COSObject object = getSPValue();
-		return getHasTypeDictionary(object);
+		COSObject SP = getSPValue();
+		return getHasTypeDictionary(SP);
 	}
 
 	@Override
@@ -311,14 +311,14 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

@@ -28,14 +28,14 @@ public class GFAOptContentExport extends GFAObject implements AOptContentExport 
 
 	@Override
 	public Boolean getExportStateHasTypeName() {
-		COSObject object = getExportStateValue();
-		return getHasTypeName(object);
+		COSObject ExportState = getExportStateValue();
+		return getHasTypeName(ExportState);
 	}
 
 	@Override
 	public String getExportStateNameValue() {
-		COSObject object = getExportStateValue();
-		return getNameValue(object);
+		COSObject ExportState = getExportStateValue();
+		return getNameValue(ExportState);
 	}
 
 }

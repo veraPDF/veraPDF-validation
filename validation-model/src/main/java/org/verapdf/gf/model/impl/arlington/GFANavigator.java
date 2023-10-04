@@ -135,8 +135,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getAPIVersionHasTypeStringText() {
-		COSObject object = getAPIVersionValue();
-		return getHasTypeStringText(object);
+		COSObject APIVersion = getAPIVersionValue();
+		return getHasTypeStringText(APIVersion);
 	}
 
 	@Override
@@ -151,8 +151,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getCategoryHasTypeStringText() {
-		COSObject object = getCategoryValue();
-		return getHasTypeStringText(object);
+		COSObject Category = getCategoryValue();
+		return getHasTypeStringText(Category);
 	}
 
 	@Override
@@ -167,8 +167,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getDescHasTypeStringText() {
-		COSObject object = getDescValue();
-		return getHasTypeStringText(object);
+		COSObject Desc = getDescValue();
+		return getHasTypeStringText(Desc);
 	}
 
 	@Override
@@ -183,8 +183,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getentryIDHasTypeStringText() {
-		COSObject object = getentryIDValue();
-		return getHasTypeStringText(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeStringText(entryID);
 	}
 
 	@Override
@@ -199,8 +199,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getIconHasTypeStringText() {
-		COSObject object = getIconValue();
-		return getHasTypeStringText(object);
+		COSObject Icon = getIconValue();
+		return getHasTypeStringText(Icon);
 	}
 
 	@Override
@@ -215,8 +215,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getInitialFieldsHasTypeDictionary() {
-		COSObject object = getInitialFieldsValue();
-		return getHasTypeDictionary(object);
+		COSObject InitialFields = getInitialFieldsValue();
+		return getHasTypeDictionary(InitialFields);
 	}
 
 	@Override
@@ -231,20 +231,20 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getLayoutHasTypeArray() {
-		COSObject object = getLayoutValue();
-		return getHasTypeArray(object);
+		COSObject Layout = getLayoutValue();
+		return getHasTypeArray(Layout);
 	}
 
 	@Override
 	public Boolean getLayoutHasTypeName() {
-		COSObject object = getLayoutValue();
-		return getHasTypeName(object);
+		COSObject Layout = getLayoutValue();
+		return getHasTypeName(Layout);
 	}
 
 	@Override
 	public String getLayoutNameValue() {
-		COSObject object = getLayoutValue();
-		return getNameValue(object);
+		COSObject Layout = getLayoutValue();
+		return getNameValue(Layout);
 	}
 
 	@Override
@@ -271,14 +271,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getLoadTypeHasTypeName() {
-		COSObject object = getLoadTypeValue();
-		return getHasTypeName(object);
+		COSObject LoadType = getLoadTypeValue();
+		return getHasTypeName(LoadType);
 	}
 
 	@Override
 	public String getLoadTypeNameValue() {
-		COSObject object = getLoadTypeValue();
-		return getNameValue(object);
+		COSObject LoadType = getLoadTypeValue();
+		return getNameValue(LoadType);
 	}
 
 	@Override
@@ -293,8 +293,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getLocaleHasTypeStringText() {
-		COSObject object = getLocaleValue();
-		return getHasTypeStringText(object);
+		COSObject Locale = getLocaleValue();
+		return getHasTypeStringText(Locale);
 	}
 
 	@Override
@@ -309,8 +309,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = getNameValue();
-		return getHasTypeStringText(object);
+		COSObject Name = getNameValue();
+		return getHasTypeStringText(Name);
 	}
 
 	@Override
@@ -325,8 +325,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getResourcesHasTypeNameTree() {
-		COSObject object = getResourcesValue();
-		return getHasTypeNameTree(object);
+		COSObject Resources = getResourcesValue();
+		return getHasTypeNameTree(Resources);
 	}
 
 	@Override
@@ -341,8 +341,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getSWFHasTypeStringText() {
-		COSObject object = getSWFValue();
-		return getHasTypeStringText(object);
+		COSObject SWF = getSWFValue();
+		return getHasTypeStringText(SWF);
 	}
 
 	@Override
@@ -357,8 +357,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getStringsHasTypeNameTree() {
-		COSObject object = getStringsValue();
-		return getHasTypeNameTree(object);
+		COSObject Strings = getStringsValue();
+		return getHasTypeNameTree(Strings);
 	}
 
 	@Override
@@ -373,14 +373,14 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -395,8 +395,8 @@ public class GFANavigator extends GFAObject implements ANavigator {
 
 	@Override
 	public Boolean getVersionHasTypeStringText() {
-		COSObject object = getVersionValue();
-		return getHasTypeStringText(object);
+		COSObject Version = getVersionValue();
+		return getHasTypeStringText(Version);
 	}
 
 	@Override

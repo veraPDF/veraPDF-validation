@@ -59,8 +59,8 @@ public class GFAArrayOfNumberFormatsEntry extends GFAObject implements AArrayOfN
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

@@ -122,8 +122,8 @@ public class GFAViewport extends GFAObject implements AViewport {
 
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = getBBoxValue();
-		return getHasTypeRectangle(object);
+		COSObject BBox = getBBoxValue();
+		return getHasTypeRectangle(BBox);
 	}
 
 	@Override
@@ -138,8 +138,8 @@ public class GFAViewport extends GFAObject implements AViewport {
 
 	@Override
 	public Boolean getMeasureHasTypeDictionary() {
-		COSObject object = getMeasureValue();
-		return getHasTypeDictionary(object);
+		COSObject Measure = getMeasureValue();
+		return getHasTypeDictionary(Measure);
 	}
 
 	@Override
@@ -154,8 +154,8 @@ public class GFAViewport extends GFAObject implements AViewport {
 
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = getNameValue();
-		return getHasTypeStringText(object);
+		COSObject Name = getNameValue();
+		return getHasTypeStringText(Name);
 	}
 
 	@Override
@@ -170,8 +170,8 @@ public class GFAViewport extends GFAObject implements AViewport {
 
 	@Override
 	public Boolean getPtDataHasTypeDictionary() {
-		COSObject object = getPtDataValue();
-		return getHasTypeDictionary(object);
+		COSObject PtData = getPtDataValue();
+		return getHasTypeDictionary(PtData);
 	}
 
 	@Override
@@ -186,14 +186,14 @@ public class GFAViewport extends GFAObject implements AViewport {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

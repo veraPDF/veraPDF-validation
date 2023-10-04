@@ -446,8 +446,8 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 
 	@Override
 	public Boolean getMixHasTypeBoolean() {
-		COSObject object = getMixValue();
-		return getHasTypeBoolean(object);
+		COSObject Mix = getMixValue();
+		return getHasTypeBoolean(Mix);
 	}
 
 	@Override
@@ -462,14 +462,14 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -501,8 +501,8 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 
 	@Override
 	public Boolean getRepeatHasTypeBoolean() {
-		COSObject object = getRepeatValue();
-		return getHasTypeBoolean(object);
+		COSObject Repeat = getRepeatValue();
+		return getHasTypeBoolean(Repeat);
 	}
 
 	@Override
@@ -517,14 +517,14 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -539,14 +539,14 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 
 	@Override
 	public Boolean getisSoundIndirect() {
-		COSObject object = getSoundValue();
-		return getisIndirect(object);
+		COSObject Sound = getSoundValue();
+		return getisIndirect(Sound);
 	}
 
 	@Override
 	public Boolean getSoundHasTypeStream() {
-		COSObject object = getSoundValue();
-		return getHasTypeStream(object);
+		COSObject Sound = getSoundValue();
+		return getHasTypeStream(Sound);
 	}
 
 	@Override
@@ -578,8 +578,8 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 
 	@Override
 	public Boolean getSynchronousHasTypeBoolean() {
-		COSObject object = getSynchronousValue();
-		return getHasTypeBoolean(object);
+		COSObject Synchronous = getSynchronousValue();
+		return getHasTypeBoolean(Synchronous);
 	}
 
 	@Override
@@ -594,14 +594,14 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -633,14 +633,14 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 
 	@Override
 	public Boolean getVolumeHasTypeNumber() {
-		COSObject object = getVolumeValue();
-		return getHasTypeNumber(object);
+		COSObject Volume = getVolumeValue();
+		return getHasTypeNumber(Volume);
 	}
 
 	@Override
 	public Double getVolumeNumberValue() {
-		COSObject object = getVolumeValue();
-		return getNumberValue(object);
+		COSObject Volume = getVolumeValue();
+		return getNumberValue(Volume);
 	}
 
 }

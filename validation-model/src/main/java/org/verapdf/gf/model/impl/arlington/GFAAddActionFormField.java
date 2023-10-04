@@ -152,8 +152,8 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 
 	@Override
 	public Boolean getCHasTypeDictionary() {
-		COSObject object = getCValue();
-		return getHasTypeDictionary(object);
+		COSObject C = getCValue();
+		return getHasTypeDictionary(C);
 	}
 
 	@Override
@@ -168,8 +168,8 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
@@ -184,8 +184,8 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 
 	@Override
 	public Boolean getKHasTypeDictionary() {
-		COSObject object = getKValue();
-		return getHasTypeDictionary(object);
+		COSObject K = getKValue();
+		return getHasTypeDictionary(K);
 	}
 
 	@Override
@@ -200,8 +200,8 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 
 	@Override
 	public Boolean getVHasTypeDictionary() {
-		COSObject object = getVValue();
-		return getHasTypeDictionary(object);
+		COSObject V = getVValue();
+		return getHasTypeDictionary(V);
 	}
 
 }

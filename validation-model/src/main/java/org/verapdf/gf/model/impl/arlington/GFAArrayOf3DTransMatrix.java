@@ -26,8 +26,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
-		COSObject object = getentry0Value();
-		return getHasTypeNumber(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeNumber(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -40,8 +40,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
-		COSObject object = getentry1Value();
-		return getHasTypeNumber(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNumber(entry1);
 	}
 
 	public COSObject getentry10Value() {
@@ -54,8 +54,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry10HasTypeNumber() {
-		COSObject object = getentry10Value();
-		return getHasTypeNumber(object);
+		COSObject entry10 = getentry10Value();
+		return getHasTypeNumber(entry10);
 	}
 
 	public COSObject getentry11Value() {
@@ -68,8 +68,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry11HasTypeNumber() {
-		COSObject object = getentry11Value();
-		return getHasTypeNumber(object);
+		COSObject entry11 = getentry11Value();
+		return getHasTypeNumber(entry11);
 	}
 
 	public COSObject getentry2Value() {
@@ -82,8 +82,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
-		COSObject object = getentry2Value();
-		return getHasTypeNumber(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeNumber(entry2);
 	}
 
 	public COSObject getentry3Value() {
@@ -96,8 +96,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry3HasTypeNumber() {
-		COSObject object = getentry3Value();
-		return getHasTypeNumber(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeNumber(entry3);
 	}
 
 	public COSObject getentry4Value() {
@@ -110,8 +110,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry4HasTypeNumber() {
-		COSObject object = getentry4Value();
-		return getHasTypeNumber(object);
+		COSObject entry4 = getentry4Value();
+		return getHasTypeNumber(entry4);
 	}
 
 	public COSObject getentry5Value() {
@@ -124,8 +124,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry5HasTypeNumber() {
-		COSObject object = getentry5Value();
-		return getHasTypeNumber(object);
+		COSObject entry5 = getentry5Value();
+		return getHasTypeNumber(entry5);
 	}
 
 	public COSObject getentry6Value() {
@@ -138,8 +138,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry6HasTypeNumber() {
-		COSObject object = getentry6Value();
-		return getHasTypeNumber(object);
+		COSObject entry6 = getentry6Value();
+		return getHasTypeNumber(entry6);
 	}
 
 	public COSObject getentry7Value() {
@@ -152,8 +152,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry7HasTypeNumber() {
-		COSObject object = getentry7Value();
-		return getHasTypeNumber(object);
+		COSObject entry7 = getentry7Value();
+		return getHasTypeNumber(entry7);
 	}
 
 	public COSObject getentry8Value() {
@@ -166,8 +166,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry8HasTypeNumber() {
-		COSObject object = getentry8Value();
-		return getHasTypeNumber(object);
+		COSObject entry8 = getentry8Value();
+		return getHasTypeNumber(entry8);
 	}
 
 	public COSObject getentry9Value() {
@@ -180,8 +180,8 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 
 	@Override
 	public Boolean getentry9HasTypeNumber() {
-		COSObject object = getentry9Value();
-		return getHasTypeNumber(object);
+		COSObject entry9 = getentry9Value();
+		return getHasTypeNumber(entry9);
 	}
 
 }

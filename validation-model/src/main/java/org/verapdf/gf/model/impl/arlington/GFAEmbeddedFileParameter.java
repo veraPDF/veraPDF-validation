@@ -65,15 +65,15 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 
 	@Override
 	public Boolean getCheckSumHasTypeString() {
-		COSObject object = getCheckSumValue();
-		return getHasTypeString(object);
+		COSObject CheckSum = getCheckSumValue();
+		return getHasTypeString(CheckSum);
 	}
 
 	@Override
 	public Long getCheckSumStringSize() {
-		COSObject object = getCheckSumValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return (long) object.getString().length();
+		COSObject CheckSum = getCheckSumValue();
+		if (CheckSum != null && CheckSum.getType() == COSObjType.COS_STRING) {
+			return (long) CheckSum.getString().length();
 		}
 		return null;
 	}
@@ -90,8 +90,8 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = getCreationDateValue();
-		return getHasTypeDate(object);
+		COSObject CreationDate = getCreationDateValue();
+		return getHasTypeDate(CreationDate);
 	}
 
 	@Override
@@ -106,8 +106,8 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 
 	@Override
 	public Boolean getMacHasTypeDictionary() {
-		COSObject object = getMacValue();
-		return getHasTypeDictionary(object);
+		COSObject Mac = getMacValue();
+		return getHasTypeDictionary(Mac);
 	}
 
 	@Override
@@ -122,8 +122,8 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 
 	@Override
 	public Boolean getModDateHasTypeDate() {
-		COSObject object = getModDateValue();
-		return getHasTypeDate(object);
+		COSObject ModDate = getModDateValue();
+		return getHasTypeDate(ModDate);
 	}
 
 	@Override
@@ -138,14 +138,14 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 
 	@Override
 	public Boolean getSizeHasTypeInteger() {
-		COSObject object = getSizeValue();
-		return getHasTypeInteger(object);
+		COSObject Size = getSizeValue();
+		return getHasTypeInteger(Size);
 	}
 
 	@Override
 	public Long getSizeIntegerValue() {
-		COSObject object = getSizeValue();
-		return getIntegerValue(object);
+		COSObject Size = getSizeValue();
+		return getIntegerValue(Size);
 	}
 
 }

@@ -26,20 +26,20 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 
 	@Override
 	public Boolean getentry0HasTypeName() {
-		COSObject object = getentry0Value();
-		return getHasTypeName(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeName(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNull() {
-		COSObject object = getentry0Value();
-		return getHasTypeNull(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeNull(entry0);
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		COSObject object = getentry0Value();
-		return getNameValue(object);
+		COSObject entry0 = getentry0Value();
+		return getNameValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -52,20 +52,20 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 
 	@Override
 	public Boolean getentry1HasTypeName() {
-		COSObject object = getentry1Value();
-		return getHasTypeName(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeName(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeNull() {
-		COSObject object = getentry1Value();
-		return getHasTypeNull(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNull(entry1);
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		COSObject object = getentry1Value();
-		return getNameValue(object);
+		COSObject entry1 = getentry1Value();
+		return getNameValue(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -78,20 +78,20 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 
 	@Override
 	public Boolean getentry2HasTypeName() {
-		COSObject object = getentry2Value();
-		return getHasTypeName(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeName(entry2);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNull() {
-		COSObject object = getentry2Value();
-		return getHasTypeNull(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeNull(entry2);
 	}
 
 	@Override
 	public String getentry2NameValue() {
-		COSObject object = getentry2Value();
-		return getNameValue(object);
+		COSObject entry2 = getentry2Value();
+		return getNameValue(entry2);
 	}
 
 	public COSObject getentry3Value() {
@@ -104,20 +104,20 @@ public class GFAArrayOf_4BorderStyleNames extends GFAObject implements AArrayOf_
 
 	@Override
 	public Boolean getentry3HasTypeName() {
-		COSObject object = getentry3Value();
-		return getHasTypeName(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeName(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeNull() {
-		COSObject object = getentry3Value();
-		return getHasTypeNull(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeNull(entry3);
 	}
 
 	@Override
 	public String getentry3NameValue() {
-		COSObject object = getentry3Value();
-		return getNameValue(object);
+		COSObject entry3 = getentry3Value();
+		return getNameValue(entry3);
 	}
 
 }

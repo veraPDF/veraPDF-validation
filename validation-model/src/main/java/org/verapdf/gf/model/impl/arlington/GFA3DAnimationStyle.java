@@ -40,8 +40,8 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 
 	@Override
 	public Boolean getPCHasTypeInteger() {
-		COSObject object = getPCValue();
-		return getHasTypeInteger(object);
+		COSObject PC = getPCValue();
+		return getHasTypeInteger(PC);
 	}
 
 	@Override
@@ -68,14 +68,14 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -102,14 +102,14 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 
 	@Override
 	public Boolean getTMHasTypeNumber() {
-		COSObject object = getTMValue();
-		return getHasTypeNumber(object);
+		COSObject TM = getTMValue();
+		return getHasTypeNumber(TM);
 	}
 
 	@Override
 	public Double getTMNumberValue() {
-		COSObject object = getTMValue();
-		return getNumberValue(object);
+		COSObject TM = getTMValue();
+		return getNumberValue(TM);
 	}
 
 	@Override
@@ -124,14 +124,14 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

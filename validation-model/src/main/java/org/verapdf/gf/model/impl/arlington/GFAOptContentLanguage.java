@@ -28,8 +28,8 @@ public class GFAOptContentLanguage extends GFAObject implements AOptContentLangu
 
 	@Override
 	public Boolean getLangHasTypeString() {
-		COSObject object = getLangValue();
-		return getHasTypeString(object);
+		COSObject Lang = getLangValue();
+		return getHasTypeString(Lang);
 	}
 
 	@Override
@@ -58,14 +58,14 @@ public class GFAOptContentLanguage extends GFAObject implements AOptContentLangu
 
 	@Override
 	public Boolean getPreferredHasTypeName() {
-		COSObject object = getPreferredValue();
-		return getHasTypeName(object);
+		COSObject Preferred = getPreferredValue();
+		return getHasTypeName(Preferred);
 	}
 
 	@Override
 	public String getPreferredNameValue() {
-		COSObject object = getPreferredValue();
-		return getNameValue(object);
+		COSObject Preferred = getPreferredValue();
+		return getNameValue(Preferred);
 	}
 
 }

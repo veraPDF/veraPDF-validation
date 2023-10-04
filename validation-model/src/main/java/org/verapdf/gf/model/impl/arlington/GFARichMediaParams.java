@@ -123,14 +123,14 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 
 	@Override
 	public Boolean getBindingHasTypeName() {
-		COSObject object = getBindingValue();
-		return getHasTypeName(object);
+		COSObject Binding = getBindingValue();
+		return getHasTypeName(Binding);
 	}
 
 	@Override
 	public String getBindingNameValue() {
-		COSObject object = getBindingValue();
-		return getNameValue(object);
+		COSObject Binding = getBindingValue();
+		return getNameValue(Binding);
 	}
 
 	@Override
@@ -145,8 +145,8 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 
 	@Override
 	public Boolean getBindingMaterialHasTypeStringText() {
-		COSObject object = getBindingMaterialValue();
-		return getHasTypeStringText(object);
+		COSObject BindingMaterial = getBindingMaterialValue();
+		return getHasTypeStringText(BindingMaterial);
 	}
 
 	@Override
@@ -161,8 +161,8 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 
 	@Override
 	public Boolean getCuePointsHasTypeArray() {
-		COSObject object = getCuePointsValue();
-		return getHasTypeArray(object);
+		COSObject CuePoints = getCuePointsValue();
+		return getHasTypeArray(CuePoints);
 	}
 
 	@Override
@@ -177,20 +177,20 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 
 	@Override
 	public Boolean getisFlashVarsIndirect() {
-		COSObject object = getFlashVarsValue();
-		return getisIndirect(object);
+		COSObject FlashVars = getFlashVarsValue();
+		return getisIndirect(FlashVars);
 	}
 
 	@Override
 	public Boolean getFlashVarsHasTypeStream() {
-		COSObject object = getFlashVarsValue();
-		return getHasTypeStream(object);
+		COSObject FlashVars = getFlashVarsValue();
+		return getHasTypeStream(FlashVars);
 	}
 
 	@Override
 	public Boolean getFlashVarsHasTypeStringText() {
-		COSObject object = getFlashVarsValue();
-		return getHasTypeStringText(object);
+		COSObject FlashVars = getFlashVarsValue();
+		return getHasTypeStringText(FlashVars);
 	}
 
 	@Override
@@ -205,20 +205,20 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 
 	@Override
 	public Boolean getisSettingsIndirect() {
-		COSObject object = getSettingsValue();
-		return getisIndirect(object);
+		COSObject Settings = getSettingsValue();
+		return getisIndirect(Settings);
 	}
 
 	@Override
 	public Boolean getSettingsHasTypeStream() {
-		COSObject object = getSettingsValue();
-		return getHasTypeStream(object);
+		COSObject Settings = getSettingsValue();
+		return getHasTypeStream(Settings);
 	}
 
 	@Override
 	public Boolean getSettingsHasTypeStringText() {
-		COSObject object = getSettingsValue();
-		return getHasTypeStringText(object);
+		COSObject Settings = getSettingsValue();
+		return getHasTypeStringText(Settings);
 	}
 
 	@Override
@@ -233,14 +233,14 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

@@ -231,8 +231,8 @@ public class GFAResource extends GFAObject implements AResource {
 
 	@Override
 	public Boolean getColorSpaceHasTypeDictionary() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeDictionary(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeDictionary(ColorSpace);
 	}
 
 	@Override
@@ -247,8 +247,8 @@ public class GFAResource extends GFAObject implements AResource {
 
 	@Override
 	public Boolean getExtGStateHasTypeDictionary() {
-		COSObject object = getExtGStateValue();
-		return getHasTypeDictionary(object);
+		COSObject ExtGState = getExtGStateValue();
+		return getHasTypeDictionary(ExtGState);
 	}
 
 	@Override
@@ -263,8 +263,8 @@ public class GFAResource extends GFAObject implements AResource {
 
 	@Override
 	public Boolean getFontHasTypeDictionary() {
-		COSObject object = getFontValue();
-		return getHasTypeDictionary(object);
+		COSObject Font = getFontValue();
+		return getHasTypeDictionary(Font);
 	}
 
 	@Override
@@ -279,8 +279,8 @@ public class GFAResource extends GFAObject implements AResource {
 
 	@Override
 	public Boolean getPatternHasTypeDictionary() {
-		COSObject object = getPatternValue();
-		return getHasTypeDictionary(object);
+		COSObject Pattern = getPatternValue();
+		return getHasTypeDictionary(Pattern);
 	}
 
 	@Override
@@ -295,8 +295,8 @@ public class GFAResource extends GFAObject implements AResource {
 
 	@Override
 	public Boolean getProcSetHasTypeArray() {
-		COSObject object = getProcSetValue();
-		return getHasTypeArray(object);
+		COSObject ProcSet = getProcSetValue();
+		return getHasTypeArray(ProcSet);
 	}
 
 	@Override
@@ -311,8 +311,8 @@ public class GFAResource extends GFAObject implements AResource {
 
 	@Override
 	public Boolean getentryPropertiesHasTypeDictionary() {
-		COSObject object = getentryPropertiesValue();
-		return getHasTypeDictionary(object);
+		COSObject entryProperties = getentryPropertiesValue();
+		return getHasTypeDictionary(entryProperties);
 	}
 
 	@Override
@@ -327,8 +327,8 @@ public class GFAResource extends GFAObject implements AResource {
 
 	@Override
 	public Boolean getShadingHasTypeDictionary() {
-		COSObject object = getShadingValue();
-		return getHasTypeDictionary(object);
+		COSObject Shading = getShadingValue();
+		return getHasTypeDictionary(Shading);
 	}
 
 	@Override
@@ -343,8 +343,8 @@ public class GFAResource extends GFAObject implements AResource {
 
 	@Override
 	public Boolean getXObjectHasTypeDictionary() {
-		COSObject object = getXObjectValue();
-		return getHasTypeDictionary(object);
+		COSObject XObject = getXObjectValue();
+		return getHasTypeDictionary(XObject);
 	}
 
 }

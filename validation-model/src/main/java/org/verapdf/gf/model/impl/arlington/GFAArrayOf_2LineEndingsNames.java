@@ -26,14 +26,14 @@ public class GFAArrayOf_2LineEndingsNames extends GFAObject implements AArrayOf_
 
 	@Override
 	public Boolean getentry0HasTypeName() {
-		COSObject object = getentry0Value();
-		return getHasTypeName(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeName(entry0);
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		COSObject object = getentry0Value();
-		return getNameValue(object);
+		COSObject entry0 = getentry0Value();
+		return getNameValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -46,14 +46,14 @@ public class GFAArrayOf_2LineEndingsNames extends GFAObject implements AArrayOf_
 
 	@Override
 	public Boolean getentry1HasTypeName() {
-		COSObject object = getentry1Value();
-		return getHasTypeName(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeName(entry1);
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		COSObject object = getentry1Value();
-		return getNameValue(object);
+		COSObject entry1 = getentry1Value();
+		return getNameValue(entry1);
 	}
 
 }

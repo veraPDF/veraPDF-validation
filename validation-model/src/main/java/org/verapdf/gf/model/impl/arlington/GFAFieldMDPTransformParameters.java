@@ -63,14 +63,14 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 
 	@Override
 	public Boolean getActionHasTypeName() {
-		COSObject object = getActionValue();
-		return getHasTypeName(object);
+		COSObject Action = getActionValue();
+		return getHasTypeName(Action);
 	}
 
 	@Override
 	public String getActionNameValue() {
-		COSObject object = getActionValue();
-		return getNameValue(object);
+		COSObject Action = getActionValue();
+		return getNameValue(Action);
 	}
 
 	@Override
@@ -85,8 +85,8 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = getFieldsValue();
-		return getHasTypeArray(object);
+		COSObject Fields = getFieldsValue();
+		return getHasTypeArray(Fields);
 	}
 
 	@Override
@@ -101,14 +101,14 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -137,14 +137,14 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 
 	@Override
 	public Boolean getVHasTypeName() {
-		COSObject object = getVValue();
-		return getHasTypeName(object);
+		COSObject V = getVValue();
+		return getHasTypeName(V);
 	}
 
 	@Override
 	public String getVNameValue() {
-		COSObject object = getVValue();
-		return getNameValue(object);
+		COSObject V = getVValue();
+		return getNameValue(V);
 	}
 
 }

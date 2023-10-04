@@ -268,14 +268,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = getAFValue();
-		return getHasTypeDictionary(object);
+		COSObject AF = getAFValue();
+		return getHasTypeDictionary(AF);
 	}
 
 	@Override
@@ -290,8 +290,8 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getClassMapHasTypeDictionary() {
-		COSObject object = getClassMapValue();
-		return getHasTypeDictionary(object);
+		COSObject ClassMap = getClassMapValue();
+		return getHasTypeDictionary(ClassMap);
 	}
 
 	@Override
@@ -306,8 +306,8 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getIDTreeHasTypeNameTree() {
-		COSObject object = getIDTreeValue();
-		return getHasTypeNameTree(object);
+		COSObject IDTree = getIDTreeValue();
+		return getHasTypeNameTree(IDTree);
 	}
 
 	@Override
@@ -322,14 +322,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getKHasTypeArray() {
-		COSObject object = getKValue();
-		return getHasTypeArray(object);
+		COSObject K = getKValue();
+		return getHasTypeArray(K);
 	}
 
 	@Override
 	public Boolean getKHasTypeDictionary() {
-		COSObject object = getKValue();
-		return getHasTypeDictionary(object);
+		COSObject K = getKValue();
+		return getHasTypeDictionary(K);
 	}
 
 	@Override
@@ -344,8 +344,8 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getNamespacesHasTypeArray() {
-		COSObject object = getNamespacesValue();
-		return getHasTypeArray(object);
+		COSObject Namespaces = getNamespacesValue();
+		return getHasTypeArray(Namespaces);
 	}
 
 	@Override
@@ -360,8 +360,8 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getParentTreeHasTypeNumberTree() {
-		COSObject object = getParentTreeValue();
-		return getHasTypeNumberTree(object);
+		COSObject ParentTree = getParentTreeValue();
+		return getHasTypeNumberTree(ParentTree);
 	}
 
 	@Override
@@ -376,8 +376,8 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getParentTreeNextKeyHasTypeInteger() {
-		COSObject object = getParentTreeNextKeyValue();
-		return getHasTypeInteger(object);
+		COSObject ParentTreeNextKey = getParentTreeNextKeyValue();
+		return getHasTypeInteger(ParentTreeNextKey);
 	}
 
 	@Override
@@ -392,26 +392,26 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getisPronunciationLexiconIndirect() {
-		COSObject object = getPronunciationLexiconValue();
-		return getisIndirect(object);
+		COSObject PronunciationLexicon = getPronunciationLexiconValue();
+		return getisIndirect(PronunciationLexicon);
 	}
 
 	@Override
 	public Boolean getPronunciationLexiconHasTypeArray() {
-		COSObject object = getPronunciationLexiconValue();
-		return getHasTypeArray(object);
+		COSObject PronunciationLexicon = getPronunciationLexiconValue();
+		return getHasTypeArray(PronunciationLexicon);
 	}
 
 	@Override
 	public Boolean getPronunciationLexiconHasTypeDictionary() {
-		COSObject object = getPronunciationLexiconValue();
-		return getHasTypeDictionary(object);
+		COSObject PronunciationLexicon = getPronunciationLexiconValue();
+		return getHasTypeDictionary(PronunciationLexicon);
 	}
 
 	@Override
 	public Boolean getPronunciationLexiconHasTypeString() {
-		COSObject object = getPronunciationLexiconValue();
-		return getHasTypeString(object);
+		COSObject PronunciationLexicon = getPronunciationLexiconValue();
+		return getHasTypeString(PronunciationLexicon);
 	}
 
 	@Override
@@ -426,8 +426,8 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getRoleMapHasTypeDictionary() {
-		COSObject object = getRoleMapValue();
-		return getHasTypeDictionary(object);
+		COSObject RoleMap = getRoleMapValue();
+		return getHasTypeDictionary(RoleMap);
 	}
 
 	@Override
@@ -442,14 +442,14 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

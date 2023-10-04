@@ -90,8 +90,8 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 
 	@Override
 	public Boolean getBHasTypeArray() {
-		COSObject object = getBValue();
-		return getHasTypeArray(object);
+		COSObject B = getBValue();
+		return getHasTypeArray(B);
 	}
 
 	@Override
@@ -106,8 +106,8 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
@@ -136,14 +136,14 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 
 	@Override
 	public Boolean getMHasTypeInteger() {
-		COSObject object = getMValue();
-		return getHasTypeInteger(object);
+		COSObject M = getMValue();
+		return getHasTypeInteger(M);
 	}
 
 	@Override
 	public Long getMIntegerValue() {
-		COSObject object = getMValue();
-		return getIntegerValue(object);
+		COSObject M = getMValue();
+		return getIntegerValue(M);
 	}
 
 	@Override
@@ -172,14 +172,14 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 
 	@Override
 	public Boolean getOHasTypeNumber() {
-		COSObject object = getOValue();
-		return getHasTypeNumber(object);
+		COSObject O = getOValue();
+		return getHasTypeNumber(O);
 	}
 
 	@Override
 	public Double getONumberValue() {
-		COSObject object = getOValue();
-		return getNumberValue(object);
+		COSObject O = getOValue();
+		return getNumberValue(O);
 	}
 
 	@Override
@@ -208,14 +208,14 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 
 	@Override
 	public Boolean getWHasTypeInteger() {
-		COSObject object = getWValue();
-		return getHasTypeInteger(object);
+		COSObject W = getWValue();
+		return getHasTypeInteger(W);
 	}
 
 	@Override
 	public Long getWIntegerValue() {
-		COSObject object = getWValue();
-		return getIntegerValue(object);
+		COSObject W = getWValue();
+		return getIntegerValue(W);
 	}
 
 }

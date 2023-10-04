@@ -44,14 +44,14 @@ public class GFAGammaArray extends GFAObject implements AGammaArray {
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
-		COSObject object = getentry0Value();
-		return getHasTypeNumber(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeNumber(entry0);
 	}
 
 	@Override
 	public Double getentry0NumberValue() {
-		COSObject object = getentry0Value();
-		return getNumberValue(object);
+		COSObject entry0 = getentry0Value();
+		return getNumberValue(entry0);
 	}
 
 	public COSObject getentry1DefaultValue() {
@@ -82,14 +82,14 @@ public class GFAGammaArray extends GFAObject implements AGammaArray {
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
-		COSObject object = getentry1Value();
-		return getHasTypeNumber(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNumber(entry1);
 	}
 
 	@Override
 	public Double getentry1NumberValue() {
-		COSObject object = getentry1Value();
-		return getNumberValue(object);
+		COSObject entry1 = getentry1Value();
+		return getNumberValue(entry1);
 	}
 
 	public COSObject getentry2DefaultValue() {
@@ -120,14 +120,14 @@ public class GFAGammaArray extends GFAObject implements AGammaArray {
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
-		COSObject object = getentry2Value();
-		return getHasTypeNumber(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeNumber(entry2);
 	}
 
 	@Override
 	public Double getentry2NumberValue() {
-		COSObject object = getentry2Value();
-		return getNumberValue(object);
+		COSObject entry2 = getentry2Value();
+		return getNumberValue(entry2);
 	}
 
 }

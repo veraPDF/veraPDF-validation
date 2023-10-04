@@ -138,20 +138,20 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 
 	@Override
 	public Boolean getisDIndirect() {
-		COSObject object = getDValue();
-		return getisIndirect(object);
+		COSObject D = getDValue();
+		return getisIndirect(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = getDValue();
-		return getHasTypeDictionary(object);
+		COSObject D = getDValue();
+		return getHasTypeDictionary(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeStream() {
-		COSObject object = getDValue();
-		return getHasTypeStream(object);
+		COSObject D = getDValue();
+		return getHasTypeStream(D);
 	}
 
 	@Override
@@ -166,20 +166,20 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 
 	@Override
 	public Boolean getisNIndirect() {
-		COSObject object = getNValue();
-		return getisIndirect(object);
+		COSObject N = getNValue();
+		return getisIndirect(N);
 	}
 
 	@Override
 	public Boolean getNHasTypeDictionary() {
-		COSObject object = getNValue();
-		return getHasTypeDictionary(object);
+		COSObject N = getNValue();
+		return getHasTypeDictionary(N);
 	}
 
 	@Override
 	public Boolean getNHasTypeStream() {
-		COSObject object = getNValue();
-		return getHasTypeStream(object);
+		COSObject N = getNValue();
+		return getHasTypeStream(N);
 	}
 
 	@Override
@@ -194,20 +194,20 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 
 	@Override
 	public Boolean getisRIndirect() {
-		COSObject object = getRValue();
-		return getisIndirect(object);
+		COSObject R = getRValue();
+		return getisIndirect(R);
 	}
 
 	@Override
 	public Boolean getRHasTypeDictionary() {
-		COSObject object = getRValue();
-		return getHasTypeDictionary(object);
+		COSObject R = getRValue();
+		return getHasTypeDictionary(R);
 	}
 
 	@Override
 	public Boolean getRHasTypeStream() {
-		COSObject object = getRValue();
-		return getHasTypeStream(object);
+		COSObject R = getRValue();
+		return getHasTypeStream(R);
 	}
 
 }

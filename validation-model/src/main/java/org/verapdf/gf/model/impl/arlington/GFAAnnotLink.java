@@ -750,8 +750,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getAHasTypeDictionary() {
-		COSObject object = getAValue();
-		return getHasTypeDictionary(object);
+		COSObject A = getAValue();
+		return getHasTypeDictionary(A);
 	}
 
 	@Override
@@ -766,14 +766,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = getAFValue();
-		return getHasTypeDictionary(object);
+		COSObject AF = getAFValue();
+		return getHasTypeDictionary(AF);
 	}
 
 	@Override
@@ -788,8 +788,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getAPHasTypeDictionary() {
-		COSObject object = getAPValue();
-		return getHasTypeDictionary(object);
+		COSObject AP = getAPValue();
+		return getHasTypeDictionary(AP);
 	}
 
 	@Override
@@ -804,8 +804,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getASHasTypeName() {
-		COSObject object = getASValue();
-		return getHasTypeName(object);
+		COSObject AS = getASValue();
+		return getHasTypeName(AS);
 	}
 
 	@Override
@@ -831,14 +831,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getBMHasTypeName() {
-		COSObject object = getBMValue();
-		return getHasTypeName(object);
+		COSObject BM = getBMValue();
+		return getHasTypeName(BM);
 	}
 
 	@Override
 	public String getBMNameValue() {
-		COSObject object = getBMValue();
-		return getNameValue(object);
+		COSObject BM = getBMValue();
+		return getNameValue(BM);
 	}
 
 	@Override
@@ -853,8 +853,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getBSHasTypeDictionary() {
-		COSObject object = getBSValue();
-		return getHasTypeDictionary(object);
+		COSObject BS = getBSValue();
+		return getHasTypeDictionary(BS);
 	}
 
 	@Override
@@ -869,8 +869,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getBorderHasTypeArray() {
-		COSObject object = getBorderValue();
-		return getHasTypeArray(object);
+		COSObject Border = getBorderValue();
+		return getHasTypeArray(Border);
 	}
 
 	@Override
@@ -885,8 +885,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
@@ -912,14 +912,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getCAHasTypeNumber() {
-		COSObject object = getCAValue();
-		return getHasTypeNumber(object);
+		COSObject CA = getCAValue();
+		return getHasTypeNumber(CA);
 	}
 
 	@Override
 	public Double getCANumberValue() {
-		COSObject object = getCAValue();
-		return getNumberValue(object);
+		COSObject CA = getCAValue();
+		return getNumberValue(CA);
 	}
 
 	@Override
@@ -934,8 +934,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getContentsHasTypeStringText() {
-		COSObject object = getContentsValue();
-		return getHasTypeStringText(object);
+		COSObject Contents = getContentsValue();
+		return getHasTypeStringText(Contents);
 	}
 
 	@Override
@@ -950,20 +950,20 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getDestHasTypeArray() {
-		COSObject object = getDestValue();
-		return getHasTypeArray(object);
+		COSObject Dest = getDestValue();
+		return getHasTypeArray(Dest);
 	}
 
 	@Override
 	public Boolean getDestHasTypeName() {
-		COSObject object = getDestValue();
-		return getHasTypeName(object);
+		COSObject Dest = getDestValue();
+		return getHasTypeName(Dest);
 	}
 
 	@Override
 	public Boolean getDestHasTypeStringByte() {
-		COSObject object = getDestValue();
-		return getHasTypeStringByte(object);
+		COSObject Dest = getDestValue();
+		return getHasTypeStringByte(Dest);
 	}
 
 	@Override
@@ -996,14 +996,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getFHasTypeBitmask() {
-		COSObject object = getFValue();
-		return getHasTypeBitmask(object);
+		COSObject F = getFValue();
+		return getHasTypeBitmask(F);
 	}
 
 	@Override
 	public Long getFBitmaskValue() {
-		COSObject object = getFValue();
-		return getBitmaskValue(object);
+		COSObject F = getFValue();
+		return getBitmaskValue(F);
 	}
 
 	@Override
@@ -1035,14 +1035,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getHHasTypeName() {
-		COSObject object = getHValue();
-		return getHasTypeName(object);
+		COSObject H = getHValue();
+		return getHasTypeName(H);
 	}
 
 	@Override
 	public String getHNameValue() {
-		COSObject object = getHValue();
-		return getNameValue(object);
+		COSObject H = getHValue();
+		return getNameValue(H);
 	}
 
 	@Override
@@ -1057,8 +1057,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getLangHasTypeStringText() {
-		COSObject object = getLangValue();
-		return getHasTypeStringText(object);
+		COSObject Lang = getLangValue();
+		return getHasTypeStringText(Lang);
 	}
 
 	@Override
@@ -1073,14 +1073,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getMHasTypeDate() {
-		COSObject object = getMValue();
-		return getHasTypeDate(object);
+		COSObject M = getMValue();
+		return getHasTypeDate(M);
 	}
 
 	@Override
 	public Boolean getMHasTypeStringText() {
-		COSObject object = getMValue();
-		return getHasTypeStringText(object);
+		COSObject M = getMValue();
+		return getHasTypeStringText(M);
 	}
 
 	@Override
@@ -1095,8 +1095,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getNMHasTypeStringText() {
-		COSObject object = getNMValue();
-		return getHasTypeStringText(object);
+		COSObject NM = getNMValue();
+		return getHasTypeStringText(NM);
 	}
 
 	@Override
@@ -1111,8 +1111,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getOCHasTypeDictionary() {
-		COSObject object = getOCValue();
-		return getHasTypeDictionary(object);
+		COSObject OC = getOCValue();
+		return getHasTypeDictionary(OC);
 	}
 
 	@Override
@@ -1127,14 +1127,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = getPValue();
-		return getisIndirect(object);
+		COSObject P = getPValue();
+		return getisIndirect(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -1149,8 +1149,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getPAHasTypeDictionary() {
-		COSObject object = getPAValue();
-		return getHasTypeDictionary(object);
+		COSObject PA = getPAValue();
+		return getHasTypeDictionary(PA);
 	}
 
 	@Override
@@ -1165,8 +1165,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getPathHasTypeArray() {
-		COSObject object = getPathValue();
-		return getHasTypeArray(object);
+		COSObject Path = getPathValue();
+		return getHasTypeArray(Path);
 	}
 
 	@Override
@@ -1181,8 +1181,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getQuadPointsHasTypeArray() {
-		COSObject object = getQuadPointsValue();
-		return getHasTypeArray(object);
+		COSObject QuadPoints = getQuadPointsValue();
+		return getHasTypeArray(QuadPoints);
 	}
 
 	@Override
@@ -1197,8 +1197,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getRectHasTypeRectangle() {
-		COSObject object = getRectValue();
-		return getHasTypeRectangle(object);
+		COSObject Rect = getRectValue();
+		return getHasTypeRectangle(Rect);
 	}
 
 	@Override
@@ -1213,8 +1213,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
-		COSObject object = getStructParentValue();
-		return getHasTypeInteger(object);
+		COSObject StructParent = getStructParentValue();
+		return getHasTypeInteger(StructParent);
 	}
 
 	@Override
@@ -1229,14 +1229,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -1251,14 +1251,14 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -1284,44 +1284,17 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 
 	@Override
 	public Boolean getcaHasTypeNumber() {
-		COSObject object = getcaValue();
-		return getHasTypeNumber(object);
+		COSObject ca = getcaValue();
+		return getHasTypeNumber(ca);
 	}
 
 	@Override
 	public Double getcaNumberValue() {
-		COSObject object = getcaValue();
-		return getNumberValue(object);
+		COSObject ca = getcaValue();
+		return getNumberValue(ca);
 	}
 
-	@Override
-	public Boolean getAPNHasTypeDictionary() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		if (AP == null || !AP.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
-		return getHasTypeDictionary(N);
-	}
-
-	@Override
-	public Boolean getAPRHasTypeDictionary() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
-		if (AP == null || !AP.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
-		return getHasTypeDictionary(R);
-	}
-
-	@Override
-	public Boolean getAPDHasTypeDictionary() {
+	public COSObject getAPDValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -1330,7 +1303,49 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			return null;
 		}
 		COSObject D = AP.getKey(ASAtom.getASAtom("D"));
-		return getHasTypeDictionary(D);
+		return D;
+	}
+
+	public COSObject getAPNValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		if (AP == null || !AP.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject N = AP.getKey(ASAtom.getASAtom("N"));
+		return N;
+	}
+
+	public COSObject getAPRValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject AP = this.baseObject.getKey(ASAtom.getASAtom("AP"));
+		if (AP == null || !AP.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject R = AP.getKey(ASAtom.getASAtom("R"));
+		return R;
+	}
+
+	@Override
+	public Boolean getAPNHasTypeDictionary() {
+		COSObject APN = getAPNValue();
+		return getHasTypeDictionary(APN);
+	}
+
+	@Override
+	public Boolean getAPRHasTypeDictionary() {
+		COSObject APR = getAPRValue();
+		return getHasTypeDictionary(APR);
+	}
+
+	@Override
+	public Boolean getAPDHasTypeDictionary() {
+		COSObject APD = getAPDValue();
+		return getHasTypeDictionary(APD);
 	}
 
 	@Override

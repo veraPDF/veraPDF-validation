@@ -58,8 +58,8 @@ public class GFAArrayOfRequirementsHandlersEntry extends GFAObject implements AA
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

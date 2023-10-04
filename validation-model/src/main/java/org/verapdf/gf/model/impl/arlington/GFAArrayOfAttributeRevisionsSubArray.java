@@ -68,20 +68,20 @@ public class GFAArrayOfAttributeRevisionsSubArray extends GFAObject implements A
 
 	@Override
 	public Boolean getisentry0Indirect() {
-		COSObject object = getentry0Value();
-		return getisIndirect(object);
+		COSObject entry0 = getentry0Value();
+		return getisIndirect(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
-		COSObject object = getentry0Value();
-		return getHasTypeDictionary(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeDictionary(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStream() {
-		COSObject object = getentry0Value();
-		return getHasTypeStream(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeStream(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -94,14 +94,14 @@ public class GFAArrayOfAttributeRevisionsSubArray extends GFAObject implements A
 
 	@Override
 	public Boolean getentry1HasTypeInteger() {
-		COSObject object = getentry1Value();
-		return getHasTypeInteger(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeInteger(entry1);
 	}
 
 	@Override
 	public Long getentry1IntegerValue() {
-		COSObject object = getentry1Value();
-		return getIntegerValue(object);
+		COSObject entry1 = getentry1Value();
+		return getIntegerValue(entry1);
 	}
 
 }

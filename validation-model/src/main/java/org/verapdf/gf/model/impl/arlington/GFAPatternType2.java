@@ -149,8 +149,8 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 
 	@Override
 	public Boolean getExtGStateHasTypeDictionary() {
-		COSObject object = getExtGStateValue();
-		return getHasTypeDictionary(object);
+		COSObject ExtGState = getExtGStateValue();
+		return getHasTypeDictionary(ExtGState);
 	}
 
 	@Override
@@ -181,8 +181,8 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = getMatrixValue();
-		return getHasTypeMatrix(object);
+		COSObject Matrix = getMatrixValue();
+		return getHasTypeMatrix(Matrix);
 	}
 
 	@Override
@@ -197,14 +197,14 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 
 	@Override
 	public Boolean getPatternTypeHasTypeInteger() {
-		COSObject object = getPatternTypeValue();
-		return getHasTypeInteger(object);
+		COSObject PatternType = getPatternTypeValue();
+		return getHasTypeInteger(PatternType);
 	}
 
 	@Override
 	public Long getPatternTypeIntegerValue() {
-		COSObject object = getPatternTypeValue();
-		return getIntegerValue(object);
+		COSObject PatternType = getPatternTypeValue();
+		return getIntegerValue(PatternType);
 	}
 
 	@Override
@@ -219,20 +219,20 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 
 	@Override
 	public Boolean getisShadingIndirect() {
-		COSObject object = getShadingValue();
-		return getisIndirect(object);
+		COSObject Shading = getShadingValue();
+		return getisIndirect(Shading);
 	}
 
 	@Override
 	public Boolean getShadingHasTypeDictionary() {
-		COSObject object = getShadingValue();
-		return getHasTypeDictionary(object);
+		COSObject Shading = getShadingValue();
+		return getHasTypeDictionary(Shading);
 	}
 
 	@Override
 	public Boolean getShadingHasTypeStream() {
-		COSObject object = getShadingValue();
-		return getHasTypeStream(object);
+		COSObject Shading = getShadingValue();
+		return getHasTypeStream(Shading);
 	}
 
 	@Override
@@ -247,14 +247,14 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

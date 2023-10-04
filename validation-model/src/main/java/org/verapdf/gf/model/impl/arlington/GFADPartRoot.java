@@ -88,14 +88,14 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 
 	@Override
 	public Boolean getisDPartRootNodeIndirect() {
-		COSObject object = getDPartRootNodeValue();
-		return getisIndirect(object);
+		COSObject DPartRootNode = getDPartRootNodeValue();
+		return getisIndirect(DPartRootNode);
 	}
 
 	@Override
 	public Boolean getDPartRootNodeHasTypeDictionary() {
-		COSObject object = getDPartRootNodeValue();
-		return getHasTypeDictionary(object);
+		COSObject DPartRootNode = getDPartRootNodeValue();
+		return getHasTypeDictionary(DPartRootNode);
 	}
 
 	@Override
@@ -110,8 +110,8 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 
 	@Override
 	public Boolean getNodeNameListHasTypeArray() {
-		COSObject object = getNodeNameListValue();
-		return getHasTypeArray(object);
+		COSObject NodeNameList = getNodeNameListValue();
+		return getHasTypeArray(NodeNameList);
 	}
 
 	@Override
@@ -126,14 +126,14 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 
 	@Override
 	public Boolean getRecordLevelHasTypeInteger() {
-		COSObject object = getRecordLevelValue();
-		return getHasTypeInteger(object);
+		COSObject RecordLevel = getRecordLevelValue();
+		return getHasTypeInteger(RecordLevel);
 	}
 
 	@Override
 	public Long getRecordLevelIntegerValue() {
-		COSObject object = getRecordLevelValue();
-		return getIntegerValue(object);
+		COSObject RecordLevel = getRecordLevelValue();
+		return getIntegerValue(RecordLevel);
 	}
 
 	@Override
@@ -148,14 +148,14 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

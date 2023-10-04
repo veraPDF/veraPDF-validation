@@ -269,14 +269,14 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getisAuthCodeIndirect() {
-		COSObject object = getAuthCodeValue();
-		return getisIndirect(object);
+		COSObject AuthCode = getAuthCodeValue();
+		return getisIndirect(AuthCode);
 	}
 
 	@Override
 	public Boolean getAuthCodeHasTypeDictionary() {
-		COSObject object = getAuthCodeValue();
-		return getHasTypeDictionary(object);
+		COSObject AuthCode = getAuthCodeValue();
+		return getHasTypeDictionary(AuthCode);
 	}
 
 	@Override
@@ -291,8 +291,8 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getEncryptHasTypeDictionary() {
-		COSObject object = getEncryptValue();
-		return getHasTypeDictionary(object);
+		COSObject Encrypt = getEncryptValue();
+		return getHasTypeDictionary(Encrypt);
 	}
 
 	@Override
@@ -307,14 +307,14 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getisentryIDIndirect() {
-		COSObject object = getentryIDValue();
-		return getisIndirect(object);
+		COSObject entryID = getentryIDValue();
+		return getisIndirect(entryID);
 	}
 
 	@Override
 	public Boolean getentryIDHasTypeArray() {
-		COSObject object = getentryIDValue();
-		return getHasTypeArray(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeArray(entryID);
 	}
 
 	@Override
@@ -329,14 +329,14 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getisInfoIndirect() {
-		COSObject object = getInfoValue();
-		return getisIndirect(object);
+		COSObject Info = getInfoValue();
+		return getisIndirect(Info);
 	}
 
 	@Override
 	public Boolean getInfoHasTypeDictionary() {
-		COSObject object = getInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject Info = getInfoValue();
+		return getHasTypeDictionary(Info);
 	}
 
 	public COSObject getLinearizationParameterDictValue() {
@@ -361,20 +361,20 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getisPrevIndirect() {
-		COSObject object = getPrevValue();
-		return getisIndirect(object);
+		COSObject Prev = getPrevValue();
+		return getisIndirect(Prev);
 	}
 
 	@Override
 	public Boolean getPrevHasTypeInteger() {
-		COSObject object = getPrevValue();
-		return getHasTypeInteger(object);
+		COSObject Prev = getPrevValue();
+		return getHasTypeInteger(Prev);
 	}
 
 	@Override
 	public Long getPrevIntegerValue() {
-		COSObject object = getPrevValue();
-		return getIntegerValue(object);
+		COSObject Prev = getPrevValue();
+		return getIntegerValue(Prev);
 	}
 
 	@Override
@@ -389,14 +389,14 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getisRootIndirect() {
-		COSObject object = getRootValue();
-		return getisIndirect(object);
+		COSObject Root = getRootValue();
+		return getisIndirect(Root);
 	}
 
 	@Override
 	public Boolean getRootHasTypeDictionary() {
-		COSObject object = getRootValue();
-		return getHasTypeDictionary(object);
+		COSObject Root = getRootValue();
+		return getHasTypeDictionary(Root);
 	}
 
 	@Override
@@ -411,20 +411,20 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getisSizeIndirect() {
-		COSObject object = getSizeValue();
-		return getisIndirect(object);
+		COSObject Size = getSizeValue();
+		return getisIndirect(Size);
 	}
 
 	@Override
 	public Boolean getSizeHasTypeInteger() {
-		COSObject object = getSizeValue();
-		return getHasTypeInteger(object);
+		COSObject Size = getSizeValue();
+		return getHasTypeInteger(Size);
 	}
 
 	@Override
 	public Long getSizeIntegerValue() {
-		COSObject object = getSizeValue();
-		return getIntegerValue(object);
+		COSObject Size = getSizeValue();
+		return getIntegerValue(Size);
 	}
 
 	@Override
@@ -439,14 +439,14 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getXRefStmHasTypeInteger() {
-		COSObject object = getXRefStmValue();
-		return getHasTypeInteger(object);
+		COSObject XRefStm = getXRefStmValue();
+		return getHasTypeInteger(XRefStm);
 	}
 
 	@Override
 	public Long getXRefStmIntegerValue() {
-		COSObject object = getXRefStmValue();
-		return getIntegerValue(object);
+		COSObject XRefStm = getXRefStmValue();
+		return getIntegerValue(XRefStm);
 	}
 
 	@Override
@@ -462,12 +462,11 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	@Override
 	public Boolean getXRefStreamHasTypeStream() {
-		COSObject object = getXRefStreamValue();
-		return getHasTypeStream(object);
+		COSObject XRefStream = getXRefStreamValue();
+		return getHasTypeStream(XRefStream);
 	}
 
-	@Override
-	public Long getEncryptVIntegerValue() {
+	public COSObject getEncryptVValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -476,40 +475,49 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 			return null;
 		}
 		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
-		return getIntegerValue(V);
+		return V;
 	}
 
-	@Override
-	public Boolean getEncryptVHasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Encrypt = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
-		if (Encrypt == null || !Encrypt.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
-		return getHasTypeInteger(V);
-	}
-
-	@Override
-	public Boolean getcontainstrailerInfoModDate() {
-		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
-		if (trailer == null || !trailer.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Info = trailer.getKey(ASAtom.getASAtom("Info"));
-		return Info.knownKey(ASAtom.getASAtom("ModDate"));
-	}
-
-	@Override
-	public Boolean getcontainstrailerCatalogPieceInfo() {
+	public COSObject gettrailerCatalogValue() {
 		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
 		if (trailer == null || !trailer.getType().isDictionaryBased()) {
 			return null;
 		}
 		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
-		return Root.knownKey(ASAtom.getASAtom("PieceInfo"));
+		return Root;
+	}
+
+	public COSObject gettrailerInfoValue() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Info = trailer.getKey(ASAtom.getASAtom("Info"));
+		return Info;
+	}
+
+	@Override
+	public Long getEncryptVIntegerValue() {
+		COSObject EncryptV = getEncryptVValue();
+		return getIntegerValue(EncryptV);
+	}
+
+	@Override
+	public Boolean getEncryptVHasTypeInteger() {
+		COSObject EncryptV = getEncryptVValue();
+		return getHasTypeInteger(EncryptV);
+	}
+
+	@Override
+	public Boolean getcontainstrailerInfoModDate() {
+		COSObject trailerInfo = gettrailerInfoValue();
+		return trailerInfo.knownKey(ASAtom.getASAtom("ModDate"));
+	}
+
+	@Override
+	public Boolean getcontainstrailerCatalogPieceInfo() {
+		COSObject trailerCatalog = gettrailerCatalogValue();
+		return trailerCatalog.knownKey(ASAtom.getASAtom("PieceInfo"));
 	}
 
 	@Override

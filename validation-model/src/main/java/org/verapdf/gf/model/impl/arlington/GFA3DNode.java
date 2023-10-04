@@ -133,20 +133,20 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 
 	@Override
 	public Boolean getisDataIndirect() {
-		COSObject object = getDataValue();
-		return getisIndirect(object);
+		COSObject Data = getDataValue();
+		return getisIndirect(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeStream() {
-		COSObject object = getDataValue();
-		return getHasTypeStream(object);
+		COSObject Data = getDataValue();
+		return getHasTypeStream(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeStringText() {
-		COSObject object = getDataValue();
-		return getHasTypeStringText(object);
+		COSObject Data = getDataValue();
+		return getHasTypeStringText(Data);
 	}
 
 	@Override
@@ -161,8 +161,8 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 
 	@Override
 	public Boolean getInstanceHasTypeDictionary() {
-		COSObject object = getInstanceValue();
-		return getHasTypeDictionary(object);
+		COSObject Instance = getInstanceValue();
+		return getHasTypeDictionary(Instance);
 	}
 
 	@Override
@@ -177,8 +177,8 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 
 	@Override
 	public Boolean getMHasTypeArray() {
-		COSObject object = getMValue();
-		return getHasTypeArray(object);
+		COSObject M = getMValue();
+		return getHasTypeArray(M);
 	}
 
 	@Override
@@ -193,8 +193,8 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 
 	@Override
 	public Boolean getNHasTypeString() {
-		COSObject object = getNValue();
-		return getHasTypeString(object);
+		COSObject N = getNValue();
+		return getHasTypeString(N);
 	}
 
 	@Override
@@ -209,14 +209,14 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 
 	@Override
 	public Boolean getOHasTypeNumber() {
-		COSObject object = getOValue();
-		return getHasTypeNumber(object);
+		COSObject O = getOValue();
+		return getHasTypeNumber(O);
 	}
 
 	@Override
 	public Double getONumberValue() {
-		COSObject object = getOValue();
-		return getNumberValue(object);
+		COSObject O = getOValue();
+		return getNumberValue(O);
 	}
 
 	@Override
@@ -231,8 +231,8 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 
 	@Override
 	public Boolean getRMHasTypeDictionary() {
-		COSObject object = getRMValue();
-		return getHasTypeDictionary(object);
+		COSObject RM = getRMValue();
+		return getHasTypeDictionary(RM);
 	}
 
 	@Override
@@ -247,14 +247,14 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -269,8 +269,8 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 
 	@Override
 	public Boolean getVHasTypeBoolean() {
-		COSObject object = getVValue();
-		return getHasTypeBoolean(object);
+		COSObject V = getVValue();
+		return getHasTypeBoolean(V);
 	}
 
 }

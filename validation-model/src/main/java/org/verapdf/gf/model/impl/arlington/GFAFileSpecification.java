@@ -210,14 +210,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getAFRelationshipHasTypeName() {
-		COSObject object = getAFRelationshipValue();
-		return getHasTypeName(object);
+		COSObject AFRelationship = getAFRelationshipValue();
+		return getHasTypeName(AFRelationship);
 	}
 
 	@Override
 	public String getAFRelationshipNameValue() {
-		COSObject object = getAFRelationshipValue();
-		return getNameValue(object);
+		COSObject AFRelationship = getAFRelationshipValue();
+		return getNameValue(AFRelationship);
 	}
 
 	@Override
@@ -232,8 +232,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getCIHasTypeDictionary() {
-		COSObject object = getCIValue();
-		return getHasTypeDictionary(object);
+		COSObject CI = getCIValue();
+		return getHasTypeDictionary(CI);
 	}
 
 	@Override
@@ -248,8 +248,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getDOSHasTypeStringByte() {
-		COSObject object = getDOSValue();
-		return getHasTypeStringByte(object);
+		COSObject DOS = getDOSValue();
+		return getHasTypeStringByte(DOS);
 	}
 
 	@Override
@@ -264,8 +264,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getDescHasTypeString() {
-		COSObject object = getDescValue();
-		return getHasTypeString(object);
+		COSObject Desc = getDescValue();
+		return getHasTypeString(Desc);
 	}
 
 	@Override
@@ -280,8 +280,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getEFHasTypeDictionary() {
-		COSObject object = getEFValue();
-		return getHasTypeDictionary(object);
+		COSObject EF = getEFValue();
+		return getHasTypeDictionary(EF);
 	}
 
 	@Override
@@ -296,8 +296,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getEPHasTypeDictionary() {
-		COSObject object = getEPValue();
-		return getHasTypeDictionary(object);
+		COSObject EP = getEPValue();
+		return getHasTypeDictionary(EP);
 	}
 
 	@Override
@@ -312,8 +312,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -328,14 +328,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getFSHasTypeName() {
-		COSObject object = getFSValue();
-		return getHasTypeName(object);
+		COSObject FS = getFSValue();
+		return getHasTypeName(FS);
 	}
 
 	@Override
 	public String getFSNameValue() {
-		COSObject object = getFSValue();
-		return getNameValue(object);
+		COSObject FS = getFSValue();
+		return getNameValue(FS);
 	}
 
 	@Override
@@ -350,8 +350,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getentryIDHasTypeArray() {
-		COSObject object = getentryIDValue();
-		return getHasTypeArray(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeArray(entryID);
 	}
 
 	@Override
@@ -366,8 +366,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getMacHasTypeStringByte() {
-		COSObject object = getMacValue();
-		return getHasTypeStringByte(object);
+		COSObject Mac = getMacValue();
+		return getHasTypeStringByte(Mac);
 	}
 
 	@Override
@@ -382,8 +382,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getRFHasTypeDictionary() {
-		COSObject object = getRFValue();
-		return getHasTypeDictionary(object);
+		COSObject RF = getRFValue();
+		return getHasTypeDictionary(RF);
 	}
 
 	@Override
@@ -398,14 +398,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getisThumbIndirect() {
-		COSObject object = getThumbValue();
-		return getisIndirect(object);
+		COSObject Thumb = getThumbValue();
+		return getisIndirect(Thumb);
 	}
 
 	@Override
 	public Boolean getThumbHasTypeStream() {
-		COSObject object = getThumbValue();
-		return getHasTypeStream(object);
+		COSObject Thumb = getThumbValue();
+		return getHasTypeStream(Thumb);
 	}
 
 	@Override
@@ -420,14 +420,14 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -442,8 +442,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getUFHasTypeStringText() {
-		COSObject object = getUFValue();
-		return getHasTypeStringText(object);
+		COSObject UF = getUFValue();
+		return getHasTypeStringText(UF);
 	}
 
 	@Override
@@ -458,8 +458,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getUnixHasTypeStringByte() {
-		COSObject object = getUnixValue();
-		return getHasTypeStringByte(object);
+		COSObject Unix = getUnixValue();
+		return getHasTypeStringByte(Unix);
 	}
 
 	@Override
@@ -491,8 +491,8 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	@Override
 	public Boolean getVHasTypeBoolean() {
-		COSObject object = getVValue();
-		return getHasTypeBoolean(object);
+		COSObject V = getVValue();
+		return getHasTypeBoolean(V);
 	}
 
 	@Override

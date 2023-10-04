@@ -166,8 +166,8 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 
 	@Override
 	public Boolean getAltHasTypeArray() {
-		COSObject object = getAltValue();
-		return getHasTypeArray(object);
+		COSObject Alt = getAltValue();
+		return getHasTypeArray(Alt);
 	}
 
 	@Override
@@ -182,8 +182,8 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 
 	@Override
 	public Boolean getBEHasTypeDictionary() {
-		COSObject object = getBEValue();
-		return getHasTypeDictionary(object);
+		COSObject BE = getBEValue();
+		return getHasTypeDictionary(BE);
 	}
 
 	@Override
@@ -198,8 +198,8 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = getDValue();
-		return getHasTypeDictionary(object);
+		COSObject D = getDValue();
+		return getHasTypeDictionary(D);
 	}
 
 	@Override
@@ -214,8 +214,8 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 
 	@Override
 	public Boolean getMHHasTypeDictionary() {
-		COSObject object = getMHValue();
-		return getHasTypeDictionary(object);
+		COSObject MH = getMHValue();
+		return getHasTypeDictionary(MH);
 	}
 
 	@Override
@@ -230,8 +230,8 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 
 	@Override
 	public Boolean getNHasTypeStringText() {
-		COSObject object = getNValue();
-		return getHasTypeStringText(object);
+		COSObject N = getNValue();
+		return getHasTypeStringText(N);
 	}
 
 	@Override
@@ -246,14 +246,14 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -268,14 +268,14 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

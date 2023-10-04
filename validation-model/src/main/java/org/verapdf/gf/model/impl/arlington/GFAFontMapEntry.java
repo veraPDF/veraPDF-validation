@@ -134,8 +134,8 @@ public class GFAFontMapEntry extends GFAObject implements AFontMapEntry {
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

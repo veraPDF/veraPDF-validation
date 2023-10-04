@@ -28,8 +28,8 @@ public class GFAArrayOfStringsByteEntry extends GFAObject implements AArrayOfStr
 
 	@Override
 	public Boolean getHasTypeStringByte() {
-		COSObject object = getValue();
-		return getHasTypeStringByte(object);
+		COSObject entry = getValue();
+		return getHasTypeStringByte(entry);
 	}
 
 }

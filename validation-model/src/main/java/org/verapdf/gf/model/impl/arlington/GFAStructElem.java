@@ -319,32 +319,32 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getisAIndirect() {
-		COSObject object = getAValue();
-		return getisIndirect(object);
+		COSObject A = getAValue();
+		return getisIndirect(A);
 	}
 
 	@Override
 	public Boolean getAHasTypeArray() {
-		COSObject object = getAValue();
-		return getHasTypeArray(object);
+		COSObject A = getAValue();
+		return getHasTypeArray(A);
 	}
 
 	@Override
 	public Boolean getAHasTypeDictionary() {
-		COSObject object = getAValue();
-		return getHasTypeDictionary(object);
+		COSObject A = getAValue();
+		return getHasTypeDictionary(A);
 	}
 
 	@Override
 	public Boolean getAHasTypeStream() {
-		COSObject object = getAValue();
-		return getHasTypeStream(object);
+		COSObject A = getAValue();
+		return getHasTypeStream(A);
 	}
 
 	@Override
 	public Long getAArraySize() {
-		COSObject object = getAValue();
-		return getArraySize(object);
+		COSObject A = getAValue();
+		return getArraySize(A);
 	}
 
 	@Override
@@ -359,14 +359,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = getAFValue();
-		return getHasTypeDictionary(object);
+		COSObject AF = getAFValue();
+		return getHasTypeDictionary(AF);
 	}
 
 	@Override
@@ -381,8 +381,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getActualTextHasTypeStringText() {
-		COSObject object = getActualTextValue();
-		return getHasTypeStringText(object);
+		COSObject ActualText = getActualTextValue();
+		return getHasTypeStringText(ActualText);
 	}
 
 	@Override
@@ -397,8 +397,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getAltHasTypeStringText() {
-		COSObject object = getAltValue();
-		return getHasTypeStringText(object);
+		COSObject Alt = getAltValue();
+		return getHasTypeStringText(Alt);
 	}
 
 	@Override
@@ -413,14 +413,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
 	public Boolean getCHasTypeName() {
-		COSObject object = getCValue();
-		return getHasTypeName(object);
+		COSObject C = getCValue();
+		return getHasTypeName(C);
 	}
 
 	@Override
@@ -435,8 +435,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getEHasTypeStringText() {
-		COSObject object = getEValue();
-		return getHasTypeStringText(object);
+		COSObject E = getEValue();
+		return getHasTypeStringText(E);
 	}
 
 	@Override
@@ -451,8 +451,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getentryIDHasTypeStringByte() {
-		COSObject object = getentryIDValue();
-		return getHasTypeStringByte(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeStringByte(entryID);
 	}
 
 	@Override
@@ -467,20 +467,20 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getKHasTypeArray() {
-		COSObject object = getKValue();
-		return getHasTypeArray(object);
+		COSObject K = getKValue();
+		return getHasTypeArray(K);
 	}
 
 	@Override
 	public Boolean getKHasTypeDictionary() {
-		COSObject object = getKValue();
-		return getHasTypeDictionary(object);
+		COSObject K = getKValue();
+		return getHasTypeDictionary(K);
 	}
 
 	@Override
 	public Boolean getKHasTypeInteger() {
-		COSObject object = getKValue();
-		return getHasTypeInteger(object);
+		COSObject K = getKValue();
+		return getHasTypeInteger(K);
 	}
 
 	@Override
@@ -495,8 +495,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getLangHasTypeStringText() {
-		COSObject object = getLangValue();
-		return getHasTypeStringText(object);
+		COSObject Lang = getLangValue();
+		return getHasTypeStringText(Lang);
 	}
 
 	@Override
@@ -511,14 +511,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getisNSIndirect() {
-		COSObject object = getNSValue();
-		return getisIndirect(object);
+		COSObject NS = getNSValue();
+		return getisIndirect(NS);
 	}
 
 	@Override
 	public Boolean getNSHasTypeDictionary() {
-		COSObject object = getNSValue();
-		return getHasTypeDictionary(object);
+		COSObject NS = getNSValue();
+		return getHasTypeDictionary(NS);
 	}
 
 	@Override
@@ -533,14 +533,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = getPValue();
-		return getisIndirect(object);
+		COSObject P = getPValue();
+		return getisIndirect(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -555,14 +555,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getisPgIndirect() {
-		COSObject object = getPgValue();
-		return getisIndirect(object);
+		COSObject Pg = getPgValue();
+		return getisIndirect(Pg);
 	}
 
 	@Override
 	public Boolean getPgHasTypeDictionary() {
-		COSObject object = getPgValue();
-		return getHasTypeDictionary(object);
+		COSObject Pg = getPgValue();
+		return getHasTypeDictionary(Pg);
 	}
 
 	@Override
@@ -577,8 +577,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getPhonemeHasTypeStringText() {
-		COSObject object = getPhonemeValue();
-		return getHasTypeStringText(object);
+		COSObject Phoneme = getPhonemeValue();
+		return getHasTypeStringText(Phoneme);
 	}
 
 	@Override
@@ -604,8 +604,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getPhoneticAlphabetHasTypeName() {
-		COSObject object = getPhoneticAlphabetValue();
-		return getHasTypeName(object);
+		COSObject PhoneticAlphabet = getPhoneticAlphabetValue();
+		return getHasTypeName(PhoneticAlphabet);
 	}
 
 	@Override
@@ -636,14 +636,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = getRValue();
-		return getHasTypeInteger(object);
+		COSObject R = getRValue();
+		return getHasTypeInteger(R);
 	}
 
 	@Override
 	public Long getRIntegerValue() {
-		COSObject object = getRValue();
-		return getIntegerValue(object);
+		COSObject R = getRValue();
+		return getIntegerValue(R);
 	}
 
 	@Override
@@ -658,8 +658,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getRefHasTypeArray() {
-		COSObject object = getRefValue();
-		return getHasTypeArray(object);
+		COSObject Ref = getRefValue();
+		return getHasTypeArray(Ref);
 	}
 
 	@Override
@@ -674,8 +674,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
@@ -690,8 +690,8 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = getTValue();
-		return getHasTypeStringText(object);
+		COSObject T = getTValue();
+		return getHasTypeStringText(T);
 	}
 
 	@Override
@@ -706,14 +706,14 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

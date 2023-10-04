@@ -274,8 +274,8 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 
 	@Override
 	public Boolean getCMDHasTypeDictionary() {
-		COSObject object = getCMDValue();
-		return getHasTypeDictionary(object);
+		COSObject CMD = getCMDValue();
+		return getHasTypeDictionary(CMD);
 	}
 
 	@Override
@@ -290,14 +290,14 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -312,14 +312,14 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -334,14 +334,14 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 
 	@Override
 	public Boolean getisTAIndirect() {
-		COSObject object = getTAValue();
-		return getisIndirect(object);
+		COSObject TA = getTAValue();
+		return getisIndirect(TA);
 	}
 
 	@Override
 	public Boolean getTAHasTypeDictionary() {
-		COSObject object = getTAValue();
-		return getHasTypeDictionary(object);
+		COSObject TA = getTAValue();
+		return getHasTypeDictionary(TA);
 	}
 
 	@Override
@@ -356,14 +356,14 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 
 	@Override
 	public Boolean getisTIIndirect() {
-		COSObject object = getTIValue();
-		return getisIndirect(object);
+		COSObject TI = getTIValue();
+		return getisIndirect(TI);
 	}
 
 	@Override
 	public Boolean getTIHasTypeDictionary() {
-		COSObject object = getTIValue();
-		return getHasTypeDictionary(object);
+		COSObject TI = getTIValue();
+		return getHasTypeDictionary(TI);
 	}
 
 	@Override
@@ -378,14 +378,14 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

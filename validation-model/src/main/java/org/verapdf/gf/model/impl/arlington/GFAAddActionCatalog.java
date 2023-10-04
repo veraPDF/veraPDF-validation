@@ -176,8 +176,8 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 
 	@Override
 	public Boolean getDCHasTypeDictionary() {
-		COSObject object = getDCValue();
-		return getHasTypeDictionary(object);
+		COSObject DC = getDCValue();
+		return getHasTypeDictionary(DC);
 	}
 
 	@Override
@@ -192,8 +192,8 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 
 	@Override
 	public Boolean getDPHasTypeDictionary() {
-		COSObject object = getDPValue();
-		return getHasTypeDictionary(object);
+		COSObject DP = getDPValue();
+		return getHasTypeDictionary(DP);
 	}
 
 	@Override
@@ -208,8 +208,8 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 
 	@Override
 	public Boolean getDSHasTypeDictionary() {
-		COSObject object = getDSValue();
-		return getHasTypeDictionary(object);
+		COSObject DS = getDSValue();
+		return getHasTypeDictionary(DS);
 	}
 
 	@Override
@@ -224,8 +224,8 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 
 	@Override
 	public Boolean getWPHasTypeDictionary() {
-		COSObject object = getWPValue();
-		return getHasTypeDictionary(object);
+		COSObject WP = getWPValue();
+		return getHasTypeDictionary(WP);
 	}
 
 	@Override
@@ -240,8 +240,8 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 
 	@Override
 	public Boolean getWSHasTypeDictionary() {
-		COSObject object = getWSValue();
-		return getHasTypeDictionary(object);
+		COSObject WS = getWSValue();
+		return getHasTypeDictionary(WS);
 	}
 
 }

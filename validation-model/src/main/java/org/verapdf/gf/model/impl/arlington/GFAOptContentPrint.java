@@ -28,14 +28,14 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 
 	@Override
 	public Boolean getPrintStateHasTypeName() {
-		COSObject object = getPrintStateValue();
-		return getHasTypeName(object);
+		COSObject PrintState = getPrintStateValue();
+		return getHasTypeName(PrintState);
 	}
 
 	@Override
 	public String getPrintStateNameValue() {
-		COSObject object = getPrintStateValue();
-		return getNameValue(object);
+		COSObject PrintState = getPrintStateValue();
+		return getNameValue(PrintState);
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 }

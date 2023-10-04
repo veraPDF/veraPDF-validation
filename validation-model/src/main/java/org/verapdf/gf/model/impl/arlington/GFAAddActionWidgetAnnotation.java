@@ -2932,8 +2932,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getBlHasTypeDictionary() {
-		COSObject object = getBlValue();
-		return getHasTypeDictionary(object);
+		COSObject Bl = getBlValue();
+		return getHasTypeDictionary(Bl);
 	}
 
 	@Override
@@ -2948,8 +2948,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = getDValue();
-		return getHasTypeDictionary(object);
+		COSObject D = getDValue();
+		return getHasTypeDictionary(D);
 	}
 
 	@Override
@@ -2964,8 +2964,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getEHasTypeDictionary() {
-		COSObject object = getEValue();
-		return getHasTypeDictionary(object);
+		COSObject E = getEValue();
+		return getHasTypeDictionary(E);
 	}
 
 	@Override
@@ -2980,8 +2980,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getFoHasTypeDictionary() {
-		COSObject object = getFoValue();
-		return getHasTypeDictionary(object);
+		COSObject Fo = getFoValue();
+		return getHasTypeDictionary(Fo);
 	}
 
 	@Override
@@ -2996,8 +2996,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getPCHasTypeDictionary() {
-		COSObject object = getPCValue();
-		return getHasTypeDictionary(object);
+		COSObject PC = getPCValue();
+		return getHasTypeDictionary(PC);
 	}
 
 	@Override
@@ -3012,8 +3012,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getPIHasTypeDictionary() {
-		COSObject object = getPIValue();
-		return getHasTypeDictionary(object);
+		COSObject PI = getPIValue();
+		return getHasTypeDictionary(PI);
 	}
 
 	@Override
@@ -3028,8 +3028,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getPOHasTypeDictionary() {
-		COSObject object = getPOValue();
-		return getHasTypeDictionary(object);
+		COSObject PO = getPOValue();
+		return getHasTypeDictionary(PO);
 	}
 
 	@Override
@@ -3044,8 +3044,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getPVHasTypeDictionary() {
-		COSObject object = getPVValue();
-		return getHasTypeDictionary(object);
+		COSObject PV = getPVValue();
+		return getHasTypeDictionary(PV);
 	}
 
 	@Override
@@ -3060,8 +3060,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getUHasTypeDictionary() {
-		COSObject object = getUValue();
-		return getHasTypeDictionary(object);
+		COSObject U = getUValue();
+		return getHasTypeDictionary(U);
 	}
 
 	@Override
@@ -3076,8 +3076,8 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 
 	@Override
 	public Boolean getXHasTypeDictionary() {
-		COSObject object = getXValue();
-		return getHasTypeDictionary(object);
+		COSObject X = getXValue();
+		return getHasTypeDictionary(X);
 	}
 
 }

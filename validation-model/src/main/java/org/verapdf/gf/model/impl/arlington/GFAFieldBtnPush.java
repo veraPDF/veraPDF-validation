@@ -292,8 +292,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getAAHasTypeDictionary() {
-		COSObject object = getAAValue();
-		return getHasTypeDictionary(object);
+		COSObject AA = getAAValue();
+		return getHasTypeDictionary(AA);
 	}
 
 	@Override
@@ -314,8 +314,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getDAHasTypeString() {
-		COSObject object = getDAValue();
-		return getHasTypeString(object);
+		COSObject DA = getDAValue();
+		return getHasTypeString(DA);
 	}
 
 	@Override
@@ -330,8 +330,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getDSHasTypeStringText() {
-		COSObject object = getDSValue();
-		return getHasTypeStringText(object);
+		COSObject DS = getDSValue();
+		return getHasTypeStringText(DS);
 	}
 
 	@Override
@@ -352,8 +352,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getDVHasTypeName() {
-		COSObject object = getDVValue();
-		return getHasTypeName(object);
+		COSObject DV = getDVValue();
+		return getHasTypeName(DV);
 	}
 
 	@Override
@@ -374,14 +374,14 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getFTHasTypeName() {
-		COSObject object = getFTValue();
-		return getHasTypeName(object);
+		COSObject FT = getFTValue();
+		return getHasTypeName(FT);
 	}
 
 	@Override
 	public String getFTNameValue() {
-		COSObject object = getFTValue();
-		return getNameValue(object);
+		COSObject FT = getFTValue();
+		return getNameValue(FT);
 	}
 
 	@Override
@@ -402,14 +402,14 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getFfHasTypeBitmask() {
-		COSObject object = getFfValue();
-		return getHasTypeBitmask(object);
+		COSObject Ff = getFfValue();
+		return getHasTypeBitmask(Ff);
 	}
 
 	@Override
 	public Long getFfBitmaskValue() {
-		COSObject object = getFfValue();
-		return getBitmaskValue(object);
+		COSObject Ff = getFfValue();
+		return getBitmaskValue(Ff);
 	}
 
 	@Override
@@ -424,8 +424,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getKidsHasTypeArray() {
-		COSObject object = getKidsValue();
-		return getHasTypeArray(object);
+		COSObject Kids = getKidsValue();
+		return getHasTypeArray(Kids);
 	}
 
 	@Override
@@ -440,8 +440,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = getParentValue();
-		return getHasTypeDictionary(object);
+		COSObject Parent = getParentValue();
+		return getHasTypeDictionary(Parent);
 	}
 
 	@Override
@@ -473,14 +473,14 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getQHasTypeInteger() {
-		COSObject object = getQValue();
-		return getHasTypeInteger(object);
+		COSObject Q = getQValue();
+		return getHasTypeInteger(Q);
 	}
 
 	@Override
 	public Long getQIntegerValue() {
-		COSObject object = getQValue();
-		return getIntegerValue(object);
+		COSObject Q = getQValue();
+		return getIntegerValue(Q);
 	}
 
 	@Override
@@ -495,20 +495,20 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getisRVIndirect() {
-		COSObject object = getRVValue();
-		return getisIndirect(object);
+		COSObject RV = getRVValue();
+		return getisIndirect(RV);
 	}
 
 	@Override
 	public Boolean getRVHasTypeStream() {
-		COSObject object = getRVValue();
-		return getHasTypeStream(object);
+		COSObject RV = getRVValue();
+		return getHasTypeStream(RV);
 	}
 
 	@Override
 	public Boolean getRVHasTypeStringText() {
-		COSObject object = getRVValue();
-		return getHasTypeStringText(object);
+		COSObject RV = getRVValue();
+		return getHasTypeStringText(RV);
 	}
 
 	@Override
@@ -523,8 +523,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = getTValue();
-		return getHasTypeStringText(object);
+		COSObject T = getTValue();
+		return getHasTypeStringText(T);
 	}
 
 	@Override
@@ -539,8 +539,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getTMHasTypeStringText() {
-		COSObject object = getTMValue();
-		return getHasTypeStringText(object);
+		COSObject TM = getTMValue();
+		return getHasTypeStringText(TM);
 	}
 
 	@Override
@@ -555,8 +555,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getTUHasTypeStringText() {
-		COSObject object = getTUValue();
-		return getHasTypeStringText(object);
+		COSObject TU = getTUValue();
+		return getHasTypeStringText(TU);
 	}
 
 	@Override
@@ -577,8 +577,8 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 
 	@Override
 	public Boolean getVHasTypeName() {
-		COSObject object = getVValue();
-		return getHasTypeName(object);
+		COSObject V = getVValue();
+		return getHasTypeName(V);
 	}
 
 }

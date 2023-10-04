@@ -63,8 +63,8 @@ public class GFARelatedFilesArraySubArray extends GFAObject implements ARelatedF
 
 	@Override
 	public Boolean getentry0HasTypeString() {
-		COSObject object = getentry0Value();
-		return getHasTypeString(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeString(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -77,14 +77,14 @@ public class GFARelatedFilesArraySubArray extends GFAObject implements ARelatedF
 
 	@Override
 	public Boolean getisentry1Indirect() {
-		COSObject object = getentry1Value();
-		return getisIndirect(object);
+		COSObject entry1 = getentry1Value();
+		return getisIndirect(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStream() {
-		COSObject object = getentry1Value();
-		return getHasTypeStream(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeStream(entry1);
 	}
 
 }

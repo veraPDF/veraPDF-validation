@@ -58,8 +58,8 @@ public class GFAArrayOf3DCrossSectionEntry extends GFAObject implements AArrayOf
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

@@ -386,8 +386,8 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = getBBoxValue();
-		return getHasTypeRectangle(object);
+		COSObject BBox = getBBoxValue();
+		return getHasTypeRectangle(BBox);
 	}
 
 	@Override
@@ -402,14 +402,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = getDLValue();
-		return getHasTypeInteger(object);
+		COSObject DL = getDLValue();
+		return getHasTypeInteger(DL);
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = getDLValue();
-		return getIntegerValue(object);
+		COSObject DL = getDLValue();
+		return getIntegerValue(DL);
 	}
 
 	@Override
@@ -424,20 +424,20 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeArray(DecodeParms);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeDictionary(DecodeParms);
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = getDecodeParmsValue();
-		return getArraySize(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getArraySize(DecodeParms);
 	}
 
 	@Override
@@ -452,14 +452,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -474,20 +474,20 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeArray(FDecodeParms);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeDictionary(FDecodeParms);
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = getFDecodeParmsValue();
-		return getArraySize(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getArraySize(FDecodeParms);
 	}
 
 	@Override
@@ -502,26 +502,26 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = getFFilterValue();
-		return getHasTypeArray(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeArray(FFilter);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = getFFilterValue();
-		return getHasTypeName(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeName(FFilter);
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = getFFilterValue();
-		return getNameValue(object);
+		COSObject FFilter = getFFilterValue();
+		return getNameValue(FFilter);
 	}
 
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = getFFilterValue();
-		return getArraySize(object);
+		COSObject FFilter = getFFilterValue();
+		return getArraySize(FFilter);
 	}
 
 	@Override
@@ -536,26 +536,26 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = getFilterValue();
-		return getHasTypeArray(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeArray(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = getFilterValue();
-		return getNameValue(object);
+		COSObject Filter = getFilterValue();
+		return getNameValue(Filter);
 	}
 
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = getFilterValue();
-		return getArraySize(object);
+		COSObject Filter = getFilterValue();
+		return getArraySize(Filter);
 	}
 
 	@Override
@@ -570,8 +570,8 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = getLengthValue();
-		return getHasTypeInteger(object);
+		COSObject Length = getLengthValue();
+		return getHasTypeInteger(Length);
 	}
 
 	@Override
@@ -586,8 +586,8 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = getMatrixValue();
-		return getHasTypeMatrix(object);
+		COSObject Matrix = getMatrixValue();
+		return getHasTypeMatrix(Matrix);
 	}
 
 	@Override
@@ -602,14 +602,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getPaintTypeHasTypeInteger() {
-		COSObject object = getPaintTypeValue();
-		return getHasTypeInteger(object);
+		COSObject PaintType = getPaintTypeValue();
+		return getHasTypeInteger(PaintType);
 	}
 
 	@Override
 	public Long getPaintTypeIntegerValue() {
-		COSObject object = getPaintTypeValue();
-		return getIntegerValue(object);
+		COSObject PaintType = getPaintTypeValue();
+		return getIntegerValue(PaintType);
 	}
 
 	@Override
@@ -624,14 +624,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getPatternTypeHasTypeInteger() {
-		COSObject object = getPatternTypeValue();
-		return getHasTypeInteger(object);
+		COSObject PatternType = getPatternTypeValue();
+		return getHasTypeInteger(PatternType);
 	}
 
 	@Override
 	public Long getPatternTypeIntegerValue() {
-		COSObject object = getPatternTypeValue();
-		return getIntegerValue(object);
+		COSObject PatternType = getPatternTypeValue();
+		return getIntegerValue(PatternType);
 	}
 
 	@Override
@@ -646,8 +646,8 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
-		COSObject object = getResourcesValue();
-		return getHasTypeDictionary(object);
+		COSObject Resources = getResourcesValue();
+		return getHasTypeDictionary(Resources);
 	}
 
 	@Override
@@ -662,14 +662,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getTilingTypeHasTypeInteger() {
-		COSObject object = getTilingTypeValue();
-		return getHasTypeInteger(object);
+		COSObject TilingType = getTilingTypeValue();
+		return getHasTypeInteger(TilingType);
 	}
 
 	@Override
 	public Long getTilingTypeIntegerValue() {
-		COSObject object = getTilingTypeValue();
-		return getIntegerValue(object);
+		COSObject TilingType = getTilingTypeValue();
+		return getIntegerValue(TilingType);
 	}
 
 	@Override
@@ -684,14 +684,14 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -706,8 +706,8 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getXStepHasTypeNumber() {
-		COSObject object = getXStepValue();
-		return getHasTypeNumber(object);
+		COSObject XStep = getXStepValue();
+		return getHasTypeNumber(XStep);
 	}
 
 	@Override
@@ -722,8 +722,8 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getXUIDHasTypeArray() {
-		COSObject object = getXUIDValue();
-		return getHasTypeArray(object);
+		COSObject XUID = getXUIDValue();
+		return getHasTypeArray(XUID);
 	}
 
 	@Override
@@ -738,8 +738,8 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 
 	@Override
 	public Boolean getYStepHasTypeNumber() {
-		COSObject object = getYStepValue();
-		return getHasTypeNumber(object);
+		COSObject YStep = getYStepValue();
+		return getHasTypeNumber(YStep);
 	}
 
 }

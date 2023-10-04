@@ -68,14 +68,14 @@ public class GFAArrayOfOPI2Inks extends GFAObject implements AArrayOfOPI2Inks {
 
 	@Override
 	public Boolean getentry0HasTypeName() {
-		COSObject object = getentry0Value();
-		return getHasTypeName(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeName(entry0);
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		COSObject object = getentry0Value();
-		return getNameValue(object);
+		COSObject entry0 = getentry0Value();
+		return getNameValue(entry0);
 	}
 
 }

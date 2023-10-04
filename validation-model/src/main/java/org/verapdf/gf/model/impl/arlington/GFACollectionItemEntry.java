@@ -58,26 +58,26 @@ public class GFACollectionItemEntry extends GFAObject implements ACollectionItem
 
 	@Override
 	public Boolean getHasTypeDate() {
-		COSObject object = getValue();
-		return getHasTypeDate(object);
+		COSObject entry = getValue();
+		return getHasTypeDate(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = getValue();
-		return getHasTypeNumber(object);
+		COSObject entry = getValue();
+		return getHasTypeNumber(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeStringText() {
-		COSObject object = getValue();
-		return getHasTypeStringText(object);
+		COSObject entry = getValue();
+		return getHasTypeStringText(entry);
 	}
 
 }

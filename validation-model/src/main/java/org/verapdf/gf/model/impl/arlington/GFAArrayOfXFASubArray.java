@@ -60,8 +60,8 @@ public class GFAArrayOfXFASubArray extends GFAObject implements AArrayOfXFASubAr
 
 	@Override
 	public Boolean getentry0HasTypeStringText() {
-		COSObject object = getentry0Value();
-		return getHasTypeStringText(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeStringText(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -74,14 +74,14 @@ public class GFAArrayOfXFASubArray extends GFAObject implements AArrayOfXFASubAr
 
 	@Override
 	public Boolean getisentry1Indirect() {
-		COSObject object = getentry1Value();
-		return getisIndirect(object);
+		COSObject entry1 = getentry1Value();
+		return getisIndirect(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStream() {
-		COSObject object = getentry1Value();
-		return getHasTypeStream(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeStream(entry1);
 	}
 
 }

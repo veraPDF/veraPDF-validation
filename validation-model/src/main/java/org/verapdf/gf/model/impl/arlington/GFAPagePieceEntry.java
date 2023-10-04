@@ -62,8 +62,8 @@ public class GFAPagePieceEntry extends GFAObject implements APagePieceEntry {
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

@@ -62,14 +62,14 @@ public class GFA3DReference extends GFAObject implements A3DReference {
 
 	@Override
 	public Boolean getisentry3DDIndirect() {
-		COSObject object = getentry3DDValue();
-		return getisIndirect(object);
+		COSObject entry3DD = getentry3DDValue();
+		return getisIndirect(entry3DD);
 	}
 
 	@Override
 	public Boolean getentry3DDHasTypeStream() {
-		COSObject object = getentry3DDValue();
-		return getHasTypeStream(object);
+		COSObject entry3DD = getentry3DDValue();
+		return getHasTypeStream(entry3DD);
 	}
 
 	@Override
@@ -84,14 +84,14 @@ public class GFA3DReference extends GFAObject implements A3DReference {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

@@ -66,8 +66,8 @@ public class GFANameNameTreeEmbeddedFilesEntry extends GFAObject implements ANam
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

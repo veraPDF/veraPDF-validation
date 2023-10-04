@@ -77,8 +77,8 @@ public class GFAMediaPlayParametersBE extends GFAObject implements AMediaPlayPar
 
 	@Override
 	public Boolean getAHasTypeBoolean() {
-		COSObject object = getAValue();
-		return getHasTypeBoolean(object);
+		COSObject A = getAValue();
+		return getHasTypeBoolean(A);
 	}
 
 	@Override
@@ -107,8 +107,8 @@ public class GFAMediaPlayParametersBE extends GFAObject implements AMediaPlayPar
 
 	@Override
 	public Boolean getCHasTypeBoolean() {
-		COSObject object = getCValue();
-		return getHasTypeBoolean(object);
+		COSObject C = getCValue();
+		return getHasTypeBoolean(C);
 	}
 
 	@Override
@@ -123,8 +123,8 @@ public class GFAMediaPlayParametersBE extends GFAObject implements AMediaPlayPar
 
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = getDValue();
-		return getHasTypeDictionary(object);
+		COSObject D = getDValue();
+		return getHasTypeDictionary(D);
 	}
 
 	@Override
@@ -153,14 +153,14 @@ public class GFAMediaPlayParametersBE extends GFAObject implements AMediaPlayPar
 
 	@Override
 	public Boolean getFHasTypeInteger() {
-		COSObject object = getFValue();
-		return getHasTypeInteger(object);
+		COSObject F = getFValue();
+		return getHasTypeInteger(F);
 	}
 
 	@Override
 	public Long getFIntegerValue() {
-		COSObject object = getFValue();
-		return getIntegerValue(object);
+		COSObject F = getFValue();
+		return getIntegerValue(F);
 	}
 
 	@Override
@@ -189,14 +189,14 @@ public class GFAMediaPlayParametersBE extends GFAObject implements AMediaPlayPar
 
 	@Override
 	public Boolean getRCHasTypeNumber() {
-		COSObject object = getRCValue();
-		return getHasTypeNumber(object);
+		COSObject RC = getRCValue();
+		return getHasTypeNumber(RC);
 	}
 
 	@Override
 	public Double getRCNumberValue() {
-		COSObject object = getRCValue();
-		return getNumberValue(object);
+		COSObject RC = getRCValue();
+		return getNumberValue(RC);
 	}
 
 	@Override
@@ -225,14 +225,14 @@ public class GFAMediaPlayParametersBE extends GFAObject implements AMediaPlayPar
 
 	@Override
 	public Boolean getVHasTypeInteger() {
-		COSObject object = getVValue();
-		return getHasTypeInteger(object);
+		COSObject V = getVValue();
+		return getHasTypeInteger(V);
 	}
 
 	@Override
 	public Long getVIntegerValue() {
-		COSObject object = getVValue();
-		return getIntegerValue(object);
+		COSObject V = getVValue();
+		return getIntegerValue(V);
 	}
 
 }

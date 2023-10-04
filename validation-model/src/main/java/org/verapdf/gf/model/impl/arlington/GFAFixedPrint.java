@@ -41,8 +41,8 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 
 	@Override
 	public Boolean getHHasTypeNumber() {
-		COSObject object = getHValue();
-		return getHasTypeNumber(object);
+		COSObject H = getHValue();
+		return getHasTypeNumber(H);
 	}
 
 	@Override
@@ -70,8 +70,8 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = getMatrixValue();
-		return getHasTypeMatrix(object);
+		COSObject Matrix = getMatrixValue();
+		return getHasTypeMatrix(Matrix);
 	}
 
 	@Override
@@ -86,14 +86,14 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -121,8 +121,8 @@ public class GFAFixedPrint extends GFAObject implements AFixedPrint {
 
 	@Override
 	public Boolean getVHasTypeNumber() {
-		COSObject object = getVValue();
-		return getHasTypeNumber(object);
+		COSObject V = getVValue();
+		return getHasTypeNumber(V);
 	}
 
 }

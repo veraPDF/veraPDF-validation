@@ -132,8 +132,8 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	@Override
 	public Boolean getCRLsHasTypeArray() {
-		COSObject object = getCRLsValue();
-		return getHasTypeArray(object);
+		COSObject CRLs = getCRLsValue();
+		return getHasTypeArray(CRLs);
 	}
 
 	@Override
@@ -148,8 +148,8 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	@Override
 	public Boolean getCertsHasTypeArray() {
-		COSObject object = getCertsValue();
-		return getHasTypeArray(object);
+		COSObject Certs = getCertsValue();
+		return getHasTypeArray(Certs);
 	}
 
 	@Override
@@ -164,8 +164,8 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	@Override
 	public Boolean getOCSPsHasTypeArray() {
-		COSObject object = getOCSPsValue();
-		return getHasTypeArray(object);
+		COSObject OCSPs = getOCSPsValue();
+		return getHasTypeArray(OCSPs);
 	}
 
 	@Override
@@ -180,14 +180,14 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -202,8 +202,8 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	@Override
 	public Boolean getVRIHasTypeDictionary() {
-		COSObject object = getVRIValue();
-		return getHasTypeDictionary(object);
+		COSObject VRI = getVRIValue();
+		return getHasTypeDictionary(VRI);
 	}
 
 }

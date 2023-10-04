@@ -169,8 +169,8 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 
 	@Override
 	public Boolean getBCHasTypeArray() {
-		COSObject object = getBCValue();
-		return getHasTypeArray(object);
+		COSObject BC = getBCValue();
+		return getHasTypeArray(BC);
 	}
 
 	@Override
@@ -185,14 +185,14 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 
 	@Override
 	public Boolean getisGIndirect() {
-		COSObject object = getGValue();
-		return getisIndirect(object);
+		COSObject G = getGValue();
+		return getisIndirect(G);
 	}
 
 	@Override
 	public Boolean getGHasTypeStream() {
-		COSObject object = getGValue();
-		return getHasTypeStream(object);
+		COSObject G = getGValue();
+		return getHasTypeStream(G);
 	}
 
 	@Override
@@ -207,14 +207,14 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -244,32 +244,32 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 
 	@Override
 	public Boolean getisTRIndirect() {
-		COSObject object = getTRValue();
-		return getisIndirect(object);
+		COSObject TR = getTRValue();
+		return getisIndirect(TR);
 	}
 
 	@Override
 	public Boolean getTRHasTypeDictionary() {
-		COSObject object = getTRValue();
-		return getHasTypeDictionary(object);
+		COSObject TR = getTRValue();
+		return getHasTypeDictionary(TR);
 	}
 
 	@Override
 	public Boolean getTRHasTypeName() {
-		COSObject object = getTRValue();
-		return getHasTypeName(object);
+		COSObject TR = getTRValue();
+		return getHasTypeName(TR);
 	}
 
 	@Override
 	public Boolean getTRHasTypeStream() {
-		COSObject object = getTRValue();
-		return getHasTypeStream(object);
+		COSObject TR = getTRValue();
+		return getHasTypeStream(TR);
 	}
 
 	@Override
 	public String getTRNameValue() {
-		COSObject object = getTRValue();
-		return getNameValue(object);
+		COSObject TR = getTRValue();
+		return getNameValue(TR);
 	}
 
 	@Override
@@ -284,44 +284,38 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
+	}
+
+	public COSObject getGGroupValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject G = this.baseObject.getKey(ASAtom.getASAtom("G"));
+		if (G == null || !G.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Group = G.getKey(ASAtom.getASAtom("Group"));
+		return Group;
 	}
 
 	@Override
 	public String getGGroupSNameValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject G = this.baseObject.getKey(ASAtom.getASAtom("G"));
-		if (G == null || !G.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Group = G.getKey(ASAtom.getASAtom("Group"));
-		if (Group == null || !Group.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject S = Group.getKey(ASAtom.getASAtom("S"));
-		return new GFAGroupAttributes(Group.getDirectBase(), null, null).getSNameValue();
+		COSObject GGroup = getGGroupValue();
+		return new GFAGroupAttributes(GGroup.getDirectBase(), null, null).getSNameValue();
 	}
 
 	@Override
 	public Boolean getcontainsGGroupCS() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject G = this.baseObject.getKey(ASAtom.getASAtom("G"));
-		if (G == null || !G.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Group = G.getKey(ASAtom.getASAtom("Group"));
-		return Group.knownKey(ASAtom.getASAtom("CS"));
+		COSObject GGroup = getGGroupValue();
+		return GGroup.knownKey(ASAtom.getASAtom("CS"));
 	}
 
 }

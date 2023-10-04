@@ -63,8 +63,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getDateHasTypeStringText() {
-		COSObject object = getDateValue();
-		return getHasTypeStringText(object);
+		COSObject Date = getDateValue();
+		return getHasTypeStringText(Date);
 	}
 
 	@Override
@@ -79,8 +79,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getNameHasTypeName() {
-		COSObject object = getNameValue();
-		return getHasTypeName(object);
+		COSObject Name = getNameValue();
+		return getHasTypeName(Name);
 	}
 
 	@Override
@@ -95,8 +95,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getNonEFontNoWarnHasTypeBoolean() {
-		COSObject object = getNonEFontNoWarnValue();
-		return getHasTypeBoolean(object);
+		COSObject NonEFontNoWarn = getNonEFontNoWarnValue();
+		return getHasTypeBoolean(NonEFontNoWarn);
 	}
 
 	@Override
@@ -111,8 +111,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getOSHasTypeArray() {
-		COSObject object = getOSValue();
-		return getHasTypeArray(object);
+		COSObject OS = getOSValue();
+		return getHasTypeArray(OS);
 	}
 
 	@Override
@@ -141,8 +141,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getPreReleaseHasTypeBoolean() {
-		COSObject object = getPreReleaseValue();
-		return getHasTypeBoolean(object);
+		COSObject PreRelease = getPreReleaseValue();
+		return getHasTypeBoolean(PreRelease);
 	}
 
 	@Override
@@ -169,8 +169,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getPreviewHasTypeBoolean() {
-		COSObject object = getPreviewValue();
-		return getHasTypeBoolean(object);
+		COSObject Preview = getPreviewValue();
+		return getHasTypeBoolean(Preview);
 	}
 
 	@Override
@@ -185,8 +185,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getRHasTypeNumber() {
-		COSObject object = getRValue();
-		return getHasTypeNumber(object);
+		COSObject R = getRValue();
+		return getHasTypeNumber(R);
 	}
 
 	@Override
@@ -215,8 +215,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getTrustedModeHasTypeBoolean() {
-		COSObject object = getTrustedModeValue();
-		return getHasTypeBoolean(object);
+		COSObject TrustedMode = getTrustedModeValue();
+		return getHasTypeBoolean(TrustedMode);
 	}
 
 	@Override
@@ -231,8 +231,8 @@ public class GFASignatureBuildDataSigQDict extends GFAObject implements ASignatu
 
 	@Override
 	public Boolean getVHasTypeNumber() {
-		COSObject object = getVValue();
-		return getHasTypeNumber(object);
+		COSObject V = getVValue();
+		return getHasTypeNumber(V);
 	}
 
 }

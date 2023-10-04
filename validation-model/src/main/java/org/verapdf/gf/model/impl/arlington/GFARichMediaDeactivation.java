@@ -40,14 +40,14 @@ public class GFARichMediaDeactivation extends GFAObject implements ARichMediaDea
 
 	@Override
 	public Boolean getConditionHasTypeName() {
-		COSObject object = getConditionValue();
-		return getHasTypeName(object);
+		COSObject Condition = getConditionValue();
+		return getHasTypeName(Condition);
 	}
 
 	@Override
 	public String getConditionNameValue() {
-		COSObject object = getConditionValue();
-		return getNameValue(object);
+		COSObject Condition = getConditionValue();
+		return getNameValue(Condition);
 	}
 
 	@Override
@@ -62,14 +62,14 @@ public class GFARichMediaDeactivation extends GFAObject implements ARichMediaDea
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

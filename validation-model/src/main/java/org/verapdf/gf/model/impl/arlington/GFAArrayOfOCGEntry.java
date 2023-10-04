@@ -60,14 +60,14 @@ public class GFAArrayOfOCGEntry extends GFAObject implements AArrayOfOCGEntry {
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeNull() {
-		COSObject object = getValue();
-		return getHasTypeNull(object);
+		COSObject entry = getValue();
+		return getHasTypeNull(entry);
 	}
 
 }

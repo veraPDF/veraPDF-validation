@@ -60,8 +60,8 @@ public class GFAArrayOfSoftwareIdentifiersEntry extends GFAObject implements AAr
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

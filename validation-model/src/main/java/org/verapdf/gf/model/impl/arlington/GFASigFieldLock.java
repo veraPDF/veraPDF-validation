@@ -63,14 +63,14 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 
 	@Override
 	public Boolean getActionHasTypeName() {
-		COSObject object = getActionValue();
-		return getHasTypeName(object);
+		COSObject Action = getActionValue();
+		return getHasTypeName(Action);
 	}
 
 	@Override
 	public String getActionNameValue() {
-		COSObject object = getActionValue();
-		return getNameValue(object);
+		COSObject Action = getActionValue();
+		return getNameValue(Action);
 	}
 
 	@Override
@@ -85,8 +85,8 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = getFieldsValue();
-		return getHasTypeArray(object);
+		COSObject Fields = getFieldsValue();
+		return getHasTypeArray(Fields);
 	}
 
 	@Override
@@ -101,14 +101,14 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 
 	@Override
 	public Boolean getPHasTypeNumber() {
-		COSObject object = getPValue();
-		return getHasTypeNumber(object);
+		COSObject P = getPValue();
+		return getHasTypeNumber(P);
 	}
 
 	@Override
 	public Double getPNumberValue() {
-		COSObject object = getPValue();
-		return getNumberValue(object);
+		COSObject P = getPValue();
+		return getNumberValue(P);
 	}
 
 	@Override
@@ -123,14 +123,14 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

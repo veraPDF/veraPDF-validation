@@ -62,14 +62,14 @@ public class GFAArrayOfTrapRegionsEntry extends GFAObject implements AArrayOfTra
 
 	@Override
 	public Boolean getisIndirect() {
-		COSObject object = getValue();
-		return getisIndirect(object);
+		COSObject entry = getValue();
+		return getisIndirect(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

@@ -117,8 +117,8 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 
 	@Override
 	public Boolean getAHasTypeDictionary() {
-		COSObject object = getAValue();
-		return getHasTypeDictionary(object);
+		COSObject A = getAValue();
+		return getHasTypeDictionary(A);
 	}
 
 	@Override
@@ -133,8 +133,8 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = getNameValue();
-		return getHasTypeStringText(object);
+		COSObject Name = getNameValue();
+		return getHasTypeStringText(Name);
 	}
 
 	@Override
@@ -149,14 +149,14 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -171,8 +171,8 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 
 	@Override
 	public Boolean getTimeHasTypeNumber() {
-		COSObject object = getTimeValue();
-		return getHasTypeNumber(object);
+		COSObject Time = getTimeValue();
+		return getHasTypeNumber(Time);
 	}
 
 	@Override
@@ -187,14 +187,14 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

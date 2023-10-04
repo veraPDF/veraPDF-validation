@@ -144,14 +144,14 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 
 	@Override
 	public Boolean getisAppIndirect() {
-		COSObject object = getAppValue();
-		return getisIndirect(object);
+		COSObject App = getAppValue();
+		return getisIndirect(App);
 	}
 
 	@Override
 	public Boolean getAppHasTypeDictionary() {
-		COSObject object = getAppValue();
-		return getHasTypeDictionary(object);
+		COSObject App = getAppValue();
+		return getHasTypeDictionary(App);
 	}
 
 	@Override
@@ -166,14 +166,14 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 
 	@Override
 	public Boolean getisFilterIndirect() {
-		COSObject object = getFilterValue();
-		return getisIndirect(object);
+		COSObject Filter = getFilterValue();
+		return getisIndirect(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeDictionary() {
-		COSObject object = getFilterValue();
-		return getHasTypeDictionary(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeDictionary(Filter);
 	}
 
 	@Override
@@ -188,14 +188,14 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 
 	@Override
 	public Boolean getisPubSecIndirect() {
-		COSObject object = getPubSecValue();
-		return getisIndirect(object);
+		COSObject PubSec = getPubSecValue();
+		return getisIndirect(PubSec);
 	}
 
 	@Override
 	public Boolean getPubSecHasTypeDictionary() {
-		COSObject object = getPubSecValue();
-		return getHasTypeDictionary(object);
+		COSObject PubSec = getPubSecValue();
+		return getHasTypeDictionary(PubSec);
 	}
 
 	@Override
@@ -210,14 +210,14 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 
 	@Override
 	public Boolean getisSigQIndirect() {
-		COSObject object = getSigQValue();
-		return getisIndirect(object);
+		COSObject SigQ = getSigQValue();
+		return getisIndirect(SigQ);
 	}
 
 	@Override
 	public Boolean getSigQHasTypeDictionary() {
-		COSObject object = getSigQValue();
-		return getHasTypeDictionary(object);
+		COSObject SigQ = getSigQValue();
+		return getHasTypeDictionary(SigQ);
 	}
 
 }

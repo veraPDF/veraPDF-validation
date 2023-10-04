@@ -77,14 +77,14 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 
 	@Override
 	public Boolean getAuthEventHasTypeName() {
-		COSObject object = getAuthEventValue();
-		return getHasTypeName(object);
+		COSObject AuthEvent = getAuthEventValue();
+		return getHasTypeName(AuthEvent);
 	}
 
 	@Override
 	public String getAuthEventNameValue() {
-		COSObject object = getAuthEventValue();
-		return getNameValue(object);
+		COSObject AuthEvent = getAuthEventValue();
+		return getNameValue(AuthEvent);
 	}
 
 	@Override
@@ -113,14 +113,14 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 
 	@Override
 	public Boolean getCFMHasTypeName() {
-		COSObject object = getCFMValue();
-		return getHasTypeName(object);
+		COSObject CFM = getCFMValue();
+		return getHasTypeName(CFM);
 	}
 
 	@Override
 	public String getCFMNameValue() {
-		COSObject object = getCFMValue();
-		return getNameValue(object);
+		COSObject CFM = getCFMValue();
+		return getNameValue(CFM);
 	}
 
 	@Override
@@ -149,8 +149,8 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 
 	@Override
 	public Boolean getEncryptMetadataHasTypeBoolean() {
-		COSObject object = getEncryptMetadataValue();
-		return getHasTypeBoolean(object);
+		COSObject EncryptMetadata = getEncryptMetadataValue();
+		return getHasTypeBoolean(EncryptMetadata);
 	}
 
 	@Override
@@ -165,14 +165,14 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = getLengthValue();
-		return getHasTypeInteger(object);
+		COSObject Length = getLengthValue();
+		return getHasTypeInteger(Length);
 	}
 
 	@Override
 	public Long getLengthIntegerValue() {
-		COSObject object = getLengthValue();
-		return getIntegerValue(object);
+		COSObject Length = getLengthValue();
+		return getIntegerValue(Length);
 	}
 
 	@Override
@@ -187,14 +187,14 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 
 	@Override
 	public Boolean getRecipientsHasTypeArray() {
-		COSObject object = getRecipientsValue();
-		return getHasTypeArray(object);
+		COSObject Recipients = getRecipientsValue();
+		return getHasTypeArray(Recipients);
 	}
 
 	@Override
 	public Boolean getRecipientsHasTypeStringByte() {
-		COSObject object = getRecipientsValue();
-		return getHasTypeStringByte(object);
+		COSObject Recipients = getRecipientsValue();
+		return getHasTypeStringByte(Recipients);
 	}
 
 	@Override
@@ -209,14 +209,14 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

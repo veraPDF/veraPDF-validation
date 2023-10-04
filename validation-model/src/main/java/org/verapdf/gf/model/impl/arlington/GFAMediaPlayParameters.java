@@ -117,8 +117,8 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 
 	@Override
 	public Boolean getBEHasTypeDictionary() {
-		COSObject object = getBEValue();
-		return getHasTypeDictionary(object);
+		COSObject BE = getBEValue();
+		return getHasTypeDictionary(BE);
 	}
 
 	@Override
@@ -133,8 +133,8 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 
 	@Override
 	public Boolean getMHHasTypeDictionary() {
-		COSObject object = getMHValue();
-		return getHasTypeDictionary(object);
+		COSObject MH = getMHValue();
+		return getHasTypeDictionary(MH);
 	}
 
 	@Override
@@ -149,8 +149,8 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 
 	@Override
 	public Boolean getPLHasTypeDictionary() {
-		COSObject object = getPLValue();
-		return getHasTypeDictionary(object);
+		COSObject PL = getPLValue();
+		return getHasTypeDictionary(PL);
 	}
 
 	@Override
@@ -165,14 +165,14 @@ public class GFAMediaPlayParameters extends GFAObject implements AMediaPlayParam
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

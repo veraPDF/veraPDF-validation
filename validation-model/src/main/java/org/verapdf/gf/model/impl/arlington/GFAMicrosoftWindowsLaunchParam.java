@@ -28,8 +28,8 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 
 	@Override
 	public Boolean getDHasTypeStringByte() {
-		COSObject object = getDValue();
-		return getHasTypeStringByte(object);
+		COSObject D = getDValue();
+		return getHasTypeStringByte(D);
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 
 	@Override
 	public Boolean getFHasTypeStringByte() {
-		COSObject object = getFValue();
-		return getHasTypeStringByte(object);
+		COSObject F = getFValue();
+		return getHasTypeStringByte(F);
 	}
 
 	@Override
@@ -78,14 +78,14 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 
 	@Override
 	public Boolean getOHasTypeStringAscii() {
-		COSObject object = getOValue();
-		return getHasTypeStringAscii(object);
+		COSObject O = getOValue();
+		return getHasTypeStringAscii(O);
 	}
 
 	@Override
 	public String getOStringAsciiValue() {
-		COSObject object = getOValue();
-		return getStringAsciiValue(object);
+		COSObject O = getOValue();
+		return getStringAsciiValue(O);
 	}
 
 	@Override
@@ -100,8 +100,8 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 
 	@Override
 	public Boolean getPHasTypeStringByte() {
-		COSObject object = getPValue();
-		return getHasTypeStringByte(object);
+		COSObject P = getPValue();
+		return getHasTypeStringByte(P);
 	}
 
 }

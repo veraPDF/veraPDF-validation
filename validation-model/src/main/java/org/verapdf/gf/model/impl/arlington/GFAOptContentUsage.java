@@ -252,8 +252,8 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 
 	@Override
 	public Boolean getCreatorInfoHasTypeDictionary() {
-		COSObject object = getCreatorInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject CreatorInfo = getCreatorInfoValue();
+		return getHasTypeDictionary(CreatorInfo);
 	}
 
 	@Override
@@ -268,8 +268,8 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 
 	@Override
 	public Boolean getExportHasTypeDictionary() {
-		COSObject object = getExportValue();
-		return getHasTypeDictionary(object);
+		COSObject Export = getExportValue();
+		return getHasTypeDictionary(Export);
 	}
 
 	@Override
@@ -284,8 +284,8 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 
 	@Override
 	public Boolean getLanguageHasTypeDictionary() {
-		COSObject object = getLanguageValue();
-		return getHasTypeDictionary(object);
+		COSObject Language = getLanguageValue();
+		return getHasTypeDictionary(Language);
 	}
 
 	@Override
@@ -300,8 +300,8 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 
 	@Override
 	public Boolean getPageElementHasTypeDictionary() {
-		COSObject object = getPageElementValue();
-		return getHasTypeDictionary(object);
+		COSObject PageElement = getPageElementValue();
+		return getHasTypeDictionary(PageElement);
 	}
 
 	@Override
@@ -316,8 +316,8 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 
 	@Override
 	public Boolean getPrintHasTypeDictionary() {
-		COSObject object = getPrintValue();
-		return getHasTypeDictionary(object);
+		COSObject Print = getPrintValue();
+		return getHasTypeDictionary(Print);
 	}
 
 	@Override
@@ -332,8 +332,8 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 
 	@Override
 	public Boolean getUserHasTypeDictionary() {
-		COSObject object = getUserValue();
-		return getHasTypeDictionary(object);
+		COSObject User = getUserValue();
+		return getHasTypeDictionary(User);
 	}
 
 	@Override
@@ -348,8 +348,8 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 
 	@Override
 	public Boolean getViewHasTypeDictionary() {
-		COSObject object = getViewValue();
-		return getHasTypeDictionary(object);
+		COSObject View = getViewValue();
+		return getHasTypeDictionary(View);
 	}
 
 	@Override
@@ -364,8 +364,8 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 
 	@Override
 	public Boolean getZoomHasTypeDictionary() {
-		COSObject object = getZoomValue();
-		return getHasTypeDictionary(object);
+		COSObject Zoom = getZoomValue();
+		return getHasTypeDictionary(Zoom);
 	}
 
 }

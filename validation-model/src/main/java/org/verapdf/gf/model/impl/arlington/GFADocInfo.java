@@ -79,8 +79,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getAuthorHasTypeStringText() {
-		COSObject object = getAuthorValue();
-		return getHasTypeStringText(object);
+		COSObject Author = getAuthorValue();
+		return getHasTypeStringText(Author);
 	}
 
 	@Override
@@ -95,8 +95,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = getCreationDateValue();
-		return getHasTypeDate(object);
+		COSObject CreationDate = getCreationDateValue();
+		return getHasTypeDate(CreationDate);
 	}
 
 	@Override
@@ -111,8 +111,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getCreatorHasTypeStringText() {
-		COSObject object = getCreatorValue();
-		return getHasTypeStringText(object);
+		COSObject Creator = getCreatorValue();
+		return getHasTypeStringText(Creator);
 	}
 
 	@Override
@@ -127,8 +127,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getKeywordsHasTypeStringText() {
-		COSObject object = getKeywordsValue();
-		return getHasTypeStringText(object);
+		COSObject Keywords = getKeywordsValue();
+		return getHasTypeStringText(Keywords);
 	}
 
 	@Override
@@ -143,8 +143,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getModDateHasTypeDate() {
-		COSObject object = getModDateValue();
-		return getHasTypeDate(object);
+		COSObject ModDate = getModDateValue();
+		return getHasTypeDate(ModDate);
 	}
 
 	@Override
@@ -159,8 +159,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getProducerHasTypeStringText() {
-		COSObject object = getProducerValue();
-		return getHasTypeStringText(object);
+		COSObject Producer = getProducerValue();
+		return getHasTypeStringText(Producer);
 	}
 
 	@Override
@@ -175,8 +175,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getSubjectHasTypeStringText() {
-		COSObject object = getSubjectValue();
-		return getHasTypeStringText(object);
+		COSObject Subject = getSubjectValue();
+		return getHasTypeStringText(Subject);
 	}
 
 	@Override
@@ -191,8 +191,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getTitleHasTypeStringText() {
-		COSObject object = getTitleValue();
-		return getHasTypeStringText(object);
+		COSObject Title = getTitleValue();
+		return getHasTypeStringText(Title);
 	}
 
 	@Override
@@ -223,14 +223,14 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 
 	@Override
 	public Boolean getTrappedHasTypeName() {
-		COSObject object = getTrappedValue();
-		return getHasTypeName(object);
+		COSObject Trapped = getTrappedValue();
+		return getHasTypeName(Trapped);
 	}
 
 	@Override
 	public String getTrappedNameValue() {
-		COSObject object = getTrappedValue();
-		return getNameValue(object);
+		COSObject Trapped = getTrappedValue();
+		return getNameValue(Trapped);
 	}
 
 }

@@ -28,8 +28,8 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 
 	@Override
 	public Boolean getEPSGHasTypeInteger() {
-		COSObject object = getEPSGValue();
-		return getHasTypeInteger(object);
+		COSObject EPSG = getEPSGValue();
+		return getHasTypeInteger(EPSG);
 	}
 
 	@Override
@@ -44,14 +44,14 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -66,8 +66,8 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 
 	@Override
 	public Boolean getWKTHasTypeStringAscii() {
-		COSObject object = getWKTValue();
-		return getHasTypeStringAscii(object);
+		COSObject WKT = getWKTValue();
+		return getHasTypeStringAscii(WKT);
 	}
 
 	@Override

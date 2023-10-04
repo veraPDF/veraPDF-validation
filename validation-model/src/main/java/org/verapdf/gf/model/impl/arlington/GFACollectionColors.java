@@ -161,8 +161,8 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 
 	@Override
 	public Boolean getBackgroundHasTypeArray() {
-		COSObject object = getBackgroundValue();
-		return getHasTypeArray(object);
+		COSObject Background = getBackgroundValue();
+		return getHasTypeArray(Background);
 	}
 
 	@Override
@@ -177,8 +177,8 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 
 	@Override
 	public Boolean getCardBackgroundHasTypeArray() {
-		COSObject object = getCardBackgroundValue();
-		return getHasTypeArray(object);
+		COSObject CardBackground = getCardBackgroundValue();
+		return getHasTypeArray(CardBackground);
 	}
 
 	@Override
@@ -193,8 +193,8 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 
 	@Override
 	public Boolean getCardBorderHasTypeArray() {
-		COSObject object = getCardBorderValue();
-		return getHasTypeArray(object);
+		COSObject CardBorder = getCardBorderValue();
+		return getHasTypeArray(CardBorder);
 	}
 
 	@Override
@@ -209,8 +209,8 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 
 	@Override
 	public Boolean getPrimaryTextHasTypeArray() {
-		COSObject object = getPrimaryTextValue();
-		return getHasTypeArray(object);
+		COSObject PrimaryText = getPrimaryTextValue();
+		return getHasTypeArray(PrimaryText);
 	}
 
 	@Override
@@ -225,8 +225,8 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 
 	@Override
 	public Boolean getSecondaryTextHasTypeArray() {
-		COSObject object = getSecondaryTextValue();
-		return getHasTypeArray(object);
+		COSObject SecondaryText = getSecondaryTextValue();
+		return getHasTypeArray(SecondaryText);
 	}
 
 	@Override
@@ -241,14 +241,14 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

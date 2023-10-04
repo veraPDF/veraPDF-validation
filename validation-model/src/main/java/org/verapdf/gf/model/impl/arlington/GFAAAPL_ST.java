@@ -200,8 +200,8 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 
 	@Override
 	public Boolean getColorHasTypeArray() {
-		COSObject object = getColorValue();
-		return getHasTypeArray(object);
+		COSObject Color = getColorValue();
+		return getHasTypeArray(Color);
 	}
 
 	@Override
@@ -216,20 +216,20 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeArray(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeArray(ColorSpace);
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeName(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeName(ColorSpace);
 	}
 
 	@Override
 	public String getColorSpaceNameValue() {
-		COSObject object = getColorSpaceValue();
-		return getNameValue(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getNameValue(ColorSpace);
 	}
 
 	@Override
@@ -244,8 +244,8 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 
 	@Override
 	public Boolean getOffsetHasTypeArray() {
-		COSObject object = getOffsetValue();
-		return getHasTypeArray(object);
+		COSObject Offset = getOffsetValue();
+		return getHasTypeArray(Offset);
 	}
 
 	@Override
@@ -260,14 +260,14 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 
 	@Override
 	public Boolean getRadiusHasTypeNumber() {
-		COSObject object = getRadiusValue();
-		return getHasTypeNumber(object);
+		COSObject Radius = getRadiusValue();
+		return getHasTypeNumber(Radius);
 	}
 
 	@Override
 	public Double getRadiusNumberValue() {
-		COSObject object = getRadiusValue();
-		return getNumberValue(object);
+		COSObject Radius = getRadiusValue();
+		return getNumberValue(Radius);
 	}
 
 	@Override
@@ -282,14 +282,14 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -304,14 +304,14 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

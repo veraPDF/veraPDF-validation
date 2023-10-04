@@ -138,8 +138,8 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 
 	@Override
 	public Boolean getBHasTypeDictionary() {
-		COSObject object = getBValue();
-		return getHasTypeDictionary(object);
+		COSObject B = getBValue();
+		return getHasTypeDictionary(B);
 	}
 
 	@Override
@@ -154,8 +154,8 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 
 	@Override
 	public Boolean getEHasTypeDictionary() {
-		COSObject object = getEValue();
-		return getHasTypeDictionary(object);
+		COSObject E = getEValue();
+		return getHasTypeDictionary(E);
 	}
 
 }

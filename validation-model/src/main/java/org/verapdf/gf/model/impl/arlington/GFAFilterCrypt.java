@@ -42,14 +42,14 @@ public class GFAFilterCrypt extends GFAObject implements AFilterCrypt {
 
 	@Override
 	public Boolean getNameHasTypeName() {
-		COSObject object = getNameValue();
-		return getHasTypeName(object);
+		COSObject Name = getNameValue();
+		return getHasTypeName(Name);
 	}
 
 	@Override
 	public String getNameNameValue() {
-		COSObject object = getNameValue();
-		return getNameValue(object);
+		COSObject Name = getNameValue();
+		return getNameValue(Name);
 	}
 
 	@Override
@@ -64,18 +64,17 @@ public class GFAFilterCrypt extends GFAObject implements AFilterCrypt {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
-	@Override
-	public String getkeysStringtrailerEncryptCF() {
+	public COSObject gettrailerEncryptCFValue() {
 		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
 		if (trailer == null || !trailer.getType().isDictionaryBased()) {
 			return null;
@@ -85,7 +84,13 @@ public class GFAFilterCrypt extends GFAObject implements AFilterCrypt {
 			return null;
 		}
 		COSObject CF = Encrypt.getKey(ASAtom.getASAtom("CF"));
-		return getkeysString(CF);
+		return CF;
+	}
+
+	@Override
+	public String getkeysStringtrailerEncryptCF() {
+		COSObject trailerEncryptCF = gettrailerEncryptCFValue();
+		return getkeysString(trailerEncryptCF);
 	}
 
 }

@@ -142,14 +142,14 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 
 	@Override
 	public Boolean getentry0HasTypeArray() {
-		COSObject object = getentry0Value();
-		return getHasTypeArray(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeArray(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNull() {
-		COSObject object = getentry0Value();
-		return getHasTypeNull(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeNull(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -162,14 +162,14 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 
 	@Override
 	public Boolean getentry1HasTypeArray() {
-		COSObject object = getentry1Value();
-		return getHasTypeArray(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeArray(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeNull() {
-		COSObject object = getentry1Value();
-		return getHasTypeNull(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNull(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -182,14 +182,14 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 
 	@Override
 	public Boolean getentry2HasTypeArray() {
-		COSObject object = getentry2Value();
-		return getHasTypeArray(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeArray(entry2);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNull() {
-		COSObject object = getentry2Value();
-		return getHasTypeNull(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeNull(entry2);
 	}
 
 	public COSObject getentry3Value() {
@@ -202,14 +202,14 @@ public class GFAArrayOf_4BorderColorArrays extends GFAObject implements AArrayOf
 
 	@Override
 	public Boolean getentry3HasTypeArray() {
-		COSObject object = getentry3Value();
-		return getHasTypeArray(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeArray(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeNull() {
-		COSObject object = getentry3Value();
-		return getHasTypeNull(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeNull(entry3);
 	}
 
 }

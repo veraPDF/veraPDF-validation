@@ -28,8 +28,8 @@ public class GFADocInfoEntry extends GFAObject implements ADocInfoEntry {
 
 	@Override
 	public Boolean getHasTypeStringText() {
-		COSObject object = getValue();
-		return getHasTypeStringText(object);
+		COSObject entry = getValue();
+		return getHasTypeStringText(entry);
 	}
 
 }

@@ -26,8 +26,8 @@ public class GFAArrayOfClassNamesRevisionsSubArray extends GFAObject implements 
 
 	@Override
 	public Boolean getentry0HasTypeName() {
-		COSObject object = getentry0Value();
-		return getHasTypeName(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeName(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -40,14 +40,14 @@ public class GFAArrayOfClassNamesRevisionsSubArray extends GFAObject implements 
 
 	@Override
 	public Boolean getentry1HasTypeInteger() {
-		COSObject object = getentry1Value();
-		return getHasTypeInteger(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeInteger(entry1);
 	}
 
 	@Override
 	public Long getentry1IntegerValue() {
-		COSObject object = getentry1Value();
-		return getIntegerValue(object);
+		COSObject entry1 = getentry1Value();
+		return getIntegerValue(entry1);
 	}
 
 }

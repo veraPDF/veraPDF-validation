@@ -90,20 +90,20 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 
 	@Override
 	public Boolean getisFIndirect() {
-		COSObject object = getFValue();
-		return getisIndirect(object);
+		COSObject F = getFValue();
+		return getisIndirect(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeArray() {
-		COSObject object = getFValue();
-		return getHasTypeArray(object);
+		COSObject F = getFValue();
+		return getHasTypeArray(F);
 	}
 
 	@Override
 	public Long getFArraySize() {
-		COSObject object = getFValue();
-		return getArraySize(object);
+		COSObject F = getFValue();
+		return getArraySize(F);
 	}
 
 	@Override
@@ -118,20 +118,20 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 
 	@Override
 	public Boolean getisUFIndirect() {
-		COSObject object = getUFValue();
-		return getisIndirect(object);
+		COSObject UF = getUFValue();
+		return getisIndirect(UF);
 	}
 
 	@Override
 	public Boolean getUFHasTypeArray() {
-		COSObject object = getUFValue();
-		return getHasTypeArray(object);
+		COSObject UF = getUFValue();
+		return getHasTypeArray(UF);
 	}
 
 	@Override
 	public Long getUFArraySize() {
-		COSObject object = getUFValue();
-		return getArraySize(object);
+		COSObject UF = getUFValue();
+		return getArraySize(UF);
 	}
 
 }

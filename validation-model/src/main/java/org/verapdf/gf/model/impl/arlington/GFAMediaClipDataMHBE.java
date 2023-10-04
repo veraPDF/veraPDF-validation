@@ -28,8 +28,8 @@ public class GFAMediaClipDataMHBE extends GFAObject implements AMediaClipDataMHB
 
 	@Override
 	public Boolean getBUHasTypeStringAscii() {
-		COSObject object = getBUValue();
-		return getHasTypeStringAscii(object);
+		COSObject BU = getBUValue();
+		return getHasTypeStringAscii(BU);
 	}
 
 }

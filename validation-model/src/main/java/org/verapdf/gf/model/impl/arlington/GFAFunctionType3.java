@@ -181,14 +181,14 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 
 	@Override
 	public Boolean getBoundsHasTypeArray() {
-		COSObject object = getBoundsValue();
-		return getHasTypeArray(object);
+		COSObject Bounds = getBoundsValue();
+		return getHasTypeArray(Bounds);
 	}
 
 	@Override
 	public Long getBoundsArraySize() {
-		COSObject object = getBoundsValue();
-		return getArraySize(object);
+		COSObject Bounds = getBoundsValue();
+		return getArraySize(Bounds);
 	}
 
 	@Override
@@ -203,14 +203,14 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 
 	@Override
 	public Boolean getDomainHasTypeArray() {
-		COSObject object = getDomainValue();
-		return getHasTypeArray(object);
+		COSObject Domain = getDomainValue();
+		return getHasTypeArray(Domain);
 	}
 
 	@Override
 	public Long getDomainArraySize() {
-		COSObject object = getDomainValue();
-		return getArraySize(object);
+		COSObject Domain = getDomainValue();
+		return getArraySize(Domain);
 	}
 
 	@Override
@@ -225,14 +225,14 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 
 	@Override
 	public Boolean getEncodeHasTypeArray() {
-		COSObject object = getEncodeValue();
-		return getHasTypeArray(object);
+		COSObject Encode = getEncodeValue();
+		return getHasTypeArray(Encode);
 	}
 
 	@Override
 	public Long getEncodeArraySize() {
-		COSObject object = getEncodeValue();
-		return getArraySize(object);
+		COSObject Encode = getEncodeValue();
+		return getArraySize(Encode);
 	}
 
 	@Override
@@ -247,14 +247,14 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 
 	@Override
 	public Boolean getFunctionTypeHasTypeInteger() {
-		COSObject object = getFunctionTypeValue();
-		return getHasTypeInteger(object);
+		COSObject FunctionType = getFunctionTypeValue();
+		return getHasTypeInteger(FunctionType);
 	}
 
 	@Override
 	public Long getFunctionTypeIntegerValue() {
-		COSObject object = getFunctionTypeValue();
-		return getIntegerValue(object);
+		COSObject FunctionType = getFunctionTypeValue();
+		return getIntegerValue(FunctionType);
 	}
 
 	@Override
@@ -269,14 +269,14 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 
 	@Override
 	public Boolean getFunctionsHasTypeArray() {
-		COSObject object = getFunctionsValue();
-		return getHasTypeArray(object);
+		COSObject Functions = getFunctionsValue();
+		return getHasTypeArray(Functions);
 	}
 
 	@Override
 	public Long getFunctionsArraySize() {
-		COSObject object = getFunctionsValue();
-		return getArraySize(object);
+		COSObject Functions = getFunctionsValue();
+		return getArraySize(Functions);
 	}
 
 	@Override
@@ -291,14 +291,14 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 
 	@Override
 	public Boolean getRangeHasTypeArray() {
-		COSObject object = getRangeValue();
-		return getHasTypeArray(object);
+		COSObject Range = getRangeValue();
+		return getHasTypeArray(Range);
 	}
 
 	@Override
 	public Long getRangeArraySize() {
-		COSObject object = getRangeValue();
-		return getArraySize(object);
+		COSObject Range = getRangeValue();
+		return getArraySize(Range);
 	}
 
 }

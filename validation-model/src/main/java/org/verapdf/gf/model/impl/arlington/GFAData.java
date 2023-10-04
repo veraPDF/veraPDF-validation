@@ -103,8 +103,8 @@ public class GFAData extends GFAObject implements AData {
 
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
-		COSObject object = getLastModifiedValue();
-		return getHasTypeDate(object);
+		COSObject LastModified = getLastModifiedValue();
+		return getHasTypeDate(LastModified);
 	}
 
 	@Override
@@ -119,56 +119,56 @@ public class GFAData extends GFAObject implements AData {
 
 	@Override
 	public Boolean getisPrivateIndirect() {
-		COSObject object = getPrivateValue();
-		return getisIndirect(object);
+		COSObject Private = getPrivateValue();
+		return getisIndirect(Private);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeArray() {
-		COSObject object = getPrivateValue();
-		return getHasTypeArray(object);
+		COSObject Private = getPrivateValue();
+		return getHasTypeArray(Private);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeBoolean() {
-		COSObject object = getPrivateValue();
-		return getHasTypeBoolean(object);
+		COSObject Private = getPrivateValue();
+		return getHasTypeBoolean(Private);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeDictionary() {
-		COSObject object = getPrivateValue();
-		return getHasTypeDictionary(object);
+		COSObject Private = getPrivateValue();
+		return getHasTypeDictionary(Private);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeInteger() {
-		COSObject object = getPrivateValue();
-		return getHasTypeInteger(object);
+		COSObject Private = getPrivateValue();
+		return getHasTypeInteger(Private);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeName() {
-		COSObject object = getPrivateValue();
-		return getHasTypeName(object);
+		COSObject Private = getPrivateValue();
+		return getHasTypeName(Private);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeNumber() {
-		COSObject object = getPrivateValue();
-		return getHasTypeNumber(object);
+		COSObject Private = getPrivateValue();
+		return getHasTypeNumber(Private);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeStream() {
-		COSObject object = getPrivateValue();
-		return getHasTypeStream(object);
+		COSObject Private = getPrivateValue();
+		return getHasTypeStream(Private);
 	}
 
 	@Override
 	public Boolean getPrivateHasTypeString() {
-		COSObject object = getPrivateValue();
-		return getHasTypeString(object);
+		COSObject Private = getPrivateValue();
+		return getHasTypeString(Private);
 	}
 
 }

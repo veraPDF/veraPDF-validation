@@ -28,22 +28,18 @@ public class GFAArrayOfNamesForEnforceEntry extends GFAObject implements AArrayO
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 	@Override
 	public String getNameValue() {
-		COSObject object = getValue();
-		return getNameValue(object);
+		COSObject entry = getValue();
+		return getNameValue(entry);
 	}
 
 	@Override
 	public String getparentPrintScalingNameValue() {
-		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject PrintScaling = this.parentParentObject.getKey(ASAtom.getASAtom("PrintScaling"));
 		return new GFAViewerPreferences(this.parentObject.getDirectBase(), null, null).getPrintScalingNameValue();
 	}
 

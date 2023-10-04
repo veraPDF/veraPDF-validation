@@ -65,14 +65,14 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
 	public Long getCArraySize() {
-		COSObject object = getCValue();
-		return getArraySize(object);
+		COSObject C = getCValue();
+		return getArraySize(C);
 	}
 
 	@Override
@@ -87,8 +87,8 @@ public class GFAURLAlias extends GFAObject implements AURLAlias {
 
 	@Override
 	public Boolean getUHasTypeStringAscii() {
-		COSObject object = getUValue();
-		return getHasTypeStringAscii(object);
+		COSObject U = getUValue();
+		return getHasTypeStringAscii(U);
 	}
 
 }

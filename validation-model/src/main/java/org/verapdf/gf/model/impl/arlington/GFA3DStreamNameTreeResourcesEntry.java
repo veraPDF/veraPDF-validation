@@ -64,8 +64,8 @@ public class GFA3DStreamNameTreeResourcesEntry extends GFAObject implements A3DS
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

@@ -541,26 +541,26 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 
 	@Override
 	public Boolean getisIndirect() {
-		COSObject object = getValue();
-		return getisIndirect(object);
+		COSObject entry = getValue();
+		return getisIndirect(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeStringText() {
-		COSObject object = getValue();
-		return getHasTypeStringText(object);
+		COSObject entry = getValue();
+		return getHasTypeStringText(entry);
 	}
 
 	@Override
 	public Boolean getIsFieldName() {
-		COSObject object = getValue();
-		return object != null && object.getType() == COSObjType.COS_STRING && !object.getString().contains(".");
+		COSObject entry = getValue();
+		return entry != null && entry.getType() == COSObjType.COS_STRING && !entry.getString().contains(".");
 	}
 
 }

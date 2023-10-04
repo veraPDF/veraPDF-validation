@@ -28,8 +28,8 @@ public class GFAArrayOfDashPatternsEntry extends GFAObject implements AArrayOfDa
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = getValue();
-		return getHasTypeNumber(object);
+		COSObject entry = getValue();
+		return getHasTypeNumber(entry);
 	}
 
 }

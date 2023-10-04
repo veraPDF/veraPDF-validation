@@ -100,50 +100,50 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 
 	@Override
 	public Boolean getisDataIndirect() {
-		COSObject object = getDataValue();
-		return getisIndirect(object);
+		COSObject Data = getDataValue();
+		return getisIndirect(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeArray() {
-		COSObject object = getDataValue();
-		return getHasTypeArray(object);
+		COSObject Data = getDataValue();
+		return getHasTypeArray(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeBoolean() {
-		COSObject object = getDataValue();
-		return getHasTypeBoolean(object);
+		COSObject Data = getDataValue();
+		return getHasTypeBoolean(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeDictionary() {
-		COSObject object = getDataValue();
-		return getHasTypeDictionary(object);
+		COSObject Data = getDataValue();
+		return getHasTypeDictionary(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeInteger() {
-		COSObject object = getDataValue();
-		return getHasTypeInteger(object);
+		COSObject Data = getDataValue();
+		return getHasTypeInteger(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeName() {
-		COSObject object = getDataValue();
-		return getHasTypeName(object);
+		COSObject Data = getDataValue();
+		return getHasTypeName(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeStream() {
-		COSObject object = getDataValue();
-		return getHasTypeStream(object);
+		COSObject Data = getDataValue();
+		return getHasTypeStream(Data);
 	}
 
 	@Override
 	public Boolean getDataHasTypeString() {
-		COSObject object = getDataValue();
-		return getHasTypeString(object);
+		COSObject Data = getDataValue();
+		return getHasTypeString(Data);
 	}
 
 	@Override
@@ -173,14 +173,14 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 
 	@Override
 	public Boolean getDigestMethodHasTypeName() {
-		COSObject object = getDigestMethodValue();
-		return getHasTypeName(object);
+		COSObject DigestMethod = getDigestMethodValue();
+		return getHasTypeName(DigestMethod);
 	}
 
 	@Override
 	public String getDigestMethodNameValue() {
-		COSObject object = getDigestMethodValue();
-		return getNameValue(object);
+		COSObject DigestMethod = getDigestMethodValue();
+		return getNameValue(DigestMethod);
 	}
 
 	@Override
@@ -195,14 +195,14 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 
 	@Override
 	public Boolean getTransformMethodHasTypeName() {
-		COSObject object = getTransformMethodValue();
-		return getHasTypeName(object);
+		COSObject TransformMethod = getTransformMethodValue();
+		return getHasTypeName(TransformMethod);
 	}
 
 	@Override
 	public String getTransformMethodNameValue() {
-		COSObject object = getTransformMethodValue();
-		return getNameValue(object);
+		COSObject TransformMethod = getTransformMethodValue();
+		return getNameValue(TransformMethod);
 	}
 
 	@Override
@@ -217,8 +217,8 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 
 	@Override
 	public Boolean getTransformParamsHasTypeDictionary() {
-		COSObject object = getTransformParamsValue();
-		return getHasTypeDictionary(object);
+		COSObject TransformParams = getTransformParamsValue();
+		return getHasTypeDictionary(TransformParams);
 	}
 
 	@Override
@@ -233,14 +233,14 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

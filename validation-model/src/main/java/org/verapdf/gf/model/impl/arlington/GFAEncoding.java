@@ -55,14 +55,14 @@ public class GFAEncoding extends GFAObject implements AEncoding {
 
 	@Override
 	public Boolean getBaseEncodingHasTypeName() {
-		COSObject object = getBaseEncodingValue();
-		return getHasTypeName(object);
+		COSObject BaseEncoding = getBaseEncodingValue();
+		return getHasTypeName(BaseEncoding);
 	}
 
 	@Override
 	public String getBaseEncodingNameValue() {
-		COSObject object = getBaseEncodingValue();
-		return getNameValue(object);
+		COSObject BaseEncoding = getBaseEncodingValue();
+		return getNameValue(BaseEncoding);
 	}
 
 	@Override
@@ -77,8 +77,8 @@ public class GFAEncoding extends GFAObject implements AEncoding {
 
 	@Override
 	public Boolean getDifferencesHasTypeArray() {
-		COSObject object = getDifferencesValue();
-		return getHasTypeArray(object);
+		COSObject Differences = getDifferencesValue();
+		return getHasTypeArray(Differences);
 	}
 
 	@Override
@@ -93,14 +93,14 @@ public class GFAEncoding extends GFAObject implements AEncoding {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

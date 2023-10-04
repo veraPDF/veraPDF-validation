@@ -148,8 +148,8 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 
 	@Override
 	public Boolean getArtBoxHasTypeDictionary() {
-		COSObject object = getArtBoxValue();
-		return getHasTypeDictionary(object);
+		COSObject ArtBox = getArtBoxValue();
+		return getHasTypeDictionary(ArtBox);
 	}
 
 	@Override
@@ -164,8 +164,8 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 
 	@Override
 	public Boolean getBleedBoxHasTypeDictionary() {
-		COSObject object = getBleedBoxValue();
-		return getHasTypeDictionary(object);
+		COSObject BleedBox = getBleedBoxValue();
+		return getHasTypeDictionary(BleedBox);
 	}
 
 	@Override
@@ -180,8 +180,8 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 
 	@Override
 	public Boolean getCropBoxHasTypeDictionary() {
-		COSObject object = getCropBoxValue();
-		return getHasTypeDictionary(object);
+		COSObject CropBox = getCropBoxValue();
+		return getHasTypeDictionary(CropBox);
 	}
 
 	@Override
@@ -196,8 +196,8 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 
 	@Override
 	public Boolean getTrimBoxHasTypeDictionary() {
-		COSObject object = getTrimBoxValue();
-		return getHasTypeDictionary(object);
+		COSObject TrimBox = getTrimBoxValue();
+		return getHasTypeDictionary(TrimBox);
 	}
 
 }

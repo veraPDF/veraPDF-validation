@@ -28,14 +28,14 @@ public class GFAOptContentView extends GFAObject implements AOptContentView {
 
 	@Override
 	public Boolean getViewStateHasTypeName() {
-		COSObject object = getViewStateValue();
-		return getHasTypeName(object);
+		COSObject ViewState = getViewStateValue();
+		return getHasTypeName(ViewState);
 	}
 
 	@Override
 	public String getViewStateNameValue() {
-		COSObject object = getViewStateValue();
-		return getNameValue(object);
+		COSObject ViewState = getViewStateValue();
+		return getNameValue(ViewState);
 	}
 
 }

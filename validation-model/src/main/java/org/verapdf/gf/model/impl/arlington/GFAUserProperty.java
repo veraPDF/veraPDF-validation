@@ -72,8 +72,8 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 
 	@Override
 	public Boolean getFHasTypeStringText() {
-		COSObject object = getFValue();
-		return getHasTypeStringText(object);
+		COSObject F = getFValue();
+		return getHasTypeStringText(F);
 	}
 
 	@Override
@@ -101,8 +101,8 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 
 	@Override
 	public Boolean getHHasTypeBoolean() {
-		COSObject object = getHValue();
-		return getHasTypeBoolean(object);
+		COSObject H = getHValue();
+		return getHasTypeBoolean(H);
 	}
 
 	@Override
@@ -117,8 +117,8 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 
 	@Override
 	public Boolean getNHasTypeStringText() {
-		COSObject object = getNValue();
-		return getHasTypeStringText(object);
+		COSObject N = getNValue();
+		return getHasTypeStringText(N);
 	}
 
 	@Override
@@ -133,60 +133,59 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 
 	@Override
 	public Boolean getisVIndirect() {
-		COSObject object = getVValue();
-		return getisIndirect(object);
+		COSObject V = getVValue();
+		return getisIndirect(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeArray() {
-		COSObject object = getVValue();
-		return getHasTypeArray(object);
+		COSObject V = getVValue();
+		return getHasTypeArray(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeBoolean() {
-		COSObject object = getVValue();
-		return getHasTypeBoolean(object);
+		COSObject V = getVValue();
+		return getHasTypeBoolean(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeDictionary() {
-		COSObject object = getVValue();
-		return getHasTypeDictionary(object);
+		COSObject V = getVValue();
+		return getHasTypeDictionary(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeName() {
-		COSObject object = getVValue();
-		return getHasTypeName(object);
+		COSObject V = getVValue();
+		return getHasTypeName(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeNull() {
-		COSObject object = getVValue();
-		return getHasTypeNull(object);
+		COSObject V = getVValue();
+		return getHasTypeNull(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeNumber() {
-		COSObject object = getVValue();
-		return getHasTypeNumber(object);
+		COSObject V = getVValue();
+		return getHasTypeNumber(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeStream() {
-		COSObject object = getVValue();
-		return getHasTypeStream(object);
+		COSObject V = getVValue();
+		return getHasTypeStream(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeString() {
-		COSObject object = getVValue();
-		return getHasTypeString(object);
+		COSObject V = getVValue();
+		return getHasTypeString(V);
 	}
 
-	@Override
-	public Boolean gettrailerCatalogMarkInfoUserPropertiesBooleanValue() {
+	public COSObject gettrailerCatalogMarkInfoValue() {
 		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
 		if (trailer == null || !trailer.getType().isDictionaryBased()) {
 			return null;
@@ -196,11 +195,13 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 			return null;
 		}
 		COSObject MarkInfo = Root.getKey(ASAtom.getASAtom("MarkInfo"));
-		if (MarkInfo == null || !MarkInfo.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject UserProperties = MarkInfo.getKey(ASAtom.getASAtom("UserProperties"));
-		return new GFAMarkInfo(MarkInfo.getDirectBase(), null, null).getUserPropertiesBooleanValue();
+		return MarkInfo;
+	}
+
+	@Override
+	public Boolean gettrailerCatalogMarkInfoUserPropertiesBooleanValue() {
+		COSObject trailerCatalogMarkInfo = gettrailerCatalogMarkInfoValue();
+		return new GFAMarkInfo(trailerCatalogMarkInfo.getDirectBase(), null, null).getUserPropertiesBooleanValue();
 	}
 
 }

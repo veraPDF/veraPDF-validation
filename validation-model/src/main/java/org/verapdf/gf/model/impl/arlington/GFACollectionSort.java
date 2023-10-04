@@ -98,14 +98,14 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 
 	@Override
 	public Boolean getAHasTypeArray() {
-		COSObject object = getAValue();
-		return getHasTypeArray(object);
+		COSObject A = getAValue();
+		return getHasTypeArray(A);
 	}
 
 	@Override
 	public Boolean getAHasTypeBoolean() {
-		COSObject object = getAValue();
-		return getHasTypeBoolean(object);
+		COSObject A = getAValue();
+		return getHasTypeBoolean(A);
 	}
 
 	@Override
@@ -120,14 +120,14 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 
 	@Override
 	public Boolean getSHasTypeArray() {
-		COSObject object = getSValue();
-		return getHasTypeArray(object);
+		COSObject S = getSValue();
+		return getHasTypeArray(S);
 	}
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
@@ -142,14 +142,14 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

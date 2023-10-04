@@ -28,15 +28,15 @@ public class GFAStyleDict extends GFAObject implements AStyleDict {
 
 	@Override
 	public Boolean getPanoseHasTypeStringByte() {
-		COSObject object = getPanoseValue();
-		return getHasTypeStringByte(object);
+		COSObject Panose = getPanoseValue();
+		return getHasTypeStringByte(Panose);
 	}
 
 	@Override
 	public Long getPanoseStringSize() {
-		COSObject object = getPanoseValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return (long) object.getString().length();
+		COSObject Panose = getPanoseValue();
+		if (Panose != null && Panose.getType() == COSObjType.COS_STRING) {
+			return (long) Panose.getString().length();
 		}
 		return null;
 	}

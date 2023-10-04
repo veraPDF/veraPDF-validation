@@ -89,14 +89,14 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 
 	@Override
 	public Boolean getisM3DREFIndirect() {
-		COSObject object = getM3DREFValue();
-		return getisIndirect(object);
+		COSObject M3DREF = getM3DREFValue();
+		return getisIndirect(M3DREF);
 	}
 
 	@Override
 	public Boolean getM3DREFHasTypeDictionary() {
-		COSObject object = getM3DREFValue();
-		return getHasTypeDictionary(object);
+		COSObject M3DREF = getM3DREFValue();
+		return getHasTypeDictionary(M3DREF);
 	}
 
 	@Override
@@ -111,14 +111,14 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -133,14 +133,14 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

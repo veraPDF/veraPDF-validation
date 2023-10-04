@@ -184,14 +184,14 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 
 	@Override
 	public Boolean getisNIndirect() {
-		COSObject object = getNValue();
-		return getisIndirect(object);
+		COSObject N = getNValue();
+		return getisIndirect(N);
 	}
 
 	@Override
 	public Boolean getNHasTypeDictionary() {
-		COSObject object = getNValue();
-		return getHasTypeDictionary(object);
+		COSObject N = getNValue();
+		return getHasTypeDictionary(N);
 	}
 
 	@Override
@@ -206,14 +206,14 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = getPValue();
-		return getisIndirect(object);
+		COSObject P = getPValue();
+		return getisIndirect(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -228,8 +228,8 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 
 	@Override
 	public Boolean getRHasTypeRectangle() {
-		COSObject object = getRValue();
-		return getHasTypeRectangle(object);
+		COSObject R = getRValue();
+		return getHasTypeRectangle(R);
 	}
 
 	@Override
@@ -244,14 +244,14 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 
 	@Override
 	public Boolean getisTIndirect() {
-		COSObject object = getTValue();
-		return getisIndirect(object);
+		COSObject T = getTValue();
+		return getisIndirect(T);
 	}
 
 	@Override
 	public Boolean getTHasTypeDictionary() {
-		COSObject object = getTValue();
-		return getHasTypeDictionary(object);
+		COSObject T = getTValue();
+		return getHasTypeDictionary(T);
 	}
 
 	@Override
@@ -266,14 +266,14 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -288,14 +288,14 @@ public class GFABeadFirst extends GFAObject implements ABeadFirst {
 
 	@Override
 	public Boolean getisVIndirect() {
-		COSObject object = getVValue();
-		return getisIndirect(object);
+		COSObject V = getVValue();
+		return getisIndirect(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeDictionary() {
-		COSObject object = getVValue();
-		return getHasTypeDictionary(object);
+		COSObject V = getVValue();
+		return getHasTypeDictionary(V);
 	}
 
 }

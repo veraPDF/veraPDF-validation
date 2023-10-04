@@ -383,14 +383,14 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getBHasTypeInteger() {
-		COSObject object = getBValue();
-		return getHasTypeInteger(object);
+		COSObject B = getBValue();
+		return getHasTypeInteger(B);
 	}
 
 	@Override
 	public Long getBIntegerValue() {
-		COSObject object = getBValue();
-		return getIntegerValue(object);
+		COSObject B = getBValue();
+		return getIntegerValue(B);
 	}
 
 	@Override
@@ -422,14 +422,14 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getCHasTypeInteger() {
-		COSObject object = getCValue();
-		return getHasTypeInteger(object);
+		COSObject C = getCValue();
+		return getHasTypeInteger(C);
 	}
 
 	@Override
 	public Long getCIntegerValue() {
-		COSObject object = getCValue();
-		return getIntegerValue(object);
+		COSObject C = getCValue();
+		return getIntegerValue(C);
 	}
 
 	@Override
@@ -444,8 +444,8 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getCOHasTypeName() {
-		COSObject object = getCOValue();
-		return getHasTypeName(object);
+		COSObject CO = getCOValue();
+		return getHasTypeName(CO);
 	}
 
 	@Override
@@ -460,26 +460,26 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getisCPIndirect() {
-		COSObject object = getCPValue();
-		return getisIndirect(object);
+		COSObject CP = getCPValue();
+		return getisIndirect(CP);
 	}
 
 	@Override
 	public Boolean getCPHasTypeArray() {
-		COSObject object = getCPValue();
-		return getHasTypeArray(object);
+		COSObject CP = getCPValue();
+		return getHasTypeArray(CP);
 	}
 
 	@Override
 	public Boolean getCPHasTypeDictionary() {
-		COSObject object = getCPValue();
-		return getHasTypeDictionary(object);
+		COSObject CP = getCPValue();
+		return getHasTypeDictionary(CP);
 	}
 
 	@Override
 	public Boolean getCPHasTypeStream() {
-		COSObject object = getCPValue();
-		return getHasTypeStream(object);
+		COSObject CP = getCPValue();
+		return getHasTypeStream(CP);
 	}
 
 	@Override
@@ -494,14 +494,14 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = getDLValue();
-		return getHasTypeInteger(object);
+		COSObject DL = getDLValue();
+		return getHasTypeInteger(DL);
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = getDLValue();
-		return getIntegerValue(object);
+		COSObject DL = getDLValue();
+		return getIntegerValue(DL);
 	}
 
 	@Override
@@ -516,20 +516,20 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeArray(DecodeParms);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeDictionary(DecodeParms);
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = getDecodeParmsValue();
-		return getArraySize(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getArraySize(DecodeParms);
 	}
 
 	@Override
@@ -561,14 +561,14 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getEHasTypeName() {
-		COSObject object = getEValue();
-		return getHasTypeName(object);
+		COSObject E = getEValue();
+		return getHasTypeName(E);
 	}
 
 	@Override
 	public String getENameValue() {
-		COSObject object = getEValue();
-		return getNameValue(object);
+		COSObject E = getEValue();
+		return getNameValue(E);
 	}
 
 	@Override
@@ -583,14 +583,14 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -605,20 +605,20 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeArray(FDecodeParms);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeDictionary(FDecodeParms);
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = getFDecodeParmsValue();
-		return getArraySize(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getArraySize(FDecodeParms);
 	}
 
 	@Override
@@ -633,26 +633,26 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = getFFilterValue();
-		return getHasTypeArray(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeArray(FFilter);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = getFFilterValue();
-		return getHasTypeName(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeName(FFilter);
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = getFFilterValue();
-		return getNameValue(object);
+		COSObject FFilter = getFFilterValue();
+		return getNameValue(FFilter);
 	}
 
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = getFFilterValue();
-		return getArraySize(object);
+		COSObject FFilter = getFFilterValue();
+		return getArraySize(FFilter);
 	}
 
 	@Override
@@ -667,26 +667,26 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = getFilterValue();
-		return getHasTypeArray(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeArray(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = getFilterValue();
-		return getNameValue(object);
+		COSObject Filter = getFilterValue();
+		return getNameValue(Filter);
 	}
 
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = getFilterValue();
-		return getArraySize(object);
+		COSObject Filter = getFilterValue();
+		return getArraySize(Filter);
 	}
 
 	@Override
@@ -701,8 +701,8 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = getLengthValue();
-		return getHasTypeInteger(object);
+		COSObject Length = getLengthValue();
+		return getHasTypeInteger(Length);
 	}
 
 	@Override
@@ -717,14 +717,14 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getRHasTypeNumber() {
-		COSObject object = getRValue();
-		return getHasTypeNumber(object);
+		COSObject R = getRValue();
+		return getHasTypeNumber(R);
 	}
 
 	@Override
 	public Double getRNumberValue() {
-		COSObject object = getRValue();
-		return getNumberValue(object);
+		COSObject R = getRValue();
+		return getNumberValue(R);
 	}
 
 	@Override
@@ -739,14 +739,14 @@ public class GFASoundObject extends GFAObject implements ASoundObject {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

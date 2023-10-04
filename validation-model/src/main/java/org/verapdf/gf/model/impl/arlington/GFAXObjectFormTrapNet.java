@@ -691,14 +691,14 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
 	public Boolean getAFHasTypeDictionary() {
-		COSObject object = getAFValue();
-		return getHasTypeDictionary(object);
+		COSObject AF = getAFValue();
+		return getHasTypeDictionary(AF);
 	}
 
 	@Override
@@ -713,8 +713,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = getBBoxValue();
-		return getHasTypeRectangle(object);
+		COSObject BBox = getBBoxValue();
+		return getHasTypeRectangle(BBox);
 	}
 
 	@Override
@@ -729,14 +729,14 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = getDLValue();
-		return getHasTypeInteger(object);
+		COSObject DL = getDLValue();
+		return getHasTypeInteger(DL);
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = getDLValue();
-		return getIntegerValue(object);
+		COSObject DL = getDLValue();
+		return getIntegerValue(DL);
 	}
 
 	@Override
@@ -751,20 +751,20 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeArray(DecodeParms);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeDictionary(DecodeParms);
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = getDecodeParmsValue();
-		return getArraySize(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getArraySize(DecodeParms);
 	}
 
 	@Override
@@ -779,14 +779,14 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -801,20 +801,20 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeArray(FDecodeParms);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeDictionary(FDecodeParms);
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = getFDecodeParmsValue();
-		return getArraySize(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getArraySize(FDecodeParms);
 	}
 
 	@Override
@@ -829,26 +829,26 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = getFFilterValue();
-		return getHasTypeArray(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeArray(FFilter);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = getFFilterValue();
-		return getHasTypeName(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeName(FFilter);
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = getFFilterValue();
-		return getNameValue(object);
+		COSObject FFilter = getFFilterValue();
+		return getNameValue(FFilter);
 	}
 
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = getFFilterValue();
-		return getArraySize(object);
+		COSObject FFilter = getFFilterValue();
+		return getArraySize(FFilter);
 	}
 
 	@Override
@@ -863,26 +863,26 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = getFilterValue();
-		return getHasTypeArray(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeArray(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = getFilterValue();
-		return getNameValue(object);
+		COSObject Filter = getFilterValue();
+		return getNameValue(Filter);
 	}
 
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = getFilterValue();
-		return getArraySize(object);
+		COSObject Filter = getFilterValue();
+		return getArraySize(Filter);
 	}
 
 	@Override
@@ -897,14 +897,14 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getFormTypeHasTypeInteger() {
-		COSObject object = getFormTypeValue();
-		return getHasTypeInteger(object);
+		COSObject FormType = getFormTypeValue();
+		return getHasTypeInteger(FormType);
 	}
 
 	@Override
 	public Long getFormTypeIntegerValue() {
-		COSObject object = getFormTypeValue();
-		return getIntegerValue(object);
+		COSObject FormType = getFormTypeValue();
+		return getIntegerValue(FormType);
 	}
 
 	@Override
@@ -919,8 +919,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getGroupHasTypeDictionary() {
-		COSObject object = getGroupValue();
-		return getHasTypeDictionary(object);
+		COSObject Group = getGroupValue();
+		return getHasTypeDictionary(Group);
 	}
 
 	@Override
@@ -935,8 +935,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getLastModifiedHasTypeDate() {
-		COSObject object = getLastModifiedValue();
-		return getHasTypeDate(object);
+		COSObject LastModified = getLastModifiedValue();
+		return getHasTypeDate(LastModified);
 	}
 
 	@Override
@@ -951,8 +951,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = getLengthValue();
-		return getHasTypeInteger(object);
+		COSObject Length = getLengthValue();
+		return getHasTypeInteger(Length);
 	}
 
 	@Override
@@ -983,8 +983,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = getMatrixValue();
-		return getHasTypeMatrix(object);
+		COSObject Matrix = getMatrixValue();
+		return getHasTypeMatrix(Matrix);
 	}
 
 	@Override
@@ -999,8 +999,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getMeasureHasTypeDictionary() {
-		COSObject object = getMeasureValue();
-		return getHasTypeDictionary(object);
+		COSObject Measure = getMeasureValue();
+		return getHasTypeDictionary(Measure);
 	}
 
 	@Override
@@ -1015,14 +1015,14 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getisMetadataIndirect() {
-		COSObject object = getMetadataValue();
-		return getisIndirect(object);
+		COSObject Metadata = getMetadataValue();
+		return getisIndirect(Metadata);
 	}
 
 	@Override
 	public Boolean getMetadataHasTypeStream() {
-		COSObject object = getMetadataValue();
-		return getHasTypeStream(object);
+		COSObject Metadata = getMetadataValue();
+		return getHasTypeStream(Metadata);
 	}
 
 	@Override
@@ -1037,8 +1037,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getNameHasTypeName() {
-		COSObject object = getNameValue();
-		return getHasTypeName(object);
+		COSObject Name = getNameValue();
+		return getHasTypeName(Name);
 	}
 
 	@Override
@@ -1053,8 +1053,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getOCHasTypeDictionary() {
-		COSObject object = getOCValue();
-		return getHasTypeDictionary(object);
+		COSObject OC = getOCValue();
+		return getHasTypeDictionary(OC);
 	}
 
 	@Override
@@ -1069,8 +1069,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getOPIHasTypeDictionary() {
-		COSObject object = getOPIValue();
-		return getHasTypeDictionary(object);
+		COSObject OPI = getOPIValue();
+		return getHasTypeDictionary(OPI);
 	}
 
 	@Override
@@ -1085,14 +1085,14 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getPCMHasTypeName() {
-		COSObject object = getPCMValue();
-		return getHasTypeName(object);
+		COSObject PCM = getPCMValue();
+		return getHasTypeName(PCM);
 	}
 
 	@Override
 	public String getPCMNameValue() {
-		COSObject object = getPCMValue();
-		return getNameValue(object);
+		COSObject PCM = getPCMValue();
+		return getNameValue(PCM);
 	}
 
 	@Override
@@ -1107,8 +1107,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
-		COSObject object = getPieceInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject PieceInfo = getPieceInfoValue();
+		return getHasTypeDictionary(PieceInfo);
 	}
 
 	@Override
@@ -1123,8 +1123,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getPtDataHasTypeDictionary() {
-		COSObject object = getPtDataValue();
-		return getHasTypeDictionary(object);
+		COSObject PtData = getPtDataValue();
+		return getHasTypeDictionary(PtData);
 	}
 
 	@Override
@@ -1139,8 +1139,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getRefHasTypeDictionary() {
-		COSObject object = getRefValue();
-		return getHasTypeDictionary(object);
+		COSObject Ref = getRefValue();
+		return getHasTypeDictionary(Ref);
 	}
 
 	@Override
@@ -1155,8 +1155,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
-		COSObject object = getResourcesValue();
-		return getHasTypeDictionary(object);
+		COSObject Resources = getResourcesValue();
+		return getHasTypeDictionary(Resources);
 	}
 
 	@Override
@@ -1171,8 +1171,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getSeparationColorNamesHasTypeArray() {
-		COSObject object = getSeparationColorNamesValue();
-		return getHasTypeArray(object);
+		COSObject SeparationColorNames = getSeparationColorNamesValue();
+		return getHasTypeArray(SeparationColorNames);
 	}
 
 	@Override
@@ -1187,8 +1187,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getStructParentHasTypeInteger() {
-		COSObject object = getStructParentValue();
-		return getHasTypeInteger(object);
+		COSObject StructParent = getStructParentValue();
+		return getHasTypeInteger(StructParent);
 	}
 
 	@Override
@@ -1203,8 +1203,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getStructParentsHasTypeInteger() {
-		COSObject object = getStructParentsValue();
-		return getHasTypeInteger(object);
+		COSObject StructParents = getStructParentsValue();
+		return getHasTypeInteger(StructParents);
 	}
 
 	@Override
@@ -1219,14 +1219,14 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -1241,8 +1241,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getTrapRegionsHasTypeArray() {
-		COSObject object = getTrapRegionsValue();
-		return getHasTypeArray(object);
+		COSObject TrapRegions = getTrapRegionsValue();
+		return getHasTypeArray(TrapRegions);
 	}
 
 	@Override
@@ -1257,8 +1257,8 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getTrapStylesHasTypeStringText() {
-		COSObject object = getTrapStylesValue();
-		return getHasTypeStringText(object);
+		COSObject TrapStyles = getTrapStylesValue();
+		return getHasTypeStringText(TrapStyles);
 	}
 
 	@Override
@@ -1273,14 +1273,14 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

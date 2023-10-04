@@ -116,8 +116,8 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 
 	@Override
 	public Boolean getIdentityHasTypeDictionary() {
-		COSObject object = getIdentityValue();
-		return getHasTypeDictionary(object);
+		COSObject Identity = getIdentityValue();
+		return getHasTypeDictionary(Identity);
 	}
 
 	@Override
@@ -132,20 +132,13 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 
 	@Override
 	public Boolean getStdCFHasTypeDictionary() {
-		COSObject object = getStdCFValue();
-		return getHasTypeDictionary(object);
+		COSObject StdCF = getStdCFValue();
+		return getHasTypeDictionary(StdCF);
 	}
 
 	@Override
 	public String getStdCFAuthEventNameValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject StdCF = this.baseObject.getKey(ASAtom.getASAtom("StdCF"));
-		if (StdCF == null || !StdCF.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject AuthEvent = StdCF.getKey(ASAtom.getASAtom("AuthEvent"));
+		COSObject StdCF = getStdCFValue();
 		return new GFACryptFilter(StdCF.getDirectBase(), null, null).getAuthEventNameValue();
 	}
 

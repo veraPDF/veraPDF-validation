@@ -94,20 +94,20 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 
 	@Override
 	public Boolean getOCGsHasTypeArray() {
-		COSObject object = getOCGsValue();
-		return getHasTypeArray(object);
+		COSObject OCGs = getOCGsValue();
+		return getHasTypeArray(OCGs);
 	}
 
 	@Override
 	public Boolean getOCGsHasTypeDictionary() {
-		COSObject object = getOCGsValue();
-		return getHasTypeDictionary(object);
+		COSObject OCGs = getOCGsValue();
+		return getHasTypeDictionary(OCGs);
 	}
 
 	@Override
 	public Boolean getOCGsHasTypeNull() {
-		COSObject object = getOCGsValue();
-		return getHasTypeNull(object);
+		COSObject OCGs = getOCGsValue();
+		return getHasTypeNull(OCGs);
 	}
 
 	@Override
@@ -136,14 +136,14 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 
 	@Override
 	public Boolean getPHasTypeName() {
-		COSObject object = getPValue();
-		return getHasTypeName(object);
+		COSObject P = getPValue();
+		return getHasTypeName(P);
 	}
 
 	@Override
 	public String getPNameValue() {
-		COSObject object = getPValue();
-		return getNameValue(object);
+		COSObject P = getPValue();
+		return getNameValue(P);
 	}
 
 	@Override
@@ -158,14 +158,14 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -180,8 +180,8 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 
 	@Override
 	public Boolean getVEHasTypeArray() {
-		COSObject object = getVEValue();
-		return getHasTypeArray(object);
+		COSObject VE = getVEValue();
+		return getHasTypeArray(VE);
 	}
 
 }

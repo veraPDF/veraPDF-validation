@@ -224,8 +224,8 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getASHasTypeArray() {
-		COSObject object = getASValue();
-		return getHasTypeArray(object);
+		COSObject AS = getASValue();
+		return getHasTypeArray(AS);
 	}
 
 	@Override
@@ -254,14 +254,14 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getBaseStateHasTypeName() {
-		COSObject object = getBaseStateValue();
-		return getHasTypeName(object);
+		COSObject BaseState = getBaseStateValue();
+		return getHasTypeName(BaseState);
 	}
 
 	@Override
 	public String getBaseStateNameValue() {
-		COSObject object = getBaseStateValue();
-		return getNameValue(object);
+		COSObject BaseState = getBaseStateValue();
+		return getNameValue(BaseState);
 	}
 
 	@Override
@@ -276,8 +276,8 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getCreatorHasTypeStringText() {
-		COSObject object = getCreatorValue();
-		return getHasTypeStringText(object);
+		COSObject Creator = getCreatorValue();
+		return getHasTypeStringText(Creator);
 	}
 
 	@Override
@@ -306,20 +306,20 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getIntentHasTypeArray() {
-		COSObject object = getIntentValue();
-		return getHasTypeArray(object);
+		COSObject Intent = getIntentValue();
+		return getHasTypeArray(Intent);
 	}
 
 	@Override
 	public Boolean getIntentHasTypeName() {
-		COSObject object = getIntentValue();
-		return getHasTypeName(object);
+		COSObject Intent = getIntentValue();
+		return getHasTypeName(Intent);
 	}
 
 	@Override
 	public String getIntentNameValue() {
-		COSObject object = getIntentValue();
-		return getNameValue(object);
+		COSObject Intent = getIntentValue();
+		return getNameValue(Intent);
 	}
 
 	@Override
@@ -348,14 +348,14 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getListModeHasTypeName() {
-		COSObject object = getListModeValue();
-		return getHasTypeName(object);
+		COSObject ListMode = getListModeValue();
+		return getHasTypeName(ListMode);
 	}
 
 	@Override
 	public String getListModeNameValue() {
-		COSObject object = getListModeValue();
-		return getNameValue(object);
+		COSObject ListMode = getListModeValue();
+		return getNameValue(ListMode);
 	}
 
 	@Override
@@ -370,8 +370,8 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getLockedHasTypeArray() {
-		COSObject object = getLockedValue();
-		return getHasTypeArray(object);
+		COSObject Locked = getLockedValue();
+		return getHasTypeArray(Locked);
 	}
 
 	@Override
@@ -386,8 +386,8 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = getNameValue();
-		return getHasTypeStringText(object);
+		COSObject Name = getNameValue();
+		return getHasTypeStringText(Name);
 	}
 
 	@Override
@@ -402,8 +402,8 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getOFFHasTypeArray() {
-		COSObject object = getOFFValue();
-		return getHasTypeArray(object);
+		COSObject OFF = getOFFValue();
+		return getHasTypeArray(OFF);
 	}
 
 	@Override
@@ -418,8 +418,8 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getONHasTypeArray() {
-		COSObject object = getONValue();
-		return getHasTypeArray(object);
+		COSObject ON = getONValue();
+		return getHasTypeArray(ON);
 	}
 
 	@Override
@@ -434,8 +434,8 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getOrderHasTypeArray() {
-		COSObject object = getOrderValue();
-		return getHasTypeArray(object);
+		COSObject Order = getOrderValue();
+		return getHasTypeArray(Order);
 	}
 
 	@Override
@@ -450,8 +450,8 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 
 	@Override
 	public Boolean getRBGroupsHasTypeArray() {
-		COSObject object = getRBGroupsValue();
-		return getHasTypeArray(object);
+		COSObject RBGroups = getRBGroupsValue();
+		return getHasTypeArray(RBGroups);
 	}
 
 }

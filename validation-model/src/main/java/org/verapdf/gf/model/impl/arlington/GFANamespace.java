@@ -84,8 +84,8 @@ public class GFANamespace extends GFAObject implements ANamespace {
 
 	@Override
 	public Boolean getNSHasTypeStringText() {
-		COSObject object = getNSValue();
-		return getHasTypeStringText(object);
+		COSObject NS = getNSValue();
+		return getHasTypeStringText(NS);
 	}
 
 	@Override
@@ -100,8 +100,8 @@ public class GFANamespace extends GFAObject implements ANamespace {
 
 	@Override
 	public Boolean getRoleMapNSHasTypeDictionary() {
-		COSObject object = getRoleMapNSValue();
-		return getHasTypeDictionary(object);
+		COSObject RoleMapNS = getRoleMapNSValue();
+		return getHasTypeDictionary(RoleMapNS);
 	}
 
 	@Override
@@ -116,14 +116,14 @@ public class GFANamespace extends GFAObject implements ANamespace {
 
 	@Override
 	public Boolean getSchemaHasTypeDictionary() {
-		COSObject object = getSchemaValue();
-		return getHasTypeDictionary(object);
+		COSObject Schema = getSchemaValue();
+		return getHasTypeDictionary(Schema);
 	}
 
 	@Override
 	public Boolean getSchemaHasTypeString() {
-		COSObject object = getSchemaValue();
-		return getHasTypeString(object);
+		COSObject Schema = getSchemaValue();
+		return getHasTypeString(Schema);
 	}
 
 	@Override
@@ -138,14 +138,14 @@ public class GFANamespace extends GFAObject implements ANamespace {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

@@ -63,14 +63,14 @@ public class GFAOptContentUser extends GFAObject implements AOptContentUser {
 
 	@Override
 	public Boolean getNameHasTypeArray() {
-		COSObject object = getNameValue();
-		return getHasTypeArray(object);
+		COSObject Name = getNameValue();
+		return getHasTypeArray(Name);
 	}
 
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = getNameValue();
-		return getHasTypeStringText(object);
+		COSObject Name = getNameValue();
+		return getHasTypeStringText(Name);
 	}
 
 	@Override
@@ -85,14 +85,14 @@ public class GFAOptContentUser extends GFAObject implements AOptContentUser {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

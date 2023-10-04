@@ -62,8 +62,8 @@ public class GFAArrayOfArraysInkListEntry extends GFAObject implements AArrayOfA
 
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = getValue();
-		return getHasTypeArray(object);
+		COSObject entry = getValue();
+		return getHasTypeArray(entry);
 	}
 
 }

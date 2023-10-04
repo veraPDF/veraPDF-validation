@@ -186,8 +186,8 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getCIHasTypeDictionary() {
-		COSObject object = getCIValue();
-		return getHasTypeDictionary(object);
+		COSObject CI = getCIValue();
+		return getHasTypeDictionary(CI);
 	}
 
 	@Override
@@ -202,14 +202,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getisChildIndirect() {
-		COSObject object = getChildValue();
-		return getisIndirect(object);
+		COSObject Child = getChildValue();
+		return getisIndirect(Child);
 	}
 
 	@Override
 	public Boolean getChildHasTypeDictionary() {
-		COSObject object = getChildValue();
-		return getHasTypeDictionary(object);
+		COSObject Child = getChildValue();
+		return getHasTypeDictionary(Child);
 	}
 
 	@Override
@@ -224,8 +224,8 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getCreationDateHasTypeDate() {
-		COSObject object = getCreationDateValue();
-		return getHasTypeDate(object);
+		COSObject CreationDate = getCreationDateValue();
+		return getHasTypeDate(CreationDate);
 	}
 
 	@Override
@@ -240,8 +240,8 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getDescHasTypeStringText() {
-		COSObject object = getDescValue();
-		return getHasTypeStringText(object);
+		COSObject Desc = getDescValue();
+		return getHasTypeStringText(Desc);
 	}
 
 	@Override
@@ -256,8 +256,8 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getFreeHasTypeArray() {
-		COSObject object = getFreeValue();
-		return getHasTypeArray(object);
+		COSObject Free = getFreeValue();
+		return getHasTypeArray(Free);
 	}
 
 	@Override
@@ -272,8 +272,8 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getentryIDHasTypeInteger() {
-		COSObject object = getentryIDValue();
-		return getHasTypeInteger(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeInteger(entryID);
 	}
 
 	@Override
@@ -288,8 +288,8 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getModDateHasTypeDate() {
-		COSObject object = getModDateValue();
-		return getHasTypeDate(object);
+		COSObject ModDate = getModDateValue();
+		return getHasTypeDate(ModDate);
 	}
 
 	@Override
@@ -304,8 +304,8 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getNameHasTypeStringText() {
-		COSObject object = getNameValue();
-		return getHasTypeStringText(object);
+		COSObject Name = getNameValue();
+		return getHasTypeStringText(Name);
 	}
 
 	@Override
@@ -320,14 +320,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getisNextIndirect() {
-		COSObject object = getNextValue();
-		return getisIndirect(object);
+		COSObject Next = getNextValue();
+		return getisIndirect(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -342,14 +342,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getisParentIndirect() {
-		COSObject object = getParentValue();
-		return getisIndirect(object);
+		COSObject Parent = getParentValue();
+		return getisIndirect(Parent);
 	}
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = getParentValue();
-		return getHasTypeDictionary(object);
+		COSObject Parent = getParentValue();
+		return getHasTypeDictionary(Parent);
 	}
 
 	@Override
@@ -364,14 +364,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getisThumbIndirect() {
-		COSObject object = getThumbValue();
-		return getisIndirect(object);
+		COSObject Thumb = getThumbValue();
+		return getisIndirect(Thumb);
 	}
 
 	@Override
 	public Boolean getThumbHasTypeStream() {
-		COSObject object = getThumbValue();
-		return getHasTypeStream(object);
+		COSObject Thumb = getThumbValue();
+		return getHasTypeStream(Thumb);
 	}
 
 	@Override
@@ -386,14 +386,14 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

@@ -257,8 +257,8 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 
 	@Override
 	public Boolean getAntiAliasHasTypeBoolean() {
-		COSObject object = getAntiAliasValue();
-		return getHasTypeBoolean(object);
+		COSObject AntiAlias = getAntiAliasValue();
+		return getHasTypeBoolean(AntiAlias);
 	}
 
 	@Override
@@ -273,8 +273,8 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = getBBoxValue();
-		return getHasTypeRectangle(object);
+		COSObject BBox = getBBoxValue();
+		return getHasTypeRectangle(BBox);
 	}
 
 	@Override
@@ -289,8 +289,8 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 
 	@Override
 	public Boolean getBackgroundHasTypeArray() {
-		COSObject object = getBackgroundValue();
-		return getHasTypeArray(object);
+		COSObject Background = getBackgroundValue();
+		return getHasTypeArray(Background);
 	}
 
 	@Override
@@ -305,20 +305,20 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeArray(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeArray(ColorSpace);
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeName(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeName(ColorSpace);
 	}
 
 	@Override
 	public String getColorSpaceNameValue() {
-		COSObject object = getColorSpaceValue();
-		return getNameValue(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getNameValue(ColorSpace);
 	}
 
 	@Override
@@ -333,8 +333,8 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 
 	@Override
 	public Boolean getDomainHasTypeArray() {
-		COSObject object = getDomainValue();
-		return getHasTypeArray(object);
+		COSObject Domain = getDomainValue();
+		return getHasTypeArray(Domain);
 	}
 
 	@Override
@@ -349,26 +349,26 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 
 	@Override
 	public Boolean getisFunctionIndirect() {
-		COSObject object = getFunctionValue();
-		return getisIndirect(object);
+		COSObject Function = getFunctionValue();
+		return getisIndirect(Function);
 	}
 
 	@Override
 	public Boolean getFunctionHasTypeArray() {
-		COSObject object = getFunctionValue();
-		return getHasTypeArray(object);
+		COSObject Function = getFunctionValue();
+		return getHasTypeArray(Function);
 	}
 
 	@Override
 	public Boolean getFunctionHasTypeDictionary() {
-		COSObject object = getFunctionValue();
-		return getHasTypeDictionary(object);
+		COSObject Function = getFunctionValue();
+		return getHasTypeDictionary(Function);
 	}
 
 	@Override
 	public Boolean getFunctionHasTypeStream() {
-		COSObject object = getFunctionValue();
-		return getHasTypeStream(object);
+		COSObject Function = getFunctionValue();
+		return getHasTypeStream(Function);
 	}
 
 	@Override
@@ -399,8 +399,8 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 
 	@Override
 	public Boolean getMatrixHasTypeMatrix() {
-		COSObject object = getMatrixValue();
-		return getHasTypeMatrix(object);
+		COSObject Matrix = getMatrixValue();
+		return getHasTypeMatrix(Matrix);
 	}
 
 	@Override
@@ -415,14 +415,14 @@ public class GFAShadingType1 extends GFAObject implements AShadingType1 {
 
 	@Override
 	public Boolean getShadingTypeHasTypeInteger() {
-		COSObject object = getShadingTypeValue();
-		return getHasTypeInteger(object);
+		COSObject ShadingType = getShadingTypeValue();
+		return getHasTypeInteger(ShadingType);
 	}
 
 	@Override
 	public Long getShadingTypeIntegerValue() {
-		COSObject object = getShadingTypeValue();
-		return getIntegerValue(object);
+		COSObject ShadingType = getShadingTypeValue();
+		return getIntegerValue(ShadingType);
 	}
 
 }

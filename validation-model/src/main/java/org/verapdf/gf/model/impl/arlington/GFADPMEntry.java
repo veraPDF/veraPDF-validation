@@ -64,50 +64,50 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = getValue();
-		return getHasTypeArray(object);
+		COSObject entry = getValue();
+		return getHasTypeArray(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeBoolean() {
-		COSObject object = getValue();
-		return getHasTypeBoolean(object);
+		COSObject entry = getValue();
+		return getHasTypeBoolean(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDate() {
-		COSObject object = getValue();
-		return getHasTypeDate(object);
+		COSObject entry = getValue();
+		return getHasTypeDate(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeInteger() {
-		COSObject object = getValue();
-		return getHasTypeInteger(object);
+		COSObject entry = getValue();
+		return getHasTypeInteger(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = getValue();
-		return getHasTypeNumber(object);
+		COSObject entry = getValue();
+		return getHasTypeNumber(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeStringText() {
-		COSObject object = getValue();
-		return getHasTypeStringText(object);
+		COSObject entry = getValue();
+		return getHasTypeStringText(entry);
 	}
 
 	@Override

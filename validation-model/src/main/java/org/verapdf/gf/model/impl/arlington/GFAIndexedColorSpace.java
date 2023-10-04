@@ -211,14 +211,14 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 
 	@Override
 	public Boolean getentry0HasTypeName() {
-		COSObject object = getentry0Value();
-		return getHasTypeName(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeName(entry0);
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		COSObject object = getentry0Value();
-		return getNameValue(object);
+		COSObject entry0 = getentry0Value();
+		return getNameValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -231,20 +231,20 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 
 	@Override
 	public Boolean getentry1HasTypeArray() {
-		COSObject object = getentry1Value();
-		return getHasTypeArray(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeArray(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeName() {
-		COSObject object = getentry1Value();
-		return getHasTypeName(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeName(entry1);
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		COSObject object = getentry1Value();
-		return getNameValue(object);
+		COSObject entry1 = getentry1Value();
+		return getNameValue(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -257,14 +257,14 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 
 	@Override
 	public Boolean getentry2HasTypeInteger() {
-		COSObject object = getentry2Value();
-		return getHasTypeInteger(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeInteger(entry2);
 	}
 
 	@Override
 	public Long getentry2IntegerValue() {
-		COSObject object = getentry2Value();
-		return getIntegerValue(object);
+		COSObject entry2 = getentry2Value();
+		return getIntegerValue(entry2);
 	}
 
 	public COSObject getentry3Value() {
@@ -277,20 +277,20 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 
 	@Override
 	public Boolean getisentry3Indirect() {
-		COSObject object = getentry3Value();
-		return getisIndirect(object);
+		COSObject entry3 = getentry3Value();
+		return getisIndirect(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeStream() {
-		COSObject object = getentry3Value();
-		return getHasTypeStream(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeStream(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeString() {
-		COSObject object = getentry3Value();
-		return getHasTypeString(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeString(entry3);
 	}
 
 }

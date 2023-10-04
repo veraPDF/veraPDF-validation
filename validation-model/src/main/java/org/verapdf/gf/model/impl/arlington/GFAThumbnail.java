@@ -473,14 +473,14 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
-		COSObject object = getBitsPerComponentValue();
-		return getHasTypeInteger(object);
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getHasTypeInteger(BitsPerComponent);
 	}
 
 	@Override
 	public Long getBitsPerComponentIntegerValue() {
-		COSObject object = getBitsPerComponentValue();
-		return getIntegerValue(object);
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getIntegerValue(BitsPerComponent);
 	}
 
 	@Override
@@ -495,20 +495,20 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeArray(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeArray(ColorSpace);
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeName(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeName(ColorSpace);
 	}
 
 	@Override
 	public String getColorSpaceNameValue() {
-		COSObject object = getColorSpaceValue();
-		return getNameValue(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getNameValue(ColorSpace);
 	}
 
 	@Override
@@ -523,14 +523,14 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = getDLValue();
-		return getHasTypeInteger(object);
+		COSObject DL = getDLValue();
+		return getHasTypeInteger(DL);
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = getDLValue();
-		return getIntegerValue(object);
+		COSObject DL = getDLValue();
+		return getIntegerValue(DL);
 	}
 
 	@Override
@@ -545,8 +545,8 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getDecodeHasTypeArray() {
-		COSObject object = getDecodeValue();
-		return getHasTypeArray(object);
+		COSObject Decode = getDecodeValue();
+		return getHasTypeArray(Decode);
 	}
 
 	@Override
@@ -561,20 +561,20 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeArray(DecodeParms);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeDictionary(DecodeParms);
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = getDecodeParmsValue();
-		return getArraySize(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getArraySize(DecodeParms);
 	}
 
 	@Override
@@ -589,14 +589,14 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -611,20 +611,20 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeArray(FDecodeParms);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeDictionary(FDecodeParms);
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = getFDecodeParmsValue();
-		return getArraySize(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getArraySize(FDecodeParms);
 	}
 
 	@Override
@@ -639,26 +639,26 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = getFFilterValue();
-		return getHasTypeArray(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeArray(FFilter);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = getFFilterValue();
-		return getHasTypeName(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeName(FFilter);
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = getFFilterValue();
-		return getNameValue(object);
+		COSObject FFilter = getFFilterValue();
+		return getNameValue(FFilter);
 	}
 
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = getFFilterValue();
-		return getArraySize(object);
+		COSObject FFilter = getFFilterValue();
+		return getArraySize(FFilter);
 	}
 
 	@Override
@@ -673,26 +673,26 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = getFilterValue();
-		return getHasTypeArray(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeArray(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = getFilterValue();
-		return getNameValue(object);
+		COSObject Filter = getFilterValue();
+		return getNameValue(Filter);
 	}
 
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = getFilterValue();
-		return getArraySize(object);
+		COSObject Filter = getFilterValue();
+		return getArraySize(Filter);
 	}
 
 	@Override
@@ -707,8 +707,8 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getHeightHasTypeInteger() {
-		COSObject object = getHeightValue();
-		return getHasTypeInteger(object);
+		COSObject Height = getHeightValue();
+		return getHasTypeInteger(Height);
 	}
 
 	@Override
@@ -723,8 +723,8 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = getLengthValue();
-		return getHasTypeInteger(object);
+		COSObject Length = getLengthValue();
+		return getHasTypeInteger(Length);
 	}
 
 	@Override
@@ -739,14 +739,14 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -761,14 +761,14 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -783,8 +783,8 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 
 	@Override
 	public Boolean getWidthHasTypeInteger() {
-		COSObject object = getWidthValue();
-		return getHasTypeInteger(object);
+		COSObject Width = getWidthValue();
+		return getHasTypeInteger(Width);
 	}
 
 }

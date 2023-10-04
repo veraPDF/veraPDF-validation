@@ -227,14 +227,14 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 
 	@Override
 	public Boolean getentry0HasTypeName() {
-		COSObject object = getentry0Value();
-		return getHasTypeName(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeName(entry0);
 	}
 
 	@Override
 	public String getentry0NameValue() {
-		COSObject object = getentry0Value();
-		return getNameValue(object);
+		COSObject entry0 = getentry0Value();
+		return getNameValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -247,8 +247,8 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 
 	@Override
 	public Boolean getentry1HasTypeName() {
-		COSObject object = getentry1Value();
-		return getHasTypeName(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeName(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -261,20 +261,20 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 
 	@Override
 	public Boolean getentry2HasTypeArray() {
-		COSObject object = getentry2Value();
-		return getHasTypeArray(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeArray(entry2);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeName() {
-		COSObject object = getentry2Value();
-		return getHasTypeName(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeName(entry2);
 	}
 
 	@Override
 	public String getentry2NameValue() {
-		COSObject object = getentry2Value();
-		return getNameValue(object);
+		COSObject entry2 = getentry2Value();
+		return getNameValue(entry2);
 	}
 
 	public COSObject getentry3Value() {
@@ -287,20 +287,20 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 
 	@Override
 	public Boolean getisentry3Indirect() {
-		COSObject object = getentry3Value();
-		return getisIndirect(object);
+		COSObject entry3 = getentry3Value();
+		return getisIndirect(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeDictionary() {
-		COSObject object = getentry3Value();
-		return getHasTypeDictionary(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeDictionary(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeStream() {
-		COSObject object = getentry3Value();
-		return getHasTypeStream(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeStream(entry3);
 	}
 
 }

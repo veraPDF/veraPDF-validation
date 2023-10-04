@@ -92,8 +92,8 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
@@ -108,8 +108,8 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = getDValue();
-		return getHasTypeArray(object);
+		COSObject D = getDValue();
+		return getHasTypeArray(D);
 	}
 
 	@Override
@@ -139,14 +139,14 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -176,8 +176,8 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 
 	@Override
 	public Boolean getWHasTypeNumber() {
-		COSObject object = getWValue();
-		return getHasTypeNumber(object);
+		COSObject W = getWValue();
+		return getHasTypeNumber(W);
 	}
 
 }

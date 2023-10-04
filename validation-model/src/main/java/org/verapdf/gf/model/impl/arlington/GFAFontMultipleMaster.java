@@ -123,8 +123,8 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getBaseFontHasTypeName() {
-		COSObject object = getBaseFontValue();
-		return getHasTypeName(object);
+		COSObject BaseFont = getBaseFontValue();
+		return getHasTypeName(BaseFont);
 	}
 
 	@Override
@@ -139,20 +139,20 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getEncodingHasTypeDictionary() {
-		COSObject object = getEncodingValue();
-		return getHasTypeDictionary(object);
+		COSObject Encoding = getEncodingValue();
+		return getHasTypeDictionary(Encoding);
 	}
 
 	@Override
 	public Boolean getEncodingHasTypeName() {
-		COSObject object = getEncodingValue();
-		return getHasTypeName(object);
+		COSObject Encoding = getEncodingValue();
+		return getHasTypeName(Encoding);
 	}
 
 	@Override
 	public String getEncodingNameValue() {
-		COSObject object = getEncodingValue();
-		return getNameValue(object);
+		COSObject Encoding = getEncodingValue();
+		return getNameValue(Encoding);
 	}
 
 	@Override
@@ -167,8 +167,8 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getFirstCharHasTypeInteger() {
-		COSObject object = getFirstCharValue();
-		return getHasTypeInteger(object);
+		COSObject FirstChar = getFirstCharValue();
+		return getHasTypeInteger(FirstChar);
 	}
 
 	@Override
@@ -183,14 +183,14 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getisFontDescriptorIndirect() {
-		COSObject object = getFontDescriptorValue();
-		return getisIndirect(object);
+		COSObject FontDescriptor = getFontDescriptorValue();
+		return getisIndirect(FontDescriptor);
 	}
 
 	@Override
 	public Boolean getFontDescriptorHasTypeDictionary() {
-		COSObject object = getFontDescriptorValue();
-		return getHasTypeDictionary(object);
+		COSObject FontDescriptor = getFontDescriptorValue();
+		return getHasTypeDictionary(FontDescriptor);
 	}
 
 	@Override
@@ -205,8 +205,8 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getLastCharHasTypeInteger() {
-		COSObject object = getLastCharValue();
-		return getHasTypeInteger(object);
+		COSObject LastChar = getLastCharValue();
+		return getHasTypeInteger(LastChar);
 	}
 
 	@Override
@@ -221,8 +221,8 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getNameHasTypeName() {
-		COSObject object = getNameValue();
-		return getHasTypeName(object);
+		COSObject Name = getNameValue();
+		return getHasTypeName(Name);
 	}
 
 	@Override
@@ -237,14 +237,14 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -259,14 +259,14 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getisToUnicodeIndirect() {
-		COSObject object = getToUnicodeValue();
-		return getisIndirect(object);
+		COSObject ToUnicode = getToUnicodeValue();
+		return getisIndirect(ToUnicode);
 	}
 
 	@Override
 	public Boolean getToUnicodeHasTypeStream() {
-		COSObject object = getToUnicodeValue();
-		return getHasTypeStream(object);
+		COSObject ToUnicode = getToUnicodeValue();
+		return getHasTypeStream(ToUnicode);
 	}
 
 	@Override
@@ -281,14 +281,14 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -303,8 +303,8 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 
 	@Override
 	public Boolean getWidthsHasTypeArray() {
-		COSObject object = getWidthsValue();
-		return getHasTypeArray(object);
+		COSObject Widths = getWidthsValue();
+		return getHasTypeArray(Widths);
 	}
 
 }

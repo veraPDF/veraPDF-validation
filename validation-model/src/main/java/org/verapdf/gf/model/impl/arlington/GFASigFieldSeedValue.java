@@ -220,8 +220,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getAddRevInfoHasTypeBoolean() {
-		COSObject object = getAddRevInfoValue();
-		return getHasTypeBoolean(object);
+		COSObject AddRevInfo = getAddRevInfoValue();
+		return getHasTypeBoolean(AddRevInfo);
 	}
 
 	@Override
@@ -236,8 +236,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getAppearanceFilterHasTypeStringText() {
-		COSObject object = getAppearanceFilterValue();
-		return getHasTypeStringText(object);
+		COSObject AppearanceFilter = getAppearanceFilterValue();
+		return getHasTypeStringText(AppearanceFilter);
 	}
 
 	@Override
@@ -252,8 +252,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getCertHasTypeDictionary() {
-		COSObject object = getCertValue();
-		return getHasTypeDictionary(object);
+		COSObject Cert = getCertValue();
+		return getHasTypeDictionary(Cert);
 	}
 
 	@Override
@@ -268,8 +268,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getDigestMethodHasTypeArray() {
-		COSObject object = getDigestMethodValue();
-		return getHasTypeArray(object);
+		COSObject DigestMethod = getDigestMethodValue();
+		return getHasTypeArray(DigestMethod);
 	}
 
 	@Override
@@ -296,14 +296,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getFfHasTypeBitmask() {
-		COSObject object = getFfValue();
-		return getHasTypeBitmask(object);
+		COSObject Ff = getFfValue();
+		return getHasTypeBitmask(Ff);
 	}
 
 	@Override
 	public Long getFfBitmaskValue() {
-		COSObject object = getFfValue();
-		return getBitmaskValue(object);
+		COSObject Ff = getFfValue();
+		return getBitmaskValue(Ff);
 	}
 
 	@Override
@@ -318,8 +318,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
@@ -334,8 +334,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getLegalAttestationHasTypeArray() {
-		COSObject object = getLegalAttestationValue();
-		return getHasTypeArray(object);
+		COSObject LegalAttestation = getLegalAttestationValue();
+		return getHasTypeArray(LegalAttestation);
 	}
 
 	@Override
@@ -350,14 +350,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getLockDocumentHasTypeName() {
-		COSObject object = getLockDocumentValue();
-		return getHasTypeName(object);
+		COSObject LockDocument = getLockDocumentValue();
+		return getHasTypeName(LockDocument);
 	}
 
 	@Override
 	public String getLockDocumentNameValue() {
-		COSObject object = getLockDocumentValue();
-		return getNameValue(object);
+		COSObject LockDocument = getLockDocumentValue();
+		return getNameValue(LockDocument);
 	}
 
 	@Override
@@ -372,8 +372,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getMDPHasTypeDictionary() {
-		COSObject object = getMDPValue();
-		return getHasTypeDictionary(object);
+		COSObject MDP = getMDPValue();
+		return getHasTypeDictionary(MDP);
 	}
 
 	@Override
@@ -388,8 +388,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getReasonsHasTypeArray() {
-		COSObject object = getReasonsValue();
-		return getHasTypeArray(object);
+		COSObject Reasons = getReasonsValue();
+		return getHasTypeArray(Reasons);
 	}
 
 	@Override
@@ -404,8 +404,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getSubFilterHasTypeArray() {
-		COSObject object = getSubFilterValue();
-		return getHasTypeArray(object);
+		COSObject SubFilter = getSubFilterValue();
+		return getHasTypeArray(SubFilter);
 	}
 
 	@Override
@@ -420,8 +420,8 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getTimeStampHasTypeDictionary() {
-		COSObject object = getTimeStampValue();
-		return getHasTypeDictionary(object);
+		COSObject TimeStamp = getTimeStampValue();
+		return getHasTypeDictionary(TimeStamp);
 	}
 
 	@Override
@@ -436,14 +436,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -458,14 +458,14 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 
 	@Override
 	public Boolean getVHasTypeInteger() {
-		COSObject object = getVValue();
-		return getHasTypeInteger(object);
+		COSObject V = getVValue();
+		return getHasTypeInteger(V);
 	}
 
 	@Override
 	public Long getVIntegerValue() {
-		COSObject object = getVValue();
-		return getIntegerValue(object);
+		COSObject V = getVValue();
+		return getIntegerValue(V);
 	}
 
 	@Override

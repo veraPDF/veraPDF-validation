@@ -57,8 +57,8 @@ public class GFAVRIMapEntry extends GFAObject implements AVRIMapEntry {
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

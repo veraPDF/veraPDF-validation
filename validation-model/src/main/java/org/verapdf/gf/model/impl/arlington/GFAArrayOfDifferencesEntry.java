@@ -28,14 +28,14 @@ public class GFAArrayOfDifferencesEntry extends GFAObject implements AArrayOfDif
 
 	@Override
 	public Boolean getHasTypeInteger() {
-		COSObject object = getValue();
-		return getHasTypeInteger(object);
+		COSObject entry = getValue();
+		return getHasTypeInteger(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 }

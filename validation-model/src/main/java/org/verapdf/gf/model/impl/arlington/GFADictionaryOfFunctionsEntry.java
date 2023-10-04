@@ -108,20 +108,20 @@ public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADiction
 
 	@Override
 	public Boolean getisIndirect() {
-		COSObject object = getValue();
-		return getisIndirect(object);
+		COSObject entry = getValue();
+		return getisIndirect(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeStream() {
-		COSObject object = getValue();
-		return getHasTypeStream(object);
+		COSObject entry = getValue();
+		return getHasTypeStream(entry);
 	}
 
 }

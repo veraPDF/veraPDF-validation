@@ -712,8 +712,8 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	@Override
 	public Boolean getCHasTypeDictionary() {
-		COSObject object = getCValue();
-		return getHasTypeDictionary(object);
+		COSObject C = getCValue();
+		return getHasTypeDictionary(C);
 	}
 
 	@Override
@@ -728,8 +728,8 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	@Override
 	public Boolean getOHasTypeDictionary() {
-		COSObject object = getOValue();
-		return getHasTypeDictionary(object);
+		COSObject O = getOValue();
+		return getHasTypeDictionary(O);
 	}
 
 }

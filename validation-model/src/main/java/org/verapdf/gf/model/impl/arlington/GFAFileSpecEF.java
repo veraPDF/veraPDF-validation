@@ -90,14 +90,14 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 
 	@Override
 	public Boolean getisFIndirect() {
-		COSObject object = getFValue();
-		return getisIndirect(object);
+		COSObject F = getFValue();
+		return getisIndirect(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeStream() {
-		COSObject object = getFValue();
-		return getHasTypeStream(object);
+		COSObject F = getFValue();
+		return getHasTypeStream(F);
 	}
 
 	@Override
@@ -112,14 +112,14 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 
 	@Override
 	public Boolean getisUFIndirect() {
-		COSObject object = getUFValue();
-		return getisIndirect(object);
+		COSObject UF = getUFValue();
+		return getisIndirect(UF);
 	}
 
 	@Override
 	public Boolean getUFHasTypeStream() {
-		COSObject object = getUFValue();
-		return getHasTypeStream(object);
+		COSObject UF = getUFValue();
+		return getHasTypeStream(UF);
 	}
 
 }

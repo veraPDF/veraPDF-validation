@@ -58,8 +58,8 @@ public class GFAArrayOf_RoleMapNS extends GFAObject implements AArrayOf_RoleMapN
 
 	@Override
 	public Boolean getentry0HasTypeName() {
-		COSObject object = getentry0Value();
-		return getHasTypeName(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeName(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -72,14 +72,14 @@ public class GFAArrayOf_RoleMapNS extends GFAObject implements AArrayOf_RoleMapN
 
 	@Override
 	public Boolean getisentry1Indirect() {
-		COSObject object = getentry1Value();
-		return getisIndirect(object);
+		COSObject entry1 = getentry1Value();
+		return getisIndirect(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeDictionary() {
-		COSObject object = getentry1Value();
-		return getHasTypeDictionary(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeDictionary(entry1);
 	}
 
 }

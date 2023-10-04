@@ -64,8 +64,8 @@ public class GFAArrayOfThreadsEntry extends GFAObject implements AArrayOfThreads
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

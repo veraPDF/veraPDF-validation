@@ -80,20 +80,20 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 
 	@Override
 	public Boolean getisEIndirect() {
-		COSObject object = getEValue();
-		return getisIndirect(object);
+		COSObject E = getEValue();
+		return getisIndirect(E);
 	}
 
 	@Override
 	public Boolean getEHasTypeInteger() {
-		COSObject object = getEValue();
-		return getHasTypeInteger(object);
+		COSObject E = getEValue();
+		return getHasTypeInteger(E);
 	}
 
 	@Override
 	public Long getEIntegerValue() {
-		COSObject object = getEValue();
-		return getIntegerValue(object);
+		COSObject E = getEValue();
+		return getIntegerValue(E);
 	}
 
 	@Override
@@ -108,14 +108,14 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 
 	@Override
 	public Boolean getisHIndirect() {
-		COSObject object = getHValue();
-		return getisIndirect(object);
+		COSObject H = getHValue();
+		return getisIndirect(H);
 	}
 
 	@Override
 	public Boolean getHHasTypeArray() {
-		COSObject object = getHValue();
-		return getHasTypeArray(object);
+		COSObject H = getHValue();
+		return getHasTypeArray(H);
 	}
 
 	@Override
@@ -130,20 +130,20 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 
 	@Override
 	public Boolean getisLIndirect() {
-		COSObject object = getLValue();
-		return getisIndirect(object);
+		COSObject L = getLValue();
+		return getisIndirect(L);
 	}
 
 	@Override
 	public Boolean getLHasTypeInteger() {
-		COSObject object = getLValue();
-		return getHasTypeInteger(object);
+		COSObject L = getLValue();
+		return getHasTypeInteger(L);
 	}
 
 	@Override
 	public Long getLIntegerValue() {
-		COSObject object = getLValue();
-		return getIntegerValue(object);
+		COSObject L = getLValue();
+		return getIntegerValue(L);
 	}
 
 	@Override
@@ -158,20 +158,20 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 
 	@Override
 	public Boolean getisLinearizedIndirect() {
-		COSObject object = getLinearizedValue();
-		return getisIndirect(object);
+		COSObject Linearized = getLinearizedValue();
+		return getisIndirect(Linearized);
 	}
 
 	@Override
 	public Boolean getLinearizedHasTypeNumber() {
-		COSObject object = getLinearizedValue();
-		return getHasTypeNumber(object);
+		COSObject Linearized = getLinearizedValue();
+		return getHasTypeNumber(Linearized);
 	}
 
 	@Override
 	public Double getLinearizedNumberValue() {
-		COSObject object = getLinearizedValue();
-		return getNumberValue(object);
+		COSObject Linearized = getLinearizedValue();
+		return getNumberValue(Linearized);
 	}
 
 	@Override
@@ -186,20 +186,20 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 
 	@Override
 	public Boolean getisNIndirect() {
-		COSObject object = getNValue();
-		return getisIndirect(object);
+		COSObject N = getNValue();
+		return getisIndirect(N);
 	}
 
 	@Override
 	public Boolean getNHasTypeInteger() {
-		COSObject object = getNValue();
-		return getHasTypeInteger(object);
+		COSObject N = getNValue();
+		return getHasTypeInteger(N);
 	}
 
 	@Override
 	public Long getNIntegerValue() {
-		COSObject object = getNValue();
-		return getIntegerValue(object);
+		COSObject N = getNValue();
+		return getIntegerValue(N);
 	}
 
 	@Override
@@ -214,20 +214,20 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 
 	@Override
 	public Boolean getisOIndirect() {
-		COSObject object = getOValue();
-		return getisIndirect(object);
+		COSObject O = getOValue();
+		return getisIndirect(O);
 	}
 
 	@Override
 	public Boolean getOHasTypeInteger() {
-		COSObject object = getOValue();
-		return getHasTypeInteger(object);
+		COSObject O = getOValue();
+		return getHasTypeInteger(O);
 	}
 
 	@Override
 	public Long getOIntegerValue() {
-		COSObject object = getOValue();
-		return getIntegerValue(object);
+		COSObject O = getOValue();
+		return getIntegerValue(O);
 	}
 
 	@Override
@@ -259,20 +259,20 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = getPValue();
-		return getisIndirect(object);
+		COSObject P = getPValue();
+		return getisIndirect(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeInteger() {
-		COSObject object = getPValue();
-		return getHasTypeInteger(object);
+		COSObject P = getPValue();
+		return getHasTypeInteger(P);
 	}
 
 	@Override
 	public Long getPIntegerValue() {
-		COSObject object = getPValue();
-		return getIntegerValue(object);
+		COSObject P = getPValue();
+		return getIntegerValue(P);
 	}
 
 	@Override
@@ -287,20 +287,20 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 
 	@Override
 	public Boolean getisTIndirect() {
-		COSObject object = getTValue();
-		return getisIndirect(object);
+		COSObject T = getTValue();
+		return getisIndirect(T);
 	}
 
 	@Override
 	public Boolean getTHasTypeInteger() {
-		COSObject object = getTValue();
-		return getHasTypeInteger(object);
+		COSObject T = getTValue();
+		return getHasTypeInteger(T);
 	}
 
 	@Override
 	public Long getTIntegerValue() {
-		COSObject object = getTValue();
-		return getIntegerValue(object);
+		COSObject T = getTValue();
+		return getIntegerValue(T);
 	}
 
 }

@@ -90,8 +90,8 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = getDValue();
-		return getHasTypeArray(object);
+		COSObject D = getDValue();
+		return getHasTypeArray(D);
 	}
 
 	@Override
@@ -120,14 +120,14 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getOHasTypeInteger() {
-		COSObject object = getOValue();
-		return getHasTypeInteger(object);
+		COSObject O = getOValue();
+		return getHasTypeInteger(O);
 	}
 
 	@Override
 	public Long getOIntegerValue() {
-		COSObject object = getOValue();
-		return getIntegerValue(object);
+		COSObject O = getOValue();
+		return getIntegerValue(O);
 	}
 
 	@Override
@@ -156,14 +156,14 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getPHasTypeInteger() {
-		COSObject object = getPValue();
-		return getHasTypeInteger(object);
+		COSObject P = getPValue();
+		return getHasTypeInteger(P);
 	}
 
 	@Override
 	public Long getPIntegerValue() {
-		COSObject object = getPValue();
-		return getIntegerValue(object);
+		COSObject P = getPValue();
+		return getIntegerValue(P);
 	}
 
 	@Override
@@ -192,14 +192,14 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = getRValue();
-		return getHasTypeInteger(object);
+		COSObject R = getRValue();
+		return getHasTypeInteger(R);
 	}
 
 	@Override
 	public Long getRIntegerValue() {
-		COSObject object = getRValue();
-		return getIntegerValue(object);
+		COSObject R = getRValue();
+		return getIntegerValue(R);
 	}
 
 	@Override
@@ -228,14 +228,14 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getRTHasTypeInteger() {
-		COSObject object = getRTValue();
-		return getHasTypeInteger(object);
+		COSObject RT = getRTValue();
+		return getHasTypeInteger(RT);
 	}
 
 	@Override
 	public Long getRTIntegerValue() {
-		COSObject object = getRTValue();
-		return getIntegerValue(object);
+		COSObject RT = getRTValue();
+		return getIntegerValue(RT);
 	}
 
 	@Override
@@ -264,14 +264,14 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getTHasTypeBoolean() {
-		COSObject object = getTValue();
-		return getHasTypeBoolean(object);
+		COSObject T = getTValue();
+		return getHasTypeBoolean(T);
 	}
 
 	@Override
 	public Boolean getTBooleanValue() {
-		COSObject object = getTValue();
-		return getBooleanValue(object);
+		COSObject T = getTValue();
+		return getBooleanValue(T);
 	}
 
 	@Override
@@ -286,8 +286,8 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getTTHasTypeArray() {
-		COSObject object = getTTValue();
-		return getHasTypeArray(object);
+		COSObject TT = getTTValue();
+		return getHasTypeArray(TT);
 	}
 
 	@Override
@@ -302,14 +302,14 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -338,71 +338,31 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 
 	@Override
 	public Boolean getUCHasTypeBoolean() {
-		COSObject object = getUCValue();
-		return getHasTypeBoolean(object);
+		COSObject UC = getUCValue();
+		return getHasTypeBoolean(UC);
 	}
 
 	@Override
 	public Long getD1IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject D = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (D.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = D.at(1);
+		COSObject D = getDValue();
 		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry1IntegerValue();
 	}
 
 	@Override
 	public Long getD0IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject D = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (D.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = D.at(0);
+		COSObject D = getDValue();
 		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry0IntegerValue();
 	}
 
 	@Override
 	public Boolean getD1HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject D = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (D.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = D.at(1);
+		COSObject D = getDValue();
 		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry1HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getD0HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject D = this.baseObject.getKey(ASAtom.getASAtom("D"));
-		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (D.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = D.at(0);
+		COSObject D = getDValue();
 		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry0HasTypeInteger();
 	}
 

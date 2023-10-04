@@ -399,14 +399,14 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 
 	@Override
 	public Boolean getNHasTypeName() {
-		COSObject object = getNValue();
-		return getHasTypeName(object);
+		COSObject N = getNValue();
+		return getHasTypeName(N);
 	}
 
 	@Override
 	public String getNNameValue() {
-		COSObject object = getNValue();
-		return getNameValue(object);
+		COSObject N = getNValue();
+		return getNameValue(N);
 	}
 
 	@Override
@@ -421,14 +421,14 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -443,14 +443,14 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -465,14 +465,14 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

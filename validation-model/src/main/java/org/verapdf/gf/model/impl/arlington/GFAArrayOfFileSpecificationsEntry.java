@@ -57,8 +57,8 @@ public class GFAArrayOfFileSpecificationsEntry extends GFAObject implements AArr
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

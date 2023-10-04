@@ -106,14 +106,14 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 
 	@Override
 	public Boolean getisByteRangeIndirect() {
-		COSObject object = getByteRangeValue();
-		return getisIndirect(object);
+		COSObject ByteRange = getByteRangeValue();
+		return getisIndirect(ByteRange);
 	}
 
 	@Override
 	public Boolean getByteRangeHasTypeArray() {
-		COSObject object = getByteRangeValue();
-		return getHasTypeArray(object);
+		COSObject ByteRange = getByteRangeValue();
+		return getHasTypeArray(ByteRange);
 	}
 
 	@Override
@@ -128,14 +128,14 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 
 	@Override
 	public Boolean getisMACIndirect() {
-		COSObject object = getMACValue();
-		return getisIndirect(object);
+		COSObject MAC = getMACValue();
+		return getisIndirect(MAC);
 	}
 
 	@Override
 	public Boolean getMACHasTypeStringByte() {
-		COSObject object = getMACValue();
-		return getHasTypeStringByte(object);
+		COSObject MAC = getMACValue();
+		return getHasTypeStringByte(MAC);
 	}
 
 	@Override
@@ -150,20 +150,20 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 
 	@Override
 	public Boolean getisMACLocationIndirect() {
-		COSObject object = getMACLocationValue();
-		return getisIndirect(object);
+		COSObject MACLocation = getMACLocationValue();
+		return getisIndirect(MACLocation);
 	}
 
 	@Override
 	public Boolean getMACLocationHasTypeName() {
-		COSObject object = getMACLocationValue();
-		return getHasTypeName(object);
+		COSObject MACLocation = getMACLocationValue();
+		return getHasTypeName(MACLocation);
 	}
 
 	@Override
 	public String getMACLocationNameValue() {
-		COSObject object = getMACLocationValue();
-		return getNameValue(object);
+		COSObject MACLocation = getMACLocationValue();
+		return getNameValue(MACLocation);
 	}
 
 	@Override
@@ -178,141 +178,61 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 
 	@Override
 	public Boolean getisSigObjRefIndirect() {
-		COSObject object = getSigObjRefValue();
-		return getisIndirect(object);
+		COSObject SigObjRef = getSigObjRefValue();
+		return getisIndirect(SigObjRef);
 	}
 
 	@Override
 	public Boolean getSigObjRefHasTypeDictionary() {
-		COSObject object = getSigObjRefValue();
-		return getHasTypeDictionary(object);
+		COSObject SigObjRef = getSigObjRefValue();
+		return getHasTypeDictionary(SigObjRef);
 	}
 
 	@Override
 	public Long getByteRange1IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = ByteRange.at(1);
+		COSObject ByteRange = getByteRangeValue();
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry1IntegerValue();
 	}
 
 	@Override
 	public Long getByteRange2IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 2) {
-			return null;
-		}
-		COSObject entry2 = ByteRange.at(2);
+		COSObject ByteRange = getByteRangeValue();
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry2IntegerValue();
 	}
 
 	@Override
 	public Long getByteRange0IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = ByteRange.at(0);
+		COSObject ByteRange = getByteRangeValue();
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0IntegerValue();
 	}
 
 	@Override
 	public Long getByteRange3IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 3) {
-			return null;
-		}
-		COSObject entry3 = ByteRange.at(3);
+		COSObject ByteRange = getByteRangeValue();
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry3IntegerValue();
 	}
 
 	@Override
 	public Boolean getByteRange1HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = ByteRange.at(1);
+		COSObject ByteRange = getByteRangeValue();
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry1HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getByteRange2HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 2) {
-			return null;
-		}
-		COSObject entry2 = ByteRange.at(2);
+		COSObject ByteRange = getByteRangeValue();
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry2HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getByteRange0HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = ByteRange.at(0);
+		COSObject ByteRange = getByteRangeValue();
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getByteRange3HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject ByteRange = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 3) {
-			return null;
-		}
-		COSObject entry3 = ByteRange.at(3);
+		COSObject ByteRange = getByteRangeValue();
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry3HasTypeInteger();
 	}
 

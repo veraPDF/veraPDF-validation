@@ -113,8 +113,8 @@ public class GFADPM extends GFAObject implements ADPM {
 
 	@Override
 	public Boolean getGTS_ManagedHasTypeDictionary() {
-		COSObject object = getGTS_ManagedValue();
-		return getHasTypeDictionary(object);
+		COSObject GTS_Managed = getGTS_ManagedValue();
+		return getHasTypeDictionary(GTS_Managed);
 	}
 
 	@Override
@@ -129,8 +129,8 @@ public class GFADPM extends GFAObject implements ADPM {
 
 	@Override
 	public Boolean getGTS_SuspectHasTypeDictionary() {
-		COSObject object = getGTS_SuspectValue();
-		return getHasTypeDictionary(object);
+		COSObject GTS_Suspect = getGTS_SuspectValue();
+		return getHasTypeDictionary(GTS_Suspect);
 	}
 
 	@Override

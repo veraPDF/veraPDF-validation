@@ -28,14 +28,14 @@ public class GFASoliditiesEntry extends GFAObject implements ASoliditiesEntry {
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = getValue();
-		return getHasTypeNumber(object);
+		COSObject entry = getValue();
+		return getHasTypeNumber(entry);
 	}
 
 	@Override
 	public Double getNumberValue() {
-		COSObject object = getValue();
-		return getNumberValue(object);
+		COSObject entry = getValue();
+		return getNumberValue(entry);
 	}
 
 }

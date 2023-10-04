@@ -326,8 +326,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getBGHasTypeDictionary() {
-		COSObject object = getBGValue();
-		return getHasTypeDictionary(object);
+		COSObject BG = getBGValue();
+		return getHasTypeDictionary(BG);
 	}
 
 	@Override
@@ -342,8 +342,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getC2WHasTypeArray() {
-		COSObject object = getC2WValue();
-		return getHasTypeArray(object);
+		COSObject C2W = getC2WValue();
+		return getHasTypeArray(C2W);
 	}
 
 	@Override
@@ -358,8 +358,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getCOHasTypeNumber() {
-		COSObject object = getCOValue();
-		return getHasTypeNumber(object);
+		COSObject CO = getCOValue();
+		return getHasTypeNumber(CO);
 	}
 
 	@Override
@@ -374,8 +374,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getINHasTypeString() {
-		COSObject object = getINValue();
-		return getHasTypeString(object);
+		COSObject IN = getINValue();
+		return getHasTypeString(IN);
 	}
 
 	@Override
@@ -390,8 +390,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getLSHasTypeDictionary() {
-		COSObject object = getLSValue();
-		return getHasTypeDictionary(object);
+		COSObject LS = getLSValue();
+		return getHasTypeDictionary(LS);
 	}
 
 	@Override
@@ -406,8 +406,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getMAHasTypeArray() {
-		COSObject object = getMAValue();
-		return getHasTypeArray(object);
+		COSObject MA = getMAValue();
+		return getHasTypeArray(MA);
 	}
 
 	@Override
@@ -422,14 +422,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getMSHasTypeName() {
-		COSObject object = getMSValue();
-		return getHasTypeName(object);
+		COSObject MS = getMSValue();
+		return getHasTypeName(MS);
 	}
 
 	@Override
 	public String getMSNameValue() {
-		COSObject object = getMSValue();
-		return getNameValue(object);
+		COSObject MS = getMSValue();
+		return getNameValue(MS);
 	}
 
 	@Override
@@ -444,8 +444,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getNAHasTypeArray() {
-		COSObject object = getNAValue();
-		return getHasTypeArray(object);
+		COSObject NA = getNAValue();
+		return getHasTypeArray(NA);
 	}
 
 	@Override
@@ -471,8 +471,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getNRHasTypeBoolean() {
-		COSObject object = getNRValue();
-		return getHasTypeBoolean(object);
+		COSObject NR = getNRValue();
+		return getHasTypeBoolean(NR);
 	}
 
 	@Override
@@ -487,14 +487,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getisOIndirect() {
-		COSObject object = getOValue();
-		return getisIndirect(object);
+		COSObject O = getOValue();
+		return getisIndirect(O);
 	}
 
 	@Override
 	public Boolean getOHasTypeStream() {
-		COSObject object = getOValue();
-		return getHasTypeStream(object);
+		COSObject O = getOValue();
+		return getHasTypeStream(O);
 	}
 
 	@Override
@@ -509,8 +509,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -525,8 +525,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getParamsHasTypeArray() {
-		COSObject object = getParamsValue();
-		return getHasTypeArray(object);
+		COSObject Params = getParamsValue();
+		return getHasTypeArray(Params);
 	}
 
 	@Override
@@ -541,8 +541,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getRMHasTypeDictionary() {
-		COSObject object = getRMValue();
-		return getHasTypeDictionary(object);
+		COSObject RM = getRMValue();
+		return getHasTypeDictionary(RM);
 	}
 
 	@Override
@@ -557,8 +557,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getSAHasTypeArray() {
-		COSObject object = getSAValue();
-		return getHasTypeArray(object);
+		COSObject SA = getSAValue();
+		return getHasTypeArray(SA);
 	}
 
 	@Override
@@ -573,14 +573,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getisSnapshotIndirect() {
-		COSObject object = getSnapshotValue();
-		return getisIndirect(object);
+		COSObject Snapshot = getSnapshotValue();
+		return getisIndirect(Snapshot);
 	}
 
 	@Override
 	public Boolean getSnapshotHasTypeStream() {
-		COSObject object = getSnapshotValue();
-		return getHasTypeStream(object);
+		COSObject Snapshot = getSnapshotValue();
+		return getHasTypeStream(Snapshot);
 	}
 
 	@Override
@@ -595,14 +595,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -617,14 +617,14 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getU3DPathHasTypeArray() {
-		COSObject object = getU3DPathValue();
-		return getHasTypeArray(object);
+		COSObject U3DPath = getU3DPathValue();
+		return getHasTypeArray(U3DPath);
 	}
 
 	@Override
 	public Boolean getU3DPathHasTypeString() {
-		COSObject object = getU3DPathValue();
-		return getHasTypeString(object);
+		COSObject U3DPath = getU3DPathValue();
+		return getHasTypeString(U3DPath);
 	}
 
 	@Override
@@ -639,8 +639,8 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 
 	@Override
 	public Boolean getXNHasTypeString() {
-		COSObject object = getXNValue();
-		return getHasTypeString(object);
+		COSObject XN = getXNValue();
+		return getHasTypeString(XN);
 	}
 
 	@Override

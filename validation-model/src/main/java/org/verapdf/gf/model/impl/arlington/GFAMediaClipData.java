@@ -203,8 +203,8 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getAltHasTypeArray() {
-		COSObject object = getAltValue();
-		return getHasTypeArray(object);
+		COSObject Alt = getAltValue();
+		return getHasTypeArray(Alt);
 	}
 
 	@Override
@@ -219,8 +219,8 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getBEHasTypeDictionary() {
-		COSObject object = getBEValue();
-		return getHasTypeDictionary(object);
+		COSObject BE = getBEValue();
+		return getHasTypeDictionary(BE);
 	}
 
 	@Override
@@ -235,8 +235,8 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getCTHasTypeStringAscii() {
-		COSObject object = getCTValue();
-		return getHasTypeStringAscii(object);
+		COSObject CT = getCTValue();
+		return getHasTypeStringAscii(CT);
 	}
 
 	@Override
@@ -251,26 +251,26 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getisDIndirect() {
-		COSObject object = getDValue();
-		return getisIndirect(object);
+		COSObject D = getDValue();
+		return getisIndirect(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = getDValue();
-		return getHasTypeDictionary(object);
+		COSObject D = getDValue();
+		return getHasTypeDictionary(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeStream() {
-		COSObject object = getDValue();
-		return getHasTypeStream(object);
+		COSObject D = getDValue();
+		return getHasTypeStream(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeString() {
-		COSObject object = getDValue();
-		return getHasTypeString(object);
+		COSObject D = getDValue();
+		return getHasTypeString(D);
 	}
 
 	@Override
@@ -285,8 +285,8 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getMHHasTypeDictionary() {
-		COSObject object = getMHValue();
-		return getHasTypeDictionary(object);
+		COSObject MH = getMHValue();
+		return getHasTypeDictionary(MH);
 	}
 
 	@Override
@@ -301,8 +301,8 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getNHasTypeStringText() {
-		COSObject object = getNValue();
-		return getHasTypeStringText(object);
+		COSObject N = getNValue();
+		return getHasTypeStringText(N);
 	}
 
 	@Override
@@ -317,8 +317,8 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getPHasTypeDictionary() {
-		COSObject object = getPValue();
-		return getHasTypeDictionary(object);
+		COSObject P = getPValue();
+		return getHasTypeDictionary(P);
 	}
 
 	@Override
@@ -333,8 +333,8 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getPLHasTypeDictionary() {
-		COSObject object = getPLValue();
-		return getHasTypeDictionary(object);
+		COSObject PL = getPLValue();
+		return getHasTypeDictionary(PL);
 	}
 
 	@Override
@@ -349,14 +349,14 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -371,14 +371,14 @@ public class GFAMediaClipData extends GFAObject implements AMediaClipData {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

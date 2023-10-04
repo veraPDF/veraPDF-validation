@@ -492,26 +492,26 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 
 	@Override
 	public Boolean getisBIndirect() {
-		COSObject object = getBValue();
-		return getisIndirect(object);
+		COSObject B = getBValue();
+		return getisIndirect(B);
 	}
 
 	@Override
 	public Boolean getBHasTypeDictionary() {
-		COSObject object = getBValue();
-		return getHasTypeDictionary(object);
+		COSObject B = getBValue();
+		return getHasTypeDictionary(B);
 	}
 
 	@Override
 	public Boolean getBHasTypeInteger() {
-		COSObject object = getBValue();
-		return getHasTypeInteger(object);
+		COSObject B = getBValue();
+		return getHasTypeInteger(B);
 	}
 
 	@Override
 	public Long getBIntegerValue() {
-		COSObject object = getBValue();
-		return getIntegerValue(object);
+		COSObject B = getBValue();
+		return getIntegerValue(B);
 	}
 
 	@Override
@@ -526,32 +526,32 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 
 	@Override
 	public Boolean getisDIndirect() {
-		COSObject object = getDValue();
-		return getisIndirect(object);
+		COSObject D = getDValue();
+		return getisIndirect(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = getDValue();
-		return getHasTypeDictionary(object);
+		COSObject D = getDValue();
+		return getHasTypeDictionary(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeInteger() {
-		COSObject object = getDValue();
-		return getHasTypeInteger(object);
+		COSObject D = getDValue();
+		return getHasTypeInteger(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeStringText() {
-		COSObject object = getDValue();
-		return getHasTypeStringText(object);
+		COSObject D = getDValue();
+		return getHasTypeStringText(D);
 	}
 
 	@Override
 	public Long getDIntegerValue() {
-		COSObject object = getDValue();
-		return getIntegerValue(object);
+		COSObject D = getDValue();
+		return getIntegerValue(D);
 	}
 
 	@Override
@@ -566,14 +566,14 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -588,14 +588,14 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -610,14 +610,14 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -632,42 +632,39 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
+	}
+
+	public COSObject gettrailerCatalogThreadsValue() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
+		if (Root == null || !Root.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Threads = Root.getKey(ASAtom.getASAtom("Threads"));
+		return Threads;
 	}
 
 	@Override
 	public Long gettrailerCatalogThreadsArraySize() {
-		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
-		if (trailer == null || !trailer.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
-		if (Root == null || !Root.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Threads = Root.getKey(ASAtom.getASAtom("Threads"));
-		return getArraySize(Threads);
+		COSObject trailerCatalogThreads = gettrailerCatalogThreadsValue();
+		return getArraySize(trailerCatalogThreads);
 	}
 
 	@Override
 	public Boolean gettrailerCatalogThreadsHasTypeArray() {
-		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
-		if (trailer == null || !trailer.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
-		if (Root == null || !Root.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Threads = Root.getKey(ASAtom.getASAtom("Threads"));
-		return getHasTypeArray(Threads);
+		COSObject trailerCatalogThreads = gettrailerCatalogThreadsValue();
+		return getHasTypeArray(trailerCatalogThreads);
 	}
 
 }

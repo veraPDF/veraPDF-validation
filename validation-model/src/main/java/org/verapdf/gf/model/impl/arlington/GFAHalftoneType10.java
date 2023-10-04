@@ -414,14 +414,14 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = getDLValue();
-		return getHasTypeInteger(object);
+		COSObject DL = getDLValue();
+		return getHasTypeInteger(DL);
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = getDLValue();
-		return getIntegerValue(object);
+		COSObject DL = getDLValue();
+		return getIntegerValue(DL);
 	}
 
 	@Override
@@ -436,20 +436,20 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeArray(DecodeParms);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeDictionary(DecodeParms);
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = getDecodeParmsValue();
-		return getArraySize(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getArraySize(DecodeParms);
 	}
 
 	@Override
@@ -464,14 +464,14 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -486,20 +486,20 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeArray(FDecodeParms);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeDictionary(FDecodeParms);
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = getFDecodeParmsValue();
-		return getArraySize(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getArraySize(FDecodeParms);
 	}
 
 	@Override
@@ -514,26 +514,26 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = getFFilterValue();
-		return getHasTypeArray(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeArray(FFilter);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = getFFilterValue();
-		return getHasTypeName(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeName(FFilter);
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = getFFilterValue();
-		return getNameValue(object);
+		COSObject FFilter = getFFilterValue();
+		return getNameValue(FFilter);
 	}
 
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = getFFilterValue();
-		return getArraySize(object);
+		COSObject FFilter = getFFilterValue();
+		return getArraySize(FFilter);
 	}
 
 	@Override
@@ -548,26 +548,26 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = getFilterValue();
-		return getHasTypeArray(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeArray(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = getFilterValue();
-		return getNameValue(object);
+		COSObject Filter = getFilterValue();
+		return getNameValue(Filter);
 	}
 
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = getFilterValue();
-		return getArraySize(object);
+		COSObject Filter = getFilterValue();
+		return getArraySize(Filter);
 	}
 
 	@Override
@@ -582,8 +582,8 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getHalftoneNameHasTypeStringByte() {
-		COSObject object = getHalftoneNameValue();
-		return getHasTypeStringByte(object);
+		COSObject HalftoneName = getHalftoneNameValue();
+		return getHasTypeStringByte(HalftoneName);
 	}
 
 	@Override
@@ -598,14 +598,14 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getHalftoneTypeHasTypeInteger() {
-		COSObject object = getHalftoneTypeValue();
-		return getHasTypeInteger(object);
+		COSObject HalftoneType = getHalftoneTypeValue();
+		return getHasTypeInteger(HalftoneType);
 	}
 
 	@Override
 	public Long getHalftoneTypeIntegerValue() {
-		COSObject object = getHalftoneTypeValue();
-		return getIntegerValue(object);
+		COSObject HalftoneType = getHalftoneTypeValue();
+		return getIntegerValue(HalftoneType);
 	}
 
 	@Override
@@ -620,8 +620,8 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = getLengthValue();
-		return getHasTypeInteger(object);
+		COSObject Length = getLengthValue();
+		return getHasTypeInteger(Length);
 	}
 
 	@Override
@@ -636,32 +636,32 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getisTransferFunctionIndirect() {
-		COSObject object = getTransferFunctionValue();
-		return getisIndirect(object);
+		COSObject TransferFunction = getTransferFunctionValue();
+		return getisIndirect(TransferFunction);
 	}
 
 	@Override
 	public Boolean getTransferFunctionHasTypeDictionary() {
-		COSObject object = getTransferFunctionValue();
-		return getHasTypeDictionary(object);
+		COSObject TransferFunction = getTransferFunctionValue();
+		return getHasTypeDictionary(TransferFunction);
 	}
 
 	@Override
 	public Boolean getTransferFunctionHasTypeName() {
-		COSObject object = getTransferFunctionValue();
-		return getHasTypeName(object);
+		COSObject TransferFunction = getTransferFunctionValue();
+		return getHasTypeName(TransferFunction);
 	}
 
 	@Override
 	public Boolean getTransferFunctionHasTypeStream() {
-		COSObject object = getTransferFunctionValue();
-		return getHasTypeStream(object);
+		COSObject TransferFunction = getTransferFunctionValue();
+		return getHasTypeStream(TransferFunction);
 	}
 
 	@Override
 	public String getTransferFunctionNameValue() {
-		COSObject object = getTransferFunctionValue();
-		return getNameValue(object);
+		COSObject TransferFunction = getTransferFunctionValue();
+		return getNameValue(TransferFunction);
 	}
 
 	@Override
@@ -676,14 +676,14 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -698,14 +698,14 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getXsquareHasTypeInteger() {
-		COSObject object = getXsquareValue();
-		return getHasTypeInteger(object);
+		COSObject Xsquare = getXsquareValue();
+		return getHasTypeInteger(Xsquare);
 	}
 
 	@Override
 	public Long getXsquareIntegerValue() {
-		COSObject object = getXsquareValue();
-		return getIntegerValue(object);
+		COSObject Xsquare = getXsquareValue();
+		return getIntegerValue(Xsquare);
 	}
 
 	@Override
@@ -720,32 +720,34 @@ public class GFAHalftoneType10 extends GFAObject implements AHalftoneType10 {
 
 	@Override
 	public Boolean getYsquareHasTypeInteger() {
-		COSObject object = getYsquareValue();
-		return getHasTypeInteger(object);
+		COSObject Ysquare = getYsquareValue();
+		return getHasTypeInteger(Ysquare);
 	}
 
 	@Override
 	public Long getYsquareIntegerValue() {
-		COSObject object = getYsquareValue();
-		return getIntegerValue(object);
+		COSObject Ysquare = getYsquareValue();
+		return getIntegerValue(Ysquare);
+	}
+
+	public COSObject getparentHalftoneTypeValue() {
+		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject HalftoneType = this.parentObject.getKey(ASAtom.getASAtom("HalftoneType"));
+		return HalftoneType;
 	}
 
 	@Override
 	public Long getparentHalftoneTypeIntegerValue() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject HalftoneType = this.parentObject.getKey(ASAtom.getASAtom("HalftoneType"));
-		return getIntegerValue(HalftoneType);
+		COSObject parentHalftoneType = getparentHalftoneTypeValue();
+		return getIntegerValue(parentHalftoneType);
 	}
 
 	@Override
 	public Boolean getparentHalftoneTypeHasTypeInteger() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject HalftoneType = this.parentObject.getKey(ASAtom.getASAtom("HalftoneType"));
-		return getHasTypeInteger(HalftoneType);
+		COSObject parentHalftoneType = getparentHalftoneTypeValue();
+		return getHasTypeInteger(parentHalftoneType);
 	}
 
 }

@@ -110,8 +110,8 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 
 	@Override
 	public Boolean getCTHasTypeStringAscii() {
-		COSObject object = getCTValue();
-		return getHasTypeStringAscii(object);
+		COSObject CT = getCTValue();
+		return getHasTypeStringAscii(CT);
 	}
 
 	@Override
@@ -142,14 +142,14 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 
 	@Override
 	public Boolean getFHasTypeBitmask() {
-		COSObject object = getFValue();
-		return getHasTypeBitmask(object);
+		COSObject F = getFValue();
+		return getHasTypeBitmask(F);
 	}
 
 	@Override
 	public Long getFBitmaskValue() {
-		COSObject object = getFValue();
-		return getBitmaskValue(object);
+		COSObject F = getFValue();
+		return getBitmaskValue(F);
 	}
 
 	@Override
@@ -164,8 +164,8 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 
 	@Override
 	public Boolean getHHasTypeString() {
-		COSObject object = getHValue();
-		return getHasTypeString(object);
+		COSObject H = getHValue();
+		return getHasTypeString(H);
 	}
 
 	@Override
@@ -196,14 +196,14 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 
 	@Override
 	public Boolean getLHasTypeInteger() {
-		COSObject object = getLValue();
-		return getHasTypeInteger(object);
+		COSObject L = getLValue();
+		return getHasTypeInteger(L);
 	}
 
 	@Override
 	public Long getLIntegerValue() {
-		COSObject object = getLValue();
-		return getIntegerValue(object);
+		COSObject L = getLValue();
+		return getIntegerValue(L);
 	}
 
 	@Override
@@ -218,20 +218,20 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 
 	@Override
 	public Boolean getisPIndirect() {
-		COSObject object = getPValue();
-		return getisIndirect(object);
+		COSObject P = getPValue();
+		return getisIndirect(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeStream() {
-		COSObject object = getPValue();
-		return getHasTypeStream(object);
+		COSObject P = getPValue();
+		return getHasTypeStream(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeString() {
-		COSObject object = getPValue();
-		return getHasTypeString(object);
+		COSObject P = getPValue();
+		return getHasTypeString(P);
 	}
 
 	@Override
@@ -246,8 +246,8 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 
 	@Override
 	public Boolean getSHasTypeDictionary() {
-		COSObject object = getSValue();
-		return getHasTypeDictionary(object);
+		COSObject S = getSValue();
+		return getHasTypeDictionary(S);
 	}
 
 	@Override
@@ -262,8 +262,8 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 
 	@Override
 	public Boolean getURLHasTypeStringAscii() {
-		COSObject object = getURLValue();
-		return getHasTypeStringAscii(object);
+		COSObject URL = getURLValue();
+		return getHasTypeStringAscii(URL);
 	}
 
 }

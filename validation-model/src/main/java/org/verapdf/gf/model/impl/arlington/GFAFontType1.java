@@ -123,8 +123,8 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getBaseFontHasTypeName() {
-		COSObject object = getBaseFontValue();
-		return getHasTypeName(object);
+		COSObject BaseFont = getBaseFontValue();
+		return getHasTypeName(BaseFont);
 	}
 
 	@Override
@@ -139,20 +139,20 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getEncodingHasTypeDictionary() {
-		COSObject object = getEncodingValue();
-		return getHasTypeDictionary(object);
+		COSObject Encoding = getEncodingValue();
+		return getHasTypeDictionary(Encoding);
 	}
 
 	@Override
 	public Boolean getEncodingHasTypeName() {
-		COSObject object = getEncodingValue();
-		return getHasTypeName(object);
+		COSObject Encoding = getEncodingValue();
+		return getHasTypeName(Encoding);
 	}
 
 	@Override
 	public String getEncodingNameValue() {
-		COSObject object = getEncodingValue();
-		return getNameValue(object);
+		COSObject Encoding = getEncodingValue();
+		return getNameValue(Encoding);
 	}
 
 	@Override
@@ -167,14 +167,14 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getFirstCharHasTypeInteger() {
-		COSObject object = getFirstCharValue();
-		return getHasTypeInteger(object);
+		COSObject FirstChar = getFirstCharValue();
+		return getHasTypeInteger(FirstChar);
 	}
 
 	@Override
 	public Long getFirstCharIntegerValue() {
-		COSObject object = getFirstCharValue();
-		return getIntegerValue(object);
+		COSObject FirstChar = getFirstCharValue();
+		return getIntegerValue(FirstChar);
 	}
 
 	@Override
@@ -189,14 +189,14 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getisFontDescriptorIndirect() {
-		COSObject object = getFontDescriptorValue();
-		return getisIndirect(object);
+		COSObject FontDescriptor = getFontDescriptorValue();
+		return getisIndirect(FontDescriptor);
 	}
 
 	@Override
 	public Boolean getFontDescriptorHasTypeDictionary() {
-		COSObject object = getFontDescriptorValue();
-		return getHasTypeDictionary(object);
+		COSObject FontDescriptor = getFontDescriptorValue();
+		return getHasTypeDictionary(FontDescriptor);
 	}
 
 	@Override
@@ -211,14 +211,14 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getLastCharHasTypeInteger() {
-		COSObject object = getLastCharValue();
-		return getHasTypeInteger(object);
+		COSObject LastChar = getLastCharValue();
+		return getHasTypeInteger(LastChar);
 	}
 
 	@Override
 	public Long getLastCharIntegerValue() {
-		COSObject object = getLastCharValue();
-		return getIntegerValue(object);
+		COSObject LastChar = getLastCharValue();
+		return getIntegerValue(LastChar);
 	}
 
 	@Override
@@ -233,8 +233,8 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getNameHasTypeName() {
-		COSObject object = getNameValue();
-		return getHasTypeName(object);
+		COSObject Name = getNameValue();
+		return getHasTypeName(Name);
 	}
 
 	@Override
@@ -249,14 +249,14 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -271,14 +271,14 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getisToUnicodeIndirect() {
-		COSObject object = getToUnicodeValue();
-		return getisIndirect(object);
+		COSObject ToUnicode = getToUnicodeValue();
+		return getisIndirect(ToUnicode);
 	}
 
 	@Override
 	public Boolean getToUnicodeHasTypeStream() {
-		COSObject object = getToUnicodeValue();
-		return getHasTypeStream(object);
+		COSObject ToUnicode = getToUnicodeValue();
+		return getHasTypeStream(ToUnicode);
 	}
 
 	@Override
@@ -293,14 +293,14 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -315,14 +315,14 @@ public class GFAFontType1 extends GFAObject implements AFontType1 {
 
 	@Override
 	public Boolean getWidthsHasTypeArray() {
-		COSObject object = getWidthsValue();
-		return getHasTypeArray(object);
+		COSObject Widths = getWidthsValue();
+		return getHasTypeArray(Widths);
 	}
 
 	@Override
 	public Long getWidthsArraySize() {
-		COSObject object = getWidthsValue();
-		return getArraySize(object);
+		COSObject Widths = getWidthsValue();
+		return getArraySize(Widths);
 	}
 
 }

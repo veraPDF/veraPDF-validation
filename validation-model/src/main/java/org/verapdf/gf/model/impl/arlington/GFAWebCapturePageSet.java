@@ -99,8 +99,8 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getCTHasTypeStringAscii() {
-		COSObject object = getCTValue();
-		return getHasTypeStringAscii(object);
+		COSObject CT = getCTValue();
+		return getHasTypeStringAscii(CT);
 	}
 
 	@Override
@@ -115,8 +115,8 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getentryIDHasTypeStringByte() {
-		COSObject object = getentryIDValue();
-		return getHasTypeStringByte(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeStringByte(entryID);
 	}
 
 	@Override
@@ -131,8 +131,8 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getOHasTypeArray() {
-		COSObject object = getOValue();
-		return getHasTypeArray(object);
+		COSObject O = getOValue();
+		return getHasTypeArray(O);
 	}
 
 	@Override
@@ -147,14 +147,14 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -169,14 +169,14 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getSIHasTypeArray() {
-		COSObject object = getSIValue();
-		return getHasTypeArray(object);
+		COSObject SI = getSIValue();
+		return getHasTypeArray(SI);
 	}
 
 	@Override
 	public Boolean getSIHasTypeDictionary() {
-		COSObject object = getSIValue();
-		return getHasTypeDictionary(object);
+		COSObject SI = getSIValue();
+		return getHasTypeDictionary(SI);
 	}
 
 	@Override
@@ -191,8 +191,8 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = getTValue();
-		return getHasTypeStringText(object);
+		COSObject T = getTValue();
+		return getHasTypeStringText(T);
 	}
 
 	@Override
@@ -207,8 +207,8 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getTIDHasTypeStringByte() {
-		COSObject object = getTIDValue();
-		return getHasTypeStringByte(object);
+		COSObject TID = getTIDValue();
+		return getHasTypeStringByte(TID);
 	}
 
 	@Override
@@ -223,8 +223,8 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getTSHasTypeDate() {
-		COSObject object = getTSValue();
-		return getHasTypeDate(object);
+		COSObject TS = getTSValue();
+		return getHasTypeDate(TS);
 	}
 
 	@Override
@@ -239,14 +239,14 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

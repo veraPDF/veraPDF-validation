@@ -57,14 +57,14 @@ public class GFARoleMapNSEntry extends GFAObject implements ARoleMapNSEntry {
 
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = getValue();
-		return getHasTypeArray(object);
+		COSObject entry = getValue();
+		return getHasTypeArray(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 }

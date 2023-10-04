@@ -60,8 +60,8 @@ public class GFAArrayOfOCUsageEntry extends GFAObject implements AArrayOfOCUsage
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

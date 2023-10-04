@@ -62,8 +62,8 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
@@ -91,14 +91,14 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 
 	@Override
 	public Boolean getCSHasTypeName() {
-		COSObject object = getCSValue();
-		return getHasTypeName(object);
+		COSObject CS = getCSValue();
+		return getHasTypeName(CS);
 	}
 
 	@Override
 	public String getCSNameValue() {
-		COSObject object = getCSValue();
-		return getNameValue(object);
+		COSObject CS = getCSValue();
+		return getNameValue(CS);
 	}
 
 	@Override
@@ -126,8 +126,8 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 
 	@Override
 	public Boolean getEAHasTypeBoolean() {
-		COSObject object = getEAValue();
-		return getHasTypeBoolean(object);
+		COSObject EA = getEAValue();
+		return getHasTypeBoolean(EA);
 	}
 
 	@Override
@@ -155,14 +155,14 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -177,14 +177,14 @@ public class GFA3DBackground extends GFAObject implements A3DBackground {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

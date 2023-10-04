@@ -295,14 +295,14 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -331,8 +331,8 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 
 	@Override
 	public Boolean getPreserveRBHasTypeBoolean() {
-		COSObject object = getPreserveRBValue();
-		return getHasTypeBoolean(object);
+		COSObject PreserveRB = getPreserveRBValue();
+		return getHasTypeBoolean(PreserveRB);
 	}
 
 	@Override
@@ -347,14 +347,14 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -369,8 +369,8 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 
 	@Override
 	public Boolean getStateHasTypeArray() {
-		COSObject object = getStateValue();
-		return getHasTypeArray(object);
+		COSObject State = getStateValue();
+		return getHasTypeArray(State);
 	}
 
 	@Override
@@ -385,14 +385,14 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

@@ -53,20 +53,20 @@ public class GFADest0Array extends GFAObject implements ADest0Array {
 
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
-		COSObject object = getentry0Value();
-		return getHasTypeDictionary(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeDictionary(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
-		COSObject object = getentry0Value();
-		return getHasTypeNumber(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeNumber(entry0);
 	}
 
 	@Override
 	public Double getentry0NumberValue() {
-		COSObject object = getentry0Value();
-		return getNumberValue(object);
+		COSObject entry0 = getentry0Value();
+		return getNumberValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -79,14 +79,14 @@ public class GFADest0Array extends GFAObject implements ADest0Array {
 
 	@Override
 	public Boolean getentry1HasTypeName() {
-		COSObject object = getentry1Value();
-		return getHasTypeName(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeName(entry1);
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		COSObject object = getentry1Value();
-		return getNameValue(object);
+		COSObject entry1 = getentry1Value();
+		return getNameValue(entry1);
 	}
 
 }

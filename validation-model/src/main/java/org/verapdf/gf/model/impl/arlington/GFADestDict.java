@@ -127,8 +127,8 @@ public class GFADestDict extends GFAObject implements ADestDict {
 
 	@Override
 	public Boolean getDHasTypeArray() {
-		COSObject object = getDValue();
-		return getHasTypeArray(object);
+		COSObject D = getDValue();
+		return getHasTypeArray(D);
 	}
 
 	@Override
@@ -143,8 +143,8 @@ public class GFADestDict extends GFAObject implements ADestDict {
 
 	@Override
 	public Boolean getSDHasTypeArray() {
-		COSObject object = getSDValue();
-		return getHasTypeArray(object);
+		COSObject SD = getSDValue();
+		return getHasTypeArray(SD);
 	}
 
 }

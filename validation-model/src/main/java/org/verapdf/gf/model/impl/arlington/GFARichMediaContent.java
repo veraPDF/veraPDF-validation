@@ -111,8 +111,8 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 
 	@Override
 	public Boolean getAssetsHasTypeNameTree() {
-		COSObject object = getAssetsValue();
-		return getHasTypeNameTree(object);
+		COSObject Assets = getAssetsValue();
+		return getHasTypeNameTree(Assets);
 	}
 
 	@Override
@@ -127,14 +127,14 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 
 	@Override
 	public Boolean getConfigurationsHasTypeArray() {
-		COSObject object = getConfigurationsValue();
-		return getHasTypeArray(object);
+		COSObject Configurations = getConfigurationsValue();
+		return getHasTypeArray(Configurations);
 	}
 
 	@Override
 	public Long getConfigurationsArraySize() {
-		COSObject object = getConfigurationsValue();
-		return getArraySize(object);
+		COSObject Configurations = getConfigurationsValue();
+		return getArraySize(Configurations);
 	}
 
 	@Override
@@ -149,14 +149,14 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -171,8 +171,8 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 
 	@Override
 	public Boolean getViewsHasTypeArray() {
-		COSObject object = getViewsValue();
-		return getHasTypeArray(object);
+		COSObject Views = getViewsValue();
+		return getHasTypeArray(Views);
 	}
 
 	@Override

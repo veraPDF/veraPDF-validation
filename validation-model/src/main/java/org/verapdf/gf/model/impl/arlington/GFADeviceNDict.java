@@ -117,8 +117,8 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 
 	@Override
 	public Boolean getColorantsHasTypeDictionary() {
-		COSObject object = getColorantsValue();
-		return getHasTypeDictionary(object);
+		COSObject Colorants = getColorantsValue();
+		return getHasTypeDictionary(Colorants);
 	}
 
 	@Override
@@ -133,8 +133,8 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 
 	@Override
 	public Boolean getMixingHintsHasTypeDictionary() {
-		COSObject object = getMixingHintsValue();
-		return getHasTypeDictionary(object);
+		COSObject MixingHints = getMixingHintsValue();
+		return getHasTypeDictionary(MixingHints);
 	}
 
 	@Override
@@ -149,8 +149,8 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 
 	@Override
 	public Boolean getProcessHasTypeDictionary() {
-		COSObject object = getProcessValue();
-		return getHasTypeDictionary(object);
+		COSObject Process = getProcessValue();
+		return getHasTypeDictionary(Process);
 	}
 
 	@Override
@@ -178,18 +178,17 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
-	@Override
-	public String getparent1EntriesString() {
+	public COSObject getparent1Value() {
 		if (this.parentObject == null || this.parentObject.getType() != COSObjType.COS_ARRAY) {
 			return null;
 		}
@@ -197,7 +196,13 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 			return null;
 		}
 		COSObject entry1 = this.parentObject.at(1);
-		return getEntriesString(entry1);
+		return entry1;
+	}
+
+	@Override
+	public String getparent1EntriesString() {
+		COSObject parent1 = getparent1Value();
+		return getEntriesString(parent1);
 	}
 
 }

@@ -41,14 +41,14 @@ public class GFAProjection extends GFAObject implements AProjection {
 
 	@Override
 	public Boolean getCSHasTypeName() {
-		COSObject object = getCSValue();
-		return getHasTypeName(object);
+		COSObject CS = getCSValue();
+		return getHasTypeName(CS);
 	}
 
 	@Override
 	public String getCSNameValue() {
-		COSObject object = getCSValue();
-		return getNameValue(object);
+		COSObject CS = getCSValue();
+		return getNameValue(CS);
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class GFAProjection extends GFAObject implements AProjection {
 
 	@Override
 	public Boolean getFHasTypeNumber() {
-		COSObject object = getFValue();
-		return getHasTypeNumber(object);
+		COSObject F = getFValue();
+		return getHasTypeNumber(F);
 	}
 
 	@Override
@@ -79,14 +79,14 @@ public class GFAProjection extends GFAObject implements AProjection {
 
 	@Override
 	public Boolean getFOVHasTypeNumber() {
-		COSObject object = getFOVValue();
-		return getHasTypeNumber(object);
+		COSObject FOV = getFOVValue();
+		return getHasTypeNumber(FOV);
 	}
 
 	@Override
 	public Double getFOVNumberValue() {
-		COSObject object = getFOVValue();
-		return getNumberValue(object);
+		COSObject FOV = getFOVValue();
+		return getNumberValue(FOV);
 	}
 
 	@Override
@@ -114,14 +114,14 @@ public class GFAProjection extends GFAObject implements AProjection {
 
 	@Override
 	public Boolean getNHasTypeNumber() {
-		COSObject object = getNValue();
-		return getHasTypeNumber(object);
+		COSObject N = getNValue();
+		return getHasTypeNumber(N);
 	}
 
 	@Override
 	public Double getNNumberValue() {
-		COSObject object = getNValue();
-		return getNumberValue(object);
+		COSObject N = getNValue();
+		return getNumberValue(N);
 	}
 
 	@Override
@@ -148,14 +148,14 @@ public class GFAProjection extends GFAObject implements AProjection {
 
 	@Override
 	public Boolean getOBHasTypeName() {
-		COSObject object = getOBValue();
-		return getHasTypeName(object);
+		COSObject OB = getOBValue();
+		return getHasTypeName(OB);
 	}
 
 	@Override
 	public String getOBNameValue() {
-		COSObject object = getOBValue();
-		return getNameValue(object);
+		COSObject OB = getOBValue();
+		return getNameValue(OB);
 	}
 
 	@Override
@@ -183,14 +183,14 @@ public class GFAProjection extends GFAObject implements AProjection {
 
 	@Override
 	public Boolean getOSHasTypeNumber() {
-		COSObject object = getOSValue();
-		return getHasTypeNumber(object);
+		COSObject OS = getOSValue();
+		return getHasTypeNumber(OS);
 	}
 
 	@Override
 	public Double getOSNumberValue() {
-		COSObject object = getOSValue();
-		return getNumberValue(object);
+		COSObject OS = getOSValue();
+		return getNumberValue(OS);
 	}
 
 	@Override
@@ -205,20 +205,20 @@ public class GFAProjection extends GFAObject implements AProjection {
 
 	@Override
 	public Boolean getPSHasTypeName() {
-		COSObject object = getPSValue();
-		return getHasTypeName(object);
+		COSObject PS = getPSValue();
+		return getHasTypeName(PS);
 	}
 
 	@Override
 	public Boolean getPSHasTypeNumber() {
-		COSObject object = getPSValue();
-		return getHasTypeNumber(object);
+		COSObject PS = getPSValue();
+		return getHasTypeNumber(PS);
 	}
 
 	@Override
 	public Double getPSNumberValue() {
-		COSObject object = getPSValue();
-		return getNumberValue(object);
+		COSObject PS = getPSValue();
+		return getNumberValue(PS);
 	}
 
 	@Override
@@ -233,14 +233,14 @@ public class GFAProjection extends GFAObject implements AProjection {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 }

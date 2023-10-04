@@ -171,8 +171,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getAHasTypeBoolean() {
-		COSObject object = getAValue();
-		return getHasTypeBoolean(object);
+		COSObject A = getAValue();
+		return getHasTypeBoolean(A);
 	}
 
 	@Override
@@ -187,8 +187,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getCHasTypeBoolean() {
-		COSObject object = getCValue();
-		return getHasTypeBoolean(object);
+		COSObject C = getCValue();
+		return getHasTypeBoolean(C);
 	}
 
 	@Override
@@ -203,8 +203,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getDHasTypeDictionary() {
-		COSObject object = getDValue();
-		return getHasTypeDictionary(object);
+		COSObject D = getDValue();
+		return getHasTypeDictionary(D);
 	}
 
 	@Override
@@ -219,8 +219,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getLHasTypeArray() {
-		COSObject object = getLValue();
-		return getHasTypeArray(object);
+		COSObject L = getLValue();
+		return getHasTypeArray(L);
 	}
 
 	@Override
@@ -235,8 +235,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getOHasTypeBoolean() {
-		COSObject object = getOValue();
-		return getHasTypeBoolean(object);
+		COSObject O = getOValue();
+		return getHasTypeBoolean(O);
 	}
 
 	@Override
@@ -251,8 +251,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getPHasTypeArray() {
-		COSObject object = getPValue();
-		return getHasTypeArray(object);
+		COSObject P = getPValue();
+		return getHasTypeArray(P);
 	}
 
 	@Override
@@ -267,14 +267,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = getRValue();
-		return getHasTypeInteger(object);
+		COSObject R = getRValue();
+		return getHasTypeInteger(R);
 	}
 
 	@Override
 	public Long getRIntegerValue() {
-		COSObject object = getRValue();
-		return getIntegerValue(object);
+		COSObject R = getRValue();
+		return getIntegerValue(R);
 	}
 
 	@Override
@@ -289,8 +289,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getSHasTypeBoolean() {
-		COSObject object = getSValue();
-		return getHasTypeBoolean(object);
+		COSObject S = getSValue();
+		return getHasTypeBoolean(S);
 	}
 
 	@Override
@@ -305,14 +305,14 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -327,8 +327,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getVHasTypeArray() {
-		COSObject object = getVValue();
-		return getHasTypeArray(object);
+		COSObject V = getVValue();
+		return getHasTypeArray(V);
 	}
 
 	@Override
@@ -343,8 +343,8 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 
 	@Override
 	public Boolean getZHasTypeDictionary() {
-		COSObject object = getZValue();
-		return getHasTypeDictionary(object);
+		COSObject Z = getZValue();
+		return getHasTypeDictionary(Z);
 	}
 
 }

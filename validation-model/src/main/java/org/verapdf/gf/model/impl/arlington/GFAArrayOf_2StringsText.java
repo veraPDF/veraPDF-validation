@@ -26,8 +26,8 @@ public class GFAArrayOf_2StringsText extends GFAObject implements AArrayOf_2Stri
 
 	@Override
 	public Boolean getentry0HasTypeStringText() {
-		COSObject object = getentry0Value();
-		return getHasTypeStringText(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeStringText(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -40,8 +40,8 @@ public class GFAArrayOf_2StringsText extends GFAObject implements AArrayOf_2Stri
 
 	@Override
 	public Boolean getentry1HasTypeStringText() {
-		COSObject object = getentry1Value();
-		return getHasTypeStringText(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeStringText(entry1);
 	}
 
 }

@@ -246,14 +246,14 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getBaseFontHasTypeName() {
-		COSObject object = getBaseFontValue();
-		return getHasTypeName(object);
+		COSObject BaseFont = getBaseFontValue();
+		return getHasTypeName(BaseFont);
 	}
 
 	@Override
 	public String getBaseFontNameValue() {
-		COSObject object = getBaseFontValue();
-		return getNameValue(object);
+		COSObject BaseFont = getBaseFontValue();
+		return getNameValue(BaseFont);
 	}
 
 	@Override
@@ -268,8 +268,8 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getCIDSystemInfoHasTypeDictionary() {
-		COSObject object = getCIDSystemInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject CIDSystemInfo = getCIDSystemInfoValue();
+		return getHasTypeDictionary(CIDSystemInfo);
 	}
 
 	@Override
@@ -284,26 +284,26 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getisCIDToGIDMapIndirect() {
-		COSObject object = getCIDToGIDMapValue();
-		return getisIndirect(object);
+		COSObject CIDToGIDMap = getCIDToGIDMapValue();
+		return getisIndirect(CIDToGIDMap);
 	}
 
 	@Override
 	public Boolean getCIDToGIDMapHasTypeName() {
-		COSObject object = getCIDToGIDMapValue();
-		return getHasTypeName(object);
+		COSObject CIDToGIDMap = getCIDToGIDMapValue();
+		return getHasTypeName(CIDToGIDMap);
 	}
 
 	@Override
 	public Boolean getCIDToGIDMapHasTypeStream() {
-		COSObject object = getCIDToGIDMapValue();
-		return getHasTypeStream(object);
+		COSObject CIDToGIDMap = getCIDToGIDMapValue();
+		return getHasTypeStream(CIDToGIDMap);
 	}
 
 	@Override
 	public String getCIDToGIDMapNameValue() {
-		COSObject object = getCIDToGIDMapValue();
-		return getNameValue(object);
+		COSObject CIDToGIDMap = getCIDToGIDMapValue();
+		return getNameValue(CIDToGIDMap);
 	}
 
 	@Override
@@ -335,8 +335,8 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getDWHasTypeNumber() {
-		COSObject object = getDWValue();
-		return getHasTypeNumber(object);
+		COSObject DW = getDWValue();
+		return getHasTypeNumber(DW);
 	}
 
 	@Override
@@ -351,8 +351,8 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getDW2HasTypeArray() {
-		COSObject object = getDW2Value();
-		return getHasTypeArray(object);
+		COSObject DW2 = getDW2Value();
+		return getHasTypeArray(DW2);
 	}
 
 	@Override
@@ -367,14 +367,14 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getisFontDescriptorIndirect() {
-		COSObject object = getFontDescriptorValue();
-		return getisIndirect(object);
+		COSObject FontDescriptor = getFontDescriptorValue();
+		return getisIndirect(FontDescriptor);
 	}
 
 	@Override
 	public Boolean getFontDescriptorHasTypeDictionary() {
-		COSObject object = getFontDescriptorValue();
-		return getHasTypeDictionary(object);
+		COSObject FontDescriptor = getFontDescriptorValue();
+		return getHasTypeDictionary(FontDescriptor);
 	}
 
 	@Override
@@ -389,14 +389,14 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -411,14 +411,14 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getisToUnicodeIndirect() {
-		COSObject object = getToUnicodeValue();
-		return getisIndirect(object);
+		COSObject ToUnicode = getToUnicodeValue();
+		return getisIndirect(ToUnicode);
 	}
 
 	@Override
 	public Boolean getToUnicodeHasTypeStream() {
-		COSObject object = getToUnicodeValue();
-		return getHasTypeStream(object);
+		COSObject ToUnicode = getToUnicodeValue();
+		return getHasTypeStream(ToUnicode);
 	}
 
 	@Override
@@ -433,14 +433,14 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -455,8 +455,8 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getWHasTypeArray() {
-		COSObject object = getWValue();
-		return getHasTypeArray(object);
+		COSObject W = getWValue();
+		return getHasTypeArray(W);
 	}
 
 	@Override
@@ -471,16 +471,13 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 
 	@Override
 	public Boolean getW2HasTypeArray() {
-		COSObject object = getW2Value();
-		return getHasTypeArray(object);
+		COSObject W2 = getW2Value();
+		return getHasTypeArray(W2);
 	}
 
 	@Override
 	public Boolean getcontainsFontDescriptorFontFile2() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FontDescriptor = this.baseObject.getKey(ASAtom.getASAtom("FontDescriptor"));
+		COSObject FontDescriptor = getFontDescriptorValue();
 		return FontDescriptor.knownKey(ASAtom.getASAtom("FontFile2"));
 	}
 

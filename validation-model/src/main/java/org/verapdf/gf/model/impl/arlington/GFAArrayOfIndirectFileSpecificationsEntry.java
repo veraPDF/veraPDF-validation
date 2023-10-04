@@ -58,22 +58,31 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 
 	@Override
 	public Boolean getisIndirect() {
-		COSObject object = getValue();
-		return getisIndirect(object);
+		COSObject entry = getValue();
+		return getisIndirect(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getnameTreeparentRichMediaContentAssetsContainsString() {
-		COSObject object = getValue();
-		if (object == null || object.getType() != COSObjType.COS_STRING) {
+		COSObject entry = getValue();
+		if (entry == null || entry.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
+		COSObject parentRichMediaContentAssets = getparentRichMediaContentAssetsValue();
+		if (parentRichMediaContentAssets == null || parentRichMediaContentAssets.getType() != COSObjType.COS_DICT) {
+			return false;
+		}
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(parentRichMediaContentAssets);
+		return nameTreeNode.getObject(entry.getString()) != null;
+	}
+
+	public COSObject getparentRichMediaContentAssetsValue() {
 		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -82,11 +91,7 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 			return null;
 		}
 		COSObject Assets = RichMediaContent.getKey(ASAtom.getASAtom("Assets"));
-		if (Assets == null || Assets.getType() != COSObjType.COS_DICT) {
-			return false;
-		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(Assets);
-		return nameTreeNode.getObject(object.getString()) != null;
+		return Assets;
 	}
 
 	@Override

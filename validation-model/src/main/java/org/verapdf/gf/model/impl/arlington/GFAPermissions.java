@@ -90,14 +90,14 @@ public class GFAPermissions extends GFAObject implements APermissions {
 
 	@Override
 	public Boolean getisDocMDPIndirect() {
-		COSObject object = getDocMDPValue();
-		return getisIndirect(object);
+		COSObject DocMDP = getDocMDPValue();
+		return getisIndirect(DocMDP);
 	}
 
 	@Override
 	public Boolean getDocMDPHasTypeDictionary() {
-		COSObject object = getDocMDPValue();
-		return getHasTypeDictionary(object);
+		COSObject DocMDP = getDocMDPValue();
+		return getHasTypeDictionary(DocMDP);
 	}
 
 	@Override
@@ -112,12 +112,11 @@ public class GFAPermissions extends GFAObject implements APermissions {
 
 	@Override
 	public Boolean getUR3HasTypeDictionary() {
-		COSObject object = getUR3Value();
-		return getHasTypeDictionary(object);
+		COSObject UR3 = getUR3Value();
+		return getHasTypeDictionary(UR3);
 	}
 
-	@Override
-	public Long getDocMDPReferenceArraySize() {
+	public COSObject getDocMDPReferenceValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -126,11 +125,10 @@ public class GFAPermissions extends GFAObject implements APermissions {
 			return null;
 		}
 		COSObject Reference = DocMDP.getKey(ASAtom.getASAtom("Reference"));
-		return getArraySize(Reference);
+		return Reference;
 	}
 
-	@Override
-	public String getUR3Reference0TransformMethodNameValue() {
+	public COSObject getUR3Reference0TransformMethodValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -150,20 +148,25 @@ public class GFAPermissions extends GFAObject implements APermissions {
 			return null;
 		}
 		COSObject TransformMethod = entry0.getKey(ASAtom.getASAtom("TransformMethod"));
-		return getNameValue(TransformMethod);
+		return TransformMethod;
+	}
+
+	@Override
+	public Long getDocMDPReferenceArraySize() {
+		COSObject DocMDPReference = getDocMDPReferenceValue();
+		return getArraySize(DocMDPReference);
+	}
+
+	@Override
+	public String getUR3Reference0TransformMethodNameValue() {
+		COSObject UR3Reference0TransformMethod = getUR3Reference0TransformMethodValue();
+		return getNameValue(UR3Reference0TransformMethod);
 	}
 
 	@Override
 	public Boolean getDocMDPReferenceHasTypeArray() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject DocMDP = this.baseObject.getKey(ASAtom.getASAtom("DocMDP"));
-		if (DocMDP == null || !DocMDP.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Reference = DocMDP.getKey(ASAtom.getASAtom("Reference"));
-		return getHasTypeArray(Reference);
+		COSObject DocMDPReference = getDocMDPReferenceValue();
+		return getHasTypeArray(DocMDPReference);
 	}
 
 }

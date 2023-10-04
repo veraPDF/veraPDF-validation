@@ -461,14 +461,14 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -483,8 +483,8 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 
 	@Override
 	public Boolean getMacHasTypeNull() {
-		COSObject object = getMacValue();
-		return getHasTypeNull(object);
+		COSObject Mac = getMacValue();
+		return getHasTypeNull(Mac);
 	}
 
 	@Override
@@ -499,8 +499,8 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 
 	@Override
 	public Boolean getNewWindowHasTypeBoolean() {
-		COSObject object = getNewWindowValue();
-		return getHasTypeBoolean(object);
+		COSObject NewWindow = getNewWindowValue();
+		return getHasTypeBoolean(NewWindow);
 	}
 
 	@Override
@@ -515,14 +515,14 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -537,14 +537,14 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -559,14 +559,14 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -581,8 +581,8 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 
 	@Override
 	public Boolean getUnixHasTypeNull() {
-		COSObject object = getUnixValue();
-		return getHasTypeNull(object);
+		COSObject Unix = getUnixValue();
+		return getHasTypeNull(Unix);
 	}
 
 	@Override
@@ -597,8 +597,8 @@ public class GFAActionLaunch extends GFAObject implements AActionLaunch {
 
 	@Override
 	public Boolean getWinHasTypeDictionary() {
-		COSObject object = getWinValue();
-		return getHasTypeDictionary(object);
+		COSObject Win = getWinValue();
+		return getHasTypeDictionary(Win);
 	}
 
 }

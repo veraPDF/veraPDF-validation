@@ -406,20 +406,20 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	@Override
 	public Boolean getisentry0Indirect() {
-		COSObject object = getentry0Value();
-		return getisIndirect(object);
+		COSObject entry0 = getentry0Value();
+		return getisIndirect(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
-		COSObject object = getentry0Value();
-		return getHasTypeDictionary(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeDictionary(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStream() {
-		COSObject object = getentry0Value();
-		return getHasTypeStream(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeStream(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -432,20 +432,20 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	@Override
 	public Boolean getisentry1Indirect() {
-		COSObject object = getentry1Value();
-		return getisIndirect(object);
+		COSObject entry1 = getentry1Value();
+		return getisIndirect(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeDictionary() {
-		COSObject object = getentry1Value();
-		return getHasTypeDictionary(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeDictionary(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStream() {
-		COSObject object = getentry1Value();
-		return getHasTypeStream(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeStream(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -458,20 +458,20 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	@Override
 	public Boolean getisentry2Indirect() {
-		COSObject object = getentry2Value();
-		return getisIndirect(object);
+		COSObject entry2 = getentry2Value();
+		return getisIndirect(entry2);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeDictionary() {
-		COSObject object = getentry2Value();
-		return getHasTypeDictionary(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeDictionary(entry2);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeStream() {
-		COSObject object = getentry2Value();
-		return getHasTypeStream(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeStream(entry2);
 	}
 
 	public COSObject getentry3Value() {
@@ -484,20 +484,20 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	@Override
 	public Boolean getisentry3Indirect() {
-		COSObject object = getentry3Value();
-		return getisIndirect(object);
+		COSObject entry3 = getentry3Value();
+		return getisIndirect(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeDictionary() {
-		COSObject object = getentry3Value();
-		return getHasTypeDictionary(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeDictionary(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeStream() {
-		COSObject object = getentry3Value();
-		return getHasTypeStream(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeStream(entry3);
 	}
 
 }

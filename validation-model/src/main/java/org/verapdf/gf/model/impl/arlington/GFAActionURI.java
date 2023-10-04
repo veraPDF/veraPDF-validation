@@ -417,8 +417,8 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 
 	@Override
 	public Boolean getIsMapHasTypeBoolean() {
-		COSObject object = getIsMapValue();
-		return getHasTypeBoolean(object);
+		COSObject IsMap = getIsMapValue();
+		return getHasTypeBoolean(IsMap);
 	}
 
 	@Override
@@ -433,14 +433,14 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -455,14 +455,14 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -477,14 +477,14 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -499,8 +499,8 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 
 	@Override
 	public Boolean getURIHasTypeStringAscii() {
-		COSObject object = getURIValue();
-		return getHasTypeStringAscii(object);
+		COSObject URI = getURIValue();
+		return getHasTypeStringAscii(URI);
 	}
 
 }

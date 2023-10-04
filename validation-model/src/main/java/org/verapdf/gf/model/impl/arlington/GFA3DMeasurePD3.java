@@ -236,8 +236,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getA1HasTypeArray() {
-		COSObject object = getA1Value();
-		return getHasTypeArray(object);
+		COSObject A1 = getA1Value();
+		return getHasTypeArray(A1);
 	}
 
 	@Override
@@ -252,8 +252,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getA2HasTypeArray() {
-		COSObject object = getA2Value();
-		return getHasTypeArray(object);
+		COSObject A2 = getA2Value();
+		return getHasTypeArray(A2);
 	}
 
 	@Override
@@ -268,8 +268,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getAPHasTypeArray() {
-		COSObject object = getAPValue();
-		return getHasTypeArray(object);
+		COSObject AP = getAPValue();
+		return getHasTypeArray(AP);
 	}
 
 	@Override
@@ -284,8 +284,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getCHasTypeArray() {
-		COSObject object = getCValue();
-		return getHasTypeArray(object);
+		COSObject C = getCValue();
+		return getHasTypeArray(C);
 	}
 
 	@Override
@@ -300,8 +300,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getD1HasTypeArray() {
-		COSObject object = getD1Value();
-		return getHasTypeArray(object);
+		COSObject D1 = getD1Value();
+		return getHasTypeArray(D1);
 	}
 
 	@Override
@@ -316,8 +316,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getN1HasTypeStringText() {
-		COSObject object = getN1Value();
-		return getHasTypeStringText(object);
+		COSObject N1 = getN1Value();
+		return getHasTypeStringText(N1);
 	}
 
 	@Override
@@ -332,8 +332,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getN2HasTypeStringText() {
-		COSObject object = getN2Value();
-		return getHasTypeStringText(object);
+		COSObject N2 = getN2Value();
+		return getHasTypeStringText(N2);
 	}
 
 	@Override
@@ -360,14 +360,14 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getPHasTypeInteger() {
-		COSObject object = getPValue();
-		return getHasTypeInteger(object);
+		COSObject P = getPValue();
+		return getHasTypeInteger(P);
 	}
 
 	@Override
 	public Long getPIntegerValue() {
-		COSObject object = getPValue();
-		return getIntegerValue(object);
+		COSObject P = getPValue();
+		return getIntegerValue(P);
 	}
 
 	@Override
@@ -382,14 +382,14 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getisSIndirect() {
-		COSObject object = getSValue();
-		return getisIndirect(object);
+		COSObject S = getSValue();
+		return getisIndirect(S);
 	}
 
 	@Override
 	public Boolean getSHasTypeDictionary() {
-		COSObject object = getSValue();
-		return getHasTypeDictionary(object);
+		COSObject S = getSValue();
+		return getHasTypeDictionary(S);
 	}
 
 	@Override
@@ -404,14 +404,14 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -426,8 +426,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getTPHasTypeArray() {
-		COSObject object = getTPValue();
-		return getHasTypeArray(object);
+		COSObject TP = getTPValue();
+		return getHasTypeArray(TP);
 	}
 
 	@Override
@@ -442,8 +442,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getTRLHasTypeStringText() {
-		COSObject object = getTRLValue();
-		return getHasTypeStringText(object);
+		COSObject TRL = getTRLValue();
+		return getHasTypeStringText(TRL);
 	}
 
 	@Override
@@ -470,8 +470,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getTSHasTypeNumber() {
-		COSObject object = getTSValue();
-		return getHasTypeNumber(object);
+		COSObject TS = getTSValue();
+		return getHasTypeNumber(TS);
 	}
 
 	@Override
@@ -486,8 +486,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getTYHasTypeArray() {
-		COSObject object = getTYValue();
-		return getHasTypeArray(object);
+		COSObject TY = getTYValue();
+		return getHasTypeArray(TY);
 	}
 
 	@Override
@@ -502,14 +502,14 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -524,8 +524,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getUHasTypeStringText() {
-		COSObject object = getUValue();
-		return getHasTypeStringText(object);
+		COSObject U = getUValue();
+		return getHasTypeStringText(U);
 	}
 
 	@Override
@@ -540,8 +540,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getUTHasTypeStringText() {
-		COSObject object = getUTValue();
-		return getHasTypeStringText(object);
+		COSObject UT = getUTValue();
+		return getHasTypeStringText(UT);
 	}
 
 	@Override
@@ -556,8 +556,8 @@ public class GFA3DMeasurePD3 extends GFAObject implements A3DMeasurePD3 {
 
 	@Override
 	public Boolean getVHasTypeNumber() {
-		COSObject object = getVValue();
-		return getHasTypeNumber(object);
+		COSObject V = getVValue();
+		return getHasTypeNumber(V);
 	}
 
 	@Override

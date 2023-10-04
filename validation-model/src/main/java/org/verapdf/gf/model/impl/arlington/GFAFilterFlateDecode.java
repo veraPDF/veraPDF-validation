@@ -45,14 +45,14 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 
 	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
-		COSObject object = getBitsPerComponentValue();
-		return getHasTypeInteger(object);
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getHasTypeInteger(BitsPerComponent);
 	}
 
 	@Override
 	public Long getBitsPerComponentIntegerValue() {
-		COSObject object = getBitsPerComponentValue();
-		return getIntegerValue(object);
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getIntegerValue(BitsPerComponent);
 	}
 
 	@Override
@@ -84,14 +84,14 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 
 	@Override
 	public Boolean getColorsHasTypeInteger() {
-		COSObject object = getColorsValue();
-		return getHasTypeInteger(object);
+		COSObject Colors = getColorsValue();
+		return getHasTypeInteger(Colors);
 	}
 
 	@Override
 	public Long getColorsIntegerValue() {
-		COSObject object = getColorsValue();
-		return getIntegerValue(object);
+		COSObject Colors = getColorsValue();
+		return getIntegerValue(Colors);
 	}
 
 	@Override
@@ -123,8 +123,8 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 
 	@Override
 	public Boolean getColumnsHasTypeInteger() {
-		COSObject object = getColumnsValue();
-		return getHasTypeInteger(object);
+		COSObject Columns = getColumnsValue();
+		return getHasTypeInteger(Columns);
 	}
 
 	@Override
@@ -139,14 +139,14 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 
 	@Override
 	public Boolean getPredictorHasTypeInteger() {
-		COSObject object = getPredictorValue();
-		return getHasTypeInteger(object);
+		COSObject Predictor = getPredictorValue();
+		return getHasTypeInteger(Predictor);
 	}
 
 	@Override
 	public Long getPredictorIntegerValue() {
-		COSObject object = getPredictorValue();
-		return getIntegerValue(object);
+		COSObject Predictor = getPredictorValue();
+		return getIntegerValue(Predictor);
 	}
 
 }

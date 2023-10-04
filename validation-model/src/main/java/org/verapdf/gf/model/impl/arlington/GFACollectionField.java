@@ -40,8 +40,8 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 
 	@Override
 	public Boolean getEHasTypeBoolean() {
-		COSObject object = getEValue();
-		return getHasTypeBoolean(object);
+		COSObject E = getEValue();
+		return getHasTypeBoolean(E);
 	}
 
 	@Override
@@ -56,8 +56,8 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 
 	@Override
 	public Boolean getNHasTypeStringText() {
-		COSObject object = getNValue();
-		return getHasTypeStringText(object);
+		COSObject N = getNValue();
+		return getHasTypeStringText(N);
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 
 	@Override
 	public Boolean getOHasTypeInteger() {
-		COSObject object = getOValue();
-		return getHasTypeInteger(object);
+		COSObject O = getOValue();
+		return getHasTypeInteger(O);
 	}
 
 	@Override
@@ -88,14 +88,14 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -110,14 +110,14 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -144,8 +144,8 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 
 	@Override
 	public Boolean getVHasTypeBoolean() {
-		COSObject object = getVValue();
-		return getHasTypeBoolean(object);
+		COSObject V = getVValue();
+		return getHasTypeBoolean(V);
 	}
 
 }

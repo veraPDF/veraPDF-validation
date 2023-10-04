@@ -26,14 +26,14 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 
 	@Override
 	public Boolean getentry0HasTypeNull() {
-		COSObject object = getentry0Value();
-		return getHasTypeNull(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeNull(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
-		COSObject object = getentry0Value();
-		return getHasTypeNumber(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeNumber(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -46,14 +46,14 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 
 	@Override
 	public Boolean getentry1HasTypeNull() {
-		COSObject object = getentry1Value();
-		return getHasTypeNull(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNull(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
-		COSObject object = getentry1Value();
-		return getHasTypeNumber(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNumber(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -66,14 +66,14 @@ public class GFAArrayOf_3OrientationNumbers extends GFAObject implements AArrayO
 
 	@Override
 	public Boolean getentry2HasTypeNull() {
-		COSObject object = getentry2Value();
-		return getHasTypeNull(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeNull(entry2);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
-		COSObject object = getentry2Value();
-		return getHasTypeNumber(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeNumber(entry2);
 	}
 
 }

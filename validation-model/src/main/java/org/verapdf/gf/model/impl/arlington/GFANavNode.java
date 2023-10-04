@@ -524,8 +524,8 @@ public class GFANavNode extends GFAObject implements ANavNode {
 
 	@Override
 	public Boolean getDurHasTypeNumber() {
-		COSObject object = getDurValue();
-		return getHasTypeNumber(object);
+		COSObject Dur = getDurValue();
+		return getHasTypeNumber(Dur);
 	}
 
 	@Override
@@ -540,8 +540,8 @@ public class GFANavNode extends GFAObject implements ANavNode {
 
 	@Override
 	public Boolean getNAHasTypeDictionary() {
-		COSObject object = getNAValue();
-		return getHasTypeDictionary(object);
+		COSObject NA = getNAValue();
+		return getHasTypeDictionary(NA);
 	}
 
 	@Override
@@ -556,8 +556,8 @@ public class GFANavNode extends GFAObject implements ANavNode {
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -572,8 +572,8 @@ public class GFANavNode extends GFAObject implements ANavNode {
 
 	@Override
 	public Boolean getPAHasTypeDictionary() {
-		COSObject object = getPAValue();
-		return getHasTypeDictionary(object);
+		COSObject PA = getPAValue();
+		return getHasTypeDictionary(PA);
 	}
 
 	@Override
@@ -588,8 +588,8 @@ public class GFANavNode extends GFAObject implements ANavNode {
 
 	@Override
 	public Boolean getPrevHasTypeDictionary() {
-		COSObject object = getPrevValue();
-		return getHasTypeDictionary(object);
+		COSObject Prev = getPrevValue();
+		return getHasTypeDictionary(Prev);
 	}
 
 	@Override
@@ -604,14 +604,14 @@ public class GFANavNode extends GFAObject implements ANavNode {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

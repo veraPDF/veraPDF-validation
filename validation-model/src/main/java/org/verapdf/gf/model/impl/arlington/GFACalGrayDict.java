@@ -98,8 +98,8 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 
 	@Override
 	public Boolean getBlackPointHasTypeArray() {
-		COSObject object = getBlackPointValue();
-		return getHasTypeArray(object);
+		COSObject BlackPoint = getBlackPointValue();
+		return getHasTypeArray(BlackPoint);
 	}
 
 	@Override
@@ -132,14 +132,14 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 
 	@Override
 	public Boolean getGammaHasTypeNumber() {
-		COSObject object = getGammaValue();
-		return getHasTypeNumber(object);
+		COSObject Gamma = getGammaValue();
+		return getHasTypeNumber(Gamma);
 	}
 
 	@Override
 	public Double getGammaNumberValue() {
-		COSObject object = getGammaValue();
-		return getNumberValue(object);
+		COSObject Gamma = getGammaValue();
+		return getNumberValue(Gamma);
 	}
 
 	@Override
@@ -154,8 +154,8 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 
 	@Override
 	public Boolean getWhitePointHasTypeArray() {
-		COSObject object = getWhitePointValue();
-		return getHasTypeArray(object);
+		COSObject WhitePoint = getWhitePointValue();
+		return getHasTypeArray(WhitePoint);
 	}
 
 }

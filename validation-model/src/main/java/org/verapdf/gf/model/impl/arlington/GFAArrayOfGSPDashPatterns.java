@@ -63,8 +63,8 @@ public class GFAArrayOfGSPDashPatterns extends GFAObject implements AArrayOfGSPD
 
 	@Override
 	public Boolean getentry0HasTypeArray() {
-		COSObject object = getentry0Value();
-		return getHasTypeArray(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeArray(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -77,8 +77,8 @@ public class GFAArrayOfGSPDashPatterns extends GFAObject implements AArrayOfGSPD
 
 	@Override
 	public Boolean getentry1HasTypeNumber() {
-		COSObject object = getentry1Value();
-		return getHasTypeNumber(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeNumber(entry1);
 	}
 
 }

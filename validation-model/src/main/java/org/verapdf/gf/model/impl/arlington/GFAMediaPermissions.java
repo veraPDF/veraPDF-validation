@@ -42,14 +42,14 @@ public class GFAMediaPermissions extends GFAObject implements AMediaPermissions 
 
 	@Override
 	public Boolean getTFHasTypeStringAscii() {
-		COSObject object = getTFValue();
-		return getHasTypeStringAscii(object);
+		COSObject TF = getTFValue();
+		return getHasTypeStringAscii(TF);
 	}
 
 	@Override
 	public String getTFStringAsciiValue() {
-		COSObject object = getTFValue();
-		return getStringAsciiValue(object);
+		COSObject TF = getTFValue();
+		return getStringAsciiValue(TF);
 	}
 
 	@Override
@@ -64,14 +64,14 @@ public class GFAMediaPermissions extends GFAObject implements AMediaPermissions 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

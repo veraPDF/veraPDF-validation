@@ -60,20 +60,20 @@ public class GFAArrayOfOCGindirectEntry extends GFAObject implements AArrayOfOCG
 
 	@Override
 	public Boolean getisIndirect() {
-		COSObject object = getValue();
-		return getisIndirect(object);
+		COSObject entry = getValue();
+		return getisIndirect(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeNull() {
-		COSObject object = getValue();
-		return getHasTypeNull(object);
+		COSObject entry = getValue();
+		return getHasTypeNull(entry);
 	}
 
 }

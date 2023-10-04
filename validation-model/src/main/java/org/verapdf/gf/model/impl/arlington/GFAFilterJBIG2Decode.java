@@ -64,14 +64,14 @@ public class GFAFilterJBIG2Decode extends GFAObject implements AFilterJBIG2Decod
 
 	@Override
 	public Boolean getisJBIG2GlobalsIndirect() {
-		COSObject object = getJBIG2GlobalsValue();
-		return getisIndirect(object);
+		COSObject JBIG2Globals = getJBIG2GlobalsValue();
+		return getisIndirect(JBIG2Globals);
 	}
 
 	@Override
 	public Boolean getJBIG2GlobalsHasTypeStream() {
-		COSObject object = getJBIG2GlobalsValue();
-		return getHasTypeStream(object);
+		COSObject JBIG2Globals = getJBIG2GlobalsValue();
+		return getHasTypeStream(JBIG2Globals);
 	}
 
 }

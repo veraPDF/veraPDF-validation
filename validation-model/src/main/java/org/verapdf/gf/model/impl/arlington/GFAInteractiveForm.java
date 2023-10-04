@@ -171,8 +171,8 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 
 	@Override
 	public Boolean getCOHasTypeArray() {
-		COSObject object = getCOValue();
-		return getHasTypeArray(object);
+		COSObject CO = getCOValue();
+		return getHasTypeArray(CO);
 	}
 
 	@Override
@@ -187,8 +187,8 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 
 	@Override
 	public Boolean getDAHasTypeString() {
-		COSObject object = getDAValue();
-		return getHasTypeString(object);
+		COSObject DA = getDAValue();
+		return getHasTypeString(DA);
 	}
 
 	@Override
@@ -203,8 +203,8 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 
 	@Override
 	public Boolean getDRHasTypeDictionary() {
-		COSObject object = getDRValue();
-		return getHasTypeDictionary(object);
+		COSObject DR = getDRValue();
+		return getHasTypeDictionary(DR);
 	}
 
 	@Override
@@ -219,8 +219,8 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = getFieldsValue();
-		return getHasTypeArray(object);
+		COSObject Fields = getFieldsValue();
+		return getHasTypeArray(Fields);
 	}
 
 	@Override
@@ -252,8 +252,8 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 
 	@Override
 	public Boolean getNeedAppearancesHasTypeBoolean() {
-		COSObject object = getNeedAppearancesValue();
-		return getHasTypeBoolean(object);
+		COSObject NeedAppearances = getNeedAppearancesValue();
+		return getHasTypeBoolean(NeedAppearances);
 	}
 
 	@Override
@@ -268,14 +268,14 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 
 	@Override
 	public Boolean getQHasTypeInteger() {
-		COSObject object = getQValue();
-		return getHasTypeInteger(object);
+		COSObject Q = getQValue();
+		return getHasTypeInteger(Q);
 	}
 
 	@Override
 	public Long getQIntegerValue() {
-		COSObject object = getQValue();
-		return getIntegerValue(object);
+		COSObject Q = getQValue();
+		return getIntegerValue(Q);
 	}
 
 	@Override
@@ -306,14 +306,14 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 
 	@Override
 	public Boolean getSigFlagsHasTypeBitmask() {
-		COSObject object = getSigFlagsValue();
-		return getHasTypeBitmask(object);
+		COSObject SigFlags = getSigFlagsValue();
+		return getHasTypeBitmask(SigFlags);
 	}
 
 	@Override
 	public Long getSigFlagsBitmaskValue() {
-		COSObject object = getSigFlagsValue();
-		return getBitmaskValue(object);
+		COSObject SigFlags = getSigFlagsValue();
+		return getBitmaskValue(SigFlags);
 	}
 
 	@Override
@@ -328,24 +328,23 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 
 	@Override
 	public Boolean getisXFAIndirect() {
-		COSObject object = getXFAValue();
-		return getisIndirect(object);
+		COSObject XFA = getXFAValue();
+		return getisIndirect(XFA);
 	}
 
 	@Override
 	public Boolean getXFAHasTypeArray() {
-		COSObject object = getXFAValue();
-		return getHasTypeArray(object);
+		COSObject XFA = getXFAValue();
+		return getHasTypeArray(XFA);
 	}
 
 	@Override
 	public Boolean getXFAHasTypeStream() {
-		COSObject object = getXFAValue();
-		return getHasTypeStream(object);
+		COSObject XFA = getXFAValue();
+		return getHasTypeStream(XFA);
 	}
 
-	@Override
-	public Boolean getcontainsDRFontAny() {
+	public COSObject getDRFontValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -354,7 +353,13 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 			return null;
 		}
 		COSObject Font = DR.getKey(ASAtom.getASAtom("Font"));
-		return Font.getKeySet() != null && !Font.getKeySet().isEmpty();
+		return Font;
+	}
+
+	@Override
+	public Boolean getcontainsDRFontAny() {
+		COSObject DRFont = getDRFontValue();
+		return DRFont.getKeySet() != null && !DRFont.getKeySet().isEmpty();
 	}
 
 }

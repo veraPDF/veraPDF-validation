@@ -28,20 +28,20 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 
 	@Override
 	public Boolean getDHasTypeDate() {
-		COSObject object = getDValue();
-		return getHasTypeDate(object);
+		COSObject D = getDValue();
+		return getHasTypeDate(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeNumber() {
-		COSObject object = getDValue();
-		return getHasTypeNumber(object);
+		COSObject D = getDValue();
+		return getHasTypeNumber(D);
 	}
 
 	@Override
 	public Boolean getDHasTypeStringText() {
-		COSObject object = getDValue();
-		return getHasTypeStringText(object);
+		COSObject D = getDValue();
+		return getHasTypeStringText(D);
 	}
 
 	@Override
@@ -56,8 +56,8 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 
 	@Override
 	public Boolean getPHasTypeStringText() {
-		COSObject object = getPValue();
-		return getHasTypeStringText(object);
+		COSObject P = getPValue();
+		return getHasTypeStringText(P);
 	}
 
 	@Override
@@ -72,14 +72,14 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

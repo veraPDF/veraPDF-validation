@@ -122,14 +122,14 @@ public class GFAThread extends GFAObject implements AThread {
 
 	@Override
 	public Boolean getisFIndirect() {
-		COSObject object = getFValue();
-		return getisIndirect(object);
+		COSObject F = getFValue();
+		return getisIndirect(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
@@ -144,8 +144,8 @@ public class GFAThread extends GFAObject implements AThread {
 
 	@Override
 	public Boolean getIHasTypeDictionary() {
-		COSObject object = getIValue();
-		return getHasTypeDictionary(object);
+		COSObject I = getIValue();
+		return getHasTypeDictionary(I);
 	}
 
 	@Override
@@ -160,14 +160,14 @@ public class GFAThread extends GFAObject implements AThread {
 
 	@Override
 	public Boolean getisMetadataIndirect() {
-		COSObject object = getMetadataValue();
-		return getisIndirect(object);
+		COSObject Metadata = getMetadataValue();
+		return getisIndirect(Metadata);
 	}
 
 	@Override
 	public Boolean getMetadataHasTypeStream() {
-		COSObject object = getMetadataValue();
-		return getHasTypeStream(object);
+		COSObject Metadata = getMetadataValue();
+		return getHasTypeStream(Metadata);
 	}
 
 	@Override
@@ -182,14 +182,14 @@ public class GFAThread extends GFAObject implements AThread {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

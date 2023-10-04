@@ -39,14 +39,14 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 
 	@Override
 	public Boolean getAOHasTypeInteger() {
-		COSObject object = getAOValue();
-		return getHasTypeInteger(object);
+		COSObject AO = getAOValue();
+		return getHasTypeInteger(AO);
 	}
 
 	@Override
 	public Long getAOIntegerValue() {
-		COSObject object = getAOValue();
-		return getIntegerValue(object);
+		COSObject AO = getAOValue();
+		return getIntegerValue(AO);
 	}
 
 	@Override
@@ -73,8 +73,8 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 
 	@Override
 	public Boolean getPlayCountHasTypeInteger() {
-		COSObject object = getPlayCountValue();
-		return getHasTypeInteger(object);
+		COSObject PlayCount = getPlayCountValue();
+		return getHasTypeInteger(PlayCount);
 	}
 
 	@Override
@@ -101,14 +101,14 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 
 	@Override
 	public Boolean getSpeedHasTypeNumber() {
-		COSObject object = getSpeedValue();
-		return getHasTypeNumber(object);
+		COSObject Speed = getSpeedValue();
+		return getHasTypeNumber(Speed);
 	}
 
 	@Override
 	public Double getSpeedNumberValue() {
-		COSObject object = getSpeedValue();
-		return getNumberValue(object);
+		COSObject Speed = getSpeedValue();
+		return getNumberValue(Speed);
 	}
 
 	@Override
@@ -135,14 +135,14 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -157,14 +157,14 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

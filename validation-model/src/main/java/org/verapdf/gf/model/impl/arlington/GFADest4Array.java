@@ -53,20 +53,20 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 
 	@Override
 	public Boolean getentry0HasTypeDictionary() {
-		COSObject object = getentry0Value();
-		return getHasTypeDictionary(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeDictionary(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeNumber() {
-		COSObject object = getentry0Value();
-		return getHasTypeNumber(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeNumber(entry0);
 	}
 
 	@Override
 	public Double getentry0NumberValue() {
-		COSObject object = getentry0Value();
-		return getNumberValue(object);
+		COSObject entry0 = getentry0Value();
+		return getNumberValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -79,14 +79,14 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 
 	@Override
 	public Boolean getentry1HasTypeName() {
-		COSObject object = getentry1Value();
-		return getHasTypeName(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeName(entry1);
 	}
 
 	@Override
 	public String getentry1NameValue() {
-		COSObject object = getentry1Value();
-		return getNameValue(object);
+		COSObject entry1 = getentry1Value();
+		return getNameValue(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -99,14 +99,14 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 
 	@Override
 	public Boolean getentry2HasTypeNull() {
-		COSObject object = getentry2Value();
-		return getHasTypeNull(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeNull(entry2);
 	}
 
 	@Override
 	public Boolean getentry2HasTypeNumber() {
-		COSObject object = getentry2Value();
-		return getHasTypeNumber(object);
+		COSObject entry2 = getentry2Value();
+		return getHasTypeNumber(entry2);
 	}
 
 	public COSObject getentry3Value() {
@@ -119,14 +119,14 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 
 	@Override
 	public Boolean getentry3HasTypeNull() {
-		COSObject object = getentry3Value();
-		return getHasTypeNull(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeNull(entry3);
 	}
 
 	@Override
 	public Boolean getentry3HasTypeNumber() {
-		COSObject object = getentry3Value();
-		return getHasTypeNumber(object);
+		COSObject entry3 = getentry3Value();
+		return getHasTypeNumber(entry3);
 	}
 
 	public COSObject getentry4Value() {
@@ -139,14 +139,14 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 
 	@Override
 	public Boolean getentry4HasTypeNull() {
-		COSObject object = getentry4Value();
-		return getHasTypeNull(object);
+		COSObject entry4 = getentry4Value();
+		return getHasTypeNull(entry4);
 	}
 
 	@Override
 	public Boolean getentry4HasTypeNumber() {
-		COSObject object = getentry4Value();
-		return getHasTypeNumber(object);
+		COSObject entry4 = getentry4Value();
+		return getHasTypeNumber(entry4);
 	}
 
 	public COSObject getentry5Value() {
@@ -159,14 +159,14 @@ public class GFADest4Array extends GFAObject implements ADest4Array {
 
 	@Override
 	public Boolean getentry5HasTypeNull() {
-		COSObject object = getentry5Value();
-		return getHasTypeNull(object);
+		COSObject entry5 = getentry5Value();
+		return getHasTypeNull(entry5);
 	}
 
 	@Override
 	public Boolean getentry5HasTypeNumber() {
-		COSObject object = getentry5Value();
-		return getHasTypeNumber(object);
+		COSObject entry5 = getentry5Value();
+		return getHasTypeNumber(entry5);
 	}
 
 }

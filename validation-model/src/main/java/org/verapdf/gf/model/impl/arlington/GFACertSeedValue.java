@@ -205,14 +205,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getFfHasTypeBitmask() {
-		COSObject object = getFfValue();
-		return getHasTypeBitmask(object);
+		COSObject Ff = getFfValue();
+		return getHasTypeBitmask(Ff);
 	}
 
 	@Override
 	public Long getFfBitmaskValue() {
-		COSObject object = getFfValue();
-		return getBitmaskValue(object);
+		COSObject Ff = getFfValue();
+		return getBitmaskValue(Ff);
 	}
 
 	@Override
@@ -227,8 +227,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getIssuerHasTypeArray() {
-		COSObject object = getIssuerValue();
-		return getHasTypeArray(object);
+		COSObject Issuer = getIssuerValue();
+		return getHasTypeArray(Issuer);
 	}
 
 	@Override
@@ -243,8 +243,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getKeyUsageHasTypeArray() {
-		COSObject object = getKeyUsageValue();
-		return getHasTypeArray(object);
+		COSObject KeyUsage = getKeyUsageValue();
+		return getHasTypeArray(KeyUsage);
 	}
 
 	@Override
@@ -259,8 +259,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getOIDHasTypeArray() {
-		COSObject object = getOIDValue();
-		return getHasTypeArray(object);
+		COSObject OID = getOIDValue();
+		return getHasTypeArray(OID);
 	}
 
 	@Override
@@ -275,8 +275,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getSignaturePolicyCommitmentTypeHasTypeArray() {
-		COSObject object = getSignaturePolicyCommitmentTypeValue();
-		return getHasTypeArray(object);
+		COSObject SignaturePolicyCommitmentType = getSignaturePolicyCommitmentTypeValue();
+		return getHasTypeArray(SignaturePolicyCommitmentType);
 	}
 
 	@Override
@@ -291,14 +291,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getSignaturePolicyHashAlgorithmHasTypeName() {
-		COSObject object = getSignaturePolicyHashAlgorithmValue();
-		return getHasTypeName(object);
+		COSObject SignaturePolicyHashAlgorithm = getSignaturePolicyHashAlgorithmValue();
+		return getHasTypeName(SignaturePolicyHashAlgorithm);
 	}
 
 	@Override
 	public String getSignaturePolicyHashAlgorithmNameValue() {
-		COSObject object = getSignaturePolicyHashAlgorithmValue();
-		return getNameValue(object);
+		COSObject SignaturePolicyHashAlgorithm = getSignaturePolicyHashAlgorithmValue();
+		return getNameValue(SignaturePolicyHashAlgorithm);
 	}
 
 	@Override
@@ -313,8 +313,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getSignaturePolicyHashValueHasTypeString() {
-		COSObject object = getSignaturePolicyHashValueValue();
-		return getHasTypeString(object);
+		COSObject SignaturePolicyHashValue = getSignaturePolicyHashValueValue();
+		return getHasTypeString(SignaturePolicyHashValue);
 	}
 
 	@Override
@@ -329,8 +329,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getSignaturePolicyOIDHasTypeStringAscii() {
-		COSObject object = getSignaturePolicyOIDValue();
-		return getHasTypeStringAscii(object);
+		COSObject SignaturePolicyOID = getSignaturePolicyOIDValue();
+		return getHasTypeStringAscii(SignaturePolicyOID);
 	}
 
 	@Override
@@ -345,8 +345,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getSubjectHasTypeArray() {
-		COSObject object = getSubjectValue();
-		return getHasTypeArray(object);
+		COSObject Subject = getSubjectValue();
+		return getHasTypeArray(Subject);
 	}
 
 	@Override
@@ -361,8 +361,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getSubjectDNHasTypeArray() {
-		COSObject object = getSubjectDNValue();
-		return getHasTypeArray(object);
+		COSObject SubjectDN = getSubjectDNValue();
+		return getHasTypeArray(SubjectDN);
 	}
 
 	@Override
@@ -377,14 +377,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -399,8 +399,8 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getURLHasTypeStringAscii() {
-		COSObject object = getURLValue();
-		return getHasTypeStringAscii(object);
+		COSObject URL = getURLValue();
+		return getHasTypeStringAscii(URL);
 	}
 
 	@Override
@@ -427,14 +427,14 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 
 	@Override
 	public Boolean getURLTypeHasTypeName() {
-		COSObject object = getURLTypeValue();
-		return getHasTypeName(object);
+		COSObject URLType = getURLTypeValue();
+		return getHasTypeName(URLType);
 	}
 
 	@Override
 	public String getURLTypeNameValue() {
-		COSObject object = getURLTypeValue();
-		return getNameValue(object);
+		COSObject URLType = getURLTypeValue();
+		return getNameValue(URLType);
 	}
 
 }

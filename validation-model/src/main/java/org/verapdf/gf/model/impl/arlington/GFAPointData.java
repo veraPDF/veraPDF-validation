@@ -86,8 +86,8 @@ public class GFAPointData extends GFAObject implements APointData {
 
 	@Override
 	public Boolean getNamesHasTypeArray() {
-		COSObject object = getNamesValue();
-		return getHasTypeArray(object);
+		COSObject Names = getNamesValue();
+		return getHasTypeArray(Names);
 	}
 
 	@Override
@@ -102,14 +102,14 @@ public class GFAPointData extends GFAObject implements APointData {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -124,14 +124,14 @@ public class GFAPointData extends GFAObject implements APointData {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -146,8 +146,8 @@ public class GFAPointData extends GFAObject implements APointData {
 
 	@Override
 	public Boolean getXPTSHasTypeArray() {
-		COSObject object = getXPTSValue();
-		return getHasTypeArray(object);
+		COSObject XPTS = getXPTSValue();
+		return getHasTypeArray(XPTS);
 	}
 
 	@Override

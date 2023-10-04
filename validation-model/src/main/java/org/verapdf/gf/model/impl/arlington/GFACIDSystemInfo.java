@@ -28,8 +28,8 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 
 	@Override
 	public Boolean getOrderingHasTypeStringAscii() {
-		COSObject object = getOrderingValue();
-		return getHasTypeStringAscii(object);
+		COSObject Ordering = getOrderingValue();
+		return getHasTypeStringAscii(Ordering);
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 
 	@Override
 	public Boolean getRegistryHasTypeStringAscii() {
-		COSObject object = getRegistryValue();
-		return getHasTypeStringAscii(object);
+		COSObject Registry = getRegistryValue();
+		return getHasTypeStringAscii(Registry);
 	}
 
 	@Override
@@ -60,8 +60,8 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 
 	@Override
 	public Boolean getSupplementHasTypeInteger() {
-		COSObject object = getSupplementValue();
-		return getHasTypeInteger(object);
+		COSObject Supplement = getSupplementValue();
+		return getHasTypeInteger(Supplement);
 	}
 
 }

@@ -28,8 +28,8 @@ public class GFAArrayOfNumbersGeneralEntry extends GFAObject implements AArrayOf
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = getValue();
-		return getHasTypeNumber(object);
+		COSObject entry = getValue();
+		return getHasTypeNumber(entry);
 	}
 
 }

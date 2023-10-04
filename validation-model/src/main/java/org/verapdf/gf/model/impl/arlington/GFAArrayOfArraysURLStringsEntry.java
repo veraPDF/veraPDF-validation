@@ -62,8 +62,8 @@ public class GFAArrayOfArraysURLStringsEntry extends GFAObject implements AArray
 
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = getValue();
-		return getHasTypeArray(object);
+		COSObject entry = getValue();
+		return getHasTypeArray(entry);
 	}
 
 }

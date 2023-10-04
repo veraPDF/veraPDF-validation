@@ -58,32 +58,34 @@ public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArray
 
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = getValue();
-		return getHasTypeArray(object);
+		COSObject entry = getValue();
+		return getHasTypeArray(entry);
 	}
 
 	@Override
 	public Long getArraySize() {
-		COSObject object = getValue();
-		return getArraySize(object);
+		COSObject entry = getValue();
+		return getArraySize(entry);
+	}
+
+	public COSObject getparentNamesValue() {
+		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Names = this.parentParentObject.getKey(ASAtom.getASAtom("Names"));
+		return Names;
 	}
 
 	@Override
 	public Long getparentNamesArraySize() {
-		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Names = this.parentParentObject.getKey(ASAtom.getASAtom("Names"));
-		return getArraySize(Names);
+		COSObject parentNames = getparentNamesValue();
+		return getArraySize(parentNames);
 	}
 
 	@Override
 	public Boolean getparentNamesHasTypeArray() {
-		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Names = this.parentParentObject.getKey(ASAtom.getASAtom("Names"));
-		return getHasTypeArray(Names);
+		COSObject parentNames = getparentNamesValue();
+		return getHasTypeArray(parentNames);
 	}
 
 	@Override

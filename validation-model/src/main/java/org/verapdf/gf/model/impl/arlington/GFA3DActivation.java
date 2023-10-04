@@ -74,14 +74,14 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getAHasTypeName() {
-		COSObject object = getAValue();
-		return getHasTypeName(object);
+		COSObject A = getAValue();
+		return getHasTypeName(A);
 	}
 
 	@Override
 	public String getANameValue() {
-		COSObject object = getAValue();
-		return getNameValue(object);
+		COSObject A = getAValue();
+		return getNameValue(A);
 	}
 
 	@Override
@@ -109,14 +109,14 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getAISHasTypeName() {
-		COSObject object = getAISValue();
-		return getHasTypeName(object);
+		COSObject AIS = getAISValue();
+		return getHasTypeName(AIS);
 	}
 
 	@Override
 	public String getAISNameValue() {
-		COSObject object = getAISValue();
-		return getNameValue(object);
+		COSObject AIS = getAISValue();
+		return getNameValue(AIS);
 	}
 
 	@Override
@@ -144,14 +144,14 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getDHasTypeName() {
-		COSObject object = getDValue();
-		return getHasTypeName(object);
+		COSObject D = getDValue();
+		return getHasTypeName(D);
 	}
 
 	@Override
 	public String getDNameValue() {
-		COSObject object = getDValue();
-		return getNameValue(object);
+		COSObject D = getDValue();
+		return getNameValue(D);
 	}
 
 	@Override
@@ -179,14 +179,14 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getDISHasTypeName() {
-		COSObject object = getDISValue();
-		return getHasTypeName(object);
+		COSObject DIS = getDISValue();
+		return getHasTypeName(DIS);
 	}
 
 	@Override
 	public String getDISNameValue() {
-		COSObject object = getDISValue();
-		return getNameValue(object);
+		COSObject DIS = getDISValue();
+		return getNameValue(DIS);
 	}
 
 	@Override
@@ -213,8 +213,8 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getNPHasTypeBoolean() {
-		COSObject object = getNPValue();
-		return getHasTypeBoolean(object);
+		COSObject NP = getNPValue();
+		return getHasTypeBoolean(NP);
 	}
 
 	@Override
@@ -241,14 +241,14 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getStyleHasTypeName() {
-		COSObject object = getStyleValue();
-		return getHasTypeName(object);
+		COSObject Style = getStyleValue();
+		return getHasTypeName(Style);
 	}
 
 	@Override
 	public String getStyleNameValue() {
-		COSObject object = getStyleValue();
-		return getNameValue(object);
+		COSObject Style = getStyleValue();
+		return getNameValue(Style);
 	}
 
 	@Override
@@ -275,8 +275,8 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getTBHasTypeBoolean() {
-		COSObject object = getTBValue();
-		return getHasTypeBoolean(object);
+		COSObject TB = getTBValue();
+		return getHasTypeBoolean(TB);
 	}
 
 	@Override
@@ -303,8 +303,8 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getTransparentHasTypeBoolean() {
-		COSObject object = getTransparentValue();
-		return getHasTypeBoolean(object);
+		COSObject Transparent = getTransparentValue();
+		return getHasTypeBoolean(Transparent);
 	}
 
 	@Override
@@ -319,8 +319,8 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 
 	@Override
 	public Boolean getWindowHasTypeDictionary() {
-		COSObject object = getWindowValue();
-		return getHasTypeDictionary(object);
+		COSObject Window = getWindowValue();
+		return getHasTypeDictionary(Window);
 	}
 
 	@Override

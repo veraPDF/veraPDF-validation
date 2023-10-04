@@ -211,8 +211,8 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getColorsHasTypeDictionary() {
-		COSObject object = getColorsValue();
-		return getHasTypeDictionary(object);
+		COSObject Colors = getColorsValue();
+		return getHasTypeDictionary(Colors);
 	}
 
 	@Override
@@ -227,8 +227,8 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getDHasTypeStringByte() {
-		COSObject object = getDValue();
-		return getHasTypeStringByte(object);
+		COSObject D = getDValue();
+		return getHasTypeStringByte(D);
 	}
 
 	@Override
@@ -243,14 +243,14 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getisFoldersIndirect() {
-		COSObject object = getFoldersValue();
-		return getisIndirect(object);
+		COSObject Folders = getFoldersValue();
+		return getisIndirect(Folders);
 	}
 
 	@Override
 	public Boolean getFoldersHasTypeDictionary() {
-		COSObject object = getFoldersValue();
-		return getHasTypeDictionary(object);
+		COSObject Folders = getFoldersValue();
+		return getHasTypeDictionary(Folders);
 	}
 
 	@Override
@@ -265,14 +265,14 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getisNavigatorIndirect() {
-		COSObject object = getNavigatorValue();
-		return getisIndirect(object);
+		COSObject Navigator = getNavigatorValue();
+		return getisIndirect(Navigator);
 	}
 
 	@Override
 	public Boolean getNavigatorHasTypeDictionary() {
-		COSObject object = getNavigatorValue();
-		return getHasTypeDictionary(object);
+		COSObject Navigator = getNavigatorValue();
+		return getHasTypeDictionary(Navigator);
 	}
 
 	@Override
@@ -287,14 +287,14 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getisResourcesIndirect() {
-		COSObject object = getResourcesValue();
-		return getisIndirect(object);
+		COSObject Resources = getResourcesValue();
+		return getisIndirect(Resources);
 	}
 
 	@Override
 	public Boolean getResourcesHasTypeNameTree() {
-		COSObject object = getResourcesValue();
-		return getHasTypeNameTree(object);
+		COSObject Resources = getResourcesValue();
+		return getHasTypeNameTree(Resources);
 	}
 
 	@Override
@@ -309,8 +309,8 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getSchemaHasTypeDictionary() {
-		COSObject object = getSchemaValue();
-		return getHasTypeDictionary(object);
+		COSObject Schema = getSchemaValue();
+		return getHasTypeDictionary(Schema);
 	}
 
 	@Override
@@ -325,8 +325,8 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getSortHasTypeDictionary() {
-		COSObject object = getSortValue();
-		return getHasTypeDictionary(object);
+		COSObject Sort = getSortValue();
+		return getHasTypeDictionary(Sort);
 	}
 
 	@Override
@@ -341,8 +341,8 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getSplitHasTypeDictionary() {
-		COSObject object = getSplitValue();
-		return getHasTypeDictionary(object);
+		COSObject Split = getSplitValue();
+		return getHasTypeDictionary(Split);
 	}
 
 	@Override
@@ -357,14 +357,14 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -391,14 +391,14 @@ public class GFACollection extends GFAObject implements ACollection {
 
 	@Override
 	public Boolean getViewHasTypeName() {
-		COSObject object = getViewValue();
-		return getHasTypeName(object);
+		COSObject View = getViewValue();
+		return getHasTypeName(View);
 	}
 
 	@Override
 	public String getViewNameValue() {
-		COSObject object = getViewValue();
-		return getNameValue(object);
+		COSObject View = getViewValue();
+		return getNameValue(View);
 	}
 
 	@Override

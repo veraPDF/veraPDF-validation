@@ -74,14 +74,14 @@ public class GFAOutline extends GFAObject implements AOutline {
 
 	@Override
 	public Boolean getCountHasTypeInteger() {
-		COSObject object = getCountValue();
-		return getHasTypeInteger(object);
+		COSObject Count = getCountValue();
+		return getHasTypeInteger(Count);
 	}
 
 	@Override
 	public Long getCountIntegerValue() {
-		COSObject object = getCountValue();
-		return getIntegerValue(object);
+		COSObject Count = getCountValue();
+		return getIntegerValue(Count);
 	}
 
 	@Override
@@ -96,14 +96,14 @@ public class GFAOutline extends GFAObject implements AOutline {
 
 	@Override
 	public Boolean getisFirstIndirect() {
-		COSObject object = getFirstValue();
-		return getisIndirect(object);
+		COSObject First = getFirstValue();
+		return getisIndirect(First);
 	}
 
 	@Override
 	public Boolean getFirstHasTypeDictionary() {
-		COSObject object = getFirstValue();
-		return getHasTypeDictionary(object);
+		COSObject First = getFirstValue();
+		return getHasTypeDictionary(First);
 	}
 
 	@Override
@@ -118,14 +118,14 @@ public class GFAOutline extends GFAObject implements AOutline {
 
 	@Override
 	public Boolean getisLastIndirect() {
-		COSObject object = getLastValue();
-		return getisIndirect(object);
+		COSObject Last = getLastValue();
+		return getisIndirect(Last);
 	}
 
 	@Override
 	public Boolean getLastHasTypeDictionary() {
-		COSObject object = getLastValue();
-		return getHasTypeDictionary(object);
+		COSObject Last = getLastValue();
+		return getHasTypeDictionary(Last);
 	}
 
 	@Override
@@ -140,14 +140,14 @@ public class GFAOutline extends GFAObject implements AOutline {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

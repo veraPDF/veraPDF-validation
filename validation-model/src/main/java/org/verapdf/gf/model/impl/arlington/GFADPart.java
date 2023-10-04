@@ -236,8 +236,8 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	@Override
 	public Boolean getAFHasTypeArray() {
-		COSObject object = getAFValue();
-		return getHasTypeArray(object);
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override
@@ -252,8 +252,8 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	@Override
 	public Boolean getDPMHasTypeDictionary() {
-		COSObject object = getDPMValue();
-		return getHasTypeDictionary(object);
+		COSObject DPM = getDPMValue();
+		return getHasTypeDictionary(DPM);
 	}
 
 	@Override
@@ -268,14 +268,14 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	@Override
 	public Boolean getDPartsHasTypeArray() {
-		COSObject object = getDPartsValue();
-		return getHasTypeArray(object);
+		COSObject DParts = getDPartsValue();
+		return getHasTypeArray(DParts);
 	}
 
 	@Override
 	public Long getDPartsArraySize() {
-		COSObject object = getDPartsValue();
-		return getArraySize(object);
+		COSObject DParts = getDPartsValue();
+		return getArraySize(DParts);
 	}
 
 	@Override
@@ -290,14 +290,14 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	@Override
 	public Boolean getisEndIndirect() {
-		COSObject object = getEndValue();
-		return getisIndirect(object);
+		COSObject End = getEndValue();
+		return getisIndirect(End);
 	}
 
 	@Override
 	public Boolean getEndHasTypeDictionary() {
-		COSObject object = getEndValue();
-		return getHasTypeDictionary(object);
+		COSObject End = getEndValue();
+		return getHasTypeDictionary(End);
 	}
 
 	@Override
@@ -312,14 +312,14 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	@Override
 	public Boolean getisMetadataIndirect() {
-		COSObject object = getMetadataValue();
-		return getisIndirect(object);
+		COSObject Metadata = getMetadataValue();
+		return getisIndirect(Metadata);
 	}
 
 	@Override
 	public Boolean getMetadataHasTypeStream() {
-		COSObject object = getMetadataValue();
-		return getHasTypeStream(object);
+		COSObject Metadata = getMetadataValue();
+		return getHasTypeStream(Metadata);
 	}
 
 	@Override
@@ -334,14 +334,14 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	@Override
 	public Boolean getisParentIndirect() {
-		COSObject object = getParentValue();
-		return getisIndirect(object);
+		COSObject Parent = getParentValue();
+		return getisIndirect(Parent);
 	}
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = getParentValue();
-		return getHasTypeDictionary(object);
+		COSObject Parent = getParentValue();
+		return getHasTypeDictionary(Parent);
 	}
 
 	@Override
@@ -356,14 +356,14 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	@Override
 	public Boolean getisStartIndirect() {
-		COSObject object = getStartValue();
-		return getisIndirect(object);
+		COSObject Start = getStartValue();
+		return getisIndirect(Start);
 	}
 
 	@Override
 	public Boolean getStartHasTypeDictionary() {
-		COSObject object = getStartValue();
-		return getHasTypeDictionary(object);
+		COSObject Start = getStartValue();
+		return getHasTypeDictionary(Start);
 	}
 
 	@Override
@@ -378,14 +378,14 @@ public class GFADPart extends GFAObject implements ADPart {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

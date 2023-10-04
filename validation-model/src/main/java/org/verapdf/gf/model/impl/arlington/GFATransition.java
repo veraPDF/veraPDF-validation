@@ -42,8 +42,8 @@ public class GFATransition extends GFAObject implements ATransition {
 
 	@Override
 	public Boolean getBHasTypeBoolean() {
-		COSObject object = getBValue();
-		return getHasTypeBoolean(object);
+		COSObject B = getBValue();
+		return getHasTypeBoolean(B);
 	}
 
 	@Override
@@ -76,14 +76,14 @@ public class GFATransition extends GFAObject implements ATransition {
 
 	@Override
 	public Boolean getDHasTypeNumber() {
-		COSObject object = getDValue();
-		return getHasTypeNumber(object);
+		COSObject D = getDValue();
+		return getHasTypeNumber(D);
 	}
 
 	@Override
 	public Double getDNumberValue() {
-		COSObject object = getDValue();
-		return getNumberValue(object);
+		COSObject D = getDValue();
+		return getNumberValue(D);
 	}
 
 	@Override
@@ -116,26 +116,26 @@ public class GFATransition extends GFAObject implements ATransition {
 
 	@Override
 	public Boolean getDiHasTypeInteger() {
-		COSObject object = getDiValue();
-		return getHasTypeInteger(object);
+		COSObject Di = getDiValue();
+		return getHasTypeInteger(Di);
 	}
 
 	@Override
 	public Boolean getDiHasTypeName() {
-		COSObject object = getDiValue();
-		return getHasTypeName(object);
+		COSObject Di = getDiValue();
+		return getHasTypeName(Di);
 	}
 
 	@Override
 	public Long getDiIntegerValue() {
-		COSObject object = getDiValue();
-		return getIntegerValue(object);
+		COSObject Di = getDiValue();
+		return getIntegerValue(Di);
 	}
 
 	@Override
 	public String getDiNameValue() {
-		COSObject object = getDiValue();
-		return getNameValue(object);
+		COSObject Di = getDiValue();
+		return getNameValue(Di);
 	}
 
 	@Override
@@ -168,14 +168,14 @@ public class GFATransition extends GFAObject implements ATransition {
 
 	@Override
 	public Boolean getDmHasTypeName() {
-		COSObject object = getDmValue();
-		return getHasTypeName(object);
+		COSObject Dm = getDmValue();
+		return getHasTypeName(Dm);
 	}
 
 	@Override
 	public String getDmNameValue() {
-		COSObject object = getDmValue();
-		return getNameValue(object);
+		COSObject Dm = getDmValue();
+		return getNameValue(Dm);
 	}
 
 	@Override
@@ -208,14 +208,14 @@ public class GFATransition extends GFAObject implements ATransition {
 
 	@Override
 	public Boolean getMHasTypeName() {
-		COSObject object = getMValue();
-		return getHasTypeName(object);
+		COSObject M = getMValue();
+		return getHasTypeName(M);
 	}
 
 	@Override
 	public String getMNameValue() {
-		COSObject object = getMValue();
-		return getNameValue(object);
+		COSObject M = getMValue();
+		return getNameValue(M);
 	}
 
 	@Override
@@ -248,14 +248,14 @@ public class GFATransition extends GFAObject implements ATransition {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -284,14 +284,14 @@ public class GFATransition extends GFAObject implements ATransition {
 
 	@Override
 	public Boolean getSSHasTypeNumber() {
-		COSObject object = getSSValue();
-		return getHasTypeNumber(object);
+		COSObject SS = getSSValue();
+		return getHasTypeNumber(SS);
 	}
 
 	@Override
 	public Double getSSNumberValue() {
-		COSObject object = getSSValue();
-		return getNumberValue(object);
+		COSObject SS = getSSValue();
+		return getNumberValue(SS);
 	}
 
 	@Override
@@ -306,14 +306,14 @@ public class GFATransition extends GFAObject implements ATransition {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

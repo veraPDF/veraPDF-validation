@@ -28,14 +28,14 @@ public class GFAArrayOfNonNegativeIntegersGeneralEntry extends GFAObject impleme
 
 	@Override
 	public Boolean getHasTypeInteger() {
-		COSObject object = getValue();
-		return getHasTypeInteger(object);
+		COSObject entry = getValue();
+		return getHasTypeInteger(entry);
 	}
 
 	@Override
 	public Long getIntegerValue() {
-		COSObject object = getValue();
-		return getIntegerValue(object);
+		COSObject entry = getValue();
+		return getIntegerValue(entry);
 	}
 
 }

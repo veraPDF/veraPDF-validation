@@ -41,14 +41,14 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 
 	@Override
 	public Boolean getFfHasTypeInteger() {
-		COSObject object = getFfValue();
-		return getHasTypeInteger(object);
+		COSObject Ff = getFfValue();
+		return getHasTypeInteger(Ff);
 	}
 
 	@Override
 	public Long getFfIntegerValue() {
-		COSObject object = getFfValue();
-		return getIntegerValue(object);
+		COSObject Ff = getFfValue();
+		return getIntegerValue(Ff);
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 
 	@Override
 	public Boolean getURLHasTypeStringAscii() {
-		COSObject object = getURLValue();
-		return getHasTypeStringAscii(object);
+		COSObject URL = getURLValue();
+		return getHasTypeStringAscii(URL);
 	}
 
 }

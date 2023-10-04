@@ -28,8 +28,8 @@ public class GFARoleMapEntry extends GFAObject implements ARoleMapEntry {
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 }

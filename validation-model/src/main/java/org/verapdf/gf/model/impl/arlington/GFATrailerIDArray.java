@@ -26,14 +26,14 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 
 	@Override
 	public Boolean getisentry0Indirect() {
-		COSObject object = getentry0Value();
-		return getisIndirect(object);
+		COSObject entry0 = getentry0Value();
+		return getisIndirect(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeStringByte() {
-		COSObject object = getentry0Value();
-		return getHasTypeStringByte(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeStringByte(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -46,19 +46,24 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 
 	@Override
 	public Boolean getisentry1Indirect() {
-		COSObject object = getentry1Value();
-		return getisIndirect(object);
+		COSObject entry1 = getentry1Value();
+		return getisIndirect(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeStringByte() {
-		COSObject object = getentry1Value();
-		return getHasTypeStringByte(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeStringByte(entry1);
+	}
+
+	public COSObject gettrailerValue() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		return trailer;
 	}
 
 	@Override
 	public Boolean getcontainstrailerEncrypt() {
-		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		COSObject trailer = gettrailerValue();
 		return trailer.knownKey(ASAtom.getASAtom("Encrypt"));
 	}
 

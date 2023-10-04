@@ -103,14 +103,14 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getCountHasTypeInteger() {
-		COSObject object = getCountValue();
-		return getHasTypeInteger(object);
+		COSObject Count = getCountValue();
+		return getHasTypeInteger(Count);
 	}
 
 	@Override
 	public Long getCountIntegerValue() {
-		COSObject object = getCountValue();
-		return getIntegerValue(object);
+		COSObject Count = getCountValue();
+		return getIntegerValue(Count);
 	}
 
 	@Override
@@ -131,8 +131,8 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getCropBoxHasTypeRectangle() {
-		COSObject object = getCropBoxValue();
-		return getHasTypeRectangle(object);
+		COSObject CropBox = getCropBoxValue();
+		return getHasTypeRectangle(CropBox);
 	}
 
 	@Override
@@ -147,8 +147,8 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getKidsHasTypeArray() {
-		COSObject object = getKidsValue();
-		return getHasTypeArray(object);
+		COSObject Kids = getKidsValue();
+		return getHasTypeArray(Kids);
 	}
 
 	@Override
@@ -169,8 +169,8 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getMediaBoxHasTypeRectangle() {
-		COSObject object = getMediaBoxValue();
-		return getHasTypeRectangle(object);
+		COSObject MediaBox = getMediaBoxValue();
+		return getHasTypeRectangle(MediaBox);
 	}
 
 	@Override
@@ -185,14 +185,14 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getisParentIndirect() {
-		COSObject object = getParentValue();
-		return getisIndirect(object);
+		COSObject Parent = getParentValue();
+		return getisIndirect(Parent);
 	}
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = getParentValue();
-		return getHasTypeDictionary(object);
+		COSObject Parent = getParentValue();
+		return getHasTypeDictionary(Parent);
 	}
 
 	@Override
@@ -213,8 +213,8 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getResourcesHasTypeDictionary() {
-		COSObject object = getResourcesValue();
-		return getHasTypeDictionary(object);
+		COSObject Resources = getResourcesValue();
+		return getHasTypeDictionary(Resources);
 	}
 
 	@Override
@@ -242,14 +242,14 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getRotateHasTypeInteger() {
-		COSObject object = getRotateValue();
-		return getHasTypeInteger(object);
+		COSObject Rotate = getRotateValue();
+		return getHasTypeInteger(Rotate);
 	}
 
 	@Override
 	public Long getRotateIntegerValue() {
-		COSObject object = getRotateValue();
-		return getIntegerValue(object);
+		COSObject Rotate = getRotateValue();
+		return getIntegerValue(Rotate);
 	}
 
 	@Override
@@ -264,14 +264,14 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

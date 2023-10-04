@@ -281,8 +281,8 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getACHasTypeStringText() {
-		COSObject object = getACValue();
-		return getHasTypeStringText(object);
+		COSObject AC = getACValue();
+		return getHasTypeStringText(AC);
 	}
 
 	@Override
@@ -297,8 +297,8 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getBCHasTypeArray() {
-		COSObject object = getBCValue();
-		return getHasTypeArray(object);
+		COSObject BC = getBCValue();
+		return getHasTypeArray(BC);
 	}
 
 	@Override
@@ -313,8 +313,8 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getBGHasTypeArray() {
-		COSObject object = getBGValue();
-		return getHasTypeArray(object);
+		COSObject BG = getBGValue();
+		return getHasTypeArray(BG);
 	}
 
 	@Override
@@ -329,8 +329,8 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getCAHasTypeStringText() {
-		COSObject object = getCAValue();
-		return getHasTypeStringText(object);
+		COSObject CA = getCAValue();
+		return getHasTypeStringText(CA);
 	}
 
 	@Override
@@ -345,14 +345,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getisIIndirect() {
-		COSObject object = getIValue();
-		return getisIndirect(object);
+		COSObject I = getIValue();
+		return getisIndirect(I);
 	}
 
 	@Override
 	public Boolean getIHasTypeStream() {
-		COSObject object = getIValue();
-		return getHasTypeStream(object);
+		COSObject I = getIValue();
+		return getHasTypeStream(I);
 	}
 
 	@Override
@@ -367,8 +367,8 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getIFHasTypeDictionary() {
-		COSObject object = getIFValue();
-		return getHasTypeDictionary(object);
+		COSObject IF = getIFValue();
+		return getHasTypeDictionary(IF);
 	}
 
 	@Override
@@ -383,14 +383,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getisIXIndirect() {
-		COSObject object = getIXValue();
-		return getisIndirect(object);
+		COSObject IX = getIXValue();
+		return getisIndirect(IX);
 	}
 
 	@Override
 	public Boolean getIXHasTypeStream() {
-		COSObject object = getIXValue();
-		return getHasTypeStream(object);
+		COSObject IX = getIXValue();
+		return getHasTypeStream(IX);
 	}
 
 	@Override
@@ -422,8 +422,8 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = getRValue();
-		return getHasTypeInteger(object);
+		COSObject R = getRValue();
+		return getHasTypeInteger(R);
 	}
 
 	@Override
@@ -438,8 +438,8 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getRCHasTypeStringText() {
-		COSObject object = getRCValue();
-		return getHasTypeStringText(object);
+		COSObject RC = getRCValue();
+		return getHasTypeStringText(RC);
 	}
 
 	@Override
@@ -454,14 +454,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getisRIIndirect() {
-		COSObject object = getRIValue();
-		return getisIndirect(object);
+		COSObject RI = getRIValue();
+		return getisIndirect(RI);
 	}
 
 	@Override
 	public Boolean getRIHasTypeStream() {
-		COSObject object = getRIValue();
-		return getHasTypeStream(object);
+		COSObject RI = getRIValue();
+		return getHasTypeStream(RI);
 	}
 
 	@Override
@@ -493,14 +493,14 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	@Override
 	public Boolean getTPHasTypeInteger() {
-		COSObject object = getTPValue();
-		return getHasTypeInteger(object);
+		COSObject TP = getTPValue();
+		return getHasTypeInteger(TP);
 	}
 
 	@Override
 	public Long getTPIntegerValue() {
-		COSObject object = getTPValue();
-		return getIntegerValue(object);
+		COSObject TP = getTPValue();
+		return getIntegerValue(TP);
 	}
 
 }

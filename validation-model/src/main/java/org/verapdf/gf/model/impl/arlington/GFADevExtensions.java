@@ -28,20 +28,20 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 
 	@Override
 	public Boolean getisBaseVersionIndirect() {
-		COSObject object = getBaseVersionValue();
-		return getisIndirect(object);
+		COSObject BaseVersion = getBaseVersionValue();
+		return getisIndirect(BaseVersion);
 	}
 
 	@Override
 	public Boolean getBaseVersionHasTypeName() {
-		COSObject object = getBaseVersionValue();
-		return getHasTypeName(object);
+		COSObject BaseVersion = getBaseVersionValue();
+		return getHasTypeName(BaseVersion);
 	}
 
 	@Override
 	public String getBaseVersionNameValue() {
-		COSObject object = getBaseVersionValue();
-		return getNameValue(object);
+		COSObject BaseVersion = getBaseVersionValue();
+		return getNameValue(BaseVersion);
 	}
 
 	@Override
@@ -56,14 +56,14 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 
 	@Override
 	public Boolean getisExtensionLevelIndirect() {
-		COSObject object = getExtensionLevelValue();
-		return getisIndirect(object);
+		COSObject ExtensionLevel = getExtensionLevelValue();
+		return getisIndirect(ExtensionLevel);
 	}
 
 	@Override
 	public Boolean getExtensionLevelHasTypeInteger() {
-		COSObject object = getExtensionLevelValue();
-		return getHasTypeInteger(object);
+		COSObject ExtensionLevel = getExtensionLevelValue();
+		return getHasTypeInteger(ExtensionLevel);
 	}
 
 	@Override
@@ -78,14 +78,14 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 
 	@Override
 	public Boolean getisExtensionRevisionIndirect() {
-		COSObject object = getExtensionRevisionValue();
-		return getisIndirect(object);
+		COSObject ExtensionRevision = getExtensionRevisionValue();
+		return getisIndirect(ExtensionRevision);
 	}
 
 	@Override
 	public Boolean getExtensionRevisionHasTypeStringText() {
-		COSObject object = getExtensionRevisionValue();
-		return getHasTypeStringText(object);
+		COSObject ExtensionRevision = getExtensionRevisionValue();
+		return getHasTypeStringText(ExtensionRevision);
 	}
 
 	@Override
@@ -100,20 +100,20 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 
 	@Override
 	public Boolean getisTypeIndirect() {
-		COSObject object = getTypeValue();
-		return getisIndirect(object);
+		COSObject Type = getTypeValue();
+		return getisIndirect(Type);
 	}
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -128,14 +128,14 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 
 	@Override
 	public Boolean getisURLIndirect() {
-		COSObject object = getURLValue();
-		return getisIndirect(object);
+		COSObject URL = getURLValue();
+		return getisIndirect(URL);
 	}
 
 	@Override
 	public Boolean getURLHasTypeString() {
-		COSObject object = getURLValue();
-		return getHasTypeString(object);
+		COSObject URL = getURLValue();
+		return getHasTypeString(URL);
 	}
 
 }

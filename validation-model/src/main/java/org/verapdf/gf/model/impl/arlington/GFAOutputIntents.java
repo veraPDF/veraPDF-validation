@@ -136,14 +136,14 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getisDestOutputProfileIndirect() {
-		COSObject object = getDestOutputProfileValue();
-		return getisIndirect(object);
+		COSObject DestOutputProfile = getDestOutputProfileValue();
+		return getisIndirect(DestOutputProfile);
 	}
 
 	@Override
 	public Boolean getDestOutputProfileHasTypeStream() {
-		COSObject object = getDestOutputProfileValue();
-		return getHasTypeStream(object);
+		COSObject DestOutputProfile = getDestOutputProfileValue();
+		return getHasTypeStream(DestOutputProfile);
 	}
 
 	@Override
@@ -158,8 +158,8 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getDestOutputProfileRefHasTypeDictionary() {
-		COSObject object = getDestOutputProfileRefValue();
-		return getHasTypeDictionary(object);
+		COSObject DestOutputProfileRef = getDestOutputProfileRefValue();
+		return getHasTypeDictionary(DestOutputProfileRef);
 	}
 
 	@Override
@@ -174,8 +174,8 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getInfoHasTypeStringText() {
-		COSObject object = getInfoValue();
-		return getHasTypeStringText(object);
+		COSObject Info = getInfoValue();
+		return getHasTypeStringText(Info);
 	}
 
 	@Override
@@ -190,8 +190,8 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getMixingHintsHasTypeDictionary() {
-		COSObject object = getMixingHintsValue();
-		return getHasTypeDictionary(object);
+		COSObject MixingHints = getMixingHintsValue();
+		return getHasTypeDictionary(MixingHints);
 	}
 
 	@Override
@@ -206,8 +206,8 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getOutputConditionHasTypeStringText() {
-		COSObject object = getOutputConditionValue();
-		return getHasTypeStringText(object);
+		COSObject OutputCondition = getOutputConditionValue();
+		return getHasTypeStringText(OutputCondition);
 	}
 
 	@Override
@@ -222,8 +222,8 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getOutputConditionIdentifierHasTypeStringText() {
-		COSObject object = getOutputConditionIdentifierValue();
-		return getHasTypeStringText(object);
+		COSObject OutputConditionIdentifier = getOutputConditionIdentifierValue();
+		return getHasTypeStringText(OutputConditionIdentifier);
 	}
 
 	@Override
@@ -238,8 +238,8 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getRegistryNameHasTypeStringText() {
-		COSObject object = getRegistryNameValue();
-		return getHasTypeStringText(object);
+		COSObject RegistryName = getRegistryNameValue();
+		return getHasTypeStringText(RegistryName);
 	}
 
 	@Override
@@ -254,14 +254,14 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -276,8 +276,8 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getSpectralDataHasTypeDictionary() {
-		COSObject object = getSpectralDataValue();
-		return getHasTypeDictionary(object);
+		COSObject SpectralData = getSpectralDataValue();
+		return getHasTypeDictionary(SpectralData);
 	}
 
 	@Override
@@ -292,14 +292,14 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

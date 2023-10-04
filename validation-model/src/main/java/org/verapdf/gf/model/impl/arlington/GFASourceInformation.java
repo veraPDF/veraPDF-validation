@@ -94,14 +94,14 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 
 	@Override
 	public Boolean getAUHasTypeDictionary() {
-		COSObject object = getAUValue();
-		return getHasTypeDictionary(object);
+		COSObject AU = getAUValue();
+		return getHasTypeDictionary(AU);
 	}
 
 	@Override
 	public Boolean getAUHasTypeStringAscii() {
-		COSObject object = getAUValue();
-		return getHasTypeStringAscii(object);
+		COSObject AU = getAUValue();
+		return getHasTypeStringAscii(AU);
 	}
 
 	@Override
@@ -116,14 +116,14 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 
 	@Override
 	public Boolean getisCIndirect() {
-		COSObject object = getCValue();
-		return getisIndirect(object);
+		COSObject C = getCValue();
+		return getisIndirect(C);
 	}
 
 	@Override
 	public Boolean getCHasTypeDictionary() {
-		COSObject object = getCValue();
-		return getHasTypeDictionary(object);
+		COSObject C = getCValue();
+		return getHasTypeDictionary(C);
 	}
 
 	@Override
@@ -138,8 +138,8 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 
 	@Override
 	public Boolean getEHasTypeDate() {
-		COSObject object = getEValue();
-		return getHasTypeDate(object);
+		COSObject E = getEValue();
+		return getHasTypeDate(E);
 	}
 
 	@Override
@@ -170,14 +170,14 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 
 	@Override
 	public Boolean getSHasTypeInteger() {
-		COSObject object = getSValue();
-		return getHasTypeInteger(object);
+		COSObject S = getSValue();
+		return getHasTypeInteger(S);
 	}
 
 	@Override
 	public Long getSIntegerValue() {
-		COSObject object = getSValue();
-		return getIntegerValue(object);
+		COSObject S = getSValue();
+		return getIntegerValue(S);
 	}
 
 	@Override
@@ -192,17 +192,22 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 
 	@Override
 	public Boolean getTSHasTypeDate() {
-		COSObject object = getTSValue();
-		return getHasTypeDate(object);
+		COSObject TS = getTSValue();
+		return getHasTypeDate(TS);
 	}
 
-	@Override
-	public String getparentSNameValue() {
+	public COSObject getparentSValue() {
 		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
 			return null;
 		}
 		COSObject S = this.parentObject.getKey(ASAtom.getASAtom("S"));
-		return getNameValue(S);
+		return S;
+	}
+
+	@Override
+	public String getparentSNameValue() {
+		COSObject parentS = getparentSValue();
+		return getNameValue(parentS);
 	}
 
 }

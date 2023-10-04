@@ -76,14 +76,14 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 
 	@Override
 	public Boolean getPenaltyHasTypeInteger() {
-		COSObject object = getPenaltyValue();
-		return getHasTypeInteger(object);
+		COSObject Penalty = getPenaltyValue();
+		return getHasTypeInteger(Penalty);
 	}
 
 	@Override
 	public Long getPenaltyIntegerValue() {
-		COSObject object = getPenaltyValue();
-		return getIntegerValue(object);
+		COSObject Penalty = getPenaltyValue();
+		return getIntegerValue(Penalty);
 	}
 
 	@Override
@@ -98,14 +98,14 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 
 	@Override
 	public Boolean getRHHasTypeArray() {
-		COSObject object = getRHValue();
-		return getHasTypeArray(object);
+		COSObject RH = getRHValue();
+		return getHasTypeArray(RH);
 	}
 
 	@Override
 	public Boolean getRHHasTypeDictionary() {
-		COSObject object = getRHValue();
-		return getHasTypeDictionary(object);
+		COSObject RH = getRHValue();
+		return getHasTypeDictionary(RH);
 	}
 
 	@Override
@@ -120,14 +120,14 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -142,14 +142,14 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -164,14 +164,14 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 
 	@Override
 	public Boolean getVHasTypeName() {
-		COSObject object = getVValue();
-		return getHasTypeName(object);
+		COSObject V = getVValue();
+		return getHasTypeName(V);
 	}
 
 	@Override
 	public String getVNameValue() {
-		COSObject object = getVValue();
-		return getNameValue(object);
+		COSObject V = getVValue();
+		return getNameValue(V);
 	}
 
 }

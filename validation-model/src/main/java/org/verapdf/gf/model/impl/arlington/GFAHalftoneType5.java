@@ -165,20 +165,20 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 
 	@Override
 	public Boolean getisDefaultIndirect() {
-		COSObject object = getDefaultValue();
-		return getisIndirect(object);
+		COSObject Default = getDefaultValue();
+		return getisIndirect(Default);
 	}
 
 	@Override
 	public Boolean getDefaultHasTypeDictionary() {
-		COSObject object = getDefaultValue();
-		return getHasTypeDictionary(object);
+		COSObject Default = getDefaultValue();
+		return getHasTypeDictionary(Default);
 	}
 
 	@Override
 	public Boolean getDefaultHasTypeStream() {
-		COSObject object = getDefaultValue();
-		return getHasTypeStream(object);
+		COSObject Default = getDefaultValue();
+		return getHasTypeStream(Default);
 	}
 
 	@Override
@@ -193,8 +193,8 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 
 	@Override
 	public Boolean getHalftoneNameHasTypeStringByte() {
-		COSObject object = getHalftoneNameValue();
-		return getHasTypeStringByte(object);
+		COSObject HalftoneName = getHalftoneNameValue();
+		return getHasTypeStringByte(HalftoneName);
 	}
 
 	@Override
@@ -209,14 +209,14 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 
 	@Override
 	public Boolean getHalftoneTypeHasTypeInteger() {
-		COSObject object = getHalftoneTypeValue();
-		return getHasTypeInteger(object);
+		COSObject HalftoneType = getHalftoneTypeValue();
+		return getHasTypeInteger(HalftoneType);
 	}
 
 	@Override
 	public Long getHalftoneTypeIntegerValue() {
-		COSObject object = getHalftoneTypeValue();
-		return getIntegerValue(object);
+		COSObject HalftoneType = getHalftoneTypeValue();
+		return getIntegerValue(HalftoneType);
 	}
 
 	@Override
@@ -231,14 +231,14 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

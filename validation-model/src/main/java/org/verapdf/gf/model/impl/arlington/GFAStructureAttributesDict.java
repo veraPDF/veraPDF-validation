@@ -448,8 +448,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getBBoxHasTypeRectangle() {
-		COSObject object = getBBoxValue();
-		return getHasTypeRectangle(object);
+		COSObject BBox = getBBoxValue();
+		return getHasTypeRectangle(BBox);
 	}
 
 	@Override
@@ -464,8 +464,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getBackgroundColorHasTypeArray() {
-		COSObject object = getBackgroundColorValue();
-		return getHasTypeArray(object);
+		COSObject BackgroundColor = getBackgroundColorValue();
+		return getHasTypeArray(BackgroundColor);
 	}
 
 	@Override
@@ -495,8 +495,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getBaselineShiftHasTypeNumber() {
-		COSObject object = getBaselineShiftValue();
-		return getHasTypeNumber(object);
+		COSObject BaselineShift = getBaselineShiftValue();
+		return getHasTypeNumber(BaselineShift);
 	}
 
 	@Override
@@ -526,14 +526,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getBlockAlignHasTypeName() {
-		COSObject object = getBlockAlignValue();
-		return getHasTypeName(object);
+		COSObject BlockAlign = getBlockAlignValue();
+		return getHasTypeName(BlockAlign);
 	}
 
 	@Override
 	public String getBlockAlignNameValue() {
-		COSObject object = getBlockAlignValue();
-		return getNameValue(object);
+		COSObject BlockAlign = getBlockAlignValue();
+		return getNameValue(BlockAlign);
 	}
 
 	@Override
@@ -548,8 +548,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getBorderColorHasTypeArray() {
-		COSObject object = getBorderColorValue();
-		return getHasTypeArray(object);
+		COSObject BorderColor = getBorderColorValue();
+		return getHasTypeArray(BorderColor);
 	}
 
 	@Override
@@ -578,20 +578,20 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getBorderStyleHasTypeArray() {
-		COSObject object = getBorderStyleValue();
-		return getHasTypeArray(object);
+		COSObject BorderStyle = getBorderStyleValue();
+		return getHasTypeArray(BorderStyle);
 	}
 
 	@Override
 	public Boolean getBorderStyleHasTypeName() {
-		COSObject object = getBorderStyleValue();
-		return getHasTypeName(object);
+		COSObject BorderStyle = getBorderStyleValue();
+		return getHasTypeName(BorderStyle);
 	}
 
 	@Override
 	public String getBorderStyleNameValue() {
-		COSObject object = getBorderStyleValue();
-		return getNameValue(object);
+		COSObject BorderStyle = getBorderStyleValue();
+		return getNameValue(BorderStyle);
 	}
 
 	@Override
@@ -620,14 +620,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getBorderThicknessHasTypeArray() {
-		COSObject object = getBorderThicknessValue();
-		return getHasTypeArray(object);
+		COSObject BorderThickness = getBorderThicknessValue();
+		return getHasTypeArray(BorderThickness);
 	}
 
 	@Override
 	public Boolean getBorderThicknessHasTypeNumber() {
-		COSObject object = getBorderThicknessValue();
-		return getHasTypeNumber(object);
+		COSObject BorderThickness = getBorderThicknessValue();
+		return getHasTypeNumber(BorderThickness);
 	}
 
 	@Override
@@ -654,14 +654,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getCheckedHasTypeName() {
-		COSObject object = getCheckedValue();
-		return getHasTypeName(object);
+		COSObject Checked = getCheckedValue();
+		return getHasTypeName(Checked);
 	}
 
 	@Override
 	public String getCheckedNameValue() {
-		COSObject object = getCheckedValue();
-		return getNameValue(object);
+		COSObject Checked = getCheckedValue();
+		return getNameValue(Checked);
 	}
 
 	@Override
@@ -691,8 +691,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getColSpanHasTypeInteger() {
-		COSObject object = getColSpanValue();
-		return getHasTypeInteger(object);
+		COSObject ColSpan = getColSpanValue();
+		return getHasTypeInteger(ColSpan);
 	}
 
 	@Override
@@ -707,8 +707,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getColorHasTypeArray() {
-		COSObject object = getColorValue();
-		return getHasTypeArray(object);
+		COSObject Color = getColorValue();
+		return getHasTypeArray(Color);
 	}
 
 	@Override
@@ -736,8 +736,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getColumnCountHasTypeInteger() {
-		COSObject object = getColumnCountValue();
-		return getHasTypeInteger(object);
+		COSObject ColumnCount = getColumnCountValue();
+		return getHasTypeInteger(ColumnCount);
 	}
 
 	@Override
@@ -752,14 +752,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getColumnGapHasTypeArray() {
-		COSObject object = getColumnGapValue();
-		return getHasTypeArray(object);
+		COSObject ColumnGap = getColumnGapValue();
+		return getHasTypeArray(ColumnGap);
 	}
 
 	@Override
 	public Boolean getColumnGapHasTypeNumber() {
-		COSObject object = getColumnGapValue();
-		return getHasTypeNumber(object);
+		COSObject ColumnGap = getColumnGapValue();
+		return getHasTypeNumber(ColumnGap);
 	}
 
 	@Override
@@ -774,14 +774,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getColumnWidthsHasTypeArray() {
-		COSObject object = getColumnWidthsValue();
-		return getHasTypeArray(object);
+		COSObject ColumnWidths = getColumnWidthsValue();
+		return getHasTypeArray(ColumnWidths);
 	}
 
 	@Override
 	public Boolean getColumnWidthsHasTypeNumber() {
-		COSObject object = getColumnWidthsValue();
-		return getHasTypeNumber(object);
+		COSObject ColumnWidths = getColumnWidthsValue();
+		return getHasTypeNumber(ColumnWidths);
 	}
 
 	@Override
@@ -796,14 +796,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getContentsHasTypeArray() {
-		COSObject object = getContentsValue();
-		return getHasTypeArray(object);
+		COSObject Contents = getContentsValue();
+		return getHasTypeArray(Contents);
 	}
 
 	@Override
 	public Boolean getContentsHasTypeStringText() {
-		COSObject object = getContentsValue();
-		return getHasTypeStringText(object);
+		COSObject Contents = getContentsValue();
+		return getHasTypeStringText(Contents);
 	}
 
 	@Override
@@ -818,8 +818,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getContinuedFormHasTypeStringByte() {
-		COSObject object = getContinuedFormValue();
-		return getHasTypeStringByte(object);
+		COSObject ContinuedForm = getContinuedFormValue();
+		return getHasTypeStringByte(ContinuedForm);
 	}
 
 	@Override
@@ -845,8 +845,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getContinuedListHasTypeBoolean() {
-		COSObject object = getContinuedListValue();
-		return getHasTypeBoolean(object);
+		COSObject ContinuedList = getContinuedListValue();
+		return getHasTypeBoolean(ContinuedList);
 	}
 
 	@Override
@@ -861,8 +861,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getDescHasTypeStringText() {
-		COSObject object = getDescValue();
-		return getHasTypeStringText(object);
+		COSObject Desc = getDescValue();
+		return getHasTypeStringText(Desc);
 	}
 
 	@Override
@@ -892,8 +892,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getEndIndentHasTypeNumber() {
-		COSObject object = getEndIndentValue();
-		return getHasTypeNumber(object);
+		COSObject EndIndent = getEndIndentValue();
+		return getHasTypeNumber(EndIndent);
 	}
 
 	@Override
@@ -922,26 +922,26 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getGlyphOrientationVerticalHasTypeInteger() {
-		COSObject object = getGlyphOrientationVerticalValue();
-		return getHasTypeInteger(object);
+		COSObject GlyphOrientationVertical = getGlyphOrientationVerticalValue();
+		return getHasTypeInteger(GlyphOrientationVertical);
 	}
 
 	@Override
 	public Boolean getGlyphOrientationVerticalHasTypeName() {
-		COSObject object = getGlyphOrientationVerticalValue();
-		return getHasTypeName(object);
+		COSObject GlyphOrientationVertical = getGlyphOrientationVerticalValue();
+		return getHasTypeName(GlyphOrientationVertical);
 	}
 
 	@Override
 	public Long getGlyphOrientationVerticalIntegerValue() {
-		COSObject object = getGlyphOrientationVerticalValue();
-		return getIntegerValue(object);
+		COSObject GlyphOrientationVertical = getGlyphOrientationVerticalValue();
+		return getIntegerValue(GlyphOrientationVertical);
 	}
 
 	@Override
 	public String getGlyphOrientationVerticalNameValue() {
-		COSObject object = getGlyphOrientationVerticalValue();
-		return getNameValue(object);
+		COSObject GlyphOrientationVertical = getGlyphOrientationVerticalValue();
+		return getNameValue(GlyphOrientationVertical);
 	}
 
 	@Override
@@ -956,8 +956,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getHeadersHasTypeArray() {
-		COSObject object = getHeadersValue();
-		return getHasTypeArray(object);
+		COSObject Headers = getHeadersValue();
+		return getHasTypeArray(Headers);
 	}
 
 	@Override
@@ -987,14 +987,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getHeightHasTypeName() {
-		COSObject object = getHeightValue();
-		return getHasTypeName(object);
+		COSObject Height = getHeightValue();
+		return getHasTypeName(Height);
 	}
 
 	@Override
 	public Boolean getHeightHasTypeNumber() {
-		COSObject object = getHeightValue();
-		return getHasTypeNumber(object);
+		COSObject Height = getHeightValue();
+		return getHasTypeNumber(Height);
 	}
 
 	@Override
@@ -1024,14 +1024,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getInlineAlignHasTypeName() {
-		COSObject object = getInlineAlignValue();
-		return getHasTypeName(object);
+		COSObject InlineAlign = getInlineAlignValue();
+		return getHasTypeName(InlineAlign);
 	}
 
 	@Override
 	public String getInlineAlignNameValue() {
-		COSObject object = getInlineAlignValue();
-		return getNameValue(object);
+		COSObject InlineAlign = getInlineAlignValue();
+		return getNameValue(InlineAlign);
 	}
 
 	@Override
@@ -1061,20 +1061,20 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getLineHeightHasTypeName() {
-		COSObject object = getLineHeightValue();
-		return getHasTypeName(object);
+		COSObject LineHeight = getLineHeightValue();
+		return getHasTypeName(LineHeight);
 	}
 
 	@Override
 	public Boolean getLineHeightHasTypeNumber() {
-		COSObject object = getLineHeightValue();
-		return getHasTypeNumber(object);
+		COSObject LineHeight = getLineHeightValue();
+		return getHasTypeNumber(LineHeight);
 	}
 
 	@Override
 	public String getLineHeightNameValue() {
-		COSObject object = getLineHeightValue();
-		return getNameValue(object);
+		COSObject LineHeight = getLineHeightValue();
+		return getNameValue(LineHeight);
 	}
 
 	@Override
@@ -1104,14 +1104,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getListNumberingHasTypeName() {
-		COSObject object = getListNumberingValue();
-		return getHasTypeName(object);
+		COSObject ListNumbering = getListNumberingValue();
+		return getHasTypeName(ListNumbering);
 	}
 
 	@Override
 	public String getListNumberingNameValue() {
-		COSObject object = getListNumberingValue();
-		return getNameValue(object);
+		COSObject ListNumbering = getListNumberingValue();
+		return getNameValue(ListNumbering);
 	}
 
 	@Override
@@ -1126,14 +1126,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getisNSIndirect() {
-		COSObject object = getNSValue();
-		return getisIndirect(object);
+		COSObject NS = getNSValue();
+		return getisIndirect(NS);
 	}
 
 	@Override
 	public Boolean getNSHasTypeDictionary() {
-		COSObject object = getNSValue();
-		return getHasTypeDictionary(object);
+		COSObject NS = getNSValue();
+		return getHasTypeDictionary(NS);
 	}
 
 	@Override
@@ -1148,14 +1148,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getOHasTypeName() {
-		COSObject object = getOValue();
-		return getHasTypeName(object);
+		COSObject O = getOValue();
+		return getHasTypeName(O);
 	}
 
 	@Override
 	public String getONameValue() {
-		COSObject object = getOValue();
-		return getNameValue(object);
+		COSObject O = getOValue();
+		return getNameValue(O);
 	}
 
 	@Override
@@ -1170,8 +1170,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getPHasTypeArray() {
-		COSObject object = getPValue();
-		return getHasTypeArray(object);
+		COSObject P = getPValue();
+		return getHasTypeArray(P);
 	}
 
 	@Override
@@ -1200,14 +1200,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getPaddingHasTypeArray() {
-		COSObject object = getPaddingValue();
-		return getHasTypeArray(object);
+		COSObject Padding = getPaddingValue();
+		return getHasTypeArray(Padding);
 	}
 
 	@Override
 	public Boolean getPaddingHasTypeNumber() {
-		COSObject object = getPaddingValue();
-		return getHasTypeNumber(object);
+		COSObject Padding = getPaddingValue();
+		return getHasTypeNumber(Padding);
 	}
 
 	@Override
@@ -1222,14 +1222,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getPlacementHasTypeName() {
-		COSObject object = getPlacementValue();
-		return getHasTypeName(object);
+		COSObject Placement = getPlacementValue();
+		return getHasTypeName(Placement);
 	}
 
 	@Override
 	public String getPlacementNameValue() {
-		COSObject object = getPlacementValue();
-		return getNameValue(object);
+		COSObject Placement = getPlacementValue();
+		return getNameValue(Placement);
 	}
 
 	@Override
@@ -1244,14 +1244,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getRoleHasTypeName() {
-		COSObject object = getRoleValue();
-		return getHasTypeName(object);
+		COSObject Role = getRoleValue();
+		return getHasTypeName(Role);
 	}
 
 	@Override
 	public String getRoleNameValue() {
-		COSObject object = getRoleValue();
-		return getNameValue(object);
+		COSObject Role = getRoleValue();
+		return getNameValue(Role);
 	}
 
 	@Override
@@ -1281,8 +1281,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getRowSpanHasTypeInteger() {
-		COSObject object = getRowSpanValue();
-		return getHasTypeInteger(object);
+		COSObject RowSpan = getRowSpanValue();
+		return getHasTypeInteger(RowSpan);
 	}
 
 	@Override
@@ -1311,14 +1311,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getRubyAlignHasTypeName() {
-		COSObject object = getRubyAlignValue();
-		return getHasTypeName(object);
+		COSObject RubyAlign = getRubyAlignValue();
+		return getHasTypeName(RubyAlign);
 	}
 
 	@Override
 	public String getRubyAlignNameValue() {
-		COSObject object = getRubyAlignValue();
-		return getNameValue(object);
+		COSObject RubyAlign = getRubyAlignValue();
+		return getNameValue(RubyAlign);
 	}
 
 	@Override
@@ -1347,14 +1347,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getRubyPositionHasTypeName() {
-		COSObject object = getRubyPositionValue();
-		return getHasTypeName(object);
+		COSObject RubyPosition = getRubyPositionValue();
+		return getHasTypeName(RubyPosition);
 	}
 
 	@Override
 	public String getRubyPositionNameValue() {
-		COSObject object = getRubyPositionValue();
-		return getNameValue(object);
+		COSObject RubyPosition = getRubyPositionValue();
+		return getNameValue(RubyPosition);
 	}
 
 	@Override
@@ -1369,14 +1369,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getScopeHasTypeName() {
-		COSObject object = getScopeValue();
-		return getHasTypeName(object);
+		COSObject Scope = getScopeValue();
+		return getHasTypeName(Scope);
 	}
 
 	@Override
 	public String getScopeNameValue() {
-		COSObject object = getScopeValue();
-		return getNameValue(object);
+		COSObject Scope = getScopeValue();
+		return getNameValue(Scope);
 	}
 
 	@Override
@@ -1391,8 +1391,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getShortHasTypeStringText() {
-		COSObject object = getShortValue();
-		return getHasTypeStringText(object);
+		COSObject Short = getShortValue();
+		return getHasTypeStringText(Short);
 	}
 
 	@Override
@@ -1422,8 +1422,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getSpaceAfterHasTypeNumber() {
-		COSObject object = getSpaceAfterValue();
-		return getHasTypeNumber(object);
+		COSObject SpaceAfter = getSpaceAfterValue();
+		return getHasTypeNumber(SpaceAfter);
 	}
 
 	@Override
@@ -1453,8 +1453,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getSpaceBeforeHasTypeNumber() {
-		COSObject object = getSpaceBeforeValue();
-		return getHasTypeNumber(object);
+		COSObject SpaceBefore = getSpaceBeforeValue();
+		return getHasTypeNumber(SpaceBefore);
 	}
 
 	@Override
@@ -1484,8 +1484,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getStartIndentHasTypeNumber() {
-		COSObject object = getStartIndentValue();
-		return getHasTypeNumber(object);
+		COSObject StartIndent = getStartIndentValue();
+		return getHasTypeNumber(StartIndent);
 	}
 
 	@Override
@@ -1500,14 +1500,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -1522,8 +1522,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getSummaryHasTypeStringText() {
-		COSObject object = getSummaryValue();
-		return getHasTypeStringText(object);
+		COSObject Summary = getSummaryValue();
+		return getHasTypeStringText(Summary);
 	}
 
 	@Override
@@ -1552,20 +1552,20 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTBorderStyleHasTypeArray() {
-		COSObject object = getTBorderStyleValue();
-		return getHasTypeArray(object);
+		COSObject TBorderStyle = getTBorderStyleValue();
+		return getHasTypeArray(TBorderStyle);
 	}
 
 	@Override
 	public Boolean getTBorderStyleHasTypeName() {
-		COSObject object = getTBorderStyleValue();
-		return getHasTypeName(object);
+		COSObject TBorderStyle = getTBorderStyleValue();
+		return getHasTypeName(TBorderStyle);
 	}
 
 	@Override
 	public String getTBorderStyleNameValue() {
-		COSObject object = getTBorderStyleValue();
-		return getNameValue(object);
+		COSObject TBorderStyle = getTBorderStyleValue();
+		return getNameValue(TBorderStyle);
 	}
 
 	@Override
@@ -1594,14 +1594,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTPaddingHasTypeArray() {
-		COSObject object = getTPaddingValue();
-		return getHasTypeArray(object);
+		COSObject TPadding = getTPaddingValue();
+		return getHasTypeArray(TPadding);
 	}
 
 	@Override
 	public Boolean getTPaddingHasTypeInteger() {
-		COSObject object = getTPaddingValue();
-		return getHasTypeInteger(object);
+		COSObject TPadding = getTPaddingValue();
+		return getHasTypeInteger(TPadding);
 	}
 
 	@Override
@@ -1631,14 +1631,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTextAlignHasTypeName() {
-		COSObject object = getTextAlignValue();
-		return getHasTypeName(object);
+		COSObject TextAlign = getTextAlignValue();
+		return getHasTypeName(TextAlign);
 	}
 
 	@Override
 	public String getTextAlignNameValue() {
-		COSObject object = getTextAlignValue();
-		return getNameValue(object);
+		COSObject TextAlign = getTextAlignValue();
+		return getNameValue(TextAlign);
 	}
 
 	@Override
@@ -1653,8 +1653,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTextDecorationColorHasTypeArray() {
-		COSObject object = getTextDecorationColorValue();
-		return getHasTypeArray(object);
+		COSObject TextDecorationColor = getTextDecorationColorValue();
+		return getHasTypeArray(TextDecorationColor);
 	}
 
 	@Override
@@ -1669,8 +1669,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTextDecorationThicknessHasTypeNumber() {
-		COSObject object = getTextDecorationThicknessValue();
-		return getHasTypeNumber(object);
+		COSObject TextDecorationThickness = getTextDecorationThicknessValue();
+		return getHasTypeNumber(TextDecorationThickness);
 	}
 
 	@Override
@@ -1700,14 +1700,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTextDecorationTypeHasTypeName() {
-		COSObject object = getTextDecorationTypeValue();
-		return getHasTypeName(object);
+		COSObject TextDecorationType = getTextDecorationTypeValue();
+		return getHasTypeName(TextDecorationType);
 	}
 
 	@Override
 	public String getTextDecorationTypeNameValue() {
-		COSObject object = getTextDecorationTypeValue();
-		return getNameValue(object);
+		COSObject TextDecorationType = getTextDecorationTypeValue();
+		return getNameValue(TextDecorationType);
 	}
 
 	@Override
@@ -1737,8 +1737,8 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTextIndentHasTypeNumber() {
-		COSObject object = getTextIndentValue();
-		return getHasTypeNumber(object);
+		COSObject TextIndent = getTextIndentValue();
+		return getHasTypeNumber(TextIndent);
 	}
 
 	@Override
@@ -1764,14 +1764,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTextPositionHasTypeName() {
-		COSObject object = getTextPositionValue();
-		return getHasTypeName(object);
+		COSObject TextPosition = getTextPositionValue();
+		return getHasTypeName(TextPosition);
 	}
 
 	@Override
 	public String getTextPositionNameValue() {
-		COSObject object = getTextPositionValue();
-		return getNameValue(object);
+		COSObject TextPosition = getTextPositionValue();
+		return getNameValue(TextPosition);
 	}
 
 	@Override
@@ -1786,14 +1786,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -1823,14 +1823,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getWidthHasTypeName() {
-		COSObject object = getWidthValue();
-		return getHasTypeName(object);
+		COSObject Width = getWidthValue();
+		return getHasTypeName(Width);
 	}
 
 	@Override
 	public Boolean getWidthHasTypeNumber() {
-		COSObject object = getWidthValue();
-		return getHasTypeNumber(object);
+		COSObject Width = getWidthValue();
+		return getHasTypeNumber(Width);
 	}
 
 	@Override
@@ -1860,14 +1860,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getWritingModeHasTypeName() {
-		COSObject object = getWritingModeValue();
-		return getHasTypeName(object);
+		COSObject WritingMode = getWritingModeValue();
+		return getHasTypeName(WritingMode);
 	}
 
 	@Override
 	public String getWritingModeNameValue() {
-		COSObject object = getWritingModeValue();
-		return getNameValue(object);
+		COSObject WritingMode = getWritingModeValue();
+		return getNameValue(WritingMode);
 	}
 
 	@Override
@@ -1894,14 +1894,14 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 
 	@Override
 	public Boolean getcheckedHasTypeName() {
-		COSObject object = getcheckedValue();
-		return getHasTypeName(object);
+		COSObject checked = getcheckedValue();
+		return getHasTypeName(checked);
 	}
 
 	@Override
 	public String getcheckedNameValue() {
-		COSObject object = getcheckedValue();
-		return getNameValue(object);
+		COSObject checked = getcheckedValue();
+		return getNameValue(checked);
 	}
 
 	@Override

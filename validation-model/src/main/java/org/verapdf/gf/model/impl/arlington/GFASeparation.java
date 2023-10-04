@@ -119,8 +119,8 @@ public class GFASeparation extends GFAObject implements ASeparation {
 
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeArray(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeArray(ColorSpace);
 	}
 
 	@Override
@@ -135,14 +135,14 @@ public class GFASeparation extends GFAObject implements ASeparation {
 
 	@Override
 	public Boolean getDeviceColorantHasTypeName() {
-		COSObject object = getDeviceColorantValue();
-		return getHasTypeName(object);
+		COSObject DeviceColorant = getDeviceColorantValue();
+		return getHasTypeName(DeviceColorant);
 	}
 
 	@Override
 	public Boolean getDeviceColorantHasTypeString() {
-		COSObject object = getDeviceColorantValue();
-		return getHasTypeString(object);
+		COSObject DeviceColorant = getDeviceColorantValue();
+		return getHasTypeString(DeviceColorant);
 	}
 
 	@Override
@@ -157,8 +157,8 @@ public class GFASeparation extends GFAObject implements ASeparation {
 
 	@Override
 	public Boolean getPagesHasTypeArray() {
-		COSObject object = getPagesValue();
-		return getHasTypeArray(object);
+		COSObject Pages = getPagesValue();
+		return getHasTypeArray(Pages);
 	}
 
 }

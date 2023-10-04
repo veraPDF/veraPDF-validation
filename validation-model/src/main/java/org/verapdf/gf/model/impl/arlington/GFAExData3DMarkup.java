@@ -86,14 +86,14 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 
 	@Override
 	public Boolean getentry3DAHasTypeDictionary() {
-		COSObject object = getentry3DAValue();
-		return getHasTypeDictionary(object);
+		COSObject entry3DA = getentry3DAValue();
+		return getHasTypeDictionary(entry3DA);
 	}
 
 	@Override
 	public Boolean getentry3DAHasTypeStringText() {
-		COSObject object = getentry3DAValue();
-		return getHasTypeStringText(object);
+		COSObject entry3DA = getentry3DAValue();
+		return getHasTypeStringText(entry3DA);
 	}
 
 	@Override
@@ -108,8 +108,8 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 
 	@Override
 	public Boolean getentry3DVHasTypeDictionary() {
-		COSObject object = getentry3DVValue();
-		return getHasTypeDictionary(object);
+		COSObject entry3DV = getentry3DVValue();
+		return getHasTypeDictionary(entry3DV);
 	}
 
 	@Override
@@ -124,8 +124,8 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 
 	@Override
 	public Boolean getMD5HasTypeStringByte() {
-		COSObject object = getMD5Value();
-		return getHasTypeStringByte(object);
+		COSObject MD5 = getMD5Value();
+		return getHasTypeStringByte(MD5);
 	}
 
 	@Override
@@ -140,14 +140,14 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -162,14 +162,14 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

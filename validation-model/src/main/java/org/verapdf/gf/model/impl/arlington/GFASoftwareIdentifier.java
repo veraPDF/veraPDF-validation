@@ -117,8 +117,8 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 
 	@Override
 	public Boolean getHHasTypeArray() {
-		COSObject object = getHValue();
-		return getHasTypeArray(object);
+		COSObject H = getHValue();
+		return getHasTypeArray(H);
 	}
 
 	@Override
@@ -147,8 +147,8 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 
 	@Override
 	public Boolean getHIHasTypeBoolean() {
-		COSObject object = getHIValue();
-		return getHasTypeBoolean(object);
+		COSObject HI = getHIValue();
+		return getHasTypeBoolean(HI);
 	}
 
 	@Override
@@ -163,8 +163,8 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 
 	@Override
 	public Boolean getLHasTypeArray() {
-		COSObject object = getLValue();
-		return getHasTypeArray(object);
+		COSObject L = getLValue();
+		return getHasTypeArray(L);
 	}
 
 	@Override
@@ -193,8 +193,8 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 
 	@Override
 	public Boolean getLIHasTypeBoolean() {
-		COSObject object = getLIValue();
-		return getHasTypeBoolean(object);
+		COSObject LI = getLIValue();
+		return getHasTypeBoolean(LI);
 	}
 
 	@Override
@@ -209,8 +209,8 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 
 	@Override
 	public Boolean getOSHasTypeArray() {
-		COSObject object = getOSValue();
-		return getHasTypeArray(object);
+		COSObject OS = getOSValue();
+		return getHasTypeArray(OS);
 	}
 
 	@Override
@@ -225,14 +225,14 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -247,8 +247,8 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 
 	@Override
 	public Boolean getUHasTypeStringAscii() {
-		COSObject object = getUValue();
-		return getHasTypeStringAscii(object);
+		COSObject U = getUValue();
+		return getHasTypeStringAscii(U);
 	}
 
 }

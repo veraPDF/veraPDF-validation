@@ -265,8 +265,8 @@ public class GFAField extends GFAObject implements AField {
 
 	@Override
 	public Boolean getAAHasTypeDictionary() {
-		COSObject object = getAAValue();
-		return getHasTypeDictionary(object);
+		COSObject AA = getAAValue();
+		return getHasTypeDictionary(AA);
 	}
 
 	@Override
@@ -281,14 +281,14 @@ public class GFAField extends GFAObject implements AField {
 
 	@Override
 	public Boolean getFfHasTypeBitmask() {
-		COSObject object = getFfValue();
-		return getHasTypeBitmask(object);
+		COSObject Ff = getFfValue();
+		return getHasTypeBitmask(Ff);
 	}
 
 	@Override
 	public Long getFfBitmaskValue() {
-		COSObject object = getFfValue();
-		return getBitmaskValue(object);
+		COSObject Ff = getFfValue();
+		return getBitmaskValue(Ff);
 	}
 
 	@Override
@@ -303,8 +303,8 @@ public class GFAField extends GFAObject implements AField {
 
 	@Override
 	public Boolean getKidsHasTypeArray() {
-		COSObject object = getKidsValue();
-		return getHasTypeArray(object);
+		COSObject Kids = getKidsValue();
+		return getHasTypeArray(Kids);
 	}
 
 	@Override
@@ -319,8 +319,8 @@ public class GFAField extends GFAObject implements AField {
 
 	@Override
 	public Boolean getParentHasTypeDictionary() {
-		COSObject object = getParentValue();
-		return getHasTypeDictionary(object);
+		COSObject Parent = getParentValue();
+		return getHasTypeDictionary(Parent);
 	}
 
 	@Override
@@ -335,8 +335,8 @@ public class GFAField extends GFAObject implements AField {
 
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = getTValue();
-		return getHasTypeStringText(object);
+		COSObject T = getTValue();
+		return getHasTypeStringText(T);
 	}
 
 	@Override
@@ -351,8 +351,8 @@ public class GFAField extends GFAObject implements AField {
 
 	@Override
 	public Boolean getTMHasTypeStringText() {
-		COSObject object = getTMValue();
-		return getHasTypeStringText(object);
+		COSObject TM = getTMValue();
+		return getHasTypeStringText(TM);
 	}
 
 	@Override
@@ -367,8 +367,8 @@ public class GFAField extends GFAObject implements AField {
 
 	@Override
 	public Boolean getTUHasTypeStringText() {
-		COSObject object = getTUValue();
-		return getHasTypeStringText(object);
+		COSObject TU = getTUValue();
+		return getHasTypeStringText(TU);
 	}
 
 }

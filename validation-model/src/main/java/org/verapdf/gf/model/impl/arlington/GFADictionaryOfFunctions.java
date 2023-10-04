@@ -136,20 +136,20 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 
 	@Override
 	public Boolean getisDefaultIndirect() {
-		COSObject object = getDefaultValue();
-		return getisIndirect(object);
+		COSObject Default = getDefaultValue();
+		return getisIndirect(Default);
 	}
 
 	@Override
 	public Boolean getDefaultHasTypeDictionary() {
-		COSObject object = getDefaultValue();
-		return getHasTypeDictionary(object);
+		COSObject Default = getDefaultValue();
+		return getHasTypeDictionary(Default);
 	}
 
 	@Override
 	public Boolean getDefaultHasTypeStream() {
-		COSObject object = getDefaultValue();
-		return getHasTypeStream(object);
+		COSObject Default = getDefaultValue();
+		return getHasTypeStream(Default);
 	}
 
 }

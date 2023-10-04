@@ -359,8 +359,8 @@ public class GFAArrayOfActionsEntry extends GFAObject implements AArrayOfActions
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

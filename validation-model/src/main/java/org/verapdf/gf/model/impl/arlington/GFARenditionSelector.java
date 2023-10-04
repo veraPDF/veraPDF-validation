@@ -117,8 +117,8 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 
 	@Override
 	public Boolean getBEHasTypeDictionary() {
-		COSObject object = getBEValue();
-		return getHasTypeDictionary(object);
+		COSObject BE = getBEValue();
+		return getHasTypeDictionary(BE);
 	}
 
 	@Override
@@ -133,8 +133,8 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 
 	@Override
 	public Boolean getMHHasTypeDictionary() {
-		COSObject object = getMHValue();
-		return getHasTypeDictionary(object);
+		COSObject MH = getMHValue();
+		return getHasTypeDictionary(MH);
 	}
 
 	@Override
@@ -149,8 +149,8 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 
 	@Override
 	public Boolean getNHasTypeStringText() {
-		COSObject object = getNValue();
-		return getHasTypeStringText(object);
+		COSObject N = getNValue();
+		return getHasTypeStringText(N);
 	}
 
 	@Override
@@ -165,8 +165,8 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 
 	@Override
 	public Boolean getRHasTypeArray() {
-		COSObject object = getRValue();
-		return getHasTypeArray(object);
+		COSObject R = getRValue();
+		return getHasTypeArray(R);
 	}
 
 	@Override
@@ -181,14 +181,14 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -203,14 +203,14 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

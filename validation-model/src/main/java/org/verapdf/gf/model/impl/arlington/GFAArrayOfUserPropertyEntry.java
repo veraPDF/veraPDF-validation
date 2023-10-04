@@ -59,8 +59,8 @@ public class GFAArrayOfUserPropertyEntry extends GFAObject implements AArrayOfUs
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }

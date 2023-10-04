@@ -133,8 +133,8 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 
 	@Override
 	public Boolean getMCIDHasTypeInteger() {
-		COSObject object = getMCIDValue();
-		return getHasTypeInteger(object);
+		COSObject MCID = getMCIDValue();
+		return getHasTypeInteger(MCID);
 	}
 
 	@Override
@@ -149,14 +149,14 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 
 	@Override
 	public Boolean getisPgIndirect() {
-		COSObject object = getPgValue();
-		return getisIndirect(object);
+		COSObject Pg = getPgValue();
+		return getisIndirect(Pg);
 	}
 
 	@Override
 	public Boolean getPgHasTypeDictionary() {
-		COSObject object = getPgValue();
-		return getHasTypeDictionary(object);
+		COSObject Pg = getPgValue();
+		return getHasTypeDictionary(Pg);
 	}
 
 	@Override
@@ -171,14 +171,14 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 
 	@Override
 	public Boolean getisStmIndirect() {
-		COSObject object = getStmValue();
-		return getisIndirect(object);
+		COSObject Stm = getStmValue();
+		return getisIndirect(Stm);
 	}
 
 	@Override
 	public Boolean getStmHasTypeStream() {
-		COSObject object = getStmValue();
-		return getHasTypeStream(object);
+		COSObject Stm = getStmValue();
+		return getHasTypeStream(Stm);
 	}
 
 	@Override
@@ -193,26 +193,26 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 
 	@Override
 	public Boolean getisStmOwnIndirect() {
-		COSObject object = getStmOwnValue();
-		return getisIndirect(object);
+		COSObject StmOwn = getStmOwnValue();
+		return getisIndirect(StmOwn);
 	}
 
 	@Override
 	public Boolean getStmOwnHasTypeArray() {
-		COSObject object = getStmOwnValue();
-		return getHasTypeArray(object);
+		COSObject StmOwn = getStmOwnValue();
+		return getHasTypeArray(StmOwn);
 	}
 
 	@Override
 	public Boolean getStmOwnHasTypeDictionary() {
-		COSObject object = getStmOwnValue();
-		return getHasTypeDictionary(object);
+		COSObject StmOwn = getStmOwnValue();
+		return getHasTypeDictionary(StmOwn);
 	}
 
 	@Override
 	public Boolean getStmOwnHasTypeStream() {
-		COSObject object = getStmOwnValue();
-		return getHasTypeStream(object);
+		COSObject StmOwn = getStmOwnValue();
+		return getHasTypeStream(StmOwn);
 	}
 
 	@Override
@@ -227,14 +227,14 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

@@ -435,14 +435,14 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisAuthCodeIndirect() {
-		COSObject object = getAuthCodeValue();
-		return getisIndirect(object);
+		COSObject AuthCode = getAuthCodeValue();
+		return getisIndirect(AuthCode);
 	}
 
 	@Override
 	public Boolean getAuthCodeHasTypeDictionary() {
-		COSObject object = getAuthCodeValue();
-		return getHasTypeDictionary(object);
+		COSObject AuthCode = getAuthCodeValue();
+		return getHasTypeDictionary(AuthCode);
 	}
 
 	@Override
@@ -457,14 +457,14 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getDLHasTypeInteger() {
-		COSObject object = getDLValue();
-		return getHasTypeInteger(object);
+		COSObject DL = getDLValue();
+		return getHasTypeInteger(DL);
 	}
 
 	@Override
 	public Long getDLIntegerValue() {
-		COSObject object = getDLValue();
-		return getIntegerValue(object);
+		COSObject DL = getDLValue();
+		return getIntegerValue(DL);
 	}
 
 	@Override
@@ -479,26 +479,26 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisDecodeParmsIndirect() {
-		COSObject object = getDecodeParmsValue();
-		return getisIndirect(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getisIndirect(DecodeParms);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeArray(DecodeParms);
 	}
 
 	@Override
 	public Boolean getDecodeParmsHasTypeDictionary() {
-		COSObject object = getDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getHasTypeDictionary(DecodeParms);
 	}
 
 	@Override
 	public Long getDecodeParmsArraySize() {
-		COSObject object = getDecodeParmsValue();
-		return getArraySize(object);
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getArraySize(DecodeParms);
 	}
 
 	@Override
@@ -513,8 +513,8 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getEncryptHasTypeDictionary() {
-		COSObject object = getEncryptValue();
-		return getHasTypeDictionary(object);
+		COSObject Encrypt = getEncryptValue();
+		return getHasTypeDictionary(Encrypt);
 	}
 
 	@Override
@@ -529,14 +529,14 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -551,20 +551,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeArray() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeArray(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeArray(FDecodeParms);
 	}
 
 	@Override
 	public Boolean getFDecodeParmsHasTypeDictionary() {
-		COSObject object = getFDecodeParmsValue();
-		return getHasTypeDictionary(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getHasTypeDictionary(FDecodeParms);
 	}
 
 	@Override
 	public Long getFDecodeParmsArraySize() {
-		COSObject object = getFDecodeParmsValue();
-		return getArraySize(object);
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getArraySize(FDecodeParms);
 	}
 
 	@Override
@@ -579,26 +579,26 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getFFilterHasTypeArray() {
-		COSObject object = getFFilterValue();
-		return getHasTypeArray(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeArray(FFilter);
 	}
 
 	@Override
 	public Boolean getFFilterHasTypeName() {
-		COSObject object = getFFilterValue();
-		return getHasTypeName(object);
+		COSObject FFilter = getFFilterValue();
+		return getHasTypeName(FFilter);
 	}
 
 	@Override
 	public String getFFilterNameValue() {
-		COSObject object = getFFilterValue();
-		return getNameValue(object);
+		COSObject FFilter = getFFilterValue();
+		return getNameValue(FFilter);
 	}
 
 	@Override
 	public Long getFFilterArraySize() {
-		COSObject object = getFFilterValue();
-		return getArraySize(object);
+		COSObject FFilter = getFFilterValue();
+		return getArraySize(FFilter);
 	}
 
 	@Override
@@ -613,38 +613,38 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisFilterIndirect() {
-		COSObject object = getFilterValue();
-		return getisIndirect(object);
+		COSObject Filter = getFilterValue();
+		return getisIndirect(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeArray() {
-		COSObject object = getFilterValue();
-		return getHasTypeArray(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeArray(Filter);
 	}
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
 	public String getFilterNameValue() {
-		COSObject object = getFilterValue();
-		return getNameValue(object);
+		COSObject Filter = getFilterValue();
+		return getNameValue(Filter);
 	}
 
 	@Override
 	public Long getFilterArraySize() {
-		COSObject object = getFilterValue();
-		return getArraySize(object);
+		COSObject Filter = getFilterValue();
+		return getArraySize(Filter);
 	}
 
 	@Override
 	public String getFilterEntriesString() {
-		COSObject object = getFilterValue();
-		return getEntriesString(object);
+		COSObject Filter = getFilterValue();
+		return getEntriesString(Filter);
 	}
 
 	@Override
@@ -659,14 +659,14 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisentryIDIndirect() {
-		COSObject object = getentryIDValue();
-		return getisIndirect(object);
+		COSObject entryID = getentryIDValue();
+		return getisIndirect(entryID);
 	}
 
 	@Override
 	public Boolean getentryIDHasTypeArray() {
-		COSObject object = getentryIDValue();
-		return getHasTypeArray(object);
+		COSObject entryID = getentryIDValue();
+		return getHasTypeArray(entryID);
 	}
 
 	@Override
@@ -681,26 +681,26 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisIndexIndirect() {
-		COSObject object = getIndexValue();
-		return getisIndirect(object);
+		COSObject Index = getIndexValue();
+		return getisIndirect(Index);
 	}
 
 	@Override
 	public Boolean getIndexHasTypeArray() {
-		COSObject object = getIndexValue();
-		return getHasTypeArray(object);
+		COSObject Index = getIndexValue();
+		return getHasTypeArray(Index);
 	}
 
 	@Override
 	public Boolean getisIndexArraySortAscending2() {
-		COSObject object = getIndexValue();
-		return getisArraySortAscending(object, 2);
+		COSObject Index = getIndexValue();
+		return getisArraySortAscending(Index, 2);
 	}
 
 	@Override
 	public Long getIndexArraySize() {
-		COSObject object = getIndexValue();
-		return getArraySize(object);
+		COSObject Index = getIndexValue();
+		return getArraySize(Index);
 	}
 
 	@Override
@@ -715,14 +715,14 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisInfoIndirect() {
-		COSObject object = getInfoValue();
-		return getisIndirect(object);
+		COSObject Info = getInfoValue();
+		return getisIndirect(Info);
 	}
 
 	@Override
 	public Boolean getInfoHasTypeDictionary() {
-		COSObject object = getInfoValue();
-		return getHasTypeDictionary(object);
+		COSObject Info = getInfoValue();
+		return getHasTypeDictionary(Info);
 	}
 
 	@Override
@@ -737,14 +737,14 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getLengthHasTypeInteger() {
-		COSObject object = getLengthValue();
-		return getHasTypeInteger(object);
+		COSObject Length = getLengthValue();
+		return getHasTypeInteger(Length);
 	}
 
 	@Override
 	public Long getLengthIntegerValue() {
-		COSObject object = getLengthValue();
-		return getIntegerValue(object);
+		COSObject Length = getLengthValue();
+		return getIntegerValue(Length);
 	}
 
 	@Override
@@ -759,20 +759,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisPrevIndirect() {
-		COSObject object = getPrevValue();
-		return getisIndirect(object);
+		COSObject Prev = getPrevValue();
+		return getisIndirect(Prev);
 	}
 
 	@Override
 	public Boolean getPrevHasTypeInteger() {
-		COSObject object = getPrevValue();
-		return getHasTypeInteger(object);
+		COSObject Prev = getPrevValue();
+		return getHasTypeInteger(Prev);
 	}
 
 	@Override
 	public Long getPrevIntegerValue() {
-		COSObject object = getPrevValue();
-		return getIntegerValue(object);
+		COSObject Prev = getPrevValue();
+		return getIntegerValue(Prev);
 	}
 
 	@Override
@@ -787,14 +787,14 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisRootIndirect() {
-		COSObject object = getRootValue();
-		return getisIndirect(object);
+		COSObject Root = getRootValue();
+		return getisIndirect(Root);
 	}
 
 	@Override
 	public Boolean getRootHasTypeDictionary() {
-		COSObject object = getRootValue();
-		return getHasTypeDictionary(object);
+		COSObject Root = getRootValue();
+		return getHasTypeDictionary(Root);
 	}
 
 	@Override
@@ -809,20 +809,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisSizeIndirect() {
-		COSObject object = getSizeValue();
-		return getisIndirect(object);
+		COSObject Size = getSizeValue();
+		return getisIndirect(Size);
 	}
 
 	@Override
 	public Boolean getSizeHasTypeInteger() {
-		COSObject object = getSizeValue();
-		return getHasTypeInteger(object);
+		COSObject Size = getSizeValue();
+		return getHasTypeInteger(Size);
 	}
 
 	@Override
 	public Long getSizeIntegerValue() {
-		COSObject object = getSizeValue();
-		return getIntegerValue(object);
+		COSObject Size = getSizeValue();
+		return getIntegerValue(Size);
 	}
 
 	@Override
@@ -837,20 +837,20 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisTypeIndirect() {
-		COSObject object = getTypeValue();
-		return getisIndirect(object);
+		COSObject Type = getTypeValue();
+		return getisIndirect(Type);
 	}
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -865,18 +865,17 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean getisWIndirect() {
-		COSObject object = getWValue();
-		return getisIndirect(object);
+		COSObject W = getWValue();
+		return getisIndirect(W);
 	}
 
 	@Override
 	public Boolean getWHasTypeArray() {
-		COSObject object = getWValue();
-		return getHasTypeArray(object);
+		COSObject W = getWValue();
+		return getHasTypeArray(W);
 	}
 
-	@Override
-	public Long getEncryptVIntegerValue() {
+	public COSObject getEncryptVValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -885,40 +884,49 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 			return null;
 		}
 		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
-		return getIntegerValue(V);
+		return V;
 	}
 
-	@Override
-	public Boolean getEncryptVHasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Encrypt = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
-		if (Encrypt == null || !Encrypt.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject V = Encrypt.getKey(ASAtom.getASAtom("V"));
-		return getHasTypeInteger(V);
-	}
-
-	@Override
-	public Boolean getcontainstrailerInfoModDate() {
-		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
-		if (trailer == null || !trailer.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Info = trailer.getKey(ASAtom.getASAtom("Info"));
-		return Info.knownKey(ASAtom.getASAtom("ModDate"));
-	}
-
-	@Override
-	public Boolean getcontainstrailerCatalogPieceInfo() {
+	public COSObject gettrailerCatalogValue() {
 		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
 		if (trailer == null || !trailer.getType().isDictionaryBased()) {
 			return null;
 		}
 		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
-		return Root.knownKey(ASAtom.getASAtom("PieceInfo"));
+		return Root;
+	}
+
+	public COSObject gettrailerInfoValue() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Info = trailer.getKey(ASAtom.getASAtom("Info"));
+		return Info;
+	}
+
+	@Override
+	public Long getEncryptVIntegerValue() {
+		COSObject EncryptV = getEncryptVValue();
+		return getIntegerValue(EncryptV);
+	}
+
+	@Override
+	public Boolean getEncryptVHasTypeInteger() {
+		COSObject EncryptV = getEncryptVValue();
+		return getHasTypeInteger(EncryptV);
+	}
+
+	@Override
+	public Boolean getcontainstrailerInfoModDate() {
+		COSObject trailerInfo = gettrailerInfoValue();
+		return trailerInfo.knownKey(ASAtom.getASAtom("ModDate"));
+	}
+
+	@Override
+	public Boolean getcontainstrailerCatalogPieceInfo() {
+		COSObject trailerCatalog = gettrailerCatalogValue();
+		return trailerCatalog.knownKey(ASAtom.getASAtom("PieceInfo"));
 	}
 
 	@Override

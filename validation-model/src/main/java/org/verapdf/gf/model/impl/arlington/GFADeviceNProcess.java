@@ -115,20 +115,20 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 
 	@Override
 	public Boolean getColorSpaceHasTypeArray() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeArray(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeArray(ColorSpace);
 	}
 
 	@Override
 	public Boolean getColorSpaceHasTypeName() {
-		COSObject object = getColorSpaceValue();
-		return getHasTypeName(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeName(ColorSpace);
 	}
 
 	@Override
 	public String getColorSpaceNameValue() {
-		COSObject object = getColorSpaceValue();
-		return getNameValue(object);
+		COSObject ColorSpace = getColorSpaceValue();
+		return getNameValue(ColorSpace);
 	}
 
 	@Override
@@ -143,8 +143,8 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 
 	@Override
 	public Boolean getComponentsHasTypeArray() {
-		COSObject object = getComponentsValue();
-		return getHasTypeArray(object);
+		COSObject Components = getComponentsValue();
+		return getHasTypeArray(Components);
 	}
 
 }

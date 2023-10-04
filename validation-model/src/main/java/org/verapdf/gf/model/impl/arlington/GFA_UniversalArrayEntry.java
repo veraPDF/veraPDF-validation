@@ -73,56 +73,56 @@ public class GFA_UniversalArrayEntry extends GFAObject implements A_UniversalArr
 
 	@Override
 	public Boolean getisIndirect() {
-		COSObject object = getValue();
-		return getisIndirect(object);
+		COSObject entry = getValue();
+		return getisIndirect(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeArray() {
-		COSObject object = getValue();
-		return getHasTypeArray(object);
+		COSObject entry = getValue();
+		return getHasTypeArray(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeBoolean() {
-		COSObject object = getValue();
-		return getHasTypeBoolean(object);
+		COSObject entry = getValue();
+		return getHasTypeBoolean(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeName() {
-		COSObject object = getValue();
-		return getHasTypeName(object);
+		COSObject entry = getValue();
+		return getHasTypeName(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeNull() {
-		COSObject object = getValue();
-		return getHasTypeNull(object);
+		COSObject entry = getValue();
+		return getHasTypeNull(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = getValue();
-		return getHasTypeNumber(object);
+		COSObject entry = getValue();
+		return getHasTypeNumber(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeStream() {
-		COSObject object = getValue();
-		return getHasTypeStream(object);
+		COSObject entry = getValue();
+		return getHasTypeStream(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeString() {
-		COSObject object = getValue();
-		return getHasTypeString(object);
+		COSObject entry = getValue();
+		return getHasTypeString(entry);
 	}
 
 }

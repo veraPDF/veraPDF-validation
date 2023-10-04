@@ -429,8 +429,8 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 
 	@Override
 	public Boolean getAnnotationHasTypeDictionary() {
-		COSObject object = getAnnotationValue();
-		return getHasTypeDictionary(object);
+		COSObject Annotation = getAnnotationValue();
+		return getHasTypeDictionary(Annotation);
 	}
 
 	@Override
@@ -445,14 +445,14 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -484,14 +484,14 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 
 	@Override
 	public Boolean getOperationHasTypeName() {
-		COSObject object = getOperationValue();
-		return getHasTypeName(object);
+		COSObject Operation = getOperationValue();
+		return getHasTypeName(Operation);
 	}
 
 	@Override
 	public String getOperationNameValue() {
-		COSObject object = getOperationValue();
-		return getNameValue(object);
+		COSObject Operation = getOperationValue();
+		return getNameValue(Operation);
 	}
 
 	@Override
@@ -506,14 +506,14 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -528,8 +528,8 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 
 	@Override
 	public Boolean getTHasTypeStringText() {
-		COSObject object = getTValue();
-		return getHasTypeStringText(object);
+		COSObject T = getTValue();
+		return getHasTypeStringText(T);
 	}
 
 	@Override
@@ -544,14 +544,14 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

@@ -40,14 +40,14 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 
 	@Override
 	public Boolean getHAlignHasTypeName() {
-		COSObject object = getHAlignValue();
-		return getHasTypeName(object);
+		COSObject HAlign = getHAlignValue();
+		return getHasTypeName(HAlign);
 	}
 
 	@Override
 	public String getHAlignNameValue() {
-		COSObject object = getHAlignValue();
-		return getNameValue(object);
+		COSObject HAlign = getHAlignValue();
+		return getNameValue(HAlign);
 	}
 
 	@Override
@@ -74,8 +74,8 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 
 	@Override
 	public Boolean getHOffsetHasTypeNumber() {
-		COSObject object = getHOffsetValue();
-		return getHasTypeNumber(object);
+		COSObject HOffset = getHOffsetValue();
+		return getHasTypeNumber(HOffset);
 	}
 
 	@Override
@@ -90,14 +90,14 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -124,14 +124,14 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 
 	@Override
 	public Boolean getVAlignHasTypeName() {
-		COSObject object = getVAlignValue();
-		return getHasTypeName(object);
+		COSObject VAlign = getVAlignValue();
+		return getHasTypeName(VAlign);
 	}
 
 	@Override
 	public String getVAlignNameValue() {
-		COSObject object = getVAlignValue();
-		return getNameValue(object);
+		COSObject VAlign = getVAlignValue();
+		return getNameValue(VAlign);
 	}
 
 	@Override
@@ -158,8 +158,8 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 
 	@Override
 	public Boolean getVOffsetHasTypeNumber() {
-		COSObject object = getVOffsetValue();
-		return getHasTypeNumber(object);
+		COSObject VOffset = getVOffsetValue();
+		return getHasTypeNumber(VOffset);
 	}
 
 	@Override

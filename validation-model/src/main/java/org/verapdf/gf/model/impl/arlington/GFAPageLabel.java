@@ -28,8 +28,8 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 
 	@Override
 	public Boolean getPHasTypeStringText() {
-		COSObject object = getPValue();
-		return getHasTypeStringText(object);
+		COSObject P = getPValue();
+		return getHasTypeStringText(P);
 	}
 
 	@Override
@@ -44,14 +44,14 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -82,14 +82,14 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 
 	@Override
 	public Boolean getStHasTypeInteger() {
-		COSObject object = getStValue();
-		return getHasTypeInteger(object);
+		COSObject St = getStValue();
+		return getHasTypeInteger(St);
 	}
 
 	@Override
 	public Long getStIntegerValue() {
-		COSObject object = getStValue();
-		return getIntegerValue(object);
+		COSObject St = getStValue();
+		return getIntegerValue(St);
 	}
 
 	@Override
@@ -104,14 +104,14 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

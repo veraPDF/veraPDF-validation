@@ -177,8 +177,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getADBE_BuildHasTypeString() {
-		COSObject object = getADBE_BuildValue();
-		return getHasTypeString(object);
+		COSObject ADBE_Build = getADBE_BuildValue();
+		return getHasTypeString(ADBE_Build);
 	}
 
 	@Override
@@ -193,8 +193,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getByteRangeHasTypeArray() {
-		COSObject object = getByteRangeValue();
-		return getHasTypeArray(object);
+		COSObject ByteRange = getByteRangeValue();
+		return getHasTypeArray(ByteRange);
 	}
 
 	@Override
@@ -209,14 +209,14 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getCertHasTypeArray() {
-		COSObject object = getCertValue();
-		return getHasTypeArray(object);
+		COSObject Cert = getCertValue();
+		return getHasTypeArray(Cert);
 	}
 
 	@Override
 	public Boolean getCertHasTypeStringByte() {
-		COSObject object = getCertValue();
-		return getHasTypeStringByte(object);
+		COSObject Cert = getCertValue();
+		return getHasTypeStringByte(Cert);
 	}
 
 	@Override
@@ -231,8 +231,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getChangesHasTypeArray() {
-		COSObject object = getChangesValue();
-		return getHasTypeArray(object);
+		COSObject Changes = getChangesValue();
+		return getHasTypeArray(Changes);
 	}
 
 	@Override
@@ -247,8 +247,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getContactInfoHasTypeString() {
-		COSObject object = getContactInfoValue();
-		return getHasTypeString(object);
+		COSObject ContactInfo = getContactInfoValue();
+		return getHasTypeString(ContactInfo);
 	}
 
 	@Override
@@ -263,8 +263,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getContentsHasTypeStringByte() {
-		COSObject object = getContentsValue();
-		return getHasTypeStringByte(object);
+		COSObject Contents = getContentsValue();
+		return getHasTypeStringByte(Contents);
 	}
 
 	@Override
@@ -279,8 +279,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getFilterHasTypeName() {
-		COSObject object = getFilterValue();
-		return getHasTypeName(object);
+		COSObject Filter = getFilterValue();
+		return getHasTypeName(Filter);
 	}
 
 	@Override
@@ -295,8 +295,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getLocationHasTypeString() {
-		COSObject object = getLocationValue();
-		return getHasTypeString(object);
+		COSObject Location = getLocationValue();
+		return getHasTypeString(Location);
 	}
 
 	@Override
@@ -311,8 +311,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getMHasTypeDate() {
-		COSObject object = getMValue();
-		return getHasTypeDate(object);
+		COSObject M = getMValue();
+		return getHasTypeDate(M);
 	}
 
 	@Override
@@ -327,8 +327,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getNameHasTypeString() {
-		COSObject object = getNameValue();
-		return getHasTypeString(object);
+		COSObject Name = getNameValue();
+		return getHasTypeString(Name);
 	}
 
 	@Override
@@ -343,8 +343,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getProp_AuthTimeHasTypeInteger() {
-		COSObject object = getProp_AuthTimeValue();
-		return getHasTypeInteger(object);
+		COSObject Prop_AuthTime = getProp_AuthTimeValue();
+		return getHasTypeInteger(Prop_AuthTime);
 	}
 
 	@Override
@@ -359,8 +359,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getProp_AuthTypeHasTypeName() {
-		COSObject object = getProp_AuthTypeValue();
-		return getHasTypeName(object);
+		COSObject Prop_AuthType = getProp_AuthTypeValue();
+		return getHasTypeName(Prop_AuthType);
 	}
 
 	@Override
@@ -375,8 +375,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getProp_BuildHasTypeDictionary() {
-		COSObject object = getProp_BuildValue();
-		return getHasTypeDictionary(object);
+		COSObject Prop_Build = getProp_BuildValue();
+		return getHasTypeDictionary(Prop_Build);
 	}
 
 	@Override
@@ -391,8 +391,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getRHasTypeInteger() {
-		COSObject object = getRValue();
-		return getHasTypeInteger(object);
+		COSObject R = getRValue();
+		return getHasTypeInteger(R);
 	}
 
 	@Override
@@ -407,8 +407,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getReasonHasTypeString() {
-		COSObject object = getReasonValue();
-		return getHasTypeString(object);
+		COSObject Reason = getReasonValue();
+		return getHasTypeString(Reason);
 	}
 
 	@Override
@@ -423,8 +423,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getReferenceHasTypeArray() {
-		COSObject object = getReferenceValue();
-		return getHasTypeArray(object);
+		COSObject Reference = getReferenceValue();
+		return getHasTypeArray(Reference);
 	}
 
 	@Override
@@ -439,14 +439,14 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getSubFilterHasTypeName() {
-		COSObject object = getSubFilterValue();
-		return getHasTypeName(object);
+		COSObject SubFilter = getSubFilterValue();
+		return getHasTypeName(SubFilter);
 	}
 
 	@Override
 	public String getSubFilterNameValue() {
-		COSObject object = getSubFilterValue();
-		return getNameValue(object);
+		COSObject SubFilter = getSubFilterValue();
+		return getNameValue(SubFilter);
 	}
 
 	@Override
@@ -461,14 +461,14 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -497,8 +497,8 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 
 	@Override
 	public Boolean getVHasTypeInteger() {
-		COSObject object = getVValue();
-		return getHasTypeInteger(object);
+		COSObject V = getVValue();
+		return getHasTypeInteger(V);
 	}
 
 }

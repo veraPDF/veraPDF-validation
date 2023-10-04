@@ -86,8 +86,8 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 
 	@Override
 	public Boolean getAssetHasTypeDictionary() {
-		COSObject object = getAssetValue();
-		return getHasTypeDictionary(object);
+		COSObject Asset = getAssetValue();
+		return getHasTypeDictionary(Asset);
 	}
 
 	@Override
@@ -102,8 +102,8 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 
 	@Override
 	public Boolean getParamsHasTypeDictionary() {
-		COSObject object = getParamsValue();
-		return getHasTypeDictionary(object);
+		COSObject Params = getParamsValue();
+		return getHasTypeDictionary(Params);
 	}
 
 	@Override
@@ -118,14 +118,14 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 
 	@Override
 	public Boolean getSceneHasTypeInteger() {
-		COSObject object = getSceneValue();
-		return getHasTypeInteger(object);
+		COSObject Scene = getSceneValue();
+		return getHasTypeInteger(Scene);
 	}
 
 	@Override
 	public Long getSceneIntegerValue() {
-		COSObject object = getSceneValue();
-		return getIntegerValue(object);
+		COSObject Scene = getSceneValue();
+		return getIntegerValue(Scene);
 	}
 
 	@Override
@@ -140,14 +140,14 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 
 	@Override
 	public Boolean getSubtypeHasTypeName() {
-		COSObject object = getSubtypeValue();
-		return getHasTypeName(object);
+		COSObject Subtype = getSubtypeValue();
+		return getHasTypeName(Subtype);
 	}
 
 	@Override
 	public String getSubtypeNameValue() {
-		COSObject object = getSubtypeValue();
-		return getNameValue(object);
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 	@Override
@@ -162,14 +162,14 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override

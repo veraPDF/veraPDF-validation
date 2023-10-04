@@ -43,8 +43,8 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 
 	@Override
 	public Boolean getMarkedHasTypeBoolean() {
-		COSObject object = getMarkedValue();
-		return getHasTypeBoolean(object);
+		COSObject Marked = getMarkedValue();
+		return getHasTypeBoolean(Marked);
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 
 	@Override
 	public Boolean getSuspectsHasTypeBoolean() {
-		COSObject object = getSuspectsValue();
-		return getHasTypeBoolean(object);
+		COSObject Suspects = getSuspectsValue();
+		return getHasTypeBoolean(Suspects);
 	}
 
 	@Override
@@ -101,14 +101,14 @@ public class GFAMarkInfo extends GFAObject implements AMarkInfo {
 
 	@Override
 	public Boolean getUserPropertiesHasTypeBoolean() {
-		COSObject object = getUserPropertiesValue();
-		return getHasTypeBoolean(object);
+		COSObject UserProperties = getUserPropertiesValue();
+		return getHasTypeBoolean(UserProperties);
 	}
 
 	@Override
 	public Boolean getUserPropertiesBooleanValue() {
-		COSObject object = getUserPropertiesValue();
-		return getBooleanValue(object);
+		COSObject UserProperties = getUserPropertiesValue();
+		return getBooleanValue(UserProperties);
 	}
 
 }

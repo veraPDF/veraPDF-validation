@@ -147,14 +147,14 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 
 	@Override
 	public Boolean getisDpIndirect() {
-		COSObject object = getDpValue();
-		return getisIndirect(object);
+		COSObject Dp = getDpValue();
+		return getisIndirect(Dp);
 	}
 
 	@Override
 	public Boolean getDpHasTypeDictionary() {
-		COSObject object = getDpValue();
-		return getHasTypeDictionary(object);
+		COSObject Dp = getDpValue();
+		return getHasTypeDictionary(Dp);
 	}
 
 	@Override
@@ -169,14 +169,14 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -191,14 +191,14 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -213,14 +213,14 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 }

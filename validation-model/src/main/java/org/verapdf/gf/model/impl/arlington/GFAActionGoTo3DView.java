@@ -286,14 +286,14 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 
 	@Override
 	public Boolean getNextHasTypeArray() {
-		COSObject object = getNextValue();
-		return getHasTypeArray(object);
+		COSObject Next = getNextValue();
+		return getHasTypeArray(Next);
 	}
 
 	@Override
 	public Boolean getNextHasTypeDictionary() {
-		COSObject object = getNextValue();
-		return getHasTypeDictionary(object);
+		COSObject Next = getNextValue();
+		return getHasTypeDictionary(Next);
 	}
 
 	@Override
@@ -308,14 +308,14 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 	@Override
@@ -330,8 +330,8 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 
 	@Override
 	public Boolean getTAHasTypeDictionary() {
-		COSObject object = getTAValue();
-		return getHasTypeDictionary(object);
+		COSObject TA = getTAValue();
+		return getHasTypeDictionary(TA);
 	}
 
 	@Override
@@ -346,14 +346,14 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -368,26 +368,26 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 
 	@Override
 	public Boolean getVHasTypeDictionary() {
-		COSObject object = getVValue();
-		return getHasTypeDictionary(object);
+		COSObject V = getVValue();
+		return getHasTypeDictionary(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeInteger() {
-		COSObject object = getVValue();
-		return getHasTypeInteger(object);
+		COSObject V = getVValue();
+		return getHasTypeInteger(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeName() {
-		COSObject object = getVValue();
-		return getHasTypeName(object);
+		COSObject V = getVValue();
+		return getHasTypeName(V);
 	}
 
 	@Override
 	public Boolean getVHasTypeStringText() {
-		COSObject object = getVValue();
-		return getHasTypeStringText(object);
+		COSObject V = getVValue();
+		return getHasTypeStringText(V);
 	}
 
 }

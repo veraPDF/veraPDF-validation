@@ -586,8 +586,8 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override

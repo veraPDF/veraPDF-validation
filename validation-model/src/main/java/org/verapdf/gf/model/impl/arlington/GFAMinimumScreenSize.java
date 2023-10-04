@@ -77,14 +77,14 @@ public class GFAMinimumScreenSize extends GFAObject implements AMinimumScreenSiz
 
 	@Override
 	public Boolean getMHasTypeInteger() {
-		COSObject object = getMValue();
-		return getHasTypeInteger(object);
+		COSObject M = getMValue();
+		return getHasTypeInteger(M);
 	}
 
 	@Override
 	public Long getMIntegerValue() {
-		COSObject object = getMValue();
-		return getIntegerValue(object);
+		COSObject M = getMValue();
+		return getIntegerValue(M);
 	}
 
 	@Override
@@ -99,14 +99,14 @@ public class GFAMinimumScreenSize extends GFAObject implements AMinimumScreenSiz
 
 	@Override
 	public Boolean getTypeHasTypeName() {
-		COSObject object = getTypeValue();
-		return getHasTypeName(object);
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
 	}
 
 	@Override
 	public String getTypeNameValue() {
-		COSObject object = getTypeValue();
-		return getNameValue(object);
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
 	}
 
 	@Override
@@ -121,8 +121,8 @@ public class GFAMinimumScreenSize extends GFAObject implements AMinimumScreenSiz
 
 	@Override
 	public Boolean getVHasTypeArray() {
-		COSObject object = getVValue();
-		return getHasTypeArray(object);
+		COSObject V = getVValue();
+		return getHasTypeArray(V);
 	}
 
 }

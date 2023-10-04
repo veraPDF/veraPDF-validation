@@ -156,33 +156,33 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getDurationHasTypeArray() {
-		COSObject object = getDurationValue();
-		return getHasTypeArray(object);
+		COSObject Duration = getDurationValue();
+		return getHasTypeArray(Duration);
 	}
 
 	@Override
 	public Boolean getDurationHasTypeInteger() {
-		COSObject object = getDurationValue();
-		return getHasTypeInteger(object);
+		COSObject Duration = getDurationValue();
+		return getHasTypeInteger(Duration);
 	}
 
 	@Override
 	public Boolean getDurationHasTypeStringByte() {
-		COSObject object = getDurationValue();
-		return getHasTypeStringByte(object);
+		COSObject Duration = getDurationValue();
+		return getHasTypeStringByte(Duration);
 	}
 
 	@Override
 	public Long getDurationIntegerValue() {
-		COSObject object = getDurationValue();
-		return getIntegerValue(object);
+		COSObject Duration = getDurationValue();
+		return getIntegerValue(Duration);
 	}
 
 	@Override
 	public Long getDurationStringSize() {
-		COSObject object = getDurationValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return (long) object.getString().length();
+		COSObject Duration = getDurationValue();
+		if (Duration != null && Duration.getType() == COSObjType.COS_STRING) {
+			return (long) Duration.getString().length();
 		}
 		return null;
 	}
@@ -199,8 +199,8 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getFWPositionHasTypeArray() {
-		COSObject object = getFWPositionValue();
-		return getHasTypeArray(object);
+		COSObject FWPosition = getFWPositionValue();
+		return getHasTypeArray(FWPosition);
 	}
 
 	@Override
@@ -215,8 +215,8 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getFWScaleHasTypeArray() {
-		COSObject object = getFWScaleValue();
-		return getHasTypeArray(object);
+		COSObject FWScale = getFWScaleValue();
+		return getHasTypeArray(FWScale);
 	}
 
 	@Override
@@ -248,14 +248,14 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getModeHasTypeName() {
-		COSObject object = getModeValue();
-		return getHasTypeName(object);
+		COSObject Mode = getModeValue();
+		return getHasTypeName(Mode);
 	}
 
 	@Override
 	public String getModeNameValue() {
-		COSObject object = getModeValue();
-		return getNameValue(object);
+		COSObject Mode = getModeValue();
+		return getNameValue(Mode);
 	}
 
 	@Override
@@ -287,8 +287,8 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getRateHasTypeNumber() {
-		COSObject object = getRateValue();
-		return getHasTypeNumber(object);
+		COSObject Rate = getRateValue();
+		return getHasTypeNumber(Rate);
 	}
 
 	@Override
@@ -320,8 +320,8 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getShowControlsHasTypeBoolean() {
-		COSObject object = getShowControlsValue();
-		return getHasTypeBoolean(object);
+		COSObject ShowControls = getShowControlsValue();
+		return getHasTypeBoolean(ShowControls);
 	}
 
 	@Override
@@ -353,33 +353,33 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getStartHasTypeArray() {
-		COSObject object = getStartValue();
-		return getHasTypeArray(object);
+		COSObject Start = getStartValue();
+		return getHasTypeArray(Start);
 	}
 
 	@Override
 	public Boolean getStartHasTypeInteger() {
-		COSObject object = getStartValue();
-		return getHasTypeInteger(object);
+		COSObject Start = getStartValue();
+		return getHasTypeInteger(Start);
 	}
 
 	@Override
 	public Boolean getStartHasTypeStringByte() {
-		COSObject object = getStartValue();
-		return getHasTypeStringByte(object);
+		COSObject Start = getStartValue();
+		return getHasTypeStringByte(Start);
 	}
 
 	@Override
 	public Long getStartIntegerValue() {
-		COSObject object = getStartValue();
-		return getIntegerValue(object);
+		COSObject Start = getStartValue();
+		return getIntegerValue(Start);
 	}
 
 	@Override
 	public Long getStartStringSize() {
-		COSObject object = getStartValue();
-		if (object != null && object.getType() == COSObjType.COS_STRING) {
-			return (long) object.getString().length();
+		COSObject Start = getStartValue();
+		if (Start != null && Start.getType() == COSObjType.COS_STRING) {
+			return (long) Start.getString().length();
 		}
 		return null;
 	}
@@ -413,8 +413,8 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getSynchronousHasTypeBoolean() {
-		COSObject object = getSynchronousValue();
-		return getHasTypeBoolean(object);
+		COSObject Synchronous = getSynchronousValue();
+		return getHasTypeBoolean(Synchronous);
 	}
 
 	@Override
@@ -446,141 +446,61 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 
 	@Override
 	public Boolean getVolumeHasTypeNumber() {
-		COSObject object = getVolumeValue();
-		return getHasTypeNumber(object);
+		COSObject Volume = getVolumeValue();
+		return getHasTypeNumber(Volume);
 	}
 
 	@Override
 	public Double getVolumeNumberValue() {
-		COSObject object = getVolumeValue();
-		return getNumberValue(object);
+		COSObject Volume = getVolumeValue();
+		return getNumberValue(Volume);
 	}
 
 	@Override
 	public Double getFWPosition0NumberValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FWPosition = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
-		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWPosition.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = FWPosition.at(0);
+		COSObject FWPosition = getFWPositionValue();
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry0NumberValue();
 	}
 
 	@Override
 	public Double getFWPosition1NumberValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FWPosition = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
-		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWPosition.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = FWPosition.at(1);
+		COSObject FWPosition = getFWPositionValue();
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry1NumberValue();
 	}
 
 	@Override
 	public Long getFWScale0IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FWScale = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
-		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWScale.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = FWScale.at(0);
+		COSObject FWScale = getFWScaleValue();
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry0IntegerValue();
 	}
 
 	@Override
 	public Long getFWScale1IntegerValue() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FWScale = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
-		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWScale.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = FWScale.at(1);
+		COSObject FWScale = getFWScaleValue();
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry1IntegerValue();
 	}
 
 	@Override
 	public Boolean getFWPosition0HasTypeNumber() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FWPosition = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
-		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWPosition.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = FWPosition.at(0);
+		COSObject FWPosition = getFWPositionValue();
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry0HasTypeNumber();
 	}
 
 	@Override
 	public Boolean getFWPosition1HasTypeNumber() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FWPosition = this.baseObject.getKey(ASAtom.getASAtom("FWPosition"));
-		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWPosition.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = FWPosition.at(1);
+		COSObject FWPosition = getFWPositionValue();
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry1HasTypeNumber();
 	}
 
 	@Override
 	public Boolean getFWScale0HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FWScale = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
-		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWScale.size() <= 0) {
-			return null;
-		}
-		COSObject entry0 = FWScale.at(0);
+		COSObject FWScale = getFWScaleValue();
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry0HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getFWScale1HasTypeInteger() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject FWScale = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
-		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWScale.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = FWScale.at(1);
+		COSObject FWScale = getFWScaleValue();
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry1HasTypeInteger();
 	}
 

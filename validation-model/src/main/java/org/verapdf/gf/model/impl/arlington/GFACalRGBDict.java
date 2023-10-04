@@ -160,8 +160,8 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 
 	@Override
 	public Boolean getBlackPointHasTypeArray() {
-		COSObject object = getBlackPointValue();
-		return getHasTypeArray(object);
+		COSObject BlackPoint = getBlackPointValue();
+		return getHasTypeArray(BlackPoint);
 	}
 
 	@Override
@@ -176,8 +176,8 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 
 	@Override
 	public Boolean getGammaHasTypeArray() {
-		COSObject object = getGammaValue();
-		return getHasTypeArray(object);
+		COSObject Gamma = getGammaValue();
+		return getHasTypeArray(Gamma);
 	}
 
 	@Override
@@ -192,8 +192,8 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 
 	@Override
 	public Boolean getMatrixHasTypeArray() {
-		COSObject object = getMatrixValue();
-		return getHasTypeArray(object);
+		COSObject Matrix = getMatrixValue();
+		return getHasTypeArray(Matrix);
 	}
 
 	@Override
@@ -208,8 +208,8 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 
 	@Override
 	public Boolean getWhitePointHasTypeArray() {
-		COSObject object = getWhitePointValue();
-		return getHasTypeArray(object);
+		COSObject WhitePoint = getWhitePointValue();
+		return getHasTypeArray(WhitePoint);
 	}
 
 }

@@ -62,23 +62,28 @@ public class GFAArrayOfPagesEntry extends GFAObject implements AArrayOfPagesEntr
 
 	@Override
 	public Boolean getisIndirect() {
-		COSObject object = getValue();
-		return getisIndirect(object);
+		COSObject entry = getValue();
+		return getisIndirect(entry);
 	}
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
-	@Override
-	public Boolean getcontainsAnySeparationInfo() {
+	public COSObject getAnyValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
 		COSObject baseObject = new COSObject(this.baseObject);
-		return baseObject.knownKey(ASAtom.getASAtom("SeparationInfo"));
+		return baseObject;
+	}
+
+	@Override
+	public Boolean getcontainsAnySeparationInfo() {
+		COSObject Any = getAnyValue();
+		return Any.knownKey(ASAtom.getASAtom("SeparationInfo"));
 	}
 
 }

@@ -96,14 +96,14 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 
 	@Override
 	public Boolean getCharSetHasTypeString() {
-		COSObject object = getCharSetValue();
-		return getHasTypeString(object);
+		COSObject CharSet = getCharSetValue();
+		return getHasTypeString(CharSet);
 	}
 
 	@Override
 	public String getCharSetStringValue() {
-		COSObject object = getCharSetValue();
-		return getStringValue(object);
+		COSObject CharSet = getCharSetValue();
+		return getStringValue(CharSet);
 	}
 
 	@Override
@@ -118,14 +118,14 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 
 	@Override
 	public Boolean getFHasTypeDictionary() {
-		COSObject object = getFValue();
-		return getHasTypeDictionary(object);
+		COSObject F = getFValue();
+		return getHasTypeDictionary(F);
 	}
 
 	@Override
 	public Boolean getFHasTypeString() {
-		COSObject object = getFValue();
-		return getHasTypeString(object);
+		COSObject F = getFValue();
+		return getHasTypeString(F);
 	}
 
 	@Override
@@ -140,8 +140,8 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 
 	@Override
 	public Boolean getFieldsHasTypeArray() {
-		COSObject object = getFieldsValue();
-		return getHasTypeArray(object);
+		COSObject Fields = getFieldsValue();
+		return getHasTypeArray(Fields);
 	}
 
 	@Override
@@ -173,14 +173,14 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 
 	@Override
 	public Boolean getFlagsHasTypeBitmask() {
-		COSObject object = getFlagsValue();
-		return getHasTypeBitmask(object);
+		COSObject Flags = getFlagsValue();
+		return getHasTypeBitmask(Flags);
 	}
 
 	@Override
 	public Long getFlagsBitmaskValue() {
-		COSObject object = getFlagsValue();
-		return getBitmaskValue(object);
+		COSObject Flags = getFlagsValue();
+		return getBitmaskValue(Flags);
 	}
 
 	@Override
@@ -195,14 +195,14 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 
 	@Override
 	public Boolean getSHasTypeName() {
-		COSObject object = getSValue();
-		return getHasTypeName(object);
+		COSObject S = getSValue();
+		return getHasTypeName(S);
 	}
 
 	@Override
 	public String getSNameValue() {
-		COSObject object = getSValue();
-		return getNameValue(object);
+		COSObject S = getSValue();
+		return getNameValue(S);
 	}
 
 }

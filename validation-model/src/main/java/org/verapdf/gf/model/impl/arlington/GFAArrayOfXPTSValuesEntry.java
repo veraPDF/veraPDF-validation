@@ -28,8 +28,8 @@ public class GFAArrayOfXPTSValuesEntry extends GFAObject implements AArrayOfXPTS
 
 	@Override
 	public Boolean getHasTypeNumber() {
-		COSObject object = getValue();
-		return getHasTypeNumber(object);
+		COSObject entry = getValue();
+		return getHasTypeNumber(entry);
 	}
 
 	@Override

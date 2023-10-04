@@ -62,26 +62,26 @@ public class GFATarget extends GFAObject implements ATarget {
 
 	@Override
 	public Boolean getAHasTypeInteger() {
-		COSObject object = getAValue();
-		return getHasTypeInteger(object);
+		COSObject A = getAValue();
+		return getHasTypeInteger(A);
 	}
 
 	@Override
 	public Boolean getAHasTypeStringText() {
-		COSObject object = getAValue();
-		return getHasTypeStringText(object);
+		COSObject A = getAValue();
+		return getHasTypeStringText(A);
 	}
 
 	@Override
 	public Long getAIntegerValue() {
-		COSObject object = getAValue();
-		return getIntegerValue(object);
+		COSObject A = getAValue();
+		return getIntegerValue(A);
 	}
 
 	@Override
 	public String getAStringTextValue() {
-		COSObject object = getAValue();
-		return getStringTextValue(object);
+		COSObject A = getAValue();
+		return getStringTextValue(A);
 	}
 
 	@Override
@@ -96,34 +96,22 @@ public class GFATarget extends GFAObject implements ATarget {
 
 	@Override
 	public Boolean getNHasTypeStringByte() {
-		COSObject object = getNValue();
-		return getHasTypeStringByte(object);
+		COSObject N = getNValue();
+		return getHasTypeStringByte(N);
 	}
 
 	@Override
 	public Boolean getnameTreetrailerCatalogNamesEmbeddedFilesContainsNString() {
-		COSObject object = getNValue();
-		if (object == null || object.getType() != COSObjType.COS_STRING) {
+		COSObject N = getNValue();
+		if (N == null || N.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
-		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
-		if (trailer == null || !trailer.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
-		if (Root == null || !Root.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Names = Root.getKey(ASAtom.getASAtom("Names"));
-		if (Names == null || !Names.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject EmbeddedFiles = Names.getKey(ASAtom.getASAtom("EmbeddedFiles"));
-		if (EmbeddedFiles == null || EmbeddedFiles.getType() != COSObjType.COS_DICT) {
+		COSObject trailerCatalogNamesEmbeddedFiles = gettrailerCatalogNamesEmbeddedFilesValue();
+		if (trailerCatalogNamesEmbeddedFiles == null || trailerCatalogNamesEmbeddedFiles.getType() != COSObjType.COS_DICT) {
 			return false;
 		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(EmbeddedFiles);
-		return nameTreeNode.getObject(object.getString()) != null;
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesEmbeddedFiles);
+		return nameTreeNode.getObject(N.getString()) != null;
 	}
 
 	@Override
@@ -138,46 +126,34 @@ public class GFATarget extends GFAObject implements ATarget {
 
 	@Override
 	public Boolean getPHasTypeInteger() {
-		COSObject object = getPValue();
-		return getHasTypeInteger(object);
+		COSObject P = getPValue();
+		return getHasTypeInteger(P);
 	}
 
 	@Override
 	public Boolean getPHasTypeStringByte() {
-		COSObject object = getPValue();
-		return getHasTypeStringByte(object);
+		COSObject P = getPValue();
+		return getHasTypeStringByte(P);
 	}
 
 	@Override
 	public Long getPIntegerValue() {
-		COSObject object = getPValue();
-		return getIntegerValue(object);
+		COSObject P = getPValue();
+		return getIntegerValue(P);
 	}
 
 	@Override
 	public Boolean getnameTreetrailerCatalogNamesDestsContainsPString() {
-		COSObject object = getPValue();
-		if (object == null || object.getType() != COSObjType.COS_STRING) {
+		COSObject P = getPValue();
+		if (P == null || P.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
-		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
-		if (trailer == null || !trailer.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
-		if (Root == null || !Root.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Names = Root.getKey(ASAtom.getASAtom("Names"));
-		if (Names == null || !Names.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Dests = Names.getKey(ASAtom.getASAtom("Dests"));
-		if (Dests == null || Dests.getType() != COSObjType.COS_DICT) {
+		COSObject trailerCatalogNamesDests = gettrailerCatalogNamesDestsValue();
+		if (trailerCatalogNamesDests == null || trailerCatalogNamesDests.getType() != COSObjType.COS_DICT) {
 			return false;
 		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(Dests);
-		return nameTreeNode.getObject(object.getString()) != null;
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
+		return nameTreeNode.getObject(P.getString()) != null;
 	}
 
 	@Override
@@ -192,14 +168,14 @@ public class GFATarget extends GFAObject implements ATarget {
 
 	@Override
 	public Boolean getRHasTypeName() {
-		COSObject object = getRValue();
-		return getHasTypeName(object);
+		COSObject R = getRValue();
+		return getHasTypeName(R);
 	}
 
 	@Override
 	public String getRNameValue() {
-		COSObject object = getRValue();
-		return getNameValue(object);
+		COSObject R = getRValue();
+		return getNameValue(R);
 	}
 
 	@Override
@@ -214,30 +190,64 @@ public class GFATarget extends GFAObject implements ATarget {
 
 	@Override
 	public Boolean getTHasTypeDictionary() {
-		COSObject object = getTValue();
-		return getHasTypeDictionary(object);
+		COSObject T = getTValue();
+		return getHasTypeDictionary(T);
+	}
+
+	public COSObject getpagePAnnotsValue() {
+		COSObject P = getPValue();
+		COSObject page = getPageObject(P);
+		if (page == null || !page.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Annots = page.getKey(ASAtom.getASAtom("Annots"));
+		return Annots;
+	}
+
+	public COSObject gettrailerCatalogNamesDestsValue() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
+		if (Root == null || !Root.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Names = Root.getKey(ASAtom.getASAtom("Names"));
+		if (Names == null || !Names.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Dests = Names.getKey(ASAtom.getASAtom("Dests"));
+		return Dests;
+	}
+
+	public COSObject gettrailerCatalogNamesEmbeddedFilesValue() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
+		if (Root == null || !Root.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Names = Root.getKey(ASAtom.getASAtom("Names"));
+		if (Names == null || !Names.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject EmbeddedFiles = Names.getKey(ASAtom.getASAtom("EmbeddedFiles"));
+		return EmbeddedFiles;
 	}
 
 	@Override
 	public Long getpagePAnnotsArraySize() {
-		COSObject object = getPValue();
-		COSObject page = getPageObject(object);
-		if (page == null || !page.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Annots = page.getKey(ASAtom.getASAtom("Annots"));
-		return getArraySize(Annots);
+		COSObject pagePAnnots = getpagePAnnotsValue();
+		return getArraySize(pagePAnnots);
 	}
 
 	@Override
 	public Boolean getpagePAnnotsHasTypeArray() {
-		COSObject object = getPValue();
-		COSObject page = getPageObject(object);
-		if (page == null || !page.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject Annots = page.getKey(ASAtom.getASAtom("Annots"));
-		return getHasTypeArray(Annots);
+		COSObject pagePAnnots = getpagePAnnotsValue();
+		return getHasTypeArray(pagePAnnots);
 	}
 
 }

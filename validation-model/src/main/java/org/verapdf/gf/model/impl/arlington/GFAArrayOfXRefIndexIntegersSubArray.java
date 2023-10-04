@@ -26,20 +26,20 @@ public class GFAArrayOfXRefIndexIntegersSubArray extends GFAObject implements AA
 
 	@Override
 	public Boolean getisentry0Indirect() {
-		COSObject object = getentry0Value();
-		return getisIndirect(object);
+		COSObject entry0 = getentry0Value();
+		return getisIndirect(entry0);
 	}
 
 	@Override
 	public Boolean getentry0HasTypeInteger() {
-		COSObject object = getentry0Value();
-		return getHasTypeInteger(object);
+		COSObject entry0 = getentry0Value();
+		return getHasTypeInteger(entry0);
 	}
 
 	@Override
 	public Long getentry0IntegerValue() {
-		COSObject object = getentry0Value();
-		return getIntegerValue(object);
+		COSObject entry0 = getentry0Value();
+		return getIntegerValue(entry0);
 	}
 
 	public COSObject getentry1Value() {
@@ -52,20 +52,20 @@ public class GFAArrayOfXRefIndexIntegersSubArray extends GFAObject implements AA
 
 	@Override
 	public Boolean getisentry1Indirect() {
-		COSObject object = getentry1Value();
-		return getisIndirect(object);
+		COSObject entry1 = getentry1Value();
+		return getisIndirect(entry1);
 	}
 
 	@Override
 	public Boolean getentry1HasTypeInteger() {
-		COSObject object = getentry1Value();
-		return getHasTypeInteger(object);
+		COSObject entry1 = getentry1Value();
+		return getHasTypeInteger(entry1);
 	}
 
 	@Override
 	public Long getentry1IntegerValue() {
-		COSObject object = getentry1Value();
-		return getIntegerValue(object);
+		COSObject entry1 = getentry1Value();
+		return getIntegerValue(entry1);
 	}
 
 }

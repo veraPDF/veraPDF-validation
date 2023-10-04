@@ -61,8 +61,8 @@ public class GFAArrayOfOutputIntentsEntry extends GFAObject implements AArrayOfO
 
 	@Override
 	public Boolean getHasTypeDictionary() {
-		COSObject object = getValue();
-		return getHasTypeDictionary(object);
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 }
