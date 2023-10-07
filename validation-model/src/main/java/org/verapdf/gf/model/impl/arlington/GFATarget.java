@@ -101,7 +101,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
-	public Boolean getnameTreetrailerCatalogNamesEmbeddedFilesContainsNString() {
+	public Boolean getNEntryIsIndexInNameTreetrailerCatalogNamesEmbeddedFiles() {
 		COSObject N = getNValue();
 		if (N == null || N.getType() != COSObjType.COS_STRING) {
 			return false;
@@ -111,7 +111,7 @@ public class GFATarget extends GFAObject implements ATarget {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesEmbeddedFiles);
-		return nameTreeNode.getObject(N.getString()) != null;
+		return nameTreeNode.containsKey(N.getString());
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
-	public Boolean getnameTreetrailerCatalogNamesDestsContainsPString() {
+	public Boolean getPEntryIsIndexInNameTreetrailerCatalogNamesDests() {
 		COSObject P = getPValue();
 		if (P == null || P.getType() != COSObjType.COS_STRING) {
 			return false;
@@ -153,7 +153,7 @@ public class GFATarget extends GFAObject implements ATarget {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
-		return nameTreeNode.getObject(P.getString()) != null;
+		return nameTreeNode.containsKey(P.getString());
 	}
 
 	@Override

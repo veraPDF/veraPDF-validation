@@ -85,7 +85,7 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	}
 
 	@Override
-	public Boolean getnameTreeResourcesContainsStartResourceString() {
+	public Boolean getStartResourceEntryIsIndexInNameTreeResources() {
 		COSObject StartResource = getStartResourceValue();
 		if (StartResource == null || StartResource.getType() != COSObjType.COS_STRING) {
 			return false;
@@ -95,7 +95,7 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(Resources);
-		return nameTreeNode.getObject(StartResource.getString()) != null;
+		return nameTreeNode.containsKey(StartResource.getString());
 	}
 
 	@Override

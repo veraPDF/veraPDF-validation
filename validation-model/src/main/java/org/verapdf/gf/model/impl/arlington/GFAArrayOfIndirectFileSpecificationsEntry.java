@@ -69,7 +69,7 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 	}
 
 	@Override
-	public Boolean getnameTreeparentRichMediaContentAssetsContainsString() {
+	public Boolean getEntryIsIndexInNameTreeparentRichMediaContentAssets() {
 		COSObject entry = getValue();
 		if (entry == null || entry.getType() != COSObjType.COS_STRING) {
 			return false;
@@ -79,7 +79,7 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(parentRichMediaContentAssets);
-		return nameTreeNode.getObject(entry.getString()) != null;
+		return nameTreeNode.containsKey(entry.getString());
 	}
 
 	public COSObject getparentRichMediaContentAssetsValue() {

@@ -1051,7 +1051,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
-	public Boolean getnameTreetrailerCatalogNamesPagesContainsTemplateInstantiatedString() {
+	public Boolean getTemplateInstantiatedEntryIsIndexInNameTreetrailerCatalogNamesPages() {
 		COSObject TemplateInstantiated = getTemplateInstantiatedValue();
 		if (TemplateInstantiated == null || TemplateInstantiated.getType() != COSObjType.COS_STRING) {
 			return false;
@@ -1061,11 +1061,11 @@ public class GFAPageObject extends GFAObject implements APageObject {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesPages);
-		return nameTreeNode.getObject(TemplateInstantiated.getString()) != null;
+		return nameTreeNode.containsKey(TemplateInstantiated.getString());
 	}
 
 	@Override
-	public Boolean getnameTreetrailerCatalogNamesTemplatesContainsTemplateInstantiatedString() {
+	public Boolean getTemplateInstantiatedEntryIsIndexInNameTreetrailerCatalogNamesTemplates() {
 		COSObject TemplateInstantiated = getTemplateInstantiatedValue();
 		if (TemplateInstantiated == null || TemplateInstantiated.getType() != COSObjType.COS_STRING) {
 			return false;
@@ -1075,7 +1075,7 @@ public class GFAPageObject extends GFAObject implements APageObject {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesTemplates);
-		return nameTreeNode.getObject(TemplateInstantiated.getString()) != null;
+		return nameTreeNode.containsKey(TemplateInstantiated.getString());
 	}
 
 	@Override

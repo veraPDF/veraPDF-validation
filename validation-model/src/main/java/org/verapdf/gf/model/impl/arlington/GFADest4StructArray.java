@@ -81,7 +81,7 @@ public class GFADest4StructArray extends GFAObject implements ADest4StructArray 
 	}
 
 	@Override
-	public Boolean getnameTreetrailerCatalogNamesDestsContains0String() {
+	public Boolean getentry0EntryIsIndexInNameTreetrailerCatalogNamesDests() {
 		COSObject entry0 = getentry0Value();
 		if (entry0 == null || entry0.getType() != COSObjType.COS_STRING) {
 			return false;
@@ -91,7 +91,7 @@ public class GFADest4StructArray extends GFAObject implements ADest4StructArray 
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
-		return nameTreeNode.getObject(entry0.getString()) != null;
+		return nameTreeNode.containsKey(entry0.getString());
 	}
 
 	public COSObject getentry1Value() {
