@@ -1237,7 +1237,8 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public Boolean getpageContainsStructContentItems() {
 		COSObject contents = this.baseObject.getKey(ASAtom.CONTENTS);
 		if (contents.getType() == COSObjType.COS_STREAM || contents.getType() == COSObjType.COS_ARRAY) {
-			try (ASInputStream opStream = contents.getDirectBase().getData(COSStream.FilterFlags.DECODE); PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
+			try (ASInputStream opStream = contents.getDirectBase().getData(COSStream.FilterFlags.DECODE);
+				 PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
 				streamParser.parseTokens();
 				List<COSBase> arguments = new ArrayList<>();
 				for (java.lang.Object rawToken : streamParser.getTokens()) {
@@ -1251,7 +1252,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 							}
 							COSBase lastArgument = arguments.get(arguments.size() - 1);
 							if (lastArgument.getType() == COSObjType.COS_NAME) {
-								//todo check dict from properties
+								COSObject resources = getInheritableResources(new COSObject(this.baseObject));
+								COSObject properties = resources != null ? resources.getKey(ASAtom.PROPERTIES) : null;
+								COSObject dict = properties != null ? properties.getKey(lastArgument.getName()) : null;
+								if (dict != null && dict.getType() == COSObjType.COS_DICT) {
+									lastArgument = dict.getDirectBase();
+								}
 							}
 							if (lastArgument.getType() == COSObjType.COS_DICT) {
 								if (lastArgument.knownKey(ASAtom.MCID)) {
@@ -1267,6 +1273,15 @@ public class GFAPageObject extends GFAObject implements APageObject {
 			}
 		}
 		return false;
+	}
+
+	private COSObject getInheritableResources(COSObject object) {
+		COSObject value = object.getKey(ASAtom.RESOURCES);
+		if (value != null && !value.empty()) {
+			return value;
+		} else {
+			return this.baseObject.knownKey(ASAtom.PARENT) ? getInheritableResources(this.baseObject.getKey(ASAtom.PARENT)) : null;
+		}
 	}
 
 	@Override
