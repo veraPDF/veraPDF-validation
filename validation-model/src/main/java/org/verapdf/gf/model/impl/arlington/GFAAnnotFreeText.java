@@ -944,9 +944,9 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	@Override
-	public Boolean getDAHasTypeString() {
+	public Boolean getDAHasTypeStringByte() {
 		COSObject DA = getDAValue();
-		return getHasTypeString(DA);
+		return getHasTypeStringByte(DA);
 	}
 
 	@Override

@@ -186,9 +186,9 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	}
 
 	@Override
-	public Boolean getDAHasTypeString() {
+	public Boolean getDAHasTypeStringByte() {
 		COSObject DA = getDAValue();
-		return getHasTypeString(DA);
+		return getHasTypeStringByte(DA);
 	}
 
 	@Override

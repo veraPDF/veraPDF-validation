@@ -382,9 +382,9 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
-	public Boolean getDAHasTypeString() {
+	public Boolean getDAHasTypeStringByte() {
 		COSObject DA = getDAValue();
-		return getHasTypeString(DA);
+		return getHasTypeStringByte(DA);
 	}
 
 	@Override

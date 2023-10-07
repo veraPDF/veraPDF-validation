@@ -313,9 +313,9 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
-	public Boolean getDAHasTypeString() {
+	public Boolean getDAHasTypeStringByte() {
 		COSObject DA = getDAValue();
-		return getHasTypeString(DA);
+		return getHasTypeStringByte(DA);
 	}
 
 	@Override
