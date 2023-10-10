@@ -101,6 +101,11 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     }
 
     @Override
+    public Long getFf() {
+        return ((org.verapdf.pd.form.PDFormField)this.simplePDObject).getFf();
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case ADDITIONAL_ACTION:

@@ -241,7 +241,7 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		}
 	}
 
-	private List<String> getChildrenStandardTypes() {
+	public List<String> getChildrenStandardTypes() {
 		return getChildrenStandardTypes(this);
 	}
 
