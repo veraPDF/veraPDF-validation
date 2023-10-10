@@ -25,11 +25,31 @@ import org.verapdf.model.selayer.SETOCI;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
+import java.util.List;
+
 public class GFSETOCI extends GFPDStructElem implements SETOCI {
 
     public static final String TOCI_STRUCTURE_ELEMENT_TYPE = "SETOCI";
 
     public GFSETOCI(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TOCI, TOCI_STRUCTURE_ELEMENT_TYPE);
+    }
+    
+    @Override
+    public Boolean getcontainsRef() {
+        return containsRef((PDStructElem)simplePDObject);
+    }
+    
+    private boolean containsRef(PDStructElem elem) {
+        if (elem.containsRef()) {
+            return true;
+        }
+        List<PDStructElem> children = elem.getStructChildren();
+        for (PDStructElem child : children) {
+            if (containsRef(child)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
