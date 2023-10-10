@@ -32,4 +32,9 @@ public class GFSEFormula extends GFPDStructElem implements SEFormula {
     public GFSEFormula(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.FORMULA, FORMULA_STRUCTURE_ELEMENT_TYPE);
     }
+
+    @Override
+    public Boolean getisMathFormula() {
+        return getChildrenStandardTypes().contains(TaggedPDFConstants.MATH_ML);
+    }
 }
