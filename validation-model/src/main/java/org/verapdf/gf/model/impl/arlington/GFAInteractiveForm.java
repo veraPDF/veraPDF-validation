@@ -359,7 +359,7 @@ public class GFAInteractiveForm extends GFAObject implements AInteractiveForm {
 	@Override
 	public Boolean getcontainsDRFontAny() {
 		COSObject DRFont = getDRFontValue();
-		return DRFont.getKeySet() != null && !DRFont.getKeySet().isEmpty();
+		return DRFont != null && DRFont.getKeySet() != null && !DRFont.getKeySet().isEmpty();
 	}
 
 }
