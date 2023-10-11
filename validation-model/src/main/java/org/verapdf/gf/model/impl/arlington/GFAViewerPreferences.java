@@ -646,6 +646,9 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	@Override
 	public String gettrailerCatalogPageModeNameValue() {
 		COSObject trailerCatalog = gettrailerCatalogValue();
+		if (trailerCatalog == null || !trailerCatalog.getType().isDictionaryBased()) {
+			return null;
+		}
 		return new GFACatalog(trailerCatalog.getDirectBase(), null, null).getPageModeNameValue();
 	}
 

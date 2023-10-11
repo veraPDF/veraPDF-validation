@@ -387,50 +387,98 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	@Override
+	public Long getIncludedImageDimensions0IntegerValue() {
+		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (IncludedImageDimensions.size() <= 0) {
+			return null;
+		}
+		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0IntegerValue();
+	}
+
+	@Override
 	public Long getIncludedImageDimensions1IntegerValue() {
 		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (IncludedImageDimensions.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry1IntegerValue();
 	}
 
 	@Override
 	public Double getSize0NumberValue() {
 		COSObject Size = getSizeValue();
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (Size.size() <= 0) {
+			return null;
+		}
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry0NumberValue();
-	}
-
-	@Override
-	public Long getIncludedImageDimensions0IntegerValue() {
-		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
-		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0IntegerValue();
 	}
 
 	@Override
 	public Double getSize1NumberValue() {
 		COSObject Size = getSizeValue();
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (Size.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry1NumberValue();
 	}
 
 	@Override
 	public Boolean getIncludedImageDimensions1HasTypeInteger() {
 		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (IncludedImageDimensions.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry1HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getSize0HasTypeNumber() {
 		COSObject Size = getSizeValue();
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (Size.size() <= 0) {
+			return null;
+		}
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry0HasTypeNumber();
 	}
 
 	@Override
 	public Boolean getIncludedImageDimensions0HasTypeInteger() {
 		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (IncludedImageDimensions.size() <= 0) {
+			return null;
+		}
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getSize1HasTypeNumber() {
 		COSObject Size = getSizeValue();
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (Size.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry1HasTypeNumber();
 	}
 

@@ -459,48 +459,96 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Double getFWPosition0NumberValue() {
 		COSObject FWPosition = getFWPositionValue();
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWPosition.size() <= 0) {
+			return null;
+		}
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry0NumberValue();
 	}
 
 	@Override
 	public Double getFWPosition1NumberValue() {
 		COSObject FWPosition = getFWPositionValue();
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWPosition.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry1NumberValue();
 	}
 
 	@Override
 	public Long getFWScale0IntegerValue() {
 		COSObject FWScale = getFWScaleValue();
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWScale.size() <= 0) {
+			return null;
+		}
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry0IntegerValue();
 	}
 
 	@Override
 	public Long getFWScale1IntegerValue() {
 		COSObject FWScale = getFWScaleValue();
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWScale.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry1IntegerValue();
 	}
 
 	@Override
 	public Boolean getFWPosition0HasTypeNumber() {
 		COSObject FWPosition = getFWPositionValue();
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWPosition.size() <= 0) {
+			return null;
+		}
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry0HasTypeNumber();
 	}
 
 	@Override
 	public Boolean getFWPosition1HasTypeNumber() {
 		COSObject FWPosition = getFWPositionValue();
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWPosition.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry1HasTypeNumber();
 	}
 
 	@Override
 	public Boolean getFWScale0HasTypeInteger() {
 		COSObject FWScale = getFWScaleValue();
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWScale.size() <= 0) {
+			return null;
+		}
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry0HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getFWScale1HasTypeInteger() {
 		COSObject FWScale = getFWScaleValue();
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (FWScale.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry1HasTypeInteger();
 	}
 

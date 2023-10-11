@@ -1461,18 +1461,6 @@ public class GFAAnnotSquare extends GFAObject implements AAnnotSquare {
 	}
 
 	@Override
-	public Double getRD2NumberValue() {
-		COSObject RD2 = getRD2Value();
-		return getNumberValue(RD2);
-	}
-
-	@Override
-	public Double getRD3NumberValue() {
-		COSObject RD3 = getRD3Value();
-		return getNumberValue(RD3);
-	}
-
-	@Override
 	public Double getRD0NumberValue() {
 		COSObject RD0 = getRD0Value();
 		return getNumberValue(RD0);
@@ -1482,6 +1470,18 @@ public class GFAAnnotSquare extends GFAObject implements AAnnotSquare {
 	public Double getRD1NumberValue() {
 		COSObject RD1 = getRD1Value();
 		return getNumberValue(RD1);
+	}
+
+	@Override
+	public Double getRD2NumberValue() {
+		COSObject RD2 = getRD2Value();
+		return getNumberValue(RD2);
+	}
+
+	@Override
+	public Double getRD3NumberValue() {
+		COSObject RD3 = getRD3Value();
+		return getNumberValue(RD3);
 	}
 
 	@Override

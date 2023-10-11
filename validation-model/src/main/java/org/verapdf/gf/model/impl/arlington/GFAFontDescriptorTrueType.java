@@ -498,6 +498,9 @@ public class GFAFontDescriptorTrueType extends GFAObject implements AFontDescrip
 
 	@Override
 	public String getparentBaseFontNameValue() {
+		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+			return null;
+		}
 		return new GFAFontTrueType(this.parentObject.getDirectBase(), null, null).getBaseFontNameValue();
 	}
 

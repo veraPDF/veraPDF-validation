@@ -201,6 +201,9 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	@Override
 	public Boolean gettrailerCatalogMarkInfoUserPropertiesBooleanValue() {
 		COSObject trailerCatalogMarkInfo = gettrailerCatalogMarkInfoValue();
+		if (trailerCatalogMarkInfo == null || !trailerCatalogMarkInfo.getType().isDictionaryBased()) {
+			return null;
+		}
 		return new GFAMarkInfo(trailerCatalogMarkInfo.getDirectBase(), null, null).getUserPropertiesBooleanValue();
 	}
 

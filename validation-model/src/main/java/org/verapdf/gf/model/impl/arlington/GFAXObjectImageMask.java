@@ -1365,15 +1365,15 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	@Override
-	public Long getDecode1IntegerValue() {
-		COSObject Decode1 = getDecode1Value();
-		return getIntegerValue(Decode1);
-	}
-
-	@Override
 	public Long getDecode0IntegerValue() {
 		COSObject Decode0 = getDecode0Value();
 		return getIntegerValue(Decode0);
+	}
+
+	@Override
+	public Long getDecode1IntegerValue() {
+		COSObject Decode1 = getDecode1Value();
+		return getIntegerValue(Decode1);
 	}
 
 	@Override

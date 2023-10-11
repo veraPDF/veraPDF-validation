@@ -189,50 +189,98 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	}
 
 	@Override
+	public Long getByteRange0IntegerValue() {
+		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 0) {
+			return null;
+		}
+		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0IntegerValue();
+	}
+
+	@Override
 	public Long getByteRange1IntegerValue() {
 		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry1IntegerValue();
 	}
 
 	@Override
 	public Long getByteRange2IntegerValue() {
 		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 2) {
+			return null;
+		}
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry2IntegerValue();
-	}
-
-	@Override
-	public Long getByteRange0IntegerValue() {
-		COSObject ByteRange = getByteRangeValue();
-		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0IntegerValue();
 	}
 
 	@Override
 	public Long getByteRange3IntegerValue() {
 		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 3) {
+			return null;
+		}
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry3IntegerValue();
 	}
 
 	@Override
 	public Boolean getByteRange1HasTypeInteger() {
 		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 1) {
+			return null;
+		}
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry1HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getByteRange2HasTypeInteger() {
 		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 2) {
+			return null;
+		}
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry2HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getByteRange0HasTypeInteger() {
 		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 0) {
+			return null;
+		}
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0HasTypeInteger();
 	}
 
 	@Override
 	public Boolean getByteRange3HasTypeInteger() {
 		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 3) {
+			return null;
+		}
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry3HasTypeInteger();
 	}
 

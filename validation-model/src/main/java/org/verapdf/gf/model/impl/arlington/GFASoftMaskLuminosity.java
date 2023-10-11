@@ -309,6 +309,9 @@ public class GFASoftMaskLuminosity extends GFAObject implements ASoftMaskLuminos
 	@Override
 	public String getGGroupSNameValue() {
 		COSObject GGroup = getGGroupValue();
+		if (GGroup == null || !GGroup.getType().isDictionaryBased()) {
+			return null;
+		}
 		return new GFAGroupAttributes(GGroup.getDirectBase(), null, null).getSNameValue();
 	}
 

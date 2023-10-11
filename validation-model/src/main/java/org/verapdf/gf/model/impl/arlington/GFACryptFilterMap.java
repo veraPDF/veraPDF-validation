@@ -139,6 +139,9 @@ public class GFACryptFilterMap extends GFAObject implements ACryptFilterMap {
 	@Override
 	public String getStdCFAuthEventNameValue() {
 		COSObject StdCF = getStdCFValue();
+		if (StdCF == null || !StdCF.getType().isDictionaryBased()) {
+			return null;
+		}
 		return new GFACryptFilter(StdCF.getDirectBase(), null, null).getAuthEventNameValue();
 	}
 
