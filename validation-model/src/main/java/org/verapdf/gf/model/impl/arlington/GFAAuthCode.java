@@ -237,6 +237,18 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	}
 
 	@Override
+	public Boolean getByteRange0HasTypeInteger() {
+		COSObject ByteRange = getByteRangeValue();
+		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (ByteRange.size() <= 0) {
+			return null;
+		}
+		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0HasTypeInteger();
+	}
+
+	@Override
 	public Boolean getByteRange1HasTypeInteger() {
 		COSObject ByteRange = getByteRangeValue();
 		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
@@ -258,18 +270,6 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 			return null;
 		}
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry2HasTypeInteger();
-	}
-
-	@Override
-	public Boolean getByteRange0HasTypeInteger() {
-		COSObject ByteRange = getByteRangeValue();
-		if (ByteRange == null || ByteRange.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (ByteRange.size() <= 0) {
-			return null;
-		}
-		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry0HasTypeInteger();
 	}
 
 	@Override

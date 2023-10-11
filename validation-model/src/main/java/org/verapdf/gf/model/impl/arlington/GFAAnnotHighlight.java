@@ -1302,6 +1302,12 @@ public class GFAAnnotHighlight extends GFAObject implements AAnnotHighlight {
 	}
 
 	@Override
+	public Boolean getAPDHasTypeDictionary() {
+		COSObject APD = getAPDValue();
+		return getHasTypeDictionary(APD);
+	}
+
+	@Override
 	public Boolean getAPNHasTypeDictionary() {
 		COSObject APN = getAPNValue();
 		return getHasTypeDictionary(APN);
@@ -1311,12 +1317,6 @@ public class GFAAnnotHighlight extends GFAObject implements AAnnotHighlight {
 	public Boolean getAPRHasTypeDictionary() {
 		COSObject APR = getAPRValue();
 		return getHasTypeDictionary(APR);
-	}
-
-	@Override
-	public Boolean getAPDHasTypeDictionary() {
-		COSObject APD = getAPDValue();
-		return getHasTypeDictionary(APD);
 	}
 
 	@Override

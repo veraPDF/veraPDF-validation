@@ -1015,6 +1015,12 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	}
 
 	@Override
+	public Boolean getAPDHasTypeDictionary() {
+		COSObject APD = getAPDValue();
+		return getHasTypeDictionary(APD);
+	}
+
+	@Override
 	public Boolean getAPNHasTypeDictionary() {
 		COSObject APN = getAPNValue();
 		return getHasTypeDictionary(APN);
@@ -1024,12 +1030,6 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	public Boolean getAPRHasTypeDictionary() {
 		COSObject APR = getAPRValue();
 		return getHasTypeDictionary(APR);
-	}
-
-	@Override
-	public Boolean getAPDHasTypeDictionary() {
-		COSObject APD = getAPDValue();
-		return getHasTypeDictionary(APD);
 	}
 
 	@Override

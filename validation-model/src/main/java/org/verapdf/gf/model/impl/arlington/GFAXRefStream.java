@@ -918,15 +918,15 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	@Override
-	public Boolean getcontainstrailerInfoModDate() {
-		COSObject trailerInfo = gettrailerInfoValue();
-		return trailerInfo.knownKey(ASAtom.getASAtom("ModDate"));
-	}
-
-	@Override
 	public Boolean getcontainstrailerCatalogPieceInfo() {
 		COSObject trailerCatalog = gettrailerCatalogValue();
 		return trailerCatalog.knownKey(ASAtom.getASAtom("PieceInfo"));
+	}
+
+	@Override
+	public Boolean getcontainstrailerInfoModDate() {
+		COSObject trailerInfo = gettrailerInfoValue();
+		return trailerInfo.knownKey(ASAtom.getASAtom("ModDate"));
 	}
 
 	@Override

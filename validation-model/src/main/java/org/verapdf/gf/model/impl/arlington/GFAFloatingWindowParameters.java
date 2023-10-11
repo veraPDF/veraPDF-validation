@@ -367,18 +367,6 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 	}
 
 	@Override
-	public Boolean getD1HasTypeInteger() {
-		COSObject D = getDValue();
-		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (D.size() <= 1) {
-			return null;
-		}
-		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry1HasTypeInteger();
-	}
-
-	@Override
 	public Boolean getD0HasTypeInteger() {
 		COSObject D = getDValue();
 		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
@@ -388,6 +376,18 @@ public class GFAFloatingWindowParameters extends GFAObject implements AFloatingW
 			return null;
 		}
 		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry0HasTypeInteger();
+	}
+
+	@Override
+	public Boolean getD1HasTypeInteger() {
+		COSObject D = getDValue();
+		if (D == null || D.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (D.size() <= 1) {
+			return null;
+		}
+		return new GFAArrayOf_2Integers(D.getDirectBase(), null, null).getentry1HasTypeInteger();
 	}
 
 }

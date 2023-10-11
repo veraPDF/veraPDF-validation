@@ -923,15 +923,15 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	}
 
 	@Override
-	public Boolean getparentWidthHasTypeInteger() {
-		COSObject parentWidth = getparentWidthValue();
-		return getHasTypeInteger(parentWidth);
-	}
-
-	@Override
 	public Boolean getparentHeightHasTypeInteger() {
 		COSObject parentHeight = getparentHeightValue();
 		return getHasTypeInteger(parentHeight);
+	}
+
+	@Override
+	public Boolean getparentWidthHasTypeInteger() {
+		COSObject parentWidth = getparentWidthValue();
+		return getHasTypeInteger(parentWidth);
 	}
 
 }

@@ -945,6 +945,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public Boolean getAPDHasTypeDictionary() {
+		COSObject APD = getAPDValue();
+		return getHasTypeDictionary(APD);
+	}
+
+	@Override
 	public Boolean getAPNHasTypeDictionary() {
 		COSObject APN = getAPNValue();
 		return getHasTypeDictionary(APN);
@@ -954,12 +960,6 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public Boolean getAPRHasTypeDictionary() {
 		COSObject APR = getAPRValue();
 		return getHasTypeDictionary(APR);
-	}
-
-	@Override
-	public Boolean getAPDHasTypeDictionary() {
-		COSObject APD = getAPDValue();
-		return getHasTypeDictionary(APD);
 	}
 
 	@Override

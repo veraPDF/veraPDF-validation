@@ -200,18 +200,6 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	}
 
 	@Override
-	public Boolean getA1HasTypeNumber() {
-		COSObject A = getAValue();
-		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (A.size() <= 1) {
-			return null;
-		}
-		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry1HasTypeNumber();
-	}
-
-	@Override
 	public Boolean getA0HasTypeNumber() {
 		COSObject A = getAValue();
 		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
@@ -221,6 +209,18 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry0HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getA1HasTypeNumber() {
+		COSObject A = getAValue();
+		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
+			return null;
+		}
+		if (A.size() <= 1) {
+			return null;
+		}
+		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry1HasTypeNumber();
 	}
 
 }

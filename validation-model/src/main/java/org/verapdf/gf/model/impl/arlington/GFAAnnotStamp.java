@@ -1312,6 +1312,12 @@ public class GFAAnnotStamp extends GFAObject implements AAnnotStamp {
 	}
 
 	@Override
+	public Boolean getAPDHasTypeDictionary() {
+		COSObject APD = getAPDValue();
+		return getHasTypeDictionary(APD);
+	}
+
+	@Override
 	public Boolean getAPNHasTypeDictionary() {
 		COSObject APN = getAPNValue();
 		return getHasTypeDictionary(APN);
@@ -1321,12 +1327,6 @@ public class GFAAnnotStamp extends GFAObject implements AAnnotStamp {
 	public Boolean getAPRHasTypeDictionary() {
 		COSObject APR = getAPRValue();
 		return getHasTypeDictionary(APR);
-	}
-
-	@Override
-	public Boolean getAPDHasTypeDictionary() {
-		COSObject APD = getAPDValue();
-		return getHasTypeDictionary(APD);
 	}
 
 	@Override

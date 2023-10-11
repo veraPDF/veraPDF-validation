@@ -1345,6 +1345,12 @@ public class GFAAnnotRedact extends GFAObject implements AAnnotRedact {
 	}
 
 	@Override
+	public Boolean getAPDHasTypeDictionary() {
+		COSObject APD = getAPDValue();
+		return getHasTypeDictionary(APD);
+	}
+
+	@Override
 	public Boolean getAPNHasTypeDictionary() {
 		COSObject APN = getAPNValue();
 		return getHasTypeDictionary(APN);
@@ -1354,12 +1360,6 @@ public class GFAAnnotRedact extends GFAObject implements AAnnotRedact {
 	public Boolean getAPRHasTypeDictionary() {
 		COSObject APR = getAPRValue();
 		return getHasTypeDictionary(APR);
-	}
-
-	@Override
-	public Boolean getAPDHasTypeDictionary() {
-		COSObject APD = getAPDValue();
-		return getHasTypeDictionary(APD);
 	}
 
 	@Override
