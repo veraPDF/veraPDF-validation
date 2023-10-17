@@ -52,11 +52,11 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	private final String parentStructureTag;
 	private final String parentsTags;
 
-	public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pbXObject,
+	public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pdXObject,
 				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
 				   String parentStructureTag, String parentsTags) {
 		super(arguments, OP_DO_TYPE);
-		this.pbXObject = pbXObject;
+		this.pbXObject = pdXObject;
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructureTag = parentStructureTag;
