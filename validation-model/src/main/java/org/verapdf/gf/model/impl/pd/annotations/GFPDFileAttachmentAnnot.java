@@ -45,12 +45,12 @@ public class GFPDFileAttachmentAnnot extends GFPDMarkupAnnot implements PDFileAt
 	}
 
 	@Override
-	public Boolean getfileSpecContainsAFRelationship() {
+	public String getAFRelationship() {
 		COSObject fs = simplePDObject.getKey(ASAtom.FS);
 		if (fs != null && fs.getType() == COSObjType.COS_DICT) {
-			return fs.knownKey(ASAtom.AF_RELATIONSHIP);
+			return fs.getNameKeyStringValue(ASAtom.AF_RELATIONSHIP);
 		}
-		return false;
+		return null;
 	}
 
 }
