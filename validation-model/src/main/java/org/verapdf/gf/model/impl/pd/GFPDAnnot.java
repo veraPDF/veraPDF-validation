@@ -161,6 +161,16 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	@Override
+	public Boolean getcontainsC() {
+		return ((PDAnnotation) simplePDObject).getCOSC() != null;
+	}
+
+	@Override
+	public Boolean getcontainsIC() {
+		return ((PDAnnotation) simplePDObject).getCOSIC() != null;
+	}
+
+	@Override
 	public String getFT() {
 		ASAtom ft = ((PDAnnotation) simplePDObject).getFT();
 		return ft == null ? null : ft.getValue();

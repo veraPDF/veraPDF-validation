@@ -26,7 +26,7 @@ import org.verapdf.pd.actions.PDAction;
 /**
  * @author Maksim Bezrukov
  */
-public class GFPDGoToRemoteAction extends GFPDGoToAction implements PDGoToRemoteAction {
+public class GFPDGoToRemoteAction extends GFPDAction implements PDGoToRemoteAction {
 
 	public static final String GOTO_REMOTE_ACTION_TYPE = "PDGoToRemoteAction";
 

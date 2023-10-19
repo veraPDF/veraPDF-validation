@@ -20,16 +20,9 @@
  */
 package org.verapdf.gf.model.impl.pd.actions;
 
-import org.verapdf.cos.COSNumber;
-import org.verapdf.gf.model.impl.cos.GFCosNumber;
-import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.pdlayer.PDGoToAction;
 import org.verapdf.pd.actions.PDAction;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @author Maksim Bezrukov
@@ -37,33 +30,12 @@ import java.util.List;
 public class GFPDGoToAction extends GFPDAction implements PDGoToAction {
 	public static final String GOTO_ACTION_TYPE = "PDGoToAction";
 
-	public static final String D = "D";
-
 	public GFPDGoToAction(PDAction simplePDObject) {
 		super(simplePDObject, GOTO_ACTION_TYPE);
 	}
 
-	protected GFPDGoToAction(PDAction simplePDObject, String type) {
-		super(simplePDObject, type);
-	}
-
 	@Override
-	public List<? extends Object> getLinkedObjects(String link) {
-		if (D.equals(link)) {
-			return this.getD();
-		}
-		return super.getLinkedObjects(link);
-	}
-
-	private List<CosNumber> getD() {
-		List<COSNumber> numbers = ((PDAction) simplePDObject).getCOSArrayD();
-		if (!numbers.isEmpty()) {
-			List<CosNumber> result = new ArrayList<>(numbers.size());
-			for (COSNumber number : numbers) {
-				result.add(GFCosNumber.fromPDFParserNumber(number));
-			}
-			return Collections.unmodifiableList(result);
-		}
-		return Collections.emptyList();
+	public Boolean getcontainsStructDestination() {
+		return ((PDAction) simplePDObject).containsStructureDestination();
 	}
 }

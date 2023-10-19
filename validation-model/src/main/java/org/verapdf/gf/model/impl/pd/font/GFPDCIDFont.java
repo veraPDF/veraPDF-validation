@@ -34,9 +34,6 @@ import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
-import org.verapdf.pd.font.cff.CFFCIDFontProgram;
-import org.verapdf.pd.font.cff.CFFFontProgram;
-import org.verapdf.pd.font.truetype.CIDFontType2Program;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.StaticResources;
 
@@ -127,6 +124,11 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
             return IDENTITY;
         }
         return null;
+    }
+
+    @Override
+    public Boolean getcontainsCIDSet() {
+        return ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet() != null;
     }
 
     /**
