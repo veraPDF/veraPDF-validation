@@ -20,9 +20,16 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
+import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSString;
+import org.verapdf.gf.model.impl.cos.GFCosTextString;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.coslayer.CosTextString;
 import org.verapdf.model.pdlayer.PDAction;
+import org.verapdf.model.pdlayer.PDDestination;
 import org.verapdf.model.pdlayer.PDOutline;
 import org.verapdf.pd.PDOutlineItem;
 
@@ -37,7 +44,9 @@ public class GFPDOutline extends GFPDObject implements PDOutline {
 
 	public static final String OUTLINE_TYPE = "PDOutline";
 
+	public static final String TITLE = "Title";
 	public static final String ACTION = "A";
+	public static final String DEST = "Dest";
 
 	private final String id;
 
@@ -53,10 +62,16 @@ public class GFPDOutline extends GFPDObject implements PDOutline {
 
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
-		if (ACTION.equals(link)) {
-			return this.getAction();
+		switch (link) {
+			case ACTION:
+				return this.getAction();
+			case DEST:
+				return this.getDestination();
+			case TITLE:
+				return this.getTitle();	
+			default:
+				return super.getLinkedObjects(link);
 		}
-		return super.getLinkedObjects(link);
 	}
 
 	private List<PDAction> getAction() {
@@ -66,6 +81,26 @@ public class GFPDOutline extends GFPDObject implements PDOutline {
 			PDAction pdAction = GFPDAction.getAction(action);
 			actions.add(pdAction);
 			return Collections.unmodifiableList(actions);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<PDDestination> getDestination() {
+		COSObject destination = ((PDOutlineItem) simplePDObject).getDestination();
+		if (!destination.empty()) {
+			List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			destinations.add(new GFPDDestination(destination));
+			return Collections.unmodifiableList(destinations);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<CosTextString> getTitle() {
+		COSObject title = this.simplePDObject.getKey(ASAtom.TITLE);
+		if (title != null && title.getType() == COSObjType.COS_STRING) {
+			List<CosTextString> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosTextString((COSString) title.getDirectBase()));
+			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}

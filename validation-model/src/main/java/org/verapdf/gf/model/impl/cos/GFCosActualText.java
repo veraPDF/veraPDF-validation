@@ -21,7 +21,6 @@
 package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.cos.COSString;
-import org.verapdf.gf.model.impl.operator.textshow.PUAHelper;
 import org.verapdf.model.coslayer.CosActualText;
 
 /**
@@ -33,10 +32,5 @@ public class GFCosActualText extends GFCosString implements CosActualText {
 
     public GFCosActualText(COSString cosString) {
         super(cosString, COS_ACTUAL_TEXT_TYPE);
-    }
-
-    @Override
-    public Boolean getcontainsPUA() {
-        return PUAHelper.containPUA(((COSString)baseObject).getString());
     }
 }
