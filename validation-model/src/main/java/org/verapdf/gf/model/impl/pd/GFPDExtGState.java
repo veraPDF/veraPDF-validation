@@ -53,9 +53,7 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
     public static final String EXT_G_STATE_TYPE = "PDExtGState";
 
     public static final String RI = "RI";
-    public static final String BM = "BM";
     public static final String LINK_BM = "bm";
-    public static final String FONT_SIZE = "fontSize";
     public static final String HALFTONE = "HT";
     public static final String CUSTOM_FUNCTIONS = "customFunctions";
 
@@ -161,8 +159,6 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
         switch (link) {
             case RI:
                 return this.getRI();
-            case FONT_SIZE:
-                return this.getFontSize();
             case HALFTONE:
                 return this.getHalftone();
             case CUSTOM_FUNCTIONS:
@@ -182,18 +178,6 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
             renderingIntents.add(new GFCosRenderingIntent(renderingIntent));
             return Collections.unmodifiableList(renderingIntents);
         }
-        return Collections.emptyList();
-    }
-
-    private List<CosNumber> getFontSize() {
-        COSNumber fontSize = ((org.verapdf.pd.PDExtGState) this.simplePDObject)
-                .getCOSFontSize();
-        if (fontSize != null) {
-            List<CosNumber> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-            result.add(GFCosNumber.fromPDFParserNumber(fontSize));
-            return Collections.unmodifiableList(result);
-        }
-
         return Collections.emptyList();
     }
 
