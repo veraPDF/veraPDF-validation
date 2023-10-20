@@ -49,22 +49,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @author Maksim Bezrukov
  */
-public class GFPDStructElem extends GFPDObject implements PDStructElem {
+public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	/**
 	 * Type name for {@code GFPDStructElem}
 	 */
 	public static final String STRUCTURE_ELEMENT_TYPE = "PDStructElem";
 
-	/**
-	 * Link name for {@code K} key
-	 */
-	public static final String CHILDREN = "K";
 	/**
 	 * Link name for {@code S} key
 	 */
@@ -79,8 +73,6 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public static final String ACTUAL_TEXT = "actualText";
 
 	private final String standardType;
-
-	private List<GFPDStructElem> children;
 
 	protected GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType, String type) {
 		super(structElemDictionary, type);
@@ -110,21 +102,6 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	@Override
-	public String getkidsStandardTypes() {
-		if (StaticContainers.getFlavour() != null &&
-		    StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1) {
-			return this.getChildrenStandardTypes()
-			           .stream()
-			           .filter(type -> type != null && !TaggedPDFConstants.ARTIFACT.equals(type))
-			           .collect(Collectors.joining("&"));
-		}
-		return this.getChildrenStandardTypes()
-		           .stream()
-		           .filter(Objects::nonNull)
-		           .collect(Collectors.joining("&"));
-	}
-
-	@Override
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();
 		if (parent != null) {
@@ -139,25 +116,6 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 			return parentStandardType;
 		}
 		return null;
-	}
-
-	@Override
-	public Boolean gethasContentItems() {
-		COSObject children = this.simplePDObject.getKey(ASAtom.K);
-		if (children == null) {
-			return false;
-		}
-		if (TaggedPDFHelper.isContentItem(children)) {
-			return true;
-		}
-		if (children.getType() == COSObjType.COS_ARRAY) {
-			for (COSObject elem : (COSArray)children.getDirectBase()) {
-				if (TaggedPDFHelper.isContentItem(elem)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 
 	@Override
@@ -228,8 +186,6 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
-			case CHILDREN:
-				return this.getChildren();
 			case STRUCTURE_TYPE:
 				return this.getStructureType();
 			case LANG:
@@ -239,39 +195,6 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	public List<String> getChildrenStandardTypes() {
-		return getChildrenStandardTypes(this);
-	}
-
-	private static List<String> getChildrenStandardTypes(GFPDStructElem element) {
-		List<String> res = new ArrayList<>();
-		for (GFPDStructElem child : element.getChildren()) {
-			String elementStandardType = child.getstandardType();
-			if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
-				res.addAll(getChildrenStandardTypes(child));
-			} else {
-				res.add(elementStandardType);
-			}
-		}
-		return Collections.unmodifiableList(res);
-	}
-
-	public List<GFPDStructElem> getChildren() {
-		if (children == null) {
-			List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructChildren();
-			if (!elements.isEmpty()) {
-				List<GFPDStructElem> res = new ArrayList<>(elements.size());
-				for (org.verapdf.pd.structure.PDStructElem element : elements) {
-					res.add(GFSEFactory.createTypedStructElem(element));
-				}
-				children = Collections.unmodifiableList(res);
-			} else {
-				children = Collections.emptyList();
-			}
-		}
-		return children;
 	}
 
 	private List<CosUnicodeName> getStructureType() {
