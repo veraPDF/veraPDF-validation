@@ -81,4 +81,12 @@ public class GFPDStructTreeRoot extends GFPDStructTreeNode implements PDStructTr
 		}
 		return null;
 	}
+
+	@Override
+	public String getfirstChildStandardTypeNamespaceURL() {
+		if (!getChildren().isEmpty()) {
+			return getChildren().get(0).getStandardTypeNamespaceURL();
+		}
+		return null;
+	}
 }

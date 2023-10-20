@@ -42,6 +42,8 @@ public class StaticContainers {
 	private static final ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
 	private static final ThreadLocal<List<String>> inconsistentSeparations = new ThreadLocal<>();
 
+	private static final ThreadLocal<Map<COSKey, Set<COSKey>>> structElementsRefs = new ThreadLocal<>();
+
 	//ColorSpaceFactory
 	private static final ThreadLocal<Map<String, PDColorSpace>> cachedColorSpaces = new ThreadLocal<>();
 
@@ -68,6 +70,7 @@ public class StaticContainers {
 	public static void clearAllContainers() {
 		flavour.set(null);
 		separations.set(new HashMap<>());
+		structElementsRefs.set(new HashMap<>());
 		inconsistentSeparations.set(new ArrayList<>());
 		cachedColorSpaces.set(new HashMap<>());
 		cachedFonts.set(new HashMap<>());
@@ -98,6 +101,17 @@ public class StaticContainers {
 
 	public static void setSeparations(Map<String, List<GFPDSeparation>> separations) {
 		StaticContainers.separations.set(separations);
+	}
+
+	public static Map<COSKey, Set<COSKey>> getStructElementsRefs() {
+		if (structElementsRefs.get() == null) {
+			structElementsRefs.set(new HashMap<>());
+		}
+		return structElementsRefs.get();
+	}
+
+	public static void setStructElementsRefs(Map<COSKey, Set<COSKey>> structElementsRefs) {
+		StaticContainers.structElementsRefs.set(structElementsRefs);
 	}
 
 	public static List<String> getInconsistentSeparations() {
