@@ -25,7 +25,6 @@ import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosBM;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
-import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.annotations.*;
@@ -34,7 +33,6 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBM;
 import org.verapdf.model.coslayer.CosLang;
-import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.pdlayer.PDAction;
 import org.verapdf.model.pdlayer.PDAdditionalActions;
 import org.verapdf.model.pdlayer.PDAnnot;
@@ -70,8 +68,6 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final String STREAM = "Stream";
 
 	public static final String APPEARANCE = "appearance";
-	public static final String C = "C";
-	public static final String IC = "IC";
 	public static final String A = "A";
 	public static final String ADDITIONAL_ACTION = "AA";
 	public static final String LANG = "Lang";
@@ -316,10 +312,6 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 				return this.getAdditionalActions();
 			case A:
 				return this.getA();
-			case IC:
-				return this.getIC();
-			case C:
-				return this.getC();
 			case APPEARANCE:
 				return this.getAppearance();
 			case LANG:
@@ -349,39 +341,6 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			return Collections.unmodifiableList(res);
 		}
 		return Collections.emptyList();
-	}
-
-	private List<CosNumber> getIC() {
-		COSObject ic = ((PDAnnotation) simplePDObject).getCOSIC();
-		if (ic != null) {
-			return GFPDAnnot.getNumbersFromArray(ic);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<CosNumber> getC() {
-		COSObject c = ((PDAnnotation) simplePDObject).getCOSC();
-		if (c != null) {
-			return GFPDAnnot.getNumbersFromArray(c);
-		}
-		return Collections.emptyList();
-	}
-
-	private static List<CosNumber> getNumbersFromArray(COSObject array) {
-		if (array.size().intValue() > 0) {
-			List<CosNumber> color = new ArrayList<>();
-			for (COSObject colorValue : (COSArray) array.getDirectBase()) {
-				if (colorValue.getType().isNumber()) {
-					color.add(GFCosNumber.fromPDFParserNumber(colorValue.get()));
-				}
-			}
-			return Collections.unmodifiableList(color);
-		} else {
-			// Array size is 0 but it is present
-			List<CosNumber> res = new ArrayList<>(1);
-			res.add(GFCosNumber.fromPDFParserNumber(COSInteger.construct(0).getDirectBase()));
-			return res;
-		}
 	}
 
 	/**

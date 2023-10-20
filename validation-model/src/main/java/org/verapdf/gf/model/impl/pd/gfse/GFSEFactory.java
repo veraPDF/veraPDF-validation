@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.pd.structure.PDStructElem;
@@ -31,8 +32,11 @@ import org.verapdf.tools.TaggedPDFConstants;
 public class GFSEFactory {
 
     public static GFPDStructElem createTypedStructElem(PDStructElem structElemDictionary){
-        String standardType = getStructureElementStandardType(structElemDictionary);
-
+        StructureType standardStructureType = getStructureElementStandardStructureType(structElemDictionary);
+        String standardType = standardStructureType != null ? standardStructureType.getType().getValue() : null;
+        if (isMathStandardType(standardStructureType)) {
+            return new GFSEMathMLStructElem(structElemDictionary);
+        }
         if (standardType == null) {
             return new GFSENonStandard(structElemDictionary, null);
         }
@@ -149,22 +153,32 @@ public class GFSEFactory {
         }
     }
 
-    public static String getStructureElementStandardType(PDStructElem pdStructElem){
+    public static StructureType getStructureElementStandardStructureType(PDStructElem pdStructElem) {
         if (StaticContainers.getFlavour() != null && (StaticContainers.getFlavour().getPart() ==
                 PDFAFlavour.Specification.ISO_19005_4 || StaticContainers.getFlavour().getPart() ==
                 PDFAFlavour.Specification.WCAG_2_1)) {
             StructureType defaultStructureType = pdStructElem.getDefaultStructureType();
             if (defaultStructureType != null) {
-                return defaultStructureType.getType().getValue();
+                return defaultStructureType;
             }
         }
         if (StaticContainers.getFlavour() == null || StaticContainers.getFlavour().getPart() !=
                 PDFAFlavour.Specification.ISO_19005_4) {
             StructureType type = pdStructElem.getStructureType();
             if (type != null) {
-                return StaticResources.getRoleMapHelper().getStandardType(type.getType());
+                return StructureType.createStructureType(ASAtom.getASAtom(StaticResources.getRoleMapHelper().getStandardType(type.getType())));
             }
         }
         return null;
+    }
+
+    public static String getStructureElementStandardType(PDStructElem pdStructElem) {
+        StructureType type = getStructureElementStandardStructureType(pdStructElem);
+        return type != null ? type.getType().getValue() : null;
+    }
+    
+    public static boolean isMathStandardType(StructureType standardStructureType) {
+        return StaticContainers.getFlavour() == PDFAFlavour.PDFUA_2 && standardStructureType != null &&
+                    TaggedPDFConstants.MATH_ML_NAMESPACE.equals(standardStructureType.getNameSpaceURI());
     }
 }
