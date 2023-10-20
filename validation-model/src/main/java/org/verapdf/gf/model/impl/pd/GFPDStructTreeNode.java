@@ -113,7 +113,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 
 	public List<GFPDStructElem> getChildren() {
 		if (children == null) {
-			List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructChildren();
+			List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeNode) simplePDObject).getStructChildren();
 			if (!elements.isEmpty()) {
 				List<GFPDStructElem> res = new ArrayList<>(elements.size());
 				for (org.verapdf.pd.structure.PDStructElem element : elements) {
