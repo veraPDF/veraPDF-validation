@@ -30,11 +30,13 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosActualText;
+import org.verapdf.gf.model.impl.cos.GFCosAlt;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosActualText;
+import org.verapdf.model.coslayer.CosAlt;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
@@ -71,6 +73,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	 * Link name for {@code ActualText} key
 	 */
 	public static final String ACTUAL_TEXT = "actualText";
+	public static final String ALT = "alt";
 
 	private final String standardType;
 
@@ -211,6 +214,8 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 				return this.getLang();
 			case ACTUAL_TEXT:
 				return this.getactualText();
+			case ALT:
+				return this.getalt();				
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -285,5 +290,15 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 				}
 			}
 		}
+	}
+
+	private List<CosAlt> getalt() {
+		COSObject alt = simplePDObject.getKey(ASAtom.ALT);
+		if (alt != null && COSObjType.COS_STRING == alt.getType()) {
+			List<CosAlt> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosAlt((COSString)alt.getDirectBase()));
+			return list;
+		}
+		return Collections.emptyList();
 	}
 }

@@ -101,7 +101,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
                                  int numberOfRows, int numberOfColumns) {
         for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
             int columnNumber = 0;
-            for (PDStructElem elem : listTR.get(rowNumber).getChildren()) {
+            for (PDStructElem elem : listTR.get(rowNumber).getStructuralSignificanceChildren()) {
                 String type = elem.getstandardType();
                 if (!TaggedPDFConstants.TD.equals(type) && !TaggedPDFConstants.TH.equals(type)) {
                     continue;
@@ -232,13 +232,13 @@ public class GFSETable extends GFPDStructElem implements SETable {
 
     private List<GFPDStructElem> getTR() {
         List<GFPDStructElem> listTR = new LinkedList<>();
-        for (GFPDStructElem elem : getChildren()) {
+        for (GFPDStructElem elem : getStructuralSignificanceChildren()) {
             String type = elem.getstandardType();
             if (TaggedPDFConstants.TR.equals(type)) {
                 listTR.add(elem);
             } else if (TaggedPDFConstants.THEAD.equals(type) || TaggedPDFConstants.TBODY.equals(type) ||
                     TaggedPDFConstants.TFOOT.equals(type)) {
-                for (GFPDStructElem child : elem.getChildren()) {
+                for (GFPDStructElem child : elem.getStructuralSignificanceChildren()) {
                     if (TaggedPDFConstants.TR.equals(child.getstandardType())) {
                         listTR.add(child);
                     }
@@ -250,7 +250,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
 
     private Integer getNumberOfColumns(GFPDStructElem firstTR) {
         int numberOfColumns = 0;
-        for (PDStructElem elem : firstTR.getChildren()) {
+        for (PDStructElem elem : firstTR.getStructuralSignificanceChildren()) {
             String type = elem.getstandardType();
             if (TaggedPDFConstants.TH.equals(type) || TaggedPDFConstants.TD.equals(type)) {
                 numberOfColumns += ((GFSETableCell)elem).getColSpan();
