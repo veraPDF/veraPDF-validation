@@ -111,7 +111,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 		return Collections.unmodifiableList(res);
 	}
 
-	public List<GFPDStructElem> getChildren() {
+	private List<GFPDStructElem> getChildren() {
 		if (children == null) {
 			List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeNode) simplePDObject).getStructChildren();
 			if (!elements.isEmpty()) {
@@ -125,5 +125,18 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 			}
 		}
 		return children;
+	}
+
+	public List<GFPDStructElem> getStructuralSignificanceChildren() {
+		List<GFPDStructElem> children = getChildren();
+		List<GFPDStructElem> result = new LinkedList<>();
+		for (GFPDStructElem child : children) {
+			if (TaggedPDFConstants.NON_STRUCT.equals(child.getstandardType()) || TaggedPDFConstants.DIV.equals(child.getstandardType())) {
+				result.addAll(child.getStructuralSignificanceChildren());
+			} else {
+				result.add(child);
+			}
+		}
+		return result;
 	}
 }

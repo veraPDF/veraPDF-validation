@@ -87,7 +87,7 @@ public class GFPDOutline extends GFPDObject implements PDOutline {
 
 	private List<PDDestination> getDestination() {
 		COSObject destination = ((PDOutlineItem) simplePDObject).getDestination();
-		if (!destination.empty()) {
+		if (!destination.empty() && !simplePDObject.knownKey(ASAtom.A)) {
 			List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			destinations.add(new GFPDDestination(destination));
 			return Collections.unmodifiableList(destinations);
