@@ -41,7 +41,7 @@ public class GFSEL extends GFPDStructElem implements SEL {
 
     @Override
     public Boolean getcontainsLabels() {
-        for (GFPDStructElem child : getChildren()) {
+        for (GFPDStructElem child : getStructuralSignificanceChildren()) {
             if (TaggedPDFConstants.LI.equals(child.getstandardType()) && 
                     child.getChildrenStandardTypes().contains(TaggedPDFConstants.LBL)) {
                 return true;

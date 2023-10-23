@@ -112,7 +112,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         } else {
             this.toUnicode = font.toUnicode(glyphCode);
         }
-        getactualTextPresent();
         this.id = id;
     }
 
@@ -249,6 +248,11 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     @Override
     public Boolean getactualTextPresent() {
-        return MarkedContentHelper.containsActualText(markedContent, structureElementAccessObject);
+        return MarkedContentHelper.containsStringKey(ASAtom.ACTUAL_TEXT, markedContent, structureElementAccessObject);
+    }
+
+    @Override
+    public Boolean getaltPresent() {
+        return MarkedContentHelper.containsStringKey(ASAtom.ALT, markedContent, structureElementAccessObject);
     }
 }

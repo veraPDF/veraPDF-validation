@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.annotations;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDAnnot;
 import org.verapdf.gf.model.impl.pd.GFPDDestination;
@@ -59,7 +60,7 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 
 	private List<PDDestination> getDestination() {
 		COSObject destination = ((PDAnnotation) simplePDObject).getDestination();
-		if (!destination.empty()) {
+		if (!destination.empty() && !simplePDObject.knownKey(ASAtom.A)) {
 			List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			destinations.add(new GFPDDestination(destination));
 			return Collections.unmodifiableList(destinations);

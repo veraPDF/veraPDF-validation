@@ -277,7 +277,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		for (Object child : element.children) {
 			if (child instanceof GFSAStructElem) {
 				String elementStandardType = ((GFSAStructElem) child).getstandardType();
-				if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
+				if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType) || TaggedPDFConstants.DIV.equals(elementStandardType)) {
 					res.addAll(getChildrenStandardTypes((GFSAStructElem) child));
 				} else {
 					res.add(elementStandardType);
@@ -292,7 +292,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		org.verapdf.pd.structure.PDStructElem parent = this.structElemDictionary.getParent();
 		if (parent != null) {
 			String parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
-			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType)) {
+			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType) || TaggedPDFConstants.DIV.equals(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;
