@@ -29,25 +29,21 @@ import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.annotations.*;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
+import org.verapdf.gf.model.impl.pd.images.GFPDXForm;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBM;
 import org.verapdf.model.coslayer.CosLang;
-import org.verapdf.model.pdlayer.PDAction;
-import org.verapdf.model.pdlayer.PDAdditionalActions;
-import org.verapdf.model.pdlayer.PDAnnot;
-import org.verapdf.model.pdlayer.PDContentStream;
+import org.verapdf.model.pdlayer.*;
 import org.verapdf.pd.PDPage;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDAppearanceEntry;
 import org.verapdf.pd.PDAppearanceStream;
-import org.verapdf.pd.PDGroup;
 import org.verapdf.pd.actions.PDAnnotationAdditionalActions;
 import org.verapdf.pd.annotations.PDWidgetAnnotation;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pd.structure.PDStructTreeRoot;
-import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
@@ -106,7 +102,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private final PDPage page;
 
 	private List<CosBM> blendMode = null;
-	private List<PDContentStream> appearance = null;
+	private List<PDXForm> appearance = null;
 	private boolean containsTransparency = false;
 
 	public GFPDAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
@@ -347,7 +343,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	 * @return normal appearance stream (N key in the appearance dictionary) of
 	 * the annotation
 	 */
-	private List<PDContentStream> getAppearance() {
+	private List<PDXForm> getAppearance() {
 		if (this.appearance == null) {
 			this.appearance = parseAppearance();
 		}
@@ -364,12 +360,12 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return this.containsTransparency;
 	}
 
-	private List<PDContentStream> parseAppearance() {
+	private List<PDXForm> parseAppearance() {
 		PDAppearanceEntry normalAppearance = ((PDAnnotation) simplePDObject).getNormalAppearance();
 		PDAppearanceEntry downAppearance = ((PDAnnotation) simplePDObject).getDownAppearance();
 		PDAppearanceEntry rolloverAppearance = ((PDAnnotation) simplePDObject).getRolloverAppearance();
 		if (normalAppearance != null || downAppearance != null || rolloverAppearance != null) {
-			List<PDContentStream> appearances = new ArrayList<>();
+			List<PDXForm> appearances = new ArrayList<>();
 			addContentStreamsFromAppearanceEntry(normalAppearance, appearances);
 			addContentStreamsFromAppearanceEntry(downAppearance, appearances);
 			addContentStreamsFromAppearanceEntry(rolloverAppearance, appearances);
@@ -378,7 +374,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return Collections.emptyList();
 	}
 
-	private void addContentStreamsFromAppearanceEntry(PDAppearanceEntry appearanceEntry, List<PDContentStream> appearances) {
+	private void addContentStreamsFromAppearanceEntry(PDAppearanceEntry appearanceEntry, List<PDXForm> appearances) {
 		if (appearanceEntry != null) {
 			if (appearanceEntry.isSubDictionary()) {
 				Map<ASAtom, PDAppearanceStream> subDictionary = appearanceEntry.getSubDictionary();
@@ -391,24 +387,14 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		}
 	}
 
-	private void addAppearance(List<PDContentStream> list, PDAppearanceStream toAdd) {
+	private void addAppearance(List<PDXForm> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
 			List<CosLang> annotLang = getLang();
-			GFPDContentStream stream;
-			if (!PDFAFlavour.IsoStandardSeries.ISO_14289.equals(StaticContainers.getFlavour().getPart().getSeries()) &&
-			    !PDFAFlavour.WCAG2_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
-				stream = new GFPDContentStream(toAdd, resources, null,
-						new StructureElementAccessObject(this.simpleCOSObject), getstructParentType(), "");
-			} else {
-				stream = new GFPDSemanticContentStream(toAdd, resources, null,
-						new StructureElementAccessObject(this.simpleCOSObject), getstructParentType(), "",
-						annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue());
-			}
-			this.containsTransparency |= stream.isContainsTransparency();
-			PDGroup group = toAdd.getGroup();
-			this.containsTransparency |= group != null && ASAtom.TRANSPARENCY.equals(group.getSubtype());
-			list.add(stream);
+			GFPDXForm xForm = new GFPDXForm(toAdd, resources, null, getstructParentType(), "", 
+					annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue());
+			this.containsTransparency |= xForm.containsTransparency();
+			list.add(xForm);
 		}
 	}
 
