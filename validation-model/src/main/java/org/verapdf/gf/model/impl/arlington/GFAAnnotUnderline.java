@@ -242,8 +242,9 @@ public class GFAAnnotUnderline extends GFAObject implements AAnnotUnderline {
 
 	private List<org.verapdf.model.baselayer.Object> getIRT() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
 			case ARLINGTON1_6:
-				return getIRT1_6();
+				return getIRT1_5();
 			case ARLINGTON1_7:
 				return getIRT1_7();
 			case ARLINGTON2_0:
@@ -253,13 +254,13 @@ public class GFAAnnotUnderline extends GFAObject implements AAnnotUnderline {
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getIRT1_6() {
+	private List<org.verapdf.model.baselayer.Object> getIRT1_5() {
 		COSObject object = getIRTValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getIRTDictionary1_6(object.getDirectBase(), "IRT");
+			org.verapdf.model.baselayer.Object result = getIRTDictionary1_5(object.getDirectBase(), "IRT");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
@@ -269,7 +270,7 @@ public class GFAAnnotUnderline extends GFAObject implements AAnnotUnderline {
 		return Collections.emptyList();
 	}
 
-	private org.verapdf.model.baselayer.Object getIRTDictionary1_6(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getIRTDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
 		if (subtype == null) {
 			return null;

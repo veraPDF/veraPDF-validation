@@ -53,8 +53,8 @@ public class GFAStructTreeRootNumberTreeParentTreeEntry extends GFAObject implem
 	private List<org.verapdf.model.baselayer.Object> getEntry1_3() {
 		COSObject object = new COSObject(this.baseObject);
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfStructElem> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStructElem((COSArray)object.getDirectBase(), this.parentObject, keyName));
+			List<AArrayOfStructElemParentTree> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfStructElemParentTree((COSArray)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
