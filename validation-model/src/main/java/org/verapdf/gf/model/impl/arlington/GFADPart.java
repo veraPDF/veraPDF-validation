@@ -27,8 +27,6 @@ public class GFADPart extends GFAObject implements ADPart {
 				return getDParts();
 			case "End":
 				return getEnd();
-			case "Metadata":
-				return getMetadata();
 			case "Parent":
 				return getParent();
 			case "Start":
@@ -127,28 +125,6 @@ public class GFADPart extends GFAObject implements ADPart {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<APageObject> list = new ArrayList<>(1);
 			list.add(new GFAPageObject((COSDictionary)object.getDirectBase(), this.baseObject, "End"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AMetadata> getMetadata() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return getMetadata2_0();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AMetadata> getMetadata2_0() {
-		COSObject object = getMetadataValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AMetadata> list = new ArrayList<>(1);
-			list.add(new GFAMetadata((COSStream)object.getDirectBase(), this.baseObject, "Metadata"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -298,28 +274,6 @@ public class GFADPart extends GFAObject implements ADPart {
 	public Boolean getEndHasTypeDictionary() {
 		COSObject End = getEndValue();
 		return getHasTypeDictionary(End);
-	}
-
-	@Override
-	public Boolean getcontainsMetadata() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
-	}
-
-	public COSObject getMetadataValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
-		return object;
-	}
-
-	@Override
-	public Boolean getisMetadataIndirect() {
-		COSObject Metadata = getMetadataValue();
-		return getisIndirect(Metadata);
-	}
-
-	@Override
-	public Boolean getMetadataHasTypeStream() {
-		COSObject Metadata = getMetadataValue();
-		return getHasTypeStream(Metadata);
 	}
 
 	@Override

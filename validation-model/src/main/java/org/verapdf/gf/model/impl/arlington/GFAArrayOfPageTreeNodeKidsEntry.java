@@ -75,6 +75,12 @@ public class GFAArrayOfPageTreeNodeKidsEntry extends GFAObject implements AArray
 	}
 
 	@Override
+	public Boolean getisIndirect() {
+		COSObject entry = getValue();
+		return getisIndirect(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject entry = getValue();
 		return getHasTypeDictionary(entry);

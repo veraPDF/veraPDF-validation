@@ -152,6 +152,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	@Override
+	public Long getKidsArraySize() {
+		COSObject Kids = getKidsValue();
+		return getArraySize(Kids);
+	}
+
+	@Override
 	public Boolean getcontainsMediaBox() {
 		if (isContainsInheritableValue(ASAtom.getASAtom("MediaBox"))) {
 			return true;
