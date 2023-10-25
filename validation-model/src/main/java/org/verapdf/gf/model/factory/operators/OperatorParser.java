@@ -92,14 +92,14 @@ class OperatorParser {
 	private final Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
 	private final StructureElementAccessObject structureElementAccessObject;
 	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
-	private final String parentStructureTag;
+	private final COSObject parentStructElem;
 	private final String parentsTags;
 
 	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
-				   StructureElementAccessObject structureElementAccessObject,
-				   PDResourcesHandler resourcesHandler, String parentStructureTag, String parentsTags) {
+                   StructureElementAccessObject structureElementAccessObject,
+                   PDResourcesHandler resourcesHandler, COSObject parentStructElem, String parentsTags) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -107,7 +107,7 @@ class OperatorParser {
 		}
 		this.graphicState.setInitialGraphicState(this.graphicState);
 		this.structureElementAccessObject = structureElementAccessObject;
-		this.parentStructureTag = parentStructureTag;
+		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
 	}
 
@@ -517,12 +517,12 @@ class OperatorParser {
 					mcid = markedContentStack.peek().getInheritedMCID();
 					parentsTags = markedContentStack.peek().getParentsTags();
 				}
-				String parentStructureTag = getParentStructureTag(structureElementAccessObject, mcid);
-				if (parentStructureTag == null) {
-					parentStructureTag = this.parentStructureTag;
+				COSObject parentStructElem = getParentStructElem(structureElementAccessObject, mcid);
+				if (parentStructElem == null) {
+					parentStructElem = this.parentStructElem;
 				}
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-						resourcesHandler, this.graphicState.clone(), parentStructureTag, parentsTags);
+						resourcesHandler, this.graphicState.clone(), parentStructElem, parentsTags);
 				List<org.verapdf.model.pdlayer.PDXObject> pdxObjects = op_do.getXObject();
 				if (!pdxObjects.isEmpty()) {
 					GFPDXObject xobj = (GFPDXObject) pdxObjects.get(0);
@@ -690,13 +690,13 @@ class OperatorParser {
 		return this.markedContentStack.peek();
 	}
 
-	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject, Long mcid) {
+	private COSObject getParentStructElem(StructureElementAccessObject structureElementAccessObject, Long mcid) {
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		if (structTreeRoot != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
 			if (structureElement != null && !structureElement.empty()) {
-				return structureElement.getNameKeyStringValue(ASAtom.S);
+				return structureElement;
 			}
 		}
 		return null;

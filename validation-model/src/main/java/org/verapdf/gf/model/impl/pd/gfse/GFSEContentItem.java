@@ -21,13 +21,15 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.selayer.SEContentItem;
+import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.StaticResources;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,7 +37,7 @@ import java.util.List;
 /**
  * @author Maxim Plushchov
  */
-public class GFSEContentItem extends GenericModelObject implements SEContentItem {
+public abstract class GFSEContentItem extends GenericModelObject implements SEContentItem {
 
     public static final String CONTENT_ITEM = "contentItem";
 
@@ -43,21 +45,21 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
     protected GFOpMarkedContent parentMarkedContentOperator;
 
     List<Operator> operators;
-    protected String parentStructureTag;
+    protected COSObject parentStructElem;
     protected String parentsTags;
 
-    public GFSEContentItem(String objectType, String parentStructureTag, String parentsTags) {
+    public GFSEContentItem(String objectType, COSObject parentStructElem, String parentsTags) {
         super(objectType);
-        this.parentStructureTag = parentStructureTag;
+        this.parentStructElem = parentStructElem;
         this.parentsTags = parentsTags;
     }
 
-    public GFSEContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator, String parentStructureTag,
+    public GFSEContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator, COSObject parentStructElem,
                            String parentsTags) {
         super(objectType);
         this.parentMarkedContentOperator = parentMarkedContentOperator;
         this.parentMCID = parentMarkedContentOperator != null ? parentMarkedContentOperator.getMCID() : null;
-        this.parentStructureTag = parentStructureTag;
+        this.parentStructElem = parentStructElem;
         this.parentsTags = parentsTags;
     }
 
@@ -86,24 +88,17 @@ public class GFSEContentItem extends GenericModelObject implements SEContentItem
 
     @Override
     public String getparentStructureTag() {
-        if (parentMarkedContentOperator != null) {
-            String structTag = null;
-            if (GFOp_BDC.OP_BDC_TYPE.equals(parentMarkedContentOperator.getObjectType())) {
-                structTag = ((GFOp_BDC)parentMarkedContentOperator).getstructureTag();
-            }
-            if (structTag == null) {
-                structTag = parentMarkedContentOperator.getParentStructureTag();
-            }
-            if (structTag != null) {
-                return structTag;
-            }
-        }
-        return parentStructureTag;
+        return parentStructElem != null ? parentStructElem.getNameKeyStringValue(ASAtom.S) : null;
     }
 
     @Override
     public String getparentStandardTag() {
-        return StaticResources.getRoleMapHelper().getStandardType(ASAtom.getASAtom(getparentStructureTag()));
+        TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+        if (parentStructElem != null) {
+            PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
+            return GFSEFactory.getStructureElementStandardType(structElem);
+        }
+        return null;
     }
 
 }

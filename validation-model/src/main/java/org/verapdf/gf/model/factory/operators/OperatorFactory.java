@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.factory.operators;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.gf.model.tools.TransparencyBehaviour;
 import org.verapdf.model.tools.constants.Operators;
@@ -96,12 +97,12 @@ public final class OperatorFactory {
 	}
 
 	public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens,
-																		 PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
-																		 StructureElementAccessObject structureElementAccessObject, String parentStructureTag, String parentsTags) {
+                                                                         PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
+                                                                         StructureElementAccessObject structureElementAccessObject, COSObject parentStructElem, String parentsTags) {
 		List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
 		List<COSBase> arguments = new ArrayList<>();
 		this.isLastParsedContainsTransparency = false;
-		OperatorParser parser = new OperatorParser(inheritedGraphicState, structureElementAccessObject, resourcesHandler, parentStructureTag, parentsTags);
+		OperatorParser parser = new OperatorParser(inheritedGraphicState, structureElementAccessObject, resourcesHandler, parentStructElem, parentsTags);
 
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {

@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
@@ -38,13 +39,13 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
     private final GFOpTextShow opTextShow;
     private final String defaultLang;
 
-    public GFSETextItem(GFOpTextShow opTextShow, String parentStructureTag, String parentsTags, String defaultLang) {
-        this(opTextShow, null, parentStructureTag, parentsTags, defaultLang);
+    public GFSETextItem(GFOpTextShow opTextShow, COSObject parentStructElem, String parentsTags, String defaultLang) {
+        this(opTextShow, null, parentStructElem, parentsTags, defaultLang);
     }
 
     public GFSETextItem(GFOpTextShow opTextShow, GFOpMarkedContent parentMarkedContentOperator,
-                        String parentStructureTag, String parentsTags, String defaultLang) {
-        super(TEXT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+                        COSObject parentStructElem, String parentsTags, String defaultLang) {
+        super(TEXT_ITEM_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
         this.opTextShow = opTextShow;
         this.defaultLang = defaultLang;
     }
