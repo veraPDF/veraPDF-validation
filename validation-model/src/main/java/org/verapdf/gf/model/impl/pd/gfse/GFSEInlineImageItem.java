@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.model.selayer.SEInlineImageItem;
@@ -33,14 +34,14 @@ public class GFSEInlineImageItem extends GFSEImageItem implements SEInlineImageI
 
     private GFOp_EI operator;
 
-    public GFSEInlineImageItem(GFOp_EI operator, String parentStructureTag, String parentsTags) {
-        super(INLINE_IMAGE_ITEM_TYPE, parentStructureTag, parentsTags);
+    public GFSEInlineImageItem(GFOp_EI operator, COSObject parentStructElem, String parentsTags) {
+        super(INLINE_IMAGE_ITEM_TYPE, parentStructElem, parentsTags);
         this.operator = operator;
     }
 
     public GFSEInlineImageItem(GFOp_EI operator, GFOpMarkedContent parentMarkedContentOperator,
-                               String parentStructureTag, String parentsTags) {
-        super(INLINE_IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+                               COSObject parentStructElem, String parentsTags) {
+        super(INLINE_IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
         this.operator = operator;
     }
 

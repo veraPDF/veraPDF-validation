@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
@@ -55,20 +56,24 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     public static final String LANG = "Lang";
 
-    private String defaultLang;
+    private final String defaultLang;
 
-    private GFOpMarkedContent operator;
+    private final GFOpMarkedContent operator;
 
-    public GFSEMarkedContent(List<Operator> operators, String parentStructureTag, String parentsTags, String defaultLang) {
-        this(operators, null, parentStructureTag, parentsTags, defaultLang);
+    public GFSEMarkedContent(List<Operator> operators, COSObject parentStructElem, String parentsTags, String defaultLang) {
+        this(operators, null, parentStructElem, parentsTags, defaultLang);
     }
 
     public GFSEMarkedContent(List<Operator> operators, GFOpMarkedContent parentMarkedContentOperator,
-                             String parentStructureTag, String parentsTags, String defaultLang) {
-        super(MARKED_CONTENT_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+                             COSObject parentStructElem, String parentsTags, String defaultLang) {
+        super(MARKED_CONTENT_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
         this.operators = operators.subList(1, operators.size() - 1);
         this.operator = (GFOpMarkedContent)operators.get(0);
         this.defaultLang = defaultLang;
+        COSObject structElem = operator.getParentStructElem();
+        if (structElem != null) {
+            this.parentStructElem = structElem;
+        }
     }
 
     @Override
@@ -100,23 +105,23 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
                         list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), this.operator,
-                                parentStructureTag, parentsTags, defaultLang));
+                                parentStructElem, parentsTags, defaultLang));
                     }
                 }
             }
             if (markedContentStack.empty()) {
                 if (op instanceof GFOpTextShow) {
-                    list.add(new GFSETextItem((GFOpTextShow)op, this.operator, parentStructureTag, parentsTags, defaultLang));
+                    list.add(new GFSETextItem((GFOpTextShow)op, this.operator, parentStructElem, parentsTags, defaultLang));
                 } else if (op instanceof GFOp_sh) {
-                    list.add(new GFSEShadingItem((GFOp_sh)op, this.operator, parentStructureTag, parentsTags));
+                    list.add(new GFSEShadingItem((GFOp_sh)op, this.operator, parentStructElem, parentsTags));
                 } else if (op instanceof GFOpPathPaint && !(op instanceof GFOp_n)) {
-                    list.add(new GFSELineArtItem((GFOpPathPaint)op, this.operator, parentStructureTag, parentsTags));
+                    list.add(new GFSELineArtItem((GFOpPathPaint)op, this.operator, parentStructElem, parentsTags));
                 } else if (op instanceof GFOp_EI) {
-                    list.add(new GFSEInlineImageItem((GFOp_EI)op, this.operator, parentStructureTag, parentsTags));
+                    list.add(new GFSEInlineImageItem((GFOp_EI)op, this.operator, parentStructElem, parentsTags));
                 } else if (op instanceof GFOp_Do) {
                     List<PDXObject> xObjects = ((GFOp_Do)op).getXObject();
                     if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
-                        list.add(new GFSEImageXObjectItem((GFOp_Do)op, (GFPDXImage)xObjects.get(0), this.operator, parentStructureTag, parentsTags));
+                        list.add(new GFSEImageXObjectItem((GFOp_Do)op, (GFPDXImage)xObjects.get(0), this.operator, parentStructElem, parentsTags));
                     }
                 }
             }
@@ -151,12 +156,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     @Override
     public String getstructureTag() {
-        if (operator != null) {
-            if (GFOp_BDC.OP_BDC_TYPE.equals(operator.getObjectType())) {
-               return ((GFOp_BDC)operator).getstructureTag();
-            }
-        }
-        return null;
+        return parentStructElem != null ? parentStructElem.getNameKeyStringValue(ASAtom.S) : null;
     }
 
     @Override

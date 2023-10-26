@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
 import org.verapdf.model.selayer.SELineArtItem;
@@ -33,14 +34,14 @@ public class GFSELineArtItem extends GFSESimpleContentItem implements SELineArtI
 
     GFOpPathPaint opPathPaint;
 
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, String structParentTag, String parentsTags) {
-        super(LINE_ART_ITEM_TYPE, structParentTag, parentsTags);
+    public GFSELineArtItem(GFOpPathPaint opPathPaint, COSObject parentStructElem, String parentsTags) {
+        super(LINE_ART_ITEM_TYPE, parentStructElem, parentsTags);
         this.opPathPaint = opPathPaint;
     }
 
     public GFSELineArtItem(GFOpPathPaint opPathPaint, GFOpMarkedContent parentMarkedContentOperator,
-                           String structParentTag, String parentsTags) {
-        super(LINE_ART_ITEM_TYPE, parentMarkedContentOperator, structParentTag, parentsTags);
+                           COSObject parentStructElem, String parentsTags) {
+        super(LINE_ART_ITEM_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
         this.opPathPaint = opPathPaint;
     }
 

@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
 import org.verapdf.model.selayer.SEShadingItem;
@@ -33,14 +34,14 @@ public class GFSEShadingItem extends GFSESimpleContentItem implements SEShadingI
 
     private GFOp_sh op_sh;
 
-    public GFSEShadingItem(GFOp_sh op_sh, String parentStructureTag, String parentsTags) {
-        super(SHADING_ITEM_TYPE, parentStructureTag, parentsTags);
+    public GFSEShadingItem(GFOp_sh op_sh, COSObject parentStructElem, String parentsTags) {
+        super(SHADING_ITEM_TYPE, parentStructElem, parentsTags);
         this.op_sh = op_sh;
     }
 
     public GFSEShadingItem(GFOp_sh op_sh, GFOpMarkedContent parentMarkedContentOperator,
-                           String parentStructureTag, String parentsTags) {
-        super(SHADING_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+                           COSObject parentStructElem, String parentsTags) {
+        super(SHADING_ITEM_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
         this.op_sh = op_sh;
 
     }

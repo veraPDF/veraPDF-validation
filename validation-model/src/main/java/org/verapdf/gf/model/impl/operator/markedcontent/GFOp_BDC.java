@@ -69,31 +69,27 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 		}
 	}
 
-	public String getstructureTag() {
+	public COSObject getParentStructElem() {
+		COSObject structElem = getStructElem();
+		return structElem != null ? structElem : super.getParentStructElem();
+	}
+
+	private COSObject getStructElem() {
 		Long mcid = getMCID();
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		if (structTreeRoot != null && mcid != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
 			if (structureElement != null && !structureElement.empty()) {
-				return structureElement.getNameKeyStringValue(ASAtom.S);
+				return structureElement;
 			}
 		}
 		return null;
 	}
 
 	public String getstructParentLang() {
-		Long mcid = getMCID();
-		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
-		if (structTreeRoot == null || mcid == null) {
-			return null;
-		}
-		PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-		if (parentTreeRoot == null ) {
-			return null;
-		}
-		COSObject structureElement = structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
-		if (structureElement == null || structureElement.empty()) {
+		COSObject structureElement = getStructElem();
+		if (structureElement == null) {
 			return null;
 		}
 		String baseLang = structureElement.getStringKey(ASAtom.LANG);

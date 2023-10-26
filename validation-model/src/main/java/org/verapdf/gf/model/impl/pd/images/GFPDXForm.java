@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
@@ -60,16 +61,16 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private boolean groupContainsTransparency = false;
 	private boolean contentStreamContainsTransparency = false;
 	private final GraphicState inheritedGraphicState;
-	private final String parentStructureTag;
+	private final COSObject parentStructElem;
 	private final String parentsTags;
 	private final String defaultLang;
 	private final PDColorSpace blendingColorSpace;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
-					 GraphicState inheritedGraphicState, String parentStructureTag, String parentsTags, String defaultLang) {
+					 GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags, String defaultLang) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
-		this.parentStructureTag = parentStructureTag;
+		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
 		this.blendingColorSpace = getBlendingColorSpace();
 		this.defaultLang = defaultLang;
@@ -199,12 +200,12 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 			gfContentStream = new GFPDContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructureTag, parentsTags);
+					parentStructElem, parentsTags);
 		} else {
 			gfContentStream = new GFPDSemanticContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructureTag, parentsTags, defaultLang);
+					parentStructElem, parentsTags, defaultLang);
 		}
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		streams.add(gfContentStream);

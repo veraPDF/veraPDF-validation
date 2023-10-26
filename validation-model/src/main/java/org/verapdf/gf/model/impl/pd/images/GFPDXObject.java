@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.pd.GFPDResource;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -65,10 +66,10 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 	}
 
 	public static PDXObject getTypedPDXObject(org.verapdf.pd.images.PDXObject xObject, PDResourcesHandler resources,
-	        GraphicState inheritedGraphicState, String parentStructureTag, String parentsTags) {
+											  GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags) {
 		ASAtom type = xObject.getType();
 		if (ASAtom.FORM.equals(type)) {
-			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState, parentStructureTag, parentsTags, null);
+			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState, parentStructElem, parentsTags, null);
 		} else if (ASAtom.IMAGE.equals(type)) {
 			return new GFPDXImage((PDXImage) xObject, resources, inheritedGraphicState.getFillColorSpace());
 		} else if (ASAtom.PS.equals(type)) {
