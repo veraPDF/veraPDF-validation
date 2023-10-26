@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
@@ -48,19 +49,17 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 
 	private String defaultLang;
 
-	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream,
-                                     PDResourcesHandler resourcesHandler,
+	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
                                      GraphicState inheritedGraphicState,
                                      StructureElementAccessObject structureElementAccessObject) {
 		super(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, SEMANTIC_CONTENT_STREAM_TYPE);
 	}
 
-	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream,
-                                     PDResourcesHandler resourcesHandler,
-                                     GraphicState inheritedGraphicState,
-                                     StructureElementAccessObject structureElementAccessObject,
-                                     String parentStructureTag, String parentsTags) {
-		super(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructureTag,
+	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
+									 GraphicState inheritedGraphicState,
+									 StructureElementAccessObject structureElementAccessObject,
+									 COSObject parentStructElem, String parentsTags) {
+		super(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructElem,
 				parentsTags, SEMANTIC_CONTENT_STREAM_TYPE);
 	}
 
@@ -68,8 +67,8 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 									 PDResourcesHandler resourcesHandler,
 									 GraphicState inheritedGraphicState,
 									 StructureElementAccessObject structureElementAccessObject,
-									 String parentStructureTag, String parentsTags, String defaultLang) {
-		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructureTag,
+									 COSObject parentStructElem, String parentsTags, String defaultLang) {
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructElem,
 				parentsTags);
 		this.defaultLang = defaultLang;
 	}
@@ -96,7 +95,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 			String type = operators.get(i).getObjectType();
 			if (GFOp_BDC.OP_BDC_TYPE.equals(type) || GFOp_BMC.OP_BMC_TYPE.equals(type)) {
 				if (markedContentStack.empty() && i != markedContentIndex + 1) {
-					list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, i), parentStructureTag,
+					list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, i), parentStructElem,
 							parentsTags, defaultLang));
 				}
 				markedContentStack.push(i);
@@ -104,7 +103,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 				if (!markedContentStack.empty()) {
 					markedContentIndex = markedContentStack.pop();
 					if (markedContentStack.empty()) {
-						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), parentStructureTag,
+						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), parentStructElem,
 								parentsTags, defaultLang));
 						markedContentIndex = i;
 						unmarkedContentIndex = i + 1;
@@ -114,7 +113,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 		}
 		if (unmarkedContentIndex != operators.size()) {
 			list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, operators.size()),
-					parentStructureTag, parentsTags, defaultLang));
+					parentStructElem, parentsTags, defaultLang));
 		}
 		return Collections.unmodifiableList(list);
 	}

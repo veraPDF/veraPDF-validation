@@ -86,10 +86,6 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
      */
     public static final String STRUCTURE_TREE_ROOT = "StructTreeRoot";
     /**
-     * Link name for alternate presentation of names tree of document
-     */
-    public static final String ALTERNATE_PRESENTATIONS = "AlternatePresentations";
-    /**
      * Link name for optional content properties of the document
      */
     public static final String OC_PROPERTIES = "OCProperties";
