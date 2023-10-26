@@ -20,20 +20,21 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.model.selayer.SESimpleContentItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSESimpleContentItem extends GFSEContentItem implements SESimpleContentItem {
+public abstract class GFSESimpleContentItem extends GFSEContentItem implements SESimpleContentItem {
 
-    public GFSESimpleContentItem(String objectType, String parentStructureTag, String parentsTags) {
-        super(objectType, parentStructureTag, parentsTags);
+    public GFSESimpleContentItem(String objectType, COSObject parentStructElem, String parentsTags) {
+        super(objectType, parentStructElem, parentsTags);
     }
 
     public GFSESimpleContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator,
-                                 String parentStructureTag, String parentsTags) {
-        super(objectType, parentMarkedContentOperator, parentStructureTag, parentsTags);
+                                 COSObject parentStructElem, String parentsTags) {
+        super(objectType, parentMarkedContentOperator, parentStructElem, parentsTags);
     }
 }

@@ -202,7 +202,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return null;
 	}
 
-	private COSObject getParentDictionary() {
+	protected COSObject getParentDictionary() {
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		Long structParent = ((PDAnnotation) this.simplePDObject).getStructParent();
 		if (structTreeRoot != null && structParent != null) {
@@ -391,7 +391,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
 			List<CosLang> annotLang = getLang();
-			GFPDXForm xForm = new GFPDXForm(toAdd, resources, null, getstructParentType(), "", 
+			GFPDXForm xForm = new GFPDXForm(toAdd, resources, null, getParentDictionary(), "", 
 					annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue());
 			this.containsTransparency |= xForm.containsTransparency();
 			list.add(xForm);

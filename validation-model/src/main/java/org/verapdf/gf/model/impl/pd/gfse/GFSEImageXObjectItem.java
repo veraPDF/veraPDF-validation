@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
 import org.verapdf.gf.model.impl.pd.images.GFPDXImage;
@@ -35,15 +36,15 @@ public class GFSEImageXObjectItem extends GFSEImageItem implements SEImageXObjec
     private GFOp_Do operator;
     private GFPDXImage image;
 
-    public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, String parentStructureTag, String parentsTags) {
-        super(IMAGE_X_OBJECT_ITEM_TYPE, parentStructureTag, parentsTags);
+    public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, COSObject parentStructElem, String parentsTags) {
+        super(IMAGE_X_OBJECT_ITEM_TYPE, parentStructElem, parentsTags);
         this.operator = operator;
         this.image = image;
     }
 
     public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, GFOpMarkedContent parentMarkedContentOperator,
-                                String parentStructureTag, String parentsTags) {
-        super(IMAGE_X_OBJECT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+                                COSObject parentStructElem, String parentsTags) {
+        super(IMAGE_X_OBJECT_ITEM_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
         this.operator = operator;
         this.image = image;
     }

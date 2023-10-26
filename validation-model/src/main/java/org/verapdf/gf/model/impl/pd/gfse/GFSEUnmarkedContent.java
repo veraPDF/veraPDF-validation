@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
 import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
 import org.verapdf.gf.model.impl.operator.pathpaint.GFOp_n;
@@ -47,8 +48,8 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
 
     private String defaultLang;
 
-    public GFSEUnmarkedContent(List<Operator> operators, String parentStructureTag, String parentsTags, String defaultLang) {
-        super(UNMARKED_CONTENT_TYPE, parentStructureTag, parentsTags);
+    public GFSEUnmarkedContent(List<Operator> operators, COSObject parentStructElem, String parentsTags, String defaultLang) {
+        super(UNMARKED_CONTENT_TYPE, parentStructElem, parentsTags);
         this.defaultLang = defaultLang;
         this.operators = operators;
     }
@@ -70,21 +71,20 @@ public class GFSEUnmarkedContent extends GFSEContentItem implements SEUnmarkedCo
         List<SEContentItem> list = new ArrayList<>();
         for (Operator operator : operators) {
             if (operator instanceof GFOpTextShow) {
-                list.add(new GFSETextItem((GFOpTextShow)operator, parentStructureTag, parentsTags, defaultLang));
+                list.add(new GFSETextItem((GFOpTextShow)operator, parentStructElem, parentsTags, defaultLang));
             } else if (operator instanceof GFOp_sh) {
-                list.add(new GFSEShadingItem((GFOp_sh)operator, parentStructureTag, parentsTags));
+                list.add(new GFSEShadingItem((GFOp_sh)operator, parentStructElem, parentsTags));
             } else if (operator instanceof GFOpPathPaint && !(operator instanceof GFOp_n)) {
-                list.add(new GFSELineArtItem((GFOpPathPaint)operator, parentStructureTag, parentsTags));
+                list.add(new GFSELineArtItem((GFOpPathPaint)operator, parentStructElem, parentsTags));
             } else if (operator instanceof GFOp_EI) {
-                list.add(new GFSEInlineImageItem((GFOp_EI)operator, parentStructureTag, parentsTags));
+                list.add(new GFSEInlineImageItem((GFOp_EI)operator, parentStructElem, parentsTags));
             } else if (operator instanceof GFOp_Do) {
                 List<PDXObject> xObjects = ((GFOp_Do)operator).getXObject();
                 if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
-                    list.add(new GFSEImageXObjectItem((GFOp_Do)operator, (GFPDXImage)xObjects.get(0), parentStructureTag, parentsTags));
+                    list.add(new GFSEImageXObjectItem((GFOp_Do)operator, (GFPDXImage)xObjects.get(0), parentStructElem, parentsTags));
                 }
             }
         }
         return Collections.unmodifiableList(list);
     }
-
 }
