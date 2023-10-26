@@ -156,14 +156,16 @@ public class GFSEFactory {
     public static StructureType getStructureElementStandardStructureType(PDStructElem pdStructElem) {
         if (StaticContainers.getFlavour() != null && (StaticContainers.getFlavour().getPart() ==
                 PDFAFlavour.Specification.ISO_19005_4 || StaticContainers.getFlavour().getPart() ==
+                PDFAFlavour.Specification.ISO_14289_2 || StaticContainers.getFlavour().getPart() ==
                 PDFAFlavour.Specification.WCAG_2_1)) {
             StructureType defaultStructureType = pdStructElem.getDefaultStructureType();
             if (defaultStructureType != null) {
                 return defaultStructureType;
             }
         }
-        if (StaticContainers.getFlavour() == null || StaticContainers.getFlavour().getPart() !=
-                PDFAFlavour.Specification.ISO_19005_4) {
+        if (StaticContainers.getFlavour() == null || (StaticContainers.getFlavour().getPart() !=
+                PDFAFlavour.Specification.ISO_19005_4 && StaticContainers.getFlavour().getPart() !=
+                PDFAFlavour.Specification.ISO_14289_2)) {
             StructureType type = pdStructElem.getStructureType();
             if (type != null) {
                 return StructureType.createStructureType(ASAtom.getASAtom(StaticResources.getRoleMapHelper().getStandardType(type.getType())));
