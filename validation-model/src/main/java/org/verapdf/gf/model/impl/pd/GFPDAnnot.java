@@ -46,6 +46,7 @@ import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.StaticResources;
+import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
 import java.util.ArrayList;
@@ -312,6 +313,24 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	@Override
 	public Boolean getcontainsA() {
 		return this.simplePDObject.knownKey(ASAtom.A);
+	}
+
+	@Override
+	public Boolean getisArtifact() {
+		TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+		if (taggedPDFRoleMapHelper != null) {
+			COSObject parentDictionary = getParentDictionary();
+			if (parentDictionary != null) {
+				PDStructElem structElem = new PDStructElem(parentDictionary, taggedPDFRoleMapHelper.getRoleMap());
+				while (structElem != null) {
+					if (TaggedPDFConstants.ARTIFACT.equals(GFSEFactory.getStructureElementStandardType(structElem))) {
+						return true;
+					}
+					structElem = structElem.getParent();
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override
