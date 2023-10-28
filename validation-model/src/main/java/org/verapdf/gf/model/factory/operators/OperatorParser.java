@@ -695,7 +695,7 @@ class OperatorParser {
 		if (structTreeRoot != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
-			if (structureElement != null && !structureElement.empty()) {
+			if (structureElement != null && !structureElement.empty() && structureElement.getType() != COSObjType.COS_NULL) {
 				return structureElement;
 			}
 		}
