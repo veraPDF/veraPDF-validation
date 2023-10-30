@@ -23,6 +23,7 @@ package org.verapdf.gf.model.impl.operator.markedcontent;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -80,7 +81,7 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 		if (structTreeRoot != null && mcid != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
-			if (structureElement != null && !structureElement.empty()) {
+			if (structureElement != null && !structureElement.empty() && structureElement.getType() != COSObjType.COS_NULL) {
 				return structureElement;
 			}
 		}
