@@ -57,6 +57,11 @@ public class MetadataImpl implements Metadata {
     private static final String YEAR_2020 = "2020";
     private static final String YEAR_202X = "0000";
     private static final String YEAR_REGEX = "^\\d{4}$";
+    
+    private static String ADD_PROPERTY_MESSAGE = "Added property %s with value %s to Identification schema";
+    private static String REMOVE_PROPERTY_MESSAGE = "Removed property %s from Identification schema";
+    private static String SET_PROPERTY_MESSAGE = "Set property %s value to %s in Identification schema";
+
 
     private final VeraPDFMeta metadata;
     private final COSObject stream;
@@ -176,9 +181,10 @@ public class MetadataImpl implements Metadata {
         try {
             int part = flavour.getPart().getPartNumber();
             if (!Objects.equals(this.metadata.getPDFUAIdentificationPart(), part)) {
-                this.metadata.setPDFUAIdentificationPart(part);
+                resultBuilder.addFix(String.format(this.metadata.getPDFUAIdentificationPart() == null ?
+                        ADD_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE, VeraPDFMeta.PART, part));
+                        this.metadata.setPDFUAIdentificationPart(part);
                 this.setNeedToBeUpdated(true);
-                resultBuilder.addFix("Identification schema added");
             }
         } catch (XMPException e) {
             LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
@@ -192,10 +198,15 @@ public class MetadataImpl implements Metadata {
         int part = flavour.getPart().getPartNumber();
         String conformance = flavour != PDFAFlavour.PDFA_4 ? flavour.getLevel().getCode().toUpperCase() : null;
         try {
+            resultBuilder.addFix(String.format(this.metadata.getPDFAIdentificationPart() == null ? 
+                    ADD_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE, VeraPDFMeta.PART, part));
             this.metadata.setPDFAIdentificationPart(part);
+
+            resultBuilder.addFix(String.format(this.metadata.getPDFAIdentificationConformance() == null ?
+                    ADD_PROPERTY_MESSAGE : (conformance == null ? REMOVE_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE), 
+                    VeraPDFMeta.CONFORMANCE, conformance));
             this.metadata.setPDFAIdentificationConformance(conformance);
             this.setNeedToBeUpdated(true);
-            resultBuilder.addFix("Identification schema added");
         } catch (XMPException e) {
             LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
         }
@@ -211,13 +222,11 @@ public class MetadataImpl implements Metadata {
             if (rev == null) {
                 this.metadata.setIdentificationRevisionYear(namespaceURI, YEAR_202X);
                 this.setNeedToBeUpdated(true);
-                resultBuilder.addFix(VeraPDFMeta.REVISION_YEAR + " property with value " + YEAR_2020 +
-                        " add to Identification schema");
+                resultBuilder.addFix(String.format(ADD_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, YEAR_2020));
             } else if (!rev.getValue().matches(YEAR_REGEX)) {
                 this.metadata.setIdentificationRevisionYear(namespaceURI, YEAR_202X);
                 this.setNeedToBeUpdated(true);
-                resultBuilder.addFix("Set " + VeraPDFMeta.REVISION_YEAR +
-                        " property value to " + YEAR_2020 + " in Identification schema");
+                resultBuilder.addFix(String.format(SET_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, YEAR_2020));
             }
         } catch (XMPException e) {
             LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
