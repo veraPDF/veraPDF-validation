@@ -262,8 +262,8 @@ public class GFModelParser implements PDFAParser {
 	 */
 	@Override
 	public org.verapdf.model.baselayer.Object getRoot() {
-		if (PDFAFlavour.Specification.ISO_32000_1_0.getFamily().equals(this.flavour.getPart().getFamily()) ||
-				PDFAFlavour.Specification.ISO_32000_2_0.getFamily().equals(this.flavour.getPart().getFamily())) {
+		if (PDFAFlavour.ARLINGTON1_0.getPart().getFamily().equals(this.flavour.getPart().getFamily()) ||
+				PDFAFlavour.ARLINGTON2_0.getPart().getFamily().equals(this.flavour.getPart().getFamily())) {
 			return new GFAFileTrailer(this.document.getDocument().getTrailer().getObject().getDirectBase(), null, null);
 		}
 		return new GFCosDocument(this.document.getDocument());
