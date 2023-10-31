@@ -22,7 +22,9 @@ package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
+import org.verapdf.cos.COSString;
 import org.verapdf.model.selayer.SESimpleContentItem;
+import org.verapdf.tools.TaggedPDFConstants;
 
 /**
  * @author Maxim Plushchov
@@ -36,5 +38,31 @@ public abstract class GFSESimpleContentItem extends GFSEContentItem implements S
     public GFSESimpleContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator,
                                  COSObject parentStructElem, String parentsTags) {
         super(objectType, parentMarkedContentOperator, parentStructElem, parentsTags);
+    }
+
+    @Override
+    public String getActualText() {
+        if (parentMarkedContentOperator != null) {
+            COSString actualText = parentMarkedContentOperator.getInheritedActualText();
+            if (actualText != null) {
+                return actualText.getString();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getitemType() {
+        return null;
+    }
+
+    @Override
+    public Boolean getisFigure() {
+        return hasParentWithStandardType(TaggedPDFConstants.FIGURE);
+    }
+
+    @Override
+    public Boolean getisFormula() {
+        return hasParentWithStandardType(TaggedPDFConstants.FORMULA);
     }
 }

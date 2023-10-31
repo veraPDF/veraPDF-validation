@@ -31,6 +31,7 @@ import org.verapdf.model.selayer.SEShadingItem;
 public class GFSEShadingItem extends GFSESimpleContentItem implements SEShadingItem {
 
     public static final String SHADING_ITEM_TYPE = "SEShadingItem";
+    private static final String SHADING_CONTENT_ITEM_TYPE = "shading";
 
     private GFOp_sh op_sh;
 
@@ -46,4 +47,8 @@ public class GFSEShadingItem extends GFSESimpleContentItem implements SEShadingI
 
     }
 
+    @Override
+    public String getitemType() {
+        return SHADING_CONTENT_ITEM_TYPE;
+    }
 }

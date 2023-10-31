@@ -40,4 +40,8 @@ public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem 
         super(objectType, parentMarkedContentOperator, parentStructElem, parentsTags);
     }
 
+    @Override
+    public String getitemType() {
+        return IMAGE_CONTENT_ITEM_TYPE;
+    }
 }

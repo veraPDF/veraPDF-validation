@@ -29,6 +29,7 @@ import org.verapdf.model.operator.Operator;
 import org.verapdf.model.selayer.SEContentItem;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.StaticResources;
+import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
 import java.util.Collections;
@@ -101,4 +102,27 @@ public abstract class GFSEContentItem extends GenericModelObject implements SECo
         return null;
     }
 
+    @Override
+    public String getActualText() {
+        return null;
+    }
+
+    @Override
+    public Boolean getisArtifact() {
+        return hasParentWithStandardType(TaggedPDFConstants.ARTIFACT);
+    }
+
+    protected Boolean hasParentWithStandardType(String standardType) {
+        TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+        if (parentStructElem != null) {
+            PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
+            while (structElem != null) {
+                if (standardType.equals(GFSEFactory.getStructureElementStandardType(structElem))) {
+                    return true;
+                }
+                structElem = structElem.getParent();
+            }
+        }
+        return false;
+    }
 }

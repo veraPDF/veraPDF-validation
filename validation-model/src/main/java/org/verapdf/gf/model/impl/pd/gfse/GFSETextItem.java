@@ -35,6 +35,7 @@ import java.util.List;
 public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     public static final String TEXT_ITEM_TYPE = "SETextItem";
+    private static final String TEXT_CONTENT_ITEM_TYPE = "text";
 
     private final GFOpTextShow opTextShow;
     private final String defaultLang;
@@ -77,5 +78,10 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
         }
         String parentLang = parentMarkedContentOperator.getParentLang();
         return parentLang != null ? parentLang : this.defaultLang;
+    }
+
+    @Override
+    public String getitemType() {
+        return TEXT_CONTENT_ITEM_TYPE;
     }
 }

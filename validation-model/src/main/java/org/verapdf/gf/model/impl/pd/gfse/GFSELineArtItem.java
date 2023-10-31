@@ -32,6 +32,8 @@ public class GFSELineArtItem extends GFSESimpleContentItem implements SELineArtI
 
     public static final String LINE_ART_ITEM_TYPE = "SELineArtItem";
 
+    private static final String LINE_ART_CONTENT_ITEM_TYPE = "lineArt";
+
     GFOpPathPaint opPathPaint;
 
     public GFSELineArtItem(GFOpPathPaint opPathPaint, COSObject parentStructElem, String parentsTags) {
@@ -45,4 +47,8 @@ public class GFSELineArtItem extends GFSESimpleContentItem implements SELineArtI
         this.opPathPaint = opPathPaint;
     }
 
+    @Override
+    public String getitemType() {
+        return LINE_ART_CONTENT_ITEM_TYPE;
+    }
 }
