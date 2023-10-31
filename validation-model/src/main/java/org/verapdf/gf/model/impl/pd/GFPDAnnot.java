@@ -202,6 +202,19 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return null;
 	}
 
+	@Override
+	public String getstructParentObjectKey() {
+		TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+		if (taggedPDFRoleMapHelper != null) {
+			COSObject parentDictionary = getParentDictionary();
+			if (parentDictionary != null) {
+				COSKey parentKey = parentDictionary.getObjectKey();
+				return parentKey != null ? parentKey.toString() : null;
+			}
+		}
+		return null;
+	}
+
 	protected COSObject getParentDictionary() {
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		Long structParent = ((PDAnnotation) this.simplePDObject).getStructParent();
