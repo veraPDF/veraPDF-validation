@@ -116,6 +116,11 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 		}
 		return "";
 	}
+	
+	@Override
+	public String getobjectKey() {
+		return simpleCOSObject != null && !simpleCOSObject.empty() ? simpleCOSObject.getObjectKey().toString() : null;
+	}
 
 	@Override
 	public String getID() {
