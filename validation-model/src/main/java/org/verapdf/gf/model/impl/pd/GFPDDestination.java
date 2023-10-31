@@ -56,7 +56,8 @@ public class GFPDDestination extends GFPDObject implements PDDestination {
             if (dests != null) {
                 COSObject dest = dests.getObject(destination.getString());
                 if (dest == null) {
-                    LOGGER.log(Level.WARNING, "Named destination " + destination.getString() + " not found in the Dests name tree in the Names dictionary");
+                    LOGGER.log(Level.WARNING, "Named destination " + destination.getString() + 
+                            " not found in the Dests name tree in the Names dictionary");
                     return false;
                 }
                 destination = dest;
@@ -66,7 +67,8 @@ public class GFPDDestination extends GFPDObject implements PDDestination {
             if (dests != null) {
                 COSObject dest = dests.getKey(destination.getName());
                 if (dest == null) {
-                    LOGGER.log(Level.WARNING, "Named destination " + destination.getName() + " not found in the Dests dictionary in the catalog");
+                    LOGGER.log(Level.WARNING, "Named destination " + destination.getName() + 
+                            " not found in the Dests dictionary in the catalog");
                     return false;
                 }
                 destination = dest;
