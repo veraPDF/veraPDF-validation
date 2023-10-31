@@ -52,6 +52,8 @@ public class StaticContainers {
 
 	private static final ThreadLocal<Set<COSKey>> fileSpecificationKeys = new ThreadLocal<>();
 
+	private static final ThreadLocal<Map<COSKey, Set<COSKey>>> destinationToStructParentsMap = new ThreadLocal<>();
+
 	private static final ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
 	private static final ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
 
@@ -75,6 +77,7 @@ public class StaticContainers {
 		cachedColorSpaces.set(new HashMap<>());
 		cachedFonts.set(new HashMap<>());
 		fileSpecificationKeys.set(new HashSet<>());
+		destinationToStructParentsMap.set(new HashMap<>());
 		transparencyVisitedContentStreams.set(new Stack<>());
 		cachedGlyphs.set(new HashMap<>());
 		noteIDSet.set(new HashSet<>());
@@ -123,6 +126,17 @@ public class StaticContainers {
 
 	public static void setInconsistentSeparations(List<String> inconsistentSeparations) {
 		StaticContainers.inconsistentSeparations.set(inconsistentSeparations);
+	}
+
+	public static Map<COSKey, Set<COSKey>> getDestinationToStructParentsMap() {
+		if (destinationToStructParentsMap.get() == null) {
+			destinationToStructParentsMap.set(new HashMap<>());
+		}
+		return destinationToStructParentsMap.get();
+	}
+
+	public static void setDestinationToStructParentsMap(Map<COSKey, Set<COSKey>> destinationToStructParentsMap) {
+		StaticContainers.destinationToStructParentsMap.set(destinationToStructParentsMap);
 	}
 
 	public static Map<String, PDColorSpace> getCachedColorSpaces() {

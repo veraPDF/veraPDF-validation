@@ -141,6 +141,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Set<String> noteIDSet;
 	private Set<COSKey> xFormKeysSet;
 	private Set<COSKey> fileSpecificationKeys;
+	private Map<COSKey, Set<COSKey>> destinationToStructParentsMap;
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
 	private Map<String, Map<String, Glyph>> cachedGlyphs;
@@ -164,6 +165,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.cachedColorSpaces = StaticContainers.getCachedColorSpaces();
 		this.cachedPDFonts = StaticContainers.getCachedFonts();
 		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
+		this.destinationToStructParentsMap = StaticContainers.getDestinationToStructParentsMap();
 		this.noteIDSet = StaticContainers.getNoteIDSet();
 		this.xFormKeysSet = StaticContainers.getXFormKeysSet();
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
@@ -190,6 +192,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setCachedColorSpaces(this.cachedColorSpaces);
 		StaticContainers.setCachedFonts(this.cachedPDFonts);
 		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
+		StaticContainers.setDestinationToStructParentsMap(this.destinationToStructParentsMap);
 		StaticContainers.setNoteIDSet(this.noteIDSet);
 		StaticContainers.setXFormKeysSet(this.xFormKeysSet);
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
