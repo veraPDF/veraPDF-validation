@@ -277,7 +277,7 @@ public class MetadataImpl implements Metadata {
             String schemaConformance = this.metadata.getPDFAIdentificationConformance();
             return schemaPart != part ||
                     (part == 4 && !Objects.equals(conformance, schemaConformance)) ||
-                    ((part == 1 || part == 2 || part == 3) && compare(conformance, schemaConformance) > 0);
+                    ((part == 1 || part == 2 || part == 3) && (schemaConformance == null || compare(conformance, schemaConformance) > 0));
         } catch (XMPException e) {
             LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
             throw new IllegalStateException(e);
