@@ -188,8 +188,7 @@ public class GFModelParser implements PDFAParser {
 				identificationConformance = "";
 			}
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(prefix + identificationPart + identificationConformance);
-			// TODO: remove that logic after updating NO_FLAVOUR into base pdf validation flavour
-			if (pdfaFlavour == PDFAFlavour.NO_FLAVOUR) {
+			if (pdfaFlavour == PDFAFlavour.NO_FLAVOUR || pdfaFlavour == PDFAFlavour.PDFUA_2) {
 				return defaultFlavour;
 			}
 			return pdfaFlavour;

@@ -35,7 +35,7 @@ public class GFSAAnnotationNode extends AnnotationNode {
 	}
 
 	private static Integer getAnnotationPageNumber(PDAnnotation annotation) {
-		Integer pageNumber = getPageNumber(annotation.getParent());
+		Integer pageNumber = getPageNumber(annotation.getKey(ASAtom.P));
 		if (pageNumber != null) {
 			return pageNumber;
 		}

@@ -47,9 +47,9 @@ public class MarkedContentHelper {
                     Long mcid = markedContent.getInheritedMCID();
                     COSObject structureElement = accessObject.getStructureElement(parentTreeRoot, mcid);
                     if (structureElement != null && !structureElement.empty()) {
-                        COSObject actualText = structureElement.getKey(key);
-                        return actualText != null && !actualText.empty() &&
-                               actualText.getType() == COSObjType.COS_STRING;
+                        COSObject value = structureElement.getKey(key);
+                        return value != null && !value.empty() &&
+                               value.getType() == COSObjType.COS_STRING;
                     }
                 }
             }
