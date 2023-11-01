@@ -204,9 +204,6 @@ public class MetadataImpl implements Metadata {
     }
 
     public void addPDFAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (isValidPDFAIdentification() && !isWrongPDFAIdentification(flavour)) {
-            return;
-        }
         int part = flavour.getPart().getPartNumber();
         String conformance = flavour != PDFAFlavour.PDFA_4 ? flavour.getLevel().getCode().toUpperCase() : null;
         try {
@@ -217,7 +214,7 @@ public class MetadataImpl implements Metadata {
                 this.setNeedToBeUpdated(true);
             }
 
-            if (isWrongPDFAIdentification(flavour)) {
+            if (!isValidPDFAIdentification() || isWrongPDFAIdentification(flavour)) {
                 resultBuilder.addFix(String.format(this.metadata.getPDFAIdentificationConformance() == null ? 
                                 ADD_PROPERTY_MESSAGE : (conformance == null ? REMOVE_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE),
                         VeraPDFMeta.CONFORMANCE, conformance));
