@@ -470,6 +470,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	@Override
+	public String getBitsPerSampleType() {
+		COSObject BitsPerSample = getBitsPerSampleValue();
+		return getObjectType(BitsPerSample);
+	}
+
+	@Override
 	public Boolean getBitsPerSampleHasTypeInteger() {
 		COSObject BitsPerSample = getBitsPerSampleValue();
 		return getHasTypeInteger(BitsPerSample);
@@ -489,6 +495,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	public COSObject getDLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
 		return object;
+	}
+
+	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
 	}
 
 	@Override
@@ -514,6 +526,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	@Override
+	public String getDecodeType() {
+		COSObject Decode = getDecodeValue();
+		return getObjectType(Decode);
+	}
+
+	@Override
 	public Boolean getDecodeHasTypeArray() {
 		COSObject Decode = getDecodeValue();
 		return getHasTypeArray(Decode);
@@ -533,6 +551,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -564,6 +588,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	@Override
+	public String getDomainType() {
+		COSObject Domain = getDomainValue();
+		return getObjectType(Domain);
+	}
+
+	@Override
 	public Boolean getDomainHasTypeArray() {
 		COSObject Domain = getDomainValue();
 		return getHasTypeArray(Domain);
@@ -583,6 +613,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	public COSObject getEncodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encode"));
 		return object;
+	}
+
+	@Override
+	public String getEncodeType() {
+		COSObject Encode = getEncodeValue();
+		return getObjectType(Encode);
 	}
 
 	@Override
@@ -608,6 +644,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -627,6 +669,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -655,6 +703,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -692,6 +746,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -726,6 +786,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	@Override
+	public String getFunctionTypeType() {
+		COSObject FunctionType = getFunctionTypeValue();
+		return getObjectType(FunctionType);
+	}
+
+	@Override
 	public Boolean getFunctionTypeHasTypeInteger() {
 		COSObject FunctionType = getFunctionTypeValue();
 		return getHasTypeInteger(FunctionType);
@@ -745,6 +811,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	public COSObject getLengthValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
 		return object;
+	}
+
+	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
 	}
 
 	@Override
@@ -781,6 +853,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	@Override
+	public String getOrderType() {
+		COSObject Order = getOrderValue();
+		return getObjectType(Order);
+	}
+
+	@Override
 	public Boolean getOrderHasTypeInteger() {
 		COSObject Order = getOrderValue();
 		return getHasTypeInteger(Order);
@@ -803,6 +881,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	}
 
 	@Override
+	public String getRangeType() {
+		COSObject Range = getRangeValue();
+		return getObjectType(Range);
+	}
+
+	@Override
 	public Boolean getRangeHasTypeArray() {
 		COSObject Range = getRangeValue();
 		return getHasTypeArray(Range);
@@ -822,6 +906,12 @@ public class GFAFunctionType0 extends GFAObject implements AFunctionType0 {
 	public COSObject getSizeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
 		return object;
+	}
+
+	@Override
+	public String getSizeType() {
+		COSObject Size = getSizeValue();
+		return getObjectType(Size);
 	}
 
 	@Override

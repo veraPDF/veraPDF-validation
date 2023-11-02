@@ -25,6 +25,12 @@ public class GFAArrayOfOPI2InksSubArray extends GFAObject implements AArrayOfOPI
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeString() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeString(entry0);
@@ -36,6 +42,12 @@ public class GFAArrayOfOPI2InksSubArray extends GFAObject implements AArrayOfOPI
 		}
 		COSObject object = this.baseObject.at(1);
 		return object;
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override

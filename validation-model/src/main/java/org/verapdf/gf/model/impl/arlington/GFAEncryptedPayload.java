@@ -27,6 +27,12 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 	}
 
 	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
+	}
+
+	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
@@ -40,6 +46,12 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -62,6 +74,12 @@ public class GFAEncryptedPayload extends GFAObject implements AEncryptedPayload 
 	public COSObject getVersionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
 		return object;
+	}
+
+	@Override
+	public String getVersionType() {
+		COSObject Version = getVersionValue();
+		return getObjectType(Version);
 	}
 
 	@Override

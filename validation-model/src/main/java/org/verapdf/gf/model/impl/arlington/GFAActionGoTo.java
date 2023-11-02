@@ -489,6 +489,12 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject D = getDValue();
 		return getHasTypeArray(D);
@@ -517,6 +523,12 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	}
 
 	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
+	}
+
+	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject Next = getNextValue();
 		return getHasTypeArray(Next);
@@ -536,6 +548,12 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -561,6 +579,12 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	}
 
 	@Override
+	public String getSDType() {
+		COSObject SD = getSDValue();
+		return getObjectType(SD);
+	}
+
+	@Override
 	public Boolean getSDHasTypeArray() {
 		COSObject SD = getSDValue();
 		return getHasTypeArray(SD);
@@ -574,6 +598,12 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

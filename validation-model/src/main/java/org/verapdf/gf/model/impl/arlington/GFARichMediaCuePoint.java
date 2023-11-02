@@ -116,6 +116,12 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeDictionary() {
 		COSObject A = getAValue();
 		return getHasTypeDictionary(A);
@@ -132,6 +138,12 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject Name = getNameValue();
 		return getHasTypeStringText(Name);
@@ -145,6 +157,12 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -170,6 +188,12 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 	}
 
 	@Override
+	public String getTimeType() {
+		COSObject Time = getTimeValue();
+		return getObjectType(Time);
+	}
+
+	@Override
 	public Boolean getTimeHasTypeNumber() {
 		COSObject Time = getTimeValue();
 		return getHasTypeNumber(Time);
@@ -183,6 +207,12 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

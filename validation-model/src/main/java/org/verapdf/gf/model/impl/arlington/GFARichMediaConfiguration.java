@@ -60,6 +60,12 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 	}
 
 	@Override
+	public String getInstancesType() {
+		COSObject Instances = getInstancesValue();
+		return getObjectType(Instances);
+	}
+
+	@Override
 	public Boolean getInstancesHasTypeArray() {
 		COSObject Instances = getInstancesValue();
 		return getHasTypeArray(Instances);
@@ -76,6 +82,12 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject Name = getNameValue();
 		return getHasTypeStringText(Name);
@@ -89,6 +101,12 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -111,6 +129,12 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

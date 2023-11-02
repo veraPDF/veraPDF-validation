@@ -267,6 +267,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -289,6 +295,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
+	public String getClassMapType() {
+		COSObject ClassMap = getClassMapValue();
+		return getObjectType(ClassMap);
+	}
+
+	@Override
 	public Boolean getClassMapHasTypeDictionary() {
 		COSObject ClassMap = getClassMapValue();
 		return getHasTypeDictionary(ClassMap);
@@ -305,6 +317,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
+	public String getIDTreeType() {
+		COSObject IDTree = getIDTreeValue();
+		return getObjectType(IDTree);
+	}
+
+	@Override
 	public Boolean getIDTreeHasTypeNameTree() {
 		COSObject IDTree = getIDTreeValue();
 		return getHasTypeNameTree(IDTree);
@@ -318,6 +336,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	public COSObject getKValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
 		return object;
+	}
+
+	@Override
+	public String getKType() {
+		COSObject K = getKValue();
+		return getObjectType(K);
 	}
 
 	@Override
@@ -343,6 +367,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
+	public String getNamespacesType() {
+		COSObject Namespaces = getNamespacesValue();
+		return getObjectType(Namespaces);
+	}
+
+	@Override
 	public Boolean getNamespacesHasTypeArray() {
 		COSObject Namespaces = getNamespacesValue();
 		return getHasTypeArray(Namespaces);
@@ -359,6 +389,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
+	public String getParentTreeType() {
+		COSObject ParentTree = getParentTreeValue();
+		return getObjectType(ParentTree);
+	}
+
+	@Override
 	public Boolean getParentTreeHasTypeNumberTree() {
 		COSObject ParentTree = getParentTreeValue();
 		return getHasTypeNumberTree(ParentTree);
@@ -372,6 +408,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	public COSObject getParentTreeNextKeyValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ParentTreeNextKey"));
 		return object;
+	}
+
+	@Override
+	public String getParentTreeNextKeyType() {
+		COSObject ParentTreeNextKey = getParentTreeNextKeyValue();
+		return getObjectType(ParentTreeNextKey);
 	}
 
 	@Override
@@ -394,6 +436,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	public Boolean getisPronunciationLexiconIndirect() {
 		COSObject PronunciationLexicon = getPronunciationLexiconValue();
 		return getisIndirect(PronunciationLexicon);
+	}
+
+	@Override
+	public String getPronunciationLexiconType() {
+		COSObject PronunciationLexicon = getPronunciationLexiconValue();
+		return getObjectType(PronunciationLexicon);
 	}
 
 	@Override
@@ -425,6 +473,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
+	public String getRoleMapType() {
+		COSObject RoleMap = getRoleMapValue();
+		return getObjectType(RoleMap);
+	}
+
+	@Override
 	public Boolean getRoleMapHasTypeDictionary() {
 		COSObject RoleMap = getRoleMapValue();
 		return getHasTypeDictionary(RoleMap);
@@ -438,6 +492,12 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

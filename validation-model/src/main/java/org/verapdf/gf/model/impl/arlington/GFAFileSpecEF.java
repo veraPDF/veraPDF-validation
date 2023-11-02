@@ -95,6 +95,12 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeStream() {
 		COSObject F = getFValue();
 		return getHasTypeStream(F);
@@ -114,6 +120,12 @@ public class GFAFileSpecEF extends GFAObject implements AFileSpecEF {
 	public Boolean getisUFIndirect() {
 		COSObject UF = getUFValue();
 		return getisIndirect(UF);
+	}
+
+	@Override
+	public String getUFType() {
+		COSObject UF = getUFValue();
+		return getObjectType(UF);
 	}
 
 	@Override

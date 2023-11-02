@@ -125,6 +125,12 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	@Override
+	public String getBaseFontType() {
+		COSObject BaseFont = getBaseFontValue();
+		return getObjectType(BaseFont);
+	}
+
+	@Override
 	public Boolean getBaseFontHasTypeName() {
 		COSObject BaseFont = getBaseFontValue();
 		return getHasTypeName(BaseFont);
@@ -138,6 +144,12 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	public COSObject getDescendantFontsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DescendantFonts"));
 		return object;
+	}
+
+	@Override
+	public String getDescendantFontsType() {
+		COSObject DescendantFonts = getDescendantFontsValue();
+		return getObjectType(DescendantFonts);
 	}
 
 	@Override
@@ -160,6 +172,12 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	public Boolean getisEncodingIndirect() {
 		COSObject Encoding = getEncodingValue();
 		return getisIndirect(Encoding);
+	}
+
+	@Override
+	public String getEncodingType() {
+		COSObject Encoding = getEncodingValue();
+		return getObjectType(Encoding);
 	}
 
 	@Override
@@ -191,6 +209,12 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
+	}
+
+	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
@@ -219,6 +243,12 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	}
 
 	@Override
+	public String getToUnicodeType() {
+		COSObject ToUnicode = getToUnicodeValue();
+		return getObjectType(ToUnicode);
+	}
+
+	@Override
 	public Boolean getToUnicodeHasTypeStream() {
 		COSObject ToUnicode = getToUnicodeValue();
 		return getHasTypeStream(ToUnicode);
@@ -232,6 +262,12 @@ public class GFAFontType0 extends GFAObject implements AFontType0 {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

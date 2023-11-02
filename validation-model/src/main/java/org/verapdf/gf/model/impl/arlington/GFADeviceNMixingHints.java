@@ -113,6 +113,12 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	}
 
 	@Override
+	public String getDotGainType() {
+		COSObject DotGain = getDotGainValue();
+		return getObjectType(DotGain);
+	}
+
+	@Override
 	public Boolean getDotGainHasTypeDictionary() {
 		COSObject DotGain = getDotGainValue();
 		return getHasTypeDictionary(DotGain);
@@ -129,6 +135,12 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	}
 
 	@Override
+	public String getPrintingOrderType() {
+		COSObject PrintingOrder = getPrintingOrderValue();
+		return getObjectType(PrintingOrder);
+	}
+
+	@Override
 	public Boolean getPrintingOrderHasTypeArray() {
 		COSObject PrintingOrder = getPrintingOrderValue();
 		return getHasTypeArray(PrintingOrder);
@@ -142,6 +154,12 @@ public class GFADeviceNMixingHints extends GFAObject implements ADeviceNMixingHi
 	public COSObject getSoliditiesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Solidities"));
 		return object;
+	}
+
+	@Override
+	public String getSoliditiesType() {
+		COSObject Solidities = getSoliditiesValue();
+		return getObjectType(Solidities);
 	}
 
 	@Override

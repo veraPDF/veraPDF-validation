@@ -76,6 +76,12 @@ public class GFAMinimumScreenSize extends GFAObject implements AMinimumScreenSiz
 	}
 
 	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
+	}
+
+	@Override
 	public Boolean getMHasTypeInteger() {
 		COSObject M = getMValue();
 		return getHasTypeInteger(M);
@@ -98,6 +104,12 @@ public class GFAMinimumScreenSize extends GFAObject implements AMinimumScreenSiz
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -117,6 +129,12 @@ public class GFAMinimumScreenSize extends GFAObject implements AMinimumScreenSiz
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

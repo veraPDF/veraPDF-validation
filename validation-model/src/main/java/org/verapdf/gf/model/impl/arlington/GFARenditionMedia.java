@@ -192,6 +192,12 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	@Override
+	public String getBEType() {
+		COSObject BE = getBEValue();
+		return getObjectType(BE);
+	}
+
+	@Override
 	public Boolean getBEHasTypeDictionary() {
 		COSObject BE = getBEValue();
 		return getHasTypeDictionary(BE);
@@ -205,6 +211,12 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -224,6 +236,12 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	@Override
+	public String getMHType() {
+		COSObject MH = getMHValue();
+		return getObjectType(MH);
+	}
+
+	@Override
 	public Boolean getMHHasTypeDictionary() {
 		COSObject MH = getMHValue();
 		return getHasTypeDictionary(MH);
@@ -237,6 +255,12 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	public COSObject getNValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
 		return object;
+	}
+
+	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
 	}
 
 	@Override
@@ -256,6 +280,12 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -269,6 +299,12 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -294,6 +330,12 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	}
 
 	@Override
+	public String getSPType() {
+		COSObject SP = getSPValue();
+		return getObjectType(SP);
+	}
+
+	@Override
 	public Boolean getSPHasTypeDictionary() {
 		COSObject SP = getSPValue();
 		return getHasTypeDictionary(SP);
@@ -307,6 +349,12 @@ public class GFARenditionMedia extends GFAObject implements ARenditionMedia {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

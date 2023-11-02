@@ -398,6 +398,12 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeName() {
 		COSObject N = getNValue();
 		return getHasTypeName(N);
@@ -417,6 +423,12 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -442,6 +454,12 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -461,6 +479,12 @@ public class GFAActionNamed extends GFAObject implements AActionNamed {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

@@ -223,6 +223,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
+	}
+
+	@Override
 	public Boolean getASHasTypeArray() {
 		COSObject AS = getASValue();
 		return getHasTypeArray(AS);
@@ -253,6 +259,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
+	public String getBaseStateType() {
+		COSObject BaseState = getBaseStateValue();
+		return getObjectType(BaseState);
+	}
+
+	@Override
 	public Boolean getBaseStateHasTypeName() {
 		COSObject BaseState = getBaseStateValue();
 		return getHasTypeName(BaseState);
@@ -272,6 +284,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	public COSObject getCreatorValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Creator"));
 		return object;
+	}
+
+	@Override
+	public String getCreatorType() {
+		COSObject Creator = getCreatorValue();
+		return getObjectType(Creator);
 	}
 
 	@Override
@@ -302,6 +320,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 			object = getIntentDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getIntentType() {
+		COSObject Intent = getIntentValue();
+		return getObjectType(Intent);
 	}
 
 	@Override
@@ -347,6 +371,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
+	public String getListModeType() {
+		COSObject ListMode = getListModeValue();
+		return getObjectType(ListMode);
+	}
+
+	@Override
 	public Boolean getListModeHasTypeName() {
 		COSObject ListMode = getListModeValue();
 		return getHasTypeName(ListMode);
@@ -369,6 +399,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
+	public String getLockedType() {
+		COSObject Locked = getLockedValue();
+		return getObjectType(Locked);
+	}
+
+	@Override
 	public Boolean getLockedHasTypeArray() {
 		COSObject Locked = getLockedValue();
 		return getHasTypeArray(Locked);
@@ -382,6 +418,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	public COSObject getNameValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
 		return object;
+	}
+
+	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
 	}
 
 	@Override
@@ -401,6 +443,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
+	public String getOFFType() {
+		COSObject OFF = getOFFValue();
+		return getObjectType(OFF);
+	}
+
+	@Override
 	public Boolean getOFFHasTypeArray() {
 		COSObject OFF = getOFFValue();
 		return getHasTypeArray(OFF);
@@ -414,6 +462,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	public COSObject getONValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ON"));
 		return object;
+	}
+
+	@Override
+	public String getONType() {
+		COSObject ON = getONValue();
+		return getObjectType(ON);
 	}
 
 	@Override
@@ -433,6 +487,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	}
 
 	@Override
+	public String getOrderType() {
+		COSObject Order = getOrderValue();
+		return getObjectType(Order);
+	}
+
+	@Override
 	public Boolean getOrderHasTypeArray() {
 		COSObject Order = getOrderValue();
 		return getHasTypeArray(Order);
@@ -446,6 +506,12 @@ public class GFAOptContentConfig extends GFAObject implements AOptContentConfig 
 	public COSObject getRBGroupsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RBGroups"));
 		return object;
+	}
+
+	@Override
+	public String getRBGroupsType() {
+		COSObject RBGroups = getRBGroupsValue();
+		return getObjectType(RBGroups);
 	}
 
 	@Override

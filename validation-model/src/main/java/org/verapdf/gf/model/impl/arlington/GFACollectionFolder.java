@@ -185,6 +185,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	@Override
+	public String getCIType() {
+		COSObject CI = getCIValue();
+		return getObjectType(CI);
+	}
+
+	@Override
 	public Boolean getCIHasTypeDictionary() {
 		COSObject CI = getCIValue();
 		return getHasTypeDictionary(CI);
@@ -207,6 +213,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	@Override
+	public String getChildType() {
+		COSObject Child = getChildValue();
+		return getObjectType(Child);
+	}
+
+	@Override
 	public Boolean getChildHasTypeDictionary() {
 		COSObject Child = getChildValue();
 		return getHasTypeDictionary(Child);
@@ -220,6 +232,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	public COSObject getCreationDateValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
 		return object;
+	}
+
+	@Override
+	public String getCreationDateType() {
+		COSObject CreationDate = getCreationDateValue();
+		return getObjectType(CreationDate);
 	}
 
 	@Override
@@ -239,6 +257,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	@Override
+	public String getDescType() {
+		COSObject Desc = getDescValue();
+		return getObjectType(Desc);
+	}
+
+	@Override
 	public Boolean getDescHasTypeStringText() {
 		COSObject Desc = getDescValue();
 		return getHasTypeStringText(Desc);
@@ -252,6 +276,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	public COSObject getFreeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Free"));
 		return object;
+	}
+
+	@Override
+	public String getFreeType() {
+		COSObject Free = getFreeValue();
+		return getObjectType(Free);
 	}
 
 	@Override
@@ -271,6 +301,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
+	}
+
+	@Override
 	public Boolean getentryIDHasTypeInteger() {
 		COSObject entryID = getentryIDValue();
 		return getHasTypeInteger(entryID);
@@ -287,6 +323,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	@Override
+	public String getModDateType() {
+		COSObject ModDate = getModDateValue();
+		return getObjectType(ModDate);
+	}
+
+	@Override
 	public Boolean getModDateHasTypeDate() {
 		COSObject ModDate = getModDateValue();
 		return getHasTypeDate(ModDate);
@@ -300,6 +342,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	public COSObject getNameValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
 		return object;
+	}
+
+	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
 	}
 
 	@Override
@@ -325,6 +373,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
+	}
+
+	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject Next = getNextValue();
 		return getHasTypeDictionary(Next);
@@ -344,6 +398,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	public Boolean getisParentIndirect() {
 		COSObject Parent = getParentValue();
 		return getisIndirect(Parent);
+	}
+
+	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
 	}
 
 	@Override
@@ -369,6 +429,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	}
 
 	@Override
+	public String getThumbType() {
+		COSObject Thumb = getThumbValue();
+		return getObjectType(Thumb);
+	}
+
+	@Override
 	public Boolean getThumbHasTypeStream() {
 		COSObject Thumb = getThumbValue();
 		return getHasTypeStream(Thumb);
@@ -382,6 +448,12 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

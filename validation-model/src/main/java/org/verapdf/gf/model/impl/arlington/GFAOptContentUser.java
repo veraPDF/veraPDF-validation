@@ -62,6 +62,12 @@ public class GFAOptContentUser extends GFAObject implements AOptContentUser {
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeArray() {
 		COSObject Name = getNameValue();
 		return getHasTypeArray(Name);
@@ -81,6 +87,12 @@ public class GFAOptContentUser extends GFAObject implements AOptContentUser {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

@@ -27,6 +27,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getAlternateImagesType() {
+		COSObject AlternateImages = getAlternateImagesValue();
+		return getObjectType(AlternateImages);
+	}
+
+	@Override
 	public Boolean getAlternateImagesHasTypeInteger() {
 		COSObject AlternateImages = getAlternateImagesValue();
 		return getHasTypeInteger(AlternateImages);
@@ -46,6 +52,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getAnnotationsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Annotations"));
 		return object;
+	}
+
+	@Override
+	public String getAnnotationsType() {
+		COSObject Annotations = getAnnotationsValue();
+		return getObjectType(Annotations);
 	}
 
 	@Override
@@ -71,6 +83,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getAttestationType() {
+		COSObject Attestation = getAttestationValue();
+		return getObjectType(Attestation);
+	}
+
+	@Override
 	public Boolean getAttestationHasTypeStringText() {
 		COSObject Attestation = getAttestationValue();
 		return getHasTypeStringText(Attestation);
@@ -84,6 +102,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getDevDepGS_BGValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_BG"));
 		return object;
+	}
+
+	@Override
+	public String getDevDepGS_BGType() {
+		COSObject DevDepGS_BG = getDevDepGS_BGValue();
+		return getObjectType(DevDepGS_BG);
 	}
 
 	@Override
@@ -109,6 +133,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getDevDepGS_FLType() {
+		COSObject DevDepGS_FL = getDevDepGS_FLValue();
+		return getObjectType(DevDepGS_FL);
+	}
+
+	@Override
 	public Boolean getDevDepGS_FLHasTypeInteger() {
 		COSObject DevDepGS_FL = getDevDepGS_FLValue();
 		return getHasTypeInteger(DevDepGS_FL);
@@ -128,6 +158,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getDevDepGS_HTValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_HT"));
 		return object;
+	}
+
+	@Override
+	public String getDevDepGS_HTType() {
+		COSObject DevDepGS_HT = getDevDepGS_HTValue();
+		return getObjectType(DevDepGS_HT);
 	}
 
 	@Override
@@ -153,6 +189,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getDevDepGS_OPType() {
+		COSObject DevDepGS_OP = getDevDepGS_OPValue();
+		return getObjectType(DevDepGS_OP);
+	}
+
+	@Override
 	public Boolean getDevDepGS_OPHasTypeInteger() {
 		COSObject DevDepGS_OP = getDevDepGS_OPValue();
 		return getHasTypeInteger(DevDepGS_OP);
@@ -172,6 +214,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getDevDepGS_TRValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DevDepGS_TR"));
 		return object;
+	}
+
+	@Override
+	public String getDevDepGS_TRType() {
+		COSObject DevDepGS_TR = getDevDepGS_TRValue();
+		return getObjectType(DevDepGS_TR);
 	}
 
 	@Override
@@ -197,6 +245,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getDevDepGS_UCRType() {
+		COSObject DevDepGS_UCR = getDevDepGS_UCRValue();
+		return getObjectType(DevDepGS_UCR);
+	}
+
+	@Override
 	public Boolean getDevDepGS_UCRHasTypeInteger() {
 		COSObject DevDepGS_UCR = getDevDepGS_UCRValue();
 		return getHasTypeInteger(DevDepGS_UCR);
@@ -216,6 +270,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getExternalOPIdictsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalOPIdicts"));
 		return object;
+	}
+
+	@Override
+	public String getExternalOPIdictsType() {
+		COSObject ExternalOPIdicts = getExternalOPIdictsValue();
+		return getObjectType(ExternalOPIdicts);
 	}
 
 	@Override
@@ -241,6 +301,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getExternalRefXobjectsType() {
+		COSObject ExternalRefXobjects = getExternalRefXobjectsValue();
+		return getObjectType(ExternalRefXobjects);
+	}
+
+	@Override
 	public Boolean getExternalRefXobjectsHasTypeInteger() {
 		COSObject ExternalRefXobjects = getExternalRefXobjectsValue();
 		return getHasTypeInteger(ExternalRefXobjects);
@@ -260,6 +326,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getExternalStreamsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExternalStreams"));
 		return object;
+	}
+
+	@Override
+	public String getExternalStreamsType() {
+		COSObject ExternalStreams = getExternalStreamsValue();
+		return getObjectType(ExternalStreams);
 	}
 
 	@Override
@@ -285,6 +357,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getGoToRemoteActionsType() {
+		COSObject GoToRemoteActions = getGoToRemoteActionsValue();
+		return getObjectType(GoToRemoteActions);
+	}
+
+	@Override
 	public Boolean getGoToRemoteActionsHasTypeInteger() {
 		COSObject GoToRemoteActions = getGoToRemoteActionsValue();
 		return getHasTypeInteger(GoToRemoteActions);
@@ -304,6 +382,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getHideAnnotationActionsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HideAnnotationActions"));
 		return object;
+	}
+
+	@Override
+	public String getHideAnnotationActionsType() {
+		COSObject HideAnnotationActions = getHideAnnotationActionsValue();
+		return getObjectType(HideAnnotationActions);
 	}
 
 	@Override
@@ -329,6 +413,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getJavaScriptActionsType() {
+		COSObject JavaScriptActions = getJavaScriptActionsValue();
+		return getObjectType(JavaScriptActions);
+	}
+
+	@Override
 	public Boolean getJavaScriptActionsHasTypeInteger() {
 		COSObject JavaScriptActions = getJavaScriptActionsValue();
 		return getHasTypeInteger(JavaScriptActions);
@@ -348,6 +438,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getLaunchActionsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LaunchActions"));
 		return object;
+	}
+
+	@Override
+	public String getLaunchActionsType() {
+		COSObject LaunchActions = getLaunchActionsValue();
+		return getObjectType(LaunchActions);
 	}
 
 	@Override
@@ -373,6 +469,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getMovieActionsType() {
+		COSObject MovieActions = getMovieActionsValue();
+		return getObjectType(MovieActions);
+	}
+
+	@Override
 	public Boolean getMovieActionsHasTypeInteger() {
 		COSObject MovieActions = getMovieActionsValue();
 		return getHasTypeInteger(MovieActions);
@@ -392,6 +494,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getNonEmbeddedFontsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NonEmbeddedFonts"));
 		return object;
+	}
+
+	@Override
+	public String getNonEmbeddedFontsType() {
+		COSObject NonEmbeddedFonts = getNonEmbeddedFontsValue();
+		return getObjectType(NonEmbeddedFonts);
 	}
 
 	@Override
@@ -417,6 +525,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getOptionalContentType() {
+		COSObject OptionalContent = getOptionalContentValue();
+		return getObjectType(OptionalContent);
+	}
+
+	@Override
 	public Boolean getOptionalContentHasTypeBoolean() {
 		COSObject OptionalContent = getOptionalContentValue();
 		return getHasTypeBoolean(OptionalContent);
@@ -430,6 +544,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getSoundActionsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SoundActions"));
 		return object;
+	}
+
+	@Override
+	public String getSoundActionsType() {
+		COSObject SoundActions = getSoundActionsValue();
+		return getObjectType(SoundActions);
 	}
 
 	@Override
@@ -455,6 +575,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	}
 
 	@Override
+	public String getTrueTypeFontsType() {
+		COSObject TrueTypeFonts = getTrueTypeFontsValue();
+		return getObjectType(TrueTypeFonts);
+	}
+
+	@Override
 	public Boolean getTrueTypeFontsHasTypeInteger() {
 		COSObject TrueTypeFonts = getTrueTypeFontsValue();
 		return getHasTypeInteger(TrueTypeFonts);
@@ -474,6 +600,12 @@ public class GFALegalAttestation extends GFAObject implements ALegalAttestation 
 	public COSObject getURIActionsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URIActions"));
 		return object;
+	}
+
+	@Override
+	public String getURIActionsType() {
+		COSObject URIActions = getURIActionsValue();
+		return getObjectType(URIActions);
 	}
 
 	@Override

@@ -27,6 +27,12 @@ public class GFAOptContentExport extends GFAObject implements AOptContentExport 
 	}
 
 	@Override
+	public String getExportStateType() {
+		COSObject ExportState = getExportStateValue();
+		return getObjectType(ExportState);
+	}
+
+	@Override
 	public Boolean getExportStateHasTypeName() {
 		COSObject ExportState = getExportStateValue();
 		return getHasTypeName(ExportState);

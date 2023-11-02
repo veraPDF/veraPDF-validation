@@ -34,6 +34,12 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	@Override
+	public String getBitsPerComponentType() {
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getObjectType(BitsPerComponent);
+	}
+
+	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
 		COSObject BitsPerComponent = getBitsPerComponentValue();
 		return getHasTypeInteger(BitsPerComponent);
@@ -60,6 +66,12 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 			object = getColorsDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getColorsType() {
+		COSObject Colors = getColorsValue();
+		return getObjectType(Colors);
 	}
 
 	@Override
@@ -92,6 +104,12 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	@Override
+	public String getColumnsType() {
+		COSObject Columns = getColumnsValue();
+		return getObjectType(Columns);
+	}
+
+	@Override
 	public Boolean getColumnsHasTypeInteger() {
 		COSObject Columns = getColumnsValue();
 		return getHasTypeInteger(Columns);
@@ -115,6 +133,12 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	}
 
 	@Override
+	public String getEarlyChangeType() {
+		COSObject EarlyChange = getEarlyChangeValue();
+		return getObjectType(EarlyChange);
+	}
+
+	@Override
 	public Boolean getEarlyChangeHasTypeInteger() {
 		COSObject EarlyChange = getEarlyChangeValue();
 		return getHasTypeInteger(EarlyChange);
@@ -134,6 +158,12 @@ public class GFAFilterLZWDecode extends GFAObject implements AFilterLZWDecode {
 	public COSObject getPredictorValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
 		return object;
+	}
+
+	@Override
+	public String getPredictorType() {
+		COSObject Predictor = getPredictorValue();
+		return getObjectType(Predictor);
 	}
 
 	@Override

@@ -401,6 +401,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getANType() {
+		COSObject AN = getANValue();
+		return getObjectType(AN);
+	}
+
+	@Override
 	public Boolean getANHasTypeDictionary() {
 		COSObject AN = getANValue();
 		return getHasTypeDictionary(AN);
@@ -414,6 +420,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	public COSObject getColorSpaceValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
 		return object;
+	}
+
+	@Override
+	public String getColorSpaceType() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getObjectType(ColorSpace);
 	}
 
 	@Override
@@ -445,6 +457,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -464,6 +482,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	public COSObject getDVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
 		return object;
+	}
+
+	@Override
+	public String getDVType() {
+		COSObject DV = getDVValue();
+		return getObjectType(DV);
 	}
 
 	@Override
@@ -513,6 +537,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
+	}
+
+	@Override
 	public Boolean getDecodeParmsHasTypeArray() {
 		COSObject DecodeParms = getDecodeParmsValue();
 		return getHasTypeArray(DecodeParms);
@@ -541,6 +571,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -560,6 +596,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -588,6 +630,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -625,6 +673,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -659,6 +713,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -681,6 +741,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getOnInstantiateType() {
+		COSObject OnInstantiate = getOnInstantiateValue();
+		return getObjectType(OnInstantiate);
+	}
+
+	@Override
 	public Boolean getOnInstantiateHasTypeStream() {
 		COSObject OnInstantiate = getOnInstantiateValue();
 		return getHasTypeStream(OnInstantiate);
@@ -697,6 +763,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
+	}
+
+	@Override
 	public Boolean getResourcesHasTypeNameTree() {
 		COSObject Resources = getResourcesValue();
 		return getHasTypeNameTree(Resources);
@@ -710,6 +782,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -735,6 +813,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -754,6 +838,12 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 	public COSObject getVAValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VA"));
 		return object;
+	}
+
+	@Override
+	public String getVAType() {
+		COSObject VA = getVAValue();
+		return getObjectType(VA);
 	}
 
 	@Override

@@ -27,6 +27,12 @@ public class GFAMediaOffsetFrame extends GFAObject implements AMediaOffsetFrame 
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeInteger() {
 		COSObject F = getFValue();
 		return getHasTypeInteger(F);
@@ -49,6 +55,12 @@ public class GFAMediaOffsetFrame extends GFAObject implements AMediaOffsetFrame 
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -68,6 +80,12 @@ public class GFAMediaOffsetFrame extends GFAObject implements AMediaOffsetFrame 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

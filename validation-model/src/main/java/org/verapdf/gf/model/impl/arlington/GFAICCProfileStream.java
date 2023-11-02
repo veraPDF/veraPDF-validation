@@ -439,6 +439,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	@Override
+	public String getAlternateType() {
+		COSObject Alternate = getAlternateValue();
+		return getObjectType(Alternate);
+	}
+
+	@Override
 	public Boolean getAlternateHasTypeArray() {
 		COSObject Alternate = getAlternateValue();
 		return getHasTypeArray(Alternate);
@@ -467,6 +473,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -486,6 +498,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -517,6 +535,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -536,6 +560,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -564,6 +594,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -601,6 +637,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -635,6 +677,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -657,6 +705,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	}
 
 	@Override
+	public String getMetadataType() {
+		COSObject Metadata = getMetadataValue();
+		return getObjectType(Metadata);
+	}
+
+	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject Metadata = getMetadataValue();
 		return getHasTypeStream(Metadata);
@@ -670,6 +724,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	public COSObject getNValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
 		return object;
+	}
+
+	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
 	}
 
 	@Override
@@ -692,6 +752,12 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 	public COSObject getRangeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
 		return object;
+	}
+
+	@Override
+	public String getRangeType() {
+		COSObject Range = getRangeValue();
+		return getObjectType(Range);
 	}
 
 	@Override

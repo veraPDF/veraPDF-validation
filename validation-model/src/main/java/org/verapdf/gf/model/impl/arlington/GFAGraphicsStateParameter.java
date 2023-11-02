@@ -927,6 +927,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getAAPLAAType() {
+		COSObject AAPLAA = getAAPLAAValue();
+		return getObjectType(AAPLAA);
+	}
+
+	@Override
 	public Boolean getAAPLAAHasTypeBoolean() {
 		COSObject AAPLAA = getAAPLAAValue();
 		return getHasTypeBoolean(AAPLAA);
@@ -960,6 +966,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getAAPLSTType() {
+		COSObject AAPLST = getAAPLSTValue();
+		return getObjectType(AAPLST);
+	}
+
+	@Override
 	public Boolean getAAPLSTHasTypeDictionary() {
 		COSObject AAPLST = getAAPLSTValue();
 		return getHasTypeDictionary(AAPLST);
@@ -982,6 +994,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getAISType() {
+		COSObject AIS = getAISValue();
+		return getObjectType(AIS);
+	}
+
+	@Override
 	public Boolean getAISHasTypeBoolean() {
 		COSObject AIS = getAISValue();
 		return getHasTypeBoolean(AIS);
@@ -1001,6 +1019,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public Boolean getisBGIndirect() {
 		COSObject BG = getBGValue();
 		return getisIndirect(BG);
+	}
+
+	@Override
+	public String getBGType() {
+		COSObject BG = getBGValue();
+		return getObjectType(BG);
 	}
 
 	@Override
@@ -1048,6 +1072,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getBG2Type() {
+		COSObject BG2 = getBG2Value();
+		return getObjectType(BG2);
+	}
+
+	@Override
 	public Boolean getBG2HasTypeDictionary() {
 		COSObject BG2 = getBG2Value();
 		return getHasTypeDictionary(BG2);
@@ -1073,6 +1103,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public COSObject getBMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BM"));
 		return object;
+	}
+
+	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
 	}
 
 	@Override
@@ -1104,6 +1140,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -1126,6 +1168,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject D = getDValue();
 		return getHasTypeArray(D);
@@ -1139,6 +1187,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public COSObject getFLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FL"));
 		return object;
+	}
+
+	@Override
+	public String getFLType() {
+		COSObject FL = getFLValue();
+		return getObjectType(FL);
 	}
 
 	@Override
@@ -1164,6 +1218,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getFontType() {
+		COSObject Font = getFontValue();
+		return getObjectType(Font);
+	}
+
+	@Override
 	public Boolean getFontHasTypeArray() {
 		COSObject Font = getFontValue();
 		return getHasTypeArray(Font);
@@ -1183,6 +1243,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public Boolean getisHTIndirect() {
 		COSObject HT = getHTValue();
 		return getisIndirect(HT);
+	}
+
+	@Override
+	public String getHTType() {
+		COSObject HT = getHTValue();
+		return getObjectType(HT);
 	}
 
 	@Override
@@ -1214,6 +1280,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getHTOType() {
+		COSObject HTO = getHTOValue();
+		return getObjectType(HTO);
+	}
+
+	@Override
 	public Boolean getHTOHasTypeArray() {
 		COSObject HTO = getHTOValue();
 		return getHasTypeArray(HTO);
@@ -1230,6 +1302,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getHTPType() {
+		COSObject HTP = getHTPValue();
+		return getObjectType(HTP);
+	}
+
+	@Override
 	public Boolean getHTPHasTypeArray() {
 		COSObject HTP = getHTPValue();
 		return getHasTypeArray(HTP);
@@ -1243,6 +1321,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public COSObject getLCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LC"));
 		return object;
+	}
+
+	@Override
+	public String getLCType() {
+		COSObject LC = getLCValue();
+		return getObjectType(LC);
 	}
 
 	@Override
@@ -1268,6 +1352,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getLJType() {
+		COSObject LJ = getLJValue();
+		return getObjectType(LJ);
+	}
+
+	@Override
 	public Boolean getLJHasTypeInteger() {
 		COSObject LJ = getLJValue();
 		return getHasTypeInteger(LJ);
@@ -1287,6 +1377,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public COSObject getLWValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LW"));
 		return object;
+	}
+
+	@Override
+	public String getLWType() {
+		COSObject LW = getLWValue();
+		return getObjectType(LW);
 	}
 
 	@Override
@@ -1312,6 +1408,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getMLType() {
+		COSObject ML = getMLValue();
+		return getObjectType(ML);
+	}
+
+	@Override
 	public Boolean getMLHasTypeNumber() {
 		COSObject ML = getMLValue();
 		return getHasTypeNumber(ML);
@@ -1334,6 +1436,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getOPType() {
+		COSObject OP = getOPValue();
+		return getObjectType(OP);
+	}
+
+	@Override
 	public Boolean getOPHasTypeBoolean() {
 		COSObject OP = getOPValue();
 		return getHasTypeBoolean(OP);
@@ -1347,6 +1455,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public COSObject getOPMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OPM"));
 		return object;
+	}
+
+	@Override
+	public String getOPMType() {
+		COSObject OPM = getOPMValue();
+		return getObjectType(OPM);
 	}
 
 	@Override
@@ -1372,6 +1486,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getRIType() {
+		COSObject RI = getRIValue();
+		return getObjectType(RI);
+	}
+
+	@Override
 	public Boolean getRIHasTypeName() {
 		COSObject RI = getRIValue();
 		return getHasTypeName(RI);
@@ -1394,6 +1514,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getSAType() {
+		COSObject SA = getSAValue();
+		return getObjectType(SA);
+	}
+
+	@Override
 	public Boolean getSAHasTypeBoolean() {
 		COSObject SA = getSAValue();
 		return getHasTypeBoolean(SA);
@@ -1407,6 +1533,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public COSObject getSMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SM"));
 		return object;
+	}
+
+	@Override
+	public String getSMType() {
+		COSObject SM = getSMValue();
+		return getObjectType(SM);
 	}
 
 	@Override
@@ -1429,6 +1561,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public COSObject getSMaskValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMask"));
 		return object;
+	}
+
+	@Override
+	public String getSMaskType() {
+		COSObject SMask = getSMaskValue();
+		return getObjectType(SMask);
 	}
 
 	@Override
@@ -1460,6 +1598,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getTKType() {
+		COSObject TK = getTKValue();
+		return getObjectType(TK);
+	}
+
+	@Override
 	public Boolean getTKHasTypeBoolean() {
 		COSObject TK = getTKValue();
 		return getHasTypeBoolean(TK);
@@ -1479,6 +1623,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public Boolean getisTRIndirect() {
 		COSObject TR = getTRValue();
 		return getisIndirect(TR);
+	}
+
+	@Override
+	public String getTRType() {
+		COSObject TR = getTRValue();
+		return getObjectType(TR);
 	}
 
 	@Override
@@ -1538,6 +1688,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getTR2Type() {
+		COSObject TR2 = getTR2Value();
+		return getObjectType(TR2);
+	}
+
+	@Override
 	public Boolean getTR2HasTypeArray() {
 		COSObject TR2 = getTR2Value();
 		return getHasTypeArray(TR2);
@@ -1572,6 +1728,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -1597,6 +1759,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public Boolean getisUCRIndirect() {
 		COSObject UCR = getUCRValue();
 		return getisIndirect(UCR);
+	}
+
+	@Override
+	public String getUCRType() {
+		COSObject UCR = getUCRValue();
+		return getObjectType(UCR);
 	}
 
 	@Override
@@ -1644,6 +1812,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getUCR2Type() {
+		COSObject UCR2 = getUCR2Value();
+		return getObjectType(UCR2);
+	}
+
+	@Override
 	public Boolean getUCR2HasTypeDictionary() {
 		COSObject UCR2 = getUCR2Value();
 		return getHasTypeDictionary(UCR2);
@@ -1683,6 +1857,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getUseBlackPtCompType() {
+		COSObject UseBlackPtComp = getUseBlackPtCompValue();
+		return getObjectType(UseBlackPtComp);
+	}
+
+	@Override
 	public Boolean getUseBlackPtCompHasTypeName() {
 		COSObject UseBlackPtComp = getUseBlackPtCompValue();
 		return getHasTypeName(UseBlackPtComp);
@@ -1705,6 +1885,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	}
 
 	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
+	}
+
+	@Override
 	public Boolean getcaHasTypeNumber() {
 		COSObject ca = getcaValue();
 		return getHasTypeNumber(ca);
@@ -1724,6 +1910,12 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 	public COSObject getopValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("op"));
 		return object;
+	}
+
+	@Override
+	public String getopType() {
+		COSObject op = getopValue();
+		return getObjectType(op);
 	}
 
 	@Override

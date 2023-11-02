@@ -27,6 +27,12 @@ public class GFAArrayOfBooleansGeneralEntry extends GFAObject implements AArrayO
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeBoolean() {
 		COSObject entry = getValue();
 		return getHasTypeBoolean(entry);

@@ -520,6 +520,12 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject D = getDValue();
 		return getHasTypeArray(D);
@@ -548,6 +554,12 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -570,6 +582,12 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	@Override
+	public String getNewWindowType() {
+		COSObject NewWindow = getNewWindowValue();
+		return getObjectType(NewWindow);
+	}
+
+	@Override
 	public Boolean getNewWindowHasTypeBoolean() {
 		COSObject NewWindow = getNewWindowValue();
 		return getHasTypeBoolean(NewWindow);
@@ -583,6 +601,12 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -608,6 +632,12 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -630,6 +660,12 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	}
 
 	@Override
+	public String getSDType() {
+		COSObject SD = getSDValue();
+		return getObjectType(SD);
+	}
+
+	@Override
 	public Boolean getSDHasTypeArray() {
 		COSObject SD = getSDValue();
 		return getHasTypeArray(SD);
@@ -643,6 +679,12 @@ public class GFAActionGoToR extends GFAObject implements AActionGoToR {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

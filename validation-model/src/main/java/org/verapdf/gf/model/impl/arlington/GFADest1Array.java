@@ -52,6 +52,12 @@ public class GFADest1Array extends GFAObject implements ADest1Array {
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeDictionary(entry0);
@@ -78,6 +84,12 @@ public class GFADest1Array extends GFAObject implements ADest1Array {
 	}
 
 	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
+	}
+
+	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject entry1 = getentry1Value();
 		return getHasTypeName(entry1);
@@ -95,6 +107,12 @@ public class GFADest1Array extends GFAObject implements ADest1Array {
 		}
 		COSObject object = this.baseObject.at(2);
 		return object;
+	}
+
+	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
 	}
 
 	@Override

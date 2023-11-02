@@ -67,6 +67,12 @@ public class GFAAppearanceTrapNetSubDictEntry extends GFAObject implements AAppe
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeStream() {
 		COSObject entry = getValue();
 		return getHasTypeStream(entry);

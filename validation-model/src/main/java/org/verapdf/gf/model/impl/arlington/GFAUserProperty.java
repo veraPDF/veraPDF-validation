@@ -71,6 +71,12 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeStringText() {
 		COSObject F = getFValue();
 		return getHasTypeStringText(F);
@@ -100,6 +106,12 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	}
 
 	@Override
+	public String getHType() {
+		COSObject H = getHValue();
+		return getObjectType(H);
+	}
+
+	@Override
 	public Boolean getHHasTypeBoolean() {
 		COSObject H = getHValue();
 		return getHasTypeBoolean(H);
@@ -113,6 +125,12 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	public COSObject getNValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
 		return object;
+	}
+
+	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
 	}
 
 	@Override
@@ -135,6 +153,12 @@ public class GFAUserProperty extends GFAObject implements AUserProperty {
 	public Boolean getisVIndirect() {
 		COSObject V = getVValue();
 		return getisIndirect(V);
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

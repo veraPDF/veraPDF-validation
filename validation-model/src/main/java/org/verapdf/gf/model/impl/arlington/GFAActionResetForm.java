@@ -428,6 +428,12 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 	}
 
 	@Override
+	public String getFieldsType() {
+		COSObject Fields = getFieldsValue();
+		return getObjectType(Fields);
+	}
+
+	@Override
 	public Boolean getFieldsHasTypeArray() {
 		COSObject Fields = getFieldsValue();
 		return getHasTypeArray(Fields);
@@ -461,6 +467,12 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 	}
 
 	@Override
+	public String getFlagsType() {
+		COSObject Flags = getFlagsValue();
+		return getObjectType(Flags);
+	}
+
+	@Override
 	public Boolean getFlagsHasTypeBitmask() {
 		COSObject Flags = getFlagsValue();
 		return getHasTypeBitmask(Flags);
@@ -480,6 +492,12 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -505,6 +523,12 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -524,6 +548,12 @@ public class GFAActionResetForm extends GFAObject implements AActionResetForm {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

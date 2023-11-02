@@ -41,6 +41,12 @@ public class GFAOptContentZoom extends GFAObject implements AOptContentZoom {
 	}
 
 	@Override
+	public String getmaxType() {
+		COSObject max = getmaxValue();
+		return getObjectType(max);
+	}
+
+	@Override
 	public Boolean getmaxHasTypeNumber() {
 		COSObject max = getmaxValue();
 		return getHasTypeNumber(max);
@@ -74,6 +80,12 @@ public class GFAOptContentZoom extends GFAObject implements AOptContentZoom {
 			object = getminDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getminType() {
+		COSObject min = getminValue();
+		return getObjectType(min);
 	}
 
 	@Override

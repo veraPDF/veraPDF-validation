@@ -138,6 +138,12 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	@Override
+	public String getDataType() {
+		COSObject Data = getDataValue();
+		return getObjectType(Data);
+	}
+
+	@Override
 	public Boolean getDataHasTypeStream() {
 		COSObject Data = getDataValue();
 		return getHasTypeStream(Data);
@@ -160,6 +166,12 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	@Override
+	public String getInstanceType() {
+		COSObject Instance = getInstanceValue();
+		return getObjectType(Instance);
+	}
+
+	@Override
 	public Boolean getInstanceHasTypeDictionary() {
 		COSObject Instance = getInstanceValue();
 		return getHasTypeDictionary(Instance);
@@ -173,6 +185,12 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -192,6 +210,12 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeString() {
 		COSObject N = getNValue();
 		return getHasTypeString(N);
@@ -205,6 +229,12 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	public COSObject getOValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
 		return object;
+	}
+
+	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
 	}
 
 	@Override
@@ -230,6 +260,12 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	}
 
 	@Override
+	public String getRMType() {
+		COSObject RM = getRMValue();
+		return getObjectType(RM);
+	}
+
+	@Override
 	public Boolean getRMHasTypeDictionary() {
 		COSObject RM = getRMValue();
 		return getHasTypeDictionary(RM);
@@ -243,6 +279,12 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -265,6 +307,12 @@ public class GFA3DNode extends GFAObject implements A3DNode {
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

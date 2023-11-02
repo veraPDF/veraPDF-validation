@@ -155,6 +155,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
+	public String getDurationType() {
+		COSObject Duration = getDurationValue();
+		return getObjectType(Duration);
+	}
+
+	@Override
 	public Boolean getDurationHasTypeArray() {
 		COSObject Duration = getDurationValue();
 		return getHasTypeArray(Duration);
@@ -198,6 +204,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
+	public String getFWPositionType() {
+		COSObject FWPosition = getFWPositionValue();
+		return getObjectType(FWPosition);
+	}
+
+	@Override
 	public Boolean getFWPositionHasTypeArray() {
 		COSObject FWPosition = getFWPositionValue();
 		return getHasTypeArray(FWPosition);
@@ -211,6 +223,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	public COSObject getFWScaleValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FWScale"));
 		return object;
+	}
+
+	@Override
+	public String getFWScaleType() {
+		COSObject FWScale = getFWScaleValue();
+		return getObjectType(FWScale);
 	}
 
 	@Override
@@ -244,6 +262,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 			object = getModeDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getModeType() {
+		COSObject Mode = getModeValue();
+		return getObjectType(Mode);
 	}
 
 	@Override
@@ -286,6 +310,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
+	public String getRateType() {
+		COSObject Rate = getRateValue();
+		return getObjectType(Rate);
+	}
+
+	@Override
 	public Boolean getRateHasTypeNumber() {
 		COSObject Rate = getRateValue();
 		return getHasTypeNumber(Rate);
@@ -319,6 +349,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
+	public String getShowControlsType() {
+		COSObject ShowControls = getShowControlsValue();
+		return getObjectType(ShowControls);
+	}
+
+	@Override
 	public Boolean getShowControlsHasTypeBoolean() {
 		COSObject ShowControls = getShowControlsValue();
 		return getHasTypeBoolean(ShowControls);
@@ -349,6 +385,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 			object = getStartDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getStartType() {
+		COSObject Start = getStartValue();
+		return getObjectType(Start);
 	}
 
 	@Override
@@ -412,6 +454,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	}
 
 	@Override
+	public String getSynchronousType() {
+		COSObject Synchronous = getSynchronousValue();
+		return getObjectType(Synchronous);
+	}
+
+	@Override
 	public Boolean getSynchronousHasTypeBoolean() {
 		COSObject Synchronous = getSynchronousValue();
 		return getHasTypeBoolean(Synchronous);
@@ -442,6 +490,12 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 			object = getVolumeDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVolumeType() {
+		COSObject Volume = getVolumeValue();
+		return getObjectType(Volume);
 	}
 
 	@Override

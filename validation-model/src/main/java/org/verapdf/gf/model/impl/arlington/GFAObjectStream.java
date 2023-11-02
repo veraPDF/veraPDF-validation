@@ -255,6 +255,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -274,6 +280,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -311,6 +323,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	@Override
+	public String getExtendsType() {
+		COSObject Extends = getExtendsValue();
+		return getObjectType(Extends);
+	}
+
+	@Override
 	public Boolean getExtendsHasTypeStream() {
 		COSObject Extends = getExtendsValue();
 		return getHasTypeStream(Extends);
@@ -333,6 +351,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -352,6 +376,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -380,6 +410,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -417,6 +453,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -451,6 +493,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	@Override
+	public String getFirstType() {
+		COSObject First = getFirstValue();
+		return getObjectType(First);
+	}
+
+	@Override
 	public Boolean getFirstHasTypeInteger() {
 		COSObject First = getFirstValue();
 		return getHasTypeInteger(First);
@@ -473,6 +521,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -486,6 +540,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	public COSObject getNValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
 		return object;
+	}
+
+	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
 	}
 
 	@Override
@@ -508,6 +568,12 @@ public class GFAObjectStream extends GFAObject implements AObjectStream {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

@@ -27,6 +27,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getAscentType() {
+		COSObject Ascent = getAscentValue();
+		return getObjectType(Ascent);
+	}
+
+	@Override
 	public Boolean getAscentHasTypeNumber() {
 		COSObject Ascent = getAscentValue();
 		return getHasTypeNumber(Ascent);
@@ -60,6 +66,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getAvgWidthType() {
+		COSObject AvgWidth = getAvgWidthValue();
+		return getObjectType(AvgWidth);
+	}
+
+	@Override
 	public Boolean getAvgWidthHasTypeNumber() {
 		COSObject AvgWidth = getAvgWidthValue();
 		return getHasTypeNumber(AvgWidth);
@@ -73,6 +85,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	public COSObject getCapHeightValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CapHeight"));
 		return object;
+	}
+
+	@Override
+	public String getCapHeightType() {
+		COSObject CapHeight = getCapHeightValue();
+		return getObjectType(CapHeight);
 	}
 
 	@Override
@@ -92,6 +110,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getCharSetType() {
+		COSObject CharSet = getCharSetValue();
+		return getObjectType(CharSet);
+	}
+
+	@Override
 	public Boolean getCharSetHasTypeString() {
 		COSObject CharSet = getCharSetValue();
 		return getHasTypeString(CharSet);
@@ -105,6 +129,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	public COSObject getDescentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Descent"));
 		return object;
+	}
+
+	@Override
+	public String getDescentType() {
+		COSObject Descent = getDescentValue();
+		return getObjectType(Descent);
 	}
 
 	@Override
@@ -130,6 +160,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getFlagsType() {
+		COSObject Flags = getFlagsValue();
+		return getObjectType(Flags);
+	}
+
+	@Override
 	public Boolean getFlagsHasTypeBitmask() {
 		COSObject Flags = getFlagsValue();
 		return getHasTypeBitmask(Flags);
@@ -152,6 +188,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getFontBBoxType() {
+		COSObject FontBBox = getFontBBoxValue();
+		return getObjectType(FontBBox);
+	}
+
+	@Override
 	public Boolean getFontBBoxHasTypeRectangle() {
 		COSObject FontBBox = getFontBBoxValue();
 		return getHasTypeRectangle(FontBBox);
@@ -168,6 +210,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getFontNameType() {
+		COSObject FontName = getFontNameValue();
+		return getObjectType(FontName);
+	}
+
+	@Override
 	public Boolean getFontNameHasTypeName() {
 		COSObject FontName = getFontNameValue();
 		return getHasTypeName(FontName);
@@ -181,6 +229,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	public COSObject getItalicAngleValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ItalicAngle"));
 		return object;
+	}
+
+	@Override
+	public String getItalicAngleType() {
+		COSObject ItalicAngle = getItalicAngleValue();
+		return getObjectType(ItalicAngle);
 	}
 
 	@Override
@@ -217,6 +271,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getLeadingType() {
+		COSObject Leading = getLeadingValue();
+		return getObjectType(Leading);
+	}
+
+	@Override
 	public Boolean getLeadingHasTypeNumber() {
 		COSObject Leading = getLeadingValue();
 		return getHasTypeNumber(Leading);
@@ -247,6 +307,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 			object = getMaxWidthDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getMaxWidthType() {
+		COSObject MaxWidth = getMaxWidthValue();
+		return getObjectType(MaxWidth);
 	}
 
 	@Override
@@ -283,6 +349,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getMissingWidthType() {
+		COSObject MissingWidth = getMissingWidthValue();
+		return getObjectType(MissingWidth);
+	}
+
+	@Override
 	public Boolean getMissingWidthHasTypeNumber() {
 		COSObject MissingWidth = getMissingWidthValue();
 		return getHasTypeNumber(MissingWidth);
@@ -316,6 +388,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getStemHType() {
+		COSObject StemH = getStemHValue();
+		return getObjectType(StemH);
+	}
+
+	@Override
 	public Boolean getStemHHasTypeNumber() {
 		COSObject StemH = getStemHValue();
 		return getHasTypeNumber(StemH);
@@ -332,6 +410,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	}
 
 	@Override
+	public String getStemVType() {
+		COSObject StemV = getStemVValue();
+		return getObjectType(StemV);
+	}
+
+	@Override
 	public Boolean getStemVHasTypeNumber() {
 		COSObject StemV = getStemVValue();
 		return getHasTypeNumber(StemV);
@@ -345,6 +429,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -384,6 +474,12 @@ public class GFACIDFontDescriptorMetrics extends GFAObject implements ACIDFontDe
 			object = getXHeightDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getXHeightType() {
+		COSObject XHeight = getXHeightValue();
+		return getObjectType(XHeight);
 	}
 
 	@Override

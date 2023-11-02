@@ -44,6 +44,12 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	}
 
 	@Override
+	public String getBitsPerComponentType() {
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getObjectType(BitsPerComponent);
+	}
+
+	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
 		COSObject BitsPerComponent = getBitsPerComponentValue();
 		return getHasTypeInteger(BitsPerComponent);
@@ -80,6 +86,12 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 			object = getColorsDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getColorsType() {
+		COSObject Colors = getColorsValue();
+		return getObjectType(Colors);
 	}
 
 	@Override
@@ -122,6 +134,12 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	}
 
 	@Override
+	public String getColumnsType() {
+		COSObject Columns = getColumnsValue();
+		return getObjectType(Columns);
+	}
+
+	@Override
 	public Boolean getColumnsHasTypeInteger() {
 		COSObject Columns = getColumnsValue();
 		return getHasTypeInteger(Columns);
@@ -135,6 +153,12 @@ public class GFAFilterFlateDecode extends GFAObject implements AFilterFlateDecod
 	public COSObject getPredictorValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Predictor"));
 		return object;
+	}
+
+	@Override
+	public String getPredictorType() {
+		COSObject Predictor = getPredictorValue();
+		return getObjectType(Predictor);
 	}
 
 	@Override

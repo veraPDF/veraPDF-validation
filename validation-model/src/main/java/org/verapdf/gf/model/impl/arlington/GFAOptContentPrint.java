@@ -27,6 +27,12 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 	}
 
 	@Override
+	public String getPrintStateType() {
+		COSObject PrintState = getPrintStateValue();
+		return getObjectType(PrintState);
+	}
+
+	@Override
 	public Boolean getPrintStateHasTypeName() {
 		COSObject PrintState = getPrintStateValue();
 		return getHasTypeName(PrintState);
@@ -46,6 +52,12 @@ public class GFAOptContentPrint extends GFAObject implements AOptContentPrint {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override

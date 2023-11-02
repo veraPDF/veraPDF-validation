@@ -149,6 +149,12 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	@Override
+	public String getAppType() {
+		COSObject App = getAppValue();
+		return getObjectType(App);
+	}
+
+	@Override
 	public Boolean getAppHasTypeDictionary() {
 		COSObject App = getAppValue();
 		return getHasTypeDictionary(App);
@@ -168,6 +174,12 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	public Boolean getisFilterIndirect() {
 		COSObject Filter = getFilterValue();
 		return getisIndirect(Filter);
+	}
+
+	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
 	}
 
 	@Override
@@ -193,6 +205,12 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	}
 
 	@Override
+	public String getPubSecType() {
+		COSObject PubSec = getPubSecValue();
+		return getObjectType(PubSec);
+	}
+
+	@Override
 	public Boolean getPubSecHasTypeDictionary() {
 		COSObject PubSec = getPubSecValue();
 		return getHasTypeDictionary(PubSec);
@@ -212,6 +230,12 @@ public class GFASignatureBuildPropDict extends GFAObject implements ASignatureBu
 	public Boolean getisSigQIndirect() {
 		COSObject SigQ = getSigQValue();
 		return getisIndirect(SigQ);
+	}
+
+	@Override
+	public String getSigQType() {
+		COSObject SigQ = getSigQValue();
+		return getObjectType(SigQ);
 	}
 
 	@Override

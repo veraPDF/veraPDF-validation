@@ -122,6 +122,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	}
 
 	@Override
+	public String getBaseFontType() {
+		COSObject BaseFont = getBaseFontValue();
+		return getObjectType(BaseFont);
+	}
+
+	@Override
 	public Boolean getBaseFontHasTypeName() {
 		COSObject BaseFont = getBaseFontValue();
 		return getHasTypeName(BaseFont);
@@ -135,6 +141,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	public COSObject getEncodingValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
 		return object;
+	}
+
+	@Override
+	public String getEncodingType() {
+		COSObject Encoding = getEncodingValue();
+		return getObjectType(Encoding);
 	}
 
 	@Override
@@ -166,6 +178,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	}
 
 	@Override
+	public String getFirstCharType() {
+		COSObject FirstChar = getFirstCharValue();
+		return getObjectType(FirstChar);
+	}
+
+	@Override
 	public Boolean getFirstCharHasTypeInteger() {
 		COSObject FirstChar = getFirstCharValue();
 		return getHasTypeInteger(FirstChar);
@@ -188,6 +206,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	}
 
 	@Override
+	public String getFontDescriptorType() {
+		COSObject FontDescriptor = getFontDescriptorValue();
+		return getObjectType(FontDescriptor);
+	}
+
+	@Override
 	public Boolean getFontDescriptorHasTypeDictionary() {
 		COSObject FontDescriptor = getFontDescriptorValue();
 		return getHasTypeDictionary(FontDescriptor);
@@ -201,6 +225,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	public COSObject getLastCharValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LastChar"));
 		return object;
+	}
+
+	@Override
+	public String getLastCharType() {
+		COSObject LastChar = getLastCharValue();
+		return getObjectType(LastChar);
 	}
 
 	@Override
@@ -220,6 +250,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeName() {
 		COSObject Name = getNameValue();
 		return getHasTypeName(Name);
@@ -233,6 +269,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -264,6 +306,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	}
 
 	@Override
+	public String getToUnicodeType() {
+		COSObject ToUnicode = getToUnicodeValue();
+		return getObjectType(ToUnicode);
+	}
+
+	@Override
 	public Boolean getToUnicodeHasTypeStream() {
 		COSObject ToUnicode = getToUnicodeValue();
 		return getHasTypeStream(ToUnicode);
@@ -277,6 +325,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -299,6 +353,12 @@ public class GFAFontMultipleMaster extends GFAObject implements AFontMultipleMas
 	public COSObject getWidthsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Widths"));
 		return object;
+	}
+
+	@Override
+	public String getWidthsType() {
+		COSObject Widths = getWidthsValue();
+		return getObjectType(Widths);
 	}
 
 	@Override

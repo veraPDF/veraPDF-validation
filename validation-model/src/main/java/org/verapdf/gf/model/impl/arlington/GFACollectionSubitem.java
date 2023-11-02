@@ -27,6 +27,12 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeDate() {
 		COSObject D = getDValue();
 		return getHasTypeDate(D);
@@ -55,6 +61,12 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeStringText() {
 		COSObject P = getPValue();
 		return getHasTypeStringText(P);
@@ -68,6 +80,12 @@ public class GFACollectionSubitem extends GFAObject implements ACollectionSubite
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

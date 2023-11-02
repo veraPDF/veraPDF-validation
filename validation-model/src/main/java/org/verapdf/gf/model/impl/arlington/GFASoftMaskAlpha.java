@@ -168,6 +168,12 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	}
 
 	@Override
+	public String getBCType() {
+		COSObject BC = getBCValue();
+		return getObjectType(BC);
+	}
+
+	@Override
 	public Boolean getBCHasTypeArray() {
 		COSObject BC = getBCValue();
 		return getHasTypeArray(BC);
@@ -190,6 +196,12 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	}
 
 	@Override
+	public String getGType() {
+		COSObject G = getGValue();
+		return getObjectType(G);
+	}
+
+	@Override
 	public Boolean getGHasTypeStream() {
 		COSObject G = getGValue();
 		return getHasTypeStream(G);
@@ -203,6 +215,12 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -249,6 +267,12 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	}
 
 	@Override
+	public String getTRType() {
+		COSObject TR = getTRValue();
+		return getObjectType(TR);
+	}
+
+	@Override
 	public Boolean getTRHasTypeDictionary() {
 		COSObject TR = getTRValue();
 		return getHasTypeDictionary(TR);
@@ -280,6 +304,12 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

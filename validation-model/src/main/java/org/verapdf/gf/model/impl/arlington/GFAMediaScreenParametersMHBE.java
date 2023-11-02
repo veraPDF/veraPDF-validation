@@ -89,6 +89,12 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	@Override
+	public String getBType() {
+		COSObject B = getBValue();
+		return getObjectType(B);
+	}
+
+	@Override
 	public Boolean getBHasTypeArray() {
 		COSObject B = getBValue();
 		return getHasTypeArray(B);
@@ -102,6 +108,12 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	public COSObject getFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object;
+	}
+
+	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
 	}
 
 	@Override
@@ -132,6 +144,12 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 			object = getMDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -171,6 +189,12 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 	}
 
 	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
+	}
+
+	@Override
 	public Boolean getOHasTypeNumber() {
 		COSObject O = getOValue();
 		return getHasTypeNumber(O);
@@ -204,6 +228,12 @@ public class GFAMediaScreenParametersMHBE extends GFAObject implements AMediaScr
 			object = getWDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getWType() {
+		COSObject W = getWValue();
+		return getObjectType(W);
 	}
 
 	@Override

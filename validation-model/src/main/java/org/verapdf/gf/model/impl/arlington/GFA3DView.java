@@ -289,6 +289,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getBGType() {
+		COSObject BG = getBGValue();
+		return getObjectType(BG);
+	}
+
+	@Override
 	public Boolean getBGHasTypeDictionary() {
 		COSObject BG = getBGValue();
 		return getHasTypeDictionary(BG);
@@ -302,6 +308,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	public COSObject getC2WValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C2W"));
 		return object;
+	}
+
+	@Override
+	public String getC2WType() {
+		COSObject C2W = getC2WValue();
+		return getObjectType(C2W);
 	}
 
 	@Override
@@ -321,6 +333,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getCOType() {
+		COSObject CO = getCOValue();
+		return getObjectType(CO);
+	}
+
+	@Override
 	public Boolean getCOHasTypeNumber() {
 		COSObject CO = getCOValue();
 		return getHasTypeNumber(CO);
@@ -334,6 +352,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	public COSObject getINValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IN"));
 		return object;
+	}
+
+	@Override
+	public String getINType() {
+		COSObject IN = getINValue();
+		return getObjectType(IN);
 	}
 
 	@Override
@@ -353,6 +377,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getLSType() {
+		COSObject LS = getLSValue();
+		return getObjectType(LS);
+	}
+
+	@Override
 	public Boolean getLSHasTypeDictionary() {
 		COSObject LS = getLSValue();
 		return getHasTypeDictionary(LS);
@@ -369,6 +399,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getMAType() {
+		COSObject MA = getMAValue();
+		return getObjectType(MA);
+	}
+
+	@Override
 	public Boolean getMAHasTypeArray() {
 		COSObject MA = getMAValue();
 		return getHasTypeArray(MA);
@@ -382,6 +418,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	public COSObject getMSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MS"));
 		return object;
+	}
+
+	@Override
+	public String getMSType() {
+		COSObject MS = getMSValue();
+		return getObjectType(MS);
 	}
 
 	@Override
@@ -404,6 +446,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	public COSObject getNAValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
 		return object;
+	}
+
+	@Override
+	public String getNAType() {
+		COSObject NA = getNAValue();
+		return getObjectType(NA);
 	}
 
 	@Override
@@ -435,6 +483,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getNRType() {
+		COSObject NR = getNRValue();
+		return getObjectType(NR);
+	}
+
+	@Override
 	public Boolean getNRHasTypeBoolean() {
 		COSObject NR = getNRValue();
 		return getHasTypeBoolean(NR);
@@ -457,6 +511,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
+	}
+
+	@Override
 	public Boolean getOHasTypeStream() {
 		COSObject O = getOValue();
 		return getHasTypeStream(O);
@@ -470,6 +530,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	public COSObject getPValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		return object;
+	}
+
+	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
 	}
 
 	@Override
@@ -489,6 +555,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getRMType() {
+		COSObject RM = getRMValue();
+		return getObjectType(RM);
+	}
+
+	@Override
 	public Boolean getRMHasTypeDictionary() {
 		COSObject RM = getRMValue();
 		return getHasTypeDictionary(RM);
@@ -505,6 +577,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getSAType() {
+		COSObject SA = getSAValue();
+		return getObjectType(SA);
+	}
+
+	@Override
 	public Boolean getSAHasTypeArray() {
 		COSObject SA = getSAValue();
 		return getHasTypeArray(SA);
@@ -518,6 +596,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -543,6 +627,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	}
 
 	@Override
+	public String getU3DPathType() {
+		COSObject U3DPath = getU3DPathValue();
+		return getObjectType(U3DPath);
+	}
+
+	@Override
 	public Boolean getU3DPathHasTypeArray() {
 		COSObject U3DPath = getU3DPathValue();
 		return getHasTypeArray(U3DPath);
@@ -562,6 +652,12 @@ public class GFA3DView extends GFAObject implements A3DView {
 	public COSObject getXNValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XN"));
 		return object;
+	}
+
+	@Override
+	public String getXNType() {
+		COSObject XN = getXNValue();
+		return getObjectType(XN);
 	}
 
 	@Override

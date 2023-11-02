@@ -75,6 +75,12 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	}
 
 	@Override
+	public String getPenaltyType() {
+		COSObject Penalty = getPenaltyValue();
+		return getObjectType(Penalty);
+	}
+
+	@Override
 	public Boolean getPenaltyHasTypeInteger() {
 		COSObject Penalty = getPenaltyValue();
 		return getHasTypeInteger(Penalty);
@@ -94,6 +100,12 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	public COSObject getRHValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RH"));
 		return object;
+	}
+
+	@Override
+	public String getRHType() {
+		COSObject RH = getRHValue();
+		return getObjectType(RH);
 	}
 
 	@Override
@@ -119,6 +131,12 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -141,6 +159,12 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -160,6 +184,12 @@ public class GFARequirementsglTF extends GFAObject implements ARequirementsglTF 
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

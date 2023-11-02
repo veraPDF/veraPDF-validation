@@ -127,6 +127,12 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	@Override
+	public String getCTType() {
+		COSObject CT = getCTValue();
+		return getObjectType(CT);
+	}
+
+	@Override
 	public Boolean getCTHasTypeString() {
 		COSObject CT = getCTValue();
 		return getHasTypeString(CT);
@@ -143,6 +149,12 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
+	}
+
+	@Override
 	public Boolean getentryIDHasTypeString() {
 		COSObject entryID = getentryIDValue();
 		return getHasTypeString(entryID);
@@ -156,6 +168,12 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	public COSObject getOValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
 		return object;
+	}
+
+	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
 	}
 
 	@Override
@@ -178,6 +196,12 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	public COSObject getRValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object;
+	}
+
+	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
 	}
 
 	@Override
@@ -215,6 +239,12 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -234,6 +264,12 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	public COSObject getSIValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SI"));
 		return object;
+	}
+
+	@Override
+	public String getSIType() {
+		COSObject SI = getSIValue();
+		return getObjectType(SI);
 	}
 
 	@Override
@@ -259,6 +295,12 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	}
 
 	@Override
+	public String getTSType() {
+		COSObject TS = getTSValue();
+		return getObjectType(TS);
+	}
+
+	@Override
 	public Boolean getTSHasTypeDate() {
 		COSObject TS = getTSValue();
 		return getHasTypeDate(TS);
@@ -272,6 +314,12 @@ public class GFAWebCaptureImageSet extends GFAObject implements AWebCaptureImage
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

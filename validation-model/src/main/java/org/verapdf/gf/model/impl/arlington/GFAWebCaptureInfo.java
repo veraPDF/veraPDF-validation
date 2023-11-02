@@ -64,6 +64,12 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject C = getCValue();
 		return getHasTypeArray(C);
@@ -77,6 +83,12 @@ public class GFAWebCaptureInfo extends GFAObject implements AWebCaptureInfo {
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

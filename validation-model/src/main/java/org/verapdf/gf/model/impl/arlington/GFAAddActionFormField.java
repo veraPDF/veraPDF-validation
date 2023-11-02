@@ -151,6 +151,12 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject C = getCValue();
 		return getHasTypeDictionary(C);
@@ -164,6 +170,12 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	public COSObject getFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object;
+	}
+
+	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
 	}
 
 	@Override
@@ -183,6 +195,12 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	}
 
 	@Override
+	public String getKType() {
+		COSObject K = getKValue();
+		return getObjectType(K);
+	}
+
+	@Override
 	public Boolean getKHasTypeDictionary() {
 		COSObject K = getKValue();
 		return getHasTypeDictionary(K);
@@ -196,6 +214,12 @@ public class GFAAddActionFormField extends GFAObject implements AAddActionFormFi
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

@@ -105,6 +105,12 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 	}
 
 	@Override
+	public String getDataType() {
+		COSObject Data = getDataValue();
+		return getObjectType(Data);
+	}
+
+	@Override
 	public Boolean getDataHasTypeArray() {
 		COSObject Data = getDataValue();
 		return getHasTypeArray(Data);
@@ -172,6 +178,12 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 	}
 
 	@Override
+	public String getDigestMethodType() {
+		COSObject DigestMethod = getDigestMethodValue();
+		return getObjectType(DigestMethod);
+	}
+
+	@Override
 	public Boolean getDigestMethodHasTypeName() {
 		COSObject DigestMethod = getDigestMethodValue();
 		return getHasTypeName(DigestMethod);
@@ -191,6 +203,12 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 	public COSObject getTransformMethodValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TransformMethod"));
 		return object;
+	}
+
+	@Override
+	public String getTransformMethodType() {
+		COSObject TransformMethod = getTransformMethodValue();
+		return getObjectType(TransformMethod);
 	}
 
 	@Override
@@ -216,6 +234,12 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 	}
 
 	@Override
+	public String getTransformParamsType() {
+		COSObject TransformParams = getTransformParamsValue();
+		return getObjectType(TransformParams);
+	}
+
+	@Override
 	public Boolean getTransformParamsHasTypeDictionary() {
 		COSObject TransformParams = getTransformParamsValue();
 		return getHasTypeDictionary(TransformParams);
@@ -229,6 +253,12 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

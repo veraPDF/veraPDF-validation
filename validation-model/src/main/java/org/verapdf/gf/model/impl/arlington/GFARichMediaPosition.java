@@ -39,6 +39,12 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	}
 
 	@Override
+	public String getHAlignType() {
+		COSObject HAlign = getHAlignValue();
+		return getObjectType(HAlign);
+	}
+
+	@Override
 	public Boolean getHAlignHasTypeName() {
 		COSObject HAlign = getHAlignValue();
 		return getHasTypeName(HAlign);
@@ -73,6 +79,12 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	}
 
 	@Override
+	public String getHOffsetType() {
+		COSObject HOffset = getHOffsetValue();
+		return getObjectType(HOffset);
+	}
+
+	@Override
 	public Boolean getHOffsetHasTypeNumber() {
 		COSObject HOffset = getHOffsetValue();
 		return getHasTypeNumber(HOffset);
@@ -86,6 +98,12 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -123,6 +141,12 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 	}
 
 	@Override
+	public String getVAlignType() {
+		COSObject VAlign = getVAlignValue();
+		return getObjectType(VAlign);
+	}
+
+	@Override
 	public Boolean getVAlignHasTypeName() {
 		COSObject VAlign = getVAlignValue();
 		return getHasTypeName(VAlign);
@@ -154,6 +178,12 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 			object = getVOffsetDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVOffsetType() {
+		COSObject VOffset = getVOffsetValue();
+		return getObjectType(VOffset);
 	}
 
 	@Override

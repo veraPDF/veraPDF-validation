@@ -85,6 +85,12 @@ public class GFAPointData extends GFAObject implements APointData {
 	}
 
 	@Override
+	public String getNamesType() {
+		COSObject Names = getNamesValue();
+		return getObjectType(Names);
+	}
+
+	@Override
 	public Boolean getNamesHasTypeArray() {
 		COSObject Names = getNamesValue();
 		return getHasTypeArray(Names);
@@ -98,6 +104,12 @@ public class GFAPointData extends GFAObject implements APointData {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -123,6 +135,12 @@ public class GFAPointData extends GFAObject implements APointData {
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -142,6 +160,12 @@ public class GFAPointData extends GFAObject implements APointData {
 	public COSObject getXPTSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XPTS"));
 		return object;
+	}
+
+	@Override
+	public String getXPTSType() {
+		COSObject XPTS = getXPTSValue();
+		return getObjectType(XPTS);
 	}
 
 	@Override

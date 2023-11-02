@@ -422,6 +422,12 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject D = getDValue();
 		return getHasTypeDictionary(D);
@@ -450,6 +456,12 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeDictionary() {
 		COSObject N = getNValue();
 		return getHasTypeDictionary(N);
@@ -475,6 +487,12 @@ public class GFAAppearance extends GFAObject implements AAppearance {
 	public Boolean getisRIndirect() {
 		COSObject R = getRValue();
 		return getisIndirect(R);
+	}
+
+	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
 	}
 
 	@Override

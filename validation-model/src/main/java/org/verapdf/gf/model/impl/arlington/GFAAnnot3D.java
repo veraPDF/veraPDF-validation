@@ -348,6 +348,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getentry3DAType() {
+		COSObject entry3DA = getentry3DAValue();
+		return getObjectType(entry3DA);
+	}
+
+	@Override
 	public Boolean getentry3DAHasTypeDictionary() {
 		COSObject entry3DA = getentry3DAValue();
 		return getHasTypeDictionary(entry3DA);
@@ -361,6 +367,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getentry3DBValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DB"));
 		return object;
+	}
+
+	@Override
+	public String getentry3DBType() {
+		COSObject entry3DB = getentry3DBValue();
+		return getObjectType(entry3DB);
 	}
 
 	@Override
@@ -383,6 +395,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public Boolean getisentry3DDIndirect() {
 		COSObject entry3DD = getentry3DDValue();
 		return getisIndirect(entry3DD);
+	}
+
+	@Override
+	public String getentry3DDType() {
+		COSObject entry3DD = getentry3DDValue();
+		return getObjectType(entry3DD);
 	}
 
 	@Override
@@ -421,6 +439,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getentry3DIType() {
+		COSObject entry3DI = getentry3DIValue();
+		return getObjectType(entry3DI);
+	}
+
+	@Override
 	public Boolean getentry3DIHasTypeBoolean() {
 		COSObject entry3DI = getentry3DIValue();
 		return getHasTypeBoolean(entry3DI);
@@ -437,6 +461,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getentry3DUType() {
+		COSObject entry3DU = getentry3DUValue();
+		return getObjectType(entry3DU);
+	}
+
+	@Override
 	public Boolean getentry3DUHasTypeDictionary() {
 		COSObject entry3DU = getentry3DUValue();
 		return getHasTypeDictionary(entry3DU);
@@ -450,6 +480,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getentry3DVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DV"));
 		return object;
+	}
+
+	@Override
+	public String getentry3DVType() {
+		COSObject entry3DV = getentry3DVValue();
+		return getObjectType(entry3DV);
 	}
 
 	@Override
@@ -487,6 +523,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -509,6 +551,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -522,6 +570,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getASValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
 		return object;
+	}
+
+	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
 	}
 
 	@Override
@@ -552,6 +606,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -574,6 +634,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -587,6 +653,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -617,6 +689,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -636,6 +714,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getContentsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
 		return object;
+	}
+
+	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
 	}
 
 	@Override
@@ -668,6 +752,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -690,6 +780,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getGEOType() {
+		COSObject GEO = getGEOValue();
+		return getObjectType(GEO);
+	}
+
+	@Override
 	public Boolean getGEOHasTypeDictionary() {
 		COSObject GEO = getGEOValue();
 		return getHasTypeDictionary(GEO);
@@ -706,6 +802,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -719,6 +821,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -744,6 +852,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
+	}
+
+	@Override
 	public Boolean getNMHasTypeStringText() {
 		COSObject NM = getNMValue();
 		return getHasTypeStringText(NM);
@@ -757,6 +871,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -782,6 +902,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -795,6 +921,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getRectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
 		return object;
+	}
+
+	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
 	}
 
 	@Override
@@ -826,6 +958,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -839,6 +977,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -861,6 +1005,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -894,6 +1044,12 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

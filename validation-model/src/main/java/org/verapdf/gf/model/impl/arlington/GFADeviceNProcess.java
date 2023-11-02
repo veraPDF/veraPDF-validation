@@ -114,6 +114,12 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	}
 
 	@Override
+	public String getColorSpaceType() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getObjectType(ColorSpace);
+	}
+
+	@Override
 	public Boolean getColorSpaceHasTypeArray() {
 		COSObject ColorSpace = getColorSpaceValue();
 		return getHasTypeArray(ColorSpace);
@@ -139,6 +145,12 @@ public class GFADeviceNProcess extends GFAObject implements ADeviceNProcess {
 	public COSObject getComponentsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Components"));
 		return object;
+	}
+
+	@Override
+	public String getComponentsType() {
+		COSObject Components = getComponentsValue();
+		return getObjectType(Components);
 	}
 
 	@Override

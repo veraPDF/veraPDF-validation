@@ -253,6 +253,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	@Override
+	public String getBoundsType() {
+		COSObject Bounds = getBoundsValue();
+		return getObjectType(Bounds);
+	}
+
+	@Override
 	public Boolean getBoundsHasTypeArray() {
 		COSObject Bounds = getBoundsValue();
 		return getHasTypeArray(Bounds);
@@ -266,6 +272,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	public COSObject getDCSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DCS"));
 		return object;
+	}
+
+	@Override
+	public String getDCSType() {
+		COSObject DCS = getDCSValue();
+		return getObjectType(DCS);
 	}
 
 	@Override
@@ -285,6 +297,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	@Override
+	public String getGCSType() {
+		COSObject GCS = getGCSValue();
+		return getObjectType(GCS);
+	}
+
+	@Override
 	public Boolean getGCSHasTypeDictionary() {
 		COSObject GCS = getGCSValue();
 		return getHasTypeDictionary(GCS);
@@ -298,6 +316,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	public COSObject getGPTSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GPTS"));
 		return object;
+	}
+
+	@Override
+	public String getGPTSType() {
+		COSObject GPTS = getGPTSValue();
+		return getObjectType(GPTS);
 	}
 
 	@Override
@@ -317,6 +341,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	@Override
+	public String getLPTSType() {
+		COSObject LPTS = getLPTSValue();
+		return getObjectType(LPTS);
+	}
+
+	@Override
 	public Boolean getLPTSHasTypeArray() {
 		COSObject LPTS = getLPTSValue();
 		return getHasTypeArray(LPTS);
@@ -330,6 +360,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	public COSObject getPCSMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PCSM"));
 		return object;
+	}
+
+	@Override
+	public String getPCSMType() {
+		COSObject PCSM = getPCSMValue();
+		return getObjectType(PCSM);
 	}
 
 	@Override
@@ -349,6 +385,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	}
 
 	@Override
+	public String getPDUType() {
+		COSObject PDU = getPDUValue();
+		return getObjectType(PDU);
+	}
+
+	@Override
 	public Boolean getPDUHasTypeArray() {
 		COSObject PDU = getPDUValue();
 		return getHasTypeArray(PDU);
@@ -362,6 +404,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -384,6 +432,12 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

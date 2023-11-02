@@ -185,6 +185,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getAscentType() {
+		COSObject Ascent = getAscentValue();
+		return getObjectType(Ascent);
+	}
+
+	@Override
 	public Boolean getAscentHasTypeNumber() {
 		COSObject Ascent = getAscentValue();
 		return getHasTypeNumber(Ascent);
@@ -218,6 +224,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getAvgWidthType() {
+		COSObject AvgWidth = getAvgWidthValue();
+		return getObjectType(AvgWidth);
+	}
+
+	@Override
 	public Boolean getAvgWidthHasTypeNumber() {
 		COSObject AvgWidth = getAvgWidthValue();
 		return getHasTypeNumber(AvgWidth);
@@ -240,6 +252,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getCIDSetType() {
+		COSObject CIDSet = getCIDSetValue();
+		return getObjectType(CIDSet);
+	}
+
+	@Override
 	public Boolean getCIDSetHasTypeStream() {
 		COSObject CIDSet = getCIDSetValue();
 		return getHasTypeStream(CIDSet);
@@ -256,6 +274,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getCapHeightType() {
+		COSObject CapHeight = getCapHeightValue();
+		return getObjectType(CapHeight);
+	}
+
+	@Override
 	public Boolean getCapHeightHasTypeNumber() {
 		COSObject CapHeight = getCapHeightValue();
 		return getHasTypeNumber(CapHeight);
@@ -269,6 +293,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public COSObject getDescentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Descent"));
 		return object;
+	}
+
+	@Override
+	public String getDescentType() {
+		COSObject Descent = getDescentValue();
+		return getObjectType(Descent);
 	}
 
 	@Override
@@ -294,6 +324,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getFDType() {
+		COSObject FD = getFDValue();
+		return getObjectType(FD);
+	}
+
+	@Override
 	public Boolean getFDHasTypeDictionary() {
 		COSObject FD = getFDValue();
 		return getHasTypeDictionary(FD);
@@ -307,6 +343,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public COSObject getFlagsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Flags"));
 		return object;
+	}
+
+	@Override
+	public String getFlagsType() {
+		COSObject Flags = getFlagsValue();
+		return getObjectType(Flags);
 	}
 
 	@Override
@@ -332,6 +374,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getFontBBoxType() {
+		COSObject FontBBox = getFontBBoxValue();
+		return getObjectType(FontBBox);
+	}
+
+	@Override
 	public Boolean getFontBBoxHasTypeRectangle() {
 		COSObject FontBBox = getFontBBoxValue();
 		return getHasTypeRectangle(FontBBox);
@@ -345,6 +393,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public COSObject getFontFamilyValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFamily"));
 		return object;
+	}
+
+	@Override
+	public String getFontFamilyType() {
+		COSObject FontFamily = getFontFamilyValue();
+		return getObjectType(FontFamily);
 	}
 
 	@Override
@@ -370,6 +424,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getFontFileType() {
+		COSObject FontFile = getFontFileValue();
+		return getObjectType(FontFile);
+	}
+
+	@Override
 	public Boolean getFontFileHasTypeStream() {
 		COSObject FontFile = getFontFileValue();
 		return getHasTypeStream(FontFile);
@@ -392,6 +452,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getFontFile3Type() {
+		COSObject FontFile3 = getFontFile3Value();
+		return getObjectType(FontFile3);
+	}
+
+	@Override
 	public Boolean getFontFile3HasTypeStream() {
 		COSObject FontFile3 = getFontFile3Value();
 		return getHasTypeStream(FontFile3);
@@ -405,6 +471,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public COSObject getFontNameValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontName"));
 		return object;
+	}
+
+	@Override
+	public String getFontNameType() {
+		COSObject FontName = getFontNameValue();
+		return getObjectType(FontName);
 	}
 
 	@Override
@@ -430,6 +502,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getFontStretchType() {
+		COSObject FontStretch = getFontStretchValue();
+		return getObjectType(FontStretch);
+	}
+
+	@Override
 	public Boolean getFontStretchHasTypeName() {
 		COSObject FontStretch = getFontStretchValue();
 		return getHasTypeName(FontStretch);
@@ -449,6 +527,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public COSObject getFontWeightValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontWeight"));
 		return object;
+	}
+
+	@Override
+	public String getFontWeightType() {
+		COSObject FontWeight = getFontWeightValue();
+		return getObjectType(FontWeight);
 	}
 
 	@Override
@@ -474,6 +558,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getItalicAngleType() {
+		COSObject ItalicAngle = getItalicAngleValue();
+		return getObjectType(ItalicAngle);
+	}
+
+	@Override
 	public Boolean getItalicAngleHasTypeNumber() {
 		COSObject ItalicAngle = getItalicAngleValue();
 		return getHasTypeNumber(ItalicAngle);
@@ -487,6 +577,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public COSObject getLangValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
 		return object;
+	}
+
+	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
 	}
 
 	@Override
@@ -523,6 +619,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getLeadingType() {
+		COSObject Leading = getLeadingValue();
+		return getObjectType(Leading);
+	}
+
+	@Override
 	public Boolean getLeadingHasTypeNumber() {
 		COSObject Leading = getLeadingValue();
 		return getHasTypeNumber(Leading);
@@ -553,6 +655,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 			object = getMaxWidthDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getMaxWidthType() {
+		COSObject MaxWidth = getMaxWidthValue();
+		return getObjectType(MaxWidth);
 	}
 
 	@Override
@@ -589,6 +697,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getMissingWidthType() {
+		COSObject MissingWidth = getMissingWidthValue();
+		return getObjectType(MissingWidth);
+	}
+
+	@Override
 	public Boolean getMissingWidthHasTypeNumber() {
 		COSObject MissingWidth = getMissingWidthValue();
 		return getHasTypeNumber(MissingWidth);
@@ -622,6 +736,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getStemHType() {
+		COSObject StemH = getStemHValue();
+		return getObjectType(StemH);
+	}
+
+	@Override
 	public Boolean getStemHHasTypeNumber() {
 		COSObject StemH = getStemHValue();
 		return getHasTypeNumber(StemH);
@@ -635,6 +755,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public COSObject getStemVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StemV"));
 		return object;
+	}
+
+	@Override
+	public String getStemVType() {
+		COSObject StemV = getStemVValue();
+		return getObjectType(StemV);
 	}
 
 	@Override
@@ -654,6 +780,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	}
 
 	@Override
+	public String getStyleType() {
+		COSObject Style = getStyleValue();
+		return getObjectType(Style);
+	}
+
+	@Override
 	public Boolean getStyleHasTypeDictionary() {
 		COSObject Style = getStyleValue();
 		return getHasTypeDictionary(Style);
@@ -667,6 +799,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -706,6 +844,12 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 			object = getXHeightDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getXHeightType() {
+		COSObject XHeight = getXHeightValue();
+		return getObjectType(XHeight);
 	}
 
 	@Override

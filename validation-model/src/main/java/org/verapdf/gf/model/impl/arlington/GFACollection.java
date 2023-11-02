@@ -210,6 +210,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	@Override
+	public String getColorsType() {
+		COSObject Colors = getColorsValue();
+		return getObjectType(Colors);
+	}
+
+	@Override
 	public Boolean getColorsHasTypeDictionary() {
 		COSObject Colors = getColorsValue();
 		return getHasTypeDictionary(Colors);
@@ -223,6 +229,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	public COSObject getDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object;
+	}
+
+	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
 	}
 
 	@Override
@@ -248,6 +260,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	@Override
+	public String getFoldersType() {
+		COSObject Folders = getFoldersValue();
+		return getObjectType(Folders);
+	}
+
+	@Override
 	public Boolean getFoldersHasTypeDictionary() {
 		COSObject Folders = getFoldersValue();
 		return getHasTypeDictionary(Folders);
@@ -267,6 +285,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	public Boolean getisNavigatorIndirect() {
 		COSObject Navigator = getNavigatorValue();
 		return getisIndirect(Navigator);
+	}
+
+	@Override
+	public String getNavigatorType() {
+		COSObject Navigator = getNavigatorValue();
+		return getObjectType(Navigator);
 	}
 
 	@Override
@@ -292,6 +316,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
+	}
+
+	@Override
 	public Boolean getResourcesHasTypeNameTree() {
 		COSObject Resources = getResourcesValue();
 		return getHasTypeNameTree(Resources);
@@ -305,6 +335,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	public COSObject getSchemaValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
 		return object;
+	}
+
+	@Override
+	public String getSchemaType() {
+		COSObject Schema = getSchemaValue();
+		return getObjectType(Schema);
 	}
 
 	@Override
@@ -324,6 +360,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	@Override
+	public String getSortType() {
+		COSObject Sort = getSortValue();
+		return getObjectType(Sort);
+	}
+
+	@Override
 	public Boolean getSortHasTypeDictionary() {
 		COSObject Sort = getSortValue();
 		return getHasTypeDictionary(Sort);
@@ -340,6 +382,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	}
 
 	@Override
+	public String getSplitType() {
+		COSObject Split = getSplitValue();
+		return getObjectType(Split);
+	}
+
+	@Override
 	public Boolean getSplitHasTypeDictionary() {
 		COSObject Split = getSplitValue();
 		return getHasTypeDictionary(Split);
@@ -353,6 +401,12 @@ public class GFACollection extends GFAObject implements ACollection {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -387,6 +441,12 @@ public class GFACollection extends GFAObject implements ACollection {
 			object = getViewDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getViewType() {
+		COSObject View = getViewValue();
+		return getObjectType(View);
 	}
 
 	@Override

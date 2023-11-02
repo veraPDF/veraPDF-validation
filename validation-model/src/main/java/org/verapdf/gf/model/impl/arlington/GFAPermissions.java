@@ -95,6 +95,12 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	}
 
 	@Override
+	public String getDocMDPType() {
+		COSObject DocMDP = getDocMDPValue();
+		return getObjectType(DocMDP);
+	}
+
+	@Override
 	public Boolean getDocMDPHasTypeDictionary() {
 		COSObject DocMDP = getDocMDPValue();
 		return getHasTypeDictionary(DocMDP);
@@ -108,6 +114,12 @@ public class GFAPermissions extends GFAObject implements APermissions {
 	public COSObject getUR3Value() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UR3"));
 		return object;
+	}
+
+	@Override
+	public String getUR3Type() {
+		COSObject UR3 = getUR3Value();
+		return getObjectType(UR3);
 	}
 
 	@Override

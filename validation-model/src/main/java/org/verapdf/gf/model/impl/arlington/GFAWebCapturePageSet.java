@@ -98,6 +98,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	}
 
 	@Override
+	public String getCTType() {
+		COSObject CT = getCTValue();
+		return getObjectType(CT);
+	}
+
+	@Override
 	public Boolean getCTHasTypeStringAscii() {
 		COSObject CT = getCTValue();
 		return getHasTypeStringAscii(CT);
@@ -111,6 +117,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	public COSObject getentryIDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
 		return object;
+	}
+
+	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
 	}
 
 	@Override
@@ -130,6 +142,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	}
 
 	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
+	}
+
+	@Override
 	public Boolean getOHasTypeArray() {
 		COSObject O = getOValue();
 		return getHasTypeArray(O);
@@ -143,6 +161,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -168,6 +192,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	}
 
 	@Override
+	public String getSIType() {
+		COSObject SI = getSIValue();
+		return getObjectType(SI);
+	}
+
+	@Override
 	public Boolean getSIHasTypeArray() {
 		COSObject SI = getSIValue();
 		return getHasTypeArray(SI);
@@ -190,6 +220,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -203,6 +239,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	public COSObject getTIDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TID"));
 		return object;
+	}
+
+	@Override
+	public String getTIDType() {
+		COSObject TID = getTIDValue();
+		return getObjectType(TID);
 	}
 
 	@Override
@@ -222,6 +264,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	}
 
 	@Override
+	public String getTSType() {
+		COSObject TS = getTSValue();
+		return getObjectType(TS);
+	}
+
+	@Override
 	public Boolean getTSHasTypeDate() {
 		COSObject TS = getTSValue();
 		return getHasTypeDate(TS);
@@ -235,6 +283,12 @@ public class GFAWebCapturePageSet extends GFAObject implements AWebCapturePageSe
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

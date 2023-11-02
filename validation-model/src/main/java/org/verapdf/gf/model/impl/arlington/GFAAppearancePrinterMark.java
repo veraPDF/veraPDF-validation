@@ -140,6 +140,12 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject D = getDValue();
 		return getHasTypeDictionary(D);
@@ -168,6 +174,12 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeDictionary() {
 		COSObject N = getNValue();
 		return getHasTypeDictionary(N);
@@ -193,6 +205,12 @@ public class GFAAppearancePrinterMark extends GFAObject implements AAppearancePr
 	public Boolean getisRIndirect() {
 		COSObject R = getRValue();
 		return getisIndirect(R);
+	}
+
+	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
 	}
 
 	@Override

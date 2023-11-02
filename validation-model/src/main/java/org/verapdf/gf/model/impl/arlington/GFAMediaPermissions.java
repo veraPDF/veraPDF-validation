@@ -41,6 +41,12 @@ public class GFAMediaPermissions extends GFAObject implements AMediaPermissions 
 	}
 
 	@Override
+	public String getTFType() {
+		COSObject TF = getTFValue();
+		return getObjectType(TF);
+	}
+
+	@Override
 	public Boolean getTFHasTypeStringAscii() {
 		COSObject TF = getTFValue();
 		return getHasTypeStringAscii(TF);
@@ -60,6 +66,12 @@ public class GFAMediaPermissions extends GFAObject implements AMediaPermissions 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

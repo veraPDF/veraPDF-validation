@@ -615,6 +615,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeDictionary() {
 		COSObject A = getAValue();
 		return getHasTypeDictionary(A);
@@ -628,6 +634,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -647,6 +659,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
+	public String getCountType() {
+		COSObject Count = getCountValue();
+		return getObjectType(Count);
+	}
+
+	@Override
 	public Boolean getCountHasTypeInteger() {
 		COSObject Count = getCountValue();
 		return getHasTypeInteger(Count);
@@ -660,6 +678,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	public COSObject getDestValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
 		return object;
+	}
+
+	@Override
+	public String getDestType() {
+		COSObject Dest = getDestValue();
+		return getObjectType(Dest);
 	}
 
 	@Override
@@ -706,6 +730,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -734,6 +764,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
+	public String getFirstType() {
+		COSObject First = getFirstValue();
+		return getObjectType(First);
+	}
+
+	@Override
 	public Boolean getFirstHasTypeDictionary() {
 		COSObject First = getFirstValue();
 		return getHasTypeDictionary(First);
@@ -753,6 +789,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	public Boolean getisLastIndirect() {
 		COSObject Last = getLastValue();
 		return getisIndirect(Last);
+	}
+
+	@Override
+	public String getLastType() {
+		COSObject Last = getLastValue();
+		return getObjectType(Last);
 	}
 
 	@Override
@@ -778,6 +820,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
+	}
+
+	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject Next = getNextValue();
 		return getHasTypeDictionary(Next);
@@ -797,6 +845,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	public Boolean getisParentIndirect() {
 		COSObject Parent = getParentValue();
 		return getisIndirect(Parent);
+	}
+
+	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
 	}
 
 	@Override
@@ -822,6 +876,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
+	public String getPrevType() {
+		COSObject Prev = getPrevValue();
+		return getObjectType(Prev);
+	}
+
+	@Override
 	public Boolean getPrevHasTypeDictionary() {
 		COSObject Prev = getPrevValue();
 		return getHasTypeDictionary(Prev);
@@ -844,6 +904,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	@Override
+	public String getSEType() {
+		COSObject SE = getSEValue();
+		return getObjectType(SE);
+	}
+
+	@Override
 	public Boolean getSEHasTypeDictionary() {
 		COSObject SE = getSEValue();
 		return getHasTypeDictionary(SE);
@@ -857,6 +923,12 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	public COSObject getTitleValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
 		return object;
+	}
+
+	@Override
+	public String getTitleType() {
+		COSObject Title = getTitleValue();
+		return getObjectType(Title);
 	}
 
 	@Override

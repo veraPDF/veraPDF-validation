@@ -62,6 +62,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getCFType() {
+		COSObject CF = getCFValue();
+		return getObjectType(CF);
+	}
+
+	@Override
 	public Boolean getCFHasTypeDictionary() {
 		COSObject CF = getCFValue();
 		return getHasTypeDictionary(CF);
@@ -75,6 +81,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public COSObject getEFFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EFF"));
 		return object;
+	}
+
+	@Override
+	public String getEFFType() {
+		COSObject EFF = getEFFValue();
+		return getObjectType(EFF);
 	}
 
 	@Override
@@ -105,6 +117,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 			object = getEncryptMetadataDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getEncryptMetadataType() {
+		COSObject EncryptMetadata = getEncryptMetadataValue();
+		return getObjectType(EncryptMetadata);
 	}
 
 	@Override
@@ -142,6 +160,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeName(Filter);
@@ -167,6 +191,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public Boolean getisKDFSaltIndirect() {
 		COSObject KDFSalt = getKDFSaltValue();
 		return getisIndirect(KDFSalt);
+	}
+
+	@Override
+	public String getKDFSaltType() {
+		COSObject KDFSalt = getKDFSaltValue();
+		return getObjectType(KDFSalt);
 	}
 
 	@Override
@@ -201,6 +231,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -220,6 +256,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public COSObject getOValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
 		return object;
+	}
+
+	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
 	}
 
 	@Override
@@ -248,6 +290,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getOEType() {
+		COSObject OE = getOEValue();
+		return getObjectType(OE);
+	}
+
+	@Override
 	public Boolean getOEHasTypeStringByte() {
 		COSObject OE = getOEValue();
 		return getHasTypeStringByte(OE);
@@ -273,6 +321,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeBitmask() {
 		COSObject P = getPValue();
 		return getHasTypeBitmask(P);
@@ -295,6 +349,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getPermsType() {
+		COSObject Perms = getPermsValue();
+		return getObjectType(Perms);
+	}
+
+	@Override
 	public Boolean getPermsHasTypeStringByte() {
 		COSObject Perms = getPermsValue();
 		return getHasTypeStringByte(Perms);
@@ -308,6 +368,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public COSObject getRValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object;
+	}
+
+	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
 	}
 
 	@Override
@@ -347,6 +413,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getStmFType() {
+		COSObject StmF = getStmFValue();
+		return getObjectType(StmF);
+	}
+
+	@Override
 	public Boolean getStmFHasTypeName() {
 		COSObject StmF = getStmFValue();
 		return getHasTypeName(StmF);
@@ -377,6 +449,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getStrFType() {
+		COSObject StrF = getStrFValue();
+		return getObjectType(StrF);
+	}
+
+	@Override
 	public Boolean getStrFHasTypeName() {
 		COSObject StrF = getStrFValue();
 		return getHasTypeName(StrF);
@@ -393,6 +471,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getSubFilterType() {
+		COSObject SubFilter = getSubFilterValue();
+		return getObjectType(SubFilter);
+	}
+
+	@Override
 	public Boolean getSubFilterHasTypeName() {
 		COSObject SubFilter = getSubFilterValue();
 		return getHasTypeName(SubFilter);
@@ -406,6 +490,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public COSObject getUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
 		return object;
+	}
+
+	@Override
+	public String getUType() {
+		COSObject U = getUValue();
+		return getObjectType(U);
 	}
 
 	@Override
@@ -434,6 +524,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	}
 
 	@Override
+	public String getUEType() {
+		COSObject UE = getUEValue();
+		return getObjectType(UE);
+	}
+
+	@Override
 	public Boolean getUEHasTypeStringByte() {
 		COSObject UE = getUEValue();
 		return getHasTypeStringByte(UE);
@@ -447,6 +543,12 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

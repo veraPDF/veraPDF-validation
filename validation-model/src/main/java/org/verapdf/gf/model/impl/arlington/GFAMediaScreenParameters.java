@@ -89,6 +89,12 @@ public class GFAMediaScreenParameters extends GFAObject implements AMediaScreenP
 	}
 
 	@Override
+	public String getBEType() {
+		COSObject BE = getBEValue();
+		return getObjectType(BE);
+	}
+
+	@Override
 	public Boolean getBEHasTypeDictionary() {
 		COSObject BE = getBEValue();
 		return getHasTypeDictionary(BE);
@@ -105,6 +111,12 @@ public class GFAMediaScreenParameters extends GFAObject implements AMediaScreenP
 	}
 
 	@Override
+	public String getMHType() {
+		COSObject MH = getMHValue();
+		return getObjectType(MH);
+	}
+
+	@Override
 	public Boolean getMHHasTypeDictionary() {
 		COSObject MH = getMHValue();
 		return getHasTypeDictionary(MH);
@@ -118,6 +130,12 @@ public class GFAMediaScreenParameters extends GFAObject implements AMediaScreenP
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

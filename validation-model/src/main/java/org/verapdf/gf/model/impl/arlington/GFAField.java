@@ -264,6 +264,12 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	@Override
+	public String getAAType() {
+		COSObject AA = getAAValue();
+		return getObjectType(AA);
+	}
+
+	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject AA = getAAValue();
 		return getHasTypeDictionary(AA);
@@ -277,6 +283,12 @@ public class GFAField extends GFAObject implements AField {
 	public COSObject getFfValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
 		return object;
+	}
+
+	@Override
+	public String getFfType() {
+		COSObject Ff = getFfValue();
+		return getObjectType(Ff);
 	}
 
 	@Override
@@ -302,6 +314,12 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	@Override
+	public String getKidsType() {
+		COSObject Kids = getKidsValue();
+		return getObjectType(Kids);
+	}
+
+	@Override
 	public Boolean getKidsHasTypeArray() {
 		COSObject Kids = getKidsValue();
 		return getHasTypeArray(Kids);
@@ -315,6 +333,12 @@ public class GFAField extends GFAObject implements AField {
 	public COSObject getParentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		return object;
+	}
+
+	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
 	}
 
 	@Override
@@ -334,6 +358,12 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -350,6 +380,12 @@ public class GFAField extends GFAObject implements AField {
 	}
 
 	@Override
+	public String getTMType() {
+		COSObject TM = getTMValue();
+		return getObjectType(TM);
+	}
+
+	@Override
 	public Boolean getTMHasTypeStringText() {
 		COSObject TM = getTMValue();
 		return getHasTypeStringText(TM);
@@ -363,6 +399,12 @@ public class GFAField extends GFAObject implements AField {
 	public COSObject getTUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
 		return object;
+	}
+
+	@Override
+	public String getTUType() {
+		COSObject TU = getTUValue();
+		return getObjectType(TU);
 	}
 
 	@Override

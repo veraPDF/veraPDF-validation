@@ -62,6 +62,12 @@ public class GFARenditionBE extends GFAObject implements ARenditionBE {
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject C = getCValue();
 		return getHasTypeDictionary(C);

@@ -86,33 +86,32 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return false;
 	}
 
-	@Override
-	public String getobjectType() {
-		if (baseObject.getType() == COSObjType.COS_ARRAY) {
+	public String getObjectType(COSObject object) {
+		if (object.getType() == COSObjType.COS_ARRAY) {
 			return "Array";
 		}
-		if (baseObject.getType() == COSObjType.COS_BOOLEAN) {
+		if (object.getType() == COSObjType.COS_BOOLEAN) {
 			return "Boolean";
 		}
-		if (baseObject.getType() == COSObjType.COS_DICT) {
+		if (object.getType() == COSObjType.COS_DICT) {
 			return "Dictionary";
 		}
-		if (baseObject.getType() == COSObjType.COS_INTEGER) {
+		if (object.getType() == COSObjType.COS_INTEGER) {
 			return "Integer";
 		}
-		if (baseObject.getType() == COSObjType.COS_NAME) {
+		if (object.getType() == COSObjType.COS_NAME) {
 			return "Name";
 		}
-		if (baseObject.getType() == COSObjType.COS_NULL) {
+		if (object.getType() == COSObjType.COS_NULL) {
 			return "Null";
 		}
-		if (baseObject.getType() == COSObjType.COS_REAL) {
+		if (object.getType() == COSObjType.COS_REAL) {
 			return "Number";
 		}
-		if (baseObject.getType() == COSObjType.COS_STREAM) {
+		if (object.getType() == COSObjType.COS_STREAM) {
 			return "Stream";
 		}
-		if (baseObject.getType() == COSObjType.COS_STRING) {
+		if (object.getType() == COSObjType.COS_STRING) {
 			return "String";
 		}
 		return null;

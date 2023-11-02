@@ -661,6 +661,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -683,6 +689,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -696,6 +708,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getASValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
 		return object;
+	}
+
+	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
 	}
 
 	@Override
@@ -726,6 +744,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -748,6 +772,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -761,6 +791,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -795,6 +831,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -817,6 +859,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
+	}
+
+	@Override
 	public Boolean getContentsHasTypeStringText() {
 		COSObject Contents = getContentsValue();
 		return getHasTypeStringText(Contents);
@@ -833,6 +881,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getCreationDateType() {
+		COSObject CreationDate = getCreationDateValue();
+		return getObjectType(CreationDate);
+	}
+
+	@Override
 	public Boolean getCreationDateHasTypeDate() {
 		COSObject CreationDate = getCreationDateValue();
 		return getHasTypeDate(CreationDate);
@@ -846,6 +900,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getExDataValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExData"));
 		return object;
+	}
+
+	@Override
+	public String getExDataType() {
+		COSObject ExData = getExDataValue();
+		return getObjectType(ExData);
 	}
 
 	@Override
@@ -882,6 +942,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -904,6 +970,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getIRTType() {
+		COSObject IRT = getIRTValue();
+		return getObjectType(IRT);
+	}
+
+	@Override
 	public Boolean getIRTHasTypeDictionary() {
 		COSObject IRT = getIRTValue();
 		return getHasTypeDictionary(IRT);
@@ -917,6 +989,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getITValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IT"));
 		return object;
+	}
+
+	@Override
+	public String getITType() {
+		COSObject IT = getITValue();
+		return getObjectType(IT);
 	}
 
 	@Override
@@ -936,6 +1014,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -949,6 +1033,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -971,6 +1061,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getNMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NM"));
 		return object;
+	}
+
+	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
 	}
 
 	@Override
@@ -1007,6 +1103,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeName() {
 		COSObject Name = getNameValue();
 		return getHasTypeName(Name);
@@ -1020,6 +1122,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -1045,6 +1153,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -1067,6 +1181,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getPopupType() {
+		COSObject Popup = getPopupValue();
+		return getObjectType(Popup);
+	}
+
+	@Override
 	public Boolean getPopupHasTypeDictionary() {
 		COSObject Popup = getPopupValue();
 		return getHasTypeDictionary(Popup);
@@ -1086,6 +1206,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public Boolean getisRCIndirect() {
 		COSObject RC = getRCValue();
 		return getisIndirect(RC);
+	}
+
+	@Override
+	public String getRCType() {
+		COSObject RC = getRCValue();
+		return getObjectType(RC);
 	}
 
 	@Override
@@ -1124,6 +1250,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getRTType() {
+		COSObject RT = getRTValue();
+		return getObjectType(RT);
+	}
+
+	@Override
 	public Boolean getRTHasTypeName() {
 		COSObject RT = getRTValue();
 		return getHasTypeName(RT);
@@ -1143,6 +1275,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getRectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
 		return object;
+	}
+
+	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
 	}
 
 	@Override
@@ -1180,6 +1318,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getSoundType() {
+		COSObject Sound = getSoundValue();
+		return getObjectType(Sound);
+	}
+
+	@Override
 	public Boolean getSoundHasTypeStream() {
 		COSObject Sound = getSoundValue();
 		return getHasTypeStream(Sound);
@@ -1193,6 +1337,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getStructParentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructParent"));
 		return object;
+	}
+
+	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
 	}
 
 	@Override
@@ -1212,6 +1362,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getSubjType() {
+		COSObject Subj = getSubjValue();
+		return getObjectType(Subj);
+	}
+
+	@Override
 	public Boolean getSubjHasTypeStringText() {
 		COSObject Subj = getSubjValue();
 		return getHasTypeStringText(Subj);
@@ -1225,6 +1381,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -1250,6 +1412,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -1263,6 +1431,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -1296,6 +1470,12 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

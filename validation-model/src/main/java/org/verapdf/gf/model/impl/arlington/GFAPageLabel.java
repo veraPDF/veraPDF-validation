@@ -27,6 +27,12 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeStringText() {
 		COSObject P = getPValue();
 		return getHasTypeStringText(P);
@@ -40,6 +46,12 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -81,6 +93,12 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 	}
 
 	@Override
+	public String getStType() {
+		COSObject St = getStValue();
+		return getObjectType(St);
+	}
+
+	@Override
 	public Boolean getStHasTypeInteger() {
 		COSObject St = getStValue();
 		return getHasTypeInteger(St);
@@ -100,6 +118,12 @@ public class GFAPageLabel extends GFAObject implements APageLabel {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

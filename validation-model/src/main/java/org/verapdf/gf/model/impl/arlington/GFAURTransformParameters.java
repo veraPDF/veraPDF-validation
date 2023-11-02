@@ -169,6 +169,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	@Override
+	public String getAnnotsType() {
+		COSObject Annots = getAnnotsValue();
+		return getObjectType(Annots);
+	}
+
+	@Override
 	public Boolean getAnnotsHasTypeArray() {
 		COSObject Annots = getAnnotsValue();
 		return getHasTypeArray(Annots);
@@ -182,6 +188,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	public COSObject getDocumentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Document"));
 		return object;
+	}
+
+	@Override
+	public String getDocumentType() {
+		COSObject Document = getDocumentValue();
+		return getObjectType(Document);
 	}
 
 	@Override
@@ -201,6 +213,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	@Override
+	public String getEFType() {
+		COSObject EF = getEFValue();
+		return getObjectType(EF);
+	}
+
+	@Override
 	public Boolean getEFHasTypeArray() {
 		COSObject EF = getEFValue();
 		return getHasTypeArray(EF);
@@ -217,6 +235,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	@Override
+	public String getFormType() {
+		COSObject Form = getFormValue();
+		return getObjectType(Form);
+	}
+
+	@Override
 	public Boolean getFormHasTypeArray() {
 		COSObject Form = getFormValue();
 		return getHasTypeArray(Form);
@@ -230,6 +254,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	public COSObject getMsgValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Msg"));
 		return object;
+	}
+
+	@Override
+	public String getMsgType() {
+		COSObject Msg = getMsgValue();
+		return getObjectType(Msg);
 	}
 
 	@Override
@@ -262,6 +292,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeBoolean() {
 		COSObject P = getPValue();
 		return getHasTypeBoolean(P);
@@ -278,6 +314,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	}
 
 	@Override
+	public String getSignatureType() {
+		COSObject Signature = getSignatureValue();
+		return getObjectType(Signature);
+	}
+
+	@Override
 	public Boolean getSignatureHasTypeArray() {
 		COSObject Signature = getSignatureValue();
 		return getHasTypeArray(Signature);
@@ -291,6 +333,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -327,6 +375,12 @@ public class GFAURTransformParameters extends GFAObject implements AURTransformP
 			object = getVDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

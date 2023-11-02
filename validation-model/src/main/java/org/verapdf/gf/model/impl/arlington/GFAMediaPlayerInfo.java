@@ -116,6 +116,12 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	}
 
 	@Override
+	public String getBEType() {
+		COSObject BE = getBEValue();
+		return getObjectType(BE);
+	}
+
+	@Override
 	public Boolean getBEHasTypeDictionary() {
 		COSObject BE = getBEValue();
 		return getHasTypeDictionary(BE);
@@ -129,6 +135,12 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	public COSObject getMHValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
 		return object;
+	}
+
+	@Override
+	public String getMHType() {
+		COSObject MH = getMHValue();
+		return getObjectType(MH);
 	}
 
 	@Override
@@ -148,6 +160,12 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	}
 
 	@Override
+	public String getPIDType() {
+		COSObject PID = getPIDValue();
+		return getObjectType(PID);
+	}
+
+	@Override
 	public Boolean getPIDHasTypeDictionary() {
 		COSObject PID = getPIDValue();
 		return getHasTypeDictionary(PID);
@@ -161,6 +179,12 @@ public class GFAMediaPlayerInfo extends GFAObject implements AMediaPlayerInfo {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

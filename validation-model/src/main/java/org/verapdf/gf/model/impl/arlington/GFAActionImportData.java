@@ -428,6 +428,12 @@ public class GFAActionImportData extends GFAObject implements AActionImportData 
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -447,6 +453,12 @@ public class GFAActionImportData extends GFAObject implements AActionImportData 
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -472,6 +484,12 @@ public class GFAActionImportData extends GFAObject implements AActionImportData 
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -491,6 +509,12 @@ public class GFAActionImportData extends GFAObject implements AActionImportData 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

@@ -77,6 +77,12 @@ public class GFADataEntry extends GFAObject implements ADataEntry {
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeArray() {
 		COSObject entry = getValue();
 		return getHasTypeArray(entry);

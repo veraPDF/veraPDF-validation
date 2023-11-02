@@ -360,6 +360,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getAAType() {
+		COSObject AA = getAAValue();
+		return getObjectType(AA);
+	}
+
+	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject AA = getAAValue();
 		return getHasTypeDictionary(AA);
@@ -382,6 +388,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getDAType() {
+		COSObject DA = getDAValue();
+		return getObjectType(DA);
+	}
+
+	@Override
 	public Boolean getDAHasTypeStringByte() {
 		COSObject DA = getDAValue();
 		return getHasTypeStringByte(DA);
@@ -395,6 +407,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	public COSObject getDSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
 		return object;
+	}
+
+	@Override
+	public String getDSType() {
+		COSObject DS = getDSValue();
+		return getObjectType(DS);
 	}
 
 	@Override
@@ -426,6 +444,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getDVType() {
+		COSObject DV = getDVValue();
+		return getObjectType(DV);
+	}
+
+	@Override
 	public Boolean getDVHasTypeStream() {
 		COSObject DV = getDVValue();
 		return getHasTypeStream(DV);
@@ -451,6 +475,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			object = getInheritableValue(ASAtom.getASAtom("FT"));
 		}
 		return object;
+	}
+
+	@Override
+	public String getFTType() {
+		COSObject FT = getFTValue();
+		return getObjectType(FT);
 	}
 
 	@Override
@@ -482,6 +512,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getFfType() {
+		COSObject Ff = getFfValue();
+		return getObjectType(Ff);
+	}
+
+	@Override
 	public Boolean getFfHasTypeBitmask() {
 		COSObject Ff = getFfValue();
 		return getHasTypeBitmask(Ff);
@@ -501,6 +537,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	public COSObject getKidsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
 		return object;
+	}
+
+	@Override
+	public String getKidsType() {
+		COSObject Kids = getKidsValue();
+		return getObjectType(Kids);
 	}
 
 	@Override
@@ -526,6 +568,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getMaxLenType() {
+		COSObject MaxLen = getMaxLenValue();
+		return getObjectType(MaxLen);
+	}
+
+	@Override
 	public Boolean getMaxLenHasTypeInteger() {
 		COSObject MaxLen = getMaxLenValue();
 		return getHasTypeInteger(MaxLen);
@@ -545,6 +593,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	public COSObject getParentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		return object;
+	}
+
+	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
 	}
 
 	@Override
@@ -581,6 +635,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getQType() {
+		COSObject Q = getQValue();
+		return getObjectType(Q);
+	}
+
+	@Override
 	public Boolean getQHasTypeInteger() {
 		COSObject Q = getQValue();
 		return getHasTypeInteger(Q);
@@ -609,6 +669,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getRVType() {
+		COSObject RV = getRVValue();
+		return getObjectType(RV);
+	}
+
+	@Override
 	public Boolean getRVHasTypeStream() {
 		COSObject RV = getRVValue();
 		return getHasTypeStream(RV);
@@ -631,6 +697,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -647,6 +719,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	}
 
 	@Override
+	public String getTMType() {
+		COSObject TM = getTMValue();
+		return getObjectType(TM);
+	}
+
+	@Override
 	public Boolean getTMHasTypeStringText() {
 		COSObject TM = getTMValue();
 		return getHasTypeStringText(TM);
@@ -660,6 +738,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	public COSObject getTUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
 		return object;
+	}
+
+	@Override
+	public String getTUType() {
+		COSObject TU = getTUValue();
+		return getObjectType(TU);
 	}
 
 	@Override
@@ -688,6 +772,12 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 	public Boolean getisVIndirect() {
 		COSObject V = getVValue();
 		return getisIndirect(V);
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

@@ -27,6 +27,12 @@ public class GFAArrayOfNamesForEnforceEntry extends GFAObject implements AArrayO
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeName() {
 		COSObject entry = getValue();
 		return getHasTypeName(entry);

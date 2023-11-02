@@ -43,6 +43,12 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeNumber(entry0);
@@ -78,6 +84,12 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 			object = getentry1DefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override
@@ -119,6 +131,12 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 	}
 
 	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
+	}
+
+	@Override
 	public Boolean getentry2HasTypeNumber() {
 		COSObject entry2 = getentry2Value();
 		return getHasTypeNumber(entry2);
@@ -154,6 +172,12 @@ public class GFALabRangeArray extends GFAObject implements ALabRangeArray {
 			object = getentry3DefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getentry3Type() {
+		COSObject entry3 = getentry3Value();
+		return getObjectType(entry3);
 	}
 
 	@Override

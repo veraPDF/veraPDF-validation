@@ -367,6 +367,12 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	@Override
+	public String getJSType() {
+		COSObject JS = getJSValue();
+		return getObjectType(JS);
+	}
+
+	@Override
 	public Boolean getJSHasTypeStream() {
 		COSObject JS = getJSValue();
 		return getHasTypeStream(JS);
@@ -386,6 +392,12 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -411,6 +423,12 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -430,6 +448,12 @@ public class GFAActionECMAScript extends GFAObject implements AActionECMAScript 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

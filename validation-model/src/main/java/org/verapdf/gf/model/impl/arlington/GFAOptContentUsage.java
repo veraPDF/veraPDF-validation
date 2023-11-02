@@ -251,6 +251,12 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	@Override
+	public String getCreatorInfoType() {
+		COSObject CreatorInfo = getCreatorInfoValue();
+		return getObjectType(CreatorInfo);
+	}
+
+	@Override
 	public Boolean getCreatorInfoHasTypeDictionary() {
 		COSObject CreatorInfo = getCreatorInfoValue();
 		return getHasTypeDictionary(CreatorInfo);
@@ -264,6 +270,12 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	public COSObject getExportValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Export"));
 		return object;
+	}
+
+	@Override
+	public String getExportType() {
+		COSObject Export = getExportValue();
+		return getObjectType(Export);
 	}
 
 	@Override
@@ -283,6 +295,12 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	@Override
+	public String getLanguageType() {
+		COSObject Language = getLanguageValue();
+		return getObjectType(Language);
+	}
+
+	@Override
 	public Boolean getLanguageHasTypeDictionary() {
 		COSObject Language = getLanguageValue();
 		return getHasTypeDictionary(Language);
@@ -296,6 +314,12 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	public COSObject getPageElementValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageElement"));
 		return object;
+	}
+
+	@Override
+	public String getPageElementType() {
+		COSObject PageElement = getPageElementValue();
+		return getObjectType(PageElement);
 	}
 
 	@Override
@@ -315,6 +339,12 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	@Override
+	public String getPrintType() {
+		COSObject Print = getPrintValue();
+		return getObjectType(Print);
+	}
+
+	@Override
 	public Boolean getPrintHasTypeDictionary() {
 		COSObject Print = getPrintValue();
 		return getHasTypeDictionary(Print);
@@ -328,6 +358,12 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	public COSObject getUserValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("User"));
 		return object;
+	}
+
+	@Override
+	public String getUserType() {
+		COSObject User = getUserValue();
+		return getObjectType(User);
 	}
 
 	@Override
@@ -347,6 +383,12 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	}
 
 	@Override
+	public String getViewType() {
+		COSObject View = getViewValue();
+		return getObjectType(View);
+	}
+
+	@Override
 	public Boolean getViewHasTypeDictionary() {
 		COSObject View = getViewValue();
 		return getHasTypeDictionary(View);
@@ -360,6 +402,12 @@ public class GFAOptContentUsage extends GFAObject implements AOptContentUsage {
 	public COSObject getZoomValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Zoom"));
 		return object;
+	}
+
+	@Override
+	public String getZoomType() {
+		COSObject Zoom = getZoomValue();
+		return getObjectType(Zoom);
 	}
 
 	@Override

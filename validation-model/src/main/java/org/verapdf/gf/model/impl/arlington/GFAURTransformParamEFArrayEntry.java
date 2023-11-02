@@ -27,6 +27,12 @@ public class GFAURTransformParamEFArrayEntry extends GFAObject implements AURTra
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeName() {
 		COSObject entry = getValue();
 		return getHasTypeName(entry);

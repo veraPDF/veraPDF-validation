@@ -93,6 +93,12 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject C = getCValue();
 		return getHasTypeDictionary(C);
@@ -106,6 +112,12 @@ public class GFAWebCaptureCommandSettings extends GFAObject implements AWebCaptu
 	public COSObject getGValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("G"));
 		return object;
+	}
+
+	@Override
+	public String getGType() {
+		COSObject G = getGValue();
+		return getObjectType(G);
 	}
 
 	@Override

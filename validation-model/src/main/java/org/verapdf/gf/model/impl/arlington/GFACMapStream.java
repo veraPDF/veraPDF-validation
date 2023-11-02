@@ -385,6 +385,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	@Override
+	public String getCIDSystemInfoType() {
+		COSObject CIDSystemInfo = getCIDSystemInfoValue();
+		return getObjectType(CIDSystemInfo);
+	}
+
+	@Override
 	public Boolean getCIDSystemInfoHasTypeDictionary() {
 		COSObject CIDSystemInfo = getCIDSystemInfoValue();
 		return getHasTypeDictionary(CIDSystemInfo);
@@ -401,6 +407,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	@Override
+	public String getCMapNameType() {
+		COSObject CMapName = getCMapNameValue();
+		return getObjectType(CMapName);
+	}
+
+	@Override
 	public Boolean getCMapNameHasTypeName() {
 		COSObject CMapName = getCMapNameValue();
 		return getHasTypeName(CMapName);
@@ -414,6 +426,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	public COSObject getDLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
 		return object;
+	}
+
+	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
 	}
 
 	@Override
@@ -436,6 +454,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -467,6 +491,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -486,6 +516,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -514,6 +550,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -551,6 +593,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -585,6 +633,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -598,6 +652,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -626,6 +686,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 	public Boolean getisUseCMapIndirect() {
 		COSObject UseCMap = getUseCMapValue();
 		return getisIndirect(UseCMap);
+	}
+
+	@Override
+	public String getUseCMapType() {
+		COSObject UseCMap = getUseCMapValue();
+		return getObjectType(UseCMap);
 	}
 
 	@Override
@@ -671,6 +737,12 @@ public class GFACMapStream extends GFAObject implements ACMapStream {
 			object = getWModeDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getWModeType() {
+		COSObject WMode = getWModeValue();
+		return getObjectType(WMode);
 	}
 
 	@Override

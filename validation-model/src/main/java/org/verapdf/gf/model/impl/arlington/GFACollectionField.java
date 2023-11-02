@@ -39,6 +39,12 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	}
 
 	@Override
+	public String getEType() {
+		COSObject E = getEValue();
+		return getObjectType(E);
+	}
+
+	@Override
 	public Boolean getEHasTypeBoolean() {
 		COSObject E = getEValue();
 		return getHasTypeBoolean(E);
@@ -52,6 +58,12 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	public COSObject getNValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N"));
 		return object;
+	}
+
+	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
 	}
 
 	@Override
@@ -71,6 +83,12 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	}
 
 	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
+	}
+
+	@Override
 	public Boolean getOHasTypeInteger() {
 		COSObject O = getOValue();
 		return getHasTypeInteger(O);
@@ -84,6 +102,12 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -106,6 +130,12 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -140,6 +170,12 @@ public class GFACollectionField extends GFAObject implements ACollectionField {
 			object = getVDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

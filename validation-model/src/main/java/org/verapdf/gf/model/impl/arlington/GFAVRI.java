@@ -131,6 +131,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	@Override
+	public String getCRLType() {
+		COSObject CRL = getCRLValue();
+		return getObjectType(CRL);
+	}
+
+	@Override
 	public Boolean getCRLHasTypeArray() {
 		COSObject CRL = getCRLValue();
 		return getHasTypeArray(CRL);
@@ -147,6 +153,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	@Override
+	public String getCertType() {
+		COSObject Cert = getCertValue();
+		return getObjectType(Cert);
+	}
+
+	@Override
 	public Boolean getCertHasTypeArray() {
 		COSObject Cert = getCertValue();
 		return getHasTypeArray(Cert);
@@ -160,6 +172,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	public COSObject getOCSPValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCSP"));
 		return object;
+	}
+
+	@Override
+	public String getOCSPType() {
+		COSObject OCSP = getOCSPValue();
+		return getObjectType(OCSP);
 	}
 
 	@Override
@@ -185,6 +203,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	@Override
+	public String getTSType() {
+		COSObject TS = getTSValue();
+		return getObjectType(TS);
+	}
+
+	@Override
 	public Boolean getTSHasTypeStream() {
 		COSObject TS = getTSValue();
 		return getHasTypeStream(TS);
@@ -201,6 +225,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	@Override
+	public String getTUType() {
+		COSObject TU = getTUValue();
+		return getObjectType(TU);
+	}
+
+	@Override
 	public Boolean getTUHasTypeDate() {
 		COSObject TU = getTUValue();
 		return getHasTypeDate(TU);
@@ -214,6 +244,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

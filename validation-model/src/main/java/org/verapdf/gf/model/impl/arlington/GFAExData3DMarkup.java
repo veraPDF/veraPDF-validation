@@ -85,6 +85,12 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	@Override
+	public String getentry3DAType() {
+		COSObject entry3DA = getentry3DAValue();
+		return getObjectType(entry3DA);
+	}
+
+	@Override
 	public Boolean getentry3DAHasTypeDictionary() {
 		COSObject entry3DA = getentry3DAValue();
 		return getHasTypeDictionary(entry3DA);
@@ -107,6 +113,12 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	@Override
+	public String getentry3DVType() {
+		COSObject entry3DV = getentry3DVValue();
+		return getObjectType(entry3DV);
+	}
+
+	@Override
 	public Boolean getentry3DVHasTypeDictionary() {
 		COSObject entry3DV = getentry3DVValue();
 		return getHasTypeDictionary(entry3DV);
@@ -123,6 +135,12 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	}
 
 	@Override
+	public String getMD5Type() {
+		COSObject MD5 = getMD5Value();
+		return getObjectType(MD5);
+	}
+
+	@Override
 	public Boolean getMD5HasTypeStringByte() {
 		COSObject MD5 = getMD5Value();
 		return getHasTypeStringByte(MD5);
@@ -136,6 +154,12 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -158,6 +182,12 @@ public class GFAExData3DMarkup extends GFAObject implements AExData3DMarkup {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

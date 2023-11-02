@@ -62,6 +62,12 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	}
 
 	@Override
+	public String getDateType() {
+		COSObject Date = getDateValue();
+		return getObjectType(Date);
+	}
+
+	@Override
 	public Boolean getDateHasTypeStringText() {
 		COSObject Date = getDateValue();
 		return getHasTypeStringText(Date);
@@ -75,6 +81,12 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	public COSObject getNameValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
 		return object;
+	}
+
+	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
 	}
 
 	@Override
@@ -94,6 +106,12 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	}
 
 	@Override
+	public String getNonEFontNoWarnType() {
+		COSObject NonEFontNoWarn = getNonEFontNoWarnValue();
+		return getObjectType(NonEFontNoWarn);
+	}
+
+	@Override
 	public Boolean getNonEFontNoWarnHasTypeBoolean() {
 		COSObject NonEFontNoWarn = getNonEFontNoWarnValue();
 		return getHasTypeBoolean(NonEFontNoWarn);
@@ -107,6 +125,12 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	public COSObject getOSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OS"));
 		return object;
+	}
+
+	@Override
+	public String getOSType() {
+		COSObject OS = getOSValue();
+		return getObjectType(OS);
 	}
 
 	@Override
@@ -140,6 +164,12 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	}
 
 	@Override
+	public String getPreReleaseType() {
+		COSObject PreRelease = getPreReleaseValue();
+		return getObjectType(PreRelease);
+	}
+
+	@Override
 	public Boolean getPreReleaseHasTypeBoolean() {
 		COSObject PreRelease = getPreReleaseValue();
 		return getHasTypeBoolean(PreRelease);
@@ -153,6 +183,12 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	public COSObject getRValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object;
+	}
+
+	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
 	}
 
 	@Override
@@ -186,6 +222,12 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	}
 
 	@Override
+	public String getTrustedModeType() {
+		COSObject TrustedMode = getTrustedModeValue();
+		return getObjectType(TrustedMode);
+	}
+
+	@Override
 	public Boolean getTrustedModeHasTypeBoolean() {
 		COSObject TrustedMode = getTrustedModeValue();
 		return getHasTypeBoolean(TrustedMode);
@@ -199,6 +241,12 @@ public class GFASignatureBuildDataDict extends GFAObject implements ASignatureBu
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

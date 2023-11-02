@@ -27,6 +27,12 @@ public class GFAArrayOfNavigatorLayoutNamesEntry extends GFAObject implements AA
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeName() {
 		COSObject entry = getValue();
 		return getHasTypeName(entry);

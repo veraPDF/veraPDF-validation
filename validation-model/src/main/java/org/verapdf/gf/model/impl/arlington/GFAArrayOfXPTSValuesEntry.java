@@ -27,6 +27,12 @@ public class GFAArrayOfXPTSValuesEntry extends GFAObject implements AArrayOfXPTS
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeNumber() {
 		COSObject entry = getValue();
 		return getHasTypeNumber(entry);

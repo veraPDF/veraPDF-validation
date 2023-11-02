@@ -170,6 +170,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeBoolean() {
 		COSObject A = getAValue();
 		return getHasTypeBoolean(A);
@@ -183,6 +189,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -202,6 +214,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject D = getDValue();
 		return getHasTypeDictionary(D);
@@ -215,6 +233,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	public COSObject getLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
 		return object;
+	}
+
+	@Override
+	public String getLType() {
+		COSObject L = getLValue();
+		return getObjectType(L);
 	}
 
 	@Override
@@ -234,6 +258,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
+	}
+
+	@Override
 	public Boolean getOHasTypeBoolean() {
 		COSObject O = getOValue();
 		return getHasTypeBoolean(O);
@@ -250,6 +280,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeArray() {
 		COSObject P = getPValue();
 		return getHasTypeArray(P);
@@ -263,6 +299,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	public COSObject getRValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object;
+	}
+
+	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
 	}
 
 	@Override
@@ -288,6 +330,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeBoolean() {
 		COSObject S = getSValue();
 		return getHasTypeBoolean(S);
@@ -301,6 +349,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -326,6 +380,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	}
 
 	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
+	}
+
+	@Override
 	public Boolean getVHasTypeArray() {
 		COSObject V = getVValue();
 		return getHasTypeArray(V);
@@ -339,6 +399,12 @@ public class GFAMediaCriteria extends GFAObject implements AMediaCriteria {
 	public COSObject getZValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Z"));
 		return object;
+	}
+
+	@Override
+	public String getZType() {
+		COSObject Z = getZValue();
+		return getObjectType(Z);
 	}
 
 	@Override

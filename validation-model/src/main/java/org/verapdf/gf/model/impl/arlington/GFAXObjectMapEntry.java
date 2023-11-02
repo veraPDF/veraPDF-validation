@@ -144,6 +144,12 @@ public class GFAXObjectMapEntry extends GFAObject implements AXObjectMapEntry {
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeStream() {
 		COSObject entry = getValue();
 		return getHasTypeStream(entry);

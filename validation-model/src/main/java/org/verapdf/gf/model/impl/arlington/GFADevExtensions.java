@@ -33,6 +33,12 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	}
 
 	@Override
+	public String getBaseVersionType() {
+		COSObject BaseVersion = getBaseVersionValue();
+		return getObjectType(BaseVersion);
+	}
+
+	@Override
 	public Boolean getBaseVersionHasTypeName() {
 		COSObject BaseVersion = getBaseVersionValue();
 		return getHasTypeName(BaseVersion);
@@ -61,6 +67,12 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	}
 
 	@Override
+	public String getExtensionLevelType() {
+		COSObject ExtensionLevel = getExtensionLevelValue();
+		return getObjectType(ExtensionLevel);
+	}
+
+	@Override
 	public Boolean getExtensionLevelHasTypeInteger() {
 		COSObject ExtensionLevel = getExtensionLevelValue();
 		return getHasTypeInteger(ExtensionLevel);
@@ -83,6 +95,12 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	}
 
 	@Override
+	public String getExtensionRevisionType() {
+		COSObject ExtensionRevision = getExtensionRevisionValue();
+		return getObjectType(ExtensionRevision);
+	}
+
+	@Override
 	public Boolean getExtensionRevisionHasTypeStringText() {
 		COSObject ExtensionRevision = getExtensionRevisionValue();
 		return getHasTypeStringText(ExtensionRevision);
@@ -102,6 +120,12 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	public Boolean getisTypeIndirect() {
 		COSObject Type = getTypeValue();
 		return getisIndirect(Type);
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -130,6 +154,12 @@ public class GFADevExtensions extends GFAObject implements ADevExtensions {
 	public Boolean getisURLIndirect() {
 		COSObject URL = getURLValue();
 		return getisIndirect(URL);
+	}
+
+	@Override
+	public String getURLType() {
+		COSObject URL = getURLValue();
+		return getObjectType(URL);
 	}
 
 	@Override

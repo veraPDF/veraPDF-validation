@@ -280,6 +280,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	}
 
 	@Override
+	public String getACType() {
+		COSObject AC = getACValue();
+		return getObjectType(AC);
+	}
+
+	@Override
 	public Boolean getACHasTypeStringText() {
 		COSObject AC = getACValue();
 		return getHasTypeStringText(AC);
@@ -293,6 +299,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	public COSObject getBCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BC"));
 		return object;
+	}
+
+	@Override
+	public String getBCType() {
+		COSObject BC = getBCValue();
+		return getObjectType(BC);
 	}
 
 	@Override
@@ -312,6 +324,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	}
 
 	@Override
+	public String getBGType() {
+		COSObject BG = getBGValue();
+		return getObjectType(BG);
+	}
+
+	@Override
 	public Boolean getBGHasTypeArray() {
 		COSObject BG = getBGValue();
 		return getHasTypeArray(BG);
@@ -325,6 +343,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	public COSObject getCAValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CA"));
 		return object;
+	}
+
+	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
 	}
 
 	@Override
@@ -350,6 +374,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	}
 
 	@Override
+	public String getIType() {
+		COSObject I = getIValue();
+		return getObjectType(I);
+	}
+
+	@Override
 	public Boolean getIHasTypeStream() {
 		COSObject I = getIValue();
 		return getHasTypeStream(I);
@@ -363,6 +393,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	public COSObject getIFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IF"));
 		return object;
+	}
+
+	@Override
+	public String getIFType() {
+		COSObject IF = getIFValue();
+		return getObjectType(IF);
 	}
 
 	@Override
@@ -385,6 +421,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	public Boolean getisIXIndirect() {
 		COSObject IX = getIXValue();
 		return getisIndirect(IX);
+	}
+
+	@Override
+	public String getIXType() {
+		COSObject IX = getIXValue();
+		return getObjectType(IX);
 	}
 
 	@Override
@@ -421,6 +463,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	}
 
 	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
+	}
+
+	@Override
 	public Boolean getRHasTypeInteger() {
 		COSObject R = getRValue();
 		return getHasTypeInteger(R);
@@ -434,6 +482,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	public COSObject getRCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RC"));
 		return object;
+	}
+
+	@Override
+	public String getRCType() {
+		COSObject RC = getRCValue();
+		return getObjectType(RC);
 	}
 
 	@Override
@@ -456,6 +510,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 	public Boolean getisRIIndirect() {
 		COSObject RI = getRIValue();
 		return getisIndirect(RI);
+	}
+
+	@Override
+	public String getRIType() {
+		COSObject RI = getRIValue();
+		return getObjectType(RI);
 	}
 
 	@Override
@@ -489,6 +549,12 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 			object = getTPDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getTPType() {
+		COSObject TP = getTPValue();
+		return getObjectType(TP);
 	}
 
 	@Override

@@ -116,6 +116,12 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	@Override
+	public String getHType() {
+		COSObject H = getHValue();
+		return getObjectType(H);
+	}
+
+	@Override
 	public Boolean getHHasTypeArray() {
 		COSObject H = getHValue();
 		return getHasTypeArray(H);
@@ -146,6 +152,12 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	@Override
+	public String getHIType() {
+		COSObject HI = getHIValue();
+		return getObjectType(HI);
+	}
+
+	@Override
 	public Boolean getHIHasTypeBoolean() {
 		COSObject HI = getHIValue();
 		return getHasTypeBoolean(HI);
@@ -159,6 +171,12 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	public COSObject getLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("L"));
 		return object;
+	}
+
+	@Override
+	public String getLType() {
+		COSObject L = getLValue();
+		return getObjectType(L);
 	}
 
 	@Override
@@ -192,6 +210,12 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	@Override
+	public String getLIType() {
+		COSObject LI = getLIValue();
+		return getObjectType(LI);
+	}
+
+	@Override
 	public Boolean getLIHasTypeBoolean() {
 		COSObject LI = getLIValue();
 		return getHasTypeBoolean(LI);
@@ -208,6 +232,12 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	}
 
 	@Override
+	public String getOSType() {
+		COSObject OS = getOSValue();
+		return getObjectType(OS);
+	}
+
+	@Override
 	public Boolean getOSHasTypeArray() {
 		COSObject OS = getOSValue();
 		return getHasTypeArray(OS);
@@ -221,6 +251,12 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -243,6 +279,12 @@ public class GFASoftwareIdentifier extends GFAObject implements ASoftwareIdentif
 	public COSObject getUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
 		return object;
+	}
+
+	@Override
+	public String getUType() {
+		COSObject U = getUValue();
+		return getObjectType(U);
 	}
 
 	@Override

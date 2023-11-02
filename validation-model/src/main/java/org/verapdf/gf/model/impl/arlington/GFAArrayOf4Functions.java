@@ -411,6 +411,12 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeDictionary(entry0);
@@ -434,6 +440,12 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	public Boolean getisentry1Indirect() {
 		COSObject entry1 = getentry1Value();
 		return getisIndirect(entry1);
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override
@@ -463,6 +475,12 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	}
 
 	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
+	}
+
+	@Override
 	public Boolean getentry2HasTypeDictionary() {
 		COSObject entry2 = getentry2Value();
 		return getHasTypeDictionary(entry2);
@@ -486,6 +504,12 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 	public Boolean getisentry3Indirect() {
 		COSObject entry3 = getentry3Value();
 		return getisIndirect(entry3);
+	}
+
+	@Override
+	public String getentry3Type() {
+		COSObject entry3 = getentry3Value();
+		return getObjectType(entry3);
 	}
 
 	@Override

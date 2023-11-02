@@ -314,6 +314,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	}
 
 	@Override
+	public String getAntiAliasType() {
+		COSObject AntiAlias = getAntiAliasValue();
+		return getObjectType(AntiAlias);
+	}
+
+	@Override
 	public Boolean getAntiAliasHasTypeBoolean() {
 		COSObject AntiAlias = getAntiAliasValue();
 		return getHasTypeBoolean(AntiAlias);
@@ -327,6 +333,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	public COSObject getBBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
 		return object;
+	}
+
+	@Override
+	public String getBBoxType() {
+		COSObject BBox = getBBoxValue();
+		return getObjectType(BBox);
 	}
 
 	@Override
@@ -346,6 +358,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	}
 
 	@Override
+	public String getBackgroundType() {
+		COSObject Background = getBackgroundValue();
+		return getObjectType(Background);
+	}
+
+	@Override
 	public Boolean getBackgroundHasTypeArray() {
 		COSObject Background = getBackgroundValue();
 		return getHasTypeArray(Background);
@@ -359,6 +377,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	public COSObject getColorSpaceValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
 		return object;
+	}
+
+	@Override
+	public String getColorSpaceType() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getObjectType(ColorSpace);
 	}
 
 	@Override
@@ -390,6 +414,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	}
 
 	@Override
+	public String getCoordsType() {
+		COSObject Coords = getCoordsValue();
+		return getObjectType(Coords);
+	}
+
+	@Override
 	public Boolean getCoordsHasTypeArray() {
 		COSObject Coords = getCoordsValue();
 		return getHasTypeArray(Coords);
@@ -406,6 +436,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	}
 
 	@Override
+	public String getDomainType() {
+		COSObject Domain = getDomainValue();
+		return getObjectType(Domain);
+	}
+
+	@Override
 	public Boolean getDomainHasTypeArray() {
 		COSObject Domain = getDomainValue();
 		return getHasTypeArray(Domain);
@@ -419,6 +455,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	public COSObject getExtendValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Extend"));
 		return object;
+	}
+
+	@Override
+	public String getExtendType() {
+		COSObject Extend = getExtendValue();
+		return getObjectType(Extend);
 	}
 
 	@Override
@@ -441,6 +483,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	public Boolean getisFunctionIndirect() {
 		COSObject Function = getFunctionValue();
 		return getisIndirect(Function);
+	}
+
+	@Override
+	public String getFunctionType() {
+		COSObject Function = getFunctionValue();
+		return getObjectType(Function);
 	}
 
 	@Override
@@ -469,6 +517,12 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 	public COSObject getShadingTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ShadingType"));
 		return object;
+	}
+
+	@Override
+	public String getShadingTypeType() {
+		COSObject ShadingType = getShadingTypeValue();
+		return getObjectType(ShadingType);
 	}
 
 	@Override

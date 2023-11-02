@@ -57,6 +57,12 @@ public class GFACharProcMapEntry extends GFAObject implements ACharProcMapEntry 
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeStream() {
 		COSObject entry = getValue();
 		return getHasTypeStream(entry);

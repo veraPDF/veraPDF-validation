@@ -83,6 +83,12 @@ public class GFAArrayOfOptContentOrders extends GFAObject implements AArrayOfOpt
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeDictionary(entry0);

@@ -141,6 +141,12 @@ public class GFADictionaryOfFunctions extends GFAObject implements ADictionaryOf
 	}
 
 	@Override
+	public String getDefaultType() {
+		COSObject Default = getDefaultValue();
+		return getObjectType(Default);
+	}
+
+	@Override
 	public Boolean getDefaultHasTypeDictionary() {
 		COSObject Default = getDefaultValue();
 		return getHasTypeDictionary(Default);

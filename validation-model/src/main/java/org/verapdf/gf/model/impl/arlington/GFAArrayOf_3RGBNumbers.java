@@ -25,6 +25,12 @@ public class GFAArrayOf_3RGBNumbers extends GFAObject implements AArrayOf_3RGBNu
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeNumber(entry0);
@@ -45,6 +51,12 @@ public class GFAArrayOf_3RGBNumbers extends GFAObject implements AArrayOf_3RGBNu
 	}
 
 	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
+	}
+
+	@Override
 	public Boolean getentry1HasTypeNumber() {
 		COSObject entry1 = getentry1Value();
 		return getHasTypeNumber(entry1);
@@ -62,6 +74,12 @@ public class GFAArrayOf_3RGBNumbers extends GFAObject implements AArrayOf_3RGBNu
 		}
 		COSObject object = this.baseObject.at(2);
 		return object;
+	}
+
+	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
 	}
 
 	@Override

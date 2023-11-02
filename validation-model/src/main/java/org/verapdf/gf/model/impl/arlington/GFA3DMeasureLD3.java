@@ -210,6 +210,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getA1Type() {
+		COSObject A1 = getA1Value();
+		return getObjectType(A1);
+	}
+
+	@Override
 	public Boolean getA1HasTypeArray() {
 		COSObject A1 = getA1Value();
 		return getHasTypeArray(A1);
@@ -223,6 +229,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	public COSObject getA2Value() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("A2"));
 		return object;
+	}
+
+	@Override
+	public String getA2Type() {
+		COSObject A2 = getA2Value();
+		return getObjectType(A2);
 	}
 
 	@Override
@@ -242,6 +254,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeArray() {
 		COSObject AP = getAPValue();
 		return getHasTypeArray(AP);
@@ -255,6 +273,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -274,6 +298,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getN1Type() {
+		COSObject N1 = getN1Value();
+		return getObjectType(N1);
+	}
+
+	@Override
 	public Boolean getN1HasTypeStringText() {
 		COSObject N1 = getN1Value();
 		return getHasTypeStringText(N1);
@@ -287,6 +317,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	public COSObject getN2Value() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N2"));
 		return object;
+	}
+
+	@Override
+	public String getN2Type() {
+		COSObject N2 = getN2Value();
+		return getObjectType(N2);
 	}
 
 	@Override
@@ -318,6 +354,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject P = getPValue();
 		return getHasTypeInteger(P);
@@ -346,6 +388,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeDictionary() {
 		COSObject S = getSValue();
 		return getHasTypeDictionary(S);
@@ -359,6 +407,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -384,6 +438,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getTPType() {
+		COSObject TP = getTPValue();
+		return getObjectType(TP);
+	}
+
+	@Override
 	public Boolean getTPHasTypeArray() {
 		COSObject TP = getTPValue();
 		return getHasTypeArray(TP);
@@ -397,6 +457,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	public COSObject getTRLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TRL"));
 		return object;
+	}
+
+	@Override
+	public String getTRLType() {
+		COSObject TRL = getTRLValue();
+		return getObjectType(TRL);
 	}
 
 	@Override
@@ -428,6 +494,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getTSType() {
+		COSObject TS = getTSValue();
+		return getObjectType(TS);
+	}
+
+	@Override
 	public Boolean getTSHasTypeNumber() {
 		COSObject TS = getTSValue();
 		return getHasTypeNumber(TS);
@@ -444,6 +516,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getTYType() {
+		COSObject TY = getTYValue();
+		return getObjectType(TY);
+	}
+
+	@Override
 	public Boolean getTYHasTypeArray() {
 		COSObject TY = getTYValue();
 		return getHasTypeArray(TY);
@@ -457,6 +535,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -482,6 +566,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getUType() {
+		COSObject U = getUValue();
+		return getObjectType(U);
+	}
+
+	@Override
 	public Boolean getUHasTypeStringText() {
 		COSObject U = getUValue();
 		return getHasTypeStringText(U);
@@ -498,6 +588,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	}
 
 	@Override
+	public String getUTType() {
+		COSObject UT = getUTValue();
+		return getObjectType(UT);
+	}
+
+	@Override
 	public Boolean getUTHasTypeStringText() {
 		COSObject UT = getUTValue();
 		return getHasTypeStringText(UT);
@@ -511,6 +607,12 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

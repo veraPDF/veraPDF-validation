@@ -73,6 +73,12 @@ public class GFAOutline extends GFAObject implements AOutline {
 	}
 
 	@Override
+	public String getCountType() {
+		COSObject Count = getCountValue();
+		return getObjectType(Count);
+	}
+
+	@Override
 	public Boolean getCountHasTypeInteger() {
 		COSObject Count = getCountValue();
 		return getHasTypeInteger(Count);
@@ -101,6 +107,12 @@ public class GFAOutline extends GFAObject implements AOutline {
 	}
 
 	@Override
+	public String getFirstType() {
+		COSObject First = getFirstValue();
+		return getObjectType(First);
+	}
+
+	@Override
 	public Boolean getFirstHasTypeDictionary() {
 		COSObject First = getFirstValue();
 		return getHasTypeDictionary(First);
@@ -123,6 +135,12 @@ public class GFAOutline extends GFAObject implements AOutline {
 	}
 
 	@Override
+	public String getLastType() {
+		COSObject Last = getLastValue();
+		return getObjectType(Last);
+	}
+
+	@Override
 	public Boolean getLastHasTypeDictionary() {
 		COSObject Last = getLastValue();
 		return getHasTypeDictionary(Last);
@@ -136,6 +154,12 @@ public class GFAOutline extends GFAObject implements AOutline {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

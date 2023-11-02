@@ -25,6 +25,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeNumber() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeNumber(entry0);
@@ -36,6 +42,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 		}
 		COSObject object = this.baseObject.at(1);
 		return object;
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override
@@ -53,6 +65,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
+	public String getentry10Type() {
+		COSObject entry10 = getentry10Value();
+		return getObjectType(entry10);
+	}
+
+	@Override
 	public Boolean getentry10HasTypeNumber() {
 		COSObject entry10 = getentry10Value();
 		return getHasTypeNumber(entry10);
@@ -64,6 +82,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 		}
 		COSObject object = this.baseObject.at(11);
 		return object;
+	}
+
+	@Override
+	public String getentry11Type() {
+		COSObject entry11 = getentry11Value();
+		return getObjectType(entry11);
 	}
 
 	@Override
@@ -81,6 +105,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
+	}
+
+	@Override
 	public Boolean getentry2HasTypeNumber() {
 		COSObject entry2 = getentry2Value();
 		return getHasTypeNumber(entry2);
@@ -92,6 +122,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 		}
 		COSObject object = this.baseObject.at(3);
 		return object;
+	}
+
+	@Override
+	public String getentry3Type() {
+		COSObject entry3 = getentry3Value();
+		return getObjectType(entry3);
 	}
 
 	@Override
@@ -109,6 +145,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
+	public String getentry4Type() {
+		COSObject entry4 = getentry4Value();
+		return getObjectType(entry4);
+	}
+
+	@Override
 	public Boolean getentry4HasTypeNumber() {
 		COSObject entry4 = getentry4Value();
 		return getHasTypeNumber(entry4);
@@ -120,6 +162,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 		}
 		COSObject object = this.baseObject.at(5);
 		return object;
+	}
+
+	@Override
+	public String getentry5Type() {
+		COSObject entry5 = getentry5Value();
+		return getObjectType(entry5);
 	}
 
 	@Override
@@ -137,6 +185,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
+	public String getentry6Type() {
+		COSObject entry6 = getentry6Value();
+		return getObjectType(entry6);
+	}
+
+	@Override
 	public Boolean getentry6HasTypeNumber() {
 		COSObject entry6 = getentry6Value();
 		return getHasTypeNumber(entry6);
@@ -148,6 +202,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 		}
 		COSObject object = this.baseObject.at(7);
 		return object;
+	}
+
+	@Override
+	public String getentry7Type() {
+		COSObject entry7 = getentry7Value();
+		return getObjectType(entry7);
 	}
 
 	@Override
@@ -165,6 +225,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 	}
 
 	@Override
+	public String getentry8Type() {
+		COSObject entry8 = getentry8Value();
+		return getObjectType(entry8);
+	}
+
+	@Override
 	public Boolean getentry8HasTypeNumber() {
 		COSObject entry8 = getentry8Value();
 		return getHasTypeNumber(entry8);
@@ -176,6 +242,12 @@ public class GFAArrayOf3DTransMatrix extends GFAObject implements AArrayOf3DTran
 		}
 		COSObject object = this.baseObject.at(9);
 		return object;
+	}
+
+	@Override
+	public String getentry9Type() {
+		COSObject entry9 = getentry9Value();
+		return getObjectType(entry9);
 	}
 
 	@Override

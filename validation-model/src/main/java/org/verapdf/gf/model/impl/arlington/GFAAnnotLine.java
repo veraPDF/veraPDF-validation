@@ -828,6 +828,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -850,6 +856,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -863,6 +875,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getASValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
 		return object;
+	}
+
+	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
 	}
 
 	@Override
@@ -893,6 +911,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -915,6 +939,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getBSType() {
+		COSObject BS = getBSValue();
+		return getObjectType(BS);
+	}
+
+	@Override
 	public Boolean getBSHasTypeDictionary() {
 		COSObject BS = getBSValue();
 		return getHasTypeDictionary(BS);
@@ -931,6 +961,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -944,6 +980,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -978,6 +1020,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -997,6 +1045,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getCOValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CO"));
 		return object;
+	}
+
+	@Override
+	public String getCOType() {
+		COSObject CO = getCOValue();
+		return getObjectType(CO);
 	}
 
 	@Override
@@ -1025,6 +1079,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 			object = getCPDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getCPType() {
+		COSObject CP = getCPValue();
+		return getObjectType(CP);
 	}
 
 	@Override
@@ -1063,6 +1123,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getCapType() {
+		COSObject Cap = getCapValue();
+		return getObjectType(Cap);
+	}
+
+	@Override
 	public Boolean getCapHasTypeBoolean() {
 		COSObject Cap = getCapValue();
 		return getHasTypeBoolean(Cap);
@@ -1085,6 +1151,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
+	}
+
+	@Override
 	public Boolean getContentsHasTypeStringText() {
 		COSObject Contents = getContentsValue();
 		return getHasTypeStringText(Contents);
@@ -1101,6 +1173,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getCreationDateType() {
+		COSObject CreationDate = getCreationDateValue();
+		return getObjectType(CreationDate);
+	}
+
+	@Override
 	public Boolean getCreationDateHasTypeDate() {
 		COSObject CreationDate = getCreationDateValue();
 		return getHasTypeDate(CreationDate);
@@ -1114,6 +1192,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getExDataValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExData"));
 		return object;
+	}
+
+	@Override
+	public String getExDataType() {
+		COSObject ExData = getExDataValue();
+		return getObjectType(ExData);
 	}
 
 	@Override
@@ -1149,6 +1233,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -1171,6 +1261,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getICType() {
+		COSObject IC = getICValue();
+		return getObjectType(IC);
+	}
+
+	@Override
 	public Boolean getICHasTypeArray() {
 		COSObject IC = getICValue();
 		return getHasTypeArray(IC);
@@ -1187,6 +1283,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getIRTType() {
+		COSObject IRT = getIRTValue();
+		return getObjectType(IRT);
+	}
+
+	@Override
 	public Boolean getIRTHasTypeDictionary() {
 		COSObject IRT = getIRTValue();
 		return getHasTypeDictionary(IRT);
@@ -1200,6 +1302,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getITValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IT"));
 		return object;
+	}
+
+	@Override
+	public String getITType() {
+		COSObject IT = getITValue();
+		return getObjectType(IT);
 	}
 
 	@Override
@@ -1225,6 +1333,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getLType() {
+		COSObject L = getLValue();
+		return getObjectType(L);
+	}
+
+	@Override
 	public Boolean getLHasTypeArray() {
 		COSObject L = getLValue();
 		return getHasTypeArray(L);
@@ -1238,6 +1352,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getLEValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LE"));
 		return object;
+	}
+
+	@Override
+	public String getLEType() {
+		COSObject LE = getLEValue();
+		return getObjectType(LE);
 	}
 
 	@Override
@@ -1270,6 +1390,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getLLType() {
+		COSObject LL = getLLValue();
+		return getObjectType(LL);
+	}
+
+	@Override
 	public Boolean getLLHasTypeNumber() {
 		COSObject LL = getLLValue();
 		return getHasTypeNumber(LL);
@@ -1299,6 +1425,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getLLEType() {
+		COSObject LLE = getLLEValue();
+		return getObjectType(LLE);
+	}
+
+	@Override
 	public Boolean getLLEHasTypeNumber() {
 		COSObject LLE = getLLEValue();
 		return getHasTypeNumber(LLE);
@@ -1318,6 +1450,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getLLOValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LLO"));
 		return object;
+	}
+
+	@Override
+	public String getLLOType() {
+		COSObject LLO = getLLOValue();
+		return getObjectType(LLO);
 	}
 
 	@Override
@@ -1343,6 +1481,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -1356,6 +1500,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -1381,6 +1531,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getMeasureType() {
+		COSObject Measure = getMeasureValue();
+		return getObjectType(Measure);
+	}
+
+	@Override
 	public Boolean getMeasureHasTypeDictionary() {
 		COSObject Measure = getMeasureValue();
 		return getHasTypeDictionary(Measure);
@@ -1397,6 +1553,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
+	}
+
+	@Override
 	public Boolean getNMHasTypeStringText() {
 		COSObject NM = getNMValue();
 		return getHasTypeStringText(NM);
@@ -1410,6 +1572,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -1435,6 +1603,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -1457,6 +1631,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getPopupType() {
+		COSObject Popup = getPopupValue();
+		return getObjectType(Popup);
+	}
+
+	@Override
 	public Boolean getPopupHasTypeDictionary() {
 		COSObject Popup = getPopupValue();
 		return getHasTypeDictionary(Popup);
@@ -1476,6 +1656,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public Boolean getisRCIndirect() {
 		COSObject RC = getRCValue();
 		return getisIndirect(RC);
+	}
+
+	@Override
+	public String getRCType() {
+		COSObject RC = getRCValue();
+		return getObjectType(RC);
 	}
 
 	@Override
@@ -1514,6 +1700,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getRTType() {
+		COSObject RT = getRTValue();
+		return getObjectType(RT);
+	}
+
+	@Override
 	public Boolean getRTHasTypeName() {
 		COSObject RT = getRTValue();
 		return getHasTypeName(RT);
@@ -1533,6 +1725,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getRectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
 		return object;
+	}
+
+	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
 	}
 
 	@Override
@@ -1564,6 +1762,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -1580,6 +1784,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getSubjType() {
+		COSObject Subj = getSubjValue();
+		return getObjectType(Subj);
+	}
+
+	@Override
 	public Boolean getSubjHasTypeStringText() {
 		COSObject Subj = getSubjValue();
 		return getHasTypeStringText(Subj);
@@ -1593,6 +1803,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -1618,6 +1834,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -1631,6 +1853,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -1664,6 +1892,12 @@ public class GFAAnnotLine extends GFAObject implements AAnnotLine {
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

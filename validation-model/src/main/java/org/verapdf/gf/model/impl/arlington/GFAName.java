@@ -347,6 +347,12 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeNameTree() {
 		COSObject AP = getAPValue();
 		return getHasTypeNameTree(AP);
@@ -360,6 +366,12 @@ public class GFAName extends GFAObject implements AName {
 	public COSObject getAlternatePresentationsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternatePresentations"));
 		return object;
+	}
+
+	@Override
+	public String getAlternatePresentationsType() {
+		COSObject AlternatePresentations = getAlternatePresentationsValue();
+		return getObjectType(AlternatePresentations);
 	}
 
 	@Override
@@ -379,6 +391,12 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	@Override
+	public String getDestsType() {
+		COSObject Dests = getDestsValue();
+		return getObjectType(Dests);
+	}
+
+	@Override
 	public Boolean getDestsHasTypeNameTree() {
 		COSObject Dests = getDestsValue();
 		return getHasTypeNameTree(Dests);
@@ -392,6 +410,12 @@ public class GFAName extends GFAObject implements AName {
 	public COSObject getEmbeddedFilesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EmbeddedFiles"));
 		return object;
+	}
+
+	@Override
+	public String getEmbeddedFilesType() {
+		COSObject EmbeddedFiles = getEmbeddedFilesValue();
+		return getObjectType(EmbeddedFiles);
 	}
 
 	@Override
@@ -411,6 +435,12 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	@Override
+	public String getIDSType() {
+		COSObject IDS = getIDSValue();
+		return getObjectType(IDS);
+	}
+
+	@Override
 	public Boolean getIDSHasTypeNameTree() {
 		COSObject IDS = getIDSValue();
 		return getHasTypeNameTree(IDS);
@@ -424,6 +454,12 @@ public class GFAName extends GFAObject implements AName {
 	public COSObject getJavaScriptValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScript"));
 		return object;
+	}
+
+	@Override
+	public String getJavaScriptType() {
+		COSObject JavaScript = getJavaScriptValue();
+		return getObjectType(JavaScript);
 	}
 
 	@Override
@@ -443,6 +479,12 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	@Override
+	public String getPagesType() {
+		COSObject Pages = getPagesValue();
+		return getObjectType(Pages);
+	}
+
+	@Override
 	public Boolean getPagesHasTypeNameTree() {
 		COSObject Pages = getPagesValue();
 		return getHasTypeNameTree(Pages);
@@ -456,6 +498,12 @@ public class GFAName extends GFAObject implements AName {
 	public COSObject getRenditionsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Renditions"));
 		return object;
+	}
+
+	@Override
+	public String getRenditionsType() {
+		COSObject Renditions = getRenditionsValue();
+		return getObjectType(Renditions);
 	}
 
 	@Override
@@ -475,6 +523,12 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	@Override
+	public String getTemplatesType() {
+		COSObject Templates = getTemplatesValue();
+		return getObjectType(Templates);
+	}
+
+	@Override
 	public Boolean getTemplatesHasTypeNameTree() {
 		COSObject Templates = getTemplatesValue();
 		return getHasTypeNameTree(Templates);
@@ -491,6 +545,12 @@ public class GFAName extends GFAObject implements AName {
 	}
 
 	@Override
+	public String getURLSType() {
+		COSObject URLS = getURLSValue();
+		return getObjectType(URLS);
+	}
+
+	@Override
 	public Boolean getURLSHasTypeNameTree() {
 		COSObject URLS = getURLSValue();
 		return getHasTypeNameTree(URLS);
@@ -504,6 +564,12 @@ public class GFAName extends GFAObject implements AName {
 	public COSObject getXFAResourcesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFAResources"));
 		return object;
+	}
+
+	@Override
+	public String getXFAResourcesType() {
+		COSObject XFAResources = getXFAResourcesValue();
+		return getObjectType(XFAResources);
 	}
 
 	@Override

@@ -147,6 +147,12 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	}
 
 	@Override
+	public String getArtBoxType() {
+		COSObject ArtBox = getArtBoxValue();
+		return getObjectType(ArtBox);
+	}
+
+	@Override
 	public Boolean getArtBoxHasTypeDictionary() {
 		COSObject ArtBox = getArtBoxValue();
 		return getHasTypeDictionary(ArtBox);
@@ -160,6 +166,12 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	public COSObject getBleedBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BleedBox"));
 		return object;
+	}
+
+	@Override
+	public String getBleedBoxType() {
+		COSObject BleedBox = getBleedBoxValue();
+		return getObjectType(BleedBox);
 	}
 
 	@Override
@@ -179,6 +191,12 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	}
 
 	@Override
+	public String getCropBoxType() {
+		COSObject CropBox = getCropBoxValue();
+		return getObjectType(CropBox);
+	}
+
+	@Override
 	public Boolean getCropBoxHasTypeDictionary() {
 		COSObject CropBox = getCropBoxValue();
 		return getHasTypeDictionary(CropBox);
@@ -192,6 +210,12 @@ public class GFABoxColorInfo extends GFAObject implements ABoxColorInfo {
 	public COSObject getTrimBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TrimBox"));
 		return object;
+	}
+
+	@Override
+	public String getTrimBoxType() {
+		COSObject TrimBox = getTrimBoxValue();
+		return getObjectType(TrimBox);
 	}
 
 	@Override

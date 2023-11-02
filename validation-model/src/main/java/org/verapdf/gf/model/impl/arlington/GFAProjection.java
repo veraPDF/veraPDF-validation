@@ -40,6 +40,12 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	@Override
+	public String getCSType() {
+		COSObject CS = getCSValue();
+		return getObjectType(CS);
+	}
+
+	@Override
 	public Boolean getCSHasTypeName() {
 		COSObject CS = getCSValue();
 		return getHasTypeName(CS);
@@ -62,6 +68,12 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeNumber() {
 		COSObject F = getFValue();
 		return getHasTypeNumber(F);
@@ -75,6 +87,12 @@ public class GFAProjection extends GFAObject implements AProjection {
 	public COSObject getFOVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FOV"));
 		return object;
+	}
+
+	@Override
+	public String getFOVType() {
+		COSObject FOV = getFOVValue();
+		return getObjectType(FOV);
 	}
 
 	@Override
@@ -113,6 +131,12 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeNumber() {
 		COSObject N = getNValue();
 		return getHasTypeNumber(N);
@@ -144,6 +168,12 @@ public class GFAProjection extends GFAObject implements AProjection {
 			object = getOBDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getOBType() {
+		COSObject OB = getOBValue();
+		return getObjectType(OB);
 	}
 
 	@Override
@@ -182,6 +212,12 @@ public class GFAProjection extends GFAObject implements AProjection {
 	}
 
 	@Override
+	public String getOSType() {
+		COSObject OS = getOSValue();
+		return getObjectType(OS);
+	}
+
+	@Override
 	public Boolean getOSHasTypeNumber() {
 		COSObject OS = getOSValue();
 		return getHasTypeNumber(OS);
@@ -201,6 +237,12 @@ public class GFAProjection extends GFAObject implements AProjection {
 	public COSObject getPSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PS"));
 		return object;
+	}
+
+	@Override
+	public String getPSType() {
+		COSObject PS = getPSValue();
+		return getObjectType(PS);
 	}
 
 	@Override
@@ -229,6 +271,12 @@ public class GFAProjection extends GFAObject implements AProjection {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override

@@ -409,6 +409,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getAAType() {
+		COSObject AA = getAAValue();
+		return getObjectType(AA);
+	}
+
+	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject AA = getAAValue();
 		return getHasTypeDictionary(AA);
@@ -431,6 +437,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getDAType() {
+		COSObject DA = getDAValue();
+		return getObjectType(DA);
+	}
+
+	@Override
 	public Boolean getDAHasTypeStringByte() {
 		COSObject DA = getDAValue();
 		return getHasTypeStringByte(DA);
@@ -444,6 +456,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	public COSObject getDSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
 		return object;
+	}
+
+	@Override
+	public String getDSType() {
+		COSObject DS = getDSValue();
+		return getObjectType(DS);
 	}
 
 	@Override
@@ -466,6 +484,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 			object = getInheritableValue(ASAtom.getASAtom("DV"));
 		}
 		return object;
+	}
+
+	@Override
+	public String getDVType() {
+		COSObject DV = getDVValue();
+		return getObjectType(DV);
 	}
 
 	@Override
@@ -497,6 +521,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getFTType() {
+		COSObject FT = getFTValue();
+		return getObjectType(FT);
+	}
+
+	@Override
 	public Boolean getFTHasTypeName() {
 		COSObject FT = getFTValue();
 		return getHasTypeName(FT);
@@ -522,6 +552,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 			object = getInheritableValue(ASAtom.getASAtom("Ff"));
 		}
 		return object;
+	}
+
+	@Override
+	public String getFfType() {
+		COSObject Ff = getFfValue();
+		return getObjectType(Ff);
 	}
 
 	@Override
@@ -553,6 +589,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getIType() {
+		COSObject I = getIValue();
+		return getObjectType(I);
+	}
+
+	@Override
 	public Boolean getIHasTypeArray() {
 		COSObject I = getIValue();
 		return getHasTypeArray(I);
@@ -572,6 +614,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	public COSObject getKidsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
 		return object;
+	}
+
+	@Override
+	public String getKidsType() {
+		COSObject Kids = getKidsValue();
+		return getObjectType(Kids);
 	}
 
 	@Override
@@ -597,6 +645,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getOptType() {
+		COSObject Opt = getOptValue();
+		return getObjectType(Opt);
+	}
+
+	@Override
 	public Boolean getOptHasTypeArray() {
 		COSObject Opt = getOptValue();
 		return getHasTypeArray(Opt);
@@ -616,6 +670,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	public COSObject getParentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		return object;
+	}
+
+	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
 	}
 
 	@Override
@@ -652,6 +712,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getQType() {
+		COSObject Q = getQValue();
+		return getObjectType(Q);
+	}
+
+	@Override
 	public Boolean getQHasTypeInteger() {
 		COSObject Q = getQValue();
 		return getHasTypeInteger(Q);
@@ -680,6 +746,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getRVType() {
+		COSObject RV = getRVValue();
+		return getObjectType(RV);
+	}
+
+	@Override
 	public Boolean getRVHasTypeStream() {
 		COSObject RV = getRVValue();
 		return getHasTypeStream(RV);
@@ -699,6 +771,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	public COSObject getTValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
 		return object;
+	}
+
+	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
 	}
 
 	@Override
@@ -741,6 +819,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getTIType() {
+		COSObject TI = getTIValue();
+		return getObjectType(TI);
+	}
+
+	@Override
 	public Boolean getTIHasTypeInteger() {
 		COSObject TI = getTIValue();
 		return getHasTypeInteger(TI);
@@ -763,6 +847,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	}
 
 	@Override
+	public String getTMType() {
+		COSObject TM = getTMValue();
+		return getObjectType(TM);
+	}
+
+	@Override
 	public Boolean getTMHasTypeStringText() {
 		COSObject TM = getTMValue();
 		return getHasTypeStringText(TM);
@@ -776,6 +866,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 	public COSObject getTUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
 		return object;
+	}
+
+	@Override
+	public String getTUType() {
+		COSObject TU = getTUValue();
+		return getObjectType(TU);
 	}
 
 	@Override
@@ -798,6 +894,12 @@ public class GFAFieldChoice extends GFAObject implements AFieldChoice {
 			object = getInheritableValue(ASAtom.getASAtom("V"));
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

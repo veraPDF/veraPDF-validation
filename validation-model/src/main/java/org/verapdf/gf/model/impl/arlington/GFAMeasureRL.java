@@ -217,6 +217,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeArray() {
 		COSObject A = getAValue();
 		return getHasTypeArray(A);
@@ -230,6 +236,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	public COSObject getCYXValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CYX"));
 		return object;
+	}
+
+	@Override
+	public String getCYXType() {
+		COSObject CYX = getCYXValue();
+		return getObjectType(CYX);
 	}
 
 	@Override
@@ -249,6 +261,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject D = getDValue();
 		return getHasTypeArray(D);
@@ -262,6 +280,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	public COSObject getOValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
 		return object;
+	}
+
+	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
 	}
 
 	@Override
@@ -281,6 +305,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
+	}
+
+	@Override
 	public Boolean getRHasTypeStringText() {
 		COSObject R = getRValue();
 		return getHasTypeStringText(R);
@@ -297,6 +327,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeArray() {
 		COSObject S = getSValue();
 		return getHasTypeArray(S);
@@ -310,6 +346,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -335,6 +377,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeArray() {
 		COSObject T = getTValue();
 		return getHasTypeArray(T);
@@ -348,6 +396,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -373,6 +427,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	}
 
 	@Override
+	public String getXType() {
+		COSObject X = getXValue();
+		return getObjectType(X);
+	}
+
+	@Override
 	public Boolean getXHasTypeArray() {
 		COSObject X = getXValue();
 		return getHasTypeArray(X);
@@ -386,6 +446,12 @@ public class GFAMeasureRL extends GFAObject implements AMeasureRL {
 	public COSObject getYValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Y"));
 		return object;
+	}
+
+	@Override
+	public String getYType() {
+		COSObject Y = getYValue();
+		return getObjectType(Y);
 	}
 
 	@Override

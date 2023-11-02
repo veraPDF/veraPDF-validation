@@ -160,6 +160,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	}
 
 	@Override
+	public String getA1Type() {
+		COSObject A1 = getA1Value();
+		return getObjectType(A1);
+	}
+
+	@Override
 	public Boolean getA1HasTypeArray() {
 		COSObject A1 = getA1Value();
 		return getHasTypeArray(A1);
@@ -176,6 +182,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject C = getCValue();
 		return getHasTypeArray(C);
@@ -189,6 +201,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	public COSObject getN1Value() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("N1"));
 		return object;
+	}
+
+	@Override
+	public String getN1Type() {
+		COSObject N1 = getN1Value();
+		return getObjectType(N1);
 	}
 
 	@Override
@@ -214,6 +232,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeDictionary() {
 		COSObject S = getSValue();
 		return getHasTypeDictionary(S);
@@ -227,6 +251,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -252,6 +282,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	}
 
 	@Override
+	public String getTBType() {
+		COSObject TB = getTBValue();
+		return getObjectType(TB);
+	}
+
+	@Override
 	public Boolean getTBHasTypeArray() {
 		COSObject TB = getTBValue();
 		return getHasTypeArray(TB);
@@ -268,6 +304,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	}
 
 	@Override
+	public String getTPType() {
+		COSObject TP = getTPValue();
+		return getObjectType(TP);
+	}
+
+	@Override
 	public Boolean getTPHasTypeArray() {
 		COSObject TP = getTPValue();
 		return getHasTypeArray(TP);
@@ -281,6 +323,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	public COSObject getTRLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TRL"));
 		return object;
+	}
+
+	@Override
+	public String getTRLType() {
+		COSObject TRL = getTRLValue();
+		return getObjectType(TRL);
 	}
 
 	@Override
@@ -312,6 +360,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	}
 
 	@Override
+	public String getTSType() {
+		COSObject TS = getTSValue();
+		return getObjectType(TS);
+	}
+
+	@Override
 	public Boolean getTSHasTypeNumber() {
 		COSObject TS = getTSValue();
 		return getHasTypeNumber(TS);
@@ -325,6 +379,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -347,6 +407,12 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 	public COSObject getUTValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UT"));
 		return object;
+	}
+
+	@Override
+	public String getUTType() {
+		COSObject UT = getUTValue();
+		return getObjectType(UT);
 	}
 
 	@Override

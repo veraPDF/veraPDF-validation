@@ -62,6 +62,12 @@ public class GFAArrayOfCIDGlyphMetricsW2Entry extends GFAObject implements AArra
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeArray() {
 		COSObject entry = getValue();
 		return getHasTypeArray(entry);

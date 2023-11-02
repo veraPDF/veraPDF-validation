@@ -316,6 +316,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -338,6 +344,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -354,6 +366,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
+	}
+
+	@Override
 	public Boolean getASHasTypeName() {
 		COSObject AS = getASValue();
 		return getHasTypeName(AS);
@@ -367,6 +385,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getAnnotStatesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AnnotStates"));
 		return object;
+	}
+
+	@Override
+	public String getAnnotStatesType() {
+		COSObject AnnotStates = getAnnotStatesValue();
+		return getObjectType(AnnotStates);
 	}
 
 	@Override
@@ -397,6 +421,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -419,6 +449,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -432,6 +468,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -462,6 +504,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -484,6 +532,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
+	}
+
+	@Override
 	public Boolean getContentsHasTypeString() {
 		COSObject Contents = getContentsValue();
 		return getHasTypeString(Contents);
@@ -497,6 +551,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object;
+	}
+
+	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
 	}
 
 	@Override
@@ -522,6 +582,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getFontFauxingType() {
+		COSObject FontFauxing = getFontFauxingValue();
+		return getObjectType(FontFauxing);
+	}
+
+	@Override
 	public Boolean getFontFauxingHasTypeArray() {
 		COSObject FontFauxing = getFontFauxingValue();
 		return getHasTypeArray(FontFauxing);
@@ -535,6 +601,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getLangValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
 		return object;
+	}
+
+	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
 	}
 
 	@Override
@@ -554,6 +626,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getLastModifiedType() {
+		COSObject LastModified = getLastModifiedValue();
+		return getObjectType(LastModified);
+	}
+
+	@Override
 	public Boolean getLastModifiedHasTypeDate() {
 		COSObject LastModified = getLastModifiedValue();
 		return getHasTypeDate(LastModified);
@@ -567,6 +645,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -592,6 +676,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
+	}
+
+	@Override
 	public Boolean getNMHasTypeString() {
 		COSObject NM = getNMValue();
 		return getHasTypeString(NM);
@@ -605,6 +695,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -630,6 +726,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -643,6 +745,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getRectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
 		return object;
+	}
+
+	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
 	}
 
 	@Override
@@ -662,6 +770,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -675,6 +789,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -700,6 +820,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -719,6 +845,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 	public COSObject getVersionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
 		return object;
+	}
+
+	@Override
+	public String getVersionType() {
+		COSObject Version = getVersionValue();
+		return getObjectType(Version);
 	}
 
 	@Override
@@ -746,6 +878,12 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

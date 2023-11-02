@@ -376,6 +376,12 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	@Override
+	public String getANType() {
+		COSObject AN = getANValue();
+		return getObjectType(AN);
+	}
+
+	@Override
 	public Boolean getANHasTypeDictionary() {
 		COSObject AN = getANValue();
 		return getHasTypeDictionary(AN);
@@ -395,6 +401,12 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	public Boolean getisJSIndirect() {
 		COSObject JS = getJSValue();
 		return getisIndirect(JS);
+	}
+
+	@Override
+	public String getJSType() {
+		COSObject JS = getJSValue();
+		return getObjectType(JS);
 	}
 
 	@Override
@@ -420,6 +432,12 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
+	}
+
+	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject Next = getNextValue();
 		return getHasTypeArray(Next);
@@ -439,6 +457,12 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	public COSObject getOPValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OP"));
 		return object;
+	}
+
+	@Override
+	public String getOPType() {
+		COSObject OP = getOPValue();
+		return getObjectType(OP);
 	}
 
 	@Override
@@ -464,6 +488,12 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	}
 
 	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
+	}
+
+	@Override
 	public Boolean getRHasTypeDictionary() {
 		COSObject R = getRValue();
 		return getHasTypeDictionary(R);
@@ -477,6 +507,12 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -499,6 +535,12 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

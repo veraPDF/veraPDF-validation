@@ -293,6 +293,12 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject D = getDValue();
 		return getHasTypeArray(D);
@@ -321,6 +327,12 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -343,6 +355,12 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	@Override
+	public String getNewWindowType() {
+		COSObject NewWindow = getNewWindowValue();
+		return getObjectType(NewWindow);
+	}
+
+	@Override
 	public Boolean getNewWindowHasTypeBoolean() {
 		COSObject NewWindow = getNewWindowValue();
 		return getHasTypeBoolean(NewWindow);
@@ -356,6 +374,12 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -381,6 +405,12 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -403,6 +433,12 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeDictionary() {
 		COSObject T = getTValue();
 		return getHasTypeDictionary(T);
@@ -416,6 +452,12 @@ public class GFAActionGoToE extends GFAObject implements AActionGoToE {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

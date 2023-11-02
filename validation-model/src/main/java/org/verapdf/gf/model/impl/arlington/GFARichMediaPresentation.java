@@ -72,6 +72,12 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	@Override
+	public String getNavigationPaneType() {
+		COSObject NavigationPane = getNavigationPaneValue();
+		return getObjectType(NavigationPane);
+	}
+
+	@Override
 	public Boolean getNavigationPaneHasTypeBoolean() {
 		COSObject NavigationPane = getNavigationPaneValue();
 		return getHasTypeBoolean(NavigationPane);
@@ -100,6 +106,12 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	@Override
+	public String getPassContextClickType() {
+		COSObject PassContextClick = getPassContextClickValue();
+		return getObjectType(PassContextClick);
+	}
+
+	@Override
 	public Boolean getPassContextClickHasTypeBoolean() {
 		COSObject PassContextClick = getPassContextClickValue();
 		return getHasTypeBoolean(PassContextClick);
@@ -125,6 +137,12 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 			object = getStyleDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getStyleType() {
+		COSObject Style = getStyleValue();
+		return getObjectType(Style);
 	}
 
 	@Override
@@ -162,6 +180,12 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	@Override
+	public String getToolbarType() {
+		COSObject Toolbar = getToolbarValue();
+		return getObjectType(Toolbar);
+	}
+
+	@Override
 	public Boolean getToolbarHasTypeBoolean() {
 		COSObject Toolbar = getToolbarValue();
 		return getHasTypeBoolean(Toolbar);
@@ -190,6 +214,12 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	}
 
 	@Override
+	public String getTransparentType() {
+		COSObject Transparent = getTransparentValue();
+		return getObjectType(Transparent);
+	}
+
+	@Override
 	public Boolean getTransparentHasTypeBoolean() {
 		COSObject Transparent = getTransparentValue();
 		return getHasTypeBoolean(Transparent);
@@ -203,6 +233,12 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -225,6 +261,12 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	public COSObject getWindowValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Window"));
 		return object;
+	}
+
+	@Override
+	public String getWindowType() {
+		COSObject Window = getWindowValue();
+		return getObjectType(Window);
 	}
 
 	@Override

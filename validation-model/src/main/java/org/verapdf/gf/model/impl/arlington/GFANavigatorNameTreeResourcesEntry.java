@@ -62,6 +62,12 @@ public class GFANavigatorNameTreeResourcesEntry extends GFAObject implements ANa
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeStream() {
 		COSObject entry = getValue();
 		return getHasTypeStream(entry);

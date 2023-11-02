@@ -60,6 +60,12 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeArray() {
 		COSObject A = getAValue();
 		return getHasTypeArray(A);
@@ -100,6 +106,12 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeStringText() {
 		COSObject C = getCValue();
 		return getHasTypeStringText(C);
@@ -113,6 +125,12 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

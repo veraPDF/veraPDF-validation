@@ -291,6 +291,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getAAType() {
+		COSObject AA = getAAValue();
+		return getObjectType(AA);
+	}
+
+	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject AA = getAAValue();
 		return getHasTypeDictionary(AA);
@@ -313,6 +319,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getDAType() {
+		COSObject DA = getDAValue();
+		return getObjectType(DA);
+	}
+
+	@Override
 	public Boolean getDAHasTypeStringByte() {
 		COSObject DA = getDAValue();
 		return getHasTypeStringByte(DA);
@@ -326,6 +338,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	public COSObject getDSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
 		return object;
+	}
+
+	@Override
+	public String getDSType() {
+		COSObject DS = getDSValue();
+		return getObjectType(DS);
 	}
 
 	@Override
@@ -351,6 +369,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getDVType() {
+		COSObject DV = getDVValue();
+		return getObjectType(DV);
+	}
+
+	@Override
 	public Boolean getDVHasTypeName() {
 		COSObject DV = getDVValue();
 		return getHasTypeName(DV);
@@ -370,6 +394,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 			object = getInheritableValue(ASAtom.getASAtom("FT"));
 		}
 		return object;
+	}
+
+	@Override
+	public String getFTType() {
+		COSObject FT = getFTValue();
+		return getObjectType(FT);
 	}
 
 	@Override
@@ -401,6 +431,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getFfType() {
+		COSObject Ff = getFfValue();
+		return getObjectType(Ff);
+	}
+
+	@Override
 	public Boolean getFfHasTypeBitmask() {
 		COSObject Ff = getFfValue();
 		return getHasTypeBitmask(Ff);
@@ -423,6 +459,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getKidsType() {
+		COSObject Kids = getKidsValue();
+		return getObjectType(Kids);
+	}
+
+	@Override
 	public Boolean getKidsHasTypeArray() {
 		COSObject Kids = getKidsValue();
 		return getHasTypeArray(Kids);
@@ -436,6 +478,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	public COSObject getParentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
 		return object;
+	}
+
+	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
 	}
 
 	@Override
@@ -472,6 +520,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getQType() {
+		COSObject Q = getQValue();
+		return getObjectType(Q);
+	}
+
+	@Override
 	public Boolean getQHasTypeInteger() {
 		COSObject Q = getQValue();
 		return getHasTypeInteger(Q);
@@ -500,6 +554,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getRVType() {
+		COSObject RV = getRVValue();
+		return getObjectType(RV);
+	}
+
+	@Override
 	public Boolean getRVHasTypeStream() {
 		COSObject RV = getRVValue();
 		return getHasTypeStream(RV);
@@ -522,6 +582,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -538,6 +604,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	}
 
 	@Override
+	public String getTMType() {
+		COSObject TM = getTMValue();
+		return getObjectType(TM);
+	}
+
+	@Override
 	public Boolean getTMHasTypeStringText() {
 		COSObject TM = getTMValue();
 		return getHasTypeStringText(TM);
@@ -551,6 +623,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 	public COSObject getTUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
 		return object;
+	}
+
+	@Override
+	public String getTUType() {
+		COSObject TU = getTUValue();
+		return getObjectType(TU);
 	}
 
 	@Override
@@ -573,6 +651,12 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 			object = getInheritableValue(ASAtom.getASAtom("V"));
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

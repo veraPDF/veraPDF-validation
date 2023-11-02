@@ -40,6 +40,12 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 	}
 
 	@Override
+	public String getFfType() {
+		COSObject Ff = getFfValue();
+		return getObjectType(Ff);
+	}
+
+	@Override
 	public Boolean getFfHasTypeInteger() {
 		COSObject Ff = getFfValue();
 		return getHasTypeInteger(Ff);
@@ -59,6 +65,12 @@ public class GFATimeStampDict extends GFAObject implements ATimeStampDict {
 	public COSObject getURLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
 		return object;
+	}
+
+	@Override
+	public String getURLType() {
+		COSObject URL = getURLValue();
+		return getObjectType(URL);
 	}
 
 	@Override

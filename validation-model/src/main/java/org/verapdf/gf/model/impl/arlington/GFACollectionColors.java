@@ -160,6 +160,12 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	}
 
 	@Override
+	public String getBackgroundType() {
+		COSObject Background = getBackgroundValue();
+		return getObjectType(Background);
+	}
+
+	@Override
 	public Boolean getBackgroundHasTypeArray() {
 		COSObject Background = getBackgroundValue();
 		return getHasTypeArray(Background);
@@ -173,6 +179,12 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	public COSObject getCardBackgroundValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CardBackground"));
 		return object;
+	}
+
+	@Override
+	public String getCardBackgroundType() {
+		COSObject CardBackground = getCardBackgroundValue();
+		return getObjectType(CardBackground);
 	}
 
 	@Override
@@ -192,6 +204,12 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	}
 
 	@Override
+	public String getCardBorderType() {
+		COSObject CardBorder = getCardBorderValue();
+		return getObjectType(CardBorder);
+	}
+
+	@Override
 	public Boolean getCardBorderHasTypeArray() {
 		COSObject CardBorder = getCardBorderValue();
 		return getHasTypeArray(CardBorder);
@@ -205,6 +223,12 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	public COSObject getPrimaryTextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PrimaryText"));
 		return object;
+	}
+
+	@Override
+	public String getPrimaryTextType() {
+		COSObject PrimaryText = getPrimaryTextValue();
+		return getObjectType(PrimaryText);
 	}
 
 	@Override
@@ -224,6 +248,12 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	}
 
 	@Override
+	public String getSecondaryTextType() {
+		COSObject SecondaryText = getSecondaryTextValue();
+		return getObjectType(SecondaryText);
+	}
+
+	@Override
 	public Boolean getSecondaryTextHasTypeArray() {
 		COSObject SecondaryText = getSecondaryTextValue();
 		return getHasTypeArray(SecondaryText);
@@ -237,6 +267,12 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

@@ -184,6 +184,12 @@ public class GFANameNameTreeDestsEntry extends GFAObject implements ANameNameTre
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeArray() {
 		COSObject entry = getValue();
 		return getHasTypeArray(entry);

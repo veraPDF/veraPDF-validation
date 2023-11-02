@@ -93,6 +93,12 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	}
 
 	@Override
+	public String getDPartRootNodeType() {
+		COSObject DPartRootNode = getDPartRootNodeValue();
+		return getObjectType(DPartRootNode);
+	}
+
+	@Override
 	public Boolean getDPartRootNodeHasTypeDictionary() {
 		COSObject DPartRootNode = getDPartRootNodeValue();
 		return getHasTypeDictionary(DPartRootNode);
@@ -109,6 +115,12 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	}
 
 	@Override
+	public String getNodeNameListType() {
+		COSObject NodeNameList = getNodeNameListValue();
+		return getObjectType(NodeNameList);
+	}
+
+	@Override
 	public Boolean getNodeNameListHasTypeArray() {
 		COSObject NodeNameList = getNodeNameListValue();
 		return getHasTypeArray(NodeNameList);
@@ -122,6 +134,12 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	public COSObject getRecordLevelValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RecordLevel"));
 		return object;
+	}
+
+	@Override
+	public String getRecordLevelType() {
+		COSObject RecordLevel = getRecordLevelValue();
+		return getObjectType(RecordLevel);
 	}
 
 	@Override
@@ -144,6 +162,12 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

@@ -132,6 +132,12 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	@Override
+	public String getMCIDType() {
+		COSObject MCID = getMCIDValue();
+		return getObjectType(MCID);
+	}
+
+	@Override
 	public Boolean getMCIDHasTypeInteger() {
 		COSObject MCID = getMCIDValue();
 		return getHasTypeInteger(MCID);
@@ -151,6 +157,12 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	public Boolean getisPgIndirect() {
 		COSObject Pg = getPgValue();
 		return getisIndirect(Pg);
+	}
+
+	@Override
+	public String getPgType() {
+		COSObject Pg = getPgValue();
+		return getObjectType(Pg);
 	}
 
 	@Override
@@ -176,6 +188,12 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	}
 
 	@Override
+	public String getStmType() {
+		COSObject Stm = getStmValue();
+		return getObjectType(Stm);
+	}
+
+	@Override
 	public Boolean getStmHasTypeStream() {
 		COSObject Stm = getStmValue();
 		return getHasTypeStream(Stm);
@@ -195,6 +213,12 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	public Boolean getisStmOwnIndirect() {
 		COSObject StmOwn = getStmOwnValue();
 		return getisIndirect(StmOwn);
+	}
+
+	@Override
+	public String getStmOwnType() {
+		COSObject StmOwn = getStmOwnValue();
+		return getObjectType(StmOwn);
 	}
 
 	@Override
@@ -223,6 +247,12 @@ public class GFAMarkedContentReference extends GFAObject implements AMarkedConte
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

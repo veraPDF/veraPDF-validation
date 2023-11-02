@@ -27,6 +27,12 @@ public class GFAMediaOffsetMarker extends GFAObject implements AMediaOffsetMarke
 	}
 
 	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
+	}
+
+	@Override
 	public Boolean getMHasTypeStringText() {
 		COSObject M = getMValue();
 		return getHasTypeStringText(M);
@@ -40,6 +46,12 @@ public class GFAMediaOffsetMarker extends GFAObject implements AMediaOffsetMarke
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -62,6 +74,12 @@ public class GFAMediaOffsetMarker extends GFAObject implements AMediaOffsetMarke
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

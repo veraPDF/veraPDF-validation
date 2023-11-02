@@ -497,6 +497,12 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	@Override
+	public String getBType() {
+		COSObject B = getBValue();
+		return getObjectType(B);
+	}
+
+	@Override
 	public Boolean getBHasTypeDictionary() {
 		COSObject B = getBValue();
 		return getHasTypeDictionary(B);
@@ -528,6 +534,12 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	public Boolean getisDIndirect() {
 		COSObject D = getDValue();
 		return getisIndirect(D);
+	}
+
+	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
 	}
 
 	@Override
@@ -565,6 +577,12 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -584,6 +602,12 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -609,6 +633,12 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -628,6 +658,12 @@ public class GFAActionThread extends GFAObject implements AActionThread {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

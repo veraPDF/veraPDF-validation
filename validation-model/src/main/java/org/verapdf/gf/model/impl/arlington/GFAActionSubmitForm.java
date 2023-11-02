@@ -95,6 +95,12 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	}
 
 	@Override
+	public String getCharSetType() {
+		COSObject CharSet = getCharSetValue();
+		return getObjectType(CharSet);
+	}
+
+	@Override
 	public Boolean getCharSetHasTypeString() {
 		COSObject CharSet = getCharSetValue();
 		return getHasTypeString(CharSet);
@@ -117,6 +123,12 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -136,6 +148,12 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	public COSObject getFieldsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fields"));
 		return object;
+	}
+
+	@Override
+	public String getFieldsType() {
+		COSObject Fields = getFieldsValue();
+		return getObjectType(Fields);
 	}
 
 	@Override
@@ -172,6 +190,12 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	}
 
 	@Override
+	public String getFlagsType() {
+		COSObject Flags = getFlagsValue();
+		return getObjectType(Flags);
+	}
+
+	@Override
 	public Boolean getFlagsHasTypeBitmask() {
 		COSObject Flags = getFlagsValue();
 		return getHasTypeBitmask(Flags);
@@ -191,6 +215,12 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override

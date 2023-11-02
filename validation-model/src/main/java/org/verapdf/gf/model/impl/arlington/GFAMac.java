@@ -64,6 +64,12 @@ public class GFAMac extends GFAObject implements AMac {
 	}
 
 	@Override
+	public String getCreatorType() {
+		COSObject Creator = getCreatorValue();
+		return getObjectType(Creator);
+	}
+
+	@Override
 	public Boolean getCreatorHasTypeInteger() {
 		COSObject Creator = getCreatorValue();
 		return getHasTypeInteger(Creator);
@@ -86,6 +92,12 @@ public class GFAMac extends GFAObject implements AMac {
 	}
 
 	@Override
+	public String getResForkType() {
+		COSObject ResFork = getResForkValue();
+		return getObjectType(ResFork);
+	}
+
+	@Override
 	public Boolean getResForkHasTypeStream() {
 		COSObject ResFork = getResForkValue();
 		return getHasTypeStream(ResFork);
@@ -99,6 +111,12 @@ public class GFAMac extends GFAObject implements AMac {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override

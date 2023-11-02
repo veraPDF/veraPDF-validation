@@ -97,6 +97,12 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeArray() {
 		COSObject A = getAValue();
 		return getHasTypeArray(A);
@@ -119,6 +125,12 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeArray() {
 		COSObject S = getSValue();
 		return getHasTypeArray(S);
@@ -138,6 +150,12 @@ public class GFACollectionSort extends GFAObject implements ACollectionSort {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

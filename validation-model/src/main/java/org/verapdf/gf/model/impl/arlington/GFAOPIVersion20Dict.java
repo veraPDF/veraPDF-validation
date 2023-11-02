@@ -185,6 +185,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	@Override
+	public String getCropRectType() {
+		COSObject CropRect = getCropRectValue();
+		return getObjectType(CropRect);
+	}
+
+	@Override
 	public Boolean getCropRectHasTypeRectangle() {
 		COSObject CropRect = getCropRectValue();
 		return getHasTypeRectangle(CropRect);
@@ -198,6 +204,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	public COSObject getFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object;
+	}
+
+	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
 	}
 
 	@Override
@@ -223,6 +235,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	@Override
+	public String getIncludedImageDimensionsType() {
+		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
+		return getObjectType(IncludedImageDimensions);
+	}
+
+	@Override
 	public Boolean getIncludedImageDimensionsHasTypeArray() {
 		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
 		return getHasTypeArray(IncludedImageDimensions);
@@ -236,6 +254,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	public COSObject getIncludedImageQualityValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IncludedImageQuality"));
 		return object;
+	}
+
+	@Override
+	public String getIncludedImageQualityType() {
+		COSObject IncludedImageQuality = getIncludedImageQualityValue();
+		return getObjectType(IncludedImageQuality);
 	}
 
 	@Override
@@ -258,6 +282,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	public COSObject getInksValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Inks"));
 		return object;
+	}
+
+	@Override
+	public String getInksType() {
+		COSObject Inks = getInksValue();
+		return getObjectType(Inks);
 	}
 
 	@Override
@@ -289,6 +319,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	@Override
+	public String getMainImageType() {
+		COSObject MainImage = getMainImageValue();
+		return getObjectType(MainImage);
+	}
+
+	@Override
 	public Boolean getMainImageHasTypeStringByte() {
 		COSObject MainImage = getMainImageValue();
 		return getHasTypeStringByte(MainImage);
@@ -302,6 +338,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	public COSObject getOverprintValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Overprint"));
 		return object;
+	}
+
+	@Override
+	public String getOverprintType() {
+		COSObject Overprint = getOverprintValue();
+		return getObjectType(Overprint);
 	}
 
 	@Override
@@ -321,6 +363,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	@Override
+	public String getSizeType() {
+		COSObject Size = getSizeValue();
+		return getObjectType(Size);
+	}
+
+	@Override
 	public Boolean getSizeHasTypeArray() {
 		COSObject Size = getSizeValue();
 		return getHasTypeArray(Size);
@@ -337,6 +385,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	}
 
 	@Override
+	public String getTagsType() {
+		COSObject Tags = getTagsValue();
+		return getObjectType(Tags);
+	}
+
+	@Override
 	public Boolean getTagsHasTypeArray() {
 		COSObject Tags = getTagsValue();
 		return getHasTypeArray(Tags);
@@ -350,6 +404,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -372,6 +432,12 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	public COSObject getVersionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
 		return object;
+	}
+
+	@Override
+	public String getVersionType() {
+		COSObject Version = getVersionValue();
+		return getObjectType(Version);
 	}
 
 	@Override

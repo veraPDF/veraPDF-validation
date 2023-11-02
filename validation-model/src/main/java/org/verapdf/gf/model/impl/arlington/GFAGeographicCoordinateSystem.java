@@ -27,6 +27,12 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 	}
 
 	@Override
+	public String getEPSGType() {
+		COSObject EPSG = getEPSGValue();
+		return getObjectType(EPSG);
+	}
+
+	@Override
 	public Boolean getEPSGHasTypeInteger() {
 		COSObject EPSG = getEPSGValue();
 		return getHasTypeInteger(EPSG);
@@ -40,6 +46,12 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -62,6 +74,12 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 	public COSObject getWKTValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WKT"));
 		return object;
+	}
+
+	@Override
+	public String getWKTType() {
+		COSObject WKT = getWKTValue();
+		return getObjectType(WKT);
 	}
 
 	@Override

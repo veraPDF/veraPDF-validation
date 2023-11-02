@@ -27,6 +27,12 @@ public class GFAArrayOfStringsASCIIEntry extends GFAObject implements AArrayOfSt
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeStringAscii() {
 		COSObject entry = getValue();
 		return getHasTypeStringAscii(entry);

@@ -83,6 +83,12 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	}
 
 	@Override
+	public String getNSType() {
+		COSObject NS = getNSValue();
+		return getObjectType(NS);
+	}
+
+	@Override
 	public Boolean getNSHasTypeStringText() {
 		COSObject NS = getNSValue();
 		return getHasTypeStringText(NS);
@@ -99,6 +105,12 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	}
 
 	@Override
+	public String getRoleMapNSType() {
+		COSObject RoleMapNS = getRoleMapNSValue();
+		return getObjectType(RoleMapNS);
+	}
+
+	@Override
 	public Boolean getRoleMapNSHasTypeDictionary() {
 		COSObject RoleMapNS = getRoleMapNSValue();
 		return getHasTypeDictionary(RoleMapNS);
@@ -112,6 +124,12 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	public COSObject getSchemaValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Schema"));
 		return object;
+	}
+
+	@Override
+	public String getSchemaType() {
+		COSObject Schema = getSchemaValue();
+		return getObjectType(Schema);
 	}
 
 	@Override
@@ -134,6 +152,12 @@ public class GFANamespace extends GFAObject implements ANamespace {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

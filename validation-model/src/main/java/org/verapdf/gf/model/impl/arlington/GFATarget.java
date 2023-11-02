@@ -61,6 +61,12 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeInteger() {
 		COSObject A = getAValue();
 		return getHasTypeInteger(A);
@@ -95,6 +101,12 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeStringByte() {
 		COSObject N = getNValue();
 		return getHasTypeStringByte(N);
@@ -122,6 +134,12 @@ public class GFATarget extends GFAObject implements ATarget {
 	public COSObject getPValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		return object;
+	}
+
+	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
 	}
 
 	@Override
@@ -167,6 +185,12 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
+	}
+
+	@Override
 	public Boolean getRHasTypeName() {
 		COSObject R = getRValue();
 		return getHasTypeName(R);
@@ -186,6 +210,12 @@ public class GFATarget extends GFAObject implements ATarget {
 	public COSObject getTValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("T"));
 		return object;
+	}
+
+	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
 	}
 
 	@Override

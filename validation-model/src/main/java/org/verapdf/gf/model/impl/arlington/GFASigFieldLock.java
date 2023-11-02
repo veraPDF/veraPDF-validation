@@ -62,6 +62,12 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 	}
 
 	@Override
+	public String getActionType() {
+		COSObject Action = getActionValue();
+		return getObjectType(Action);
+	}
+
+	@Override
 	public Boolean getActionHasTypeName() {
 		COSObject Action = getActionValue();
 		return getHasTypeName(Action);
@@ -84,6 +90,12 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 	}
 
 	@Override
+	public String getFieldsType() {
+		COSObject Fields = getFieldsValue();
+		return getObjectType(Fields);
+	}
+
+	@Override
 	public Boolean getFieldsHasTypeArray() {
 		COSObject Fields = getFieldsValue();
 		return getHasTypeArray(Fields);
@@ -97,6 +109,12 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 	public COSObject getPValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		return object;
+	}
+
+	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
 	}
 
 	@Override
@@ -119,6 +137,12 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

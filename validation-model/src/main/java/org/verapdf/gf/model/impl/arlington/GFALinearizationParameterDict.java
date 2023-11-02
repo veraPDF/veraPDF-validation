@@ -85,6 +85,12 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	@Override
+	public String getEType() {
+		COSObject E = getEValue();
+		return getObjectType(E);
+	}
+
+	@Override
 	public Boolean getEHasTypeInteger() {
 		COSObject E = getEValue();
 		return getHasTypeInteger(E);
@@ -113,6 +119,12 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	@Override
+	public String getHType() {
+		COSObject H = getHValue();
+		return getObjectType(H);
+	}
+
+	@Override
 	public Boolean getHHasTypeArray() {
 		COSObject H = getHValue();
 		return getHasTypeArray(H);
@@ -132,6 +144,12 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	public Boolean getisLIndirect() {
 		COSObject L = getLValue();
 		return getisIndirect(L);
+	}
+
+	@Override
+	public String getLType() {
+		COSObject L = getLValue();
+		return getObjectType(L);
 	}
 
 	@Override
@@ -163,6 +181,12 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	@Override
+	public String getLinearizedType() {
+		COSObject Linearized = getLinearizedValue();
+		return getObjectType(Linearized);
+	}
+
+	@Override
 	public Boolean getLinearizedHasTypeNumber() {
 		COSObject Linearized = getLinearizedValue();
 		return getHasTypeNumber(Linearized);
@@ -191,6 +215,12 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeInteger() {
 		COSObject N = getNValue();
 		return getHasTypeInteger(N);
@@ -216,6 +246,12 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	public Boolean getisOIndirect() {
 		COSObject O = getOValue();
 		return getisIndirect(O);
+	}
+
+	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
 	}
 
 	@Override
@@ -264,6 +300,12 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeInteger() {
 		COSObject P = getPValue();
 		return getHasTypeInteger(P);
@@ -289,6 +331,12 @@ public class GFALinearizationParameterDict extends GFAObject implements ALineari
 	public Boolean getisTIndirect() {
 		COSObject T = getTValue();
 		return getisIndirect(T);
+	}
+
+	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
 	}
 
 	@Override

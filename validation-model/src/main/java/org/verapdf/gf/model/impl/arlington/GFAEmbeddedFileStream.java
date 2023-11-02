@@ -463,6 +463,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -482,6 +488,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -513,6 +525,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -532,6 +550,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -560,6 +584,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -597,6 +627,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -631,6 +667,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -644,6 +686,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	public COSObject getParamsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Params"));
 		return object;
+	}
+
+	@Override
+	public String getParamsType() {
+		COSObject Params = getParamsValue();
+		return getObjectType(Params);
 	}
 
 	@Override
@@ -663,6 +711,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
+	}
+
+	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
@@ -676,6 +730,12 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

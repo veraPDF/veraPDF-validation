@@ -226,6 +226,12 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeName(entry0);
@@ -246,6 +252,12 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	}
 
 	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
+	}
+
+	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject entry1 = getentry1Value();
 		return getHasTypeName(entry1);
@@ -257,6 +269,12 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 		}
 		COSObject object = this.baseObject.at(2);
 		return object;
+	}
+
+	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
 	}
 
 	@Override
@@ -289,6 +307,12 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 	public Boolean getisentry3Indirect() {
 		COSObject entry3 = getentry3Value();
 		return getisIndirect(entry3);
+	}
+
+	@Override
+	public String getentry3Type() {
+		COSObject entry3 = getentry3Value();
+		return getObjectType(entry3);
 	}
 
 	@Override

@@ -91,6 +91,12 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	}
 
 	@Override
+	public String getDataType() {
+		COSObject Data = getDataValue();
+		return getObjectType(Data);
+	}
+
+	@Override
 	public Boolean getDataHasTypeStream() {
 		COSObject Data = getDataValue();
 		return getHasTypeStream(Data);
@@ -110,6 +116,12 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	public COSObject getInstanceValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Instance"));
 		return object;
+	}
+
+	@Override
+	public String getInstanceType() {
+		COSObject Instance = getInstanceValue();
+		return getObjectType(Instance);
 	}
 
 	@Override

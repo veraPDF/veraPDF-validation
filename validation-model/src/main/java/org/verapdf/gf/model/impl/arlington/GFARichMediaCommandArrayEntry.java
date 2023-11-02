@@ -27,6 +27,12 @@ public class GFARichMediaCommandArrayEntry extends GFAObject implements ARichMed
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeBoolean() {
 		COSObject entry = getValue();
 		return getHasTypeBoolean(entry);

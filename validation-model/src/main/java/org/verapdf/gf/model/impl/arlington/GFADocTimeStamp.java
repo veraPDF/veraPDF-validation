@@ -176,6 +176,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getADBE_BuildType() {
+		COSObject ADBE_Build = getADBE_BuildValue();
+		return getObjectType(ADBE_Build);
+	}
+
+	@Override
 	public Boolean getADBE_BuildHasTypeString() {
 		COSObject ADBE_Build = getADBE_BuildValue();
 		return getHasTypeString(ADBE_Build);
@@ -192,6 +198,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getByteRangeType() {
+		COSObject ByteRange = getByteRangeValue();
+		return getObjectType(ByteRange);
+	}
+
+	@Override
 	public Boolean getByteRangeHasTypeArray() {
 		COSObject ByteRange = getByteRangeValue();
 		return getHasTypeArray(ByteRange);
@@ -205,6 +217,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getCertValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
 		return object;
+	}
+
+	@Override
+	public String getCertType() {
+		COSObject Cert = getCertValue();
+		return getObjectType(Cert);
 	}
 
 	@Override
@@ -230,6 +248,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getChangesType() {
+		COSObject Changes = getChangesValue();
+		return getObjectType(Changes);
+	}
+
+	@Override
 	public Boolean getChangesHasTypeArray() {
 		COSObject Changes = getChangesValue();
 		return getHasTypeArray(Changes);
@@ -243,6 +267,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getContactInfoValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ContactInfo"));
 		return object;
+	}
+
+	@Override
+	public String getContactInfoType() {
+		COSObject ContactInfo = getContactInfoValue();
+		return getObjectType(ContactInfo);
 	}
 
 	@Override
@@ -262,6 +292,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
+	}
+
+	@Override
 	public Boolean getContentsHasTypeStringByte() {
 		COSObject Contents = getContentsValue();
 		return getHasTypeStringByte(Contents);
@@ -275,6 +311,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
 		return object;
+	}
+
+	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
 	}
 
 	@Override
@@ -294,6 +336,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getLocationType() {
+		COSObject Location = getLocationValue();
+		return getObjectType(Location);
+	}
+
+	@Override
 	public Boolean getLocationHasTypeString() {
 		COSObject Location = getLocationValue();
 		return getHasTypeString(Location);
@@ -307,6 +355,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -326,6 +380,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeString() {
 		COSObject Name = getNameValue();
 		return getHasTypeString(Name);
@@ -339,6 +399,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getProp_AuthTimeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prop_AuthTime"));
 		return object;
+	}
+
+	@Override
+	public String getProp_AuthTimeType() {
+		COSObject Prop_AuthTime = getProp_AuthTimeValue();
+		return getObjectType(Prop_AuthTime);
 	}
 
 	@Override
@@ -358,6 +424,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getProp_AuthTypeType() {
+		COSObject Prop_AuthType = getProp_AuthTypeValue();
+		return getObjectType(Prop_AuthType);
+	}
+
+	@Override
 	public Boolean getProp_AuthTypeHasTypeName() {
 		COSObject Prop_AuthType = getProp_AuthTypeValue();
 		return getHasTypeName(Prop_AuthType);
@@ -371,6 +443,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getProp_BuildValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prop_Build"));
 		return object;
+	}
+
+	@Override
+	public String getProp_BuildType() {
+		COSObject Prop_Build = getProp_BuildValue();
+		return getObjectType(Prop_Build);
 	}
 
 	@Override
@@ -390,6 +468,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
+	}
+
+	@Override
 	public Boolean getRHasTypeInteger() {
 		COSObject R = getRValue();
 		return getHasTypeInteger(R);
@@ -403,6 +487,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getReasonValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Reason"));
 		return object;
+	}
+
+	@Override
+	public String getReasonType() {
+		COSObject Reason = getReasonValue();
+		return getObjectType(Reason);
 	}
 
 	@Override
@@ -422,6 +512,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	}
 
 	@Override
+	public String getReferenceType() {
+		COSObject Reference = getReferenceValue();
+		return getObjectType(Reference);
+	}
+
+	@Override
 	public Boolean getReferenceHasTypeArray() {
 		COSObject Reference = getReferenceValue();
 		return getHasTypeArray(Reference);
@@ -435,6 +531,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getSubFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
 		return object;
+	}
+
+	@Override
+	public String getSubFilterType() {
+		COSObject SubFilter = getSubFilterValue();
+		return getObjectType(SubFilter);
 	}
 
 	@Override
@@ -457,6 +559,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -493,6 +601,12 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 			object = getVDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

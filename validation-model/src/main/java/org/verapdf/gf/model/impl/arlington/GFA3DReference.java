@@ -67,6 +67,12 @@ public class GFA3DReference extends GFAObject implements A3DReference {
 	}
 
 	@Override
+	public String getentry3DDType() {
+		COSObject entry3DD = getentry3DDValue();
+		return getObjectType(entry3DD);
+	}
+
+	@Override
 	public Boolean getentry3DDHasTypeStream() {
 		COSObject entry3DD = getentry3DDValue();
 		return getHasTypeStream(entry3DD);
@@ -80,6 +86,12 @@ public class GFA3DReference extends GFAObject implements A3DReference {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

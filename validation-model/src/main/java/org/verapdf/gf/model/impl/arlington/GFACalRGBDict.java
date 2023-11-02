@@ -159,6 +159,12 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	}
 
 	@Override
+	public String getBlackPointType() {
+		COSObject BlackPoint = getBlackPointValue();
+		return getObjectType(BlackPoint);
+	}
+
+	@Override
 	public Boolean getBlackPointHasTypeArray() {
 		COSObject BlackPoint = getBlackPointValue();
 		return getHasTypeArray(BlackPoint);
@@ -172,6 +178,12 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	public COSObject getGammaValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Gamma"));
 		return object;
+	}
+
+	@Override
+	public String getGammaType() {
+		COSObject Gamma = getGammaValue();
+		return getObjectType(Gamma);
 	}
 
 	@Override
@@ -191,6 +203,12 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	}
 
 	@Override
+	public String getMatrixType() {
+		COSObject Matrix = getMatrixValue();
+		return getObjectType(Matrix);
+	}
+
+	@Override
 	public Boolean getMatrixHasTypeArray() {
 		COSObject Matrix = getMatrixValue();
 		return getHasTypeArray(Matrix);
@@ -204,6 +222,12 @@ public class GFACalRGBDict extends GFAObject implements ACalRGBDict {
 	public COSObject getWhitePointValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
 		return object;
+	}
+
+	@Override
+	public String getWhitePointType() {
+		COSObject WhitePoint = getWhitePointValue();
+		return getObjectType(WhitePoint);
 	}
 
 	@Override

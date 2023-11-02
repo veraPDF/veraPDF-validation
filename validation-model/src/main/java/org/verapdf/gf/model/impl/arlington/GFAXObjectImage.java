@@ -988,6 +988,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -1010,6 +1016,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getAlternatesType() {
+		COSObject Alternates = getAlternatesValue();
+		return getObjectType(Alternates);
+	}
+
+	@Override
 	public Boolean getAlternatesHasTypeArray() {
 		COSObject Alternates = getAlternatesValue();
 		return getHasTypeArray(Alternates);
@@ -1023,6 +1035,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getBitsPerComponentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerComponent"));
 		return object;
+	}
+
+	@Override
+	public String getBitsPerComponentType() {
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getObjectType(BitsPerComponent);
 	}
 
 	@Override
@@ -1045,6 +1063,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getColorSpaceValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
 		return object;
+	}
+
+	@Override
+	public String getColorSpaceType() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getObjectType(ColorSpace);
 	}
 
 	@Override
@@ -1076,6 +1100,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -1098,6 +1128,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getDecodeType() {
+		COSObject Decode = getDecodeValue();
+		return getObjectType(Decode);
+	}
+
+	@Override
 	public Boolean getDecodeHasTypeArray() {
 		COSObject Decode = getDecodeValue();
 		return getHasTypeArray(Decode);
@@ -1111,6 +1147,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -1142,6 +1184,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -1161,6 +1209,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -1189,6 +1243,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -1223,6 +1283,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
 		return object;
+	}
+
+	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
 	}
 
 	@Override
@@ -1266,6 +1332,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getGTS_EncapsulatedType() {
+		COSObject GTS_Encapsulated = getGTS_EncapsulatedValue();
+		return getObjectType(GTS_Encapsulated);
+	}
+
+	@Override
 	public Boolean getGTS_EncapsulatedHasTypeBoolean() {
 		COSObject GTS_Encapsulated = getGTS_EncapsulatedValue();
 		return getHasTypeBoolean(GTS_Encapsulated);
@@ -1282,6 +1354,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getGTS_EnvType() {
+		COSObject GTS_Env = getGTS_EnvValue();
+		return getObjectType(GTS_Env);
+	}
+
+	@Override
 	public Boolean getGTS_EnvHasTypeStringText() {
 		COSObject GTS_Env = getGTS_EnvValue();
 		return getHasTypeStringText(GTS_Env);
@@ -1295,6 +1373,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getGTS_ScopeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Scope"));
 		return object;
+	}
+
+	@Override
+	public String getGTS_ScopeType() {
+		COSObject GTS_Scope = getGTS_ScopeValue();
+		return getObjectType(GTS_Scope);
 	}
 
 	@Override
@@ -1320,6 +1404,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getGTS_XIDType() {
+		COSObject GTS_XID = getGTS_XIDValue();
+		return getObjectType(GTS_XID);
+	}
+
+	@Override
 	public Boolean getGTS_XIDHasTypeString() {
 		COSObject GTS_XID = getGTS_XIDValue();
 		return getHasTypeString(GTS_XID);
@@ -1336,6 +1426,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getHeightType() {
+		COSObject Height = getHeightValue();
+		return getObjectType(Height);
+	}
+
+	@Override
 	public Boolean getHeightHasTypeInteger() {
 		COSObject Height = getHeightValue();
 		return getHasTypeInteger(Height);
@@ -1349,6 +1445,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getentryIDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
 		return object;
+	}
+
+	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
 	}
 
 	@Override
@@ -1375,6 +1477,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getImageMaskType() {
+		COSObject ImageMask = getImageMaskValue();
+		return getObjectType(ImageMask);
+	}
+
+	@Override
 	public Boolean getImageMaskHasTypeBoolean() {
 		COSObject ImageMask = getImageMaskValue();
 		return getHasTypeBoolean(ImageMask);
@@ -1394,6 +1502,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getIntentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Intent"));
 		return object;
+	}
+
+	@Override
+	public String getIntentType() {
+		COSObject Intent = getIntentValue();
+		return getObjectType(Intent);
 	}
 
 	@Override
@@ -1420,6 +1534,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getInterpolateType() {
+		COSObject Interpolate = getInterpolateValue();
+		return getObjectType(Interpolate);
+	}
+
+	@Override
 	public Boolean getInterpolateHasTypeBoolean() {
 		COSObject Interpolate = getInterpolateValue();
 		return getHasTypeBoolean(Interpolate);
@@ -1433,6 +1553,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getLengthValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
 		return object;
+	}
+
+	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
 	}
 
 	@Override
@@ -1458,6 +1584,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getMaskType() {
+		COSObject Mask = getMaskValue();
+		return getObjectType(Mask);
+	}
+
+	@Override
 	public Boolean getMaskHasTypeArray() {
 		COSObject Mask = getMaskValue();
 		return getHasTypeArray(Mask);
@@ -1477,6 +1609,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getMeasureValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
 		return object;
+	}
+
+	@Override
+	public String getMeasureType() {
+		COSObject Measure = getMeasureValue();
+		return getObjectType(Measure);
 	}
 
 	@Override
@@ -1502,6 +1640,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getMetadataType() {
+		COSObject Metadata = getMetadataValue();
+		return getObjectType(Metadata);
+	}
+
+	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject Metadata = getMetadataValue();
 		return getHasTypeStream(Metadata);
@@ -1515,6 +1659,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getNameValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
 		return object;
+	}
+
+	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
 	}
 
 	@Override
@@ -1534,6 +1684,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
+	}
+
+	@Override
 	public Boolean getOCHasTypeDictionary() {
 		COSObject OC = getOCValue();
 		return getHasTypeDictionary(OC);
@@ -1550,6 +1706,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getOPIType() {
+		COSObject OPI = getOPIValue();
+		return getObjectType(OPI);
+	}
+
+	@Override
 	public Boolean getOPIHasTypeDictionary() {
 		COSObject OPI = getOPIValue();
 		return getHasTypeDictionary(OPI);
@@ -1563,6 +1725,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getPtDataValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
 		return object;
+	}
+
+	@Override
+	public String getPtDataType() {
+		COSObject PtData = getPtDataValue();
+		return getObjectType(PtData);
 	}
 
 	@Override
@@ -1588,6 +1756,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getSMaskType() {
+		COSObject SMask = getSMaskValue();
+		return getObjectType(SMask);
+	}
+
+	@Override
 	public Boolean getSMaskHasTypeStream() {
 		COSObject SMask = getSMaskValue();
 		return getHasTypeStream(SMask);
@@ -1601,6 +1775,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getSMaskInDataValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SMaskInData"));
 		return object;
+	}
+
+	@Override
+	public String getSMaskInDataType() {
+		COSObject SMaskInData = getSMaskInDataValue();
+		return getObjectType(SMaskInData);
 	}
 
 	@Override
@@ -1626,6 +1806,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -1639,6 +1825,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -1664,6 +1856,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -1683,6 +1881,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	public COSObject getWidthValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
 		return object;
+	}
+
+	@Override
+	public String getWidthType() {
+		COSObject Width = getWidthValue();
+		return getObjectType(Width);
 	}
 
 	@Override

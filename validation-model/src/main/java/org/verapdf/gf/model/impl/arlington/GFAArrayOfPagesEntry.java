@@ -67,6 +67,12 @@ public class GFAArrayOfPagesEntry extends GFAObject implements AArrayOfPagesEntr
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject entry = getValue();
 		return getHasTypeDictionary(entry);

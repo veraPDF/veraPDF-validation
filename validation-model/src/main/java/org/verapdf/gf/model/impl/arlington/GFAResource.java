@@ -230,6 +230,12 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	@Override
+	public String getColorSpaceType() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getObjectType(ColorSpace);
+	}
+
+	@Override
 	public Boolean getColorSpaceHasTypeDictionary() {
 		COSObject ColorSpace = getColorSpaceValue();
 		return getHasTypeDictionary(ColorSpace);
@@ -243,6 +249,12 @@ public class GFAResource extends GFAObject implements AResource {
 	public COSObject getExtGStateValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExtGState"));
 		return object;
+	}
+
+	@Override
+	public String getExtGStateType() {
+		COSObject ExtGState = getExtGStateValue();
+		return getObjectType(ExtGState);
 	}
 
 	@Override
@@ -262,6 +274,12 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	@Override
+	public String getFontType() {
+		COSObject Font = getFontValue();
+		return getObjectType(Font);
+	}
+
+	@Override
 	public Boolean getFontHasTypeDictionary() {
 		COSObject Font = getFontValue();
 		return getHasTypeDictionary(Font);
@@ -275,6 +293,12 @@ public class GFAResource extends GFAObject implements AResource {
 	public COSObject getPatternValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pattern"));
 		return object;
+	}
+
+	@Override
+	public String getPatternType() {
+		COSObject Pattern = getPatternValue();
+		return getObjectType(Pattern);
 	}
 
 	@Override
@@ -294,6 +318,12 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	@Override
+	public String getProcSetType() {
+		COSObject ProcSet = getProcSetValue();
+		return getObjectType(ProcSet);
+	}
+
+	@Override
 	public Boolean getProcSetHasTypeArray() {
 		COSObject ProcSet = getProcSetValue();
 		return getHasTypeArray(ProcSet);
@@ -307,6 +337,12 @@ public class GFAResource extends GFAObject implements AResource {
 	public COSObject getentryPropertiesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Properties"));
 		return object;
+	}
+
+	@Override
+	public String getentryPropertiesType() {
+		COSObject entryProperties = getentryPropertiesValue();
+		return getObjectType(entryProperties);
 	}
 
 	@Override
@@ -326,6 +362,12 @@ public class GFAResource extends GFAObject implements AResource {
 	}
 
 	@Override
+	public String getShadingType() {
+		COSObject Shading = getShadingValue();
+		return getObjectType(Shading);
+	}
+
+	@Override
 	public Boolean getShadingHasTypeDictionary() {
 		COSObject Shading = getShadingValue();
 		return getHasTypeDictionary(Shading);
@@ -339,6 +381,12 @@ public class GFAResource extends GFAObject implements AResource {
 	public COSObject getXObjectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XObject"));
 		return object;
+	}
+
+	@Override
+	public String getXObjectType() {
+		COSObject XObject = getXObjectValue();
+		return getObjectType(XObject);
 	}
 
 	@Override

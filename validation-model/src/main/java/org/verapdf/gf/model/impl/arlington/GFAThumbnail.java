@@ -472,6 +472,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	@Override
+	public String getBitsPerComponentType() {
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getObjectType(BitsPerComponent);
+	}
+
+	@Override
 	public Boolean getBitsPerComponentHasTypeInteger() {
 		COSObject BitsPerComponent = getBitsPerComponentValue();
 		return getHasTypeInteger(BitsPerComponent);
@@ -491,6 +497,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	public COSObject getColorSpaceValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
 		return object;
+	}
+
+	@Override
+	public String getColorSpaceType() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getObjectType(ColorSpace);
 	}
 
 	@Override
@@ -522,6 +534,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -544,6 +562,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	@Override
+	public String getDecodeType() {
+		COSObject Decode = getDecodeValue();
+		return getObjectType(Decode);
+	}
+
+	@Override
 	public Boolean getDecodeHasTypeArray() {
 		COSObject Decode = getDecodeValue();
 		return getHasTypeArray(Decode);
@@ -557,6 +581,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -588,6 +618,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -607,6 +643,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -635,6 +677,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -672,6 +720,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -706,6 +760,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	@Override
+	public String getHeightType() {
+		COSObject Height = getHeightValue();
+		return getObjectType(Height);
+	}
+
+	@Override
 	public Boolean getHeightHasTypeInteger() {
 		COSObject Height = getHeightValue();
 		return getHasTypeInteger(Height);
@@ -722,6 +782,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -735,6 +801,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -760,6 +832,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -779,6 +857,12 @@ public class GFAThumbnail extends GFAObject implements AThumbnail {
 	public COSObject getWidthValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
 		return object;
+	}
+
+	@Override
+	public String getWidthType() {
+		COSObject Width = getWidthValue();
+		return getObjectType(Width);
 	}
 
 	@Override

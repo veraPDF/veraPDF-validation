@@ -165,6 +165,12 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	@Override
+	public String getAltType() {
+		COSObject Alt = getAltValue();
+		return getObjectType(Alt);
+	}
+
+	@Override
 	public Boolean getAltHasTypeArray() {
 		COSObject Alt = getAltValue();
 		return getHasTypeArray(Alt);
@@ -178,6 +184,12 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	public COSObject getBEValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
 		return object;
+	}
+
+	@Override
+	public String getBEType() {
+		COSObject BE = getBEValue();
+		return getObjectType(BE);
 	}
 
 	@Override
@@ -197,6 +209,12 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject D = getDValue();
 		return getHasTypeDictionary(D);
@@ -210,6 +228,12 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	public COSObject getMHValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
 		return object;
+	}
+
+	@Override
+	public String getMHType() {
+		COSObject MH = getMHValue();
+		return getObjectType(MH);
 	}
 
 	@Override
@@ -229,6 +253,12 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeStringText() {
 		COSObject N = getNValue();
 		return getHasTypeStringText(N);
@@ -242,6 +272,12 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -264,6 +300,12 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

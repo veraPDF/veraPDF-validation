@@ -261,6 +261,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -283,6 +289,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -296,6 +308,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getASValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
 		return object;
+	}
+
+	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
 	}
 
 	@Override
@@ -326,6 +344,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -348,6 +372,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -361,6 +391,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -391,6 +427,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -410,6 +452,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getContentsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
 		return object;
+	}
+
+	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
 	}
 
 	@Override
@@ -441,6 +489,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -463,6 +517,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -476,6 +536,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -501,6 +567,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
+	}
+
+	@Override
 	public Boolean getNMHasTypeStringText() {
 		COSObject NM = getNMValue();
 		return getHasTypeStringText(NM);
@@ -514,6 +586,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -539,6 +617,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -552,6 +636,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getRectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
 		return object;
+	}
+
+	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
 	}
 
 	@Override
@@ -583,6 +673,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getRichMediaContentType() {
+		COSObject RichMediaContent = getRichMediaContentValue();
+		return getObjectType(RichMediaContent);
+	}
+
+	@Override
 	public Boolean getRichMediaContentHasTypeDictionary() {
 		COSObject RichMediaContent = getRichMediaContentValue();
 		return getHasTypeDictionary(RichMediaContent);
@@ -596,6 +692,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getRichMediaSettingsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RichMediaSettings"));
 		return object;
+	}
+
+	@Override
+	public String getRichMediaSettingsType() {
+		COSObject RichMediaSettings = getRichMediaSettingsValue();
+		return getObjectType(RichMediaSettings);
 	}
 
 	@Override
@@ -615,6 +717,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -628,6 +736,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -650,6 +764,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -683,6 +803,12 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

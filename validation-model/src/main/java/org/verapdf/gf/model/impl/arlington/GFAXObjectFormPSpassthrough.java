@@ -384,6 +384,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	@Override
+	public String getBBoxType() {
+		COSObject BBox = getBBoxValue();
+		return getObjectType(BBox);
+	}
+
+	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject BBox = getBBoxValue();
 		return getHasTypeRectangle(BBox);
@@ -397,6 +403,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -428,6 +440,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -447,6 +465,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -475,6 +499,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -512,6 +542,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -546,6 +582,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	@Override
+	public String getFormTypeType() {
+		COSObject FormType = getFormTypeValue();
+		return getObjectType(FormType);
+	}
+
+	@Override
 	public Boolean getFormTypeHasTypeInteger() {
 		COSObject FormType = getFormTypeValue();
 		return getHasTypeInteger(FormType);
@@ -568,6 +610,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -587,6 +635,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	public Boolean getisLevel1Indirect() {
 		COSObject Level1 = getLevel1Value();
 		return getisIndirect(Level1);
+	}
+
+	@Override
+	public String getLevel1Type() {
+		COSObject Level1 = getLevel1Value();
+		return getObjectType(Level1);
 	}
 
 	@Override
@@ -624,6 +678,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	@Override
+	public String getMatrixType() {
+		COSObject Matrix = getMatrixValue();
+		return getObjectType(Matrix);
+	}
+
+	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject Matrix = getMatrixValue();
 		return getHasTypeMatrix(Matrix);
@@ -646,6 +706,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	@Override
+	public String getPSType() {
+		COSObject PS = getPSValue();
+		return getObjectType(PS);
+	}
+
+	@Override
 	public Boolean getPSHasTypeStream() {
 		COSObject PS = getPSValue();
 		return getHasTypeStream(PS);
@@ -659,6 +725,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -684,6 +756,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	}
 
 	@Override
+	public String getSubtype2Type() {
+		COSObject Subtype2 = getSubtype2Value();
+		return getObjectType(Subtype2);
+	}
+
+	@Override
 	public Boolean getSubtype2HasTypeName() {
 		COSObject Subtype2 = getSubtype2Value();
 		return getHasTypeName(Subtype2);
@@ -703,6 +781,12 @@ public class GFAXObjectFormPSpassthrough extends GFAObject implements AXObjectFo
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

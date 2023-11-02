@@ -135,6 +135,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject C = getCValue();
 		return getHasTypeArray(C);
@@ -148,6 +154,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	public COSObject getICValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IC"));
 		return object;
+	}
+
+	@Override
+	public String getICType() {
+		COSObject IC = getICValue();
+		return getObjectType(IC);
 	}
 
 	@Override
@@ -179,6 +191,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	@Override
+	public String getIVType() {
+		COSObject IV = getIVValue();
+		return getObjectType(IV);
+	}
+
+	@Override
 	public Boolean getIVHasTypeBoolean() {
 		COSObject IV = getIVValue();
 		return getHasTypeBoolean(IV);
@@ -201,6 +219,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
+	}
+
+	@Override
 	public Boolean getOHasTypeArray() {
 		COSObject O = getOValue();
 		return getHasTypeArray(O);
@@ -214,6 +238,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	public COSObject getPCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PC"));
 		return object;
+	}
+
+	@Override
+	public String getPCType() {
+		COSObject PC = getPCValue();
+		return getObjectType(PC);
 	}
 
 	@Override
@@ -242,6 +272,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 			object = getPODefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getPOType() {
+		COSObject PO = getPOValue();
+		return getObjectType(PO);
 	}
 
 	@Override
@@ -279,6 +315,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	@Override
+	public String getPVType() {
+		COSObject PV = getPVValue();
+		return getObjectType(PV);
+	}
+
+	@Override
 	public Boolean getPVHasTypeBoolean() {
 		COSObject PV = getPVValue();
 		return getHasTypeBoolean(PV);
@@ -303,6 +345,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 			object = getSCDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getSCType() {
+		COSObject SC = getSCValue();
+		return getObjectType(SC);
 	}
 
 	@Override
@@ -333,6 +381,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	}
 
 	@Override
+	public String getSTType() {
+		COSObject ST = getSTValue();
+		return getObjectType(ST);
+	}
+
+	@Override
 	public Boolean getSTHasTypeBoolean() {
 		COSObject ST = getSTValue();
 		return getHasTypeBoolean(ST);
@@ -346,6 +400,12 @@ public class GFA3DCrossSection extends GFAObject implements A3DCrossSection {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

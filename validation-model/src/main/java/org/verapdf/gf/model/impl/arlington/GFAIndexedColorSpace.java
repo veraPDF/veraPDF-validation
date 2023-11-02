@@ -210,6 +210,12 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeName(entry0);
@@ -227,6 +233,12 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 		}
 		COSObject object = this.baseObject.at(1);
 		return object;
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override
@@ -256,6 +268,12 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	}
 
 	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
+	}
+
+	@Override
 	public Boolean getentry2HasTypeInteger() {
 		COSObject entry2 = getentry2Value();
 		return getHasTypeInteger(entry2);
@@ -279,6 +297,12 @@ public class GFAIndexedColorSpace extends GFAObject implements AIndexedColorSpac
 	public Boolean getisentry3Indirect() {
 		COSObject entry3 = getentry3Value();
 		return getisIndirect(entry3);
+	}
+
+	@Override
+	public String getentry3Type() {
+		COSObject entry3 = getentry3Value();
+		return getObjectType(entry3);
 	}
 
 	@Override

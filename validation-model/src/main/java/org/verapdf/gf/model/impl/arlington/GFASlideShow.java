@@ -63,6 +63,12 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	}
 
 	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
+	}
+
+	@Override
 	public Boolean getResourcesHasTypeNameTree() {
 		COSObject Resources = getResourcesValue();
 		return getHasTypeNameTree(Resources);
@@ -76,6 +82,12 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	public COSObject getStartResourceValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StartResource"));
 		return object;
+	}
+
+	@Override
+	public String getStartResourceType() {
+		COSObject StartResource = getStartResourceValue();
+		return getObjectType(StartResource);
 	}
 
 	@Override
@@ -109,6 +121,12 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	}
 
 	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
+	}
+
+	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
@@ -128,6 +146,12 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

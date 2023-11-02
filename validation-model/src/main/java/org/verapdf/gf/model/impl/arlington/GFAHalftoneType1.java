@@ -248,6 +248,12 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
+	public String getAccurateScreensType() {
+		COSObject AccurateScreens = getAccurateScreensValue();
+		return getObjectType(AccurateScreens);
+	}
+
+	@Override
 	public Boolean getAccurateScreensHasTypeBoolean() {
 		COSObject AccurateScreens = getAccurateScreensValue();
 		return getHasTypeBoolean(AccurateScreens);
@@ -264,6 +270,12 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
+	public String getAngleType() {
+		COSObject Angle = getAngleValue();
+		return getObjectType(Angle);
+	}
+
+	@Override
 	public Boolean getAngleHasTypeNumber() {
 		COSObject Angle = getAngleValue();
 		return getHasTypeNumber(Angle);
@@ -277,6 +289,12 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	public COSObject getFrequencyValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Frequency"));
 		return object;
+	}
+
+	@Override
+	public String getFrequencyType() {
+		COSObject Frequency = getFrequencyValue();
+		return getObjectType(Frequency);
 	}
 
 	@Override
@@ -302,6 +320,12 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
+	public String getHalftoneNameType() {
+		COSObject HalftoneName = getHalftoneNameValue();
+		return getObjectType(HalftoneName);
+	}
+
+	@Override
 	public Boolean getHalftoneNameHasTypeStringByte() {
 		COSObject HalftoneName = getHalftoneNameValue();
 		return getHasTypeStringByte(HalftoneName);
@@ -315,6 +339,12 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	public COSObject getHalftoneTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneType"));
 		return object;
+	}
+
+	@Override
+	public String getHalftoneTypeType() {
+		COSObject HalftoneType = getHalftoneTypeValue();
+		return getObjectType(HalftoneType);
 	}
 
 	@Override
@@ -343,6 +373,12 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	public Boolean getisSpotFunctionIndirect() {
 		COSObject SpotFunction = getSpotFunctionValue();
 		return getisIndirect(SpotFunction);
+	}
+
+	@Override
+	public String getSpotFunctionType() {
+		COSObject SpotFunction = getSpotFunctionValue();
+		return getObjectType(SpotFunction);
 	}
 
 	@Override
@@ -392,6 +428,12 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	}
 
 	@Override
+	public String getTransferFunctionType() {
+		COSObject TransferFunction = getTransferFunctionValue();
+		return getObjectType(TransferFunction);
+	}
+
+	@Override
 	public Boolean getTransferFunctionHasTypeDictionary() {
 		COSObject TransferFunction = getTransferFunctionValue();
 		return getHasTypeDictionary(TransferFunction);
@@ -423,6 +465,12 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

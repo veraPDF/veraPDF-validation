@@ -65,6 +65,12 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject D = getDValue();
 		return getHasTypeArray(D);
@@ -98,6 +104,12 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -117,6 +129,12 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -156,6 +174,12 @@ public class GFABorderStyle extends GFAObject implements ABorderStyle {
 			object = getWDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getWType() {
+		COSObject W = getWValue();
+		return getObjectType(W);
 	}
 
 	@Override

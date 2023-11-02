@@ -27,6 +27,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	}
 
 	@Override
+	public String getCaptionType() {
+		COSObject Caption = getCaptionValue();
+		return getObjectType(Caption);
+	}
+
+	@Override
 	public Boolean getCaptionHasTypeStringText() {
 		COSObject Caption = getCaptionValue();
 		return getHasTypeStringText(Caption);
@@ -40,6 +46,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	public COSObject getECCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ECC"));
 		return object;
+	}
+
+	@Override
+	public String getECCType() {
+		COSObject ECC = getECCValue();
+		return getObjectType(ECC);
 	}
 
 	@Override
@@ -62,6 +74,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	public COSObject getHeightValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height"));
 		return object;
+	}
+
+	@Override
+	public String getHeightType() {
+		COSObject Height = getHeightValue();
+		return getObjectType(Height);
 	}
 
 	@Override
@@ -99,6 +117,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	}
 
 	@Override
+	public String getResolutionType() {
+		COSObject Resolution = getResolutionValue();
+		return getObjectType(Resolution);
+	}
+
+	@Override
 	public Boolean getResolutionHasTypeNumber() {
 		COSObject Resolution = getResolutionValue();
 		return getHasTypeNumber(Resolution);
@@ -118,6 +142,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	public COSObject getSymbologyValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Symbology"));
 		return object;
+	}
+
+	@Override
+	public String getSymbologyType() {
+		COSObject Symbology = getSymbologyValue();
+		return getObjectType(Symbology);
 	}
 
 	@Override
@@ -143,6 +173,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -162,6 +198,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	public COSObject getVersionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
 		return object;
+	}
+
+	@Override
+	public String getVersionType() {
+		COSObject Version = getVersionValue();
+		return getObjectType(Version);
 	}
 
 	@Override
@@ -187,6 +229,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	}
 
 	@Override
+	public String getWidthType() {
+		COSObject Width = getWidthValue();
+		return getObjectType(Width);
+	}
+
+	@Override
 	public Boolean getWidthHasTypeNumber() {
 		COSObject Width = getWidthValue();
 		return getHasTypeNumber(Width);
@@ -209,6 +257,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	}
 
 	@Override
+	public String getXSymWidthType() {
+		COSObject XSymWidth = getXSymWidthValue();
+		return getObjectType(XSymWidth);
+	}
+
+	@Override
 	public Boolean getXSymWidthHasTypeInteger() {
 		COSObject XSymWidth = getXSymWidthValue();
 		return getHasTypeInteger(XSymWidth);
@@ -228,6 +282,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	public COSObject getYSymHeightValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("YSymHeight"));
 		return object;
+	}
+
+	@Override
+	public String getYSymHeightType() {
+		COSObject YSymHeight = getYSymHeightValue();
+		return getObjectType(YSymHeight);
 	}
 
 	@Override
@@ -265,6 +325,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 	}
 
 	@Override
+	public String getnCodeWordColType() {
+		COSObject nCodeWordCol = getnCodeWordColValue();
+		return getObjectType(nCodeWordCol);
+	}
+
+	@Override
 	public Boolean getnCodeWordColHasTypeNumber() {
 		COSObject nCodeWordCol = getnCodeWordColValue();
 		return getHasTypeNumber(nCodeWordCol);
@@ -290,6 +356,12 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 			object = getnCodeWordRowDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getnCodeWordRowType() {
+		COSObject nCodeWordRow = getnCodeWordRowValue();
+		return getObjectType(nCodeWordRow);
 	}
 
 	@Override

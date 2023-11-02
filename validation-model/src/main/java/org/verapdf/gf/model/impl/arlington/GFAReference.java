@@ -91,6 +91,12 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -113,6 +119,12 @@ public class GFAReference extends GFAObject implements AReference {
 	}
 
 	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
+	}
+
+	@Override
 	public Boolean getentryIDHasTypeArray() {
 		COSObject entryID = getentryIDValue();
 		return getHasTypeArray(entryID);
@@ -126,6 +138,12 @@ public class GFAReference extends GFAObject implements AReference {
 	public COSObject getPageValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Page"));
 		return object;
+	}
+
+	@Override
+	public String getPageType() {
+		COSObject Page = getPageValue();
+		return getObjectType(Page);
 	}
 
 	@Override

@@ -64,6 +64,12 @@ public class GFACalGrayColorSpace extends GFAObject implements ACalGrayColorSpac
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeName(entry0);
@@ -81,6 +87,12 @@ public class GFACalGrayColorSpace extends GFAObject implements ACalGrayColorSpac
 		}
 		COSObject object = this.baseObject.at(1);
 		return object;
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override

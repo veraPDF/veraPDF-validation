@@ -76,6 +76,12 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	}
 
 	@Override
+	public String getAuthEventType() {
+		COSObject AuthEvent = getAuthEventValue();
+		return getObjectType(AuthEvent);
+	}
+
+	@Override
 	public Boolean getAuthEventHasTypeName() {
 		COSObject AuthEvent = getAuthEventValue();
 		return getHasTypeName(AuthEvent);
@@ -109,6 +115,12 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 			object = getCFMDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getCFMType() {
+		COSObject CFM = getCFMValue();
+		return getObjectType(CFM);
 	}
 
 	@Override
@@ -148,6 +160,12 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	}
 
 	@Override
+	public String getEncryptMetadataType() {
+		COSObject EncryptMetadata = getEncryptMetadataValue();
+		return getObjectType(EncryptMetadata);
+	}
+
+	@Override
 	public Boolean getEncryptMetadataHasTypeBoolean() {
 		COSObject EncryptMetadata = getEncryptMetadataValue();
 		return getHasTypeBoolean(EncryptMetadata);
@@ -161,6 +179,12 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	public COSObject getLengthValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
 		return object;
+	}
+
+	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
 	}
 
 	@Override
@@ -186,6 +210,12 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	}
 
 	@Override
+	public String getRecipientsType() {
+		COSObject Recipients = getRecipientsValue();
+		return getObjectType(Recipients);
+	}
+
+	@Override
 	public Boolean getRecipientsHasTypeArray() {
 		COSObject Recipients = getRecipientsValue();
 		return getHasTypeArray(Recipients);
@@ -205,6 +235,12 @@ public class GFACryptFilterPublicKey extends GFAObject implements ACryptFilterPu
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

@@ -141,6 +141,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	@Override
+	public String getDestOutputProfileType() {
+		COSObject DestOutputProfile = getDestOutputProfileValue();
+		return getObjectType(DestOutputProfile);
+	}
+
+	@Override
 	public Boolean getDestOutputProfileHasTypeStream() {
 		COSObject DestOutputProfile = getDestOutputProfileValue();
 		return getHasTypeStream(DestOutputProfile);
@@ -154,6 +160,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	public COSObject getDestOutputProfileRefValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DestOutputProfileRef"));
 		return object;
+	}
+
+	@Override
+	public String getDestOutputProfileRefType() {
+		COSObject DestOutputProfileRef = getDestOutputProfileRefValue();
+		return getObjectType(DestOutputProfileRef);
 	}
 
 	@Override
@@ -173,6 +185,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	@Override
+	public String getInfoType() {
+		COSObject Info = getInfoValue();
+		return getObjectType(Info);
+	}
+
+	@Override
 	public Boolean getInfoHasTypeStringText() {
 		COSObject Info = getInfoValue();
 		return getHasTypeStringText(Info);
@@ -186,6 +204,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	public COSObject getMixingHintsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MixingHints"));
 		return object;
+	}
+
+	@Override
+	public String getMixingHintsType() {
+		COSObject MixingHints = getMixingHintsValue();
+		return getObjectType(MixingHints);
 	}
 
 	@Override
@@ -205,6 +229,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	@Override
+	public String getOutputConditionType() {
+		COSObject OutputCondition = getOutputConditionValue();
+		return getObjectType(OutputCondition);
+	}
+
+	@Override
 	public Boolean getOutputConditionHasTypeStringText() {
 		COSObject OutputCondition = getOutputConditionValue();
 		return getHasTypeStringText(OutputCondition);
@@ -218,6 +248,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	public COSObject getOutputConditionIdentifierValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OutputConditionIdentifier"));
 		return object;
+	}
+
+	@Override
+	public String getOutputConditionIdentifierType() {
+		COSObject OutputConditionIdentifier = getOutputConditionIdentifierValue();
+		return getObjectType(OutputConditionIdentifier);
 	}
 
 	@Override
@@ -237,6 +273,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	@Override
+	public String getRegistryNameType() {
+		COSObject RegistryName = getRegistryNameValue();
+		return getObjectType(RegistryName);
+	}
+
+	@Override
 	public Boolean getRegistryNameHasTypeStringText() {
 		COSObject RegistryName = getRegistryNameValue();
 		return getHasTypeStringText(RegistryName);
@@ -250,6 +292,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -275,6 +323,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	}
 
 	@Override
+	public String getSpectralDataType() {
+		COSObject SpectralData = getSpectralDataValue();
+		return getObjectType(SpectralData);
+	}
+
+	@Override
 	public Boolean getSpectralDataHasTypeDictionary() {
 		COSObject SpectralData = getSpectralDataValue();
 		return getHasTypeDictionary(SpectralData);
@@ -288,6 +342,12 @@ public class GFAOutputIntents extends GFAObject implements AOutputIntents {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

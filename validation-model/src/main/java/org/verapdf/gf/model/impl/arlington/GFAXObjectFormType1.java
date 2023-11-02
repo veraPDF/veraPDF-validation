@@ -690,6 +690,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -712,6 +718,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getBBoxType() {
+		COSObject BBox = getBBoxValue();
+		return getObjectType(BBox);
+	}
+
+	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject BBox = getBBoxValue();
 		return getHasTypeRectangle(BBox);
@@ -725,6 +737,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getDLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
 		return object;
+	}
+
+	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
 	}
 
 	@Override
@@ -747,6 +765,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -778,6 +802,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -797,6 +827,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -825,6 +861,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -862,6 +904,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -896,6 +944,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getFormTypeType() {
+		COSObject FormType = getFormTypeValue();
+		return getObjectType(FormType);
+	}
+
+	@Override
 	public Boolean getFormTypeHasTypeInteger() {
 		COSObject FormType = getFormTypeValue();
 		return getHasTypeInteger(FormType);
@@ -918,6 +972,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getGTS_EncapsulatedType() {
+		COSObject GTS_Encapsulated = getGTS_EncapsulatedValue();
+		return getObjectType(GTS_Encapsulated);
+	}
+
+	@Override
 	public Boolean getGTS_EncapsulatedHasTypeBoolean() {
 		COSObject GTS_Encapsulated = getGTS_EncapsulatedValue();
 		return getHasTypeBoolean(GTS_Encapsulated);
@@ -934,6 +994,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getGTS_EnvType() {
+		COSObject GTS_Env = getGTS_EnvValue();
+		return getObjectType(GTS_Env);
+	}
+
+	@Override
 	public Boolean getGTS_EnvHasTypeStringText() {
 		COSObject GTS_Env = getGTS_EnvValue();
 		return getHasTypeStringText(GTS_Env);
@@ -947,6 +1013,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getGTS_ScopeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Scope"));
 		return object;
+	}
+
+	@Override
+	public String getGTS_ScopeType() {
+		COSObject GTS_Scope = getGTS_ScopeValue();
+		return getObjectType(GTS_Scope);
 	}
 
 	@Override
@@ -972,6 +1044,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getGTS_XIDType() {
+		COSObject GTS_XID = getGTS_XIDValue();
+		return getObjectType(GTS_XID);
+	}
+
+	@Override
 	public Boolean getGTS_XIDHasTypeString() {
 		COSObject GTS_XID = getGTS_XIDValue();
 		return getHasTypeString(GTS_XID);
@@ -985,6 +1063,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getGroupValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Group"));
 		return object;
+	}
+
+	@Override
+	public String getGroupType() {
+		COSObject Group = getGroupValue();
+		return getObjectType(Group);
 	}
 
 	@Override
@@ -1004,6 +1088,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getLastModifiedType() {
+		COSObject LastModified = getLastModifiedValue();
+		return getObjectType(LastModified);
+	}
+
+	@Override
 	public Boolean getLastModifiedHasTypeDate() {
 		COSObject LastModified = getLastModifiedValue();
 		return getHasTypeDate(LastModified);
@@ -1017,6 +1107,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getLengthValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
 		return object;
+	}
+
+	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
 	}
 
 	@Override
@@ -1043,6 +1139,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getMatrixType() {
+		COSObject Matrix = getMatrixValue();
+		return getObjectType(Matrix);
+	}
+
+	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject Matrix = getMatrixValue();
 		return getHasTypeMatrix(Matrix);
@@ -1056,6 +1158,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getMeasureValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
 		return object;
+	}
+
+	@Override
+	public String getMeasureType() {
+		COSObject Measure = getMeasureValue();
+		return getObjectType(Measure);
 	}
 
 	@Override
@@ -1081,6 +1189,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getMetadataType() {
+		COSObject Metadata = getMetadataValue();
+		return getObjectType(Metadata);
+	}
+
+	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject Metadata = getMetadataValue();
 		return getHasTypeStream(Metadata);
@@ -1094,6 +1208,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getNameValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
 		return object;
+	}
+
+	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
 	}
 
 	@Override
@@ -1113,6 +1233,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
+	}
+
+	@Override
 	public Boolean getOCHasTypeDictionary() {
 		COSObject OC = getOCValue();
 		return getHasTypeDictionary(OC);
@@ -1126,6 +1252,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getOPIValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OPI"));
 		return object;
+	}
+
+	@Override
+	public String getOPIType() {
+		COSObject OPI = getOPIValue();
+		return getObjectType(OPI);
 	}
 
 	@Override
@@ -1145,6 +1277,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getPieceInfoType() {
+		COSObject PieceInfo = getPieceInfoValue();
+		return getObjectType(PieceInfo);
+	}
+
+	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
 		COSObject PieceInfo = getPieceInfoValue();
 		return getHasTypeDictionary(PieceInfo);
@@ -1158,6 +1296,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getPtDataValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
 		return object;
+	}
+
+	@Override
+	public String getPtDataType() {
+		COSObject PtData = getPtDataValue();
+		return getObjectType(PtData);
 	}
 
 	@Override
@@ -1177,6 +1321,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getRefType() {
+		COSObject Ref = getRefValue();
+		return getObjectType(Ref);
+	}
+
+	@Override
 	public Boolean getRefHasTypeDictionary() {
 		COSObject Ref = getRefValue();
 		return getHasTypeDictionary(Ref);
@@ -1190,6 +1340,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getResourcesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
 		return object;
+	}
+
+	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
 	}
 
 	@Override
@@ -1209,6 +1365,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -1225,6 +1387,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getStructParentsType() {
+		COSObject StructParents = getStructParentsValue();
+		return getObjectType(StructParents);
+	}
+
+	@Override
 	public Boolean getStructParentsHasTypeInteger() {
 		COSObject StructParents = getStructParentsValue();
 		return getHasTypeInteger(StructParents);
@@ -1238,6 +1406,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -1263,6 +1437,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -1282,6 +1462,12 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	public COSObject getXUIDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XUID"));
 		return object;
+	}
+
+	@Override
+	public String getXUIDType() {
+		COSObject XUID = getXUIDValue();
+		return getObjectType(XUID);
 	}
 
 	@Override

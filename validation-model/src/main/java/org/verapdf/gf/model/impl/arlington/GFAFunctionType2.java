@@ -151,6 +151,12 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	@Override
+	public String getC0Type() {
+		COSObject C0 = getC0Value();
+		return getObjectType(C0);
+	}
+
+	@Override
 	public Boolean getC0HasTypeArray() {
 		COSObject C0 = getC0Value();
 		return getHasTypeArray(C0);
@@ -170,6 +176,12 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	public COSObject getC1Value() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C1"));
 		return object;
+	}
+
+	@Override
+	public String getC1Type() {
+		COSObject C1 = getC1Value();
+		return getObjectType(C1);
 	}
 
 	@Override
@@ -195,6 +207,12 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	@Override
+	public String getDomainType() {
+		COSObject Domain = getDomainValue();
+		return getObjectType(Domain);
+	}
+
+	@Override
 	public Boolean getDomainHasTypeArray() {
 		COSObject Domain = getDomainValue();
 		return getHasTypeArray(Domain);
@@ -214,6 +232,12 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	public COSObject getFunctionTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FunctionType"));
 		return object;
+	}
+
+	@Override
+	public String getFunctionTypeType() {
+		COSObject FunctionType = getFunctionTypeValue();
+		return getObjectType(FunctionType);
 	}
 
 	@Override
@@ -239,6 +263,12 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeNumber() {
 		COSObject N = getNValue();
 		return getHasTypeNumber(N);
@@ -252,6 +282,12 @@ public class GFAFunctionType2 extends GFAObject implements AFunctionType2 {
 	public COSObject getRangeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
 		return object;
+	}
+
+	@Override
+	public String getRangeType() {
+		COSObject Range = getRangeValue();
+		return getObjectType(Range);
 	}
 
 	@Override

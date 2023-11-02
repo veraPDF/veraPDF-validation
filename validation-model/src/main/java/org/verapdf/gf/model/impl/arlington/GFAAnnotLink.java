@@ -749,6 +749,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeDictionary() {
 		COSObject A = getAValue();
 		return getHasTypeDictionary(A);
@@ -762,6 +768,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getAFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
 		return object;
+	}
+
+	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
 	}
 
 	@Override
@@ -787,6 +799,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -800,6 +818,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getASValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
 		return object;
+	}
+
+	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
 	}
 
 	@Override
@@ -830,6 +854,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -852,6 +882,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getBSType() {
+		COSObject BS = getBSValue();
+		return getObjectType(BS);
+	}
+
+	@Override
 	public Boolean getBSHasTypeDictionary() {
 		COSObject BS = getBSValue();
 		return getHasTypeDictionary(BS);
@@ -868,6 +904,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -881,6 +923,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -911,6 +959,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -933,6 +987,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
+	}
+
+	@Override
 	public Boolean getContentsHasTypeStringText() {
 		COSObject Contents = getContentsValue();
 		return getHasTypeStringText(Contents);
@@ -946,6 +1006,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getDestValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dest"));
 		return object;
+	}
+
+	@Override
+	public String getDestType() {
+		COSObject Dest = getDestValue();
+		return getObjectType(Dest);
 	}
 
 	@Override
@@ -995,6 +1061,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -1034,6 +1106,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getHType() {
+		COSObject H = getHValue();
+		return getObjectType(H);
+	}
+
+	@Override
 	public Boolean getHHasTypeName() {
 		COSObject H = getHValue();
 		return getHasTypeName(H);
@@ -1056,6 +1134,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -1069,6 +1153,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -1094,6 +1184,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
+	}
+
+	@Override
 	public Boolean getNMHasTypeStringText() {
 		COSObject NM = getNMValue();
 		return getHasTypeStringText(NM);
@@ -1107,6 +1203,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -1132,6 +1234,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -1145,6 +1253,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getPAValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
 		return object;
+	}
+
+	@Override
+	public String getPAType() {
+		COSObject PA = getPAValue();
+		return getObjectType(PA);
 	}
 
 	@Override
@@ -1164,6 +1278,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getPathType() {
+		COSObject Path = getPathValue();
+		return getObjectType(Path);
+	}
+
+	@Override
 	public Boolean getPathHasTypeArray() {
 		COSObject Path = getPathValue();
 		return getHasTypeArray(Path);
@@ -1177,6 +1297,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getQuadPointsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("QuadPoints"));
 		return object;
+	}
+
+	@Override
+	public String getQuadPointsType() {
+		COSObject QuadPoints = getQuadPointsValue();
+		return getObjectType(QuadPoints);
 	}
 
 	@Override
@@ -1196,6 +1322,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
+	}
+
+	@Override
 	public Boolean getRectHasTypeRectangle() {
 		COSObject Rect = getRectValue();
 		return getHasTypeRectangle(Rect);
@@ -1212,6 +1344,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -1225,6 +1363,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -1247,6 +1391,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -1280,6 +1430,12 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

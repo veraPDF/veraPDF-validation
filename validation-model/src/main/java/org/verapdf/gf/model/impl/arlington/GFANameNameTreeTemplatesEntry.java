@@ -66,6 +66,12 @@ public class GFANameNameTreeTemplatesEntry extends GFAObject implements ANameNam
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject entry = getValue();
 		return getHasTypeDictionary(entry);

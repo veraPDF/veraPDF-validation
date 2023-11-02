@@ -67,6 +67,12 @@ public class GFAArrayOfWebCaptureImagesEntry extends GFAObject implements AArray
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeStream() {
 		COSObject entry = getValue();
 		return getHasTypeStream(entry);

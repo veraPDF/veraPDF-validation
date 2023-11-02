@@ -180,6 +180,12 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	@Override
+	public String getBoundsType() {
+		COSObject Bounds = getBoundsValue();
+		return getObjectType(Bounds);
+	}
+
+	@Override
 	public Boolean getBoundsHasTypeArray() {
 		COSObject Bounds = getBoundsValue();
 		return getHasTypeArray(Bounds);
@@ -199,6 +205,12 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	public COSObject getDomainValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Domain"));
 		return object;
+	}
+
+	@Override
+	public String getDomainType() {
+		COSObject Domain = getDomainValue();
+		return getObjectType(Domain);
 	}
 
 	@Override
@@ -224,6 +236,12 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	@Override
+	public String getEncodeType() {
+		COSObject Encode = getEncodeValue();
+		return getObjectType(Encode);
+	}
+
+	@Override
 	public Boolean getEncodeHasTypeArray() {
 		COSObject Encode = getEncodeValue();
 		return getHasTypeArray(Encode);
@@ -243,6 +261,12 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	public COSObject getFunctionTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FunctionType"));
 		return object;
+	}
+
+	@Override
+	public String getFunctionTypeType() {
+		COSObject FunctionType = getFunctionTypeValue();
+		return getObjectType(FunctionType);
 	}
 
 	@Override
@@ -268,6 +292,12 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	}
 
 	@Override
+	public String getFunctionsType() {
+		COSObject Functions = getFunctionsValue();
+		return getObjectType(Functions);
+	}
+
+	@Override
 	public Boolean getFunctionsHasTypeArray() {
 		COSObject Functions = getFunctionsValue();
 		return getHasTypeArray(Functions);
@@ -287,6 +317,12 @@ public class GFAFunctionType3 extends GFAObject implements AFunctionType3 {
 	public COSObject getRangeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Range"));
 		return object;
+	}
+
+	@Override
+	public String getRangeType() {
+		COSObject Range = getRangeValue();
+		return getObjectType(Range);
 	}
 
 	@Override

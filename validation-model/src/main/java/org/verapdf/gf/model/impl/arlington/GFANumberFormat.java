@@ -27,6 +27,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeNumber() {
 		COSObject C = getCValue();
 		return getHasTypeNumber(C);
@@ -53,6 +59,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 			object = getDDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
 	}
 
 	@Override
@@ -91,6 +103,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeName() {
 		COSObject F = getFValue();
 		return getHasTypeName(F);
@@ -126,6 +144,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
+	public String getFDType() {
+		COSObject FD = getFDValue();
+		return getObjectType(FD);
+	}
+
+	@Override
 	public Boolean getFDHasTypeBoolean() {
 		COSObject FD = getFDValue();
 		return getHasTypeBoolean(FD);
@@ -152,6 +176,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 			object = getODefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
 	}
 
 	@Override
@@ -190,6 +220,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
+	public String getPSType() {
+		COSObject PS = getPSValue();
+		return getObjectType(PS);
+	}
+
+	@Override
 	public Boolean getPSHasTypeStringText() {
 		COSObject PS = getPSValue();
 		return getHasTypeStringText(PS);
@@ -216,6 +252,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 			object = getRDDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getRDType() {
+		COSObject RD = getRDValue();
+		return getObjectType(RD);
 	}
 
 	@Override
@@ -248,6 +290,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
+	public String getRTType() {
+		COSObject RT = getRTValue();
+		return getObjectType(RT);
+	}
+
+	@Override
 	public Boolean getRTHasTypeStringText() {
 		COSObject RT = getRTValue();
 		return getHasTypeStringText(RT);
@@ -277,6 +325,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	}
 
 	@Override
+	public String getSSType() {
+		COSObject SS = getSSValue();
+		return getObjectType(SS);
+	}
+
+	@Override
 	public Boolean getSSHasTypeStringText() {
 		COSObject SS = getSSValue();
 		return getHasTypeStringText(SS);
@@ -290,6 +344,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -312,6 +372,12 @@ public class GFANumberFormat extends GFAObject implements ANumberFormat {
 	public COSObject getUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("U"));
 		return object;
+	}
+
+	@Override
+	public String getUType() {
+		COSObject U = getUValue();
+		return getObjectType(U);
 	}
 
 	@Override

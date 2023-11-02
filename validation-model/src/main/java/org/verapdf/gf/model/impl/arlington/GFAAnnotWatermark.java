@@ -242,6 +242,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -264,6 +270,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -277,6 +289,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	public COSObject getASValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
 		return object;
+	}
+
+	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
 	}
 
 	@Override
@@ -307,6 +325,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -329,6 +353,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -342,6 +372,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -372,6 +408,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -391,6 +433,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	public COSObject getContentsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
 		return object;
+	}
+
+	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
 	}
 
 	@Override
@@ -423,6 +471,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -445,6 +499,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getFixedPrintType() {
+		COSObject FixedPrint = getFixedPrintValue();
+		return getObjectType(FixedPrint);
+	}
+
+	@Override
 	public Boolean getFixedPrintHasTypeDictionary() {
 		COSObject FixedPrint = getFixedPrintValue();
 		return getHasTypeDictionary(FixedPrint);
@@ -461,6 +521,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -474,6 +540,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -499,6 +571,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
+	}
+
+	@Override
 	public Boolean getNMHasTypeStringText() {
 		COSObject NM = getNMValue();
 		return getHasTypeStringText(NM);
@@ -512,6 +590,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -537,6 +621,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -550,6 +640,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	public COSObject getRectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
 		return object;
+	}
+
+	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
 	}
 
 	@Override
@@ -581,6 +677,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -594,6 +696,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -616,6 +724,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -649,6 +763,12 @@ public class GFAAnnotWatermark extends GFAObject implements AAnnotWatermark {
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

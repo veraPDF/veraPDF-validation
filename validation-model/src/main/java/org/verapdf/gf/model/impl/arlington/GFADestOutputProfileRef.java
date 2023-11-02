@@ -83,6 +83,12 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	}
 
 	@Override
+	public String getCheckSumType() {
+		COSObject CheckSum = getCheckSumValue();
+		return getObjectType(CheckSum);
+	}
+
+	@Override
 	public Boolean getCheckSumHasTypeString() {
 		COSObject CheckSum = getCheckSumValue();
 		return getHasTypeString(CheckSum);
@@ -96,6 +102,12 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	public COSObject getColorantTableValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorantTable"));
 		return object;
+	}
+
+	@Override
+	public String getColorantTableType() {
+		COSObject ColorantTable = getColorantTableValue();
+		return getObjectType(ColorantTable);
 	}
 
 	@Override
@@ -115,6 +127,12 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	}
 
 	@Override
+	public String getICCVersionType() {
+		COSObject ICCVersion = getICCVersionValue();
+		return getObjectType(ICCVersion);
+	}
+
+	@Override
 	public Boolean getICCVersionHasTypeString() {
 		COSObject ICCVersion = getICCVersionValue();
 		return getHasTypeString(ICCVersion);
@@ -128,6 +146,12 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	public COSObject getProfileCSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ProfileCS"));
 		return object;
+	}
+
+	@Override
+	public String getProfileCSType() {
+		COSObject ProfileCS = getProfileCSValue();
+		return getObjectType(ProfileCS);
 	}
 
 	@Override
@@ -147,6 +171,12 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	}
 
 	@Override
+	public String getProfileNameType() {
+		COSObject ProfileName = getProfileNameValue();
+		return getObjectType(ProfileName);
+	}
+
+	@Override
 	public Boolean getProfileNameHasTypeStringText() {
 		COSObject ProfileName = getProfileNameValue();
 		return getHasTypeStringText(ProfileName);
@@ -160,6 +190,12 @@ public class GFADestOutputProfileRef extends GFAObject implements ADestOutputPro
 	public COSObject getURLsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLs"));
 		return object;
+	}
+
+	@Override
+	public String getURLsType() {
+		COSObject URLs = getURLsValue();
+		return getObjectType(URLs);
 	}
 
 	@Override

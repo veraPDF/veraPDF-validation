@@ -102,6 +102,12 @@ public class GFAData extends GFAObject implements AData {
 	}
 
 	@Override
+	public String getLastModifiedType() {
+		COSObject LastModified = getLastModifiedValue();
+		return getObjectType(LastModified);
+	}
+
+	@Override
 	public Boolean getLastModifiedHasTypeDate() {
 		COSObject LastModified = getLastModifiedValue();
 		return getHasTypeDate(LastModified);
@@ -121,6 +127,12 @@ public class GFAData extends GFAObject implements AData {
 	public Boolean getisPrivateIndirect() {
 		COSObject Private = getPrivateValue();
 		return getisIndirect(Private);
+	}
+
+	@Override
+	public String getPrivateType() {
+		COSObject Private = getPrivateValue();
+		return getObjectType(Private);
 	}
 
 	@Override

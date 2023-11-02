@@ -416,6 +416,12 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 	}
 
 	@Override
+	public String getIsMapType() {
+		COSObject IsMap = getIsMapValue();
+		return getObjectType(IsMap);
+	}
+
+	@Override
 	public Boolean getIsMapHasTypeBoolean() {
 		COSObject IsMap = getIsMapValue();
 		return getHasTypeBoolean(IsMap);
@@ -429,6 +435,12 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -454,6 +466,12 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -476,6 +494,12 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -495,6 +519,12 @@ public class GFAActionURI extends GFAObject implements AActionURI {
 	public COSObject getURIValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URI"));
 		return object;
+	}
+
+	@Override
+	public String getURIType() {
+		COSObject URI = getURIValue();
+		return getObjectType(URI);
 	}
 
 	@Override

@@ -109,6 +109,12 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	@Override
+	public String getCTType() {
+		COSObject CT = getCTValue();
+		return getObjectType(CT);
+	}
+
+	@Override
 	public Boolean getCTHasTypeStringAscii() {
 		COSObject CT = getCTValue();
 		return getHasTypeStringAscii(CT);
@@ -141,6 +147,12 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -160,6 +172,12 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	public COSObject getHValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("H"));
 		return object;
+	}
+
+	@Override
+	public String getHType() {
+		COSObject H = getHValue();
+		return getObjectType(H);
 	}
 
 	@Override
@@ -195,6 +213,12 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	@Override
+	public String getLType() {
+		COSObject L = getLValue();
+		return getObjectType(L);
+	}
+
+	@Override
 	public Boolean getLHasTypeInteger() {
 		COSObject L = getLValue();
 		return getHasTypeInteger(L);
@@ -223,6 +247,12 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeStream() {
 		COSObject P = getPValue();
 		return getHasTypeStream(P);
@@ -245,6 +275,12 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeDictionary() {
 		COSObject S = getSValue();
 		return getHasTypeDictionary(S);
@@ -258,6 +294,12 @@ public class GFAWebCaptureCommand extends GFAObject implements AWebCaptureComman
 	public COSObject getURLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
 		return object;
+	}
+
+	@Override
+	public String getURLType() {
+		COSObject URL = getURLValue();
+		return getObjectType(URL);
 	}
 
 	@Override

@@ -160,6 +160,12 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	@Override
+	public String getAnimationType() {
+		COSObject Animation = getAnimationValue();
+		return getObjectType(Animation);
+	}
+
+	@Override
 	public Boolean getAnimationHasTypeDictionary() {
 		COSObject Animation = getAnimationValue();
 		return getHasTypeDictionary(Animation);
@@ -185,6 +191,12 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 			object = getConditionDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getConditionType() {
+		COSObject Condition = getConditionValue();
+		return getObjectType(Condition);
 	}
 
 	@Override
@@ -216,6 +228,12 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	@Override
+	public String getConfigurationType() {
+		COSObject Configuration = getConfigurationValue();
+		return getObjectType(Configuration);
+	}
+
+	@Override
 	public Boolean getConfigurationHasTypeDictionary() {
 		COSObject Configuration = getConfigurationValue();
 		return getHasTypeDictionary(Configuration);
@@ -229,6 +247,12 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	public COSObject getPresentationValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Presentation"));
 		return object;
+	}
+
+	@Override
+	public String getPresentationType() {
+		COSObject Presentation = getPresentationValue();
+		return getObjectType(Presentation);
 	}
 
 	@Override
@@ -248,6 +272,12 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	}
 
 	@Override
+	public String getScriptsType() {
+		COSObject Scripts = getScriptsValue();
+		return getObjectType(Scripts);
+	}
+
+	@Override
 	public Boolean getScriptsHasTypeArray() {
 		COSObject Scripts = getScriptsValue();
 		return getHasTypeArray(Scripts);
@@ -261,6 +291,12 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -289,6 +325,12 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	public Boolean getisViewIndirect() {
 		COSObject View = getViewValue();
 		return getisIndirect(View);
+	}
+
+	@Override
+	public String getViewType() {
+		COSObject View = getViewValue();
+		return getObjectType(View);
 	}
 
 	@Override

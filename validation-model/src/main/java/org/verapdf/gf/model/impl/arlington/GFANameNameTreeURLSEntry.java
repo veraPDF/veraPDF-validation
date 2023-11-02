@@ -88,6 +88,12 @@ public class GFANameNameTreeURLSEntry extends GFAObject implements ANameNameTree
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject entry = getValue();
 		return getHasTypeDictionary(entry);

@@ -219,6 +219,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	@Override
+	public String getAddRevInfoType() {
+		COSObject AddRevInfo = getAddRevInfoValue();
+		return getObjectType(AddRevInfo);
+	}
+
+	@Override
 	public Boolean getAddRevInfoHasTypeBoolean() {
 		COSObject AddRevInfo = getAddRevInfoValue();
 		return getHasTypeBoolean(AddRevInfo);
@@ -232,6 +238,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	public COSObject getAppearanceFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AppearanceFilter"));
 		return object;
+	}
+
+	@Override
+	public String getAppearanceFilterType() {
+		COSObject AppearanceFilter = getAppearanceFilterValue();
+		return getObjectType(AppearanceFilter);
 	}
 
 	@Override
@@ -251,6 +263,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	@Override
+	public String getCertType() {
+		COSObject Cert = getCertValue();
+		return getObjectType(Cert);
+	}
+
+	@Override
 	public Boolean getCertHasTypeDictionary() {
 		COSObject Cert = getCertValue();
 		return getHasTypeDictionary(Cert);
@@ -264,6 +282,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	public COSObject getDigestMethodValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestMethod"));
 		return object;
+	}
+
+	@Override
+	public String getDigestMethodType() {
+		COSObject DigestMethod = getDigestMethodValue();
+		return getObjectType(DigestMethod);
 	}
 
 	@Override
@@ -295,6 +319,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	@Override
+	public String getFfType() {
+		COSObject Ff = getFfValue();
+		return getObjectType(Ff);
+	}
+
+	@Override
 	public Boolean getFfHasTypeBitmask() {
 		COSObject Ff = getFfValue();
 		return getHasTypeBitmask(Ff);
@@ -317,6 +347,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeName(Filter);
@@ -333,6 +369,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	@Override
+	public String getLegalAttestationType() {
+		COSObject LegalAttestation = getLegalAttestationValue();
+		return getObjectType(LegalAttestation);
+	}
+
+	@Override
 	public Boolean getLegalAttestationHasTypeArray() {
 		COSObject LegalAttestation = getLegalAttestationValue();
 		return getHasTypeArray(LegalAttestation);
@@ -346,6 +388,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	public COSObject getLockDocumentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LockDocument"));
 		return object;
+	}
+
+	@Override
+	public String getLockDocumentType() {
+		COSObject LockDocument = getLockDocumentValue();
+		return getObjectType(LockDocument);
 	}
 
 	@Override
@@ -371,6 +419,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	@Override
+	public String getMDPType() {
+		COSObject MDP = getMDPValue();
+		return getObjectType(MDP);
+	}
+
+	@Override
 	public Boolean getMDPHasTypeDictionary() {
 		COSObject MDP = getMDPValue();
 		return getHasTypeDictionary(MDP);
@@ -384,6 +438,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	public COSObject getReasonsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Reasons"));
 		return object;
+	}
+
+	@Override
+	public String getReasonsType() {
+		COSObject Reasons = getReasonsValue();
+		return getObjectType(Reasons);
 	}
 
 	@Override
@@ -403,6 +463,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	@Override
+	public String getSubFilterType() {
+		COSObject SubFilter = getSubFilterValue();
+		return getObjectType(SubFilter);
+	}
+
+	@Override
 	public Boolean getSubFilterHasTypeArray() {
 		COSObject SubFilter = getSubFilterValue();
 		return getHasTypeArray(SubFilter);
@@ -419,6 +485,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	}
 
 	@Override
+	public String getTimeStampType() {
+		COSObject TimeStamp = getTimeStampValue();
+		return getObjectType(TimeStamp);
+	}
+
+	@Override
 	public Boolean getTimeStampHasTypeDictionary() {
 		COSObject TimeStamp = getTimeStampValue();
 		return getHasTypeDictionary(TimeStamp);
@@ -432,6 +504,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -454,6 +532,12 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

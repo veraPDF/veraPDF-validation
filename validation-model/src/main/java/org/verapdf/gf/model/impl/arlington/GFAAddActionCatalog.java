@@ -175,6 +175,12 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	@Override
+	public String getDCType() {
+		COSObject DC = getDCValue();
+		return getObjectType(DC);
+	}
+
+	@Override
 	public Boolean getDCHasTypeDictionary() {
 		COSObject DC = getDCValue();
 		return getHasTypeDictionary(DC);
@@ -188,6 +194,12 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	public COSObject getDPValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DP"));
 		return object;
+	}
+
+	@Override
+	public String getDPType() {
+		COSObject DP = getDPValue();
+		return getObjectType(DP);
 	}
 
 	@Override
@@ -207,6 +219,12 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	@Override
+	public String getDSType() {
+		COSObject DS = getDSValue();
+		return getObjectType(DS);
+	}
+
+	@Override
 	public Boolean getDSHasTypeDictionary() {
 		COSObject DS = getDSValue();
 		return getHasTypeDictionary(DS);
@@ -223,6 +241,12 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	}
 
 	@Override
+	public String getWPType() {
+		COSObject WP = getWPValue();
+		return getObjectType(WP);
+	}
+
+	@Override
 	public Boolean getWPHasTypeDictionary() {
 		COSObject WP = getWPValue();
 		return getHasTypeDictionary(WP);
@@ -236,6 +260,12 @@ public class GFAAddActionCatalog extends GFAObject implements AAddActionCatalog 
 	public COSObject getWSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WS"));
 		return object;
+	}
+
+	@Override
+	public String getWSType() {
+		COSObject WS = getWSValue();
+		return getObjectType(WS);
 	}
 
 	@Override

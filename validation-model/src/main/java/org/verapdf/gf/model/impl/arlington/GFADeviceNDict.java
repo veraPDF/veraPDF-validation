@@ -116,6 +116,12 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	@Override
+	public String getColorantsType() {
+		COSObject Colorants = getColorantsValue();
+		return getObjectType(Colorants);
+	}
+
+	@Override
 	public Boolean getColorantsHasTypeDictionary() {
 		COSObject Colorants = getColorantsValue();
 		return getHasTypeDictionary(Colorants);
@@ -132,6 +138,12 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	@Override
+	public String getMixingHintsType() {
+		COSObject MixingHints = getMixingHintsValue();
+		return getObjectType(MixingHints);
+	}
+
+	@Override
 	public Boolean getMixingHintsHasTypeDictionary() {
 		COSObject MixingHints = getMixingHintsValue();
 		return getHasTypeDictionary(MixingHints);
@@ -145,6 +157,12 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	public COSObject getProcessValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Process"));
 		return object;
+	}
+
+	@Override
+	public String getProcessType() {
+		COSObject Process = getProcessValue();
+		return getObjectType(Process);
 	}
 
 	@Override
@@ -174,6 +192,12 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 			object = getSubtypeDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override

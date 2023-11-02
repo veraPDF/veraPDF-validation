@@ -523,6 +523,12 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	@Override
+	public String getDurType() {
+		COSObject Dur = getDurValue();
+		return getObjectType(Dur);
+	}
+
+	@Override
 	public Boolean getDurHasTypeNumber() {
 		COSObject Dur = getDurValue();
 		return getHasTypeNumber(Dur);
@@ -536,6 +542,12 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	public COSObject getNAValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NA"));
 		return object;
+	}
+
+	@Override
+	public String getNAType() {
+		COSObject NA = getNAValue();
+		return getObjectType(NA);
 	}
 
 	@Override
@@ -555,6 +567,12 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
+	}
+
+	@Override
 	public Boolean getNextHasTypeDictionary() {
 		COSObject Next = getNextValue();
 		return getHasTypeDictionary(Next);
@@ -568,6 +586,12 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	public COSObject getPAValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PA"));
 		return object;
+	}
+
+	@Override
+	public String getPAType() {
+		COSObject PA = getPAValue();
+		return getObjectType(PA);
 	}
 
 	@Override
@@ -587,6 +611,12 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	}
 
 	@Override
+	public String getPrevType() {
+		COSObject Prev = getPrevValue();
+		return getObjectType(Prev);
+	}
+
+	@Override
 	public Boolean getPrevHasTypeDictionary() {
 		COSObject Prev = getPrevValue();
 		return getHasTypeDictionary(Prev);
@@ -600,6 +630,12 @@ public class GFANavNode extends GFAObject implements ANavNode {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

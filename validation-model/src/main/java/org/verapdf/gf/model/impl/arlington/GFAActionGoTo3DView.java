@@ -285,6 +285,12 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
+	}
+
+	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject Next = getNextValue();
 		return getHasTypeArray(Next);
@@ -304,6 +310,12 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -329,6 +341,12 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	}
 
 	@Override
+	public String getTAType() {
+		COSObject TA = getTAValue();
+		return getObjectType(TA);
+	}
+
+	@Override
 	public Boolean getTAHasTypeDictionary() {
 		COSObject TA = getTAValue();
 		return getHasTypeDictionary(TA);
@@ -342,6 +360,12 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -364,6 +388,12 @@ public class GFAActionGoTo3DView extends GFAObject implements AActionGoTo3DView 
 	public COSObject getVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

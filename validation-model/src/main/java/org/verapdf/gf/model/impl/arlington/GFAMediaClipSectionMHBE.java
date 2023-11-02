@@ -137,6 +137,12 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 	}
 
 	@Override
+	public String getBType() {
+		COSObject B = getBValue();
+		return getObjectType(B);
+	}
+
+	@Override
 	public Boolean getBHasTypeDictionary() {
 		COSObject B = getBValue();
 		return getHasTypeDictionary(B);
@@ -150,6 +156,12 @@ public class GFAMediaClipSectionMHBE extends GFAObject implements AMediaClipSect
 	public COSObject getEValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
 		return object;
+	}
+
+	@Override
+	public String getEType() {
+		COSObject E = getEValue();
+		return getObjectType(E);
 	}
 
 	@Override

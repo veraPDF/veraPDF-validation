@@ -135,6 +135,12 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 	}
 
 	@Override
+	public String getObjType() {
+		COSObject Obj = getObjValue();
+		return getObjectType(Obj);
+	}
+
+	@Override
 	public Boolean getObjHasTypeArray() {
 		COSObject Obj = getObjValue();
 		return getHasTypeArray(Obj);
@@ -169,6 +175,12 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 	}
 
 	@Override
+	public String getPgType() {
+		COSObject Pg = getPgValue();
+		return getObjectType(Pg);
+	}
+
+	@Override
 	public Boolean getPgHasTypeDictionary() {
 		COSObject Pg = getPgValue();
 		return getHasTypeDictionary(Pg);
@@ -182,6 +194,12 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

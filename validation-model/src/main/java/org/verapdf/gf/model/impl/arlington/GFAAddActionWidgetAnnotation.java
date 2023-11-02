@@ -2931,6 +2931,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	@Override
+	public String getBlType() {
+		COSObject Bl = getBlValue();
+		return getObjectType(Bl);
+	}
+
+	@Override
 	public Boolean getBlHasTypeDictionary() {
 		COSObject Bl = getBlValue();
 		return getHasTypeDictionary(Bl);
@@ -2944,6 +2950,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	public COSObject getDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object;
+	}
+
+	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
 	}
 
 	@Override
@@ -2963,6 +2975,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	@Override
+	public String getEType() {
+		COSObject E = getEValue();
+		return getObjectType(E);
+	}
+
+	@Override
 	public Boolean getEHasTypeDictionary() {
 		COSObject E = getEValue();
 		return getHasTypeDictionary(E);
@@ -2976,6 +2994,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	public COSObject getFoValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Fo"));
 		return object;
+	}
+
+	@Override
+	public String getFoType() {
+		COSObject Fo = getFoValue();
+		return getObjectType(Fo);
 	}
 
 	@Override
@@ -2995,6 +3019,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	@Override
+	public String getPCType() {
+		COSObject PC = getPCValue();
+		return getObjectType(PC);
+	}
+
+	@Override
 	public Boolean getPCHasTypeDictionary() {
 		COSObject PC = getPCValue();
 		return getHasTypeDictionary(PC);
@@ -3008,6 +3038,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	public COSObject getPIValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PI"));
 		return object;
+	}
+
+	@Override
+	public String getPIType() {
+		COSObject PI = getPIValue();
+		return getObjectType(PI);
 	}
 
 	@Override
@@ -3027,6 +3063,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	@Override
+	public String getPOType() {
+		COSObject PO = getPOValue();
+		return getObjectType(PO);
+	}
+
+	@Override
 	public Boolean getPOHasTypeDictionary() {
 		COSObject PO = getPOValue();
 		return getHasTypeDictionary(PO);
@@ -3040,6 +3082,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	public COSObject getPVValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PV"));
 		return object;
+	}
+
+	@Override
+	public String getPVType() {
+		COSObject PV = getPVValue();
+		return getObjectType(PV);
 	}
 
 	@Override
@@ -3059,6 +3107,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	}
 
 	@Override
+	public String getUType() {
+		COSObject U = getUValue();
+		return getObjectType(U);
+	}
+
+	@Override
 	public Boolean getUHasTypeDictionary() {
 		COSObject U = getUValue();
 		return getHasTypeDictionary(U);
@@ -3072,6 +3126,12 @@ public class GFAAddActionWidgetAnnotation extends GFAObject implements AAddActio
 	public COSObject getXValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("X"));
 		return object;
+	}
+
+	@Override
+	public String getXType() {
+		COSObject X = getXValue();
+		return getObjectType(X);
 	}
 
 	@Override

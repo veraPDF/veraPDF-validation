@@ -41,6 +41,12 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 	}
 
 	@Override
+	public String getIType() {
+		COSObject I = getIValue();
+		return getObjectType(I);
+	}
+
+	@Override
 	public Boolean getIHasTypeNumber() {
 		COSObject I = getIValue();
 		return getHasTypeNumber(I);
@@ -74,6 +80,12 @@ public class GFABorderEffect extends GFAObject implements ABorderEffect {
 			object = getSDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override

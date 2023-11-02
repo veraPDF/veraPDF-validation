@@ -122,6 +122,12 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	@Override
+	public String getBindingType() {
+		COSObject Binding = getBindingValue();
+		return getObjectType(Binding);
+	}
+
+	@Override
 	public Boolean getBindingHasTypeName() {
 		COSObject Binding = getBindingValue();
 		return getHasTypeName(Binding);
@@ -144,6 +150,12 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	@Override
+	public String getBindingMaterialType() {
+		COSObject BindingMaterial = getBindingMaterialValue();
+		return getObjectType(BindingMaterial);
+	}
+
+	@Override
 	public Boolean getBindingMaterialHasTypeStringText() {
 		COSObject BindingMaterial = getBindingMaterialValue();
 		return getHasTypeStringText(BindingMaterial);
@@ -157,6 +169,12 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	public COSObject getCuePointsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CuePoints"));
 		return object;
+	}
+
+	@Override
+	public String getCuePointsType() {
+		COSObject CuePoints = getCuePointsValue();
+		return getObjectType(CuePoints);
 	}
 
 	@Override
@@ -179,6 +197,12 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	public Boolean getisFlashVarsIndirect() {
 		COSObject FlashVars = getFlashVarsValue();
 		return getisIndirect(FlashVars);
+	}
+
+	@Override
+	public String getFlashVarsType() {
+		COSObject FlashVars = getFlashVarsValue();
+		return getObjectType(FlashVars);
 	}
 
 	@Override
@@ -210,6 +234,12 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	}
 
 	@Override
+	public String getSettingsType() {
+		COSObject Settings = getSettingsValue();
+		return getObjectType(Settings);
+	}
+
+	@Override
 	public Boolean getSettingsHasTypeStream() {
 		COSObject Settings = getSettingsValue();
 		return getHasTypeStream(Settings);
@@ -229,6 +259,12 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

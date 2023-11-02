@@ -134,6 +134,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public String getAPIVersionType() {
+		COSObject APIVersion = getAPIVersionValue();
+		return getObjectType(APIVersion);
+	}
+
+	@Override
 	public Boolean getAPIVersionHasTypeStringText() {
 		COSObject APIVersion = getAPIVersionValue();
 		return getHasTypeStringText(APIVersion);
@@ -147,6 +153,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public COSObject getCategoryValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Category"));
 		return object;
+	}
+
+	@Override
+	public String getCategoryType() {
+		COSObject Category = getCategoryValue();
+		return getObjectType(Category);
 	}
 
 	@Override
@@ -166,6 +178,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public String getDescType() {
+		COSObject Desc = getDescValue();
+		return getObjectType(Desc);
+	}
+
+	@Override
 	public Boolean getDescHasTypeStringText() {
 		COSObject Desc = getDescValue();
 		return getHasTypeStringText(Desc);
@@ -179,6 +197,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public COSObject getentryIDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ID"));
 		return object;
+	}
+
+	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
 	}
 
 	@Override
@@ -198,6 +222,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public String getIconType() {
+		COSObject Icon = getIconValue();
+		return getObjectType(Icon);
+	}
+
+	@Override
 	public Boolean getIconHasTypeStringText() {
 		COSObject Icon = getIconValue();
 		return getHasTypeStringText(Icon);
@@ -214,6 +244,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public String getInitialFieldsType() {
+		COSObject InitialFields = getInitialFieldsValue();
+		return getObjectType(InitialFields);
+	}
+
+	@Override
 	public Boolean getInitialFieldsHasTypeDictionary() {
 		COSObject InitialFields = getInitialFieldsValue();
 		return getHasTypeDictionary(InitialFields);
@@ -227,6 +263,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public COSObject getLayoutValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Layout"));
 		return object;
+	}
+
+	@Override
+	public String getLayoutType() {
+		COSObject Layout = getLayoutValue();
+		return getObjectType(Layout);
 	}
 
 	@Override
@@ -270,6 +312,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public String getLoadTypeType() {
+		COSObject LoadType = getLoadTypeValue();
+		return getObjectType(LoadType);
+	}
+
+	@Override
 	public Boolean getLoadTypeHasTypeName() {
 		COSObject LoadType = getLoadTypeValue();
 		return getHasTypeName(LoadType);
@@ -292,6 +340,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public String getLocaleType() {
+		COSObject Locale = getLocaleValue();
+		return getObjectType(Locale);
+	}
+
+	@Override
 	public Boolean getLocaleHasTypeStringText() {
 		COSObject Locale = getLocaleValue();
 		return getHasTypeStringText(Locale);
@@ -305,6 +359,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public COSObject getNameValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
 		return object;
+	}
+
+	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
 	}
 
 	@Override
@@ -324,6 +384,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
+	}
+
+	@Override
 	public Boolean getResourcesHasTypeNameTree() {
 		COSObject Resources = getResourcesValue();
 		return getHasTypeNameTree(Resources);
@@ -337,6 +403,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public COSObject getSWFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SWF"));
 		return object;
+	}
+
+	@Override
+	public String getSWFType() {
+		COSObject SWF = getSWFValue();
+		return getObjectType(SWF);
 	}
 
 	@Override
@@ -356,6 +428,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public String getStringsType() {
+		COSObject Strings = getStringsValue();
+		return getObjectType(Strings);
+	}
+
+	@Override
 	public Boolean getStringsHasTypeNameTree() {
 		COSObject Strings = getStringsValue();
 		return getHasTypeNameTree(Strings);
@@ -369,6 +447,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -391,6 +475,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public COSObject getVersionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
 		return object;
+	}
+
+	@Override
+	public String getVersionType() {
+		COSObject Version = getVersionValue();
+		return getObjectType(Version);
 	}
 
 	@Override

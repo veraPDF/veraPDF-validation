@@ -27,6 +27,12 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 	}
 
 	@Override
+	public String getOrderingType() {
+		COSObject Ordering = getOrderingValue();
+		return getObjectType(Ordering);
+	}
+
+	@Override
 	public Boolean getOrderingHasTypeStringAscii() {
 		COSObject Ordering = getOrderingValue();
 		return getHasTypeStringAscii(Ordering);
@@ -43,6 +49,12 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 	}
 
 	@Override
+	public String getRegistryType() {
+		COSObject Registry = getRegistryValue();
+		return getObjectType(Registry);
+	}
+
+	@Override
 	public Boolean getRegistryHasTypeStringAscii() {
 		COSObject Registry = getRegistryValue();
 		return getHasTypeStringAscii(Registry);
@@ -56,6 +68,12 @@ public class GFACIDSystemInfo extends GFAObject implements ACIDSystemInfo {
 	public COSObject getSupplementValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Supplement"));
 		return object;
+	}
+
+	@Override
+	public String getSupplementType() {
+		COSObject Supplement = getSupplementValue();
+		return getObjectType(Supplement);
 	}
 
 	@Override

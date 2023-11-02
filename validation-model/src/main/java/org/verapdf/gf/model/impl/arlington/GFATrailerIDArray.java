@@ -31,6 +31,12 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeStringByte() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeStringByte(entry0);
@@ -48,6 +54,12 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 	public Boolean getisentry1Indirect() {
 		COSObject entry1 = getentry1Value();
 		return getisIndirect(entry1);
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override

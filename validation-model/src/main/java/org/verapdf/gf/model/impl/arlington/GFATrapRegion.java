@@ -64,6 +64,12 @@ public class GFATrapRegion extends GFAObject implements ATrapRegion {
 	}
 
 	@Override
+	public String getTPType() {
+		COSObject TP = getTPValue();
+		return getObjectType(TP);
+	}
+
+	@Override
 	public Boolean getTPHasTypeName() {
 		COSObject TP = getTPValue();
 		return getHasTypeName(TP);
@@ -77,6 +83,12 @@ public class GFATrapRegion extends GFAObject implements ATrapRegion {
 	public COSObject getTZValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TZ"));
 		return object;
+	}
+
+	@Override
+	public String getTZType() {
+		COSObject TZ = getTZValue();
+		return getObjectType(TZ);
 	}
 
 	@Override

@@ -27,6 +27,12 @@ public class GFAStyleDict extends GFAObject implements AStyleDict {
 	}
 
 	@Override
+	public String getPanoseType() {
+		COSObject Panose = getPanoseValue();
+		return getObjectType(Panose);
+	}
+
+	@Override
 	public Boolean getPanoseHasTypeStringByte() {
 		COSObject Panose = getPanoseValue();
 		return getHasTypeStringByte(Panose);

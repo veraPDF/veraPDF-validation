@@ -445,6 +445,12 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	@Override
+	public String getMixType() {
+		COSObject Mix = getMixValue();
+		return getObjectType(Mix);
+	}
+
+	@Override
 	public Boolean getMixHasTypeBoolean() {
 		COSObject Mix = getMixValue();
 		return getHasTypeBoolean(Mix);
@@ -458,6 +464,12 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -500,6 +512,12 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	@Override
+	public String getRepeatType() {
+		COSObject Repeat = getRepeatValue();
+		return getObjectType(Repeat);
+	}
+
+	@Override
 	public Boolean getRepeatHasTypeBoolean() {
 		COSObject Repeat = getRepeatValue();
 		return getHasTypeBoolean(Repeat);
@@ -513,6 +531,12 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -541,6 +565,12 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	public Boolean getisSoundIndirect() {
 		COSObject Sound = getSoundValue();
 		return getisIndirect(Sound);
+	}
+
+	@Override
+	public String getSoundType() {
+		COSObject Sound = getSoundValue();
+		return getObjectType(Sound);
 	}
 
 	@Override
@@ -577,6 +607,12 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	}
 
 	@Override
+	public String getSynchronousType() {
+		COSObject Synchronous = getSynchronousValue();
+		return getObjectType(Synchronous);
+	}
+
+	@Override
 	public Boolean getSynchronousHasTypeBoolean() {
 		COSObject Synchronous = getSynchronousValue();
 		return getHasTypeBoolean(Synchronous);
@@ -590,6 +626,12 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -629,6 +671,12 @@ public class GFAActionSound extends GFAObject implements AActionSound {
 			object = getVolumeDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVolumeType() {
+		COSObject Volume = getVolumeValue();
+		return getObjectType(Volume);
 	}
 
 	@Override

@@ -116,6 +116,12 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	@Override
+	public String getBEType() {
+		COSObject BE = getBEValue();
+		return getObjectType(BE);
+	}
+
+	@Override
 	public Boolean getBEHasTypeDictionary() {
 		COSObject BE = getBEValue();
 		return getHasTypeDictionary(BE);
@@ -129,6 +135,12 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	public COSObject getMHValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MH"));
 		return object;
+	}
+
+	@Override
+	public String getMHType() {
+		COSObject MH = getMHValue();
+		return getObjectType(MH);
 	}
 
 	@Override
@@ -148,6 +160,12 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeStringText() {
 		COSObject N = getNValue();
 		return getHasTypeStringText(N);
@@ -164,6 +182,12 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	}
 
 	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
+	}
+
+	@Override
 	public Boolean getRHasTypeArray() {
 		COSObject R = getRValue();
 		return getHasTypeArray(R);
@@ -177,6 +201,12 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -199,6 +229,12 @@ public class GFARenditionSelector extends GFAObject implements ARenditionSelecto
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

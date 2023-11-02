@@ -97,6 +97,12 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	}
 
 	@Override
+	public String getBlackPointType() {
+		COSObject BlackPoint = getBlackPointValue();
+		return getObjectType(BlackPoint);
+	}
+
+	@Override
 	public Boolean getBlackPointHasTypeArray() {
 		COSObject BlackPoint = getBlackPointValue();
 		return getHasTypeArray(BlackPoint);
@@ -131,6 +137,12 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	}
 
 	@Override
+	public String getGammaType() {
+		COSObject Gamma = getGammaValue();
+		return getObjectType(Gamma);
+	}
+
+	@Override
 	public Boolean getGammaHasTypeNumber() {
 		COSObject Gamma = getGammaValue();
 		return getHasTypeNumber(Gamma);
@@ -150,6 +162,12 @@ public class GFACalGrayDict extends GFAObject implements ACalGrayDict {
 	public COSObject getWhitePointValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
 		return object;
+	}
+
+	@Override
+	public String getWhitePointType() {
+		COSObject WhitePoint = getWhitePointValue();
+		return getObjectType(WhitePoint);
 	}
 
 	@Override

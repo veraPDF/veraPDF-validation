@@ -81,6 +81,12 @@ public class GFAArrayOfRenditionsEntry extends GFAObject implements AArrayOfRend
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject entry = getValue();
 		return getHasTypeDictionary(entry);

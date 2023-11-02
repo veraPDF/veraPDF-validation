@@ -57,6 +57,12 @@ public class GFAArrayOfStreamsGeneralEntry extends GFAObject implements AArrayOf
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeStream() {
 		COSObject entry = getValue();
 		return getHasTypeStream(entry);

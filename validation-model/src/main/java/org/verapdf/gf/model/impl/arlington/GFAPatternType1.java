@@ -385,6 +385,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getBBoxType() {
+		COSObject BBox = getBBoxValue();
+		return getObjectType(BBox);
+	}
+
+	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject BBox = getBBoxValue();
 		return getHasTypeRectangle(BBox);
@@ -398,6 +404,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	public COSObject getDLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
 		return object;
+	}
+
+	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
 	}
 
 	@Override
@@ -420,6 +432,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -451,6 +469,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -470,6 +494,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -498,6 +528,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -535,6 +571,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -569,6 +611,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -585,6 +633,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getMatrixType() {
+		COSObject Matrix = getMatrixValue();
+		return getObjectType(Matrix);
+	}
+
+	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject Matrix = getMatrixValue();
 		return getHasTypeMatrix(Matrix);
@@ -598,6 +652,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	public COSObject getPaintTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PaintType"));
 		return object;
+	}
+
+	@Override
+	public String getPaintTypeType() {
+		COSObject PaintType = getPaintTypeValue();
+		return getObjectType(PaintType);
 	}
 
 	@Override
@@ -623,6 +683,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getPatternTypeType() {
+		COSObject PatternType = getPatternTypeValue();
+		return getObjectType(PatternType);
+	}
+
+	@Override
 	public Boolean getPatternTypeHasTypeInteger() {
 		COSObject PatternType = getPatternTypeValue();
 		return getHasTypeInteger(PatternType);
@@ -645,6 +711,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
+	}
+
+	@Override
 	public Boolean getResourcesHasTypeDictionary() {
 		COSObject Resources = getResourcesValue();
 		return getHasTypeDictionary(Resources);
@@ -658,6 +730,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	public COSObject getTilingTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TilingType"));
 		return object;
+	}
+
+	@Override
+	public String getTilingTypeType() {
+		COSObject TilingType = getTilingTypeValue();
+		return getObjectType(TilingType);
 	}
 
 	@Override
@@ -683,6 +761,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -705,6 +789,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getXStepType() {
+		COSObject XStep = getXStepValue();
+		return getObjectType(XStep);
+	}
+
+	@Override
 	public Boolean getXStepHasTypeNumber() {
 		COSObject XStep = getXStepValue();
 		return getHasTypeNumber(XStep);
@@ -721,6 +811,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	}
 
 	@Override
+	public String getXUIDType() {
+		COSObject XUID = getXUIDValue();
+		return getObjectType(XUID);
+	}
+
+	@Override
 	public Boolean getXUIDHasTypeArray() {
 		COSObject XUID = getXUIDValue();
 		return getHasTypeArray(XUID);
@@ -734,6 +830,12 @@ public class GFAPatternType1 extends GFAObject implements APatternType1 {
 	public COSObject getYStepValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("YStep"));
 		return object;
+	}
+
+	@Override
+	public String getYStepType() {
+		COSObject YStep = getYStepValue();
+		return getObjectType(YStep);
 	}
 
 	@Override

@@ -428,6 +428,12 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	@Override
+	public String getAnnotationType() {
+		COSObject Annotation = getAnnotationValue();
+		return getObjectType(Annotation);
+	}
+
+	@Override
 	public Boolean getAnnotationHasTypeDictionary() {
 		COSObject Annotation = getAnnotationValue();
 		return getHasTypeDictionary(Annotation);
@@ -441,6 +447,12 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -483,6 +495,12 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	@Override
+	public String getOperationType() {
+		COSObject Operation = getOperationValue();
+		return getObjectType(Operation);
+	}
+
+	@Override
 	public Boolean getOperationHasTypeName() {
 		COSObject Operation = getOperationValue();
 		return getHasTypeName(Operation);
@@ -502,6 +520,12 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -527,6 +551,12 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -540,6 +570,12 @@ public class GFAActionMovie extends GFAObject implements AActionMovie {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

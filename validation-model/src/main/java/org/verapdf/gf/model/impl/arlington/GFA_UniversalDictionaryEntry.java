@@ -78,6 +78,12 @@ public class GFA_UniversalDictionaryEntry extends GFAObject implements A_Univers
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeArray() {
 		COSObject entry = getValue();
 		return getHasTypeArray(entry);

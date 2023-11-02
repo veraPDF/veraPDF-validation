@@ -976,6 +976,12 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	@Override
+	public String getHType() {
+		COSObject H = getHValue();
+		return getObjectType(H);
+	}
+
+	@Override
 	public Boolean getHHasTypeBoolean() {
 		COSObject H = getHValue();
 		return getHasTypeBoolean(H);
@@ -989,6 +995,12 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -1011,6 +1023,12 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -1039,6 +1057,12 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	public Boolean getisTIndirect() {
 		COSObject T = getTValue();
 		return getisIndirect(T);
+	}
+
+	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
 	}
 
 	@Override
@@ -1073,6 +1097,12 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

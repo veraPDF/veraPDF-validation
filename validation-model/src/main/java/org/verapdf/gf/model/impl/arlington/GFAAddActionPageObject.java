@@ -711,6 +711,12 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject C = getCValue();
 		return getHasTypeDictionary(C);
@@ -724,6 +730,12 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 	public COSObject getOValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("O"));
 		return object;
+	}
+
+	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
 	}
 
 	@Override

@@ -211,6 +211,12 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -227,6 +233,12 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	@Override
+	public String getDPMType() {
+		COSObject DPM = getDPMValue();
+		return getObjectType(DPM);
+	}
+
+	@Override
 	public Boolean getDPMHasTypeDictionary() {
 		COSObject DPM = getDPMValue();
 		return getHasTypeDictionary(DPM);
@@ -240,6 +252,12 @@ public class GFADPart extends GFAObject implements ADPart {
 	public COSObject getDPartsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DParts"));
 		return object;
+	}
+
+	@Override
+	public String getDPartsType() {
+		COSObject DParts = getDPartsValue();
+		return getObjectType(DParts);
 	}
 
 	@Override
@@ -271,6 +289,12 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	@Override
+	public String getEndType() {
+		COSObject End = getEndValue();
+		return getObjectType(End);
+	}
+
+	@Override
 	public Boolean getEndHasTypeDictionary() {
 		COSObject End = getEndValue();
 		return getHasTypeDictionary(End);
@@ -290,6 +314,12 @@ public class GFADPart extends GFAObject implements ADPart {
 	public Boolean getisParentIndirect() {
 		COSObject Parent = getParentValue();
 		return getisIndirect(Parent);
+	}
+
+	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
 	}
 
 	@Override
@@ -315,6 +345,12 @@ public class GFADPart extends GFAObject implements ADPart {
 	}
 
 	@Override
+	public String getStartType() {
+		COSObject Start = getStartValue();
+		return getObjectType(Start);
+	}
+
+	@Override
 	public Boolean getStartHasTypeDictionary() {
 		COSObject Start = getStartValue();
 		return getHasTypeDictionary(Start);
@@ -328,6 +364,12 @@ public class GFADPart extends GFAObject implements ADPart {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

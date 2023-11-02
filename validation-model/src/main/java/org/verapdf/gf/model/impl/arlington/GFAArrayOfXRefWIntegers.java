@@ -31,6 +31,12 @@ public class GFAArrayOfXRefWIntegers extends GFAObject implements AArrayOfXRefWI
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeInteger() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeInteger(entry0);
@@ -57,6 +63,12 @@ public class GFAArrayOfXRefWIntegers extends GFAObject implements AArrayOfXRefWI
 	}
 
 	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
+	}
+
+	@Override
 	public Boolean getentry1HasTypeInteger() {
 		COSObject entry1 = getentry1Value();
 		return getHasTypeInteger(entry1);
@@ -80,6 +92,12 @@ public class GFAArrayOfXRefWIntegers extends GFAObject implements AArrayOfXRefWI
 	public Boolean getisentry2Indirect() {
 		COSObject entry2 = getentry2Value();
 		return getisIndirect(entry2);
+	}
+
+	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
 	}
 
 	@Override

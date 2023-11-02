@@ -38,6 +38,12 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	}
 
 	@Override
+	public String getAOType() {
+		COSObject AO = getAOValue();
+		return getObjectType(AO);
+	}
+
+	@Override
 	public Boolean getAOHasTypeInteger() {
 		COSObject AO = getAOValue();
 		return getHasTypeInteger(AO);
@@ -72,6 +78,12 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	}
 
 	@Override
+	public String getPlayCountType() {
+		COSObject PlayCount = getPlayCountValue();
+		return getObjectType(PlayCount);
+	}
+
+	@Override
 	public Boolean getPlayCountHasTypeInteger() {
 		COSObject PlayCount = getPlayCountValue();
 		return getHasTypeInteger(PlayCount);
@@ -97,6 +109,12 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 			object = getSpeedDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getSpeedType() {
+		COSObject Speed = getSpeedValue();
+		return getObjectType(Speed);
 	}
 
 	@Override
@@ -134,6 +152,12 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	}
 
 	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
+	}
+
+	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
@@ -153,6 +177,12 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

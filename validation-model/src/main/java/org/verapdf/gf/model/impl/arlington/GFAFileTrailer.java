@@ -274,6 +274,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	@Override
+	public String getAuthCodeType() {
+		COSObject AuthCode = getAuthCodeValue();
+		return getObjectType(AuthCode);
+	}
+
+	@Override
 	public Boolean getAuthCodeHasTypeDictionary() {
 		COSObject AuthCode = getAuthCodeValue();
 		return getHasTypeDictionary(AuthCode);
@@ -287,6 +293,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	public COSObject getEncryptValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
 		return object;
+	}
+
+	@Override
+	public String getEncryptType() {
+		COSObject Encrypt = getEncryptValue();
+		return getObjectType(Encrypt);
 	}
 
 	@Override
@@ -312,6 +324,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
+	}
+
+	@Override
 	public Boolean getentryIDHasTypeArray() {
 		COSObject entryID = getentryIDValue();
 		return getHasTypeArray(entryID);
@@ -331,6 +349,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	public Boolean getisInfoIndirect() {
 		COSObject Info = getInfoValue();
 		return getisIndirect(Info);
+	}
+
+	@Override
+	public String getInfoType() {
+		COSObject Info = getInfoValue();
+		return getObjectType(Info);
 	}
 
 	@Override
@@ -366,6 +390,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	@Override
+	public String getPrevType() {
+		COSObject Prev = getPrevValue();
+		return getObjectType(Prev);
+	}
+
+	@Override
 	public Boolean getPrevHasTypeInteger() {
 		COSObject Prev = getPrevValue();
 		return getHasTypeInteger(Prev);
@@ -394,6 +424,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	@Override
+	public String getRootType() {
+		COSObject Root = getRootValue();
+		return getObjectType(Root);
+	}
+
+	@Override
 	public Boolean getRootHasTypeDictionary() {
 		COSObject Root = getRootValue();
 		return getHasTypeDictionary(Root);
@@ -413,6 +449,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	public Boolean getisSizeIndirect() {
 		COSObject Size = getSizeValue();
 		return getisIndirect(Size);
+	}
+
+	@Override
+	public String getSizeType() {
+		COSObject Size = getSizeValue();
+		return getObjectType(Size);
 	}
 
 	@Override
@@ -438,6 +480,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	}
 
 	@Override
+	public String getXRefStmType() {
+		COSObject XRefStm = getXRefStmValue();
+		return getObjectType(XRefStm);
+	}
+
+	@Override
 	public Boolean getXRefStmHasTypeInteger() {
 		COSObject XRefStm = getXRefStmValue();
 		return getHasTypeInteger(XRefStm);
@@ -458,6 +506,12 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		Long offset = getXRefStmIntegerValue();
 		COSObject object = offset != null ? StaticResources.getDocument().getDocument().getObject(offset) : null;
 		return object;
+	}
+
+	@Override
+	public String getXRefStreamType() {
+		COSObject XRefStream = getXRefStreamValue();
+		return getObjectType(XRefStream);
 	}
 
 	@Override

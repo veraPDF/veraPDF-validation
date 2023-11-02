@@ -273,6 +273,12 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	@Override
+	public String getCMDType() {
+		COSObject CMD = getCMDValue();
+		return getObjectType(CMD);
+	}
+
+	@Override
 	public Boolean getCMDHasTypeDictionary() {
 		COSObject CMD = getCMDValue();
 		return getHasTypeDictionary(CMD);
@@ -286,6 +292,12 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	public COSObject getNextValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Next"));
 		return object;
+	}
+
+	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
 	}
 
 	@Override
@@ -308,6 +320,12 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -339,6 +357,12 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	@Override
+	public String getTAType() {
+		COSObject TA = getTAValue();
+		return getObjectType(TA);
+	}
+
+	@Override
 	public Boolean getTAHasTypeDictionary() {
 		COSObject TA = getTAValue();
 		return getHasTypeDictionary(TA);
@@ -361,6 +385,12 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	}
 
 	@Override
+	public String getTIType() {
+		COSObject TI = getTIValue();
+		return getObjectType(TI);
+	}
+
+	@Override
 	public Boolean getTIHasTypeDictionary() {
 		COSObject TI = getTIValue();
 		return getHasTypeDictionary(TI);
@@ -374,6 +404,12 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

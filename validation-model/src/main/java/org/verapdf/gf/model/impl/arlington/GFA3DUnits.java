@@ -39,6 +39,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
+	public String getDSmType() {
+		COSObject DSm = getDSmValue();
+		return getObjectType(DSm);
+	}
+
+	@Override
 	public Boolean getDSmHasTypeNumber() {
 		COSObject DSm = getDSmValue();
 		return getHasTypeNumber(DSm);
@@ -67,6 +73,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
+	public String getDSnType() {
+		COSObject DSn = getDSnValue();
+		return getObjectType(DSn);
+	}
+
+	@Override
 	public Boolean getDSnHasTypeNumber() {
 		COSObject DSn = getDSnValue();
 		return getHasTypeNumber(DSn);
@@ -80,6 +92,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	public COSObject getDUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DU"));
 		return object;
+	}
+
+	@Override
+	public String getDUType() {
+		COSObject DU = getDUValue();
+		return getObjectType(DU);
 	}
 
 	@Override
@@ -111,6 +129,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
+	public String getTSmType() {
+		COSObject TSm = getTSmValue();
+		return getObjectType(TSm);
+	}
+
+	@Override
 	public Boolean getTSmHasTypeNumber() {
 		COSObject TSm = getTSmValue();
 		return getHasTypeNumber(TSm);
@@ -139,6 +163,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
+	public String getTSnType() {
+		COSObject TSn = getTSnValue();
+		return getObjectType(TSn);
+	}
+
+	@Override
 	public Boolean getTSnHasTypeNumber() {
 		COSObject TSn = getTSnValue();
 		return getHasTypeNumber(TSn);
@@ -152,6 +182,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	public COSObject getTUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TU"));
 		return object;
+	}
+
+	@Override
+	public String getTUType() {
+		COSObject TU = getTUValue();
+		return getObjectType(TU);
 	}
 
 	@Override
@@ -183,6 +219,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
+	public String getUSmType() {
+		COSObject USm = getUSmValue();
+		return getObjectType(USm);
+	}
+
+	@Override
 	public Boolean getUSmHasTypeNumber() {
 		COSObject USm = getUSmValue();
 		return getHasTypeNumber(USm);
@@ -211,6 +253,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	}
 
 	@Override
+	public String getUSnType() {
+		COSObject USn = getUSnValue();
+		return getObjectType(USn);
+	}
+
+	@Override
 	public Boolean getUSnHasTypeNumber() {
 		COSObject USn = getUSnValue();
 		return getHasTypeNumber(USn);
@@ -224,6 +272,12 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 	public COSObject getUUValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("UU"));
 		return object;
+	}
+
+	@Override
+	public String getUUType() {
+		COSObject UU = getUUValue();
+		return getObjectType(UU);
 	}
 
 	@Override

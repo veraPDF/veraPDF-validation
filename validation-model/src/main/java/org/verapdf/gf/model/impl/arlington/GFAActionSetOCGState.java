@@ -294,6 +294,12 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	}
 
 	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
+	}
+
+	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject Next = getNextValue();
 		return getHasTypeArray(Next);
@@ -330,6 +336,12 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	}
 
 	@Override
+	public String getPreserveRBType() {
+		COSObject PreserveRB = getPreserveRBValue();
+		return getObjectType(PreserveRB);
+	}
+
+	@Override
 	public Boolean getPreserveRBHasTypeBoolean() {
 		COSObject PreserveRB = getPreserveRBValue();
 		return getHasTypeBoolean(PreserveRB);
@@ -343,6 +355,12 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -368,6 +386,12 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	}
 
 	@Override
+	public String getStateType() {
+		COSObject State = getStateValue();
+		return getObjectType(State);
+	}
+
+	@Override
 	public Boolean getStateHasTypeArray() {
 		COSObject State = getStateValue();
 		return getHasTypeArray(State);
@@ -381,6 +405,12 @@ public class GFAActionSetOCGState extends GFAObject implements AActionSetOCGStat
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

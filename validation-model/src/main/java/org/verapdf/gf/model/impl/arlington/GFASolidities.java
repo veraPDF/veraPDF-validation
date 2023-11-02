@@ -60,6 +60,12 @@ public class GFASolidities extends GFAObject implements ASolidities {
 	}
 
 	@Override
+	public String getDefaultType() {
+		COSObject Default = getDefaultValue();
+		return getObjectType(Default);
+	}
+
+	@Override
 	public Boolean getDefaultHasTypeNumber() {
 		COSObject Default = getDefaultValue();
 		return getHasTypeNumber(Default);

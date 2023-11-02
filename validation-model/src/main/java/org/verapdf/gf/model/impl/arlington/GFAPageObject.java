@@ -516,6 +516,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getAAType() {
+		COSObject AA = getAAValue();
+		return getObjectType(AA);
+	}
+
+	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject AA = getAAValue();
 		return getHasTypeDictionary(AA);
@@ -529,6 +535,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getAFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
 		return object;
+	}
+
+	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
 	}
 
 	@Override
@@ -554,6 +566,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getAnnotsType() {
+		COSObject Annots = getAnnotsValue();
+		return getObjectType(Annots);
+	}
+
+	@Override
 	public Boolean getAnnotsHasTypeArray() {
 		COSObject Annots = getAnnotsValue();
 		return getHasTypeArray(Annots);
@@ -567,6 +585,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getArtBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ArtBox"));
 		return object;
+	}
+
+	@Override
+	public String getArtBoxType() {
+		COSObject ArtBox = getArtBoxValue();
+		return getObjectType(ArtBox);
 	}
 
 	@Override
@@ -586,6 +610,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getBType() {
+		COSObject B = getBValue();
+		return getObjectType(B);
+	}
+
+	@Override
 	public Boolean getBHasTypeArray() {
 		COSObject B = getBValue();
 		return getHasTypeArray(B);
@@ -602,6 +632,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getBleedBoxType() {
+		COSObject BleedBox = getBleedBoxValue();
+		return getObjectType(BleedBox);
+	}
+
+	@Override
 	public Boolean getBleedBoxHasTypeRectangle() {
 		COSObject BleedBox = getBleedBoxValue();
 		return getHasTypeRectangle(BleedBox);
@@ -615,6 +651,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getBoxColorInfoValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BoxColorInfo"));
 		return object;
+	}
+
+	@Override
+	public String getBoxColorInfoType() {
+		COSObject BoxColorInfo = getBoxColorInfoValue();
+		return getObjectType(BoxColorInfo);
 	}
 
 	@Override
@@ -637,6 +679,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public Boolean getisContentsIndirect() {
 		COSObject Contents = getContentsValue();
 		return getisIndirect(Contents);
+	}
+
+	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
 	}
 
 	@Override
@@ -668,6 +716,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getCropBoxType() {
+		COSObject CropBox = getCropBoxValue();
+		return getObjectType(CropBox);
+	}
+
+	@Override
 	public Boolean getCropBoxHasTypeRectangle() {
 		COSObject CropBox = getCropBoxValue();
 		return getHasTypeRectangle(CropBox);
@@ -681,6 +735,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getDPartValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DPart"));
 		return object;
+	}
+
+	@Override
+	public String getDPartType() {
+		COSObject DPart = getDPartValue();
+		return getObjectType(DPart);
 	}
 
 	@Override
@@ -700,6 +760,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getDurType() {
+		COSObject Dur = getDurValue();
+		return getObjectType(Dur);
+	}
+
+	@Override
 	public Boolean getDurHasTypeNumber() {
 		COSObject Dur = getDurValue();
 		return getHasTypeNumber(Dur);
@@ -713,6 +779,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getGroupValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Group"));
 		return object;
+	}
+
+	@Override
+	public String getGroupType() {
+		COSObject Group = getGroupValue();
+		return getObjectType(Group);
 	}
 
 	@Override
@@ -756,6 +828,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getHidType() {
+		COSObject Hid = getHidValue();
+		return getObjectType(Hid);
+	}
+
+	@Override
 	public Boolean getHidHasTypeBoolean() {
 		COSObject Hid = getHidValue();
 		return getHasTypeBoolean(Hid);
@@ -772,6 +850,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
+	}
+
+	@Override
 	public Boolean getentryIDHasTypeStringByte() {
 		COSObject entryID = getentryIDValue();
 		return getHasTypeStringByte(entryID);
@@ -785,6 +869,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getLastModifiedValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("LastModified"));
 		return object;
+	}
+
+	@Override
+	public String getLastModifiedType() {
+		COSObject LastModified = getLastModifiedValue();
+		return getObjectType(LastModified);
 	}
 
 	@Override
@@ -810,6 +900,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getMediaBoxType() {
+		COSObject MediaBox = getMediaBoxValue();
+		return getObjectType(MediaBox);
+	}
+
+	@Override
 	public Boolean getMediaBoxHasTypeRectangle() {
 		COSObject MediaBox = getMediaBoxValue();
 		return getHasTypeRectangle(MediaBox);
@@ -832,6 +928,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getMetadataType() {
+		COSObject Metadata = getMetadataValue();
+		return getObjectType(Metadata);
+	}
+
+	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject Metadata = getMetadataValue();
 		return getHasTypeStream(Metadata);
@@ -848,6 +950,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getOutputIntentsType() {
+		COSObject OutputIntents = getOutputIntentsValue();
+		return getObjectType(OutputIntents);
+	}
+
+	@Override
 	public Boolean getOutputIntentsHasTypeArray() {
 		COSObject OutputIntents = getOutputIntentsValue();
 		return getHasTypeArray(OutputIntents);
@@ -861,6 +969,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getPZValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PZ"));
 		return object;
+	}
+
+	@Override
+	public String getPZType() {
+		COSObject PZ = getPZValue();
+		return getObjectType(PZ);
 	}
 
 	@Override
@@ -886,6 +1000,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
+	}
+
+	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject Parent = getParentValue();
 		return getHasTypeDictionary(Parent);
@@ -902,6 +1022,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getPieceInfoType() {
+		COSObject PieceInfo = getPieceInfoValue();
+		return getObjectType(PieceInfo);
+	}
+
+	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
 		COSObject PieceInfo = getPieceInfoValue();
 		return getHasTypeDictionary(PieceInfo);
@@ -915,6 +1041,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getPresStepsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PresSteps"));
 		return object;
+	}
+
+	@Override
+	public String getPresStepsType() {
+		COSObject PresSteps = getPresStepsValue();
+		return getObjectType(PresSteps);
 	}
 
 	@Override
@@ -937,6 +1069,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 			object = getInheritableValue(ASAtom.getASAtom("Resources"));
 		}
 		return object;
+	}
+
+	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
 	}
 
 	@Override
@@ -969,6 +1107,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getRotateType() {
+		COSObject Rotate = getRotateValue();
+		return getObjectType(Rotate);
+	}
+
+	@Override
 	public Boolean getRotateHasTypeInteger() {
 		COSObject Rotate = getRotateValue();
 		return getHasTypeInteger(Rotate);
@@ -991,6 +1135,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getSeparationInfoType() {
+		COSObject SeparationInfo = getSeparationInfoValue();
+		return getObjectType(SeparationInfo);
+	}
+
+	@Override
 	public Boolean getSeparationInfoHasTypeDictionary() {
 		COSObject SeparationInfo = getSeparationInfoValue();
 		return getHasTypeDictionary(SeparationInfo);
@@ -1007,6 +1157,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getStructParentsType() {
+		COSObject StructParents = getStructParentsValue();
+		return getObjectType(StructParents);
+	}
+
+	@Override
 	public Boolean getStructParentsHasTypeInteger() {
 		COSObject StructParents = getStructParentsValue();
 		return getHasTypeInteger(StructParents);
@@ -1020,6 +1176,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getTabsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tabs"));
 		return object;
+	}
+
+	@Override
+	public String getTabsType() {
+		COSObject Tabs = getTabsValue();
+		return getObjectType(Tabs);
 	}
 
 	@Override
@@ -1042,6 +1204,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getTemplateInstantiatedValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TemplateInstantiated"));
 		return object;
+	}
+
+	@Override
+	public String getTemplateInstantiatedType() {
+		COSObject TemplateInstantiated = getTemplateInstantiatedValue();
+		return getObjectType(TemplateInstantiated);
 	}
 
 	@Override
@@ -1095,6 +1263,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getThumbType() {
+		COSObject Thumb = getThumbValue();
+		return getObjectType(Thumb);
+	}
+
+	@Override
 	public Boolean getThumbHasTypeStream() {
 		COSObject Thumb = getThumbValue();
 		return getHasTypeStream(Thumb);
@@ -1108,6 +1282,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getTransValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Trans"));
 		return object;
+	}
+
+	@Override
+	public String getTransType() {
+		COSObject Trans = getTransValue();
+		return getObjectType(Trans);
 	}
 
 	@Override
@@ -1127,6 +1307,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getTrimBoxType() {
+		COSObject TrimBox = getTrimBoxValue();
+		return getObjectType(TrimBox);
+	}
+
+	@Override
 	public Boolean getTrimBoxHasTypeRectangle() {
 		COSObject TrimBox = getTrimBoxValue();
 		return getHasTypeRectangle(TrimBox);
@@ -1140,6 +1326,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -1178,6 +1370,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
+	public String getUserUnitType() {
+		COSObject UserUnit = getUserUnitValue();
+		return getObjectType(UserUnit);
+	}
+
+	@Override
 	public Boolean getUserUnitHasTypeNumber() {
 		COSObject UserUnit = getUserUnitValue();
 		return getHasTypeNumber(UserUnit);
@@ -1191,6 +1389,12 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	public COSObject getVPValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VP"));
 		return object;
+	}
+
+	@Override
+	public String getVPType() {
+		COSObject VP = getVPValue();
+		return getObjectType(VP);
 	}
 
 	@Override

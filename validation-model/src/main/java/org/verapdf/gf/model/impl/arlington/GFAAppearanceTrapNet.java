@@ -143,6 +143,12 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject D = getDValue();
 		return getHasTypeDictionary(D);
@@ -171,6 +177,12 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeDictionary() {
 		COSObject N = getNValue();
 		return getHasTypeDictionary(N);
@@ -196,6 +208,12 @@ public class GFAAppearanceTrapNet extends GFAObject implements AAppearanceTrapNe
 	public Boolean getisRIndirect() {
 		COSObject R = getRValue();
 		return getisIndirect(R);
+	}
+
+	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
 	}
 
 	@Override

@@ -41,6 +41,12 @@ public class GFAFilterCrypt extends GFAObject implements AFilterCrypt {
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeName() {
 		COSObject Name = getNameValue();
 		return getHasTypeName(Name);
@@ -60,6 +66,12 @@ public class GFAFilterCrypt extends GFAObject implements AFilterCrypt {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

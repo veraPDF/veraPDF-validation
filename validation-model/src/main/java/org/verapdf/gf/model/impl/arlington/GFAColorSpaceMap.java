@@ -328,6 +328,12 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	@Override
+	public String getDefaultCMYKType() {
+		COSObject DefaultCMYK = getDefaultCMYKValue();
+		return getObjectType(DefaultCMYK);
+	}
+
+	@Override
 	public Boolean getDefaultCMYKHasTypeArray() {
 		COSObject DefaultCMYK = getDefaultCMYKValue();
 		return getHasTypeArray(DefaultCMYK);
@@ -344,6 +350,12 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	}
 
 	@Override
+	public String getDefaultGrayType() {
+		COSObject DefaultGray = getDefaultGrayValue();
+		return getObjectType(DefaultGray);
+	}
+
+	@Override
 	public Boolean getDefaultGrayHasTypeArray() {
 		COSObject DefaultGray = getDefaultGrayValue();
 		return getHasTypeArray(DefaultGray);
@@ -357,6 +369,12 @@ public class GFAColorSpaceMap extends GFAObject implements AColorSpaceMap {
 	public COSObject getDefaultRGBValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultRGB"));
 		return object;
+	}
+
+	@Override
+	public String getDefaultRGBType() {
+		COSObject DefaultRGB = getDefaultRGBValue();
+		return getObjectType(DefaultRGB);
 	}
 
 	@Override

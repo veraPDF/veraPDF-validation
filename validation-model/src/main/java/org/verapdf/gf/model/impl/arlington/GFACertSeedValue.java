@@ -204,6 +204,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
+	public String getFfType() {
+		COSObject Ff = getFfValue();
+		return getObjectType(Ff);
+	}
+
+	@Override
 	public Boolean getFfHasTypeBitmask() {
 		COSObject Ff = getFfValue();
 		return getHasTypeBitmask(Ff);
@@ -226,6 +232,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
+	public String getIssuerType() {
+		COSObject Issuer = getIssuerValue();
+		return getObjectType(Issuer);
+	}
+
+	@Override
 	public Boolean getIssuerHasTypeArray() {
 		COSObject Issuer = getIssuerValue();
 		return getHasTypeArray(Issuer);
@@ -239,6 +251,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	public COSObject getKeyUsageValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("KeyUsage"));
 		return object;
+	}
+
+	@Override
+	public String getKeyUsageType() {
+		COSObject KeyUsage = getKeyUsageValue();
+		return getObjectType(KeyUsage);
 	}
 
 	@Override
@@ -258,6 +276,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
+	public String getOIDType() {
+		COSObject OID = getOIDValue();
+		return getObjectType(OID);
+	}
+
+	@Override
 	public Boolean getOIDHasTypeArray() {
 		COSObject OID = getOIDValue();
 		return getHasTypeArray(OID);
@@ -274,6 +298,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
+	public String getSignaturePolicyCommitmentTypeType() {
+		COSObject SignaturePolicyCommitmentType = getSignaturePolicyCommitmentTypeValue();
+		return getObjectType(SignaturePolicyCommitmentType);
+	}
+
+	@Override
 	public Boolean getSignaturePolicyCommitmentTypeHasTypeArray() {
 		COSObject SignaturePolicyCommitmentType = getSignaturePolicyCommitmentTypeValue();
 		return getHasTypeArray(SignaturePolicyCommitmentType);
@@ -287,6 +317,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	public COSObject getSignaturePolicyHashAlgorithmValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyHashAlgorithm"));
 		return object;
+	}
+
+	@Override
+	public String getSignaturePolicyHashAlgorithmType() {
+		COSObject SignaturePolicyHashAlgorithm = getSignaturePolicyHashAlgorithmValue();
+		return getObjectType(SignaturePolicyHashAlgorithm);
 	}
 
 	@Override
@@ -312,6 +348,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
+	public String getSignaturePolicyHashValueType() {
+		COSObject SignaturePolicyHashValue = getSignaturePolicyHashValueValue();
+		return getObjectType(SignaturePolicyHashValue);
+	}
+
+	@Override
 	public Boolean getSignaturePolicyHashValueHasTypeString() {
 		COSObject SignaturePolicyHashValue = getSignaturePolicyHashValueValue();
 		return getHasTypeString(SignaturePolicyHashValue);
@@ -325,6 +367,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	public COSObject getSignaturePolicyOIDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SignaturePolicyOID"));
 		return object;
+	}
+
+	@Override
+	public String getSignaturePolicyOIDType() {
+		COSObject SignaturePolicyOID = getSignaturePolicyOIDValue();
+		return getObjectType(SignaturePolicyOID);
 	}
 
 	@Override
@@ -344,6 +392,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
+	public String getSubjectType() {
+		COSObject Subject = getSubjectValue();
+		return getObjectType(Subject);
+	}
+
+	@Override
 	public Boolean getSubjectHasTypeArray() {
 		COSObject Subject = getSubjectValue();
 		return getHasTypeArray(Subject);
@@ -360,6 +414,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	}
 
 	@Override
+	public String getSubjectDNType() {
+		COSObject SubjectDN = getSubjectDNValue();
+		return getObjectType(SubjectDN);
+	}
+
+	@Override
 	public Boolean getSubjectDNHasTypeArray() {
 		COSObject SubjectDN = getSubjectDNValue();
 		return getHasTypeArray(SubjectDN);
@@ -373,6 +433,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -395,6 +461,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 	public COSObject getURLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URL"));
 		return object;
+	}
+
+	@Override
+	public String getURLType() {
+		COSObject URL = getURLValue();
+		return getObjectType(URL);
 	}
 
 	@Override
@@ -423,6 +495,12 @@ public class GFACertSeedValue extends GFAObject implements ACertSeedValue {
 			object = getURLTypeDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getURLTypeType() {
+		COSObject URLType = getURLTypeValue();
+		return getObjectType(URLType);
 	}
 
 	@Override

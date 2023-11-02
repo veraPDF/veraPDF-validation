@@ -131,6 +131,12 @@ public class GFADSS extends GFAObject implements ADSS {
 	}
 
 	@Override
+	public String getCRLsType() {
+		COSObject CRLs = getCRLsValue();
+		return getObjectType(CRLs);
+	}
+
+	@Override
 	public Boolean getCRLsHasTypeArray() {
 		COSObject CRLs = getCRLsValue();
 		return getHasTypeArray(CRLs);
@@ -144,6 +150,12 @@ public class GFADSS extends GFAObject implements ADSS {
 	public COSObject getCertsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Certs"));
 		return object;
+	}
+
+	@Override
+	public String getCertsType() {
+		COSObject Certs = getCertsValue();
+		return getObjectType(Certs);
 	}
 
 	@Override
@@ -163,6 +175,12 @@ public class GFADSS extends GFAObject implements ADSS {
 	}
 
 	@Override
+	public String getOCSPsType() {
+		COSObject OCSPs = getOCSPsValue();
+		return getObjectType(OCSPs);
+	}
+
+	@Override
 	public Boolean getOCSPsHasTypeArray() {
 		COSObject OCSPs = getOCSPsValue();
 		return getHasTypeArray(OCSPs);
@@ -176,6 +194,12 @@ public class GFADSS extends GFAObject implements ADSS {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -198,6 +222,12 @@ public class GFADSS extends GFAObject implements ADSS {
 	public COSObject getVRIValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VRI"));
 		return object;
+	}
+
+	@Override
+	public String getVRIType() {
+		COSObject VRI = getVRIValue();
+		return getObjectType(VRI);
 	}
 
 	@Override

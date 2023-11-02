@@ -52,6 +52,12 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeDictionary() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeDictionary(entry0);
@@ -78,6 +84,12 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	}
 
 	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
+	}
+
+	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject entry1 = getentry1Value();
 		return getHasTypeName(entry1);
@@ -95,6 +107,12 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 		}
 		COSObject object = this.baseObject.at(2);
 		return object;
+	}
+
+	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
 	}
 
 	@Override
@@ -118,6 +136,12 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 	}
 
 	@Override
+	public String getentry3Type() {
+		COSObject entry3 = getentry3Value();
+		return getObjectType(entry3);
+	}
+
+	@Override
 	public Boolean getentry3HasTypeNull() {
 		COSObject entry3 = getentry3Value();
 		return getHasTypeNull(entry3);
@@ -135,6 +159,12 @@ public class GFADestXYZArray extends GFAObject implements ADestXYZArray {
 		}
 		COSObject object = this.baseObject.at(4);
 		return object;
+	}
+
+	@Override
+	public String getentry4Type() {
+		COSObject entry4 = getentry4Value();
+		return getObjectType(entry4);
 	}
 
 	@Override

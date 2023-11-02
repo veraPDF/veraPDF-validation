@@ -95,6 +95,12 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeArray() {
 		COSObject F = getFValue();
 		return getHasTypeArray(F);
@@ -120,6 +126,12 @@ public class GFAFileSpecRF extends GFAObject implements AFileSpecRF {
 	public Boolean getisUFIndirect() {
 		COSObject UF = getUFValue();
 		return getisIndirect(UF);
+	}
+
+	@Override
+	public String getUFType() {
+		COSObject UF = getUFValue();
+		return getObjectType(UF);
 	}
 
 	@Override

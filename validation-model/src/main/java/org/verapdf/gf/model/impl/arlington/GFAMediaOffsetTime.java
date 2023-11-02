@@ -62,6 +62,12 @@ public class GFAMediaOffsetTime extends GFAObject implements AMediaOffsetTime {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -84,6 +90,12 @@ public class GFAMediaOffsetTime extends GFAObject implements AMediaOffsetTime {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeDictionary() {
 		COSObject T = getTValue();
 		return getHasTypeDictionary(T);
@@ -97,6 +109,12 @@ public class GFAMediaOffsetTime extends GFAObject implements AMediaOffsetTime {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

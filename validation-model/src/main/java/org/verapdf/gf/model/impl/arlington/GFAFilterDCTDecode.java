@@ -27,6 +27,12 @@ public class GFAFilterDCTDecode extends GFAObject implements AFilterDCTDecode {
 	}
 
 	@Override
+	public String getColorTransformType() {
+		COSObject ColorTransform = getColorTransformValue();
+		return getObjectType(ColorTransform);
+	}
+
+	@Override
 	public Boolean getColorTransformHasTypeInteger() {
 		COSObject ColorTransform = getColorTransformValue();
 		return getHasTypeInteger(ColorTransform);

@@ -62,6 +62,12 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 	}
 
 	@Override
+	public String getActionType() {
+		COSObject Action = getActionValue();
+		return getObjectType(Action);
+	}
+
+	@Override
 	public Boolean getActionHasTypeName() {
 		COSObject Action = getActionValue();
 		return getHasTypeName(Action);
@@ -84,6 +90,12 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 	}
 
 	@Override
+	public String getFieldsType() {
+		COSObject Fields = getFieldsValue();
+		return getObjectType(Fields);
+	}
+
+	@Override
 	public Boolean getFieldsHasTypeArray() {
 		COSObject Fields = getFieldsValue();
 		return getHasTypeArray(Fields);
@@ -97,6 +109,12 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -133,6 +151,12 @@ public class GFAFieldMDPTransformParameters extends GFAObject implements AFieldM
 			object = getVDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

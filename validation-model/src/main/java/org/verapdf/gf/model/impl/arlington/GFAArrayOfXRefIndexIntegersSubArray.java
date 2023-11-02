@@ -31,6 +31,12 @@ public class GFAArrayOfXRefIndexIntegersSubArray extends GFAObject implements AA
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeInteger() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeInteger(entry0);
@@ -54,6 +60,12 @@ public class GFAArrayOfXRefIndexIntegersSubArray extends GFAObject implements AA
 	public Boolean getisentry1Indirect() {
 		COSObject entry1 = getentry1Value();
 		return getisIndirect(entry1);
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override

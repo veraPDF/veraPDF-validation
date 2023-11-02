@@ -115,6 +115,12 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	}
 
 	@Override
+	public String getDefEmbeddedFileType() {
+		COSObject DefEmbeddedFile = getDefEmbeddedFileValue();
+		return getObjectType(DefEmbeddedFile);
+	}
+
+	@Override
 	public Boolean getDefEmbeddedFileHasTypeDictionary() {
 		COSObject DefEmbeddedFile = getDefEmbeddedFileValue();
 		return getHasTypeDictionary(DefEmbeddedFile);
@@ -128,6 +134,12 @@ public class GFACryptFilterPublicKeyMap extends GFAObject implements ACryptFilte
 	public COSObject getDefaultCryptFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DefaultCryptFilter"));
 		return object;
+	}
+
+	@Override
+	public String getDefaultCryptFilterType() {
+		COSObject DefaultCryptFilter = getDefaultCryptFilterValue();
+		return getObjectType(DefaultCryptFilter);
 	}
 
 	@Override

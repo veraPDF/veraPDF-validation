@@ -176,6 +176,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getByteRangeType() {
+		COSObject ByteRange = getByteRangeValue();
+		return getObjectType(ByteRange);
+	}
+
+	@Override
 	public Boolean getByteRangeHasTypeArray() {
 		COSObject ByteRange = getByteRangeValue();
 		return getHasTypeArray(ByteRange);
@@ -189,6 +195,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getCertValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
 		return object;
+	}
+
+	@Override
+	public String getCertType() {
+		COSObject Cert = getCertValue();
+		return getObjectType(Cert);
 	}
 
 	@Override
@@ -214,6 +226,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getChangesType() {
+		COSObject Changes = getChangesValue();
+		return getObjectType(Changes);
+	}
+
+	@Override
 	public Boolean getChangesHasTypeArray() {
 		COSObject Changes = getChangesValue();
 		return getHasTypeArray(Changes);
@@ -230,6 +248,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getContactInfoType() {
+		COSObject ContactInfo = getContactInfoValue();
+		return getObjectType(ContactInfo);
+	}
+
+	@Override
 	public Boolean getContactInfoHasTypeStringText() {
 		COSObject ContactInfo = getContactInfoValue();
 		return getHasTypeStringText(ContactInfo);
@@ -243,6 +267,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getContentsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
 		return object;
+	}
+
+	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
 	}
 
 	@Override
@@ -268,6 +298,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeName() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeName(Filter);
@@ -290,6 +326,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getLocationType() {
+		COSObject Location = getLocationValue();
+		return getObjectType(Location);
+	}
+
+	@Override
 	public Boolean getLocationHasTypeStringText() {
 		COSObject Location = getLocationValue();
 		return getHasTypeStringText(Location);
@@ -303,6 +345,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -322,6 +370,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject Name = getNameValue();
 		return getHasTypeStringText(Name);
@@ -335,6 +389,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getProp_AuthTimeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prop_AuthTime"));
 		return object;
+	}
+
+	@Override
+	public String getProp_AuthTimeType() {
+		COSObject Prop_AuthTime = getProp_AuthTimeValue();
+		return getObjectType(Prop_AuthTime);
 	}
 
 	@Override
@@ -360,6 +420,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getProp_AuthTypeType() {
+		COSObject Prop_AuthType = getProp_AuthTypeValue();
+		return getObjectType(Prop_AuthType);
+	}
+
+	@Override
 	public Boolean getProp_AuthTypeHasTypeName() {
 		COSObject Prop_AuthType = getProp_AuthTypeValue();
 		return getHasTypeName(Prop_AuthType);
@@ -373,6 +439,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getProp_BuildValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prop_Build"));
 		return object;
+	}
+
+	@Override
+	public String getProp_BuildType() {
+		COSObject Prop_Build = getProp_BuildValue();
+		return getObjectType(Prop_Build);
 	}
 
 	@Override
@@ -392,6 +464,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
+	}
+
+	@Override
 	public Boolean getRHasTypeInteger() {
 		COSObject R = getRValue();
 		return getHasTypeInteger(R);
@@ -405,6 +483,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getReasonValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Reason"));
 		return object;
+	}
+
+	@Override
+	public String getReasonType() {
+		COSObject Reason = getReasonValue();
+		return getObjectType(Reason);
 	}
 
 	@Override
@@ -424,6 +508,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getReferenceType() {
+		COSObject Reference = getReferenceValue();
+		return getObjectType(Reference);
+	}
+
+	@Override
 	public Boolean getReferenceHasTypeArray() {
 		COSObject Reference = getReferenceValue();
 		return getHasTypeArray(Reference);
@@ -437,6 +527,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getSubFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
 		return object;
+	}
+
+	@Override
+	public String getSubFilterType() {
+		COSObject SubFilter = getSubFilterValue();
+		return getObjectType(SubFilter);
 	}
 
 	@Override
@@ -459,6 +555,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -495,6 +597,12 @@ public class GFASignature extends GFAObject implements ASignature {
 			object = getVDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

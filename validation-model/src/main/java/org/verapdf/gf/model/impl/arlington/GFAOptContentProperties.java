@@ -116,6 +116,12 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	}
 
 	@Override
+	public String getConfigsType() {
+		COSObject Configs = getConfigsValue();
+		return getObjectType(Configs);
+	}
+
+	@Override
 	public Boolean getConfigsHasTypeArray() {
 		COSObject Configs = getConfigsValue();
 		return getHasTypeArray(Configs);
@@ -132,6 +138,12 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeDictionary() {
 		COSObject D = getDValue();
 		return getHasTypeDictionary(D);
@@ -145,6 +157,12 @@ public class GFAOptContentProperties extends GFAObject implements AOptContentPro
 	public COSObject getOCGsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
 		return object;
+	}
+
+	@Override
+	public String getOCGsType() {
+		COSObject OCGs = getOCGsValue();
+		return getObjectType(OCGs);
 	}
 
 	@Override

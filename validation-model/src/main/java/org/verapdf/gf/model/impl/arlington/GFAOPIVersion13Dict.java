@@ -305,6 +305,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getColorType() {
+		COSObject Color = getColorValue();
+		return getObjectType(Color);
+	}
+
+	@Override
 	public Boolean getColorHasTypeArray() {
 		COSObject Color = getColorValue();
 		return getHasTypeArray(Color);
@@ -318,6 +324,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getColorTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorType"));
 		return object;
+	}
+
+	@Override
+	public String getColorTypeType() {
+		COSObject ColorType = getColorTypeValue();
+		return getObjectType(ColorType);
 	}
 
 	@Override
@@ -337,6 +349,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getCommentsType() {
+		COSObject Comments = getCommentsValue();
+		return getObjectType(Comments);
+	}
+
+	@Override
 	public Boolean getCommentsHasTypeStringText() {
 		COSObject Comments = getCommentsValue();
 		return getHasTypeStringText(Comments);
@@ -350,6 +368,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getCropFixedValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CropFixed"));
 		return object;
+	}
+
+	@Override
+	public String getCropFixedType() {
+		COSObject CropFixed = getCropFixedValue();
+		return getObjectType(CropFixed);
 	}
 
 	@Override
@@ -369,6 +393,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getCropRectType() {
+		COSObject CropRect = getCropRectValue();
+		return getObjectType(CropRect);
+	}
+
+	@Override
 	public Boolean getCropRectHasTypeRectangle() {
 		COSObject CropRect = getCropRectValue();
 		return getHasTypeRectangle(CropRect);
@@ -382,6 +412,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object;
+	}
+
+	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
 	}
 
 	@Override
@@ -407,6 +443,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getGrayMapType() {
+		COSObject GrayMap = getGrayMapValue();
+		return getObjectType(GrayMap);
+	}
+
+	@Override
 	public Boolean getGrayMapHasTypeArray() {
 		COSObject GrayMap = getGrayMapValue();
 		return getHasTypeArray(GrayMap);
@@ -429,6 +471,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
+	}
+
+	@Override
 	public Boolean getentryIDHasTypeStringByte() {
 		COSObject entryID = getentryIDValue();
 		return getHasTypeStringByte(entryID);
@@ -442,6 +490,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getImageTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ImageType"));
 		return object;
+	}
+
+	@Override
+	public String getImageTypeType() {
+		COSObject ImageType = getImageTypeValue();
+		return getObjectType(ImageType);
 	}
 
 	@Override
@@ -461,6 +515,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getOverprintType() {
+		COSObject Overprint = getOverprintValue();
+		return getObjectType(Overprint);
+	}
+
+	@Override
 	public Boolean getOverprintHasTypeBoolean() {
 		COSObject Overprint = getOverprintValue();
 		return getHasTypeBoolean(Overprint);
@@ -474,6 +534,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getPositionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Position"));
 		return object;
+	}
+
+	@Override
+	public String getPositionType() {
+		COSObject Position = getPositionValue();
+		return getObjectType(Position);
 	}
 
 	@Override
@@ -493,6 +559,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getResolutionType() {
+		COSObject Resolution = getResolutionValue();
+		return getObjectType(Resolution);
+	}
+
+	@Override
 	public Boolean getResolutionHasTypeArray() {
 		COSObject Resolution = getResolutionValue();
 		return getHasTypeArray(Resolution);
@@ -506,6 +578,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getSizeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
 		return object;
+	}
+
+	@Override
+	public String getSizeType() {
+		COSObject Size = getSizeValue();
+		return getObjectType(Size);
 	}
 
 	@Override
@@ -525,6 +603,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getTagsType() {
+		COSObject Tags = getTagsValue();
+		return getObjectType(Tags);
+	}
+
+	@Override
 	public Boolean getTagsHasTypeArray() {
 		COSObject Tags = getTagsValue();
 		return getHasTypeArray(Tags);
@@ -538,6 +622,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getTintValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Tint"));
 		return object;
+	}
+
+	@Override
+	public String getTintType() {
+		COSObject Tint = getTintValue();
+		return getObjectType(Tint);
 	}
 
 	@Override
@@ -557,6 +647,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	}
 
 	@Override
+	public String getTransparencyType() {
+		COSObject Transparency = getTransparencyValue();
+		return getObjectType(Transparency);
+	}
+
+	@Override
 	public Boolean getTransparencyHasTypeBoolean() {
 		COSObject Transparency = getTransparencyValue();
 		return getHasTypeBoolean(Transparency);
@@ -570,6 +666,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -592,6 +694,12 @@ public class GFAOPIVersion13Dict extends GFAObject implements AOPIVersion13Dict 
 	public COSObject getVersionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
 		return object;
+	}
+
+	@Override
+	public String getVersionType() {
+		COSObject Version = getVersionValue();
+		return getObjectType(Version);
 	}
 
 	@Override

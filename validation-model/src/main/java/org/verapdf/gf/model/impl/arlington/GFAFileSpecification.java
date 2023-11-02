@@ -209,6 +209,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getAFRelationshipType() {
+		COSObject AFRelationship = getAFRelationshipValue();
+		return getObjectType(AFRelationship);
+	}
+
+	@Override
 	public Boolean getAFRelationshipHasTypeName() {
 		COSObject AFRelationship = getAFRelationshipValue();
 		return getHasTypeName(AFRelationship);
@@ -231,6 +237,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getCIType() {
+		COSObject CI = getCIValue();
+		return getObjectType(CI);
+	}
+
+	@Override
 	public Boolean getCIHasTypeDictionary() {
 		COSObject CI = getCIValue();
 		return getHasTypeDictionary(CI);
@@ -244,6 +256,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public COSObject getDOSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DOS"));
 		return object;
+	}
+
+	@Override
+	public String getDOSType() {
+		COSObject DOS = getDOSValue();
+		return getObjectType(DOS);
 	}
 
 	@Override
@@ -263,6 +281,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getDescType() {
+		COSObject Desc = getDescValue();
+		return getObjectType(Desc);
+	}
+
+	@Override
 	public Boolean getDescHasTypeString() {
 		COSObject Desc = getDescValue();
 		return getHasTypeString(Desc);
@@ -276,6 +300,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public COSObject getEFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EF"));
 		return object;
+	}
+
+	@Override
+	public String getEFType() {
+		COSObject EF = getEFValue();
+		return getObjectType(EF);
 	}
 
 	@Override
@@ -295,6 +325,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getEPType() {
+		COSObject EP = getEPValue();
+		return getObjectType(EP);
+	}
+
+	@Override
 	public Boolean getEPHasTypeDictionary() {
 		COSObject EP = getEPValue();
 		return getHasTypeDictionary(EP);
@@ -311,6 +347,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeString() {
 		COSObject F = getFValue();
 		return getHasTypeString(F);
@@ -324,6 +366,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public COSObject getFSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FS"));
 		return object;
+	}
+
+	@Override
+	public String getFSType() {
+		COSObject FS = getFSValue();
+		return getObjectType(FS);
 	}
 
 	@Override
@@ -349,6 +397,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
+	}
+
+	@Override
 	public Boolean getentryIDHasTypeArray() {
 		COSObject entryID = getentryIDValue();
 		return getHasTypeArray(entryID);
@@ -365,6 +419,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getMacType() {
+		COSObject Mac = getMacValue();
+		return getObjectType(Mac);
+	}
+
+	@Override
 	public Boolean getMacHasTypeStringByte() {
 		COSObject Mac = getMacValue();
 		return getHasTypeStringByte(Mac);
@@ -378,6 +438,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public COSObject getRFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RF"));
 		return object;
+	}
+
+	@Override
+	public String getRFType() {
+		COSObject RF = getRFValue();
+		return getObjectType(RF);
 	}
 
 	@Override
@@ -403,6 +469,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getThumbType() {
+		COSObject Thumb = getThumbValue();
+		return getObjectType(Thumb);
+	}
+
+	@Override
 	public Boolean getThumbHasTypeStream() {
 		COSObject Thumb = getThumbValue();
 		return getHasTypeStream(Thumb);
@@ -416,6 +488,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -441,6 +519,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
+	public String getUFType() {
+		COSObject UF = getUFValue();
+		return getObjectType(UF);
+	}
+
+	@Override
 	public Boolean getUFHasTypeStringText() {
 		COSObject UF = getUFValue();
 		return getHasTypeStringText(UF);
@@ -454,6 +538,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public COSObject getUnixValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Unix"));
 		return object;
+	}
+
+	@Override
+	public String getUnixType() {
+		COSObject Unix = getUnixValue();
+		return getObjectType(Unix);
 	}
 
 	@Override
@@ -487,6 +577,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 			object = getVDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

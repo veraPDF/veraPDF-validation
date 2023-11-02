@@ -111,6 +111,12 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	}
 
 	@Override
+	public String getByteRangeType() {
+		COSObject ByteRange = getByteRangeValue();
+		return getObjectType(ByteRange);
+	}
+
+	@Override
 	public Boolean getByteRangeHasTypeArray() {
 		COSObject ByteRange = getByteRangeValue();
 		return getHasTypeArray(ByteRange);
@@ -133,6 +139,12 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	}
 
 	@Override
+	public String getMACType() {
+		COSObject MAC = getMACValue();
+		return getObjectType(MAC);
+	}
+
+	@Override
 	public Boolean getMACHasTypeStringByte() {
 		COSObject MAC = getMACValue();
 		return getHasTypeStringByte(MAC);
@@ -152,6 +164,12 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	public Boolean getisMACLocationIndirect() {
 		COSObject MACLocation = getMACLocationValue();
 		return getisIndirect(MACLocation);
+	}
+
+	@Override
+	public String getMACLocationType() {
+		COSObject MACLocation = getMACLocationValue();
+		return getObjectType(MACLocation);
 	}
 
 	@Override
@@ -180,6 +198,12 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	public Boolean getisSigObjRefIndirect() {
 		COSObject SigObjRef = getSigObjRefValue();
 		return getisIndirect(SigObjRef);
+	}
+
+	@Override
+	public String getSigObjRefType() {
+		COSObject SigObjRef = getSigObjRefValue();
+		return getObjectType(SigObjRef);
 	}
 
 	@Override

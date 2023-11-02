@@ -61,6 +61,12 @@ public class GFAArrayOf_ArrayOfNumbersEntry extends GFAObject implements AArrayO
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeArray() {
 		COSObject entry = getValue();
 		return getHasTypeArray(entry);

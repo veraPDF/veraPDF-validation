@@ -93,6 +93,12 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	@Override
+	public String getAUType() {
+		COSObject AU = getAUValue();
+		return getObjectType(AU);
+	}
+
+	@Override
 	public Boolean getAUHasTypeDictionary() {
 		COSObject AU = getAUValue();
 		return getHasTypeDictionary(AU);
@@ -121,6 +127,12 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeDictionary() {
 		COSObject C = getCValue();
 		return getHasTypeDictionary(C);
@@ -134,6 +146,12 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	public COSObject getEValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("E"));
 		return object;
+	}
+
+	@Override
+	public String getEType() {
+		COSObject E = getEValue();
+		return getObjectType(E);
 	}
 
 	@Override
@@ -169,6 +187,12 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeInteger() {
 		COSObject S = getSValue();
 		return getHasTypeInteger(S);
@@ -188,6 +212,12 @@ public class GFASourceInformation extends GFAObject implements ASourceInformatio
 	public COSObject getTSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TS"));
 		return object;
+	}
+
+	@Override
+	public String getTSType() {
+		COSObject TS = getTSValue();
+		return getObjectType(TS);
 	}
 
 	@Override

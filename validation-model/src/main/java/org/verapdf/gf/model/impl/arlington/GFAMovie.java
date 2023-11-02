@@ -125,6 +125,12 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	@Override
+	public String getAspectType() {
+		COSObject Aspect = getAspectValue();
+		return getObjectType(Aspect);
+	}
+
+	@Override
 	public Boolean getAspectHasTypeArray() {
 		COSObject Aspect = getAspectValue();
 		return getHasTypeArray(Aspect);
@@ -138,6 +144,12 @@ public class GFAMovie extends GFAObject implements AMovie {
 	public COSObject getFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object;
+	}
+
+	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
 	}
 
 	@Override
@@ -186,6 +198,12 @@ public class GFAMovie extends GFAObject implements AMovie {
 	}
 
 	@Override
+	public String getPosterType() {
+		COSObject Poster = getPosterValue();
+		return getObjectType(Poster);
+	}
+
+	@Override
 	public Boolean getPosterHasTypeBoolean() {
 		COSObject Poster = getPosterValue();
 		return getHasTypeBoolean(Poster);
@@ -222,6 +240,12 @@ public class GFAMovie extends GFAObject implements AMovie {
 			object = getRotateDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getRotateType() {
+		COSObject Rotate = getRotateValue();
+		return getObjectType(Rotate);
 	}
 
 	@Override

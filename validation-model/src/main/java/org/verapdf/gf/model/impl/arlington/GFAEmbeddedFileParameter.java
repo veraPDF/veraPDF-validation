@@ -64,6 +64,12 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	}
 
 	@Override
+	public String getCheckSumType() {
+		COSObject CheckSum = getCheckSumValue();
+		return getObjectType(CheckSum);
+	}
+
+	@Override
 	public Boolean getCheckSumHasTypeString() {
 		COSObject CheckSum = getCheckSumValue();
 		return getHasTypeString(CheckSum);
@@ -89,6 +95,12 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	}
 
 	@Override
+	public String getCreationDateType() {
+		COSObject CreationDate = getCreationDateValue();
+		return getObjectType(CreationDate);
+	}
+
+	@Override
 	public Boolean getCreationDateHasTypeDate() {
 		COSObject CreationDate = getCreationDateValue();
 		return getHasTypeDate(CreationDate);
@@ -102,6 +114,12 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	public COSObject getMacValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mac"));
 		return object;
+	}
+
+	@Override
+	public String getMacType() {
+		COSObject Mac = getMacValue();
+		return getObjectType(Mac);
 	}
 
 	@Override
@@ -121,6 +139,12 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	}
 
 	@Override
+	public String getModDateType() {
+		COSObject ModDate = getModDateValue();
+		return getObjectType(ModDate);
+	}
+
+	@Override
 	public Boolean getModDateHasTypeDate() {
 		COSObject ModDate = getModDateValue();
 		return getHasTypeDate(ModDate);
@@ -134,6 +158,12 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	public COSObject getSizeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Size"));
 		return object;
+	}
+
+	@Override
+	public String getSizeType() {
+		COSObject Size = getSizeValue();
+		return getObjectType(Size);
 	}
 
 	@Override

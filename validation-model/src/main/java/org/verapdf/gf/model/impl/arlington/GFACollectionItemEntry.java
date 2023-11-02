@@ -57,6 +57,12 @@ public class GFACollectionItemEntry extends GFAObject implements ACollectionItem
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDate() {
 		COSObject entry = getValue();
 		return getHasTypeDate(entry);

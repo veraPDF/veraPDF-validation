@@ -62,6 +62,12 @@ public class GFAICCBasedColorSpace extends GFAObject implements AICCBasedColorSp
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeName(entry0);
@@ -85,6 +91,12 @@ public class GFAICCBasedColorSpace extends GFAObject implements AICCBasedColorSp
 	public Boolean getisentry1Indirect() {
 		COSObject entry1 = getentry1Value();
 		return getisIndirect(entry1);
+	}
+
+	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
 	}
 
 	@Override

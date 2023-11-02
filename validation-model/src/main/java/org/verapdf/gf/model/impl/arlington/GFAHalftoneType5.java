@@ -170,6 +170,12 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	}
 
 	@Override
+	public String getDefaultType() {
+		COSObject Default = getDefaultValue();
+		return getObjectType(Default);
+	}
+
+	@Override
 	public Boolean getDefaultHasTypeDictionary() {
 		COSObject Default = getDefaultValue();
 		return getHasTypeDictionary(Default);
@@ -192,6 +198,12 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	}
 
 	@Override
+	public String getHalftoneNameType() {
+		COSObject HalftoneName = getHalftoneNameValue();
+		return getObjectType(HalftoneName);
+	}
+
+	@Override
 	public Boolean getHalftoneNameHasTypeStringByte() {
 		COSObject HalftoneName = getHalftoneNameValue();
 		return getHasTypeStringByte(HalftoneName);
@@ -205,6 +217,12 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	public COSObject getHalftoneTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneType"));
 		return object;
+	}
+
+	@Override
+	public String getHalftoneTypeType() {
+		COSObject HalftoneType = getHalftoneTypeValue();
+		return getObjectType(HalftoneType);
 	}
 
 	@Override
@@ -227,6 +245,12 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

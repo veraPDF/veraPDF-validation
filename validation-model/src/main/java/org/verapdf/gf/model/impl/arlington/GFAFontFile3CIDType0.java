@@ -325,6 +325,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -344,6 +350,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -375,6 +387,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -394,6 +412,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -422,6 +446,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -459,6 +489,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -493,6 +529,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -506,6 +548,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	public COSObject getLength1Value() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length1"));
 		return object;
+	}
+
+	@Override
+	public String getLength1Type() {
+		COSObject Length1 = getLength1Value();
+		return getObjectType(Length1);
 	}
 
 	@Override
@@ -531,6 +579,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	}
 
 	@Override
+	public String getLength2Type() {
+		COSObject Length2 = getLength2Value();
+		return getObjectType(Length2);
+	}
+
+	@Override
 	public Boolean getLength2HasTypeInteger() {
 		COSObject Length2 = getLength2Value();
 		return getHasTypeInteger(Length2);
@@ -553,6 +607,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	}
 
 	@Override
+	public String getLength3Type() {
+		COSObject Length3 = getLength3Value();
+		return getObjectType(Length3);
+	}
+
+	@Override
 	public Boolean getLength3HasTypeInteger() {
 		COSObject Length3 = getLength3Value();
 		return getHasTypeInteger(Length3);
@@ -572,6 +632,12 @@ public class GFAFontFile3CIDType0 extends GFAObject implements AFontFile3CIDType
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override

@@ -324,6 +324,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeArray() {
 		COSObject A = getAValue();
 		return getHasTypeArray(A);
@@ -358,6 +364,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -380,6 +392,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getActualTextType() {
+		COSObject ActualText = getActualTextValue();
+		return getObjectType(ActualText);
+	}
+
+	@Override
 	public Boolean getActualTextHasTypeStringText() {
 		COSObject ActualText = getActualTextValue();
 		return getHasTypeStringText(ActualText);
@@ -396,6 +414,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getAltType() {
+		COSObject Alt = getAltValue();
+		return getObjectType(Alt);
+	}
+
+	@Override
 	public Boolean getAltHasTypeStringText() {
 		COSObject Alt = getAltValue();
 		return getHasTypeStringText(Alt);
@@ -409,6 +433,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -434,6 +464,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getEType() {
+		COSObject E = getEValue();
+		return getObjectType(E);
+	}
+
+	@Override
 	public Boolean getEHasTypeStringText() {
 		COSObject E = getEValue();
 		return getHasTypeStringText(E);
@@ -450,6 +486,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getentryIDType() {
+		COSObject entryID = getentryIDValue();
+		return getObjectType(entryID);
+	}
+
+	@Override
 	public Boolean getentryIDHasTypeStringByte() {
 		COSObject entryID = getentryIDValue();
 		return getHasTypeStringByte(entryID);
@@ -463,6 +505,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	public COSObject getKValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("K"));
 		return object;
+	}
+
+	@Override
+	public String getKType() {
+		COSObject K = getKValue();
+		return getObjectType(K);
 	}
 
 	@Override
@@ -494,6 +542,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -513,6 +567,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	public Boolean getisNSIndirect() {
 		COSObject NS = getNSValue();
 		return getisIndirect(NS);
+	}
+
+	@Override
+	public String getNSType() {
+		COSObject NS = getNSValue();
+		return getObjectType(NS);
 	}
 
 	@Override
@@ -538,6 +598,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -560,6 +626,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getPgType() {
+		COSObject Pg = getPgValue();
+		return getObjectType(Pg);
+	}
+
+	@Override
 	public Boolean getPgHasTypeDictionary() {
 		COSObject Pg = getPgValue();
 		return getHasTypeDictionary(Pg);
@@ -573,6 +645,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	public COSObject getPhonemeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Phoneme"));
 		return object;
+	}
+
+	@Override
+	public String getPhonemeType() {
+		COSObject Phoneme = getPhonemeValue();
+		return getObjectType(Phoneme);
 	}
 
 	@Override
@@ -600,6 +678,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 			object = getPhoneticAlphabetDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getPhoneticAlphabetType() {
+		COSObject PhoneticAlphabet = getPhoneticAlphabetValue();
+		return getObjectType(PhoneticAlphabet);
 	}
 
 	@Override
@@ -635,6 +719,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
+	}
+
+	@Override
 	public Boolean getRHasTypeInteger() {
 		COSObject R = getRValue();
 		return getHasTypeInteger(R);
@@ -657,6 +747,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getRefType() {
+		COSObject Ref = getRefValue();
+		return getObjectType(Ref);
+	}
+
+	@Override
 	public Boolean getRefHasTypeArray() {
 		COSObject Ref = getRefValue();
 		return getHasTypeArray(Ref);
@@ -670,6 +766,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -689,6 +791,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -702,6 +810,12 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

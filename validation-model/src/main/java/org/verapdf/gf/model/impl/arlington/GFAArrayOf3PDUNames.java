@@ -30,6 +30,12 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 	}
 
 	@Override
+	public String getentry0Type() {
+		COSObject entry0 = getentry0Value();
+		return getObjectType(entry0);
+	}
+
+	@Override
 	public Boolean getentry0HasTypeName() {
 		COSObject entry0 = getentry0Value();
 		return getHasTypeName(entry0);
@@ -55,6 +61,12 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 	}
 
 	@Override
+	public String getentry1Type() {
+		COSObject entry1 = getentry1Value();
+		return getObjectType(entry1);
+	}
+
+	@Override
 	public Boolean getentry1HasTypeName() {
 		COSObject entry1 = getentry1Value();
 		return getHasTypeName(entry1);
@@ -77,6 +89,12 @@ public class GFAArrayOf3PDUNames extends GFAObject implements AArrayOf3PDUNames 
 		}
 		COSObject object = this.baseObject.at(2);
 		return object;
+	}
+
+	@Override
+	public String getentry2Type() {
+		COSObject entry2 = getentry2Value();
+		return getObjectType(entry2);
 	}
 
 	@Override

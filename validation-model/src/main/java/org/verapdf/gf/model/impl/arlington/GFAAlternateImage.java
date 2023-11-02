@@ -129,6 +129,12 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 	}
 
 	@Override
+	public String getDefaultForPrintingType() {
+		COSObject DefaultForPrinting = getDefaultForPrintingValue();
+		return getObjectType(DefaultForPrinting);
+	}
+
+	@Override
 	public Boolean getDefaultForPrintingHasTypeBoolean() {
 		COSObject DefaultForPrinting = getDefaultForPrintingValue();
 		return getHasTypeBoolean(DefaultForPrinting);
@@ -151,6 +157,12 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 	}
 
 	@Override
+	public String getImageType() {
+		COSObject Image = getImageValue();
+		return getObjectType(Image);
+	}
+
+	@Override
 	public Boolean getImageHasTypeStream() {
 		COSObject Image = getImageValue();
 		return getHasTypeStream(Image);
@@ -164,6 +176,12 @@ public class GFAAlternateImage extends GFAObject implements AAlternateImage {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override

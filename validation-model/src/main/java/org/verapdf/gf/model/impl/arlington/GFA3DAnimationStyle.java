@@ -39,6 +39,12 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	}
 
 	@Override
+	public String getPCType() {
+		COSObject PC = getPCValue();
+		return getObjectType(PC);
+	}
+
+	@Override
 	public Boolean getPCHasTypeInteger() {
 		COSObject PC = getPCValue();
 		return getHasTypeInteger(PC);
@@ -64,6 +70,12 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 			object = getSubtypeDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -101,6 +113,12 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	}
 
 	@Override
+	public String getTMType() {
+		COSObject TM = getTMValue();
+		return getObjectType(TM);
+	}
+
+	@Override
 	public Boolean getTMHasTypeNumber() {
 		COSObject TM = getTMValue();
 		return getHasTypeNumber(TM);
@@ -120,6 +138,12 @@ public class GFA3DAnimationStyle extends GFAObject implements A3DAnimationStyle 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

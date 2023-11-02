@@ -98,6 +98,12 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	}
 
 	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
+	}
+
+	@Override
 	public Boolean getASHasTypeName() {
 		COSObject AS = getASValue();
 		return getHasTypeName(AS);
@@ -111,6 +117,12 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -142,6 +154,12 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeArray() {
 		COSObject T = getTValue();
 		return getHasTypeArray(T);
@@ -161,6 +179,12 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

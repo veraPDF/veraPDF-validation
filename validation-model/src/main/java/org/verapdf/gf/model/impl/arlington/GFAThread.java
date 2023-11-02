@@ -127,6 +127,12 @@ public class GFAThread extends GFAObject implements AThread {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -140,6 +146,12 @@ public class GFAThread extends GFAObject implements AThread {
 	public COSObject getIValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("I"));
 		return object;
+	}
+
+	@Override
+	public String getIType() {
+		COSObject I = getIValue();
+		return getObjectType(I);
 	}
 
 	@Override
@@ -165,6 +177,12 @@ public class GFAThread extends GFAObject implements AThread {
 	}
 
 	@Override
+	public String getMetadataType() {
+		COSObject Metadata = getMetadataValue();
+		return getObjectType(Metadata);
+	}
+
+	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject Metadata = getMetadataValue();
 		return getHasTypeStream(Metadata);
@@ -178,6 +196,12 @@ public class GFAThread extends GFAObject implements AThread {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

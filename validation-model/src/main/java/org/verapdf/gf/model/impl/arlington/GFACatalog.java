@@ -1232,6 +1232,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getAAType() {
+		COSObject AA = getAAValue();
+		return getObjectType(AA);
+	}
+
+	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject AA = getAAValue();
 		return getHasTypeDictionary(AA);
@@ -1245,6 +1251,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getAFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
 		return object;
+	}
+
+	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
 	}
 
 	@Override
@@ -1270,6 +1282,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getAcroFormType() {
+		COSObject AcroForm = getAcroFormValue();
+		return getObjectType(AcroForm);
+	}
+
+	@Override
 	public Boolean getAcroFormHasTypeDictionary() {
 		COSObject AcroForm = getAcroFormValue();
 		return getHasTypeDictionary(AcroForm);
@@ -1283,6 +1301,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getCollectionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Collection"));
 		return object;
+	}
+
+	@Override
+	public String getCollectionType() {
+		COSObject Collection = getCollectionValue();
+		return getObjectType(Collection);
 	}
 
 	@Override
@@ -1302,6 +1326,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getDPartRootType() {
+		COSObject DPartRoot = getDPartRootValue();
+		return getObjectType(DPartRoot);
+	}
+
+	@Override
 	public Boolean getDPartRootHasTypeDictionary() {
 		COSObject DPartRoot = getDPartRootValue();
 		return getHasTypeDictionary(DPartRoot);
@@ -1315,6 +1345,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getDSSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DSS"));
 		return object;
+	}
+
+	@Override
+	public String getDSSType() {
+		COSObject DSS = getDSSValue();
+		return getObjectType(DSS);
 	}
 
 	@Override
@@ -1340,6 +1376,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getDestsType() {
+		COSObject Dests = getDestsValue();
+		return getObjectType(Dests);
+	}
+
+	@Override
 	public Boolean getDestsHasTypeDictionary() {
 		COSObject Dests = getDestsValue();
 		return getHasTypeDictionary(Dests);
@@ -1362,6 +1404,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getExtensionsType() {
+		COSObject Extensions = getExtensionsValue();
+		return getObjectType(Extensions);
+	}
+
+	@Override
 	public Boolean getExtensionsHasTypeDictionary() {
 		COSObject Extensions = getExtensionsValue();
 		return getHasTypeDictionary(Extensions);
@@ -1375,6 +1423,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getLangValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lang"));
 		return object;
+	}
+
+	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
 	}
 
 	@Override
@@ -1394,6 +1448,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getLegalType() {
+		COSObject Legal = getLegalValue();
+		return getObjectType(Legal);
+	}
+
+	@Override
 	public Boolean getLegalHasTypeDictionary() {
 		COSObject Legal = getLegalValue();
 		return getHasTypeDictionary(Legal);
@@ -1407,6 +1467,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getMarkInfoValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("MarkInfo"));
 		return object;
+	}
+
+	@Override
+	public String getMarkInfoType() {
+		COSObject MarkInfo = getMarkInfoValue();
+		return getObjectType(MarkInfo);
 	}
 
 	@Override
@@ -1432,6 +1498,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getMetadataType() {
+		COSObject Metadata = getMetadataValue();
+		return getObjectType(Metadata);
+	}
+
+	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject Metadata = getMetadataValue();
 		return getHasTypeStream(Metadata);
@@ -1445,6 +1517,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getNamesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Names"));
 		return object;
+	}
+
+	@Override
+	public String getNamesType() {
+		COSObject Names = getNamesValue();
+		return getObjectType(Names);
 	}
 
 	@Override
@@ -1471,6 +1549,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getNeedsRenderingType() {
+		COSObject NeedsRendering = getNeedsRenderingValue();
+		return getObjectType(NeedsRendering);
+	}
+
+	@Override
 	public Boolean getNeedsRenderingHasTypeBoolean() {
 		COSObject NeedsRendering = getNeedsRenderingValue();
 		return getHasTypeBoolean(NeedsRendering);
@@ -1487,6 +1571,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getOCPropertiesType() {
+		COSObject OCProperties = getOCPropertiesValue();
+		return getObjectType(OCProperties);
+	}
+
+	@Override
 	public Boolean getOCPropertiesHasTypeDictionary() {
 		COSObject OCProperties = getOCPropertiesValue();
 		return getHasTypeDictionary(OCProperties);
@@ -1500,6 +1590,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getOpenActionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OpenAction"));
 		return object;
+	}
+
+	@Override
+	public String getOpenActionType() {
+		COSObject OpenAction = getOpenActionValue();
+		return getObjectType(OpenAction);
 	}
 
 	@Override
@@ -1531,6 +1627,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getOutlinesType() {
+		COSObject Outlines = getOutlinesValue();
+		return getObjectType(Outlines);
+	}
+
+	@Override
 	public Boolean getOutlinesHasTypeDictionary() {
 		COSObject Outlines = getOutlinesValue();
 		return getHasTypeDictionary(Outlines);
@@ -1547,6 +1649,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getOutputIntentsType() {
+		COSObject OutputIntents = getOutputIntentsValue();
+		return getObjectType(OutputIntents);
+	}
+
+	@Override
 	public Boolean getOutputIntentsHasTypeArray() {
 		COSObject OutputIntents = getOutputIntentsValue();
 		return getHasTypeArray(OutputIntents);
@@ -1560,6 +1668,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getPageLabelsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
 		return object;
+	}
+
+	@Override
+	public String getPageLabelsType() {
+		COSObject PageLabels = getPageLabelsValue();
+		return getObjectType(PageLabels);
 	}
 
 	@Override
@@ -1583,6 +1697,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 			object = getPageLayoutDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getPageLayoutType() {
+		COSObject PageLayout = getPageLayoutValue();
+		return getObjectType(PageLayout);
 	}
 
 	@Override
@@ -1615,6 +1735,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getPageModeType() {
+		COSObject PageMode = getPageModeValue();
+		return getObjectType(PageMode);
+	}
+
+	@Override
 	public Boolean getPageModeHasTypeName() {
 		COSObject PageMode = getPageModeValue();
 		return getHasTypeName(PageMode);
@@ -1643,6 +1769,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getPagesType() {
+		COSObject Pages = getPagesValue();
+		return getObjectType(Pages);
+	}
+
+	@Override
 	public Boolean getPagesHasTypeDictionary() {
 		COSObject Pages = getPagesValue();
 		return getHasTypeDictionary(Pages);
@@ -1656,6 +1788,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getPermsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Perms"));
 		return object;
+	}
+
+	@Override
+	public String getPermsType() {
+		COSObject Perms = getPermsValue();
+		return getObjectType(Perms);
 	}
 
 	@Override
@@ -1675,6 +1813,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getPieceInfoType() {
+		COSObject PieceInfo = getPieceInfoValue();
+		return getObjectType(PieceInfo);
+	}
+
+	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
 		COSObject PieceInfo = getPieceInfoValue();
 		return getHasTypeDictionary(PieceInfo);
@@ -1691,6 +1835,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getRequirementsType() {
+		COSObject Requirements = getRequirementsValue();
+		return getObjectType(Requirements);
+	}
+
+	@Override
 	public Boolean getRequirementsHasTypeArray() {
 		COSObject Requirements = getRequirementsValue();
 		return getHasTypeArray(Requirements);
@@ -1704,6 +1854,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getSpiderInfoValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SpiderInfo"));
 		return object;
+	}
+
+	@Override
+	public String getSpiderInfoType() {
+		COSObject SpiderInfo = getSpiderInfoValue();
+		return getObjectType(SpiderInfo);
 	}
 
 	@Override
@@ -1729,6 +1885,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getStructTreeRootType() {
+		COSObject StructTreeRoot = getStructTreeRootValue();
+		return getObjectType(StructTreeRoot);
+	}
+
+	@Override
 	public Boolean getStructTreeRootHasTypeDictionary() {
 		COSObject StructTreeRoot = getStructTreeRootValue();
 		return getHasTypeDictionary(StructTreeRoot);
@@ -1751,6 +1913,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getThreadsType() {
+		COSObject Threads = getThreadsValue();
+		return getObjectType(Threads);
+	}
+
+	@Override
 	public Boolean getThreadsHasTypeArray() {
 		COSObject Threads = getThreadsValue();
 		return getHasTypeArray(Threads);
@@ -1764,6 +1932,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -1789,6 +1963,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public String getURIType() {
+		COSObject URI = getURIValue();
+		return getObjectType(URI);
+	}
+
+	@Override
 	public Boolean getURIHasTypeDictionary() {
 		COSObject URI = getURIValue();
 		return getHasTypeDictionary(URI);
@@ -1802,6 +1982,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getVersionValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Version"));
 		return object;
+	}
+
+	@Override
+	public String getVersionType() {
+		COSObject Version = getVersionValue();
+		return getObjectType(Version);
 	}
 
 	@Override
@@ -1824,6 +2010,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public COSObject getViewerPreferencesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ViewerPreferences"));
 		return object;
+	}
+
+	@Override
+	public String getViewerPreferencesType() {
+		COSObject ViewerPreferences = getViewerPreferencesValue();
+		return getObjectType(ViewerPreferences);
 	}
 
 	@Override

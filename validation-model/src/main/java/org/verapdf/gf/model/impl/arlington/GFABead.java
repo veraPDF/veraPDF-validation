@@ -189,6 +189,12 @@ public class GFABead extends GFAObject implements ABead {
 	}
 
 	@Override
+	public String getNType() {
+		COSObject N = getNValue();
+		return getObjectType(N);
+	}
+
+	@Override
 	public Boolean getNHasTypeDictionary() {
 		COSObject N = getNValue();
 		return getHasTypeDictionary(N);
@@ -211,6 +217,12 @@ public class GFABead extends GFAObject implements ABead {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -224,6 +236,12 @@ public class GFABead extends GFAObject implements ABead {
 	public COSObject getRValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("R"));
 		return object;
+	}
+
+	@Override
+	public String getRType() {
+		COSObject R = getRValue();
+		return getObjectType(R);
 	}
 
 	@Override
@@ -249,6 +267,12 @@ public class GFABead extends GFAObject implements ABead {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeDictionary() {
 		COSObject T = getTValue();
 		return getHasTypeDictionary(T);
@@ -262,6 +286,12 @@ public class GFABead extends GFAObject implements ABead {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -290,6 +320,12 @@ public class GFABead extends GFAObject implements ABead {
 	public Boolean getisVIndirect() {
 		COSObject V = getVValue();
 		return getisIndirect(V);
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

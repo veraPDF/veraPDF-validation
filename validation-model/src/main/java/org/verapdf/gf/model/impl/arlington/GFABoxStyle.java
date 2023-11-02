@@ -91,6 +91,12 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeArray() {
 		COSObject C = getCValue();
 		return getHasTypeArray(C);
@@ -104,6 +110,12 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 	public COSObject getDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object;
+	}
+
+	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
 	}
 
 	@Override
@@ -135,6 +147,12 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 			object = getSDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -172,6 +190,12 @@ public class GFABoxStyle extends GFAObject implements ABoxStyle {
 			object = getWDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getWType() {
+		COSObject W = getWValue();
+		return getObjectType(W);
 	}
 
 	@Override

@@ -541,6 +541,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getAntiAliasType() {
+		COSObject AntiAlias = getAntiAliasValue();
+		return getObjectType(AntiAlias);
+	}
+
+	@Override
 	public Boolean getAntiAliasHasTypeBoolean() {
 		COSObject AntiAlias = getAntiAliasValue();
 		return getHasTypeBoolean(AntiAlias);
@@ -554,6 +560,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	public COSObject getBBoxValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BBox"));
 		return object;
+	}
+
+	@Override
+	public String getBBoxType() {
+		COSObject BBox = getBBoxValue();
+		return getObjectType(BBox);
 	}
 
 	@Override
@@ -573,6 +585,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getBackgroundType() {
+		COSObject Background = getBackgroundValue();
+		return getObjectType(Background);
+	}
+
+	@Override
 	public Boolean getBackgroundHasTypeArray() {
 		COSObject Background = getBackgroundValue();
 		return getHasTypeArray(Background);
@@ -586,6 +604,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	public COSObject getBitsPerComponentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BitsPerComponent"));
 		return object;
+	}
+
+	@Override
+	public String getBitsPerComponentType() {
+		COSObject BitsPerComponent = getBitsPerComponentValue();
+		return getObjectType(BitsPerComponent);
 	}
 
 	@Override
@@ -611,6 +635,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getBitsPerCoordinateType() {
+		COSObject BitsPerCoordinate = getBitsPerCoordinateValue();
+		return getObjectType(BitsPerCoordinate);
+	}
+
+	@Override
 	public Boolean getBitsPerCoordinateHasTypeInteger() {
 		COSObject BitsPerCoordinate = getBitsPerCoordinateValue();
 		return getHasTypeInteger(BitsPerCoordinate);
@@ -633,6 +663,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getBitsPerFlagType() {
+		COSObject BitsPerFlag = getBitsPerFlagValue();
+		return getObjectType(BitsPerFlag);
+	}
+
+	@Override
 	public Boolean getBitsPerFlagHasTypeInteger() {
 		COSObject BitsPerFlag = getBitsPerFlagValue();
 		return getHasTypeInteger(BitsPerFlag);
@@ -646,6 +682,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	public COSObject getColorSpaceValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
 		return object;
+	}
+
+	@Override
+	public String getColorSpaceType() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getObjectType(ColorSpace);
 	}
 
 	@Override
@@ -677,6 +719,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -699,6 +747,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getDecodeType() {
+		COSObject Decode = getDecodeValue();
+		return getObjectType(Decode);
+	}
+
+	@Override
 	public Boolean getDecodeHasTypeArray() {
 		COSObject Decode = getDecodeValue();
 		return getHasTypeArray(Decode);
@@ -712,6 +766,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -743,6 +803,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -762,6 +828,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -790,6 +862,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -824,6 +902,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	public COSObject getFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
 		return object;
+	}
+
+	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
 	}
 
 	@Override
@@ -867,6 +951,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getFunctionType() {
+		COSObject Function = getFunctionValue();
+		return getObjectType(Function);
+	}
+
+	@Override
 	public Boolean getFunctionHasTypeArray() {
 		COSObject Function = getFunctionValue();
 		return getHasTypeArray(Function);
@@ -895,6 +985,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -908,6 +1004,12 @@ public class GFAShadingType6 extends GFAObject implements AShadingType6 {
 	public COSObject getShadingTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ShadingType"));
 		return object;
+	}
+
+	@Override
+	public String getShadingTypeType() {
+		COSObject ShadingType = getShadingTypeValue();
+		return getObjectType(ShadingType);
 	}
 
 	@Override

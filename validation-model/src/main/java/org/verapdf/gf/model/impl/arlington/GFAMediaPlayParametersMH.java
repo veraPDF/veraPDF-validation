@@ -76,6 +76,12 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeBoolean() {
 		COSObject A = getAValue();
 		return getHasTypeBoolean(A);
@@ -106,6 +112,12 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	}
 
 	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
+	}
+
+	@Override
 	public Boolean getCHasTypeBoolean() {
 		COSObject C = getCValue();
 		return getHasTypeBoolean(C);
@@ -119,6 +131,12 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	public COSObject getDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("D"));
 		return object;
+	}
+
+	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
 	}
 
 	@Override
@@ -149,6 +167,12 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 			object = getFDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
 	}
 
 	@Override
@@ -188,6 +212,12 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 	}
 
 	@Override
+	public String getRCType() {
+		COSObject RC = getRCValue();
+		return getObjectType(RC);
+	}
+
+	@Override
 	public Boolean getRCHasTypeNumber() {
 		COSObject RC = getRCValue();
 		return getHasTypeNumber(RC);
@@ -221,6 +251,12 @@ public class GFAMediaPlayParametersMH extends GFAObject implements AMediaPlayPar
 			object = getVDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
 	}
 
 	@Override

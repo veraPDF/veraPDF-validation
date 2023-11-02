@@ -745,6 +745,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getAType() {
+		COSObject A = getAValue();
+		return getObjectType(A);
+	}
+
+	@Override
 	public Boolean getAHasTypeDictionary() {
 		COSObject A = getAValue();
 		return getHasTypeDictionary(A);
@@ -761,6 +767,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getAAType() {
+		COSObject AA = getAAValue();
+		return getObjectType(AA);
+	}
+
+	@Override
 	public Boolean getAAHasTypeDictionary() {
 		COSObject AA = getAAValue();
 		return getHasTypeDictionary(AA);
@@ -774,6 +786,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getAFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
 		return object;
+	}
+
+	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
 	}
 
 	@Override
@@ -799,6 +817,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -812,6 +836,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getASValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AS"));
 		return object;
+	}
+
+	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
 	}
 
 	@Override
@@ -842,6 +872,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -864,6 +900,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getBSType() {
+		COSObject BS = getBSValue();
+		return getObjectType(BS);
+	}
+
+	@Override
 	public Boolean getBSHasTypeDictionary() {
 		COSObject BS = getBSValue();
 		return getHasTypeDictionary(BS);
@@ -880,6 +922,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -893,6 +941,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -923,6 +977,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -942,6 +1002,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getContentsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
 		return object;
+	}
+
+	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
 	}
 
 	@Override
@@ -978,6 +1044,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -997,6 +1069,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getFfValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
 		return object;
+	}
+
+	@Override
+	public String getFfType() {
+		COSObject Ff = getFfValue();
+		return getObjectType(Ff);
 	}
 
 	@Override
@@ -1033,6 +1111,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getHType() {
+		COSObject H = getHValue();
+		return getObjectType(H);
+	}
+
+	@Override
 	public Boolean getHHasTypeName() {
 		COSObject H = getHValue();
 		return getHasTypeName(H);
@@ -1055,6 +1139,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getKidsType() {
+		COSObject Kids = getKidsValue();
+		return getObjectType(Kids);
+	}
+
+	@Override
 	public Boolean getKidsHasTypeArray() {
 		COSObject Kids = getKidsValue();
 		return getHasTypeArray(Kids);
@@ -1071,6 +1161,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -1084,6 +1180,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -1109,6 +1211,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getMKType() {
+		COSObject MK = getMKValue();
+		return getObjectType(MK);
+	}
+
+	@Override
 	public Boolean getMKHasTypeDictionary() {
 		COSObject MK = getMKValue();
 		return getHasTypeDictionary(MK);
@@ -1125,6 +1233,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
+	}
+
+	@Override
 	public Boolean getNMHasTypeStringText() {
 		COSObject NM = getNMValue();
 		return getHasTypeStringText(NM);
@@ -1138,6 +1252,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -1163,6 +1283,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -1176,6 +1302,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getPMDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PMD"));
 		return object;
+	}
+
+	@Override
+	public String getPMDType() {
+		COSObject PMD = getPMDValue();
+		return getObjectType(PMD);
 	}
 
 	@Override
@@ -1195,6 +1327,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
+	}
+
+	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject Parent = getParentValue();
 		return getHasTypeDictionary(Parent);
@@ -1208,6 +1346,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getRectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
 		return object;
+	}
+
+	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
 	}
 
 	@Override
@@ -1239,6 +1383,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -1252,6 +1402,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -1277,6 +1433,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -1290,6 +1452,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getTMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("TM"));
 		return object;
+	}
+
+	@Override
+	public String getTMType() {
+		COSObject TM = getTMValue();
+		return getObjectType(TM);
 	}
 
 	@Override
@@ -1309,6 +1477,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public String getTUType() {
+		COSObject TU = getTUValue();
+		return getObjectType(TU);
+	}
+
+	@Override
 	public Boolean getTUHasTypeStringText() {
 		COSObject TU = getTUValue();
 		return getHasTypeStringText(TU);
@@ -1322,6 +1496,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -1355,6 +1535,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

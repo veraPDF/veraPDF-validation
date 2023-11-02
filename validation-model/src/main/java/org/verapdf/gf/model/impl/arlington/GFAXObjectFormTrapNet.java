@@ -690,6 +690,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -712,6 +718,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getBBoxType() {
+		COSObject BBox = getBBoxValue();
+		return getObjectType(BBox);
+	}
+
+	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject BBox = getBBoxValue();
 		return getHasTypeRectangle(BBox);
@@ -725,6 +737,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getDLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
 		return object;
+	}
+
+	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
 	}
 
 	@Override
@@ -747,6 +765,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -778,6 +802,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -797,6 +827,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -825,6 +861,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -862,6 +904,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -896,6 +944,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getFormTypeType() {
+		COSObject FormType = getFormTypeValue();
+		return getObjectType(FormType);
+	}
+
+	@Override
 	public Boolean getFormTypeHasTypeInteger() {
 		COSObject FormType = getFormTypeValue();
 		return getHasTypeInteger(FormType);
@@ -918,6 +972,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getGroupType() {
+		COSObject Group = getGroupValue();
+		return getObjectType(Group);
+	}
+
+	@Override
 	public Boolean getGroupHasTypeDictionary() {
 		COSObject Group = getGroupValue();
 		return getHasTypeDictionary(Group);
@@ -934,6 +994,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getLastModifiedType() {
+		COSObject LastModified = getLastModifiedValue();
+		return getObjectType(LastModified);
+	}
+
+	@Override
 	public Boolean getLastModifiedHasTypeDate() {
 		COSObject LastModified = getLastModifiedValue();
 		return getHasTypeDate(LastModified);
@@ -947,6 +1013,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getLengthValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Length"));
 		return object;
+	}
+
+	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
 	}
 
 	@Override
@@ -982,6 +1054,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getMatrixType() {
+		COSObject Matrix = getMatrixValue();
+		return getObjectType(Matrix);
+	}
+
+	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject Matrix = getMatrixValue();
 		return getHasTypeMatrix(Matrix);
@@ -995,6 +1073,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getMeasureValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
 		return object;
+	}
+
+	@Override
+	public String getMeasureType() {
+		COSObject Measure = getMeasureValue();
+		return getObjectType(Measure);
 	}
 
 	@Override
@@ -1020,6 +1104,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getMetadataType() {
+		COSObject Metadata = getMetadataValue();
+		return getObjectType(Metadata);
+	}
+
+	@Override
 	public Boolean getMetadataHasTypeStream() {
 		COSObject Metadata = getMetadataValue();
 		return getHasTypeStream(Metadata);
@@ -1033,6 +1123,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getNameValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Name"));
 		return object;
+	}
+
+	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
 	}
 
 	@Override
@@ -1052,6 +1148,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
+	}
+
+	@Override
 	public Boolean getOCHasTypeDictionary() {
 		COSObject OC = getOCValue();
 		return getHasTypeDictionary(OC);
@@ -1068,6 +1170,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getOPIType() {
+		COSObject OPI = getOPIValue();
+		return getObjectType(OPI);
+	}
+
+	@Override
 	public Boolean getOPIHasTypeDictionary() {
 		COSObject OPI = getOPIValue();
 		return getHasTypeDictionary(OPI);
@@ -1081,6 +1189,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getPCMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PCM"));
 		return object;
+	}
+
+	@Override
+	public String getPCMType() {
+		COSObject PCM = getPCMValue();
+		return getObjectType(PCM);
 	}
 
 	@Override
@@ -1106,6 +1220,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getPieceInfoType() {
+		COSObject PieceInfo = getPieceInfoValue();
+		return getObjectType(PieceInfo);
+	}
+
+	@Override
 	public Boolean getPieceInfoHasTypeDictionary() {
 		COSObject PieceInfo = getPieceInfoValue();
 		return getHasTypeDictionary(PieceInfo);
@@ -1119,6 +1239,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getPtDataValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PtData"));
 		return object;
+	}
+
+	@Override
+	public String getPtDataType() {
+		COSObject PtData = getPtDataValue();
+		return getObjectType(PtData);
 	}
 
 	@Override
@@ -1138,6 +1264,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getRefType() {
+		COSObject Ref = getRefValue();
+		return getObjectType(Ref);
+	}
+
+	@Override
 	public Boolean getRefHasTypeDictionary() {
 		COSObject Ref = getRefValue();
 		return getHasTypeDictionary(Ref);
@@ -1151,6 +1283,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getResourcesValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
 		return object;
+	}
+
+	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
 	}
 
 	@Override
@@ -1170,6 +1308,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getSeparationColorNamesType() {
+		COSObject SeparationColorNames = getSeparationColorNamesValue();
+		return getObjectType(SeparationColorNames);
+	}
+
+	@Override
 	public Boolean getSeparationColorNamesHasTypeArray() {
 		COSObject SeparationColorNames = getSeparationColorNamesValue();
 		return getHasTypeArray(SeparationColorNames);
@@ -1183,6 +1327,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getStructParentValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("StructParent"));
 		return object;
+	}
+
+	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
 	}
 
 	@Override
@@ -1202,6 +1352,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getStructParentsType() {
+		COSObject StructParents = getStructParentsValue();
+		return getObjectType(StructParents);
+	}
+
+	@Override
 	public Boolean getStructParentsHasTypeInteger() {
 		COSObject StructParents = getStructParentsValue();
 		return getHasTypeInteger(StructParents);
@@ -1215,6 +1371,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -1240,6 +1402,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getTrapRegionsType() {
+		COSObject TrapRegions = getTrapRegionsValue();
+		return getObjectType(TrapRegions);
+	}
+
+	@Override
 	public Boolean getTrapRegionsHasTypeArray() {
 		COSObject TrapRegions = getTrapRegionsValue();
 		return getHasTypeArray(TrapRegions);
@@ -1256,6 +1424,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	}
 
 	@Override
+	public String getTrapStylesType() {
+		COSObject TrapStyles = getTrapStylesValue();
+		return getObjectType(TrapStyles);
+	}
+
+	@Override
 	public Boolean getTrapStylesHasTypeStringText() {
 		COSObject TrapStyles = getTrapStylesValue();
 		return getHasTypeStringText(TrapStyles);
@@ -1269,6 +1443,12 @@ public class GFAXObjectFormTrapNet extends GFAObject implements AXObjectFormTrap
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

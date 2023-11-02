@@ -27,6 +27,12 @@ public class GFAArrayOfURLStringsEntry extends GFAObject implements AArrayOfURLS
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeStringText() {
 		COSObject entry = getValue();
 		return getHasTypeStringText(entry);

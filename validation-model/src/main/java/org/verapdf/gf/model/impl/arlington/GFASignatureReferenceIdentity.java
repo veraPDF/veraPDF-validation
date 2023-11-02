@@ -78,6 +78,12 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	}
 
 	@Override
+	public String getDataType() {
+		COSObject Data = getDataValue();
+		return getObjectType(Data);
+	}
+
+	@Override
 	public Boolean getDataHasTypeArray() {
 		COSObject Data = getDataValue();
 		return getHasTypeArray(Data);
@@ -145,6 +151,12 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	}
 
 	@Override
+	public String getDigestMethodType() {
+		COSObject DigestMethod = getDigestMethodValue();
+		return getObjectType(DigestMethod);
+	}
+
+	@Override
 	public Boolean getDigestMethodHasTypeName() {
 		COSObject DigestMethod = getDigestMethodValue();
 		return getHasTypeName(DigestMethod);
@@ -167,6 +179,12 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	}
 
 	@Override
+	public String getTransformMethodType() {
+		COSObject TransformMethod = getTransformMethodValue();
+		return getObjectType(TransformMethod);
+	}
+
+	@Override
 	public Boolean getTransformMethodHasTypeName() {
 		COSObject TransformMethod = getTransformMethodValue();
 		return getHasTypeName(TransformMethod);
@@ -186,6 +204,12 @@ public class GFASignatureReferenceIdentity extends GFAObject implements ASignatu
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

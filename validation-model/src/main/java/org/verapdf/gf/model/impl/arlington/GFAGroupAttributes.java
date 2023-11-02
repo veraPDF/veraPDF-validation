@@ -90,6 +90,12 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	}
 
 	@Override
+	public String getCSType() {
+		COSObject CS = getCSValue();
+		return getObjectType(CS);
+	}
+
+	@Override
 	public Boolean getCSHasTypeArray() {
 		COSObject CS = getCSValue();
 		return getHasTypeArray(CS);
@@ -133,6 +139,12 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	}
 
 	@Override
+	public String getIType() {
+		COSObject I = getIValue();
+		return getObjectType(I);
+	}
+
+	@Override
 	public Boolean getIHasTypeBoolean() {
 		COSObject I = getIValue();
 		return getHasTypeBoolean(I);
@@ -164,6 +176,12 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	}
 
 	@Override
+	public String getKType() {
+		COSObject K = getKValue();
+		return getObjectType(K);
+	}
+
+	@Override
 	public Boolean getKHasTypeBoolean() {
 		COSObject K = getKValue();
 		return getHasTypeBoolean(K);
@@ -177,6 +195,12 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -199,6 +223,12 @@ public class GFAGroupAttributes extends GFAObject implements AGroupAttributes {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

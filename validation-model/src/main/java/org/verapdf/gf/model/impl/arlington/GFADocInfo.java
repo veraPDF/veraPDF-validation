@@ -78,6 +78,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	}
 
 	@Override
+	public String getAuthorType() {
+		COSObject Author = getAuthorValue();
+		return getObjectType(Author);
+	}
+
+	@Override
 	public Boolean getAuthorHasTypeStringText() {
 		COSObject Author = getAuthorValue();
 		return getHasTypeStringText(Author);
@@ -91,6 +97,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	public COSObject getCreationDateValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CreationDate"));
 		return object;
+	}
+
+	@Override
+	public String getCreationDateType() {
+		COSObject CreationDate = getCreationDateValue();
+		return getObjectType(CreationDate);
 	}
 
 	@Override
@@ -110,6 +122,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	}
 
 	@Override
+	public String getCreatorType() {
+		COSObject Creator = getCreatorValue();
+		return getObjectType(Creator);
+	}
+
+	@Override
 	public Boolean getCreatorHasTypeStringText() {
 		COSObject Creator = getCreatorValue();
 		return getHasTypeStringText(Creator);
@@ -123,6 +141,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	public COSObject getKeywordsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Keywords"));
 		return object;
+	}
+
+	@Override
+	public String getKeywordsType() {
+		COSObject Keywords = getKeywordsValue();
+		return getObjectType(Keywords);
 	}
 
 	@Override
@@ -142,6 +166,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	}
 
 	@Override
+	public String getModDateType() {
+		COSObject ModDate = getModDateValue();
+		return getObjectType(ModDate);
+	}
+
+	@Override
 	public Boolean getModDateHasTypeDate() {
 		COSObject ModDate = getModDateValue();
 		return getHasTypeDate(ModDate);
@@ -155,6 +185,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	public COSObject getProducerValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Producer"));
 		return object;
+	}
+
+	@Override
+	public String getProducerType() {
+		COSObject Producer = getProducerValue();
+		return getObjectType(Producer);
 	}
 
 	@Override
@@ -174,6 +210,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	}
 
 	@Override
+	public String getSubjectType() {
+		COSObject Subject = getSubjectValue();
+		return getObjectType(Subject);
+	}
+
+	@Override
 	public Boolean getSubjectHasTypeStringText() {
 		COSObject Subject = getSubjectValue();
 		return getHasTypeStringText(Subject);
@@ -187,6 +229,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	public COSObject getTitleValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Title"));
 		return object;
+	}
+
+	@Override
+	public String getTitleType() {
+		COSObject Title = getTitleValue();
+		return getObjectType(Title);
 	}
 
 	@Override
@@ -219,6 +267,12 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 			object = getTrappedDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getTrappedType() {
+		COSObject Trapped = getTrappedValue();
+		return getObjectType(Trapped);
 	}
 
 	@Override

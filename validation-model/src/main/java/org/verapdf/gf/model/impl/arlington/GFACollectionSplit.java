@@ -27,6 +27,12 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 	}
 
 	@Override
+	public String getDirectionType() {
+		COSObject Direction = getDirectionValue();
+		return getObjectType(Direction);
+	}
+
+	@Override
 	public Boolean getDirectionHasTypeName() {
 		COSObject Direction = getDirectionValue();
 		return getHasTypeName(Direction);
@@ -49,6 +55,12 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 	}
 
 	@Override
+	public String getPositionType() {
+		COSObject Position = getPositionValue();
+		return getObjectType(Position);
+	}
+
+	@Override
 	public Boolean getPositionHasTypeNumber() {
 		COSObject Position = getPositionValue();
 		return getHasTypeNumber(Position);
@@ -68,6 +80,12 @@ public class GFACollectionSplit extends GFAObject implements ACollectionSplit {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

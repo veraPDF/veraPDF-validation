@@ -199,6 +199,12 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	@Override
+	public String getColorType() {
+		COSObject Color = getColorValue();
+		return getObjectType(Color);
+	}
+
+	@Override
 	public Boolean getColorHasTypeArray() {
 		COSObject Color = getColorValue();
 		return getHasTypeArray(Color);
@@ -212,6 +218,12 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	public COSObject getColorSpaceValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ColorSpace"));
 		return object;
+	}
+
+	@Override
+	public String getColorSpaceType() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getObjectType(ColorSpace);
 	}
 
 	@Override
@@ -243,6 +255,12 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	@Override
+	public String getOffsetType() {
+		COSObject Offset = getOffsetValue();
+		return getObjectType(Offset);
+	}
+
+	@Override
 	public Boolean getOffsetHasTypeArray() {
 		COSObject Offset = getOffsetValue();
 		return getHasTypeArray(Offset);
@@ -256,6 +274,12 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	public COSObject getRadiusValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Radius"));
 		return object;
+	}
+
+	@Override
+	public String getRadiusType() {
+		COSObject Radius = getRadiusValue();
+		return getObjectType(Radius);
 	}
 
 	@Override
@@ -281,6 +305,12 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	}
 
 	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
+	}
+
+	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
@@ -300,6 +330,12 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

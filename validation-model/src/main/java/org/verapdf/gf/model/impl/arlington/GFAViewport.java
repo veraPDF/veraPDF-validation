@@ -121,6 +121,12 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	@Override
+	public String getBBoxType() {
+		COSObject BBox = getBBoxValue();
+		return getObjectType(BBox);
+	}
+
+	@Override
 	public Boolean getBBoxHasTypeRectangle() {
 		COSObject BBox = getBBoxValue();
 		return getHasTypeRectangle(BBox);
@@ -134,6 +140,12 @@ public class GFAViewport extends GFAObject implements AViewport {
 	public COSObject getMeasureValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Measure"));
 		return object;
+	}
+
+	@Override
+	public String getMeasureType() {
+		COSObject Measure = getMeasureValue();
+		return getObjectType(Measure);
 	}
 
 	@Override
@@ -153,6 +165,12 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject Name = getNameValue();
 		return getHasTypeStringText(Name);
@@ -169,6 +187,12 @@ public class GFAViewport extends GFAObject implements AViewport {
 	}
 
 	@Override
+	public String getPtDataType() {
+		COSObject PtData = getPtDataValue();
+		return getObjectType(PtData);
+	}
+
+	@Override
 	public Boolean getPtDataHasTypeDictionary() {
 		COSObject PtData = getPtDataValue();
 		return getHasTypeDictionary(PtData);
@@ -182,6 +206,12 @@ public class GFAViewport extends GFAObject implements AViewport {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

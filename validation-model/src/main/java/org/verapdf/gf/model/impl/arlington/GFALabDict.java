@@ -128,6 +128,12 @@ public class GFALabDict extends GFAObject implements ALabDict {
 	}
 
 	@Override
+	public String getBlackPointType() {
+		COSObject BlackPoint = getBlackPointValue();
+		return getObjectType(BlackPoint);
+	}
+
+	@Override
 	public Boolean getBlackPointHasTypeArray() {
 		COSObject BlackPoint = getBlackPointValue();
 		return getHasTypeArray(BlackPoint);
@@ -144,6 +150,12 @@ public class GFALabDict extends GFAObject implements ALabDict {
 	}
 
 	@Override
+	public String getRangeType() {
+		COSObject Range = getRangeValue();
+		return getObjectType(Range);
+	}
+
+	@Override
 	public Boolean getRangeHasTypeArray() {
 		COSObject Range = getRangeValue();
 		return getHasTypeArray(Range);
@@ -157,6 +169,12 @@ public class GFALabDict extends GFAObject implements ALabDict {
 	public COSObject getWhitePointValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("WhitePoint"));
 		return object;
+	}
+
+	@Override
+	public String getWhitePointType() {
+		COSObject WhitePoint = getWhitePointValue();
+		return getObjectType(WhitePoint);
 	}
 
 	@Override

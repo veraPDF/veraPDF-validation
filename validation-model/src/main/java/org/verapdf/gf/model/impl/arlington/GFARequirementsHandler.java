@@ -27,6 +27,12 @@ public class GFARequirementsHandler extends GFAObject implements ARequirementsHa
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -49,6 +55,12 @@ public class GFARequirementsHandler extends GFAObject implements ARequirementsHa
 	}
 
 	@Override
+	public String getScriptType() {
+		COSObject Script = getScriptValue();
+		return getObjectType(Script);
+	}
+
+	@Override
 	public Boolean getScriptHasTypeStringText() {
 		COSObject Script = getScriptValue();
 		return getHasTypeStringText(Script);
@@ -62,6 +74,12 @@ public class GFARequirementsHandler extends GFAObject implements ARequirementsHa
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

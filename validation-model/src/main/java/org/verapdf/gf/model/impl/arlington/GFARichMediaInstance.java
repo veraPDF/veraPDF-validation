@@ -85,6 +85,12 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	}
 
 	@Override
+	public String getAssetType() {
+		COSObject Asset = getAssetValue();
+		return getObjectType(Asset);
+	}
+
+	@Override
 	public Boolean getAssetHasTypeDictionary() {
 		COSObject Asset = getAssetValue();
 		return getHasTypeDictionary(Asset);
@@ -101,6 +107,12 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	}
 
 	@Override
+	public String getParamsType() {
+		COSObject Params = getParamsValue();
+		return getObjectType(Params);
+	}
+
+	@Override
 	public Boolean getParamsHasTypeDictionary() {
 		COSObject Params = getParamsValue();
 		return getHasTypeDictionary(Params);
@@ -114,6 +126,12 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	public COSObject getSceneValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Scene"));
 		return object;
+	}
+
+	@Override
+	public String getSceneType() {
+		COSObject Scene = getSceneValue();
+		return getObjectType(Scene);
 	}
 
 	@Override
@@ -139,6 +157,12 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	}
 
 	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
+	}
+
+	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
@@ -158,6 +182,12 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

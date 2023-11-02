@@ -27,6 +27,12 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeStringByte() {
 		COSObject D = getDValue();
 		return getHasTypeStringByte(D);
@@ -40,6 +46,12 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 	public COSObject getFValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("F"));
 		return object;
+	}
+
+	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
 	}
 
 	@Override
@@ -77,6 +89,12 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 	}
 
 	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
+	}
+
+	@Override
 	public Boolean getOHasTypeStringAscii() {
 		COSObject O = getOValue();
 		return getHasTypeStringAscii(O);
@@ -96,6 +114,12 @@ public class GFAMicrosoftWindowsLaunchParam extends GFAObject implements AMicros
 	public COSObject getPValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("P"));
 		return object;
+	}
+
+	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
 	}
 
 	@Override

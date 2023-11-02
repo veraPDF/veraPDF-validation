@@ -102,6 +102,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	@Override
+	public String getCountType() {
+		COSObject Count = getCountValue();
+		return getObjectType(Count);
+	}
+
+	@Override
 	public Boolean getCountHasTypeInteger() {
 		COSObject Count = getCountValue();
 		return getHasTypeInteger(Count);
@@ -130,6 +136,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	@Override
+	public String getCropBoxType() {
+		COSObject CropBox = getCropBoxValue();
+		return getObjectType(CropBox);
+	}
+
+	@Override
 	public Boolean getCropBoxHasTypeRectangle() {
 		COSObject CropBox = getCropBoxValue();
 		return getHasTypeRectangle(CropBox);
@@ -143,6 +155,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	public COSObject getKidsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
 		return object;
+	}
+
+	@Override
+	public String getKidsType() {
+		COSObject Kids = getKidsValue();
+		return getObjectType(Kids);
 	}
 
 	@Override
@@ -174,6 +192,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	@Override
+	public String getMediaBoxType() {
+		COSObject MediaBox = getMediaBoxValue();
+		return getObjectType(MediaBox);
+	}
+
+	@Override
 	public Boolean getMediaBoxHasTypeRectangle() {
 		COSObject MediaBox = getMediaBoxValue();
 		return getHasTypeRectangle(MediaBox);
@@ -196,6 +220,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	@Override
+	public String getParentType() {
+		COSObject Parent = getParentValue();
+		return getObjectType(Parent);
+	}
+
+	@Override
 	public Boolean getParentHasTypeDictionary() {
 		COSObject Parent = getParentValue();
 		return getHasTypeDictionary(Parent);
@@ -215,6 +245,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 			object = getInheritableValue(ASAtom.getASAtom("Resources"));
 		}
 		return object;
+	}
+
+	@Override
+	public String getResourcesType() {
+		COSObject Resources = getResourcesValue();
+		return getObjectType(Resources);
 	}
 
 	@Override
@@ -247,6 +283,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	@Override
+	public String getRotateType() {
+		COSObject Rotate = getRotateValue();
+		return getObjectType(Rotate);
+	}
+
+	@Override
 	public Boolean getRotateHasTypeInteger() {
 		COSObject Rotate = getRotateValue();
 		return getHasTypeInteger(Rotate);
@@ -266,6 +308,12 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

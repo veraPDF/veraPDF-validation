@@ -89,6 +89,12 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	}
 
 	@Override
+	public String getIntentType() {
+		COSObject Intent = getIntentValue();
+		return getObjectType(Intent);
+	}
+
+	@Override
 	public Boolean getIntentHasTypeArray() {
 		COSObject Intent = getIntentValue();
 		return getHasTypeArray(Intent);
@@ -111,6 +117,12 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	}
 
 	@Override
+	public String getNameType() {
+		COSObject Name = getNameValue();
+		return getObjectType(Name);
+	}
+
+	@Override
 	public Boolean getNameHasTypeStringText() {
 		COSObject Name = getNameValue();
 		return getHasTypeStringText(Name);
@@ -124,6 +136,12 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -146,6 +164,12 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	public COSObject getUsageValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Usage"));
 		return object;
+	}
+
+	@Override
+	public String getUsageType() {
+		COSObject Usage = getUsageValue();
+		return getObjectType(Usage);
 	}
 
 	@Override

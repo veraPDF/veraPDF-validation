@@ -126,6 +126,12 @@ public class GFADestDict extends GFAObject implements ADestDict {
 	}
 
 	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
+	}
+
+	@Override
 	public Boolean getDHasTypeArray() {
 		COSObject D = getDValue();
 		return getHasTypeArray(D);
@@ -139,6 +145,12 @@ public class GFADestDict extends GFAObject implements ADestDict {
 	public COSObject getSDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SD"));
 		return object;
+	}
+
+	@Override
+	public String getSDType() {
+		COSObject SD = getSDValue();
+		return getObjectType(SD);
 	}
 
 	@Override

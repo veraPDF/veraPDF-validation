@@ -89,6 +89,12 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	}
 
 	@Override
+	public String getCategoryType() {
+		COSObject Category = getCategoryValue();
+		return getObjectType(Category);
+	}
+
+	@Override
 	public Boolean getCategoryHasTypeArray() {
 		COSObject Category = getCategoryValue();
 		return getHasTypeArray(Category);
@@ -102,6 +108,12 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	public COSObject getEventValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Event"));
 		return object;
+	}
+
+	@Override
+	public String getEventType() {
+		COSObject Event = getEventValue();
+		return getObjectType(Event);
 	}
 
 	@Override
@@ -124,6 +136,12 @@ public class GFAOptContentUsageApplication extends GFAObject implements AOptCont
 	public COSObject getOCGsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OCGs"));
 		return object;
+	}
+
+	@Override
+	public String getOCGsType() {
+		COSObject OCGs = getOCGsValue();
+		return getObjectType(OCGs);
 	}
 
 	@Override

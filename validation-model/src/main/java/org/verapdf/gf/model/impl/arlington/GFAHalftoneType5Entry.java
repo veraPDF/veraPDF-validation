@@ -135,6 +135,12 @@ public class GFAHalftoneType5Entry extends GFAObject implements AHalftoneType5En
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject entry = getValue();
 		return getHasTypeDictionary(entry);

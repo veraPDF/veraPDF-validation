@@ -294,6 +294,12 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 	}
 
 	@Override
+	public String getNextType() {
+		COSObject Next = getNextValue();
+		return getObjectType(Next);
+	}
+
+	@Override
 	public Boolean getNextHasTypeArray() {
 		COSObject Next = getNextValue();
 		return getHasTypeArray(Next);
@@ -313,6 +319,12 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 	public COSObject getSValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("S"));
 		return object;
+	}
+
+	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
 	}
 
 	@Override
@@ -338,6 +350,12 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 	}
 
 	@Override
+	public String getTransType() {
+		COSObject Trans = getTransValue();
+		return getObjectType(Trans);
+	}
+
+	@Override
 	public Boolean getTransHasTypeDictionary() {
 		COSObject Trans = getTransValue();
 		return getHasTypeDictionary(Trans);
@@ -351,6 +369,12 @@ public class GFAActionTransition extends GFAObject implements AActionTransition 
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

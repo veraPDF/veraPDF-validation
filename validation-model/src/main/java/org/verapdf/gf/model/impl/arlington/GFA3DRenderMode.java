@@ -85,6 +85,12 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	@Override
+	public String getACType() {
+		COSObject AC = getACValue();
+		return getObjectType(AC);
+	}
+
+	@Override
 	public Boolean getACHasTypeArray() {
 		COSObject AC = getACValue();
 		return getHasTypeArray(AC);
@@ -113,6 +119,12 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	@Override
+	public String getCVType() {
+		COSObject CV = getCVValue();
+		return getObjectType(CV);
+	}
+
+	@Override
 	public Boolean getCVHasTypeNumber() {
 		COSObject CV = getCVValue();
 		return getHasTypeNumber(CV);
@@ -138,6 +150,12 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 			object = getFCDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getFCType() {
+		COSObject FC = getFCValue();
+		return getObjectType(FC);
 	}
 
 	@Override
@@ -181,6 +199,12 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	@Override
+	public String getOType() {
+		COSObject O = getOValue();
+		return getObjectType(O);
+	}
+
+	@Override
 	public Boolean getOHasTypeNumber() {
 		COSObject O = getOValue();
 		return getHasTypeNumber(O);
@@ -203,6 +227,12 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	}
 
 	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
+	}
+
+	@Override
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
@@ -222,6 +252,12 @@ public class GFA3DRenderMode extends GFAObject implements A3DRenderMode {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

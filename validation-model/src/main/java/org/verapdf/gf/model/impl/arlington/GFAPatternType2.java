@@ -148,6 +148,12 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	}
 
 	@Override
+	public String getExtGStateType() {
+		COSObject ExtGState = getExtGStateValue();
+		return getObjectType(ExtGState);
+	}
+
+	@Override
 	public Boolean getExtGStateHasTypeDictionary() {
 		COSObject ExtGState = getExtGStateValue();
 		return getHasTypeDictionary(ExtGState);
@@ -180,6 +186,12 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	}
 
 	@Override
+	public String getMatrixType() {
+		COSObject Matrix = getMatrixValue();
+		return getObjectType(Matrix);
+	}
+
+	@Override
 	public Boolean getMatrixHasTypeMatrix() {
 		COSObject Matrix = getMatrixValue();
 		return getHasTypeMatrix(Matrix);
@@ -193,6 +205,12 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	public COSObject getPatternTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PatternType"));
 		return object;
+	}
+
+	@Override
+	public String getPatternTypeType() {
+		COSObject PatternType = getPatternTypeValue();
+		return getObjectType(PatternType);
 	}
 
 	@Override
@@ -224,6 +242,12 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	}
 
 	@Override
+	public String getShadingType() {
+		COSObject Shading = getShadingValue();
+		return getObjectType(Shading);
+	}
+
+	@Override
 	public Boolean getShadingHasTypeDictionary() {
 		COSObject Shading = getShadingValue();
 		return getHasTypeDictionary(Shading);
@@ -243,6 +267,12 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override

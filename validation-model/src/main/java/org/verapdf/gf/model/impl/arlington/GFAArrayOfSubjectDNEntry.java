@@ -57,6 +57,12 @@ public class GFAArrayOfSubjectDNEntry extends GFAObject implements AArrayOfSubje
 	}
 
 	@Override
+	public String getType() {
+		COSObject entry = getValue();
+		return getObjectType(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject entry = getValue();
 		return getHasTypeDictionary(entry);

@@ -398,6 +398,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	}
 
 	@Override
+	public String getDLType() {
+		COSObject DL = getDLValue();
+		return getObjectType(DL);
+	}
+
+	@Override
 	public Boolean getDLHasTypeInteger() {
 		COSObject DL = getDLValue();
 		return getHasTypeInteger(DL);
@@ -417,6 +423,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	public COSObject getDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getDecodeParmsType() {
+		COSObject DecodeParms = getDecodeParmsValue();
+		return getObjectType(DecodeParms);
 	}
 
 	@Override
@@ -448,6 +460,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeDictionary() {
 		COSObject F = getFValue();
 		return getHasTypeDictionary(F);
@@ -467,6 +485,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	public COSObject getFDecodeParmsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FDecodeParms"));
 		return object;
+	}
+
+	@Override
+	public String getFDecodeParmsType() {
+		COSObject FDecodeParms = getFDecodeParmsValue();
+		return getObjectType(FDecodeParms);
 	}
 
 	@Override
@@ -495,6 +519,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	public COSObject getFFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		return object;
+	}
+
+	@Override
+	public String getFFilterType() {
+		COSObject FFilter = getFFilterValue();
+		return getObjectType(FFilter);
 	}
 
 	@Override
@@ -532,6 +562,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	}
 
 	@Override
+	public String getFilterType() {
+		COSObject Filter = getFilterValue();
+		return getObjectType(Filter);
+	}
+
+	@Override
 	public Boolean getFilterHasTypeArray() {
 		COSObject Filter = getFilterValue();
 		return getHasTypeArray(Filter);
@@ -566,6 +602,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	}
 
 	@Override
+	public String getHalftoneNameType() {
+		COSObject HalftoneName = getHalftoneNameValue();
+		return getObjectType(HalftoneName);
+	}
+
+	@Override
 	public Boolean getHalftoneNameHasTypeStringByte() {
 		COSObject HalftoneName = getHalftoneNameValue();
 		return getHasTypeStringByte(HalftoneName);
@@ -579,6 +621,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	public COSObject getHalftoneTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("HalftoneType"));
 		return object;
+	}
+
+	@Override
+	public String getHalftoneTypeType() {
+		COSObject HalftoneType = getHalftoneTypeValue();
+		return getObjectType(HalftoneType);
 	}
 
 	@Override
@@ -604,6 +652,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	}
 
 	@Override
+	public String getHeightType() {
+		COSObject Height = getHeightValue();
+		return getObjectType(Height);
+	}
+
+	@Override
 	public Boolean getHeightHasTypeInteger() {
 		COSObject Height = getHeightValue();
 		return getHasTypeInteger(Height);
@@ -623,6 +677,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	public COSObject getHeight2Value() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Height2"));
 		return object;
+	}
+
+	@Override
+	public String getHeight2Type() {
+		COSObject Height2 = getHeight2Value();
+		return getObjectType(Height2);
 	}
 
 	@Override
@@ -648,6 +708,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	}
 
 	@Override
+	public String getLengthType() {
+		COSObject Length = getLengthValue();
+		return getObjectType(Length);
+	}
+
+	@Override
 	public Boolean getLengthHasTypeInteger() {
 		COSObject Length = getLengthValue();
 		return getHasTypeInteger(Length);
@@ -667,6 +733,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	public Boolean getisTransferFunctionIndirect() {
 		COSObject TransferFunction = getTransferFunctionValue();
 		return getisIndirect(TransferFunction);
+	}
+
+	@Override
+	public String getTransferFunctionType() {
+		COSObject TransferFunction = getTransferFunctionValue();
+		return getObjectType(TransferFunction);
 	}
 
 	@Override
@@ -704,6 +776,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -726,6 +804,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	}
 
 	@Override
+	public String getWidthType() {
+		COSObject Width = getWidthValue();
+		return getObjectType(Width);
+	}
+
+	@Override
 	public Boolean getWidthHasTypeInteger() {
 		COSObject Width = getWidthValue();
 		return getHasTypeInteger(Width);
@@ -745,6 +829,12 @@ public class GFAHalftoneType16 extends GFAObject implements AHalftoneType16 {
 	public COSObject getWidth2Value() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width2"));
 		return object;
+	}
+
+	@Override
+	public String getWidth2Type() {
+		COSObject Width2 = getWidth2Value();
+		return getObjectType(Width2);
 	}
 
 	@Override

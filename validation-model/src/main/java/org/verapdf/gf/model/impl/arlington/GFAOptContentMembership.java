@@ -93,6 +93,12 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	@Override
+	public String getOCGsType() {
+		COSObject OCGs = getOCGsValue();
+		return getObjectType(OCGs);
+	}
+
+	@Override
 	public Boolean getOCGsHasTypeArray() {
 		COSObject OCGs = getOCGsValue();
 		return getHasTypeArray(OCGs);
@@ -135,6 +141,12 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeName() {
 		COSObject P = getPValue();
 		return getHasTypeName(P);
@@ -157,6 +169,12 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	}
 
 	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
 	public Boolean getTypeHasTypeName() {
 		COSObject Type = getTypeValue();
 		return getHasTypeName(Type);
@@ -176,6 +194,12 @@ public class GFAOptContentMembership extends GFAObject implements AOptContentMem
 	public COSObject getVEValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("VE"));
 		return object;
+	}
+
+	@Override
+	public String getVEType() {
+		COSObject VE = getVEValue();
+		return getObjectType(VE);
 	}
 
 	@Override

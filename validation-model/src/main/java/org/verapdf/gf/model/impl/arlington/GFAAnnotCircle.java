@@ -712,6 +712,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
@@ -734,6 +740,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getAPType() {
+		COSObject AP = getAPValue();
+		return getObjectType(AP);
+	}
+
+	@Override
 	public Boolean getAPHasTypeDictionary() {
 		COSObject AP = getAPValue();
 		return getHasTypeDictionary(AP);
@@ -750,6 +762,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getASType() {
+		COSObject AS = getASValue();
+		return getObjectType(AS);
+	}
+
+	@Override
 	public Boolean getASHasTypeName() {
 		COSObject AS = getASValue();
 		return getHasTypeName(AS);
@@ -763,6 +781,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getBEValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("BE"));
 		return object;
+	}
+
+	@Override
+	public String getBEType() {
+		COSObject BE = getBEValue();
+		return getObjectType(BE);
 	}
 
 	@Override
@@ -793,6 +817,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getBMType() {
+		COSObject BM = getBMValue();
+		return getObjectType(BM);
+	}
+
+	@Override
 	public Boolean getBMHasTypeName() {
 		COSObject BM = getBMValue();
 		return getHasTypeName(BM);
@@ -815,6 +845,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getBSType() {
+		COSObject BS = getBSValue();
+		return getObjectType(BS);
+	}
+
+	@Override
 	public Boolean getBSHasTypeDictionary() {
 		COSObject BS = getBSValue();
 		return getHasTypeDictionary(BS);
@@ -831,6 +867,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getBorderType() {
+		COSObject Border = getBorderValue();
+		return getObjectType(Border);
+	}
+
+	@Override
 	public Boolean getBorderHasTypeArray() {
 		COSObject Border = getBorderValue();
 		return getHasTypeArray(Border);
@@ -844,6 +886,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("C"));
 		return object;
+	}
+
+	@Override
+	public String getCType() {
+		COSObject C = getCValue();
+		return getObjectType(C);
 	}
 
 	@Override
@@ -878,6 +926,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getCAType() {
+		COSObject CA = getCAValue();
+		return getObjectType(CA);
+	}
+
+	@Override
 	public Boolean getCAHasTypeNumber() {
 		COSObject CA = getCAValue();
 		return getHasTypeNumber(CA);
@@ -900,6 +954,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getContentsType() {
+		COSObject Contents = getContentsValue();
+		return getObjectType(Contents);
+	}
+
+	@Override
 	public Boolean getContentsHasTypeStringText() {
 		COSObject Contents = getContentsValue();
 		return getHasTypeStringText(Contents);
@@ -916,6 +976,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getCreationDateType() {
+		COSObject CreationDate = getCreationDateValue();
+		return getObjectType(CreationDate);
+	}
+
+	@Override
 	public Boolean getCreationDateHasTypeDate() {
 		COSObject CreationDate = getCreationDateValue();
 		return getHasTypeDate(CreationDate);
@@ -929,6 +995,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getExDataValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ExData"));
 		return object;
+	}
+
+	@Override
+	public String getExDataType() {
+		COSObject ExData = getExDataValue();
+		return getObjectType(ExData);
 	}
 
 	@Override
@@ -964,6 +1036,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getFType() {
+		COSObject F = getFValue();
+		return getObjectType(F);
+	}
+
+	@Override
 	public Boolean getFHasTypeBitmask() {
 		COSObject F = getFValue();
 		return getHasTypeBitmask(F);
@@ -986,6 +1064,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getICType() {
+		COSObject IC = getICValue();
+		return getObjectType(IC);
+	}
+
+	@Override
 	public Boolean getICHasTypeArray() {
 		COSObject IC = getICValue();
 		return getHasTypeArray(IC);
@@ -999,6 +1083,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getIRTValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IRT"));
 		return object;
+	}
+
+	@Override
+	public String getIRTType() {
+		COSObject IRT = getIRTValue();
+		return getObjectType(IRT);
 	}
 
 	@Override
@@ -1018,6 +1108,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getITType() {
+		COSObject IT = getITValue();
+		return getObjectType(IT);
+	}
+
+	@Override
 	public Boolean getITHasTypeName() {
 		COSObject IT = getITValue();
 		return getHasTypeName(IT);
@@ -1034,6 +1130,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getLangType() {
+		COSObject Lang = getLangValue();
+		return getObjectType(Lang);
+	}
+
+	@Override
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
@@ -1047,6 +1149,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -1072,6 +1180,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getNMType() {
+		COSObject NM = getNMValue();
+		return getObjectType(NM);
+	}
+
+	@Override
 	public Boolean getNMHasTypeStringText() {
 		COSObject NM = getNMValue();
 		return getHasTypeStringText(NM);
@@ -1085,6 +1199,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getOCValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("OC"));
 		return object;
+	}
+
+	@Override
+	public String getOCType() {
+		COSObject OC = getOCValue();
+		return getObjectType(OC);
 	}
 
 	@Override
@@ -1110,6 +1230,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getPType() {
+		COSObject P = getPValue();
+		return getObjectType(P);
+	}
+
+	@Override
 	public Boolean getPHasTypeDictionary() {
 		COSObject P = getPValue();
 		return getHasTypeDictionary(P);
@@ -1129,6 +1255,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public Boolean getisPopupIndirect() {
 		COSObject Popup = getPopupValue();
 		return getisIndirect(Popup);
+	}
+
+	@Override
+	public String getPopupType() {
+		COSObject Popup = getPopupValue();
+		return getObjectType(Popup);
 	}
 
 	@Override
@@ -1154,6 +1286,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getRCType() {
+		COSObject RC = getRCValue();
+		return getObjectType(RC);
+	}
+
+	@Override
 	public Boolean getRCHasTypeStream() {
 		COSObject RC = getRCValue();
 		return getHasTypeStream(RC);
@@ -1173,6 +1311,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getRDValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RD"));
 		return object;
+	}
+
+	@Override
+	public String getRDType() {
+		COSObject RD = getRDValue();
+		return getObjectType(RD);
 	}
 
 	@Override
@@ -1205,6 +1349,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getRTType() {
+		COSObject RT = getRTValue();
+		return getObjectType(RT);
+	}
+
+	@Override
 	public Boolean getRTHasTypeName() {
 		COSObject RT = getRTValue();
 		return getHasTypeName(RT);
@@ -1224,6 +1374,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getRectValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Rect"));
 		return object;
+	}
+
+	@Override
+	public String getRectType() {
+		COSObject Rect = getRectValue();
+		return getObjectType(Rect);
 	}
 
 	@Override
@@ -1255,6 +1411,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getStructParentType() {
+		COSObject StructParent = getStructParentValue();
+		return getObjectType(StructParent);
+	}
+
+	@Override
 	public Boolean getStructParentHasTypeInteger() {
 		COSObject StructParent = getStructParentValue();
 		return getHasTypeInteger(StructParent);
@@ -1271,6 +1433,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getSubjType() {
+		COSObject Subj = getSubjValue();
+		return getObjectType(Subj);
+	}
+
+	@Override
 	public Boolean getSubjHasTypeStringText() {
 		COSObject Subj = getSubjValue();
 		return getHasTypeStringText(Subj);
@@ -1284,6 +1452,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getSubtypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Subtype"));
 		return object;
+	}
+
+	@Override
+	public String getSubtypeType() {
+		COSObject Subtype = getSubtypeValue();
+		return getObjectType(Subtype);
 	}
 
 	@Override
@@ -1309,6 +1483,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
+	public String getTType() {
+		COSObject T = getTValue();
+		return getObjectType(T);
+	}
+
+	@Override
 	public Boolean getTHasTypeStringText() {
 		COSObject T = getTValue();
 		return getHasTypeStringText(T);
@@ -1322,6 +1502,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -1355,6 +1541,12 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 			object = getcaDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getcaType() {
+		COSObject ca = getcaValue();
+		return getObjectType(ca);
 	}
 
 	@Override

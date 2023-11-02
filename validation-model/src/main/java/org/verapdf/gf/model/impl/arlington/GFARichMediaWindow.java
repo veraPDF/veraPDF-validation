@@ -110,6 +110,12 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	}
 
 	@Override
+	public String getHeightType() {
+		COSObject Height = getHeightValue();
+		return getObjectType(Height);
+	}
+
+	@Override
 	public Boolean getHeightHasTypeDictionary() {
 		COSObject Height = getHeightValue();
 		return getHasTypeDictionary(Height);
@@ -126,6 +132,12 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	}
 
 	@Override
+	public String getPositionType() {
+		COSObject Position = getPositionValue();
+		return getObjectType(Position);
+	}
+
+	@Override
 	public Boolean getPositionHasTypeDictionary() {
 		COSObject Position = getPositionValue();
 		return getHasTypeDictionary(Position);
@@ -139,6 +151,12 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
@@ -161,6 +179,12 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	public COSObject getWidthValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Width"));
 		return object;
+	}
+
+	@Override
+	public String getWidthType() {
+		COSObject Width = getWidthValue();
+		return getObjectType(Width);
 	}
 
 	@Override

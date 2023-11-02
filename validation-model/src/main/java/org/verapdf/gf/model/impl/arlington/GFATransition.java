@@ -41,6 +41,12 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	@Override
+	public String getBType() {
+		COSObject B = getBValue();
+		return getObjectType(B);
+	}
+
+	@Override
 	public Boolean getBHasTypeBoolean() {
 		COSObject B = getBValue();
 		return getHasTypeBoolean(B);
@@ -72,6 +78,12 @@ public class GFATransition extends GFAObject implements ATransition {
 			object = getDDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getDType() {
+		COSObject D = getDValue();
+		return getObjectType(D);
 	}
 
 	@Override
@@ -112,6 +124,12 @@ public class GFATransition extends GFAObject implements ATransition {
 			object = getDiDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getDiType() {
+		COSObject Di = getDiValue();
+		return getObjectType(Di);
 	}
 
 	@Override
@@ -167,6 +185,12 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	@Override
+	public String getDmType() {
+		COSObject Dm = getDmValue();
+		return getObjectType(Dm);
+	}
+
+	@Override
 	public Boolean getDmHasTypeName() {
 		COSObject Dm = getDmValue();
 		return getHasTypeName(Dm);
@@ -204,6 +228,12 @@ public class GFATransition extends GFAObject implements ATransition {
 			object = getMDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public String getMType() {
+		COSObject M = getMValue();
+		return getObjectType(M);
 	}
 
 	@Override
@@ -247,6 +277,12 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	@Override
+	public String getSType() {
+		COSObject S = getSValue();
+		return getObjectType(S);
+	}
+
+	@Override
 	public Boolean getSHasTypeName() {
 		COSObject S = getSValue();
 		return getHasTypeName(S);
@@ -283,6 +319,12 @@ public class GFATransition extends GFAObject implements ATransition {
 	}
 
 	@Override
+	public String getSSType() {
+		COSObject SS = getSSValue();
+		return getObjectType(SS);
+	}
+
+	@Override
 	public Boolean getSSHasTypeNumber() {
 		COSObject SS = getSSValue();
 		return getHasTypeNumber(SS);
@@ -302,6 +344,12 @@ public class GFATransition extends GFAObject implements ATransition {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
 	}
 
 	@Override
