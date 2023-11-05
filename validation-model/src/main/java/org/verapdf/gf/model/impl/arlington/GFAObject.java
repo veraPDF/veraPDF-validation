@@ -34,7 +34,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	@Override
 	public String getID() {
-		COSKey key = baseObject.getObjectKey();
+		COSKey key = baseObject != null ? baseObject.getObjectKey() : null;
 		return key != null ? (getObjectType() + " " + key.toString()) : null;
 	}
 

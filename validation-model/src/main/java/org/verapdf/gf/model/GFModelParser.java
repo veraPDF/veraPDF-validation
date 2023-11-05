@@ -22,6 +22,7 @@ package org.verapdf.gf.model;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDocument;
+import org.verapdf.gf.model.impl.arlington.*;
 import org.verapdf.parser.PDFFlavour;
 import org.verapdf.pd.PDCatalog;
 import org.verapdf.tools.StaticResources;
@@ -29,7 +30,6 @@ import org.verapdf.xmp.XMPException;
 import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.ReleaseDetails;
 import org.verapdf.pdfa.flavours.PDFAFlavours;
-import org.verapdf.gf.model.impl.arlington.GFAFileTrailer;
 import org.verapdf.component.ComponentDetails;
 import org.verapdf.component.Components;
 import org.verapdf.core.EncryptedPdfException;
@@ -263,7 +263,8 @@ public class GFModelParser implements PDFAParser {
 	public org.verapdf.model.baselayer.Object getRoot() {
 		if (PDFAFlavour.ARLINGTON1_0.getPart().getFamily().equals(this.flavour.getPart().getFamily()) ||
 				PDFAFlavour.ARLINGTON2_0.getPart().getFamily().equals(this.flavour.getPart().getFamily())) {
-			return new GFAFileTrailer(this.document.getDocument().getTrailer().getObject().getDirectBase(), null, null);
+			GFAObject.clearAllContainers();
+			return new GFADocument(null, null, null);
 		}
 		return new GFCosDocument(this.document.getDocument());
 	}

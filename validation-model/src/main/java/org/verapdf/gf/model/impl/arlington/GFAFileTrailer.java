@@ -14,7 +14,6 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	public GFAFileTrailer(COSBase baseObject, COSBase parentObject, String keyName) {
 		super(baseObject, parentObject, keyName, "AFileTrailer");
-		GFAObject.clearAllContainers();
 	}
 
 	@Override
@@ -28,10 +27,6 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 				return getentryID();
 			case "Info":
 				return getInfo();
-			case "LinearizationParameterDict":
-				return getLinearizationParameterDict();
-			case "ObjectStreams":
-				return getObjectStreams();
 			case "Root":
 				return getRoot();
 			case "XRefStream":
@@ -157,59 +152,6 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ADocInfo> list = new ArrayList<>(1);
 			list.add(new GFADocInfo((COSDictionary)object.getDirectBase(), this.baseObject, "Info"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<ALinearizationParameterDict> getLinearizationParameterDict() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getLinearizationParameterDict1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<ALinearizationParameterDict> getLinearizationParameterDict1_2() {
-		COSObject object = getLinearizationParameterDictValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<ALinearizationParameterDict> list = new ArrayList<>(1);
-			list.add(new GFALinearizationParameterDict((COSDictionary)object.getDirectBase(), this.baseObject, "LinearizationParameterDict"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfObjectStreams> getObjectStreams() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getObjectStreams1_5();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfObjectStreams> getObjectStreams1_5() {
-		COSObject object = getObjectStreamsValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfObjectStreams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfObjectStreams((COSArray)object.getDirectBase(), this.baseObject, "ObjectStreams"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -361,16 +303,6 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	public Boolean getInfoHasTypeDictionary() {
 		COSObject Info = getInfoValue();
 		return getHasTypeDictionary(Info);
-	}
-
-	public COSObject getLinearizationParameterDictValue() {
-		COSObject object = StaticResources.getDocument().getDocument().getLinearizationDictionary();
-		return object;
-	}
-
-	public COSObject getObjectStreamsValue() {
-		COSObject object = new COSObject(new COSArray(StaticResources.getDocument().getDocument().getObjectStreamsList()));
-		return object;
 	}
 
 	@Override
