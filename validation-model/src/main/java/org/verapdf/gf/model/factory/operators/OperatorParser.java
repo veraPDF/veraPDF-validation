@@ -161,8 +161,7 @@ class OperatorParser {
 				break;
 			case Operators.BDC:
 				PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
-				if (specification == PDFAFlavour.Specification.ISO_19005_3
-						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
+				if (specification == PDFAFlavour.Specification.ISO_19005_3) {
 					checkAFKey(arguments, resourcesHandler);
 				}
 				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags);

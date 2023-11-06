@@ -97,8 +97,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
 		this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
 		PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
-		if (specification == PDFAFlavour.Specification.ISO_19005_3
-				|| specification == PDFAFlavour.Specification.ISO_19005_4) {
+		if (specification == PDFAFlavour.Specification.ISO_19005_3) {
 			FileSpecificationKeysHelper.registerFileSpecificationKeys(cosDocument);
 		}
 	}

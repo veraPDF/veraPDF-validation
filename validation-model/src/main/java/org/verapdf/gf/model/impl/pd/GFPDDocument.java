@@ -321,4 +321,9 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
                 .collect(Collectors.toList());
         return SQUARE_ORIENTATION.equals(twoTheMostFrequent.get(0)) && twoTheMostFrequent.size() == 2 ? twoTheMostFrequent.get(1) : twoTheMostFrequent.get(0);
     }
+
+    @Override
+    public Boolean getcontainsXRefStream() {
+        return document.getDocument().isContainsXRefStream();
+    }
 }
