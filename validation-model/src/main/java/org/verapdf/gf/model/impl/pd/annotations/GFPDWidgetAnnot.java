@@ -23,11 +23,16 @@ package org.verapdf.gf.model.impl.pd.annotations;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDAnnot;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDWidgetAnnot;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDPage;
 import org.verapdf.pd.annotations.PDWidgetAnnotation;
+import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.tools.StaticResources;
+import org.verapdf.tools.TaggedPDFConstants;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
 /**
  * @author Maxim Plushchov
@@ -47,6 +52,25 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 			return parent != null ? parent.getStringKey(ASAtom.TU) : null;
 		}
 		return ((PDAnnotation) simplePDObject).getTU();
+	}
+
+	@Override
+	public Boolean getcontainsLbl() {
+		TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+		if (taggedPDFRoleMapHelper == null) {
+			return false;
+		}
+		COSObject parent = getParentDictionary();
+		if (parent != null) {
+			PDStructElem parentStructElem = new PDStructElem(parent, taggedPDFRoleMapHelper.getRoleMap());
+			for (PDStructElem child : parentStructElem.getStructChildren()) {
+				if (TaggedPDFConstants.LBL.equals(GFSEFactory.getStructureElementStandardType(child)) && 
+						!child.getChildren().isEmpty()) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

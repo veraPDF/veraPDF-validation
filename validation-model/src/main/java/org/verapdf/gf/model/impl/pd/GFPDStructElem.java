@@ -168,7 +168,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
 				return TaggedPDFHelper.getPdf14StandardRoleTypes().contains(type.getType().getValue());
 			}
-			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_4) {
+			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_4 || flavour == PDFAFlavour.PDFUA_2) {
 				return TaggedPDFHelper.isStandardType(type);
 			}
 			if (flavour.getPart() == PDFAFlavour.Specification.WCAG_2_1) {
