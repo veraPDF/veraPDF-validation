@@ -95,7 +95,7 @@ public abstract class GFSEContentItem extends GenericModelObject implements SECo
     @Override
     public String getparentStandardTag() {
         TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
-        if (parentStructElem != null) {
+        if (parentStructElem != null && taggedPDFRoleMapHelper != null) {
             PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
             return GFSEFactory.getStructureElementStandardType(structElem);
         }
@@ -114,7 +114,7 @@ public abstract class GFSEContentItem extends GenericModelObject implements SECo
 
     protected Boolean hasParentWithStandardType(String standardType) {
         TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
-        if (parentStructElem != null) {
+        if (parentStructElem != null && taggedPDFRoleMapHelper != null) {
             PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
             while (structElem != null) {
                 if (standardType.equals(GFSEFactory.getStructureElementStandardType(structElem))) {
