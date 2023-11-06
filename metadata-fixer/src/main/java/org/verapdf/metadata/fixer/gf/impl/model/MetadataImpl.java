@@ -58,9 +58,9 @@ public class MetadataImpl implements Metadata {
     private static final String YEAR_202X = "0000";
     private static final String YEAR_REGEX = "^\\d{4}$";
     
-    private static String ADD_PROPERTY_MESSAGE = "Added property %s with value %s to Identification schema";
-    private static String REMOVE_PROPERTY_MESSAGE = "Removed property %s from Identification schema";
-    private static String SET_PROPERTY_MESSAGE = "Set property %s value to %s in Identification schema";
+    private static final String ADD_PROPERTY_MESSAGE = "Added property '%s' with value '%s' to Identification schema";
+    private static final String REMOVE_PROPERTY_MESSAGE = "Removed property '%s' from Identification schema";
+    private static final String SET_PROPERTY_MESSAGE = "Set property '%s' value to '%s' in Identification schema";
 
 
     private final VeraPDFMeta metadata;
