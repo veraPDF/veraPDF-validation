@@ -232,14 +232,22 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		return getInheritedStringAttribute(ASAtom.ACTUAL_TEXT);
 	}
 
+	public COSString getInheritedAlt() {
+		return getInheritedStringAttribute(ASAtom.ALT);
+	}
+
 	public COSString getInheritedStringAttribute(ASAtom key) {
+		COSString string = getStringAttribute(key);
+		if (string != null) {
+			return null;
+		}
 		if (markedContent != null) {
-			COSString string = markedContent.getInheritedStringAttribute(key);
+			string = markedContent.getInheritedStringAttribute(key);
 			if (string != null) {
 				return string;
 			}
 		}
-		return getStringAttribute(key);
+		return null;
 	}
 
 	public COSString getStringAttribute(ASAtom key) {
@@ -249,13 +257,17 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 
 	public Long getInheritedMCID() {
+		Long mcid = getMCID();
+		if (mcid != null) {
+			return mcid;
+		}
 		if (markedContent != null) {
-			Long mcid = markedContent.getInheritedMCID();
+			mcid = markedContent.getInheritedMCID();
 			if (mcid != null) {
 				return mcid;
 			}
 		}
-		return getMCID();
+		return null;
 	}
 
 }

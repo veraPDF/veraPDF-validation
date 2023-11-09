@@ -18,72 +18,39 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.GenericModelObject;
-import org.verapdf.model.baselayer.Object;
+import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.operator.Operator;
-import org.verapdf.model.selayer.SEContentItem;
+import org.verapdf.model.selayer.SEGroupedContent;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
-import java.util.Collections;
 import java.util.List;
 
-/**
- * @author Maxim Plushchov
- */
-public abstract class GFSEContentItem extends GenericModelObject implements SEContentItem {
-
-    public static final String CONTENT_ITEM = "contentItem";
-
-    protected Long parentMCID;
-    protected GFOpMarkedContent parentMarkedContentOperator;
-
+public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGroupedContent {
+    
     List<Operator> operators;
     protected COSObject parentStructElem;
     protected String parentsTags;
-
-    public GFSEContentItem(String objectType, COSObject parentStructElem, String parentsTags) {
+    protected boolean isSignature;
+    protected final String defaultLang;
+    
+    public GFSEGroupedContent(String objectType, COSObject parentStructElem, String parentsTags, String defaultLang, 
+                              boolean isSignature) {
         super(objectType);
         this.parentStructElem = parentStructElem;
         this.parentsTags = parentsTags;
-    }
-
-    public GFSEContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator, COSObject parentStructElem,
-                           String parentsTags) {
-        super(objectType);
-        this.parentMarkedContentOperator = parentMarkedContentOperator;
-        this.parentMCID = parentMarkedContentOperator != null ? parentMarkedContentOperator.getMCID() : null;
-        this.parentStructElem = parentStructElem;
-        this.parentsTags = parentsTags;
-    }
-
-    @Override
-    public String getExtraContext() {
-        return parentMCID != null ? "mcid:" + parentMCID : null;
-    }
-
-    @Override
-    public List<? extends Object> getLinkedObjects(String link) {
-        switch (link) {
-            case CONTENT_ITEM:
-                return Collections.emptyList();
-            default:
-                return super.getLinkedObjects(link);
-        }
+        this.defaultLang = defaultLang;
+        this.isSignature = isSignature;
     }
 
     @Override
     public String getparentsTags() {
-        if (parentMarkedContentOperator != null) {
-            return parentMarkedContentOperator.getParentsTags();
-        }
         return parentsTags;
     }
 
@@ -103,8 +70,12 @@ public abstract class GFSEContentItem extends GenericModelObject implements SECo
     }
 
     @Override
-    public String getActualText() {
-        return null;
+    public Boolean getisSignature() {
+        return isSignature;
+    }
+
+    public String getLang() {
+        return defaultLang;
     }
 
     @Override
@@ -124,5 +95,27 @@ public abstract class GFSEContentItem extends GenericModelObject implements SECo
             }
         }
         return false;
+    }
+
+    public String getInheritedActualText() {
+        return null;
+    }
+
+    public String getInheritedAlt() {
+        return null;
+    }
+    
+    public Long getMCID() {
+        return null;
+    }
+
+    @Override
+    public String getActualText() {
+        return null;
+    }
+
+    @Override
+    public String getAlt() {
+        return null;
     }
 }

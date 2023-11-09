@@ -66,14 +66,18 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private final String defaultLang;
 	private final PDColorSpace blendingColorSpace;
 
+	private boolean isSignature;
+
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
-					 GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags, String defaultLang) {
+					 GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags, 
+					 String defaultLang, boolean isSignature) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
 		this.blendingColorSpace = getBlendingColorSpace();
 		this.defaultLang = defaultLang;
+		this.isSignature = isSignature;
 	}
 
 	@Override
@@ -205,7 +209,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 			gfContentStream = new GFPDSemanticContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructElem, parentsTags, defaultLang);
+					parentStructElem, parentsTags, defaultLang, isSignature);
 		}
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		streams.add(gfContentStream);

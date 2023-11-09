@@ -47,13 +47,31 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 
 	@Override
 	public String getTU() {
-		if (((PDWidgetAnnotation) simplePDObject).getT() == null) {
+		if (!isField()) {
 			COSObject parent = ((PDWidgetAnnotation) simplePDObject).getParent();
 			return parent != null ? parent.getStringKey(ASAtom.TU) : null;
 		}
 		return ((PDAnnotation) simplePDObject).getTU();
 	}
 
+	private boolean isField() {
+		return ((PDWidgetAnnotation) simplePDObject).getT() != null;
+	}
+
+	@Override
+	protected boolean isSignature() {
+		ASAtom FT = null;
+		if (!isField()) {
+			COSObject parent = ((PDWidgetAnnotation) simplePDObject).getParent();
+			if (parent != null) {
+				FT = parent.getNameKey(ASAtom.FT);
+			}
+		} else {
+			FT = ((PDAnnotation) simplePDObject).getFT();
+		}
+		return ASAtom.SIG.equals(FT);
+	}
+	
 	@Override
 	public Boolean getcontainsLbl() {
 		TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
