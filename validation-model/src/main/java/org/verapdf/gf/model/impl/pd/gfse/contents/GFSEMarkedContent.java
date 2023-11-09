@@ -18,7 +18,7 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
@@ -50,26 +50,19 @@ import java.util.Stack;
 /**
  * @author Maxim Plushchov
  */
-public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedContent {
+public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedContent {
 
     public static final String MARKED_CONTENT_TYPE = "SEMarkedContent";
 
     public static final String LANG = "Lang";
 
-    private final String defaultLang;
-
     private final GFOpMarkedContent operator;
 
-    public GFSEMarkedContent(List<Operator> operators, COSObject parentStructElem, String parentsTags, String defaultLang) {
-        this(operators, null, parentStructElem, parentsTags, defaultLang);
-    }
-
-    public GFSEMarkedContent(List<Operator> operators, GFOpMarkedContent parentMarkedContentOperator,
-                             COSObject parentStructElem, String parentsTags, String defaultLang) {
-        super(MARKED_CONTENT_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
+    public GFSEMarkedContent(List<Operator> operators, COSObject parentStructElem, String parentsTags, String defaultLang, 
+                             boolean isSignature) {
+        super(MARKED_CONTENT_TYPE, parentStructElem, parentsTags, defaultLang, isSignature);
         this.operators = operators.subList(1, operators.size() - 1);
         this.operator = (GFOpMarkedContent)operators.get(0);
-        this.defaultLang = defaultLang;
         COSObject structElem = operator.getParentStructElem();
         if (structElem != null) {
             this.parentStructElem = structElem;
@@ -82,7 +75,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
             case CONTENT_ITEM:
                 return this.getContentItem();
             case LANG:
-                return this.getLang();
+                return this.getLinkLang();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -104,24 +97,24 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
                 if (!markedContentStack.empty()) {
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
-                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), this.operator,
-                                parentStructElem, parentsTags, defaultLang));
+                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1),
+                                parentStructElem, parentsTags, defaultLang, isSignature));
                     }
                 }
             }
             if (markedContentStack.empty()) {
                 if (op instanceof GFOpTextShow) {
-                    list.add(new GFSETextItem((GFOpTextShow)op, this.operator, parentStructElem, parentsTags, defaultLang));
+                    list.add(new GFSETextItem((GFOpTextShow)op, this));
                 } else if (op instanceof GFOp_sh) {
-                    list.add(new GFSEShadingItem((GFOp_sh)op, this.operator, parentStructElem, parentsTags));
+                    list.add(new GFSEShadingItem((GFOp_sh)op, this));
                 } else if (op instanceof GFOpPathPaint && !(op instanceof GFOp_n)) {
-                    list.add(new GFSELineArtItem((GFOpPathPaint)op, this.operator, parentStructElem, parentsTags));
+                    list.add(new GFSELineArtItem((GFOpPathPaint)op, this));
                 } else if (op instanceof GFOp_EI) {
-                    list.add(new GFSEInlineImageItem((GFOp_EI)op, this.operator, parentStructElem, parentsTags));
+                    list.add(new GFSEInlineImageItem((GFOp_EI)op, this));
                 } else if (op instanceof GFOp_Do) {
                     List<PDXObject> xObjects = ((GFOp_Do)op).getXObject();
                     if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
-                        list.add(new GFSEImageXObjectItem((GFOp_Do)op, (GFPDXImage)xObjects.get(0), this.operator, parentStructElem, parentsTags));
+                        list.add(new GFSEImageXObjectItem((GFOp_Do)op, (GFPDXImage)xObjects.get(0), this));
                     }
                 }
             }
@@ -129,7 +122,7 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
         return Collections.unmodifiableList(list);
     }
 
-    public List<CosLang> getLang() {
+    public List<CosLang> getLinkLang() {
         return operator.getLang();
     }
 
@@ -141,8 +134,8 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
 
     @Override
     public String getExtraContext() {
-        Long mcid = operator.getMCID();
-        return mcid != null ?  "mcid:" + mcid : parentMCID != null ? "mcid:" + parentMCID : null;
+        Long mcid = operator.getInheritedMCID();
+        return mcid != null ? "mcid:" + mcid : null;
     }
 
     @Override
@@ -177,4 +170,47 @@ public class GFSEMarkedContent extends GFSEContentItem implements SEMarkedConten
         return ActualText != null ? ActualText.toString() : null;
     }
 
+    @Override
+    public String getparentsTags() {
+        return operator.getParentsTags();
+    }
+
+    @Override
+    public String getLang() {
+        List<CosLang> lang = operator.getLang();
+        if (lang != null && lang.size() != 0) {
+            return lang.get(0).getunicodeValue();
+        }
+        if (GFOp_BDC.OP_BDC_TYPE.equals(operator.getObjectType())) {
+            String structParentLang = ((GFOp_BDC)operator).getstructParentLang();
+            if (structParentLang != null) {
+                return structParentLang;
+            }
+        }
+        String parentLang = operator.getParentLang();
+        return parentLang != null ? parentLang : super.getLang();
+    }
+
+    @Override
+    public String getInheritedActualText() {
+        COSString actualText = operator.getInheritedActualText();
+        if (actualText != null) {
+            return actualText.getString();
+        }
+        return null;
+    }
+
+    @Override
+    public String getInheritedAlt() {
+        COSString alt = operator.getInheritedAlt();
+        if (alt != null) {
+            return alt.getString();
+        }
+        return null;
+    }
+    
+    @Override
+    public Long getMCID() {
+        return operator.getMCID();
+    }
 }

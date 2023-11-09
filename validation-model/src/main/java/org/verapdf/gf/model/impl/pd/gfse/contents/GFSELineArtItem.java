@@ -18,10 +18,8 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
 import org.verapdf.model.selayer.SELineArtItem;
 
@@ -34,16 +32,10 @@ public class GFSELineArtItem extends GFSESimpleContentItem implements SELineArtI
 
     private static final String LINE_ART_CONTENT_ITEM_TYPE = "lineArt";
 
-    GFOpPathPaint opPathPaint;
+    private final GFOpPathPaint opPathPaint;
 
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, COSObject parentStructElem, String parentsTags) {
-        super(LINE_ART_ITEM_TYPE, parentStructElem, parentsTags);
-        this.opPathPaint = opPathPaint;
-    }
-
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, GFOpMarkedContent parentMarkedContentOperator,
-                           COSObject parentStructElem, String parentsTags) {
-        super(LINE_ART_ITEM_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
+    public GFSELineArtItem(GFOpPathPaint opPathPaint, GFSEGroupedContent groupedContent) {
+        super(LINE_ART_ITEM_TYPE, groupedContent);
         this.opPathPaint = opPathPaint;
     }
 
