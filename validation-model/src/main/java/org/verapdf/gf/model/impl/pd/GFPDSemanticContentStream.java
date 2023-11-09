@@ -26,8 +26,8 @@ import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_EMC;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEMarkedContent;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEUnmarkedContent;
+import org.verapdf.gf.model.impl.pd.gfse.contents.GFSEMarkedContent;
+import org.verapdf.gf.model.impl.pd.gfse.contents.GFSEUnmarkedContent;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDSemanticContentStream;
 import org.verapdf.model.selayer.SEContentItem;
@@ -48,6 +48,8 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 	public static final String SEMANTIC_CONTENT_STREAM_TYPE = "PDSemanticContentStream";
 
 	private String defaultLang;
+	
+	private boolean isSignature = false;
 
 	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
                                      GraphicState inheritedGraphicState,
@@ -63,14 +65,13 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 				parentsTags, SEMANTIC_CONTENT_STREAM_TYPE);
 	}
 
-	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream,
-									 PDResourcesHandler resourcesHandler,
-									 GraphicState inheritedGraphicState,
-									 StructureElementAccessObject structureElementAccessObject,
-									 COSObject parentStructElem, String parentsTags, String defaultLang) {
+	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
+									 GraphicState inheritedGraphicState, StructureElementAccessObject structureElementAccessObject,
+									 COSObject parentStructElem, String parentsTags, String defaultLang, boolean isSignature) {
 		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructElem,
 				parentsTags);
 		this.defaultLang = defaultLang;
+		this.isSignature = isSignature;
 	}
 
 	@Override
@@ -96,7 +97,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 			if (GFOp_BDC.OP_BDC_TYPE.equals(type) || GFOp_BMC.OP_BMC_TYPE.equals(type)) {
 				if (markedContentStack.empty() && i != markedContentIndex + 1) {
 					list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, i), parentStructElem,
-							parentsTags, defaultLang));
+							parentsTags, defaultLang, isSignature));
 				}
 				markedContentStack.push(i);
 			} else if (GFOp_EMC.OP_EMC_TYPE.equals(type)) {
@@ -104,7 +105,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 					markedContentIndex = markedContentStack.pop();
 					if (markedContentStack.empty()) {
 						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), parentStructElem,
-								parentsTags, defaultLang));
+								parentsTags, defaultLang, isSignature));
 						markedContentIndex = i;
 						unmarkedContentIndex = i + 1;
 					}
@@ -113,7 +114,7 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 		}
 		if (unmarkedContentIndex != operators.size()) {
 			list.add(new GFSEUnmarkedContent(operators.subList(unmarkedContentIndex, operators.size()),
-					parentStructElem, parentsTags, defaultLang));
+					parentStructElem, parentsTags, defaultLang, isSignature));
 		}
 		return Collections.unmodifiableList(list);
 	}

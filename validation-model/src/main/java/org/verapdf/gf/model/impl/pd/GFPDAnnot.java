@@ -370,6 +370,10 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		}
 		return Collections.emptyList();
 	}
+	
+	protected boolean isSignature() {
+		return false;
+	}
 
 	/**
 	 * @return normal appearance stream (N key in the appearance dictionary) of
@@ -424,7 +428,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
 			List<CosLang> annotLang = getLang();
 			GFPDXForm xForm = new GFPDXForm(toAdd, resources, null, getParentDictionary(), "", 
-					annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue());
+					annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue(), isSignature());
 			this.containsTransparency |= xForm.containsTransparency();
 			list.add(xForm);
 		}
