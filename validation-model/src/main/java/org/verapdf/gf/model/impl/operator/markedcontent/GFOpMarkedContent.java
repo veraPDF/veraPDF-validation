@@ -239,7 +239,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	public COSString getInheritedStringAttribute(ASAtom key) {
 		COSString string = getStringAttribute(key);
 		if (string != null) {
-			return null;
+			return string;
 		}
 		if (markedContent != null) {
 			string = markedContent.getInheritedStringAttribute(key);
