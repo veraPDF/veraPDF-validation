@@ -18,31 +18,25 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.selayer.SEInlineImageItem;
+import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
+import org.verapdf.gf.model.impl.pd.images.GFPDXImage;
+import org.verapdf.model.selayer.SEImageXObjectItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSEInlineImageItem extends GFSEImageItem implements SEInlineImageItem {
+public class GFSEImageXObjectItem extends GFSEImageItem implements SEImageXObjectItem {
 
-    public static final String INLINE_IMAGE_ITEM_TYPE = "SEInlineImageItem";
+    public static final String IMAGE_X_OBJECT_ITEM_TYPE = "SEImageXObjectItem";
 
-    private GFOp_EI operator;
+    private final GFOp_Do operator;
+    private final GFPDXImage image;
 
-    public GFSEInlineImageItem(GFOp_EI operator, COSObject parentStructElem, String parentsTags) {
-        super(INLINE_IMAGE_ITEM_TYPE, parentStructElem, parentsTags);
+    public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, GFSEGroupedContent groupedContent) {
+        super(IMAGE_X_OBJECT_ITEM_TYPE, groupedContent);
         this.operator = operator;
+        this.image = image;
     }
-
-    public GFSEInlineImageItem(GFOp_EI operator, GFOpMarkedContent parentMarkedContentOperator,
-                               COSObject parentStructElem, String parentsTags) {
-        super(INLINE_IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructElem, parentsTags);
-        this.operator = operator;
-    }
-
 }

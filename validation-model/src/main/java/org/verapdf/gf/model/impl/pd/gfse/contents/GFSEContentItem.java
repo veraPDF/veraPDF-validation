@@ -18,30 +18,19 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.selayer.SEImageItem;
+import org.verapdf.model.GenericModelObject;
+import org.verapdf.model.selayer.SEContentItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
+public abstract class GFSEContentItem extends GenericModelObject implements SEContentItem {
 
-    private static final String IMAGE_CONTENT_ITEM_TYPE = "image";
+    public static final String CONTENT_ITEM = "contentItem";
 
-    public GFSEImageItem(String objectType, COSObject parentStructElem, String parentsTags) {
-        super(objectType, parentStructElem, parentsTags);
-    }
-
-    public GFSEImageItem(String objectType, GFOpMarkedContent parentMarkedContentOperator,
-                         COSObject parentStructElem, String parentsTags) {
-        super(objectType, parentMarkedContentOperator, parentStructElem, parentsTags);
-    }
-
-    @Override
-    public String getitemType() {
-        return IMAGE_CONTENT_ITEM_TYPE;
+    public GFSEContentItem(String objectType) {
+        super(objectType);
     }
 }
