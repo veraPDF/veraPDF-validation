@@ -168,7 +168,8 @@ public class GFADocument extends GFAObject implements ADocument {
 	}
 
 	public COSObject getObjectStreamsValue() {
-		COSObject object = new COSObject(new COSArray(StaticResources.getDocument().getDocument().getObjectStreamsList()));
+		List<COSObject> objectStreamsList = StaticResources.getDocument().getDocument().getObjectStreamsList();
+		COSObject object = objectStreamsList.isEmpty() ? null : new COSObject(new COSArray(objectStreamsList));
 		return object;
 	}
 
