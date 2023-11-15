@@ -60,7 +60,7 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 			String link) {
 		switch (link) {
 			case TAG:
-				return this.getTag();
+				return this.getLinkTag();
 			case PROPERTIES:
 				return this.getPropertiesDict();
 			case LANG:

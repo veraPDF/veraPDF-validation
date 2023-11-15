@@ -49,7 +49,7 @@ public class GFOp_BMC extends GFOpMarkedContent implements Op_BMC {
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case TAG:
-                return this.getTag();
+                return this.getLinkTag();
             case PROPERTIES:
                 return this.getPropertiesDict();
             default:
@@ -58,16 +58,14 @@ public class GFOp_BMC extends GFOpMarkedContent implements Op_BMC {
     }
 
 	@Override
-	public List<CosName> getTag() {
-		if (!this.arguments.isEmpty()) {
-			COSBase name = this.arguments.get(this.arguments.size() - 1);
-			if (name.getType() == COSObjType.COS_NAME) {
-				List<CosName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-				list.add(new GFCosName((COSName) name));
-				return Collections.unmodifiableList(list);
-			}
-		}
-		return Collections.emptyList();
-	}
+    public COSName getTag() {
+        if (!this.arguments.isEmpty()) {
+            COSBase name = this.arguments.get(this.arguments.size() - 1);
+            if (name.getType() == COSObjType.COS_NAME) {
+                return (COSName) name;
+            }
+        }
+        return null;
+    }
 
 }
