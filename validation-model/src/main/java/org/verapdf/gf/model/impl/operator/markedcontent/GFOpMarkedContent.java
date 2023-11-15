@@ -90,17 +90,25 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		}
 	}
 
-    public List<CosName> getTag() {
-        if (this.arguments.size() > 1) {
-			COSBase name = this.arguments.get(this.arguments.size() - 2);
-			if (name.getType() == COSObjType.COS_NAME) {
-				List<CosName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-				list.add(new GFCosName((COSName) name));
-				return Collections.unmodifiableList(list);
-			}
+    public List<CosName> getLinkTag() {
+		COSName tag = getTag();
+        if (tag != null) {
+			List<CosName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosName(tag));
+			return Collections.unmodifiableList(list);
         }
         return Collections.emptyList();
     }
+	
+	public COSName getTag() {
+		if (this.arguments.size() > 1) {
+			COSBase name = this.arguments.get(this.arguments.size() - 2);
+			if (name.getType() == COSObjType.COS_NAME) {
+				return (COSName) name;
+			}
+		}
+		return null;
+	}
 
     protected List<CosDict> getPropertiesDict() {
 		if (this.propertiesDict != null) {
@@ -122,10 +130,10 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	}
 
 	public String getParentsTags() {
-		List<CosName> tagList = getTag();
+		COSName tagName = getTag();
 		String tag = "";
-		if (tagList.size() != 0) {
-			tag = tagList.get(0).getinternalRepresentation();
+		if (tagName != null) {
+			tag = tagName.getString();
 		}
 		String parentsTags = "";
 		if (markedContent != null) {
@@ -241,13 +249,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		if (string != null) {
 			return string;
 		}
-		if (markedContent != null) {
-			string = markedContent.getInheritedStringAttribute(key);
-			if (string != null) {
-				return string;
-			}
-		}
-		return null;
+		return markedContent != null ? markedContent.getInheritedStringAttribute(key) : null;
 	}
 
 	public COSString getStringAttribute(ASAtom key) {
@@ -261,13 +263,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		if (mcid != null) {
 			return mcid;
 		}
-		if (markedContent != null) {
-			mcid = markedContent.getInheritedMCID();
-			if (mcid != null) {
-				return mcid;
-			}
-		}
-		return null;
+		return markedContent != null ? markedContent.getInheritedMCID() : null;
 	}
 
 }
