@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.gfse.contents;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
@@ -140,11 +141,8 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
 
     @Override
     public String gettag() {
-        List<CosName> tag = operator.getTag();
-        if (tag != null && tag.size() != 0) {
-            return tag.get(0).getinternalRepresentation();
-        }
-        return null;
+        COSName tag = operator.getTag();
+        return tag != null ? tag.getString() : null;
     }
 
     @Override

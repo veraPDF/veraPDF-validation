@@ -45,7 +45,7 @@ public class GFOp_DP extends GFOpMarkedContent implements Op_DP {
 			String link) {
 		switch (link) {
 			case TAG:
-				return this.getTag();
+				return this.getLinkTag();
 			case PROPERTIES:
 				return this.getPropertiesDict();
 			default:

@@ -45,25 +45,21 @@ public class GFOp_MP extends GFOpMarkedContent implements Op_MP {
     }
 
     @Override
-    public List<? extends Object> getLinkedObjects(
-            String link) {
+    public List<? extends Object> getLinkedObjects(String link) {
         if (TAG.equals(link)) {
-            return this.getTag();
+            return this.getLinkTag();
         }
         return super.getLinkedObjects(link);
     }
 
-	@Override
-	public List<CosName> getTag() {
+	public COSName getTag() {
 		if (!this.arguments.isEmpty()) {
 			COSBase name = this.arguments.get(this.arguments.size() - 1);
 			if (name.getType() == COSObjType.COS_NAME) {
-				List<CosName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-				list.add(new GFCosName((COSName) name));
-				return Collections.unmodifiableList(list);
+				return (COSName) name;
 			}
 		}
-		return Collections.emptyList();
+		return null;
 	}
 
 }
