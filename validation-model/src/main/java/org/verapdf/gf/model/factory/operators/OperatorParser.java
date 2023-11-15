@@ -522,10 +522,9 @@ class OperatorParser {
 				}
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
 						resourcesHandler, this.graphicState.clone(), parentStructElem, parentsTags);
-				List<org.verapdf.model.pdlayer.PDXObject> pdxObjects = op_do.getXObject();
-				if (!pdxObjects.isEmpty()) {
-					GFPDXObject xobj = (GFPDXObject) pdxObjects.get(0);
-					this.transparencyGraphicState.setVeraXObject(xobj);
+				org.verapdf.model.pdlayer.PDXObject pdxObject = op_do.getXObject();
+				if (pdxObject != null) {
+					this.transparencyGraphicState.setVeraXObject((GFPDXObject)pdxObject);
 				}
 				processedOperators.add(op_do);
 				break;

@@ -77,9 +77,9 @@ public class GFSEUnmarkedContent extends GFSEGroupedContent implements SEUnmarke
             } else if (operator instanceof GFOp_EI) {
                 list.add(new GFSEInlineImageItem((GFOp_EI)operator, this));
             } else if (operator instanceof GFOp_Do) {
-                List<PDXObject> xObjects = ((GFOp_Do)operator).getXObject();
-                if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
-                    list.add(new GFSEImageXObjectItem((GFOp_Do)operator, (GFPDXImage)xObjects.get(0), this));
+                PDXObject xObject = ((GFOp_Do)operator).getXObject();
+                if (xObject != null && ASAtom.IMAGE.getValue().equals(xObject.getSubtype())) {
+                    list.add(new GFSEImageXObjectItem((GFOp_Do)operator, (GFPDXImage)xObject, this));
                 }
             }
         }
