@@ -64,7 +64,7 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 			case PROPERTIES:
 				return this.getPropertiesDict();
 			case LANG:
-				return this.getLang();
+				return this.getLinkLang();
 			default:
 				return super.getLinkedObjects(link);
 		}
