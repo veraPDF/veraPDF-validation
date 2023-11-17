@@ -151,7 +151,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
             }
 			if (TYPE0_STRING.equals(this.getSubtype())) {
 			    GFFontProgram font = new GFFontProgram(fontProgram,
-			            (GFPDFont) ((GFPDType0Font) this).getLinkedObjects(GFPDType0Font.DESCENDANT_FONTS).get(0));
+			            (GFPDFont) ((GFPDType0Font) this).getDescendantFont());
 			    return getFontProgramList(font);
 			}
 			GFFontProgram font = new GFFontProgram(fontProgram,

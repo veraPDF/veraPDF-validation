@@ -229,7 +229,17 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		return null;
 	}
 
-	private List<CosLang> getLang() {
+	private List<CosLang> getLinkLang() {
+		COSString lang = getLang();
+		if (lang != null) {
+			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosLang(lang));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+	
+	public COSString getLang() {
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		Long structParent = ((PDAnnotation)this.simplePDObject).getStructParent();
 		if (structTreeRoot != null && structParent != null) {
@@ -238,13 +248,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			if (structureElement != null) {
 				COSObject baseLang = structureElement.getKey(ASAtom.LANG);
 				if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
-					List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-					list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
-					return Collections.unmodifiableList(list);
+					return (COSString) baseLang.getDirectBase();
 				}
 			}
 		}
-		return Collections.emptyList();
+		return null;
 	}
 
 	private List<CosBM> getBM() {
@@ -343,7 +351,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			case APPEARANCE:
 				return this.getAppearance();
 			case LANG:
-				return this.getLang();
+				return this.getLinkLang();
 			case BM:
 				return this.getBM();
 			default:
@@ -426,9 +434,9 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	private void addAppearance(List<PDXForm> list, PDAppearanceStream toAdd) {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
-			List<CosLang> annotLang = getLang();
+			COSString annotLang = getLang();
 			GFPDXForm xForm = new GFPDXForm(toAdd, resources, null, getParentDictionary(), "", 
-					annotLang.isEmpty() ? null : annotLang.get(0).getunicodeValue(), isSignature());
+					annotLang == null ? null : annotLang.getString(), isSignature());
 			this.containsTransparency |= xForm.containsTransparency();
 			list.add(xForm);
 		}

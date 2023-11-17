@@ -37,7 +37,6 @@ import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
 import org.verapdf.gf.model.impl.pd.images.GFPDXImage;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosLang;
-import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.model.selayer.SEContentItem;
@@ -113,9 +112,9 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
                 } else if (op instanceof GFOp_EI) {
                     list.add(new GFSEInlineImageItem((GFOp_EI)op, this));
                 } else if (op instanceof GFOp_Do) {
-                    List<PDXObject> xObjects = ((GFOp_Do)op).getXObject();
-                    if (xObjects != null && xObjects.size() != 0 && ASAtom.IMAGE.getValue().equals(xObjects.get(0).getSubtype())) {
-                        list.add(new GFSEImageXObjectItem((GFOp_Do)op, (GFPDXImage)xObjects.get(0), this));
+                    PDXObject xObject = ((GFOp_Do)op).getXObject();
+                    if (xObject != null && ASAtom.IMAGE.getValue().equals(xObject.getSubtype())) {
+                        list.add(new GFSEImageXObjectItem((GFOp_Do)op, (GFPDXImage)xObject, this));
                     }
                 }
             }
@@ -124,7 +123,7 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     }
 
     public List<CosLang> getLinkLang() {
-        return operator.getLang();
+        return operator.getLinkLang();
     }
 
     @Override
@@ -175,9 +174,9 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
 
     @Override
     public String getLang() {
-        List<CosLang> lang = operator.getLang();
-        if (lang != null && lang.size() != 0) {
-            return lang.get(0).getunicodeValue();
+        COSString lang = operator.getLang();
+        if (lang != null) {
+            return lang.getString();
         }
         if (GFOp_BDC.OP_BDC_TYPE.equals(operator.getObjectType())) {
             String structParentLang = ((GFOp_BDC)operator).getstructParentLang();

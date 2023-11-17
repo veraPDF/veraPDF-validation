@@ -119,14 +119,19 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
         return Collections.emptyList();
     }
 
-	public List<CosLang> getLang() {
-    	COSObject lang = getAttribute(ASAtom.LANG, COSObjType.COS_STRING);
+	public List<CosLang> getLinkLang() {
+		COSString lang = getLang();
     	if (lang != null) {
 			List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			list.add(new GFCosLang((COSString) lang.getDirectBase()));
+			list.add(new GFCosLang(lang));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	public COSString getLang() {
+		COSObject lang = getAttribute(ASAtom.LANG, COSObjType.COS_STRING);
+		return lang != null ? (COSString) lang.getDirectBase() : null;
 	}
 
 	public String getParentsTags() {
@@ -157,9 +162,9 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		if (markedContent == null) {
 			return null;
 		}
-		List<CosLang> lang = markedContent.getLang();
-		if (lang != null && lang.size() != 0) {
-			return lang.get(0).getunicodeValue();
+		COSString lang = markedContent.getLang();
+		if (lang != null) {
+			return lang.getString();
 		}
 		if (GFOp_BDC.OP_BDC_TYPE.equals(markedContent.getObjectType())) {
 			String structParentLang = ((GFOp_BDC)markedContent).getstructParentLang();
