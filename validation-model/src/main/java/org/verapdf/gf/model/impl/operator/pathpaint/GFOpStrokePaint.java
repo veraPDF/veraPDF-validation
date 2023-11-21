@@ -33,8 +33,10 @@ import java.util.List;
 public abstract class GFOpStrokePaint extends GFOpPathPaint {
 
 	protected GFOpStrokePaint(List<COSBase> arguments, final GraphicState state,
-							  final PDResourcesHandler resources, final String operatorType) {
-		super(arguments, state, resources, operatorType);
+							  final PDResourcesHandler resourcesHandler, final String operatorType) {
+		super(arguments, state.isProcessColorOperators(), operatorType);
+		this.strokeCS = getColorSpace(state, resourcesHandler, state.getStrokeColorSpace(), 
+				state.isOverprintingFlagStroke());
 	}
 
 	@Override

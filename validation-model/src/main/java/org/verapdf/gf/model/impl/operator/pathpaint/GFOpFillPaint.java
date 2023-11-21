@@ -33,8 +33,10 @@ import java.util.List;
 public abstract class GFOpFillPaint extends GFOpPathPaint {
 
     protected GFOpFillPaint(List<COSBase> arguments, final GraphicState state,
-                            final PDResourcesHandler resources, final String opType) {
-        super(arguments, state, resources, opType);
+                            final PDResourcesHandler resourcesHandler, final String opType) {
+        super(arguments, state.isProcessColorOperators(), opType);
+        this.fillCS = getColorSpace(state, resourcesHandler, state.getFillColorSpace(), 
+                state.isOverprintingFlagNonStroke());
     }
 
     @Override
