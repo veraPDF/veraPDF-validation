@@ -33,7 +33,6 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.operator.OpTextShow;
 import org.verapdf.model.pdlayer.PDFont;
-import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.cff.CFFFontProgram;
 import org.verapdf.pd.structure.StructureElementAccessObject;
@@ -70,17 +69,11 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	 */
 	public static final String STROKE_COLOR_SPACE = "strokeCS";
 
-	private final PDColorSpace rawFillColorSpace;
-	private final PDColorSpace rawStrokeColorSpace;
-
 	private final org.verapdf.pd.font.PDFont font;
 	private final Double scaleFactor;
 
 	private final RenderingMode renderingMode;
 
-	private final int opm;
-	private final boolean overprintingFlagStroke;
-	private final boolean overprintingFlagNonStroke;
 	private final GraphicState inheritedGraphicState;
 
 	private final PDResourcesHandler resourcesHandler;
@@ -88,25 +81,22 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private final StructureElementAccessObject structureElementAccessObject;
 
 	private List<PDFont> fonts = null;
-	private List<org.verapdf.model.pdlayer.PDColorSpace> fillCS = null;
-	private List<org.verapdf.model.pdlayer.PDColorSpace> strokeCS = null;
+	private final org.verapdf.model.pdlayer.PDColorSpace fillCS;
+	private final org.verapdf.model.pdlayer.PDColorSpace strokeCS;
 
 	protected GFOpTextShow(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
 						   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject,
 						   final String opType) {
 		super(arguments, opType);
-		this.rawFillColorSpace = state.getFillColorSpace();
-		this.rawStrokeColorSpace = state.getStrokeColorSpace();
 		this.font = state.getFont();
 		this.scaleFactor = state.getScaleFactor();
 		this.renderingMode = state.getRenderingMode();
-		this.opm = state.getOpm();
-		this.overprintingFlagStroke = state.isOverprintingFlagStroke();
-		this.overprintingFlagNonStroke = state.isOverprintingFlagNonStroke();
 		this.resourcesHandler = resourcesHandler;
 		this.markedContent = markedContent;
 		this.inheritedGraphicState = state;
 		this.structureElementAccessObject = structureElementAccessObject;
+		this.fillCS = parseFillColorSpace();
+		this.strokeCS = parseStrokeColorSpace();
 	}
 
 	@Override
@@ -173,42 +163,33 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getFillColorSpace() {
-		if (!inheritedGraphicState.isProcessColorOperators()) {
-			return Collections.emptyList();
+		if (inheritedGraphicState.isProcessColorOperators() && this.fillCS != null) {
+			List<org.verapdf.model.pdlayer.PDColorSpace> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(fillCS);
+			return Collections.unmodifiableList(list);
 		}
-		if (this.fillCS == null) {
-			this.fillCS = parseFillColorSpace();
-		}
-		return this.fillCS;
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.pdlayer.PDColorSpace> getStrokeColorSpace() {
-		if (!inheritedGraphicState.isProcessColorOperators()) {
-			return Collections.emptyList();
+		if (inheritedGraphicState.isProcessColorOperators() && this.strokeCS != null) {
+			List<org.verapdf.model.pdlayer.PDColorSpace> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(strokeCS);
+			return Collections.unmodifiableList(list);
 		}
-		if (this.strokeCS == null) {
-			this.strokeCS = parseStrokeColorSpace();
-		}
-		return this.strokeCS;
+		return Collections.emptyList();
 	}
 
 	public org.verapdf.model.pdlayer.PDColorSpace getVeraModelFillColorSpace() {
-		if (this.fillCS == null) {
-			this.fillCS = parseFillColorSpace();
-		}
-		return this.fillCS.isEmpty() ? null : this.fillCS.get(0);
+		return this.fillCS;
 	}
 
 	public org.verapdf.model.pdlayer.PDColorSpace getVeraModelStrokeColorSpace() {
-		if (this.strokeCS == null) {
-			this.strokeCS = parseStrokeColorSpace();
-		}
-		return this.strokeCS.isEmpty() ? null : this.strokeCS.get(0);
+		return this.strokeCS;
 	}
 
 	private List<PDFont> parseFont() {
-		PDFont font = FontFactory.parseFont(this.font, renderingMode,
-				this.resourcesHandler, this.inheritedGraphicState);
+		PDFont font = FontFactory.parseFont(this.font, renderingMode, this.resourcesHandler, this.inheritedGraphicState);
 		if (font != null) {
 			List<PDFont> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			result.add(font);
@@ -217,30 +198,26 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		return Collections.emptyList();
 	}
 
-	private List<org.verapdf.model.pdlayer.PDColorSpace> parseFillColorSpace() {
-		if (this.renderingMode.isFill()) {
-			return this.getColorSpace(this.rawFillColorSpace, this.overprintingFlagNonStroke);
+	private org.verapdf.model.pdlayer.PDColorSpace parseFillColorSpace() {
+		if (inheritedGraphicState.getRenderingMode().isFill()) {
+			return this.getColorSpace(inheritedGraphicState.getFillColorSpace(), 
+					inheritedGraphicState.isOverprintingFlagNonStroke());
 		}
-		return Collections.emptyList();
+		return null;
 	}
 
-	private List<org.verapdf.model.pdlayer.PDColorSpace> parseStrokeColorSpace() {
-		if (this.renderingMode.isStroke()) {
-			return this.getColorSpace(this.rawStrokeColorSpace, this.overprintingFlagStroke);
+	private org.verapdf.model.pdlayer.PDColorSpace parseStrokeColorSpace() {
+		if (inheritedGraphicState.getRenderingMode().isStroke()) {
+			return this.getColorSpace(inheritedGraphicState.getStrokeColorSpace(), 
+					inheritedGraphicState.isOverprintingFlagStroke());
 		}
-		return Collections.emptyList();
+		return null;
 	}
 
-	private List<org.verapdf.model.pdlayer.PDColorSpace> getColorSpace(org.verapdf.pd.colors.PDColorSpace rawColorSpace,
+	private org.verapdf.model.pdlayer.PDColorSpace getColorSpace(org.verapdf.pd.colors.PDColorSpace rawColorSpace,
 			boolean op) {
-		org.verapdf.model.pdlayer.PDColorSpace veraColorSpace = ColorSpaceFactory.getColorSpace(rawColorSpace,
-				this.resourcesHandler, this.opm, op, inheritedGraphicState);
-		if (veraColorSpace != null) {
-			List<org.verapdf.model.pdlayer.PDColorSpace> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			list.add(veraColorSpace);
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
+		return ColorSpaceFactory.getColorSpace(rawColorSpace, this.resourcesHandler, inheritedGraphicState.getOpm(), op, 
+				inheritedGraphicState);
 	}
 
 	/**
