@@ -40,7 +40,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getAF() {
+	private List<AArrayOfFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
@@ -49,7 +49,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
+	private List<AArrayOfFileSpecifications> getAF2_0() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -57,11 +57,6 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -202,7 +197,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return Collections.emptyList();
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getPronunciationLexicon() {
+	private List<AArrayOfFileSpecifications> getPronunciationLexicon() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getPronunciationLexicon2_0();
@@ -211,7 +206,7 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getPronunciationLexicon2_0() {
+	private List<AArrayOfFileSpecifications> getPronunciationLexicon2_0() {
 		COSObject object = getPronunciationLexiconValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -219,11 +214,6 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "PronunciationLexicon"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "PronunciationLexicon"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -276,12 +266,6 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
-	}
-
-	@Override
-	public Boolean getAFHasTypeDictionary() {
-		COSObject AF = getAFValue();
-		return getHasTypeDictionary(AF);
 	}
 
 	@Override
@@ -433,12 +417,6 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
-	public Boolean getisPronunciationLexiconIndirect() {
-		COSObject PronunciationLexicon = getPronunciationLexiconValue();
-		return getisIndirect(PronunciationLexicon);
-	}
-
-	@Override
 	public String getPronunciationLexiconType() {
 		COSObject PronunciationLexicon = getPronunciationLexiconValue();
 		return getObjectType(PronunciationLexicon);
@@ -448,18 +426,6 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	public Boolean getPronunciationLexiconHasTypeArray() {
 		COSObject PronunciationLexicon = getPronunciationLexiconValue();
 		return getHasTypeArray(PronunciationLexicon);
-	}
-
-	@Override
-	public Boolean getPronunciationLexiconHasTypeDictionary() {
-		COSObject PronunciationLexicon = getPronunciationLexiconValue();
-		return getHasTypeDictionary(PronunciationLexicon);
-	}
-
-	@Override
-	public Boolean getPronunciationLexiconHasTypeString() {
-		COSObject PronunciationLexicon = getPronunciationLexiconValue();
-		return getHasTypeString(PronunciationLexicon);
 	}
 
 	@Override

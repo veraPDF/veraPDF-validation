@@ -146,7 +146,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 		return Collections.emptyList();
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getAF() {
+	private List<AArrayOfFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
@@ -155,7 +155,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getAF2_0() {
+	private List<AArrayOfFileSpecifications> getAF2_0() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -163,11 +163,6 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -532,12 +527,6 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	public Boolean getAFHasTypeArray() {
 		COSObject AF = getAFValue();
 		return getHasTypeArray(AF);
-	}
-
-	@Override
-	public Boolean getAFHasTypeDictionary() {
-		COSObject AF = getAFValue();
-		return getHasTypeDictionary(AF);
 	}
 
 	@Override

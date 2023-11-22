@@ -19,6 +19,8 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "AF":
+				return getAF();
 			case "Decode":
 				return getDecode();
 			case "DecodeParms":
@@ -38,6 +40,28 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AArrayOfFileSpecifications> getAF() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getAF2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfFileSpecifications> getAF2_0() {
+		COSObject object = getAFValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AArrayOfNumbersGeneral> getDecode() {
@@ -410,6 +434,28 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsAF() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
+	}
+
+	public COSObject getAFValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AF"));
+		return object;
+	}
+
+	@Override
+	public String getAFType() {
+		COSObject AF = getAFValue();
+		return getObjectType(AF);
+	}
+
+	@Override
+	public Boolean getAFHasTypeArray() {
+		COSObject AF = getAFValue();
+		return getHasTypeArray(AF);
 	}
 
 	@Override

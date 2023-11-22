@@ -1266,12 +1266,6 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
-	public Long getAFArraySize() {
-		COSObject AF = getAFValue();
-		return getArraySize(AF);
-	}
-
-	@Override
 	public Boolean getcontainsAcroForm() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AcroForm"));
 	}
