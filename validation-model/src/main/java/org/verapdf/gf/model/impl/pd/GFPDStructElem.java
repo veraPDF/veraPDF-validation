@@ -111,17 +111,17 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();
 		if (parent != null) {
-			StructureType parentStandardStructureType = GFSEFactory.getStructureElementStandardStructureType(parent);
+			StructureType parentStandardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(parent);
 			String parentStandardType = parentStandardStructureType != null ? parentStandardStructureType.getType().getValue() : null;
 			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType) || TaggedPDFConstants.DIV.equals(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;
 				}
-				parentStandardStructureType = GFSEFactory.getStructureElementStandardStructureType(parent);
+				parentStandardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(parent);
 				parentStandardType = parentStandardStructureType != null ? parentStandardStructureType.getType().getValue() : null;
 			}
-			if (GFSEFactory.isMathStandardType(parentStandardStructureType)) {
+			if (org.verapdf.pd.structure.PDStructElem.isMathStandardType(parentStandardStructureType)) {
 				return TaggedPDFConstants.MATH_ML;
 			}
 			return parentStandardType;
@@ -141,7 +141,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	}
 	
 	public String getStandardTypeNamespaceURL() {
-		StructureType standardStructureType = GFSEFactory.getStructureElementStandardStructureType(
+		StructureType standardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(
 				(org.verapdf.pd.structure.PDStructElem) this.simplePDObject);
 		return standardStructureType != null ? standardStructureType.getNameSpaceURI() : null;
 	}
