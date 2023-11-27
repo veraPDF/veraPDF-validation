@@ -197,7 +197,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			COSObject parentDictionary = getParentDictionary();
 			if (parentDictionary != null) {
 				PDStructElem structElem = new PDStructElem(parentDictionary, taggedPDFRoleMapHelper.getRoleMap());
-				return GFSEFactory.getStructureElementStandardType(structElem);
+				return PDStructElem.getStructureElementStandardType(structElem);
 			}
 		}
 		return null;
@@ -331,7 +331,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			if (parentDictionary != null) {
 				PDStructElem structElem = new PDStructElem(parentDictionary, taggedPDFRoleMapHelper.getRoleMap());
 				while (structElem != null) {
-					if (TaggedPDFConstants.ARTIFACT.equals(GFSEFactory.getStructureElementStandardType(structElem))) {
+					if (TaggedPDFConstants.ARTIFACT.equals(PDStructElem.getStructureElementStandardType(structElem))) {
 						return true;
 					}
 					structElem = structElem.getParent();

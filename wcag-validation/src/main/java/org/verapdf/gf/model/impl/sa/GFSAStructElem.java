@@ -29,6 +29,7 @@ import org.verapdf.model.salayer.SAStructElem;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.structure.PDMCRDictionary;
 import org.verapdf.pd.structure.PDOBJRDictionary;
+import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.wcag.algorithms.entities.*;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
@@ -291,13 +292,13 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = this.structElemDictionary.getParent();
 		if (parent != null) {
-			String parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
+			String parentStandardType = PDStructElem.getStructureElementStandardType(parent);
 			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType) || TaggedPDFConstants.DIV.equals(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;
 				}
-				parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
+				parentStandardType = PDStructElem.getStructureElementStandardType(parent);
 			}
 			return parentStandardType;
 		}
