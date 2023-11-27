@@ -64,7 +64,7 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
         TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
         if (parentStructElem != null && taggedPDFRoleMapHelper != null) {
             PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
-            return GFSEFactory.getStructureElementStandardType(structElem);
+            return PDStructElem.getStructureElementStandardType(structElem);
         }
         return null;
     }
@@ -88,7 +88,7 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
         if (parentStructElem != null && taggedPDFRoleMapHelper != null) {
             PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
             while (structElem != null) {
-                if (standardType.equals(GFSEFactory.getStructureElementStandardType(structElem))) {
+                if (standardType.equals(PDStructElem.getStructureElementStandardType(structElem))) {
                     return true;
                 }
                 structElem = structElem.getParent();

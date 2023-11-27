@@ -82,7 +82,7 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 		if (parent != null) {
 			PDStructElem parentStructElem = new PDStructElem(parent, taggedPDFRoleMapHelper.getRoleMap());
 			for (PDStructElem child : parentStructElem.getStructChildren()) {
-				if (TaggedPDFConstants.LBL.equals(GFSEFactory.getStructureElementStandardType(child)) && 
+				if (TaggedPDFConstants.LBL.equals(PDStructElem.getStructureElementStandardType(child)) && 
 						!child.getChildren().isEmpty()) {
 					return true;
 				}
