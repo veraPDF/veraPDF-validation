@@ -127,9 +127,15 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     }
 
     @Override
+    public String getLang() {
+        COSString lang = operator.getLang();
+        return lang != null ? lang.getString() : null;
+    }
+
+    @Override
     public String getinheritedLang() {
-        String inheritedLang =  operator.getParentLang();
-        return inheritedLang != null ? inheritedLang : defaultLang;
+        String inheritedLang = operator.getInheritedLang();
+        return inheritedLang != null ? inheritedLang : super.getLangValue();
     }
 
     @Override
@@ -142,11 +148,6 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     public String gettag() {
         COSName tag = operator.getTag();
         return tag != null ? tag.getString() : null;
-    }
-
-    @Override
-    public String getstructureTag() {
-        return parentStructElem != null ? parentStructElem.getNameKeyStringValue(ASAtom.S) : null;
     }
 
     @Override
@@ -173,19 +174,9 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     }
 
     @Override
-    public String getLang() {
-        COSString lang = operator.getLang();
-        if (lang != null) {
-            return lang.getString();
-        }
-        if (GFOp_BDC.OP_BDC_TYPE.equals(operator.getObjectType())) {
-            String structParentLang = ((GFOp_BDC)operator).getstructParentLang();
-            if (structParentLang != null) {
-                return structParentLang;
-            }
-        }
-        String parentLang = operator.getParentLang();
-        return parentLang != null ? parentLang : super.getLang();
+    public String getLangValue() {
+        String lang = getLang();
+        return lang != null ? lang : getinheritedLang();
     }
 
     @Override

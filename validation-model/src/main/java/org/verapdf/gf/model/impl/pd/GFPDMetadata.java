@@ -115,7 +115,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                 }
             }
         } catch (XMPException | IOException e) {
-            LOGGER.log(Level.FINE, "Problems with parsing metadata. " + e.getMessage(), e);
+            LOGGER.log(Level.WARNING, "Problems with parsing metadata. " + e.getMessage(), e);
             if (isMainMetadata) {
                 xmp.add(new AXLMainXMPPackage(null, false, flavour));
             } else if (flavour == null || flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {

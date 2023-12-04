@@ -50,7 +50,7 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     @Override
     public String getLang() {
-        return groupedContent.getLang();
+        return groupedContent.getLangValue();
     }
 
     @Override

@@ -22,7 +22,6 @@ package org.verapdf.gf.model.impl.pd.gfse.contents;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.selayer.SEGroupedContent;
 import org.verapdf.pd.structure.PDStructElem;
@@ -74,7 +73,7 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
         return isSignature;
     }
 
-    public String getLang() {
+    public String getLangValue() {
         return defaultLang;
     }
 
