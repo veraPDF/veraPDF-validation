@@ -158,7 +158,11 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		return parentsTags + "&" + tag;
 	}
 
-	public String getParentLang() {
+	public String getInheritedLang() {
+		String structParentLang = getStructParentLang();
+		if (structParentLang != null) {
+			return structParentLang;
+		}
 		if (markedContent == null) {
 			return null;
 		}
@@ -166,13 +170,11 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		if (lang != null) {
 			return lang.getString();
 		}
-		if (GFOp_BDC.OP_BDC_TYPE.equals(markedContent.getObjectType())) {
-			String structParentLang = ((GFOp_BDC)markedContent).getstructParentLang();
-			if (structParentLang != null) {
-				return structParentLang;
-			}
-		}
-		return markedContent.getParentLang();
+		return markedContent.getInheritedLang();
+	}
+
+	public String getStructParentLang() {
+		return null;
 	}
 
 	public COSObject getParentStructElem() {

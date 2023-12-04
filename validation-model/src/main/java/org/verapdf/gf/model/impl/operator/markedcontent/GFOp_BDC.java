@@ -88,7 +88,8 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 		return null;
 	}
 
-	public String getstructParentLang() {
+	@Override
+	public String getStructParentLang() {
 		COSObject structureElement = getStructElem();
 		if (structureElement == null) {
 			return null;
