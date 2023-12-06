@@ -170,9 +170,8 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 					}
 				} else if (element instanceof PDOBJRDictionary) {
 					COSObject obj = ((PDOBJRDictionary)element).getReferencedObject();
-					if (obj != null && obj.getType() == COSObjType.COS_DICT &&
-							GFSAAnnotation.LINK.equals(obj.getNameKeyStringValue(ASAtom.SUBTYPE))) {
-						getNode().addChild(new GFSAAnnotationNode(new PDAnnotation(obj)));
+					if (obj != null && obj.getType() == COSObjType.COS_DICT) {
+						getNode().addChild(new SemanticAnnot(new GFSAAnnotationNode(new PDAnnotation(obj))));
 					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
 					chunks.addAll(getChunks(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger()));
