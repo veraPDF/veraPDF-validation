@@ -33,8 +33,8 @@ import java.util.List;
  */
 public class GFOutputIntentsFeaturesObjectAdapter implements OutputIntentFeaturesObjectAdapter {
 
-	private PDOutputIntent outInt;
-	private String iccProfileID;
+	private final PDOutputIntent outInt;
+	private final String iccProfileID;
 
 	/**
 	 * Constructs new OutputIntent Feature Object

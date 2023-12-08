@@ -67,7 +67,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
      */
     protected GFCosDict(COSDictionary dictionary, final String type) {
         super(dictionary, type);
-        this.size = dictionary.size().intValue();
+        this.size = dictionary.size();
     }
 
     /**
@@ -75,7 +75,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
      */
     @Override
     public Long getsize() {
-        return Long.valueOf(this.size);
+        return (long) this.size;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
      * Get all keys of the dictionary
      */
     private List<CosName> getKeys() {
-        List<CosName> list = new ArrayList<>(this.baseObject.size().intValue());
+        List<CosName> list = new ArrayList<>(this.baseObject.size());
         for (ASAtom key : this.baseObject.getKeySet()) {
             if (key != null) {
                 COSBase name = COSName.fromValue(key);
@@ -117,7 +117,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
      * Get all values of the dictionary
      */
     private List<CosObject> getValues() {
-        List<CosObject> list = new ArrayList<>(this.baseObject.size().intValue());
+        List<CosObject> list = new ArrayList<>(this.baseObject.size());
         for (COSObject value : this.baseObject.getValues()) {
             if (value != null) {
                 list.add(getFromValue(value.get()));
@@ -134,7 +134,7 @@ public class GFCosDict extends GFCosObject implements CosDict {
         COSObject meta = dictionary.getKey(ASAtom.METADATA);
         ASAtom type = dictionary.getNameKey(ASAtom.TYPE);
         if (org.verapdf.pd.PDMetadata.isMetadataObject(meta) && type != ASAtom.CATALOG) {
-            ArrayList<PDMetadata> pdMetadatas = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            List<PDMetadata> pdMetadatas = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             org.verapdf.pd.PDMetadata md = new org.verapdf.pd.PDMetadata(meta);
             pdMetadatas.add(new GFPDMetadata(md, Boolean.FALSE));
             return Collections.unmodifiableList(pdMetadatas);

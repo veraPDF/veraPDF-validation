@@ -40,10 +40,10 @@ import java.util.List;
  */
 public class GFEmbeddedFileFeaturesObjectAdapter implements EmbeddedFileFeaturesObjectAdapter {
 
-	private COSObject embFile;
+	private final COSObject embFile;
 	private Params params;
-	private COSObject cosEmbFile;
-	private int index;
+	private final COSObject cosEmbFile;
+	private final int index;
 
 	/**
 	 * Constructs new Embedded File Feature Object Adapter
@@ -139,7 +139,7 @@ public class GFEmbeddedFileFeaturesObjectAdapter implements EmbeddedFileFeatures
 					for (COSObject elem : (COSArray) filter.getDirectBase()) {
 						String elemValue = elem.getString();
 						if (elemValue != null) {
-							builder.append(elemValue).append(" ");
+							builder.append(elemValue).append(' ');
 						}
 					}
 					return builder.toString().trim();
@@ -184,9 +184,9 @@ public class GFEmbeddedFileFeaturesObjectAdapter implements EmbeddedFileFeatures
 		return Collections.emptyList();
 	}
 
-	private class Params {
+	private static class Params {
 
-		private COSObject obj;
+		private final COSObject obj;
 
 		public Params(COSObject obj) {
 			this.obj = obj;
@@ -211,8 +211,7 @@ public class GFEmbeddedFileFeaturesObjectAdapter implements EmbeddedFileFeatures
 		private Calendar getDate(ASAtom type) {
 			String date = obj.getStringKey(type);
 			if (date != null) {
-				Calendar dateCal = TypeConverter.parseDate(date);
-				return dateCal;
+				return TypeConverter.parseDate(date);
 			}
 			return null;
 		}

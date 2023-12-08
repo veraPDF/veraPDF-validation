@@ -34,6 +34,6 @@ public class GFPDColorSpace extends GFPDResource implements PDColorSpace {
 
     @Override
     public Long getnrComponents() {
-        return Long.valueOf(((org.verapdf.pd.colors.PDColorSpace) simplePDObject).getNumberOfComponents());
+        return (long) ((org.verapdf.pd.colors.PDColorSpace) simplePDObject).getNumberOfComponents();
     }
 }

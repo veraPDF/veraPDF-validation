@@ -68,8 +68,8 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		this.standardType = standardType;
 		COSKey key = structElemDictionary.getObject().getObjectKey();
 		id = (key != null ? (key.getNumber() + " " + key.getGeneration()) : "0 0") + " obj" +
-		     (standardType != null ? (" " + standardType) : "") +
-		     (getStructureType() != null ? (" " + ((COSName) COSName.fromValue(getStructureType())).getUnicodeValue()) : "");
+		     (standardType != null ? (' ' + standardType) : "") +
+		     (getStructureType() != null ? (' ' + ((COSName) COSName.fromValue(getStructureType())).getUnicodeValue()) : "");
 		this.isTableChild = Arrays.asList(parentsStandardTypes.split("&")).contains(TaggedPDFConstants.TABLE);
 		this.isListChild = Arrays.asList(parentsStandardTypes.split("&")).contains(TaggedPDFConstants.L);
 		this.parentsStandardTypes = parentsStandardTypes;
@@ -154,7 +154,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
 					addChunksToChildren(chunks);
 					GFSAStructElem structElem = GFSAFactory.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
-							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + "&")) + standardType);
+							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + '&')) + standardType);
 					INode childNode = new GFSANode(structElem);
 					structElem.setNode(childNode);
 					getNode().addChild(childNode);
@@ -219,7 +219,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		textValue.append(textChunk.getValue());
 		getNode().addChild(new SemanticSpan(textChunk));
 		children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
-				(parentsStandardTypes + "&")) + getstandardType()));
+				(parentsStandardTypes + '&')) + getstandardType()));
 		return i - number - 1;
 	}
 

@@ -105,7 +105,7 @@ public final class XMPChecker {
         return Boolean.FALSE;
     }
 
-    public static InputStream getMetadataStream(COSDocument document) throws IOException {
+    public static InputStream getMetadataStream(COSDocument document) {
         PDMetadata meta = document.getPDDocument().getMetadata();
         if (meta != null) {
             return meta.getStream();

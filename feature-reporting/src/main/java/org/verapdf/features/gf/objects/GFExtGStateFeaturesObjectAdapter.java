@@ -33,9 +33,9 @@ import java.util.List;
  */
 public class GFExtGStateFeaturesObjectAdapter implements ExtGStateFeaturesObjectAdapter {
 
-    private PDExtGState exGState;
-    private String id;
-    private String fontChildID;
+    private final PDExtGState exGState;
+    private final String id;
+    private final String fontChildID;
 
     /**
      * Constructs new extended graphics state feature object adapter
@@ -66,7 +66,7 @@ public class GFExtGStateFeaturesObjectAdapter implements ExtGStateFeaturesObject
     public Boolean getTransparency() {
         if (exGState != null && !exGState.empty()) {
             Boolean res = exGState.getAlphaSourceFlag();
-            return res == null ? null : !res.booleanValue();
+            return res == null ? null : !res;
         }
         return null;
     }

@@ -61,7 +61,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 
 	private static final String RESOURCES = "resources";
 
-	private PDResourcesHandler resourcesHandler;
+	private final PDResourcesHandler resourcesHandler;
 
 	protected List<Operator> operators = null;
 	private boolean containsTransparency = false;

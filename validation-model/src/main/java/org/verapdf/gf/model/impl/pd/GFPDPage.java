@@ -170,7 +170,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			return null;
 		}
 		List<org.verapdf.pd.PDOutputIntent> outInts = ((org.verapdf.pd.PDPage) this.simplePDObject).getOutputIntents();
-		if (outInts.size() > 0) {
+		if (!outInts.isEmpty()) {
 			return new GFOutputIntents(outInts);
 		}
 		return null;
@@ -198,10 +198,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	private List<PDAnnot> parseAnnotataions() {
 		StaticContainers.getTransparencyVisitedContentStreams().clear();
 		List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
-		if (annots.size() > 0) {
+		if (!annots.isEmpty()) {
 			List<PDAnnot> res = new ArrayList<>(annots.size());
 			org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
+			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
 			for (PDAnnotation annot : annots) {
 				GFPDAnnot annotation = GFPDAnnot.createAnnot(annot, resourcesHandler, page);
 				this.containsTransparency |= annotation.isContainsTransparency();
@@ -236,7 +236,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
 		GFPDContentStream pdContentStream;
 		if (page.getContent() != null) {
-			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources().booleanValue());
+			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
 			if (!PDFAFlavour.IsoStandardSeries.ISO_14289.equals(StaticContainers.getFlavour().getPart().getSeries()) &&
 			    !PDFAFlavour.WCAG2_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
 				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,

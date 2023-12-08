@@ -54,8 +54,8 @@ public class PDResourcesHandler {
 
 	private final PDResources objectResources;
 
-	private Set<ASAtom> undefinedResourceNames = new HashSet<>();
-	private Set<ASAtom> inheritedResourceNames = new HashSet<>();
+	private final Set<ASAtom> undefinedResourceNames = new HashSet<>();
+	private final Set<ASAtom> inheritedResourceNames = new HashSet<>();
 
 	private PDResourcesHandler(PDResources pageResources, boolean inheritedResources) {
 		this.pageResources = pageResources;

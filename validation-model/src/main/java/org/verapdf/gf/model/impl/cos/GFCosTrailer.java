@@ -22,7 +22,6 @@ package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSIndirect;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDEncryption;

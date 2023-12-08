@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class GFPostScriptXObjectFeaturesObjectAdapter implements PostScriptFeaturesObjectAdapter {
 
-    private String id;
+    private final String id;
 
     /**
      * Constructs new post script features object

@@ -24,13 +24,9 @@ package org.verapdf.gf.model.impl.operator.markedcontent;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSName;
 import org.verapdf.cos.COSObjType;
-import org.verapdf.gf.model.impl.cos.GFCosName;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosName;
 import org.verapdf.model.operator.Op_BMC;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

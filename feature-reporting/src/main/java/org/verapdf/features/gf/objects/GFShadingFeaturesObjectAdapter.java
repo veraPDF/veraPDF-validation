@@ -33,9 +33,9 @@ import java.util.List;
  */
 public class GFShadingFeaturesObjectAdapter implements ShadingFeaturesObjectAdapter {
 
-	private PDShading shading;
-	private String id;
-	private String colorSpaceChild;
+	private final PDShading shading;
+	private final String id;
+	private final String colorSpaceChild;
 
 	/**
 	 * Constructs new shading features object adapter

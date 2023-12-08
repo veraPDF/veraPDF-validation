@@ -55,7 +55,7 @@ public class GFPDOCConfig extends GFPDObject implements PDOCConfig {
 
 	public GFPDOCConfig(PDObject simplePDObject, List<String> groupNames, boolean duplicateName) {
 		super(simplePDObject, OC_CONFIG_TYPE);
-		this.groupNames = groupNames == null ? Collections.<String>emptyList() : groupNames;
+		this.groupNames = groupNames == null ? Collections.emptyList() : groupNames;
 		this.duplicateName = duplicateName;
 	}
 

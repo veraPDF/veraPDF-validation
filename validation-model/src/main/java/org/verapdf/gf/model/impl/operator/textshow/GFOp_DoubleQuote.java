@@ -41,7 +41,7 @@ import java.util.List;
 public class GFOp_DoubleQuote extends GFOpStringTextShow implements Op_DoubleQuote {
 
 	/** Type name for {@code GFOp_DoubleQuote} */
-	public static final String OP_DOUBLIE_QUOTE_TYPE = "Op_DoubleQuote";
+	public static final String OP_DOUBLE_QUOTE_TYPE = "Op_DoubleQuote";
 
 	/** Name of link to the word spacing */
 	public static final String WORD_SPACING = "wordSpacing";
@@ -57,7 +57,7 @@ public class GFOp_DoubleQuote extends GFOpStringTextShow implements Op_DoubleQuo
 
 	public GFOp_DoubleQuote(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
 							GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-		super(arguments, state, resourcesHandler, markedContent, structureElementAccessObject, OP_DOUBLIE_QUOTE_TYPE);
+		super(arguments, state, resourcesHandler, markedContent, structureElementAccessObject, OP_DOUBLE_QUOTE_TYPE);
 	}
 
 	@Override

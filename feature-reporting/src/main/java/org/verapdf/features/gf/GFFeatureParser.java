@@ -68,9 +68,9 @@ public final class GFFeatureParser {
 	private static final String DEVICERGB_ID = "devrgb";
 	private static final String DEVICECMYK_ID = "devcmyk";
 
-	private FeaturesReporter reporter;
-	private FeatureExtractorConfig config;
-	private Set<String> processedIDs;
+	private final FeaturesReporter reporter;
+	private final FeatureExtractorConfig config;
+	private final Set<String> processedIDs;
 
 	private GFFeatureParser(FeaturesReporter reporter, FeatureExtractorConfig config) {
 		this.reporter = reporter;

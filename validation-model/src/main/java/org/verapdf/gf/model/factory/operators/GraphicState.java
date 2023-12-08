@@ -176,11 +176,11 @@ public class GraphicState implements Cloneable {
 			}
 			Boolean oFS = extGState.getStrokingOverprintControl();
 			if (oFS != null) {
-				this.overprintingFlagStroke = oFS.booleanValue();
+				this.overprintingFlagStroke = oFS;
 			}
 			Boolean oFNS = extGState.getNonStrokingOverprintControl();
 			if (oFNS != null) {
-				this.overprintingFlagNonStroke = oFNS.booleanValue();
+				this.overprintingFlagNonStroke = oFNS;
 			}
 			Long opm = extGState.getOverprintMode();
 			if (opm != null) {

@@ -38,7 +38,7 @@ import java.util.List;
  */
 public class GFSignatureFeaturesObjectAdapter implements SignatureFeaturesObjectAdapter {
 
-    private PDSignature signature;
+    private final PDSignature signature;
 
     public GFSignatureFeaturesObjectAdapter(PDSignature signature) {
         this.signature = signature;

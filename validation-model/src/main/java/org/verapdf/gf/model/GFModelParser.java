@@ -65,7 +65,7 @@ public class GFModelParser implements PDFAParser {
 
 	private static final String PDFUA_PREFIX = "ua";
 
-	private PDDocument document;
+	private final PDDocument document;
 
 	private final PDFAFlavour flavour;
 
@@ -184,10 +184,7 @@ public class GFModelParser implements PDFAParser {
 				return defaultFlavour;
 			}
 			return pdfaFlavour;
-		} catch (XMPException e) {
-			logger.log(Level.FINE, e.getMessage(), e);
-			return defaultFlavour;
-		} catch (IOException e) {
+		} catch (XMPException | IOException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
 			return defaultFlavour;
 		}

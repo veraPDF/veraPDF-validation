@@ -45,7 +45,7 @@ import java.util.Set;
  */
 public class FileSpecificationKeysHelper {
 
-	private static Set<COSKey> visitedKeys = new HashSet<>();
+	private static final Set<COSKey> visitedKeys = new HashSet<>();
 
 	public static void registerFileSpecificationKeys(COSDocument document) {
 		PDDocument pdDocument = document.getPDDocument();

@@ -38,16 +38,16 @@ import java.util.Set;
  */
 public class GFFormXObjectFeaturesObjectAdapter implements FormXObjectFeaturesObjectAdapter {
 
-	private PDXForm formXObject;
-	private String id;
-	private String groupColorSpaceChild;
-	private Set<String> extGStateChild;
-	private Set<String> colorSpaceChild;
-	private Set<String> patternChild;
-	private Set<String> shadingChild;
-	private Set<String> xobjectChild;
-	private Set<String> fontChild;
-	private Set<String> propertiesChild;
+	private final PDXForm formXObject;
+	private final String id;
+	private final String groupColorSpaceChild;
+	private final Set<String> extGStateChild;
+	private final Set<String> colorSpaceChild;
+	private final Set<String> patternChild;
+	private final Set<String> shadingChild;
+	private final Set<String> xobjectChild;
+	private final Set<String> fontChild;
+	private final Set<String> propertiesChild;
 
 	/**
 	 * Constructs new form xobject features object
@@ -101,43 +101,43 @@ public class GFFormXObjectFeaturesObjectAdapter implements FormXObjectFeaturesOb
 	@Override
 	public Set<String> getExtGStateChild() {
 		return this.extGStateChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.extGStateChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.extGStateChild);
 	}
 
 	@Override
 	public Set<String> getColorSpaceChild() {
 		return this.colorSpaceChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.colorSpaceChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.colorSpaceChild);
 	}
 
 	@Override
 	public Set<String> getPatternChild() {
 		return this.patternChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.patternChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.patternChild);
 	}
 
 	@Override
 	public Set<String> getShadingChild() {
 		return this.shadingChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.shadingChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.shadingChild);
 	}
 
 	@Override
 	public Set<String> getXObjectChild() {
 		return this.xobjectChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.xobjectChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.xobjectChild);
 	}
 
 	@Override
 	public Set<String> getFontChild() {
 		return this.fontChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.fontChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.fontChild);
 	}
 
 	@Override
 	public Set<String> getPropertiesChild() {
 		return this.propertiesChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.propertiesChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.propertiesChild);
 	}
 
 	@Override

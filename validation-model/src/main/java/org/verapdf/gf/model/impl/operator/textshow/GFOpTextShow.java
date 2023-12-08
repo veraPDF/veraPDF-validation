@@ -228,13 +228,13 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		Set<Byte> resSet = new HashSet<>();
 		for (byte[] string : strings) {
 			for (byte b : string) {
-				resSet.add(Byte.valueOf(b));
+				resSet.add(b);
 			}
 		}
 		byte[] res = new byte[resSet.size()];
 		int i = 0;
 		for (Byte b : resSet) {
-			res[i++] = b.byteValue();
+			res[i++] = b;
 		}
 		return res;
 	}

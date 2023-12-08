@@ -66,8 +66,8 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		this.fFilter = parseFilters(stream.getKey(ASAtom.F_FILTER).get());
 		COSObject fDecodeParams = stream.getKey(ASAtom.F_DECODE_PARMS);
 		this.fDecodeParams = fDecodeParams.empty() ? null : fDecodeParams.toString();
-		this.streamKeywordCRLFCompliant = stream.isStreamKeywordCRLFCompliant().booleanValue();
-		this.endstreamKeywordEOLCompliant = stream.isEndstreamKeywordCRLFCompliant().booleanValue();
+		this.streamKeywordCRLFCompliant = stream.isStreamKeywordCRLFCompliant();
+		this.endstreamKeywordEOLCompliant = stream.isEndstreamKeywordCRLFCompliant();
 		this.realLength = stream.getRealStreamSize();
 	}
 
@@ -158,7 +158,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 				if (decodeParms == null) {
 					result.add(createFilter((COSName) COSName.fromValue(filter), null));
 					//TODO : check this for pdfbox implementation
-				} else if (decodeParms.getType() == COSObjType.COS_ARRAY && decodeParms.size().intValue() > i) {
+				} else if (decodeParms.getType() == COSObjType.COS_ARRAY && decodeParms.size() > i) {
 					decodeParms = decodeParms.at(i).get();
 					result.add(createFilter((COSName) COSName.fromValue(filter), decodeParms));
 				} else {
@@ -187,30 +187,27 @@ public class GFCosStream extends GFCosDict implements CosStream {
 	}
 
 	private static String parseFilters(COSBase base) {
-		StringBuilder filters = new StringBuilder();
-
 		if (base == null) {
 			return null;
-		} else if (base instanceof COSName) {
+		}
+		if (base.getType() == COSObjType.COS_NAME) {
 			return base.getString();
-		} else if (base instanceof COSArray) {
-			Iterator<?> iterator = ((COSArray) base).iterator();
-			while (iterator.hasNext()) {
-				COSBase filter = (COSBase) iterator.next();
-				if (filter instanceof COSName) {
-					filters.append(((COSName) filter).getName()).append(" ");
+		}
+		if (base.getType() == COSObjType.COS_ARRAY) {
+			StringBuilder filters = new StringBuilder();
+			for (COSObject filter : (COSArray) base) {
+				if (filter.getType() == COSObjType.COS_NAME) {
+					filters.append(filter.getName()).append(" ");
 				} else {
 					LOGGER.log(Level.SEVERE, "Incorrect type for stream filter " +
 							filter.getClass().getName());
 				}
 			}
-		} else {
-			LOGGER.log(Level.SEVERE, "Incorrect type for stream filter " +
-					base.getClass().getName());
-			return null;
+			// need to discard last white space
+			return filters.substring(0, filters.length() - 1);
 		}
-		// need to discard last white space
-		return filters.substring(0, filters.length() - 1);
+		LOGGER.log(Level.SEVERE, "Incorrect type for stream filter " +
+				base.getClass().getName());
+		return null;
 	}
-
 }
