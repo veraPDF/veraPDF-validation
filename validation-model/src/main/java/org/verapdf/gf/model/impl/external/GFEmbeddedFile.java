@@ -42,6 +42,7 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.validators.ValidatorFactory;
 import org.verapdf.tools.StaticResources;
+import org.verapdf.xmp.containers.StaticXmpCoreContainers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -153,6 +154,8 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Map<String, CMap> cMapCache;
 	private Map<COSKey, PDStructureNameSpace> structureNameSpaceCache;
 	private Map<String, FontProgram> cachedFonts;
+	private Map<String, String> namespaceToPrefixMap;
+	private Map<String, String> prefixToNamespaceMap;
 
 	private void saveStaticContainersState() {
 		this.document = StaticResources.getDocument();
@@ -182,6 +185,9 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 		Map<String, FontProgram> cachedFonts = StaticResources.getCachedFonts();
 		this.cachedFonts = cachedFonts == null ? null : new HashMap<>(cachedFonts);
+
+		this.namespaceToPrefixMap = StaticXmpCoreContainers.getNamespaceToPrefixMap();
+		this.prefixToNamespaceMap = StaticXmpCoreContainers.getPrefixToNamespaceMap();
 	}
 
 	private void restoreSavedSCState() {
@@ -207,5 +213,8 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
 		StaticResources.setFlavour(this.flavour != null ? PDFFlavour.valueOf(this.flavour.name()) : null);
+
+		StaticXmpCoreContainers.setNamespaceToPrefixMap(this.namespaceToPrefixMap);
+		StaticXmpCoreContainers.setPrefixToNamespaceMap(this.prefixToNamespaceMap);
 	}
 }
