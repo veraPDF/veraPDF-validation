@@ -31,7 +31,7 @@ public class GFICCOutputProfile extends GFICCProfile implements ICCOutputProfile
 	/**	Type name for {@code GFICCOutputProfile} */
 	public static final String ICC_OUTPUT_PROFILE_TYPE = "ICCOutputProfile";
 
-	private String subtype;
+	private final String subtype;
 
 	/**
 	 * Default constructor

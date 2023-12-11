@@ -237,7 +237,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     private OutputIntents parseOutputIntents() {
         List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
-        if (outInts.size() > 0) {
+        if (!outInts.isEmpty()) {
             return new GFOutputIntents(outInts);
         }
         return null;

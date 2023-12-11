@@ -111,7 +111,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Long getnrIndirects() {
-		return Long.valueOf(this.indirectObjectCount);
+		return this.indirectObjectCount;
 	}
 
 	/**
@@ -119,12 +119,12 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Double getheaderVersion() {
-		return Double.valueOf(this.headerVersion);
+		return (double) this.headerVersion;
 	}
 
 	@Override
 	public Long getheaderOffset() {
-		return Long.valueOf(this.headerOffset);
+		return this.headerOffset;
 	}
 
 	@Override
@@ -134,22 +134,22 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	@Override
 	public Long getheaderByte1() {
-		return Long.valueOf(this.headerCommentByte1);
+		return (long) this.headerCommentByte1;
 	}
 
 	@Override
 	public Long getheaderByte2() {
-		return Long.valueOf(this.headerCommentByte2);
+		return (long) this.headerCommentByte2;
 	}
 
 	@Override
 	public Long getheaderByte3() {
-		return Long.valueOf(this.headerCommentByte3);
+		return (long) this.headerCommentByte3;
 	}
 
 	@Override
 	public Long getheaderByte4() {
-		return Long.valueOf(this.headerCommentByte4);
+		return (long) this.headerCommentByte4;
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Long getpostEOFDataSize() {
-		return Long.valueOf(this.postEOFDataSize);
+		return (long) this.postEOFDataSize;
 	}
 
 	/**
@@ -341,13 +341,11 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	private static String getRequirementsString(COSArray reqArray) {
 		StringBuilder result = new StringBuilder();
-		Iterator<COSObject> iterator = reqArray.iterator();
-		while (iterator.hasNext()) {
-			COSObject element = iterator.next();
+		for (COSObject element : reqArray) {
 			COSBase base = element.getDirectBase();
 			if (base.getType() == COSObjType.COS_DICT) {
 				result.append(getRequirementsString((COSDictionary) base));
-				result.append(" ");
+				result.append(' ');
 			}
 		}
 		return result.toString();
@@ -363,7 +361,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Boolean getNeedsRendering() {
-		if (!catalog.knownKey(ASAtom.NEEDS_RENDERING).booleanValue()) {
+		if (!catalog.knownKey(ASAtom.NEEDS_RENDERING)) {
 			return Boolean.FALSE;
 		}
 		return catalog.getBooleanKey(ASAtom.NEEDS_RENDERING);

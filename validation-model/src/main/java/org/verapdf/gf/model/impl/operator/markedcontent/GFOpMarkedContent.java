@@ -147,7 +147,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		if (parentsTags.isEmpty()) {
 			parentsTags = this.parentsTags;
 		} else if (!this.parentsTags.isEmpty()) {
-			parentsTags = this.parentsTags + "&" + parentsTags;
+			parentsTags = this.parentsTags + '&' + parentsTags;
 		}
 		if (tag.isEmpty()) {
 			return parentsTags;
@@ -155,7 +155,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		if (parentsTags.isEmpty()) {
 			return tag;
 		}
-		return parentsTags + "&" + tag;
+		return parentsTags + '&' + tag;
 	}
 
 	public String getInheritedLang() {

@@ -94,7 +94,7 @@ public class FeatureTester {
             attrWithoutID.remove("id");
             String nodeVal = "FeatureTreeNode [name=" + node.getName() + ", value="
                     + node.getValue() + ", isMetadataNode=" + node.isMetadataNode()
-                    + ", " + ", attributes=" + attrWithoutID + "]";
+                    + ", " + ", attributes=" + attrWithoutID + ']';
             strings.add(nodeVal);
         }
         for (FeatureTreeNode child : node.getChildren()) {

@@ -17,6 +17,7 @@ public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 		super(t);
 	}
 
+	@Override
 	public void serialize(GFSAStructElem elem, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 			throws IOException {
 

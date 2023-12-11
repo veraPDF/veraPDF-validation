@@ -13,6 +13,7 @@ public class TextSerializer extends StdSerializer<TextChunk> {
 		super(t);
 	}
 
+	@Override
 	public void serialize(TextChunk textChunk, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 			throws IOException {
 

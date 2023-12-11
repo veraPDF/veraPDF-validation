@@ -40,18 +40,18 @@ import java.util.Set;
  */
 public class GFPageFeaturesObjectAdapter implements PageFeaturesObjectAdapter {
 
-	private PDPage page;
-	private String label;
-	private String thumb;
-	private Set<String> annotsId;
-	private Set<String> extGStateChild;
-	private Set<String> colorSpaceChild;
-	private Set<String> patternChild;
-	private Set<String> shadingChild;
-	private Set<String> xobjectChild;
-	private Set<String> fontChild;
-	private Set<String> propertiesChild;
-	private int index;
+	private final PDPage page;
+	private final String label;
+	private final String thumb;
+	private final Set<String> annotsId;
+	private final Set<String> extGStateChild;
+	private final Set<String> colorSpaceChild;
+	private final Set<String> patternChild;
+	private final Set<String> shadingChild;
+	private final Set<String> xobjectChild;
+	private final Set<String> fontChild;
+	private final Set<String> propertiesChild;
+	private final int index;
 
 	private String transitionStyle;
 	private List<String> errors;

@@ -74,7 +74,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
      */
     @Override
     public Long getnrCmaps() {
-        return new Long(this.trueTypeFont.getNrOfCMaps());
+        return (long) this.trueTypeFont.getNrOfCMaps();
     }
 
     /**

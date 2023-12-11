@@ -13,6 +13,7 @@ public class ImageSerializer extends StdSerializer<ImageChunk> {
 		super(t);
 	}
 
+	@Override
 	public void serialize(ImageChunk imageChunk, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 			throws IOException {
 

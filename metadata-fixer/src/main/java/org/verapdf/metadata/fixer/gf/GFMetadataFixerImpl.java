@@ -42,13 +42,13 @@ public final class GFMetadataFixerImpl extends MetadataFixerImpl {
 	@Override
 	public MetadataFixerResult fixMetadata(InputStream toFix, OutputStream outputRepaired, ValidationResult result)
 			throws IOException {
-		return super.fixMetadata(outputRepaired, new PDFDocumentImpl(toFix), result, true,
+		return fixMetadata(outputRepaired, new PDFDocumentImpl(toFix), result, true,
 				XMLProcessedObjectsParser.getInstance());
 	}
 
 	@Override
 	public MetadataFixerResult fixMetadata(PDFAParser parser, OutputStream outputRepaired, ValidationResult result) {
-		return super.fixMetadata(outputRepaired, parser.getPDFDocument(), result, true,
+		return fixMetadata(outputRepaired, parser.getPDFDocument(), result, true,
 				XMLProcessedObjectsParser.getInstance());
 	}
 

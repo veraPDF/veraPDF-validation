@@ -37,7 +37,7 @@ public class GFOutputIntents extends GenericModelObject implements OutputIntents
 
     public static final String OUTPUT_INTENTS = "outputIntents";
 
-    List<org.verapdf.pd.PDOutputIntent> outInts = null;
+    List<org.verapdf.pd.PDOutputIntent> outInts;
 
     public GFOutputIntents(List<org.verapdf.pd.PDOutputIntent> outInts) {
         super(OUTPUT_INTENTS_TYPE);

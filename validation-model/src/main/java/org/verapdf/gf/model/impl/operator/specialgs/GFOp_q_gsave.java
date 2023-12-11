@@ -46,7 +46,7 @@ public class GFOp_q_gsave extends GFOpGeneralGS implements Op_q_gsave {
 	 */
     @Override
     public Long getnestingLevel() {
-        return Long.valueOf(this.nestingLevel);
+        return (long) this.nestingLevel;
     }
 
 }

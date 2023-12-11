@@ -84,8 +84,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
      */
     @Override
     public String getCharSet() {
-        String res = this.pdFont.getFontDescriptor().getStringKey(ASAtom.CHAR_SET);
-        return res;
+        return this.pdFont.getFontDescriptor().getStringKey(ASAtom.CHAR_SET);
     }
 
     /**

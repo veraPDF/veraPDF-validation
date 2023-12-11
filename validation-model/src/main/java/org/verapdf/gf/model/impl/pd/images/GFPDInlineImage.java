@@ -46,7 +46,7 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 
 	public static final String INLINE_IMAGE_TYPE = "PDInlineImage";
 
-	private org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
+	private final org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
 
 	public GFPDInlineImage(org.verapdf.pd.images.PDInlineImage simplePDObject,
 						   org.verapdf.pd.colors.PDColorSpace inheritedFillCS) {

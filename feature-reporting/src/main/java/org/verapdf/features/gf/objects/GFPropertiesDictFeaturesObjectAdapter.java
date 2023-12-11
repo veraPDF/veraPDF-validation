@@ -32,9 +32,9 @@ import java.util.List;
  */
 public class GFPropertiesDictFeaturesObjectAdapter implements PropertiesDictFeaturesObjectAdapter {
 
-    private boolean isPresent;
+    private final boolean isPresent;
     private String type;
-    private String id;
+    private final String id;
 
     /**
      * Constructs new propertiesDict features object

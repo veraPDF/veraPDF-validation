@@ -102,7 +102,7 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
             }
             object = afterConfig;
         }
-        if (object.getType() == COSObjType.COS_STREAM) {
+        if (object != null && object.getType() == COSObjType.COS_STREAM) {
             try (ASInputStream asInputStream = object.getDirectBase().getData(COSStream.FilterFlags.DECODE)) {
                 DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
                 builder.setErrorHandler(null);
