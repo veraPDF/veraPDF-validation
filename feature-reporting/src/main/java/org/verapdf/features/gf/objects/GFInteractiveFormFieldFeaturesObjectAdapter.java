@@ -85,6 +85,7 @@ public class GFInteractiveFormFieldFeaturesObjectAdapter implements InteractiveF
 			for (PDFormField field : childFormFields) {
 				res.add(new GFInteractiveFormFieldFeaturesObjectAdapter(field));
 			}
+			return res;
 		}
 		return Collections.emptyList();
 	}
