@@ -98,7 +98,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public Long getrenderingMode() {
-        return Long.valueOf(this.renderingMode.getValue());
+        return (long) this.renderingMode.getValue();
     }
 
     @Override
@@ -173,7 +173,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
     private List<CosUnicodeName> getBaseFont() {
         String name = this.pdFont.getName();
         if (name != null) {
-            ArrayList<CosUnicodeName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            List<CosUnicodeName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             list.add(new GFCosUnicodeName((COSName)
                     COSName.construct(ASAtom.getASAtom(name)).get()));
             return Collections.unmodifiableList(list);

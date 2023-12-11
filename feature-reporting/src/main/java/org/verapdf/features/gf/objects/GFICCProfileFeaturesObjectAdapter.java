@@ -51,8 +51,8 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
     private static final int VERSION_BYTE = 8;
     private static final int SUBVERSION_BYTE = 9;
 
-    private ICCProfile profile;
-    private String id;
+    private final ICCProfile profile;
+    private final String id;
     private String version;
     private String cmmType;
     private String dataColorSpace;
@@ -113,7 +113,7 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
             return null;
         }
         StringBuilder builder = new StringBuilder();
-        builder.append(header[VERSION_BYTE] & FF_FLAG).append(".");
+        builder.append(header[VERSION_BYTE] & FF_FLAG).append('.');
         builder.append((header[SUBVERSION_BYTE] & FF_FLAG) >>> REQUIRED_LENGTH);
         return builder.toString();
     }
@@ -185,7 +185,7 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
 
     @Override
     public List<String> getErrors() {
-        return errors == null ? Collections.<String>emptyList() : Collections.unmodifiableList(errors);
+        return errors == null ? Collections.emptyList() : Collections.unmodifiableList(errors);
     }
 
     @Override
@@ -228,9 +228,9 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
             } else {
                 Integer n = getN();
                 if (n != null) {
-                    for (int i = 0; i < n.intValue(); ++i) {
-                        range.add(Double.valueOf(0.));
-                        range.add(Double.valueOf(1.));
+                    for (int i = 0; i < n; ++i) {
+                        range.add(0.);
+                        range.add(1.);
                     }
                 }
             }

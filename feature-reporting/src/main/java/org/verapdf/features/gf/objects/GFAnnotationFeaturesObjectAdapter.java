@@ -35,10 +35,10 @@ import java.util.Set;
  */
 public class GFAnnotationFeaturesObjectAdapter implements AnnotationFeaturesObjectAdapter {
 
-	private String id;
-	private String popupId;
-	private Set<String> formXObjects;
-	private PDAnnotation annot;
+	private final String id;
+	private final String popupId;
+	private final Set<String> formXObjects;
+	private final PDAnnotation annot;
 
 	/**
 	 * Constructs new Annotation Feature Object Adapter
@@ -68,7 +68,7 @@ public class GFAnnotationFeaturesObjectAdapter implements AnnotationFeaturesObje
 
 	@Override
 	public Set<String> getFormXObjectsResources() {
-		return formXObjects == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(formXObjects);
+		return formXObjects == null ? Collections.emptySet() : Collections.unmodifiableSet(formXObjects);
 	}
 
 	@Override
@@ -158,6 +158,6 @@ public class GFAnnotationFeaturesObjectAdapter implements AnnotationFeaturesObje
 
 	@Override
 	public List<String> getErrors() {
-		return Collections.<String>emptyList();
+		return Collections.emptyList();
 	}
 }

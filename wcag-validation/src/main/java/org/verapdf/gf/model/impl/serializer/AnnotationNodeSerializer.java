@@ -13,6 +13,7 @@ public class AnnotationNodeSerializer extends StdSerializer<GFSAAnnotationNode> 
 		super(t);
 	}
 
+	@Override
 	public void serialize(GFSAAnnotationNode annotationNode, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 			throws IOException {
 

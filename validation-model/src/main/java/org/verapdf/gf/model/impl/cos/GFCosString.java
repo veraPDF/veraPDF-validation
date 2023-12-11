@@ -82,11 +82,11 @@ public class GFCosString extends GFCosObject implements CosString {
 	}
 
 	/**
-	 * contains original hexa string length
+	 * contains original hex string length
 	 */
 	@Override
 	public Long gethexCount() {
-		return Long.valueOf(this.hexCount);
+		return this.hexCount;
 	}
 
 	@Override

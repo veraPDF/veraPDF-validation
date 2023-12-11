@@ -65,7 +65,7 @@ public class GFCosVisitor implements ICOSVisitor {
     @Override
     public Object visitFromDictionary(COSDictionary obj) {
         ASAtom type = obj.getNameKey(ASAtom.TYPE);
-        boolean isFileSpec = type != null && ASAtom.FILESPEC.equals(type);
+        boolean isFileSpec = ASAtom.FILESPEC.equals(type);
         return isFileSpec ? new GFCosFileSpecification(obj) : new GFCosDict(obj);
     }
 

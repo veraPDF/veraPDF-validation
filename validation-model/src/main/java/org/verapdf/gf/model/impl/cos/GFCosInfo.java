@@ -45,7 +45,7 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
 
     public static final String INFORMATION_TYPE = "CosInfo";
 
-    private VeraPDFMeta meta;
+    private final VeraPDFMeta meta;
 
     public GFCosInfo(COSDictionary dictionary) {
         super(dictionary, INFORMATION_TYPE);
@@ -135,7 +135,7 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
                     if (creator.size() == 1) {
                         return creator.get(0);
                     } else {
-                        return "[" + String.join(",", creator) + "]";
+                        return '[' + String.join(",", creator) + ']';
                     }                }
             } catch (XMPException ignored) {
             }

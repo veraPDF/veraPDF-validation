@@ -80,8 +80,6 @@ public class FontFactory {
 				case TRUE_TYPE:
 					res = new GFPDTrueTypeFont((PDTrueTypeFont) rawFont, renderingMode);
 					break;
-				default:
-					res = null;
 			}
 			StaticContainers.getCachedFonts().put(id, res);
 		}

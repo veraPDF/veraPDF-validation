@@ -57,7 +57,7 @@ public class GFCosArray extends GFCosObject implements CosArray {
      */
     public GFCosArray(COSArray array, String type) {
         super(array, type);
-        this.size = array.size().intValue();
+        this.size = array.size();
     }
 
     /**
@@ -67,7 +67,7 @@ public class GFCosArray extends GFCosObject implements CosArray {
      */
     @Override
     public Long getsize() {
-        return Long.valueOf(this.size);
+        return (long) this.size;
     }
 
     @Override

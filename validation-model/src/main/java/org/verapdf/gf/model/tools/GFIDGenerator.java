@@ -38,7 +38,7 @@ public final class GFIDGenerator {
 	}
 
 	public static String generateID(COSKey key) {
-		return String.valueOf(key.getNumber() + " " + key.getGeneration());
+		return key.getNumber() + " " + key.getGeneration();
 	}
 
 	public static String generateID(PDFont font) {

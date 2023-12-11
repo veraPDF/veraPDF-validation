@@ -44,10 +44,10 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	private static final Logger LOGGER = Logger.getLogger(GFColorSpaceFeaturesObjectAdapter.class.getCanonicalName());
 
-	private PDColorSpace colorSpace;
-	private String id;
-	private String iccProfileChild;
-	private String colorSpaceChild;
+	private final PDColorSpace colorSpace;
+	private final String id;
+	private final String iccProfileChild;
+	private final String colorSpaceChild;
 	private String lookup;
 	private List<String> errors;
 
@@ -76,9 +76,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 			PDIndexed index = (PDIndexed) colorSpace;
 			try (InputStream stream = index.getLookup()) {
 				byte[] lookupData = GFAdapterHelper.inputStreamToByteArray(stream);
-				if (lookupData != null) {
-					this.lookup = DatatypeConverter.printHexBinary(lookupData);
-				}
+				this.lookup = DatatypeConverter.printHexBinary(lookupData);
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, e.getMessage(), e);
 				this.errors = new ArrayList<>();
@@ -258,6 +256,6 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 
 	@Override
 	public List<String> getErrors() {
-		return this.errors == null ? Collections.<String>emptyList() : Collections.unmodifiableList(this.errors);
+		return this.errors == null ? Collections.emptyList() : Collections.unmodifiableList(this.errors);
 	}
 }

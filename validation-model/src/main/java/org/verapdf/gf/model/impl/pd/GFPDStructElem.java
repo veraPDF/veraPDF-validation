@@ -33,7 +33,6 @@ import org.verapdf.gf.model.impl.cos.GFCosActualText;
 import org.verapdf.gf.model.impl.cos.GFCosAlt;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosActualText;
 import org.verapdf.model.coslayer.CosAlt;
@@ -81,7 +80,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		super(structElemDictionary, type);
 		ASAtom subtype = this.simplePDObject.getNameKey(ASAtom.S);
 		if (subtype != null) {
-			this.id = (super.getID() != null ? super.getID() : "0 0 obj") + " " + ((COSName) COSName.fromValue(subtype)).getUnicodeValue();
+			this.id = (super.getID() != null ? super.getID() : "0 0 obj") + ' ' + ((COSName) COSName.fromValue(subtype)).getUnicodeValue();
 		}
 		this.standardType = standardType;
 		if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_2) {
@@ -203,7 +202,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	@Override
 	public String getroleMapToSameNamespaceTag() {
 		String namespace = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getRoleMapToSameNamespaceTag();
-		return namespace != null ? namespace + ":" + getstandardType() : null;
+		return namespace != null ? namespace + ':' + getstandardType() : null;
 	}
 
 	@Override

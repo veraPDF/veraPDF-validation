@@ -129,7 +129,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
                 PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
-                    //on this levels we need to ensure that all glyphs present in font program are described in cid set
+                    //on these levels we need to ensure that all glyphs present in font program are described in cid set
                     List<Integer> fontCIDs = cidFont != null ? cidFont.getCIDList() : Collections.emptyList();
                     for (int cid : fontCIDs) {
                         if (cid != 0 && !bitSet.get(cid)) {

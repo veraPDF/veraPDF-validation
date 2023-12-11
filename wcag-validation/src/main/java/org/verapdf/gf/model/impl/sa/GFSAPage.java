@@ -184,6 +184,7 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 		return currentTransformationMatrix;
 	}
 
+	@Override
 	public int getPageNumber() {
 		return pdPage.getPageNumber();
 	}

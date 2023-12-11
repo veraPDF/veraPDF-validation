@@ -106,7 +106,7 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 		if (efDictionary != null && efDictionary.getType().isDictionaryBased()) {
 			COSEmbeddedFileDict embeddedFileDict = new
 					COSEmbeddedFileDict((COSDictionary) efDictionary.getDirectBase());
-			ArrayList<EmbeddedFile> list = new ArrayList<>();
+			List<EmbeddedFile> list = new ArrayList<>();
 			for (COSStream embeddedFileStream : embeddedFileDict.getEmbeddedFileStreams()) {
 				list.add(new GFEmbeddedFile(embeddedFileStream));
 			}

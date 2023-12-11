@@ -66,7 +66,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private final String defaultLang;
 	private final PDColorSpace blendingColorSpace;
 
-	private boolean isSignature;
+	private final boolean isSignature;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
 					 GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags, 

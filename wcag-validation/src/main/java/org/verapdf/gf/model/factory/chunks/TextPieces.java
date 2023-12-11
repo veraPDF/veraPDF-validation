@@ -90,6 +90,7 @@ public class TextPieces {
 
 	public static class TextPieceComparator implements Comparator<TextPiece> {
 
+		@Override
 		public int compare(TextPiece textPiece1, TextPiece textPiece2){
 			int res = Double.compare(textPiece1.startX, textPiece2.startX);
 			if (res != 0) {

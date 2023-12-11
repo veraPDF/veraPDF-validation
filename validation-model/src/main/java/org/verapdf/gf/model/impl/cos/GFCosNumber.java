@@ -37,8 +37,8 @@ public class GFCosNumber extends GFCosObject implements CosNumber {
 
     protected GFCosNumber(COSNumber number, final String type) {
         super(number, type);
-        this.longVal = number.getInteger().longValue();
-        this.doubleVal = number.getReal().doubleValue();
+        this.longVal = number.getInteger();
+        this.doubleVal = number.getReal();
     }
 
     public static GFCosNumber fromPDFParserNumber(COSBase number) {
@@ -63,7 +63,7 @@ public class GFCosNumber extends GFCosObject implements CosNumber {
      */
     @Override
     public Long getintValue() {
-        return Long.valueOf(this.longVal);
+        return this.longVal;
     }
 
     /**
@@ -71,7 +71,7 @@ public class GFCosNumber extends GFCosObject implements CosNumber {
      */
     @Override
     public Double getrealValue() {
-        return Double.valueOf(this.doubleVal);
+        return this.doubleVal;
     }
 
 }

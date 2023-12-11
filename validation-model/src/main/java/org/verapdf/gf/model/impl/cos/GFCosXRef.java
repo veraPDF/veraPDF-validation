@@ -30,8 +30,8 @@ public class GFCosXRef extends GFCosObject implements CosXRef {
 	/** Type name for PBCosXRef */
 	public static final String COS_XREF_TYPE = "CosXRef";
 
-	private Boolean subsectionHeaderSpaceSeparated;
-	private Boolean xrefEOLMarkersComplyPDFA;
+	private final Boolean subsectionHeaderSpaceSeparated;
+	private final Boolean xrefEOLMarkersComplyPDFA;
 
 	/**
 	 * Default constructor
