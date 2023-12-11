@@ -43,15 +43,15 @@ import java.util.Set;
  */
 public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 
-	private org.verapdf.pd.font.PDFont font;
-	private String id;
-	private Set<String> extGStateChild;
-	private Set<String> colorSpaceChild;
-	private Set<String> patternChild;
-	private Set<String> shadingChild;
-	private Set<String> xobjectChild;
-	private Set<String> fontChild;
-	private Set<String> propertiesChild;
+	private final org.verapdf.pd.font.PDFont font;
+	private final String id;
+	private final Set<String> extGStateChild;
+	private final Set<String> colorSpaceChild;
+	private final Set<String> patternChild;
+	private final Set<String> shadingChild;
+	private final Set<String> xobjectChild;
+	private final Set<String> fontChild;
+	private final Set<String> propertiesChild;
 	private FontDescriptorAdapter fontDescriptorAdapter;
 
 	public GFFontFeaturesObjectAdapter(org.verapdf.pd.font.PDFont font, String id, Set<String>
@@ -82,43 +82,43 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 	@Override
 	public Set<String> getExtGStateChild() {
 		return this.extGStateChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.extGStateChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.extGStateChild);
 	}
 
 	@Override
 	public Set<String> getColorSpaceChild() {
 		return this.colorSpaceChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.colorSpaceChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.colorSpaceChild);
 	}
 
 	@Override
 	public Set<String> getPatternChild() {
 		return this.patternChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.patternChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.patternChild);
 	}
 
 	@Override
 	public Set<String> getShadingChild() {
 		return this.shadingChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.shadingChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.shadingChild);
 	}
 
 	@Override
 	public Set<String> getXObjectChild() {
 		return this.xobjectChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.xobjectChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.xobjectChild);
 	}
 
 	@Override
 	public Set<String> getFontChild() {
 		return this.fontChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.fontChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.fontChild);
 	}
 
 	@Override
 	public Set<String> getPropertiesChild() {
 		return this.propertiesChild == null ?
-				Collections.<String>emptySet() : Collections.unmodifiableSet(this.propertiesChild);
+				Collections.emptySet() : Collections.unmodifiableSet(this.propertiesChild);
 	}
 
 	@Override
@@ -272,7 +272,7 @@ public class GFFontFeaturesObjectAdapter implements FontFeaturesObjectAdapter {
 
 	private static class GFFontDescriptorAdapter implements FontDescriptorAdapter {
 
-		private PDFontDescriptor descriptor;
+		private final PDFontDescriptor descriptor;
 		private COSStream file;
 		private PDMetadata metadata;
 

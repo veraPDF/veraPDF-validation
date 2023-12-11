@@ -41,8 +41,8 @@ public class GFOp_EI extends GFOpInlineImage implements Op_EI {
 
 	public static final String INLINE_IMAGE = "inlineImage";
 
-	private PDResourcesHandler resourcesHandler;
-	private org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
+	private final PDResourcesHandler resourcesHandler;
+	private final org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
 
 	public GFOp_EI(List<COSBase> arguments, PDResourcesHandler resourcesHandler,
 				   org.verapdf.pd.colors.PDColorSpace inheritedFillCS) {

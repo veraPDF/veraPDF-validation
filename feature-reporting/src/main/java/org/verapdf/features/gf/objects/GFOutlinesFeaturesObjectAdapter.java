@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAdapter {
 
-	private PDOutlineDictionary outline;
+	private final PDOutlineDictionary outline;
 
 	/**
 	 * Constructs new OutputIntent Feature Object adapter
@@ -65,7 +65,7 @@ public class GFOutlinesFeaturesObjectAdapter implements OutlinesFeaturesObjectAd
 
 	private static class GFOutlineFeaturesObjectAdapter implements OutlineFeaturesObjectAdapter {
 
-		private PDOutlineItem outline;
+		private final PDOutlineItem outline;
 
 		public GFOutlineFeaturesObjectAdapter(PDOutlineItem outline) {
 			this.outline = outline;

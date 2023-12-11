@@ -33,11 +33,11 @@ public class GFCosBool extends GFCosObject implements CosBool {
 
     /** Type name for GFCosBool */
     public static final String COS_BOOLEAN_TYPE = "CosBool";
-    private boolean value;
+    private final boolean value;
 
     private GFCosBool(COSBoolean cosBoolean) {
         super(cosBoolean, COS_BOOLEAN_TYPE);
-        this.value = cosBoolean.getBoolean().booleanValue();
+        this.value = cosBoolean.getBoolean();
     }
 
     /**
@@ -54,7 +54,7 @@ public class GFCosBool extends GFCosObject implements CosBool {
      * @return instance of CosBool
      */
     public static CosBool valueOf(COSBoolean bool) {
-        return bool.getBoolean().booleanValue() ? TRUE : FALSE;
+        return bool.getBoolean() ? TRUE : FALSE;
     }
 
 }

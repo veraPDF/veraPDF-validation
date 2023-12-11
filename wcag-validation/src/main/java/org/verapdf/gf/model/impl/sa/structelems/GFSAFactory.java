@@ -22,8 +22,6 @@ package org.verapdf.gf.model.impl.sa.structelems;
 
 import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.pd.structure.PDStructElem;
-import org.verapdf.pd.structure.StructureType;
-import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSAFactory {

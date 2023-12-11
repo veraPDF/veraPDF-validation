@@ -14,6 +14,7 @@ public class LineArtSerializer extends StdSerializer<LineArtChunk> {
 		super(t);
 	}
 
+	@Override
 	public void serialize(LineArtChunk lineArtChunk, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 			throws IOException {
 

@@ -70,7 +70,7 @@ public final class OperatorFactory {
 	}
 
 	private static final Set<String> PAINT_OPERATORS_TEXT = new HashSet<>(Arrays.asList(
-			new String[] { Operators.TJ_SHOW, Operators.QUOTE, Operators.DOUBLE_QUOTE, Operators.TJ_SHOW_POS }));
+			Operators.TJ_SHOW, Operators.QUOTE, Operators.DOUBLE_QUOTE, Operators.TJ_SHOW_POS));
 
 	private static final Map<RenderingMode, TransparencyBehaviour> RENDERING_MODE;
 

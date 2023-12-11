@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class GFDocSecurityFeaturesObjectAdapter implements DocSecurityFeaturesObjectAdapter {
 
-    private PDEncryption encryption;
+    private final PDEncryption encryption;
 
     public GFDocSecurityFeaturesObjectAdapter(PDEncryption encryption) {
         this.encryption = encryption;

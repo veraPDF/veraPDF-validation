@@ -20,7 +20,6 @@
  */
 package org.verapdf.gf.model.impl.sa;
 
-import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.structelems.GFSAFactory;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;

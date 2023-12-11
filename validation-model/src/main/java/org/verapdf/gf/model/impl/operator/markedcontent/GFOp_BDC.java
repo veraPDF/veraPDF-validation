@@ -70,6 +70,7 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 		}
 	}
 
+	@Override
 	public COSObject getParentStructElem() {
 		COSObject structElem = getStructElem();
 		return structElem != null ? structElem : super.getParentStructElem();

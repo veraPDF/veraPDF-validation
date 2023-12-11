@@ -25,12 +25,10 @@ import org.verapdf.cos.*;
 import org.verapdf.gf.model.factory.functions.FunctionFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosBM;
-import org.verapdf.gf.model.impl.cos.GFCosNumber;
 import org.verapdf.gf.model.impl.cos.GFCosRenderingIntent;
 import org.verapdf.gf.model.impl.pd.functions.GFPDFunction;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBM;
-import org.verapdf.model.coslayer.CosNumber;
 import org.verapdf.model.coslayer.CosRenderingIntent;
 import org.verapdf.model.pdlayer.PDExtGState;
 import org.verapdf.model.pdlayer.PDHalftone;
@@ -48,7 +46,7 @@ import java.util.logging.Logger;
  */
 public class GFPDExtGState extends GFPDResource implements PDExtGState {
 
-    Logger LOGGER = Logger.getLogger(GFPDExtGState.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(GFPDExtGState.class.getCanonicalName());
 
     public static final String EXT_G_STATE_TYPE = "PDExtGState";
 

@@ -33,10 +33,10 @@ import java.util.List;
  */
 public class GFShadingPatternFeaturesObjectAdapter implements ShadingPatternFeaturesObjectAdapter {
 
-	private PDShadingPattern shadingPattern;
-	private String id;
-	private String shadingChild;
-	private String extGStateChild;
+	private final PDShadingPattern shadingPattern;
+	private final String id;
+	private final String shadingChild;
+	private final String extGStateChild;
 
 	/**
 	 * Constructs new shading pattern features object adapter

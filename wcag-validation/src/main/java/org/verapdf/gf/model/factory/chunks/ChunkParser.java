@@ -88,8 +88,6 @@ class ChunkParser {
 		String operatorName = rawOperator.getOperator();
 		switch (operatorName) {
 			case Operators.BMC:
-				markedContentStack.push(getMCID(arguments, resourceHandler));
-				break;
 			case Operators.BDC:
 				markedContentStack.push(getMCID(arguments, resourceHandler));
 				break;
@@ -410,16 +408,11 @@ class ChunkParser {
 				}
 				break;
 			case Operators.B_CLOSEPATH_FILL_STROKE:
-				processh();
-				processB();
-				break;
-			case Operators.B_FILL_STROKE:
-				processB();
-				break;
 			case Operators.B_STAR_CLOSEPATH_EOFILL_STROKE:
 				processh();
 				processB();
 				break;
+			case Operators.B_FILL_STROKE:
 			case Operators.B_STAR_EOFILL_STROKE:
 				processB();
 				break;

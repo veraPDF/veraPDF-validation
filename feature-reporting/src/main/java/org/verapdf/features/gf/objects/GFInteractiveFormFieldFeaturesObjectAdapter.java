@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class GFInteractiveFormFieldFeaturesObjectAdapter implements InteractiveFormFieldFeaturesObjectAdapter {
 
-	private static EnumMap<COSObjType, String> valueMap = new EnumMap<>(COSObjType.class);
+	private static final EnumMap<COSObjType, String> valueMap = new EnumMap<>(COSObjType.class);
 
 	static {
 		valueMap.put(COSObjType.COS_ARRAY, "--COSArray--");
@@ -72,7 +72,7 @@ public class GFInteractiveFormFieldFeaturesObjectAdapter implements InteractiveF
 				case COS_REAL:
 					return String.valueOf(value.getReal());
 				default:
-					return valueMap.containsKey(type) ? valueMap.get(type) : null;
+					return valueMap.getOrDefault(type, null);
 			}
 		}
 	}

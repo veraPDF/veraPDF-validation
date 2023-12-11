@@ -599,7 +599,7 @@ class OperatorParser {
 		    && (gs.isProcessColorOperators() || Boolean.TRUE.equals(imageParameters.getBooleanKey(ASAtom.IM)))) {
 
 			arguments.add(imageParameters);
-			processedOperators.add(new GFOp_BI(new ArrayList<COSBase>()));
+			processedOperators.add(new GFOp_BI(new ArrayList<>()));
 			processedOperators.add(new GFOp_ID(arguments));
 			processedOperators.add(new GFOp_EI(arguments, resourcesHandler, gs.getFillColorSpace()));
 		}

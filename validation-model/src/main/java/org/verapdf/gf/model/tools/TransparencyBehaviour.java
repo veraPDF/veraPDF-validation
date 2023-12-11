@@ -213,7 +213,7 @@ public class TransparencyBehaviour {
                 }
             } else if (bm.getType() == COSObjType.COS_ARRAY) {
                 COSArray bmArray = (COSArray) bm.getDirectBase();
-                if (bmArray.size().intValue() != 1) {
+                if (bmArray.size() != 1) {
                     return true;
                 }
 				COSObject bmValue = bmArray.at(0);

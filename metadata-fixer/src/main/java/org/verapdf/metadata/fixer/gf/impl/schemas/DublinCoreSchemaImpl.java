@@ -98,7 +98,7 @@ public class DublinCoreSchemaImpl extends BasicSchemaImpl implements DublinCore 
 				res.add(s.substring(0, s.length() - 2));
 				return res.get(0);
 			}
-			return creators.size() == 0 ? null : creators.get(0);
+			return creators.isEmpty() ? null : creators.get(0);
 		} catch (XMPException e) {
 			LOGGER.log(Level.FINE, "Can not get creator.", e);
 			throw new IllegalStateException(e);

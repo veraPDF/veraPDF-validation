@@ -28,7 +28,6 @@ import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.annotations.*;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.gf.model.impl.pd.images.GFPDXForm;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
@@ -313,7 +312,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	private static Double getDifference(double[] array, int shift) {
 		if (array != null && array.length > shift + 2) {
-			return Double.valueOf(array[shift + 2] - array[shift]);
+			return array[shift + 2] - array[shift];
 		}
 		return null;
 	}

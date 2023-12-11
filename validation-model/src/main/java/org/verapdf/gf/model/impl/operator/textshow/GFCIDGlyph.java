@@ -33,7 +33,7 @@ import org.verapdf.pd.structure.StructureElementAccessObject;
  */
 public class GFCIDGlyph extends GFGlyph implements CIDGlyph {
 
-    public final static String CID_GLYPH_TYPE = "CIDGlyph";
+    public static final String CID_GLYPH_TYPE = "CIDGlyph";
 
     private final int cid;
 
@@ -45,6 +45,6 @@ public class GFCIDGlyph extends GFGlyph implements CIDGlyph {
 
     @Override
     public Long getCID() {
-        return Long.valueOf(this.cid);
+        return (long) this.cid;
     }
 }
