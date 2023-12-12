@@ -75,6 +75,6 @@ public class GFSEFENote extends GFPDStructElem implements SEFENote {
 
     @Override
     public String getNoteType() {
-        return AttributeHelper.getNoteType(simplePDObject);
+        return AttributeHelper.getNoteType(simpleCOSObject);
     }
 }
