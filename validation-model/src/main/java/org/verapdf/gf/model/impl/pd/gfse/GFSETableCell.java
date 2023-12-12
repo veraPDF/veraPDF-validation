@@ -38,12 +38,12 @@ public class GFSETableCell extends GFPDStructElem implements SETableCell {
 
     @Override
     public Long getColSpan() {
-        return AttributeHelper.getColSpan(simplePDObject);
+        return AttributeHelper.getColSpan(simpleCOSObject);
     }
 
     @Override
     public Long getRowSpan() {
-        return AttributeHelper.getRowSpan(simplePDObject);
+        return AttributeHelper.getRowSpan(simpleCOSObject);
     }
 
     public int getRowNumber() {

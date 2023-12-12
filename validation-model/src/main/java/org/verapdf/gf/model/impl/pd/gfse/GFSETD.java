@@ -47,7 +47,7 @@ public class GFSETD extends GFSETableCell implements SETD {
 	}
 
 	protected List<String> getHeaders() {
-		COSArray headers = AttributeHelper.getArrayAttributeValue(simplePDObject, ASAtom.HEADERS,
+		COSArray headers = AttributeHelper.getArrayAttributeValue(simpleCOSObject, ASAtom.HEADERS,
 				TaggedPDFConstants.TABLE, null);
 		if (headers != null) {
 			List<String> list = new LinkedList<>();
