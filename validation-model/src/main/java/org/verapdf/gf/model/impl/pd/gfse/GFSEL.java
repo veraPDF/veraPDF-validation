@@ -36,7 +36,7 @@ public class GFSEL extends GFPDStructElem implements SEL {
 
     @Override
     public String getListNumbering() {
-        return AttributeHelper.getListNumbering(simplePDObject);
+        return AttributeHelper.getListNumbering(simpleCOSObject);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class GFSEForm extends GFPDStructElem implements SEForm {
 
     @Override
     public String getroleAttribute() {
-        return AttributeHelper.getRole(this.simplePDObject);
+        return AttributeHelper.getRole(this.simpleCOSObject);
     }
 
     @Override

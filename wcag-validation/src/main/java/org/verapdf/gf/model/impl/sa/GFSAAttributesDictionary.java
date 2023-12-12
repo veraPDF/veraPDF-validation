@@ -38,11 +38,11 @@ public class GFSAAttributesDictionary implements IAttributesDictionary {
 
 	@Override
 	public long getColSpan() {
-		return AttributeHelper.getColSpan(pdStructElem);
+		return AttributeHelper.getColSpan(pdStructElem.getObject());
 	}
 
 	@Override
 	public long getRowSpan() {
-		return AttributeHelper.getRowSpan(pdStructElem);
+		return AttributeHelper.getRowSpan(pdStructElem.getObject());
 	}
 }
