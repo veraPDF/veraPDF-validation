@@ -200,7 +200,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		GFPDContentStream gfContentStream;
 		if (!PDFAFlavour.IsoStandardSeries.ISO_14289.equals(StaticContainers.getFlavour().getPart().getSeries()) &&
-		    !PDFAFlavour.WCAG2_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
+		    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily()) {
 			gfContentStream = new GFPDContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
