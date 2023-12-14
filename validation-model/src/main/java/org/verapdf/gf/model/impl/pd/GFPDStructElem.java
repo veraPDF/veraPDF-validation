@@ -120,6 +120,9 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 				parentStandardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(parent);
 				parentStandardType = parentStandardStructureType != null ? parentStandardStructureType.getType().getValue() : null;
 			}
+			if (parent.getType() == ASAtom.STRUCT_TREE_ROOT) {
+				return ASAtom.STRUCT_TREE_ROOT.getValue();
+			}
 			if (org.verapdf.pd.structure.PDStructElem.isMathStandardType(parentStandardStructureType)) {
 				return TaggedPDFConstants.MATH_ML;
 			}
@@ -128,6 +131,11 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		return null;
 	}
 
+	@Override
+	public Boolean getcontainsParent() {
+		return ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent() != null;
+	}
+	
 	@Override
 	public String getvalueS() {
 		COSName type = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getCOSStructureType();
