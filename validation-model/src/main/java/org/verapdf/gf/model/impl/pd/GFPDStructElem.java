@@ -178,7 +178,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_4 || flavour == PDFAFlavour.PDFUA_2) {
 				return TaggedPDFHelper.isStandardType(type);
 			}
-			if (flavour.getPart() == PDFAFlavour.Specification.WCAG_2_1) {
+			if (flavour.getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG) {
 				return TaggedPDFHelper.isWCAGStandardType(type) &&
 						!TaggedPDFConstants.TITLE.equals(type.getType().getValue());
 			}

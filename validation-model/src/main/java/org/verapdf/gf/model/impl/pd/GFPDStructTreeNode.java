@@ -53,7 +53,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 	@Override
 	public String getkidsStandardTypes() {
 		if (StaticContainers.getFlavour() != null &&
-		    StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1) {
+		    StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG) {
 			return this.getChildrenStandardTypes()
 			           .stream()
 			           .filter(type -> type != null && !TaggedPDFConstants.ARTIFACT.equals(type))
