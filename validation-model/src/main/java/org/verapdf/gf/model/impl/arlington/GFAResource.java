@@ -147,7 +147,7 @@ public class GFAResource extends GFAObject implements AResource {
 		return Collections.emptyList();
 	}
 
-	private List<A_UniversalDictionary> getentryProperties() {
+	private List<ADictionaryOfDictionaries> getentryProperties() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -162,14 +162,14 @@ public class GFAResource extends GFAObject implements AResource {
 		}
 	}
 
-	private List<A_UniversalDictionary> getentryProperties1_2() {
+	private List<ADictionaryOfDictionaries> getentryProperties1_2() {
 		COSObject object = getentryPropertiesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<A_UniversalDictionary> list = new ArrayList<>(1);
-			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.baseObject, "Properties"));
+			List<ADictionaryOfDictionaries> list = new ArrayList<>(1);
+			list.add(new GFADictionaryOfDictionaries((COSDictionary)object.getDirectBase(), this.baseObject, "Properties"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
