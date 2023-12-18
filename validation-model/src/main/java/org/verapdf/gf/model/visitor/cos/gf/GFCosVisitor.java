@@ -66,7 +66,7 @@ public class GFCosVisitor implements ICOSVisitor {
     public Object visitFromDictionary(COSDictionary obj) {
         ASAtom type = obj.getNameKey(ASAtom.TYPE);
         boolean isFileSpec = ASAtom.FILESPEC.equals(type);
-        return isFileSpec ? new GFCosFileSpecification(obj) : new GFCosDict(obj);
+        return isFileSpec ? new GFCosFileSpecification(obj, false) : new GFCosDict(obj);
     }
 
     /** {@inheritDoc} Create a GFCosDocument for corresponding COSDocument.
