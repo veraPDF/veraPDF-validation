@@ -48,6 +48,8 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	private final String f;
 	private final String uf;
 	private final String afrelationship;
+	
+	private final boolean presentInEmbeddedFiles;
 
 	/**
 	 * Default constructor
@@ -55,11 +57,12 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	 * @param dictionary
 	 *            greenfield COSDictionary
 	 */
-	public GFCosFileSpecification(COSDictionary dictionary) {
+	public GFCosFileSpecification(COSDictionary dictionary, boolean presentInEmbeddedFiles) {
 		super(dictionary, COS_FILE_SPECIFICATION_TYPE);
 		this.f = this.baseObject.getStringKey(ASAtom.F);
 		this.uf = this.baseObject.getStringKey(ASAtom.UF);
 		this.afrelationship = dictionary.getNameKeyStringValue(ASAtom.AF_RELATIONSHIP);
+		this.presentInEmbeddedFiles = presentInEmbeddedFiles;
 	}
 
 	@Override
@@ -81,6 +84,11 @@ public class GFCosFileSpecification extends GFCosDict implements CosFileSpecific
 	public Boolean getisAssociatedFile() {
 		return this.baseObject != null
 				&& StaticContainers.getFileSpecificationKeys().contains(this.baseObject.getObjectKey());
+	}
+
+	@Override
+	public Boolean getpresentInEmbeddedFiles() {
+		return this.presentInEmbeddedFiles;
 	}
 
 	@Override
