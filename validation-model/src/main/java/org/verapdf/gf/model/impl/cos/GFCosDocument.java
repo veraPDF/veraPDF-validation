@@ -420,7 +420,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		Map<String, COSObject> names = node.getNames();
 		for (COSObject value : names.values()) {
 			if (value != null && value.getType().isDictionaryBased()) {
-				files.add(new GFCosFileSpecification((COSDictionary) value.getDirectBase()));
+				files.add(new GFCosFileSpecification((COSDictionary) value.getDirectBase(), true));
 			}
 		}
 		for (PDNameTreeNode kid : node.getKids()) {
