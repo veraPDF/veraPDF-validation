@@ -92,6 +92,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	public static final String SQUIGGLY = "Squiggly";
 	public static final String TEXT = "Text";
 	public static final String TRAP_NET = "TrapNet";
+	public static final String WATERMARK = "Watermark";
 	public static final String UNDERLINE = "Underline";
 	public static final String WIDGET = "Widget";
 
@@ -472,6 +473,8 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 				return new GFPDRubberStampAnnot(annot, pageResources, page);
 			case TRAP_NET:
 				return new GFPDTrapNetAnnot(annot, pageResources, page);
+			case WATERMARK:
+				return new GFPDWatermarkAnnot(annot, pageResources, page);
 			case WIDGET:
 				return new GFPDWidgetAnnot((PDWidgetAnnotation) annot, pageResources, page);
 			case CARET:
