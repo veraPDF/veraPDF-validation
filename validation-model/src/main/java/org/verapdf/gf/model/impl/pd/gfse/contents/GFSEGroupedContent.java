@@ -33,16 +33,17 @@ import java.util.List;
 
 public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGroupedContent {
     
-    List<Operator> operators;
-    protected COSObject parentStructElem;
-    protected String parentsTags;
+    protected final List<Operator> operators;
+    protected final COSObject parentStructElem;
+    protected final String parentsTags;
     protected final boolean isSignature;
     protected final String defaultLang;
-    private final Boolean isTaggedContent;
+    protected final Boolean isTaggedContent;
     
-    public GFSEGroupedContent(String objectType, COSObject parentStructElem, String parentsTags, String defaultLang, 
+    public GFSEGroupedContent(String objectType, List<Operator> operators, COSObject parentStructElem, String parentsTags, String defaultLang,
                               boolean isSignature) {
         super(objectType);
+        this.operators = operators;
         this.parentStructElem = parentStructElem;
         this.parentsTags = parentsTags;
         this.defaultLang = defaultLang;

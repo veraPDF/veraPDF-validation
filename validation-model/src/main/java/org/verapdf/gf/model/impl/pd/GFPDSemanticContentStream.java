@@ -23,6 +23,7 @@ package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
+import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_EMC;
@@ -104,7 +105,8 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 				if (!markedContentStack.empty()) {
 					markedContentIndex = markedContentStack.pop();
 					if (markedContentStack.empty()) {
-						list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1), parentStructElem,
+						list.add(new GFSEMarkedContent((GFOpMarkedContent)operators.get(markedContentIndex), 
+								operators.subList(markedContentIndex + 1, i + 1), parentStructElem,
 								parentsTags, defaultLang, isSignature));
 						markedContentIndex = i;
 						unmarkedContentIndex = i + 1;

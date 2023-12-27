@@ -58,15 +58,11 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
 
     private final GFOpMarkedContent operator;
 
-    public GFSEMarkedContent(List<Operator> operators, COSObject parentStructElem, String parentsTags, String defaultLang, 
-                             boolean isSignature) {
-        super(MARKED_CONTENT_TYPE, parentStructElem, parentsTags, defaultLang, isSignature);
-        this.operators = operators.subList(1, operators.size() - 1);
-        this.operator = (GFOpMarkedContent)operators.get(0);
-        COSObject structElem = operator.getParentStructElem();
-        if (structElem != null) {
-            this.parentStructElem = structElem;
-        }
+    public GFSEMarkedContent(GFOpMarkedContent operator, List<Operator> operators, COSObject parentStructElem, 
+                             String parentsTags, String defaultLang, boolean isSignature) {
+        super(MARKED_CONTENT_TYPE, operators, getParentStructElement(parentStructElem, operator), parentsTags, defaultLang, 
+                isSignature);
+        this.operator = operator;
     }
 
     @Override
@@ -97,7 +93,8 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
                 if (!markedContentStack.empty()) {
                     markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
-                        list.add(new GFSEMarkedContent(operators.subList(markedContentIndex, i + 1),
+                        list.add(new GFSEMarkedContent((GFOpMarkedContent)operators.get(markedContentIndex), 
+                                operators.subList(markedContentIndex + 1, i + 1),
                                 parentStructElem, parentsTags, defaultLang, isSignature));
                     }
                 }
@@ -200,5 +197,10 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     @Override
     public Long getMCID() {
         return operator.getMCID();
+    }
+
+    private static COSObject getParentStructElement(COSObject parentStructElem, GFOpMarkedContent markedOperator) {
+        COSObject structElem = markedOperator.getParentStructElem();
+        return structElem != null ? structElem : parentStructElem;
     }
 }
