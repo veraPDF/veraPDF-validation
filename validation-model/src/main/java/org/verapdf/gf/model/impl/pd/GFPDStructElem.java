@@ -161,7 +161,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 			}
 		} else if (standardType != null) {
 			String standardTypeMap = StaticResources.getRoleMapHelper().getStandardType(ASAtom.getASAtom(standardType));
-			if (standardTypeMap != null) {
+			if (!Objects.equals(standardTypeMap, standardType)) {
 				return standardType;
 			}
 		}
