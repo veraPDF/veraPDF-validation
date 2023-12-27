@@ -31,4 +31,9 @@ public class GFSENonStandard extends GFPDStructElem implements SENonStandard {
     public GFSENonStandard(PDStructElem structElemDictionary, String standardType) {
         super(structElemDictionary, standardType, NON_STANDARD_STRUCTURE_ELEMENT_TYPE);
     }
+
+    @Override
+    public Boolean getisNotMappedToStandardType() {
+        return getremappedStandardType() == null && !getcircularMappingExist();
+    }
 }

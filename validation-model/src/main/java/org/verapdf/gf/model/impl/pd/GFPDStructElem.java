@@ -45,11 +45,7 @@ import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Maksim Bezrukov
@@ -154,15 +150,22 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	}
 
 	@Override
-	public Boolean getisRemappedStandardType() {
+	public String getremappedStandardType() {
 		if (hasStandardType()) {
 			StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 			if (type == null) {
-				return false;
+				return null;
 			}
-			return !type.getType().getValue().equals(standardType);
+			if (!type.getType().getValue().equals(standardType)) {
+				return type.getType().getValue();
+			}
+		} else if (standardType != null) {
+			String standardTypeMap = StaticResources.getRoleMapHelper().getStandardType(ASAtom.getASAtom(standardType));
+			if (standardTypeMap != null) {
+				return standardType;
+			}
 		}
-		return false;
+		return null;
 	}
 
 	private boolean hasStandardType(){
