@@ -84,6 +84,16 @@ public abstract class GFSESimpleContentItem extends GFSEContentItem implements S
     }
 
     @Override
+    public Boolean getisTaggedContent() {
+        return groupedContent.getisTaggedContent();
+    }
+
+    @Override
+    public String getparentStructureElementObjectKey() {
+        return groupedContent.getparentStructureElementObjectKey();
+    }
+
+    @Override
     public String getExtraContext() {
         Long mcid = groupedContent.getMCID();
         return mcid != null ? "mcid:" + mcid : null;

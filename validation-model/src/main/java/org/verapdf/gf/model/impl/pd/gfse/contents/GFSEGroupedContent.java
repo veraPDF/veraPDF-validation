@@ -36,8 +36,9 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
     List<Operator> operators;
     protected COSObject parentStructElem;
     protected String parentsTags;
-    protected boolean isSignature;
+    protected final boolean isSignature;
     protected final String defaultLang;
+    private final Boolean isTaggedContent;
     
     public GFSEGroupedContent(String objectType, COSObject parentStructElem, String parentsTags, String defaultLang, 
                               boolean isSignature) {
@@ -46,6 +47,7 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
         this.parentsTags = parentsTags;
         this.defaultLang = defaultLang;
         this.isSignature = isSignature;
+        this.isTaggedContent = isTaggedContent();
     }
 
     @Override
@@ -116,5 +118,26 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
     @Override
     public String getAlt() {
         return null;
+    }
+
+    @Override
+    public Boolean getisTaggedContent() {
+        return this.isTaggedContent;
+    }
+    
+    private boolean isTaggedContent() {
+        PDStructElem structElem = new PDStructElem(parentStructElem, null);
+        while (structElem != null) {
+            if (structElem.getType() == ASAtom.STRUCT_TREE_ROOT) {
+                return true;
+            }
+            structElem = structElem.getParent();
+        }
+        return false;
+    }
+
+    @Override
+    public String getparentStructureElementObjectKey() {
+        return parentStructElem.getObjectKey().toString();
     }
 }
