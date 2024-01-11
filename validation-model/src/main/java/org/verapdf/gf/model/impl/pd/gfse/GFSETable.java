@@ -56,7 +56,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
     private void checkTable() {
         List<Integer> rowGroupingsIndexes = new LinkedList<>();
         List<GFPDStructElem> listTR = getTR(rowGroupingsIndexes);
-        int numberOfRows = listTR.size();
+        int numberOfRows = getNumberOfRows(listTR);
         this.rowSpan = (long)numberOfRows;
         if (numberOfRows == 0) {
             useHeadersAndIdOrScope = true;
@@ -267,6 +267,19 @@ public class GFSETable extends GFPDStructElem implements SETable {
             }
         }
         return numberOfColumns;
+    }
+
+    private Integer getNumberOfRows(List<GFPDStructElem> listTR) {
+        int numberOfRows = 0;
+        for (GFPDStructElem TR : listTR) {
+            for (PDStructElem elem : TR.getStructuralSignificanceChildren()) {
+                String type = elem.getstandardType();
+                if (TaggedPDFConstants.TH.equals(type) || TaggedPDFConstants.TD.equals(type)) {
+                    numberOfRows += ((GFSETableCell)elem).getRowSpan();
+                }
+            }
+        }
+        return numberOfRows;
     }
 
     private Boolean checkRegular(GFSETableCell[][] cells, GFSETableCell cell, long rowSpan, long colSpan,
