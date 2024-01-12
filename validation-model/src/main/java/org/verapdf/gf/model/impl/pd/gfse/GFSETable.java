@@ -271,13 +271,17 @@ public class GFSETable extends GFPDStructElem implements SETable {
 
     private Integer getNumberOfRows(List<GFPDStructElem> listTR) {
         int numberOfRows = 0;
-        for (GFPDStructElem TR : listTR) {
-            List<GFPDStructElem> children = TR.getStructuralSignificanceChildren();
+        for (int rowNumber = 0; rowNumber < listTR.size(); rowNumber++) {
+            List<GFPDStructElem> children = listTR.get(rowNumber).getStructuralSignificanceChildren();
             if (!children.isEmpty()) {
                 PDStructElem elem = children.get(0);
                 String type = elem.getstandardType();
                 if (TaggedPDFConstants.TH.equals(type) || TaggedPDFConstants.TD.equals(type)) {
-                    numberOfRows += ((GFSETableCell)elem).getRowSpan();
+                    Long rowSpan = ((GFSETableCell)elem).getRowSpan();
+                    numberOfRows += rowSpan;
+                    if (rowSpan > 1) {
+                        rowNumber += rowSpan - 1;
+                    }
                 }
             }
         }
