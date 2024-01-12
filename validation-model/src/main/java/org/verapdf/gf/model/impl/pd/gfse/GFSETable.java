@@ -99,7 +99,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
 
     private boolean checkRegular(List<GFPDStructElem> listTR, GFSETableCell[][] cells,
                                  int numberOfRows, int numberOfColumns, List<Integer> rowGroupingsIndexes) {
-        for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
+        for (int rowNumber = 0; rowNumber < listTR.size(); rowNumber++) {
             int columnNumber = 0;
             for (PDStructElem elem : listTR.get(rowNumber).getStructuralSignificanceChildren()) {
                 String type = elem.getstandardType();
