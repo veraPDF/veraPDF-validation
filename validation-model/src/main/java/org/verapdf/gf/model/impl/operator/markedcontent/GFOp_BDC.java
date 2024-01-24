@@ -25,7 +25,6 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
-import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_BDC;
@@ -37,11 +36,15 @@ import org.verapdf.tools.StaticResources;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
+
+	private static final Logger LOGGER = Logger.getLogger(GFOp_BDC.class.getCanonicalName());
 
 	/** Type name for {@code GFOp_BDC} */
     public static final String OP_BDC_TYPE = "Op_BDC";
@@ -101,7 +104,8 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 		while (baseLang == null && parent != null) {
 			COSKey key = parent.getObjectKey();
 			if (keys.contains(key)) {
-				throw new LoopedException("Struct tree loop found");
+				LOGGER.log(Level.WARNING, "Struct tree loop found");
+				break;
 			}
 			if (key != null) {
 				keys.add(key);

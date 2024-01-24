@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.gfse.contents;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.selayer.SEGroupedContent;
@@ -29,10 +30,16 @@ import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGroupedContent {
     
+    private static final Logger LOGGER = Logger.getLogger(GFSEGroupedContent.class.getCanonicalName());
+
     protected final List<Operator> operators;
     protected final COSObject parentStructElem;
     protected final String parentsTags;
@@ -87,11 +94,20 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
 
     protected Boolean hasParentWithStandardType(String standardType) {
         TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+        Set<COSKey> keys = new HashSet<>();
         if (parentStructElem != null && taggedPDFRoleMapHelper != null) {
             PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
             while (structElem != null) {
                 if (standardType.equals(PDStructElem.getStructureElementStandardType(structElem))) {
                     return true;
+                }
+                COSKey key = structElem.getObject().getObjectKey();
+                if (keys.contains(key)) {
+                    LOGGER.log(Level.WARNING, "Struct tree loop found");
+                    break;
+                }
+                if (key != null) {
+                    keys.add(key);
                 }
                 structElem = structElem.getParent();
             }
@@ -127,10 +143,19 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
     }
     
     private boolean isTaggedContent() {
+        Set<COSKey> keys = new HashSet<>();
         PDStructElem structElem = new PDStructElem(parentStructElem, null);
         while (structElem != null) {
             if (structElem.getType() == ASAtom.STRUCT_TREE_ROOT) {
                 return true;
+            }
+            COSKey key = structElem.getObject().getObjectKey();
+            if (keys.contains(key)) {
+                LOGGER.log(Level.WARNING, "Struct tree loop found");
+                break;
+            }
+            if (key != null) {
+                keys.add(key);
             }
             structElem = structElem.getParent();
         }
