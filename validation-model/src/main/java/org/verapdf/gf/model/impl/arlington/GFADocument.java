@@ -133,7 +133,7 @@ public class GFADocument extends GFAObject implements ADocument {
 	}
 
 	public COSObject getFileTrailerValue() {
-		if (StaticResources.getDocument().getDocument().getLastXRefStream() == null) {
+		if (StaticResources.getDocument().getDocument().getLastXRefStream() != null) {
 			return null;
 		}
 		COSObject object = StaticResources.getDocument().getDocument().getTrailer().getObject();
