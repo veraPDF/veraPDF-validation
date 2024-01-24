@@ -27,7 +27,6 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSArray;
-import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosActualText;
 import org.verapdf.gf.model.impl.cos.GFCosAlt;
@@ -46,11 +45,16 @@ import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
 public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
+
+	private static final Logger LOGGER = Logger.getLogger(GFPDStructElem.class.getCanonicalName());
+
 	/**
 	 * Type name for {@code GFPDStructElem}
 	 */
@@ -264,7 +268,8 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		while (baseLang == null && parent != null) {
 			key = parent.getObject().getObjectKey();
 			if (keys.contains(key)) {
-				throw new LoopedException("Struct tree loop found");
+				LOGGER.log(Level.WARNING, "Struct tree loop found");
+				break;
 			}
 			if (key != null) {
 				keys.add(key);
