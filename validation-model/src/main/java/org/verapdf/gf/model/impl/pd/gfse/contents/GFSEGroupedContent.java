@@ -72,7 +72,7 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
     public String getparentStandardTag() {
         TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
         if (parentStructElem != null && taggedPDFRoleMapHelper != null) {
-            PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
+            PDStructElem structElem = new PDStructElem(parentStructElem);
             return PDStructElem.getStructureElementStandardType(structElem);
         }
         return null;
@@ -96,7 +96,7 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
         TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
         Set<COSKey> keys = new HashSet<>();
         if (parentStructElem != null && taggedPDFRoleMapHelper != null) {
-            PDStructElem structElem = new PDStructElem(parentStructElem, taggedPDFRoleMapHelper.getRoleMap());
+            PDStructElem structElem = new PDStructElem(parentStructElem);
             while (structElem != null) {
                 if (standardType.equals(PDStructElem.getStructureElementStandardType(structElem))) {
                     return true;
@@ -144,7 +144,7 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
     
     private boolean isTaggedContent() {
         Set<COSKey> keys = new HashSet<>();
-        PDStructElem structElem = new PDStructElem(parentStructElem, null);
+        PDStructElem structElem = new PDStructElem(parentStructElem);
         while (structElem != null) {
             if (structElem.getType() == ASAtom.STRUCT_TREE_ROOT) {
                 return true;
