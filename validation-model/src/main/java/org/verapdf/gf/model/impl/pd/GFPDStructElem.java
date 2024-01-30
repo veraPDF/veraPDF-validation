@@ -42,7 +42,6 @@ import org.verapdf.pd.structure.StructureType;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
-import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -164,7 +163,9 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 				return type.getType().getValue();
 			}
 		} else if (standardType != null) {
-			String standardTypeMap = StaticResources.getRoleMapHelper().getStandardType(ASAtom.getASAtom(standardType));
+			StructureType standardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(
+					((org.verapdf.pd.structure.PDStructElem)simplePDObject));
+			String standardTypeMap = org.verapdf.pd.structure.PDStructElem.getStructureTypeStandardType(standardStructureType);
 			if (!Objects.equals(standardTypeMap, standardType)) {
 				return standardType;
 			}
@@ -172,25 +173,16 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		return null;
 	}
 
-	private boolean hasStandardType(){
+	private boolean hasStandardType() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 		if (type == null) {
 			return false;
 		}
-		PDFAFlavour flavour = StaticContainers.getFlavour();
-		if (flavour != null) {
-			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
-				return TaggedPDFHelper.getPdf14StandardRoleTypes().contains(type.getType().getValue());
-			}
-			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_4 || flavour == PDFAFlavour.PDFUA_2) {
-				return TaggedPDFHelper.isStandardType(type);
-			}
-			if (flavour.getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG) {
-				return TaggedPDFHelper.isWCAGStandardType(type) &&
-						!TaggedPDFConstants.TITLE.equals(type.getType().getValue());
-			}
+		if (StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG &&
+				ASAtom.TITLE == type.getType()) {
+			return false;
 		}
-		return TaggedPDFHelper.getPdf17StandardRoleTypes().contains(type.getType().getValue());
+		return org.verapdf.pd.structure.PDStructElem.isStandardStructureType(type);
 	}
 
 	@Override
