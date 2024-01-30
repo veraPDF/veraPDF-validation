@@ -79,7 +79,7 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 		}
 		COSObject parent = getParentDictionary();
 		if (parent != null) {
-			PDStructElem parentStructElem = new PDStructElem(parent, taggedPDFRoleMapHelper.getRoleMap());
+			PDStructElem parentStructElem = new PDStructElem(parent);
 			for (PDStructElem child : parentStructElem.getStructChildren()) {
 				if (TaggedPDFConstants.LBL.equals(PDStructElem.getStructureElementStandardType(child)) && 
 						!child.getChildren().isEmpty()) {
