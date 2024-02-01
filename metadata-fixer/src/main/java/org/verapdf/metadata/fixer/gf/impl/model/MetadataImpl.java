@@ -22,7 +22,8 @@ package org.verapdf.metadata.fixer.gf.impl.model;
 
 import org.verapdf.xmp.XMPConst;
 import org.verapdf.xmp.XMPException;
-import org.verapdf.xmp.impl.VeraPDFMeta;
+import org.verapdf.xmp.XMPMetaFactory;
+import org.verapdf.xmp.impl.*;
 import org.verapdf.as.ASAtom;
 import org.verapdf.as.io.ASMemoryInStream;
 import org.verapdf.cos.*;
@@ -37,7 +38,6 @@ import org.verapdf.metadata.fixer.schemas.XMPBasic;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.MetadataFixerResult;
 import org.verapdf.pdfa.results.MetadataFixerResultImpl;
-import org.verapdf.xmp.impl.VeraPDFXMPNode;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -62,6 +62,9 @@ public class MetadataImpl implements Metadata {
     private static final String REMOVE_PROPERTY_MESSAGE = "Removed property '%s' from Identification schema";
     private static final String SET_PROPERTY_MESSAGE = "Set property '%s' value to '%s' in Identification schema";
 
+    private static final String INTERNAL = "internal";
+    private static final String TEXT = "Text";
+    private static final String INTEGER = "Integer";
 
     private final VeraPDFMeta metadata;
     private final COSObject stream;
@@ -145,9 +148,11 @@ public class MetadataImpl implements Metadata {
     public void addPDFIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         if (PDFAFlavour.IsoStandardSeries.ISO_14289.equals(flavour.getPart().getSeries())) {
             addPDFUAIdentificationSchema(resultBuilder, flavour);
+//            checkAndFixPDFUAPrefixes(resultBuilder, flavour);
+            updateExtensionSchema(resultBuilder, flavour);
         } else {
             addPDFAIdentificationSchema(resultBuilder, flavour);
-            checkAndFixPDFAPrefixes(resultBuilder, flavour);
+//            checkAndFixPDFAPrefixes(resultBuilder, flavour);
         }
         fixRevProperty(resultBuilder, flavour);
     }
@@ -189,19 +194,71 @@ public class MetadataImpl implements Metadata {
         }
     }
 
+    private boolean hasProperty(String propertyName, String schemaId) {
+        return this.metadata.getProperty(schemaId, propertyName) != null;
+    }
+
     public void addPDFUAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         try {
+            if (!XMPMetaFactory.getSchemaRegistry().getNamespaces().containsKey(XMPConst.NS_PDFUA_ID)) {
+                XMPMetaFactory.getSchemaRegistry().registerNamespace(XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX, false);
+            }
             int part = flavour.getPart().getPartNumber();
             if (!Objects.equals(this.metadata.getPDFUAIdentificationPart(), part)) {
                 resultBuilder.addFix(String.format(this.metadata.getPDFUAIdentificationPart() == null ?
                         ADD_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE, VeraPDFMeta.PART, part));
-                        this.metadata.setPDFUAIdentificationPart(part);
+                this.metadata.setPDFUAIdentificationPart(part);
                 this.setNeedToBeUpdated(true);
             }
         } catch (XMPException e) {
             LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
         }
     }
+    
+    public void updateExtensionSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
+        try {
+            VeraPDFExtensionSchemasContainer extension = metadata.getExtensionSchema();
+            if (extension == null) {
+                metadata.createExtensionSchema();
+                extension = metadata.getExtensionSchema();
+                resultBuilder.addFix("Added extension schema");
+                this.setNeedToBeUpdated(true);
+            }
+            VeraPDFExtensionSchemaDefinition extensionSchemaDefinition = VeraPDFExtensionSchemaDefinition.createExtensionSchemaDefinitionNode(
+                    "PDF/UA Universal Accessibility Schema", XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
+            boolean flag = false;
+            if (flavour == PDFAFlavour.PDFUA_1) {
+                flag |= addPropertyDefinition(resultBuilder, extension, extensionSchemaDefinition, VeraPDFMeta.PDFUAID_PREFIX,
+                        XMPConst.NS_PDFUA_ID, VeraPDFMeta.AMD, TEXT, INTERNAL, "PDF/UA amendment identifier");
+                flag |= addPropertyDefinition(resultBuilder, extension, extensionSchemaDefinition, VeraPDFMeta.PDFUAID_PREFIX,
+                        XMPConst.NS_PDFUA_ID, VeraPDFMeta.CORR, TEXT, INTERNAL, "PDF/UA corrigenda identifier");
+            } else if (flavour == PDFAFlavour.PDFUA_2) {
+                flag |= addPropertyDefinition(resultBuilder, extension, extensionSchemaDefinition, VeraPDFMeta.PDFUAID_PREFIX,
+                        XMPConst.NS_PDFUA_ID, VeraPDFMeta.REVISION_YEAR, INTEGER, INTERNAL, 
+                        "Four-digit year of the date of publication or revision");
+            }
+            flag |= addPropertyDefinition(resultBuilder, extension, extensionSchemaDefinition, VeraPDFMeta.PDFUAID_PREFIX, 
+                    XMPConst.NS_PDFUA_ID, VeraPDFMeta.PART, INTEGER, INTERNAL, "PDF/UA version identifier");
+            if (flag) {
+                extension.addExtensionSchemaDefinition(extensionSchemaDefinition);
+                this.setNeedToBeUpdated(true);
+            }
+        } catch (XMPException e) {
+            LOGGER.log(Level.FINE, "Can not obtain extension schema.", e);
+        }
+    }
+    
+    private boolean addPropertyDefinition(MetadataFixerResultImpl.Builder resultBuilder, VeraPDFExtensionSchemasContainer extension, 
+                                          VeraPDFExtensionSchemaDefinition extensionSchemaDefinition, String propertyPrefix, 
+                                          String schemaId, String propertyName, String valueType, String category, String description) throws XMPException {
+        if (hasProperty(propertyName, schemaId) && extension.getPropertyDefinition(schemaId, propertyPrefix, propertyName) == null) {
+            resultBuilder.addFix("Added property '" + propertyPrefix + ":" + propertyName + "' definition into extension schema");
+            extensionSchemaDefinition.addExtensionSchemaProperty(VeraPDFExtensionSchemaProperty.createPropertyDefinitionNode(propertyName,
+                    valueType, category, description));
+            return true;
+        }
+        return false;
+    } 
 
     public void addPDFAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         int part = flavour.getPart().getPartNumber();
