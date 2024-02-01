@@ -75,15 +75,6 @@ public class GFPDStructTreeRoot extends GFPDStructTreeNode implements PDStructTr
 	}
 
 	@Override
-	public String gettopLevelFirstElementStandardType() {
-		List<GFPDStructElem> children = getStructuralSignificanceChildren();
-		if (!children.isEmpty()) {
-			return children.get(0).getstandardType();
-		}
-		return null;
-	}
-
-	@Override
 	public String getfirstChildStandardTypeNamespaceURL() {
 		List<GFPDStructElem> children = getStructuralSignificanceChildren();
 		if (!children.isEmpty()) {

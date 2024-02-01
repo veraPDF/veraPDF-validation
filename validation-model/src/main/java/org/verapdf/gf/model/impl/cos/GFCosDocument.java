@@ -232,14 +232,6 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		return this.isLinearised;
 	}
 
-	/**
-	 * @return true if XMP content matches Info dictionary content
-	 */
-	@Override
-	public Boolean getdoesInfoMatchXMP() {
-		return XMPChecker.doesInfoMatchXMP(cosDocument);
-	}
-
 	@Override
 	public Boolean getMarked() {
 		if (this.catalog != null) {

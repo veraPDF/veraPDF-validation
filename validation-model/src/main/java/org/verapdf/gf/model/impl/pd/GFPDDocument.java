@@ -127,11 +127,6 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     }
 
     @Override
-    public Boolean getvalidPDF() {
-        return StaticContainers.getValidPDF();
-    }
-
-    @Override
     public Boolean getcontainsAA() {
         return this.catalog != null && this.catalog.getObject().getType().isDictionaryBased() && this.catalog.knownKey(ASAtom.AA);
     }

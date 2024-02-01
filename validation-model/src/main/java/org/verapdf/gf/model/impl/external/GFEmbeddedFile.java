@@ -129,7 +129,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		}
 	}
 
-	// We need to save data from StaticContainers before validating embedded
+	// We need to save data from StaticContainers, StaticResources and StaticXmpCoreContainers before validating embedded
 	// documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
@@ -146,7 +146,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
 	private Map<String, Map<String, Glyph>> cachedGlyphs;
-	private boolean validPDF;
 	private Integer lastHeadingNestingLevel;
 	private org.verapdf.pd.colors.PDColorSpace currentTransparencyColorSpace;
 
@@ -172,7 +171,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.noteIDSet = StaticContainers.getNoteIDSet();
 		this.xFormKeysSet = StaticContainers.getXFormKeysSet();
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
-		this.validPDF = StaticContainers.getValidPDF();
 		this.lastHeadingNestingLevel = StaticContainers.getLastHeadingNestingLevel();
 		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
 		this.currentTransparencyColorSpace = StaticContainers.getCurrentTransparencyColorSpace();
@@ -202,7 +200,6 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setNoteIDSet(this.noteIDSet);
 		StaticContainers.setXFormKeysSet(this.xFormKeysSet);
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
-		StaticContainers.setValidPDF(this.validPDF);
 		StaticContainers.setLastHeadingNestingLevel(this.lastHeadingNestingLevel);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
 		StaticContainers.setCurrentTransparencyColorSpace(this.currentTransparencyColorSpace);
