@@ -53,7 +53,6 @@ public class StaticContainers {
 	private static final ThreadLocal<Map<COSKey, Set<COSKey>>> destinationToStructParentsMap = new ThreadLocal<>();
 
 	private static final ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
-	private static final ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
 
 	private static final ThreadLocal<Map<String, Map<String, Glyph>>> cachedGlyphs = new ThreadLocal<>();
 
@@ -79,7 +78,6 @@ public class StaticContainers {
 		transparencyVisitedContentStreams.set(new Stack<>());
 		cachedGlyphs.set(new HashMap<>());
 		noteIDSet.set(new HashSet<>());
-		validPDF.set(true);
 		lastHeadingNestingLevel.set(0);
 		currentTransparencyColorSpace.set(null);
 		xFormKeysSet.set(new HashSet<>());
@@ -201,14 +199,6 @@ public class StaticContainers {
 
 	public static void setTransparencyVisitedContentStreams(Stack<COSKey> transparencyVisitedContentStreams) {
 		StaticContainers.transparencyVisitedContentStreams.set(transparencyVisitedContentStreams);
-	}
-
-	public static boolean getValidPDF() {
-		return validPDF.get();
-	}
-
-	public static void setValidPDF(boolean validPDF) {
-		StaticContainers.validPDF.set(validPDF);
 	}
 
 	public static Integer getLastHeadingNestingLevel() {

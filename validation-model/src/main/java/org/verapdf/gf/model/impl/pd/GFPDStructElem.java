@@ -96,15 +96,6 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		this(structElemDictionary, null, STRUCTURE_ELEMENT_TYPE);
 	}
 
-	/**
-	 * @return Type entry of current structure element
-	 */
-	@Override
-	public String getType() {
-		ASAtom type = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getType();
-		return type == null ? null : type.getValue();
-	}
-
 	@Override
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();

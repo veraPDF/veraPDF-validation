@@ -155,7 +155,6 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
-				StaticContainers.setValidPDF(false);
 			}
 		}
 		return Collections.unmodifiableList(res);
