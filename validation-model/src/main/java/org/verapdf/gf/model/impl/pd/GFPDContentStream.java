@@ -137,7 +137,6 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 					if (key != null) {
 						if (StaticContainers.getTransparencyVisitedContentStreams().contains(key)) {
 							LOGGER.log(Level.FINE, "Parsing content stream loop");
-							StaticContainers.setValidPDF(false);
 							this.containsTransparency = false;
 							this.operators = Collections.emptyList();
 							return;
@@ -171,7 +170,6 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.FINE, "Error while parsing content stream. " + e.getMessage(), e);
-				StaticContainers.setValidPDF(false);
 				this.operators = Collections.emptyList();
 			}
 		}

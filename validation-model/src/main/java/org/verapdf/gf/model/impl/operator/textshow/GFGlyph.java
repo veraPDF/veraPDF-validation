@@ -178,7 +178,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         } catch (IOException e) {
             LOGGER.log(Level.FINE, "Error in parsing font program", e);
-            StaticContainers.setValidPDF(false);
         }
     }
 
