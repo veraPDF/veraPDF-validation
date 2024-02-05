@@ -199,6 +199,84 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getParentDictionaryDefault1_3(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Widget":
+				return getParentDictionaryWidget1_3(base, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getParentDictionaryWidgetBtn1_3(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getParentDictionaryWidgetBtn01_3(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryDefault1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		if (subtype == null) {
 			return null;
@@ -209,7 +287,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getParentDictionaryBtn1_3(base, keyName);
+				return getParentDictionaryDefaultBtn1_3(base, keyName);
 			case "Ch":
 				return new GFAFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -221,7 +299,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryBtn1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryDefaultBtn1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		if (subtype == null) {
 			return null;
@@ -232,7 +310,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getParentDictionary01_3(base, keyName);
+				return getParentDictionaryDefaultBtn01_3(base, keyName);
 			case 1:
 				return new GFAFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -240,7 +318,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionary01_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryDefaultBtn01_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		if (subtype == null) {
 			return null;

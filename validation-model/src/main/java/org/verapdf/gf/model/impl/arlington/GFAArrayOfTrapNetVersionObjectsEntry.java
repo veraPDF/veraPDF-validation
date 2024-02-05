@@ -152,19 +152,19 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 			case "ExtGState":
 				return new GFAGraphicsStateParameter(base, this.baseObject, keyName);
 			case "Font":
-				return getEntryDictionaryFont1_3(base, keyName);
+				return getEntryDictionaryTypeFont1_3(base, keyName);
 			case "OPI":
-				return getEntryDictionaryOPI1_3(base, keyName);
+				return getEntryDictionaryTypeOPI1_3(base, keyName);
 			case "Pattern":
 				return new GFAPatternType2(base, this.baseObject, keyName);
 			case "XObject":
-				return getEntryDictionaryXObject1_3(base, keyName);
+				return getEntryDictionaryTypeXObject1_3(base, keyName);
 			default:
 				return null;
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryFont1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getEntryDictionaryTypeFont1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
 		if (subtype == null) {
 			return null;
@@ -193,7 +193,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryOPI1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getEntryDictionaryTypeOPI1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Version"));
 		if (subtype == null) {
 			return null;
@@ -212,7 +212,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryXObject1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getEntryDictionaryTypeXObject1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
 		if (subtype == null) {
 			return null;
@@ -227,13 +227,13 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 			case "Image":
 				return new GFAXObjectImage(base, this.baseObject, keyName);
 			case "PS":
-				return getEntryDictionaryPS1_3(base, keyName);
+				return getEntryDictionaryTypeXObjectPS1_3(base, keyName);
 			default:
 				return null;
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryPS1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getEntryDictionaryTypeXObjectPS1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype2"));
 		if (subtype == null) {
 			return null;

@@ -10,10 +10,10 @@ import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 
-public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
+public class GFAAnnotWidgetFieldSig extends GFAObject implements AAnnotWidgetFieldSig {
 
-	public GFAAnnotWidget(COSBase baseObject, COSBase parentObject, String keyName) {
-		super(baseObject, parentObject, keyName, "AAnnotWidget");
+	public GFAAnnotWidgetFieldSig(COSBase baseObject, COSBase parentObject, String keyName) {
+		super(baseObject, parentObject, keyName, "AAnnotWidgetFieldSig");
 	}
 
 	@Override
@@ -33,8 +33,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 				return getBorder();
 			case "C":
 				return getC();
+			case "DV":
+				return getDV();
 			case "Kids":
 				return getKids();
+			case "Lock":
+				return getLock();
 			case "MK":
 				return getMK();
 			case "OC":
@@ -45,6 +49,12 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 				return getPMD();
 			case "Parent":
 				return getParent();
+			case "RV":
+				return getRV();
+			case "SV":
+				return getSV();
+			case "V":
+				return getV();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -52,8 +62,6 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 
 	private List<org.verapdf.model.baselayer.Object> getA() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-				return getA1_2();
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 				return getA1_3();
@@ -66,65 +74,6 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 				return getA2_0();
 			default:
 				return Collections.emptyList();
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getA1_2() {
-		COSObject object = getAValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getADictionary1_2(object.getDirectBase(), "A");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getADictionary1_2(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "GoTo":
-				return new GFAActionGoTo(base, this.baseObject, keyName);
-			case "GoToR":
-				return new GFAActionGoToR(base, this.baseObject, keyName);
-			case "Hide":
-				return new GFAActionHide(base, this.baseObject, keyName);
-			case "ImportData":
-				return new GFAActionImportData(base, this.baseObject, keyName);
-			case "Launch":
-				return new GFAActionLaunch(base, this.baseObject, keyName);
-			case "Movie":
-				return new GFAActionMovie(base, this.baseObject, keyName);
-			case "NOP":
-				return new GFAActionNOP(base, this.baseObject, keyName);
-			case "Named":
-				return new GFAActionNamed(base, this.baseObject, keyName);
-			case "ResetForm":
-				return new GFAActionResetForm(base, this.baseObject, keyName);
-			case "SetState":
-				return new GFAActionSetState(base, this.baseObject, keyName);
-			case "Sound":
-				return new GFAActionSound(base, this.baseObject, keyName);
-			case "SubmitForm":
-				return new GFAActionSubmitForm(base, this.baseObject, keyName);
-			case "Thread":
-				return new GFAActionThread(base, this.baseObject, keyName);
-			case "URI":
-				return new GFAActionURI(base, this.baseObject, keyName);
-			default:
-				return null;
 		}
 	}
 
@@ -386,29 +335,28 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 		}
 	}
 
-	private List<AAddActionWidgetAnnotation> getAA() {
+	private List<AAddActionFormField> getAA() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getAA1_2();
+				return getAA1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AAddActionWidgetAnnotation> getAA1_2() {
+	private List<AAddActionFormField> getAA1_3() {
 		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAddActionWidgetAnnotation> list = new ArrayList<>(1);
-			list.add(new GFAAddActionWidgetAnnotation((COSDictionary)object.getDirectBase(), this.baseObject, "AA"));
+			List<AAddActionFormField> list = new ArrayList<>(1);
+			list.add(new GFAAddActionFormField((COSDictionary)object.getDirectBase(), this.baseObject, "AA"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -438,20 +386,19 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 
 	private List<AAppearance> getAP() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getAP1_2();
+				return getAP1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AAppearance> getAP1_2() {
+	private List<AAppearance> getAP1_3() {
 		COSObject object = getAPValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -466,20 +413,19 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 
 	private List<ABorderStyle> getBS() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBS1_2();
+				return getBS1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ABorderStyle> getBS1_2() {
+	private List<ABorderStyle> getBS1_3() {
 		COSObject object = getBSValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -494,20 +440,19 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBorder1_2();
+				return getBorder1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_2() {
+	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder1_3() {
 		COSObject object = getBorderValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -522,20 +467,19 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getC1_2();
+				return getC1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_4NumbersColorAnnotation> getC1_2() {
+	private List<AArrayOf_4NumbersColorAnnotation> getC1_3() {
 		COSObject object = getCValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -548,22 +492,70 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfFields> getKids() {
+	private List<org.verapdf.model.baselayer.Object> getDV() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getKids1_2();
+				return getDV1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfFields> getKids1_2() {
+	private List<org.verapdf.model.baselayer.Object> getDV1_3() {
+		COSObject object = getDVValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getDVDictionary1_3(object.getDirectBase(), "DV");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getDVDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "DocTimeStamp":
+				return new GFADocTimeStamp(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFASignature(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private List<AArrayOfFields> getKids() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getKids1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOfFields> getKids1_3() {
 		COSObject object = getKidsValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -576,22 +568,46 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 		return Collections.emptyList();
 	}
 
+	private List<ASigFieldLock> getLock() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getLock1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ASigFieldLock> getLock1_5() {
+		COSObject object = getLockValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ASigFieldLock> list = new ArrayList<>(1);
+			list.add(new GFASigFieldLock((COSDictionary)object.getDirectBase(), this.baseObject, "Lock"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<AAppearanceCharacteristics> getMK() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getMK1_2();
+				return getMK1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AAppearanceCharacteristics> getMK1_2() {
+	private List<AAppearanceCharacteristics> getMK1_3() {
 		COSObject object = getMKValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -703,26 +719,25 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 
 	private List<org.verapdf.model.baselayer.Object> getParent() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getParent1_2();
+				return getParent1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getParent1_2() {
+	private List<org.verapdf.model.baselayer.Object> getParent1_3() {
 		COSObject object = getParentValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getParentDictionary1_2(object.getDirectBase(), "Parent");
+			org.verapdf.model.baselayer.Object result = getParentDictionary1_3(object.getDirectBase(), "Parent");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
@@ -732,8 +747,86 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 		return Collections.emptyList();
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionary1_2(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getParentDictionaryDefault1_3(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Widget":
+				return getParentDictionaryWidget1_3(base, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getParentDictionaryWidgetBtn1_3(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getParentDictionaryWidgetBtn01_3(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryDefault1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		if (subtype == null) {
 			return null;
 		}
@@ -742,8 +835,151 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 			return new GFAField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
-			case "Widget":
-				return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+			case "Btn":
+				return getParentDictionaryDefaultBtn1_3(base, keyName);
+			case "Ch":
+				return new GFAFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryDefaultBtn1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getParentDictionaryDefaultBtn01_3(base, keyName);
+			case 1:
+				return new GFAFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryDefaultBtn01_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private List<AStream> getRV() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRV1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AStream> getRV1_5() {
+		COSObject object = getRVValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AStream> list = new ArrayList<>(1);
+			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "RV"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ASigFieldSeedValue> getSV() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getSV1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ASigFieldSeedValue> getSV1_5() {
+		COSObject object = getSVValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ASigFieldSeedValue> list = new ArrayList<>(1);
+			list.add(new GFASigFieldSeedValue((COSDictionary)object.getDirectBase(), this.baseObject, "SV"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getV() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getV1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getV1_3() {
+		COSObject object = getVValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getVDictionary1_3(object.getDirectBase(), "V");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getVDictionary1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "DocTimeStamp":
+				return new GFADocTimeStamp(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFASignature(base, this.baseObject, keyName);
 			default:
 				return null;
 		}
@@ -1026,13 +1262,90 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public Boolean getcontainsDA() {
+		if (isContainsInheritableValue(ASAtom.getASAtom("DA"))) {
+			return true;
+		}
+		return this.baseObject.knownKey(ASAtom.getASAtom("DA"));
+	}
+
+	public COSObject getDAValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DA"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("DA"));
+		}
+		return object;
+	}
+
+	@Override
+	public String getDAType() {
+		COSObject DA = getDAValue();
+		return getObjectType(DA);
+	}
+
+	@Override
+	public Boolean getDAHasTypeStringByte() {
+		COSObject DA = getDAValue();
+		return getHasTypeStringByte(DA);
+	}
+
+	@Override
+	public Boolean getcontainsDS() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DS"));
+	}
+
+	public COSObject getDSValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DS"));
+		return object;
+	}
+
+	@Override
+	public String getDSType() {
+		COSObject DS = getDSValue();
+		return getObjectType(DS);
+	}
+
+	@Override
+	public Boolean getDSHasTypeStringText() {
+		COSObject DS = getDSValue();
+		return getHasTypeStringText(DS);
+	}
+
+	@Override
+	public Boolean getcontainsDV() {
+		if (isContainsInheritableValue(ASAtom.getASAtom("DV"))) {
+			return true;
+		}
+		return this.baseObject.knownKey(ASAtom.getASAtom("DV"));
+	}
+
+	public COSObject getDVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DV"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("DV"));
+		}
+		return object;
+	}
+
+	@Override
+	public String getDVType() {
+		COSObject DV = getDVValue();
+		return getObjectType(DV);
+	}
+
+	@Override
+	public Boolean getDVHasTypeDictionary() {
+		COSObject DV = getDVValue();
+		return getHasTypeDictionary(DV);
+	}
+
+	@Override
 	public Boolean getcontainsF() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("F"));
 	}
 
 	public COSObject getFDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -1071,12 +1384,52 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public Boolean getcontainsFT() {
+		if (isContainsInheritableValue(ASAtom.getASAtom("FT"))) {
+			return true;
+		}
+		return this.baseObject.knownKey(ASAtom.getASAtom("FT"));
+	}
+
+	public COSObject getFTValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FT"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("FT"));
+		}
+		return object;
+	}
+
+	@Override
+	public String getFTType() {
+		COSObject FT = getFTValue();
+		return getObjectType(FT);
+	}
+
+	@Override
+	public Boolean getFTHasTypeName() {
+		COSObject FT = getFTValue();
+		return getHasTypeName(FT);
+	}
+
+	@Override
+	public String getFTNameValue() {
+		COSObject FT = getFTValue();
+		return getNameValue(FT);
+	}
+
+	@Override
 	public Boolean getcontainsFf() {
+		if (isContainsInheritableValue(ASAtom.getASAtom("Ff"))) {
+			return true;
+		}
 		return this.baseObject.knownKey(ASAtom.getASAtom("Ff"));
 	}
 
 	public COSObject getFfValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Ff"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("Ff"));
+		}
 		return object;
 	}
 
@@ -1093,13 +1446,18 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public Long getFfBitmaskValue() {
+		COSObject Ff = getFfValue();
+		return getBitmaskValue(Ff);
+	}
+
+	@Override
 	public Boolean getcontainsH() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("H"));
 	}
 
 	public COSObject getHDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
@@ -1179,6 +1537,34 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public Boolean getLangHasTypeStringText() {
 		COSObject Lang = getLangValue();
 		return getHasTypeStringText(Lang);
+	}
+
+	@Override
+	public Boolean getcontainsLock() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Lock"));
+	}
+
+	public COSObject getLockValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Lock"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisLockIndirect() {
+		COSObject Lock = getLockValue();
+		return getisIndirect(Lock);
+	}
+
+	@Override
+	public String getLockType() {
+		COSObject Lock = getLockValue();
+		return getObjectType(Lock);
+	}
+
+	@Override
+	public Boolean getLockHasTypeDictionary() {
+		COSObject Lock = getLockValue();
+		return getHasTypeDictionary(Lock);
 	}
 
 	@Override
@@ -1348,6 +1734,84 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	}
 
 	@Override
+	public Boolean getcontainsQ() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Q"));
+	}
+
+	public COSObject getQDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return COSInteger.construct(0L);
+		}
+		return null;
+	}
+
+	public COSObject getQValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Q"));
+		if (object == null || object.empty()) {
+			object = getQDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public String getQType() {
+		COSObject Q = getQValue();
+		return getObjectType(Q);
+	}
+
+	@Override
+	public Boolean getQHasTypeInteger() {
+		COSObject Q = getQValue();
+		return getHasTypeInteger(Q);
+	}
+
+	@Override
+	public Long getQIntegerValue() {
+		COSObject Q = getQValue();
+		return getIntegerValue(Q);
+	}
+
+	@Override
+	public Boolean getcontainsRV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("RV"));
+	}
+
+	public COSObject getRVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("RV"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisRVIndirect() {
+		COSObject RV = getRVValue();
+		return getisIndirect(RV);
+	}
+
+	@Override
+	public String getRVType() {
+		COSObject RV = getRVValue();
+		return getObjectType(RV);
+	}
+
+	@Override
+	public Boolean getRVHasTypeStream() {
+		COSObject RV = getRVValue();
+		return getHasTypeStream(RV);
+	}
+
+	@Override
+	public Boolean getRVHasTypeStringText() {
+		COSObject RV = getRVValue();
+		return getHasTypeStringText(RV);
+	}
+
+	@Override
 	public Boolean getcontainsRect() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Rect"));
 	}
@@ -1379,6 +1843,34 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public Double getRectRectWidth() {
 		COSObject Rect = getRectValue();
 		return getRectWidth(Rect);
+	}
+
+	@Override
+	public Boolean getcontainsSV() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("SV"));
+	}
+
+	public COSObject getSVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SV"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisSVIndirect() {
+		COSObject SV = getSVValue();
+		return getisIndirect(SV);
+	}
+
+	@Override
+	public String getSVType() {
+		COSObject SV = getSVValue();
+		return getObjectType(SV);
+	}
+
+	@Override
+	public Boolean getSVHasTypeDictionary() {
+		COSObject SV = getSVValue();
+		return getHasTypeDictionary(SV);
 	}
 
 	@Override
@@ -1523,6 +2015,34 @@ public class GFAAnnotWidget extends GFAObject implements AAnnotWidget {
 	public String getTypeNameValue() {
 		COSObject Type = getTypeValue();
 		return getNameValue(Type);
+	}
+
+	@Override
+	public Boolean getcontainsV() {
+		if (isContainsInheritableValue(ASAtom.getASAtom("V"))) {
+			return true;
+		}
+		return this.baseObject.knownKey(ASAtom.getASAtom("V"));
+	}
+
+	public COSObject getVValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("V"));
+		if (object == null || object.empty()) {
+			object = getInheritableValue(ASAtom.getASAtom("V"));
+		}
+		return object;
+	}
+
+	@Override
+	public String getVType() {
+		COSObject V = getVValue();
+		return getObjectType(V);
+	}
+
+	@Override
+	public Boolean getVHasTypeDictionary() {
+		COSObject V = getVValue();
+		return getHasTypeDictionary(V);
 	}
 
 	@Override

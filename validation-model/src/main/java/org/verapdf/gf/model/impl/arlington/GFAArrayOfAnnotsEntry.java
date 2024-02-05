@@ -119,10 +119,93 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 			case "Text":
 				return new GFAAnnotText(base, this.baseObject, keyName);
 			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
+				return getEntryDictionaryWidget1_2(base, keyName);
 			default:
 				return null;
 		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_2(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getEntryDictionaryWidgetDefault1_2(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getEntryDictionaryWidgetBtn1_2(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn1_2(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getEntryDictionaryWidgetBtn01_2(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn01_2(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault1_2(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("AA"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TM"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TU"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_3() {
@@ -181,10 +264,93 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 			case "Underline":
 				return new GFAAnnotUnderline(base, this.baseObject, keyName);
 			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
+				return getEntryDictionaryWidget1_3(base, keyName);
 			default:
 				return null;
 		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getEntryDictionaryWidgetDefault1_3(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getEntryDictionaryWidgetBtn1_3(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn1_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getEntryDictionaryWidgetBtn01_3(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn01_3(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault1_3(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("AA"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TM"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TU"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_4() {
@@ -247,10 +413,93 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 			case "Underline":
 				return new GFAAnnotUnderline(base, this.baseObject, keyName);
 			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
+				return getEntryDictionaryWidget1_4(base, keyName);
 			default:
 				return null;
 		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_4(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getEntryDictionaryWidgetDefault1_4(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getEntryDictionaryWidgetBtn1_4(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn1_4(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getEntryDictionaryWidgetBtn01_4(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn01_4(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault1_4(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("AA"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TM"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TU"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_5() {
@@ -321,10 +570,93 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 			case "Underline":
 				return new GFAAnnotUnderline(base, this.baseObject, keyName);
 			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
+				return getEntryDictionaryWidget1_5(base, keyName);
 			default:
 				return null;
 		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_5(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getEntryDictionaryWidgetDefault1_5(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getEntryDictionaryWidgetBtn1_5(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn1_5(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getEntryDictionaryWidgetBtn01_5(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn01_5(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault1_5(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("AA"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TM"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TU"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_6() {
@@ -399,10 +731,93 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 			case "Watermark":
 				return new GFAAnnotWatermark(base, this.baseObject, keyName);
 			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
+				return getEntryDictionaryWidget1_6(base, keyName);
 			default:
 				return null;
 		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getEntryDictionaryWidgetDefault1_6(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getEntryDictionaryWidgetBtn1_6(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn1_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getEntryDictionaryWidgetBtn01_6(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn01_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault1_6(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("AA"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TM"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TU"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_7() {
@@ -489,10 +904,93 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 			case "Watermark":
 				return new GFAAnnotWatermark(base, this.baseObject, keyName);
 			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
+				return getEntryDictionaryWidget1_7(base, keyName);
 			default:
 				return null;
 		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_7(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getEntryDictionaryWidgetDefault1_7(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getEntryDictionaryWidgetBtn1_7(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn1_7(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getEntryDictionaryWidgetBtn01_7(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn01_7(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault1_7(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("AA"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TM"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TU"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getEntry2_0() {
@@ -573,10 +1071,93 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 			case "Watermark":
 				return new GFAAnnotWatermark(base, this.baseObject, keyName);
 			case "Widget":
-				return new GFAAnnotWidget(base, this.baseObject, keyName);
+				return getEntryDictionaryWidget2_0(base, keyName);
 			default:
 				return null;
 		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget2_0(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getEntryDictionaryWidgetDefault2_0(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getEntryDictionaryWidgetBtn2_0(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn2_0(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getEntryDictionaryWidgetBtn02_0(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn02_0(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault2_0(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("AA"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TM"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TU"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	public COSObject getValue() {
