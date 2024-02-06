@@ -199,8 +199,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 
 	@Override
 	public String getroleMapToSameNamespaceTag() {
-		String namespace = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getRoleMapToSameNamespaceTag();
-		return namespace != null ? namespace + ':' + getstandardType() : null;
+		return ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getRoleMapToSameNamespaceTag();
 	}
 
 	@Override
