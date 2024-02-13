@@ -22,11 +22,6 @@ public class GFA3DStreamNameTreeResourcesEntry extends GFAObject implements A3DS
 	}
 
 	@Override
-	public Long getsize() {
-		return PDNameTreeNode.create(new COSObject(baseObject)).size();
-	}
-
-	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
 			case "Entry":
