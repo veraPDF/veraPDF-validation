@@ -21,11 +21,6 @@ public class GFANavigatorNameTreeStringsEntry extends GFAObject implements ANavi
 		this.collectionName = collectionName;
 	}
 
-	@Override
-	public Long getsize() {
-		return PDNameTreeNode.create(new COSObject(baseObject)).size();
-	}
-
 	public COSObject getValue() {
 		COSObject object = new COSObject(this.baseObject);
 		return object;

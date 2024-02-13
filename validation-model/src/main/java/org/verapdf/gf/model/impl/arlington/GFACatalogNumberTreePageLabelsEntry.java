@@ -22,11 +22,6 @@ public class GFACatalogNumberTreePageLabelsEntry extends GFAObject implements AC
 	}
 
 	@Override
-	public Long getsize() {
-		return new PDNumberTreeNode(new COSObject(baseObject)).size();
-	}
-
-	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
 			case "Entry":
