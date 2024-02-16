@@ -27,7 +27,7 @@ import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSEMathMLStructElem extends GFPDStructElem implements SEMathMLStructElem {
 
-    public static final String MATH_ML_STRUCTURE_ELEMENT_TYPE = "GFSEMathMLStructElem";
+    public static final String MATH_ML_STRUCTURE_ELEMENT_TYPE = "SEMathMLStructElem";
 
     public GFSEMathMLStructElem(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.MATH_ML, MATH_ML_STRUCTURE_ELEMENT_TYPE);
