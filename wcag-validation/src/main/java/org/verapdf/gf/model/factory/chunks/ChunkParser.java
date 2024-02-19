@@ -56,6 +56,9 @@ class ChunkParser {
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
+
+	private final Set<Long> processedMCIDs = new HashSet<>();
+
 	private final Integer pageNumber;
 	private final COSKey objectKey;
 	private Matrix textMatrix = null;
@@ -89,7 +92,15 @@ class ChunkParser {
 		switch (operatorName) {
 			case Operators.BMC:
 			case Operators.BDC:
-				markedContentStack.push(getMCID(arguments, resourceHandler));
+				Long mcid = getMCID(arguments, resourceHandler);
+				if (mcid != null) {
+					if (processedMCIDs.contains(mcid)) {
+						mcid = null;
+					} else {
+						processedMCIDs.add(mcid);
+					}
+				}
+				markedContentStack.push(mcid);
 				break;
 			case Operators.EMC:
 				markedContentStack.pop();
