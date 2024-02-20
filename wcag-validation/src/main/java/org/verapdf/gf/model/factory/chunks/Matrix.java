@@ -41,7 +41,7 @@ public class Matrix implements Cloneable {
 		matrixArray = new double[] {1, 0, 0, 1, 0, 0};
 	}
 
-	private Matrix(double[] src) {
+	public Matrix(double[] src) {
 		matrixArray = src;
 	}
 
