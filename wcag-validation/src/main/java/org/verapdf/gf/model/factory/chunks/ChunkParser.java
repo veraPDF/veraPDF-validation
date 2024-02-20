@@ -460,7 +460,9 @@ class ChunkParser {
 							key = parentObjectKey;
 							markedContent = parentMarkedContent;
 						}
-						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, graphicsState, pageNumber,
+						GraphicsState xFormGraphicsState = graphicsState.clone();
+						xFormGraphicsState.setCTM(xFormGraphicsState.getCTM().multiply(new Matrix(((PDXForm)xObject).getMatrix())));
+						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, xFormGraphicsState, pageNumber,
 								key, markedContent);
 						artifacts.addAll(xForm.getArtifacts());
 					}
