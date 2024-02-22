@@ -47,16 +47,7 @@ public class GFSEFENote extends GFPDStructElem implements SEFENote {
         if (set == null) {
             return null;
         }
-        COSObject ref = ((PDStructElem)simplePDObject).getRef();
-        Set<COSKey> refsKeys = new HashSet<>();
-        if (ref.getType() == COSObjType.COS_ARRAY) {
-            for (COSObject elem : (COSArray) ref.getDirectBase()) {
-                COSKey elementKey = elem.getKey();
-                if (elementKey != null) {
-                    refsKeys.add(elementKey);
-                }
-            }
-        }
+        Set<COSKey> refsKeys = getRefKeys();
         Set<String> keys = new HashSet<>();
         for (COSKey refKey : set) {
             if (!refsKeys.contains(refKey)) {
@@ -67,6 +58,39 @@ public class GFSEFENote extends GFPDStructElem implements SEFENote {
             return String.join(",", keys);
         }
         return null;
+    }
+
+    @Override
+    public String getghostRefs() {
+        Set<COSKey> set = StaticContainers.getStructElementsRefs().get(simpleCOSObject.getKey());
+        if (set == null) {
+            set = Collections.emptySet();
+        }
+        Set<COSKey> refsKeys = getRefKeys();
+        Set<String> keys = new HashSet<>();
+        for (COSKey refKey : refsKeys) {
+            if (!set.contains(refKey)) {
+                keys.add(refKey.toString());
+            }
+        }
+        if (!keys.isEmpty()) {
+            return String.join(",", keys);
+        }
+        return null;
+    }
+    
+    private Set<COSKey> getRefKeys() {
+        COSObject ref = ((PDStructElem)simplePDObject).getRef();
+        Set<COSKey> refsKeys = new HashSet<>();
+        if (ref.getType() == COSObjType.COS_ARRAY) {
+            for (COSObject elem : (COSArray) ref.getDirectBase()) {
+                COSKey elementKey = elem.getKey();
+                if (elementKey != null) {
+                    refsKeys.add(elementKey);
+                }
+            }
+        }
+        return refsKeys;
     }
 
     public GFSEFENote(PDStructElem structElemDictionary) {
