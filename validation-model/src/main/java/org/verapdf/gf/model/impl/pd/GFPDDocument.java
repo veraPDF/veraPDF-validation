@@ -77,6 +77,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
      * Link name for open action of document
      */
     public static final String OPEN_ACTION = "OpenAction";
+    public static final String OPEN_ACTION_DESTINATION = "OpenActionDestination";
     /**
      * Link name for all outlines of document
      */
@@ -149,6 +150,8 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
                 return this.getOutlines();
             case OPEN_ACTION:
                 return this.getOpenAction();
+            case OPEN_ACTION_DESTINATION:
+                return this.getOpenActionDestination();
             case ACTIONS:
                 return this.getActions();
             case PAGES:
@@ -183,6 +186,15 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
             actions.add(GFPDAction.getAction(action));
         }
         return Collections.unmodifiableList(actions);
+    }
+
+    private List<PDDestination> getOpenActionDestination() {
+        List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+        COSObject openAction = this.catalog.getKey(ASAtom.OPEN_ACTION);
+        if (openAction != null && openAction.getType() == COSObjType.COS_ARRAY) {
+            destinations.add(new GFPDDestination(openAction));
+        }
+        return Collections.unmodifiableList(destinations);
     }
 
     private List<PDAdditionalActions> getActions() {
