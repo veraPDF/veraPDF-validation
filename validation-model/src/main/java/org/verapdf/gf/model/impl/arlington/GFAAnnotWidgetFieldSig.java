@@ -35,8 +35,6 @@ public class GFAAnnotWidgetFieldSig extends GFAObject implements AAnnotWidgetFie
 				return getC();
 			case "DV":
 				return getDV();
-			case "Kids":
-				return getKids();
 			case "Lock":
 				return getLock();
 			case "MK":
@@ -539,33 +537,6 @@ public class GFAAnnotWidgetFieldSig extends GFAObject implements AAnnotWidgetFie
 			default:
 				return null;
 		}
-	}
-
-	private List<AArrayOfFields> getKids() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getKids1_3();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfFields> getKids1_3() {
-		COSObject object = getKidsValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFields> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFields((COSArray)object.getDirectBase(), this.baseObject, "Kids"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
 	}
 
 	private List<ASigFieldLock> getLock() {
@@ -1493,28 +1464,6 @@ public class GFAAnnotWidgetFieldSig extends GFAObject implements AAnnotWidgetFie
 	public String getHNameValue() {
 		COSObject H = getHValue();
 		return getNameValue(H);
-	}
-
-	@Override
-	public Boolean getcontainsKids() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Kids"));
-	}
-
-	public COSObject getKidsValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
-		return object;
-	}
-
-	@Override
-	public String getKidsType() {
-		COSObject Kids = getKidsValue();
-		return getObjectType(Kids);
-	}
-
-	@Override
-	public Boolean getKidsHasTypeArray() {
-		COSObject Kids = getKidsValue();
-		return getHasTypeArray(Kids);
 	}
 
 	@Override
