@@ -33,8 +33,6 @@ public class GFAAnnotWidgetFieldBtnPush extends GFAObject implements AAnnotWidge
 				return getBorder();
 			case "C":
 				return getC();
-			case "Kids":
-				return getKids();
 			case "MK":
 				return getMK();
 			case "OC":
@@ -559,34 +557,6 @@ public class GFAAnnotWidgetFieldBtnPush extends GFAObject implements AAnnotWidge
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_4NumbersColorAnnotation> list = new ArrayList<>(1);
 			list.add(new GFAArrayOf_4NumbersColorAnnotation((COSArray)object.getDirectBase(), this.baseObject, "C"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<AArrayOfFields> getKids() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
-			case ARLINGTON1_7:
-			case ARLINGTON2_0:
-				return getKids1_2();
-			default:
-				return Collections.emptyList();
-		}
-	}
-
-	private List<AArrayOfFields> getKids1_2() {
-		COSObject object = getKidsValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFields> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFields((COSArray)object.getDirectBase(), this.baseObject, "Kids"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -1574,28 +1544,6 @@ public class GFAAnnotWidgetFieldBtnPush extends GFAObject implements AAnnotWidge
 	public String getHNameValue() {
 		COSObject H = getHValue();
 		return getNameValue(H);
-	}
-
-	@Override
-	public Boolean getcontainsKids() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Kids"));
-	}
-
-	public COSObject getKidsValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Kids"));
-		return object;
-	}
-
-	@Override
-	public String getKidsType() {
-		COSObject Kids = getKidsValue();
-		return getObjectType(Kids);
-	}
-
-	@Override
-	public Boolean getKidsHasTypeArray() {
-		COSObject Kids = getKidsValue();
-		return getHasTypeArray(Kids);
 	}
 
 	@Override
