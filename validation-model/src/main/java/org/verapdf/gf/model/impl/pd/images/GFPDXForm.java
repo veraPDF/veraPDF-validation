@@ -67,16 +67,18 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private final PDColorSpace blendingColorSpace;
 
 	private final boolean isSignature;
+	private final boolean isAnnotation;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
 					 GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags, 
-					 String defaultLang, boolean isSignature) {
+					 String defaultLang, boolean isAnnotation, boolean isSignature) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
 		this.blendingColorSpace = getBlendingColorSpace();
 		this.defaultLang = defaultLang;
+		this.isAnnotation = isAnnotation;
 		this.isSignature = isSignature;
 	}
 
@@ -197,10 +199,9 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	}
 
 	private void parseContentStream() {
-		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		GFPDContentStream gfContentStream;
-		if (!PDFAFlavour.IsoStandardSeries.ISO_14289.equals(StaticContainers.getFlavour().getPart().getSeries()) &&
-		    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily()) {
+		if (isAnnotation || (PDFAFlavour.IsoStandardSeries.ISO_14289 != StaticContainers.getFlavour().getPart().getSeries() &&
+		    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily())) {
 			gfContentStream = new GFPDContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
@@ -212,6 +213,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 					parentStructElem, parentsTags, defaultLang, isSignature);
 		}
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
+		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		streams.add(gfContentStream);
 		this.contentStreams = streams;
 	}
