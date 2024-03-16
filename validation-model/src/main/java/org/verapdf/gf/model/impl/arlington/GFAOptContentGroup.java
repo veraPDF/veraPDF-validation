@@ -19,6 +19,8 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "GTS_Metadata":
+				return getGTS_Metadata();
 			case "Intent":
 				return getIntent();
 			case "Usage":
@@ -26,6 +28,29 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AGTS_ProcStepsGroup> getGTS_Metadata() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getGTS_Metadata1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AGTS_ProcStepsGroup> getGTS_Metadata1_7() {
+		COSObject object = getGTS_MetadataValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AGTS_ProcStepsGroup> list = new ArrayList<>(1);
+			list.add(new GFAGTS_ProcStepsGroup((COSDictionary)object.getDirectBase(), this.baseObject, "GTS_Metadata"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AArrayOfNamesGeneral> getIntent() {
@@ -76,6 +101,28 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsGTS_Metadata() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("GTS_Metadata"));
+	}
+
+	public COSObject getGTS_MetadataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_Metadata"));
+		return object;
+	}
+
+	@Override
+	public String getGTS_MetadataType() {
+		COSObject GTS_Metadata = getGTS_MetadataValue();
+		return getObjectType(GTS_Metadata);
+	}
+
+	@Override
+	public Boolean getGTS_MetadataHasTypeDictionary() {
+		COSObject GTS_Metadata = getGTS_MetadataValue();
+		return getHasTypeDictionary(GTS_Metadata);
 	}
 
 	@Override
@@ -176,6 +223,11 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 	public Boolean getUsageHasTypeDictionary() {
 		COSObject Usage = getUsageValue();
 		return getHasTypeDictionary(Usage);
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_19593() {
+		return false;
 	}
 
 }
