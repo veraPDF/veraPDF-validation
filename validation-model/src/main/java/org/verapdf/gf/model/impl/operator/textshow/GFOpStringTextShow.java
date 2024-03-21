@@ -45,8 +45,8 @@ public abstract class GFOpStringTextShow extends GFOpTextShow {
 
     protected GFOpStringTextShow(List<COSBase> arguments, GraphicState state,
                                  PDResourcesHandler resources, GFOpMarkedContent markedContent,
-                                 StructureElementAccessObject structureElementAccessObject, final String opType) {
-        super(arguments, state, resources, markedContent, structureElementAccessObject, opType);
+                                 StructureElementAccessObject structureElementAccessObject, boolean isRealContent, final String opType) {
+        super(arguments, state, resources, markedContent, structureElementAccessObject, isRealContent, opType);
     }
 
     @Override

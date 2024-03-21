@@ -121,4 +121,9 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 		return Collections.unmodifiableList(list);
 	}
 
+	@Override
+	protected boolean isSemantic() {
+		return true;
+	}
+
 }
