@@ -94,12 +94,15 @@ class OperatorParser {
 	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 	private final COSObject parentStructElem;
 	private final String parentsTags;
+	
+	private final boolean isRealContent;
 
 	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
                    StructureElementAccessObject structureElementAccessObject,
-                   PDResourcesHandler resourcesHandler, COSObject parentStructElem, String parentsTags) {
+                   PDResourcesHandler resourcesHandler, COSObject parentStructElem, 
+				   String parentsTags, boolean isRealContent) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -109,6 +112,7 @@ class OperatorParser {
 		this.structureElementAccessObject = structureElementAccessObject;
 		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
+		this.isRealContent = isRealContent;
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -155,7 +159,7 @@ class OperatorParser {
 
 			// MARKED CONTENT
 			case Operators.BMC:
-				GFOp_BMC bmcOp = new GFOp_BMC(arguments, getCurrentMarkedContent(), parentsTags);
+				GFOp_BMC bmcOp = new GFOp_BMC(arguments, getCurrentMarkedContent(), parentsTags, isRealContent);
 				processedOperators.add(bmcOp);
 				this.markedContentStack.push(bmcOp);
 				break;
@@ -164,7 +168,7 @@ class OperatorParser {
 				if (specification == PDFAFlavour.Specification.ISO_19005_3) {
 					checkAFKey(arguments, resourcesHandler);
 				}
-				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags);
+				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags, isRealContent);
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
 				break;
@@ -318,25 +322,25 @@ class OperatorParser {
 			// TEXT SHOW
 			case Operators.TJ_SHOW:
 				GFOp_Tj tj = new GFOp_Tj(arguments, this.graphicState.clone(),
-						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, isRealContent);
 				addFontAndColorSpace(tj, this.transparencyGraphicState);
 				processedOperators.add(tj);
 				break;
 			case Operators.TJ_SHOW_POS:
 				GFOp_TJ_Big tjBig = new GFOp_TJ_Big(arguments, this.graphicState.clone(),
-						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, isRealContent);
 				addFontAndColorSpace(tjBig, this.transparencyGraphicState);
 				processedOperators.add(tjBig);
 				break;
 			case Operators.QUOTE:
 				GFOp_Quote quote = new GFOp_Quote(arguments, this.graphicState.clone(),
-						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, isRealContent);
 				addFontAndColorSpace(quote, this.transparencyGraphicState);
 				processedOperators.add(quote);
 				break;
 			case Operators.DOUBLE_QUOTE:
 				GFOp_DoubleQuote doubleQuote = new GFOp_DoubleQuote(arguments, this.graphicState.clone(),
-						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, isRealContent);
 				addFontAndColorSpace(doubleQuote, this.transparencyGraphicState);
 				processedOperators.add(doubleQuote);
 				break;

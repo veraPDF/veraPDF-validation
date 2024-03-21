@@ -150,7 +150,8 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							streamParser.parseTokens();
 							OperatorFactory operatorFactory = new OperatorFactory();
 							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(),
-									resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructElem, parentsTags);
+									resourcesHandler, inheritedGraphicState, structureElementAccessObject, 
+									parentStructElem, parentsTags, isSemantic());
 							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 							this.operators = Collections.unmodifiableList(result);
 						} finally {
@@ -215,6 +216,10 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 			result.add(new GFPDResources(resources));
 		}
 		return result;
+	}
+	
+	protected boolean isSemantic() {
+		return false;
 	}
 
 }
