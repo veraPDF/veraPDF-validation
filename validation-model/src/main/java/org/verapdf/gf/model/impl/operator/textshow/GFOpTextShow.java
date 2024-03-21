@@ -83,10 +83,12 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	private List<PDFont> fonts = null;
 	private final org.verapdf.model.pdlayer.PDColorSpace fillCS;
 	private final org.verapdf.model.pdlayer.PDColorSpace strokeCS;
+	
+	private final boolean isRealContent;
 
 	protected GFOpTextShow(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
 						   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject,
-						   final String opType) {
+						   boolean isRealContent, final String opType) {
 		super(arguments, opType);
 		this.font = state.getFont();
 		this.scaleFactor = state.getScaleFactor();
@@ -97,6 +99,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 		this.structureElementAccessObject = structureElementAccessObject;
 		this.fillCS = parseFillColorSpace();
 		this.strokeCS = parseStrokeColorSpace();
+		this.isRealContent = isRealContent;
 	}
 
 	@Override
@@ -150,7 +153,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 				while (inputStream.available() > 0) {
 					int code = font.readCode(inputStream);
 					Glyph glyph = GFGlyph.getGlyph(font, code, this.renderingMode.getValue(),
-							markedContent, structureElementAccessObject);
+							markedContent, structureElementAccessObject, isRealContent);
 					res.add(glyph);
 				}
 			} catch (IOException e) {
