@@ -52,12 +52,14 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	private COSDictionary propertiesDict;
 	private final GFOpMarkedContent markedContent;
 	private final String parentsTags;
+	private final boolean isRealContent;
 
 	public GFOpMarkedContent(List<COSBase> arguments, final String opType,
-							 GFOpMarkedContent markedContent, String parentsTags) {
+							 GFOpMarkedContent markedContent, String parentsTags, boolean isRealContent) {
         super(arguments, opType);
 		this.markedContent = markedContent;
 		this.parentsTags = parentsTags;
+		this.isRealContent = isRealContent;
 	}
 
 	protected void initializePropertiesDict(PDResourcesHandler resources) {
@@ -225,7 +227,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	private List<CosActualText> getactualText() {
 		COSString actualText = getActualText();
-		if (actualText != null) {
+		if (isRealContent && actualText != null) {
 			List<CosActualText> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosActualText(actualText));
 			return list;
@@ -235,7 +237,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	private List<CosAlt> getalt() {
 		COSString alt = getAlt();
-		if (alt != null) {
+		if (isRealContent && alt != null) {
 			List<CosAlt> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosAlt(alt));
 			return list;
@@ -273,4 +275,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		return markedContent != null ? markedContent.getInheritedMCID() : null;
 	}
 
+	public boolean isRealContent() {
+		return isRealContent;
+	}
 }
