@@ -56,8 +56,8 @@ public class GFOp_DoubleQuote extends GFOpStringTextShow implements Op_DoubleQuo
 	public static final int COUNT_OF_OPERATOR_OPERANDS = 3;
 
 	public GFOp_DoubleQuote(List<COSBase> arguments, GraphicState state, PDResourcesHandler resourcesHandler,
-							GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-		super(arguments, state, resourcesHandler, markedContent, structureElementAccessObject, OP_DOUBLE_QUOTE_TYPE);
+							GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject, boolean isRealContent) {
+		super(arguments, state, resourcesHandler, markedContent, structureElementAccessObject, isRealContent, OP_DOUBLE_QUOTE_TYPE);
 	}
 
 	@Override

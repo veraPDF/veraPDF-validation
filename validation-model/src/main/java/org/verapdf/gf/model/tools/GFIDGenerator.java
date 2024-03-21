@@ -64,12 +64,12 @@ public final class GFIDGenerator {
 
 	public static String generateID(String fontID, String fontName, int glyphCode, int renderingMode,
 									GFOpMarkedContent markedContent,
-									StructureElementAccessObject structureElementAccessObject) {
+									StructureElementAccessObject structureElementAccessObject, boolean isRealContent) {
 		String markedContentID = markedContent == null ? "" : String.valueOf(markedContent.hashCode());
 		String structureElementAccessID = structureElementAccessObject == null ? "" :
 				String.valueOf(structureElementAccessObject.hashCode());
 		return fontID + ' ' + fontName + ' ' + glyphCode + ' ' + renderingMode + ' ' +
-				markedContentID + ' ' + structureElementAccessID;
+				markedContentID + ' ' + structureElementAccessID + ' ' + isRealContent;
 	}
 
 	public static String generateID(PDFont rawFont, RenderingMode renderingMode) {
