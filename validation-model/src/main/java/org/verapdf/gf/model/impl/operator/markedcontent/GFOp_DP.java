@@ -36,7 +36,7 @@ public class GFOp_DP extends GFOpMarkedContent implements Op_DP {
     public static final String OP_DP_TYPE = "Op_DP";
 
     public GFOp_DP(List<COSBase> arguments, PDResourcesHandler resources) {
-		super(arguments, OP_DP_TYPE, null, "");
+		super(arguments, OP_DP_TYPE, null, "", false);
 		initializePropertiesDict(resources);
     }
 

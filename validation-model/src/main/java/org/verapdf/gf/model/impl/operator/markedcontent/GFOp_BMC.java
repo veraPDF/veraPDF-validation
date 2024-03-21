@@ -37,8 +37,8 @@ public class GFOp_BMC extends GFOpMarkedContent implements Op_BMC {
 	/** Type name for {@code GFOp_BMC} */
     public static final String OP_BMC_TYPE = "Op_BMC";
 
-    public GFOp_BMC(List<COSBase> arguments, GFOpMarkedContent markedContent, String parentsTags) {
-        super(arguments, OP_BMC_TYPE, markedContent, parentsTags);
+    public GFOp_BMC(List<COSBase> arguments, GFOpMarkedContent markedContent, String parentsTags, boolean isRealContent) {
+        super(arguments, OP_BMC_TYPE, markedContent, parentsTags, isRealContent);
     }
 
     @Override
