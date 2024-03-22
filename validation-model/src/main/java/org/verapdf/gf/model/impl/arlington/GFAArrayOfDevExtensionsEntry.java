@@ -31,7 +31,7 @@ public class GFAArrayOfDevExtensionsEntry extends GFAObject implements AArrayOfD
 		}
 	}
 
-	private List<ADevExtensions> getEntry() {
+	private List<org.verapdf.model.baselayer.Object> getEntry() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntry2_0();
@@ -40,14 +40,26 @@ public class GFAArrayOfDevExtensionsEntry extends GFAObject implements AArrayOfD
 		}
 	}
 
-	private List<ADevExtensions> getEntry2_0() {
+	private List<org.verapdf.model.baselayer.Object> getEntry2_0() {
 		COSObject object = new COSObject(this.baseObject);
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<ADevExtensions> list = new ArrayList<>(1);
-			list.add(new GFADevExtensions((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
+			org.verapdf.model.baselayer.Object result = getEntryDictionary2_0(object.getDirectBase(), keyName);
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionary2_0(COSBase base, String keyName) {
+		switch (collectionName) {
+			case "ISO_":
+				return new GFAISO_DevExtensions(base, this.baseObject, keyName);
+			default:
+				return new GFADevExtensions(base, this.baseObject, keyName);
+		}
 	}
 
 	public COSObject getValue() {
