@@ -90,6 +90,7 @@ class OperatorParser {
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
 	private final Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
+	private final Set<Long> mcidSet = new HashSet<Long>();
 	private final StructureElementAccessObject structureElementAccessObject;
 	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 	private final COSObject parentStructElem;
@@ -163,15 +164,23 @@ class OperatorParser {
 				processedOperators.add(bmcOp);
 				this.markedContentStack.push(bmcOp);
 				break;
-			case Operators.BDC:
+			case Operators.BDC: {
 				PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
 				if (specification == PDFAFlavour.Specification.ISO_19005_3) {
 					checkAFKey(arguments, resourcesHandler);
 				}
 				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags, isRealContent);
+				Long mcid = bdcOp.getMCID();
+				if (mcid != null) {
+					if (mcidSet.contains(mcid)) {
+						LOGGER.log(Level.WARNING, "Content stream contains duplicate MCID - " + mcid);
+					}
+					mcidSet.add(mcid);
+				}
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
 				break;
+			}
 			case Operators.EMC:
 				processedOperators.add(new GFOp_EMC(arguments));
 				if (!this.markedContentStack.empty()) {
