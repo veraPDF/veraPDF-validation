@@ -46,10 +46,29 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<org.verapdf.model.baselayer.Object> list = Collections.emptyList();
+			org.verapdf.model.baselayer.Object result = getCFDictionary1_5(object.getDirectBase(), "CF");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getCFDictionary1_5(COSBase base, String keyName) {
+		COSBase objectBase = COSDictionary.construct().getDirectBase();
+		for (ASAtom key : base.getKeySet()) {
+			COSObject obj = base.getKey(key);
+			if (obj != null && obj.getDirectBase() != null) {
+				objectBase = obj.getDirectBase();
+				break;
+			}
+		}
+		if (objectBase.knownKey(ASAtom.getASAtom("Recipients"))) {
+			return new GFACryptFilterPublicKeyMap(base, this.baseObject, keyName);
+		}
+		return new GFACryptFilterMap(base, this.baseObject, keyName);
 	}
 
 	private List<AArrayOfStringsByte> getRecipients() {
