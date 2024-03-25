@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.operator.markedcontent;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.*;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
@@ -29,6 +30,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.*;
 import org.verapdf.model.operator.OpMarkedContent;
 import org.verapdf.pd.PDResource;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -227,7 +229,8 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	private List<CosActualText> getactualText() {
 		COSString actualText = getActualText();
-		if (isRealContent && actualText != null) {
+		if (actualText != null && (isRealContent || StaticContainers.getFlavour() == null || 
+				StaticContainers.getFlavour().getPart().getFamily() != PDFAFlavour.SpecificationFamily.PDF_UA)) {
 			List<CosActualText> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosActualText(actualText));
 			return list;
@@ -237,7 +240,8 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	private List<CosAlt> getalt() {
 		COSString alt = getAlt();
-		if (isRealContent && alt != null) {
+		if (alt != null && (isRealContent || StaticContainers.getFlavour() == null ||
+				StaticContainers.getFlavour().getPart().getFamily() != PDFAFlavour.SpecificationFamily.PDF_UA)) {
 			List<CosAlt> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosAlt(alt));
 			return list;
