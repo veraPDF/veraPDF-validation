@@ -19,6 +19,8 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "AdditionalStreams":
+				return getAdditionalStreams();
 			case "AuthCode":
 				return getAuthCode();
 			case "DecodeParms":
@@ -46,6 +48,23 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<AOOAdditionalStmsArray> getAdditionalStreams() {
+		return getAdditionalStreams1_0();
+	}
+
+	private List<AOOAdditionalStmsArray> getAdditionalStreams1_0() {
+		COSObject object = getAdditionalStreamsValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AOOAdditionalStmsArray> list = new ArrayList<>(1);
+			list.add(new GFAOOAdditionalStmsArray((COSArray)object.getDirectBase(), this.baseObject, "AdditionalStreams"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AAuthCode> getAuthCode() {
@@ -424,6 +443,40 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	@Override
+	public Boolean getcontainsAdditionalStreams() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AdditionalStreams"));
+	}
+
+	public COSObject getAdditionalStreamsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AdditionalStreams"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisAdditionalStreamsIndirect() {
+		COSObject AdditionalStreams = getAdditionalStreamsValue();
+		return getisIndirect(AdditionalStreams);
+	}
+
+	@Override
+	public String getAdditionalStreamsType() {
+		COSObject AdditionalStreams = getAdditionalStreamsValue();
+		return getObjectType(AdditionalStreams);
+	}
+
+	@Override
+	public Boolean getAdditionalStreamsHasTypeArray() {
+		COSObject AdditionalStreams = getAdditionalStreamsValue();
+		return getHasTypeArray(AdditionalStreams);
+	}
+
+	@Override
+	public Long getAdditionalStreamsArraySize() {
+		COSObject AdditionalStreams = getAdditionalStreamsValue();
+		return getArraySize(AdditionalStreams);
+	}
+
+	@Override
 	public Boolean getcontainsAuthCode() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AuthCode"));
 	}
@@ -459,6 +512,12 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	public COSObject getDLValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DL"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisDLIndirect() {
+		COSObject DL = getDLValue();
+		return getisIndirect(DL);
 	}
 
 	@Override
@@ -520,6 +579,34 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	@Override
+	public Boolean getcontainsDocChecksum() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DocChecksum"));
+	}
+
+	public COSObject getDocChecksumValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DocChecksum"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisDocChecksumIndirect() {
+		COSObject DocChecksum = getDocChecksumValue();
+		return getisIndirect(DocChecksum);
+	}
+
+	@Override
+	public String getDocChecksumType() {
+		COSObject DocChecksum = getDocChecksumValue();
+		return getObjectType(DocChecksum);
+	}
+
+	@Override
+	public Boolean getDocChecksumHasTypeName() {
+		COSObject DocChecksum = getDocChecksumValue();
+		return getHasTypeName(DocChecksum);
+	}
+
+	@Override
 	public Boolean getcontainsEncrypt() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Encrypt"));
 	}
@@ -527,6 +614,12 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	public COSObject getEncryptValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encrypt"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisEncryptIndirect() {
+		COSObject Encrypt = getEncryptValue();
+		return getisIndirect(Encrypt);
 	}
 
 	@Override
@@ -802,6 +895,12 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	@Override
+	public Boolean getisLengthIndirect() {
+		COSObject Length = getLengthValue();
+		return getisIndirect(Length);
+	}
+
+	@Override
 	public String getLengthType() {
 		COSObject Length = getLengthValue();
 		return getObjectType(Length);
@@ -1033,6 +1132,11 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 
 	@Override
 	public Boolean gethasExtensionISO_TS_32004() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionOpenOffice() {
 		return false;
 	}
 
