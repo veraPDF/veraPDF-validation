@@ -251,31 +251,34 @@ class ChunkParser {
 			case Operators.T_STAR:
 				processT_STAR();
 				break;
-			case Operators.TJ_SHOW:
+			case Operators.TJ_SHOW: {
 				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
 				break;
-			case Operators.TJ_SHOW_POS:
-				textChunk = createTextChunk(arguments, Operators.TJ_SHOW_POS);
+			}
+			case Operators.TJ_SHOW_POS: {
+				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW_POS);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
 				break;
-			case Operators.QUOTE:
+			}
+			case Operators.QUOTE: {
 				processT_STAR();
-				textChunk = createTextChunk(arguments, Operators.QUOTE);
+				TextChunk textChunk = createTextChunk(arguments, Operators.QUOTE);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
 				break;
+			}
 			case Operators.DOUBLE_QUOTE:
 				if (arguments.size() > 1 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber()) {
 					processDoubleQuote(arguments.get(0).getReal(), arguments.get(1).getReal());
 				}
-				textChunk = createTextChunk(arguments, Operators.DOUBLE_QUOTE);
+				TextChunk textChunk = createTextChunk(arguments, Operators.DOUBLE_QUOTE);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -461,7 +464,7 @@ class ChunkParser {
 							markedContent = parentMarkedContent;
 						}
 						GraphicsState xFormGraphicsState = graphicsState.clone();
-						xFormGraphicsState.setCTM(xFormGraphicsState.getCTM().multiply(new Matrix(((PDXForm)xObject).getMatrix())));
+						xFormGraphicsState.getCTM().concatenate(new Matrix(((PDXForm)xObject).getMatrix()));
 						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, xFormGraphicsState, pageNumber,
 								key, markedContent);
 						artifacts.addAll(xForm.getArtifacts());
