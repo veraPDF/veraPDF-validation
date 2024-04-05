@@ -51,10 +51,18 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	}
 
 	private List<AOOAdditionalStmsArray> getAdditionalStreams() {
-		return getAdditionalStreams1_0();
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getAdditionalStreams1_5();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	private List<AOOAdditionalStmsArray> getAdditionalStreams1_0() {
+	private List<AOOAdditionalStmsArray> getAdditionalStreams1_5() {
 		COSObject object = getAdditionalStreamsValue();
 		if (object == null) {
 			return Collections.emptyList();

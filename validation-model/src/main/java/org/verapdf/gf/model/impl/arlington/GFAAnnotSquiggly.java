@@ -235,8 +235,9 @@ public class GFAAnnotSquiggly extends GFAObject implements AAnnotSquiggly {
 	private List<org.verapdf.model.baselayer.Object> getIRT() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 				return getIRT1_5();
+			case ARLINGTON1_6:
+				return getIRT1_6();
 			case ARLINGTON1_7:
 				return getIRT1_7();
 			case ARLINGTON2_0:
@@ -272,8 +273,6 @@ public class GFAAnnotSquiggly extends GFAObject implements AAnnotSquiggly {
 			return null;
 		}
 		switch (subtypeValue) {
-			case "3D":
-				return new GFAAnnot3D(base, this.baseObject, keyName);
 			case "Caret":
 				return new GFAAnnotCaret(base, this.baseObject, keyName);
 			case "Circle":
@@ -314,8 +313,6 @@ public class GFAAnnotSquiggly extends GFAObject implements AAnnotSquiggly {
 				return new GFAAnnotText(base, this.baseObject, keyName);
 			case "Underline":
 				return new GFAAnnotUnderline(base, this.baseObject, keyName);
-			case "Watermark":
-				return new GFAAnnotWatermark(base, this.baseObject, keyName);
 			case "Widget":
 				return getIRTDictionaryWidget1_5(base, keyName);
 			default:
@@ -391,7 +388,161 @@ public class GFAAnnotSquiggly extends GFAObject implements AAnnotSquiggly {
 		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
-		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TM"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("TU"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getIRT1_6() {
+		COSObject object = getIRTValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getIRTDictionary1_6(object.getDirectBase(), "IRT");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getIRTDictionary1_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "3D":
+				return new GFAAnnot3D(base, this.baseObject, keyName);
+			case "Caret":
+				return new GFAAnnotCaret(base, this.baseObject, keyName);
+			case "Circle":
+				return new GFAAnnotCircle(base, this.baseObject, keyName);
+			case "FileAttachment":
+				return new GFAAnnotFileAttachment(base, this.baseObject, keyName);
+			case "FreeText":
+				return new GFAAnnotFreeText(base, this.baseObject, keyName);
+			case "Highlight":
+				return new GFAAnnotHighlight(base, this.baseObject, keyName);
+			case "Ink":
+				return new GFAAnnotInk(base, this.baseObject, keyName);
+			case "Line":
+				return new GFAAnnotLine(base, this.baseObject, keyName);
+			case "Link":
+				return new GFAAnnotLink(base, this.baseObject, keyName);
+			case "Movie":
+				return new GFAAnnotMovie(base, this.baseObject, keyName);
+			case "Polygon":
+				return new GFAAnnotPolygon(base, this.baseObject, keyName);
+			case "Popup":
+				return new GFAAnnotPopup(base, this.baseObject, keyName);
+			case "PrinterMark":
+				return new GFAAnnotPrinterMark(base, this.baseObject, keyName);
+			case "Screen":
+				return new GFAAnnotScreen(base, this.baseObject, keyName);
+			case "Sound":
+				return new GFAAnnotSound(base, this.baseObject, keyName);
+			case "Square":
+				return new GFAAnnotSquare(base, this.baseObject, keyName);
+			case "Squiggly":
+				return new GFAAnnotSquiggly(base, this.baseObject, keyName);
+			case "Stamp":
+				return new GFAAnnotStamp(base, this.baseObject, keyName);
+			case "StrikeOut":
+				return new GFAAnnotStrikeOut(base, this.baseObject, keyName);
+			case "Text":
+				return new GFAAnnotText(base, this.baseObject, keyName);
+			case "Underline":
+				return new GFAAnnotUnderline(base, this.baseObject, keyName);
+			case "Watermark":
+				return new GFAAnnotWatermark(base, this.baseObject, keyName);
+			case "Widget":
+				return getIRTDictionaryWidget1_6(base, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getIRTDictionaryWidget1_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return getIRTDictionaryWidgetDefault1_6(base, keyName);
+		}
+		switch (subtypeValue) {
+			case "Btn":
+				return getIRTDictionaryWidgetBtn1_6(base, keyName);
+			case "Ch":
+				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
+			case "Sig":
+				return new GFAAnnotWidgetFieldSig(base, this.baseObject, keyName);
+			case "Tx":
+				return new GFAAnnotWidgetFieldTx(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetBtn1_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 17) {
+			case 0:
+				return getIRTDictionaryWidgetBtn01_6(base, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetBtn01_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		if (subtype == null) {
+			return null;
+		}
+		Long subtypeValue = subtype.getInteger();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue.intValue() >> 16) {
+			case 0:
+				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
+			case 1:
+				return new GFAAnnotWidgetFieldBtnRadio(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetDefault1_6(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("AA"))) {
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
+		}
+		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		if (base.knownKey(ASAtom.getASAtom("T"))) {
@@ -551,9 +702,6 @@ public class GFAAnnotSquiggly extends GFAObject implements AAnnotSquiggly {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		if (base.knownKey(ASAtom.getASAtom("T"))) {
@@ -717,9 +865,6 @@ public class GFAAnnotSquiggly extends GFAObject implements AAnnotSquiggly {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		if (base.knownKey(ASAtom.getASAtom("T"))) {

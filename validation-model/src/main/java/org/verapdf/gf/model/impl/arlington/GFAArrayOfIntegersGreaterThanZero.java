@@ -27,10 +27,16 @@ public class GFAArrayOfIntegersGreaterThanZero extends GFAObject implements AArr
 	}
 
 	private List<AArrayOfIntegersGreaterThanZeroEntry> getEntries() {
-		return getEntries1_0();
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getEntries1_7();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
-	private List<AArrayOfIntegersGreaterThanZeroEntry> getEntries1_0() {
+	private List<AArrayOfIntegersGreaterThanZeroEntry> getEntries1_7() {
 		List<AArrayOfIntegersGreaterThanZeroEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);

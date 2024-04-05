@@ -145,9 +145,6 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
-		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
 		if (base.knownKey(ASAtom.getASAtom("T"))) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -315,9 +312,6 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		if (base.knownKey(ASAtom.getASAtom("T"))) {
