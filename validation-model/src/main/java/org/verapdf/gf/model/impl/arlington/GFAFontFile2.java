@@ -39,6 +39,8 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+				return getDecodeParms1_1();
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -51,6 +53,24 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 			default:
 				return Collections.emptyList();
 		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_1() {
+		COSObject object = getDecodeParmsValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "DecodeParms"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AFilterLZWDecode> list = new ArrayList<>(1);
+			list.add(new GFAFilterLZWDecode((COSDictionary)object.getDirectBase(), this.baseObject, "DecodeParms"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_2() {
@@ -137,6 +157,7 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 
 	private List<AFileSpecification> getF() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -144,13 +165,13 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getF1_2();
+				return getF1_1();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AFileSpecification> getF1_2() {
+	private List<AFileSpecification> getF1_1() {
 		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -165,6 +186,8 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
+				return getFDecodeParms1_1();
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -177,6 +200,24 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 			default:
 				return Collections.emptyList();
 		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_1() {
+		COSObject object = getFDecodeParmsValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AFilterLZWDecode> list = new ArrayList<>(1);
+			list.add(new GFAFilterLZWDecode((COSDictionary)object.getDirectBase(), this.baseObject, "FDecodeParms"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_2() {
@@ -263,6 +304,7 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 
 	private List<AArrayOfCompressionFilterNames> getFFilter() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -270,13 +312,13 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getFFilter1_2();
+				return getFFilter1_1();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfCompressionFilterNames> getFFilter1_2() {
+	private List<AArrayOfCompressionFilterNames> getFFilter1_1() {
 		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -291,6 +333,7 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 
 	private List<AArrayOfCompressionFilterNames> getFilter() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_1:
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -298,13 +341,13 @@ public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getFilter1_2();
+				return getFilter1_1();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfCompressionFilterNames> getFilter1_2() {
+	private List<AArrayOfCompressionFilterNames> getFilter1_1() {
 		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
