@@ -149,10 +149,7 @@ public class GFAPermissions extends GFAObject implements APermissions {
 			return null;
 		}
 		COSObject Reference = UR3.getKey(ASAtom.getASAtom("Reference"));
-		if (Reference == null || Reference.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Reference.size() <= 0) {
+		if (Reference == null || Reference.getType() != COSObjType.COS_ARRAY || Reference.size() <= 0) {
 			return null;
 		}
 		COSObject entry0 = Reference.at(0);

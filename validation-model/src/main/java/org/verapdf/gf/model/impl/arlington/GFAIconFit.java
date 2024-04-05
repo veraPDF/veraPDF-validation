@@ -202,10 +202,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	@Override
 	public Double getA0NumberValue() {
 		COSObject A = getAValue();
-		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (A.size() <= 0) {
+		if (A == null || A.getType() != COSObjType.COS_ARRAY || A.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry0NumberValue();
@@ -214,10 +211,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	@Override
 	public Double getA1NumberValue() {
 		COSObject A = getAValue();
-		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (A.size() <= 1) {
+		if (A == null || A.getType() != COSObjType.COS_ARRAY || A.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry1NumberValue();
@@ -226,10 +220,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	@Override
 	public Boolean getA0HasTypeNumber() {
 		COSObject A = getAValue();
-		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (A.size() <= 0) {
+		if (A == null || A.getType() != COSObjType.COS_ARRAY || A.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry0HasTypeNumber();
@@ -238,10 +229,7 @@ public class GFAIconFit extends GFAObject implements AIconFit {
 	@Override
 	public Boolean getA1HasTypeNumber() {
 		COSObject A = getAValue();
-		if (A == null || A.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (A.size() <= 1) {
+		if (A == null || A.getType() != COSObjType.COS_ARRAY || A.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(A.getDirectBase(), null, null).getentry1HasTypeNumber();

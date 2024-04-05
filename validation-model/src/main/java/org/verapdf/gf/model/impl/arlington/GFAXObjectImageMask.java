@@ -1491,10 +1491,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 			return null;
 		}
 		COSObject Decode = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
-		if (Decode == null || Decode.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Decode.size() <= 0) {
+		if (Decode == null || Decode.getType() != COSObjType.COS_ARRAY || Decode.size() <= 0) {
 			return null;
 		}
 		COSObject entry0 = Decode.at(0);
@@ -1506,10 +1503,7 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 			return null;
 		}
 		COSObject Decode = this.baseObject.getKey(ASAtom.getASAtom("Decode"));
-		if (Decode == null || Decode.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Decode.size() <= 1) {
+		if (Decode == null || Decode.getType() != COSObjType.COS_ARRAY || Decode.size() <= 1) {
 			return null;
 		}
 		COSObject entry1 = Decode.at(1);

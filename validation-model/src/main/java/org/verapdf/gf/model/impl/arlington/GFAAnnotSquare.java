@@ -1981,10 +1981,7 @@ public class GFAAnnotSquare extends GFAObject implements AAnnotSquare {
 			return null;
 		}
 		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (RD.size() <= 0) {
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 0) {
 			return null;
 		}
 		COSObject entry0 = RD.at(0);
@@ -1996,10 +1993,7 @@ public class GFAAnnotSquare extends GFAObject implements AAnnotSquare {
 			return null;
 		}
 		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (RD.size() <= 1) {
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 1) {
 			return null;
 		}
 		COSObject entry1 = RD.at(1);
@@ -2011,10 +2005,7 @@ public class GFAAnnotSquare extends GFAObject implements AAnnotSquare {
 			return null;
 		}
 		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (RD.size() <= 2) {
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 2) {
 			return null;
 		}
 		COSObject entry2 = RD.at(2);
@@ -2026,10 +2017,7 @@ public class GFAAnnotSquare extends GFAObject implements AAnnotSquare {
 			return null;
 		}
 		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (RD.size() <= 3) {
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 3) {
 			return null;
 		}
 		COSObject entry3 = RD.at(3);

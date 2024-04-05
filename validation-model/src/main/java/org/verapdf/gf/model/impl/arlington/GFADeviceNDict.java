@@ -213,10 +213,7 @@ public class GFADeviceNDict extends GFAObject implements ADeviceNDict {
 	}
 
 	public COSObject getparent1Value() {
-		if (this.parentObject == null || this.parentObject.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (this.parentObject.size() <= 1) {
+		if (this.parentObject == null || this.parentObject.getType() != COSObjType.COS_ARRAY || this.parentObject.size() <= 1) {
 			return null;
 		}
 		COSObject entry1 = this.parentObject.at(1);

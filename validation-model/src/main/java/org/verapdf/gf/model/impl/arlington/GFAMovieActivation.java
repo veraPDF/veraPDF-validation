@@ -513,10 +513,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Double getFWPosition0NumberValue() {
 		COSObject FWPosition = getFWPositionValue();
-		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWPosition.size() <= 0) {
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY || FWPosition.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry0NumberValue();
@@ -525,10 +522,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Double getFWPosition1NumberValue() {
 		COSObject FWPosition = getFWPositionValue();
-		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWPosition.size() <= 1) {
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY || FWPosition.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry1NumberValue();
@@ -537,10 +531,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Long getFWScale0IntegerValue() {
 		COSObject FWScale = getFWScaleValue();
-		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWScale.size() <= 0) {
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY || FWScale.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry0IntegerValue();
@@ -549,10 +540,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Long getFWScale1IntegerValue() {
 		COSObject FWScale = getFWScaleValue();
-		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWScale.size() <= 1) {
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY || FWScale.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry1IntegerValue();
@@ -561,10 +549,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Boolean getFWPosition0HasTypeNumber() {
 		COSObject FWPosition = getFWPositionValue();
-		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWPosition.size() <= 0) {
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY || FWPosition.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry0HasTypeNumber();
@@ -573,10 +558,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Boolean getFWPosition1HasTypeNumber() {
 		COSObject FWPosition = getFWPositionValue();
-		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWPosition.size() <= 1) {
+		if (FWPosition == null || FWPosition.getType() != COSObjType.COS_ARRAY || FWPosition.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(FWPosition.getDirectBase(), null, null).getentry1HasTypeNumber();
@@ -585,10 +567,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Boolean getFWScale0HasTypeInteger() {
 		COSObject FWScale = getFWScaleValue();
-		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWScale.size() <= 0) {
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY || FWScale.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry0HasTypeInteger();
@@ -597,10 +576,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	@Override
 	public Boolean getFWScale1HasTypeInteger() {
 		COSObject FWScale = getFWScaleValue();
-		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (FWScale.size() <= 1) {
+		if (FWScale == null || FWScale.getType() != COSObjType.COS_ARRAY || FWScale.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Integers(FWScale.getDirectBase(), null, null).getentry1HasTypeInteger();

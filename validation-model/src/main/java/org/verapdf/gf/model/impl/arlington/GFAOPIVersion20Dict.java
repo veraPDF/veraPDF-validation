@@ -455,10 +455,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Long getIncludedImageDimensions0IntegerValue() {
 		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
-		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (IncludedImageDimensions.size() <= 0) {
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY || IncludedImageDimensions.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0IntegerValue();
@@ -467,10 +464,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Long getIncludedImageDimensions1IntegerValue() {
 		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
-		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (IncludedImageDimensions.size() <= 1) {
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY || IncludedImageDimensions.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry1IntegerValue();
@@ -479,10 +473,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Double getSize0NumberValue() {
 		COSObject Size = getSizeValue();
-		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Size.size() <= 0) {
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY || Size.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry0NumberValue();
@@ -491,10 +482,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Double getSize1NumberValue() {
 		COSObject Size = getSizeValue();
-		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Size.size() <= 1) {
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY || Size.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry1NumberValue();
@@ -503,10 +491,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getIncludedImageDimensions0HasTypeInteger() {
 		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
-		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (IncludedImageDimensions.size() <= 0) {
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY || IncludedImageDimensions.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry0HasTypeInteger();
@@ -515,10 +500,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getIncludedImageDimensions1HasTypeInteger() {
 		COSObject IncludedImageDimensions = getIncludedImageDimensionsValue();
-		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (IncludedImageDimensions.size() <= 1) {
+		if (IncludedImageDimensions == null || IncludedImageDimensions.getType() != COSObjType.COS_ARRAY || IncludedImageDimensions.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Integers(IncludedImageDimensions.getDirectBase(), null, null).getentry1HasTypeInteger();
@@ -527,10 +509,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getSize0HasTypeNumber() {
 		COSObject Size = getSizeValue();
-		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Size.size() <= 0) {
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY || Size.size() <= 0) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry0HasTypeNumber();
@@ -539,10 +518,7 @@ public class GFAOPIVersion20Dict extends GFAObject implements AOPIVersion20Dict 
 	@Override
 	public Boolean getSize1HasTypeNumber() {
 		COSObject Size = getSizeValue();
-		if (Size == null || Size.getType() != COSObjType.COS_ARRAY) {
-			return null;
-		}
-		if (Size.size() <= 1) {
+		if (Size == null || Size.getType() != COSObjType.COS_ARRAY || Size.size() <= 1) {
 			return null;
 		}
 		return new GFAArrayOf_2Numbers(Size.getDirectBase(), null, null).getentry1HasTypeNumber();
