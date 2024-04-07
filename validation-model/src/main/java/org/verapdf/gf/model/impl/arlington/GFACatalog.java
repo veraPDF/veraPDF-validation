@@ -53,6 +53,8 @@ public class GFACatalog extends GFAObject implements ACatalog {
 				return getOutputIntents();
 			case "PageLabels":
 				return getPageLabels();
+			case "PageLabelsTreeNode":
+				return getPageLabelsTreeNode();
 			case "Pages":
 				return getPages();
 			case "Perms":
@@ -990,6 +992,33 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return Collections.emptyList();
 	}
 
+	private List<ANumberTreeNode> getPageLabelsTreeNode() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getPageLabelsTreeNode1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ANumberTreeNode> getPageLabelsTreeNode1_3() {
+		COSObject object = getPageLabelsTreeNodeValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ANumberTreeNode> list = new ArrayList<>(1);
+			list.add(new GFANumberTreeNode((COSDictionary)object.getDirectBase(), this.baseObject, "PageLabelsTreeNode"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<APageTreeNodeRoot> getPages() {
 		return getPages1_0();
 	}
@@ -1674,6 +1703,28 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	public Boolean getPageLabelsHasTypeNumberTree() {
 		COSObject PageLabels = getPageLabelsValue();
 		return getHasTypeNumberTree(PageLabels);
+	}
+
+	@Override
+	public Boolean getcontainsPageLabelsTreeNode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("PageLabels"));
+	}
+
+	public COSObject getPageLabelsTreeNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
+		return object;
+	}
+
+	@Override
+	public String getPageLabelsTreeNodeType() {
+		COSObject PageLabelsTreeNode = getPageLabelsTreeNodeValue();
+		return getObjectType(PageLabelsTreeNode);
+	}
+
+	@Override
+	public Boolean getPageLabelsTreeNodeHasTypeNumberTree() {
+		COSObject PageLabelsTreeNode = getPageLabelsTreeNodeValue();
+		return getHasTypeNumberTree(PageLabelsTreeNode);
 	}
 
 	@Override

@@ -21,6 +21,8 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		switch (link) {
 			case "Assets":
 				return getAssets();
+			case "AssetsTreeNode":
+				return getAssetsTreeNode();
 			case "Configurations":
 				return getConfigurations();
 			case "Views":
@@ -48,6 +50,29 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ARichMediaContentNameTreeAssets> list = new ArrayList<>(1);
 			list.add(new GFARichMediaContentNameTreeAssets((COSDictionary)object.getDirectBase(), this.baseObject, "Assets"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ANameTreeNode> getAssetsTreeNode() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getAssetsTreeNode1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ANameTreeNode> getAssetsTreeNode1_7() {
+		COSObject object = getAssetsTreeNodeValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ANameTreeNode> list = new ArrayList<>(1);
+			list.add(new GFANameTreeNode((COSDictionary)object.getDirectBase(), this.baseObject, "AssetsTreeNode"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -119,6 +144,28 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	public Boolean getAssetsHasTypeNameTree() {
 		COSObject Assets = getAssetsValue();
 		return getHasTypeNameTree(Assets);
+	}
+
+	@Override
+	public Boolean getcontainsAssetsTreeNode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Assets"));
+	}
+
+	public COSObject getAssetsTreeNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Assets"));
+		return object;
+	}
+
+	@Override
+	public String getAssetsTreeNodeType() {
+		COSObject AssetsTreeNode = getAssetsTreeNodeValue();
+		return getObjectType(AssetsTreeNode);
+	}
+
+	@Override
+	public Boolean getAssetsTreeNodeHasTypeNameTree() {
+		COSObject AssetsTreeNode = getAssetsTreeNodeValue();
+		return getHasTypeNameTree(AssetsTreeNode);
 	}
 
 	@Override

@@ -21,6 +21,8 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 		switch (link) {
 			case "Resources":
 				return getResources();
+			case "ResourcesTreeNode":
+				return getResourcesTreeNode();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -52,6 +54,32 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 		return Collections.emptyList();
 	}
 
+	private List<ANameTreeNode> getResourcesTreeNode() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getResourcesTreeNode1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ANameTreeNode> getResourcesTreeNode1_4() {
+		COSObject object = getResourcesTreeNodeValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ANameTreeNode> list = new ArrayList<>(1);
+			list.add(new GFANameTreeNode((COSDictionary)object.getDirectBase(), this.baseObject, "ResourcesTreeNode"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	@Override
 	public Boolean getcontainsResources() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
@@ -72,6 +100,28 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	public Boolean getResourcesHasTypeNameTree() {
 		COSObject Resources = getResourcesValue();
 		return getHasTypeNameTree(Resources);
+	}
+
+	@Override
+	public Boolean getcontainsResourcesTreeNode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
+	}
+
+	public COSObject getResourcesTreeNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object;
+	}
+
+	@Override
+	public String getResourcesTreeNodeType() {
+		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
+		return getObjectType(ResourcesTreeNode);
+	}
+
+	@Override
+	public Boolean getResourcesTreeNodeHasTypeNameTree() {
+		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
+		return getHasTypeNameTree(ResourcesTreeNode);
 	}
 
 	@Override

@@ -25,12 +25,16 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 				return getClassMap();
 			case "IDTree":
 				return getIDTree();
+			case "IDTreeTreeNode":
+				return getIDTreeTreeNode();
 			case "K":
 				return getK();
 			case "Namespaces":
 				return getNamespaces();
 			case "ParentTree":
 				return getParentTree();
+			case "ParentTreeTreeNode":
+				return getParentTreeTreeNode();
 			case "PronunciationLexicon":
 				return getPronunciationLexicon();
 			case "RoleMap":
@@ -116,6 +120,33 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return Collections.emptyList();
 	}
 
+	private List<ANameTreeNode> getIDTreeTreeNode() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getIDTreeTreeNode1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ANameTreeNode> getIDTreeTreeNode1_3() {
+		COSObject object = getIDTreeTreeNodeValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ANameTreeNode> list = new ArrayList<>(1);
+			list.add(new GFANameTreeNode((COSDictionary)object.getDirectBase(), this.baseObject, "IDTreeTreeNode"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<org.verapdf.model.baselayer.Object> getK() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
@@ -192,6 +223,33 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AStructTreeRootNumberTreeParentTree> list = new ArrayList<>(1);
 			list.add(new GFAStructTreeRootNumberTreeParentTree((COSDictionary)object.getDirectBase(), this.baseObject, "ParentTree"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ANumberTreeNode> getParentTreeTreeNode() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getParentTreeTreeNode1_3();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ANumberTreeNode> getParentTreeTreeNode1_3() {
+		COSObject object = getParentTreeTreeNodeValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ANumberTreeNode> list = new ArrayList<>(1);
+			list.add(new GFANumberTreeNode((COSDictionary)object.getDirectBase(), this.baseObject, "ParentTreeTreeNode"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -313,6 +371,28 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	}
 
 	@Override
+	public Boolean getcontainsIDTreeTreeNode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("IDTree"));
+	}
+
+	public COSObject getIDTreeTreeNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDTree"));
+		return object;
+	}
+
+	@Override
+	public String getIDTreeTreeNodeType() {
+		COSObject IDTreeTreeNode = getIDTreeTreeNodeValue();
+		return getObjectType(IDTreeTreeNode);
+	}
+
+	@Override
+	public Boolean getIDTreeTreeNodeHasTypeNameTree() {
+		COSObject IDTreeTreeNode = getIDTreeTreeNodeValue();
+		return getHasTypeNameTree(IDTreeTreeNode);
+	}
+
+	@Override
 	public Boolean getcontainsK() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("K"));
 	}
@@ -404,6 +484,28 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 	public Boolean getParentTreeNextKeyHasTypeInteger() {
 		COSObject ParentTreeNextKey = getParentTreeNextKeyValue();
 		return getHasTypeInteger(ParentTreeNextKey);
+	}
+
+	@Override
+	public Boolean getcontainsParentTreeTreeNode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ParentTree"));
+	}
+
+	public COSObject getParentTreeTreeNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ParentTree"));
+		return object;
+	}
+
+	@Override
+	public String getParentTreeTreeNodeType() {
+		COSObject ParentTreeTreeNode = getParentTreeTreeNodeValue();
+		return getObjectType(ParentTreeTreeNode);
+	}
+
+	@Override
+	public Boolean getParentTreeTreeNodeHasTypeNumberTree() {
+		COSObject ParentTreeTreeNode = getParentTreeTreeNodeValue();
+		return getHasTypeNumberTree(ParentTreeTreeNode);
 	}
 
 	@Override

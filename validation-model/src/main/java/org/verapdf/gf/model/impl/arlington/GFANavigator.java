@@ -25,8 +25,12 @@ public class GFANavigator extends GFAObject implements ANavigator {
 				return getLayout();
 			case "Resources":
 				return getResources();
+			case "ResourcesTreeNode":
+				return getResourcesTreeNode();
 			case "Strings":
 				return getStrings();
+			case "StringsTreeNode":
+				return getStringsTreeNode();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -100,6 +104,29 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return Collections.emptyList();
 	}
 
+	private List<ANameTreeNode> getResourcesTreeNode() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getResourcesTreeNode1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ANameTreeNode> getResourcesTreeNode1_7() {
+		COSObject object = getResourcesTreeNodeValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ANameTreeNode> list = new ArrayList<>(1);
+			list.add(new GFANameTreeNode((COSDictionary)object.getDirectBase(), this.baseObject, "ResourcesTreeNode"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	private List<ANavigatorNameTreeStrings> getStrings() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
@@ -118,6 +145,29 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ANavigatorNameTreeStrings> list = new ArrayList<>(1);
 			list.add(new GFANavigatorNameTreeStrings((COSDictionary)object.getDirectBase(), this.baseObject, "Strings"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ANameTreeNode> getStringsTreeNode() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getStringsTreeNode1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ANameTreeNode> getStringsTreeNode1_7() {
+		COSObject object = getStringsTreeNodeValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ANameTreeNode> list = new ArrayList<>(1);
+			list.add(new GFANameTreeNode((COSDictionary)object.getDirectBase(), this.baseObject, "StringsTreeNode"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -396,6 +446,28 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	}
 
 	@Override
+	public Boolean getcontainsResourcesTreeNode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
+	}
+
+	public COSObject getResourcesTreeNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object;
+	}
+
+	@Override
+	public String getResourcesTreeNodeType() {
+		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
+		return getObjectType(ResourcesTreeNode);
+	}
+
+	@Override
+	public Boolean getResourcesTreeNodeHasTypeNameTree() {
+		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
+		return getHasTypeNameTree(ResourcesTreeNode);
+	}
+
+	@Override
 	public Boolean getcontainsSWF() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("SWF"));
 	}
@@ -437,6 +509,28 @@ public class GFANavigator extends GFAObject implements ANavigator {
 	public Boolean getStringsHasTypeNameTree() {
 		COSObject Strings = getStringsValue();
 		return getHasTypeNameTree(Strings);
+	}
+
+	@Override
+	public Boolean getcontainsStringsTreeNode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Strings"));
+	}
+
+	public COSObject getStringsTreeNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Strings"));
+		return object;
+	}
+
+	@Override
+	public String getStringsTreeNodeType() {
+		COSObject StringsTreeNode = getStringsTreeNodeValue();
+		return getObjectType(StringsTreeNode);
+	}
+
+	@Override
+	public Boolean getStringsTreeNodeHasTypeNameTree() {
+		COSObject StringsTreeNode = getStringsTreeNodeValue();
+		return getHasTypeNameTree(StringsTreeNode);
 	}
 
 	@Override

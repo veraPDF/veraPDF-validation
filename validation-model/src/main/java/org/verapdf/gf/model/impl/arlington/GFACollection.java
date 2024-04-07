@@ -27,6 +27,8 @@ public class GFACollection extends GFAObject implements ACollection {
 				return getNavigator();
 			case "Resources":
 				return getResources();
+			case "ResourcesTreeNode":
+				return getResourcesTreeNode();
 			case "Schema":
 				return getSchema();
 			case "Sort":
@@ -125,6 +127,29 @@ public class GFACollection extends GFAObject implements ACollection {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ACollectionNameTreeResources> list = new ArrayList<>(1);
 			list.add(new GFACollectionNameTreeResources((COSDictionary)object.getDirectBase(), this.baseObject, "Resources"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ANameTreeNode> getResourcesTreeNode() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getResourcesTreeNode1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ANameTreeNode> getResourcesTreeNode1_7() {
+		COSObject object = getResourcesTreeNodeValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ANameTreeNode> list = new ArrayList<>(1);
+			list.add(new GFANameTreeNode((COSDictionary)object.getDirectBase(), this.baseObject, "ResourcesTreeNode"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -325,6 +350,34 @@ public class GFACollection extends GFAObject implements ACollection {
 	public Boolean getResourcesHasTypeNameTree() {
 		COSObject Resources = getResourcesValue();
 		return getHasTypeNameTree(Resources);
+	}
+
+	@Override
+	public Boolean getcontainsResourcesTreeNode() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
+	}
+
+	public COSObject getResourcesTreeNodeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisResourcesTreeNodeIndirect() {
+		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
+		return getisIndirect(ResourcesTreeNode);
+	}
+
+	@Override
+	public String getResourcesTreeNodeType() {
+		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
+		return getObjectType(ResourcesTreeNode);
+	}
+
+	@Override
+	public Boolean getResourcesTreeNodeHasTypeNameTree() {
+		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
+		return getHasTypeNameTree(ResourcesTreeNode);
 	}
 
 	@Override
