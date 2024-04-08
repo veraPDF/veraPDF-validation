@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.actions;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDMediaClip;
@@ -58,7 +59,7 @@ public class GFPDRenditionAction extends GFPDAction implements PDRenditionAction
         COSObject object = ((PDAction) this.simplePDObject).getRendition();
         if (object != null) {
             object = object.getKey(ASAtom.C);
-            if (object != null) {
+            if (object != null && object.getType() == COSObjType.COS_DICT) {
                 List<PDMediaClip> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
                 list.add(new GFPDMediaClip(new org.verapdf.pd.actions.PDMediaClip(object)));
                 return Collections.unmodifiableList(list);
