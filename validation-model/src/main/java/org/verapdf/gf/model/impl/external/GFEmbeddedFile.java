@@ -80,8 +80,8 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		if (this.stream == null) {
 			return Boolean.TRUE;
 		}
-		boolean retVal = false;
 		saveStaticContainersState();
+		boolean retVal = false;
 		try (InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE)) {
 			retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_1_B);
 			if (!retVal) {
@@ -100,8 +100,8 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		if (this.stream == null) {
 			return Boolean.TRUE;
 		}
-		boolean retVal = false;
 		saveStaticContainersState();
+		boolean retVal = false;
 		try (InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE)) {
 			retVal = isValidPdfaStream(unfilteredStream, PDFAFlavour.PDFA_1_B);
 			if (!retVal) {

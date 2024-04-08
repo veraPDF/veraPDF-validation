@@ -31,7 +31,7 @@ public class GFSENote extends GFPDStructElem implements SENote {
 
     public static final String NOTE_STRUCTURE_ELEMENT_TYPE = "SENote";
 
-    public String noteID;
+    public final String noteID;
 
     public boolean hasDuplicateNoteID;
 

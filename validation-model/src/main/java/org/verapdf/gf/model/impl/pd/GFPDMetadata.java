@@ -104,8 +104,8 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                 if (isMainMetadata) {
                     xmp.add(new AXLMainXMPPackage(metadata, true, flavour));
                 } else if (flavour == null || flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
-                    VeraPDFXMPNode mainExtensionNode = null;
                     try (InputStream mainStream = mainMetadata != null ? mainMetadata.getStream() : null) {
+                        VeraPDFXMPNode mainExtensionNode = null;
                         if (mainStream != null) {
                             VeraPDFMeta mainMeta = VeraPDFMeta.parse(mainStream);
                             mainExtensionNode = mainMeta.getExtensionSchemasNode();

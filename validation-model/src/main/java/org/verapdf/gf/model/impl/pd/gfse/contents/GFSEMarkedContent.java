@@ -81,7 +81,6 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
         if (operators == null) {
             return Collections.emptyList();
         }
-        int markedContentIndex;
         Stack<Integer> markedContentStack = new Stack<>();
         List<SEContentItem> list = new ArrayList<>();
         for (int i = 0; i < operators.size(); i++) {
@@ -91,7 +90,7 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
                 markedContentStack.push(i);
             } else if (GFOp_EMC.OP_EMC_TYPE.equals(type)) {
                 if (!markedContentStack.empty()) {
-                    markedContentIndex = markedContentStack.pop();
+                    int markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
                         list.add(new GFSEMarkedContent((GFOpMarkedContent)operators.get(markedContentIndex), 
                                 operators.subList(markedContentIndex + 1, i + 1),

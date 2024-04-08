@@ -135,7 +135,6 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		if (filters == null || filters.getFilters().isEmpty()) {
 			return Collections.emptyList();
 		}
-		List<CosFilter> result = new ArrayList<>();
 
 		COSObject decodeParmsObject = this.baseObject.getKey(ASAtom.DECODE_PARMS);
 		COSBase decodeParms = null;
@@ -143,6 +142,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 			decodeParms = decodeParmsObject.get();
 		}
 
+		List<CosFilter> result = new ArrayList<>();
 		if (filters.getFilters().size() == 1) {
 			if (decodeParms instanceof COSArray) {
 				decodeParms = decodeParms.at(0).get();

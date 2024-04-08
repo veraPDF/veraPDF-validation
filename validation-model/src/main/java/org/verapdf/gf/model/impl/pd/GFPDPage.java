@@ -234,9 +234,9 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		StaticContainers.getTransparencyVisitedContentStreams().clear();
 		List<PDContentStream> pdContentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-		GFPDContentStream pdContentStream;
 		if (page.getContent() != null) {
 			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
+			GFPDContentStream pdContentStream;
 			if (PDFAFlavour.IsoStandardSeries.ISO_14289 != StaticContainers.getFlavour().getPart().getSeries() &&
 			    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily()) {
 				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,

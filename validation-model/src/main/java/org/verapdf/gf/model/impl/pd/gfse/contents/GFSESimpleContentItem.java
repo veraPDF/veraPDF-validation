@@ -28,7 +28,7 @@ import org.verapdf.tools.TaggedPDFConstants;
  */
 public abstract class GFSESimpleContentItem extends GFSEContentItem implements SESimpleContentItem {
 
-    protected GFSEGroupedContent groupedContent;
+    protected final GFSEGroupedContent groupedContent;
 
     public GFSESimpleContentItem(String objectType, GFSEGroupedContent groupedContent) {
         super(objectType);

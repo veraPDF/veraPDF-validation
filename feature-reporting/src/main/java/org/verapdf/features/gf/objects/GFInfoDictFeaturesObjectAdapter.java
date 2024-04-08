@@ -106,9 +106,9 @@ public class GFInfoDictFeaturesObjectAdapter implements InfoDictFeaturesObjectAd
     @Override
     public Map<String, String> getCustomValues() {
         if (info != null && info.getType() == COSObjType.COS_DICT) {
-            Map<String, String> res = new TreeMap<>();
             Set<ASAtom> keys = new TreeSet<>(info.getKeySet());
             Arrays.asList(predefinedKeys).forEach(keys::remove);
+            Map<String, String> res = new TreeMap<>();
             for (ASAtom key : keys) {
                 res.put(key.getValue(), key == ASAtom.TRAPPED ? info.getNameKeyStringValue(key) : info.getStringKey(key));
             }

@@ -87,7 +87,7 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 
 	private List<SAAnnotation> parseAnnotations() {
 		List<PDAnnotation> annots = pdPage.getAnnotations();
-		if (annots.size() > 0) {
+		if (!annots.isEmpty()) {
 			List<SAAnnotation> res = new ArrayList<>(annots.size());
 			for (PDAnnotation annot : annots) {
 				res.add(GFSAAnnotation.createAnnot(annot, pdPage));
