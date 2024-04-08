@@ -174,11 +174,11 @@ public class Matrix implements Cloneable {
 
 	public BoundingBox transformBoundingBox(BoundingBox boundingBox) {
 		List<Double> xCoordinates = new ArrayList<>(4);
-		List<Double> yCoordinates = new ArrayList<>(4);
 		xCoordinates.add(transformX(boundingBox.getLeftX(), boundingBox.getBottomY()));
 		xCoordinates.add(transformX(boundingBox.getRightX(), boundingBox.getBottomY()));
 		xCoordinates.add(transformX(boundingBox.getLeftX(), boundingBox.getTopY()));
 		xCoordinates.add(transformX(boundingBox.getRightX(), boundingBox.getTopY()));
+		List<Double> yCoordinates = new ArrayList<>(4);
 		yCoordinates.add(transformY(boundingBox.getLeftX(), boundingBox.getBottomY()));
 		yCoordinates.add(transformY(boundingBox.getRightX(), boundingBox.getBottomY()));
 		yCoordinates.add(transformY(boundingBox.getLeftX(), boundingBox.getTopY()));

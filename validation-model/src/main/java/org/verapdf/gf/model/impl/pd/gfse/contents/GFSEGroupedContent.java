@@ -94,9 +94,9 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
 
     protected Boolean hasParentWithStandardType(String standardType) {
         TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
-        Set<COSKey> keys = new HashSet<>();
         if (parentStructElem != null && taggedPDFRoleMapHelper != null) {
             PDStructElem structElem = new PDStructElem(parentStructElem);
+            Set<COSKey> keys = new HashSet<>();
             while (structElem != null) {
                 if (standardType.equals(PDStructElem.getStructureElementStandardType(structElem))) {
                     return true;

@@ -168,7 +168,6 @@ public class PDFDocumentImpl implements PDFDocument {
 
 	@Override
 	public int removeFiltersForAllMetadataObjects() {
-		int res = 0;
 		List<COSObject> objects = this.document.getDocument().getObjectsByType(ASAtom.METADATA);
 
 		List<COSStream> metas = new ArrayList<>();
@@ -179,6 +178,7 @@ public class PDFDocumentImpl implements PDFDocument {
 				LOGGER.log(Level.SEVERE, "Found non-stream Metadata dictionary.");
 			}
 		}
+		int res = 0;
 		for (COSStream stream : metas) {
 			if (stream.getFilters().size() > 0) {
 				try {

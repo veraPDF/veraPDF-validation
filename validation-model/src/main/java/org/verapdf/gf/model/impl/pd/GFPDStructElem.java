@@ -240,13 +240,13 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 
 	@Override
 	public String getparentLang() {
-		COSString baseLang = null;
 		Set<COSKey> keys = new HashSet<>();
 		COSKey key = this.simplePDObject.getObject().getObjectKey();
 		if (key != null) {
 			keys.add(key);
 		}
 		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getParent();
+		COSString baseLang = null;
 		while (baseLang == null && parent != null) {
 			key = parent.getObject().getObjectKey();
 			if (keys.contains(key)) {

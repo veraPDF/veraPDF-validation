@@ -53,7 +53,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     public static final String CONTENTS = "Contents";
     public static final String REFERENCE = "Reference";
 
-    protected COSString contents;
+    protected final COSString contents;
     protected long signatureOffset = -1;
 
     public GFPDSignature(org.verapdf.pd.PDSignature pdSignature, COSObject signatureReference) {
