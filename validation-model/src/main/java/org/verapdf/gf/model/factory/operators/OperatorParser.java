@@ -90,7 +90,7 @@ class OperatorParser {
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
 	private final Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
-	private final Set<Long> mcidSet = new HashSet<Long>();
+	private final Set<Long> mcidSet = new HashSet<>();
 	private final StructureElementAccessObject structureElementAccessObject;
 	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 	private final COSObject parentStructElem;
@@ -403,7 +403,7 @@ class OperatorParser {
 						this.graphicState);
 				break;
 
-			// COMPABILITY
+			// COMPATIBILITY
 			case Operators.BX:
 				processedOperators.add(new GFOp_BX(arguments));
 				break;

@@ -11,7 +11,7 @@ import org.verapdf.pd.colors.PDColorSpace;
  */
 public class GFTransparencyColorSpace extends GenericModelObject implements TransparencyColorSpace {
 
-	protected PDColorSpace colorSpace;
+	protected final PDColorSpace colorSpace;
 
 	public static final String TRANSPARENCY_COLOR_SPACE_TYPE = "TransparencyColorSpace";
 
