@@ -52,7 +52,7 @@ public class GFPDMediaClip extends GFPDObject implements PDMediaClip {
     @Override
     public Boolean gethasCorrectAlt() {
         COSObject object = simplePDObject.getKey(ASAtom.ALT);
-        if (object.getType() != COSObjType.COS_ARRAY) {
+        if (object == null || object.getType() != COSObjType.COS_ARRAY) {
             return false;
         }
         COSArray array = (COSArray)object.getDirectBase();
