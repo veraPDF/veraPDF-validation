@@ -50,6 +50,7 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     public static final String ADDITIONAL_ACTION = "AA";
 
     public static final String LANG = "Lang";
+    public static final String KIDS = "Kids";
 
     public GFPDFormField(org.verapdf.pd.form.PDFormField simplePDObject) {
         super(simplePDObject, FORM_FIELD_TYPE);
@@ -114,6 +115,8 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
                 return this.getAdditionalAction();
             case LANG:
                 return this.getLang();
+            case KIDS:
+                return this.getKids();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -128,6 +131,18 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
             return Collections.unmodifiableList(actions);
         }
 
+        return Collections.emptyList();
+    }
+
+    private List<PDFormField> getKids() {
+        List<org.verapdf.pd.form.PDFormField> childFormFields =  ((org.verapdf.pd.form.PDFormField) this.simplePDObject).getChildFormFields();
+        if (childFormFields != null && !childFormFields.isEmpty()) {
+            List<PDFormField> res = new ArrayList<>();
+            for (org.verapdf.pd.form.PDFormField field : childFormFields) {
+                res.add(GFPDFormField.createTypedFormField(field));
+            }
+            return res;
+        }
         return Collections.emptyList();
     }
 }
