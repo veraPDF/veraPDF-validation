@@ -767,6 +767,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -788,6 +793,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -807,6 +817,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -826,6 +841,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryDefault1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -847,6 +867,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryDefaultBtn1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -866,6 +891,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryDefaultBtn01_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -918,6 +948,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -941,6 +976,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -960,6 +1000,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -979,6 +1024,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryDefault1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1002,6 +1052,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryDefaultBtn1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1021,6 +1076,11 @@ public class GFAAnnotWidgetFieldBtnRadio extends GFAObject implements AAnnotWidg
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryDefaultBtn01_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}

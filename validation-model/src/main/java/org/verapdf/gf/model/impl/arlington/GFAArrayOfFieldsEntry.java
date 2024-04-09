@@ -78,17 +78,29 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_2(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getEntryDictionaryWidgetT1_2(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getEntryDictionaryWidgetDefault1_2(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getEntryDictionaryWidgetBtn1_2(base, keyName);
+				return getEntryDictionaryWidgetTBtn1_2(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -100,8 +112,13 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn1_2(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -111,7 +128,7 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getEntryDictionaryWidgetBtn01_2(base, keyName);
+				return getEntryDictionaryWidgetTBtn01_2(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -119,8 +136,13 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn01_2(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn01_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -138,27 +160,13 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
-	}
-
 	private org.verapdf.model.baselayer.Object getEntryDictionaryDefault1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -180,6 +188,11 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryDefaultBtn1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -199,6 +212,11 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryDefaultBtn01_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -247,17 +265,29 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_3(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getEntryDictionaryWidgetT1_3(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getEntryDictionaryWidgetDefault1_3(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getEntryDictionaryWidgetBtn1_3(base, keyName);
+				return getEntryDictionaryWidgetTBtn1_3(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -269,8 +299,13 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -280,7 +315,7 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getEntryDictionaryWidgetBtn01_3(base, keyName);
+				return getEntryDictionaryWidgetTBtn01_3(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -288,8 +323,13 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetBtn01_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn01_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -307,27 +347,13 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetDefault1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
-	}
-
 	private org.verapdf.model.baselayer.Object getEntryDictionaryDefault1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -351,6 +377,11 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryDefaultBtn1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -370,6 +401,11 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryDefaultBtn01_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}

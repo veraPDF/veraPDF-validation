@@ -299,17 +299,29 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_3(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getParentDictionaryWidgetT1_3(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetT1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getParentDictionaryWidgetDefault1_3(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getParentDictionaryWidgetBtn1_3(base, keyName);
+				return getParentDictionaryWidgetTBtn1_3(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -321,8 +333,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -332,7 +349,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getParentDictionaryWidgetBtn01_3(base, keyName);
+				return getParentDictionaryWidgetTBtn01_3(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -340,8 +357,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn01_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -357,25 +379,6 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetDefault1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_4() {
@@ -446,17 +449,29 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_4(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getParentDictionaryWidgetT1_4(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetT1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getParentDictionaryWidgetDefault1_4(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getParentDictionaryWidgetBtn1_4(base, keyName);
+				return getParentDictionaryWidgetTBtn1_4(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -468,8 +483,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_4(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -479,7 +499,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getParentDictionaryWidgetBtn01_4(base, keyName);
+				return getParentDictionaryWidgetTBtn01_4(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -487,8 +507,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_4(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn01_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -504,25 +529,6 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetDefault1_4(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_5() {
@@ -599,17 +605,29 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_5(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getParentDictionaryWidgetT1_5(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetT1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getParentDictionaryWidgetDefault1_5(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getParentDictionaryWidgetBtn1_5(base, keyName);
+				return getParentDictionaryWidgetTBtn1_5(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -621,8 +639,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_5(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -632,7 +655,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getParentDictionaryWidgetBtn01_5(base, keyName);
+				return getParentDictionaryWidgetTBtn01_5(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -640,8 +663,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_5(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn01_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -657,25 +685,6 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetDefault1_5(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_6() {
@@ -756,17 +765,29 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_6(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getParentDictionaryWidgetT1_6(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetT1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getParentDictionaryWidgetDefault1_6(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getParentDictionaryWidgetBtn1_6(base, keyName);
+				return getParentDictionaryWidgetTBtn1_6(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -778,8 +799,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_6(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -789,7 +815,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getParentDictionaryWidgetBtn01_6(base, keyName);
+				return getParentDictionaryWidgetTBtn01_6(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -797,8 +823,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_6(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn01_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -814,25 +845,6 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetDefault1_6(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent1_7() {
@@ -915,17 +927,29 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidget1_7(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getParentDictionaryWidgetT1_7(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetT1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getParentDictionaryWidgetDefault1_7(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getParentDictionaryWidgetBtn1_7(base, keyName);
+				return getParentDictionaryWidgetTBtn1_7(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -937,8 +961,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn1_7(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -948,7 +977,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getParentDictionaryWidgetBtn01_7(base, keyName);
+				return getParentDictionaryWidgetTBtn01_7(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -956,8 +985,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn01_7(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn01_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -973,25 +1007,6 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetDefault1_7(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getParent2_0() {
@@ -1078,17 +1093,29 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionaryWidget2_0(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getParentDictionaryWidgetT2_0(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetT2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getParentDictionaryWidgetDefault2_0(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getParentDictionaryWidgetBtn2_0(base, keyName);
+				return getParentDictionaryWidgetTBtn2_0(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -1100,8 +1127,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn2_0(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1111,7 +1143,7 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getParentDictionaryWidgetBtn02_0(base, keyName);
+				return getParentDictionaryWidgetTBtn02_0(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -1119,8 +1151,13 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetBtn02_0(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetTBtn02_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1136,25 +1173,6 @@ public class GFAAnnotPopup extends GFAObject implements AAnnotPopup {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getParentDictionaryWidgetDefault2_0(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	@Override

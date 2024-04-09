@@ -457,17 +457,29 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_2(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getTDictionaryWidgetT1_2(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetT1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getTDictionaryWidgetDefault1_2(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getTDictionaryWidgetBtn1_2(base, keyName);
+				return getTDictionaryWidgetTBtn1_2(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -479,8 +491,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn1_2(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -490,7 +507,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getTDictionaryWidgetBtn01_2(base, keyName);
+				return getTDictionaryWidgetTBtn01_2(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -498,8 +515,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn01_2(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn01_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -515,25 +537,6 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetDefault1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_3() {
@@ -607,17 +610,29 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_3(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getTDictionaryWidgetT1_3(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetT1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getTDictionaryWidgetDefault1_3(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getTDictionaryWidgetBtn1_3(base, keyName);
+				return getTDictionaryWidgetTBtn1_3(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -629,8 +644,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -640,7 +660,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getTDictionaryWidgetBtn01_3(base, keyName);
+				return getTDictionaryWidgetTBtn01_3(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -648,8 +668,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn01_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn01_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -665,25 +690,6 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetDefault1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_4() {
@@ -761,17 +767,29 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_4(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getTDictionaryWidgetT1_4(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetT1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getTDictionaryWidgetDefault1_4(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getTDictionaryWidgetBtn1_4(base, keyName);
+				return getTDictionaryWidgetTBtn1_4(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -783,8 +801,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn1_4(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -794,7 +817,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getTDictionaryWidgetBtn01_4(base, keyName);
+				return getTDictionaryWidgetTBtn01_4(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -802,8 +825,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn01_4(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn01_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -819,25 +847,6 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetDefault1_4(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_5() {
@@ -923,17 +932,29 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_5(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getTDictionaryWidgetT1_5(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetT1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getTDictionaryWidgetDefault1_5(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getTDictionaryWidgetBtn1_5(base, keyName);
+				return getTDictionaryWidgetTBtn1_5(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -945,8 +966,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn1_5(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -956,7 +982,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getTDictionaryWidgetBtn01_5(base, keyName);
+				return getTDictionaryWidgetTBtn01_5(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -964,8 +990,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn01_5(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn01_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -981,25 +1012,6 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetDefault1_5(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_6() {
@@ -1089,17 +1101,29 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_6(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getTDictionaryWidgetT1_6(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetT1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getTDictionaryWidgetDefault1_6(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getTDictionaryWidgetBtn1_6(base, keyName);
+				return getTDictionaryWidgetTBtn1_6(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -1111,8 +1135,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn1_6(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1122,7 +1151,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getTDictionaryWidgetBtn01_6(base, keyName);
+				return getTDictionaryWidgetTBtn01_6(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -1130,8 +1159,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn01_6(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn01_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1147,25 +1181,6 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetDefault1_6(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT1_7() {
@@ -1257,17 +1272,29 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_7(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getTDictionaryWidgetT1_7(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetT1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getTDictionaryWidgetDefault1_7(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getTDictionaryWidgetBtn1_7(base, keyName);
+				return getTDictionaryWidgetTBtn1_7(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -1279,8 +1306,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn1_7(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1290,7 +1322,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getTDictionaryWidgetBtn01_7(base, keyName);
+				return getTDictionaryWidgetTBtn01_7(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -1298,8 +1330,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn01_7(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn01_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1315,25 +1352,6 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetDefault1_7(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getT2_0() {
@@ -1429,17 +1447,29 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget2_0(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getTDictionaryWidgetT2_0(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetT2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getTDictionaryWidgetDefault2_0(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getTDictionaryWidgetBtn2_0(base, keyName);
+				return getTDictionaryWidgetTBtn2_0(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -1451,8 +1481,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn2_0(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1462,7 +1497,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getTDictionaryWidgetBtn02_0(base, keyName);
+				return getTDictionaryWidgetTBtn02_0(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -1470,8 +1505,13 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn02_0(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn02_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -1487,25 +1527,6 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetDefault2_0(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	@Override

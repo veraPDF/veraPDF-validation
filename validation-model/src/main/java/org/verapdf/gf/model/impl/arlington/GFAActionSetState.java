@@ -88,17 +88,29 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_2(COSBase base, String keyName) {
+		if (base.knownKey(ASAtom.getASAtom("T"))) {
+			return getTDictionaryWidgetT1_2(base, keyName);
+		}
+		return new GFAAnnotWidget(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetT1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("FT"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
 		String subtypeValue = subtype.getString();
 		if (subtypeValue == null) {
-			return getTDictionaryWidgetDefault1_2(base, keyName);
+			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue) {
 			case "Btn":
-				return getTDictionaryWidgetBtn1_2(base, keyName);
+				return getTDictionaryWidgetTBtn1_2(base, keyName);
 			case "Ch":
 				return new GFAAnnotWidgetFieldChoice(base, this.baseObject, keyName);
 			case "Sig":
@@ -110,8 +122,13 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn1_2(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -121,7 +138,7 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 		}
 		switch (subtypeValue.intValue() >> 17) {
 			case 0:
-				return getTDictionaryWidgetBtn01_2(base, keyName);
+				return getTDictionaryWidgetTBtn01_2(base, keyName);
 			case 1:
 				return new GFAAnnotWidgetFieldBtnPush(base, this.baseObject, keyName);
 			default:
@@ -129,8 +146,13 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 		}
 	}
 
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetBtn01_2(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getTDictionaryWidgetTBtn01_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
+		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
+			subtype = base.getKey(ASAtom.getASAtom("Ff"));
+			parent = base.getKey(ASAtom.getASAtom("Parent"));
+		}
 		if (subtype == null) {
 			return null;
 		}
@@ -146,25 +168,6 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 			default:
 				return null;
 		}
-	}
-
-	private org.verapdf.model.baselayer.Object getTDictionaryWidgetDefault1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("AA"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("Ff"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TM"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		if (base.knownKey(ASAtom.getASAtom("TU"))) {
-			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
-		}
-		return new GFAAnnotWidget(base, this.baseObject, keyName);
 	}
 
 	@Override
