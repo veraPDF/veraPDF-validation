@@ -452,9 +452,4 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

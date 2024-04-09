@@ -1924,9 +1924,4 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 		return getHasTypeBoolean(op);
 	}
 
-	@Override
-	public Boolean gethasExtensionAAPL() {
-		return false;
-	}
-
 }

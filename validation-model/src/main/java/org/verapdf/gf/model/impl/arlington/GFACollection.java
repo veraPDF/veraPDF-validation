@@ -514,9 +514,4 @@ public class GFACollection extends GFAObject implements ACollection {
 		return getNameValue(View);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

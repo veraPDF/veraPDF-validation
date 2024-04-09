@@ -192,9 +192,4 @@ public class GFARichMediaPosition extends GFAObject implements ARichMediaPositio
 		return getHasTypeNumber(VOffset);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

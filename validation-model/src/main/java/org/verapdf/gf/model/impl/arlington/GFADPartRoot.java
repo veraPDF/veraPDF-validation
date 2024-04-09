@@ -182,9 +182,4 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionPDF_VT2() {
-		return false;
-	}
-
 }

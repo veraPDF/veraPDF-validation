@@ -146,9 +146,4 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

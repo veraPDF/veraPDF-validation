@@ -377,9 +377,4 @@ public class GFA3DActivation extends GFAObject implements A3DActivation {
 		return getHasTypeDictionary(Window);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

@@ -44,14 +44,15 @@ public class GFAAnnotTrapNetwork extends GFAObject implements AAnnotTrapNetwork 
 
 	private List<AArrayOfFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getAF2_0();
+				return getAF1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF2_0() {
+	private List<AArrayOfFileSpecifications> getAF1_7() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();

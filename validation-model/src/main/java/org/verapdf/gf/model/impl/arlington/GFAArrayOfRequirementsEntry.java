@@ -182,9 +182,4 @@ public class GFAArrayOfRequirementsEntry extends GFAObject implements AArrayOfRe
 		return getHasTypeDictionary(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionISO_TS_24064() {
-		return false;
-	}
-
 }

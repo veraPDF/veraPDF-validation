@@ -174,9 +174,4 @@ public class GFAPointData extends GFAObject implements APointData {
 		return getHasTypeArray(XPTS);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

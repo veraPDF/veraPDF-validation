@@ -194,6 +194,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	public COSObject getAFRelationshipDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return COSName.construct("Unspecified");
 		}
@@ -589,11 +590,6 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public Boolean getVHasTypeBoolean() {
 		COSObject V = getVValue();
 		return getHasTypeBoolean(V);
-	}
-
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
 	}
 
 }

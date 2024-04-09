@@ -284,9 +284,4 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 		return new GFAArrayOf_4Integers(ByteRange.getDirectBase(), null, null).getentry3HasTypeInteger();
 	}
 
-	@Override
-	public Boolean gethasExtensionISO_TS_32004() {
-		return false;
-	}
-
 }

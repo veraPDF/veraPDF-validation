@@ -273,9 +273,4 @@ public class GFASignatureReferenceDocMDP extends GFAObject implements ASignature
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionISO_TS_32001() {
-		return false;
-	}
-
 }

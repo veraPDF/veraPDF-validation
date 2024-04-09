@@ -100,9 +100,4 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 		return Assets;
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

@@ -75,9 +75,4 @@ public class GFAArrayOfDPartsEntry extends GFAObject implements AArrayOfDPartsEn
 		return getHasTypeDictionary(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionPDF_VT2() {
-		return false;
-	}
-
 }

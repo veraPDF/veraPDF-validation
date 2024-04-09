@@ -68,9 +68,4 @@ public class GFAArrayOfViewParamsEntry extends GFAObject implements AArrayOfView
 		return getHasTypeDictionary(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

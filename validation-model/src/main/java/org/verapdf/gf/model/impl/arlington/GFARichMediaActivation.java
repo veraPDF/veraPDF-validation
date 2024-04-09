@@ -339,9 +339,4 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 		return getHasTypeDictionary(View);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

@@ -149,9 +149,4 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

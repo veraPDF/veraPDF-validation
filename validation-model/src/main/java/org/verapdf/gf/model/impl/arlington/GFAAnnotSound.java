@@ -1927,9 +1927,4 @@ public class GFAAnnotSound extends GFAObject implements AAnnotSound {
 		return getHasTypeDictionary(APR);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

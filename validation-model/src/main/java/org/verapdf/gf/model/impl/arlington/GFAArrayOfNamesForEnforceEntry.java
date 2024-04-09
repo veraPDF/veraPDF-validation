@@ -58,9 +58,4 @@ public class GFAArrayOfNamesForEnforceEntry extends GFAObject implements AArrayO
 		return getNameValue(parentPrintScaling);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

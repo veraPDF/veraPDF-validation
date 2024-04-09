@@ -227,9 +227,4 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

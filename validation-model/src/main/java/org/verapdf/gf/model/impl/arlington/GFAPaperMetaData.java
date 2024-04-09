@@ -370,9 +370,4 @@ public class GFAPaperMetaData extends GFAObject implements APaperMetaData {
 		return getHasTypeNumber(nCodeWordRow);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

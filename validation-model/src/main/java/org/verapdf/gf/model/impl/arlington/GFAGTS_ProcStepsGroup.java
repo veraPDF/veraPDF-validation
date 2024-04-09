@@ -94,9 +94,4 @@ public class GFAGTS_ProcStepsGroup extends GFAObject implements AGTS_ProcStepsGr
 		return getHasTypeName(GWG__ProcStepsColorants);
 	}
 
-	@Override
-	public Boolean gethasExtensionISO_19593() {
-		return false;
-	}
-
 }

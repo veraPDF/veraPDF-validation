@@ -157,9 +157,4 @@ public class GFASigFieldLock extends GFAObject implements ASigFieldLock {
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

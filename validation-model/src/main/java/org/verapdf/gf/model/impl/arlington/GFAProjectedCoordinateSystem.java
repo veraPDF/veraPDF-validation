@@ -88,9 +88,4 @@ public class GFAProjectedCoordinateSystem extends GFAObject implements AProjecte
 		return getHasTypeStringAscii(WKT);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

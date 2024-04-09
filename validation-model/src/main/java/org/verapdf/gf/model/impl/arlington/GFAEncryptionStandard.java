@@ -563,14 +563,4 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 		return getIntegerValue(V);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
-	@Override
-	public Boolean gethasExtensionISO_TS_32004() {
-		return false;
-	}
-
 }

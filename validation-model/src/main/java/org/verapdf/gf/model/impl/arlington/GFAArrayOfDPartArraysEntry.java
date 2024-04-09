@@ -69,9 +69,4 @@ public class GFAArrayOfDPartArraysEntry extends GFAObject implements AArrayOfDPa
 		return getHasTypeArray(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionPDF_VT2() {
-		return false;
-	}
-
 }

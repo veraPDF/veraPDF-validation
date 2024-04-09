@@ -308,6 +308,71 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return currentObject != null && !currentObject.empty() && currentObject.knownKey(key);
 	}
 
+	@Override
+	public Boolean gethasExtensionAAPL() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionADBE_Extn3() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_19005_3() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_19593() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_24064() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_24654() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32001() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32004() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32007() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionMalforms() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionOpenOffice() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionPDF_VT2() {
+		return false;
+	}
+
+	@Override
+	public Boolean gethasExtensionWTPDF() {
+		return false;
+	}
+
 	public static Boolean getHasTypeArray(COSObject object) {
 		return object != null && object.getType() == COSObjType.COS_ARRAY;
 	}

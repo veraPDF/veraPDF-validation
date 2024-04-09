@@ -286,9 +286,4 @@ public class GFA3DUnits extends GFAObject implements A3DUnits {
 		return getHasTypeStringText(UU);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

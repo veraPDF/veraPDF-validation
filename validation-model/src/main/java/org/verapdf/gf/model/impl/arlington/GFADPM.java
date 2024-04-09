@@ -145,9 +145,4 @@ public class GFADPM extends GFAObject implements ADPM {
 		return getHasTypeDictionary(GTS_Suspect);
 	}
 
-	@Override
-	public Boolean gethasExtensionPDF_VT2() {
-		return false;
-	}
-
 }

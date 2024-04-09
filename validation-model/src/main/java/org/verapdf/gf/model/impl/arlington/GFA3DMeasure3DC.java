@@ -421,9 +421,4 @@ public class GFA3DMeasure3DC extends GFAObject implements A3DMeasure3DC {
 		return getHasTypeStringText(UT);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

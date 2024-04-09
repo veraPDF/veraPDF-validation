@@ -197,14 +197,4 @@ public class GFARichMediaAnimation extends GFAObject implements ARichMediaAnimat
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
-	@Override
-	public Boolean gethasExtensionISO_TS_32007() {
-		return false;
-	}
-
 }

@@ -489,14 +489,4 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 		return getIntegerValue(V);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
-	@Override
-	public Boolean gethasExtensionISO_TS_32004() {
-		return false;
-	}
-
 }

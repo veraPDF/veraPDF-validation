@@ -468,9 +468,4 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

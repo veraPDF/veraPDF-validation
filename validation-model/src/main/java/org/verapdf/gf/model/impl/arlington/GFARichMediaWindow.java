@@ -193,9 +193,4 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 		return getHasTypeDictionary(Width);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

@@ -88,9 +88,4 @@ public class GFAGeographicCoordinateSystem extends GFAObject implements AGeograp
 		return getHasTypeStringAscii(WKT);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

@@ -74,9 +74,4 @@ public class GFAArrayOf3DViewAddEntriesEntry extends GFAObject implements AArray
 		return getHasTypeDictionary(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

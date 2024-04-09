@@ -1107,9 +1107,4 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 		return getHasTypeDictionary(APR);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

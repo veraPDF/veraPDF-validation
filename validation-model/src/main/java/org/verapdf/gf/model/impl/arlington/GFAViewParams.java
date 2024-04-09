@@ -130,9 +130,4 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 		return getHasTypeDictionary(Instance);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

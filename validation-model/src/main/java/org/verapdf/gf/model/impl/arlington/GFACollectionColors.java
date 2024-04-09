@@ -287,9 +287,4 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

@@ -866,9 +866,4 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 		return getHasTypeDictionary(APR);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

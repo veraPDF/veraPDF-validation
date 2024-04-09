@@ -38,9 +38,4 @@ public class GFAArrayOfXPTSValuesEntry extends GFAObject implements AArrayOfXPTS
 		return getHasTypeNumber(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

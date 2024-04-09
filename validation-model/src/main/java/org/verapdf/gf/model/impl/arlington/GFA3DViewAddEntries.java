@@ -751,9 +751,4 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 		return getHasTypeString(XN);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

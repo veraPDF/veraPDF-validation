@@ -350,9 +350,4 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionAAPL() {
-		return false;
-	}
-
 }

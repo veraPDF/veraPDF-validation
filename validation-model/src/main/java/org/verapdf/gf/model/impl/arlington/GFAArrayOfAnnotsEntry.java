@@ -1156,9 +1156,4 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		return getHasTypeDictionary(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

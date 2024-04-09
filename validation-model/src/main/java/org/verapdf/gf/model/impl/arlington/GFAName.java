@@ -1132,9 +1132,4 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(XFAResourcesTreeNode);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

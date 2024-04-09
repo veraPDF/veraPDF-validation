@@ -587,14 +587,4 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 		return trailerInfo.knownKey(ASAtom.getASAtom("ModDate"));
 	}
 
-	@Override
-	public Boolean gethasExtensionISO_TS_32004() {
-		return false;
-	}
-
-	@Override
-	public Boolean gethasExtensionOpenOffice() {
-		return false;
-	}
-
 }

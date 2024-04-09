@@ -583,9 +583,4 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return getHasTypeStringText(Version);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

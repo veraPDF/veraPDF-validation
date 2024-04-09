@@ -552,9 +552,4 @@ public class GFASigFieldSeedValue extends GFAObject implements ASigFieldSeedValu
 		return getIntegerValue(V);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

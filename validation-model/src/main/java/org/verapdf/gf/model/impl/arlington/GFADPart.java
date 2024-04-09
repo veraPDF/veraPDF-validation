@@ -384,9 +384,4 @@ public class GFADPart extends GFAObject implements ADPart {
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionPDF_VT2() {
-		return false;
-	}
-
 }

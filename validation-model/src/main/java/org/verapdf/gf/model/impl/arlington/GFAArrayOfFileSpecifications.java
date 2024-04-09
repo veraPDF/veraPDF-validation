@@ -30,14 +30,15 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 
 	private List<AArrayOfFileSpecificationsEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntries2_0();
+				return getEntries1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfFileSpecificationsEntry> getEntries2_0() {
+	private List<AArrayOfFileSpecificationsEntry> getEntries1_7() {
 		List<AArrayOfFileSpecificationsEntry> list = new LinkedList<>();
 		for (int i = 1; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
@@ -48,14 +49,15 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 
 	private List<AFileSpecification> getentry0() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getentry02_0();
+				return getentry01_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AFileSpecification> getentry02_0() {
+	private List<AFileSpecification> getentry01_7() {
 		COSObject object = getentry0Value();
 		if (object == null) {
 			return Collections.emptyList();
@@ -66,6 +68,11 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontains0() {
+		return this.baseObject.size() > 0;
 	}
 
 	public COSObject getentry0Value() {

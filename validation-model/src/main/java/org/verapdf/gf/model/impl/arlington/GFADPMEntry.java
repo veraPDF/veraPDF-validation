@@ -116,9 +116,4 @@ public class GFADPMEntry extends GFAObject implements ADPMEntry {
 		return getHasTypeStringText(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionPDF_VT2() {
-		return false;
-	}
-
 }

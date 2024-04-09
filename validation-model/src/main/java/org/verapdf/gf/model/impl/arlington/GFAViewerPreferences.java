@@ -760,9 +760,4 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 		return new GFACatalog(trailerCatalog.getDirectBase(), null, null).getPageModeNameValue();
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

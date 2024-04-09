@@ -273,9 +273,4 @@ public class GFASignatureReferenceFieldMDP extends GFAObject implements ASignatu
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionISO_TS_32001() {
-		return false;
-	}
-
 }

@@ -56,9 +56,4 @@ public class GFARichMediaCommandArrayEntry extends GFAObject implements ARichMed
 		return getHasTypeStringText(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

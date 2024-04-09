@@ -91,9 +91,4 @@ public class GFAArrayOf_3Numbers extends GFAObject implements AArrayOf_3Numbers 
 		return getHasTypeNumber(entry2);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

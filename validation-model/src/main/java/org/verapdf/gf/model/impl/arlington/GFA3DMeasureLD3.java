@@ -621,9 +621,4 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 		return getHasTypeNumber(V);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

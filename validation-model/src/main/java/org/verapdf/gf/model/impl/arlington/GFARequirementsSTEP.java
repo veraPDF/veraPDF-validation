@@ -228,9 +228,4 @@ public class GFARequirementsSTEP extends GFAObject implements ARequirementsSTEP 
 		return getHasTypeName(V);
 	}
 
-	@Override
-	public Boolean gethasExtensionISO_TS_24064() {
-		return false;
-	}
-
 }

@@ -1287,6 +1287,45 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	@Override
+	public Boolean getcontainsNoteType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("NoteType"));
+	}
+
+	public COSObject getNoteTypeDefaultValue() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return gethasExtensionWTPDF() ? COSName.construct("None") : null;
+		}
+		return null;
+	}
+
+	public COSObject getNoteTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("NoteType"));
+		if (object == null || object.empty()) {
+			object = getNoteTypeDefaultValue();
+		}
+		return object;
+	}
+
+	@Override
+	public String getNoteTypeType() {
+		COSObject NoteType = getNoteTypeValue();
+		return getObjectType(NoteType);
+	}
+
+	@Override
+	public Boolean getNoteTypeHasTypeName() {
+		COSObject NoteType = getNoteTypeValue();
+		return getHasTypeName(NoteType);
+	}
+
+	@Override
+	public String getNoteTypeNameValue() {
+		COSObject NoteType = getNoteTypeValue();
+		return getNameValue(NoteType);
+	}
+
+	@Override
 	public Boolean getcontainsO() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("O"));
 	}
@@ -2214,11 +2253,6 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	public String getcheckedNameValue() {
 		COSObject checked = getcheckedValue();
 		return getNameValue(checked);
-	}
-
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
 	}
 
 }

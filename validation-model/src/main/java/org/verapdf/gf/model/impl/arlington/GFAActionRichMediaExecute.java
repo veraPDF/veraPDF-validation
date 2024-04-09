@@ -424,9 +424,4 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

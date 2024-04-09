@@ -225,9 +225,4 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 		return getHasTypeDictionary(Usage);
 	}
 
-	@Override
-	public Boolean gethasExtensionISO_19593() {
-		return false;
-	}
-
 }

@@ -246,9 +246,4 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		return getHasTypeArray(Views);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

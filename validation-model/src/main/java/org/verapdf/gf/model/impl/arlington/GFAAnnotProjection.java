@@ -1269,9 +1269,4 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 		return getHasTypeDictionary(APR);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

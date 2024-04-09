@@ -161,9 +161,4 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 		return getNameValue(Type);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

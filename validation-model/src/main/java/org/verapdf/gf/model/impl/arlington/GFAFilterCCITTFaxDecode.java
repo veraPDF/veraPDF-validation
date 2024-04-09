@@ -307,9 +307,4 @@ public class GFAFilterCCITTFaxDecode extends GFAObject implements AFilterCCITTFa
 		return getIntegerValue(Rows);
 	}
 
-	@Override
-	public Boolean gethasExtensionMalforms() {
-		return false;
-	}
-
 }

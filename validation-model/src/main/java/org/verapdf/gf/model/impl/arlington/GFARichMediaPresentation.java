@@ -275,9 +275,4 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 		return getHasTypeDictionary(Window);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }

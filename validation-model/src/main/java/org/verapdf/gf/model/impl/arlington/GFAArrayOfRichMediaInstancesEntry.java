@@ -74,9 +74,4 @@ public class GFAArrayOfRichMediaInstancesEntry extends GFAObject implements AArr
 		return getHasTypeDictionary(entry);
 	}
 
-	@Override
-	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
-	}
-
 }
