@@ -28,6 +28,7 @@ import org.verapdf.model.pdlayer.PDWidgetAnnot;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDPage;
 import org.verapdf.pd.annotations.PDWidgetAnnotation;
+import org.verapdf.pd.form.PDFormField;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
@@ -54,21 +55,12 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 	}
 
 	private boolean isField() {
-		return ((PDWidgetAnnotation) simplePDObject).getT() != null;
+		return PDFormField.isField(simplePDObject.getObject());
 	}
 
 	@Override
 	protected boolean isSignature() {
-		ASAtom FT = null;
-		if (!isField()) {
-			COSObject parent = ((PDWidgetAnnotation) simplePDObject).getParent();
-			if (parent != null) {
-				FT = parent.getNameKey(ASAtom.FT);
-			}
-		} else {
-			FT = ((PDAnnotation) simplePDObject).getFT();
-		}
-		return ASAtom.SIG.equals(FT);
+		return ASAtom.SIG.equals(((PDAnnotation) simplePDObject).getFT());
 	}
 	
 	@Override
