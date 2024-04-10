@@ -174,7 +174,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getEntryDictionaryWidgetTBtn01_2(base, keyName);
 			case 1:
@@ -198,7 +198,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -319,7 +319,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getEntryDictionaryWidgetTBtn01_3(base, keyName);
 			case 1:
@@ -343,7 +343,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -468,7 +468,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getEntryDictionaryWidgetTBtn01_4(base, keyName);
 			case 1:
@@ -492,7 +492,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -625,7 +625,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getEntryDictionaryWidgetTBtn01_5(base, keyName);
 			case 1:
@@ -649,7 +649,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -786,7 +786,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getEntryDictionaryWidgetTBtn01_6(base, keyName);
 			case 1:
@@ -810,7 +810,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -959,7 +959,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getEntryDictionaryWidgetTBtn01_7(base, keyName);
 			case 1:
@@ -983,7 +983,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -1126,7 +1126,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getEntryDictionaryWidgetTBtn02_0(base, keyName);
 			case 1:
@@ -1150,7 +1150,7 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:

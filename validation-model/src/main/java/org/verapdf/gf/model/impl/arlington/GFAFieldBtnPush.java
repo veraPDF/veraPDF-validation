@@ -176,7 +176,7 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getParentDictionaryWidgetBtn01_2(base, keyName);
 			case 1:
@@ -200,7 +200,7 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -250,7 +250,7 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getParentDictionaryDefaultBtn01_2(base, keyName);
 			case 1:
@@ -274,7 +274,7 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -359,7 +359,7 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getParentDictionaryWidgetBtn01_3(base, keyName);
 			case 1:
@@ -383,7 +383,7 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -435,7 +435,7 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 17) {
+		switch (subtypeValue.intValue() >> 16) {
 			case 0:
 				return getParentDictionaryDefaultBtn01_3(base, keyName);
 			case 1:
@@ -459,7 +459,7 @@ public class GFAFieldBtnPush extends GFAObject implements AFieldBtnPush {
 		if (subtypeValue == null) {
 			return null;
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 15) {
 			case 0:
 				return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
