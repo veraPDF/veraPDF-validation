@@ -34,6 +34,7 @@ import org.verapdf.model.pdlayer.PDExtGState;
 import org.verapdf.model.pdlayer.PDHalftone;
 import org.verapdf.pd.function.PDFunction;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,7 +85,7 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
         if (BM == null || BM.empty() || BM.getType() == COSObjType.COS_NULL) {
             return Collections.emptyList();
         }
-        if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
+        if (!PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)) {
             if (BM.getType() == COSObjType.COS_ARRAY) {
                 COSArray array = (COSArray)BM.getDirectBase();
                 for (COSObject obj : array) {

@@ -32,6 +32,7 @@ import org.verapdf.pd.font.truetype.PDTrueTypeFont;
 import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -109,7 +110,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 this.name = null;
             }
         }
-        if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+        if (PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)) {
             this.toUnicode = getToUnicodePDFA1(font, glyphCode);
         } else {
             this.toUnicode = font.toUnicode(glyphCode);

@@ -30,6 +30,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.*;
 import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
 import java.util.*;
@@ -95,8 +96,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		this.isLinearised = cosDocument.getTrailer() != cosDocument.getLastTrailer() && cosDocument.isLinearized();
 		this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
 		this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
-		PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
-		if (specification == PDFAFlavour.Specification.ISO_19005_3) {
+		if (PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_3)) {
 			FileSpecificationKeysHelper.registerFileSpecificationKeys(cosDocument);
 		}
 	}
@@ -180,7 +180,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public String getlastID() {
-		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+		if (PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_1)) {
 			return this.lastID;
 		} else if (this.isLinearised) {
 			return this.firstPageID;
@@ -453,7 +453,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private List<org.verapdf.model.salayer.SAPDFDocument> getdocument() {
-		if (StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG &&
+		if (PDFFlavours.isWCAGFlavour(StaticContainers.getFlavour()) &&
 				StaticResources.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
 			List<org.verapdf.model.salayer.SAPDFDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFSAPDFDocument(StaticResources.getDocument()));

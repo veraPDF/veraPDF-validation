@@ -34,6 +34,7 @@ import org.verapdf.pd.actions.PDPageAdditionalActions;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -166,7 +167,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	}
 
 	private OutputIntents parseOutputIntents() {
-		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
+		if (!PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_4)) {
 			return null;
 		}
 		List<org.verapdf.pd.PDOutputIntent> outInts = ((org.verapdf.pd.PDPage) this.simplePDObject).getOutputIntents();
@@ -237,8 +238,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		if (page.getContent() != null) {
 			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
 			GFPDContentStream pdContentStream;
-			if (PDFAFlavour.IsoStandardSeries.ISO_14289 != StaticContainers.getFlavour().getPart().getSeries() &&
-			    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily()) {
+			if (!PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour())) {
 				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
 						new StructureElementAccessObject(this.simpleCOSObject));
 			} else {
