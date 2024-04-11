@@ -37,7 +37,7 @@ import org.verapdf.model.pdlayer.PDXForm;
 import org.verapdf.model.pdlayer.TransparencyColorSpace;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -200,8 +200,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	private void parseContentStream() {
 		GFPDContentStream gfContentStream;
-		if (isAnnotation || (PDFAFlavour.IsoStandardSeries.ISO_14289 != StaticContainers.getFlavour().getPart().getSeries() &&
-		    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily())) {
+		if (isAnnotation || (!PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour()))) {
 			gfContentStream = new GFPDContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),

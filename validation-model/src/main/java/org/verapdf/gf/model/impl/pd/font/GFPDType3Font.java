@@ -37,6 +37,7 @@ import org.verapdf.pd.PDResources;
 import org.verapdf.pd.font.type3.PDType3CharProc;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -131,8 +132,8 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
      * PDF/A-4 validation should doesn't accept Resource dictionaries specified in the individual CharProc stream dictionaries
      */
     private PDResourcesHandler getResourcesFromCharProcs(COSObject charProcs) {
-        if (!charProcs.knownKey(ASAtom.RESOURCES) ||
-            StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_4) {
+        if (!charProcs.knownKey(ASAtom.RESOURCES) || 
+                PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)) {
             return null;
         }
         PDResources res = new PDResources(charProcs.getKey(ASAtom.RESOURCES));

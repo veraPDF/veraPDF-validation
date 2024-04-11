@@ -44,6 +44,7 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
@@ -263,7 +264,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<CosBM> parseBM() {
-		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
+		if (PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)) {
 			return Collections.emptyList();
 		}
 		COSObject BM = ((PDAnnotation)simplePDObject).getBM();

@@ -39,7 +39,7 @@ import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 
@@ -82,7 +82,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 			this.id = (super.getID() != null ? super.getID() : "0 0 obj") + ' ' + ((COSName) COSName.fromValue(subtype)).getUnicodeValue();
 		}
 		this.standardType = standardType;
-		if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_2) {
+		if (PDFFlavours.isPDFUA2RelatedFlavour(StaticContainers.getFlavour())) {
 			fillStructElemRefs();
 		}
 	}
@@ -169,8 +169,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		if (type == null) {
 			return false;
 		}
-		if (StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG &&
-				ASAtom.TITLE == type.getType()) {
+		if (PDFFlavours.isWCAGFlavour(StaticContainers.getFlavour()) && ASAtom.TITLE == type.getType()) {
 			return false;
 		}
 		return org.verapdf.pd.structure.PDStructElem.isStandardStructureType(type);
