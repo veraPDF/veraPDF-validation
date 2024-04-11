@@ -26,7 +26,7 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDStructTreeNode;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
 
@@ -52,8 +52,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 
 	@Override
 	public String getkidsStandardTypes() {
-		if (StaticContainers.getFlavour() != null &&
-		    StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG) {
+		if (PDFFlavours.isWCAGFlavour(StaticContainers.getFlavour())) {
 			return this.getChildrenStandardTypes()
 			           .stream()
 			           .filter(type -> type != null && !TaggedPDFConstants.ARTIFACT.equals(type))

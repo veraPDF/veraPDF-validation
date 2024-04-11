@@ -71,6 +71,7 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
 import java.util.*;
@@ -165,8 +166,7 @@ class OperatorParser {
 				this.markedContentStack.push(bmcOp);
 				break;
 			case Operators.BDC: {
-				PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
-				if (specification == PDFAFlavour.Specification.ISO_19005_3) {
+				if (PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_3)) {
 					checkAFKey(arguments, resourcesHandler);
 				}
 				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags, isRealContent);

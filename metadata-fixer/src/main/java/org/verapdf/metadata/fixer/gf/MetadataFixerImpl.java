@@ -35,6 +35,7 @@ import org.verapdf.metadata.fixer.utils.ValidationStatus;
 import org.verapdf.metadata.fixer.utils.parser.ProcessedObjectsParser;
 import org.verapdf.pdfa.MetadataFixer;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.pdfa.results.MetadataFixerResult;
 import org.verapdf.pdfa.results.MetadataFixerResultImpl;
 import org.verapdf.pdfa.results.ValidationResult;
@@ -163,7 +164,7 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 
 	private static void removeMetadataFilters(MetadataFixerResultImpl.Builder resultBuilder,
 											  PDFDocument document, PDFAFlavour flavour) {
-		if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+		if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
 			int removedFilters = document.removeFiltersForAllMetadataObjects();
 			if (removedFilters > 0) {
 				resultBuilder.addFix("Metadata streams unfiltered");
@@ -189,7 +190,7 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 
 	private static void fixMetadata(MetadataFixerResultImpl.Builder resultBuilder, PDFDocument document,
 									PDFAFlavour flavour) {
-		if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+		if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
 			fixDublinCoreSchema(resultBuilder, document);
 			fixAdobePDFSchema(resultBuilder, document);
 			fixBasicXMLSchema(resultBuilder, document);

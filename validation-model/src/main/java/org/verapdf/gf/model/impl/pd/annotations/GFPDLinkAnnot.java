@@ -36,7 +36,7 @@ import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.pd.PDNamesDictionary;
 import org.verapdf.pd.PDPage;
 import org.verapdf.pd.actions.PDAction;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
 import java.util.*;
@@ -59,7 +59,7 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 
 	public GFPDLinkAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, pageResources, page, LINK_ANNOTATION_TYPE);
-		if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_2) {
+		if (PDFFlavours.isPDFUA2RelatedFlavour(StaticContainers.getFlavour())) {
 			calculateStructDestinationProperties();
 		}
 	}
