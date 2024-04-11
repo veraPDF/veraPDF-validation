@@ -32,6 +32,7 @@ import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
 import java.io.IOException;
@@ -127,8 +128,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
                 FontProgram cidFont = this.pdFont.getFontProgram();
 
-                PDFAFlavour flavour = StaticContainers.getFlavour();
-                if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
+                if (!PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_1)) {
                     //on these levels we need to ensure that all glyphs present in font program are described in cid set
                     List<Integer> fontCIDs = cidFont != null ? cidFont.getCIDList() : Collections.emptyList();
                     for (int cid : fontCIDs) {

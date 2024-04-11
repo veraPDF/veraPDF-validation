@@ -20,6 +20,7 @@
  */
 package org.verapdf.metadata.fixer.gf.impl.model;
 
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.xmp.XMPConst;
 import org.verapdf.xmp.XMPException;
 import org.verapdf.xmp.XMPMetaFactory;
@@ -90,7 +91,7 @@ public class MetadataImpl implements Metadata {
 
     @Override
     public void checkMetadataStream(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
+        if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
             COSFilters filters = ((COSStream) this.stream.getDirectBase()).getFilters();
             if (filters.size() == 1 && filters.getFilters().get(0) == ASAtom.FLATE_DECODE) {
                 return;
@@ -111,7 +112,7 @@ public class MetadataImpl implements Metadata {
 
     @Override
     public void removePDFIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (PDFAFlavour.IsoStandardSeries.ISO_14289.equals(flavour.getPart().getSeries())) {
+        if (PDFFlavours.isFlavourISOSeries(flavour, PDFAFlavour.IsoStandardSeries.ISO_14289)) {
             removePDFUAIdentificationSchema(resultBuilder, flavour);
         } else {
             removePDFAIdentificationSchema(resultBuilder, flavour);
@@ -146,7 +147,7 @@ public class MetadataImpl implements Metadata {
 
     @Override
     public void addPDFIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (PDFAFlavour.IsoStandardSeries.ISO_14289.equals(flavour.getPart().getSeries())) {
+        if (PDFFlavours.isFlavourISOSeries(flavour, PDFAFlavour.IsoStandardSeries.ISO_14289)) {
             addPDFUAIdentificationSchema(resultBuilder, flavour);
 //            checkAndFixPDFUAPrefixes(resultBuilder, flavour);
             updateExtensionSchema(resultBuilder, flavour);
@@ -158,27 +159,27 @@ public class MetadataImpl implements Metadata {
     }
 
     public void checkAndFixPDFAPrefixes(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1 ||
-                flavour.getPart() == PDFAFlavour.Specification.ISO_19005_2 ||
-                flavour.getPart() == PDFAFlavour.Specification.ISO_19005_3) {
+        if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1) ||
+                PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_2) ||
+                PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_3)) {
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.CONFORMANCE, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.AMD, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
-            if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
-                fixPropertyPrefix(resultBuilder,  VeraPDFMeta.CORR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
+            if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.CORR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
             }
-        } else if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_4) {
+        } else if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_4)) {
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.REVISION_YEAR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
         }
     }
 
     public void checkAndFixPDFUAPrefixes(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (flavour.getPart() == PDFAFlavour.Specification.ISO_14289_1) {
+        if (PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_1)) {
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.CORR, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.AMD, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
-        } else if (flavour.getPart() == PDFAFlavour.Specification.ISO_14289_2) {
+        } else if (PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2)) {
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.REVISION_YEAR, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
         }
@@ -227,12 +228,12 @@ public class MetadataImpl implements Metadata {
             VeraPDFExtensionSchemaDefinition extensionSchemaDefinition = VeraPDFExtensionSchemaDefinition.createExtensionSchemaDefinitionNode(
                     "PDF/UA Universal Accessibility Schema", XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
             boolean flag = false;
-            if (flavour == PDFAFlavour.PDFUA_1) {
+            if (PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_1)) {
                 flag |= addPropertyDefinition(resultBuilder, extension, extensionSchemaDefinition, VeraPDFMeta.PDFUAID_PREFIX,
                         XMPConst.NS_PDFUA_ID, VeraPDFMeta.AMD, TEXT, INTERNAL, "PDF/UA amendment identifier");
                 flag |= addPropertyDefinition(resultBuilder, extension, extensionSchemaDefinition, VeraPDFMeta.PDFUAID_PREFIX,
                         XMPConst.NS_PDFUA_ID, VeraPDFMeta.CORR, TEXT, INTERNAL, "PDF/UA corrigenda identifier");
-            } else if (flavour == PDFAFlavour.PDFUA_2) {
+            } else if (PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2)) {
                 flag |= addPropertyDefinition(resultBuilder, extension, extensionSchemaDefinition, VeraPDFMeta.PDFUAID_PREFIX,
                         XMPConst.NS_PDFUA_ID, VeraPDFMeta.REVISION_YEAR, INTEGER, INTERNAL, 
                         "Four-digit year of the date of publication or revision");
@@ -262,7 +263,7 @@ public class MetadataImpl implements Metadata {
 
     public void addPDFAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         int part = flavour.getPart().getPartNumber();
-        String conformance = flavour != PDFAFlavour.PDFA_4 ? flavour.getLevel().getCode().toUpperCase() : null;
+        String conformance = !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_4)  ? flavour.getLevel().getCode().toUpperCase() : null;
         try {
             if (!Objects.equals(this.metadata.getPDFAIdentificationPart(), part)) {
                 resultBuilder.addFix(String.format(this.metadata.getPDFAIdentificationPart() == null ?
@@ -284,10 +285,11 @@ public class MetadataImpl implements Metadata {
     }
 
     private void fixRevProperty(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_4 && flavour != PDFAFlavour.PDFUA_2) {
+        if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_4) &&
+                !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2)) {
             return;
         }
-        String namespaceURI = flavour == PDFAFlavour.PDFUA_2 ? XMPConst.NS_PDFUA_ID : XMPConst.NS_PDFA_ID;
+        String namespaceURI = PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2) ? XMPConst.NS_PDFUA_ID : XMPConst.NS_PDFA_ID;
         try {
             VeraPDFXMPNode rev = this.metadata.getProperty(namespaceURI, VeraPDFMeta.REVISION_YEAR);
             if (rev == null) {
@@ -326,7 +328,7 @@ public class MetadataImpl implements Metadata {
     private boolean isWrongPDFAIdentification(PDFAFlavour flavour) {
         try {
             int part = flavour.getPart().getPartNumber();
-            String conformance = flavour != PDFAFlavour.PDFA_4 ? flavour.getLevel().getCode().toUpperCase() : null;
+            String conformance = !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_4) ? flavour.getLevel().getCode().toUpperCase() : null;
             Integer schemaPart = this.metadata.getPDFAIdentificationPart();
             String schemaConformance = this.metadata.getPDFAIdentificationConformance();
             return schemaPart != part ||
@@ -413,7 +415,7 @@ public class MetadataImpl implements Metadata {
                 this.stream.setData(new ASMemoryInStream(inStream));
             }
         }
-        if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
+        if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
             COSStream cosStream = (COSStream) stream.getDirectBase();
             COSFilters filters = cosStream.getFilters();
             boolean isFixFilter = filters.size() != 1 || filters.getFilters().get(0) != ASAtom.FLATE_DECODE;
