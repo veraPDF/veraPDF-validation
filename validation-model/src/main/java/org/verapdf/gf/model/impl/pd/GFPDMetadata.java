@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.xmp.XMPException;
 import org.verapdf.xmp.impl.VeraPDFMeta;
@@ -103,7 +104,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                 VeraPDFMeta metadata = VeraPDFMeta.parse(stream);
                 if (isMainMetadata) {
                     xmp.add(new AXLMainXMPPackage(metadata, true, flavour));
-                } else if (flavour == null || flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
+                } else if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
                     try (InputStream mainStream = mainMetadata != null ? mainMetadata.getStream() : null) {
                         VeraPDFXMPNode mainExtensionNode = null;
                         if (mainStream != null) {
@@ -118,7 +119,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
             LOGGER.log(Level.WARNING, "Problems with parsing metadata. " + e.getMessage(), e);
             if (isMainMetadata) {
                 xmp.add(new AXLMainXMPPackage(null, false, flavour));
-            } else if (flavour == null || flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
+            } else if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
                 xmp.add(new AXLXMPPackage(null, false, null, flavour));
             }
         }
