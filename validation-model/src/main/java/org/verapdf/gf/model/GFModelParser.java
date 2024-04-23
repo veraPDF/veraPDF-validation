@@ -260,8 +260,7 @@ public class GFModelParser implements PDFAParser {
 	 */
 	@Override
 	public org.verapdf.model.baselayer.Object getRoot() {
-		if (PDFAFlavour.ARLINGTON1_0.getPart().getFamily().equals(this.flavour.getPart().getFamily()) ||
-				PDFAFlavour.ARLINGTON2_0.getPart().getFamily().equals(this.flavour.getPart().getFamily())) {
+		if (PDFAFlavour.SpecificationFamily.ARLINGTON == this.flavour.getPart().getFamily()) {
 			GFAObject.clearAllContainers();
 			return new GFADocument(null, null, null);
 		}
