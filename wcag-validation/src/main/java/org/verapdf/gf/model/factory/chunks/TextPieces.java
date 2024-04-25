@@ -58,6 +58,10 @@ public class TextPieces {
 	public void shiftCurrentX(double shift) {
 		currentX += shift;
 	}
+	
+	public boolean isEmpty() {
+		return textPieces.isEmpty();
+	}
 
 	public void setCurrentX(double currentX) {
 		this.currentX = currentX;
