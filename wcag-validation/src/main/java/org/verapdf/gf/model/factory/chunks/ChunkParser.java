@@ -706,9 +706,15 @@ class ChunkParser {
 				}
 			}
 			unicodeValue.append(textPieces.getValue());
-			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
+			if (!textPieces.isEmpty()) {
+				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
+			}
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
-			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getEndX() - textPieces.getStartX(), 0));
+			if (!textPieces.isEmpty()) {
+				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getEndX() - textPieces.getStartX(), 0));
+			} else {
+				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX(), 0));
+			}
 			symbolEnds = textPieces.getSymbolEnds();
 		}
 		symbolEnds.add(0, 0.0);
