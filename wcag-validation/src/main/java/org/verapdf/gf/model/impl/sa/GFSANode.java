@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.sa;
 
+import org.verapdf.cos.COSKey;
 import org.verapdf.wcag.algorithms.entities.INode;
 import org.verapdf.wcag.algorithms.entities.SemanticNode;
 import org.verapdf.wcag.algorithms.entities.maps.SemanticTypeMapper;
@@ -35,9 +36,14 @@ public class GFSANode extends SemanticNode {
 
 	public GFSANode(GFSAStructElem structElem) {
 		super(SemanticTypeMapper.getSemanticType(structElem.getstandardType()), structElem.getErrorCodes(),
-				structElem.getErrorArguments(), structElem.getStructElemDictionary().getObject().getKey().getNumber());
+				structElem.getErrorArguments(), getObjectKeyNumber(structElem));
 		this.structElem = structElem;
 		setAttributesDictionary(new GFSAAttributesDictionary(structElem.getStructElemDictionary()));
+	}
+	
+	private static Integer getObjectKeyNumber(GFSAStructElem structElem) {
+		COSKey key = structElem.getStructElemDictionary().getObject().getKey();
+		return key != null ? key.getNumber() : null;
 	}
 
 	@Override
