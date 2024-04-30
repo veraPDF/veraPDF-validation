@@ -192,6 +192,9 @@ public class GFModelParser implements PDFAParser {
 		try {
 			Integer identificationPart = veraPDFMeta.getPDFAIdentificationPart();
 			String identificationConformance = veraPDFMeta.getPDFAIdentificationConformance();
+			if (identificationConformance == null) {
+				identificationConformance = "";
+			}
 			return PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
 		} catch (XMPException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
