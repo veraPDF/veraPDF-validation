@@ -264,7 +264,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<CosBM> parseBM() {
-		if (PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)) {
+		if (!PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)) {
 			return Collections.emptyList();
 		}
 		COSObject BM = ((PDAnnotation)simplePDObject).getBM();
