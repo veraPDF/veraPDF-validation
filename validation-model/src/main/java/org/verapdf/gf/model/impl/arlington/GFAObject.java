@@ -2,6 +2,8 @@ package org.verapdf.gf.model.impl.arlington;
 
 import org.verapdf.cos.*;
 import org.verapdf.model.alayer.*;
+import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.extensions.ExtensionObjectType;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDCatalog;
@@ -310,67 +312,67 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	@Override
 	public Boolean gethasExtensionAAPL() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.AAPL);
 	}
 
 	@Override
 	public Boolean gethasExtensionADBE_Extn3() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ADBE_Extn3);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_19005_3() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19005_3);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_19593() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19593);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_24064() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_24064);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_24654() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_24654);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_32001() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32001);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_32004() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32004);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_32007() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32007);
 	}
 
 	@Override
 	public Boolean gethasExtensionMalforms() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.Malforms);
 	}
 
 	@Override
 	public Boolean gethasExtensionOpenOffice() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.OpenOffice);
 	}
 
 	@Override
 	public Boolean gethasExtensionPDF_VT2() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.PDF_VT2);
 	}
 
 	@Override
 	public Boolean gethasExtensionWTPDF() {
-		return false;
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.WTPDF);
 	}
 
 	public static Boolean getHasTypeArray(COSObject object) {

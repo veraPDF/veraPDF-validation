@@ -22,6 +22,7 @@ package org.verapdf.gf.model;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDocument;
+import org.verapdf.extensions.ExtensionObjectType;
 import org.verapdf.gf.model.impl.arlington.*;
 import org.verapdf.parser.PDFFlavour;
 import org.verapdf.pd.PDCatalog;
@@ -55,6 +56,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,28 +78,30 @@ public class GFModelParser implements PDFAParser {
 
 	private final PDFAFlavour flavour;
 
-	private GFModelParser(final InputStream docStream, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
+	private GFModelParser(final InputStream docStream, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password,
+						  EnumSet<ExtensionObjectType> enabledExtensions)
 			throws IOException {
 		try {
 			clearStaticContainers();
 			initializeStaticResources(password);
 			this.document = new PDDocument(docStream);
 			this.flavour = detectFlavour(this.document, flavour, defaultFlavour);
-			initializeStaticContainers(this.document, this.flavour);
+			initializeStaticContainers(this.document, this.flavour, enabledExtensions);
 		} catch (Throwable t) {
 			this.close();
 			throw t;
 		}
 	}
 
-	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
+	private GFModelParser(final File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password,
+						  EnumSet<ExtensionObjectType> enabledExtensions)
 			throws IOException {
 		try {
 			clearStaticContainers();
 			initializeStaticResources(password);
 			this.document = new PDDocument(pdfFile.getAbsolutePath());
 			this.flavour = detectFlavour(this.document, flavour, defaultFlavour);
-			initializeStaticContainers(this.document, this.flavour);
+			initializeStaticContainers(this.document, this.flavour, enabledExtensions);
 		} catch (Throwable t) {
 			this.close();
 			throw t;
@@ -119,19 +123,19 @@ public class GFModelParser implements PDFAParser {
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, PDFAFlavour defaultFlavour)
 			throws ModelParsingException, EncryptedPdfException {
-		return createModelWithFlavour(toLoad, flavour, defaultFlavour, null);
+		return createModelWithFlavour(toLoad, flavour, defaultFlavour, null, EnumSet.noneOf(ExtensionObjectType.class));
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, String password)
 			throws ModelParsingException, EncryptedPdfException {
-		return createModelWithFlavour(toLoad, flavour, PDFAFlavour.NO_FLAVOUR, password);
+		return createModelWithFlavour(toLoad, flavour, PDFAFlavour.NO_FLAVOUR, password, EnumSet.noneOf(ExtensionObjectType.class));
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour, PDFAFlavour defaultFlavour,
-													   String password)
+													   String password, EnumSet<ExtensionObjectType> enabledExtensions)
 			throws ModelParsingException, EncryptedPdfException {
 		try {
-			return new GFModelParser(toLoad, flavour, defaultFlavour, password);
+			return new GFModelParser(toLoad, flavour, defaultFlavour, password, enabledExtensions);
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
@@ -146,19 +150,19 @@ public class GFModelParser implements PDFAParser {
 
 	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour)
 			throws ModelParsingException, EncryptedPdfException {
-		return createModelWithFlavour(pdfFile, flavour, defaultFlavour, null);
+		return createModelWithFlavour(pdfFile, flavour, defaultFlavour, null, EnumSet.noneOf(ExtensionObjectType.class));
 	}
 
 	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, String password)
 			throws ModelParsingException, EncryptedPdfException {
-		return createModelWithFlavour(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR, password);
+		return createModelWithFlavour(pdfFile, flavour, PDFAFlavour.NO_FLAVOUR, password, EnumSet.noneOf(ExtensionObjectType.class));
 	}
 
 	public static GFModelParser createModelWithFlavour(File pdfFile, PDFAFlavour flavour, PDFAFlavour defaultFlavour,
-	                                                   String password)
+	                                                   String password, EnumSet<ExtensionObjectType> enabledExtensions)
 			throws ModelParsingException, EncryptedPdfException {
 		try {
-			return new GFModelParser(pdfFile, flavour, defaultFlavour, password);
+			return new GFModelParser(pdfFile, flavour, defaultFlavour, password, enabledExtensions);
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
@@ -253,9 +257,11 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
-	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
+	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour, 
+												   final EnumSet<ExtensionObjectType> enabledExtensions) {
 		StaticResources.setDocument(document);
 		StaticContainers.setFlavour(flavour);
+		StaticContainers.setEnabledExtensions(enabledExtensions);
 		StaticResources.setFlavour(PDFFlavour.NO_FLAVOUR);
 	}
 
