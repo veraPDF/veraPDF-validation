@@ -23,12 +23,14 @@ package org.verapdf.gf.foundry;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.EnumSet;
 
 import org.verapdf.ReleaseDetails;
 import org.verapdf.component.ComponentDetails;
 import org.verapdf.component.Components;
 import org.verapdf.core.EncryptedPdfException;
 import org.verapdf.core.ModelParsingException;
+import org.verapdf.extensions.ExtensionObjectType;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.metadata.fixer.gf.GFMetadataFixerImpl;
 import org.verapdf.pdfa.MetadataFixer;
@@ -88,9 +90,10 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	@Override
-	public PDFAParser createParser(InputStream pdfStream, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password)
+	public PDFAParser createParser(InputStream pdfStream, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password,
+								   EnumSet<ExtensionObjectType> enabledExtensions)
 			throws ModelParsingException, EncryptedPdfException {
-		return GFModelParser.createModelWithFlavour(pdfStream, flavour, defaultFlavour, password);
+		return GFModelParser.createModelWithFlavour(pdfStream, flavour, defaultFlavour, password, enabledExtensions);
 	}
 
 	/**
@@ -115,9 +118,10 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	@Override
-	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour, PDFAFlavour defaultPdfaFlavour, String password)
+	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour, PDFAFlavour defaultPdfaFlavour, String password,
+								   EnumSet<ExtensionObjectType> enabledExtensions)
 			throws ModelParsingException, EncryptedPdfException {
-		return GFModelParser.createModelWithFlavour(file, pdfaFlavour, defaultPdfaFlavour, password);
+		return GFModelParser.createModelWithFlavour(file, pdfaFlavour, defaultPdfaFlavour, password, enabledExtensions);
 	}
 
 	@Override
