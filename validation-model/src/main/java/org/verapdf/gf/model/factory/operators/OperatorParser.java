@@ -176,6 +176,9 @@ class OperatorParser {
 						LOGGER.log(Level.WARNING, "Content stream contains duplicate MCID - " + mcid);
 					}
 					mcidSet.add(mcid);
+					if (getCurrentMCID() != null) {
+						LOGGER.log(Level.WARNING, "Content stream contains nested MCID - " + mcid);
+					}
 				}
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
@@ -699,6 +702,18 @@ class OperatorParser {
 			return null;
 		}
 		return this.markedContentStack.peek();
+	}
+	
+	private Long getCurrentMCID() {
+		if (!markedContentStack.empty()) {
+			for (GFOpMarkedContent markedContent : markedContentStack) {
+				Long mcid = markedContent.getMCID();
+				if (mcid != null) {
+					return mcid;
+				}
+			}
+		}
+		return null;
 	}
 
 	private COSObject getParentStructElem(StructureElementAccessObject structureElementAccessObject, Long mcid) {
