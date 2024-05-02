@@ -110,10 +110,17 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 this.name = null;
             }
         }
-        if (PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.PDF_REFERENCE_1_4)) {
-            this.toUnicode = getToUnicodePDFA1(font, glyphCode);
+        PDFAFlavour flavour = StaticContainers.getFlavour();
+        if (!PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_1_B) && 
+                !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_2_B) && 
+                !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_3_B)) {
+            if (PDFFlavours.isPDFSpecification(flavour, PDFAFlavour.PDFSpecification.PDF_REFERENCE_1_4)) {
+                this.toUnicode = getToUnicodePDFA1(font, glyphCode);
+            } else {
+                this.toUnicode = font.toUnicode(glyphCode);
+            }
         } else {
-            this.toUnicode = font.toUnicode(glyphCode);
+            this.toUnicode = null;
         }
         this.id = id;
         this.isRealContent = isRealContent;
