@@ -190,7 +190,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         COSObject openAction = this.catalog.getKey(ASAtom.OPEN_ACTION);
         if (openAction != null && openAction.getType() == COSObjType.COS_ARRAY) {
-            destinations.add(new GFPDDestination(openAction));
+            destinations.add(new GFPDDestination(new org.verapdf.pd.PDDestination(openAction)));
         }
         return Collections.unmodifiableList(destinations);
     }

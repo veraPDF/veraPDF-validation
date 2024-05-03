@@ -89,7 +89,7 @@ public class GFPDOutline extends GFPDObject implements PDOutline {
 		COSObject destination = ((PDOutlineItem) simplePDObject).getDestination();
 		if (!destination.empty() && !simplePDObject.knownKey(ASAtom.A)) {
 			List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			destinations.add(new GFPDDestination(destination));
+			destinations.add(new GFPDDestination(new org.verapdf.pd.PDDestination(destination)));
 			return Collections.unmodifiableList(destinations);
 		}
 		return Collections.emptyList();
