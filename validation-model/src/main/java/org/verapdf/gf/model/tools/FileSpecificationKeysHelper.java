@@ -95,7 +95,7 @@ public class FileSpecificationKeysHelper {
 	}
 
 	private static void processXObject(PDXObject xObject) {
-		if (xObject != null && !isKeyVisited(xObject.getObject().getKey())) {
+		if (xObject != null && (!xObject.getObject().isIndirect() || !isKeyVisited(xObject.getObject().getKey()))) {
 			registerDictionaryAFKeys(xObject.getObject());
 			if (ASAtom.FORM.equals(xObject.getType())) {
 				parseResources(((PDXForm) xObject).getResources());
@@ -149,21 +149,21 @@ public class FileSpecificationKeysHelper {
 	}
 
 	private static void processExtGState(PDExtGState extGState) {
-		if (extGState != null && !isKeyVisited(extGState.getObject().getKey())) {
+		if (extGState != null && (!extGState.getObject().isIndirect() || !isKeyVisited(extGState.getObject().getKey()))) {
 			processFont(extGState.getFont());
 		}
 	}
 
 	private static void processFont(PDFont font) {
 		if (font != null
-				&& !isKeyVisited(font.getObject().getKey())
+				&& (!font.getObject().isIndirect() || !isKeyVisited(font.getObject().getKey()))
 				&& ASAtom.TYPE3.equals(font.getSubtype())) {
 			parseResources(((PDType3Font) font).getResources());
 		}
 	}
 
 	private static void processPattern(PDPattern pattern) {
-		if (pattern != null && !isKeyVisited(pattern.getObject().getKey())) {
+		if (pattern != null && (!pattern.getObject().isIndirect() || !isKeyVisited(pattern.getObject().getKey()))) {
 			if (pattern.getPatternType() == 1) {
 				parseResources(((PDTilingPattern) pattern).getResources());
 			} else if (pattern.getPatternType() == 2) {
