@@ -70,9 +70,9 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	}
 
 	@Override
-	public Boolean getCheckSumHasTypeString() {
+	public Boolean getCheckSumHasTypeStringByte() {
 		COSObject CheckSum = getCheckSumValue();
-		return getHasTypeString(CheckSum);
+		return getHasTypeStringByte(CheckSum);
 	}
 
 	@Override
