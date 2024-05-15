@@ -26,6 +26,7 @@ import org.verapdf.cos.COSObjType;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_MP;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public class GFOp_MP extends GFOpMarkedContent implements Op_MP {
     public static final String OP_MP_TYPE = "Op_MP";
 
     public GFOp_MP(List<COSBase> arguments) {
-        super(arguments, OP_MP_TYPE, null, "", false);
+        super(arguments, OP_MP_TYPE, null, Collections.emptyList(), false);
     }
 
     @Override

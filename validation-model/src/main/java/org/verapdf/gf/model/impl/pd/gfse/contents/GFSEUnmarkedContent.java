@@ -46,7 +46,7 @@ public class GFSEUnmarkedContent extends GFSEGroupedContent implements SEUnmarke
 
     public static final String UNMARKED_CONTENT_TYPE = "SEUnmarkedContent";
 
-    public GFSEUnmarkedContent(List<Operator> operators, COSObject parentStructElem, String parentsTags, 
+    public GFSEUnmarkedContent(List<Operator> operators, COSObject parentStructElem, List<String> parentsTags, 
                                String defaultLang, boolean isSignature) {
         super(UNMARKED_CONTENT_TYPE, operators, parentStructElem, parentsTags, defaultLang, isSignature);
     }

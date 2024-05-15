@@ -23,6 +23,8 @@ package org.verapdf.gf.model.impl.pd.gfse.contents;
 import org.verapdf.model.selayer.SESimpleContentItem;
 import org.verapdf.tools.TaggedPDFConstants;
 
+import java.util.List;
+
 /**
  * @author Maxim Plushchov
  */
@@ -54,7 +56,7 @@ public abstract class GFSESimpleContentItem extends GFSEContentItem implements S
     }
 
     @Override
-    public String getparentsTags() {
+    public List<String> getparentsTags() {
         return groupedContent.getparentsTags();
     }
 

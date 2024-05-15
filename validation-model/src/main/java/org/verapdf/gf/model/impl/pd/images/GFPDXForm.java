@@ -62,7 +62,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private boolean contentStreamContainsTransparency = false;
 	private final GraphicState inheritedGraphicState;
 	private final COSObject parentStructElem;
-	private final String parentsTags;
+	private final List<String> parentsTags;
 	private final String defaultLang;
 	private final PDColorSpace blendingColorSpace;
 
@@ -70,7 +70,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private final boolean isAnnotation;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
-					 GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags, 
+					 GraphicState inheritedGraphicState, COSObject parentStructElem, List<String> parentsTags, 
 					 String defaultLang, boolean isAnnotation, boolean isSignature) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
