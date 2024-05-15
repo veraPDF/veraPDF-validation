@@ -46,8 +46,8 @@ public class GFSAObject extends GenericModelObject implements SAObject {
 	}
 
 	@Override
-	public String geterrorCodes() {
-		return errorCodes.stream().map(Objects::toString).collect(Collectors.joining(","));
+	public List<String> geterrorCodes() {
+		return errorCodes.stream().map(Objects::toString).collect(Collectors.toList());
 	}
 
 	public List<Integer> getErrorCodes() {
@@ -59,13 +59,12 @@ public class GFSAObject extends GenericModelObject implements SAObject {
 	}
 
 	@Override
-	public String geterrorArguments() {
-		StringBuilder string = new StringBuilder();
+	public List<List<String>> geterrorArguments() {
+		List<List<String>> list = new LinkedList<>();
 		for (List<Object> arguments : errorArguments) {
-			string.append(arguments.stream().map(Object::toString).collect(Collectors.joining(";")));
-			string.append(";;");
+			list.add(arguments.stream().map(Object::toString).collect(Collectors.toList()));
 		}
-		return string.toString();
+		return list;
 	}
 
 	@Override

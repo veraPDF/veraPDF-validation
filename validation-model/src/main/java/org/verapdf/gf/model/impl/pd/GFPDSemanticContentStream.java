@@ -61,14 +61,14 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 									 GraphicState inheritedGraphicState,
 									 StructureElementAccessObject structureElementAccessObject,
-									 COSObject parentStructElem, String parentsTags) {
+									 COSObject parentStructElem, List<String> parentsTags) {
 		super(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructElem,
 				parentsTags, SEMANTIC_CONTENT_STREAM_TYPE);
 	}
 
 	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 									 GraphicState inheritedGraphicState, StructureElementAccessObject structureElementAccessObject,
-									 COSObject parentStructElem, String parentsTags, String defaultLang, boolean isSignature) {
+									 COSObject parentStructElem, List<String> parentsTags, String defaultLang, boolean isSignature) {
 		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructElem,
 				parentsTags);
 		this.defaultLang = defaultLang;

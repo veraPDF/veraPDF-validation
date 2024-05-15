@@ -99,7 +99,7 @@ public final class OperatorFactory {
 	public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens,
                                                                          PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
                                                                          StructureElementAccessObject structureElementAccessObject, COSObject parentStructElem, 
-																		 String parentsTags, boolean isRealContent) {
+																		 List<String> parentsTags, boolean isRealContent) {
 		this.isLastParsedContainsTransparency = false;
 		OperatorParser parser = new OperatorParser(inheritedGraphicState, structureElementAccessObject, resourcesHandler, 
 				parentStructElem, parentsTags, isRealContent);
