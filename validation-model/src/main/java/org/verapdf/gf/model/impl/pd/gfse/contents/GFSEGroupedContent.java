@@ -42,12 +42,12 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
 
     protected final List<Operator> operators;
     protected final COSObject parentStructElem;
-    protected final String parentsTags;
+    protected final List<String> parentsTags;
     protected final boolean isSignature;
     protected final String defaultLang;
     protected final Boolean isTaggedContent;
     
-    public GFSEGroupedContent(String objectType, List<Operator> operators, COSObject parentStructElem, String parentsTags, String defaultLang,
+    public GFSEGroupedContent(String objectType, List<Operator> operators, COSObject parentStructElem, List<String> parentsTags, String defaultLang,
                               boolean isSignature) {
         super(objectType);
         this.operators = operators;
@@ -59,7 +59,7 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
     }
 
     @Override
-    public String getparentsTags() {
+    public List<String> getparentsTags() {
         return parentsTags;
     }
 

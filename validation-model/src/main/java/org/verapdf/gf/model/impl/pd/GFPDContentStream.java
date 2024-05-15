@@ -68,7 +68,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	private final GraphicState inheritedGraphicState;
 	private final StructureElementAccessObject structureElementAccessObject;
 	protected COSObject parentStructElem;
-	protected String parentsTags;
+	protected List<String> parentsTags;
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
@@ -79,7 +79,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject,
-							 COSObject parentStructElem, String parentsTags) {
+							 COSObject parentStructElem, List<String> parentsTags) {
 		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject,
 				parentStructElem, parentsTags, CONTENT_STREAM_TYPE);
 	}
@@ -91,14 +91,14 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.structureElementAccessObject = structureElementAccessObject;
-		parentsTags = "";
+		this.parentsTags = Collections.emptyList();
 	}
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
 							 PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject,
-							 COSObject parentStructElem, String parentsTags, final String type) {
+							 COSObject parentStructElem, List<String> parentsTags, final String type) {
 		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, type);
 		this.parentStructElem = getParentStructureElem(structureElementAccessObject);
 		if (this.parentStructElem == null) {
