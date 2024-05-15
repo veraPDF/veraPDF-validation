@@ -25,6 +25,7 @@ import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_DP;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class GFOp_DP extends GFOpMarkedContent implements Op_DP {
     public static final String OP_DP_TYPE = "Op_DP";
 
     public GFOp_DP(List<COSBase> arguments, PDResourcesHandler resources) {
-		super(arguments, OP_DP_TYPE, null, "", false);
+		super(arguments, OP_DP_TYPE, null, Collections.emptyList(), false);
 		initializePropertiesDict(resources);
     }
 

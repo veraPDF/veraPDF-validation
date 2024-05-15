@@ -95,7 +95,7 @@ class OperatorParser {
 	private final StructureElementAccessObject structureElementAccessObject;
 	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 	private final COSObject parentStructElem;
-	private final String parentsTags;
+	private final List<String> parentsTags;
 	
 	private final boolean isRealContent;
 
@@ -104,7 +104,7 @@ class OperatorParser {
 	OperatorParser(GraphicState inheritedGraphicState,
                    StructureElementAccessObject structureElementAccessObject,
                    PDResourcesHandler resourcesHandler, COSObject parentStructElem, 
-				   String parentsTags, boolean isRealContent) {
+				   List<String> parentsTags, boolean isRealContent) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -527,7 +527,7 @@ class OperatorParser {
 			// XOBJECT
 			case Operators.DO:
 				Long mcid = null;
-				String parentsTags = "";
+				List<String> parentsTags = new LinkedList<>();
 				if (!markedContentStack.empty()) {
 					mcid = markedContentStack.peek().getInheritedMCID();
 					parentsTags = markedContentStack.peek().getParentsTags();
