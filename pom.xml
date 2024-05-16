@@ -28,12 +28,12 @@
   <parent>
     <groupId>org.verapdf</groupId>
     <artifactId>verapdf-parent</artifactId>
-    <version>1.26.1</version>
+    <version>1.26.2</version>
   </parent>
 
   <groupId>org.verapdf</groupId>
   <artifactId>validation</artifactId>
-  <version>1.26.0-RC1</version>
+  <version>1.26.0</version>
   <packaging>pom</packaging>
 
   <name>veraPDF Validation Project</name>
@@ -75,10 +75,10 @@
   </modules>
 
   <properties>
-    <verapdf.parser.version>[1.26.0-RC,1.27.0)</verapdf.parser.version>
-    <verapdf.pdfmodel.version>[1.26.0-RC,1.27.0)</verapdf.pdfmodel.version>
-    <verapdf.library.version>[1.26.0-RC,1.27.0)</verapdf.library.version>
-    <verapdf.wcag.algs.version>[1.26.0-RC,1.27.0)</verapdf.wcag.algs.version>
+    <verapdf.parser.version>[1.26.0,1.27.0)</verapdf.parser.version>
+    <verapdf.pdfmodel.version>[1.26.0,1.27.0)</verapdf.pdfmodel.version>
+    <verapdf.library.version>[1.26.0,1.27.0)</verapdf.library.version>
+    <verapdf.wcag.algs.version>[1.26.0,1.27.0)</verapdf.wcag.algs.version>
   </properties>
 
   <dependencyManagement>
