@@ -48,7 +48,7 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
 
     public GFCosIndirect(final COSKey key, final COSObject object) {
         super(object.get(), COS_INDIRECT_TYPE);
-        this.isSpacingPDFACompliant = getspacingCompliesPDFA(object);
+        this.isSpacingPDFACompliant = getSpacingCompliesPDFA(object);
         this.id = GFIDGenerator.generateID(key);
     }
 
@@ -57,7 +57,7 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
      */
     public GFCosIndirect(final COSIndirect object) {
         super(object.get(), COS_INDIRECT_TYPE);
-        this.isSpacingPDFACompliant = getspacingCompliesPDFA(object.getDirect());
+        this.isSpacingPDFACompliant = getSpacingCompliesPDFA(object.getDirect());
         this.id = GFIDGenerator.generateID(object.getKey());
     }
 
@@ -96,7 +96,7 @@ public class GFCosIndirect extends GFCosObject implements CosIndirect {
     /**
      * Get the direct contents of the indirect object
      */
-    private static boolean getspacingCompliesPDFA(COSObject object) {
+    private static boolean getSpacingCompliesPDFA(COSObject object) {
         return object.isEndOfObjectComplyPDFA()
                 && object.isHeaderFormatComplyPDFA()
                 && object.isHeaderOfObjectComplyPDFA();

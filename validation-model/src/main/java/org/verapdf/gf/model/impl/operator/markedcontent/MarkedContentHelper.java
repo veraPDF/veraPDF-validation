@@ -33,10 +33,10 @@ import org.verapdf.tools.StaticResources;
  */
 public class MarkedContentHelper {
 
-    public static boolean containsActualText(GFOpMarkedContent markedContent,
-                                             StructureElementAccessObject accessObject) {
+    public static boolean containsStringKey(ASAtom key, GFOpMarkedContent markedContent,
+                                            StructureElementAccessObject accessObject) {
         if (markedContent != null) {
-            if (markedContent.getInheritedActualText() != null) {
+            if (markedContent.getInheritedStringAttribute(key) != null) {
                 return true;
             }
 
@@ -47,9 +47,9 @@ public class MarkedContentHelper {
                     Long mcid = markedContent.getInheritedMCID();
                     COSObject structureElement = accessObject.getStructureElement(parentTreeRoot, mcid);
                     if (structureElement != null && !structureElement.empty()) {
-                        COSObject actualText = structureElement.getKey(ASAtom.ACTUAL_TEXT);
-                        return actualText != null && !actualText.empty() &&
-                               actualText.getType() == COSObjType.COS_STRING;
+                        COSObject value = structureElement.getKey(key);
+                        return value != null && !value.empty() &&
+                               value.getType() == COSObjType.COS_STRING;
                     }
                 }
             }

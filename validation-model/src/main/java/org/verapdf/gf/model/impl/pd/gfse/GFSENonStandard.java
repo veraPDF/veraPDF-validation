@@ -24,11 +24,18 @@ import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SENonStandard;
 import org.verapdf.pd.structure.PDStructElem;
 
+import java.util.Objects;
+
 public class GFSENonStandard extends GFPDStructElem implements SENonStandard {
 
     public static final String NON_STANDARD_STRUCTURE_ELEMENT_TYPE = "SENonStandard";
 
     public GFSENonStandard(PDStructElem structElemDictionary, String standardType) {
         super(structElemDictionary, standardType, NON_STANDARD_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    @Override
+    public Boolean getisNotMappedToStandardType() {
+        return getremappedStandardType() == null && !Objects.equals(getcircularMappingExist(), true);
     }
 }

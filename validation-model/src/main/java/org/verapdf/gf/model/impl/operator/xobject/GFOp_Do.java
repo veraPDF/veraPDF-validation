@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.operator.xobject;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.pd.images.GFPDXObject;
@@ -44,29 +45,30 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	/** Name of link to the XObject */
     public static final String X_OBJECT = "xObject";
 
-	private List<PDXObject> xObjects = null;
+	private PDXObject xObject;
 
     private final org.verapdf.pd.images.PDXObject pbXObject;
 	private final PDResourcesHandler resourcesHandler;
 	private final GraphicState inheritedGraphicState;
-	private final String parentStructureTag;
+	private final COSObject parentStructElem;
 	private final String parentsTags;
 
-	public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pbXObject,
+	public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pdXObject,
 				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
-				   String parentStructureTag, String parentsTags) {
+				   COSObject parentStructElem, String parentsTags) {
 		super(arguments, OP_DO_TYPE);
-		this.pbXObject = pbXObject;
+		this.pbXObject = pdXObject;
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
-		this.parentStructureTag = parentStructureTag;
+		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
+		this.xObject = getXObject();
 	}
 
     @Override
     public List<? extends Object> getLinkedObjects(String link) {
         if (X_OBJECT.equals(link)) {
-            return this.getXObject();
+            return this.getListXObject();
         }
         return super.getLinkedObjects(link);
     }
@@ -74,22 +76,23 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	/**
 	 * @return XObject object from veraPDF model used in current operator
 	 */
-	public List<org.verapdf.model.pdlayer.PDXObject> getXObject() {
-		if (this.xObjects == null) {
-			if (this.pbXObject == null) {
-				return Collections.emptyList();
-			}
-			PDXObject typedPDXObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler,
-					inheritedGraphicState, this.parentStructureTag, this.parentsTags);
-			if (typedPDXObject != null) {
-				List<PDXObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-				list.add(typedPDXObject);
-				this.xObjects = Collections.unmodifiableList(list);
-			} else {
-				this.xObjects = Collections.emptyList();
-			}
+	public List<PDXObject> getListXObject() {
+		if (this.xObject != null) {
+			List<PDXObject> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(xObject);
+			return Collections.unmodifiableList(list);
 		}
-		return this.xObjects;
+		return Collections.emptyList();
 	}
+
+	public PDXObject getXObject() {
+		if (this.pbXObject == null) {
+			return null;
+		}
+		this.xObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler, inheritedGraphicState, 
+					this.parentStructElem, this.parentsTags);
+		return this.xObject;
+	}
+
 
 }

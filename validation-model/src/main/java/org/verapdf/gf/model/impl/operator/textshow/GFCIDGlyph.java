@@ -33,18 +33,18 @@ import org.verapdf.pd.structure.StructureElementAccessObject;
  */
 public class GFCIDGlyph extends GFGlyph implements CIDGlyph {
 
-    public final static String CID_GLYPH_TYPE = "CIDGlyph";
+    public static final String CID_GLYPH_TYPE = "CIDGlyph";
 
     private final int cid;
 
-    protected GFCIDGlyph(PDFont font, int glyphCode, int renderingMode, String id,
-                      GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        super(font, glyphCode, renderingMode, id, markedContent, structureElementAccessObject, CID_GLYPH_TYPE);
+    protected GFCIDGlyph(PDFont font, int glyphCode, int renderingMode, String id, GFOpMarkedContent markedContent, 
+                         StructureElementAccessObject structureElementAccessObject, boolean isRealContent) {
+        super(font, glyphCode, renderingMode, id, markedContent, structureElementAccessObject, isRealContent, CID_GLYPH_TYPE);
         this.cid = ((PDType0Font) font).toCID(glyphCode);
     }
 
     @Override
     public Long getCID() {
-        return Long.valueOf(this.cid);
+        return (long) this.cid;
     }
 }

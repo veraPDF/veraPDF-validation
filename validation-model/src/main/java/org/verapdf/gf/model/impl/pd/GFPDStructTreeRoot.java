@@ -22,35 +22,23 @@ package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObjType;
-import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosUnicodeName;
-import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.model.pdlayer.PDStructTreeRoot;
-import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author Maksim Bezrukov
  */
-public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
+public class GFPDStructTreeRoot extends GFPDStructTreeNode implements PDStructTreeRoot {
 
 	/** Type name for {@code GFPDStructTreeRoot} */
 	public static final String STRUCT_TREE_ROOT_TYPE = "PDStructTreeRoot";
 
-	/** Link name for {@code K} key */
-	public static final String CHILDREN = "K";
-
 	/** Link name for {@code roleMapNames} key */
 	public static final String ROLE_MAP_NAMES = "roleMapNames";
-
-	private List<PDStructElem> children = null;
 
 	/**
 	 * Default constructor
@@ -59,43 +47,11 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	 */
 	public GFPDStructTreeRoot(org.verapdf.pd.structure.PDStructTreeRoot treeRoot) {
 		super(treeRoot, STRUCT_TREE_ROOT_TYPE);
-		StaticContainers.setRoleMapHelper(treeRoot.getRoleMap());
-	}
-
-	@Override
-	public String getkidsStandardTypes() {
-		return this.getChildren()
-		           .stream()
-		           .map(PDStructElem::getstandardType)
-		           .filter(Objects::nonNull)
-		           .collect(Collectors.joining("&"));
-	}
-
-	@Override
-	public Boolean gethasContentItems() {
-		COSObject children = this.simplePDObject.getKey(ASAtom.K);
-		if (children == null) {
-			return false;
-		}
-		if (TaggedPDFHelper.isContentItem(children)) {
-			return true;
-		}
-		if (children.getType() == COSObjType.COS_ARRAY && children.size().intValue() > 0) {
-			for (int i = 0; i < children.size().intValue(); ++i) {
-				COSObject elem = children.at(i);
-				if (TaggedPDFHelper.isContentItem(elem)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
-			case CHILDREN:
-				return this.getChildren();
 			case ROLE_MAP_NAMES:
 				return getRoleMapNames();
 			default:
@@ -103,30 +59,9 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 		}
 	}
 
-	private List<PDStructElem> getChildren() {
-		if (this.children == null) {
-			this.children = parseChildren();
-		}
-		return this.children;
-	}
-
-	private List<PDStructElem> parseChildren() {
-		List<org.verapdf.pd.structure.PDStructElem> elements =
-				((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getStructChildren();
-		if (!elements.isEmpty()) {
-			List<PDStructElem> res = new ArrayList<>(elements.size());
-			for (org.verapdf.pd.structure.PDStructElem element : elements) {
-				res.add(GFSEFactory.createTypedStructElem(element));
-			}
-			return Collections.unmodifiableList(res);
-		}
-		return Collections.emptyList();
-	}
-
 	private List<CosUnicodeName> getRoleMapNames() {
 		if (this.simplePDObject != null) {
-			Map<ASAtom, ASAtom> roleMap = ((org.verapdf.pd.structure.PDStructTreeRoot)
-					simplePDObject).getRoleMap();
+			Map<ASAtom, ASAtom> roleMap = ((org.verapdf.pd.structure.PDStructTreeRoot) simplePDObject).getRoleMap();
 			if (roleMap != null) {
 				List<CosUnicodeName> res = new ArrayList<>();
 				for (Map.Entry<ASAtom, ASAtom> entry : roleMap.entrySet()) {
@@ -140,13 +75,10 @@ public class GFPDStructTreeRoot extends GFPDObject implements PDStructTreeRoot {
 	}
 
 	@Override
-	public String gettopLevelFirstElementStandardType() {
-		if (this.children == null) {
-			this.children = parseChildren();
-		}
-
-		if (!this.children.isEmpty()) {
-			return this.children.get(0).getstandardType();
+	public String getfirstChildStandardTypeNamespaceURL() {
+		List<GFPDStructElem> children = getStructuralSignificanceChildren();
+		if (!children.isEmpty()) {
+			return children.get(0).getStandardTypeNamespaceURL();
 		}
 		return null;
 	}

@@ -90,16 +90,20 @@ class OperatorParser {
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
 	private final Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
+	private final Set<Long> mcidSet = new HashSet<Long>();
 	private final StructureElementAccessObject structureElementAccessObject;
 	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
-	private final String parentStructureTag;
+	private final COSObject parentStructElem;
 	private final String parentsTags;
+	
+	private final boolean isRealContent;
 
 	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
-				   StructureElementAccessObject structureElementAccessObject,
-				   PDResourcesHandler resourcesHandler, String parentStructureTag, String parentsTags) {
+                   StructureElementAccessObject structureElementAccessObject,
+                   PDResourcesHandler resourcesHandler, COSObject parentStructElem, 
+				   String parentsTags, boolean isRealContent) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -107,8 +111,9 @@ class OperatorParser {
 		}
 		this.graphicState.setInitialGraphicState(this.graphicState);
 		this.structureElementAccessObject = structureElementAccessObject;
-		this.parentStructureTag = parentStructureTag;
+		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
+		this.isRealContent = isRealContent;
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -155,20 +160,27 @@ class OperatorParser {
 
 			// MARKED CONTENT
 			case Operators.BMC:
-				GFOp_BMC bmcOp = new GFOp_BMC(arguments, getCurrentMarkedContent(), parentsTags);
+				GFOp_BMC bmcOp = new GFOp_BMC(arguments, getCurrentMarkedContent(), parentsTags, isRealContent);
 				processedOperators.add(bmcOp);
 				this.markedContentStack.push(bmcOp);
 				break;
-			case Operators.BDC:
+			case Operators.BDC: {
 				PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
-				if (specification == PDFAFlavour.Specification.ISO_19005_3
-						|| specification == PDFAFlavour.Specification.ISO_19005_4) {
+				if (specification == PDFAFlavour.Specification.ISO_19005_3) {
 					checkAFKey(arguments, resourcesHandler);
 				}
-				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags);
+				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags, isRealContent);
+				Long mcid = bdcOp.getMCID();
+				if (mcid != null) {
+					if (mcidSet.contains(mcid)) {
+						LOGGER.log(Level.WARNING, "Content stream contains duplicate MCID - " + mcid);
+					}
+					mcidSet.add(mcid);
+				}
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
 				break;
+			}
 			case Operators.EMC:
 				processedOperators.add(new GFOp_EMC(arguments));
 				if (!this.markedContentStack.empty()) {
@@ -319,25 +331,25 @@ class OperatorParser {
 			// TEXT SHOW
 			case Operators.TJ_SHOW:
 				GFOp_Tj tj = new GFOp_Tj(arguments, this.graphicState.clone(),
-						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, isRealContent);
 				addFontAndColorSpace(tj, this.transparencyGraphicState);
 				processedOperators.add(tj);
 				break;
 			case Operators.TJ_SHOW_POS:
 				GFOp_TJ_Big tjBig = new GFOp_TJ_Big(arguments, this.graphicState.clone(),
-						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, isRealContent);
 				addFontAndColorSpace(tjBig, this.transparencyGraphicState);
 				processedOperators.add(tjBig);
 				break;
 			case Operators.QUOTE:
 				GFOp_Quote quote = new GFOp_Quote(arguments, this.graphicState.clone(),
-						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, isRealContent);
 				addFontAndColorSpace(quote, this.transparencyGraphicState);
 				processedOperators.add(quote);
 				break;
 			case Operators.DOUBLE_QUOTE:
 				GFOp_DoubleQuote doubleQuote = new GFOp_DoubleQuote(arguments, this.graphicState.clone(),
-						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject);
+						resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, isRealContent);
 				addFontAndColorSpace(doubleQuote, this.transparencyGraphicState);
 				processedOperators.add(doubleQuote);
 				break;
@@ -517,16 +529,15 @@ class OperatorParser {
 					mcid = markedContentStack.peek().getInheritedMCID();
 					parentsTags = markedContentStack.peek().getParentsTags();
 				}
-				String parentStructureTag = getParentStructureTag(structureElementAccessObject, mcid);
-				if (parentStructureTag == null) {
-					parentStructureTag = this.parentStructureTag;
+				COSObject parentStructElem = getParentStructElem(structureElementAccessObject, mcid);
+				if (parentStructElem == null) {
+					parentStructElem = this.parentStructElem;
 				}
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-						resourcesHandler, this.graphicState.clone(), parentStructureTag, parentsTags);
-				List<org.verapdf.model.pdlayer.PDXObject> pdxObjects = op_do.getXObject();
-				if (!pdxObjects.isEmpty()) {
-					GFPDXObject xobj = (GFPDXObject) pdxObjects.get(0);
-					this.transparencyGraphicState.setVeraXObject(xobj);
+						resourcesHandler, this.graphicState.clone(), parentStructElem, parentsTags);
+				org.verapdf.model.pdlayer.PDXObject pdxObject = op_do.getXObject();
+				if (pdxObject != null) {
+					this.transparencyGraphicState.setVeraXObject((GFPDXObject)pdxObject);
 				}
 				processedOperators.add(op_do);
 				break;
@@ -601,7 +612,7 @@ class OperatorParser {
 		    && (gs.isProcessColorOperators() || Boolean.TRUE.equals(imageParameters.getBooleanKey(ASAtom.IM)))) {
 
 			arguments.add(imageParameters);
-			processedOperators.add(new GFOp_BI(new ArrayList<COSBase>()));
+			processedOperators.add(new GFOp_BI(new ArrayList<>()));
 			processedOperators.add(new GFOp_ID(arguments));
 			processedOperators.add(new GFOp_EI(arguments, resourcesHandler, gs.getFillColorSpace()));
 		}
@@ -690,13 +701,13 @@ class OperatorParser {
 		return this.markedContentStack.peek();
 	}
 
-	private String getParentStructureTag(StructureElementAccessObject structureElementAccessObject, Long mcid) {
+	private COSObject getParentStructElem(StructureElementAccessObject structureElementAccessObject, Long mcid) {
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		if (structTreeRoot != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
-			if (structureElement != null && !structureElement.empty()) {
-				return structureElement.getNameKeyStringValue(ASAtom.S);
+			if (structureElement != null && !structureElement.empty() && structureElement.getType() != COSObjType.COS_NULL) {
+				return structureElement;
 			}
 		}
 		return null;

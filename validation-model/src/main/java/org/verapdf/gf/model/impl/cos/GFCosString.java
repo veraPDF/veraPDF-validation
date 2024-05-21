@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.cos.COSString;
+import org.verapdf.gf.model.impl.operator.textshow.PUAHelper;
 import org.verapdf.model.coslayer.CosString;
 
 /**
@@ -81,11 +82,15 @@ public class GFCosString extends GFCosObject implements CosString {
 	}
 
 	/**
-	 * contains original hexa string length
+	 * contains original hex string length
 	 */
 	@Override
 	public Long gethexCount() {
-		return Long.valueOf(this.hexCount);
+		return this.hexCount;
 	}
 
+	@Override
+	public Boolean getcontainsPUA() {
+		return PUAHelper.containPUA(baseObject.getString());
+	}
 }

@@ -143,7 +143,7 @@ public class ColorSpaceFactory {
 	private static String getColorSpaceUniqueIdentifier(org.verapdf.pd.colors.PDColorSpace base, int opm,
 			boolean overprintFlag) {
 		if (ICC_BASED.equals(base.getType().toString()) && base.getNumberOfComponents() == 4) {
-			return String.valueOf(base.hashCode() + " " + opm + " " + overprintFlag);
+			return base.hashCode() + " " + opm + ' ' + overprintFlag;
 		}
 		return String.valueOf(base.hashCode());
 	}

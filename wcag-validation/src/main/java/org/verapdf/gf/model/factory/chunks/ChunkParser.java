@@ -56,6 +56,9 @@ class ChunkParser {
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
+
+	private final Set<Long> processedMCIDs = new HashSet<>();
+
 	private final Integer pageNumber;
 	private final COSKey objectKey;
 	private Matrix textMatrix = null;
@@ -88,10 +91,16 @@ class ChunkParser {
 		String operatorName = rawOperator.getOperator();
 		switch (operatorName) {
 			case Operators.BMC:
-				markedContentStack.push(getMCID(arguments, resourceHandler));
-				break;
 			case Operators.BDC:
-				markedContentStack.push(getMCID(arguments, resourceHandler));
+				Long mcid = getMCID(arguments, resourceHandler);
+				if (mcid != null) {
+					if (processedMCIDs.contains(mcid)) {
+						mcid = null;
+					} else {
+						processedMCIDs.add(mcid);
+					}
+				}
+				markedContentStack.push(mcid);
 				break;
 			case Operators.EMC:
 				markedContentStack.pop();
@@ -410,16 +419,11 @@ class ChunkParser {
 				}
 				break;
 			case Operators.B_CLOSEPATH_FILL_STROKE:
-				processh();
-				processB();
-				break;
-			case Operators.B_FILL_STROKE:
-				processB();
-				break;
 			case Operators.B_STAR_CLOSEPATH_EOFILL_STROKE:
 				processh();
 				processB();
 				break;
+			case Operators.B_FILL_STROKE:
 			case Operators.B_STAR_EOFILL_STROKE:
 				processB();
 				break;
@@ -456,7 +460,9 @@ class ChunkParser {
 							key = parentObjectKey;
 							markedContent = parentMarkedContent;
 						}
-						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, graphicsState, pageNumber,
+						GraphicsState xFormGraphicsState = graphicsState.clone();
+						xFormGraphicsState.setCTM(xFormGraphicsState.getCTM().multiply(new Matrix(((PDXForm)xObject).getMatrix())));
+						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, xFormGraphicsState, pageNumber,
 								key, markedContent);
 						artifacts.addAll(xForm.getArtifacts());
 					}

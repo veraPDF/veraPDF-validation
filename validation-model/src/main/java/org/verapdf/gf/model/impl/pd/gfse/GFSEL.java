@@ -23,6 +23,7 @@ package org.verapdf.gf.model.impl.pd.gfse;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEL;
 import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.tools.AttributeHelper;
 import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSEL extends GFPDStructElem implements SEL {
@@ -31,5 +32,21 @@ public class GFSEL extends GFPDStructElem implements SEL {
 
     public GFSEL(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.L, L_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    @Override
+    public String getListNumbering() {
+        return AttributeHelper.getListNumbering(simpleCOSObject);
+    }
+
+    @Override
+    public Boolean getcontainsLabels() {
+        for (GFPDStructElem child : getStructuralSignificanceChildren()) {
+            if (TaggedPDFConstants.LI.equals(child.getstandardType()) && 
+                    child.getChildrenStandardTypes().contains(TaggedPDFConstants.LBL)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

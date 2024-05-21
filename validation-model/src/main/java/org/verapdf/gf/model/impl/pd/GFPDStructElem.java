@@ -27,43 +27,38 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSArray;
-import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosActualText;
+import org.verapdf.gf.model.impl.cos.GFCosAlt;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.cos.GFCosUnicodeName;
-import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosActualText;
+import org.verapdf.model.coslayer.CosAlt;
 import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
-import org.verapdf.tools.TaggedPDFHelper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maksim Bezrukov
  */
-public class GFPDStructElem extends GFPDObject implements PDStructElem {
+public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
+
+	private static final Logger LOGGER = Logger.getLogger(GFPDStructElem.class.getCanonicalName());
+
 	/**
 	 * Type name for {@code GFPDStructElem}
 	 */
 	public static final String STRUCTURE_ELEMENT_TYPE = "PDStructElem";
 
-	/**
-	 * Link name for {@code K} key
-	 */
-	public static final String CHILDREN = "K";
 	/**
 	 * Link name for {@code S} key
 	 */
@@ -76,18 +71,20 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	 * Link name for {@code ActualText} key
 	 */
 	public static final String ACTUAL_TEXT = "actualText";
+	public static final String ALT = "alt";
 
 	private final String standardType;
-
-	private List<GFPDStructElem> children;
 
 	protected GFPDStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType, String type) {
 		super(structElemDictionary, type);
 		ASAtom subtype = this.simplePDObject.getNameKey(ASAtom.S);
 		if (subtype != null) {
-			this.id = (super.getID() != null ? super.getID() : "0 0 obj") + " " + ((COSName) COSName.fromValue(subtype)).getUnicodeValue();
+			this.id = (super.getID() != null ? super.getID() : "0 0 obj") + ' ' + ((COSName) COSName.fromValue(subtype)).getUnicodeValue();
 		}
 		this.standardType = standardType;
+		if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_2) {
+			fillStructElemRefs();
+		}
 	}
 
 	/**
@@ -99,41 +96,25 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		this(structElemDictionary, null, STRUCTURE_ELEMENT_TYPE);
 	}
 
-	/**
-	 * @return Type entry of current structure element
-	 */
-	@Override
-	public String getType() {
-		ASAtom type = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getType();
-		return type == null ? null : type.getValue();
-	}
-
-	@Override
-	public String getkidsStandardTypes() {
-		if (StaticContainers.getFlavour() != null &&
-		    StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.WCAG_2_1) {
-			return this.getChildrenStandardTypes()
-			           .stream()
-			           .filter(type -> type != null && !TaggedPDFConstants.ARTIFACT.equals(type))
-			           .collect(Collectors.joining("&"));
-		}
-		return this.getChildrenStandardTypes()
-		           .stream()
-		           .filter(Objects::nonNull)
-		           .collect(Collectors.joining("&"));
-	}
-
 	@Override
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();
 		if (parent != null) {
-			String parentStandardType = GFSEFactory.getStructureElementStandardType(parent);
-			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType)) {
+			StructureType parentStandardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(parent);
+			String parentStandardType = parentStandardStructureType != null ? parentStandardStructureType.getType().getValue() : null;
+			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType) || TaggedPDFConstants.DIV.equals(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;
 				}
-				parentStandardType = GFSEFactory.getStructureElementStandardType(parent);
+				parentStandardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(parent);
+				parentStandardType = parentStandardStructureType != null ? parentStandardStructureType.getType().getValue() : null;
+			}
+			if (parent.getType() == ASAtom.STRUCT_TREE_ROOT) {
+				return ASAtom.STRUCT_TREE_ROOT.getValue();
+			}
+			if (org.verapdf.pd.structure.PDStructElem.isMathStandardType(parentStandardStructureType)) {
+				return TaggedPDFConstants.MATH_ML;
 			}
 			return parentStandardType;
 		}
@@ -141,24 +122,10 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	}
 
 	@Override
-	public Boolean gethasContentItems() {
-		COSObject children = this.simplePDObject.getKey(ASAtom.K);
-		if (children == null) {
-			return false;
-		}
-		if (TaggedPDFHelper.isContentItem(children)) {
-			return true;
-		}
-		if (children.getType() == COSObjType.COS_ARRAY) {
-			for (COSObject elem : (COSArray)children.getDirectBase()) {
-				if (TaggedPDFHelper.isContentItem(elem)) {
-					return true;
-				}
-			}
-		}
-		return false;
+	public Boolean getcontainsParent() {
+		return ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent() != null;
 	}
-
+	
 	@Override
 	public String getvalueS() {
 		COSName type = ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getCOSStructureType();
@@ -169,38 +136,44 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	public String getstandardType() {
 		return this.standardType;
 	}
+	
+	public String getStandardTypeNamespaceURL() {
+		StructureType standardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(
+				(org.verapdf.pd.structure.PDStructElem) this.simplePDObject);
+		return standardStructureType != null ? standardStructureType.getNameSpaceURI() : null;
+	}
 
 	@Override
-	public Boolean getisRemappedStandardType() {
+	public String getremappedStandardType() {
 		if (hasStandardType()) {
 			StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 			if (type == null) {
-				return false;
+				return null;
 			}
-			return !type.getType().getValue().equals(standardType);
+			if (!type.getType().getValue().equals(standardType)) {
+				return type.getType().getValue();
+			}
+		} else if (standardType != null) {
+			StructureType standardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(
+					((org.verapdf.pd.structure.PDStructElem)simplePDObject));
+			String standardTypeMap = org.verapdf.pd.structure.PDStructElem.getStructureTypeStandardType(standardStructureType);
+			if (!Objects.equals(standardTypeMap, standardType)) {
+				return standardType;
+			}
 		}
-		return false;
+		return null;
 	}
 
-	private boolean hasStandardType(){
+	private boolean hasStandardType() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 		if (type == null) {
 			return false;
 		}
-		PDFAFlavour flavour = StaticContainers.getFlavour();
-		if (flavour != null) {
-			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_1) {
-				return TaggedPDFHelper.getPdf14StandardRoleTypes().contains(type.getType().getValue());
-			}
-			if (flavour.getPart() == PDFAFlavour.Specification.ISO_19005_4) {
-				return TaggedPDFHelper.isStandardType(type);
-			}
-			if (flavour.getPart() == PDFAFlavour.Specification.WCAG_2_1) {
-				return TaggedPDFHelper.isWCAGStandardType(type) &&
-						!TaggedPDFConstants.TITLE.equals(type.getType().getValue());
-			}
+		if (StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG &&
+				ASAtom.TITLE == type.getType()) {
+			return false;
 		}
-		return TaggedPDFHelper.getPdf17StandardRoleTypes().contains(type.getType().getValue());
+		return org.verapdf.pd.structure.PDStructElem.isStandardStructureType(type);
 	}
 
 	@Override
@@ -221,56 +194,28 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 	@Override
 	public Boolean getcircularMappingExist() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
-		return type != null ? StaticContainers.getRoleMapHelper().circularMappingExist(type.getType()) : null;
+		return type != null ? StaticResources.getRoleMapHelper().circularMappingExist(type.getType()) : null;
+	}
+
+	@Override
+	public String getroleMapToSameNamespaceTag() {
+		return ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getRoleMapToSameNamespaceTag();
 	}
 
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
-			case CHILDREN:
-				return this.getChildren();
 			case STRUCTURE_TYPE:
 				return this.getStructureType();
 			case LANG:
 				return this.getLang();
 			case ACTUAL_TEXT:
 				return this.getactualText();
+			case ALT:
+				return this.getalt();				
 			default:
 				return super.getLinkedObjects(link);
 		}
-	}
-
-	private List<String> getChildrenStandardTypes() {
-		return getChildrenStandardTypes(this);
-	}
-
-	private static List<String> getChildrenStandardTypes(GFPDStructElem element) {
-		List<String> res = new ArrayList<>();
-		for (GFPDStructElem child : element.getChildren()) {
-			String elementStandardType = child.getstandardType();
-			if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
-				res.addAll(getChildrenStandardTypes(child));
-			} else {
-				res.add(elementStandardType);
-			}
-		}
-		return Collections.unmodifiableList(res);
-	}
-
-	public List<GFPDStructElem> getChildren() {
-		if (children == null) {
-			List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getStructChildren();
-			if (!elements.isEmpty()) {
-				List<GFPDStructElem> res = new ArrayList<>(elements.size());
-				for (org.verapdf.pd.structure.PDStructElem element : elements) {
-					res.add(GFSEFactory.createTypedStructElem(element));
-				}
-				children = Collections.unmodifiableList(res);
-			} else {
-				children = Collections.emptyList();
-			}
-		}
-		return children;
 	}
 
 	private List<CosUnicodeName> getStructureType() {
@@ -305,7 +250,8 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		while (baseLang == null && parent != null) {
 			key = parent.getObject().getObjectKey();
 			if (keys.contains(key)) {
-				throw new LoopedException("Struct tree loop found");
+				LOGGER.log(Level.WARNING, "Struct tree loop found");
+				break;
 			}
 			if (key != null) {
 				keys.add(key);
@@ -324,6 +270,31 @@ public class GFPDStructElem extends GFPDObject implements PDStructElem {
 		if (actualText != null && COSObjType.COS_STRING == actualText.getType()) {
 			List<CosActualText> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFCosActualText((COSString)actualText.getDirectBase()));
+			return list;
+		}
+		return Collections.emptyList();
+	}
+	
+	private void fillStructElemRefs() {
+		COSKey key = simpleCOSObject.getKey();
+		if (key == null) {
+			return;
+		}
+		COSObject ref = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getRef();
+		if (ref.getType() == COSObjType.COS_ARRAY) {
+			for (COSObject elem : (COSArray)ref.getDirectBase()) {
+				if (elem.getKey() != null) {
+					StaticContainers.getStructElementsRefs().computeIfAbsent(elem.getKey(), k -> new HashSet<>()).add(key);
+				}
+			}
+		}
+	}
+
+	private List<CosAlt> getalt() {
+		COSObject alt = simplePDObject.getKey(ASAtom.ALT);
+		if (alt != null && COSObjType.COS_STRING == alt.getType()) {
+			List<CosAlt> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			list.add(new GFCosAlt((COSString)alt.getDirectBase()));
 			return list;
 		}
 		return Collections.emptyList();

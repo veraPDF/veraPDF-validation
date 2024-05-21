@@ -66,7 +66,7 @@ public class GFCosObject extends GenericModelObject implements CosObject {
     public static CosObject getFromValue(COSBase base) {
         if (base != null) {
             GFCosVisitor visitor = GFCosVisitor.getInstance();
-            if (base.isIndirect().booleanValue()) {
+            if (base.isIndirect()) {
                 return (CosObject) GFCosVisitor.visitFromIndirect((COSIndirect) base);
             }
             return (CosObject) base.accept(visitor);

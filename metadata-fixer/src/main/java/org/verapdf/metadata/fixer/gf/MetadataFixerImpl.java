@@ -67,6 +67,9 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 	private static final Logger LOGGER = Logger.getLogger(MetadataFixerImpl.class.getCanonicalName());
 
 	private static final Map<String, String> attributes = Collections.unmodifiableMap(mkAttsMap());
+	
+	private static final String ADD_PROPERTY_TO_METADATA_FROM_INFO_DICTIONARY = "Added '%s' to metadata from info dictionary";
+	private static final String ADD_PROPERTY_TO_INFO_DICTIONARY_FROM_METADATA = "Added '%s' to info dictionary from metadata";
 
 	protected MetadataFixerImpl() {
 		// enabled only for nested classes
@@ -233,10 +236,16 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 			String key = attributes.get(attribute);
 			if (metaValue == null) {
 				doSaveAction(schema, attribute, infoValue);
-				resultBuilder.addFix("Added '" + key + "' to metadata from info dictionary");
-			} else if (!metaValue.equals(infoValue)) {
-				doSaveAction(info, attribute, metaValue);
-				resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
+				resultBuilder.addFix(String.format(ADD_PROPERTY_TO_METADATA_FROM_INFO_DICTIONARY, key));
+			} else {
+				if (METADATA_AUTHOR.equals(attribute) && ((DublinCore)schema).getAuthorSize() > 1) {
+					doSaveAction(schema, attribute, metaValue);
+					resultBuilder.addFix("Merged several creators into one in metadata");
+				}
+				if (!metaValue.equals(infoValue)) {
+					doSaveAction(info, attribute, metaValue);
+					resultBuilder.addFix(String.format(ADD_PROPERTY_TO_INFO_DICTIONARY_FROM_METADATA, attribute));
+				}
 			}
 		}
 	}
@@ -251,7 +260,7 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 			}
 			if (metaCalendar == null) {
 				doSaveAction(schema, attribute, infoValue);
-				resultBuilder.addFix("Added '" + attributes.get(attribute) + "' to metadata from info dictionary");
+				resultBuilder.addFix(String.format(ADD_PROPERTY_TO_METADATA_FROM_INFO_DICTIONARY, attributes.get(attribute)));
 			} else {
 				if (metaCalendar.get(Calendar.MILLISECOND) != 0) {
 					metaCalendar.set(Calendar.MILLISECOND, 0);
@@ -261,7 +270,7 @@ abstract class MetadataFixerImpl implements MetadataFixer {
 				Calendar infoCalendar = DateConverter.toCalendar(infoValue);
 				if (!infoValue.matches(PDF_DATE_FORMAT_REGEX) || metaCalendar.compareTo(infoCalendar) != 0) {
 					doSaveAction(info, attribute, DateConverter.toXMPDateFormat(metaCalendar));
-					resultBuilder.addFix("Added '" + attribute + "' to info dictionary from metadata");
+					resultBuilder.addFix(String.format(ADD_PROPERTY_TO_INFO_DICTIONARY_FROM_METADATA, attribute));
 				}
 			}
 		}

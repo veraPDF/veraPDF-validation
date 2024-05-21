@@ -43,7 +43,7 @@ public class GFOpColor extends GFOpSetColor implements OpColor {
     public static final String COLOR_SPACE = "colorSpace";
     public static final String PATTERN_NAME = "patternName";
 
-    private PDColorSpace colorSpace;
+    private final PDColorSpace colorSpace;
 
     public GFOpColor(List<COSBase> arguments, PDColorSpace colorSpace, String type) {
         super(arguments, type);

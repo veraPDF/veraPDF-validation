@@ -16,6 +16,7 @@ public class PageSerializer extends StdSerializer<IPage> {
 		super(t);
 	}
 
+	@Override
 	public void serialize(IPage page, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 			throws IOException {
 

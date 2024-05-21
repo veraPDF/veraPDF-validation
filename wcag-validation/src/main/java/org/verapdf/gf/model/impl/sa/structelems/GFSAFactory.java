@@ -20,16 +20,14 @@
  */
 package org.verapdf.gf.model.impl.sa.structelems;
 
-import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.pd.structure.PDStructElem;
-import org.verapdf.pd.structure.StructureType;
 import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSAFactory {
 
     public static GFSAStructElem createTypedStructElem(PDStructElem structElemDictionary, String parentsStandardTypes){
-        String standardType = getStructureElementStandardType(structElemDictionary);
+        String standardType = PDStructElem.getStructureElementStandardType(structElemDictionary);
 
         if (standardType == null) {
             return new GFSANonStandard(structElemDictionary, null, parentsStandardTypes);
@@ -145,13 +143,5 @@ public class GFSAFactory {
                     return new GFSANonStandard(structElemDictionary, standardType, parentsStandardTypes);
                 }
         }
-    }
-
-    public static String getStructureElementStandardType(PDStructElem pdStructElem){
-        StructureType type = pdStructElem.getStructureType();
-        if (type != null) {
-            return StaticStorages.getRoleMapHelper().getStandardType(type.getType());
-        }
-        return null;
     }
 }

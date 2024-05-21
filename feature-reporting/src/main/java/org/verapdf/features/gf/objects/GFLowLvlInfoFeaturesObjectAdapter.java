@@ -116,7 +116,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
         List<ASAtom> atoms = filters.getFilters();
         if (atoms != null) {
             for (ASAtom atom : atoms) {
-                if (filtersAbbreviations.keySet().contains(atom)) {
+                if (filtersAbbreviations.containsKey(atom)) {
                     atom = filtersAbbreviations.get(atom);
                 }
                 res.add(atom.getValue());
@@ -156,7 +156,7 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
 
     @Override
     public Set<String> getFilters() {
-        return this.filters == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(this.filters);
+        return this.filters == null ? Collections.emptySet() : Collections.unmodifiableSet(this.filters);
     }
 
     @Override
@@ -166,6 +166,6 @@ public class GFLowLvlInfoFeaturesObjectAdapter implements LowLvlInfoFeaturesObje
 
     @Override
     public List<String> getErrors() {
-        return this.errors == null ? Collections.<String>emptyList() : Collections.unmodifiableList(this.errors);
+        return this.errors == null ? Collections.emptyList() : Collections.unmodifiableList(this.errors);
     }
 }

@@ -96,14 +96,25 @@ public class DublinCoreSchemaImpl extends BasicSchemaImpl implements DublinCore 
 				List<String> res = new ArrayList<>(1);
 				String s = builder.toString();
 				res.add(s.substring(0, s.length() - 2));
-				this.meta.setCreator(res);
 				return res.get(0);
 			}
-			return creators.size() == 0 ? null : creators.get(0);
+			return creators.isEmpty() ? null : creators.get(0);
 		} catch (XMPException e) {
 			LOGGER.log(Level.FINE, "Can not get creator.", e);
 			throw new IllegalStateException(e);
 		}
+	}
+
+	@Override
+	public int getAuthorSize() {
+		try {
+			List<String> creators = this.meta.getCreator();
+			if (creators != null) {
+				return creators.size();
+			}
+		} catch (XMPException ignored) {
+		}
+		return 0;
 	}
 
 	@Override

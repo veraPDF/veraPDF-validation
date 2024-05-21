@@ -35,7 +35,7 @@ public class GFSAAnnotationNode extends AnnotationNode {
 	}
 
 	private static Integer getAnnotationPageNumber(PDAnnotation annotation) {
-		Integer pageNumber = getPageNumber(annotation.getParent());
+		Integer pageNumber = getPageNumber(annotation.getKey(ASAtom.P));
 		if (pageNumber != null) {
 			return pageNumber;
 		}
@@ -84,7 +84,7 @@ public class GFSAAnnotationNode extends AnnotationNode {
 		if (destination == null || destination.empty()) {
 			return null;
 		}
-		if (destination.getType() == COSObjType.COS_STRING || destination.getType() == COSObjType.COS_NAME) {
+		if (destination.getType() == COSObjType.COS_STRING) {
 			PDNamesDictionary namesDictionary = StaticResources.getDocument().getCatalog().getNamesDictionary();
 			if (namesDictionary == null) {
 				return null;
@@ -96,9 +96,17 @@ public class GFSAAnnotationNode extends AnnotationNode {
 					return null;
 				}
 			}
+		} else if (destination.getType() == COSObjType.COS_NAME) {
+			COSObject dests = StaticResources.getDocument().getCatalog().getDests();
+			if (dests != null) {
+				destination = dests.getKey(destination.getDirectBase().getName());
+				if (destination == null) {
+					return null;
+				}
+			}
 		}
 		if (destination.getType() == COSObjType.COS_DICT) {
-			destination = destination.getKey(ASAtom.D);
+			destination = destination.getKey(key);
 		}
 		COSObject obj = null;
 		if (destination.getType() == COSObjType.COS_ARRAY && destination.size() > 0) {

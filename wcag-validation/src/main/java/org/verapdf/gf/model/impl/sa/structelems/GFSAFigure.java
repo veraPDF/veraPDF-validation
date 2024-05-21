@@ -36,6 +36,6 @@ public class GFSAFigure extends GFSAStructElem implements SAFigure {
 
     @Override
     public Boolean gethasBBox() {
-        return AttributeHelper.getBBox(this.structElemDictionary) != null;
+        return AttributeHelper.getBBox(this.structElemDictionary.getObject()) != null;
     }
 }

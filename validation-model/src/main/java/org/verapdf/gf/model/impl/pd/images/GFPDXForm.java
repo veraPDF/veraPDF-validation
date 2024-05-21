@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.images;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
@@ -60,17 +61,25 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private boolean groupContainsTransparency = false;
 	private boolean contentStreamContainsTransparency = false;
 	private final GraphicState inheritedGraphicState;
-	private final String parentStructureTag;
+	private final COSObject parentStructElem;
 	private final String parentsTags;
+	private final String defaultLang;
 	private final PDColorSpace blendingColorSpace;
 
+	private final boolean isSignature;
+	private final boolean isAnnotation;
+
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
-					 GraphicState inheritedGraphicState, String parentStructureTag, String parentsTags) {
+					 GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags, 
+					 String defaultLang, boolean isAnnotation, boolean isSignature) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
-		this.parentStructureTag = parentStructureTag;
+		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
 		this.blendingColorSpace = getBlendingColorSpace();
+		this.defaultLang = defaultLang;
+		this.isAnnotation = isAnnotation;
+		this.isSignature = isSignature;
 	}
 
 	@Override
@@ -190,21 +199,21 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	}
 
 	private void parseContentStream() {
-		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		GFPDContentStream gfContentStream;
-		if (!PDFAFlavour.PDFUA_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily()) &&
-		    !PDFAFlavour.WCAG2_1.getPart().getFamily().equals(StaticContainers.getFlavour().getPart().getFamily())) {
+		if (isAnnotation || (PDFAFlavour.IsoStandardSeries.ISO_14289 != StaticContainers.getFlavour().getPart().getSeries() &&
+		    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily())) {
 			gfContentStream = new GFPDContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructureTag, parentsTags);
+					parentStructElem, parentsTags);
 		} else {
 			gfContentStream = new GFPDSemanticContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructureTag, parentsTags);
+					parentStructElem, parentsTags, defaultLang, isSignature);
 		}
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
+		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		streams.add(gfContentStream);
 		this.contentStreams = streams;
 	}

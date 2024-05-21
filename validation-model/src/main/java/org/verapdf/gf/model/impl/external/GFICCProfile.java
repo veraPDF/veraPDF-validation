@@ -78,7 +78,7 @@ public class GFICCProfile extends GFExternal implements org.verapdf.model.extern
 	/**
 	 * Indicate validity of icc profile.
 	 *
-	 * @return true if profile is valid, false if ICC header is less then 128
+	 * @return true if profile is valid, false if ICC header is less than 128
 	 * bytes or stream cannot be read. Other checks should be implemented by
 	 * customer.
 	 */

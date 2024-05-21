@@ -34,7 +34,7 @@ public class GFCMapFile extends GFExternal implements CMapFile {
 
     private static final Logger LOGGER = Logger.getLogger(GFCMapFile.class.getCanonicalName());
 
-    private org.verapdf.pd.font.cmap.CMapFile cMapFile;
+    private final org.verapdf.pd.font.cmap.CMapFile cMapFile;
 
     /**
      * Type name for GFCMapFile
@@ -56,7 +56,7 @@ public class GFCMapFile extends GFExternal implements CMapFile {
      */
     @Override
     public Long getWMode() {
-        return new Long(cMapFile.getWMode());
+        return (long) cMapFile.getWMode();
     }
 
     /**
@@ -64,11 +64,11 @@ public class GFCMapFile extends GFExternal implements CMapFile {
      */
     @Override
     public Long getdictWMode() {
-        return new Long(cMapFile.getDictWMode());
+        return (long) cMapFile.getDictWMode();
     }
 
     @Override
     public Long getmaximalCID() {
-        return new Long(this.cMapFile.getMaxCID());
+        return (long) this.cMapFile.getMaxCID();
     }
 }

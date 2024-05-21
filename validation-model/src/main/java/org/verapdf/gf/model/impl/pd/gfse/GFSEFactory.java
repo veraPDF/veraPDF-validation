@@ -20,18 +20,19 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSEFactory {
 
     public static GFPDStructElem createTypedStructElem(PDStructElem structElemDictionary){
-        String standardType = getStructureElementStandardType(structElemDictionary);
-
+        StructureType standardStructureType = PDStructElem.getStructureElementStandardStructureType(structElemDictionary);
+        String standardType = standardStructureType != null ? standardStructureType.getType().getValue() : null;
+        if (PDStructElem.isMathStandardType(standardStructureType)) {
+            return new GFSEMathMLStructElem(structElemDictionary);
+        }
         if (standardType == null) {
             return new GFSENonStandard(structElemDictionary, null);
         }
@@ -146,24 +147,5 @@ public class GFSEFactory {
                     return new GFSENonStandard(structElemDictionary, standardType);
                 }
         }
-    }
-
-    public static String getStructureElementStandardType(PDStructElem pdStructElem){
-        if (StaticContainers.getFlavour() != null && (StaticContainers.getFlavour().getPart() ==
-                PDFAFlavour.Specification.ISO_19005_4 || StaticContainers.getFlavour().getPart() ==
-                PDFAFlavour.Specification.WCAG_2_1)) {
-            StructureType defaultStructureType = pdStructElem.getDefaultStructureType();
-            if (defaultStructureType != null) {
-                return defaultStructureType.getType().getValue();
-            }
-        }
-        if (StaticContainers.getFlavour() == null || StaticContainers.getFlavour().getPart() !=
-                PDFAFlavour.Specification.ISO_19005_4) {
-            StructureType type = pdStructElem.getStructureType();
-            if (type != null) {
-                return StaticContainers.getRoleMapHelper().getStandardType(type.getType());
-            }
-        }
-        return null;
     }
 }

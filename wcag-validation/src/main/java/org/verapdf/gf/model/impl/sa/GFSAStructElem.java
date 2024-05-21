@@ -29,6 +29,7 @@ import org.verapdf.model.salayer.SAStructElem;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.structure.PDMCRDictionary;
 import org.verapdf.pd.structure.PDOBJRDictionary;
+import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.wcag.algorithms.entities.*;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
@@ -67,8 +68,8 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		this.standardType = standardType;
 		COSKey key = structElemDictionary.getObject().getObjectKey();
 		id = (key != null ? (key.getNumber() + " " + key.getGeneration()) : "0 0") + " obj" +
-		     (standardType != null ? (" " + standardType) : "") +
-		     (getStructureType() != null ? (" " + ((COSName) COSName.fromValue(getStructureType())).getUnicodeValue()) : "");
+		     (standardType != null ? (' ' + standardType) : "") +
+		     (getStructureType() != null ? (' ' + ((COSName) COSName.fromValue(getStructureType())).getUnicodeValue()) : "");
 		this.isTableChild = Arrays.asList(parentsStandardTypes.split("&")).contains(TaggedPDFConstants.TABLE);
 		this.isListChild = Arrays.asList(parentsStandardTypes.split("&")).contains(TaggedPDFConstants.L);
 		this.parentsStandardTypes = parentsStandardTypes;
@@ -153,7 +154,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
 					addChunksToChildren(chunks);
 					GFSAStructElem structElem = GFSAFactory.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
-							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + "&")) + standardType);
+							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + '&')) + standardType);
 					INode childNode = new GFSANode(structElem);
 					structElem.setNode(childNode);
 					getNode().addChild(childNode);
@@ -169,9 +170,8 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 					}
 				} else if (element instanceof PDOBJRDictionary) {
 					COSObject obj = ((PDOBJRDictionary)element).getReferencedObject();
-					if (obj != null && obj.getType() == COSObjType.COS_DICT &&
-							GFSAAnnotation.LINK.equals(obj.getNameKeyStringValue(ASAtom.SUBTYPE))) {
-						getNode().addChild(new GFSAAnnotationNode(new PDAnnotation(obj)));
+					if (obj != null && obj.getType() == COSObjType.COS_DICT) {
+						getNode().addChild(new SemanticAnnot(new GFSAAnnotationNode(new PDAnnotation(obj))));
 					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
 					chunks.addAll(getChunks(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger()));
@@ -219,7 +219,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		textValue.append(textChunk.getValue());
 		getNode().addChild(new SemanticSpan(textChunk));
 		children.add(new GFSATextChunk(textChunk, (parentsStandardTypes.isEmpty() ? "" :
-				(parentsStandardTypes + "&")) + getstandardType()));
+				(parentsStandardTypes + '&')) + getstandardType()));
 		return i - number - 1;
 	}
 
@@ -277,7 +277,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		for (Object child : element.children) {
 			if (child instanceof GFSAStructElem) {
 				String elementStandardType = ((GFSAStructElem) child).getstandardType();
-				if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType)) {
+				if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType) || TaggedPDFConstants.DIV.equals(elementStandardType)) {
 					res.addAll(getChildrenStandardTypes((GFSAStructElem) child));
 				} else {
 					res.add(elementStandardType);
@@ -291,13 +291,13 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 	public String getparentStandardType() {
 		org.verapdf.pd.structure.PDStructElem parent = this.structElemDictionary.getParent();
 		if (parent != null) {
-			String parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
-			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType)) {
+			String parentStandardType = PDStructElem.getStructureElementStandardType(parent);
+			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType) || TaggedPDFConstants.DIV.equals(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;
 				}
-				parentStandardType = GFSAFactory.getStructureElementStandardType(parent);
+				parentStandardType = PDStructElem.getStructureElementStandardType(parent);
 			}
 			return parentStandardType;
 		}

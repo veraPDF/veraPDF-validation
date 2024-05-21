@@ -43,7 +43,7 @@ public class GFPD3DStream extends GFPDObject implements PD3DStream {
 
     public static final String COLOR_SPACE = "colorSpace";
 
-    private PDResourcesHandler resources;
+    private final PDResourcesHandler resources;
 
     public GFPD3DStream(org.verapdf.pd.PD3DStream simplePDObject, PDResourcesHandler resources) {
         super(simplePDObject, STREAM_3D_TYPE);

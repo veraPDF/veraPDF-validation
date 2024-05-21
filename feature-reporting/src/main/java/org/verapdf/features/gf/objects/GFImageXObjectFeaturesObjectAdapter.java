@@ -42,12 +42,12 @@ import java.util.Set;
  */
 public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeaturesObjectAdapter {
 
-    private PDXImage imageXObject;
-    private String id;
-    private String colorSpaceChild;
-    private String maskChild;
-    private String sMaskChild;
-    private Set<String> alternatesChild;
+    private final PDXImage imageXObject;
+    private final String id;
+    private final String colorSpaceChild;
+    private final String maskChild;
+    private final String sMaskChild;
+    private final Set<String> alternatesChild;
 
     /**
      * Constructs new shading features object
@@ -116,7 +116,7 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
     @Override
     public Set<String> getAlternatesChild() {
         return this.alternatesChild == null ?
-                Collections.<String>emptySet() : Collections.unmodifiableSet(this.alternatesChild);
+                Collections.emptySet() : Collections.unmodifiableSet(this.alternatesChild);
     }
 
     @Override
@@ -192,9 +192,9 @@ public class GFImageXObjectFeaturesObjectAdapter implements ImageXObjectFeatures
         return Collections.emptyList();
     }
 
-    private class GFStreamFilterAdapter implements StreamFilterAdapter{
+    private static class GFStreamFilterAdapter implements StreamFilterAdapter{
 
-        private COSObject base;
+        private final COSObject base;
 
         GFStreamFilterAdapter(COSObject base) {
             this.base = base == null ? COSObject.getEmpty() : base;

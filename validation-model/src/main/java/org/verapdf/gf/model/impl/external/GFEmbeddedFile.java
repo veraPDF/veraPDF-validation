@@ -42,6 +42,7 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.validators.ValidatorFactory;
 import org.verapdf.tools.StaticResources;
+import org.verapdf.xmp.containers.StaticXmpCoreContainers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -128,22 +129,23 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		}
 	}
 
-	// We need to save data from StaticContainers before validating embedded
+	// We need to save data from StaticContainers, StaticResources and StaticXmpCoreContainers before validating embedded
 	// documents
 	private PDDocument document;
 	private PDFAFlavour flavour;
 	private String password;
 	private TaggedPDFRoleMapHelper roleMapHelper;
 	private Map<String, List<GFPDSeparation>> separations;
+	private Map<COSKey, Set<COSKey>> structElementsRefs;
 	private List<String> inconsistentSeparations;
 	private Map<String, PDColorSpace> cachedColorSpaces;
 	private Set<String> noteIDSet;
 	private Set<COSKey> xFormKeysSet;
 	private Set<COSKey> fileSpecificationKeys;
+	private Map<COSKey, Set<COSKey>> destinationToStructParentsMap;
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
 	private Map<String, Map<String, Glyph>> cachedGlyphs;
-	private boolean validPDF;
 	private Integer lastHeadingNestingLevel;
 	private org.verapdf.pd.colors.PDColorSpace currentTransparencyColorSpace;
 
@@ -151,21 +153,24 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Map<String, CMap> cMapCache;
 	private Map<COSKey, PDStructureNameSpace> structureNameSpaceCache;
 	private Map<String, FontProgram> cachedFonts;
+	private Map<String, String> namespaceToPrefixMap;
+	private Map<String, String> prefixToNamespaceMap;
 
 	private void saveStaticContainersState() {
 		this.document = StaticResources.getDocument();
 		this.flavour = StaticContainers.getFlavour();
 		this.password = StaticResources.getPassword();
+		this.roleMapHelper = StaticResources.getRoleMapHelper();
 		this.separations = StaticContainers.getSeparations();
+		this.structElementsRefs = StaticContainers.getStructElementsRefs();
 		this.inconsistentSeparations = StaticContainers.getInconsistentSeparations();
 		this.cachedColorSpaces = StaticContainers.getCachedColorSpaces();
 		this.cachedPDFonts = StaticContainers.getCachedFonts();
-		this.roleMapHelper = StaticContainers.getRoleMapHelper();
 		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
+		this.destinationToStructParentsMap = StaticContainers.getDestinationToStructParentsMap();
 		this.noteIDSet = StaticContainers.getNoteIDSet();
 		this.xFormKeysSet = StaticContainers.getXFormKeysSet();
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
-		this.validPDF = StaticContainers.getValidPDF();
 		this.lastHeadingNestingLevel = StaticContainers.getLastHeadingNestingLevel();
 		this.cachedGlyphs = StaticContainers.getCachedGlyphs();
 		this.currentTransparencyColorSpace = StaticContainers.getCurrentTransparencyColorSpace();
@@ -178,28 +183,35 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 		Map<String, FontProgram> cachedFonts = StaticResources.getCachedFonts();
 		this.cachedFonts = cachedFonts == null ? null : new HashMap<>(cachedFonts);
+
+		this.namespaceToPrefixMap = StaticXmpCoreContainers.getNamespaceToPrefixMap();
+		this.prefixToNamespaceMap = StaticXmpCoreContainers.getPrefixToNamespaceMap();
 	}
 
 	private void restoreSavedSCState() {
 		StaticContainers.setFlavour(this.flavour);
 		StaticContainers.setSeparations(this.separations);
+		StaticContainers.setStructElementsRefs(this.structElementsRefs);
 		StaticContainers.setInconsistentSeparations(this.inconsistentSeparations);
 		StaticContainers.setCachedColorSpaces(this.cachedColorSpaces);
 		StaticContainers.setCachedFonts(this.cachedPDFonts);
-		StaticContainers.setRoleMapHelper(this.roleMapHelper);
 		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
+		StaticContainers.setDestinationToStructParentsMap(this.destinationToStructParentsMap);
 		StaticContainers.setNoteIDSet(this.noteIDSet);
 		StaticContainers.setXFormKeysSet(this.xFormKeysSet);
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
-		StaticContainers.setValidPDF(this.validPDF);
 		StaticContainers.setLastHeadingNestingLevel(this.lastHeadingNestingLevel);
 		StaticContainers.setCachedGlyphs(this.cachedGlyphs);
 		StaticContainers.setCurrentTransparencyColorSpace(this.currentTransparencyColorSpace);
 		StaticResources.setDocument(this.document);
 		StaticResources.setPassword(this.password);
+		StaticResources.setRoleMapHelper(this.roleMapHelper);
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
 		StaticResources.setFlavour(this.flavour != null ? PDFFlavour.valueOf(this.flavour.name()) : null);
+
+		StaticXmpCoreContainers.setNamespaceToPrefixMap(this.namespaceToPrefixMap);
+		StaticXmpCoreContainers.setPrefixToNamespaceMap(this.prefixToNamespaceMap);
 	}
 }

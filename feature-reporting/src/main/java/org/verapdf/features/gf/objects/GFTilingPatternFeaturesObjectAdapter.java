@@ -34,15 +34,15 @@ import java.util.Set;
  */
 public class GFTilingPatternFeaturesObjectAdapter implements TilingPatternFeaturesObjectAdapter {
 
-	private PDTilingPattern tilingPattern;
-	private String id;
-	private Set<String> extGStateChild;
-	private Set<String> colorSpaceChild;
-	private Set<String> patternChild;
-	private Set<String> shadingChild;
-	private Set<String> xobjectChild;
-	private Set<String> fontChild;
-	private Set<String> propertiesChild;
+	private final PDTilingPattern tilingPattern;
+	private final String id;
+	private final Set<String> extGStateChild;
+	private final Set<String> colorSpaceChild;
+	private final Set<String> patternChild;
+	private final Set<String> shadingChild;
+	private final Set<String> xobjectChild;
+	private final Set<String> fontChild;
+	private final Set<String> propertiesChild;
 
 	/**
 	 * Constructs new tilling pattern features object
@@ -78,37 +78,37 @@ public class GFTilingPatternFeaturesObjectAdapter implements TilingPatternFeatur
 
 	@Override
 	public Set<String> getExtGStateChild() {
-		return extGStateChild == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(extGStateChild);
+		return extGStateChild == null ? Collections.emptySet() : Collections.unmodifiableSet(extGStateChild);
 	}
 
 	@Override
 	public Set<String> getColorSpaceChild() {
-		return colorSpaceChild == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(colorSpaceChild);
+		return colorSpaceChild == null ? Collections.emptySet() : Collections.unmodifiableSet(colorSpaceChild);
 	}
 
 	@Override
 	public Set<String> getPatternChild() {
-		return patternChild == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(patternChild);
+		return patternChild == null ? Collections.emptySet() : Collections.unmodifiableSet(patternChild);
 	}
 
 	@Override
 	public Set<String> getShadingChild() {
-		return shadingChild == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(shadingChild);
+		return shadingChild == null ? Collections.emptySet() : Collections.unmodifiableSet(shadingChild);
 	}
 
 	@Override
 	public Set<String> getXObjectChild() {
-		return xobjectChild == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(xobjectChild);
+		return xobjectChild == null ? Collections.emptySet() : Collections.unmodifiableSet(xobjectChild);
 	}
 
 	@Override
 	public Set<String> getFontChild() {
-		return fontChild == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(fontChild);
+		return fontChild == null ? Collections.emptySet() : Collections.unmodifiableSet(fontChild);
 	}
 
 	@Override
 	public Set<String> getPropertiesChild() {
-		return propertiesChild == null ? Collections.<String>emptySet() : Collections.unmodifiableSet(propertiesChild);
+		return propertiesChild == null ? Collections.emptySet() : Collections.unmodifiableSet(propertiesChild);
 	}
 
 	@Override

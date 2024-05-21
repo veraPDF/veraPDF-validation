@@ -77,6 +77,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
      * Link name for open action of document
      */
     public static final String OPEN_ACTION = "OpenAction";
+    public static final String OPEN_ACTION_DESTINATION = "OpenActionDestination";
     /**
      * Link name for all outlines of document
      */
@@ -85,10 +86,6 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
      * Link name for annotations structure tree root of document
      */
     public static final String STRUCTURE_TREE_ROOT = "StructTreeRoot";
-    /**
-     * Link name for alternate presentation of names tree of document
-     */
-    public static final String ALTERNATE_PRESENTATIONS = "AlternatePresentations";
     /**
      * Link name for optional content properties of the document
      */
@@ -131,11 +128,6 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     }
 
     @Override
-    public Boolean getvalidPDF() {
-        return StaticContainers.getValidPDF();
-    }
-
-    @Override
     public Boolean getcontainsAA() {
         return this.catalog != null && this.catalog.getObject().getType().isDictionaryBased() && this.catalog.knownKey(ASAtom.AA);
     }
@@ -158,6 +150,8 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
                 return this.getOutlines();
             case OPEN_ACTION:
                 return this.getOpenAction();
+            case OPEN_ACTION_DESTINATION:
+                return this.getOpenActionDestination();
             case ACTIONS:
                 return this.getActions();
             case PAGES:
@@ -192,6 +186,15 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
             actions.add(GFPDAction.getAction(action));
         }
         return Collections.unmodifiableList(actions);
+    }
+
+    private List<PDDestination> getOpenActionDestination() {
+        List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+        COSObject openAction = this.catalog.getKey(ASAtom.OPEN_ACTION);
+        if (openAction != null && openAction.getType() == COSObjType.COS_ARRAY) {
+            destinations.add(new GFPDDestination(new org.verapdf.pd.PDDestination(openAction)));
+        }
+        return Collections.unmodifiableList(destinations);
     }
 
     private List<PDAdditionalActions> getActions() {
@@ -241,7 +244,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     private OutputIntents parseOutputIntents() {
         List<org.verapdf.pd.PDOutputIntent> outInts = document.getOutputIntents();
-        if (outInts.size() > 0) {
+        if (!outInts.isEmpty()) {
             return new GFOutputIntents(outInts);
         }
         return null;
@@ -324,5 +327,10 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
         return SQUARE_ORIENTATION.equals(twoTheMostFrequent.get(0)) && twoTheMostFrequent.size() == 2 ? twoTheMostFrequent.get(1) : twoTheMostFrequent.get(0);
+    }
+
+    @Override
+    public Boolean getcontainsXRefStream() {
+        return document.getDocument().isContainsXRefStream();
     }
 }

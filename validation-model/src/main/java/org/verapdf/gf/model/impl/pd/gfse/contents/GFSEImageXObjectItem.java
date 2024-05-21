@@ -18,9 +18,8 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
 import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
 import org.verapdf.gf.model.impl.pd.images.GFPDXImage;
 import org.verapdf.model.selayer.SEImageXObjectItem;
@@ -32,20 +31,12 @@ public class GFSEImageXObjectItem extends GFSEImageItem implements SEImageXObjec
 
     public static final String IMAGE_X_OBJECT_ITEM_TYPE = "SEImageXObjectItem";
 
-    private GFOp_Do operator;
-    private GFPDXImage image;
+    private final GFOp_Do operator;
+    private final GFPDXImage image;
 
-    public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, String parentStructureTag, String parentsTags) {
-        super(IMAGE_X_OBJECT_ITEM_TYPE, parentStructureTag, parentsTags);
+    public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, GFSEGroupedContent groupedContent) {
+        super(IMAGE_X_OBJECT_ITEM_TYPE, groupedContent);
         this.operator = operator;
         this.image = image;
     }
-
-    public GFSEImageXObjectItem(GFOp_Do operator, GFPDXImage image, GFOpMarkedContent parentMarkedContentOperator,
-                                String parentStructureTag, String parentsTags) {
-        super(IMAGE_X_OBJECT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
-        this.operator = operator;
-        this.image = image;
-    }
-
 }

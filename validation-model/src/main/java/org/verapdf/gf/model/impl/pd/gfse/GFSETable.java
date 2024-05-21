@@ -20,15 +20,14 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETable;
 import org.verapdf.model.pdlayer.PDStructElem;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.TaggedPDFConstants;
 
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.*;
 
 public class GFSETable extends GFPDStructElem implements SETable {
 
@@ -55,8 +54,9 @@ public class GFSETable extends GFPDStructElem implements SETable {
     }
 
     private void checkTable() {
-        List<GFPDStructElem> listTR = getTR();
-        int numberOfRows = listTR.size();
+        List<Integer> rowGroupingsIndexes = new LinkedList<>();
+        List<GFPDStructElem> listTR = getTR(rowGroupingsIndexes);
+        int numberOfRows = getNumberOfRows(listTR);
         this.rowSpan = (long)numberOfRows;
         if (numberOfRows == 0) {
             useHeadersAndIdOrScope = true;
@@ -65,7 +65,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
         int numberOfColumns = getNumberOfColumns(listTR.get(0));
         this.columnSpan = (long)numberOfColumns;
         GFSETableCell[][] cells = new GFSETableCell[numberOfRows][numberOfColumns];
-        if (!checkRegular(listTR, cells, numberOfRows, numberOfColumns)) {
+        if (!checkRegular(listTR, cells, numberOfRows, numberOfColumns, rowGroupingsIndexes)) {
             useHeadersAndIdOrScope = true;
             return;
         }
@@ -98,10 +98,10 @@ public class GFSETable extends GFPDStructElem implements SETable {
     }
 
     private boolean checkRegular(List<GFPDStructElem> listTR, GFSETableCell[][] cells,
-                                 int numberOfRows, int numberOfColumns) {
-        for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
+                                 int numberOfRows, int numberOfColumns, List<Integer> rowGroupingsIndexes) {
+        for (int rowNumber = 0; rowNumber < listTR.size(); rowNumber++) {
             int columnNumber = 0;
-            for (PDStructElem elem : listTR.get(rowNumber).getChildren()) {
+            for (PDStructElem elem : listTR.get(rowNumber).getStructuralSignificanceChildren()) {
                 String type = elem.getstandardType();
                 if (!TaggedPDFConstants.TD.equals(type) && !TaggedPDFConstants.TH.equals(type)) {
                     continue;
@@ -119,6 +119,14 @@ public class GFSETable extends GFPDStructElem implements SETable {
                 if (rowNumber + rowSpan > numberOfRows) {
                     this.numberOfColumnWithWrongRowSpan = (long)columnNumber;
                     return false;
+                }
+                if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_2) {
+                    for (Integer rowGroupsIndex : rowGroupingsIndexes) {
+                        if (rowNumber + rowSpan > rowGroupsIndex && rowNumber < rowGroupsIndex) {
+                            this.numberOfColumnWithWrongRowSpan = (long)columnNumber;
+                            return false;
+                        }
+                    }
                 }
                 if (!checkRegular(cells, cell, rowSpan, colSpan, rowNumber, columnNumber)) {
                     return false;
@@ -230,19 +238,21 @@ public class GFSETable extends GFPDStructElem implements SETable {
         return false;
     }
 
-    private List<GFPDStructElem> getTR() {
+    private List<GFPDStructElem> getTR(List<Integer> rowGroupingsIndexes) {
         List<GFPDStructElem> listTR = new LinkedList<>();
-        for (GFPDStructElem elem : getChildren()) {
+        for (GFPDStructElem elem : getStructuralSignificanceChildren()) {
             String type = elem.getstandardType();
             if (TaggedPDFConstants.TR.equals(type)) {
                 listTR.add(elem);
             } else if (TaggedPDFConstants.THEAD.equals(type) || TaggedPDFConstants.TBODY.equals(type) ||
                     TaggedPDFConstants.TFOOT.equals(type)) {
-                for (GFPDStructElem child : elem.getChildren()) {
+                rowGroupingsIndexes.add(listTR.size());
+                for (GFPDStructElem child : elem.getStructuralSignificanceChildren()) {
                     if (TaggedPDFConstants.TR.equals(child.getstandardType())) {
                         listTR.add(child);
                     }
                 }
+                rowGroupingsIndexes.add(listTR.size());
             }
         }
         return listTR;
@@ -250,13 +260,32 @@ public class GFSETable extends GFPDStructElem implements SETable {
 
     private Integer getNumberOfColumns(GFPDStructElem firstTR) {
         int numberOfColumns = 0;
-        for (PDStructElem elem : firstTR.getChildren()) {
+        for (PDStructElem elem : firstTR.getStructuralSignificanceChildren()) {
             String type = elem.getstandardType();
             if (TaggedPDFConstants.TH.equals(type) || TaggedPDFConstants.TD.equals(type)) {
                 numberOfColumns += ((GFSETableCell)elem).getColSpan();
             }
         }
         return numberOfColumns;
+    }
+
+    private Integer getNumberOfRows(List<GFPDStructElem> listTR) {
+        int numberOfRows = 0;
+        for (int rowNumber = 0; rowNumber < listTR.size(); rowNumber++) {
+            List<GFPDStructElem> children = listTR.get(rowNumber).getStructuralSignificanceChildren();
+            if (!children.isEmpty()) {
+                PDStructElem elem = children.get(0);
+                String type = elem.getstandardType();
+                if (TaggedPDFConstants.TH.equals(type) || TaggedPDFConstants.TD.equals(type)) {
+                    Long rowSpan = ((GFSETableCell)elem).getRowSpan();
+                    numberOfRows += rowSpan;
+                    if (rowSpan > 1) {
+                        rowNumber += rowSpan - 1;
+                    }
+                }
+            }
+        }
+        return numberOfRows;
     }
 
     private Boolean checkRegular(GFSETableCell[][] cells, GFSETableCell cell, long rowSpan, long colSpan,

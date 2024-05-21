@@ -26,17 +26,11 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.gf.model.impl.cos.GFCosStream;
-import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosStream;
 import org.verapdf.model.operator.CIDGlyph;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDCIDFont;
 import org.verapdf.pd.font.FontProgram;
 import org.verapdf.pd.font.PDFont;
-import org.verapdf.pd.font.cff.CFFCIDFontProgram;
-import org.verapdf.pd.font.cff.CFFFontProgram;
-import org.verapdf.pd.font.truetype.CIDFontType2Program;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.tools.StaticResources;
 
@@ -55,8 +49,6 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     private static final Logger LOGGER = Logger.getLogger(GFPDCIDFont.class.getCanonicalName());
 
     public static final String CID_FONT_TYPE = "PDCIDFont";
-
-    public static final String CID_SET = "CIDSet";
 
     public static final String IDENTITY = "Identity";
     public static final String CUSTOM = "Custom";
@@ -89,28 +81,6 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
         }
     }
 
-    @Override
-    public List<? extends Object> getLinkedObjects(String link) {
-        if (CID_SET.equals(link)) {
-            return this.getCIDSet();
-        }
-        return super.getLinkedObjects(link);
-    }
-
-    /**
-     * @return link to the stream containing the value of the CIDSet entry in
-     * the CID font descriptor dictionary.
-     */
-    private List<CosStream> getCIDSet() {
-        COSStream cidSet = ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet();
-        if (cidSet != null) {
-            List<CosStream> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-            list.add(new GFCosStream(cidSet));
-            return Collections.unmodifiableList(list);
-        }
-        return Collections.emptyList();
-    }
-
     /**
      * @return string representation of the CIDtoGIDMap entry ("Identity", or
      * "Custom" in case of stream value).
@@ -127,6 +97,11 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
             return IDENTITY;
         }
         return null;
+    }
+
+    @Override
+    public Boolean getcontainsCIDSet() {
+        return ((org.verapdf.pd.font.PDCIDFont) this.pdFont).getCIDSet() != null;
     }
 
     /**
@@ -154,7 +129,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
 
                 PDFAFlavour flavour = StaticContainers.getFlavour();
                 if (flavour.getPart() != PDFAFlavour.Specification.ISO_19005_1) {
-                    //on this levels we need to ensure that all glyphs present in font program are described in cid set
+                    //on these levels we need to ensure that all glyphs present in font program are described in cid set
                     List<Integer> fontCIDs = cidFont != null ? cidFont.getCIDList() : Collections.emptyList();
                     for (int cid : fontCIDs) {
                         if (cid != 0 && !bitSet.get(cid)) {

@@ -41,7 +41,7 @@ public class GFSEForm extends GFPDStructElem implements SEForm {
 
     @Override
     public String getroleAttribute() {
-        return AttributeHelper.getRole(this.simplePDObject);
+        return AttributeHelper.getRole(this.simpleCOSObject);
     }
 
     @Override
@@ -61,5 +61,22 @@ public class GFSEForm extends GFPDStructElem implements SEForm {
             }
         }
         return false;
+    }
+
+    @Override
+    public Long getwidgetAnnotsCount() {
+        int count = 0;
+        for (Object child : ((PDStructElem)this.simplePDObject).getChildren()) {
+            if (child instanceof PDOBJRDictionary) {
+                COSObject referencedObject = ((PDOBJRDictionary) child).getReferencedObject();
+                if (referencedObject != null) {
+                    COSObject subtypeValue = referencedObject.getDirectBase().getKey(ASAtom.SUBTYPE);
+                    if (subtypeValue != null && ASAtom.WIDGET.getValue().equals(subtypeValue.getDirectBase().getString())) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return (long) count;
     }
 }

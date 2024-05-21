@@ -18,30 +18,23 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.gf.model.impl.operator.inlineimage.GFOp_EI;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.selayer.SEInlineImageItem;
+import org.verapdf.model.selayer.SEImageItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSEInlineImageItem extends GFSEImageItem implements SEInlineImageItem {
+public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
 
-    public static final String INLINE_IMAGE_ITEM_TYPE = "SEInlineImageItem";
+    private static final String IMAGE_CONTENT_ITEM_TYPE = "image";
 
-    private GFOp_EI operator;
-
-    public GFSEInlineImageItem(GFOp_EI operator, String parentStructureTag, String parentsTags) {
-        super(INLINE_IMAGE_ITEM_TYPE, parentStructureTag, parentsTags);
-        this.operator = operator;
+    public GFSEImageItem(String objectType, GFSEGroupedContent groupedContent) {
+        super(objectType, groupedContent);
     }
 
-    public GFSEInlineImageItem(GFOp_EI operator, GFOpMarkedContent parentMarkedContentOperator,
-                               String parentStructureTag, String parentsTags) {
-        super(INLINE_IMAGE_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
-        this.operator = operator;
+    @Override
+    public String getitemType() {
+        return IMAGE_CONTENT_ITEM_TYPE;
     }
-
 }

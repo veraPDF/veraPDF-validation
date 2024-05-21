@@ -18,30 +18,28 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
-import org.verapdf.model.selayer.SELineArtItem;
+import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
+import org.verapdf.model.selayer.SEShadingItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSELineArtItem extends GFSESimpleContentItem implements SELineArtItem {
+public class GFSEShadingItem extends GFSESimpleContentItem implements SEShadingItem {
 
-    public static final String LINE_ART_ITEM_TYPE = "SELineArtItem";
+    public static final String SHADING_ITEM_TYPE = "SEShadingItem";
+    private static final String SHADING_CONTENT_ITEM_TYPE = "shading";
 
-    GFOpPathPaint opPathPaint;
+    private final GFOp_sh op_sh;
 
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, String structParentTag, String parentsTags) {
-        super(LINE_ART_ITEM_TYPE, structParentTag, parentsTags);
-        this.opPathPaint = opPathPaint;
+    public GFSEShadingItem(GFOp_sh op_sh, GFSEGroupedContent groupedContent) {
+        super(SHADING_ITEM_TYPE, groupedContent);
+        this.op_sh = op_sh;
     }
 
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, GFOpMarkedContent parentMarkedContentOperator,
-                           String structParentTag, String parentsTags) {
-        super(LINE_ART_ITEM_TYPE, parentMarkedContentOperator, structParentTag, parentsTags);
-        this.opPathPaint = opPathPaint;
+    @Override
+    public String getitemType() {
+        return SHADING_CONTENT_ITEM_TYPE;
     }
-
 }

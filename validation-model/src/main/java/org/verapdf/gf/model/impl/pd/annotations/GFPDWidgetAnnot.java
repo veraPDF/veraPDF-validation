@@ -28,6 +28,11 @@ import org.verapdf.model.pdlayer.PDWidgetAnnot;
 import org.verapdf.pd.PDAnnotation;
 import org.verapdf.pd.PDPage;
 import org.verapdf.pd.annotations.PDWidgetAnnotation;
+import org.verapdf.pd.form.PDFormField;
+import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.tools.StaticResources;
+import org.verapdf.tools.TaggedPDFConstants;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
 /**
  * @author Maxim Plushchov
@@ -42,11 +47,39 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 
 	@Override
 	public String getTU() {
-		if (((PDWidgetAnnotation) simplePDObject).getT() == null) {
+		if (!isField()) {
 			COSObject parent = ((PDWidgetAnnotation) simplePDObject).getParent();
 			return parent != null ? parent.getStringKey(ASAtom.TU) : null;
 		}
 		return ((PDAnnotation) simplePDObject).getTU();
+	}
+
+	private boolean isField() {
+		return PDFormField.isField(simplePDObject.getObject());
+	}
+
+	@Override
+	protected boolean isSignature() {
+		return ASAtom.SIG.equals(((PDAnnotation) simplePDObject).getFT());
+	}
+	
+	@Override
+	public Boolean getcontainsLbl() {
+		TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+		if (taggedPDFRoleMapHelper == null) {
+			return false;
+		}
+		COSObject parent = getParentDictionary();
+		if (parent != null) {
+			PDStructElem parentStructElem = new PDStructElem(parent);
+			for (PDStructElem child : parentStructElem.getStructChildren()) {
+				if (TaggedPDFConstants.LBL.equals(PDStructElem.getStructureElementStandardType(child)) && 
+						!child.getChildren().isEmpty()) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

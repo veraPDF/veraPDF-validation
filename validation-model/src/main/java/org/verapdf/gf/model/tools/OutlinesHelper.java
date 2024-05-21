@@ -39,7 +39,7 @@ public class OutlinesHelper {
 
 	public static List<PDOutline> getOutlines(PDCatalog catalog) {
 		Map<String, PDOutlineItem> outlines = getOutlinesMap(catalog);
-		if (outlines.size() > 0) {
+		if (!outlines.isEmpty()) {
 			List<PDOutline> result = new ArrayList<>(outlines.size());
 			for (Map.Entry<String, PDOutlineItem> entry : outlines.entrySet()) {
 				result.add(new GFPDOutline(entry.getValue(), entry.getKey()));

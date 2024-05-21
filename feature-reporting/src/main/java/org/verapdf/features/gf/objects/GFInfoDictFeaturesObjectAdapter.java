@@ -47,7 +47,7 @@ public class GFInfoDictFeaturesObjectAdapter implements InfoDictFeaturesObjectAd
             ASAtom.TRAPPED
     };
 
-    private COSObject info;
+    private final COSObject info;
 
     /**
      * Constructs new information dictionary feature object adapter.
@@ -108,7 +108,7 @@ public class GFInfoDictFeaturesObjectAdapter implements InfoDictFeaturesObjectAd
         if (info != null && info.getType() == COSObjType.COS_DICT) {
             Map<String, String> res = new TreeMap<>();
             Set<ASAtom> keys = new TreeSet<>(info.getKeySet());
-            keys.removeAll(Arrays.asList(predefinedKeys));
+            Arrays.asList(predefinedKeys).forEach(keys::remove);
             for (ASAtom key : keys) {
                 res.put(key.getValue(), key == ASAtom.TRAPPED ? info.getNameKeyStringValue(key) : info.getStringKey(key));
             }

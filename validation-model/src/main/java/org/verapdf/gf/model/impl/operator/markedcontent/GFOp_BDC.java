@@ -23,8 +23,8 @@ package org.verapdf.gf.model.impl.operator.markedcontent;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSKey;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
-import org.verapdf.exceptions.LoopedException;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_BDC;
@@ -36,11 +36,15 @@ import org.verapdf.tools.StaticResources;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Timur Kamalov
  */
 public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
+
+	private static final Logger LOGGER = Logger.getLogger(GFOp_BDC.class.getCanonicalName());
 
 	/** Type name for {@code GFOp_BDC} */
     public static final String OP_BDC_TYPE = "Op_BDC";
@@ -48,8 +52,8 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 
 
     public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources, GFOpMarkedContent markedContent,
-					StructureElementAccessObject structureElementAccessObject, String parentsTags) {
-		super(arguments, OP_BDC_TYPE, markedContent, parentsTags);
+					StructureElementAccessObject structureElementAccessObject, String parentsTags, boolean isRealContent) {
+		super(arguments, OP_BDC_TYPE, markedContent, parentsTags, isRealContent);
 		initializePropertiesDict(resources);
 		this.structureElementAccessObject = structureElementAccessObject;
     }
@@ -59,41 +63,39 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 			String link) {
 		switch (link) {
 			case TAG:
-				return this.getTag();
+				return this.getLinkTag();
 			case PROPERTIES:
 				return this.getPropertiesDict();
 			case LANG:
-				return this.getLang();
+				return this.getLinkLang();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	public String getstructureTag() {
+	@Override
+	public COSObject getParentStructElem() {
+		COSObject structElem = getStructElem();
+		return structElem != null ? structElem : super.getParentStructElem();
+	}
+
+	private COSObject getStructElem() {
 		Long mcid = getMCID();
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
 		if (structTreeRoot != null && mcid != null) {
 			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
 			COSObject structureElement = parentTreeRoot == null ? null : structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
-			if (structureElement != null && !structureElement.empty()) {
-				return structureElement.getNameKeyStringValue(ASAtom.S);
+			if (structureElement != null && !structureElement.empty() && structureElement.getType() != COSObjType.COS_NULL) {
+				return structureElement;
 			}
 		}
 		return null;
 	}
 
-	public String getstructParentLang() {
-		Long mcid = getMCID();
-		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
-		if (structTreeRoot == null || mcid == null) {
-			return null;
-		}
-		PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-		if (parentTreeRoot == null ) {
-			return null;
-		}
-		COSObject structureElement = structureElementAccessObject.getStructureElement(parentTreeRoot, mcid);
-		if (structureElement == null || structureElement.empty()) {
+	@Override
+	public String getStructParentLang() {
+		COSObject structureElement = getStructElem();
+		if (structureElement == null) {
 			return null;
 		}
 		String baseLang = structureElement.getStringKey(ASAtom.LANG);
@@ -102,7 +104,8 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 		while (baseLang == null && parent != null) {
 			COSKey key = parent.getObjectKey();
 			if (keys.contains(key)) {
-				throw new LoopedException("Struct tree loop found");
+				LOGGER.log(Level.WARNING, "Struct tree loop found");
+				break;
 			}
 			if (key != null) {
 				keys.add(key);

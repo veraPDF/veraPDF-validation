@@ -20,7 +20,6 @@
  */
 package org.verapdf.gf.model.impl.sa;
 
-import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.structelems.GFSAFactory;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
@@ -49,7 +48,6 @@ public class GFSAStructTreeRoot extends GenericModelObject implements SAStructTr
 	public GFSAStructTreeRoot(org.verapdf.pd.structure.PDStructTreeRoot treeRoot) {
 		super(STRUCT_TREE_ROOT_TYPE);
 		this.treeRoot = treeRoot;
-		StaticStorages.setRoleMapHelper(treeRoot.getRoleMap());
 		node = new GFSARoot(this);
 	}
 

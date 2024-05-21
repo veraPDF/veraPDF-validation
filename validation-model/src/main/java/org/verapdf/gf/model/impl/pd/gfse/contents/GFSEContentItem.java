@@ -18,31 +18,19 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.gf.model.impl.operator.shading.GFOp_sh;
-import org.verapdf.model.selayer.SEShadingItem;
+import org.verapdf.model.GenericModelObject;
+import org.verapdf.model.selayer.SEContentItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSEShadingItem extends GFSESimpleContentItem implements SEShadingItem {
+public abstract class GFSEContentItem extends GenericModelObject implements SEContentItem {
 
-    public static final String SHADING_ITEM_TYPE = "SEShadingItem";
+    public static final String CONTENT_ITEM = "contentItem";
 
-    private GFOp_sh op_sh;
-
-    public GFSEShadingItem(GFOp_sh op_sh, String parentStructureTag, String parentsTags) {
-        super(SHADING_ITEM_TYPE, parentStructureTag, parentsTags);
-        this.op_sh = op_sh;
+    public GFSEContentItem(String objectType) {
+        super(objectType);
     }
-
-    public GFSEShadingItem(GFOp_sh op_sh, GFOpMarkedContent parentMarkedContentOperator,
-                           String parentStructureTag, String parentsTags) {
-        super(SHADING_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
-        this.op_sh = op_sh;
-
-    }
-
 }

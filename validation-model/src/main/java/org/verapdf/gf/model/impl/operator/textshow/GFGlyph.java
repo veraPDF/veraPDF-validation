@@ -48,7 +48,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     private static final Logger LOGGER = Logger.getLogger(GFGlyph.class.getCanonicalName());
 
-    public final static String GLYPH_TYPE = "Glyph";
+    public static final String GLYPH_TYPE = "Glyph";
 
     private final String id;
 
@@ -56,18 +56,20 @@ public class GFGlyph extends GenericModelObject implements Glyph {
     private Double widthFromDictionary;
     private Double widthFromFontProgram;
     private String name;
-    private String toUnicode;
-    private Long renderingMode;
-    private GFOpMarkedContent markedContent;
-    private StructureElementAccessObject structureElementAccessObject;
+    private final String toUnicode;
+    private final Long renderingMode;
+    private final GFOpMarkedContent markedContent;
+    private final StructureElementAccessObject structureElementAccessObject;
 
-    protected GFGlyph(PDFont font, int glyphCode, int renderingMode, String id,
-                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject) {
-        this(font, glyphCode, renderingMode, id, markedContent, structureElementAccessObject, GLYPH_TYPE);
+    private final boolean isRealContent;
+
+    protected GFGlyph(PDFont font, int glyphCode, int renderingMode, String id, GFOpMarkedContent markedContent, 
+                      StructureElementAccessObject structureElementAccessObject, boolean isRealContent) {
+        this(font, glyphCode, renderingMode, id, markedContent, structureElementAccessObject, isRealContent, GLYPH_TYPE);
     }
 
     protected GFGlyph(PDFont font, int glyphCode, int renderingMode, String id,
-                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject, String type) {
+                   GFOpMarkedContent markedContent, StructureElementAccessObject structureElementAccessObject, boolean isRealContent, String type) {
         super(type);
 
         FontProgram fontProgram = font.getFontProgram();
@@ -79,7 +81,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         } else {
             initForType3(font, glyphCode);
         }
-        this.renderingMode = Long.valueOf(renderingMode);
+        this.renderingMode = (long) renderingMode;
         this.markedContent = markedContent;
         this.structureElementAccessObject = structureElementAccessObject;
 
@@ -112,15 +114,15 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         } else {
             this.toUnicode = font.toUnicode(glyphCode);
         }
-        getactualTextPresent();
         this.id = id;
+        this.isRealContent = isRealContent;
     }
 
     public static Glyph getGlyph(PDFont font, int glyphCode, int renderingMode, GFOpMarkedContent markedContent,
-                                 StructureElementAccessObject structureElementAccessObject) {
+                                 StructureElementAccessObject structureElementAccessObject, boolean isRealContent) {
         String fontId = GFIDGenerator.generateID(font);
         String id = GFIDGenerator.generateID(fontId,
-                font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject);
+                font.getName(), glyphCode, renderingMode, markedContent, structureElementAccessObject, isRealContent);
         Glyph cachedGlyph = null;
         Map<String, Glyph> map = StaticContainers.getCachedGlyphs().get(fontId);
         if (map != null) {
@@ -130,10 +132,10 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             if (font.getSubtype() == ASAtom.CID_FONT_TYPE0 || font.getSubtype() == ASAtom.CID_FONT_TYPE2 ||
                     font.getSubtype() == ASAtom.TYPE0) {
                 cachedGlyph = new GFCIDGlyph(font, glyphCode, renderingMode, id,
-                        markedContent, structureElementAccessObject);
+                        markedContent, structureElementAccessObject, isRealContent);
             } else {
                 cachedGlyph = new GFGlyph(font, glyphCode, renderingMode, id,
-                        markedContent, structureElementAccessObject, GLYPH_TYPE);
+                        markedContent, structureElementAccessObject, isRealContent);
             }
             if (map == null) {
                 map = new HashMap<>();
@@ -179,7 +181,6 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         } catch (IOException e) {
             LOGGER.log(Level.FINE, "Error in parsing font program", e);
-            StaticContainers.setValidPDF(false);
         }
     }
 
@@ -198,10 +199,10 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     private static Boolean checkWidths(int glyphCode, PDFont font) {
         Double fontWidth = font.getWidth(glyphCode);
-        double expectedWidth = fontWidth == null ? 0 : fontWidth.doubleValue();
+        double expectedWidth = fontWidth == null ? 0 : fontWidth;
         double foundWidth = font.getWidthFromProgram(glyphCode);
         if (foundWidth == -1) {
-            foundWidth = font.getDefaultWidth() == null ? 0 : font.getDefaultWidth().doubleValue();
+            foundWidth = font.getDefaultWidth() == null ? 0 : font.getDefaultWidth();
         }
         // consistent is defined to be a difference of no more than 1/1000 unit.
         return Math.abs(foundWidth - expectedWidth) > 1 ? Boolean.FALSE : Boolean.TRUE;
@@ -249,6 +250,16 @@ public class GFGlyph extends GenericModelObject implements Glyph {
 
     @Override
     public Boolean getactualTextPresent() {
-        return MarkedContentHelper.containsActualText(markedContent, structureElementAccessObject);
+        return MarkedContentHelper.containsStringKey(ASAtom.ACTUAL_TEXT, markedContent, structureElementAccessObject);
+    }
+
+    @Override
+    public Boolean getaltPresent() {
+        return MarkedContentHelper.containsStringKey(ASAtom.ALT, markedContent, structureElementAccessObject);
+    }
+
+    @Override
+    public Boolean getisRealContent() {
+        return isRealContent;
     }
 }

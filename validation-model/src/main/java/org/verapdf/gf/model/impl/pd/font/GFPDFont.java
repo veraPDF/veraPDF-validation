@@ -98,7 +98,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
      */
     @Override
     public Long getrenderingMode() {
-        return Long.valueOf(this.renderingMode.getValue());
+        return (long) this.renderingMode.getValue();
     }
 
     @Override
@@ -151,7 +151,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
             }
 			if (TYPE0_STRING.equals(this.getSubtype())) {
 			    GFFontProgram font = new GFFontProgram(fontProgram,
-			            (GFPDFont) ((GFPDType0Font) this).getLinkedObjects(GFPDType0Font.DESCENDANT_FONTS).get(0));
+			            (GFPDFont) ((GFPDType0Font) this).getDescendantFont());
 			    return getFontProgramList(font);
 			}
 			GFFontProgram font = new GFFontProgram(fontProgram,
@@ -173,7 +173,7 @@ public class GFPDFont extends GFPDResource implements PDFont {
     private List<CosUnicodeName> getBaseFont() {
         String name = this.pdFont.getName();
         if (name != null) {
-            ArrayList<CosUnicodeName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            List<CosUnicodeName> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
             list.add(new GFCosUnicodeName((COSName)
                     COSName.construct(ASAtom.getASAtom(name)).get()));
             return Collections.unmodifiableList(list);

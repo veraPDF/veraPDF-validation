@@ -74,7 +74,7 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
     }
 
     /**
-     * @return link to the embedded CMap file for an non-standard CMap.
+     * @return link to the embedded CMap file for a non-standard CMap.
      */
     private List<CMapFile> getEmbeddedFile() {
         if (this.pdcMap.getcMap().getType() == COSObjType.COS_STREAM) {

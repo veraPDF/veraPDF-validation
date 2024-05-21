@@ -18,23 +18,23 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.annotations;
 
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.selayer.SEImageItem;
+import org.verapdf.gf.model.impl.pd.GFPDAnnot;
+import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.pdlayer.PDMovieAnnot;
+import org.verapdf.pd.PDAnnotation;
+import org.verapdf.pd.PDPage;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
+public class GFPDMovieAnnot extends GFPDAnnot implements PDMovieAnnot {
 
-    public GFSEImageItem(String objectType, String parentStructureTag, String parentsTags) {
-        super(objectType, parentStructureTag, parentsTags);
-    }
+	public static final String MOVIE_ANNOTATION_TYPE = "PDMovieAnnot";
 
-    public GFSEImageItem(String objectType, GFOpMarkedContent parentMarkedContentOperator,
-                         String parentStructureTag, String parentsTags) {
-        super(objectType, parentMarkedContentOperator, parentStructureTag, parentsTags);
-    }
+	public GFPDMovieAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
+		super(annot, pageResources, page, MOVIE_ANNOTATION_TYPE);
+	}
 
 }

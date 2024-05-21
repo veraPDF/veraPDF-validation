@@ -51,12 +51,12 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 	public static final String DESCENDANT_FONTS = "DescendantFonts";
 	public static final String ENCODING = "Encoding";
 
-	private PDCIDFont descendantFont;
+	private final PDCIDFont descendantFont;
 	private org.verapdf.pd.font.PDCIDFont cidFont;
 
 	public GFPDType0Font(org.verapdf.pd.font.PDType0Font font, RenderingMode renderingMode) {
 		super(font, renderingMode, TYPE_0_FONT_TYPE);
-		this.descendantFont = this.getDescendantFont();
+		this.descendantFont = this.calculateDescendantFont();
 		((org.verapdf.pd.font.PDType0Font) this.pdFont).setFontProgramFromDescendant(this.cidFont);
 		this.fontProgramParsed = this.descendantFont != null
 				&& ((GFPDCIDFont) this.descendantFont).isFontProgramParsed();
@@ -87,15 +87,18 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 		return Collections.emptyList();
 	}
 
-	private PDCIDFont getDescendantFont() {
+	public PDCIDFont getDescendantFont() {
+		return this.descendantFont;
+	}
+
+	private PDCIDFont calculateDescendantFont() {
 		COSDictionary cidFontDict = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getDescendantFont();
 		if (cidFontDict != null) {
 			org.verapdf.pd.font.PDCIDFont cidFont = new org.verapdf.pd.font.PDCIDFont(cidFontDict,
 					((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getCMapFile(),
 					this.pdFont.getFontProgram(), this.pdFont.isSuccessfullyParsed());
 			this.cidFont = cidFont;
-			PDCIDFont pdCIDFont = new GFPDCIDFont(cidFont, renderingMode, GFIDGenerator.generateID(this.pdFont));
-			return pdCIDFont;
+			return new GFPDCIDFont(cidFont, renderingMode, GFIDGenerator.generateID(this.pdFont));
 		}
 		return null;
 	}

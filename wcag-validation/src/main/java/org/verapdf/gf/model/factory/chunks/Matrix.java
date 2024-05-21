@@ -41,7 +41,7 @@ public class Matrix implements Cloneable {
 		matrixArray = new double[] {1, 0, 0, 1, 0, 0};
 	}
 
-	private Matrix(double[] src) {
+	public Matrix(double[] src) {
 		matrixArray = src;
 	}
 
@@ -208,12 +208,12 @@ public class Matrix implements Cloneable {
 	@Override
 	public String toString() {
 		return "[" +
-		       matrixArray[0] + "," +
-		       matrixArray[1] + "," +
-		       matrixArray[2] + "," +
-		       matrixArray[3] + "," +
-		       matrixArray[4] + "," +
-		       matrixArray[5] + "]";
+		       matrixArray[0] + ',' +
+		       matrixArray[1] + ',' +
+		       matrixArray[2] + ',' +
+		       matrixArray[3] + ',' +
+		       matrixArray[4] + ',' +
+		       matrixArray[5] + ']';
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import org.verapdf.gf.model.impl.sa.*;
 import org.verapdf.wcag.algorithms.entities.IAttributesDictionary;
 import org.verapdf.wcag.algorithms.entities.INode;
+import org.verapdf.wcag.algorithms.entities.SemanticAnnot;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 		super(t);
 	}
 
+	@Override
 	public void serialize(GFSAStructElem elem, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 			throws IOException {
 
@@ -34,7 +36,7 @@ public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 			jsonGenerator.writeNumberField("rowSpan", AttributesDictionary.getRowSpan());
 			jsonGenerator.writeEndObject();
 		}
-		if (!elem.getChildren().isEmpty()) {
+		if (!elem.getChildren().isEmpty() || !elem.getNode().getChildren().isEmpty()) {
 			jsonGenerator.writeFieldName("children");
 			jsonGenerator.writeStartArray();
 			for (Object child : elem.getChildren()) {
@@ -49,8 +51,8 @@ public class NodeSerializer extends StdSerializer<GFSAStructElem> {
 				}
 			}
 			for (INode child : elem.getNode().getChildren()) {
-				if (child instanceof GFSAAnnotationNode) {
-					jsonGenerator.writeObject(child);
+				if (child instanceof SemanticAnnot) {
+					jsonGenerator.writeObject(((SemanticAnnot)child).getAnnots().get(0));
 				}
 			}
 			jsonGenerator.writeEndArray();

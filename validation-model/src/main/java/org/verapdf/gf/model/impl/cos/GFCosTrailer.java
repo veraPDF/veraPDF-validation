@@ -22,12 +22,10 @@ package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
-import org.verapdf.cos.COSIndirect;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDEncryption;
 import org.verapdf.model.baselayer.Object;
-import org.verapdf.model.coslayer.CosIndirect;
 import org.verapdf.model.coslayer.CosInfo;
 import org.verapdf.model.coslayer.CosTrailer;
 import org.verapdf.model.pdlayer.PDEncryption;
@@ -35,7 +33,6 @@ import org.verapdf.model.pdlayer.PDEncryption;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -48,7 +45,6 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 	/** Type name for GFCosTrailer */
 	public static final String COS_TRAILER_TYPE = "CosTrailer";
 
-	public static final String CATALOG = "Catalog";
 	public static final String ENCRYPT = "Encrypt";
 	public static final String INFO = "Info";
 
@@ -74,8 +70,6 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
-			case CATALOG:
-				return this.getCatalog();
 			case ENCRYPT:
 				return this.getEncrypt();
 			case INFO:
@@ -104,16 +98,4 @@ public class GFCosTrailer extends GFCosDict implements CosTrailer {
 		}
 		return Collections.emptyList();
 	}
-
-	private List<CosIndirect> getCatalog() {
-		List<CosIndirect> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-		COSObject catalog = this.baseObject.getKey(ASAtom.ROOT);
-		if (catalog.isIndirect().booleanValue()) {
-			result.add(new GFCosIndirect((COSIndirect) catalog.get()));
-		} else {
-			LOGGER.log(Level.WARNING, "Catalog shall be an indirect reference");
-		}
-		return Collections.unmodifiableList(result);
-	}
-
 }

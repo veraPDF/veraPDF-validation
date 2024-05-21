@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSDictionary;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
@@ -66,7 +67,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 	}
 
 	private List<PDOCConfig> getD() {
-		List<PDOCConfig> result = new ArrayList<>();
+		List<PDOCConfig> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 
 		COSObject contentProperties = this.simplePDObject.getObject();
 		if (contentProperties.getType() == COSObjType.COS_DICT) {
@@ -104,8 +105,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 
 		if (!configs.empty() && configs.getType() == COSObjType.COS_ARRAY) {
 			List<PDOCConfig> result = new ArrayList<>();
-			for (int i = 0; i < configs.size().intValue(); i++) {
-				COSObject config = configs.at(i);
+			for (COSObject config : (COSArray)configs.getDirectBase()) {
 				if (!config.empty() && config.getType() == COSObjType.COS_DICT) {
 					PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(config), groupNamesList, names.contains(config.getStringKey(ASAtom.NAME)));
 					String name = pdConfig.getName();
@@ -136,4 +136,16 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 		return result;
 	}
 
+	@Override
+	public Boolean getcontainsConfigs() {
+		COSObject configs = this.simplePDObject.getKey(ASAtom.CONFIGS);
+		if (!configs.empty() && configs.getType() == COSObjType.COS_ARRAY) {
+			for (COSObject config : (COSArray)configs.getDirectBase()) {
+				if (!config.empty() && config.getType() == COSObjType.COS_DICT) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

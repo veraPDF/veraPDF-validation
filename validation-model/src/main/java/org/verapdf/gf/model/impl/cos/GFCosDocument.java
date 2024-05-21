@@ -97,8 +97,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
 		this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
 		PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
-		if (specification == PDFAFlavour.Specification.ISO_19005_3
-				|| specification == PDFAFlavour.Specification.ISO_19005_4) {
+		if (specification == PDFAFlavour.Specification.ISO_19005_3) {
 			FileSpecificationKeysHelper.registerFileSpecificationKeys(cosDocument);
 		}
 	}
@@ -112,7 +111,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Long getnrIndirects() {
-		return Long.valueOf(this.indirectObjectCount);
+		return this.indirectObjectCount;
 	}
 
 	/**
@@ -120,12 +119,12 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Double getheaderVersion() {
-		return Double.valueOf(this.headerVersion);
+		return (double) this.headerVersion;
 	}
 
 	@Override
 	public Long getheaderOffset() {
-		return Long.valueOf(this.headerOffset);
+		return this.headerOffset;
 	}
 
 	@Override
@@ -135,22 +134,22 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	@Override
 	public Long getheaderByte1() {
-		return Long.valueOf(this.headerCommentByte1);
+		return (long) this.headerCommentByte1;
 	}
 
 	@Override
 	public Long getheaderByte2() {
-		return Long.valueOf(this.headerCommentByte2);
+		return (long) this.headerCommentByte2;
 	}
 
 	@Override
 	public Long getheaderByte3() {
-		return Long.valueOf(this.headerCommentByte3);
+		return (long) this.headerCommentByte3;
 	}
 
 	@Override
 	public Long getheaderByte4() {
-		return Long.valueOf(this.headerCommentByte4);
+		return (long) this.headerCommentByte4;
 	}
 
 	/**
@@ -166,7 +165,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Long getpostEOFDataSize() {
-		return Long.valueOf(this.postEOFDataSize);
+		return (long) this.postEOFDataSize;
 	}
 
 	/**
@@ -231,14 +230,6 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	@Override
 	public Boolean getisLinearized() {
 		return this.isLinearised;
-	}
-
-	/**
-	 * @return true if XMP content matches Info dictionary content
-	 */
-	@Override
-	public Boolean getdoesInfoMatchXMP() {
-		return XMPChecker.doesInfoMatchXMP(cosDocument);
 	}
 
 	@Override
@@ -342,13 +333,11 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 
 	private static String getRequirementsString(COSArray reqArray) {
 		StringBuilder result = new StringBuilder();
-		Iterator<COSObject> iterator = reqArray.iterator();
-		while (iterator.hasNext()) {
-			COSObject element = iterator.next();
+		for (COSObject element : reqArray) {
 			COSBase base = element.getDirectBase();
 			if (base.getType() == COSObjType.COS_DICT) {
 				result.append(getRequirementsString((COSDictionary) base));
-				result.append(" ");
+				result.append(' ');
 			}
 		}
 		return result.toString();
@@ -364,7 +353,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Boolean getNeedsRendering() {
-		if (!catalog.knownKey(ASAtom.NEEDS_RENDERING).booleanValue()) {
+		if (!catalog.knownKey(ASAtom.NEEDS_RENDERING)) {
 			return Boolean.FALSE;
 		}
 		return catalog.getBooleanKey(ASAtom.NEEDS_RENDERING);
@@ -423,7 +412,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		Map<String, COSObject> names = node.getNames();
 		for (COSObject value : names.values()) {
 			if (value != null && value.getType().isDictionaryBased()) {
-				files.add(new GFCosFileSpecification((COSDictionary) value.getDirectBase()));
+				files.add(new GFCosFileSpecification((COSDictionary) value.getDirectBase(), true));
 			}
 		}
 		for (PDNameTreeNode kid : node.getKids()) {
@@ -465,7 +454,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private List<org.verapdf.model.salayer.SAPDFDocument> getdocument() {
-		if (StaticContainers.getFlavour() == PDFAFlavour.WCAG2_1 &&
+		if (StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG &&
 				StaticResources.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
 			List<org.verapdf.model.salayer.SAPDFDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFSAPDFDocument(StaticResources.getDocument()));

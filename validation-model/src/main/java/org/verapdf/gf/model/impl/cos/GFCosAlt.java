@@ -18,22 +18,19 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.cos;
 
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.model.selayer.SESimpleContentItem;
+import org.verapdf.cos.COSString;
+import org.verapdf.model.coslayer.CosAlt;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSESimpleContentItem extends GFSEContentItem implements SESimpleContentItem {
+public class GFCosAlt extends GFCosString implements CosAlt {
 
-    public GFSESimpleContentItem(String objectType, String parentStructureTag, String parentsTags) {
-        super(objectType, parentStructureTag, parentsTags);
-    }
+    public static final String COS_ALT_TYPE = "CosAlt";
 
-    public GFSESimpleContentItem(String objectType, GFOpMarkedContent parentMarkedContentOperator,
-                                 String parentStructureTag, String parentsTags) {
-        super(objectType, parentMarkedContentOperator, parentStructureTag, parentsTags);
+    public GFCosAlt(COSString cosString) {
+        super(cosString, COS_ALT_TYPE);
     }
 }

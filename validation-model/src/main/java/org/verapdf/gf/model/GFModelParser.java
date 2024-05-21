@@ -23,6 +23,7 @@ package org.verapdf.gf.model;
 import org.verapdf.parser.PDFFlavour;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.containers.StaticXmpCoreContainers;
 import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.ReleaseDetails;
 import org.verapdf.component.ComponentDetails;
@@ -65,7 +66,7 @@ public class GFModelParser implements PDFAParser {
 
 	private static final String PDFUA_PREFIX = "ua";
 
-	private PDDocument document;
+	private final PDDocument document;
 
 	private final PDFAFlavour flavour;
 
@@ -167,11 +168,11 @@ public class GFModelParser implements PDFAParser {
 		}
 		try (InputStream is = metadata.getStream()) {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
-			Integer identificationPart = veraPDFMeta.getIdentificationPart();
-			String identificationConformance = veraPDFMeta.getIdentificationConformance();
+			Integer identificationPart = veraPDFMeta.getPDFAIdentificationPart();
+			String identificationConformance = veraPDFMeta.getPDFAIdentificationConformance();
 			String prefix = "";
 			if (identificationPart == null && identificationConformance == null) {
-				identificationPart = veraPDFMeta.getUAIdentificationPart();
+				identificationPart = veraPDFMeta.getPDFUAIdentificationPart();
 				if (identificationPart != null) {
 					prefix = PDFUA_PREFIX;
 				}
@@ -180,15 +181,11 @@ public class GFModelParser implements PDFAParser {
 				identificationConformance = "";
 			}
 			PDFAFlavour pdfaFlavour = PDFAFlavour.byFlavourId(prefix + identificationPart + identificationConformance);
-			// TODO: remove that logic after updating NO_FLAVOUR into base pdf validation flavour
 			if (pdfaFlavour == PDFAFlavour.NO_FLAVOUR) {
 				return defaultFlavour;
 			}
 			return pdfaFlavour;
-		} catch (XMPException e) {
-			logger.log(Level.FINE, e.getMessage(), e);
-			return defaultFlavour;
-		} catch (IOException e) {
+		} catch (XMPException | IOException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
 			return defaultFlavour;
 		}
@@ -207,6 +204,7 @@ public class GFModelParser implements PDFAParser {
 	private static void clearStaticContainers() {
 		StaticContainers.clearAllContainers();
 		StaticResources.clear();
+		StaticXmpCoreContainers.clearAllContainers();
 	}
 
 	/**

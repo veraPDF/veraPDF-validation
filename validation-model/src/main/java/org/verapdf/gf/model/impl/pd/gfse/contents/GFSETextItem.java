@@ -18,15 +18,10 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.gfse;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BDC;
 import org.verapdf.gf.model.impl.operator.textshow.GFOpTextShow;
-import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.selayer.SETextItem;
-
-import java.util.List;
 
 /**
  * @author Maxim Plushchov
@@ -34,19 +29,13 @@ import java.util.List;
 public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     public static final String TEXT_ITEM_TYPE = "SETextItem";
+    private static final String TEXT_CONTENT_ITEM_TYPE = "text";
 
     private final GFOpTextShow opTextShow;
-    private final String defaultLang;
 
-    public GFSETextItem(GFOpTextShow opTextShow, String parentStructureTag, String parentsTags, String defaultLang) {
-        this(opTextShow, null, parentStructureTag, parentsTags, defaultLang);
-    }
-
-    public GFSETextItem(GFOpTextShow opTextShow, GFOpMarkedContent parentMarkedContentOperator,
-                        String parentStructureTag, String parentsTags, String defaultLang) {
-        super(TEXT_ITEM_TYPE, parentMarkedContentOperator, parentStructureTag, parentsTags);
+    public GFSETextItem(GFOpTextShow opTextShow, GFSEGroupedContent groupedContent) {
+        super(TEXT_ITEM_TYPE, groupedContent);
         this.opTextShow = opTextShow;
-        this.defaultLang = defaultLang;
     }
 
     @Override
@@ -61,20 +50,11 @@ public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
 
     @Override
     public String getLang() {
-        if (parentMarkedContentOperator == null) {
-            return null;
-        }
-        List<CosLang> lang =  parentMarkedContentOperator.getLang();
-        if (lang != null && lang.size() != 0) {
-            return lang.get(0).getunicodeValue();
-        }
-        if (GFOp_BDC.OP_BDC_TYPE.equals(parentMarkedContentOperator.getObjectType())) {
-            String structParentLang = ((GFOp_BDC)parentMarkedContentOperator).getstructParentLang();
-            if (structParentLang != null) {
-                return structParentLang;
-            }
-        }
-        String parentLang = parentMarkedContentOperator.getParentLang();
-        return parentLang != null ? parentLang : this.defaultLang;
+        return groupedContent.getLangValue();
+    }
+
+    @Override
+    public String getitemType() {
+        return TEXT_CONTENT_ITEM_TYPE;
     }
 }

@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class GFMetadataFeaturesObjectAdapter implements MetadataFeaturesObjectAdapter {
 
-    private PDMetadata metadata;
+    private final PDMetadata metadata;
 
     /**
      * Constructs new Metadata Feature Object adapter

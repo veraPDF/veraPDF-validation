@@ -34,7 +34,7 @@ public class GFPDICCBasedCMYK extends GFPDICCBased implements PDICCBasedCMYK {
 
     public GFPDICCBasedCMYK(org.verapdf.pd.colors.PDICCBased simplePDObject, int op, boolean overprintingFlag) {
         super(simplePDObject, ICC_BASED_CMYK_TYPE);
-        this.opm = Long.valueOf(op);
+        this.opm = (long) op;
         this.overprintingFlag = overprintingFlag;
     }
 

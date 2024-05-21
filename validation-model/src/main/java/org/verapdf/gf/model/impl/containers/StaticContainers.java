@@ -20,10 +20,8 @@
  */
 package org.verapdf.gf.model.impl.containers;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
-import org.verapdf.tools.TaggedPDFRoleMapHelper;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.model.pdlayer.PDFont;
@@ -38,12 +36,11 @@ public class StaticContainers {
 
 	private static final ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
 
-	// TaggedPDF
-	private static final ThreadLocal<TaggedPDFRoleMapHelper> roleMapHelper = new ThreadLocal<>();
-
 	//GFPDSeparation
 	private static final ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
 	private static final ThreadLocal<List<String>> inconsistentSeparations = new ThreadLocal<>();
+
+	private static final ThreadLocal<Map<COSKey, Set<COSKey>>> structElementsRefs = new ThreadLocal<>();
 
 	//ColorSpaceFactory
 	private static final ThreadLocal<Map<String, PDColorSpace>> cachedColorSpaces = new ThreadLocal<>();
@@ -53,8 +50,9 @@ public class StaticContainers {
 
 	private static final ThreadLocal<Set<COSKey>> fileSpecificationKeys = new ThreadLocal<>();
 
+	private static final ThreadLocal<Map<COSKey, Set<COSKey>>> destinationToStructParentsMap = new ThreadLocal<>();
+
 	private static final ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
-	private static final ThreadLocal<Boolean> validPDF = new ThreadLocal<>();
 
 	private static final ThreadLocal<Map<String, Map<String, Glyph>>> cachedGlyphs = new ThreadLocal<>();
 
@@ -70,16 +68,16 @@ public class StaticContainers {
 
 	public static void clearAllContainers() {
 		flavour.set(null);
-		roleMapHelper.set(null);
 		separations.set(new HashMap<>());
+		structElementsRefs.set(new HashMap<>());
 		inconsistentSeparations.set(new ArrayList<>());
 		cachedColorSpaces.set(new HashMap<>());
 		cachedFonts.set(new HashMap<>());
 		fileSpecificationKeys.set(new HashSet<>());
+		destinationToStructParentsMap.set(new HashMap<>());
 		transparencyVisitedContentStreams.set(new Stack<>());
 		cachedGlyphs.set(new HashMap<>());
 		noteIDSet.set(new HashSet<>());
-		validPDF.set(true);
 		lastHeadingNestingLevel.set(0);
 		currentTransparencyColorSpace.set(null);
 		xFormKeysSet.set(new HashSet<>());
@@ -93,18 +91,6 @@ public class StaticContainers {
 		StaticContainers.flavour.set(flavour);
 	}
 
-	public static TaggedPDFRoleMapHelper getRoleMapHelper() {
-		return roleMapHelper.get();
-	}
-
-	public static void setRoleMapHelper(Map<ASAtom, ASAtom> roleMap) {
-		roleMapHelper.set(new TaggedPDFRoleMapHelper(roleMap));
-	}
-
-	public static void setRoleMapHelper(TaggedPDFRoleMapHelper roleMapHelper) {
-		StaticContainers.roleMapHelper.set(roleMapHelper);
-	}
-
 	public static Map<String, List<GFPDSeparation>> getSeparations() {
 		if (separations.get() == null) {
 			separations.set(new HashMap<>());
@@ -116,6 +102,17 @@ public class StaticContainers {
 		StaticContainers.separations.set(separations);
 	}
 
+	public static Map<COSKey, Set<COSKey>> getStructElementsRefs() {
+		if (structElementsRefs.get() == null) {
+			structElementsRefs.set(new HashMap<>());
+		}
+		return structElementsRefs.get();
+	}
+
+	public static void setStructElementsRefs(Map<COSKey, Set<COSKey>> structElementsRefs) {
+		StaticContainers.structElementsRefs.set(structElementsRefs);
+	}
+
 	public static List<String> getInconsistentSeparations() {
 		if (inconsistentSeparations.get() == null) {
 			inconsistentSeparations.set(new ArrayList<>());
@@ -125,6 +122,17 @@ public class StaticContainers {
 
 	public static void setInconsistentSeparations(List<String> inconsistentSeparations) {
 		StaticContainers.inconsistentSeparations.set(inconsistentSeparations);
+	}
+
+	public static Map<COSKey, Set<COSKey>> getDestinationToStructParentsMap() {
+		if (destinationToStructParentsMap.get() == null) {
+			destinationToStructParentsMap.set(new HashMap<>());
+		}
+		return destinationToStructParentsMap.get();
+	}
+
+	public static void setDestinationToStructParentsMap(Map<COSKey, Set<COSKey>> destinationToStructParentsMap) {
+		StaticContainers.destinationToStructParentsMap.set(destinationToStructParentsMap);
 	}
 
 	public static Map<String, PDColorSpace> getCachedColorSpaces() {
@@ -191,14 +199,6 @@ public class StaticContainers {
 
 	public static void setTransparencyVisitedContentStreams(Stack<COSKey> transparencyVisitedContentStreams) {
 		StaticContainers.transparencyVisitedContentStreams.set(transparencyVisitedContentStreams);
-	}
-
-	public static boolean getValidPDF() {
-		return validPDF.get();
-	}
-
-	public static void setValidPDF(boolean validPDF) {
-		StaticContainers.validPDF.set(validPDF);
 	}
 
 	public static Integer getLastHeadingNestingLevel() {

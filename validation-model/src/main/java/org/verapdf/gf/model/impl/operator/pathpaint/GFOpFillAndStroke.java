@@ -34,7 +34,11 @@ public abstract class GFOpFillAndStroke extends GFOpPathPaint {
 
 	protected GFOpFillAndStroke(List<COSBase> arguments, final GraphicState state,
 								final PDResourcesHandler resourcesHandler, final String opType) {
-		super(arguments, state, resourcesHandler, opType);
+		super(arguments, state.isProcessColorOperators(), opType);
+		this.fillCS = getColorSpace(state, resourcesHandler, state.getFillColorSpace(), 
+				state.isOverprintingFlagNonStroke());
+		this.strokeCS = getColorSpace(state, resourcesHandler, state.getStrokeColorSpace(), 
+				state.isOverprintingFlagStroke());
 	}
 
 	@Override

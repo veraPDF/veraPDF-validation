@@ -52,8 +52,8 @@ public class PDFDocumentImpl implements PDFDocument {
 	private static final Logger LOGGER = Logger.getLogger(PDFDocumentImpl.class.getCanonicalName());
 
 	private final PDDocument document;
-	private MetadataImpl metadata;
-	private InfoDictionaryImpl info;
+	private final MetadataImpl metadata;
+	private final InfoDictionaryImpl info;
 	private boolean isUnfiltered = false;
 
 	/**
@@ -96,10 +96,8 @@ public class PDFDocumentImpl implements PDFDocument {
 	private static MetadataImpl parseMetadata(PDMetadata meta, PDDocument document) {
 		try {
 			VeraPDFMeta xmp = VeraPDFMeta.parse(meta.getStream());
-			if (xmp != null) {
-				return new MetadataImpl(xmp, meta.getObject(),
-						document.getDocument(), false);
-			}
+			return new MetadataImpl(xmp, meta.getObject(),
+					document.getDocument(), false);
 		} catch (XMPException e) {
 			LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage(), e);
 		}

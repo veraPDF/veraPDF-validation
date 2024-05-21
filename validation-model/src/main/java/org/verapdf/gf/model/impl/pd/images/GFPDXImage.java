@@ -53,7 +53,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	public static final String S_MASK = "SMask";
 
 	private List<JPEG2000> jpeg2000List = null;
-	private org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
+	private final org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
 
 	protected GFPDXImage(org.verapdf.pd.images.PDXImage simplePDObject, PDResourcesHandler resourcesHandler,
 						 org.verapdf.pd.colors.PDColorSpace inheritedFillCS) {
@@ -74,6 +74,11 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	@Override
 	public Boolean getcontainsAlternates() {
 		return simplePDObject.knownKey(ASAtom.ALTERNATES);
+	}
+
+	@Override
+	public Long getBitsPerComponent() {
+		return ((org.verapdf.pd.images.PDXImage) simplePDObject).getBitsPerComponent();
 	}
 
 	@Override
