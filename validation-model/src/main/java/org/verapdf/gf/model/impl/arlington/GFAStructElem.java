@@ -820,4 +820,38 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return getNameValue(Type);
 	}
 
+	public COSObject gettrailerCatalogStructTreeRootNamespacesValue() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
+		if (Root == null || !Root.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject StructTreeRoot = Root.getKey(ASAtom.getASAtom("StructTreeRoot"));
+		if (StructTreeRoot == null || !StructTreeRoot.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Namespaces = StructTreeRoot.getKey(ASAtom.getASAtom("Namespaces"));
+		return Namespaces;
+	}
+
+	@Override
+	public Boolean getNSIsInArraytrailerCatalogStructTreeRootNamespaces() {
+		COSObject NS = getNSValue();
+		COSObject trailerCatalogStructTreeRootNamespaces = gettrailerCatalogStructTreeRootNamespacesValue();
+		if (NS.getKey() == null) {
+			return false;
+		}
+		if (trailerCatalogStructTreeRootNamespaces != null && trailerCatalogStructTreeRootNamespaces.getType() == COSObjType.COS_ARRAY) {
+			for (COSObject object : (COSArray)trailerCatalogStructTreeRootNamespaces.getDirectBase()) {
+				if (Objects.equals(object.getKey(), NS.getKey())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 }
