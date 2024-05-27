@@ -177,4 +177,10 @@ public class GFANumberTreeNode extends GFAObject implements ANumberTreeNode {
 		return getHasTypeArray(Nums);
 	}
 
+	@Override
+	public Boolean getisNumsArraySortAscending2() {
+		COSObject Nums = getNumsValue();
+		return getisArraySortAscending(Nums, 2);
+	}
+
 }
