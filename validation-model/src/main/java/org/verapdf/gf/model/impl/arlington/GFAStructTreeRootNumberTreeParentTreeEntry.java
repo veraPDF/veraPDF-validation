@@ -96,9 +96,21 @@ public class GFAStructTreeRootNumberTreeParentTreeEntry extends GFAObject implem
 	}
 
 	@Override
+	public Boolean getHasTypeArray() {
+		COSObject entry = getValue();
+		return getHasTypeArray(entry);
+	}
+
+	@Override
 	public Boolean getHasTypeDictionary() {
 		COSObject entry = getValue();
 		return getHasTypeDictionary(entry);
+	}
+
+	@Override
+	public Boolean getHasTypeNull() {
+		COSObject entry = getValue();
+		return getHasTypeNull(entry);
 	}
 
 }
