@@ -43,6 +43,7 @@ import org.verapdf.pdfa.results.ValidationResult;
 import org.verapdf.pdfa.validation.validators.ValidatorFactory;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.xmp.containers.StaticXmpCoreContainers;
+import org.verapdf.containers.StaticCoreContainers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -177,6 +178,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 	private void restoreSavedSCState() {
 		StaticContainers.setFlavour(this.flavour);
+		StaticCoreContainers.setFlavour(this.flavour);
 		StaticContainers.setSeparations(this.separations);
 		StaticContainers.setStructElementsRefs(this.structElementsRefs);
 		StaticContainers.setInconsistentSeparations(this.inconsistentSeparations);
