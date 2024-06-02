@@ -103,7 +103,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
             if (stream != null) {
                 VeraPDFMeta metadata = VeraPDFMeta.parse(stream);
                 if (isMainMetadata) {
-                    xmp.add(new AXLMainXMPPackage(metadata, true, flavour));
+                    xmp.add(new AXLMainXMPPackage(metadata, true));
                 } else if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
                     try (InputStream mainStream = mainMetadata != null ? mainMetadata.getStream() : null) {
                         VeraPDFXMPNode mainExtensionNode = null;
@@ -111,16 +111,16 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
                             VeraPDFMeta mainMeta = VeraPDFMeta.parse(mainStream);
                             mainExtensionNode = mainMeta.getExtensionSchemasNode();
                         }
-                        xmp.add(new AXLXMPPackage(metadata, true, mainExtensionNode, flavour));
+                        xmp.add(new AXLXMPPackage(metadata, true, mainExtensionNode));
                     }
                 }
             }
         } catch (XMPException | IOException e) {
             LOGGER.log(Level.WARNING, "Problems with parsing metadata. " + e.getMessage(), e);
             if (isMainMetadata) {
-                xmp.add(new AXLMainXMPPackage(null, false, flavour));
+                xmp.add(new AXLMainXMPPackage(null, false));
             } else if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
-                xmp.add(new AXLXMPPackage(null, false, null, flavour));
+                xmp.add(new AXLXMPPackage(null, false, null));
             }
         }
         return xmp;
