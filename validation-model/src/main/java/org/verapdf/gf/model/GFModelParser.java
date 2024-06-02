@@ -24,6 +24,7 @@ import org.verapdf.parser.PDFFlavour;
 import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.xmp.XMPException;
+import org.verapdf.containers.StaticCoreContainers;
 import org.verapdf.xmp.containers.StaticXmpCoreContainers;
 import org.verapdf.xmp.impl.VeraPDFMeta;
 import org.verapdf.ReleaseDetails;
@@ -225,6 +226,7 @@ public class GFModelParser implements PDFAParser {
 	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour) {
 		StaticResources.setDocument(document);
 		StaticContainers.setFlavour(flavour);
+		StaticCoreContainers.setFlavour(flavour);
 		StaticResources.setFlavour(flavour != null ? PDFFlavour.valueOf(flavour.name()) : null);
 	}
 
@@ -234,6 +236,7 @@ public class GFModelParser implements PDFAParser {
 
 	private static void clearStaticContainers() {
 		StaticContainers.clearAllContainers();
+		StaticCoreContainers.clearAllContainers();
 		StaticResources.clear();
 		StaticXmpCoreContainers.clearAllContainers();
 	}
