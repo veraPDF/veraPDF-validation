@@ -39,9 +39,11 @@ import org.verapdf.model.coslayer.CosLang;
 import org.verapdf.model.coslayer.CosUnicodeName;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pd.structure.StructureType;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
+import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -122,6 +124,15 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	}
 
 	@Override
+	public String getnamespaceAndTag() {
+		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
+		if (type != null) {
+			return (type.getType() != null ? type.getType() : "null") + ":" + (type.getNameSpaceURI() != null ? type.getNameSpaceURI() : "null");
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean getcontainsParent() {
 		return ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent() != null;
 	}
@@ -193,7 +204,17 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	@Override
 	public Boolean getcircularMappingExist() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
-		return type != null ? StaticResources.getRoleMapHelper().circularMappingExist(type.getType()) : null;
+		if (type != null) {
+			if (StaticResources.getRoleMapHelper().circularMappingExist(type.getType())) {
+				return true;
+			}
+			if (PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0) && 
+					TaggedPDFHelper.isCircularMappingExist(type)) {
+				return true;
+			}
+			return false;
+		}
+		return null;
 	}
 
 	@Override
