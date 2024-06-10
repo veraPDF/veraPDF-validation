@@ -147,20 +147,6 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	}
 
 	@Override
-	public Boolean getStartResourceEntryIsIndexInNameTreeResources() {
-		COSObject StartResource = getStartResourceValue();
-		if (StartResource == null || StartResource.getType() != COSObjType.COS_STRING) {
-			return false;
-		}
-		COSObject Resources = getResourcesValue();
-		if (Resources == null || Resources.getType() != COSObjType.COS_DICT) {
-			return false;
-		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(Resources);
-		return nameTreeNode.containsKey(StartResource.getString());
-	}
-
-	@Override
 	public Boolean getcontainsSubtype() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
@@ -214,6 +200,20 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 	public String getTypeNameValue() {
 		COSObject Type = getTypeValue();
 		return getNameValue(Type);
+	}
+
+	@Override
+	public Boolean getStartResourceIsNameTreeResourcesIndex() {
+		COSObject StartResource = getStartResourceValue();
+		COSObject Resources = getResourcesValue();
+		if (StartResource == null || StartResource.getType() != COSObjType.COS_STRING) {
+			return false;
+		}
+		if (Resources == null || Resources.getType() != COSObjType.COS_DICT) {
+			return false;
+		}
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(Resources);
+		return nameTreeNode.containsKey(StartResource.getString());
 	}
 
 }

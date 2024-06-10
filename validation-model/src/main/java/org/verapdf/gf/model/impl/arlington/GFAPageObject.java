@@ -1209,34 +1209,6 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	@Override
-	public Boolean getTemplateInstantiatedEntryIsIndexInNameTreetrailerCatalogNamesPages() {
-		COSObject TemplateInstantiated = getTemplateInstantiatedValue();
-		if (TemplateInstantiated == null || TemplateInstantiated.getType() != COSObjType.COS_STRING) {
-			return false;
-		}
-		COSObject trailerCatalogNamesPages = gettrailerCatalogNamesPagesValue();
-		if (trailerCatalogNamesPages == null || trailerCatalogNamesPages.getType() != COSObjType.COS_DICT) {
-			return false;
-		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesPages);
-		return nameTreeNode.containsKey(TemplateInstantiated.getString());
-	}
-
-	@Override
-	public Boolean getTemplateInstantiatedEntryIsIndexInNameTreetrailerCatalogNamesTemplates() {
-		COSObject TemplateInstantiated = getTemplateInstantiatedValue();
-		if (TemplateInstantiated == null || TemplateInstantiated.getType() != COSObjType.COS_STRING) {
-			return false;
-		}
-		COSObject trailerCatalogNamesTemplates = gettrailerCatalogNamesTemplatesValue();
-		if (trailerCatalogNamesTemplates == null || trailerCatalogNamesTemplates.getType() != COSObjType.COS_DICT) {
-			return false;
-		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesTemplates);
-		return nameTreeNode.containsKey(TemplateInstantiated.getString());
-	}
-
-	@Override
 	public Boolean getcontainsThumb() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Thumb"));
 	}
@@ -1476,6 +1448,34 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		} else {
 			return this.baseObject.knownKey(ASAtom.PARENT) ? getInheritableResources(this.baseObject.getKey(ASAtom.PARENT)) : null;
 		}
+	}
+
+	@Override
+	public Boolean getTemplateInstantiatedIsNameTreetrailerCatalogNamesPagesValue() {
+		COSObject TemplateInstantiated = getTemplateInstantiatedValue();
+		COSObject trailerCatalogNamesPages = gettrailerCatalogNamesPagesValue();
+		if (TemplateInstantiated == null) {
+			return false;
+		}
+		if (trailerCatalogNamesPages == null || trailerCatalogNamesPages.getType() != COSObjType.COS_DICT) {
+			return false;
+		}
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesPages);
+		return nameTreeNode.containsValue(TemplateInstantiated);
+	}
+
+	@Override
+	public Boolean getTemplateInstantiatedIsNameTreetrailerCatalogNamesTemplatesValue() {
+		COSObject TemplateInstantiated = getTemplateInstantiatedValue();
+		COSObject trailerCatalogNamesTemplates = gettrailerCatalogNamesTemplatesValue();
+		if (TemplateInstantiated == null) {
+			return false;
+		}
+		if (trailerCatalogNamesTemplates == null || trailerCatalogNamesTemplates.getType() != COSObjType.COS_DICT) {
+			return false;
+		}
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesTemplates);
+		return nameTreeNode.containsValue(TemplateInstantiated);
 	}
 
 }
