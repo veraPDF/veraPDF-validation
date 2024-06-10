@@ -2070,4 +2070,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return getHasTypeDictionary(ViewerPreferences);
 	}
 
+	@Override
+	public Boolean getnumber0IsNumberTreePageLabelsIndex() {
+		COSObject PageLabels = getPageLabelsValue();
+		if (PageLabels == null || PageLabels.getType() != COSObjType.COS_DICT) {
+			return false;
+		}
+		PDNumberTreeNode numberTreeNode = new PDNumberTreeNode(PageLabels);
+		return numberTreeNode.containsKey(0L);
+	}
+
 }

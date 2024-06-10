@@ -74,20 +74,6 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 		return getHasTypeDictionary(entry);
 	}
 
-	@Override
-	public Boolean getEntryIsIndexInNameTreeparentRichMediaContentAssets() {
-		COSObject entry = getValue();
-		if (entry == null || entry.getType() != COSObjType.COS_STRING) {
-			return false;
-		}
-		COSObject parentRichMediaContentAssets = getparentRichMediaContentAssetsValue();
-		if (parentRichMediaContentAssets == null || parentRichMediaContentAssets.getType() != COSObjType.COS_DICT) {
-			return false;
-		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(parentRichMediaContentAssets);
-		return nameTreeNode.containsKey(entry.getString());
-	}
-
 	public COSObject getparentRichMediaContentAssetsValue() {
 		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
 			return null;
@@ -98,6 +84,20 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 		}
 		COSObject Assets = RichMediaContent.getKey(ASAtom.getASAtom("Assets"));
 		return Assets;
+	}
+
+	@Override
+	public Boolean getIsNameTreeparentRichMediaContentAssetsValue() {
+		COSObject entry = getValue();
+		COSObject parentRichMediaContentAssets = getparentRichMediaContentAssetsValue();
+		if (entry == null) {
+			return false;
+		}
+		if (parentRichMediaContentAssets == null || parentRichMediaContentAssets.getType() != COSObjType.COS_DICT) {
+			return false;
+		}
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(parentRichMediaContentAssets);
+		return nameTreeNode.containsValue(entry);
 	}
 
 }

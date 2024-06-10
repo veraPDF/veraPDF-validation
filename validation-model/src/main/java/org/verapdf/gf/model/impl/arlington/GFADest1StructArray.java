@@ -86,20 +86,6 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 		return getNameValue(entry0);
 	}
 
-	@Override
-	public Boolean getentry0EntryIsIndexInNameTreetrailerCatalogNamesDests() {
-		COSObject entry0 = getentry0Value();
-		if (entry0 == null || entry0.getType() != COSObjType.COS_STRING) {
-			return false;
-		}
-		COSObject trailerCatalogNamesDests = gettrailerCatalogNamesDestsValue();
-		if (trailerCatalogNamesDests == null || trailerCatalogNamesDests.getType() != COSObjType.COS_DICT) {
-			return false;
-		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
-		return nameTreeNode.containsKey(entry0.getString());
-	}
-
 	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -180,6 +166,20 @@ public class GFADest1StructArray extends GFAObject implements ADest1StructArray 
 		}
 		COSObject Dests = Names.getKey(ASAtom.getASAtom("Dests"));
 		return Dests;
+	}
+
+	@Override
+	public Boolean getentry0IsNameTreetrailerCatalogNamesDestsIndex() {
+		COSObject entry0 = getentry0Value();
+		COSObject trailerCatalogNamesDests = gettrailerCatalogNamesDestsValue();
+		if (entry0 == null || entry0.getType() != COSObjType.COS_STRING) {
+			return false;
+		}
+		if (trailerCatalogNamesDests == null || trailerCatalogNamesDests.getType() != COSObjType.COS_DICT) {
+			return false;
+		}
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
+		return nameTreeNode.containsKey(entry0.getString());
 	}
 
 	@Override
