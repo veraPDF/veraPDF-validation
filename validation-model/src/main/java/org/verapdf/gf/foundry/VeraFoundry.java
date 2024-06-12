@@ -58,7 +58,7 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	/**
-	 * @see org.verapdf.pdfa.VeraPDFFoundry#newPdfParser(java.io.InputStream)
+	 * @see org.verapdf.pdfa.VeraPDFFoundry#createParser(InputStream)
 	 */
 	@Override
 	public PDFAParser createParser(InputStream pdfStream) throws ModelParsingException, EncryptedPdfException {
@@ -66,8 +66,7 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	/**
-	 * @see org.verapdf.pdfa.VeraPDFFoundry#newPdfParser(java.io.InputStream,
-	 *      org.verapdf.pdfa.flavours.PDFAFlavour)
+	 * @see org.verapdf.pdfa.VeraPDFFoundry#createParser(InputStream, PDFAFlavour)
 	 */
 	@Override
 	public PDFAParser createParser(InputStream pdfStream, PDFAFlavour flavour)
@@ -127,7 +126,7 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	/**
-	 * @see org.verapdf.pdfa.VeraPDFFoundry#newMetadataFixer(org.verapdf.metadata.fixer.utils.FixerConfig)
+	 * @see VeraPDFFoundry#createMetadataFixer()
 	 */
 	@Override
 	public MetadataFixer createMetadataFixer() {
