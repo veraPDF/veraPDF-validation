@@ -60,26 +60,6 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
         super(state, EXT_G_STATE_TYPE);
     }
 
-    @Override
-    public String getTR() {
-        return getStringProperty(((org.verapdf.pd.PDExtGState) simplePDObject).getCOSTR());
-    }
-
-    @Override
-    public String getTR2() {
-        return getStringProperty(((org.verapdf.pd.PDExtGState) simplePDObject).getCOSTR2());
-    }
-
-    @Override
-    public String getSMask() {
-        return getStringProperty(((org.verapdf.pd.PDExtGState) simplePDObject).getCOSSMask());
-    }
-
-    @Override
-    public String getBM() {
-        return getStringProperty(((org.verapdf.pd.PDExtGState) simplePDObject).getCOSBM());
-    }
-
     private List<CosBM> getlinkBM() {
         COSObject BM = ((org.verapdf.pd.PDExtGState)simplePDObject).getCOSBM();
         if (BM == null || BM.empty() || BM.getType() == COSObjType.COS_NULL) {
@@ -130,17 +110,19 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
         return 2.0; // check is failed
     }
 
-    private static String getStringProperty(COSObject property) {
-        if (property == null
-                || property.empty()
-                || property.getType() == COSObjType.COS_NULL) {
-            return null;
-        }
+    @Override
+    public String getTR2NameValue() {
+        return simplePDObject.getNameKeyStringValue(ASAtom.TR2);
+    }
 
-        if (property.getType() == COSObjType.COS_NAME) {
-            return property.getName().getValue();
-        }
-		return property.toString();
+    @Override
+    public Boolean getcontainsTR() {
+        return simplePDObject.knownKey(ASAtom.TR);
+    }
+
+    @Override
+    public Boolean getcontainsTR2() {
+        return simplePDObject.knownKey(ASAtom.TR2);
     }
 
     @Override
@@ -151,6 +133,21 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
     @Override
     public Boolean getcontainsHTO() {
         return this.simplePDObject.knownKey(ASAtom.HTO);
+    }
+
+    @Override
+    public String getSMaskNameValue() {
+        return simplePDObject.getNameKeyStringValue(ASAtom.SMASK);
+    }
+
+    @Override
+    public Boolean getcontainsSMask() {
+        return simplePDObject.knownKey(ASAtom.SMASK);
+    }
+
+    @Override
+    public String getBMNameValue() {
+        return simplePDObject.getNameKeyStringValue(ASAtom.BM);
     }
 
     @Override
