@@ -12,8 +12,8 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFA_UniversalDictionaryEntry extends GFAObject implements A_UniversalDictionaryEntry {
 
-	private COSBase parentParentObject;
-	private String collectionName;
+	private final COSBase parentParentObject;
+	private final String collectionName;
 
 	public GFA_UniversalDictionaryEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "A_UniversalDictionaryEntry");

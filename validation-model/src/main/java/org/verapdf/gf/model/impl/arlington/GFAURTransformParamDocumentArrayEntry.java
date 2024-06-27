@@ -12,8 +12,8 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFAURTransformParamDocumentArrayEntry extends GFAObject implements AURTransformParamDocumentArrayEntry {
 
-	private COSBase parentParentObject;
-	private String collectionName;
+	private final COSBase parentParentObject;
+	private final String collectionName;
 
 	public GFAURTransformParamDocumentArrayEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AURTransformParamDocumentArrayEntry");

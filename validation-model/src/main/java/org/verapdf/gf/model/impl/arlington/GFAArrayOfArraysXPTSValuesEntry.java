@@ -12,8 +12,8 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFAArrayOfArraysXPTSValuesEntry extends GFAObject implements AArrayOfArraysXPTSValuesEntry {
 
-	private COSBase parentParentObject;
-	private String collectionName;
+	private final COSBase parentParentObject;
+	private final String collectionName;
 
 	public GFAArrayOfArraysXPTSValuesEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfArraysXPTSValuesEntry");

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class GFAObject extends GenericModelObject implements AObject {
 
-	private final static List<String> standardFonts = new LinkedList<>();
+	private static final List<String> standardFonts = new LinkedList<>();
 	private static final ThreadLocal<Set<COSKey>> keysSet = new ThreadLocal<>();
 	protected static final String PDF_DATE_FORMAT_REGEX = "(D:)?(\\d\\d){2,7}(([Z+-]\\d\\d'(\\d\\d'?)?)?|Z)";
 	protected final COSBase baseObject;
@@ -281,7 +281,6 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	protected static COSObject getPageObject(COSObject object) {
-		Long pageNumber = null;
 		if (object != null && object.getType() == COSObjType.COS_STRING) {
 			PDNamesDictionary names = StaticResources.getDocument().getCatalog().getNamesDictionary();
 			if (names == null) {
@@ -293,6 +292,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 			}
 			object = dests.getObject(object.getString());
 		}
+		Long pageNumber = null;
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {
 			pageNumber = object.getInteger();
 		}
