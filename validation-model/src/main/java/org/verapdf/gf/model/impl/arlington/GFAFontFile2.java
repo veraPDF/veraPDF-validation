@@ -12,7 +12,7 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFAFontFile2 extends GFAObject implements AFontFile2 {
 
-	private COSBase parentParentObject;
+	private final COSBase parentParentObject;
 
 	public GFAFontFile2(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String keyName) {
 		super(baseObject, parentObject, keyName, "AFontFile2");

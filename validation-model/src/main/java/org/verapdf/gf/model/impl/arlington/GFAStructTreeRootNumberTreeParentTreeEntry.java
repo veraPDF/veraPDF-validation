@@ -12,8 +12,8 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFAStructTreeRootNumberTreeParentTreeEntry extends GFAObject implements AStructTreeRootNumberTreeParentTreeEntry {
 
-	private COSBase parentParentObject;
-	private String collectionName;
+	private final COSBase parentParentObject;
+	private final String collectionName;
 
 	public GFAStructTreeRootNumberTreeParentTreeEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AStructTreeRootNumberTreeParentTreeEntry");
