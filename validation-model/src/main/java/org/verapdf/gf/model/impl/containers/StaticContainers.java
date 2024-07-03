@@ -34,7 +34,7 @@ import java.util.*;
  */
 public class StaticContainers {
 
-	private static final ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
+	private static final ThreadLocal<List<PDFAFlavour>> flavour = new ThreadLocal<>();
 
 	//GFPDSeparation
 	private static final ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
@@ -67,7 +67,7 @@ public class StaticContainers {
 	private static final ThreadLocal<Set<COSKey>> xFormKeysSet = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
-		flavour.set(null);
+		flavour.set(new LinkedList<>());
 		separations.set(new HashMap<>());
 		structElementsRefs.set(new HashMap<>());
 		inconsistentSeparations.set(new ArrayList<>());
@@ -83,11 +83,11 @@ public class StaticContainers {
 		xFormKeysSet.set(new HashSet<>());
 	}
 
-	public static PDFAFlavour getFlavour() {
+	public static List<PDFAFlavour> getFlavour() {
 		return flavour.get();
 	}
 
-	public static void setFlavour(PDFAFlavour flavour) {
+	public static void setFlavour(List<PDFAFlavour> flavour) {
 		StaticContainers.flavour.set(flavour);
 	}
 

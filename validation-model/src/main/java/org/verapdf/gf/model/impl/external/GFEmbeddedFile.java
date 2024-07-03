@@ -120,7 +120,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	// We need to save data from StaticContainers, StaticResources and StaticXmpCoreContainers before validating embedded
 	// documents
 	private PDDocument document;
-	private PDFAFlavour flavour;
+	private List<PDFAFlavour> flavour;
 	private String password;
 	private TaggedPDFRoleMapHelper roleMapHelper;
 	private Map<String, List<GFPDSeparation>> separations;
@@ -198,7 +198,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
-		StaticResources.setFlavour(this.flavour != null ? PDFFlavour.valueOf(this.flavour.name()) : null);
+		StaticResources.setFlavour(GFModelParser.getPDFFlavours(flavour));
 
 		StaticXmpCoreContainers.setNamespaceToPrefixMap(this.namespaceToPrefixMap);
 		StaticXmpCoreContainers.setPrefixToNamespaceMap(this.prefixToNamespaceMap);
