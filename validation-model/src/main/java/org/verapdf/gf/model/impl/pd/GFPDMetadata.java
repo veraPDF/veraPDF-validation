@@ -98,7 +98,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
 
     private List<XMPPackage> getXMPPackage() {
         List<XMPPackage> xmp = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-        PDFAFlavour flavour = StaticContainers.getFlavour();
+        List<PDFAFlavour> flavour = StaticContainers.getFlavour();
         try (InputStream stream = ((org.verapdf.pd.PDMetadata) this.simplePDObject).getStream()) {
             if (stream != null) {
                 VeraPDFMeta metadata = VeraPDFMeta.parse(stream);
