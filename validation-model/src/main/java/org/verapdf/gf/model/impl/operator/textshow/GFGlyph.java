@@ -37,6 +37,7 @@ import org.verapdf.pdfa.flavours.PDFFlavours;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -110,7 +111,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 this.name = null;
             }
         }
-        PDFAFlavour flavour = StaticContainers.getFlavour();
+        List<PDFAFlavour> flavour = StaticContainers.getFlavours();
         if (!PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_1_B) && 
                 !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_2_B) && 
                 !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_3_B)) {
