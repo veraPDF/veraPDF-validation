@@ -28,7 +28,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 		super(objectType);
 		this.baseObject = baseObject;
 		this.parentObject = parentObject;
-		if (baseObject != null && baseObject.knownKey(ASAtom.AF)) {
+		if (baseObject != null && baseObject.getType() == COSObjType.COS_DICT && baseObject.knownKey(ASAtom.AF)) {
 			processAF(baseObject);
 		}
 	}
