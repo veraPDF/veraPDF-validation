@@ -146,6 +146,11 @@ public class GFPDExtGState extends GFPDResource implements PDExtGState {
     }
 
     @Override
+    public Boolean getcontainsBM() {
+        return simplePDObject.knownKey(ASAtom.BM);
+    }
+
+    @Override
     public String getBMNameValue() {
         return simplePDObject.getNameKeyStringValue(ASAtom.BM);
     }
