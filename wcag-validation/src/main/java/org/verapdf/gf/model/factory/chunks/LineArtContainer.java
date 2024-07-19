@@ -69,8 +69,11 @@ public class LineArtContainer {
 	}
 
 	public void add(Long mcid, BoundingBox boundingBox) {
+		if (boundingBox.isEmpty()) {
+			return;
+		}
 		List<BoundingBox> list = getBoundingBoxes(mcid);
-		if (list != null) {
+		if (list != null && !StaticStorages.getIsIgnoreMCIDs()) {
 			boolean isSeparateBoundingBox = true;
 			for (int i = 0; i < list.size(); i++) {
 				if (boundingBox.overlaps(list.get(i))) {
@@ -82,6 +85,8 @@ public class LineArtContainer {
 			if (isSeparateBoundingBox) {
 				list.add(new BoundingBox(boundingBox));
 			}
+		} else if (list != null && !list.isEmpty() && StaticStorages.getIsIgnoreMCIDs()) {
+			list.get(list.size() - 1).union(boundingBox);
 		} else {
 			if (mcid != null) {
 				LineArtChunk lineArtChunk = new LineArtChunk();

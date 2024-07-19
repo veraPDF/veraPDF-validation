@@ -22,6 +22,7 @@ package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSKey;
+import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.operator.Operator;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
@@ -47,7 +48,11 @@ public final class ChunkFactory {
 				arguments = new ArrayList<>();
 			}
 		}
-		parser.parseLineArts();
+		if (StaticStorages.getIsIgnoreMCIDs()) {
+			parser.processLineArts();
+		} else {
+			parser.parseLineArts();
+		}
 		return parser.getArtifacts();
 	}
 }
