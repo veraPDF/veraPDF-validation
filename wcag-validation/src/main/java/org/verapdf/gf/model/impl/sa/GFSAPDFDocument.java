@@ -28,8 +28,6 @@ import org.verapdf.model.salayer.SAPDFDocument;
 import org.verapdf.model.salayer.SARepeatedCharacters;
 import org.verapdf.model.salayer.SAStructTreeRoot;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
-import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.PageLabels;
 import org.verapdf.wcag.algorithms.entities.IDocument;
 import org.verapdf.wcag.algorithms.entities.IPage;
@@ -127,7 +125,7 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         return Collections.unmodifiableList(this.pages);
     }
 
-    private void parseStructureTreeRoot() {
+    public void parseStructureTreeRoot() {
         org.verapdf.pd.structure.PDStructTreeRoot root = document.getStructTreeRoot();
         if (root != null) {
             this.treeRoot = new GFSAStructTreeRoot(root);
@@ -177,7 +175,7 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         return this.lists;
     }
 
-    private void parseChunks() {
+    public void parseChunks() {
         if (this.pages == null) {
             pages = parsePages();
         }

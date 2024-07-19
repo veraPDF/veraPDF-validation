@@ -28,9 +28,13 @@ import org.verapdf.gf.model.factory.chunks.ChunkContainer;
 public class StaticStorages {
 
 	private static final ThreadLocal<ChunkContainer> chunks = new ThreadLocal<>();
+    private static final ThreadLocal<Boolean> isIgnoreMCIDs = new ThreadLocal<>();
+    private static final ThreadLocal<Boolean> isAddSpacesBetweenTextPieces = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
 		chunks.set(new ChunkContainer());
+        isIgnoreMCIDs.set(false);
+        isAddSpacesBetweenTextPieces.set(false);
 	}
 
 	public static ChunkContainer getChunks() {
@@ -43,5 +47,20 @@ public class StaticStorages {
     public static void setChunks(ChunkContainer chunks) {
 	    StaticStorages.chunks.set(chunks);
     }
+    
+    public static Boolean getIsIgnoreMCIDs() {
+        return isIgnoreMCIDs.get();
+    }
 
+    public static void setIsIgnoreMCIDs(Boolean isIgnoreMCIDs) {
+        StaticStorages.isIgnoreMCIDs.set(isIgnoreMCIDs);
+    }
+
+    public static Boolean getIsAddSpacesBetweenTextPieces() {
+        return isAddSpacesBetweenTextPieces.get();
+    }
+
+    public static void setIsAddSpacesBetweenTextPieces(Boolean isAddSpacesBetweenTextPieces) {
+        StaticStorages.isAddSpacesBetweenTextPieces.set(isAddSpacesBetweenTextPieces);
+    }
 }

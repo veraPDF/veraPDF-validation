@@ -39,7 +39,9 @@ import org.verapdf.wcag.algorithms.entities.content.*;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 import org.verapdf.wcag.algorithms.entities.geometry.MultiBoundingBox;
 import org.verapdf.wcag.algorithms.entities.geometry.Vertex;
+import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
+import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
 
 import java.io.*;
 import java.util.*;
@@ -91,6 +93,7 @@ class ChunkParser {
 		switch (operatorName) {
 			case Operators.BMC:
 			case Operators.BDC:
+				processLineArts();
 				Long mcid = getMCID(arguments, resourceHandler);
 				if (mcid != null) {
 					if (processedMCIDs.contains(mcid)) {
@@ -102,6 +105,7 @@ class ChunkParser {
 				markedContentStack.push(mcid);
 				break;
 			case Operators.EMC:
+				processLineArts();
 				markedContentStack.pop();
 				break;
 			case Operators.G_FILL: {
@@ -216,10 +220,12 @@ class ChunkParser {
 				}
 				break;
 			case Operators.ET:
+				processLineArts();
 				textMatrix = null;
 				textLineMatrix = null;
 				break;
 			case Operators.BT:
+				processLineArts();
 				textMatrix = new Matrix();
 				textLineMatrix = new Matrix();
 				break;
@@ -251,6 +257,7 @@ class ChunkParser {
 				processT_STAR();
 				break;
 			case Operators.TJ_SHOW: {
+				processLineArts();
 				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
@@ -258,6 +265,7 @@ class ChunkParser {
 				break;
 			}
 			case Operators.TJ_SHOW_POS: {
+				processLineArts();
 				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW_POS);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
@@ -265,6 +273,7 @@ class ChunkParser {
 				break;
 			}
 			case Operators.QUOTE: {
+				processLineArts();
 				processT_STAR();
 				TextChunk textChunk = createTextChunk(arguments, Operators.QUOTE);
 				if (textChunk != null) {
@@ -273,6 +282,7 @@ class ChunkParser {
 				break;
 			}
 			case Operators.DOUBLE_QUOTE:
+				processLineArts();
 				if (arguments.size() > 1 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber()) {
 					processDoubleQuote(arguments.get(0).getReal(), arguments.get(1).getReal());
@@ -322,6 +332,7 @@ class ChunkParser {
 				}
 				break;
 			case Operators.BI:
+				processLineArts();
 				putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
 				break;
 			case Operators.C_CURVE_TO:
@@ -451,6 +462,7 @@ class ChunkParser {
 				this.graphicsStateStack.push(this.graphicsState.clone());
 				break;
 			case Operators.DO:
+				processLineArts();
 				PDXObject xObject = resourceHandler.getXObject(getLastCOSName(arguments));
 				if (xObject != null) {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
@@ -529,76 +541,112 @@ class ChunkParser {
 
 	private void processB() {
 		Long mcid = getMarkedContent();
+		BoundingBox boundingBox = new MultiBoundingBox();
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
-				lineArtContainer.add(mcid, transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
-						graphicsState.getLineCap()));
+				LineChunk lineChunk = transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
+						graphicsState.getLineCap());
+				processLineChunk(boundingBox, mcid, lineChunk);
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
-						graphicsState.getLineWidth()).getBoundingBox());
+				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+						graphicsState.getLineWidth());
+				processCurveChunk(boundingBox, mcid, curveChunk);
 			} else if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
 				if (line != null) {
-					lineArtContainer.add(mcid, transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
+					LineChunk line1 = transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE);
+					processLineChunk(boundingBox, mcid, line1);
 				}
 			}
+		}
+		if (StaticStorages.getIsIgnoreMCIDs()) {
+			lineArtContainer.add(mcid, boundingBox);
 		}
 		nonDrawingArtifacts = new ArrayList<>();
 	}
 
 	private void processS() {
 		Long mcid = getMarkedContent();
+		BoundingBox boundingBox = new MultiBoundingBox();
 		for (Object chunk : nonDrawingArtifacts) {
 			if (chunk instanceof LineChunk) {
-				lineArtContainer.add(mcid, transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
-						graphicsState.getLineCap()));
+				LineChunk lineChunk = transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
+						graphicsState.getLineCap());
+				processLineChunk(boundingBox, mcid, lineChunk);
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
-						graphicsState.getLineWidth()).getBoundingBox());
+				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+						graphicsState.getLineWidth());
+				processCurveChunk(boundingBox, mcid, curveChunk);
 			} else if (chunk instanceof Rectangle) {
 				Rectangle rectangle = (Rectangle) chunk;
 				if (rectangle.getHeight() < graphicsState.getLineWidth() ||
 						rectangle.getWidth() < graphicsState.getLineWidth()) {
 					LineChunk line = rectangle.getLine(graphicsState.getLineWidth());
 					if (line != null) {
-						lineArtContainer.add(mcid, transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
+						LineChunk line1 = transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE);
+						processLineChunk(boundingBox, mcid, line1);
 					}
 				} else {
 					List<LineChunk> lines = rectangle.getLines(graphicsState.getLineWidth());
 					for (LineChunk line : lines) {
-						lineArtContainer.add(mcid, transformLineChunk(line, graphicsState.getLineWidth(),
-								LineChunk.PROJECTING_SQUARE_CAP_STYLE));
+						LineChunk line1 = transformLineChunk(line, graphicsState.getLineWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE);
+						processLineChunk(boundingBox, mcid, line1);
 					}
 				}
 			}
+		}
+		if (StaticStorages.getIsIgnoreMCIDs()) {
+			lineArtContainer.add(mcid, boundingBox);
 		}
 		nonDrawingArtifacts = new ArrayList<>();
 	}
 
 	private void processf() {
 		Long mcid = getMarkedContent();
+		BoundingBox boundingBox = new MultiBoundingBox();
 		for (int i = 0; i < nonDrawingArtifacts.size(); i++) {
 			Object chunk = nonDrawingArtifacts.get(i);
 			if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(0);
 				if (line != null) {
-					lineArtContainer.add(mcid, transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE));
+					LineChunk line1 = transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE);
+					processLineChunk(boundingBox, mcid, line1);
 				}
 			} else if (chunk instanceof LineChunk) {
 				LineChunk line = parsingRectangleFromLines(i);
 				if (line != null) {
-					lineArtContainer.add(mcid, line);
+					processLineChunk(boundingBox, mcid, line);
 					i += 3;
 				} else {
-					lineArtContainer.add(mcid, transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
-							graphicsState.getLineCap()).getBoundingBox());
+					LineChunk line1 = transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
+							graphicsState.getLineCap());
+					processLineChunk(boundingBox, mcid, line1);
 				}
 			} else if (chunk instanceof CurveChunk) {
-				lineArtContainer.add(mcid, CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
-						graphicsState.getLineWidth()).getBoundingBox());
+				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
+						graphicsState.getLineWidth());
+				processCurveChunk(boundingBox, mcid, curveChunk);
 			}
 		}
+		if (StaticStorages.getIsIgnoreMCIDs()) {
+			lineArtContainer.add(mcid, boundingBox);
+		}
 		nonDrawingArtifacts = new ArrayList<>();
+	}
+	
+	private void processLineChunk(BoundingBox boundingBox, Long mcid, LineChunk lineChunk) {
+		lineArtContainer.add(mcid, lineChunk);
+		if (StaticStorages.getIsIgnoreMCIDs()) {
+			boundingBox.union(lineChunk.getBoundingBox());
+		}
+	}
+	
+	private void processCurveChunk(BoundingBox boundingBox, Long mcid, CurveChunk curveChunk) {
+		if (StaticStorages.getIsIgnoreMCIDs()) {
+			boundingBox.union(curveChunk.getBoundingBox());
+		} else {
+			lineArtContainer.add(mcid, curveChunk.getBoundingBox());
+		}
 	}
 
 	private LineChunk parsingRectangleFromLines(int i) {
@@ -701,9 +749,15 @@ class ChunkParser {
 					if (obj.getType() == COSObjType.COS_STRING) {
 						parseString((COSString) obj.getDirectBase(), unicodeValue, textPieces, null);
 					} else if (obj.getType().isNumber()) {
-						textPieces.shiftCurrentX(- obj.getReal() / 1000 *
-						    graphicsState.getTextState().getTextFontSize() *
-						    graphicsState.getTextState().getHorizontalScaling());
+						double shift = - obj.getReal() / 1000 *
+								graphicsState.getTextState().getTextFontSize() *
+								graphicsState.getTextState().getHorizontalScaling();
+						if (-obj.getReal() >= TextChunkUtils.TEXT_CHUNK_SPACE_RATIO && StaticStorages.getIsAddSpacesBetweenTextPieces()) {
+							textPieces.add(new TextPieces.TextPiece(" ", textPieces.getCurrentX(),
+									textPieces.getCurrentX() + shift));
+						} else {
+							textPieces.shiftCurrentX(shift);
+						}
 					}
 				}
 			}
@@ -747,10 +801,11 @@ class ChunkParser {
 						                                  value != null ? value.length() : 0);
 					}
 				}
+				String result = value != null ? value : (StaticContainers.getIsIgnoreCharactersWithoutUnicode() ? "" : "\u0000");
 				if (textPieces == null) {
-					unicodeValue.append(value != null ? value : "");
+					unicodeValue.append(result);
 				} else {
-					textPieces.add(new TextPieces.TextPiece(value != null ? value : "", textPieces.getCurrentX(),
+					textPieces.add(new TextPieces.TextPiece(result, textPieces.getCurrentX(),
 					                                        textPieces.getCurrentX() + shift));
 				}
 			}
@@ -800,6 +855,9 @@ class ChunkParser {
 	}
 
 	private static Long getMCID(List<COSBase> arguments, ResourceHandler resources) {
+		if (StaticStorages.getIsIgnoreMCIDs()) {
+			return null;
+		}
 		if (!arguments.isEmpty()) {
 			COSBase lastArg = arguments.get(arguments.size() - 1);
 			if (lastArg.getType() == COSObjType.COS_DICT) {
@@ -873,6 +931,24 @@ class ChunkParser {
 			} else {
 				StaticStorages.getChunks().add(parentObjectKey, parentMarkedContent, new LineArtChunk(boundingBox, lineChunks));
 			}
+		}
+	}
+
+	public void processLineArts() {
+		if (!StaticStorages.getIsIgnoreMCIDs()) {
+			return;
+		}
+		List<LineChunk> lineChunks = lineArtContainer.getLineChunks(null);
+		if (lineChunks != null && !lineChunks.isEmpty()) {
+			artifacts.addAll(lineChunks);
+			lineChunks.clear();
+		}
+		List<BoundingBox> boundingBoxes = lineArtContainer.getBoundingBoxes(null);
+		if (boundingBoxes != null && !boundingBoxes.isEmpty()) {
+			for (BoundingBox box : boundingBoxes) {
+				artifacts.add(new LineArtChunk(box));
+			}
+			boundingBoxes.clear();
 		}
 	}
 }
