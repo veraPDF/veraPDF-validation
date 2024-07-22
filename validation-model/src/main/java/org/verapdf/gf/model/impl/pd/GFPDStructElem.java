@@ -127,7 +127,8 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	public String getnamespaceAndTag() {
 		StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 		if (type != null) {
-			return (type.getType() != null ? type.getType() : "null") + ":" + (type.getNameSpaceURI() != null ? type.getNameSpaceURI() : "null");
+			return String.format("%s:%s", type.getNameSpaceURI() != null ? type.getNameSpaceURI() : "null", 
+					type.getType() != null ? type.getType() : "null");
 		}
 		return null;
 	}
