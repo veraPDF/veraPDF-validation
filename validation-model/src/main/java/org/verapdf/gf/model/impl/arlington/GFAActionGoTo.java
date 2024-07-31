@@ -513,6 +513,12 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	}
 
 	@Override
+	public String getDStringByteValue() {
+		COSObject D = getDValue();
+		return getStringByteValue(D);
+	}
+
+	@Override
 	public Boolean getcontainsNext() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}
@@ -616,6 +622,37 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	public String getTypeNameValue() {
 		COSObject Type = getTypeValue();
 		return getNameValue(Type);
+	}
+
+	public COSObject gettrailerCatalogNamesDestsValue() {
+		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
+		if (trailer == null || !trailer.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Root = trailer.getKey(ASAtom.getASAtom("Root"));
+		if (Root == null || !Root.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Names = Root.getKey(ASAtom.getASAtom("Names"));
+		if (Names == null || !Names.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Dests = Names.getKey(ASAtom.getASAtom("Dests"));
+		return Dests;
+	}
+
+	@Override
+	public Boolean getDIsNameTreetrailerCatalogNamesDestsIndex() {
+		COSObject D = getDValue();
+		COSObject trailerCatalogNamesDests = gettrailerCatalogNamesDestsValue();
+		if (D == null || D.getType() != COSObjType.COS_STRING) {
+			return false;
+		}
+		if (trailerCatalogNamesDests == null || trailerCatalogNamesDests.getType() != COSObjType.COS_DICT) {
+			return false;
+		}
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
+		return nameTreeNode.containsKey(D.getString());
 	}
 
 }
