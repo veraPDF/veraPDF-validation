@@ -157,19 +157,21 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 
 	@Override
 	public String getremappedStandardType() {
+		StructureType standardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(
+				((org.verapdf.pd.structure.PDStructElem)simplePDObject));
 		if (hasStandardType()) {
 			StructureType type = ((org.verapdf.pd.structure.PDStructElem)simplePDObject).getStructureType();
 			if (type == null) {
 				return null;
 			}
-			if (!type.getType().getValue().equals(standardType)) {
+			if (!Objects.equals(type.getType(), standardStructureType.getType()) || 
+					!Objects.equals(type.getNameSpaceURI(), standardStructureType.getNameSpaceURI())) {
 				return type.getType().getValue();
 			}
 		} else if (standardType != null) {
-			StructureType standardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(
-					((org.verapdf.pd.structure.PDStructElem)simplePDObject));
-			String standardTypeMap = org.verapdf.pd.structure.PDStructElem.getStructureTypeStandardType(standardStructureType);
-			if (!Objects.equals(standardTypeMap, standardType)) {
+			StructureType standardTypeMap = org.verapdf.pd.structure.PDStructElem.getStructureTypeStandardStructureType(standardStructureType);
+			if (!Objects.equals(standardTypeMap.getType(), standardStructureType.getType()) ||
+					!Objects.equals(standardTypeMap.getNameSpaceURI(), standardStructureType.getNameSpaceURI())) {
 				return standardType;
 			}
 		}
