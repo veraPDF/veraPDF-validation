@@ -21,6 +21,8 @@ public class GFADPM extends GFAObject implements ADPM {
 		switch (link) {
 			case "Entries":
 				return getEntries();
+			case "CIP4_Root":
+				return getCIP4_Root();
 			case "GTS_Managed":
 				return getGTS_Managed();
 			case "GTS_Suspect":
@@ -33,9 +35,10 @@ public class GFADPM extends GFAObject implements ADPM {
 	private List<ADPMEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
+				return getEntries1_6();
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntries1_6();
+				return getEntries1_7();
 			default:
 				return Collections.emptyList();
 		}
@@ -51,6 +54,41 @@ public class GFADPM extends GFAObject implements ADPM {
 			list.add(new GFADPMEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
+	}
+
+	private List<ADPMEntry> getEntries1_7() {
+		List<ADPMEntry> list = new LinkedList<>();
+		for (ASAtom key : baseObject.getKeySet()) {
+			if ("CIP4_Root".equals(key.getValue()) || "GTS_Managed".equals(key.getValue()) || "GTS_Suspect".equals(key.getValue())) {
+				continue;
+			}
+			COSObject object = this.baseObject.getKey(key);
+			list.add(new GFADPMEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
+		}
+		return Collections.unmodifiableList(list);
+	}
+
+	private List<ACIP4_Root> getCIP4_Root() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getCIP4_Root1_7();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ACIP4_Root> getCIP4_Root1_7() {
+		COSObject object = getCIP4_RootValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<ACIP4_Root> list = new ArrayList<>(1);
+			list.add(new GFACIP4_Root((COSDictionary)object.getDirectBase(), this.baseObject, "CIP4_Root"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<A_UniversalDictionary> getGTS_Managed() {
@@ -99,6 +137,28 @@ public class GFADPM extends GFAObject implements ADPM {
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsCIP4_Root() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("CIP4_Root"));
+	}
+
+	public COSObject getCIP4_RootValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CIP4_Root"));
+		return object;
+	}
+
+	@Override
+	public String getCIP4_RootType() {
+		COSObject CIP4_Root = getCIP4_RootValue();
+		return getObjectType(CIP4_Root);
+	}
+
+	@Override
+	public Boolean getCIP4_RootHasTypeDictionary() {
+		COSObject CIP4_Root = getCIP4_RootValue();
+		return getHasTypeDictionary(CIP4_Root);
 	}
 
 	@Override

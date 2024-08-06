@@ -10,13 +10,13 @@ import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 
-public class GFAArrayOfDevExtensionsEntry extends GFAObject implements AArrayOfDevExtensionsEntry {
+public class GFAArrayOfCIP4_HoleMakingIntentEntry extends GFAObject implements AArrayOfCIP4_HoleMakingIntentEntry {
 
 	private final COSBase parentParentObject;
 	private final String collectionName;
 
-	public GFAArrayOfDevExtensionsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
-		super(baseObject, parentObject, keyName, "AArrayOfDevExtensionsEntry");
+	public GFAArrayOfCIP4_HoleMakingIntentEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
+		super(baseObject, parentObject, keyName, "AArrayOfCIP4_HoleMakingIntentEntry");
 		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
@@ -31,37 +31,24 @@ public class GFAArrayOfDevExtensionsEntry extends GFAObject implements AArrayOfD
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getEntry() {
+	private List<ACIP4_HoleMakingIntent> getEntry() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntry2_0();
+				return getEntry1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getEntry2_0() {
+	private List<ACIP4_HoleMakingIntent> getEntry1_7() {
 		COSObject object = new COSObject(this.baseObject);
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getEntryDictionary2_0(object.getDirectBase(), keyName);
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
+			List<ACIP4_HoleMakingIntent> list = new ArrayList<>(1);
+			list.add(new GFACIP4_HoleMakingIntent((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getEntryDictionary2_0(COSBase base, String keyName) {
-		switch (collectionName) {
-			case "ISO_":
-				return new GFAISO_DevExtensions(base, this.baseObject, keyName);
-			case "GTSm_":
-				return new GFAGTSm_DevExtensions(base, this.baseObject, keyName);
-			default:
-				return new GFADevExtensions(base, this.baseObject, keyName);
-		}
 	}
 
 	public COSObject getValue() {

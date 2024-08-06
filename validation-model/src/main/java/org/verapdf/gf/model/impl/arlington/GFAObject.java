@@ -382,6 +382,11 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	@Override
+	public Boolean gethasExtensionISO_21812() {
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_21812);
+	}
+
+	@Override
 	public Boolean gethasExtensionISO_TS_24064() {
 		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_24064);
 	}
