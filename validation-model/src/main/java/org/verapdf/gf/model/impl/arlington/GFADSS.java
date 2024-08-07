@@ -34,14 +34,15 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	private List<AArrayOfStreamsGeneral> getCRLs() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCRLs2_0();
+				return getCRLs1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getCRLs2_0() {
+	private List<AArrayOfStreamsGeneral> getCRLs1_7() {
 		COSObject object = getCRLsValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -56,14 +57,15 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	private List<AArrayOfStreamsGeneral> getCerts() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCerts2_0();
+				return getCerts1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getCerts2_0() {
+	private List<AArrayOfStreamsGeneral> getCerts1_7() {
 		COSObject object = getCertsValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -78,14 +80,15 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	private List<AArrayOfStreamsGeneral> getOCSPs() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getOCSPs2_0();
+				return getOCSPs1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getOCSPs2_0() {
+	private List<AArrayOfStreamsGeneral> getOCSPs1_7() {
 		COSObject object = getOCSPsValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -100,14 +103,15 @@ public class GFADSS extends GFAObject implements ADSS {
 
 	private List<AVRIMap> getVRI() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getVRI2_0();
+				return getVRI1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AVRIMap> getVRI2_0() {
+	private List<AVRIMap> getVRI1_7() {
 		COSObject object = getVRIValue();
 		if (object == null) {
 			return Collections.emptyList();

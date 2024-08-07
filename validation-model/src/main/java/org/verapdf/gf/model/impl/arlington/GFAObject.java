@@ -372,6 +372,11 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	@Override
+	public Boolean gethasExtensionETSI_PAdES() {
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ETSI_PAdES);
+	}
+
+	@Override
 	public Boolean gethasExtensionISO_19005_3() {
 		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19005_3);
 	}

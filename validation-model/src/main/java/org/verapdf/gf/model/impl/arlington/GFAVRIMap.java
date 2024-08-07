@@ -28,14 +28,15 @@ public class GFAVRIMap extends GFAObject implements AVRIMap {
 
 	private List<AVRIMapEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntries2_0();
+				return getEntries1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AVRIMapEntry> getEntries2_0() {
+	private List<AVRIMapEntry> getEntries1_7() {
 		List<AVRIMapEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
 			COSObject object = this.baseObject.getKey(key);

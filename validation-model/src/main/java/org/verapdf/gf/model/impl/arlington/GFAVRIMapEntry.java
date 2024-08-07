@@ -33,14 +33,15 @@ public class GFAVRIMapEntry extends GFAObject implements AVRIMapEntry {
 
 	private List<AVRI> getEntry() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntry2_0();
+				return getEntry1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AVRI> getEntry2_0() {
+	private List<AVRI> getEntry1_7() {
 		COSObject object = new COSObject(this.baseObject);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AVRI> list = new ArrayList<>(1);

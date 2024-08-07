@@ -34,7 +34,7 @@ public class GFASignature extends GFAObject implements ASignature {
 		}
 	}
 
-	private List<AArrayOfIntegersGeneral> getByteRange() {
+	private List<AArrayOfNonNegativeIntegersGeneral> getByteRange() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -48,14 +48,14 @@ public class GFASignature extends GFAObject implements ASignature {
 		}
 	}
 
-	private List<AArrayOfIntegersGeneral> getByteRange1_3() {
+	private List<AArrayOfNonNegativeIntegersGeneral> getByteRange1_3() {
 		COSObject object = getByteRangeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfIntegersGeneral> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfIntegersGeneral((COSArray)object.getDirectBase(), this.baseObject, "ByteRange"));
+			List<AArrayOfNonNegativeIntegersGeneral> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfNonNegativeIntegersGeneral((COSArray)object.getDirectBase(), this.baseObject, "ByteRange"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -88,7 +88,7 @@ public class GFASignature extends GFAObject implements ASignature {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOf_3Integers> getChanges() {
+	private List<AArrayOf_3NonNegativeIntegers> getChanges() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -102,20 +102,20 @@ public class GFASignature extends GFAObject implements ASignature {
 		}
 	}
 
-	private List<AArrayOf_3Integers> getChanges1_3() {
+	private List<AArrayOf_3NonNegativeIntegers> getChanges1_3() {
 		COSObject object = getChangesValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOf_3Integers> list = new ArrayList<>(1);
-			list.add(new GFAArrayOf_3Integers((COSArray)object.getDirectBase(), this.baseObject, "Changes"));
+			List<AArrayOf_3NonNegativeIntegers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_3NonNegativeIntegers((COSArray)object.getDirectBase(), this.baseObject, "Changes"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
 	}
 
-	private List<A_UniversalDictionary> getProp_Build() {
+	private List<ASignatureBuildPropDict> getProp_Build() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -127,14 +127,14 @@ public class GFASignature extends GFAObject implements ASignature {
 		}
 	}
 
-	private List<A_UniversalDictionary> getProp_Build1_5() {
+	private List<ASignatureBuildPropDict> getProp_Build1_5() {
 		COSObject object = getProp_BuildValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<A_UniversalDictionary> list = new ArrayList<>(1);
-			list.add(new GFA_UniversalDictionary((COSDictionary)object.getDirectBase(), this.baseObject, "Prop_Build"));
+			List<ASignatureBuildPropDict> list = new ArrayList<>(1);
+			list.add(new GFASignatureBuildPropDict((COSDictionary)object.getDirectBase(), this.baseObject, "Prop_Build"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -166,6 +166,34 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getcontainsADBE_Build() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ADBE_Build"));
+	}
+
+	public COSObject getADBE_BuildValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ADBE_Build"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisADBE_BuildIndirect() {
+		COSObject ADBE_Build = getADBE_BuildValue();
+		return getisIndirect(ADBE_Build);
+	}
+
+	@Override
+	public String getADBE_BuildType() {
+		COSObject ADBE_Build = getADBE_BuildValue();
+		return getObjectType(ADBE_Build);
+	}
+
+	@Override
+	public Boolean getADBE_BuildHasTypeString() {
+		COSObject ADBE_Build = getADBE_BuildValue();
+		return getHasTypeString(ADBE_Build);
+	}
+
+	@Override
 	public Boolean getcontainsByteRange() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ByteRange"));
 	}
@@ -173,6 +201,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getByteRangeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ByteRange"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisByteRangeIndirect() {
+		COSObject ByteRange = getByteRangeValue();
+		return getisIndirect(ByteRange);
 	}
 
 	@Override
@@ -188,6 +222,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Long getByteRangeArraySize() {
+		COSObject ByteRange = getByteRangeValue();
+		return getArraySize(ByteRange);
+	}
+
+	@Override
 	public Boolean getcontainsCert() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Cert"));
 	}
@@ -195,6 +235,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getCertValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Cert"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisCertIndirect() {
+		COSObject Cert = getCertValue();
+		return getisIndirect(Cert);
 	}
 
 	@Override
@@ -226,6 +272,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getisChangesIndirect() {
+		COSObject Changes = getChangesValue();
+		return getisIndirect(Changes);
+	}
+
+	@Override
 	public String getChangesType() {
 		COSObject Changes = getChangesValue();
 		return getObjectType(Changes);
@@ -248,6 +300,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getisContactInfoIndirect() {
+		COSObject ContactInfo = getContactInfoValue();
+		return getisIndirect(ContactInfo);
+	}
+
+	@Override
 	public String getContactInfoType() {
 		COSObject ContactInfo = getContactInfoValue();
 		return getObjectType(ContactInfo);
@@ -267,6 +325,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getContentsValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Contents"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisContentsIndirect() {
+		COSObject Contents = getContentsValue();
+		return getisIndirect(Contents);
 	}
 
 	@Override
@@ -298,6 +362,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getisFilterIndirect() {
+		COSObject Filter = getFilterValue();
+		return getisIndirect(Filter);
+	}
+
+	@Override
 	public String getFilterType() {
 		COSObject Filter = getFilterValue();
 		return getObjectType(Filter);
@@ -326,6 +396,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getisLocationIndirect() {
+		COSObject Location = getLocationValue();
+		return getisIndirect(Location);
+	}
+
+	@Override
 	public String getLocationType() {
 		COSObject Location = getLocationValue();
 		return getObjectType(Location);
@@ -345,6 +421,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getMValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("M"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisMIndirect() {
+		COSObject M = getMValue();
+		return getisIndirect(M);
 	}
 
 	@Override
@@ -370,6 +452,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getisNameIndirect() {
+		COSObject Name = getNameValue();
+		return getisIndirect(Name);
+	}
+
+	@Override
 	public String getNameType() {
 		COSObject Name = getNameValue();
 		return getObjectType(Name);
@@ -389,6 +477,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getProp_AuthTimeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prop_AuthTime"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisProp_AuthTimeIndirect() {
+		COSObject Prop_AuthTime = getProp_AuthTimeValue();
+		return getisIndirect(Prop_AuthTime);
 	}
 
 	@Override
@@ -420,6 +514,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getisProp_AuthTypeIndirect() {
+		COSObject Prop_AuthType = getProp_AuthTypeValue();
+		return getisIndirect(Prop_AuthType);
+	}
+
+	@Override
 	public String getProp_AuthTypeType() {
 		COSObject Prop_AuthType = getProp_AuthTypeValue();
 		return getObjectType(Prop_AuthType);
@@ -432,6 +532,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public String getProp_AuthTypeNameValue() {
+		COSObject Prop_AuthType = getProp_AuthTypeValue();
+		return getNameValue(Prop_AuthType);
+	}
+
+	@Override
 	public Boolean getcontainsProp_Build() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Prop_Build"));
 	}
@@ -439,6 +545,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getProp_BuildValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Prop_Build"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisProp_BuildIndirect() {
+		COSObject Prop_Build = getProp_BuildValue();
+		return getisIndirect(Prop_Build);
 	}
 
 	@Override
@@ -464,6 +576,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getisRIndirect() {
+		COSObject R = getRValue();
+		return getisIndirect(R);
+	}
+
+	@Override
 	public String getRType() {
 		COSObject R = getRValue();
 		return getObjectType(R);
@@ -483,6 +601,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getReasonValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Reason"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisReasonIndirect() {
+		COSObject Reason = getReasonValue();
+		return getisIndirect(Reason);
 	}
 
 	@Override
@@ -508,6 +632,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	}
 
 	@Override
+	public Boolean getisReferenceIndirect() {
+		COSObject Reference = getReferenceValue();
+		return getisIndirect(Reference);
+	}
+
+	@Override
 	public String getReferenceType() {
 		COSObject Reference = getReferenceValue();
 		return getObjectType(Reference);
@@ -527,6 +657,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getSubFilterValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("SubFilter"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisSubFilterIndirect() {
+		COSObject SubFilter = getSubFilterValue();
+		return getisIndirect(SubFilter);
 	}
 
 	@Override
@@ -555,6 +691,12 @@ public class GFASignature extends GFAObject implements ASignature {
 	public COSObject getTypeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisTypeIndirect() {
+		COSObject Type = getTypeValue();
+		return getisIndirect(Type);
 	}
 
 	@Override
@@ -597,6 +739,12 @@ public class GFASignature extends GFAObject implements ASignature {
 			object = getVDefaultValue();
 		}
 		return object;
+	}
+
+	@Override
+	public Boolean getisVIndirect() {
+		COSObject V = getVValue();
+		return getisIndirect(V);
 	}
 
 	@Override

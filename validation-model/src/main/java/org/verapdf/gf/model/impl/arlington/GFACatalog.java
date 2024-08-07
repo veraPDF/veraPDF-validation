@@ -204,14 +204,15 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	private List<ADSS> getDSS() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getDSS2_0();
+				return getDSS1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ADSS> getDSS2_0() {
+	private List<ADSS> getDSS1_7() {
 		COSObject object = getDSSValue();
 		if (object == null) {
 			return Collections.emptyList();
