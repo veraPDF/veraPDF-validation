@@ -27,6 +27,8 @@ public class GFAFontDescriptorCIDType2 extends GFAObject implements AFontDescrip
 				return getFontFile();
 			case "FontFile2":
 				return getFontFile2();
+			case "FontFile3":
+				return getFontFile3();
 			case "Style":
 				return getStyle();
 			default:
@@ -141,6 +143,30 @@ public class GFAFontDescriptorCIDType2 extends GFAObject implements AFontDescrip
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AFontFile2> list = new ArrayList<>(1);
 			list.add(new GFAFontFile2((COSStream)object.getDirectBase(), this.baseObject, this.parentObject, "FontFile2"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AFontFile3OpenType> getFontFile3() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getFontFile31_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AFontFile3OpenType> getFontFile31_6() {
+		COSObject object = getFontFile3Value();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AFontFile3OpenType> list = new ArrayList<>(1);
+			list.add(new GFAFontFile3OpenType((COSStream)object.getDirectBase(), this.baseObject, "FontFile3"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -461,6 +487,34 @@ public class GFAFontDescriptorCIDType2 extends GFAObject implements AFontDescrip
 	public Boolean getFontFile2HasTypeStream() {
 		COSObject FontFile2 = getFontFile2Value();
 		return getHasTypeStream(FontFile2);
+	}
+
+	@Override
+	public Boolean getcontainsFontFile3() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("FontFile3"));
+	}
+
+	public COSObject getFontFile3Value() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("FontFile3"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisFontFile3Indirect() {
+		COSObject FontFile3 = getFontFile3Value();
+		return getisIndirect(FontFile3);
+	}
+
+	@Override
+	public String getFontFile3Type() {
+		COSObject FontFile3 = getFontFile3Value();
+		return getObjectType(FontFile3);
+	}
+
+	@Override
+	public Boolean getFontFile3HasTypeStream() {
+		COSObject FontFile3 = getFontFile3Value();
+		return getHasTypeStream(FontFile3);
 	}
 
 	@Override
