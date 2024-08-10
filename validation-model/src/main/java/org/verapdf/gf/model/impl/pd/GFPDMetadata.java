@@ -85,6 +85,11 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
     }
 
     @Override
+    public Boolean getisCatalogMetadata() {
+        return isMainMetadata;
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case XMP_PACKAGE:
