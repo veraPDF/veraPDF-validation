@@ -68,10 +68,11 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	private final boolean isSignature;
 	private final boolean isAnnotation;
+	private final boolean isRealContent;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
 					 GraphicState inheritedGraphicState, COSObject parentStructElem, List<String> parentsTags, 
-					 String defaultLang, boolean isAnnotation, boolean isSignature) {
+					 String defaultLang, boolean isAnnotation, boolean isSignature, boolean isRealContent) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructElem = parentStructElem;
@@ -80,6 +81,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		this.defaultLang = defaultLang;
 		this.isAnnotation = isAnnotation;
 		this.isSignature = isSignature;
+		this.isRealContent = isRealContent;
 	}
 
 	@Override
@@ -200,7 +202,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	private void parseContentStream() {
 		GFPDContentStream gfContentStream;
-		if (isAnnotation || (!PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour()))) {
+		if (!isRealContent || isAnnotation || (!PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour()))) {
 			gfContentStream = new GFPDContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
