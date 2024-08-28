@@ -68,10 +68,12 @@ public class GFPDXObject extends GFPDResource implements PDXObject {
 	}
 
 	public static PDXObject getTypedPDXObject(org.verapdf.pd.images.PDXObject xObject, PDResourcesHandler resources,
-											  GraphicState inheritedGraphicState, COSObject parentStructElem, List<String> parentsTags) {
+											  GraphicState inheritedGraphicState, COSObject parentStructElem, 
+											  List<String> parentsTags, boolean isRealContent) {
 		ASAtom type = xObject.getType();
 		if (ASAtom.FORM.equals(type)) {
-			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState, parentStructElem, parentsTags, null, false, false);
+			return new GFPDXForm((PDXForm) xObject, resources, inheritedGraphicState, parentStructElem, parentsTags, 
+					null, false, false, isRealContent);
 		} else if (ASAtom.IMAGE.equals(type)) {
 			return new GFPDXImage((PDXImage) xObject, resources, inheritedGraphicState.getFillColorSpace());
 		} else if (ASAtom.PS.equals(type)) {

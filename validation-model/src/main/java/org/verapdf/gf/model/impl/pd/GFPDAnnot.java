@@ -437,7 +437,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
 			COSString annotLang = getLang();
 			GFPDXForm xForm = new GFPDXForm(toAdd, resources, null, getParentDictionary(), Collections.emptyList(), 
-					annotLang == null ? null : annotLang.getString(), true, isSignature());
+					annotLang == null ? null : annotLang.getString(), true, isSignature(), false);
 			this.containsTransparency |= xForm.containsTransparency();
 			list.add(xForm);
 		}

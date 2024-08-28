@@ -537,7 +537,7 @@ class OperatorParser {
 					parentStructElem = this.parentStructElem;
 				}
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-						resourcesHandler, this.graphicState.clone(), parentStructElem, parentsTags);
+						resourcesHandler, this.graphicState.clone(), parentStructElem, parentsTags, isRealContent);
 				org.verapdf.model.pdlayer.PDXObject pdxObject = op_do.getXObject();
 				if (pdxObject != null) {
 					this.transparencyGraphicState.setVeraXObject((GFPDXObject)pdxObject);

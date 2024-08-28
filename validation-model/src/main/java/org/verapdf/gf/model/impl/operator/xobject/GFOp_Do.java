@@ -52,16 +52,18 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	private final GraphicState inheritedGraphicState;
 	private final COSObject parentStructElem;
 	private final List<String> parentsTags;
+	private final boolean isRealContent;
 
 	public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pdXObject,
 				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
-				   COSObject parentStructElem, List<String> parentsTags) {
+				   COSObject parentStructElem, List<String> parentsTags, boolean isRealContent) {
 		super(arguments, OP_DO_TYPE);
 		this.pbXObject = pdXObject;
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
+		this.isRealContent = isRealContent;
 		this.xObject = getXObject();
 	}
 
@@ -90,7 +92,7 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 			return null;
 		}
 		this.xObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler, inheritedGraphicState, 
-					this.parentStructElem, this.parentsTags);
+					this.parentStructElem, this.parentsTags, isRealContent);
 		return this.xObject;
 	}
 
