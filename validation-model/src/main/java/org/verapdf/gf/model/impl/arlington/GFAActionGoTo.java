@@ -513,12 +513,6 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 	}
 
 	@Override
-	public String getDStringByteValue() {
-		COSObject D = getDValue();
-		return getStringByteValue(D);
-	}
-
-	@Override
 	public Boolean getcontainsNext() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Next"));
 	}

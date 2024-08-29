@@ -338,7 +338,7 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return COSReal.construct(1000D);
+				return COSInteger.construct(1000L);
 		}
 		return null;
 	}
@@ -355,6 +355,12 @@ public class GFAFontCIDType2 extends GFAObject implements AFontCIDType2 {
 	public String getDWType() {
 		COSObject DW = getDWValue();
 		return getObjectType(DW);
+	}
+
+	@Override
+	public Boolean getDWHasTypeInteger() {
+		COSObject DW = getDWValue();
+		return getHasTypeInteger(DW);
 	}
 
 	@Override
