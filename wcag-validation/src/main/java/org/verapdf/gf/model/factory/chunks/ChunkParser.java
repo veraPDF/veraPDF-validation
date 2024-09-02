@@ -45,7 +45,6 @@ import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -684,14 +683,17 @@ class ChunkParser {
 	}
 
 	private List<Double> parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
-		List<Double> symbolEnds = new ArrayList<>();
 		if (argument.getType() == COSObjType.COS_STRING) {
+			List<Double> symbolEnds = new ArrayList<>();
+			symbolEnds.add(0.0);
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
 			parseString((COSString) argument.getDirectBase(), unicodeValue, null, symbolEnds);
 			if (!symbolEnds.isEmpty()) {
 				textMatrix.concatenate(Matrix.getTranslateInstance(symbolEnds.get(symbolEnds.size() - 1), 0));
 			}
-		} else if (argument.getType() == COSObjType.COS_ARRAY) {
+			return symbolEnds;
+		}
+		if (argument.getType() == COSObjType.COS_ARRAY) {
 			COSArray array = (COSArray) argument;
 			TextPieces textPieces = new TextPieces();
 			for (COSObject obj : array) {
@@ -715,12 +717,9 @@ class ChunkParser {
 			} else {
 				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX(), 0));
 			}
-			symbolEnds = textPieces.getSymbolEnds();
+			return textPieces.getSymbolEnds();
 		}
-		symbolEnds.add(0, 0.0);
-		double multiplier = Math.sqrt(textMatrix.getScaleX() * textMatrix.getScaleX() +
-		                              textMatrix.getShearY() * textMatrix.getShearY());
-		return symbolEnds.stream().map(e -> e * multiplier).collect(Collectors.toList());
+		return Collections.emptyList();
 	}
 
 	private void parseString(COSString string, StringBuilder unicodeValue, TextPieces textPieces, List<Double> symbolEnds) {
