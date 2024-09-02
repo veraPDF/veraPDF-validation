@@ -65,9 +65,9 @@ public class GFPDResources extends GFPDObject implements PDResources {
         for (ASAtom fontName : resources.getFontNames()) {
             PDFont font = resources.getFont(fontName);
             if (font != null) {
-                String name = font.getName();
+                ASAtom name = font.getNameKey(ASAtom.BASE_FONT);
                 if (name != null) {
-                    names.add(new GFCosUnicodeName((COSName) COSName.construct(ASAtom.getASAtom(name)).get()));
+                    names.add(new GFCosUnicodeName((COSName) COSName.construct(name).get()));
                 }
             }
         }
