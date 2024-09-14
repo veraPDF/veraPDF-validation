@@ -66,7 +66,7 @@ class ChunkParser {
 	private final GraphicsState graphicsState;
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
-	private List<Object> nonDrawingArtifacts = new LinkedList<>();
+	private List<Object> nonDrawingArtifacts = new ArrayList<>();
 	private final LineArtContainer lineArtContainer;
 	private final COSKey parentObjectKey;
 	private final Long parentMarkedContent;
@@ -430,7 +430,7 @@ class ChunkParser {
 				processB();
 				break;
 			case Operators.N:
-				nonDrawingArtifacts = new LinkedList<>();
+				nonDrawingArtifacts = new ArrayList<>();
 				break;
 			case Operators.S_CLOSE_STROKE:
 				processh();
@@ -543,7 +543,7 @@ class ChunkParser {
 				}
 			}
 		}
-		nonDrawingArtifacts = new LinkedList<>();
+		nonDrawingArtifacts = new ArrayList<>();
 	}
 
 	private void processS() {
@@ -572,7 +572,7 @@ class ChunkParser {
 				}
 			}
 		}
-		nonDrawingArtifacts = new LinkedList<>();
+		nonDrawingArtifacts = new ArrayList<>();
 	}
 
 	private void processf() {
@@ -598,7 +598,7 @@ class ChunkParser {
 						graphicsState.getLineWidth()).getBoundingBox());
 			}
 		}
-		nonDrawingArtifacts = new LinkedList<>();
+		nonDrawingArtifacts = new ArrayList<>();
 	}
 
 	private LineChunk parsingRectangleFromLines(int i) {
