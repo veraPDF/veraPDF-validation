@@ -115,7 +115,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	public PDColorSpace getBlendingColorSpace() {
 		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.images.PDXForm) this.simplePDObject).getGroup();
-		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype())) {
+		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype()) || !group.isIsolated()) {
 			return null;
 		}
 		PDColorSpace colorSpace = group.getColorSpace();
