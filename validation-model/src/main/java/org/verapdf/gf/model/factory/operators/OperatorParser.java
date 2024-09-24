@@ -527,10 +527,12 @@ class OperatorParser {
 			// XOBJECT
 			case Operators.DO:
 				Long mcid = null;
-				List<String> parentsTags = new LinkedList<>();
+				List<String> parentsTags;
 				if (!markedContentStack.empty()) {
 					mcid = markedContentStack.peek().getInheritedMCID();
 					parentsTags = markedContentStack.peek().getParentsTags();
+				} else {
+					parentsTags = new LinkedList<>(this.parentsTags);
 				}
 				COSObject parentStructElem = getParentStructElem(structureElementAccessObject, mcid);
 				if (parentStructElem == null) {
