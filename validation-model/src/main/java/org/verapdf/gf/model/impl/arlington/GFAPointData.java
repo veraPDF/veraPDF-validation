@@ -31,6 +31,10 @@ public class GFAPointData extends GFAObject implements APointData {
 	private List<AArrayOfNamesInPtData> getNames() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getNames1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getNames1_7();
 			default:
@@ -54,6 +58,10 @@ public class GFAPointData extends GFAObject implements APointData {
 	private List<AArrayOfArraysXPTSValues> getXPTS() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getXPTS1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getXPTS1_7();
 			default:

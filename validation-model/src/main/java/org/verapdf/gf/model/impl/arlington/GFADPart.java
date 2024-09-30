@@ -62,6 +62,10 @@ public class GFADPart extends GFAObject implements ADPart {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getDPM1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getDPM1_6();
 			default:
@@ -86,6 +90,10 @@ public class GFADPart extends GFAObject implements ADPart {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getDParts1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getDParts1_6();
 			default:
@@ -110,6 +118,10 @@ public class GFADPart extends GFAObject implements ADPart {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getEnd1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEnd1_6();
 			default:
@@ -134,6 +146,10 @@ public class GFADPart extends GFAObject implements ADPart {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getParent1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getParent1_6();
 			default:
@@ -180,6 +196,10 @@ public class GFADPart extends GFAObject implements ADPart {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getStart1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getStart1_6();
 			default:

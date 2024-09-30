@@ -205,6 +205,10 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	private List<AArrayOfViewParams> getParams() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getParams1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getParams1_7();
 			default:
@@ -272,6 +276,10 @@ public class GFA3DViewAddEntries extends GFAObject implements A3DViewAddEntries 
 	private List<AXObjectImage> getSnapshot() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getSnapshot1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getSnapshot1_7();
 			default:

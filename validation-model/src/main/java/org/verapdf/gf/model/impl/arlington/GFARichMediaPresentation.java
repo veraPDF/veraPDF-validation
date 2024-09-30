@@ -29,6 +29,10 @@ public class GFARichMediaPresentation extends GFAObject implements ARichMediaPre
 	private List<ARichMediaWindow> getWindow() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getWindow1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getWindow1_7();
 			default:

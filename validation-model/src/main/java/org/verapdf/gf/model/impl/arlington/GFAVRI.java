@@ -35,6 +35,10 @@ public class GFAVRI extends GFAObject implements AVRI {
 	private List<AArrayOfStreamsGeneral> getCRL() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getCRL1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCRL1_7();
 			default:
@@ -58,6 +62,10 @@ public class GFAVRI extends GFAObject implements AVRI {
 	private List<AArrayOfStreamsGeneral> getCert() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getCert1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCert1_7();
 			default:
@@ -81,6 +89,10 @@ public class GFAVRI extends GFAObject implements AVRI {
 	private List<AArrayOfStreamsGeneral> getOCSP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getOCSP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getOCSP1_7();
 			default:
@@ -104,6 +116,10 @@ public class GFAVRI extends GFAObject implements AVRI {
 	private List<AStream> getTS() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getTS1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getTS1_7();
 			default:

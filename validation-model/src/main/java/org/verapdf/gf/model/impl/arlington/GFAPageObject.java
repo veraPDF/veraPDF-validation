@@ -100,6 +100,10 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	private List<AArrayOfFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAF1_7();
 			default:
@@ -219,6 +223,10 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getDPart1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getDPart1_6();
 			default:

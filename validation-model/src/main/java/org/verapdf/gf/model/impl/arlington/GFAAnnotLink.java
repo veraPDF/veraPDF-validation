@@ -430,6 +430,10 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	private List<AArrayOfFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAF1_7();
 			default:
@@ -691,7 +695,10 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	private List<AArrayOfArraysPaths> getPath() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getPath2_0();
+				if ((gethasExtensionISO_TS_24654() == true)) {
+					return getPath2_0();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

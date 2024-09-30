@@ -35,7 +35,10 @@ public class GFAArrayOfRichMediaCuePointsEntry extends GFAObject implements AArr
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntry1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getEntry1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

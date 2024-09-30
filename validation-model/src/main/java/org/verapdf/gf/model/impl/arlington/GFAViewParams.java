@@ -31,6 +31,10 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	private List<AStream> getData() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getData1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getData1_7();
 			default:
@@ -54,6 +58,10 @@ public class GFAViewParams extends GFAObject implements AViewParams {
 	private List<ARichMediaInstance> getInstance() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getInstance1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getInstance1_7();
 			default:

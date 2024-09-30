@@ -29,6 +29,10 @@ public class GFARichMediaCommand extends GFAObject implements ARichMediaCommand 
 	private List<ARichMediaCommandArray> getA() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getA1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getA1_7();
 			default:

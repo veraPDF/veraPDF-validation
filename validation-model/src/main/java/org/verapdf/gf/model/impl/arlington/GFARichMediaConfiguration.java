@@ -29,6 +29,10 @@ public class GFARichMediaConfiguration extends GFAObject implements ARichMediaCo
 	private List<AArrayOfRichMediaInstances> getInstances() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getInstances1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getInstances1_7();
 			default:

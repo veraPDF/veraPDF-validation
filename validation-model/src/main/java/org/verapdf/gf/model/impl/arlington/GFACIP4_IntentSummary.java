@@ -44,7 +44,10 @@ public class GFACIP4_IntentSummary extends GFAObject implements ACIP4_IntentSumm
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_AssemblingIntent1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_AssemblingIntent1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -67,7 +70,10 @@ public class GFACIP4_IntentSummary extends GFAObject implements ACIP4_IntentSumm
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_BindingIntent1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_BindingIntent1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -90,7 +96,10 @@ public class GFACIP4_IntentSummary extends GFAObject implements ACIP4_IntentSumm
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_ColorIntent1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_ColorIntent1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -113,7 +122,10 @@ public class GFACIP4_IntentSummary extends GFAObject implements ACIP4_IntentSumm
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_FoldingIntent1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_FoldingIntent1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -136,7 +148,10 @@ public class GFACIP4_IntentSummary extends GFAObject implements ACIP4_IntentSumm
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_HoleMakingIntent1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_HoleMakingIntent1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -159,7 +174,10 @@ public class GFACIP4_IntentSummary extends GFAObject implements ACIP4_IntentSumm
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_LayoutIntent1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_LayoutIntent1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -182,7 +200,10 @@ public class GFACIP4_IntentSummary extends GFAObject implements ACIP4_IntentSumm
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_MediaIntent1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_MediaIntent1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -205,7 +226,10 @@ public class GFACIP4_IntentSummary extends GFAObject implements ACIP4_IntentSumm
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_ProductionIntent1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_ProductionIntent1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

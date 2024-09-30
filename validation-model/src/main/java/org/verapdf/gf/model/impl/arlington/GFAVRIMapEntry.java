@@ -34,6 +34,10 @@ public class GFAVRIMapEntry extends GFAObject implements AVRIMapEntry {
 	private List<AVRI> getEntry() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getEntry1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEntry1_7();
 			default:

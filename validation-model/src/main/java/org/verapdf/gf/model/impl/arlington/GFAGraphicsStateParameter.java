@@ -61,7 +61,10 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getAAPLST1_2();
+				if ((gethasExtensionAAPL() == true)) {
+					return getAAPLST1_2();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

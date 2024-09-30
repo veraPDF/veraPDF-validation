@@ -56,7 +56,10 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getAdditionalStreams1_5();
+				if ((gethasExtensionOpenOffice() == true)) {
+					return getAdditionalStreams1_5();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -78,7 +81,10 @@ public class GFAXRefStream extends GFAObject implements AXRefStream {
 	private List<AAuthCode> getAuthCode() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getAuthCode2_0();
+				if ((gethasExtensionISO_TS_32004() == true)) {
+					return getAuthCode2_0();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

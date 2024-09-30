@@ -35,6 +35,10 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	private List<ARichMediaContentNameTreeAssets> getAssets() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getAssets1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAssets1_7();
 			default:
@@ -58,6 +62,10 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	private List<ANameTreeNode> getAssetsTreeNode() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getAssetsTreeNode1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAssetsTreeNode1_7();
 			default:
@@ -81,6 +89,10 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	private List<AArrayOfRichMediaConfiguration> getConfigurations() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getConfigurations1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getConfigurations1_7();
 			default:
@@ -104,6 +116,10 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 	private List<AArrayOf3DViewAddEntries> getViews() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getViews1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getViews1_7();
 			default:

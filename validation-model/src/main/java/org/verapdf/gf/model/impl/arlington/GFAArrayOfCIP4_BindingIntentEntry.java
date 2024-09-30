@@ -35,7 +35,10 @@ public class GFAArrayOfCIP4_BindingIntentEntry extends GFAObject implements AArr
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntry1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getEntry1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

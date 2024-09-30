@@ -35,6 +35,10 @@ public class GFAArrayOfDPartArraysEntry extends GFAObject implements AArrayOfDPa
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getEntry1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEntry1_6();
 			default:

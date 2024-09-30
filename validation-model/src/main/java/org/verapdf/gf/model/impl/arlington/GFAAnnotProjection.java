@@ -47,6 +47,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AArrayOfFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAF1_7();
 			default:
@@ -70,6 +74,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AAppearance> getAP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getAP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAP1_7();
 			default:
@@ -93,6 +101,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getBorder1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getBorder1_7();
 			default:
@@ -116,6 +128,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getC1_7();
 			default:
@@ -139,6 +155,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<org.verapdf.model.baselayer.Object> getExData() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getExData1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getExData1_7();
 			default:
@@ -186,6 +206,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<org.verapdf.model.baselayer.Object> getIRT() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getIRT1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getIRT1_7();
 			default:
@@ -362,6 +386,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<org.verapdf.model.baselayer.Object> getOC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getOC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getOC1_7();
 			default:
@@ -407,6 +435,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<APageObject> getP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getP1_7();
 			default:
@@ -430,6 +462,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AAnnotPopup> getPopup() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getPopup1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getPopup1_7();
 			default:
@@ -453,6 +489,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AStream> getRC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getRC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getRC1_7();
 			default:

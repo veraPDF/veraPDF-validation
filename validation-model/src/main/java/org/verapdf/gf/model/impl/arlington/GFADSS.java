@@ -35,6 +35,10 @@ public class GFADSS extends GFAObject implements ADSS {
 	private List<AArrayOfStreamsGeneral> getCRLs() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getCRLs1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCRLs1_7();
 			default:
@@ -58,6 +62,10 @@ public class GFADSS extends GFAObject implements ADSS {
 	private List<AArrayOfStreamsGeneral> getCerts() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getCerts1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCerts1_7();
 			default:
@@ -81,6 +89,10 @@ public class GFADSS extends GFAObject implements ADSS {
 	private List<AArrayOfStreamsGeneral> getOCSPs() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getOCSPs1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getOCSPs1_7();
 			default:
@@ -104,6 +116,10 @@ public class GFADSS extends GFAObject implements ADSS {
 	private List<AVRIMap> getVRI() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getVRI1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getVRI1_7();
 			default:

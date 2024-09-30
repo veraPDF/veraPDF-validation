@@ -38,7 +38,10 @@ public class GFACIP4_Metadata extends GFAObject implements ACIP4_Metadata {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_Accounting1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_Accounting1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -61,7 +64,10 @@ public class GFACIP4_Metadata extends GFAObject implements ACIP4_Metadata {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_Administrator1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_Administrator1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -84,7 +90,10 @@ public class GFACIP4_Metadata extends GFAObject implements ACIP4_Metadata {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_Author1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_Author1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -107,7 +116,10 @@ public class GFACIP4_Metadata extends GFAObject implements ACIP4_Metadata {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_Conformance1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_Conformance1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -130,7 +142,10 @@ public class GFACIP4_Metadata extends GFAObject implements ACIP4_Metadata {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_Sender1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_Sender1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

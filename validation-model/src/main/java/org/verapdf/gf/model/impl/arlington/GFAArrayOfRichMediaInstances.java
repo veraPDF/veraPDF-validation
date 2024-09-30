@@ -29,6 +29,10 @@ public class GFAArrayOfRichMediaInstances extends GFAObject implements AArrayOfR
 	private List<AArrayOfRichMediaInstancesEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getEntries1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEntries1_7();
 			default:

@@ -37,6 +37,10 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	private List<AArrayOf_3RGBNumbers> getBackground() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getBackground1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getBackground1_7();
 			default:
@@ -60,6 +64,10 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	private List<AArrayOf_3RGBNumbers> getCardBackground() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getCardBackground1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCardBackground1_7();
 			default:
@@ -83,6 +91,10 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	private List<AArrayOf_3RGBNumbers> getCardBorder() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getCardBorder1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCardBorder1_7();
 			default:
@@ -106,6 +118,10 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	private List<AArrayOf_3RGBNumbers> getPrimaryText() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getPrimaryText1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getPrimaryText1_7();
 			default:
@@ -129,6 +145,10 @@ public class GFACollectionColors extends GFAObject implements ACollectionColors 
 	private List<AArrayOf_3RGBNumbers> getSecondaryText() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getSecondaryText1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getSecondaryText1_7();
 			default:

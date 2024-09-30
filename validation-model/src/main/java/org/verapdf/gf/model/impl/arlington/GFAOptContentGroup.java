@@ -34,7 +34,10 @@ public class GFAOptContentGroup extends GFAObject implements AOptContentGroup {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getGTS_Metadata1_7();
+				if ((gethasExtensionISO_19593() == true)) {
+					return getGTS_Metadata1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

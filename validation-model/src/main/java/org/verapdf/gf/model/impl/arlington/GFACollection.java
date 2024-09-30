@@ -43,6 +43,10 @@ public class GFACollection extends GFAObject implements ACollection {
 	private List<ACollectionColors> getColors() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getColors1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getColors1_7();
 			default:
@@ -66,6 +70,10 @@ public class GFACollection extends GFAObject implements ACollection {
 	private List<ACollectionFolder> getFolders() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getFolders1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getFolders1_7();
 			default:
@@ -89,6 +97,10 @@ public class GFACollection extends GFAObject implements ACollection {
 	private List<ANavigator> getNavigator() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getNavigator1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getNavigator1_7();
 			default:
@@ -113,7 +125,10 @@ public class GFACollection extends GFAObject implements ACollection {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getResources1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getResources1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -136,7 +151,10 @@ public class GFACollection extends GFAObject implements ACollection {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getResourcesTreeNode1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getResourcesTreeNode1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -204,6 +222,10 @@ public class GFACollection extends GFAObject implements ACollection {
 	private List<ACollectionSplit> getSplit() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getSplit1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getSplit1_7();
 			default:

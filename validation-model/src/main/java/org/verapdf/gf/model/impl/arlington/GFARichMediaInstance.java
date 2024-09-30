@@ -31,6 +31,10 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 	private List<AFileSpecification> getAsset() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getAsset1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAsset1_7();
 			default:
@@ -55,7 +59,10 @@ public class GFARichMediaInstance extends GFAObject implements ARichMediaInstanc
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getParams1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getParams1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

@@ -30,7 +30,10 @@ public class GFAArrayOfCIP4_Resource extends GFAObject implements AArrayOfCIP4_R
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntries1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getEntries1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

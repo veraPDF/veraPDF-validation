@@ -102,6 +102,10 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 	private List<A3DUnits> getentry3DU() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getentry3DU1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getentry3DU1_7();
 			default:

@@ -33,6 +33,10 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	private List<ARichMediaHeight> getHeight() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getHeight1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getHeight1_7();
 			default:
@@ -56,6 +60,10 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	private List<ARichMediaPosition> getPosition() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getPosition1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getPosition1_7();
 			default:
@@ -79,6 +87,10 @@ public class GFARichMediaWindow extends GFAObject implements ARichMediaWindow {
 	private List<ARichMediaWidth> getWidth() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getWidth1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getWidth1_7();
 			default:

@@ -34,6 +34,10 @@ public class GFAArrayOf3DViewAddEntriesEntry extends GFAObject implements AArray
 	private List<A3DViewAddEntries> getEntry() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getEntry1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEntry1_7();
 			default:

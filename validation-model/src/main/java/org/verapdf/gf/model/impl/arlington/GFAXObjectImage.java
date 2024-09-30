@@ -59,6 +59,10 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	private List<AArrayOfFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAF1_7();
 			default:
@@ -768,6 +772,10 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	private List<org.verapdf.model.baselayer.Object> getMeasure() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getMeasure1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getMeasure1_7();
 			default:
@@ -927,6 +935,10 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 	private List<APointData> getPtData() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getPtData1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getPtData1_7();
 			default:

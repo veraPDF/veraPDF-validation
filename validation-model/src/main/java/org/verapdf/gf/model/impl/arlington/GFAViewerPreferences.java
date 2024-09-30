@@ -31,6 +31,10 @@ public class GFAViewerPreferences extends GFAObject implements AViewerPreference
 	private List<AArrayOfNamesForEnforce> getEnforce() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getEnforce1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEnforce1_7();
 			default:

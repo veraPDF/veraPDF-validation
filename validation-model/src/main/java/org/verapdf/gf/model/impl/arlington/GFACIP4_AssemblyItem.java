@@ -30,7 +30,10 @@ public class GFACIP4_AssemblyItem extends GFAObject implements ACIP4_AssemblyIte
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_Child1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_Child1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

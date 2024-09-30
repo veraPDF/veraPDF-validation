@@ -37,6 +37,10 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	private List<ARichMediaAnimation> getAnimation() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getAnimation1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAnimation1_7();
 			default:
@@ -60,6 +64,10 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	private List<ARichMediaConfiguration> getConfiguration() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getConfiguration1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getConfiguration1_7();
 			default:
@@ -83,6 +91,10 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	private List<ARichMediaPresentation> getPresentation() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getPresentation1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getPresentation1_7();
 			default:
@@ -106,6 +118,10 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	private List<AArrayOfIndirectFileSpecifications> getScripts() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getScripts1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getScripts1_7();
 			default:
@@ -129,6 +145,10 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 	private List<A3DViewAddEntries> getView() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getView1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getView1_7();
 			default:

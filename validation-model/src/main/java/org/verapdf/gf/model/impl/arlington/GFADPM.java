@@ -35,8 +35,15 @@ public class GFADPM extends GFAObject implements ADPM {
 	private List<ADPMEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
-				return getEntries1_6();
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getEntries1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getEntries1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEntries1_7();
 			default:
@@ -72,7 +79,10 @@ public class GFADPM extends GFAObject implements ADPM {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_Root1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_Root1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -96,7 +106,10 @@ public class GFADPM extends GFAObject implements ADPM {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getGTS_Managed1_6();
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getGTS_Managed1_6();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -120,7 +133,10 @@ public class GFADPM extends GFAObject implements ADPM {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getGTS_Suspect1_6();
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getGTS_Suspect1_6();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

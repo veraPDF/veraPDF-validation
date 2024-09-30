@@ -55,9 +55,15 @@ public class GFAExtensions extends GFAObject implements AExtensions {
 	private List<org.verapdf.model.baselayer.Object> getGTSm() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
-				return getGTSm1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getGTSm1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getGTSm2_0();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getGTSm2_0();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

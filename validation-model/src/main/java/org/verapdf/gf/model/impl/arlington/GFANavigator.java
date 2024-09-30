@@ -40,7 +40,10 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getInitialFields1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getInitialFields1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -85,7 +88,10 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getResources1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getResources1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -108,7 +114,10 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getResourcesTreeNode1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getResourcesTreeNode1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -131,7 +140,10 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getStrings1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getStrings1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -154,7 +166,10 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getStringsTreeNode1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getStringsTreeNode1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

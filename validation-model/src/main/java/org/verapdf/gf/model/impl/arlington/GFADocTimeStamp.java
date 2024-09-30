@@ -37,6 +37,10 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	private List<AArrayOfNonNegativeIntegersGeneral> getByteRange() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getByteRange1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getByteRange1_7();
 			default:
@@ -60,6 +64,10 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	private List<AArrayOfStringsByte> getCert() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getCert1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCert1_7();
 			default:
@@ -83,6 +91,10 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	private List<AArrayOf_3NonNegativeIntegers> getChanges() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getChanges1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getChanges1_7();
 			default:
@@ -106,6 +118,10 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	private List<ASignatureBuildPropDict> getProp_Build() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getProp_Build1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getProp_Build1_7();
 			default:
@@ -129,6 +145,10 @@ public class GFADocTimeStamp extends GFAObject implements ADocTimeStamp {
 	private List<AArrayOfSignatureReferences> getReference() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getReference1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getReference1_7();
 			default:

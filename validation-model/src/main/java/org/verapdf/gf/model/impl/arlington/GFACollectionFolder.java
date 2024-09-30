@@ -39,6 +39,10 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	private List<ACollectionItem> getCI() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getCI1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCI1_7();
 			default:
@@ -62,6 +66,10 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	private List<ACollectionFolder> getChild() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getChild1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getChild1_7();
 			default:
@@ -85,6 +93,10 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	private List<AArrayOfNumbersGeneral> getFree() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getFree1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getFree1_7();
 			default:
@@ -108,6 +120,10 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	private List<ACollectionFolder> getNext() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getNext1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getNext1_7();
 			default:
@@ -131,6 +147,10 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	private List<ACollectionFolder> getParent() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getParent1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getParent1_7();
 			default:
@@ -154,6 +174,10 @@ public class GFACollectionFolder extends GFAObject implements ACollectionFolder 
 	private List<AThumbnail> getThumb() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getThumb1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getThumb1_7();
 			default:

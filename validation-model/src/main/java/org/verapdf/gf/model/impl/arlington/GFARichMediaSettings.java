@@ -31,6 +31,10 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 	private List<ARichMediaActivation> getActivation() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getActivation1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getActivation1_7();
 			default:
@@ -54,6 +58,10 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 	private List<ARichMediaDeactivation> getDeactivation() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getDeactivation1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getDeactivation1_7();
 			default:

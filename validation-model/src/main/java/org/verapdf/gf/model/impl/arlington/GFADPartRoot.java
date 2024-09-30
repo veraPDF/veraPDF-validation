@@ -32,6 +32,10 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getDPartRootNode1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getDPartRootNode1_6();
 			default:
@@ -56,6 +60,10 @@ public class GFADPartRoot extends GFAObject implements ADPartRoot {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getNodeNameList1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getNodeNameList1_6();
 			default:

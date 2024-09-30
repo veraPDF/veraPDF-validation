@@ -30,7 +30,10 @@ public class GFACIP4_Production extends GFAObject implements ACIP4_Production {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCIP4_Resource1_7();
+				if ((gethasExtensionISO_21812() == true)) {
+					return getCIP4_Resource1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
