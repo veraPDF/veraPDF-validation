@@ -190,13 +190,18 @@ public class GFPDPage extends GFPDObject implements PDPage {
 
 	private List<PDAnnot> getAnnotations() {
 		if (this.annotations == null) {
-			this.annotations = parseAnnotataions();
+			this.annotations = parseAnnotations();
 		}
 
 		return this.annotations;
 	}
 
-	private List<PDAnnot> parseAnnotataions() {
+	@Override
+	public Boolean getcontainsAnnotations() {
+		return !((org.verapdf.pd.PDPage) simplePDObject).getAnnotations().isEmpty();
+	}
+
+	private List<PDAnnot> parseAnnotations() {
 		StaticContainers.getTransparencyVisitedContentStreams().clear();
 		List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
 		if (!annots.isEmpty()) {
@@ -299,7 +304,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			this.contentStreams = parseContentStream();
 		}
 		if (this.annotations == null) {
-			this.annotations = parseAnnotataions();
+			this.annotations = parseAnnotations();
 		}
 		return this.containsTransparency;
 	}
