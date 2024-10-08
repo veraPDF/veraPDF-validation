@@ -262,6 +262,11 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 	}
 
 	@Override
+	public Boolean getcontainsLang() {
+		return ((org.verapdf.pd.structure.PDStructElem) this.simplePDObject).getLang() != null;
+	}
+
+	@Override
 	public String getparentLang() {
 		Set<COSKey> keys = new HashSet<>();
 		COSKey key = this.simplePDObject.getObject().getObjectKey();
