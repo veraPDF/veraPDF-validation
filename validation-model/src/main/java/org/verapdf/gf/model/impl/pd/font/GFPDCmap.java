@@ -84,6 +84,11 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
         }
         return Collections.emptyList();
     }
+    
+    @Override
+    public Boolean getcontainsEmbeddedFile() {
+        return this.pdcMap.getcMap().getType() == COSObjType.COS_STREAM;
+    }
 
     /**
      * @return link to the CMap referenced by the key /UseCMap.

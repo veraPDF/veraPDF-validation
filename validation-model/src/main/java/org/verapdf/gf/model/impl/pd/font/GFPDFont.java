@@ -167,6 +167,11 @@ public class GFPDFont extends GFPDResource implements PDFont {
         return Collections.unmodifiableList(list);
     }
 
+    @Override
+    public Boolean getcontainsFontFile() {
+        return this.pdFont.getFontProgram() != null && this.fontProgramParsed;
+    }
+
     /**
      * @return link to the name Object referenced by BaseFont key.
      */
