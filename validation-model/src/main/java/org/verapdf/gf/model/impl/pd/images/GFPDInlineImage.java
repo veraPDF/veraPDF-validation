@@ -99,6 +99,7 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 			case GFPDXImage.IMAGE_CS:
 				return this.getImageCS();
 			case GFPDXImage.S_MASK:
+			case GFPDXImage.MASK:
 			case GFPDXObject.OPI:
 			case GFPDXImage.ALTERNATES:
 			case GFPDXImage.JPX_STREAM:
@@ -153,5 +154,10 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 			return Collections.unmodifiableList(intents);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getisMask() {
+		return false;
 	}
 }
