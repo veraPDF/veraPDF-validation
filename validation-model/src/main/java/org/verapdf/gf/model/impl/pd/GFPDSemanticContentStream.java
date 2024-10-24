@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd;
 
 
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
@@ -54,23 +55,23 @@ public class GFPDSemanticContentStream extends GFPDContentStream implements PDSe
 
 	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
                                      GraphicState inheritedGraphicState,
-                                     StructureElementAccessObject structureElementAccessObject) {
-		super(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, SEMANTIC_CONTENT_STREAM_TYPE);
+                                     StructureElementAccessObject structureElementAccessObject, COSKey parentObjectKey) {
+		super(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentObjectKey, SEMANTIC_CONTENT_STREAM_TYPE);
 	}
 
 	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 									 GraphicState inheritedGraphicState,
 									 StructureElementAccessObject structureElementAccessObject,
-									 COSObject parentStructElem, List<String> parentsTags) {
+									 COSObject parentStructElem, List<String> parentsTags, COSKey parentObjectKey) {
 		super(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructElem,
-				parentsTags, SEMANTIC_CONTENT_STREAM_TYPE);
+				parentsTags, parentObjectKey, SEMANTIC_CONTENT_STREAM_TYPE);
 	}
 
 	public GFPDSemanticContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 									 GraphicState inheritedGraphicState, StructureElementAccessObject structureElementAccessObject,
-									 COSObject parentStructElem, List<String> parentsTags, String defaultLang, boolean isSignature) {
+									 COSObject parentStructElem, List<String> parentsTags, String defaultLang, boolean isSignature, COSKey parentObjectKey) {
 		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentStructElem,
-				parentsTags);
+				parentsTags, parentObjectKey);
 		this.defaultLang = defaultLang;
 		this.isSignature = isSignature;
 	}

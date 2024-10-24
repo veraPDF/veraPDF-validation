@@ -98,13 +98,14 @@ class OperatorParser {
 	private final List<String> parentsTags;
 	
 	private final boolean isRealContent;
-
+	private final COSKey parentObjectKey;
+	
 	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
                    StructureElementAccessObject structureElementAccessObject,
                    PDResourcesHandler resourcesHandler, COSObject parentStructElem, 
-				   List<String> parentsTags, boolean isRealContent) {
+				   List<String> parentsTags, boolean isRealContent, COSKey parentObjectKey) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -115,6 +116,7 @@ class OperatorParser {
 		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
 		this.isRealContent = isRealContent;
+		this.parentObjectKey = parentObjectKey;
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -173,11 +175,11 @@ class OperatorParser {
 				Long mcid = bdcOp.getMCID();
 				if (mcid != null) {
 					if (mcidSet.contains(mcid)) {
-						LOGGER.log(Level.WARNING, "Content stream contains duplicate MCID - " + mcid);
+						LOGGER.log(Level.WARNING, getErrorMessage("Duplicate MCID - " + mcid));
 					}
 					mcidSet.add(mcid);
 					if (getCurrentMCID() != null) {
-						LOGGER.log(Level.WARNING, "Content stream contains nested MCID - " + mcid);
+						LOGGER.log(Level.WARNING, getErrorMessage("Nested MCID - " + mcid));
 					}
 				}
 				processedOperators.add(bdcOp);
@@ -189,7 +191,7 @@ class OperatorParser {
 				if (!this.markedContentStack.empty()) {
 					this.markedContentStack.pop();
 				} else {
-					LOGGER.log(Level.WARNING, "Operator (EMC) not inside marked content");
+					LOGGER.log(Level.WARNING, getErrorMessage("Operator (EMC) not inside marked content"));
 				}
 				break;
 			case Operators.MP:
@@ -499,13 +501,13 @@ class OperatorParser {
 			// SPECIAL GS
 			case Operators.CM_CONCAT:
 				if (insideText) {
-					LOGGER.log(Level.WARNING, "Special graphics state operator (cm) inside Text object");
+					LOGGER.log(Level.WARNING, getErrorMessage("Special graphics state operator (cm) inside Text object"));
 				}
 				processedOperators.add(new GFOp_cm(arguments));
 				break;
 			case Operators.Q_GRESTORE:
 				if (insideText) {
-					LOGGER.log(Level.WARNING, "Special graphics state operator (Q) inside Text object");
+					LOGGER.log(Level.WARNING, getErrorMessage("Special graphics state operator (Q) inside Text object"));
 				}
 				if (!graphicStateStack.isEmpty()) {
 					this.graphicState.copyProperties(this.graphicStateStack.pop());
@@ -517,7 +519,7 @@ class OperatorParser {
 				break;
 			case Operators.Q_GSAVE:
 				if (insideText) {
-					LOGGER.log(Level.WARNING, "Special graphics state operator (q) inside Text object");
+					LOGGER.log(Level.WARNING, getErrorMessage("Special graphics state operator (q) inside Text object"));
 				}
 				this.graphicStateStack.push(this.graphicState.clone());
 				this.transparencyGraphicStateStack.push(this.transparencyGraphicState.clone());
@@ -623,7 +625,7 @@ class OperatorParser {
 		}
 	}
 
-	private static RenderingMode getRenderingMode(List<COSBase> arguments) {
+	private RenderingMode getRenderingMode(List<COSBase> arguments) {
 		if (!arguments.isEmpty()) {
 			COSBase renderingMode = arguments.get(0);
 			if (renderingMode instanceof COSInteger) {
@@ -631,7 +633,7 @@ class OperatorParser {
 				if (mode != null) {
 					return mode;
 				}
-				LOGGER.log(Level.WARNING, "Wrong argument of Tr operator in stream");
+				LOGGER.log(Level.WARNING, getErrorMessage("Wrong argument of Tr operator"));
 			}
 		}
 		return RenderingMode.FILL;
@@ -728,5 +730,12 @@ class OperatorParser {
 			}
 		}
 		return null;
+	}
+	
+	private String getErrorMessage(String errorMessage) {
+		if (parentObjectKey == null) {
+			return errorMessage;
+		}
+		return "Content stream (object " + parentObjectKey + "): " + errorMessage;
 	}
 }
