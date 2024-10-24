@@ -206,12 +206,12 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 			gfContentStream = new GFPDContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructElem, parentsTags);
+					parentStructElem, parentsTags, simplePDObject.getObject().getObjectKey());
 		} else {
 			gfContentStream = new GFPDSemanticContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructElem, parentsTags, defaultLang, isSignature);
+					parentStructElem, parentsTags, defaultLang, isSignature, simplePDObject.getObject().getObjectKey());
 		}
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);

@@ -245,10 +245,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			GFPDContentStream pdContentStream;
 			if (!PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour())) {
 				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
-						new StructureElementAccessObject(this.simpleCOSObject));
+						new StructureElementAccessObject(this.simpleCOSObject), page.getObject().getObjectKey());
 			} else {
 				pdContentStream = new GFPDSemanticContentStream(page.getContent(), resourcesHandler, null,
-						new StructureElementAccessObject(this.simpleCOSObject));
+						new StructureElementAccessObject(this.simpleCOSObject), page.getObject().getObjectKey());
 			}
 			this.containsTransparency |= pdContentStream.isContainsTransparency();
 			pdContentStreams.add(pdContentStream);

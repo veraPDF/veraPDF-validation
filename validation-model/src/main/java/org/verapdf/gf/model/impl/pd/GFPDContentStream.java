@@ -69,37 +69,39 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 	private final StructureElementAccessObject structureElementAccessObject;
 	protected COSObject parentStructElem;
 	protected List<String> parentsTags;
+	private COSKey parentObjectKey;
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
-							 StructureElementAccessObject structureElementAccessObject) {
-		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, CONTENT_STREAM_TYPE);
+							 StructureElementAccessObject structureElementAccessObject, COSKey parentObjectKey) {
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentObjectKey, CONTENT_STREAM_TYPE);
 	}
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject,
-							 COSObject parentStructElem, List<String> parentsTags) {
+							 COSObject parentStructElem, List<String> parentsTags, COSKey parentObjectKey) {
 		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject,
-				parentStructElem, parentsTags, CONTENT_STREAM_TYPE);
+				parentStructElem, parentsTags, parentObjectKey, CONTENT_STREAM_TYPE);
 	}
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream, PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
-							 StructureElementAccessObject structureElementAccessObject, final String type) {
+							 StructureElementAccessObject structureElementAccessObject, COSKey parentObjectKey, final String type) {
 		super(contentStream, type);
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.structureElementAccessObject = structureElementAccessObject;
 		this.parentsTags = Collections.emptyList();
+		this.parentObjectKey = parentObjectKey;
 	}
 
 	public GFPDContentStream(org.verapdf.pd.PDContentStream contentStream,
 							 PDResourcesHandler resourcesHandler,
 							 GraphicState inheritedGraphicState,
 							 StructureElementAccessObject structureElementAccessObject,
-							 COSObject parentStructElem, List<String> parentsTags, final String type) {
-		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, type);
+							 COSObject parentStructElem, List<String> parentsTags, COSKey parentObjectKey, final String type) {
+		this(contentStream, resourcesHandler, inheritedGraphicState, structureElementAccessObject, parentObjectKey, type);
 		this.parentStructElem = getParentStructureElem(structureElementAccessObject);
 		if (this.parentStructElem == null) {
 			this.parentStructElem = parentStructElem;
@@ -151,7 +153,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 							OperatorFactory operatorFactory = new OperatorFactory();
 							List<Operator> result = operatorFactory.operatorsFromTokens(streamParser.getTokens(),
 									resourcesHandler, inheritedGraphicState, structureElementAccessObject, 
-									parentStructElem, parentsTags, isSemantic());
+									parentStructElem, parentsTags, isSemantic(), parentObjectKey);
 							this.containsTransparency = operatorFactory.isLastParsedContainsTransparency();
 							this.operators = Collections.unmodifiableList(result);
 						} finally {
