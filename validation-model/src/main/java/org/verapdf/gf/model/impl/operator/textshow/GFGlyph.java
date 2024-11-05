@@ -100,11 +100,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                     this.name = null;
                 } else {
                     pr.parseFont();
-                    if (glyphCode == 0 || !font.glyphIsPresent(glyphCode)) {
-                        this.name = ".notdef";
-                    } else {
-                        this.name = null;
-                    }
+                    this.name = font.glyphIsPresent(glyphCode) ? null : ".notdef";
                 }
             } catch (IOException e) {
                 LOGGER.log(Level.FINE, "Can't convert code to glyph", e);
