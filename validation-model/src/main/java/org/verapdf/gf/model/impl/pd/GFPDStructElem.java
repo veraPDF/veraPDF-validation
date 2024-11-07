@@ -104,7 +104,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		if (parent != null) {
 			StructureType parentStandardStructureType = org.verapdf.pd.structure.PDStructElem.getStructureElementStandardStructureType(parent);
 			String parentStandardType = parentStandardStructureType != null ? parentStandardStructureType.getType().getValue() : null;
-			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType) || TaggedPDFConstants.DIV.equals(parentStandardType)) {
+			while (org.verapdf.pd.structure.PDStructElem.isPassThroughTag(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;

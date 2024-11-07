@@ -26,6 +26,7 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDStructTreeNode;
+import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
@@ -101,7 +102,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 		List<String> res = new ArrayList<>();
 		for (GFPDStructElem child : element.getChildren()) {
 			String elementStandardType = child.getstandardType();
-			if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType) || TaggedPDFConstants.DIV.equals(elementStandardType)) {
+			if (PDStructElem.isPassThroughTag(elementStandardType)) {
 				res.addAll(getChildrenStandardTypes(child));
 			} else {
 				res.add(elementStandardType);
@@ -112,10 +113,10 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 
 	private List<GFPDStructElem> getChildren() {
 		if (children == null) {
-			List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeNode) simplePDObject).getStructChildren();
+			List<PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeNode) simplePDObject).getStructChildren();
 			if (!elements.isEmpty()) {
 				List<GFPDStructElem> res = new ArrayList<>(elements.size());
-				for (org.verapdf.pd.structure.PDStructElem element : elements) {
+				for (PDStructElem element : elements) {
 					res.add(GFSEFactory.createTypedStructElem(element));
 				}
 				children = Collections.unmodifiableList(res);
@@ -130,7 +131,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 		List<GFPDStructElem> children = getChildren();
 		List<GFPDStructElem> result = new LinkedList<>();
 		for (GFPDStructElem child : children) {
-			if (TaggedPDFConstants.NON_STRUCT.equals(child.getstandardType()) || TaggedPDFConstants.DIV.equals(child.getstandardType())) {
+			if (PDStructElem.isPassThroughTag(child.getstandardType())) {
 				result.addAll(child.getStructuralSignificanceChildren());
 			} else {
 				result.add(child);
