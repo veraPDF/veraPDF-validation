@@ -26,7 +26,7 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 		}
 	}
 
-	private List<AArrayOfStringsText> getOS() {
+	private List<AArrayOfStringsTextOrNames> getOS() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
@@ -38,14 +38,14 @@ public class GFASignatureBuildDataAppDict extends GFAObject implements ASignatur
 		}
 	}
 
-	private List<AArrayOfStringsText> getOS1_5() {
+	private List<AArrayOfStringsTextOrNames> getOS1_5() {
 		COSObject object = getOSValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfStringsText> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfStringsText((COSArray)object.getDirectBase(), this.baseObject, "OS"));
+			List<AArrayOfStringsTextOrNames> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfStringsTextOrNames((COSArray)object.getDirectBase(), this.baseObject, "OS"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
