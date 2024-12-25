@@ -184,7 +184,7 @@ class ChunkParser {
 			case Operators.SC_FILL:
 				if (this.graphicsState.isProcessColorOperators()) {
 					PDColorSpace colorSpace = this.graphicsState.getFillColorSpace();
-					ASAtom colorSpaceType = colorSpace.getType();
+					ASAtom colorSpaceType = colorSpace != null ? colorSpace.getType() : null;
 					if (ASAtom.DEVICERGB.equals(colorSpaceType) || ASAtom.DEVICEGRAY.equals(colorSpaceType) ||
 							ASAtom.DEVICECMYK.equals(colorSpaceType) || ASAtom.CALRGB.equals(colorSpaceType) ||
 							ASAtom.CALGRAY.equals(colorSpaceType) || ASAtom.INDEXED.equals(colorSpaceType) ||
