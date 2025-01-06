@@ -204,6 +204,11 @@ public class Matrix implements Cloneable {
 	public double getRotationDegree() {
 		return Math.toDegrees(Math.atan2(getShearY(), getScaleX()));
 	}
+	
+	public double getScaleValue() {
+		return Math.max(Math.sqrt(getScaleY() * getScaleY() + getShearX() * getShearX()),
+				Math.sqrt(getScaleX() * getScaleX() + getShearY() * getShearY()));
+	}
 
 	@Override
 	public String toString() {

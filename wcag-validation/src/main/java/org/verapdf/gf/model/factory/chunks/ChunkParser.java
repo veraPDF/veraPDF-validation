@@ -823,7 +823,7 @@ class ChunkParser {
 				graphicsState.getCTM().transformY(lineChunk.getStartX(), lineChunk.getStartY()),
 				graphicsState.getCTM().transformX(lineChunk.getEndX(), lineChunk.getEndY()),
 				graphicsState.getCTM().transformY(lineChunk.getEndX(), lineChunk.getEndY()),
-				lineWidth, lineCap);
+				lineWidth * graphicsState.getCTM().getScaleValue(), lineCap);
 	}
 
 	private static void processColorSpace(GraphicsState graphicState, ResourceHandler resourcesHandler,
