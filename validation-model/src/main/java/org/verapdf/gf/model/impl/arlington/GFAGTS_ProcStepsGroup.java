@@ -17,6 +17,28 @@ public class GFAGTS_ProcStepsGroup extends GFAObject implements AGTS_ProcStepsGr
 	}
 
 	@Override
+	public Boolean getcontainsGTS_ProcStepsColorants() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("GTS_ProcStepsColorants"));
+	}
+
+	public COSObject getGTS_ProcStepsColorantsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_ProcStepsColorants"));
+		return object;
+	}
+
+	@Override
+	public String getGTS_ProcStepsColorantsType() {
+		COSObject GTS_ProcStepsColorants = getGTS_ProcStepsColorantsValue();
+		return getObjectType(GTS_ProcStepsColorants);
+	}
+
+	@Override
+	public Boolean getGTS_ProcStepsColorantsHasTypeName() {
+		COSObject GTS_ProcStepsColorants = getGTS_ProcStepsColorantsValue();
+		return getHasTypeName(GTS_ProcStepsColorants);
+	}
+
+	@Override
 	public Boolean getcontainsGTS_ProcStepsGroup() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("GTS_ProcStepsGroup"));
 	}
@@ -70,28 +92,6 @@ public class GFAGTS_ProcStepsGroup extends GFAObject implements AGTS_ProcStepsGr
 	public String getGTS_ProcStepsTypeNameValue() {
 		COSObject GTS_ProcStepsType = getGTS_ProcStepsTypeValue();
 		return getNameValue(GTS_ProcStepsType);
-	}
-
-	@Override
-	public Boolean getcontainsGWG__ProcStepsColorants() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("GWG__ProcStepsColorants"));
-	}
-
-	public COSObject getGWG__ProcStepsColorantsValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GWG__ProcStepsColorants"));
-		return object;
-	}
-
-	@Override
-	public String getGWG__ProcStepsColorantsType() {
-		COSObject GWG__ProcStepsColorants = getGWG__ProcStepsColorantsValue();
-		return getObjectType(GWG__ProcStepsColorants);
-	}
-
-	@Override
-	public Boolean getGWG__ProcStepsColorantsHasTypeName() {
-		COSObject GWG__ProcStepsColorants = getGWG__ProcStepsColorantsValue();
-		return getHasTypeName(GWG__ProcStepsColorants);
 	}
 
 }
