@@ -1166,6 +1166,12 @@ public class GFAArrayOfAnnotsEntry extends GFAObject implements AArrayOfAnnotsEn
 	}
 
 	@Override
+	public Boolean getisIndirect() {
+		COSObject entry = getValue();
+		return getisIndirect(entry);
+	}
+
+	@Override
 	public String getType() {
 		COSObject entry = getValue();
 		return getObjectType(entry);
