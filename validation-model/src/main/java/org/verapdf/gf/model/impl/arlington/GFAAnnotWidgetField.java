@@ -384,43 +384,29 @@ public class GFAAnnotWidgetField extends GFAObject implements AAnnotWidgetField 
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getAA() {
+	private List<AAddActionWidgetAnnotationFormField> getAA() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
-				return getAA1_2();
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getAA1_3();
+				return getAA1_2();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getAA1_2() {
+	private List<AAddActionWidgetAnnotationFormField> getAA1_2() {
 		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAddActionWidgetAnnotation> list = new ArrayList<>(1);
-			list.add(new GFAAddActionWidgetAnnotation((COSDictionary)object.getDirectBase(), this.baseObject, "AA"));
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getAA1_3() {
-		COSObject object = getAAValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAddActionFormField> list = new ArrayList<>(1);
-			list.add(new GFAAddActionFormField((COSDictionary)object.getDirectBase(), this.baseObject, "AA"));
+			List<AAddActionWidgetAnnotationFormField> list = new ArrayList<>(1);
+			list.add(new GFAAddActionWidgetAnnotationFormField((COSDictionary)object.getDirectBase(), this.baseObject, "AA"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

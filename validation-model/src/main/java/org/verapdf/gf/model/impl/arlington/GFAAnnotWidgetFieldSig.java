@@ -333,7 +333,7 @@ public class GFAAnnotWidgetFieldSig extends GFAObject implements AAnnotWidgetFie
 		}
 	}
 
-	private List<AAddActionFormField> getAA() {
+	private List<AAddActionWidgetAnnotationFormField> getAA() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -347,14 +347,14 @@ public class GFAAnnotWidgetFieldSig extends GFAObject implements AAnnotWidgetFie
 		}
 	}
 
-	private List<AAddActionFormField> getAA1_3() {
+	private List<AAddActionWidgetAnnotationFormField> getAA1_3() {
 		COSObject object = getAAValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AAddActionFormField> list = new ArrayList<>(1);
-			list.add(new GFAAddActionFormField((COSDictionary)object.getDirectBase(), this.baseObject, "AA"));
+			List<AAddActionWidgetAnnotationFormField> list = new ArrayList<>(1);
+			list.add(new GFAAddActionWidgetAnnotationFormField((COSDictionary)object.getDirectBase(), this.baseObject, "AA"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
