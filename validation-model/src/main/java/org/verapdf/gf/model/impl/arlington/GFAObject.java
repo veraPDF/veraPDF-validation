@@ -277,8 +277,15 @@ public class GFAObject extends GenericModelObject implements AObject {
 	public COSObject getInheritableValue(ASAtom key) {
 		COSObject keyObject = null;
 		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((keyObject == null || keyObject.empty()) && (currentObject != null && !currentObject.empty())) {
 			keyObject = currentObject.getKey(key);
+			if (currentObject.getKey() != null) {
+				if (visitedKeys.contains(currentObject.getKey())) {
+					break;
+				}
+				visitedKeys.add(currentObject.getKey());
+			}
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
 		return keyObject;
@@ -308,7 +315,14 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	public Boolean isContainsInheritableValue(ASAtom key) {
 		COSObject currentObject = new COSObject(this.baseObject);
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(key)) {
+			if (currentObject.getKey() != null) {
+				if (visitedKeys.contains(currentObject.getKey())) {
+					break;
+				}
+				visitedKeys.add(currentObject.getKey());
+			}
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
 		return currentObject != null && !currentObject.empty() && currentObject.knownKey(key);
