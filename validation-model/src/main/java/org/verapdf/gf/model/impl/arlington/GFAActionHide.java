@@ -517,7 +517,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -548,7 +548,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -691,7 +691,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -722,7 +722,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -869,7 +869,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -900,7 +900,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -1055,7 +1055,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -1086,7 +1086,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -1245,7 +1245,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -1276,7 +1276,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -1437,7 +1437,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -1468,7 +1468,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -1633,7 +1633,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -1664,7 +1664,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:

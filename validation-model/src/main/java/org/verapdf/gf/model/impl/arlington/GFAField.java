@@ -186,7 +186,7 @@ public class GFAField extends GFAObject implements AField {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -217,7 +217,7 @@ public class GFAField extends GFAObject implements AField {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -281,7 +281,7 @@ public class GFAField extends GFAObject implements AField {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -312,7 +312,7 @@ public class GFAField extends GFAObject implements AField {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -411,7 +411,7 @@ public class GFAField extends GFAObject implements AField {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -442,7 +442,7 @@ public class GFAField extends GFAObject implements AField {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -508,7 +508,7 @@ public class GFAField extends GFAObject implements AField {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -539,7 +539,7 @@ public class GFAField extends GFAObject implements AField {
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
