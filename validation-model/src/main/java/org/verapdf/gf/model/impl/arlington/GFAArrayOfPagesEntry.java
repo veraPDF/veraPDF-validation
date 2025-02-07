@@ -78,7 +78,7 @@ public class GFAArrayOfPagesEntry extends GFAObject implements AArrayOfPagesEntr
 		return getHasTypeDictionary(entry);
 	}
 
-	public COSObject getAnyValue() {
+	public COSObject getEntryValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -87,9 +87,9 @@ public class GFAArrayOfPagesEntry extends GFAObject implements AArrayOfPagesEntr
 	}
 
 	@Override
-	public Boolean getcontainsAnySeparationInfo() {
-		COSObject Any = getAnyValue();
-		return Any.knownKey(ASAtom.getASAtom("SeparationInfo"));
+	public Boolean getcontainsEntrySeparationInfo() {
+		COSObject Entry = getEntryValue();
+		return Entry.knownKey(ASAtom.getASAtom("SeparationInfo"));
 	}
 
 }

@@ -67,7 +67,7 @@ public class GFAArrayOfURLsEntry extends GFAObject implements AArrayOfURLsEntry 
 		return getHasTypeDictionary(entry);
 	}
 
-	public COSObject getAnyValue() {
+	public COSObject getEntryValue() {
 		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -76,9 +76,18 @@ public class GFAArrayOfURLsEntry extends GFAObject implements AArrayOfURLsEntry 
 	}
 
 	@Override
-	public Boolean getcontainsAnyFS() {
-		COSObject Any = getAnyValue();
-		return Any.knownKey(ASAtom.getASAtom("FS"));
+	public String getEntryFSNameValue() {
+		COSObject Entry = getEntryValue();
+		if (Entry == null || !Entry.getType().isDictionaryBased()) {
+			return null;
+		}
+		return new GFAFileSpecification(Entry.getDirectBase(), null, null).getFSNameValue();
+	}
+
+	@Override
+	public Boolean getcontainsEntryFS() {
+		COSObject Entry = getEntryValue();
+		return Entry.knownKey(ASAtom.getASAtom("FS"));
 	}
 
 }
