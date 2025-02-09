@@ -34,7 +34,7 @@
   <artifactId>validation-model-jakarta</artifactId>
 
   <name>veraPDF Validation</name>
-  <description>veraPDF PDF/A validation model implementation based on PDF parser.</description>
+  <description>veraPDF validation model implementation.</description>
 
   <dependencies>
     <dependency>

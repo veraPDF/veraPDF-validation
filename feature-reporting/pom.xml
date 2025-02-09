@@ -35,7 +35,7 @@
     <artifactId>feature-reporting-jakarta</artifactId>
 
     <name>veraPDF Feature Reporting</name>
-    <description>veraPDF PDF feature reporting implementation based on PDF parser.</description>
+    <description>veraPDF PDF feature reporting implementation.</description>
 
 
     <dependencies>
