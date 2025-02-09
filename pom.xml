@@ -37,7 +37,7 @@
   <packaging>pom</packaging>
 
   <name>veraPDF Validation Project</name>
-  <description>veraPDF validation, feature extraction and metadata repair based on PDF parser.</description>
+  <description>veraPDF validation, feature extraction and metadata repair.</description>
 
   <scm>
     <url>https://github.com/veraPDF/veraPDF-validation/</url>
