@@ -34,7 +34,7 @@
     <artifactId>metadata-fixer-arlington</artifactId>
 
     <name>veraPDF Metadata Fixer</name>
-    <description>veraPDF PDF/A metadata fixer implementation based on PDF parser.</description>
+    <description>veraPDF fixer implementation.</description>
 
     <dependencies>
         <dependency>
