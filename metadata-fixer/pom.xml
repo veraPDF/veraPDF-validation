@@ -33,8 +33,8 @@
 
     <artifactId>metadata-fixer-jakarta</artifactId>
 
-    <name>veraPDF Metadata Fixer</name>
-    <description>veraPDF fixer implementation.</description>
+    <name>veraPDF Metadata Fixer for Jakarta EE</name>
+    <description>veraPDF fixer implementation with Jakarta EE support.</description>
 
     <dependencies>
         <dependency>
