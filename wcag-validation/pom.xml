@@ -33,8 +33,8 @@
 
     <artifactId>wcag-validation-arlington</artifactId>
 
-    <name>veraPDF WCAG Validation</name>
-    <description>veraPDF WCAG validation model implementation.</description>
+    <name>veraPDF WCAG Validation for Arlington PDF Model</name>
+    <description>veraPDF WCAG validation model implementation of Arlington PDF Model.</description>
 
     <dependencies>
         <dependency>

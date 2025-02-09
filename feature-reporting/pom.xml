@@ -34,8 +34,8 @@
 
     <artifactId>feature-reporting-arlington</artifactId>
 
-    <name>veraPDF Feature Reporting</name>
-    <description>veraPDF PDF feature reporting implementation.</description>
+    <name>veraPDF Feature Reporting for Arlington PDF Model</name>
+    <description>veraPDF PDF feature reporting implementation of Arlington PDF Model.</description>
 
 
     <dependencies>
