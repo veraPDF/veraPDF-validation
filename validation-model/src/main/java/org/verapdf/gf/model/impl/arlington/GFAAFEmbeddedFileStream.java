@@ -10,10 +10,10 @@ import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 
-public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStream {
+public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFileStream {
 
-	public GFAEmbeddedFileStream(COSBase baseObject, COSBase parentObject, String keyName) {
-		super(baseObject, parentObject, keyName, "AEmbeddedFileStream");
+	public GFAAFEmbeddedFileStream(COSBase baseObject, COSBase parentObject, String keyName) {
+		super(baseObject, parentObject, keyName, "AAFEmbeddedFileStream");
 	}
 
 	@Override
@@ -425,7 +425,7 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 		return Collections.emptyList();
 	}
 
-	private List<AEmbeddedFileParameter> getParams() {
+	private List<AAFEmbeddedFileParameter> getParams() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
@@ -439,14 +439,14 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 		}
 	}
 
-	private List<AEmbeddedFileParameter> getParams1_3() {
+	private List<AAFEmbeddedFileParameter> getParams1_3() {
 		COSObject object = getParamsValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AEmbeddedFileParameter> list = new ArrayList<>(1);
-			list.add(new GFAEmbeddedFileParameter((COSDictionary)object.getDirectBase(), this.baseObject, "Params"));
+			List<AAFEmbeddedFileParameter> list = new ArrayList<>(1);
+			list.add(new GFAAFEmbeddedFileParameter((COSDictionary)object.getDirectBase(), this.baseObject, "Params"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

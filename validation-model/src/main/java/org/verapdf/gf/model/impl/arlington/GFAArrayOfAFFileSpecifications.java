@@ -10,10 +10,10 @@ import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 
-public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfFileSpecifications {
+public class GFAArrayOfAFFileSpecifications extends GFAObject implements AArrayOfAFFileSpecifications {
 
-	public GFAArrayOfFileSpecifications(COSBase baseObject, COSBase parentObject, String keyName) {
-		super(baseObject, parentObject, keyName, "AArrayOfFileSpecifications");
+	public GFAArrayOfAFFileSpecifications(COSBase baseObject, COSBase parentObject, String keyName) {
+		super(baseObject, parentObject, keyName, "AArrayOfAFFileSpecifications");
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 		}
 	}
 
-	private List<AArrayOfFileSpecificationsEntry> getEntries() {
+	private List<AArrayOfAFFileSpecificationsEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 				if ((gethasExtensionISO_19005_3() == true)) {
@@ -42,16 +42,16 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 		}
 	}
 
-	private List<AArrayOfFileSpecificationsEntry> getEntries1_7() {
-		List<AArrayOfFileSpecificationsEntry> list = new LinkedList<>();
+	private List<AArrayOfAFFileSpecificationsEntry> getEntries1_7() {
+		List<AArrayOfAFFileSpecificationsEntry> list = new LinkedList<>();
 		for (int i = 1; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOfFileSpecificationsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
+			list.add(new GFAArrayOfAFFileSpecificationsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}
 
-	private List<AFileSpecification> getentry0() {
+	private List<AAFFileSpecification> getentry0() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 				if ((gethasExtensionISO_19005_3() == true)) {
@@ -65,17 +65,22 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 		}
 	}
 
-	private List<AFileSpecification> getentry01_7() {
+	private List<AAFFileSpecification> getentry01_7() {
 		COSObject object = getentry0Value();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecification> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "0"));
+			List<AAFFileSpecification> list = new ArrayList<>(1);
+			list.add(new GFAAFFileSpecification((COSDictionary)object.getDirectBase(), this.baseObject, "0"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontains0() {
+		return this.baseObject.size() > 0;
 	}
 
 	public COSObject getentry0Value() {

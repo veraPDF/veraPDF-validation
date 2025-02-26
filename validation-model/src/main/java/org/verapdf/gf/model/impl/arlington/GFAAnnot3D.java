@@ -150,7 +150,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
+	private List<AArrayOfAFFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
@@ -159,14 +159,14 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF2_0() {
+	private List<AArrayOfAFFileSpecifications> getAF2_0() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
