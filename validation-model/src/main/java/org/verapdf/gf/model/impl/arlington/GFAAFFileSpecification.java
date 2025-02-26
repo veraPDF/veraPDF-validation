@@ -10,10 +10,10 @@ import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 
-public class GFAFileSpecification extends GFAObject implements AFileSpecification {
+public class GFAAFFileSpecification extends GFAObject implements AAFFileSpecification {
 
-	public GFAFileSpecification(COSBase baseObject, COSBase parentObject, String keyName) {
-		super(baseObject, parentObject, keyName, "AFileSpecification");
+	public GFAAFFileSpecification(COSBase baseObject, COSBase parentObject, String keyName) {
+		super(baseObject, parentObject, keyName, "AAFFileSpecification");
 	}
 
 	@Override
@@ -39,6 +39,10 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	private List<ACollectionItem> getCI() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getCI1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCI1_7();
 			default:
@@ -59,28 +63,28 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 		return Collections.emptyList();
 	}
 
-	private List<AFileSpecEF> getEF() {
+	private List<AAFFileSpecEF> getEF() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getEF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getEF1_3();
+				return getEF1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AFileSpecEF> getEF1_3() {
+	private List<AAFFileSpecEF> getEF1_7() {
 		COSObject object = getEFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			List<AFileSpecEF> list = new ArrayList<>(1);
-			list.add(new GFAFileSpecEF((COSDictionary)object.getDirectBase(), this.baseObject, "EF"));
+			List<AAFFileSpecEF> list = new ArrayList<>(1);
+			list.add(new GFAAFFileSpecEF((COSDictionary)object.getDirectBase(), this.baseObject, "EF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -110,21 +114,19 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	private List<AArrayOf_2StringsByte> getentryID() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_1:
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getentryID1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getentryID1_1();
+				return getentryID1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_2StringsByte> getentryID1_1() {
+	private List<AArrayOf_2StringsByte> getentryID1_7() {
 		COSObject object = getentryIDValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -139,19 +141,19 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	private List<AFileSpecRF> getRF() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getRF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getRF1_3();
+				return getRF1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AFileSpecRF> getRF1_3() {
+	private List<AFileSpecRF> getRF1_7() {
 		COSObject object = getRFValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -167,7 +169,7 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	private List<AThumbnail> getThumb() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
-				if ((gethasExtensionADBE_Extn3() == true)) {
+				if ((gethasExtensionISO_19005_3() == true)) {
 					return getThumb1_7();
 				}
 				return Collections.emptyList();
@@ -570,11 +572,6 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 
 	public COSObject getVDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return COSBoolean.construct(false);

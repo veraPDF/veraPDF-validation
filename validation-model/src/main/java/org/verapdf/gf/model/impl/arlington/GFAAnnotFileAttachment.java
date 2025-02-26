@@ -46,7 +46,7 @@ public class GFAAnnotFileAttachment extends GFAObject implements AAnnotFileAttac
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
+	private List<AArrayOfAFFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 				if ((gethasExtensionISO_19005_3() == true)) {
@@ -60,14 +60,14 @@ public class GFAAnnotFileAttachment extends GFAObject implements AAnnotFileAttac
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF1_7() {
+	private List<AArrayOfAFFileSpecifications> getAF1_7() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
