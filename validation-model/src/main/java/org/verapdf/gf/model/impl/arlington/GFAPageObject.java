@@ -197,7 +197,6 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getContents() {
-		processAFKeys();
 		return getContents1_0();
 	}
 
@@ -1462,58 +1461,6 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		} else {
 			return this.baseObject.knownKey(ASAtom.PARENT) ? getInheritableResources(this.baseObject.getKey(ASAtom.PARENT)) : null;
 		}
-	}
-
-	private void processAFKeys() {
-		COSObject contents = this.baseObject.getKey(ASAtom.CONTENTS);
-		if (contents.getType() == COSObjType.COS_STREAM || contents.getType() == COSObjType.COS_ARRAY) {
-			try (ASInputStream opStream = contents.getDirectBase().getData(COSStream.FilterFlags.DECODE);
-				 PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
-				streamParser.parseTokens();
-				List<COSBase> arguments = new ArrayList<>();
-				for (java.lang.Object rawToken : streamParser.getTokens()) {
-					if (rawToken instanceof COSBase) {
-						arguments.add((COSBase) rawToken);
-					} else if (rawToken instanceof Operator) {
-						String operatorName = ((Operator)rawToken).getOperator();
-						if (Operators.BMC.equals(operatorName) || Operators.BDC.equals(operatorName)) {
-							if (arguments.size() < 2) {
-								continue;
-							}
-							COSBase tag = arguments.get(arguments.size() - 2);
-							COSBase propKey = arguments.get(arguments.size() - 1);
-							if (isMarkedContentAFKeyAndValueTypeCorrect(tag, propKey)) {
-								COSObject resources = getInheritableResources(new COSObject(this.baseObject));
-								COSObject properties = resources != null ? resources.getKey(ASAtom.PROPERTIES) : null;
-								COSObject property = properties != null ? properties.getKey(propKey.getName()) : null;
-								if (property != null && property.getType() == COSObjType.COS_ARRAY) {
-									for (int i = 0; i < property.size(); i ++) {
-										COSObject obj = property.at(i);
-										if (obj != null) {
-											processAF(obj.getDirectBase());
-										}
-									}
-								}
-							}
-						}
-						arguments = new ArrayList<>();
-					}
-				}
-			} catch (IOException ignored) {
-				LOGGER.log(Level.WARNING, "Exception during processing isAssociatedFile predicate.");
-			}
-		}
-	}
-
-	private static boolean isMarkedContentAFKeyAndValueTypeCorrect(COSBase tag, COSBase propKey) {
-		if (tag == null || propKey == null) {
-			return false;
-		} else if (tag.getType() != COSObjType.COS_NAME || propKey.getType() != COSObjType.COS_NAME) {
-			return false;
-		} else if (ASAtom.AF != tag.getName()) {
-			return false;
-		}
-		return true;
 	}
 
 	@Override

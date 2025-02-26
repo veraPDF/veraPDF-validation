@@ -178,12 +178,4 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 		return getIntegerValue(Size);
 	}
 
-	@Override
-	public Boolean getisAssociatedFile() {
-		if (parentObject.getObjectKey() != null) {
-			return GFAObject.getAFKeysSet().contains(parentObject.getObjectKey());
-		}
-		return false;
-	}
-
 }
