@@ -18,7 +18,6 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	private static final List<String> standardFonts = new LinkedList<>();
 	private static final ThreadLocal<Set<COSKey>> keysSet = new ThreadLocal<>();
-	private static final ThreadLocal<Set<COSKey>> afKeysSet = new ThreadLocal<>();
 	protected static final String PDF_DATE_FORMAT_REGEX = "(D:)?(\\d\\d){2,7}(([Z+-]\\d\\d'(\\d\\d'?)?)?|Z)";
 	protected final COSBase baseObject;
 	protected COSBase parentObject;
@@ -28,9 +27,6 @@ public class GFAObject extends GenericModelObject implements AObject {
 		super(objectType);
 		this.baseObject = baseObject;
 		this.parentObject = parentObject;
-		if (baseObject != null && baseObject.getType() == COSObjType.COS_DICT && baseObject.knownKey(ASAtom.AF)) {
-			processAF(baseObject);
-		}
 	}
 
 	public GFAObject(COSBase baseObject, COSBase parentObject, String keyName, String objectType) {
@@ -328,53 +324,6 @@ public class GFAObject extends GenericModelObject implements AObject {
 		return currentObject != null && !currentObject.empty() && currentObject.knownKey(key);
 	}
 
-	public static void processAF(COSBase object) {
-		COSObject AF = object.getKey(ASAtom.getASAtom("AF"));
-		if (AF == null) {
-			return;
-		}
-		COSObject EF = AF.getKey(ASAtom.getASAtom("EF"));
-		if (EF != null) {
-			COSObject F = EF.getKey(ASAtom.getASAtom("F"));
-			if (F != null) {
-				GFAObject.getAFKeysSet().add(F.getObjectKey());
-			}
-			COSObject UF = EF.getKey(ASAtom.getASAtom("UF"));
-			if (UF != null) {
-				GFAObject.getAFKeysSet().add(UF.getObjectKey());
-			}
-		}
-		COSObject RF = AF.getKey(ASAtom.getASAtom("RF"));
-		if (RF != null) {
-			COSObject F = RF.getKey(ASAtom.getASAtom("F"));
-			if (F != null && F.getType() == COSObjType.COS_ARRAY) {
-				for (int i = 1; i < F.size(); i += 2) {
-					COSObject obj = F.at(i);
-					if (obj != null) {
-						GFAObject.getAFKeysSet().add(obj.getObjectKey());
-					}
-				}
-			}
-			COSObject UF = RF.getKey(ASAtom.getASAtom("UF"));
-			if (UF != null && UF.getType() == COSObjType.COS_ARRAY) {
-				for (int i = 1; i < UF.size(); i += 2) {
-					COSObject obj = UF.at(i);
-					if (obj != null) {
-						GFAObject.getAFKeysSet().add(obj.getObjectKey());
-					}
-				}
-			}
-		}
-	}
-
-	@Override
-	public Boolean getisAssociatedFile() {
-		if (baseObject.getObjectKey() != null) {
-			return GFAObject.getAFKeysSet().contains(baseObject.getObjectKey());
-		}
-		return false;
-	}
-
 	@Override
 	public Boolean gethasExtensionAAPL() {
 		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.AAPL);
@@ -634,20 +583,8 @@ public class GFAObject extends GenericModelObject implements AObject {
 		GFAObject.keysSet.set(keysSet);
 	}
 
-	public static Set<COSKey> getAFKeysSet() {
-		if (afKeysSet.get() == null) {
-			afKeysSet.set(new HashSet<>());
-		}
-		return afKeysSet.get();
-	}
-
-	public static void setAFKeysSet(Set<COSKey> afKeysSet) {
-		GFAObject.afKeysSet.set(afKeysSet);
-	}
-
 	public static void clearAllContainers() {
 		keysSet.set(new HashSet<>());
-		afKeysSet.set(new HashSet<>());
 	}
 
 	static {
