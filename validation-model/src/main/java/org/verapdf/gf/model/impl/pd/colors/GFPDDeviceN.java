@@ -92,8 +92,8 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 		COSObject process = attributes.getKey(ASAtom.PROCESS);
 		if (!process.empty()) {
 			COSObject components = process.getKey(ASAtom.COMPONENTS);
-			if (!components.empty()) {
-				return (COSArray) components.get();
+			if (!components.empty() && components.getType() == COSObjType.COS_ARRAY) {
+				return (COSArray) components.getDirectBase();
 			}
 		}
 		return null;
