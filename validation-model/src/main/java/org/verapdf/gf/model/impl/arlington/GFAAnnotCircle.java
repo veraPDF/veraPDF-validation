@@ -45,6 +45,8 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 				return getPopup();
 			case "RC":
 				return getRC();
+			case "RD":
+				return getRD();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -1191,6 +1193,31 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 		return Collections.emptyList();
 	}
 
+	private List<AArrayOf_4Numbers> getRD() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRD1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_4Numbers> getRD1_5() {
+		COSObject object = getRDValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_4Numbers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_4Numbers((COSArray)object.getDirectBase(), this.baseObject, "RD"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
 	@Override
 	public Boolean getcontainsAF() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("AF"));
@@ -1804,9 +1831,15 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	}
 
 	@Override
-	public Boolean getRDHasTypeRectangle() {
+	public Boolean getRDHasTypeArray() {
 		COSObject RD = getRDValue();
-		return getHasTypeRectangle(RD);
+		return getHasTypeArray(RD);
+	}
+
+	@Override
+	public Long getRDArraySize() {
+		COSObject RD = getRDValue();
+		return getArraySize(RD);
 	}
 
 	@Override
@@ -2081,76 +2114,40 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 		return R;
 	}
 
-	public COSObject getRD0Value() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
+	@Override
+	public Double getRD0NumberValue() {
+		COSObject RD = getRDValue();
 		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 0) {
 			return null;
 		}
-		COSObject entry0 = RD.at(0);
-		return entry0;
-	}
-
-	public COSObject getRD1Value() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = RD.at(1);
-		return entry1;
-	}
-
-	public COSObject getRD2Value() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 2) {
-			return null;
-		}
-		COSObject entry2 = RD.at(2);
-		return entry2;
-	}
-
-	public COSObject getRD3Value() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 3) {
-			return null;
-		}
-		COSObject entry3 = RD.at(3);
-		return entry3;
-	}
-
-	@Override
-	public Double getRD0NumberValue() {
-		COSObject RD0 = getRD0Value();
-		return getNumberValue(RD0);
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry0NumberValue();
 	}
 
 	@Override
 	public Double getRD1NumberValue() {
-		COSObject RD1 = getRD1Value();
-		return getNumberValue(RD1);
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 1) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry1NumberValue();
 	}
 
 	@Override
 	public Double getRD2NumberValue() {
-		COSObject RD2 = getRD2Value();
-		return getNumberValue(RD2);
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 2) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry2NumberValue();
 	}
 
 	@Override
 	public Double getRD3NumberValue() {
-		COSObject RD3 = getRD3Value();
-		return getNumberValue(RD3);
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 3) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry3NumberValue();
 	}
 
 	@Override
@@ -2169,6 +2166,42 @@ public class GFAAnnotCircle extends GFAObject implements AAnnotCircle {
 	public Boolean getAPRHasTypeDictionary() {
 		COSObject APR = getAPRValue();
 		return getHasTypeDictionary(APR);
+	}
+
+	@Override
+	public Boolean getRD0HasTypeNumber() {
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 0) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry0HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getRD1HasTypeNumber() {
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 1) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry1HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getRD2HasTypeNumber() {
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 2) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry2HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getRD3HasTypeNumber() {
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 3) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry3HasTypeNumber();
 	}
 
 }
