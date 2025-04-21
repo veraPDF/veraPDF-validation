@@ -67,7 +67,11 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 
 	@Override
 	public Boolean gethasContentItems() {
-		COSObject children = this.simplePDObject.getKey(ASAtom.K);
+		return gethasContentItems(this);
+	}
+
+	private static Boolean gethasContentItems(GFPDStructTreeNode structElem) {
+		COSObject children = structElem.simplePDObject.getKey(ASAtom.K);
 		if (children == null) {
 			return false;
 		}
@@ -79,6 +83,11 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 				if (TaggedPDFHelper.isContentItem(elem)) {
 					return true;
 				}
+			}
+		}
+		for (GFPDStructElem child : structElem.getChildren()) {
+			if (PDStructElem.isPassThroughTag(child.getstandardType()) && gethasContentItems(child)) {
+				return true;
 			}
 		}
 		return false;
