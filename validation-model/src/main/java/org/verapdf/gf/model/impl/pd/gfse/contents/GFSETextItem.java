@@ -26,7 +26,7 @@ import org.verapdf.model.selayer.SETextItem;
 /**
  * @author Maxim Plushchov
  */
-public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
+public class GFSETextItem extends GFSEGraphicContentItem implements SETextItem {
 
     public static final String TEXT_ITEM_TYPE = "SETextItem";
     private static final String TEXT_CONTENT_ITEM_TYPE = "text";

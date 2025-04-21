@@ -25,7 +25,7 @@ import org.verapdf.model.selayer.SEImageItem;
 /**
  * @author Maxim Plushchov
  */
-public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
+public class GFSEImageItem extends GFSEGraphicContentItem implements SEImageItem {
 
     private static final String IMAGE_CONTENT_ITEM_TYPE = "image";
 
