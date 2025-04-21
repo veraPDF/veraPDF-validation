@@ -20,27 +20,14 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.gf.model.impl.operator.pathpaint.GFOpPathPaint;
-import org.verapdf.model.selayer.SELineArtItem;
+import org.verapdf.model.selayer.SEGraphicContentItem;
 
 /**
  * @author Maxim Plushchov
  */
-public class GFSELineArtItem extends GFSEGraphicContentItem implements SELineArtItem {
-
-    public static final String LINE_ART_ITEM_TYPE = "SELineArtItem";
-
-    private static final String LINE_ART_CONTENT_ITEM_TYPE = "lineArt";
-
-    private final GFOpPathPaint opPathPaint;
-
-    public GFSELineArtItem(GFOpPathPaint opPathPaint, GFSEGroupedContent groupedContent) {
-        super(LINE_ART_ITEM_TYPE, groupedContent);
-        this.opPathPaint = opPathPaint;
-    }
-
-    @Override
-    public String getitemType() {
-        return LINE_ART_CONTENT_ITEM_TYPE;
+public abstract class GFSEGraphicContentItem extends GFSESimpleContentItem implements SEGraphicContentItem {
+    
+    public GFSEGraphicContentItem(String objectType, GFSEGroupedContent groupedContent) {
+        super(objectType, groupedContent);
     }
 }
