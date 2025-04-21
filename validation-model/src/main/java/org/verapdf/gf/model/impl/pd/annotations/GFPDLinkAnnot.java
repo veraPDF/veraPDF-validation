@@ -164,7 +164,10 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 			return destination.getKey(ASAtom.SD);
 		}
 		if (destination.getType() == COSObjType.COS_ARRAY && destination.size() > 0) {
-			return destination.at(0).getKey(ASAtom.S);
+			destination = destination.at(0);
+			if (destination != null && destination.getType() == COSObjType.COS_DICT && destination.knownKey(ASAtom.S)) {
+				return destination;
+			}
 		}
 		return null;
 	}
