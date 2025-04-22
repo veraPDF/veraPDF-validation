@@ -43,7 +43,7 @@ jobs:
         continue-on-error: true
         with:
           java-version: ${{ matrix.java-version }}
-          distribution: ${{ matrix.java-distribution }}
+          distribution: ${{ matrix.distribution }}
           cache: maven
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
