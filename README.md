@@ -2,7 +2,7 @@ veraPDF-validation
 ==================
 *Greenfield PDF/A and PDF/UA validation, feature reporting and metadata repair developed for veraPDF*
 
-[![Build Status](https://jenkins.openpreservation.org/job/veraPDF/job/1.28rc/job/validation/badge/icon)](https://jenkins.openpreservation.org/job/veraPDF/job/1.28rc/job/validation/ "OPF Jenkins")
+[![Build Status](https://jenkins.openpreservation.org/job/veraPDF/job/1.28/job/validation/badge/icon)](https://jenkins.openpreservation.org/job/veraPDF/job/1.28/job/validation/ "OPF Jenkins")
 [![Maven Central](https://img.shields.io/maven-central/v/org.verapdf/validation.svg)](https://repo1.maven.org/maven2/org/verapdf/validation/ "Maven central")
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/34416471585a474e85e7821d61048d1c)](https://app.codacy.com/gh/veraPDF/veraPDF-validation/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade "Codacy grade")
 
