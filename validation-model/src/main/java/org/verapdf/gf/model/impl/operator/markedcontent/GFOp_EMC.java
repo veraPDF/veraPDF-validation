@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@ package org.verapdf.gf.model.impl.operator.markedcontent;
 import org.verapdf.cos.COSBase;
 import org.verapdf.model.operator.Op_EMC;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public class GFOp_EMC extends GFOpMarkedContent implements Op_EMC {
     public static final String OP_EMC_TYPE = "Op_EMC";
 
     public GFOp_EMC(List<COSBase> arguments) {
-        super(arguments, OP_EMC_TYPE, null, "", false);
+        super(arguments, OP_EMC_TYPE, null, Collections.emptyList(), false);
     }
 
 }

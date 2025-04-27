@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -26,7 +26,8 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.gfse.GFSEFactory;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDStructTreeNode;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
 
@@ -52,8 +53,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 
 	@Override
 	public String getkidsStandardTypes() {
-		if (StaticContainers.getFlavour() != null &&
-		    StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG) {
+		if (PDFFlavours.isWCAGFlavour(StaticContainers.getFlavour())) {
 			return this.getChildrenStandardTypes()
 			           .stream()
 			           .filter(type -> type != null && !TaggedPDFConstants.ARTIFACT.equals(type))
@@ -67,7 +67,11 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 
 	@Override
 	public Boolean gethasContentItems() {
-		COSObject children = this.simplePDObject.getKey(ASAtom.K);
+		return gethasContentItems(this);
+	}
+
+	private static Boolean gethasContentItems(GFPDStructTreeNode structElem) {
+		COSObject children = structElem.simplePDObject.getKey(ASAtom.K);
 		if (children == null) {
 			return false;
 		}
@@ -79,6 +83,11 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 				if (TaggedPDFHelper.isContentItem(elem)) {
 					return true;
 				}
+			}
+		}
+		for (GFPDStructElem child : structElem.getChildren()) {
+			if (PDStructElem.isPassThroughTag(child.getstandardType()) && gethasContentItems(child)) {
+				return true;
 			}
 		}
 		return false;
@@ -102,7 +111,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 		List<String> res = new ArrayList<>();
 		for (GFPDStructElem child : element.getChildren()) {
 			String elementStandardType = child.getstandardType();
-			if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType) || TaggedPDFConstants.DIV.equals(elementStandardType)) {
+			if (PDStructElem.isPassThroughTag(elementStandardType)) {
 				res.addAll(getChildrenStandardTypes(child));
 			} else {
 				res.add(elementStandardType);
@@ -113,10 +122,10 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 
 	private List<GFPDStructElem> getChildren() {
 		if (children == null) {
-			List<org.verapdf.pd.structure.PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeNode) simplePDObject).getStructChildren();
+			List<PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeNode) simplePDObject).getStructChildren();
 			if (!elements.isEmpty()) {
 				List<GFPDStructElem> res = new ArrayList<>(elements.size());
-				for (org.verapdf.pd.structure.PDStructElem element : elements) {
+				for (PDStructElem element : elements) {
 					res.add(GFSEFactory.createTypedStructElem(element));
 				}
 				children = Collections.unmodifiableList(res);
@@ -131,7 +140,7 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 		List<GFPDStructElem> children = getChildren();
 		List<GFPDStructElem> result = new LinkedList<>();
 		for (GFPDStructElem child : children) {
-			if (TaggedPDFConstants.NON_STRUCT.equals(child.getstandardType()) || TaggedPDFConstants.DIV.equals(child.getstandardType())) {
+			if (PDStructElem.isPassThroughTag(child.getstandardType())) {
 				result.addAll(child.getStructuralSignificanceChildren());
 			} else {
 				result.add(child);

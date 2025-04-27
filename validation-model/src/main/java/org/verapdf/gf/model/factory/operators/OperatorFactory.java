@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.factory.operators;
 
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
 import org.verapdf.gf.model.tools.TransparencyBehaviour;
@@ -99,13 +100,13 @@ public final class OperatorFactory {
 	public List<org.verapdf.model.operator.Operator> operatorsFromTokens(List<Object> rawTokens,
                                                                          PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
                                                                          StructureElementAccessObject structureElementAccessObject, COSObject parentStructElem, 
-																		 String parentsTags, boolean isRealContent) {
-		List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
-		List<COSBase> arguments = new ArrayList<>();
+																		 List<String> parentsTags, boolean isRealContent, COSKey parentObjectKey) {
 		this.isLastParsedContainsTransparency = false;
 		OperatorParser parser = new OperatorParser(inheritedGraphicState, structureElementAccessObject, resourcesHandler, 
-				parentStructElem, parentsTags, isRealContent);
+				parentStructElem, parentsTags, isRealContent, parentObjectKey);
 
+		List<org.verapdf.model.operator.Operator> result = new ArrayList<>();
+		List<COSBase> arguments = new ArrayList<>();
 		for (Object rawToken : rawTokens) {
 			if (rawToken instanceof COSBase) {
 				arguments.add((COSBase) rawToken);

@@ -2,7 +2,7 @@
 <!--
 
     This file is part of veraPDF Validation Project, a module of the veraPDF project.
-    Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+    Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
     All rights reserved.
 
     veraPDF Validation Project is free software: you can redistribute it and/or modify
@@ -28,16 +28,16 @@
   <parent>
     <groupId>org.verapdf</groupId>
     <artifactId>verapdf-parent</artifactId>
-    <version>1.26.2</version>
+    <version>1.28.1</version>
   </parent>
 
   <groupId>org.verapdf</groupId>
   <artifactId>validation</artifactId>
-  <version>1.26.0</version>
+  <version>1.28.0</version>
   <packaging>pom</packaging>
 
   <name>veraPDF Validation Project</name>
-  <description>veraPDF validation, feature extraction and metadata repair based on PDF parser.</description>
+  <description>veraPDF validation, feature extraction and metadata repair.</description>
 
   <scm>
     <url>https://github.com/veraPDF/veraPDF-validation/</url>
@@ -75,10 +75,10 @@
   </modules>
 
   <properties>
-    <verapdf.parser.version>[1.26.0,1.27.0)</verapdf.parser.version>
-    <verapdf.pdfmodel.version>[1.26.0,1.27.0)</verapdf.pdfmodel.version>
-    <verapdf.library.version>[1.26.0,1.27.0)</verapdf.library.version>
-    <verapdf.wcag.algs.version>[1.26.0,1.27.0)</verapdf.wcag.algs.version>
+    <verapdf.parser.version>[1.28.0,1.29.0)</verapdf.parser.version>
+    <verapdf.pdfmodel.version>[1.28.0,1.29.0)</verapdf.pdfmodel.version>
+    <verapdf.library.version>[1.28.0,1.29.0)</verapdf.library.version>
+    <verapdf.wcag.algs.version>[1.28.0,1.29.0)</verapdf.wcag.algs.version>
   </properties>
 
   <dependencyManagement>

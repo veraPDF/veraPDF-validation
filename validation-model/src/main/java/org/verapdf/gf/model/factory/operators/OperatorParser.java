@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -71,6 +71,7 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 import org.verapdf.pd.structure.PDStructTreeRoot;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
 import java.util.*;
@@ -90,20 +91,21 @@ class OperatorParser {
 
 	private final Deque<TransparencyGraphicsState> transparencyGraphicStateStack = new ArrayDeque<>();
 	private final Stack<GFOpMarkedContent> markedContentStack = new Stack<>();
-	private final Set<Long> mcidSet = new HashSet<Long>();
+	private final Set<Long> mcidSet = new HashSet<>();
 	private final StructureElementAccessObject structureElementAccessObject;
 	private final TransparencyGraphicsState transparencyGraphicState = new TransparencyGraphicsState();
 	private final COSObject parentStructElem;
-	private final String parentsTags;
+	private final List<String> parentsTags;
 	
 	private final boolean isRealContent;
-
+	private final COSKey parentObjectKey;
+	
 	private boolean insideText = false;
 
 	OperatorParser(GraphicState inheritedGraphicState,
                    StructureElementAccessObject structureElementAccessObject,
                    PDResourcesHandler resourcesHandler, COSObject parentStructElem, 
-				   String parentsTags, boolean isRealContent) {
+				   List<String> parentsTags, boolean isRealContent, COSKey parentObjectKey) {
 		if (inheritedGraphicState == null) {
 			this.graphicState = new GraphicState(resourcesHandler);
 		} else {
@@ -114,6 +116,7 @@ class OperatorParser {
 		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
 		this.isRealContent = isRealContent;
+		this.parentObjectKey = parentObjectKey;
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
@@ -165,17 +168,19 @@ class OperatorParser {
 				this.markedContentStack.push(bmcOp);
 				break;
 			case Operators.BDC: {
-				PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
-				if (specification == PDFAFlavour.Specification.ISO_19005_3) {
+				if (PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_3)) {
 					checkAFKey(arguments, resourcesHandler);
 				}
 				GFOp_BDC bdcOp = new GFOp_BDC(arguments, resourcesHandler, getCurrentMarkedContent(), structureElementAccessObject, parentsTags, isRealContent);
 				Long mcid = bdcOp.getMCID();
 				if (mcid != null) {
 					if (mcidSet.contains(mcid)) {
-						LOGGER.log(Level.WARNING, "Content stream contains duplicate MCID - " + mcid);
+						LOGGER.log(Level.WARNING, getErrorMessage("Duplicate MCID - " + mcid));
 					}
 					mcidSet.add(mcid);
+					if (getCurrentMCID() != null) {
+						LOGGER.log(Level.WARNING, getErrorMessage("Nested MCID - " + mcid));
+					}
 				}
 				processedOperators.add(bdcOp);
 				this.markedContentStack.push(bdcOp);
@@ -186,7 +191,7 @@ class OperatorParser {
 				if (!this.markedContentStack.empty()) {
 					this.markedContentStack.pop();
 				} else {
-					LOGGER.log(Level.WARNING, "Operator (EMC) not inside marked content");
+					LOGGER.log(Level.WARNING, getErrorMessage("Operator (EMC) not inside marked content"));
 				}
 				break;
 			case Operators.MP:
@@ -403,7 +408,7 @@ class OperatorParser {
 						this.graphicState);
 				break;
 
-			// COMPABILITY
+			// COMPATIBILITY
 			case Operators.BX:
 				processedOperators.add(new GFOp_BX(arguments));
 				break;
@@ -496,13 +501,13 @@ class OperatorParser {
 			// SPECIAL GS
 			case Operators.CM_CONCAT:
 				if (insideText) {
-					LOGGER.log(Level.WARNING, "Special graphics state operator (cm) inside Text object");
+					LOGGER.log(Level.WARNING, getErrorMessage("Special graphics state operator (cm) inside Text object"));
 				}
 				processedOperators.add(new GFOp_cm(arguments));
 				break;
 			case Operators.Q_GRESTORE:
 				if (insideText) {
-					LOGGER.log(Level.WARNING, "Special graphics state operator (Q) inside Text object");
+					LOGGER.log(Level.WARNING, getErrorMessage("Special graphics state operator (Q) inside Text object"));
 				}
 				if (!graphicStateStack.isEmpty()) {
 					this.graphicState.copyProperties(this.graphicStateStack.pop());
@@ -514,7 +519,7 @@ class OperatorParser {
 				break;
 			case Operators.Q_GSAVE:
 				if (insideText) {
-					LOGGER.log(Level.WARNING, "Special graphics state operator (q) inside Text object");
+					LOGGER.log(Level.WARNING, getErrorMessage("Special graphics state operator (q) inside Text object"));
 				}
 				this.graphicStateStack.push(this.graphicState.clone());
 				this.transparencyGraphicStateStack.push(this.transparencyGraphicState.clone());
@@ -524,17 +529,19 @@ class OperatorParser {
 			// XOBJECT
 			case Operators.DO:
 				Long mcid = null;
-				String parentsTags = "";
+				List<String> parentsTags;
 				if (!markedContentStack.empty()) {
 					mcid = markedContentStack.peek().getInheritedMCID();
 					parentsTags = markedContentStack.peek().getParentsTags();
+				} else {
+					parentsTags = new LinkedList<>(this.parentsTags);
 				}
 				COSObject parentStructElem = getParentStructElem(structureElementAccessObject, mcid);
 				if (parentStructElem == null) {
 					parentStructElem = this.parentStructElem;
 				}
 				GFOp_Do op_do = new GFOp_Do(arguments, resourcesHandler.getXObject(getLastCOSName(arguments)),
-						resourcesHandler, this.graphicState.clone(), parentStructElem, parentsTags);
+						resourcesHandler, this.graphicState.clone(), parentStructElem, parentsTags, isRealContent);
 				org.verapdf.model.pdlayer.PDXObject pdxObject = op_do.getXObject();
 				if (pdxObject != null) {
 					this.transparencyGraphicState.setVeraXObject((GFPDXObject)pdxObject);
@@ -618,7 +625,7 @@ class OperatorParser {
 		}
 	}
 
-	private static RenderingMode getRenderingMode(List<COSBase> arguments) {
+	private RenderingMode getRenderingMode(List<COSBase> arguments) {
 		if (!arguments.isEmpty()) {
 			COSBase renderingMode = arguments.get(0);
 			if (renderingMode instanceof COSInteger) {
@@ -626,7 +633,7 @@ class OperatorParser {
 				if (mode != null) {
 					return mode;
 				}
-				LOGGER.log(Level.WARNING, "Wrong argument of Tr operator in stream");
+				LOGGER.log(Level.WARNING, getErrorMessage("Wrong argument of Tr operator"));
 			}
 		}
 		return RenderingMode.FILL;
@@ -700,6 +707,18 @@ class OperatorParser {
 		}
 		return this.markedContentStack.peek();
 	}
+	
+	private Long getCurrentMCID() {
+		if (!markedContentStack.empty()) {
+			for (GFOpMarkedContent markedContent : markedContentStack) {
+				Long mcid = markedContent.getMCID();
+				if (mcid != null) {
+					return mcid;
+				}
+			}
+		}
+		return null;
+	}
 
 	private COSObject getParentStructElem(StructureElementAccessObject structureElementAccessObject, Long mcid) {
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
@@ -711,5 +730,12 @@ class OperatorParser {
 			}
 		}
 		return null;
+	}
+	
+	private String getErrorMessage(String errorMessage) {
+		if (parentObjectKey == null) {
+			return errorMessage;
+		}
+		return "Content stream (object " + parentObjectKey + "): " + errorMessage;
 	}
 }

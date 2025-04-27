@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -65,9 +65,9 @@ public class GFPDResources extends GFPDObject implements PDResources {
         for (ASAtom fontName : resources.getFontNames()) {
             PDFont font = resources.getFont(fontName);
             if (font != null) {
-                String name = font.getName();
+                ASAtom name = font.getNameKey(ASAtom.BASE_FONT);
                 if (name != null) {
-                    names.add(new GFCosUnicodeName((COSName) COSName.construct(ASAtom.getASAtom(name)).get()));
+                    names.add(new GFCosUnicodeName((COSName) COSName.construct(name).get()));
                 }
             }
         }

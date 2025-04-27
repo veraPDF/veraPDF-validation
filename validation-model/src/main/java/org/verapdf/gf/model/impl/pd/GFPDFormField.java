@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -80,7 +80,17 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
         return this.simplePDObject.knownKey(ASAtom.AA);
     }
 
-    private List<CosLang> getLang() {
+    private List<CosLang> getLinkLang() {
+        COSString lang = getLang();
+        if (lang != null) {
+            List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            list.add(new GFCosLang(lang));
+            return Collections.unmodifiableList(list);
+        }
+        return Collections.emptyList();
+    }
+
+    private COSString getLang() {
         PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
         Long structParent = ((org.verapdf.pd.form.PDFormField)this.simplePDObject).getStructParent();
         if (structTreeRoot != null && structParent != null) {
@@ -89,13 +99,16 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
             if (structureElement != null) {
                 COSObject baseLang = structureElement.getKey(ASAtom.LANG);
                 if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
-                    List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-                    list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
-                    return Collections.unmodifiableList(list);
+                    return (COSString) baseLang.getDirectBase();
                 }
             }
         }
-        return Collections.emptyList();
+        return null;
+    }
+
+    @Override
+    public Boolean getcontainsLang() {
+        return getLang() != null;
     }
 
     @Override
@@ -114,7 +127,7 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
             case ADDITIONAL_ACTION:
                 return this.getAdditionalAction();
             case LANG:
-                return this.getLang();
+                return this.getLinkLang();
             case KIDS:
                 return this.getKids();
             default:

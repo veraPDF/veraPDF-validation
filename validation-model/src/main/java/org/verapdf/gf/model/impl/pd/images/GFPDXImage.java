@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -33,6 +33,7 @@ import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosRenderingIntent;
 import org.verapdf.model.external.JPEG2000;
 import org.verapdf.model.pdlayer.PDColorSpace;
+import org.verapdf.model.pdlayer.PDMaskImage;
 import org.verapdf.model.pdlayer.PDSMaskImage;
 import org.verapdf.model.pdlayer.PDXImage;
 
@@ -51,6 +52,7 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	public static final String INTENT = "Intent";
 	public static final String JPX_STREAM = "jpxStream";
 	public static final String S_MASK = "SMask";
+	public static final String MASK = "Mask";
 
 	private List<JPEG2000> jpeg2000List = null;
 	private final org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
@@ -82,6 +84,11 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	}
 
 	@Override
+	public Boolean getisMask() {
+		return false;
+	}
+
+	@Override
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case INTENT:
@@ -94,6 +101,8 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 				return this.getJPXStream();
 			case S_MASK:
 				return this.getSMask();
+			case MASK:
+				return this.getMask();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -102,9 +111,19 @@ public class GFPDXImage extends GFPDXObject implements PDXImage {
 	protected List<PDSMaskImage> getSMask() {
 		org.verapdf.pd.images.PDXImage smask = ((org.verapdf.pd.images.PDXObject) simplePDObject).getSMask();
 		if (smask != null) {
-			List<PDSMaskImage> mask = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			mask.add(new GFPDSMaskImage(smask, this.resourcesHandler));
-			return Collections.unmodifiableList(mask);
+			List<PDSMaskImage> smasks = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			smasks.add(new GFPDSMaskImage(smask, this.resourcesHandler));
+			return Collections.unmodifiableList(smasks);
+		}
+		return Collections.emptyList();
+	}
+
+	protected List<PDMaskImage> getMask() {
+		org.verapdf.pd.images.PDXImage mask = ((org.verapdf.pd.images.PDXObject) simplePDObject).getMask();
+		if (mask != null) {
+			List<PDMaskImage> masks = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+			masks.add(new GFPDMaskImage(mask, this.resourcesHandler));
+			return Collections.unmodifiableList(masks);
 		}
 		return Collections.emptyList();
 	}

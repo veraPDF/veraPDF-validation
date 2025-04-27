@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ public class GFOp_BMC extends GFOpMarkedContent implements Op_BMC {
 	/** Type name for {@code GFOp_BMC} */
     public static final String OP_BMC_TYPE = "Op_BMC";
 
-    public GFOp_BMC(List<COSBase> arguments, GFOpMarkedContent markedContent, String parentsTags, boolean isRealContent) {
+    public GFOp_BMC(List<COSBase> arguments, GFOpMarkedContent markedContent, List<String> parentsTags, boolean isRealContent) {
         super(arguments, OP_BMC_TYPE, markedContent, parentsTags, isRealContent);
     }
 

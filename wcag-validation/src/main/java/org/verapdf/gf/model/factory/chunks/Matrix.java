@@ -1,20 +1,20 @@
 /**
- * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * This file is part of veraPDF WCAG Validation, a module of the veraPDF project.
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * veraPDF Validation is free software: you can redistribute it and/or modify
+ * veraPDF WCAG Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
+ * along with veraPDF WCAG Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF WCAG Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -174,11 +174,11 @@ public class Matrix implements Cloneable {
 
 	public BoundingBox transformBoundingBox(BoundingBox boundingBox) {
 		List<Double> xCoordinates = new ArrayList<>(4);
-		List<Double> yCoordinates = new ArrayList<>(4);
 		xCoordinates.add(transformX(boundingBox.getLeftX(), boundingBox.getBottomY()));
 		xCoordinates.add(transformX(boundingBox.getRightX(), boundingBox.getBottomY()));
 		xCoordinates.add(transformX(boundingBox.getLeftX(), boundingBox.getTopY()));
 		xCoordinates.add(transformX(boundingBox.getRightX(), boundingBox.getTopY()));
+		List<Double> yCoordinates = new ArrayList<>(4);
 		yCoordinates.add(transformY(boundingBox.getLeftX(), boundingBox.getBottomY()));
 		yCoordinates.add(transformY(boundingBox.getRightX(), boundingBox.getBottomY()));
 		yCoordinates.add(transformY(boundingBox.getLeftX(), boundingBox.getTopY()));
@@ -203,6 +203,11 @@ public class Matrix implements Cloneable {
 
 	public double getRotationDegree() {
 		return Math.toDegrees(Math.atan2(getShearY(), getScaleX()));
+	}
+	
+	public double getScaleValue() {
+		return Math.max(Math.sqrt(getScaleY() * getScaleY() + getShearX() * getShearX()),
+				Math.sqrt(getScaleX() * getScaleX() + getShearY() * getShearY()));
 	}
 
 	@Override

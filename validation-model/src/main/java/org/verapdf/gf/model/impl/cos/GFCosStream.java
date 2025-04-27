@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -135,7 +135,6 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		if (filters == null || filters.getFilters().isEmpty()) {
 			return Collections.emptyList();
 		}
-		List<CosFilter> result = new ArrayList<>();
 
 		COSObject decodeParmsObject = this.baseObject.getKey(ASAtom.DECODE_PARMS);
 		COSBase decodeParms = null;
@@ -143,6 +142,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 			decodeParms = decodeParmsObject.get();
 		}
 
+		List<CosFilter> result = new ArrayList<>();
 		if (filters.getFilters().size() == 1) {
 			if (decodeParms instanceof COSArray) {
 				decodeParms = decodeParms.at(0).get();

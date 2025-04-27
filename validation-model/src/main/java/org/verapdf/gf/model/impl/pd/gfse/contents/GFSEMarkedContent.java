@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     private final GFOpMarkedContent operator;
 
     public GFSEMarkedContent(GFOpMarkedContent operator, List<Operator> operators, COSObject parentStructElem, 
-                             String parentsTags, String defaultLang, boolean isSignature) {
+                             List<String> parentsTags, String defaultLang, boolean isSignature) {
         super(MARKED_CONTENT_TYPE, operators, getParentStructElement(parentStructElem, operator), parentsTags, defaultLang, 
                 isSignature);
         this.operator = operator;
@@ -81,7 +81,6 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
         if (operators == null) {
             return Collections.emptyList();
         }
-        int markedContentIndex;
         Stack<Integer> markedContentStack = new Stack<>();
         List<SEContentItem> list = new ArrayList<>();
         for (int i = 0; i < operators.size(); i++) {
@@ -91,7 +90,7 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
                 markedContentStack.push(i);
             } else if (GFOp_EMC.OP_EMC_TYPE.equals(type)) {
                 if (!markedContentStack.empty()) {
-                    markedContentIndex = markedContentStack.pop();
+                    int markedContentIndex = markedContentStack.pop();
                     if (markedContentStack.empty()) {
                         list.add(new GFSEMarkedContent((GFOpMarkedContent)operators.get(markedContentIndex), 
                                 operators.subList(markedContentIndex + 1, i + 1),
@@ -166,7 +165,7 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     }
 
     @Override
-    public String getparentsTags() {
+    public List<String> getparentsTags() {
         return operator.getParentsTags();
     }
 

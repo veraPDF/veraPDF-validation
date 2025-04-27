@@ -18,18 +18,16 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.patterns;
+package org.verapdf.gf.model.impl.pd.gfse.contents;
 
-import org.verapdf.gf.model.impl.pd.colors.GFPDColorSpace;
-import org.verapdf.model.pdlayer.PDPattern;
+import org.verapdf.model.selayer.SEGraphicContentItem;
 
 /**
- * @author Maksim Bezrukov
+ * @author Maxim Plushchov
  */
-public class GFPDPattern extends GFPDColorSpace implements PDPattern {
-
-	protected GFPDPattern(org.verapdf.pd.patterns.PDPattern simplePDObject,
-							final String type) {
-		super(simplePDObject, type);
-	}
+public abstract class GFSEGraphicContentItem extends GFSESimpleContentItem implements SEGraphicContentItem {
+    
+    public GFSEGraphicContentItem(String objectType, GFSEGroupedContent groupedContent) {
+        super(objectType, groupedContent);
+    }
 }
