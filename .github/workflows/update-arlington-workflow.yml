@@ -31,6 +31,8 @@ jobs:
     if: github.repository == 'veraPDF/veraPDF-validation'
     runs-on: ubuntu-latest
 
+    continue-on-error: true
+
     strategy:
       fail-fast: false
       matrix:
@@ -45,6 +47,7 @@ jobs:
       - name: JDK setup
         uses: actions/setup-java@v4
         continue-on-error: true
+        
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
