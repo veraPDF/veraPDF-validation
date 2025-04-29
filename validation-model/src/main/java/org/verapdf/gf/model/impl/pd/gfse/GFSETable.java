@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETable;
 import org.verapdf.model.pdlayer.PDStructElem;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.TaggedPDFConstants;
 
 import java.util.*;
@@ -120,7 +120,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
                     this.numberOfColumnWithWrongRowSpan = (long)columnNumber;
                     return false;
                 }
-                if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_2) {
+                if (PDFFlavours.isPDFUA2RelatedFlavour(StaticContainers.getFlavour())) {
                     for (Integer rowGroupsIndex : rowGroupingsIndexes) {
                         if (rowNumber + rowSpan > rowGroupsIndex && rowNumber < rowGroupsIndex) {
                             this.numberOfColumnWithWrongRowSpan = (long)columnNumber;

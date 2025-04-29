@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -51,17 +51,19 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 	private final PDResourcesHandler resourcesHandler;
 	private final GraphicState inheritedGraphicState;
 	private final COSObject parentStructElem;
-	private final String parentsTags;
+	private final List<String> parentsTags;
+	private final boolean isRealContent;
 
 	public GFOp_Do(List<COSBase> arguments, org.verapdf.pd.images.PDXObject pdXObject,
 				   PDResourcesHandler resourcesHandler, GraphicState inheritedGraphicState,
-				   COSObject parentStructElem, String parentsTags) {
+				   COSObject parentStructElem, List<String> parentsTags, boolean isRealContent) {
 		super(arguments, OP_DO_TYPE);
 		this.pbXObject = pdXObject;
 		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructElem = parentStructElem;
 		this.parentsTags = parentsTags;
+		this.isRealContent = isRealContent;
 		this.xObject = getXObject();
 	}
 
@@ -90,7 +92,7 @@ public class GFOp_Do extends GFOperator implements Op_Do {
 			return null;
 		}
 		this.xObject = GFPDXObject.getTypedPDXObject(this.pbXObject, this.resourcesHandler, inheritedGraphicState, 
-					this.parentStructElem, this.parentsTags);
+					this.parentStructElem, this.parentsTags, isRealContent);
 		return this.xObject;
 	}
 

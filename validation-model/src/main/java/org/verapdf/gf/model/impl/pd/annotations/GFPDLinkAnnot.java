@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ import org.verapdf.pd.PDNameTreeNode;
 import org.verapdf.pd.PDNamesDictionary;
 import org.verapdf.pd.PDPage;
 import org.verapdf.pd.actions.PDAction;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
 import java.util.*;
@@ -59,7 +59,7 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 
 	public GFPDLinkAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, pageResources, page, LINK_ANNOTATION_TYPE);
-		if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_2) {
+		if (PDFFlavours.isPDFUA2RelatedFlavour(StaticContainers.getFlavour())) {
 			calculateStructDestinationProperties();
 		}
 	}
@@ -164,7 +164,10 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 			return destination.getKey(ASAtom.SD);
 		}
 		if (destination.getType() == COSObjType.COS_ARRAY && destination.size() > 0) {
-			return destination.at(0).getKey(ASAtom.S);
+			destination = destination.at(0);
+			if (destination != null && destination.getType() == COSObjType.COS_DICT && destination.knownKey(ASAtom.S)) {
+				return destination;
+			}
 		}
 		return null;
 	}

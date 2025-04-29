@@ -18,18 +18,42 @@
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-package org.verapdf.gf.model.impl.pd.patterns;
+package org.verapdf.gf.model.impl.pd.images;
 
-import org.verapdf.gf.model.impl.pd.colors.GFPDColorSpace;
-import org.verapdf.model.pdlayer.PDPattern;
+import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.model.baselayer.Object;
+import org.verapdf.model.pdlayer.PDMaskImage;
+import org.verapdf.pd.images.PDXImage;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
- * @author Maksim Bezrukov
+ * @author Maxim Plushchov
  */
-public class GFPDPattern extends GFPDColorSpace implements PDPattern {
+public class GFPDMaskImage extends GFPDXImage implements PDMaskImage {
 
-	protected GFPDPattern(org.verapdf.pd.patterns.PDPattern simplePDObject,
-							final String type) {
-		super(simplePDObject, type);
+	public static final String MASK_IMAGE_TYPE = "PDMaskImage";
+
+	public GFPDMaskImage(PDXImage simplePDObject, PDResourcesHandler resourcesHandler) {
+		super(simplePDObject, resourcesHandler, null, MASK_IMAGE_TYPE);
 	}
+
+	@Override
+	public List<? extends Object> getLinkedObjects(String link) {
+		switch (link) {
+			case INTENT:
+			case IMAGE_CS:
+			case MASK:
+				return Collections.emptyList();
+			default:
+				return super.getLinkedObjects(link);
+		}
+	}
+
+	@Override
+	public Boolean getisMask() {
+		return true;
+	}
+
 }

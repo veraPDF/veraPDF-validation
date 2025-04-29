@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.model.selayer.SETH;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.AttributeHelper;
 import org.verapdf.tools.TaggedPDFConstants;
 
@@ -49,7 +50,7 @@ public class GFSETH extends GFSETableCell implements SETH {
     }
 
     public static String getDefaultScope(int rowNumber, int columnNumber) {
-        if (StaticContainers.getFlavour() == PDFAFlavour.PDFUA_1) {
+        if (PDFFlavours.isFlavour(StaticContainers.getFlavour(), PDFAFlavour.PDFUA_1)) {
             return null;
         }
         if (rowNumber == 0 && columnNumber == 0) {

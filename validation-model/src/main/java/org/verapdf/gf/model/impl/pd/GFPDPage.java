@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@ import org.verapdf.pd.actions.PDPageAdditionalActions;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -166,7 +167,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	}
 
 	private OutputIntents parseOutputIntents() {
-		if (StaticContainers.getFlavour().getPart() != PDFAFlavour.Specification.ISO_19005_4) {
+		if (!PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_4)) {
 			return null;
 		}
 		List<org.verapdf.pd.PDOutputIntent> outInts = ((org.verapdf.pd.PDPage) this.simplePDObject).getOutputIntents();
@@ -189,13 +190,18 @@ public class GFPDPage extends GFPDObject implements PDPage {
 
 	private List<PDAnnot> getAnnotations() {
 		if (this.annotations == null) {
-			this.annotations = parseAnnotataions();
+			this.annotations = parseAnnotations();
 		}
 
 		return this.annotations;
 	}
 
-	private List<PDAnnot> parseAnnotataions() {
+	@Override
+	public Boolean getcontainsAnnotations() {
+		return !((org.verapdf.pd.PDPage) simplePDObject).getAnnotations().isEmpty();
+	}
+
+	private List<PDAnnot> parseAnnotations() {
 		StaticContainers.getTransparencyVisitedContentStreams().clear();
 		List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
 		if (!annots.isEmpty()) {
@@ -234,16 +240,15 @@ public class GFPDPage extends GFPDObject implements PDPage {
 		StaticContainers.getTransparencyVisitedContentStreams().clear();
 		List<PDContentStream> pdContentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.PDPage page = (org.verapdf.pd.PDPage) this.simplePDObject;
-		GFPDContentStream pdContentStream;
 		if (page.getContent() != null) {
 			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(page.getResources(), page.isInheritedResources());
-			if (PDFAFlavour.IsoStandardSeries.ISO_14289 != StaticContainers.getFlavour().getPart().getSeries() &&
-			    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily()) {
+			GFPDContentStream pdContentStream;
+			if (!PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour())) {
 				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
-						new StructureElementAccessObject(this.simpleCOSObject));
+						new StructureElementAccessObject(this.simpleCOSObject), page.getObject().getObjectKey());
 			} else {
 				pdContentStream = new GFPDSemanticContentStream(page.getContent(), resourcesHandler, null,
-						new StructureElementAccessObject(this.simpleCOSObject));
+						new StructureElementAccessObject(this.simpleCOSObject), page.getObject().getObjectKey());
 			}
 			this.containsTransparency |= pdContentStream.isContainsTransparency();
 			pdContentStreams.add(pdContentStream);
@@ -299,7 +304,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			this.contentStreams = parseContentStream();
 		}
 		if (this.annotations == null) {
-			this.annotations = parseAnnotataions();
+			this.annotations = parseAnnotations();
 		}
 		return this.containsTransparency;
 	}

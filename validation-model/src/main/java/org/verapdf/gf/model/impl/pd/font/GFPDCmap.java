@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -83,6 +83,11 @@ public class GFPDCmap extends GFPDObject implements PDCMap {
             return Collections.unmodifiableList(result);
         }
         return Collections.emptyList();
+    }
+    
+    @Override
+    public Boolean getcontainsEmbeddedFile() {
+        return this.pdcMap.getcMap().getType() == COSObjType.COS_STREAM;
     }
 
     /**

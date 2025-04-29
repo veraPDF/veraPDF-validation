@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -43,6 +43,9 @@ public class GFPDSMaskImage extends GFPDXImage implements PDSMaskImage {
 	public List<? extends Object> getLinkedObjects(String link) {
 		switch (link) {
 			case IMAGE_CS:
+			case MASK:
+			case S_MASK:
+			case ALTERNATES:
 				return Collections.emptyList();
 			default:
 				return super.getLinkedObjects(link);

@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ public class GFOp_BDC extends GFOpMarkedContent implements Op_BDC {
 
 
     public GFOp_BDC(List<COSBase> arguments, PDResourcesHandler resources, GFOpMarkedContent markedContent,
-					StructureElementAccessObject structureElementAccessObject, String parentsTags, boolean isRealContent) {
+					StructureElementAccessObject structureElementAccessObject, List<String> parentsTags, boolean isRealContent) {
 		super(arguments, OP_BDC_TYPE, markedContent, parentsTags, isRealContent);
 		initializePropertiesDict(resources);
 		this.structureElementAccessObject = structureElementAccessObject;

@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -24,13 +24,15 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDDocument;
-import org.verapdf.gf.model.impl.pd.util.XMPChecker;
 import org.verapdf.gf.model.impl.sa.GFSAPDFDocument;
 import org.verapdf.gf.model.tools.FileSpecificationKeysHelper;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.*;
+import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.PDNameTreeNode;
+import org.verapdf.pd.PDNamesDictionary;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
 import java.util.*;
@@ -96,8 +98,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		this.isLinearised = cosDocument.getTrailer() != cosDocument.getLastTrailer() && cosDocument.isLinearized();
 		this.lastID = getTrailerID(cosDocument.getLastTrailer().getKey(ASAtom.ID));
 		this.firstPageID = getTrailerID(cosDocument.getFirstTrailer().getKey(ASAtom.ID));
-		PDFAFlavour.Specification specification = StaticContainers.getFlavour().getPart();
-		if (specification == PDFAFlavour.Specification.ISO_19005_3) {
+		if (PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_3)) {
 			FileSpecificationKeysHelper.registerFileSpecificationKeys(cosDocument);
 		}
 	}
@@ -181,7 +182,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public String getlastID() {
-		if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
+		if (PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_1)) {
 			return this.lastID;
 		} else if (this.isLinearised) {
 			return this.firstPageID;
@@ -395,12 +396,13 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	private List<CosFileSpecification> getEmbeddedFiles() {
 		if (this.catalog != null) {
-			COSObject buffer = this.catalog.getKey(ASAtom.NAMES);
-			if (!buffer.empty()) {
-				COSObject base = buffer.getKey(ASAtom.EMBEDDED_FILES);
-				if (base != null && base.getType() == COSObjType.COS_DICT) {
+			PDCatalog catalog = StaticResources.getDocument().getCatalog();
+			PDNamesDictionary namesDictionary = catalog.getNamesDictionary();
+			if (namesDictionary != null) {
+				PDNameTreeNode embeddedFiles = namesDictionary.getEmbeddedFiles();
+				if (embeddedFiles != null) {
 					List<CosFileSpecification> files = new ArrayList<>();
-					this.getNamesEmbeddedFiles(files, PDNameTreeNode.create(base));
+					this.getNamesEmbeddedFiles(files, embeddedFiles);
 					return Collections.unmodifiableList(files);
 				}
 			}
@@ -454,7 +456,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private List<org.verapdf.model.salayer.SAPDFDocument> getdocument() {
-		if (StaticContainers.getFlavour().getPart().getFamily() == PDFAFlavour.SpecificationFamily.WCAG &&
+		if (PDFFlavours.isWCAGFlavour(StaticContainers.getFlavour()) &&
 				StaticResources.getDocument() != null && isPresent(GFSAPDFDOCUMENT_CLASS_NAME)) {
 			List<org.verapdf.model.salayer.SAPDFDocument> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			list.add(new GFSAPDFDocument(StaticResources.getDocument()));

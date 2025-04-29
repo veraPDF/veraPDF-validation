@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -165,6 +165,11 @@ public class GFPDFont extends GFPDResource implements PDFont {
         List<FontProgram> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         list.add(fontProgram);
         return Collections.unmodifiableList(list);
+    }
+
+    @Override
+    public Boolean getcontainsFontFile() {
+        return this.pdFont.getFontProgram() != null && this.fontProgramParsed;
     }
 
     /**

@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -97,11 +97,11 @@ public class GFPDTilingPattern extends GFPDPattern implements PDTilingPattern {
 	}
 
 	private void parseContentStream() {
-		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		org.verapdf.pd.patterns.PDTilingPattern pattern = (org.verapdf.pd.patterns.PDTilingPattern) this.simplePDObject;
 		GFPDContentStream contentStream = new GFPDContentStream(pattern, this.resourcesHandler, inheritedGraphicState,
-				new StructureElementAccessObject(this.simpleCOSObject));
+				new StructureElementAccessObject(this.simpleCOSObject), simplePDObject.getObject().getObjectKey());
 		this.containsTransparency |= contentStream.isContainsTransparency();
+		List<PDContentStream> contentStreams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 		contentStreams.add(contentStream);
 		this.contentStreams = contentStreams;
 	}

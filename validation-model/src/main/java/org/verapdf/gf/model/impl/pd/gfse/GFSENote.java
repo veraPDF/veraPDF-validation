@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ public class GFSENote extends GFPDStructElem implements SENote {
 
     public static final String NOTE_STRUCTURE_ELEMENT_TYPE = "SENote";
 
-    public String noteID;
+    public final String noteID;
 
     public boolean hasDuplicateNoteID;
 

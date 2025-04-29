@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Metadata Fixer, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Metadata Fixer is free software: you can redistribute it and/or modify
@@ -168,7 +168,6 @@ public class PDFDocumentImpl implements PDFDocument {
 
 	@Override
 	public int removeFiltersForAllMetadataObjects() {
-		int res = 0;
 		List<COSObject> objects = this.document.getDocument().getObjectsByType(ASAtom.METADATA);
 
 		List<COSStream> metas = new ArrayList<>();
@@ -179,6 +178,7 @@ public class PDFDocumentImpl implements PDFDocument {
 				LOGGER.log(Level.SEVERE, "Found non-stream Metadata dictionary.");
 			}
 		}
+		int res = 0;
 		for (COSStream stream : metas) {
 			if (stream.getFilters().size() > 0) {
 				try {

@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -32,10 +32,12 @@ import org.verapdf.pd.font.truetype.PDTrueTypeFont;
 import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -98,21 +100,24 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                     this.name = null;
                 } else {
                     pr.parseFont();
-                    if (glyphCode == 0 || !font.glyphIsPresent(glyphCode)) {
-                        this.name = ".notdef";
-                    } else {
-                        this.name = null;
-                    }
+                    this.name = font.glyphIsPresent(glyphCode) ? null : ".notdef";
                 }
             } catch (IOException e) {
                 LOGGER.log(Level.FINE, "Can't convert code to glyph", e);
                 this.name = null;
             }
         }
-        if (StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_1) {
-            this.toUnicode = getToUnicodePDFA1(font, glyphCode);
+        List<PDFAFlavour> flavour = StaticContainers.getFlavour();
+        if (!PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_1_B) && 
+                !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_2_B) && 
+                !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_3_B)) {
+            if (PDFFlavours.isPDFSpecification(flavour, PDFAFlavour.PDFSpecification.PDF_REFERENCE_1_4)) {
+                this.toUnicode = getToUnicodePDFA1(font, glyphCode);
+            } else {
+                this.toUnicode = font.toUnicode(glyphCode);
+            }
         } else {
-            this.toUnicode = font.toUnicode(glyphCode);
+            this.toUnicode = null;
         }
         this.id = id;
         this.isRealContent = isRealContent;

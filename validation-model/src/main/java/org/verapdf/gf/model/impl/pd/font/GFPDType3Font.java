@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.font;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
@@ -36,6 +37,7 @@ import org.verapdf.pd.PDResources;
 import org.verapdf.pd.font.type3.PDType3CharProc;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -102,6 +104,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
         COSDictionary charProcDict = ((org.verapdf.pd.font.type3.PDType3Font)
                 this.pdFont).getCharProcDict();
         if (charProcDict != null) {
+            COSKey objectKey = this.pdFont.getKey(ASAtom.CHAR_PROCS).getObjectKey();
             Set<ASAtom> keySet = charProcDict.getKeySet();
             Map<String, PDContentStream> map = new HashMap<>(keySet.size());
             for (ASAtom glyphName : keySet) {
@@ -112,7 +115,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                     GFPDContentStream contentStream =
                             new GFPDContentStream(charProc, glyphResources == null ?
                                     this.resources : glyphResources, inheritedGraphicState,
-                                    new StructureElementAccessObject(this.simpleCOSObject));
+                                    new StructureElementAccessObject(this.simpleCOSObject), objectKey);
                     map.put(glyphName.getValue(), contentStream);
                 } else {
                     LOGGER.log(Level.SEVERE, "Invalid entry in the char proc dictionary, dictionary is expected.");
@@ -128,8 +131,8 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
      * PDF/A-4 validation should doesn't accept Resource dictionaries specified in the individual CharProc stream dictionaries
      */
     private PDResourcesHandler getResourcesFromCharProcs(COSObject charProcs) {
-        if (!charProcs.knownKey(ASAtom.RESOURCES) ||
-            StaticContainers.getFlavour().getPart() == PDFAFlavour.Specification.ISO_19005_4) {
+        if (!charProcs.knownKey(ASAtom.RESOURCES) || 
+                PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)) {
             return null;
         }
         PDResources res = new PDResources(charProcs.getKey(ASAtom.RESOURCES));

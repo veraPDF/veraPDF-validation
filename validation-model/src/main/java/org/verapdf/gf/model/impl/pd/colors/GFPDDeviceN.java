@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -92,8 +92,8 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 		COSObject process = attributes.getKey(ASAtom.PROCESS);
 		if (!process.empty()) {
 			COSObject components = process.getKey(ASAtom.COMPONENTS);
-			if (!components.empty()) {
-				return (COSArray) components.get();
+			if (!components.empty() && components.getType() == COSObjType.COS_ARRAY) {
+				return (COSArray) components.getDirectBase();
 			}
 		}
 		return null;

@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -24,7 +24,6 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSString;
-import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosLang;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
@@ -105,8 +104,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
 
     public GFPDDocument(org.verapdf.pd.PDDocument document) {
         super(document, PD_DOCUMENT_TYPE);
-        PDCatalog catalog;
-        catalog = document.getCatalog();
+        PDCatalog catalog = document.getCatalog();
         this.catalog = catalog;
     }
 
@@ -230,6 +228,12 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
+    @Override
+    public Boolean getcontainsMetadata() {
+        org.verapdf.pd.PDMetadata meta = this.catalog != null ? this.catalog.getMetadata() : null;
+        return meta != null && org.verapdf.pd.PDMetadata.isMetadataObject(meta.getObject());
+    }
+    
     private List<OutputIntents> getOutputIntents() {
         if (this.outputIntents == null) {
             this.outputIntents = parseOutputIntents();
@@ -270,6 +274,11 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
+    @Override
+    public Boolean getcontainsStructTreeRoot() {
+        return document.getStructTreeRoot() != null;
+    }
+
     private List<PDPerms> getPerms() {
         if (this.catalog != null) {
             COSObject perms = this.catalog.getKey(ASAtom.PERMS);
@@ -307,6 +316,12 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
             }
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public Boolean getcontainsLang() {
+        COSObject baseLang = this.catalog != null ? catalog.getKey(ASAtom.LANG) : null;
+        return baseLang != null && baseLang.getType() == COSObjType.COS_STRING;
     }
 
     @Override

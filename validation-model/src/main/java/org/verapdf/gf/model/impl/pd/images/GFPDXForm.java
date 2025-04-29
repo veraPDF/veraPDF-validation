@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ import org.verapdf.model.pdlayer.PDXForm;
 import org.verapdf.model.pdlayer.TransparencyColorSpace;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.structure.StructureElementAccessObject;
-import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,16 +62,17 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 	private boolean contentStreamContainsTransparency = false;
 	private final GraphicState inheritedGraphicState;
 	private final COSObject parentStructElem;
-	private final String parentsTags;
+	private final List<String> parentsTags;
 	private final String defaultLang;
 	private final PDColorSpace blendingColorSpace;
 
 	private final boolean isSignature;
 	private final boolean isAnnotation;
+	private final boolean isRealContent;
 
 	public GFPDXForm(org.verapdf.pd.images.PDXForm simplePDObject, PDResourcesHandler resourcesHandler,
-					 GraphicState inheritedGraphicState, COSObject parentStructElem, String parentsTags, 
-					 String defaultLang, boolean isAnnotation, boolean isSignature) {
+					 GraphicState inheritedGraphicState, COSObject parentStructElem, List<String> parentsTags, 
+					 String defaultLang, boolean isAnnotation, boolean isSignature, boolean isRealContent) {
 		super(simplePDObject, resourcesHandler.getExtendedResources(simplePDObject.getResources()), X_FORM_TYPE);
 		this.inheritedGraphicState = inheritedGraphicState;
 		this.parentStructElem = parentStructElem;
@@ -80,6 +81,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 		this.defaultLang = defaultLang;
 		this.isAnnotation = isAnnotation;
 		this.isSignature = isSignature;
+		this.isRealContent = isRealContent;
 	}
 
 	@Override
@@ -113,7 +115,7 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	public PDColorSpace getBlendingColorSpace() {
 		org.verapdf.pd.PDGroup group = ((org.verapdf.pd.images.PDXForm) this.simplePDObject).getGroup();
-		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype())) {
+		if (group == null || !ASAtom.TRANSPARENCY.equals(group.getSubtype()) || !group.isIsolated()) {
 			return null;
 		}
 		PDColorSpace colorSpace = group.getColorSpace();
@@ -200,17 +202,16 @@ public class GFPDXForm extends GFPDXObject implements PDXForm {
 
 	private void parseContentStream() {
 		GFPDContentStream gfContentStream;
-		if (isAnnotation || (PDFAFlavour.IsoStandardSeries.ISO_14289 != StaticContainers.getFlavour().getPart().getSeries() &&
-		    PDFAFlavour.SpecificationFamily.WCAG != StaticContainers.getFlavour().getPart().getFamily())) {
+		if (!isRealContent || isAnnotation || (!PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour()))) {
 			gfContentStream = new GFPDContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructElem, parentsTags);
+					parentStructElem, parentsTags, simplePDObject.getObject().getObjectKey());
 		} else {
 			gfContentStream = new GFPDSemanticContentStream(
 					(org.verapdf.pd.images.PDXForm) this.simplePDObject, resourcesHandler,
 					this.inheritedGraphicState, new StructureElementAccessObject(this.simpleCOSObject),
-					parentStructElem, parentsTags, defaultLang, isSignature);
+					parentStructElem, parentsTags, defaultLang, isSignature, simplePDObject.getObject().getObjectKey());
 		}
 		this.contentStreamContainsTransparency = gfContentStream.isContainsTransparency();
 		List<PDContentStream> streams = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);

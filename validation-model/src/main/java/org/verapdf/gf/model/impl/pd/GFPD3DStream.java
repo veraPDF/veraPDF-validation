@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -81,11 +81,11 @@ public class GFPD3DStream extends GFPDObject implements PD3DStream {
                 }
             }
         }
-        List<PDColorSpace> colorSpaces = new ArrayList<>(GFPDObject.MAX_NUMBER_OF_ELEMENTS);
         if (colorSpaceName != null) {
             colorSpace = resources.getColorSpace(colorSpaceName);
         }
         if (colorSpace != null) {
+            List<PDColorSpace> colorSpaces = new ArrayList<>(GFPDObject.MAX_NUMBER_OF_ELEMENTS);
             colorSpaces.add(org.verapdf.gf.model.factory.colors.ColorSpaceFactory.getColorSpace(colorSpace));
             return Collections.unmodifiableList(colorSpaces);
         }

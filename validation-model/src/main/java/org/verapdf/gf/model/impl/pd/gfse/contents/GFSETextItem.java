@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ import org.verapdf.model.selayer.SETextItem;
 /**
  * @author Maxim Plushchov
  */
-public class GFSETextItem extends GFSESimpleContentItem implements SETextItem {
+public class GFSETextItem extends GFSEGraphicContentItem implements SETextItem {
 
     public static final String TEXT_ITEM_TYPE = "SETextItem";
     private static final String TEXT_CONTENT_ITEM_TYPE = "text";

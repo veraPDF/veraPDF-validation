@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
     public static final String CONTENTS = "Contents";
     public static final String REFERENCE = "Reference";
 
-    protected COSString contents;
+    protected final COSString contents;
     protected long signatureOffset = -1;
 
     public GFPDSignature(org.verapdf.pd.PDSignature pdSignature, COSObject signatureReference) {
