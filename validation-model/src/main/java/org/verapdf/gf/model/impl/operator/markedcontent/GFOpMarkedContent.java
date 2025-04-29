@@ -59,7 +59,7 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	public GFOpMarkedContent(List<COSBase> arguments, final String opType,
 							 GFOpMarkedContent markedContent, List<String> parentsTags, boolean isRealContent) {
-        super(arguments, opType);
+    super(arguments, opType);
 		this.markedContent = markedContent;
 		this.parentsTags = parentsTags;
 		this.isRealContent = isRealContent;

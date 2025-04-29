@@ -117,6 +117,7 @@ class OperatorParser {
 		this.parentsTags = parentsTags;
 		this.isRealContent = isRealContent;
 		this.parentObjectKey = parentObjectKey;
+
 	}
 
 	public TransparencyGraphicsState getTransparencyGraphicState() {
