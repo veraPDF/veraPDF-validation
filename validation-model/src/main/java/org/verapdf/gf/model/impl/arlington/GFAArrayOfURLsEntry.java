@@ -31,7 +31,7 @@ public class GFAArrayOfURLsEntry extends GFAObject implements AArrayOfURLsEntry 
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getEntry() {
+	private List<AFileSpecification> getEntry() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getEntry2_0();
@@ -40,16 +40,11 @@ public class GFAArrayOfURLsEntry extends GFAObject implements AArrayOfURLsEntry 
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getEntry2_0() {
+	private List<AFileSpecification> getEntry2_0() {
 		COSObject object = new COSObject(this.baseObject);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AFileSpecification> list = new ArrayList<>(1);
 			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AEmbeddedFileStream> list = new ArrayList<>(1);
-			list.add(new GFAEmbeddedFileStream((COSStream)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -58,12 +53,6 @@ public class GFAArrayOfURLsEntry extends GFAObject implements AArrayOfURLsEntry 
 	public COSObject getValue() {
 		COSObject object = new COSObject(this.baseObject);
 		return object;
-	}
-
-	@Override
-	public Boolean getisIndirect() {
-		COSObject entry = getValue();
-		return getisIndirect(entry);
 	}
 
 	@Override
@@ -78,10 +67,27 @@ public class GFAArrayOfURLsEntry extends GFAObject implements AArrayOfURLsEntry 
 		return getHasTypeDictionary(entry);
 	}
 
+	public COSObject getEntryValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject baseObject = new COSObject(this.baseObject);
+		return baseObject;
+	}
+
 	@Override
-	public Boolean getHasTypeStream() {
-		COSObject entry = getValue();
-		return getHasTypeStream(entry);
+	public String getEntryFSNameValue() {
+		COSObject Entry = getEntryValue();
+		if (Entry == null || !Entry.getType().isDictionaryBased()) {
+			return null;
+		}
+		return new GFAFileSpecification(Entry.getDirectBase(), null, null).getFSNameValue();
+	}
+
+	@Override
+	public Boolean getcontainsEntryFS() {
+		COSObject Entry = getEntryValue();
+		return Entry.knownKey(ASAtom.getASAtom("FS"));
 	}
 
 }

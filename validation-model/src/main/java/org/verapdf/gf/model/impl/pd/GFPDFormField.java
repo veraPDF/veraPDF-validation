@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -50,6 +50,7 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
     public static final String ADDITIONAL_ACTION = "AA";
 
     public static final String LANG = "Lang";
+    public static final String KIDS = "Kids";
 
     public GFPDFormField(org.verapdf.pd.form.PDFormField simplePDObject) {
         super(simplePDObject, FORM_FIELD_TYPE);
@@ -79,7 +80,17 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
         return this.simplePDObject.knownKey(ASAtom.AA);
     }
 
-    private List<CosLang> getLang() {
+    private List<CosLang> getLinkLang() {
+        COSString lang = getLang();
+        if (lang != null) {
+            List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
+            list.add(new GFCosLang(lang));
+            return Collections.unmodifiableList(list);
+        }
+        return Collections.emptyList();
+    }
+
+    private COSString getLang() {
         PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
         Long structParent = ((org.verapdf.pd.form.PDFormField)this.simplePDObject).getStructParent();
         if (structTreeRoot != null && structParent != null) {
@@ -88,13 +99,16 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
             if (structureElement != null) {
                 COSObject baseLang = structureElement.getKey(ASAtom.LANG);
                 if (baseLang != null && baseLang.getType() == COSObjType.COS_STRING) {
-                    List<CosLang> list = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-                    list.add(new GFCosLang((COSString) baseLang.getDirectBase()));
-                    return Collections.unmodifiableList(list);
+                    return (COSString) baseLang.getDirectBase();
                 }
             }
         }
-        return Collections.emptyList();
+        return null;
+    }
+
+    @Override
+    public Boolean getcontainsLang() {
+        return getLang() != null;
     }
 
     @Override
@@ -113,7 +127,9 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
             case ADDITIONAL_ACTION:
                 return this.getAdditionalAction();
             case LANG:
-                return this.getLang();
+                return this.getLinkLang();
+            case KIDS:
+                return this.getKids();
             default:
                 return super.getLinkedObjects(link);
         }
@@ -128,6 +144,18 @@ public class GFPDFormField extends GFPDObject implements PDFormField {
             return Collections.unmodifiableList(actions);
         }
 
+        return Collections.emptyList();
+    }
+
+    private List<PDFormField> getKids() {
+        List<org.verapdf.pd.form.PDFormField> childFormFields =  ((org.verapdf.pd.form.PDFormField) this.simplePDObject).getChildFormFields();
+        if (childFormFields != null && !childFormFields.isEmpty()) {
+            List<PDFormField> res = new ArrayList<>();
+            for (org.verapdf.pd.form.PDFormField field : childFormFields) {
+                res.add(GFPDFormField.createTypedFormField(field));
+            }
+            return res;
+        }
         return Collections.emptyList();
     }
 }

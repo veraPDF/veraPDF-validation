@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ import java.util.*;
  */
 public class StaticContainers {
 
-	private static final ThreadLocal<PDFAFlavour> flavour = new ThreadLocal<>();
+	private static final ThreadLocal<List<PDFAFlavour>> flavour = new ThreadLocal<>();
 
 	//GFPDSeparation
 	private static final ThreadLocal<Map<String, List<GFPDSeparation>>> separations = new ThreadLocal<>();
@@ -70,7 +70,7 @@ public class StaticContainers {
 	private static final ThreadLocal<EnumSet<ExtensionObjectType>> enabledExtensions = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
-		flavour.set(null);
+		flavour.set(new LinkedList<>());
 		separations.set(new HashMap<>());
 		structElementsRefs.set(new HashMap<>());
 		inconsistentSeparations.set(new ArrayList<>());
@@ -87,11 +87,15 @@ public class StaticContainers {
 		enabledExtensions.set(EnumSet.noneOf(ExtensionObjectType.class));
 	}
 
-	public static PDFAFlavour getFlavour() {
+	public static List<PDFAFlavour> getFlavours() {
 		return flavour.get();
 	}
 
-	public static void setFlavour(PDFAFlavour flavour) {
+	public static PDFAFlavour getFlavour() {
+		return getFlavours().get(0);
+	}
+
+	public static void setFlavour(List<PDFAFlavour> flavour) {
 		StaticContainers.flavour.set(flavour);
 	}
 

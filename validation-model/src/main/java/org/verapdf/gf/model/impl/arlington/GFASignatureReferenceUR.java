@@ -21,6 +21,8 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 		switch (link) {
 			case "Data":
 				return getData();
+			case "DigestLocation":
+				return getDigestLocation();
 			case "TransformParams":
 				return getTransformParams();
 			default:
@@ -58,6 +60,31 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
 			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "Data"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOf_2NonNegativeIntegers> getDigestLocation() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getDigestLocation1_5();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_2NonNegativeIntegers> getDigestLocation1_5() {
+		COSObject object = getDigestLocationValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_2NonNegativeIntegers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_2NonNegativeIntegers((COSArray)object.getDirectBase(), this.baseObject, "DigestLocation"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -153,6 +180,28 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 	}
 
 	@Override
+	public Boolean getcontainsDigestLocation() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DigestLocation"));
+	}
+
+	public COSObject getDigestLocationValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestLocation"));
+		return object;
+	}
+
+	@Override
+	public String getDigestLocationType() {
+		COSObject DigestLocation = getDigestLocationValue();
+		return getObjectType(DigestLocation);
+	}
+
+	@Override
+	public Boolean getDigestLocationHasTypeArray() {
+		COSObject DigestLocation = getDigestLocationValue();
+		return getHasTypeArray(DigestLocation);
+	}
+
+	@Override
 	public Boolean getcontainsDigestMethod() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("DigestMethod"));
 	}
@@ -193,6 +242,28 @@ public class GFASignatureReferenceUR extends GFAObject implements ASignatureRefe
 	public String getDigestMethodNameValue() {
 		COSObject DigestMethod = getDigestMethodValue();
 		return getNameValue(DigestMethod);
+	}
+
+	@Override
+	public Boolean getcontainsDigestValue() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("DigestValue"));
+	}
+
+	public COSObject getDigestValueValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("DigestValue"));
+		return object;
+	}
+
+	@Override
+	public String getDigestValueType() {
+		COSObject DigestValue = getDigestValueValue();
+		return getObjectType(DigestValue);
+	}
+
+	@Override
+	public Boolean getDigestValueHasTypeString() {
+		COSObject DigestValue = getDigestValueValue();
+		return getHasTypeString(DigestValue);
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.font;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
@@ -104,6 +105,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
         COSDictionary charProcDict = ((org.verapdf.pd.font.type3.PDType3Font)
                 this.pdFont).getCharProcDict();
         if (charProcDict != null) {
+            COSKey objectKey = this.pdFont.getKey(ASAtom.CHAR_PROCS).getObjectKey();
             Set<ASAtom> keySet = charProcDict.getKeySet();
             Map<String, PDContentStream> map = new HashMap<>(keySet.size());
 //fix: move to Type3Glyph it's real???
@@ -116,7 +118,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
                     GFPDContentStream contentStream =
                             new GFPDContentStream(charProc, glyphResources == null ?
                                     this.resources : glyphResources, inheritedGraphicState,
-                                    new StructureElementAccessObject(this.simpleCOSObject));
+                                    new StructureElementAccessObject(this.simpleCOSObject), objectKey);
                     map.put(glyphName.getValue(), contentStream);
                 } else {
                     LOGGER.log(Level.SEVERE, "Invalid entry in the char proc dictionary, dictionary is expected.");

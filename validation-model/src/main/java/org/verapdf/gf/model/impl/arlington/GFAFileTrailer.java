@@ -58,7 +58,10 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 	private List<AAuthCode> getAuthCode() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getAuthCode2_0();
+				if ((gethasExtensionISO_TS_32004() == true)) {
+					return getAuthCode2_0();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

@@ -45,14 +45,20 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 				return getPopup();
 			case "RC":
 				return getRC();
+			case "RD":
+				return getRD();
 			default:
 				return super.getLinkedObjects(link);
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
+	private List<AArrayOfAFFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAF1_7();
 			default:
@@ -60,14 +66,14 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF1_7() {
+	private List<AArrayOfAFFileSpecifications> getAF1_7() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -413,9 +419,16 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetT1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -441,16 +454,23 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -465,16 +485,23 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn01_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -573,9 +600,16 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetT1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -601,16 +635,23 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -625,16 +666,23 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn01_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -735,9 +783,16 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetT1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -763,16 +818,23 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -787,16 +849,23 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn01_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -901,9 +970,16 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetT2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -929,16 +1005,23 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -953,16 +1036,23 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn02_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -1095,6 +1185,30 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 		if (object.getType() == COSObjType.COS_STREAM) {
 			List<AStream> list = new ArrayList<>(1);
 			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "RC"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AArrayOf_4Numbers> getRD() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getRD1_6();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AArrayOf_4Numbers> getRD1_6() {
+		COSObject object = getRDValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOf_4Numbers> list = new ArrayList<>(1);
+			list.add(new GFAArrayOf_4Numbers((COSArray)object.getDirectBase(), this.baseObject, "RD"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -1860,9 +1974,15 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	}
 
 	@Override
-	public Boolean getRDHasTypeRectangle() {
+	public Boolean getRDHasTypeArray() {
 		COSObject RD = getRDValue();
-		return getHasTypeRectangle(RD);
+		return getHasTypeArray(RD);
+	}
+
+	@Override
+	public Long getRDArraySize() {
+		COSObject RD = getRDValue();
+		return getArraySize(RD);
 	}
 
 	@Override
@@ -2137,76 +2257,40 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 		return R;
 	}
 
-	public COSObject getRD0Value() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
+	@Override
+	public Double getRD0NumberValue() {
+		COSObject RD = getRDValue();
 		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 0) {
 			return null;
 		}
-		COSObject entry0 = RD.at(0);
-		return entry0;
-	}
-
-	public COSObject getRD1Value() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 1) {
-			return null;
-		}
-		COSObject entry1 = RD.at(1);
-		return entry1;
-	}
-
-	public COSObject getRD2Value() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 2) {
-			return null;
-		}
-		COSObject entry2 = RD.at(2);
-		return entry2;
-	}
-
-	public COSObject getRD3Value() {
-		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject RD = this.baseObject.getKey(ASAtom.getASAtom("RD"));
-		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 3) {
-			return null;
-		}
-		COSObject entry3 = RD.at(3);
-		return entry3;
-	}
-
-	@Override
-	public Double getRD0NumberValue() {
-		COSObject RD0 = getRD0Value();
-		return getNumberValue(RD0);
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry0NumberValue();
 	}
 
 	@Override
 	public Double getRD1NumberValue() {
-		COSObject RD1 = getRD1Value();
-		return getNumberValue(RD1);
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 1) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry1NumberValue();
 	}
 
 	@Override
 	public Double getRD2NumberValue() {
-		COSObject RD2 = getRD2Value();
-		return getNumberValue(RD2);
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 2) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry2NumberValue();
 	}
 
 	@Override
 	public Double getRD3NumberValue() {
-		COSObject RD3 = getRD3Value();
-		return getNumberValue(RD3);
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 3) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry3NumberValue();
 	}
 
 	@Override
@@ -2225,6 +2309,42 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 	public Boolean getAPRHasTypeDictionary() {
 		COSObject APR = getAPRValue();
 		return getHasTypeDictionary(APR);
+	}
+
+	@Override
+	public Boolean getRD0HasTypeNumber() {
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 0) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry0HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getRD1HasTypeNumber() {
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 1) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry1HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getRD2HasTypeNumber() {
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 2) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry2HasTypeNumber();
+	}
+
+	@Override
+	public Boolean getRD3HasTypeNumber() {
+		COSObject RD = getRDValue();
+		if (RD == null || RD.getType() != COSObjType.COS_ARRAY || RD.size() <= 3) {
+			return null;
+		}
+		return new GFAArrayOf_4Numbers(RD.getDirectBase(), null, null).getentry3HasTypeNumber();
 	}
 
 }

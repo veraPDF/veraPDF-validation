@@ -118,22 +118,22 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 		return Collections.emptyList();
 	}
 
-	private List<AFontFile3CIDType0> getFontFile3() {
+	private List<org.verapdf.model.baselayer.Object> getFontFile3() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_2:
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
+				return getFontFile31_3();
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getFontFile31_2();
+				return getFontFile31_6();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AFontFile3CIDType0> getFontFile31_2() {
+	private List<org.verapdf.model.baselayer.Object> getFontFile31_3() {
 		COSObject object = getFontFile3Value();
 		if (object == null) {
 			return Collections.emptyList();
@@ -144,6 +144,41 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getFontFile31_6() {
+		COSObject object = getFontFile3Value();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			org.verapdf.model.baselayer.Object result = getFontFile3Stream1_6(object.getDirectBase(), "FontFile3");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getFontFile3Stream1_6(COSBase base, String keyName) {
+		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
+		if (subtype == null) {
+			return null;
+		}
+		String subtypeValue = subtype.getString();
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "CIDFontType0C":
+				return new GFAFontFile3CIDType0(base, this.baseObject, keyName);
+			case "OpenType":
+				return new GFAFontFile3OpenType(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	private List<AStyleDict> getStyle() {

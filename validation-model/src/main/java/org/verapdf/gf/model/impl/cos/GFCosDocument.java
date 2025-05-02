@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -28,7 +28,9 @@ import org.verapdf.gf.model.impl.sa.GFSAPDFDocument;
 import org.verapdf.gf.model.tools.FileSpecificationKeysHelper;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.*;
+import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.PDNameTreeNode;
+import org.verapdf.pd.PDNamesDictionary;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
@@ -394,12 +396,13 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	private List<CosFileSpecification> getEmbeddedFiles() {
 		if (this.catalog != null) {
-			COSObject buffer = this.catalog.getKey(ASAtom.NAMES);
-			if (!buffer.empty()) {
-				COSObject base = buffer.getKey(ASAtom.EMBEDDED_FILES);
-				if (base != null && base.getType() == COSObjType.COS_DICT) {
+			PDCatalog catalog = StaticResources.getDocument().getCatalog();
+			PDNamesDictionary namesDictionary = catalog.getNamesDictionary();
+			if (namesDictionary != null) {
+				PDNameTreeNode embeddedFiles = namesDictionary.getEmbeddedFiles();
+				if (embeddedFiles != null) {
 					List<CosFileSpecification> files = new ArrayList<>();
-					this.getNamesEmbeddedFiles(files, PDNameTreeNode.create(base));
+					this.getNamesEmbeddedFiles(files, embeddedFiles);
 					return Collections.unmodifiableList(files);
 				}
 			}

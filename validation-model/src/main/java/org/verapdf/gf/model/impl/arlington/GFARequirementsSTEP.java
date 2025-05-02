@@ -31,7 +31,10 @@ public class GFARequirementsSTEP extends GFAObject implements ARequirementsSTEP 
 	private List<org.verapdf.model.baselayer.Object> getRH() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getRH2_0();
+				if ((gethasExtensionISO_TS_24064() == true)) {
+					return getRH2_0();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -58,7 +61,10 @@ public class GFARequirementsSTEP extends GFAObject implements ARequirementsSTEP 
 	private List<AExtensions> getV() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getV2_0();
+				if ((gethasExtensionISO_TS_24064() == true)) {
+					return getV2_0();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

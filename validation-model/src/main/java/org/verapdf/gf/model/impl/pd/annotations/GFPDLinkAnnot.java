@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -78,7 +78,7 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 		COSObject destination = ((PDAnnotation) simplePDObject).getDestination();
 		if (!destination.empty() && !simplePDObject.knownKey(ASAtom.A)) {
 			List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			destinations.add(new GFPDDestination(destination));
+			destinations.add(new GFPDDestination(new org.verapdf.pd.PDDestination(destination)));
 			return Collections.unmodifiableList(destinations);
 		}
 		return Collections.emptyList();
@@ -164,7 +164,10 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 			return destination.getKey(ASAtom.SD);
 		}
 		if (destination.getType() == COSObjType.COS_ARRAY && destination.size() > 0) {
-			return destination.at(0).getKey(ASAtom.S);
+			destination = destination.at(0);
+			if (destination != null && destination.getType() == COSObjType.COS_DICT && destination.knownKey(ASAtom.S)) {
+				return destination;
+			}
 		}
 		return null;
 	}

@@ -34,7 +34,10 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getCuePoints1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getCuePoints1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -57,7 +60,10 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getFlashVars1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getFlashVars1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -80,7 +86,10 @@ public class GFARichMediaParams extends GFAObject implements ARichMediaParams {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getSettings1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getSettings1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

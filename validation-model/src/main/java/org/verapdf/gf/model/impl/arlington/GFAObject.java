@@ -18,7 +18,6 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	private static final List<String> standardFonts = new LinkedList<>();
 	private static final ThreadLocal<Set<COSKey>> keysSet = new ThreadLocal<>();
-	private static final ThreadLocal<Set<COSKey>> afKeysSet = new ThreadLocal<>();
 	protected static final String PDF_DATE_FORMAT_REGEX = "(D:)?(\\d\\d){2,7}(([Z+-]\\d\\d'(\\d\\d'?)?)?|Z)";
 	protected final COSBase baseObject;
 	protected COSBase parentObject;
@@ -28,9 +27,6 @@ public class GFAObject extends GenericModelObject implements AObject {
 		super(objectType);
 		this.baseObject = baseObject;
 		this.parentObject = parentObject;
-		if (baseObject != null && baseObject.getType() == COSObjType.COS_DICT && baseObject.knownKey(ASAtom.AF)) {
-			processAF(baseObject);
-		}
 	}
 
 	public GFAObject(COSBase baseObject, COSBase parentObject, String keyName, String objectType) {
@@ -277,8 +273,15 @@ public class GFAObject extends GenericModelObject implements AObject {
 	public COSObject getInheritableValue(ASAtom key) {
 		COSObject keyObject = null;
 		COSObject currentObject = this.baseObject.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((keyObject == null || keyObject.empty()) && (currentObject != null && !currentObject.empty())) {
 			keyObject = currentObject.getKey(key);
+			if (currentObject.getKey() != null) {
+				if (visitedKeys.contains(currentObject.getKey())) {
+					break;
+				}
+				visitedKeys.add(currentObject.getKey());
+			}
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
 		return keyObject;
@@ -308,57 +311,17 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	public Boolean isContainsInheritableValue(ASAtom key) {
 		COSObject currentObject = new COSObject(this.baseObject);
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while (currentObject != null && !currentObject.empty() && !currentObject.knownKey(key)) {
+			if (currentObject.getKey() != null) {
+				if (visitedKeys.contains(currentObject.getKey())) {
+					break;
+				}
+				visitedKeys.add(currentObject.getKey());
+			}
 			currentObject = currentObject.getKey(ASAtom.getASAtom("Parent"));
 		}
 		return currentObject != null && !currentObject.empty() && currentObject.knownKey(key);
-	}
-
-	public static void processAF(COSBase object) {
-		COSObject AF = object.getKey(ASAtom.getASAtom("AF"));
-		if (AF == null) {
-			return;
-		}
-		COSObject EF = AF.getKey(ASAtom.getASAtom("EF"));
-		if (EF != null) {
-			COSObject F = EF.getKey(ASAtom.getASAtom("F"));
-			if (F != null) {
-				GFAObject.getAFKeysSet().add(F.getObjectKey());
-			}
-			COSObject UF = EF.getKey(ASAtom.getASAtom("UF"));
-			if (UF != null) {
-				GFAObject.getAFKeysSet().add(UF.getObjectKey());
-			}
-		}
-		COSObject RF = AF.getKey(ASAtom.getASAtom("RF"));
-		if (RF != null) {
-			COSObject F = RF.getKey(ASAtom.getASAtom("F"));
-			if (F != null && F.getType() == COSObjType.COS_ARRAY) {
-				for (int i = 1; i < F.size(); i += 2) {
-					COSObject obj = F.at(i);
-					if (obj != null) {
-						GFAObject.getAFKeysSet().add(obj.getObjectKey());
-					}
-				}
-			}
-			COSObject UF = RF.getKey(ASAtom.getASAtom("UF"));
-			if (UF != null && UF.getType() == COSObjType.COS_ARRAY) {
-				for (int i = 1; i < UF.size(); i += 2) {
-					COSObject obj = UF.at(i);
-					if (obj != null) {
-						GFAObject.getAFKeysSet().add(obj.getObjectKey());
-					}
-				}
-			}
-		}
-	}
-
-	@Override
-	public Boolean getisAssociatedFile() {
-		if (baseObject.getObjectKey() != null) {
-			return GFAObject.getAFKeysSet().contains(baseObject.getObjectKey());
-		}
-		return false;
 	}
 
 	@Override
@@ -372,6 +335,21 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	@Override
+	public Boolean gethasExtensionC2PA() {
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.C2PA);
+	}
+
+	@Override
+	public Boolean gethasExtensionEAPDF_1() {
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.EAPDF_1);
+	}
+
+	@Override
+	public Boolean gethasExtensionETSI_PAdES() {
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ETSI_PAdES);
+	}
+
+	@Override
 	public Boolean gethasExtensionISO_19005_3() {
 		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19005_3);
 	}
@@ -379,6 +357,11 @@ public class GFAObject extends GenericModelObject implements AObject {
 	@Override
 	public Boolean gethasExtensionISO_19593() {
 		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19593);
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_21812() {
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_21812);
 	}
 
 	@Override
@@ -394,6 +377,11 @@ public class GFAObject extends GenericModelObject implements AObject {
 	@Override
 	public Boolean gethasExtensionISO_TS_32001() {
 		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32001);
+	}
+
+	@Override
+	public Boolean gethasExtensionISO_TS_32003() {
+		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32003);
 	}
 
 	@Override
@@ -595,20 +583,8 @@ public class GFAObject extends GenericModelObject implements AObject {
 		GFAObject.keysSet.set(keysSet);
 	}
 
-	public static Set<COSKey> getAFKeysSet() {
-		if (afKeysSet.get() == null) {
-			afKeysSet.set(new HashSet<>());
-		}
-		return afKeysSet.get();
-	}
-
-	public static void setAFKeysSet(Set<COSKey> afKeysSet) {
-		GFAObject.afKeysSet.set(afKeysSet);
-	}
-
 	public static void clearAllContainers() {
 		keysSet.set(new HashSet<>());
-		afKeysSet.set(new HashSet<>());
 	}
 
 	static {

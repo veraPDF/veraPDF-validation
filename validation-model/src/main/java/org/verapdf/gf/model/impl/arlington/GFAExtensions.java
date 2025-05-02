@@ -21,6 +21,8 @@ public class GFAExtensions extends GFAObject implements AExtensions {
 		switch (link) {
 			case "Entries":
 				return getEntries();
+			case "GTSm":
+				return getGTSm();
 			case "ISO_":
 				return getISO_();
 			default:
@@ -41,13 +43,61 @@ public class GFAExtensions extends GFAObject implements AExtensions {
 	private List<AExtensionsEntry> getEntries1_7() {
 		List<AExtensionsEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
-			if ("ISO_".equals(key.getValue()) || "Type".equals(key.getValue())) {
+			if ("GTSm".equals(key.getValue()) || "ISO_".equals(key.getValue()) || "Type".equals(key.getValue())) {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
 			list.add(new GFAExtensionsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getGTSm() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+				if ((gethasExtensionISO_21812() == true)) {
+					return getGTSm1_7();
+				}
+				return Collections.emptyList();
+			case ARLINGTON2_0:
+				if ((gethasExtensionISO_21812() == true)) {
+					return getGTSm2_0();
+				}
+				return Collections.emptyList();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getGTSm1_7() {
+		COSObject object = getGTSmValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AGTSm_DevExtensions> list = new ArrayList<>(1);
+			list.add(new GFAGTSm_DevExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "GTSm"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getGTSm2_0() {
+		COSObject object = getGTSmValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfDevExtensions> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfDevExtensions((COSArray)object.getDirectBase(), this.baseObject, "GTSm"));
+			return Collections.unmodifiableList(list);
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AGTSm_DevExtensions> list = new ArrayList<>(1);
+			list.add(new GFAGTSm_DevExtensions((COSDictionary)object.getDirectBase(), this.baseObject, "GTSm"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getISO_() {
@@ -90,6 +140,40 @@ public class GFAExtensions extends GFAObject implements AExtensions {
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsGTSm() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("GTSm"));
+	}
+
+	public COSObject getGTSmValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTSm"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisGTSmIndirect() {
+		COSObject GTSm = getGTSmValue();
+		return getisIndirect(GTSm);
+	}
+
+	@Override
+	public String getGTSmType() {
+		COSObject GTSm = getGTSmValue();
+		return getObjectType(GTSm);
+	}
+
+	@Override
+	public Boolean getGTSmHasTypeArray() {
+		COSObject GTSm = getGTSmValue();
+		return getHasTypeArray(GTSm);
+	}
+
+	@Override
+	public Boolean getGTSmHasTypeDictionary() {
+		COSObject GTSm = getGTSmValue();
+		return getHasTypeDictionary(GTSm);
 	}
 
 	@Override

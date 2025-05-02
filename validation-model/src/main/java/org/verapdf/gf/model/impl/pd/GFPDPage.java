@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -190,13 +190,18 @@ public class GFPDPage extends GFPDObject implements PDPage {
 
 	private List<PDAnnot> getAnnotations() {
 		if (this.annotations == null) {
-			this.annotations = parseAnnotataions();
+			this.annotations = parseAnnotations();
 		}
 
 		return this.annotations;
 	}
 
-	private List<PDAnnot> parseAnnotataions() {
+	@Override
+	public Boolean getcontainsAnnotations() {
+		return !((org.verapdf.pd.PDPage) simplePDObject).getAnnotations().isEmpty();
+	}
+
+	private List<PDAnnot> parseAnnotations() {
 		StaticContainers.getTransparencyVisitedContentStreams().clear();
 		List<PDAnnotation> annots = ((org.verapdf.pd.PDPage) simplePDObject).getAnnotations();
 		if (!annots.isEmpty()) {
@@ -240,10 +245,10 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			GFPDContentStream pdContentStream;
 			if (!PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour())) {
 				pdContentStream = new GFPDContentStream(page.getContent(), resourcesHandler, null,
-						new StructureElementAccessObject(this.simpleCOSObject));
+						new StructureElementAccessObject(this.simpleCOSObject), page.getObject().getObjectKey());
 			} else {
 				pdContentStream = new GFPDSemanticContentStream(page.getContent(), resourcesHandler, null,
-						new StructureElementAccessObject(this.simpleCOSObject));
+						new StructureElementAccessObject(this.simpleCOSObject), page.getObject().getObjectKey());
 			}
 			this.containsTransparency |= pdContentStream.isContainsTransparency();
 			pdContentStreams.add(pdContentStream);
@@ -299,7 +304,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 			this.contentStreams = parseContentStream();
 		}
 		if (this.annotations == null) {
-			this.annotations = parseAnnotataions();
+			this.annotations = parseAnnotations();
 		}
 		return this.containsTransparency;
 	}

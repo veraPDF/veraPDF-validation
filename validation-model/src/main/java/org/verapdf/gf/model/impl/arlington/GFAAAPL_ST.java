@@ -39,7 +39,10 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getColor1_2();
+				if ((gethasExtensionAAPL() == true)) {
+					return getColor1_2();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -61,14 +64,20 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 	private List<org.verapdf.model.baselayer.Object> getColorSpace() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
-				return getColorSpace1_2();
+				if ((gethasExtensionAAPL() == true)) {
+					return getColorSpace1_2();
+				}
+				return Collections.emptyList();
 			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getColorSpace1_3();
+				if ((gethasExtensionAAPL() == true)) {
+					return getColorSpace1_3();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -169,7 +178,10 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getOffset1_2();
+				if ((gethasExtensionAAPL() == true)) {
+					return getOffset1_2();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

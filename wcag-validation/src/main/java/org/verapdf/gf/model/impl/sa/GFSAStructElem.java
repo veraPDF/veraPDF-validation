@@ -1,20 +1,20 @@
 /**
- * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * This file is part of veraPDF WCAG Validation, a module of the veraPDF project.
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * veraPDF Validation is free software: you can redistribute it and/or modify
+ * veraPDF WCAG Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
+ * along with veraPDF WCAG Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF WCAG Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -49,7 +49,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 
     public static final String CHILDREN = "children";
 
-	protected final org.verapdf.pd.structure.PDStructElem structElemDictionary;
+	protected final PDStructElem structElemDictionary;
 
 	protected List<Object> children = null;
 
@@ -61,8 +61,8 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 	private boolean isLeafNode = true;
 	private final String parentsStandardTypes;
 
-	public GFSAStructElem(org.verapdf.pd.structure.PDStructElem structElemDictionary, String standardType,
-	                      String type, String parentsStandardTypes) {
+	public GFSAStructElem(PDStructElem structElemDictionary, String standardType,
+						  String type, String parentsStandardTypes) {
 		super(type);
 		this.structElemDictionary = structElemDictionary;
 		this.standardType = standardType;
@@ -151,9 +151,9 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		if (!elements.isEmpty()) {
 			List<IChunk> chunks = new LinkedList<>();
 			for (java.lang.Object element : elements) {
-				if (element instanceof org.verapdf.pd.structure.PDStructElem) {
+				if (element instanceof PDStructElem) {
 					addChunksToChildren(chunks);
-					GFSAStructElem structElem = GFSAFactory.createTypedStructElem((org.verapdf.pd.structure.PDStructElem)element,
+					GFSAStructElem structElem = GFSAFactory.createTypedStructElem((PDStructElem)element,
 							(parentsStandardTypes.isEmpty() ? "" : (parentsStandardTypes + '&')) + standardType);
 					INode childNode = new GFSANode(structElem);
 					structElem.setNode(childNode);
@@ -277,7 +277,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		for (Object child : element.children) {
 			if (child instanceof GFSAStructElem) {
 				String elementStandardType = ((GFSAStructElem) child).getstandardType();
-				if (TaggedPDFConstants.NON_STRUCT.equals(elementStandardType) || TaggedPDFConstants.DIV.equals(elementStandardType)) {
+				if (PDStructElem.isPassThroughTag(elementStandardType)) {
 					res.addAll(getChildrenStandardTypes((GFSAStructElem) child));
 				} else {
 					res.add(elementStandardType);
@@ -289,10 +289,10 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 
 	@Override
 	public String getparentStandardType() {
-		org.verapdf.pd.structure.PDStructElem parent = this.structElemDictionary.getParent();
+		PDStructElem parent = this.structElemDictionary.getParent();
 		if (parent != null) {
 			String parentStandardType = PDStructElem.getStructureElementStandardType(parent);
-			while (TaggedPDFConstants.NON_STRUCT.equals(parentStandardType) || TaggedPDFConstants.DIV.equals(parentStandardType)) {
+			while (PDStructElem.isPassThroughTag(parentStandardType)) {
 				parent = parent.getParent();
 				if (parent == null) {
 					return null;
@@ -334,7 +334,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
 		return null;
 	}
 
-	public org.verapdf.pd.structure.PDStructElem getStructElemDictionary() {
+	public PDStructElem getStructElemDictionary() {
 		return structElemDictionary;
 	}
 }

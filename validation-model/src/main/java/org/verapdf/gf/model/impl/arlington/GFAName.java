@@ -606,7 +606,10 @@ public class GFAName extends GFAObject implements AName {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getXFAResources1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getXFAResources1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -629,7 +632,10 @@ public class GFAName extends GFAObject implements AName {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getXFAResourcesTreeNode1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getXFAResourcesTreeNode1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

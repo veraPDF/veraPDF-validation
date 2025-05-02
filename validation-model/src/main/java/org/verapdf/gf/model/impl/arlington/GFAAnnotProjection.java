@@ -44,23 +44,28 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
+	private List<AArrayOfAFFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getAF2_0();
+				return getAF1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF2_0() {
+	private List<AArrayOfAFFileSpecifications> getAF1_7() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -69,6 +74,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AAppearance> getAP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getAP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAP1_7();
 			default:
@@ -92,6 +101,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getBorder1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getBorder1_7();
 			default:
@@ -115,6 +128,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getC1_7();
 			default:
@@ -138,6 +155,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<org.verapdf.model.baselayer.Object> getExData() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getExData1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getExData1_7();
 			default:
@@ -185,6 +206,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<org.verapdf.model.baselayer.Object> getIRT() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getIRT1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getIRT1_7();
 			default:
@@ -285,9 +310,16 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetT1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -313,16 +345,23 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -337,16 +376,23 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidgetTBtn01_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -361,6 +407,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<org.verapdf.model.baselayer.Object> getOC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getOC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getOC1_7();
 			default:
@@ -406,6 +456,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<APageObject> getP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getP1_7();
 			default:
@@ -429,6 +483,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AAnnotPopup> getPopup() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getPopup1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getPopup1_7();
 			default:
@@ -452,6 +510,10 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 	private List<AStream> getRC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getRC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getRC1_7();
 			default:

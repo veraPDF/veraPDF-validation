@@ -29,6 +29,8 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 				return getFFilter();
 			case "Filter":
 				return getFilter();
+			case "Metadata":
+				return getMetadata();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -304,6 +306,32 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfCompressionFilterNames> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfCompressionFilterNames((COSArray)object.getDirectBase(), this.baseObject, "Filter"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AMetadata> getMetadata() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getMetadata1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AMetadata> getMetadata1_4() {
+		COSObject object = getMetadataValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_STREAM) {
+			List<AMetadata> list = new ArrayList<>(1);
+			list.add(new GFAMetadata((COSStream)object.getDirectBase(), this.baseObject, "Metadata"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -620,6 +648,34 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 	}
 
 	@Override
+	public Boolean getcontainsMetadata() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Metadata"));
+	}
+
+	public COSObject getMetadataValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Metadata"));
+		return object;
+	}
+
+	@Override
+	public Boolean getisMetadataIndirect() {
+		COSObject Metadata = getMetadataValue();
+		return getisIndirect(Metadata);
+	}
+
+	@Override
+	public String getMetadataType() {
+		COSObject Metadata = getMetadataValue();
+		return getObjectType(Metadata);
+	}
+
+	@Override
+	public Boolean getMetadataHasTypeStream() {
+		COSObject Metadata = getMetadataValue();
+		return getHasTypeStream(Metadata);
+	}
+
+	@Override
 	public Boolean getcontainsSubtype() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Subtype"));
 	}
@@ -639,6 +695,12 @@ public class GFAFontFileType1 extends GFAObject implements AFontFileType1 {
 	public Boolean getSubtypeHasTypeName() {
 		COSObject Subtype = getSubtypeValue();
 		return getHasTypeName(Subtype);
+	}
+
+	@Override
+	public String getSubtypeNameValue() {
+		COSObject Subtype = getSubtypeValue();
+		return getNameValue(Subtype);
 	}
 
 }

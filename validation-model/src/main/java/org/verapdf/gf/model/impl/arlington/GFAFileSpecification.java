@@ -167,6 +167,10 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	private List<AThumbnail> getThumb() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getThumb1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getThumb1_7();
 			default:
@@ -235,6 +239,12 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	public COSObject getCIValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("CI"));
 		return object;
+	}
+
+	@Override
+	public Boolean getisCIIndirect() {
+		COSObject CI = getCIValue();
+		return getisIndirect(CI);
 	}
 
 	@Override

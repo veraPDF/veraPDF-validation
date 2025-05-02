@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -190,7 +190,7 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
         COSObject openAction = this.catalog.getKey(ASAtom.OPEN_ACTION);
         if (openAction != null && openAction.getType() == COSObjType.COS_ARRAY) {
-            destinations.add(new GFPDDestination(openAction));
+            destinations.add(new GFPDDestination(new org.verapdf.pd.PDDestination(openAction)));
         }
         return Collections.unmodifiableList(destinations);
     }
@@ -228,6 +228,12 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
+    @Override
+    public Boolean getcontainsMetadata() {
+        org.verapdf.pd.PDMetadata meta = this.catalog != null ? this.catalog.getMetadata() : null;
+        return meta != null && org.verapdf.pd.PDMetadata.isMetadataObject(meta.getObject());
+    }
+    
     private List<OutputIntents> getOutputIntents() {
         if (this.outputIntents == null) {
             this.outputIntents = parseOutputIntents();
@@ -268,6 +274,11 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
         return Collections.emptyList();
     }
 
+    @Override
+    public Boolean getcontainsStructTreeRoot() {
+        return document.getStructTreeRoot() != null;
+    }
+
     private List<PDPerms> getPerms() {
         if (this.catalog != null) {
             COSObject perms = this.catalog.getKey(ASAtom.PERMS);
@@ -305,6 +316,12 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
             }
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public Boolean getcontainsLang() {
+        COSObject baseLang = this.catalog != null ? catalog.getKey(ASAtom.LANG) : null;
+        return baseLang != null && baseLang.getType() == COSObjType.COS_STRING;
     }
 
     @Override

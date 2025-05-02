@@ -115,7 +115,7 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 		return Collections.emptyList();
 	}
 
-	private List<AStream> getToUnicode() {
+	private List<AToUnicodeCMapStream> getToUnicode() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -130,14 +130,14 @@ public class GFAFontType3 extends GFAObject implements AFontType3 {
 		}
 	}
 
-	private List<AStream> getToUnicode1_2() {
+	private List<AToUnicodeCMapStream> getToUnicode1_2() {
 		COSObject object = getToUnicodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
+			List<AToUnicodeCMapStream> list = new ArrayList<>(1);
+			list.add(new GFAToUnicodeCMapStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

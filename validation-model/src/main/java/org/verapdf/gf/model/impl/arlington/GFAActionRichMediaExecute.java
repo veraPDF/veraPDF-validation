@@ -35,6 +35,10 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	private List<ARichMediaCommand> getCMD() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getCMD1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getCMD1_7();
 			default:
@@ -58,7 +62,10 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	private List<org.verapdf.model.baselayer.Object> getNext() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
-				return getNext1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getNext1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getNext2_0();
 			default:
@@ -219,6 +226,10 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	private List<AAnnotRichMedia> getTA() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getTA1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getTA1_7();
 			default:
@@ -242,6 +253,10 @@ public class GFAActionRichMediaExecute extends GFAObject implements AActionRichM
 	private List<ARichMediaInstance> getTI() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getTI1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getTI1_7();
 			default:

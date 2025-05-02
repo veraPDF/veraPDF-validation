@@ -150,7 +150,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		return Collections.emptyList();
 	}
 
-	private List<AStream> getToUnicode() {
+	private List<AToUnicodeCMapStream> getToUnicode() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_2:
 			case ARLINGTON1_3:
@@ -165,14 +165,14 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 		}
 	}
 
-	private List<AStream> getToUnicode1_2() {
+	private List<AToUnicodeCMapStream> getToUnicode1_2() {
 		COSObject object = getToUnicodeValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_STREAM) {
-			List<AStream> list = new ArrayList<>(1);
-			list.add(new GFAStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
+			List<AToUnicodeCMapStream> list = new ArrayList<>(1);
+			list.add(new GFAToUnicodeCMapStream((COSStream)object.getDirectBase(), this.baseObject, "ToUnicode"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -338,7 +338,7 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return COSReal.construct(1000D);
+				return COSInteger.construct(1000L);
 		}
 		return null;
 	}
@@ -355,6 +355,12 @@ public class GFAFontCIDType0 extends GFAObject implements AFontCIDType0 {
 	public String getDWType() {
 		COSObject DW = getDWValue();
 		return getObjectType(DW);
+	}
+
+	@Override
+	public Boolean getDWHasTypeInteger() {
+		COSObject DW = getDWValue();
+		return getHasTypeInteger(DW);
 	}
 
 	@Override

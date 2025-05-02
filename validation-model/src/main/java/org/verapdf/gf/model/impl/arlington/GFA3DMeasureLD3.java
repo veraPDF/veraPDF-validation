@@ -41,6 +41,10 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	private List<AArrayOf_3Numbers> getA1() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getA11_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getA11_7();
 			default:
@@ -64,6 +68,10 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	private List<AArrayOf_3Numbers> getA2() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getA21_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getA21_7();
 			default:
@@ -87,6 +95,10 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	private List<AArrayOf_3Numbers> getAP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getAP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAP1_7();
 			default:
@@ -110,6 +122,10 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	private List<AArrayOf_3RGBNumbers> getC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getC1_7();
 			default:
@@ -133,6 +149,10 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	private List<AAnnotProjection> getS() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getS1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getS1_7();
 			default:
@@ -156,6 +176,10 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	private List<AArrayOf_3Numbers> getTP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getTP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getTP1_7();
 			default:
@@ -179,6 +203,10 @@ public class GFA3DMeasureLD3 extends GFAObject implements A3DMeasureLD3 {
 	private List<AArrayOf_3Numbers> getTY() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getTY1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getTY1_7();
 			default:

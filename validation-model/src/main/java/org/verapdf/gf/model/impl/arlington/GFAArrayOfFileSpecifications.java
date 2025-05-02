@@ -31,6 +31,10 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 	private List<AArrayOfFileSpecificationsEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getEntries1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEntries1_7();
 			default:
@@ -50,6 +54,10 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 	private List<AFileSpecification> getentry0() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getentry01_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getentry01_7();
 			default:
@@ -68,11 +76,6 @@ public class GFAArrayOfFileSpecifications extends GFAObject implements AArrayOfF
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	@Override
-	public Boolean getcontains0() {
-		return this.baseObject.size() > 0;
 	}
 
 	public COSObject getentry0Value() {

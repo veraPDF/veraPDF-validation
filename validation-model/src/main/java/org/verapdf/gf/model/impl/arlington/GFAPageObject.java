@@ -97,9 +97,13 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
+	private List<AArrayOfAFFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAF1_7();
 			default:
@@ -107,14 +111,14 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF1_7() {
+	private List<AArrayOfAFFileSpecifications> getAF1_7() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -193,7 +197,6 @@ public class GFAPageObject extends GFAObject implements APageObject {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getContents() {
-		processAFKeys();
 		return getContents1_0();
 	}
 
@@ -219,6 +222,10 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getDPart1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getDPart1_6();
 			default:
@@ -1454,58 +1461,6 @@ public class GFAPageObject extends GFAObject implements APageObject {
 		} else {
 			return this.baseObject.knownKey(ASAtom.PARENT) ? getInheritableResources(this.baseObject.getKey(ASAtom.PARENT)) : null;
 		}
-	}
-
-	private void processAFKeys() {
-		COSObject contents = this.baseObject.getKey(ASAtom.CONTENTS);
-		if (contents.getType() == COSObjType.COS_STREAM || contents.getType() == COSObjType.COS_ARRAY) {
-			try (ASInputStream opStream = contents.getDirectBase().getData(COSStream.FilterFlags.DECODE);
-				 PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
-				streamParser.parseTokens();
-				List<COSBase> arguments = new ArrayList<>();
-				for (java.lang.Object rawToken : streamParser.getTokens()) {
-					if (rawToken instanceof COSBase) {
-						arguments.add((COSBase) rawToken);
-					} else if (rawToken instanceof Operator) {
-						String operatorName = ((Operator)rawToken).getOperator();
-						if (Operators.BMC.equals(operatorName) || Operators.BDC.equals(operatorName)) {
-							if (arguments.size() < 2) {
-								continue;
-							}
-							COSBase tag = arguments.get(arguments.size() - 2);
-							COSBase propKey = arguments.get(arguments.size() - 1);
-							if (isMarkedContentAFKeyAndValueTypeCorrect(tag, propKey)) {
-								COSObject resources = getInheritableResources(new COSObject(this.baseObject));
-								COSObject properties = resources != null ? resources.getKey(ASAtom.PROPERTIES) : null;
-								COSObject property = properties != null ? properties.getKey(propKey.getName()) : null;
-								if (property != null && property.getType() == COSObjType.COS_ARRAY) {
-									for (int i = 0; i < property.size(); i ++) {
-										COSObject obj = property.at(i);
-										if (obj != null) {
-											processAF(obj.getDirectBase());
-										}
-									}
-								}
-							}
-						}
-						arguments = new ArrayList<>();
-					}
-				}
-			} catch (IOException ignored) {
-				LOGGER.log(Level.WARNING, "Exception during processing isAssociatedFile predicate.");
-			}
-		}
-	}
-
-	private static boolean isMarkedContentAFKeyAndValueTypeCorrect(COSBase tag, COSBase propKey) {
-		if (tag == null || propKey == null) {
-			return false;
-		} else if (tag.getType() != COSObjType.COS_NAME || propKey.getType() != COSObjType.COS_NAME) {
-			return false;
-		} else if (ASAtom.AF != tag.getName()) {
-			return false;
-		}
-		return true;
 	}
 
 	@Override

@@ -57,6 +57,8 @@ public class GFAArrayOfDevExtensionsEntry extends GFAObject implements AArrayOfD
 		switch (collectionName) {
 			case "ISO_":
 				return new GFAISO_DevExtensions(base, this.baseObject, keyName);
+			case "GTSm_":
+				return new GFAGTSm_DevExtensions(base, this.baseObject, keyName);
 			default:
 				return new GFADevExtensions(base, this.baseObject, keyName);
 		}

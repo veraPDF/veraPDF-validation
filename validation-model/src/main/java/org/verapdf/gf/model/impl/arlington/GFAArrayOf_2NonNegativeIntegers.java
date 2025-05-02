@@ -10,10 +10,10 @@ import org.verapdf.as.ASAtom;
 import java.util.stream.Collectors;
 import org.verapdf.pd.structure.PDNumberTreeNode;
 
-public class GFAArrayOf_3Integers extends GFAObject implements AArrayOf_3Integers {
+public class GFAArrayOf_2NonNegativeIntegers extends GFAObject implements AArrayOf_2NonNegativeIntegers {
 
-	public GFAArrayOf_3Integers(COSBase baseObject, COSBase parentObject, String keyName) {
-		super(baseObject, parentObject, keyName, "AArrayOf_3Integers");
+	public GFAArrayOf_2NonNegativeIntegers(COSBase baseObject, COSBase parentObject, String keyName) {
+		super(baseObject, parentObject, keyName, "AArrayOf_2NonNegativeIntegers");
 	}
 
 	public COSObject getentry0Value() {
@@ -66,32 +66,6 @@ public class GFAArrayOf_3Integers extends GFAObject implements AArrayOf_3Integer
 	public Long getentry1IntegerValue() {
 		COSObject entry1 = getentry1Value();
 		return getIntegerValue(entry1);
-	}
-
-	public COSObject getentry2Value() {
-		if (this.baseObject.size() <= 2) {
-			return null;
-		}
-		COSObject object = this.baseObject.at(2);
-		return object;
-	}
-
-	@Override
-	public String getentry2Type() {
-		COSObject entry2 = getentry2Value();
-		return getObjectType(entry2);
-	}
-
-	@Override
-	public Boolean getentry2HasTypeInteger() {
-		COSObject entry2 = getentry2Value();
-		return getHasTypeInteger(entry2);
-	}
-
-	@Override
-	public Long getentry2IntegerValue() {
-		COSObject entry2 = getentry2Value();
-		return getIntegerValue(entry2);
 	}
 
 }

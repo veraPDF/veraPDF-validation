@@ -100,9 +100,16 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -128,16 +135,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -152,16 +166,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn01_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -245,9 +266,16 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -273,16 +301,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -297,16 +332,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn01_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -394,9 +436,16 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -422,16 +471,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -446,16 +502,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn01_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -551,9 +614,16 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -579,16 +649,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -603,16 +680,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn01_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -712,9 +796,16 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -740,16 +831,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -764,16 +862,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn01_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -875,9 +980,16 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -903,16 +1015,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -927,16 +1046,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn01_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:
@@ -1042,9 +1168,16 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetT2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FT"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("FT"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("FT"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
@@ -1070,16 +1203,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 16) {
 			case 0:
@@ -1094,16 +1234,23 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidgetTBtn02_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Ff"));
 		COSObject parent = base.getKey(ASAtom.getASAtom("Parent"));
+		Set<COSKey> visitedKeys = new HashSet<>();
 		while ((subtype == null || subtype.empty()) && (parent != null && !parent.empty())) {
-			subtype = base.getKey(ASAtom.getASAtom("Ff"));
-			parent = base.getKey(ASAtom.getASAtom("Parent"));
+			subtype = parent.getKey(ASAtom.getASAtom("Ff"));
+			if (parent.getKey() != null) {
+				if (visitedKeys.contains(parent.getKey())) {
+					break;
+				}
+				visitedKeys.add(parent.getKey());
+			}
+			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
 		if (subtype == null) {
 			return null;
 		}
 		Long subtypeValue = subtype.getInteger();
 		if (subtypeValue == null) {
-			return null;
+			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
 		switch (subtypeValue.intValue() >> 15) {
 			case 0:

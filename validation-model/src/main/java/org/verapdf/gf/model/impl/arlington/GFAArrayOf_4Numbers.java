@@ -36,6 +36,12 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 		return getHasTypeNumber(entry0);
 	}
 
+	@Override
+	public Double getentry0NumberValue() {
+		COSObject entry0 = getentry0Value();
+		return getNumberValue(entry0);
+	}
+
 	public COSObject getentry1Value() {
 		if (this.baseObject.size() <= 1) {
 			return null;
@@ -54,6 +60,12 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 	public Boolean getentry1HasTypeNumber() {
 		COSObject entry1 = getentry1Value();
 		return getHasTypeNumber(entry1);
+	}
+
+	@Override
+	public Double getentry1NumberValue() {
+		COSObject entry1 = getentry1Value();
+		return getNumberValue(entry1);
 	}
 
 	public COSObject getentry2Value() {
@@ -76,6 +88,12 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 		return getHasTypeNumber(entry2);
 	}
 
+	@Override
+	public Double getentry2NumberValue() {
+		COSObject entry2 = getentry2Value();
+		return getNumberValue(entry2);
+	}
+
 	public COSObject getentry3Value() {
 		if (this.baseObject.size() <= 3) {
 			return null;
@@ -94,6 +112,12 @@ public class GFAArrayOf_4Numbers extends GFAObject implements AArrayOf_4Numbers 
 	public Boolean getentry3HasTypeNumber() {
 		COSObject entry3 = getentry3Value();
 		return getHasTypeNumber(entry3);
+	}
+
+	@Override
+	public Double getentry3NumberValue() {
+		COSObject entry3 = getentry3Value();
+		return getNumberValue(entry3);
 	}
 
 }

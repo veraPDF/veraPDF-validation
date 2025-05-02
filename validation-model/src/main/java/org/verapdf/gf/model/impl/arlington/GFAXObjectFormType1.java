@@ -56,9 +56,13 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
+	private List<AArrayOfAFFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAF1_7();
 			default:
@@ -66,14 +70,14 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF1_7() {
+	private List<AArrayOfAFFileSpecifications> getAF1_7() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -398,6 +402,10 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	private List<org.verapdf.model.baselayer.Object> getMeasure() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getMeasure1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getMeasure1_7();
 			default:
@@ -584,6 +592,10 @@ public class GFAXObjectFormType1 extends GFAObject implements AXObjectFormType1 
 	private List<APointData> getPtData() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getPtData1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getPtData1_7();
 			default:

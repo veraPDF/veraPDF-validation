@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ import org.verapdf.model.selayer.SELineArtItem;
 /**
  * @author Maxim Plushchov
  */
-public class GFSELineArtItem extends GFSESimpleContentItem implements SELineArtItem {
+public class GFSELineArtItem extends GFSEGraphicContentItem implements SELineArtItem {
 
     public static final String LINE_ART_ITEM_TYPE = "SELineArtItem";
 

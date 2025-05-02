@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@ import org.verapdf.pdfa.flavours.PDFFlavours;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -99,18 +100,14 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                     this.name = null;
                 } else {
                     pr.parseFont();
-                    if (glyphCode == 0 || !font.glyphIsPresent(glyphCode)) {
-                        this.name = ".notdef";
-                    } else {
-                        this.name = null;
-                    }
+                    this.name = font.glyphIsPresent(glyphCode) ? null : ".notdef";
                 }
             } catch (IOException e) {
                 LOGGER.log(Level.FINE, "Can't convert code to glyph", e);
                 this.name = null;
             }
         }
-        PDFAFlavour flavour = StaticContainers.getFlavour();
+        List<PDFAFlavour> flavour = StaticContainers.getFlavours();
         if (!PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_1_B) && 
                 !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_2_B) && 
                 !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_3_B)) {

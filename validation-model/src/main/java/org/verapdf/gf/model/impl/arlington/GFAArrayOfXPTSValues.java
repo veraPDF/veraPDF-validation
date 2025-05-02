@@ -29,6 +29,10 @@ public class GFAArrayOfXPTSValues extends GFAObject implements AArrayOfXPTSValue
 	private List<AArrayOfXPTSValuesEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getEntries1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEntries1_7();
 			default:

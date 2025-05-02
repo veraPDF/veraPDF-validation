@@ -29,6 +29,10 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 	private List<org.verapdf.model.baselayer.Object> getM3DREF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getM3DREF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getM3DREF1_7();
 			default:

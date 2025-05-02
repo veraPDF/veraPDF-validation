@@ -40,7 +40,7 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
+	private List<AArrayOfAFFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
 				return getAF2_0();
@@ -49,14 +49,14 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF2_0() {
+	private List<AArrayOfAFFileSpecifications> getAF2_0() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -65,6 +65,10 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	private List<AAppearance> getAP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getAP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAP1_7();
 			default:
@@ -88,6 +92,10 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	private List<AArrayOf_4AnnotBorderCharacteristics> getBorder() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getBorder1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getBorder1_7();
 			default:
@@ -111,6 +119,10 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	private List<AArrayOf_4NumbersColorAnnotation> getC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getC1_7();
 			default:
@@ -134,6 +146,10 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	private List<org.verapdf.model.baselayer.Object> getOC() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getOC1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getOC1_7();
 			default:
@@ -179,6 +195,10 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	private List<APageObject> getP() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getP1_7();
 			default:
@@ -202,6 +222,10 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	private List<ARichMediaContent> getRichMediaContent() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getRichMediaContent1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getRichMediaContent1_7();
 			default:
@@ -225,6 +249,10 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	private List<ARichMediaSettings> getRichMediaSettings() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getRichMediaSettings1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getRichMediaSettings1_7();
 			default:

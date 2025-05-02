@@ -104,9 +104,13 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return Collections.emptyList();
 	}
 
-	private List<AArrayOfFileSpecifications> getAF() {
+	private List<AArrayOfAFFileSpecifications> getAF() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getAF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getAF1_7();
 			default:
@@ -114,14 +118,14 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		}
 	}
 
-	private List<AArrayOfFileSpecifications> getAF1_7() {
+	private List<AArrayOfAFFileSpecifications> getAF1_7() {
 		COSObject object = getAFValue();
 		if (object == null) {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -182,6 +186,10 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionPDF_VT2() == true)) {
+					return getDPartRoot1_6();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getDPartRoot1_6();
 			default:
@@ -204,14 +212,19 @@ public class GFACatalog extends GFAObject implements ACatalog {
 
 	private List<ADSS> getDSS() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getDSS1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getDSS2_0();
+				return getDSS1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ADSS> getDSS2_0() {
+	private List<ADSS> getDSS1_7() {
 		COSObject object = getDSSValue();
 		if (object == null) {
 			return Collections.emptyList();

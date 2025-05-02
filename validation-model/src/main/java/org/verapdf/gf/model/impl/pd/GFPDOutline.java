@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -89,7 +89,7 @@ public class GFPDOutline extends GFPDObject implements PDOutline {
 		COSObject destination = ((PDOutlineItem) simplePDObject).getDestination();
 		if (!destination.empty() && !simplePDObject.knownKey(ASAtom.A)) {
 			List<PDDestination> destinations = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-			destinations.add(new GFPDDestination(destination));
+			destinations.add(new GFPDDestination(new org.verapdf.pd.PDDestination(destination)));
 			return Collections.unmodifiableList(destinations);
 		}
 		return Collections.emptyList();

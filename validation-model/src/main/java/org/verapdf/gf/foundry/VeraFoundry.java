@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -33,10 +33,7 @@ import org.verapdf.core.ModelParsingException;
 import org.verapdf.extensions.ExtensionObjectType;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.metadata.fixer.gf.GFMetadataFixerImpl;
-import org.verapdf.pdfa.MetadataFixer;
-import org.verapdf.pdfa.PDFAParser;
-import org.verapdf.pdfa.AbstractFoundry;
-import org.verapdf.pdfa.VeraPDFFoundry;
+import org.verapdf.pdfa.*;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
 /**
@@ -60,7 +57,7 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	/**
-	 * @see org.verapdf.pdfa.VeraPDFFoundry#newPdfParser(java.io.InputStream)
+	 * @see org.verapdf.pdfa.VeraPDFFoundry#createParser(InputStream)
 	 */
 	@Override
 	public PDFAParser createParser(InputStream pdfStream) throws ModelParsingException, EncryptedPdfException {
@@ -68,8 +65,7 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	/**
-	 * @see org.verapdf.pdfa.VeraPDFFoundry#newPdfParser(java.io.InputStream,
-	 *      org.verapdf.pdfa.flavours.PDFAFlavour)
+	 * @see org.verapdf.pdfa.VeraPDFFoundry#createParser(InputStream, PDFAFlavour)
 	 */
 	@Override
 	public PDFAParser createParser(InputStream pdfStream, PDFAFlavour flavour)
@@ -100,28 +96,28 @@ class VeraFoundry extends AbstractFoundry {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour)
+	public PDFAParser createParser(File file, PDFAFlavour flavour)
 			throws ModelParsingException, EncryptedPdfException {
-		return GFModelParser.createModelWithFlavour(file, pdfaFlavour);
+		return GFModelParser.createModelWithFlavour(file, flavour);
 	}
 
 	@Override
-	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour, PDFAFlavour defaultPdfaFlavour)
+	public PDFAParser createParser(File file, PDFAFlavour flavour, PDFAFlavour defaultFlavour)
 			throws ModelParsingException, EncryptedPdfException {
-		return GFModelParser.createModelWithFlavour(file, pdfaFlavour, defaultPdfaFlavour);
+		return GFModelParser.createModelWithFlavour(file, flavour, defaultFlavour);
 	}
 
 	@Override
-	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour, String password)
+	public PDFAParser createParser(File file, PDFAFlavour flavour, String password)
 			throws ModelParsingException, EncryptedPdfException {
-		return GFModelParser.createModelWithFlavour(file, pdfaFlavour, password);
+		return GFModelParser.createModelWithFlavour(file, flavour, password);
 	}
 
 	@Override
-	public PDFAParser createParser(File file, PDFAFlavour pdfaFlavour, PDFAFlavour defaultPdfaFlavour, String password,
+	public PDFAParser createParser(File file, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password,
 								   EnumSet<ExtensionObjectType> enabledExtensions)
 			throws ModelParsingException, EncryptedPdfException {
-		return GFModelParser.createModelWithFlavour(file, pdfaFlavour, defaultPdfaFlavour, password, enabledExtensions);
+		return GFModelParser.createModelWithFlavour(file, flavour, defaultFlavour, password, enabledExtensions);
 	}
 
 	@Override
@@ -131,7 +127,7 @@ class VeraFoundry extends AbstractFoundry {
 	}
 
 	/**
-	 * @see org.verapdf.pdfa.VeraPDFFoundry#newMetadataFixer(org.verapdf.metadata.fixer.utils.FixerConfig)
+	 * @see VeraPDFFoundry#createMetadataFixer()
 	 */
 	@Override
 	public MetadataFixer createMetadataFixer() {

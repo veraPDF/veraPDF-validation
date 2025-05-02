@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Metadata Fixer, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Metadata Fixer is free software: you can redistribute it and/or modify
@@ -204,10 +204,25 @@ public class MetadataImpl implements Metadata {
             if (!XMPMetaFactory.getSchemaRegistry().getNamespaces().containsKey(XMPConst.NS_PDFUA_ID)) {
                 XMPMetaFactory.getSchemaRegistry().registerNamespace(XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX, false);
             }
-            int part = flavour.getPart().getPartNumber();
-            if (!Objects.equals(this.metadata.getPDFUAIdentificationPart(), part)) {
-                resultBuilder.addFix(String.format(this.metadata.getPDFUAIdentificationPart() == null ?
-                        ADD_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE, VeraPDFMeta.PART, part));
+        } catch (XMPException e) {
+            LOGGER.log(Level.FINE, "Can not register " + XMPConst.NS_PDFUA_ID + " namespace.", e);
+        }
+        boolean isBadPart = true;
+        boolean isMissingPart = false;
+        int part = flavour.getPart().getPartNumber();
+        try {
+            if (Objects.equals(this.metadata.getPDFUAIdentificationPart(), part)) {
+                isBadPart = false;
+            } else {
+                isMissingPart = this.metadata.getPDFUAIdentificationPart() == null;
+            }
+        } catch (XMPException e) {
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+        }
+        try {
+            if (isBadPart) {
+                resultBuilder.addFix(String.format(isMissingPart ? ADD_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE,
+                        VeraPDFMeta.PART, part));
                 this.metadata.setPDFUAIdentificationPart(part);
                 this.setNeedToBeUpdated(true);
             }
@@ -264,10 +279,21 @@ public class MetadataImpl implements Metadata {
     public void addPDFAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         int part = flavour.getPart().getPartNumber();
         String conformance = !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_4)  ? flavour.getLevel().getCode().toUpperCase() : null;
+        boolean isBadPart = true;
+        boolean isMissingPart = false;
         try {
-            if (!Objects.equals(this.metadata.getPDFAIdentificationPart(), part)) {
-                resultBuilder.addFix(String.format(this.metadata.getPDFAIdentificationPart() == null ?
-                        ADD_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE, VeraPDFMeta.PART, part));
+            if (Objects.equals(this.metadata.getPDFAIdentificationPart(), part)) {
+                isBadPart = false;
+            } else {
+                isMissingPart = this.metadata.getPDFAIdentificationPart() == null;
+            }
+        } catch (XMPException e) {
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+        }
+        try {
+            if (isBadPart) {
+                resultBuilder.addFix(String.format(isMissingPart ? ADD_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE, 
+                        VeraPDFMeta.PART, part));
                 this.metadata.setPDFAIdentificationPart(part);
                 this.setNeedToBeUpdated(true);
             }

@@ -21,6 +21,8 @@ public class GFAResource extends GFAObject implements AResource {
 		switch (link) {
 			case "ColorSpace":
 				return getColorSpace();
+			case "Encoding":
+				return getEncoding();
 			case "ExtGState":
 				return getExtGState();
 			case "Font":
@@ -52,6 +54,23 @@ public class GFAResource extends GFAObject implements AResource {
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AColorSpaceMap> list = new ArrayList<>(1);
 			list.add(new GFAColorSpaceMap((COSDictionary)object.getDirectBase(), this.baseObject, "ColorSpace"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AEncoding> getEncoding() {
+		return getEncoding1_0();
+	}
+
+	private List<AEncoding> getEncoding1_0() {
+		COSObject object = getEncodingValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AEncoding> list = new ArrayList<>(1);
+			list.add(new GFAEncoding((COSDictionary)object.getDirectBase(), this.baseObject, "Encoding"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -239,6 +258,28 @@ public class GFAResource extends GFAObject implements AResource {
 	public Boolean getColorSpaceHasTypeDictionary() {
 		COSObject ColorSpace = getColorSpaceValue();
 		return getHasTypeDictionary(ColorSpace);
+	}
+
+	@Override
+	public Boolean getcontainsEncoding() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Encoding"));
+	}
+
+	public COSObject getEncodingValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Encoding"));
+		return object;
+	}
+
+	@Override
+	public String getEncodingType() {
+		COSObject Encoding = getEncodingValue();
+		return getObjectType(Encoding);
+	}
+
+	@Override
+	public Boolean getEncodingHasTypeDictionary() {
+		COSObject Encoding = getEncodingValue();
+		return getHasTypeDictionary(Encoding);
 	}
 
 	@Override

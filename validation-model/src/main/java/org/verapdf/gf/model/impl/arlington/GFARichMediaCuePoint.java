@@ -30,7 +30,10 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getA1_7();
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getA1_7();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

@@ -31,7 +31,10 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	private List<AArrayOf_4Integers> getByteRange() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getByteRange2_0();
+				if ((gethasExtensionISO_TS_32004() == true)) {
+					return getByteRange2_0();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}
@@ -53,7 +56,10 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 	private List<org.verapdf.model.baselayer.Object> getSigObjRef() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON2_0:
-				return getSigObjRef2_0();
+				if ((gethasExtensionISO_TS_32004() == true)) {
+					return getSigObjRef2_0();
+				}
+				return Collections.emptyList();
 			default:
 				return Collections.emptyList();
 		}

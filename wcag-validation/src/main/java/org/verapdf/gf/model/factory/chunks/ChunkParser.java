@@ -1,20 +1,20 @@
 /**
- * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * This file is part of veraPDF WCAG Validation, a module of the veraPDF project.
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
- * veraPDF Validation is free software: you can redistribute it and/or modify
+ * veraPDF WCAG Validation is free software: you can redistribute it and/or modify
  * it under the terms of either:
  *
  * The GNU General public license GPLv3+.
  * You should have received a copy of the GNU General Public License
- * along with veraPDF Validation as the LICENSE.GPL file in the root of the source
+ * along with veraPDF WCAG Validation as the LICENSE.GPL file in the root of the source
  * tree.  If not, see http://www.gnu.org/licenses/ or
  * https://www.gnu.org/licenses/gpl-3.0.en.html.
  *
  * The Mozilla Public License MPLv2+.
  * You should have received a copy of the Mozilla Public License along with
- * veraPDF Validation as the LICENSE.MPL file in the root of the source tree.
+ * veraPDF WCAG Validation as the LICENSE.MPL file in the root of the source tree.
  * If a copy of the MPL was not distributed with this file, you can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
@@ -45,7 +45,6 @@ import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
@@ -67,7 +66,7 @@ class ChunkParser {
 	private final GraphicsState graphicsState;
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
-	private List<Object> nonDrawingArtifacts = new LinkedList<>();
+	private List<Object> nonDrawingArtifacts = new ArrayList<>();
 	private final LineArtContainer lineArtContainer;
 	private final COSKey parentObjectKey;
 	private final Long parentMarkedContent;
@@ -185,7 +184,7 @@ class ChunkParser {
 			case Operators.SC_FILL:
 				if (this.graphicsState.isProcessColorOperators()) {
 					PDColorSpace colorSpace = this.graphicsState.getFillColorSpace();
-					ASAtom colorSpaceType = colorSpace.getType();
+					ASAtom colorSpaceType = colorSpace != null ? colorSpace.getType() : null;
 					if (ASAtom.DEVICERGB.equals(colorSpaceType) || ASAtom.DEVICEGRAY.equals(colorSpaceType) ||
 							ASAtom.DEVICECMYK.equals(colorSpaceType) || ASAtom.CALRGB.equals(colorSpaceType) ||
 							ASAtom.CALGRAY.equals(colorSpaceType) || ASAtom.INDEXED.equals(colorSpaceType) ||
@@ -431,7 +430,7 @@ class ChunkParser {
 				processB();
 				break;
 			case Operators.N:
-				nonDrawingArtifacts = new LinkedList<>();
+				nonDrawingArtifacts = new ArrayList<>();
 				break;
 			case Operators.S_CLOSE_STROKE:
 				processh();
@@ -544,7 +543,7 @@ class ChunkParser {
 				}
 			}
 		}
-		nonDrawingArtifacts = new LinkedList<>();
+		nonDrawingArtifacts = new ArrayList<>();
 	}
 
 	private void processS() {
@@ -573,7 +572,7 @@ class ChunkParser {
 				}
 			}
 		}
-		nonDrawingArtifacts = new LinkedList<>();
+		nonDrawingArtifacts = new ArrayList<>();
 	}
 
 	private void processf() {
@@ -599,7 +598,7 @@ class ChunkParser {
 						graphicsState.getLineWidth()).getBoundingBox());
 			}
 		}
-		nonDrawingArtifacts = new LinkedList<>();
+		nonDrawingArtifacts = new ArrayList<>();
 	}
 
 	private LineChunk parsingRectangleFromLines(int i) {
@@ -684,14 +683,17 @@ class ChunkParser {
 	}
 
 	private List<Double> parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
-		List<Double> symbolEnds = new ArrayList<>();
 		if (argument.getType() == COSObjType.COS_STRING) {
+			List<Double> symbolEnds = new ArrayList<>();
+			symbolEnds.add(0.0);
 			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
 			parseString((COSString) argument.getDirectBase(), unicodeValue, null, symbolEnds);
 			if (!symbolEnds.isEmpty()) {
 				textMatrix.concatenate(Matrix.getTranslateInstance(symbolEnds.get(symbolEnds.size() - 1), 0));
 			}
-		} else if (argument.getType() == COSObjType.COS_ARRAY) {
+			return symbolEnds;
+		}
+		if (argument.getType() == COSObjType.COS_ARRAY) {
 			COSArray array = (COSArray) argument;
 			TextPieces textPieces = new TextPieces();
 			for (COSObject obj : array) {
@@ -715,12 +717,9 @@ class ChunkParser {
 			} else {
 				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX(), 0));
 			}
-			symbolEnds = textPieces.getSymbolEnds();
+			return textPieces.getSymbolEnds();
 		}
-		symbolEnds.add(0, 0.0);
-		double multiplier = Math.sqrt(textMatrix.getScaleX() * textMatrix.getScaleX() +
-		                              textMatrix.getShearY() * textMatrix.getShearY());
-		return symbolEnds.stream().map(e -> e * multiplier).collect(Collectors.toList());
+		return Collections.emptyList();
 	}
 
 	private void parseString(COSString string, StringBuilder unicodeValue, TextPieces textPieces, List<Double> symbolEnds) {
@@ -824,7 +823,7 @@ class ChunkParser {
 				graphicsState.getCTM().transformY(lineChunk.getStartX(), lineChunk.getStartY()),
 				graphicsState.getCTM().transformX(lineChunk.getEndX(), lineChunk.getEndY()),
 				graphicsState.getCTM().transformY(lineChunk.getEndX(), lineChunk.getEndY()),
-				lineWidth, lineCap);
+				lineWidth * graphicsState.getCTM().getScaleValue(), lineCap);
 	}
 
 	private static void processColorSpace(GraphicsState graphicState, ResourceHandler resourcesHandler,

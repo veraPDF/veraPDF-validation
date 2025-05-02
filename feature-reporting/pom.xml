@@ -2,7 +2,7 @@
 <!--
 
     This file is part of veraPDF Feature Reporting, a module of the veraPDF project.
-    Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+    Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
     All rights reserved.
 
     veraPDF Feature Reporting is free software: you can redistribute it and/or modify
@@ -29,13 +29,13 @@
     <parent>
         <artifactId>validation-arlington</artifactId>
         <groupId>org.verapdf</groupId>
-        <version>1.26.0</version>
+        <version>1.28.0</version>
     </parent>
 
     <artifactId>feature-reporting-arlington</artifactId>
 
-    <name>veraPDF Feature Reporting</name>
-    <description>veraPDF PDF feature reporting implementation based on PDF parser.</description>
+    <name>veraPDF Feature Reporting for Arlington PDF Model</name>
+    <description>veraPDF PDF feature reporting implementation of Arlington PDF Model.</description>
 
 
     <dependencies>

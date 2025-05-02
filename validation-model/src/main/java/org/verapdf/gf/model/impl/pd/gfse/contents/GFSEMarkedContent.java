@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     private final GFOpMarkedContent operator;
 
     public GFSEMarkedContent(GFOpMarkedContent operator, List<Operator> operators, COSObject parentStructElem, 
-                             String parentsTags, String defaultLang, boolean isSignature) {
+                             List<String> parentsTags, String defaultLang, boolean isSignature) {
         super(MARKED_CONTENT_TYPE, operators, getParentStructElement(parentStructElem, operator), parentsTags, defaultLang, 
                 isSignature);
         this.operator = operator;
@@ -165,7 +165,7 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     }
 
     @Override
-    public String getparentsTags() {
+    public List<String> getparentsTags() {
         return operator.getParentsTags();
     }
 

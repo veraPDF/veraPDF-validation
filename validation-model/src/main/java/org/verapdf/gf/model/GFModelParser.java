@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -57,6 +57,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.logging.Level;
@@ -77,7 +79,7 @@ public class GFModelParser implements PDFAParser {
 
 	private final PDDocument document;
 
-	private final PDFAFlavour flavour;
+	private List<PDFAFlavour> flavour;
 
 	private GFModelParser(final InputStream docStream, PDFAFlavour flavour, PDFAFlavour defaultFlavour, String password,
 						  EnumSet<ExtensionObjectType> enabledExtensions)
@@ -86,8 +88,8 @@ public class GFModelParser implements PDFAParser {
 			clearStaticContainers();
 			initializeStaticResources(password);
 			this.document = new PDDocument(docStream);
-			this.flavour = detectFlavour(this.document, flavour, defaultFlavour);
-			initializeStaticContainers(this.document, this.flavour, enabledExtensions);
+			setFlavours(detectFlavour(this.document, flavour, defaultFlavour));
+			initializeStaticContainers(this.document, enabledExtensions);
 		} catch (Throwable t) {
 			this.close();
 			throw t;
@@ -101,20 +103,17 @@ public class GFModelParser implements PDFAParser {
 			clearStaticContainers();
 			initializeStaticResources(password);
 			this.document = new PDDocument(pdfFile.getAbsolutePath());
-			this.flavour = detectFlavour(this.document, flavour, defaultFlavour);
-			initializeStaticContainers(this.document, this.flavour, enabledExtensions);
+			setFlavours(detectFlavour(this.document, flavour, defaultFlavour));
+			initializeStaticContainers(this.document, enabledExtensions);
 		} catch (Throwable t) {
 			this.close();
 			throw t;
 		}
 	}
 
-	private static PDFAFlavour detectFlavour(PDDocument document, PDFAFlavour flavour, PDFAFlavour defaultFlavour) {
-		if (flavour == PDFAFlavour.NO_FLAVOUR || flavour == PDFAFlavour.NO_ARLINGTON_FLAVOUR) {
-			return obtainArlingtonFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR &&
-					defaultFlavour != PDFAFlavour.NO_ARLINGTON_FLAVOUR ? defaultFlavour : PDFAFlavour.ARLINGTON1_4);
-		}
-		return flavour;
+	private static List<PDFAFlavour> detectFlavour(PDDocument document, PDFAFlavour flavour, PDFAFlavour defaultFlavour) {
+		return flavour == PDFAFlavour.NO_FLAVOUR || flavour == PDFAFlavour.NO_ARLINGTON_FLAVOUR ? Collections.singletonList(obtainArlingtonFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR &&
+				defaultFlavour != PDFAFlavour.NO_ARLINGTON_FLAVOUR ? defaultFlavour : PDFAFlavour.ARLINGTON1_4)) : Collections.singletonList(flavour);
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
@@ -171,33 +170,31 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
-	private static PDFAFlavour obtainFlavour(PDDocument document, PDFAFlavour defaultFlavour) {
-
+	private static List<PDFAFlavour> obtainFlavours(PDDocument document, PDFAFlavour defaultFlavour) {
 		if (document == null || document.getCatalog() == null) {
-			return defaultFlavour;
+			return Collections.singletonList(defaultFlavour);
 		}
 		PDMetadata metadata = document.getCatalog().getMetadata();
 		if (metadata == null) {
-			return defaultFlavour;
+			return Collections.singletonList(defaultFlavour);
 		}
+		List<PDFAFlavour> flavours = new LinkedList<>();
 		try (InputStream is = metadata.getStream()) {
 			VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
 			PDFAFlavour pdfaFlavour = detectPDFAFlavour(veraPDFMeta);
 			if (!PDFFlavours.isFlavour(pdfaFlavour, PDFAFlavour.NO_FLAVOUR)) {
-				return pdfaFlavour;
+				flavours.add(pdfaFlavour);
 			}
 			PDFAFlavour pdfuaFlavour = detectPDFUAFlavour(veraPDFMeta);
 			if (!PDFFlavours.isFlavour(pdfuaFlavour, PDFAFlavour.NO_FLAVOUR)) {
-				return pdfuaFlavour;
+				flavours.add(pdfuaFlavour);
 			}
-			PDFAFlavour wtpdfFlavour = detectWTPDFFlavour(veraPDFMeta);
-			if (!PDFFlavours.isFlavour(wtpdfFlavour, PDFAFlavour.NO_FLAVOUR)) {
-				return wtpdfFlavour;
-			}
-			return defaultFlavour;
+			flavours.addAll(detectWTPDFFlavour(veraPDFMeta));
+			
+			return flavours.isEmpty() ? Collections.singletonList(defaultFlavour) : flavours;
 		} catch (XMPException | IOException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
-			return defaultFlavour;
+			return Collections.singletonList(defaultFlavour);
 		}
 	}
 
@@ -238,14 +235,15 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
-	private static PDFAFlavour detectWTPDFFlavour(VeraPDFMeta veraPDFMeta) {
+	private static List<PDFAFlavour> detectWTPDFFlavour(VeraPDFMeta veraPDFMeta) {
+		List<PDFAFlavour> wtpdfFlavours = new LinkedList<>();
 		if (veraPDFMeta.containsDeclaration("http://pdfa.org/declarations/wtpdf#accessibility1.0")) {
-			return PDFAFlavour.WTPDF_1_0_ACCESSIBILITY;
+			wtpdfFlavours.add(PDFAFlavour.WTPDF_1_0_ACCESSIBILITY);
 		}
 		if (veraPDFMeta.containsDeclaration("http://pdfa.org/declarations/wtpdf#reuse1.0")) {
-			return PDFAFlavour.WTPDF_1_0_REUSE;
+			wtpdfFlavours.add(PDFAFlavour.WTPDF_1_0_REUSE);
 		}
-		return PDFAFlavour.NO_FLAVOUR;
+		return wtpdfFlavours;
 	}
 
 	private static PDFAFlavour detectPDFUAFlavour(VeraPDFMeta veraPDFMeta) {
@@ -258,13 +256,18 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
-	private static void initializeStaticContainers(final PDDocument document, final PDFAFlavour flavour, 
-												   final EnumSet<ExtensionObjectType> enabledExtensions) {
+	private static void initializeStaticContainers(final PDDocument document, final EnumSet<ExtensionObjectType> enabledExtensions) {
 		StaticResources.setDocument(document);
-		StaticContainers.setFlavour(flavour);
-		StaticCoreContainers.setFlavour(flavour);
 		StaticContainers.setEnabledExtensions(enabledExtensions);
-		StaticResources.setFlavour(PDFFlavour.NO_FLAVOUR);
+		StaticResources.setFlavour(Collections.singletonList(PDFFlavour.NO_FLAVOUR));
+	}
+	
+	public static List<PDFFlavour> getPDFFlavours(List<PDFAFlavour> flavours) {
+		List<PDFFlavour> resultFlavours = new LinkedList<>();
+		for (PDFAFlavour flavour : flavours) {
+			resultFlavours.add(flavour != null ? PDFFlavour.valueOf(flavour.name()) : null);
+		}
+		return resultFlavours;
 	}
 
 	private static void initializeStaticResources(String password) {
@@ -300,7 +303,7 @@ public class GFModelParser implements PDFAParser {
 	 */
 	@Override
 	public org.verapdf.model.baselayer.Object getRoot() {
-		if (PDFAFlavour.SpecificationFamily.ARLINGTON == this.flavour.getPart().getFamily()) {
+		if (PDFAFlavour.SpecificationFamily.ARLINGTON == this.flavour.get(0).getPart().getFamily()) {
 			GFAObject.clearAllContainers();
 			return new GFADocument(null, null, null);
 		}
@@ -314,7 +317,20 @@ public class GFModelParser implements PDFAParser {
 
 	@Override
 	public PDFAFlavour getFlavour() {
+		return this.flavour.get(0);
+	}
+
+	@Override
+	public List<PDFAFlavour> getFlavours() {
 		return this.flavour;
+	}
+
+	@Override
+	public void setFlavours(List<PDFAFlavour> flavours) {
+		this.flavour = flavours;
+		StaticContainers.setFlavour(flavour);
+		StaticCoreContainers.setFlavour(flavour);
+		StaticResources.setFlavour(Collections.singletonList(PDFFlavour.NO_FLAVOUR));
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ public class GFSEUnmarkedContent extends GFSEGroupedContent implements SEUnmarke
 
     public static final String UNMARKED_CONTENT_TYPE = "SEUnmarkedContent";
 
-    public GFSEUnmarkedContent(List<Operator> operators, COSObject parentStructElem, String parentsTags, 
+    public GFSEUnmarkedContent(List<Operator> operators, COSObject parentStructElem, List<String> parentsTags, 
                                String defaultLang, boolean isSignature) {
         super(UNMARKED_CONTENT_TYPE, operators, parentStructElem, parentsTags, defaultLang, isSignature);
     }

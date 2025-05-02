@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -239,6 +239,11 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		}
 		return Collections.emptyList();
 	}
+
+	@Override
+	public Boolean getcontainsLang() {
+		return getLang() != null;
+	}
 	
 	public COSString getLang() {
 		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
@@ -406,29 +411,51 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 	}
 
 	private List<PDXForm> parseAppearance() {
+		List<PDXForm> appearances = new ArrayList<>();
 		PDAppearanceEntry normalAppearance = ((PDAnnotation) simplePDObject).getNormalAppearance();
-		PDAppearanceEntry downAppearance = ((PDAnnotation) simplePDObject).getDownAppearance();
-		PDAppearanceEntry rolloverAppearance = ((PDAnnotation) simplePDObject).getRolloverAppearance();
-		if (normalAppearance != null || downAppearance != null || rolloverAppearance != null) {
-			List<PDXForm> appearances = new ArrayList<>();
+		if (normalAppearance != null) {
 			addContentStreamsFromAppearanceEntry(normalAppearance, appearances);
-			addContentStreamsFromAppearanceEntry(downAppearance, appearances);
-			addContentStreamsFromAppearanceEntry(rolloverAppearance, appearances);
-			return Collections.unmodifiableList(appearances);
 		}
-		return Collections.emptyList();
+		PDAppearanceEntry downAppearance = ((PDAnnotation) simplePDObject).getDownAppearance();
+		if (downAppearance != null) {
+			addContentStreamsFromAppearanceEntry(downAppearance, appearances);
+		}
+		PDAppearanceEntry rolloverAppearance = ((PDAnnotation) simplePDObject).getRolloverAppearance();
+		if (rolloverAppearance != null) {
+			addContentStreamsFromAppearanceEntry(rolloverAppearance, appearances);
+		}
+		return Collections.unmodifiableList(appearances);
 	}
 
+	@Override
+	public Boolean getcontainsAppearances() {
+		PDAppearanceEntry normalAppearance = ((PDAnnotation) simplePDObject).getNormalAppearance();
+		if (normalAppearance != null) {
+			return containsAppearances(normalAppearance);
+		}
+		PDAppearanceEntry downAppearance = ((PDAnnotation) simplePDObject).getDownAppearance();
+		if (downAppearance != null) {
+			return containsAppearances(downAppearance);
+		}
+		PDAppearanceEntry rolloverAppearance = ((PDAnnotation) simplePDObject).getRolloverAppearance();
+		if (rolloverAppearance != null) {
+			return containsAppearances(rolloverAppearance);
+		}
+		return false;
+	}
+
+	private boolean containsAppearances(PDAppearanceEntry appearanceEntry) {
+		return !appearanceEntry.isSubDictionary() || !appearanceEntry.getSubDictionary().isEmpty();
+	}	
+
 	private void addContentStreamsFromAppearanceEntry(PDAppearanceEntry appearanceEntry, List<PDXForm> appearances) {
-		if (appearanceEntry != null) {
-			if (appearanceEntry.isSubDictionary()) {
-				Map<ASAtom, PDAppearanceStream> subDictionary = appearanceEntry.getSubDictionary();
-				for (PDAppearanceStream stream : subDictionary.values()) {
-					addAppearance(appearances, stream);
-				}
-			} else {
-				addAppearance(appearances, appearanceEntry.getAppearanceStream());
+		if (appearanceEntry.isSubDictionary()) {
+			Map<ASAtom, PDAppearanceStream> subDictionary = appearanceEntry.getSubDictionary();
+			for (PDAppearanceStream stream : subDictionary.values()) {
+				addAppearance(appearances, stream);
 			}
+		} else {
+			addAppearance(appearances, appearanceEntry.getAppearanceStream());
 		}
 	}
 
@@ -436,8 +463,8 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		if (toAdd != null) {
 			PDResourcesHandler resources = this.resources.getExtendedResources(toAdd.getResources());
 			COSString annotLang = getLang();
-			GFPDXForm xForm = new GFPDXForm(toAdd, resources, null, getParentDictionary(), "", 
-					annotLang == null ? null : annotLang.getString(), true, isSignature());
+			GFPDXForm xForm = new GFPDXForm(toAdd, resources, null, getParentDictionary(), Collections.emptyList(), 
+					annotLang == null ? null : annotLang.getString(), true, isSignature(), false);
 			this.containsTransparency |= xForm.containsTransparency();
 			list.add(xForm);
 		}

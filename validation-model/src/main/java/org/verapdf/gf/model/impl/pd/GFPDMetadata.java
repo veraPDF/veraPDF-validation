@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -85,6 +85,11 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
     }
 
     @Override
+    public Boolean getisCatalogMetadata() {
+        return isMainMetadata;
+    }
+
+    @Override
     public List<? extends Object> getLinkedObjects(String link) {
         switch (link) {
             case XMP_PACKAGE:
@@ -98,7 +103,7 @@ public class GFPDMetadata extends GFPDObject implements PDMetadata {
 
     private List<XMPPackage> getXMPPackage() {
         List<XMPPackage> xmp = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
-        PDFAFlavour flavour = StaticContainers.getFlavour();
+        List<PDFAFlavour> flavour = StaticContainers.getFlavours();
         try (InputStream stream = ((org.verapdf.pd.PDMetadata) this.simplePDObject).getStream()) {
             if (stream != null) {
                 VeraPDFMeta metadata = VeraPDFMeta.parse(stream);

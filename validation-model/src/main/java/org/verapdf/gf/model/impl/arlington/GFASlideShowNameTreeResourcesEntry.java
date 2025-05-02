@@ -46,32 +46,17 @@ public class GFASlideShowNameTreeResourcesEntry extends GFAObject implements ASl
 
 	private List<org.verapdf.model.baselayer.Object> getEntry1_4() {
 		COSObject object = new COSObject(this.baseObject);
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AFileSpecification> list = new ArrayList<>(1);
+			list.add(new GFAFileSpecification((COSDictionary)object.getDirectBase(), this.parentObject, keyName));
+			return Collections.unmodifiableList(list);
+		}
 		if (object.getType() == COSObjType.COS_STREAM) {
-			org.verapdf.model.baselayer.Object result = getEntryStream1_4(object.getDirectBase(), keyName);
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
+			List<AXObjectImage> list = new ArrayList<>(1);
+			list.add(new GFAXObjectImage((COSStream)object.getDirectBase(), this.parentObject, keyName));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getEntryStream1_4(COSBase base, String keyName) {
-		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
-		if (subtypeValue == null) {
-			return new GFAEmbeddedFileStream(base, this.baseObject, keyName);
-		}
-		switch (subtypeValue) {
-			case "Image":
-				return new GFAXObjectImage(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
 	}
 
 	public COSObject getValue() {
@@ -83,6 +68,12 @@ public class GFASlideShowNameTreeResourcesEntry extends GFAObject implements ASl
 	public String getType() {
 		COSObject entry = getValue();
 		return getObjectType(entry);
+	}
+
+	@Override
+	public Boolean getHasTypeDictionary() {
+		COSObject entry = getValue();
+		return getHasTypeDictionary(entry);
 	}
 
 	@Override

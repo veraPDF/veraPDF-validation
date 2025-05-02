@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@ import org.verapdf.pdfa.flavours.PDFFlavours;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -53,11 +54,11 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 
 	private COSDictionary propertiesDict;
 	private final GFOpMarkedContent markedContent;
-	private final String parentsTags;
+	private final List<String> parentsTags;
 	private final boolean isRealContent;
 
 	public GFOpMarkedContent(List<COSBase> arguments, final String opType,
-							 GFOpMarkedContent markedContent, String parentsTags, boolean isRealContent) {
+							 GFOpMarkedContent markedContent, List<String> parentsTags, boolean isRealContent) {
         super(arguments, opType);
 		this.markedContent = markedContent;
 		this.parentsTags = parentsTags;
@@ -138,28 +139,15 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 		return lang != null ? (COSString) lang.getDirectBase() : null;
 	}
 
-	public String getParentsTags() {
+	public List<String> getParentsTags() {
 		COSName tagName = getTag();
-		String tag = "";
-		if (tagName != null) {
-			tag = tagName.getString();
-		}
-		String parentsTags = "";
+		String tag = tagName != null ? tagName.getString() : "";
+		List<String> parentsTags = new LinkedList<>(this.parentsTags);
 		if (markedContent != null) {
-			parentsTags = markedContent.getParentsTags();
+			parentsTags.addAll(markedContent.getParentsTags());
 		}
-		if (parentsTags.isEmpty()) {
-			parentsTags = this.parentsTags;
-		} else if (!this.parentsTags.isEmpty()) {
-			parentsTags = this.parentsTags + '&' + parentsTags;
-		}
-		if (tag.isEmpty()) {
-			return parentsTags;
-		}
-		if (parentsTags.isEmpty()) {
-			return tag;
-		}
-		return parentsTags + '&' + tag;
+		parentsTags.add(tag);
+		return parentsTags;
 	}
 
 	public String getInheritedLang() {

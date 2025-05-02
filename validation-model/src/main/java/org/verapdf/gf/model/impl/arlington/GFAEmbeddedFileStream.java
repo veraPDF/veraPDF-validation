@@ -679,6 +679,28 @@ public class GFAEmbeddedFileStream extends GFAObject implements AEmbeddedFileStr
 	}
 
 	@Override
+	public Boolean getcontainsMail_MediaTypeParameters() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Mail_MediaTypeParameters"));
+	}
+
+	public COSObject getMail_MediaTypeParametersValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Mail_MediaTypeParameters"));
+		return object;
+	}
+
+	@Override
+	public String getMail_MediaTypeParametersType() {
+		COSObject Mail_MediaTypeParameters = getMail_MediaTypeParametersValue();
+		return getObjectType(Mail_MediaTypeParameters);
+	}
+
+	@Override
+	public Boolean getMail_MediaTypeParametersHasTypeStringText() {
+		COSObject Mail_MediaTypeParameters = getMail_MediaTypeParametersValue();
+		return getHasTypeStringText(Mail_MediaTypeParameters);
+	}
+
+	@Override
 	public Boolean getcontainsParams() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Params"));
 	}

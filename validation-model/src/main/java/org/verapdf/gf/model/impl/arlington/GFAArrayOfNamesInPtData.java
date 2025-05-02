@@ -29,6 +29,10 @@ public class GFAArrayOfNamesInPtData extends GFAObject implements AArrayOfNamesI
 	private List<AArrayOfNamesInPtDataEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
 			case ARLINGTON1_7:
+				if ((gethasExtensionADBE_Extn3() == true)) {
+					return getEntries1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
 				return getEntries1_7();
 			default:

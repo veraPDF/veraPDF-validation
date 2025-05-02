@@ -1,6 +1,6 @@
 /**
  * This file is part of veraPDF Validation, a module of the veraPDF project.
- * Copyright (c) 2015, veraPDF Consortium <info@verapdf.org>
+ * Copyright (c) 2015-2025, veraPDF Consortium <info@verapdf.org>
  * All rights reserved.
  *
  * veraPDF Validation is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ import org.verapdf.model.selayer.SEImageItem;
 /**
  * @author Maxim Plushchov
  */
-public class GFSEImageItem extends GFSESimpleContentItem implements SEImageItem {
+public class GFSEImageItem extends GFSEGraphicContentItem implements SEImageItem {
 
     private static final String IMAGE_CONTENT_ITEM_TYPE = "image";
 

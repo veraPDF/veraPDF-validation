@@ -34,14 +34,19 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	private List<AArrayOfStreamsGeneral> getCRL() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getCRL1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getCRL2_0();
+				return getCRL1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getCRL2_0() {
+	private List<AArrayOfStreamsGeneral> getCRL1_7() {
 		COSObject object = getCRLValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -56,14 +61,19 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	private List<AArrayOfStreamsGeneral> getCert() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getCert1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getCert2_0();
+				return getCert1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getCert2_0() {
+	private List<AArrayOfStreamsGeneral> getCert1_7() {
 		COSObject object = getCertValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -78,14 +88,19 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	private List<AArrayOfStreamsGeneral> getOCSP() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getOCSP1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getOCSP2_0();
+				return getOCSP1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfStreamsGeneral> getOCSP2_0() {
+	private List<AArrayOfStreamsGeneral> getOCSP1_7() {
 		COSObject object = getOCSPValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -100,14 +115,19 @@ public class GFAVRI extends GFAObject implements AVRI {
 
 	private List<AStream> getTS() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_7:
+				if ((gethasExtensionETSI_PAdES() == true)) {
+					return getTS1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getTS2_0();
+				return getTS1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AStream> getTS2_0() {
+	private List<AStream> getTS1_7() {
 		COSObject object = getTSValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -143,6 +163,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	@Override
+	public Long getCRLArraySize() {
+		COSObject CRL = getCRLValue();
+		return getArraySize(CRL);
+	}
+
+	@Override
 	public Boolean getcontainsCert() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("Cert"));
 	}
@@ -165,6 +191,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	}
 
 	@Override
+	public Long getCertArraySize() {
+		COSObject Cert = getCertValue();
+		return getArraySize(Cert);
+	}
+
+	@Override
 	public Boolean getcontainsOCSP() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("OCSP"));
 	}
@@ -184,6 +216,12 @@ public class GFAVRI extends GFAObject implements AVRI {
 	public Boolean getOCSPHasTypeArray() {
 		COSObject OCSP = getOCSPValue();
 		return getHasTypeArray(OCSP);
+	}
+
+	@Override
+	public Long getOCSPArraySize() {
+		COSObject OCSP = getOCSPValue();
+		return getArraySize(OCSP);
 	}
 
 	@Override
