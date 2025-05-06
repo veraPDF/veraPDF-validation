@@ -125,7 +125,7 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 		if (simpleCOSObject.knownKey(ASAtom.A)) {
 			PDAction action = ((PDAnnotation) simplePDObject).getA();
 			if (ASAtom.GO_TO.equals(action.getSubtype())) {
-				destination = action.getDestination();
+				destination = action.knownKey(ASAtom.SD) ? action.getStructureDestination() : action.getDestination();
 			}
 		} else if (simpleCOSObject.knownKey(ASAtom.DEST)) {
 			destination = ((PDAnnotation) simplePDObject).getDestination();
