@@ -55,7 +55,6 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 	public static final String DEST = "Dest";
 	
 	private String differentTargetAnnotObjectKey;
-	private String sameTargetAnnotObjectKey;
 
 	public GFPDLinkAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, pageResources, page, LINK_ANNOTATION_TYPE);
@@ -95,14 +94,6 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 			return;
 		}
 		COSKey structDestinationKey = structDestination.getKey();
-		Set<COSKey> structParentsSet = StaticContainers.getDestinationToStructParentsMap().computeIfAbsent(structDestinationKey, 
-				k -> new HashSet<>());
-		for (COSKey structParentObjectKey : structParentsSet) {
-			if (!structParentKey.equals(structParentObjectKey)) {
-				sameTargetAnnotObjectKey = structParentObjectKey.toString();
-				break;
-			}
-		}
 		for (Map.Entry<COSKey, Set<COSKey>> entry : StaticContainers.getDestinationToStructParentsMap().entrySet()) {
 			if (structDestinationKey.equals(entry.getKey())) {
 				continue;
@@ -117,7 +108,8 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 				break;
 			}
 		}
-		structParentsSet.add(structParentKey);
+		StaticContainers.getDestinationToStructParentsMap().computeIfAbsent(structDestinationKey,
+				k -> new HashSet<>()).add(structParentKey);
 	}
 	
 	private COSObject getStructureDestinationObject() {
@@ -175,10 +167,5 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 	@Override
 	public String getdifferentTargetAnnotObjectKey() {
 		return differentTargetAnnotObjectKey;
-	}
-
-	@Override
-	public String getsameTargetAnnotObjectKey() {
-		return sameTargetAnnotObjectKey;
 	}
 }
