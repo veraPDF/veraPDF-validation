@@ -71,10 +71,9 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
 
     private Boolean hasStructTreeRoot = null;
 
-    public GFSAPDFDocument(org.verapdf.pd.PDDocument document, List<PDFAFlavour> flavours) {
+    public GFSAPDFDocument(org.verapdf.pd.PDDocument document) {
         super(DOCUMENT_TYPE);
         this.document = document;
-        StaticContainers.setIsHuman(PDFFlavours.isFlavourLevel(flavours, PDFAFlavour.Level.HUMAN));
         StaticStorages.clearAllContainers();
     }
 
