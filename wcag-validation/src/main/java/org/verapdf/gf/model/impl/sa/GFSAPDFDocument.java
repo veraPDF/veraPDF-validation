@@ -28,6 +28,8 @@ import org.verapdf.model.salayer.SAPDFDocument;
 import org.verapdf.model.salayer.SARepeatedCharacters;
 import org.verapdf.model.salayer.SAStructTreeRoot;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.PageLabels;
 import org.verapdf.wcag.algorithms.entities.IDocument;
 import org.verapdf.wcag.algorithms.entities.IPage;
@@ -69,9 +71,10 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
 
     private Boolean hasStructTreeRoot = null;
 
-    public GFSAPDFDocument(org.verapdf.pd.PDDocument document) {
+    public GFSAPDFDocument(org.verapdf.pd.PDDocument document, List<PDFAFlavour> flavours) {
         super(DOCUMENT_TYPE);
         this.document = document;
+        StaticContainers.setIsHuman(PDFFlavours.isFlavourLevel(flavours, PDFAFlavour.Level.HUMAN));
         StaticStorages.clearAllContainers();
     }
 
