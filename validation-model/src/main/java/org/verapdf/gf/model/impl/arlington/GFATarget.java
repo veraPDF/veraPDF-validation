@@ -85,12 +85,6 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
-	public String getAStringTextValue() {
-		COSObject A = getAValue();
-		return getStringTextValue(A);
-	}
-
-	@Override
 	public Boolean getcontainsN() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("N"));
 	}
@@ -286,6 +280,24 @@ public class GFATarget extends GFAObject implements ATarget {
 	public Boolean getpagePAnnotsHasTypeArray() {
 		COSObject pagePAnnots = getpagePAnnotsValue();
 		return getHasTypeArray(pagePAnnots);
+	}
+
+	@Override
+	public Boolean getFindNMValueAInArraypagePAnnots() {
+		COSObject pagePAnnots = getpagePAnnotsValue();
+		if (pagePAnnots.getType() != COSObjType.COS_ARRAY) {
+			return false;
+		}
+		COSObject A = getAValue();
+		for (COSObject entry : ((COSArray)pagePAnnots.getDirectBase())) {
+			if (entry.getType() == COSObjType.COS_DICT) {
+				COSObject NM = entry.getKey(ASAtom.getASAtom("NM"));
+				if (Objects.equals(NM.getString(), A.getString())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
