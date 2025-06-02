@@ -894,25 +894,25 @@ public class GFAStructureAttributesDict extends GFAObject implements AStructureA
 	}
 
 	@Override
-	public Boolean getcontainsContinuedForm() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ContinuedForm"));
+	public Boolean getcontainsContinuedFrom() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("ContinuedFrom"));
 	}
 
-	public COSObject getContinuedFormValue() {
-		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ContinuedForm"));
+	public COSObject getContinuedFromValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ContinuedFrom"));
 		return object;
 	}
 
 	@Override
-	public String getContinuedFormType() {
-		COSObject ContinuedForm = getContinuedFormValue();
-		return getObjectType(ContinuedForm);
+	public String getContinuedFromType() {
+		COSObject ContinuedFrom = getContinuedFromValue();
+		return getObjectType(ContinuedFrom);
 	}
 
 	@Override
-	public Boolean getContinuedFormHasTypeStringByte() {
-		COSObject ContinuedForm = getContinuedFormValue();
-		return getHasTypeStringByte(ContinuedForm);
+	public Boolean getContinuedFromHasTypeStringByte() {
+		COSObject ContinuedFrom = getContinuedFromValue();
+		return getHasTypeStringByte(ContinuedFrom);
 	}
 
 	@Override
