@@ -68,7 +68,7 @@ public class GFAPageTreeNode extends GFAObject implements APageTreeNode {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionary1_0(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("Parent"))) {
 			return new GFAPageTreeNode(base, this.baseObject, keyName);
 		}
 		return new GFAPageTreeNodeRoot(base, this.baseObject, keyName);

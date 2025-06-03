@@ -410,7 +410,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidget1_5(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getIRTDictionaryWidgetT1_5(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -591,7 +591,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidget1_6(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getIRTDictionaryWidgetT1_6(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -774,7 +774,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidget1_7(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getIRTDictionaryWidgetT1_7(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -961,7 +961,7 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 	}
 
 	private org.verapdf.model.baselayer.Object getIRTDictionaryWidget2_0(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getIRTDictionaryWidgetT2_0(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
