@@ -554,7 +554,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 	}
 
 	private org.verapdf.model.baselayer.Object getParentDictionary1_0(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("Parent"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("Parent"))) {
 			return new GFAOutlineItem(base, this.baseObject, keyName);
 		}
 		return new GFAOutline(base, this.baseObject, keyName);

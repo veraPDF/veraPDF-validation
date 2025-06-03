@@ -65,7 +65,7 @@ public class GFAEncryptionPublicKey extends GFAObject implements AEncryptionPubl
 				break;
 			}
 		}
-		if (objectBase.knownKey(ASAtom.getASAtom("Recipients"))) {
+		if (objectBase != null && objectBase.knownKey(ASAtom.getASAtom("Recipients"))) {
 			return new GFACryptFilterPublicKeyMap(base, this.baseObject, keyName);
 		}
 		return new GFACryptFilterMap(base, this.baseObject, keyName);

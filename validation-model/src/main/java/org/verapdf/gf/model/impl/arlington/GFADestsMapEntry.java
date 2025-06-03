@@ -85,7 +85,7 @@ public class GFADestsMapEntry extends GFAObject implements ADestsMapEntry {
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_1(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("S"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("S"))) {
 			return getEntryDictionaryS1_1(base, keyName);
 		}
 		return new GFADestDict(base, this.baseObject, keyName);
@@ -147,7 +147,7 @@ public class GFADestsMapEntry extends GFAObject implements ADestsMapEntry {
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_6(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("S"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("S"))) {
 			return getEntryDictionaryS1_6(base, keyName);
 		}
 		return new GFADestDict(base, this.baseObject, keyName);

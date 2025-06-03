@@ -109,10 +109,10 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("ShadingType"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("ShadingType"))) {
 			return getEntryDictionaryShadingType1_3(base, keyName);
 		}
-		if (base.knownKey(ASAtom.getASAtom("Type"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("Type"))) {
 			return getEntryDictionaryType1_3(base, keyName);
 		}
 		return null;
@@ -251,10 +251,10 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryStream1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("ShadingType"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("ShadingType"))) {
 			return getEntryStreamShadingType1_3(base, keyName);
 		}
-		if (base.knownKey(ASAtom.getASAtom("Type"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("Type"))) {
 			return new GFAPatternType1(base, this.baseObject, keyName);
 		}
 		return new GFAStream(base, this.baseObject, keyName);

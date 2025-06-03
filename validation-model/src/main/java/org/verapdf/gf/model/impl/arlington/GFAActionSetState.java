@@ -88,7 +88,7 @@ public class GFAActionSetState extends GFAObject implements AActionSetState {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getTDictionaryWidgetT1_2(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);

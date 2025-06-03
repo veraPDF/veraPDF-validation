@@ -91,7 +91,7 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT1_2(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -257,7 +257,7 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT1_3(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -427,7 +427,7 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_4(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT1_4(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -605,7 +605,7 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_5(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT1_5(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -787,7 +787,7 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_6(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT1_6(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -971,7 +971,7 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_7(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT1_7(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -1159,7 +1159,7 @@ public class GFAArrayOfActionHideAnnotsEntry extends GFAObject implements AArray
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget2_0(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT2_0(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);

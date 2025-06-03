@@ -78,7 +78,7 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT1_2(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -307,7 +307,7 @@ public class GFAArrayOfFieldsEntry extends GFAObject implements AArrayOfFieldsEn
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryWidget1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getEntryDictionaryWidgetT1_3(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
