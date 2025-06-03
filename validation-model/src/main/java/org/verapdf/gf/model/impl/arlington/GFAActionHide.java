@@ -457,7 +457,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getTDictionaryWidgetT1_2(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -631,7 +631,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_3(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getTDictionaryWidgetT1_3(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -809,7 +809,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_4(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getTDictionaryWidgetT1_4(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -995,7 +995,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_5(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getTDictionaryWidgetT1_5(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -1185,7 +1185,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_6(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getTDictionaryWidgetT1_6(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -1377,7 +1377,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget1_7(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getTDictionaryWidgetT1_7(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);
@@ -1573,7 +1573,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 	}
 
 	private org.verapdf.model.baselayer.Object getTDictionaryWidget2_0(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("T"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("T"))) {
 			return getTDictionaryWidgetT2_0(base, keyName);
 		}
 		return new GFAAnnotWidget(base, this.baseObject, keyName);

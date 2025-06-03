@@ -84,7 +84,7 @@ public class GFANameNameTreeDestsEntry extends GFAObject implements ANameNameTre
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_2(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("S"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("S"))) {
 			return getEntryDictionaryS1_2(base, keyName);
 		}
 		return new GFADestDict(base, this.baseObject, keyName);
@@ -146,7 +146,7 @@ public class GFANameNameTreeDestsEntry extends GFAObject implements ANameNameTre
 	}
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_6(COSBase base, String keyName) {
-		if (base.knownKey(ASAtom.getASAtom("S"))) {
+		if (base != null && base.knownKey(ASAtom.getASAtom("S"))) {
 			return getEntryDictionaryS1_6(base, keyName);
 		}
 		return new GFADestDict(base, this.baseObject, keyName);
