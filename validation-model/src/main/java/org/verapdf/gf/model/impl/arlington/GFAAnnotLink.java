@@ -557,7 +557,21 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest() {
-		return getDest1_0();
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_0:
+			case ARLINGTON1_1:
+			case ARLINGTON1_2:
+			case ARLINGTON1_3:
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+				return getDest1_0();
+			case ARLINGTON2_0:
+				return getDest2_0();
+			default:
+				return Collections.emptyList();
+		}
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getDest1_0() {
@@ -589,6 +603,129 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 			default:
 				return null;
 		}
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getDest2_0() {
+		COSObject object = getDestValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			org.verapdf.model.baselayer.Object result = getDestArray2_0(object.getDirectBase(), "Dest");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray2_0(COSBase base, String keyName) {
+		switch (base.size()) {
+			case 2:
+				return getDestArray22_0(base, keyName);
+			case 3:
+				return getDestArray32_0(base, keyName);
+			case 5:
+				return getDestArray52_0(base, keyName);
+			case 6:
+				return getDestArray62_0(base, keyName);
+			default:
+				return null;
+		}
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray22_0(COSBase base, String keyName) {
+		COSObject key = base.at(0);
+		switch (key.getType()) {
+			case COS_ARRAY:
+				return getDestArray2Array2_0(base, keyName);
+			case COS_NAME:
+				return new GFADest0StructArray(base, this.baseObject, keyName);
+			case COS_REAL:
+				return new GFADest0Array(base, this.baseObject, keyName);
+			case COS_STRING:
+				return new GFADest0StructArray(base, this.baseObject, keyName);
+		}
+		return null;
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray2Array2_0(COSBase base, String keyName) {
+		COSObject entry0 = base.at(0);
+		if (entry0 != null && entry0.knownKey(ASAtom.getASAtom("S"))) {
+			return new GFADest0StructArray(base, this.baseObject, keyName);
+		}
+		return new GFADest0Array(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray32_0(COSBase base, String keyName) {
+		COSObject key = base.at(0);
+		switch (key.getType()) {
+			case COS_ARRAY:
+				return getDestArray3Array2_0(base, keyName);
+			case COS_NAME:
+				return new GFADest1StructArray(base, this.baseObject, keyName);
+			case COS_REAL:
+				return new GFADest1Array(base, this.baseObject, keyName);
+			case COS_STRING:
+				return new GFADest1StructArray(base, this.baseObject, keyName);
+		}
+		return null;
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray3Array2_0(COSBase base, String keyName) {
+		COSObject entry0 = base.at(0);
+		if (entry0 != null && entry0.knownKey(ASAtom.getASAtom("S"))) {
+			return new GFADest1StructArray(base, this.baseObject, keyName);
+		}
+		return new GFADest1Array(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray52_0(COSBase base, String keyName) {
+		COSObject key = base.at(0);
+		switch (key.getType()) {
+			case COS_ARRAY:
+				return getDestArray5Array2_0(base, keyName);
+			case COS_NAME:
+				return new GFADestXYZStructArray(base, this.baseObject, keyName);
+			case COS_REAL:
+				return new GFADestXYZArray(base, this.baseObject, keyName);
+			case COS_STRING:
+				return new GFADestXYZStructArray(base, this.baseObject, keyName);
+		}
+		return null;
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray5Array2_0(COSBase base, String keyName) {
+		COSObject entry0 = base.at(0);
+		if (entry0 != null && entry0.knownKey(ASAtom.getASAtom("S"))) {
+			return new GFADestXYZStructArray(base, this.baseObject, keyName);
+		}
+		return new GFADestXYZArray(base, this.baseObject, keyName);
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray62_0(COSBase base, String keyName) {
+		COSObject key = base.at(0);
+		switch (key.getType()) {
+			case COS_ARRAY:
+				return getDestArray6Array2_0(base, keyName);
+			case COS_NAME:
+				return new GFADest4StructArray(base, this.baseObject, keyName);
+			case COS_REAL:
+				return new GFADest4Array(base, this.baseObject, keyName);
+			case COS_STRING:
+				return new GFADest4StructArray(base, this.baseObject, keyName);
+		}
+		return null;
+	}
+
+	private org.verapdf.model.baselayer.Object getDestArray6Array2_0(COSBase base, String keyName) {
+		COSObject entry0 = base.at(0);
+		if (entry0 != null && entry0.knownKey(ASAtom.getASAtom("S"))) {
+			return new GFADest4StructArray(base, this.baseObject, keyName);
+		}
+		return new GFADest4Array(base, this.baseObject, keyName);
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getOC() {
