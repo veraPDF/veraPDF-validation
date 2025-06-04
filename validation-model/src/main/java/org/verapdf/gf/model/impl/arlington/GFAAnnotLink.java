@@ -639,8 +639,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	private org.verapdf.model.baselayer.Object getDestArray22_0(COSBase base, String keyName) {
 		COSObject key = base.at(0);
 		switch (key.getType()) {
-			case COS_ARRAY:
-				return getDestArray2Array2_0(base, keyName);
+			case COS_DICT:
+				return getDestArray2Dictionary2_0(base, keyName);
 			case COS_NAME:
 				return new GFADest0StructArray(base, this.baseObject, keyName);
 			case COS_REAL:
@@ -651,7 +651,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return null;
 	}
 
-	private org.verapdf.model.baselayer.Object getDestArray2Array2_0(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getDestArray2Dictionary2_0(COSBase base, String keyName) {
 		COSObject entry0 = base.at(0);
 		if (entry0 != null && entry0.knownKey(ASAtom.getASAtom("S"))) {
 			return new GFADest0StructArray(base, this.baseObject, keyName);
@@ -662,8 +662,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	private org.verapdf.model.baselayer.Object getDestArray32_0(COSBase base, String keyName) {
 		COSObject key = base.at(0);
 		switch (key.getType()) {
-			case COS_ARRAY:
-				return getDestArray3Array2_0(base, keyName);
+			case COS_DICT:
+				return getDestArray3Dictionary2_0(base, keyName);
 			case COS_NAME:
 				return new GFADest1StructArray(base, this.baseObject, keyName);
 			case COS_REAL:
@@ -674,7 +674,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return null;
 	}
 
-	private org.verapdf.model.baselayer.Object getDestArray3Array2_0(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getDestArray3Dictionary2_0(COSBase base, String keyName) {
 		COSObject entry0 = base.at(0);
 		if (entry0 != null && entry0.knownKey(ASAtom.getASAtom("S"))) {
 			return new GFADest1StructArray(base, this.baseObject, keyName);
@@ -685,8 +685,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	private org.verapdf.model.baselayer.Object getDestArray52_0(COSBase base, String keyName) {
 		COSObject key = base.at(0);
 		switch (key.getType()) {
-			case COS_ARRAY:
-				return getDestArray5Array2_0(base, keyName);
+			case COS_DICT:
+				return getDestArray5Dictionary2_0(base, keyName);
 			case COS_NAME:
 				return new GFADestXYZStructArray(base, this.baseObject, keyName);
 			case COS_REAL:
@@ -697,7 +697,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return null;
 	}
 
-	private org.verapdf.model.baselayer.Object getDestArray5Array2_0(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getDestArray5Dictionary2_0(COSBase base, String keyName) {
 		COSObject entry0 = base.at(0);
 		if (entry0 != null && entry0.knownKey(ASAtom.getASAtom("S"))) {
 			return new GFADestXYZStructArray(base, this.baseObject, keyName);
@@ -708,8 +708,8 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 	private org.verapdf.model.baselayer.Object getDestArray62_0(COSBase base, String keyName) {
 		COSObject key = base.at(0);
 		switch (key.getType()) {
-			case COS_ARRAY:
-				return getDestArray6Array2_0(base, keyName);
+			case COS_DICT:
+				return getDestArray6Dictionary2_0(base, keyName);
 			case COS_NAME:
 				return new GFADest4StructArray(base, this.baseObject, keyName);
 			case COS_REAL:
@@ -720,7 +720,7 @@ public class GFAAnnotLink extends GFAObject implements AAnnotLink {
 		return null;
 	}
 
-	private org.verapdf.model.baselayer.Object getDestArray6Array2_0(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getDestArray6Dictionary2_0(COSBase base, String keyName) {
 		COSObject entry0 = base.at(0);
 		if (entry0 != null && entry0.knownKey(ASAtom.getASAtom("S"))) {
 			return new GFADest4StructArray(base, this.baseObject, keyName);
