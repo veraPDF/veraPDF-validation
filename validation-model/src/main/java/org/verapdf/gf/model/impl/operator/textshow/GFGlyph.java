@@ -108,9 +108,9 @@ public class GFGlyph extends GenericModelObject implements Glyph {
             }
         }
         List<PDFAFlavour> flavour = StaticContainers.getFlavours();
-        if (!PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_1_B) && 
-                !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_2_B) && 
-                !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_3_B)) {
+        if (!PDFFlavours.isOnlyFlavour(flavour, PDFAFlavour.PDFA_1_B) && 
+                !PDFFlavours.isOnlyFlavour(flavour, PDFAFlavour.PDFA_2_B) && 
+                !PDFFlavours.isOnlyFlavour(flavour, PDFAFlavour.PDFA_3_B)) {
             if (PDFFlavours.isPDFSpecification(flavour, PDFAFlavour.PDFSpecification.PDF_REFERENCE_1_4)) {
                 this.toUnicode = getToUnicodePDFA1(font, glyphCode);
             } else {
