@@ -32,12 +32,16 @@ import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFHelper;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
  * @author Maxim Plushchov
  */
 public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructTreeNode {
+
+	private static final Logger LOGGER = Logger.getLogger(GFPDStructTreeNode.class.getCanonicalName());
 
 	/**
 	 * Link name for {@code K} key
@@ -124,6 +128,9 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 		if (children == null) {
 			List<PDStructElem> elements = ((org.verapdf.pd.structure.PDStructTreeNode) simplePDObject).getStructChildren();
 			if (!elements.isEmpty()) {
+				if (PDFFlavours.isPDFUARelatedFlavour(StaticContainers.getFlavour())) {
+					checkChildrenParent(elements);
+				}
 				List<GFPDStructElem> res = new ArrayList<>(elements.size());
 				for (PDStructElem element : elements) {
 					res.add(GFSEFactory.createTypedStructElem(element));
@@ -147,5 +154,19 @@ public abstract class GFPDStructTreeNode extends GFPDObject implements PDStructT
 			}
 		}
 		return result;
+	}
+
+	private void checkChildrenParent(List<PDStructElem> elements) {
+		COSKey key = simplePDObject.getObject().getObjectKey();
+		for (PDStructElem element : elements) {
+			PDStructElem parent = element.getParent();
+			if (parent != null && (parent.getObject().getObjectKey() == null ||
+					!Objects.equals(parent.getObject().getObjectKey(), key))) {
+				LOGGER.log(Level.WARNING, 
+						String.format("The value of P key of struct element %s is different from the actual parent struct element %s",
+								element.getObject().getObjectKey() != null ? element.getObject().getObjectKey() : "",
+								key != null ? key : ""));
+			}
+		}
 	}
 }
