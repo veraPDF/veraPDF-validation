@@ -241,7 +241,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 				return null;
 			}
 			COSBase markInfo = markInfoObject.getDirectBase();
-			if (markInfo.getType() == COSObjType.COS_DICT) {
+			if (markInfo != null && markInfo.getType() == COSObjType.COS_DICT) {
 				return markInfo.getBooleanKey(ASAtom.MARKED);
 			}
 			LOGGER.log(Level.WARNING,
