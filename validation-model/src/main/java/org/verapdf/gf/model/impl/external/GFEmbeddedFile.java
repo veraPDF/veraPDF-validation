@@ -123,6 +123,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private List<PDFAFlavour> flavour;
 	private String password;
 	private TaggedPDFRoleMapHelper roleMapHelper;
+	private Boolean isFontProgramsParsing;
 	private Map<String, List<GFPDSeparation>> separations;
 	private Map<COSKey, Set<COSKey>> structElementsRefs;
 	private List<String> inconsistentSeparations;
@@ -149,6 +150,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.flavour = StaticContainers.getFlavours();
 		this.password = StaticResources.getPassword();
 		this.roleMapHelper = StaticResources.getRoleMapHelper();
+		this.isFontProgramsParsing = StaticResources.getIsFontProgramsParsing();
 		this.separations = StaticContainers.getSeparations();
 		this.structElementsRefs = StaticContainers.getStructElementsRefs();
 		this.inconsistentSeparations = StaticContainers.getInconsistentSeparations();
@@ -195,6 +197,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticResources.setDocument(this.document);
 		StaticResources.setPassword(this.password);
 		StaticResources.setRoleMapHelper(this.roleMapHelper);
+		StaticResources.setIsFontProgramsParsing(this.isFontProgramsParsing);
 		StaticResources.setcMapCache(this.cMapCache);
 		StaticResources.setStructureNameSpaceCache(this.structureNameSpaceCache);
 		StaticResources.setCachedFonts(this.cachedFonts);
