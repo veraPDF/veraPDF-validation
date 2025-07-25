@@ -550,7 +550,7 @@ class ChunkParser {
 			} else if (chunk instanceof CurveChunk) {
 				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth());
-				processCurveChunk(boundingBox, mcid, curveChunk);
+				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox());
 			} else if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
 				if (line != null) {
@@ -576,7 +576,7 @@ class ChunkParser {
 			} else if (chunk instanceof CurveChunk) {
 				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth());
-				processCurveChunk(boundingBox, mcid, curveChunk);
+				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox());
 			} else if (chunk instanceof Rectangle) {
 				Rectangle rectangle = (Rectangle) chunk;
 				if (rectangle.getHeight() < graphicsState.getLineWidth() ||
@@ -620,12 +620,12 @@ class ChunkParser {
 				} else {
 					LineChunk line1 = transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 							graphicsState.getLineCap());
-					processLineChunk(boundingBox, mcid, line1);
+					processBoundingBox(boundingBox, mcid, line1.getBoundingBox());
 				}
 			} else if (chunk instanceof CurveChunk) {
 				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth());
-				processCurveChunk(boundingBox, mcid, curveChunk);
+				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox());
 			}
 		}
 		if (StaticStorages.getIsIgnoreMCIDs()) {
@@ -641,11 +641,11 @@ class ChunkParser {
 		}
 	}
 	
-	private void processCurveChunk(BoundingBox boundingBox, Long mcid, CurveChunk curveChunk) {
+	private void processBoundingBox(BoundingBox boundingBox, Long mcid, BoundingBox newBoundingBox) {
 		if (StaticStorages.getIsIgnoreMCIDs()) {
-			boundingBox.union(curveChunk.getBoundingBox());
+			boundingBox.union(newBoundingBox);
 		} else {
-			lineArtContainer.add(mcid, curveChunk.getBoundingBox());
+			lineArtContainer.add(mcid, newBoundingBox);
 		}
 	}
 
