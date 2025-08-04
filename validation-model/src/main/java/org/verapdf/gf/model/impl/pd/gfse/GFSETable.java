@@ -101,11 +101,13 @@ public class GFSETable extends GFPDStructElem implements SETable {
                                  int numberOfRows, int numberOfColumns, List<Integer> rowGroupingsIndexes) {
         for (int rowNumber = 0; rowNumber < listTR.size(); rowNumber++) {
             int columnNumber = 0;
+            boolean isContainsCells = false;
             for (PDStructElem elem : listTR.get(rowNumber).getStructuralSignificanceChildren()) {
                 String type = elem.getstandardType();
                 if (!TaggedPDFConstants.TD.equals(type) && !TaggedPDFConstants.TH.equals(type)) {
                     continue;
                 }
+                isContainsCells = true;
                 GFSETableCell cell = (GFSETableCell) elem;
                 long colSpan = cell.getColSpan();
                 long rowSpan = cell.getRowSpan();
@@ -132,6 +134,11 @@ public class GFSETable extends GFPDStructElem implements SETable {
                     return false;
                 }
                 columnNumber += colSpan;
+            }
+            if (!isContainsCells && numberOfColumns > 0) {
+                this.numberOfRowWithWrongColumnSpan = (long)rowNumber;
+                this.wrongColumnSpan = (long)0;
+                return false;
             }
         }
         for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
