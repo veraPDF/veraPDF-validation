@@ -210,8 +210,8 @@ public class GFModelParser implements PDFAParser {
 		Float catalogVersion = versionValue != null ? Float.valueOf(versionValue.getValue()) : null;
 
 		if (catalogVersion != null && (version == null || version < catalogVersion)) {
-            version = catalogVersion;
-        }
+			version = catalogVersion;
+		}
 		if (version == null) {
 			return defaultFlavour;
 		}
