@@ -206,8 +206,7 @@ public class GFModelParser implements PDFAParser {
 		Float version = cosDocument != null ? cosDocument.getHeader().getVersion() : null;
 
 		PDCatalog catalog = document.getCatalog();
-		ASAtom versionValue = catalog != null ? catalog.getNameKey(ASAtom.VERSION) : null;
-		Float catalogVersion = versionValue != null ? Float.valueOf(versionValue.getValue()) : null;
+		Float catalogVersion = catalog.getFloatVersion();
 
 		if (catalogVersion != null && (version == null || version < catalogVersion)) {
 			version = catalogVersion;
