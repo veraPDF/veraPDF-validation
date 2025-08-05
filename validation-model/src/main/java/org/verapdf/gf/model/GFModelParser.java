@@ -204,10 +204,13 @@ public class GFModelParser implements PDFAParser {
 		}
 		COSDocument cosDocument = document.getDocument();
 		Float version = cosDocument != null ? cosDocument.getHeader().getVersion() : null;
-		if (version == null) {
-			PDCatalog catalog = document.getCatalog();
-			ASAtom versionValue = catalog != null ? catalog.getNameKey(ASAtom.VERSION) : null;
-			version = versionValue != null ? Float.valueOf(versionValue.getValue()) : null;
+
+		PDCatalog catalog = document.getCatalog();
+		ASAtom versionValue = catalog != null ? catalog.getNameKey(ASAtom.VERSION) : null;
+		Float catalogVersion = versionValue != null ? Float.valueOf(versionValue.getValue()) : null;
+
+		if (catalogVersion != null && (version == null || version < catalogVersion)) {
+			version = catalogVersion;
 		}
 		if (version == null) {
 			return defaultFlavour;
