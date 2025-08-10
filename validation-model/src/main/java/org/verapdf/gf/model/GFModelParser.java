@@ -112,8 +112,8 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private static List<PDFAFlavour> detectFlavour(PDDocument document, PDFAFlavour flavour, PDFAFlavour defaultFlavour) {
-		return flavour == PDFAFlavour.NO_FLAVOUR || flavour == PDFAFlavour.NO_ARLINGTON_FLAVOUR ? Collections.singletonList(obtainArlingtonFlavour(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR &&
-				defaultFlavour != PDFAFlavour.NO_ARLINGTON_FLAVOUR ? defaultFlavour : PDFAFlavour.ARLINGTON1_4)) : Collections.singletonList(flavour);
+		return flavour == PDFAFlavour.NO_FLAVOUR || flavour == PDFAFlavour.NO_ARLINGTON_FLAVOUR ? 
+				obtainArlingtonFlavour(document, defaultFlavour) : Collections.singletonList(flavour);
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
@@ -198,9 +198,9 @@ public class GFModelParser implements PDFAParser {
 		}
 	}
 
-	private static PDFAFlavour obtainArlingtonFlavour(PDDocument document, PDFAFlavour defaultFlavour) {
+	private static List<PDFAFlavour> obtainArlingtonFlavour(PDDocument document, PDFAFlavour defaultFlavour) {
 		if (document == null) {
-			return defaultFlavour;
+			return getDefaultFlavours(defaultFlavour);
 		}
 		COSDocument cosDocument = document.getDocument();
 		Float version = cosDocument != null ? cosDocument.getHeader().getVersion() : null;
@@ -212,7 +212,7 @@ public class GFModelParser implements PDFAParser {
 			version = catalogVersion;
 		}
 		if (version == null) {
-			return defaultFlavour;
+			return getDefaultFlavours(defaultFlavour);
 		}
 		if (version <= PDFAFlavours.VERSION_1_4) {
 			version = PDFAFlavours.VERSION_1_4;
@@ -220,7 +220,12 @@ public class GFModelParser implements PDFAParser {
 			version = PDFAFlavours.VERSION_1_7;
 		}
 		PDFAFlavour flavour = PDFAFlavour.byFlavourId(PDFAFlavours.ARLINGTON_PREFIX + version);
-		return flavour != PDFAFlavour.NO_FLAVOUR ? flavour : defaultFlavour;
+		return flavour != PDFAFlavour.NO_FLAVOUR ? Collections.singletonList(flavour) : getDefaultFlavours(defaultFlavour);
+	}
+
+	private static List<PDFAFlavour> getDefaultFlavours(PDFAFlavour defaultFlavour) {
+		return (defaultFlavour == PDFAFlavour.NO_FLAVOUR || defaultFlavour == PDFAFlavour.NO_ARLINGTON_FLAVOUR) ?
+				Collections.emptyList() : Collections.singletonList(defaultFlavour);
 	}
 
 	private static PDFAFlavour detectPDFAFlavour(VeraPDFMeta veraPDFMeta) {
