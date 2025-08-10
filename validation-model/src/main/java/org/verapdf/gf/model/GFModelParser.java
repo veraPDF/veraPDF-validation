@@ -103,8 +103,7 @@ public class GFModelParser implements PDFAParser {
 	}
 
 	private static List<PDFAFlavour> detectFlavour(PDDocument document, PDFAFlavour flavour, PDFAFlavour defaultFlavour) {
-		return flavour == PDFAFlavour.NO_FLAVOUR ? obtainFlavours(document, defaultFlavour != PDFAFlavour.NO_FLAVOUR ?
-				defaultFlavour : Foundries.defaultInstance().defaultFlavour()) : Collections.singletonList(flavour);
+		return flavour == PDFAFlavour.NO_FLAVOUR ? obtainFlavours(document, defaultFlavour) : Collections.singletonList(flavour);
 	}
 
 	public static GFModelParser createModelWithFlavour(InputStream toLoad, PDFAFlavour flavour)
@@ -163,11 +162,11 @@ public class GFModelParser implements PDFAParser {
 
 	private static List<PDFAFlavour> obtainFlavours(PDDocument document, PDFAFlavour defaultFlavour) {
 		if (document == null || document.getCatalog() == null) {
-			return Collections.singletonList(defaultFlavour);
+			return getDefaultFlavours(defaultFlavour);
 		}
 		PDMetadata metadata = document.getCatalog().getMetadata();
 		if (metadata == null) {
-			return Collections.singletonList(defaultFlavour);
+			return getDefaultFlavours(defaultFlavour);
 		}
 		List<PDFAFlavour> flavours = new LinkedList<>();
 		try (InputStream is = metadata.getStream()) {
@@ -182,11 +181,15 @@ public class GFModelParser implements PDFAParser {
 			}
 			flavours.addAll(detectWTPDFFlavour(veraPDFMeta));
 			
-			return flavours.isEmpty() ? Collections.singletonList(defaultFlavour) : flavours;
+			return flavours.isEmpty() ? getDefaultFlavours(defaultFlavour) : flavours;
 		} catch (XMPException | IOException e) {
 			logger.log(Level.FINE, e.getMessage(), e);
-			return Collections.singletonList(defaultFlavour);
+			return getDefaultFlavours(defaultFlavour);
 		}
+	}
+	
+	private static List<PDFAFlavour> getDefaultFlavours(PDFAFlavour defaultFlavour) {
+		return defaultFlavour == PDFAFlavour.NO_FLAVOUR ? Collections.emptyList() : Collections.singletonList(defaultFlavour);
 	}
 
 	private static PDFAFlavour detectPDFAFlavour(VeraPDFMeta veraPDFMeta) {
