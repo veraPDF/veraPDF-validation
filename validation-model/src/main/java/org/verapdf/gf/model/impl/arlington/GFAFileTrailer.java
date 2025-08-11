@@ -114,10 +114,7 @@ public class GFAFileTrailer extends GFAObject implements AFileTrailer {
 
 	private org.verapdf.model.baselayer.Object getEncryptDictionary1_1(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Filter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAEncryptionPublicKey(base, this.baseObject, keyName);
 		}

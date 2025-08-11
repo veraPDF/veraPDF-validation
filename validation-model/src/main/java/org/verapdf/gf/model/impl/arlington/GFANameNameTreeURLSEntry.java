@@ -60,10 +60,7 @@ public class GFANameNameTreeURLSEntry extends GFAObject implements ANameNameTree
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

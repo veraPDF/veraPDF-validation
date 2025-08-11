@@ -119,10 +119,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -187,10 +184,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -259,10 +253,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -342,10 +333,7 @@ public class GFAActionRendition extends GFAObject implements AActionRendition {
 
 	private org.verapdf.model.baselayer.Object getRDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

@@ -57,10 +57,7 @@ public class GFARichMediaCuePoint extends GFAObject implements ARichMediaCuePoin
 
 	private org.verapdf.model.baselayer.Object getADictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

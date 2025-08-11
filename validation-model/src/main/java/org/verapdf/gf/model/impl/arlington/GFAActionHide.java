@@ -70,10 +70,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -134,10 +131,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -196,10 +190,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -264,10 +255,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -336,10 +324,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -433,10 +418,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getTDictionary1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -477,10 +459,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -512,14 +491,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getTDictionaryWidgetTBtn01_2(base, keyName);
 			case 1:
@@ -543,14 +519,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -583,10 +556,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getTDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -651,10 +621,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -686,14 +653,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getTDictionaryWidgetTBtn01_3(base, keyName);
 			case 1:
@@ -717,14 +681,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -757,10 +718,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getTDictionary1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -829,10 +787,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -864,14 +819,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getTDictionaryWidgetTBtn01_4(base, keyName);
 			case 1:
@@ -895,14 +847,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -935,10 +884,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getTDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1015,10 +961,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -1050,14 +993,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getTDictionaryWidgetTBtn01_5(base, keyName);
 			case 1:
@@ -1081,14 +1021,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -1121,10 +1058,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getTDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1205,10 +1139,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -1240,14 +1171,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getTDictionaryWidgetTBtn01_6(base, keyName);
 			case 1:
@@ -1271,14 +1199,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -1311,10 +1236,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getTDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1397,10 +1319,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -1432,14 +1351,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getTDictionaryWidgetTBtn01_7(base, keyName);
 			case 1:
@@ -1463,14 +1379,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -1503,10 +1416,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 
 	private org.verapdf.model.baselayer.Object getTDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1593,10 +1503,7 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -1628,14 +1535,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getTDictionaryWidgetTBtn02_0(base, keyName);
 			case 1:
@@ -1659,14 +1563,11 @@ public class GFAActionHide extends GFAObject implements AActionHide {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:

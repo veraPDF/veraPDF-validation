@@ -168,10 +168,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	private org.verapdf.model.baselayer.Object getKDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAStructElem(base, this.baseObject, keyName);
 		}
@@ -241,10 +238,7 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 
 	private org.verapdf.model.baselayer.Object getPDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAStructElem(base, this.baseObject, keyName);
 		}

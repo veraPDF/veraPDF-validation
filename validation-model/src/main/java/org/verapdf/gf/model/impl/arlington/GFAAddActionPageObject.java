@@ -65,10 +65,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getCDictionary1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -124,10 +121,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getCDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -181,10 +175,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getCDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -244,10 +235,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getCDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -311,10 +299,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getCDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -401,10 +386,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getODictionary1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -460,10 +442,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getODictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -517,10 +496,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getODictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -580,10 +556,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getODictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -647,10 +620,7 @@ public class GFAAddActionPageObject extends GFAObject implements AAddActionPageO
 
 	private org.verapdf.model.baselayer.Object getODictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

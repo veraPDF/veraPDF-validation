@@ -104,10 +104,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 			return null;
 		}
 		COSObject subtype = base.at(0);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -146,10 +143,7 @@ public class GFAAAPL_ST extends GFAObject implements AAAPL_ST {
 			return null;
 		}
 		COSObject subtype = base.at(0);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

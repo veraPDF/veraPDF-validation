@@ -74,10 +74,7 @@ public class GFAObjectReference extends GFAObject implements AObjectReference {
 
 	private org.verapdf.model.baselayer.Object getObjStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

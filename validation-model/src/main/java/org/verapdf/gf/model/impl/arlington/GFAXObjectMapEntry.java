@@ -64,10 +64,7 @@ public class GFAXObjectMapEntry extends GFAObject implements AXObjectMapEntry {
 
 	private org.verapdf.model.baselayer.Object getEntryStream1_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -96,10 +93,7 @@ public class GFAXObjectMapEntry extends GFAObject implements AXObjectMapEntry {
 
 	private org.verapdf.model.baselayer.Object getEntryStream1_1(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -117,10 +111,7 @@ public class GFAXObjectMapEntry extends GFAObject implements AXObjectMapEntry {
 
 	private org.verapdf.model.baselayer.Object getEntryStreamPS1_1(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype2"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAXObjectFormPS(base, this.baseObject, keyName);
 		}

@@ -97,10 +97,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 
 	private org.verapdf.model.baselayer.Object getDCSDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -146,10 +143,7 @@ public class GFAMeasureGEO extends GFAObject implements AMeasureGEO {
 
 	private org.verapdf.model.baselayer.Object getGCSDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

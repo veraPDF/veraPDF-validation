@@ -58,10 +58,7 @@ public class GFAExDataProjection extends GFAObject implements AExDataProjection 
 
 	private org.verapdf.model.baselayer.Object getM3DREFDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

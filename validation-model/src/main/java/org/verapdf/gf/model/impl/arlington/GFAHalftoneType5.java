@@ -94,10 +94,7 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 
 	private org.verapdf.model.baselayer.Object getDefaultStream1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -134,10 +131,7 @@ public class GFAHalftoneType5 extends GFAObject implements AHalftoneType5 {
 
 	private org.verapdf.model.baselayer.Object getDefaultStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

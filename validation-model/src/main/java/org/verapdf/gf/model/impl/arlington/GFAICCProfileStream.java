@@ -75,10 +75,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 			return null;
 		}
 		COSObject subtype = base.at(0);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -138,10 +135,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 
 	private org.verapdf.model.baselayer.Object getDecodeParmsDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -178,10 +172,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 
 	private org.verapdf.model.baselayer.Object getDecodeParmsDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -262,10 +253,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 
 	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -302,10 +290,7 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 
 	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

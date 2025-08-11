@@ -92,10 +92,7 @@ public class GFAFontDescriptorType1 extends GFAObject implements AFontDescriptor
 
 	private org.verapdf.model.baselayer.Object getFontFile3Stream1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

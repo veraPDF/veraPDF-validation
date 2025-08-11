@@ -58,10 +58,7 @@ public class GFAArrayOfFontAndSize extends GFAObject implements AArrayOfFontAndS
 
 	private org.verapdf.model.baselayer.Object getentry0Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

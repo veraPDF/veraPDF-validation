@@ -79,10 +79,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 			return null;
 		}
 		COSObject subtype = base.at(0);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -120,10 +117,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryShadingType1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -141,10 +135,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryType1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -166,10 +157,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryTypeFont1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -195,10 +183,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryTypeOPI1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Version"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -214,10 +199,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryTypeXObject1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -235,10 +217,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 
 	private org.verapdf.model.baselayer.Object getEntryDictionaryTypeXObjectPS1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype2"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAXObjectFormPS(base, this.baseObject, keyName);
 		}
@@ -262,10 +241,7 @@ public class GFAArrayOfTrapNetVersionObjectsEntry extends GFAObject implements A
 
 	private org.verapdf.model.baselayer.Object getEntryStreamShadingType1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

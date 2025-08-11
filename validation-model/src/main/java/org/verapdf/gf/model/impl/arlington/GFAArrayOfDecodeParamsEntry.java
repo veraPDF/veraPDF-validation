@@ -72,10 +72,7 @@ public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDe
 		}
 		int keyNumber = Integer.parseInt(keyName);
 		COSObject subtype = object.at(keyNumber);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -112,10 +109,7 @@ public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDe
 		}
 		int keyNumber = Integer.parseInt(keyName);
 		COSObject subtype = object.at(keyNumber);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -154,10 +148,7 @@ public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDe
 		}
 		int keyNumber = Integer.parseInt(keyName);
 		COSObject subtype = object.at(keyNumber);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -198,10 +189,7 @@ public class GFAArrayOfDecodeParamsEntry extends GFAObject implements AArrayOfDe
 		}
 		int keyNumber = Integer.parseInt(keyName);
 		COSObject subtype = object.at(keyNumber);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

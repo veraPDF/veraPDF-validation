@@ -93,10 +93,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 
 	private org.verapdf.model.baselayer.Object getSpotFunctionDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -112,10 +109,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 
 	private org.verapdf.model.baselayer.Object getSpotFunctionStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -184,10 +178,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 
 	private org.verapdf.model.baselayer.Object getTransferFunctionDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -203,10 +194,7 @@ public class GFAHalftoneType1 extends GFAObject implements AHalftoneType1 {
 
 	private org.verapdf.model.baselayer.Object getTransferFunctionStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

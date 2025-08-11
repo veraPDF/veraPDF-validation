@@ -57,10 +57,7 @@ public class GFARequirementsEncryption extends GFAObject implements ARequirement
 
 	private org.verapdf.model.baselayer.Object getEncryptDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Filter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAEncryptionPublicKey(base, this.baseObject, keyName);
 		}

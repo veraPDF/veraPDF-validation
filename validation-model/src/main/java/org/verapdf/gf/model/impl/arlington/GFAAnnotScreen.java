@@ -74,10 +74,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 
 	private org.verapdf.model.baselayer.Object getADictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -137,10 +134,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 
 	private org.verapdf.model.baselayer.Object getADictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -204,10 +198,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 
 	private org.verapdf.model.baselayer.Object getADictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -434,10 +425,7 @@ public class GFAAnnotScreen extends GFAObject implements AAnnotScreen {
 
 	private org.verapdf.model.baselayer.Object getOCDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

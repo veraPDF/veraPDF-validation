@@ -98,10 +98,7 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 			return null;
 		}
 		COSObject subtype = base.at(0);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -251,10 +248,7 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 
 	private org.verapdf.model.baselayer.Object getFunctionDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -270,10 +264,7 @@ public class GFAShadingType3 extends GFAObject implements AShadingType3 {
 
 	private org.verapdf.model.baselayer.Object getFunctionStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

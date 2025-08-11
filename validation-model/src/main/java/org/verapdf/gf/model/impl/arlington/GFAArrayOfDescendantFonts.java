@@ -59,10 +59,7 @@ public class GFAArrayOfDescendantFonts extends GFAObject implements AArrayOfDesc
 
 	private org.verapdf.model.baselayer.Object getentry0Dictionary1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

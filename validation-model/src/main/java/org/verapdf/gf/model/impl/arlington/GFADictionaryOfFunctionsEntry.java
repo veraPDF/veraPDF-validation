@@ -65,10 +65,7 @@ public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADiction
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -84,10 +81,7 @@ public class GFADictionaryOfFunctionsEntry extends GFAObject implements ADiction
 
 	private org.verapdf.model.baselayer.Object getEntryStream1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

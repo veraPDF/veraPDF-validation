@@ -82,10 +82,7 @@ public class GFAActionGoToDp extends GFAObject implements AActionGoToDp {
 
 	private org.verapdf.model.baselayer.Object getNextDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

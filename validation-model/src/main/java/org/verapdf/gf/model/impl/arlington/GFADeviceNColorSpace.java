@@ -94,10 +94,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 			return null;
 		}
 		COSObject subtype = base.at(0);
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -155,10 +152,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 
 	private org.verapdf.model.baselayer.Object getentry3Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -174,10 +168,7 @@ public class GFADeviceNColorSpace extends GFAObject implements ADeviceNColorSpac
 
 	private org.verapdf.model.baselayer.Object getentry3Stream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

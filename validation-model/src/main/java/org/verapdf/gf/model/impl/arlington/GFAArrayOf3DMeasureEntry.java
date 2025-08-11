@@ -55,10 +55,7 @@ public class GFAArrayOf3DMeasureEntry extends GFAObject implements AArrayOf3DMea
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

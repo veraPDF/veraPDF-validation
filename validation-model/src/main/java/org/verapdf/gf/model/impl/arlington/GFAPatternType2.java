@@ -95,10 +95,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 
 	private org.verapdf.model.baselayer.Object getShadingDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -116,10 +113,7 @@ public class GFAPatternType2 extends GFAObject implements APatternType2 {
 
 	private org.verapdf.model.baselayer.Object getShadingStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("ShadingType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

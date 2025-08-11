@@ -232,10 +232,7 @@ public class GFAAnnotMovie extends GFAObject implements AAnnotMovie {
 
 	private org.verapdf.model.baselayer.Object getOCDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

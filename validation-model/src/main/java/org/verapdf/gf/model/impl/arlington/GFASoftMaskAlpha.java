@@ -121,10 +121,7 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 
 	private org.verapdf.model.baselayer.Object getTRDictionary1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -140,10 +137,7 @@ public class GFASoftMaskAlpha extends GFAObject implements ASoftMaskAlpha {
 
 	private org.verapdf.model.baselayer.Object getTRStream1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

@@ -138,10 +138,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getBGDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -157,10 +154,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getBGStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -214,10 +208,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getBG2Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -233,10 +224,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getBG2Stream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -372,10 +360,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getHTDictionary1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -391,10 +376,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getHTStream1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -434,10 +416,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getHTDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -453,10 +432,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getHTStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("HalftoneType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -553,10 +529,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getSMaskDictionary1_4(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -635,10 +608,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getTRDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -654,10 +624,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getTRStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -716,10 +683,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getTR2Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -735,10 +699,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getTR2Stream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -807,10 +768,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getUCRDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -826,10 +784,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getUCRStream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -883,10 +838,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getUCR2Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -902,10 +854,7 @@ public class GFAGraphicsStateParameter extends GFAObject implements AGraphicsSta
 
 	private org.verapdf.model.baselayer.Object getUCR2Stream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

@@ -83,10 +83,7 @@ public class GFAAuthCode extends GFAObject implements AAuthCode {
 
 	private org.verapdf.model.baselayer.Object getSigObjRefDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

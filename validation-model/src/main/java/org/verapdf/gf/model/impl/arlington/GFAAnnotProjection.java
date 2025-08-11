@@ -184,10 +184,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 
 	private org.verapdf.model.baselayer.Object getExDataDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -235,10 +232,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 
 	private org.verapdf.model.baselayer.Object getIRTDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -321,10 +315,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -356,14 +347,11 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getIRTDictionaryWidgetTBtn01_7(base, keyName);
 			case 1:
@@ -387,14 +375,11 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -436,10 +421,7 @@ public class GFAAnnotProjection extends GFAObject implements AAnnotProjection {
 
 	private org.verapdf.model.baselayer.Object getOCDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

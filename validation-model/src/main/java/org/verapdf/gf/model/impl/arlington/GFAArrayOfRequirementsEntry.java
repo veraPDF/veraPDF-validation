@@ -57,10 +57,7 @@ public class GFAArrayOfRequirementsEntry extends GFAObject implements AArrayOfRe
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -91,10 +88,7 @@ public class GFAArrayOfRequirementsEntry extends GFAObject implements AArrayOfRe
 
 	private org.verapdf.model.baselayer.Object getEntryDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

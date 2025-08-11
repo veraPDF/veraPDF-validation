@@ -72,10 +72,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getDDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -135,10 +132,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getDDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -202,10 +196,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getDDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -287,10 +278,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getEDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -350,10 +338,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getEDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -417,10 +402,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getEDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -502,10 +484,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPCDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -565,10 +544,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPCDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -632,10 +608,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPCDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -717,10 +690,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPIDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -780,10 +750,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPIDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -847,10 +814,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPIDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -932,10 +896,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPODictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -995,10 +956,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPODictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1062,10 +1020,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPODictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1147,10 +1102,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPVDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1210,10 +1162,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPVDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1277,10 +1226,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getPVDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1362,10 +1308,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getUDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1425,10 +1368,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getUDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1492,10 +1432,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getUDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1577,10 +1514,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getXDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1640,10 +1574,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getXDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -1707,10 +1638,7 @@ public class GFAAddActionScreenAnnotation extends GFAObject implements AAddActio
 
 	private org.verapdf.model.baselayer.Object getXDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

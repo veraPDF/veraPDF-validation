@@ -295,10 +295,7 @@ public class GFAAnnot3D extends GFAObject implements AAnnot3D {
 
 	private org.verapdf.model.baselayer.Object getOCDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

@@ -70,10 +70,7 @@ public class GFAFontFile3OpenType extends GFAObject implements AFontFile3OpenTyp
 
 	private org.verapdf.model.baselayer.Object getDecodeParmsDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -147,10 +144,7 @@ public class GFAFontFile3OpenType extends GFAObject implements AFontFile3OpenTyp
 
 	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

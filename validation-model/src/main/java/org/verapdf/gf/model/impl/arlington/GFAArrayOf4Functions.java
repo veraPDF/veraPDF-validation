@@ -87,10 +87,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	private org.verapdf.model.baselayer.Object getentry0Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -106,10 +103,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	private org.verapdf.model.baselayer.Object getentry0Stream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -178,10 +172,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	private org.verapdf.model.baselayer.Object getentry1Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -197,10 +188,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	private org.verapdf.model.baselayer.Object getentry1Stream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -269,10 +257,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	private org.verapdf.model.baselayer.Object getentry2Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -288,10 +273,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	private org.verapdf.model.baselayer.Object getentry2Stream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -360,10 +342,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	private org.verapdf.model.baselayer.Object getentry3Dictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -379,10 +358,7 @@ public class GFAArrayOf4Functions extends GFAObject implements AArrayOf4Function
 
 	private org.verapdf.model.baselayer.Object getentry3Stream1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("FunctionType"));
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

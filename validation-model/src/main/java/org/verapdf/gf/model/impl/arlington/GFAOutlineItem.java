@@ -81,10 +81,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	private org.verapdf.model.baselayer.Object getADictionary1_1(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -122,10 +119,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	private org.verapdf.model.baselayer.Object getADictionary1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -181,10 +175,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	private org.verapdf.model.baselayer.Object getADictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -238,10 +229,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	private org.verapdf.model.baselayer.Object getADictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -301,10 +289,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	private org.verapdf.model.baselayer.Object getADictionary1_6(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -368,10 +353,7 @@ public class GFAOutlineItem extends GFAObject implements AOutlineItem {
 
 	private org.verapdf.model.baselayer.Object getADictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

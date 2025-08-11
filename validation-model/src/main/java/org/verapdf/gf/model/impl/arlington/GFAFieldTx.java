@@ -153,10 +153,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	private org.verapdf.model.baselayer.Object getParentDictionary1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return getParentDictionaryDefault1_2(base, keyName);
 		}
@@ -182,10 +179,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -215,14 +209,11 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getParentDictionaryWidgetBtn01_2(base, keyName);
 			case 1:
@@ -246,14 +237,11 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -277,10 +265,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAField(base, this.baseObject, keyName);
 		}
@@ -310,14 +295,11 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getParentDictionaryDefaultBtn01_2(base, keyName);
 			case 1:
@@ -341,14 +323,11 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -376,10 +355,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 
 	private org.verapdf.model.baselayer.Object getParentDictionary1_3(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return getParentDictionaryDefault1_3(base, keyName);
 		}
@@ -405,10 +381,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetField(base, this.baseObject, keyName);
 		}
@@ -440,14 +413,11 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getParentDictionaryWidgetBtn01_3(base, keyName);
 			case 1:
@@ -471,14 +441,11 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAAnnotWidgetFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:
@@ -502,10 +469,7 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return new GFAField(base, this.baseObject, keyName);
 		}
@@ -537,14 +501,11 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 16) {
+		switch (subtypeValue.intValue() >> 16 & 1) {
 			case 0:
 				return getParentDictionaryDefaultBtn01_3(base, keyName);
 			case 1:
@@ -568,14 +529,11 @@ public class GFAFieldTx extends GFAObject implements AFieldTx {
 			}
 			parent = parent.getKey(ASAtom.getASAtom("Parent"));
 		}
-		if (subtype == null) {
-			return null;
-		}
-		Long subtypeValue = subtype.getInteger();
+		Long subtypeValue = subtype != null ? subtype.getInteger() : null;
 		if (subtypeValue == null) {
 			return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 		}
-		switch (subtypeValue.intValue() >> 15) {
+		switch (subtypeValue.intValue() >> 15 & 1) {
 			case 0:
 				return new GFAFieldBtnCheckbox(base, this.baseObject, keyName);
 			case 1:

@@ -125,10 +125,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	private org.verapdf.model.baselayer.Object getIStream1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -202,10 +199,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	private org.verapdf.model.baselayer.Object getIXStream1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
@@ -252,10 +246,7 @@ public class GFAAppearanceCharacteristics extends GFAObject implements AAppearan
 
 	private org.verapdf.model.baselayer.Object getRIStream1_2(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Subtype"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

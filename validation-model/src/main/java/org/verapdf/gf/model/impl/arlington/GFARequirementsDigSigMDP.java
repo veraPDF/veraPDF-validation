@@ -57,10 +57,7 @@ public class GFARequirementsDigSigMDP extends GFAObject implements ARequirements
 
 	private org.verapdf.model.baselayer.Object getDigSigDictionary2_0(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}

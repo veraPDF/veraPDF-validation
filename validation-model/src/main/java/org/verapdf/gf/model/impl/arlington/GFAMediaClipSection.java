@@ -112,10 +112,7 @@ public class GFAMediaClipSection extends GFAObject implements AMediaClipSection 
 
 	private org.verapdf.model.baselayer.Object getDDictionary1_5(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("S"));
-		if (subtype == null) {
-			return null;
-		}
-		String subtypeValue = subtype.getString();
+		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
 			return null;
 		}
