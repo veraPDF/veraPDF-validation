@@ -138,18 +138,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 	}
 
 	private List<PDColorSpace> getProcessColor() {
-		COSObject attributes = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getAttributes();
-		if (isNullOrNotDictionary(attributes)) {
-			return Collections.emptyList();
-		}
-		COSObject processDict = attributes.getKey(ASAtom.PROCESS);
-		if (isNullOrNotDictionary(processDict)) {
-			return Collections.emptyList();
-		}
-		COSObject cs = processDict.getKey(ASAtom.COLORSPACE);
-		org.verapdf.pd.colors.PDColorSpace colorSpace = org.verapdf.factory.colors.ColorSpaceFactory
-				.getColorSpace(cs);
-
+		org.verapdf.pd.colors.PDColorSpace colorSpace = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getProcessColorSpace();
 		if (colorSpace == null) {
 			return Collections.emptyList();
 		}
@@ -201,9 +190,5 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 		}
 		GFPDFunction gfpdFunction = FunctionFactory.createFunction(pdFunction);
 		return Collections.singletonList(gfpdFunction);
-	}
-
-	private boolean isNullOrNotDictionary(COSObject toCheck) {
-		return toCheck == null || toCheck.getType() != COSObjType.COS_DICT;
 	}
 }
