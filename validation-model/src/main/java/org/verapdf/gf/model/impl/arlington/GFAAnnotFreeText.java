@@ -108,16 +108,15 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 
 	private List<ABorderEffect> getBE() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBE1_6();
+				return getBE1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ABorderEffect> getBE1_6() {
+	private List<ABorderEffect> getBE1_7() {
 		COSObject object = getBEValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -132,19 +131,15 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 
 	private List<ABorderStyle> getBS() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getBS1_3();
+				return getBS1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<ABorderStyle> getBS1_3() {
+	private List<ABorderStyle> getBS1_7() {
 		COSObject object = getBSValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -1135,16 +1130,15 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 
 	private List<AArrayOf_4Numbers> getRD() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getRD1_6();
+				return getRD1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOf_4Numbers> getRD1_6() {
+	private List<AArrayOf_4Numbers> getRD1_7() {
 		COSObject object = getRDValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -1639,7 +1633,6 @@ public class GFAAnnotFreeText extends GFAObject implements AAnnotFreeText {
 
 	public COSObject getLEDefaultValue() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
 				return COSName.construct("None");
