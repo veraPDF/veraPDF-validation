@@ -33,19 +33,14 @@ public class GFAArrayOfFileSpecificationsEntry extends GFAObject implements AArr
 
 	private List<AFileSpecification> getEntry() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_7:
-				if ((gethasExtensionISO_19005_3() == true)) {
-					return getEntry1_7();
-				}
-				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getEntry1_7();
+				return getEntry2_0();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AFileSpecification> getEntry1_7() {
+	private List<AFileSpecification> getEntry2_0() {
 		COSObject object = new COSObject(this.baseObject);
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<AFileSpecification> list = new ArrayList<>(1);

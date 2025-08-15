@@ -73,9 +73,10 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
+				return getDV1_3();
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getDV1_3();
+				return getDV1_7();
 			default:
 				return Collections.emptyList();
 		}
@@ -87,7 +88,20 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getDVDictionary1_3(object.getDirectBase(), "DV");
+			List<ASignature> list = new ArrayList<>(1);
+			list.add(new GFASignature((COSDictionary)object.getDirectBase(), this.baseObject, "DV"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getDV1_7() {
+		COSObject object = getDVValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getDVDictionary1_7(object.getDirectBase(), "DV");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
@@ -97,7 +111,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		return Collections.emptyList();
 	}
 
-	private org.verapdf.model.baselayer.Object getDVDictionary1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getDVDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
 		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
@@ -441,9 +455,10 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
+				return getV1_3();
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getV1_3();
+				return getV1_7();
 			default:
 				return Collections.emptyList();
 		}
@@ -455,7 +470,20 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getVDictionary1_3(object.getDirectBase(), "V");
+			List<ASignature> list = new ArrayList<>(1);
+			list.add(new GFASignature((COSDictionary)object.getDirectBase(), this.baseObject, "V"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<org.verapdf.model.baselayer.Object> getV1_7() {
+		COSObject object = getVValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			org.verapdf.model.baselayer.Object result = getVDictionary1_7(object.getDirectBase(), "V");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
@@ -465,7 +493,7 @@ public class GFAFieldSig extends GFAObject implements AFieldSig {
 		return Collections.emptyList();
 	}
 
-	private org.verapdf.model.baselayer.Object getVDictionary1_3(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getVDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = base.getKey(ASAtom.getASAtom("Type"));
 		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {

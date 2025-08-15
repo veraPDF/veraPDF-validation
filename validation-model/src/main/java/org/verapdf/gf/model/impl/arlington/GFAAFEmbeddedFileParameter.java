@@ -28,19 +28,19 @@ public class GFAAFEmbeddedFileParameter extends GFAObject implements AAFEmbedded
 
 	private List<AMac> getMac() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getMac1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getMac1_3();
+				return getMac1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AMac> getMac1_3() {
+	private List<AMac> getMac1_7() {
 		COSObject object = getMacValue();
 		if (object == null) {
 			return Collections.emptyList();

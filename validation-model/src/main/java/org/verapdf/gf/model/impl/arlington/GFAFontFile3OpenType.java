@@ -210,18 +210,16 @@ public class GFAFontFile3OpenType extends GFAObject implements AFontFile3OpenTyp
 
 	private List<AMetadata> getMetadata() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getMetadata1_4();
+				return getMetadata1_6();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AMetadata> getMetadata1_4() {
+	private List<AMetadata> getMetadata1_6() {
 		COSObject object = getMetadataValue();
 		if (object == null) {
 			return Collections.emptyList();

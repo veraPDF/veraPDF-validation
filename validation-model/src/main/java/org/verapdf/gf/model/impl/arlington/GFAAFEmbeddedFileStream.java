@@ -38,21 +38,19 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 
 	private List<org.verapdf.model.baselayer.Object> getDecodeParms() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-				return getDecodeParms1_3();
-			case ARLINGTON1_4:
-				return getDecodeParms1_4();
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getDecodeParms1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getDecodeParms1_5();
+				return getDecodeParms1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_3() {
+	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_7() {
 		COSObject object = getDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -63,7 +61,7 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 			return Collections.unmodifiableList(list);
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getDecodeParmsDictionary1_3(object.getDirectBase(), "DecodeParms");
+			org.verapdf.model.baselayer.Object result = getDecodeParmsDictionary1_7(object.getDirectBase(), "DecodeParms");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
@@ -73,91 +71,7 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 		return Collections.emptyList();
 	}
 
-	private org.verapdf.model.baselayer.Object getDecodeParmsDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		String subtypeValue = subtype != null ? subtype.getString() : null;
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "CCITTFaxDecode":
-				return new GFAFilterCCITTFaxDecode(base, this.baseObject, keyName);
-			case "DCTDecode":
-				return new GFAFilterDCTDecode(base, this.baseObject, keyName);
-			case "FlateDecode":
-				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
-			case "LZWDecode":
-				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_4() {
-		COSObject object = getDecodeParmsValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "DecodeParms"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getDecodeParmsDictionary1_4(object.getDirectBase(), "DecodeParms");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getDecodeParmsDictionary1_4(COSBase base, String keyName) {
-		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
-		String subtypeValue = subtype != null ? subtype.getString() : null;
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "CCITTFaxDecode":
-				return new GFAFilterCCITTFaxDecode(base, this.baseObject, keyName);
-			case "DCTDecode":
-				return new GFAFilterDCTDecode(base, this.baseObject, keyName);
-			case "FlateDecode":
-				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
-			case "JBIG2Decode":
-				return new GFAFilterJBIG2Decode(base, this.baseObject, keyName);
-			case "LZWDecode":
-				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getDecodeParms1_5() {
-		COSObject object = getDecodeParmsValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "DecodeParms"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getDecodeParmsDictionary1_5(object.getDirectBase(), "DecodeParms");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getDecodeParmsDictionary1_5(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getDecodeParmsDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("Filter"));
 		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
@@ -183,19 +97,19 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 
 	private List<AFileSpecification> getF() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getF1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getF1_3();
+				return getF1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AFileSpecification> getF1_3() {
+	private List<AFileSpecification> getF1_7() {
 		COSObject object = getFValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -210,21 +124,19 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 
 	private List<org.verapdf.model.baselayer.Object> getFDecodeParms() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-				return getFDecodeParms1_3();
-			case ARLINGTON1_4:
-				return getFDecodeParms1_4();
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getFDecodeParms1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getFDecodeParms1_5();
+				return getFDecodeParms1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_3() {
+	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_7() {
 		COSObject object = getFDecodeParmsValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -235,7 +147,7 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 			return Collections.unmodifiableList(list);
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_3(object.getDirectBase(), "FDecodeParms");
+			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_7(object.getDirectBase(), "FDecodeParms");
 			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
 			if (result != null) {
 				list.add(result);
@@ -245,91 +157,7 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 		return Collections.emptyList();
 	}
 
-	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_3(COSBase base, String keyName) {
-		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		String subtypeValue = subtype != null ? subtype.getString() : null;
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "CCITTFaxDecode":
-				return new GFAFilterCCITTFaxDecode(base, this.baseObject, keyName);
-			case "DCTDecode":
-				return new GFAFilterDCTDecode(base, this.baseObject, keyName);
-			case "FlateDecode":
-				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
-			case "LZWDecode":
-				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_4() {
-		COSObject object = getFDecodeParmsValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_4(object.getDirectBase(), "FDecodeParms");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_4(COSBase base, String keyName) {
-		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
-		String subtypeValue = subtype != null ? subtype.getString() : null;
-		if (subtypeValue == null) {
-			return null;
-		}
-		switch (subtypeValue) {
-			case "CCITTFaxDecode":
-				return new GFAFilterCCITTFaxDecode(base, this.baseObject, keyName);
-			case "DCTDecode":
-				return new GFAFilterDCTDecode(base, this.baseObject, keyName);
-			case "FlateDecode":
-				return new GFAFilterFlateDecode(base, this.baseObject, keyName);
-			case "JBIG2Decode":
-				return new GFAFilterJBIG2Decode(base, this.baseObject, keyName);
-			case "LZWDecode":
-				return new GFAFilterLZWDecode(base, this.baseObject, keyName);
-			default:
-				return null;
-		}
-	}
-
-	private List<org.verapdf.model.baselayer.Object> getFDecodeParms1_5() {
-		COSObject object = getFDecodeParmsValue();
-		if (object == null) {
-			return Collections.emptyList();
-		}
-		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AArrayOfDecodeParams> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfDecodeParams((COSArray)object.getDirectBase(), this.baseObject, "FDecodeParms"));
-			return Collections.unmodifiableList(list);
-		}
-		if (object.getType() == COSObjType.COS_DICT) {
-			org.verapdf.model.baselayer.Object result = getFDecodeParmsDictionary1_5(object.getDirectBase(), "FDecodeParms");
-			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
-			if (result != null) {
-				list.add(result);
-			}
-			return Collections.unmodifiableList(list);
-		}
-		return Collections.emptyList();
-	}
-
-	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_5(COSBase base, String keyName) {
+	private org.verapdf.model.baselayer.Object getFDecodeParmsDictionary1_7(COSBase base, String keyName) {
 		COSObject subtype = this.baseObject.getKey(ASAtom.getASAtom("FFilter"));
 		String subtypeValue = subtype != null ? subtype.getString() : null;
 		if (subtypeValue == null) {
@@ -355,19 +183,19 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 
 	private List<AArrayOfFilterNames> getFFilter() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getFFilter1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getFFilter1_3();
+				return getFFilter1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfFilterNames> getFFilter1_3() {
+	private List<AArrayOfFilterNames> getFFilter1_7() {
 		COSObject object = getFFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -382,19 +210,19 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 
 	private List<AArrayOfFilterNames> getFilter() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getFilter1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getFilter1_3();
+				return getFilter1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfFilterNames> getFilter1_3() {
+	private List<AArrayOfFilterNames> getFilter1_7() {
 		COSObject object = getFilterValue();
 		if (object == null) {
 			return Collections.emptyList();
@@ -409,19 +237,19 @@ public class GFAAFEmbeddedFileStream extends GFAObject implements AAFEmbeddedFil
 
 	private List<AAFEmbeddedFileParameter> getParams() {
 		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON1_3:
-			case ARLINGTON1_4:
-			case ARLINGTON1_5:
-			case ARLINGTON1_6:
 			case ARLINGTON1_7:
+				if ((gethasExtensionISO_19005_3() == true)) {
+					return getParams1_7();
+				}
+				return Collections.emptyList();
 			case ARLINGTON2_0:
-				return getParams1_3();
+				return getParams1_7();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AAFEmbeddedFileParameter> getParams1_3() {
+	private List<AAFEmbeddedFileParameter> getParams1_7() {
 		COSObject object = getParamsValue();
 		if (object == null) {
 			return Collections.emptyList();

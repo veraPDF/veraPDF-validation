@@ -28,18 +28,19 @@ public class GFAArrayOfNonNegativeIntegersGeneral extends GFAObject implements A
 
 	private List<AArrayOfNonNegativeIntegersGeneralEntry> getEntries() {
 		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_3:
 			case ARLINGTON1_4:
 			case ARLINGTON1_5:
 			case ARLINGTON1_6:
 			case ARLINGTON1_7:
 			case ARLINGTON2_0:
-				return getEntries1_4();
+				return getEntries1_3();
 			default:
 				return Collections.emptyList();
 		}
 	}
 
-	private List<AArrayOfNonNegativeIntegersGeneralEntry> getEntries1_4() {
+	private List<AArrayOfNonNegativeIntegersGeneralEntry> getEntries1_3() {
 		List<AArrayOfNonNegativeIntegersGeneralEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
