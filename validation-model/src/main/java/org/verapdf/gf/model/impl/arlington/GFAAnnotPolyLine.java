@@ -2146,19 +2146,8 @@ public class GFAAnnotPolyLine extends GFAObject implements AAnnotPolyLine {
 		return this.baseObject.knownKey(ASAtom.getASAtom("ca"));
 	}
 
-	public COSObject getcaDefaultValue() {
-		switch (StaticContainers.getFlavour()) {
-			case ARLINGTON2_0:
-				return COSReal.construct(1.0D);
-		}
-		return null;
-	}
-
 	public COSObject getcaValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ca"));
-		if (object == null || object.empty()) {
-			object = getcaDefaultValue();
-		}
 		return object;
 	}
 
