@@ -74,6 +74,12 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 				return new GFACalGrayColorSpace(base, this.baseObject, keyName);
 			case "CalRGB":
 				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
+			case "DeviceCMYK":
+				return new GFADeviceCMYKColorSpace(base, this.baseObject, keyName);
+			case "DeviceGray":
+				return new GFADeviceGrayColorSpace(base, this.baseObject, keyName);
+			case "DeviceRGB":
+				return new GFADeviceRGBColorSpace(base, this.baseObject, keyName);
 			case "Lab":
 				return new GFALabColorSpace(base, this.baseObject, keyName);
 			default:
@@ -111,6 +117,12 @@ public class GFASeparationColorSpace extends GFAObject implements ASeparationCol
 				return new GFACalGrayColorSpace(base, this.baseObject, keyName);
 			case "CalRGB":
 				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
+			case "DeviceCMYK":
+				return new GFADeviceCMYKColorSpace(base, this.baseObject, keyName);
+			case "DeviceGray":
+				return new GFADeviceGrayColorSpace(base, this.baseObject, keyName);
+			case "DeviceRGB":
+				return new GFADeviceRGBColorSpace(base, this.baseObject, keyName);
 			case "ICCBased":
 				return new GFAICCBasedColorSpace(base, this.baseObject, keyName);
 			case "Lab":

@@ -84,8 +84,14 @@ public class GFAICCProfileStream extends GFAObject implements AICCProfileStream 
 				return new GFACalGrayColorSpace(base, this.baseObject, keyName);
 			case "CalRGB":
 				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
+			case "DeviceCMYK":
+				return new GFADeviceCMYKColorSpace(base, this.baseObject, keyName);
+			case "DeviceGray":
+				return new GFADeviceGrayColorSpace(base, this.baseObject, keyName);
 			case "DeviceN":
 				return new GFADeviceNColorSpace(base, this.baseObject, keyName);
+			case "DeviceRGB":
+				return new GFADeviceRGBColorSpace(base, this.baseObject, keyName);
 			case "Indexed":
 				return new GFAIndexedColorSpace(base, this.baseObject, keyName);
 			case "Lab":

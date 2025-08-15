@@ -21,6 +21,8 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 		switch (link) {
 			case "AF":
 				return getAF();
+			case "ColorSpace":
+				return getColorSpace();
 			case "Decode":
 				return getDecode();
 			case "DecodeParms":
@@ -64,6 +66,32 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfAFFileSpecifications> list = new ArrayList<>(1);
 			list.add(new GFAArrayOfAFFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "AF"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<ADeviceGrayColorSpace> getColorSpace() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON1_4:
+			case ARLINGTON1_5:
+			case ARLINGTON1_6:
+			case ARLINGTON1_7:
+			case ARLINGTON2_0:
+				return getColorSpace1_4();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<ADeviceGrayColorSpace> getColorSpace1_4() {
+		COSObject object = getColorSpaceValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<ADeviceGrayColorSpace> list = new ArrayList<>(1);
+			list.add(new GFADeviceGrayColorSpace((COSArray)object.getDirectBase(), this.baseObject, "ColorSpace"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -493,6 +521,12 @@ public class GFAXObjectImageSoftMask extends GFAObject implements AXObjectImageS
 	public String getColorSpaceType() {
 		COSObject ColorSpace = getColorSpaceValue();
 		return getObjectType(ColorSpace);
+	}
+
+	@Override
+	public Boolean getColorSpaceHasTypeArray() {
+		COSObject ColorSpace = getColorSpaceValue();
+		return getHasTypeArray(ColorSpace);
 	}
 
 	@Override

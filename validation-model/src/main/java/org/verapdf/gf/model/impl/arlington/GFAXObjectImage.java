@@ -136,11 +136,37 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 			return Collections.emptyList();
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
-			List<AIndexedColorSpace> list = new ArrayList<>(1);
-			list.add(new GFAIndexedColorSpace((COSArray)object.getDirectBase(), this.baseObject, "ColorSpace"));
+			org.verapdf.model.baselayer.Object result = getColorSpaceArray1_0(object.getDirectBase(), "ColorSpace");
+			List<org.verapdf.model.baselayer.Object> list = new ArrayList<>(1);
+			if (result != null) {
+				list.add(result);
+			}
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	private org.verapdf.model.baselayer.Object getColorSpaceArray1_0(COSBase base, String keyName) {
+		if (base.size() <= 0) {
+			return null;
+		}
+		COSObject subtype = base.at(0);
+		String subtypeValue = subtype != null ? subtype.getString() : null;
+		if (subtypeValue == null) {
+			return null;
+		}
+		switch (subtypeValue) {
+			case "DeviceCMYK":
+				return new GFADeviceCMYKColorSpace(base, this.baseObject, keyName);
+			case "DeviceGray":
+				return new GFADeviceGrayColorSpace(base, this.baseObject, keyName);
+			case "DeviceRGB":
+				return new GFADeviceRGBColorSpace(base, this.baseObject, keyName);
+			case "Indexed":
+				return new GFAIndexedColorSpace(base, this.baseObject, keyName);
+			default:
+				return null;
+		}
 	}
 
 	private List<org.verapdf.model.baselayer.Object> getColorSpace1_1() {
@@ -173,6 +199,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 				return new GFACalGrayColorSpace(base, this.baseObject, keyName);
 			case "CalRGB":
 				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
+			case "DeviceCMYK":
+				return new GFADeviceCMYKColorSpace(base, this.baseObject, keyName);
+			case "DeviceGray":
+				return new GFADeviceGrayColorSpace(base, this.baseObject, keyName);
+			case "DeviceRGB":
+				return new GFADeviceRGBColorSpace(base, this.baseObject, keyName);
 			case "Indexed":
 				return new GFAIndexedColorSpace(base, this.baseObject, keyName);
 			case "Lab":
@@ -212,6 +244,12 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 				return new GFACalGrayColorSpace(base, this.baseObject, keyName);
 			case "CalRGB":
 				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
+			case "DeviceCMYK":
+				return new GFADeviceCMYKColorSpace(base, this.baseObject, keyName);
+			case "DeviceGray":
+				return new GFADeviceGrayColorSpace(base, this.baseObject, keyName);
+			case "DeviceRGB":
+				return new GFADeviceRGBColorSpace(base, this.baseObject, keyName);
 			case "Indexed":
 				return new GFAIndexedColorSpace(base, this.baseObject, keyName);
 			case "Lab":
@@ -255,8 +293,14 @@ public class GFAXObjectImage extends GFAObject implements AXObjectImage {
 				return new GFACalGrayColorSpace(base, this.baseObject, keyName);
 			case "CalRGB":
 				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
+			case "DeviceCMYK":
+				return new GFADeviceCMYKColorSpace(base, this.baseObject, keyName);
+			case "DeviceGray":
+				return new GFADeviceGrayColorSpace(base, this.baseObject, keyName);
 			case "DeviceN":
 				return new GFADeviceNColorSpace(base, this.baseObject, keyName);
+			case "DeviceRGB":
+				return new GFADeviceRGBColorSpace(base, this.baseObject, keyName);
 			case "ICCBased":
 				return new GFAICCBasedColorSpace(base, this.baseObject, keyName);
 			case "Indexed":

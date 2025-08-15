@@ -108,6 +108,8 @@ public class GFA3DStream extends GFAObject implements A3DStream {
 		switch (subtypeValue) {
 			case "CalRGB":
 				return new GFACalRGBColorSpace(base, this.baseObject, keyName);
+			case "DeviceRGB":
+				return new GFADeviceRGBColorSpace(base, this.baseObject, keyName);
 			case "ICCBased":
 				return new GFAICCBasedColorSpace(base, this.baseObject, keyName);
 			default:
