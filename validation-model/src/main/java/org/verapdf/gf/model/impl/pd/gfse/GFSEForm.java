@@ -21,6 +21,7 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SEForm;
@@ -53,10 +54,10 @@ public class GFSEForm extends GFPDStructElem implements SEForm {
         Object child = children.get(0);
         if (child instanceof PDOBJRDictionary) {
             COSObject referencedObject = ((PDOBJRDictionary) child).getReferencedObject();
-            if (referencedObject != null) {
-                COSObject subtypeValue = referencedObject.getDirectBase().getKey(ASAtom.SUBTYPE);
-                if (subtypeValue != null) {
-                    return ASAtom.WIDGET.getValue().equals(subtypeValue.getDirectBase().getString());
+            if (referencedObject != null && referencedObject.getType() == COSObjType.COS_DICT) {
+                COSObject subtypeValue = referencedObject.getKey(ASAtom.SUBTYPE);
+                if (subtypeValue != null && subtypeValue.getType() == COSObjType.COS_NAME) {
+                    return ASAtom.WIDGET.getValue().equals(subtypeValue.getString());
                 }
             }
         }
@@ -69,9 +70,9 @@ public class GFSEForm extends GFPDStructElem implements SEForm {
         for (Object child : ((PDStructElem)this.simplePDObject).getChildren()) {
             if (child instanceof PDOBJRDictionary) {
                 COSObject referencedObject = ((PDOBJRDictionary) child).getReferencedObject();
-                if (referencedObject != null) {
-                    COSObject subtypeValue = referencedObject.getDirectBase().getKey(ASAtom.SUBTYPE);
-                    if (subtypeValue != null && ASAtom.WIDGET.getValue().equals(subtypeValue.getDirectBase().getString())) {
+                if (referencedObject != null && referencedObject.getType() == COSObjType.COS_DICT) {
+                    COSObject subtypeValue = referencedObject.getKey(ASAtom.SUBTYPE);
+                    if (subtypeValue != null && subtypeValue.getType() == COSObjType.COS_NAME && ASAtom.WIDGET.getValue().equals(subtypeValue.getString())) {
                         count++;
                     }
                 }
