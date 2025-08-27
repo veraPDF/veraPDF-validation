@@ -327,4 +327,27 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		}
 		return Collections.emptyList();
 	}
+
+	@Override
+	public Boolean getisGrouping() {
+		if (standardType == null) {
+			return false;
+		}
+		if (TaggedPDFHelper.isGroupingStructureType(standardType)) {
+			return true;
+		}
+		if (!TaggedPDFHelper.isBlockOrGroupingStructureType(standardType) && 
+				!TaggedPDFHelper.isBlockOrGroupingOrInlineStructureType(standardType)) {
+			return false;
+		}
+		if (gethasContentItems()) {
+			return false;
+		}
+		for (String kidStandardType : getChildrenStandardTypes()) {
+			if (TaggedPDFHelper.isInlineStructureType(kidStandardType)) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
