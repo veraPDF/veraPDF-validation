@@ -12,8 +12,11 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFAArrayOfIndirectFileSpecifications extends GFAObject implements AArrayOfIndirectFileSpecifications {
 
-	public GFAArrayOfIndirectFileSpecifications(COSBase baseObject, COSBase parentObject, String keyName) {
+	private final COSBase parentParentParentObject;
+
+	public GFAArrayOfIndirectFileSpecifications(COSBase baseObject, COSBase parentObject, COSBase parentParentParentObject, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfIndirectFileSpecifications");
+		this.parentParentParentObject = parentParentParentObject;
 	}
 
 	@Override
@@ -44,7 +47,7 @@ public class GFAArrayOfIndirectFileSpecifications extends GFAObject implements A
 		List<AArrayOfIndirectFileSpecificationsEntry> list = new LinkedList<>();
 		for (int i = 0; i < baseObject.size(); i++) {
 			COSObject object = baseObject.at(i);
-			list.add(new GFAArrayOfIndirectFileSpecificationsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, String.valueOf(i)));
+			list.add(new GFAArrayOfIndirectFileSpecificationsEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, this.parentParentParentObject, keyName, String.valueOf(i)));
 		}
 		return Collections.unmodifiableList(list);
 	}

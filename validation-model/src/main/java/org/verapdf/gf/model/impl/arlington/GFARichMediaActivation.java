@@ -12,8 +12,11 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFARichMediaActivation extends GFAObject implements ARichMediaActivation {
 
-	public GFARichMediaActivation(COSBase baseObject, COSBase parentObject, String keyName) {
+	private final COSBase parentParentObject;
+
+	public GFARichMediaActivation(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String keyName) {
 		super(baseObject, parentObject, keyName, "ARichMediaActivation");
+		this.parentParentObject = parentParentObject;
 	}
 
 	@Override
@@ -136,7 +139,7 @@ public class GFARichMediaActivation extends GFAObject implements ARichMediaActiv
 		}
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOfIndirectFileSpecifications> list = new ArrayList<>(1);
-			list.add(new GFAArrayOfIndirectFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, "Scripts"));
+			list.add(new GFAArrayOfIndirectFileSpecifications((COSArray)object.getDirectBase(), this.baseObject, this.parentParentObject, "Scripts"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();

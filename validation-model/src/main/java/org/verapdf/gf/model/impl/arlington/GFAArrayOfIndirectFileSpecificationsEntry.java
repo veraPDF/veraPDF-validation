@@ -12,11 +12,13 @@ import org.verapdf.pd.structure.PDNumberTreeNode;
 
 public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject implements AArrayOfIndirectFileSpecificationsEntry {
 
+	private final COSBase parentParentParentParentObject;
 	private final COSBase parentParentObject;
 	private final String collectionName;
 
-	public GFAArrayOfIndirectFileSpecificationsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, String collectionName, String keyName) {
+	public GFAArrayOfIndirectFileSpecificationsEntry(COSBase baseObject, COSBase parentObject, COSBase parentParentObject, COSBase parentParentParentParentObject, String collectionName, String keyName) {
 		super(baseObject, parentObject, keyName, "AArrayOfIndirectFileSpecificationsEntry");
+		this.parentParentParentParentObject = parentParentParentParentObject;
 		this.parentParentObject = parentParentObject;
 		this.collectionName = collectionName;
 	}
@@ -78,11 +80,11 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 		return getHasTypeDictionary(entry);
 	}
 
-	public COSObject getparentRichMediaContentAssetsValue() {
-		if (this.parentParentObject == null || !this.parentParentObject.getType().isDictionaryBased()) {
+	public COSObject getparentparentparentRichMediaContentAssetsValue() {
+		if (this.parentParentParentParentObject == null || !this.parentParentParentParentObject.getType().isDictionaryBased()) {
 			return null;
 		}
-		COSObject RichMediaContent = this.parentParentObject.getKey(ASAtom.getASAtom("RichMediaContent"));
+		COSObject RichMediaContent = this.parentParentParentParentObject.getKey(ASAtom.getASAtom("RichMediaContent"));
 		if (RichMediaContent == null || !RichMediaContent.getType().isDictionaryBased()) {
 			return null;
 		}
@@ -91,16 +93,16 @@ public class GFAArrayOfIndirectFileSpecificationsEntry extends GFAObject impleme
 	}
 
 	@Override
-	public Boolean getIsNameTreeparentRichMediaContentAssetsValue() {
+	public Boolean getIsNameTreeparentparentparentRichMediaContentAssetsValue() {
 		COSObject entry = getValue();
-		COSObject parentRichMediaContentAssets = getparentRichMediaContentAssetsValue();
+		COSObject parentparentparentRichMediaContentAssets = getparentparentparentRichMediaContentAssetsValue();
 		if (entry == null) {
 			return false;
 		}
-		if (parentRichMediaContentAssets == null || parentRichMediaContentAssets.getType() != COSObjType.COS_DICT) {
+		if (parentparentparentRichMediaContentAssets == null || parentparentparentRichMediaContentAssets.getType() != COSObjType.COS_DICT) {
 			return false;
 		}
-		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(parentRichMediaContentAssets);
+		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(parentparentparentRichMediaContentAssets);
 		return nameTreeNode.containsValue(entry);
 	}
 

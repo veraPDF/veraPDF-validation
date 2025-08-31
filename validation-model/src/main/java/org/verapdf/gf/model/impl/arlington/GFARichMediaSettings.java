@@ -49,7 +49,7 @@ public class GFARichMediaSettings extends GFAObject implements ARichMediaSetting
 		}
 		if (object.getType() == COSObjType.COS_DICT) {
 			List<ARichMediaActivation> list = new ArrayList<>(1);
-			list.add(new GFARichMediaActivation((COSDictionary)object.getDirectBase(), this.baseObject, "Activation"));
+			list.add(new GFARichMediaActivation((COSDictionary)object.getDirectBase(), this.baseObject, this.parentObject, "Activation"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
