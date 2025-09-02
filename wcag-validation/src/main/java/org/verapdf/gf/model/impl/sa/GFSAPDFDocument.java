@@ -73,6 +73,7 @@ public class GFSAPDFDocument extends GenericModelObject implements SAPDFDocument
         super(DOCUMENT_TYPE);
         this.document = document;
         StaticStorages.clearAllContainers();
+        StaticContainers.setIsIgnoreCharactersWithoutUnicode(true);
     }
 
     @Override
