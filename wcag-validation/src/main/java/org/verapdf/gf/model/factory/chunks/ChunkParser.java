@@ -106,7 +106,11 @@ class ChunkParser {
 				break;
 			case Operators.EMC:
 				processLineArts();
-				markedContentStack.pop();
+                if (!markedContentStack.isEmpty()) {
+                    markedContentStack.pop();
+                } else {
+                    LOGGER.log(Level.WARNING, "EMC operator does not have a balancing BMC/BDC operator");
+                }
 				break;
 			case Operators.G_FILL: {
 				if (this.graphicsState.isProcessColorOperators()) {
