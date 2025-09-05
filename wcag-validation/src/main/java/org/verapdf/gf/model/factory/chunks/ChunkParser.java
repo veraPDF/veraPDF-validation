@@ -457,7 +457,11 @@ public class ChunkParser {
 				processS();
 				break;
 			case Operators.CM_CONCAT:
-				graphicsState.getCTM().concatenate(new Matrix(arguments));
+                if (arguments.size() == 6) {
+                    graphicsState.getCTM().concatenate(new Matrix(arguments));
+                } else {
+                    LOGGER.log(Level.WARNING, "CM operator does not have 6 arguments");
+                }
 				break;
 			case Operators.Q_GRESTORE:
 				if (!graphicsStateStack.isEmpty()) {
