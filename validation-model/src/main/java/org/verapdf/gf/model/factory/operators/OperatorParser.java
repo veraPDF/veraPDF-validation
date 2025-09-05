@@ -191,7 +191,7 @@ class OperatorParser {
 				if (!this.markedContentStack.empty()) {
 					this.markedContentStack.pop();
 				} else {
-					LOGGER.log(Level.WARNING, getErrorMessage("Operator (EMC) not inside marked content"));
+					LOGGER.log(Level.WARNING, getErrorMessage("EMC operator does not have a balancing BMC/BDC operator"));
 				}
 				break;
 			case Operators.MP:
