@@ -46,7 +46,7 @@ public class GFSAAnnotationNode extends AnnotationNode {
 	private static BoundingBox getBoundingBox(PDAnnotation annotation) {
 		Integer pageNumber = getAnnotationPageNumber(annotation);
 		double[] rect = annotation.getRect();
-		BoundingBox boundingBox = new BoundingBox(pageNumber, rect);
+		BoundingBox boundingBox = rect == null ? new BoundingBox() : new BoundingBox(pageNumber, rect);
 		if (pageNumber != null) {
 			PDPage page = StaticResources.getDocument().getPages().get(pageNumber);
 			boundingBox = GFSAPage.createCurrentTransformationMatrix(page).transformBoundingBox(boundingBox);
