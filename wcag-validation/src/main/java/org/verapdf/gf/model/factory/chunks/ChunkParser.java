@@ -51,7 +51,7 @@ import java.util.logging.Logger;
 /**
  * @author Maxim Plushchov
  */
-class ChunkParser {
+public class ChunkParser {
 
 	private static final Logger LOGGER = Logger.getLogger(ChunkParser.class.getName());
 	
@@ -807,7 +807,13 @@ class ChunkParser {
 						                                  value != null ? value.length() : 0);
 					}
 				}
-				String result = value != null ? value : (StaticContainers.getIsIgnoreCharactersWithoutUnicode() ? "" : REPLACEMENT_CHARACTER_STRING);
+				String result = value;
+				if (result == null) {
+					result = StaticContainers.getIsIgnoreCharactersWithoutUnicode() ? "" : REPLACEMENT_CHARACTER_STRING;
+					if (StaticContainers.isDataLoader()) {
+						LOGGER.log(Level.WARNING, "The glyph can not be mapped to Unicode");
+					}
+				}
 				if (textPieces == null) {
 					unicodeValue.append(result);
 				} else {
