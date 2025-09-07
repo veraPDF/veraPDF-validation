@@ -54,6 +54,8 @@ import java.util.logging.Logger;
 class ChunkParser {
 
 	private static final Logger LOGGER = Logger.getLogger(ChunkParser.class.getName());
+	
+	public static final String REPLACEMENT_CHARACTER_STRING = "\uFFFD";
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
@@ -805,7 +807,7 @@ class ChunkParser {
 						                                  value != null ? value.length() : 0);
 					}
 				}
-				String result = value != null ? value : (StaticContainers.getIsIgnoreCharactersWithoutUnicode() ? "" : "\u0000");
+				String result = value != null ? value : (StaticContainers.getIsIgnoreCharactersWithoutUnicode() ? "" : REPLACEMENT_CHARACTER_STRING);
 				if (textPieces == null) {
 					unicodeValue.append(result);
 				} else {
