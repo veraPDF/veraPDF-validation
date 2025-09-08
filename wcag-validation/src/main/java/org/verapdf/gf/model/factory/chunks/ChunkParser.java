@@ -248,8 +248,12 @@ public class ChunkParser {
 				}
 				break;
 			case Operators.TM:
-				textMatrix = new Matrix(arguments);
-				textLineMatrix = textMatrix.clone();
+                if (arguments.size() == 6) {
+                    textMatrix = new Matrix(arguments);
+                    textLineMatrix = textMatrix.clone();
+                } else {
+                    LOGGER.log(Level.WARNING, "TM operator does not have 6 arguments");
+                }
 				break;
             case Operators.TR:
                 if (arguments.size() == 1 && arguments.get(0).getType().isNumber()) {
