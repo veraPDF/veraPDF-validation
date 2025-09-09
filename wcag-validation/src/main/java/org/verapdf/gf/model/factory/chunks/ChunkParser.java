@@ -252,7 +252,7 @@ public class ChunkParser {
                     textMatrix = new Matrix(arguments);
                     textLineMatrix = textMatrix.clone();
                 } else {
-                    LOGGER.log(Level.WARNING, "TM operator does not have 6 arguments");
+                    LOGGER.log(Level.WARNING, "tm operator does not have 6 arguments");
                 }
 				break;
             case Operators.TR:
@@ -464,7 +464,7 @@ public class ChunkParser {
                 if (arguments.size() == 6) {
                     graphicsState.getCTM().concatenate(new Matrix(arguments));
                 } else {
-                    LOGGER.log(Level.WARNING, "CM operator does not have 6 arguments");
+                    LOGGER.log(Level.WARNING, "cm operator does not have 6 arguments");
                 }
 				break;
 			case Operators.Q_GRESTORE:
