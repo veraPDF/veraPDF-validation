@@ -248,8 +248,12 @@ public class ChunkParser {
 				}
 				break;
 			case Operators.TM:
-				textMatrix = new Matrix(arguments);
-				textLineMatrix = textMatrix.clone();
+                if (arguments.size() == 6) {
+                    textMatrix = new Matrix(arguments);
+                    textLineMatrix = textMatrix.clone();
+                } else {
+                    LOGGER.log(Level.WARNING, "tm operator does not have 6 arguments");
+                }
 				break;
             case Operators.TR:
                 if (arguments.size() == 1 && arguments.get(0).getType().isNumber()) {
@@ -457,7 +461,11 @@ public class ChunkParser {
 				processS();
 				break;
 			case Operators.CM_CONCAT:
-				graphicsState.getCTM().concatenate(new Matrix(arguments));
+                if (arguments.size() == 6) {
+                    graphicsState.getCTM().concatenate(new Matrix(arguments));
+                } else {
+                    LOGGER.log(Level.WARNING, "cm operator does not have 6 arguments");
+                }
 				break;
 			case Operators.Q_GRESTORE:
 				if (!graphicsStateStack.isEmpty()) {
