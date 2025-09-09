@@ -44,10 +44,10 @@ public class DictionaryKeysHelper {
             return null;
         }
         COSBase base = object.getDirectBase();
-        if (base.getType() == COSObjType.COS_STREAM) {
+        if (base != null && base.getType() == COSObjType.COS_STREAM) {
             base = ((COSStream)base).getStringFromTextStream();
         }
-        if (base.getType() == COSObjType.COS_STRING) {
+        if (base != null && base.getType() == COSObjType.COS_STRING) {
             return base.getString();
         }
         return null;
@@ -59,10 +59,9 @@ public class DictionaryKeysHelper {
             if (object == null || object.empty()) {
                 return null;
             }
-            COSBase base = object.getDirectBase();
             InputStream inputStream;
             if (object.getType() == COSObjType.COS_STREAM) {
-                inputStream = base.getData();
+                inputStream = object.getDirectBase().getData();
             } else if (object.getType() == COSObjType.COS_STRING) {
                 inputStream = new ByteBuffer(object.getDirectBase().getString().getBytes()).getByteStream();
             } else {
