@@ -237,12 +237,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	public Boolean getMarked() {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
-			if (markInfoObject == null || markInfoObject.empty()) {
-				return null;
-			}
-			COSBase markInfo = markInfoObject.getDirectBase();
-			if (markInfo != null && markInfo.getType() == COSObjType.COS_DICT) {
-				return markInfo.getBooleanKey(ASAtom.MARKED);
+			if (markInfoObject != null && markInfoObject.getType() == COSObjType.COS_DICT) {
+				return markInfoObject.getBooleanKey(ASAtom.MARKED);
 			}
 			LOGGER.log(Level.WARNING,
 					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
@@ -255,12 +251,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	public Boolean getDisplayDocTitle() {
 		if (this.catalog != null) {
 			COSObject viewerPrefObject = this.catalog.getKey(ASAtom.VIEWER_PREFERENCES);
-			if (viewerPrefObject == null || viewerPrefObject.empty()) {
-				return null;
-			}
-			COSBase viewerPref = viewerPrefObject.getDirectBase();
-			if (viewerPref.getType() == COSObjType.COS_DICT) {
-				return viewerPref.getBooleanKey(ASAtom.DISPLAY_DOC_TITLE);
+			if (viewerPrefObject != null && viewerPrefObject.getType() == COSObjType.COS_DICT) {
+				return viewerPrefObject.getBooleanKey(ASAtom.DISPLAY_DOC_TITLE);
 			}
 			LOGGER.log(Level.WARNING,
 					"viewerPref must be a 'COSDictionary' but got: " + viewerPrefObject.getType());
@@ -302,12 +294,8 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	public Boolean getSuspects() {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
-			if (markInfoObject == null || markInfoObject.empty()) {
-				return null;
-			}
-			COSBase markInfo = markInfoObject.getDirectBase();
-			if (markInfo != null && markInfo.getType() == COSObjType.COS_DICT) {
-				return markInfo.getBooleanKey(ASAtom.SUSPECTS);
+			if (markInfoObject != null && markInfoObject.getType() == COSObjType.COS_DICT) {
+				return markInfoObject.getBooleanKey(ASAtom.SUSPECTS);
 			}
 			LOGGER.log(Level.WARNING,
 					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
@@ -321,11 +309,10 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 		if (this.catalog != null) {
 			COSObject reqArrayObject = this.catalog.getKey(ASAtom.REQUIREMENTS);
 			if (reqArrayObject != null && !reqArrayObject.empty()) {
-				COSBase reqArray = reqArrayObject.getDirectBase();
-				if (reqArray.getType() == COSObjType.COS_ARRAY) {
-					return GFCosDocument.getRequirementsString((COSArray) reqArray);
-				} else if (reqArray.getType() == COSObjType.COS_DICT) {
-					return GFCosDocument.getRequirementsString((COSDictionary) reqArray);
+				if (reqArrayObject.getType() == COSObjType.COS_ARRAY) {
+					return GFCosDocument.getRequirementsString((COSArray) reqArrayObject.getDirectBase());
+				} else if (reqArrayObject.getType() == COSObjType.COS_DICT) {
+					return GFCosDocument.getRequirementsString((COSDictionary) reqArrayObject.getDirectBase());
 				}
 			}
 		}
@@ -487,9 +474,9 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private COSDictionary getCatalog() {
-		COSBase catalogLocal = cosDocument.getTrailer().getRoot().getDirectBase();
+		COSObject catalogLocal = cosDocument.getTrailer().getRoot();
 		if (catalogLocal != null && catalogLocal.getType() == COSObjType.COS_DICT) {
-			return (COSDictionary) catalogLocal;
+			return (COSDictionary) catalogLocal.getDirectBase();
 		}
 		return null;
 	}

@@ -95,7 +95,9 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 
 	private List<PDOCConfig> getConfigs() {
 		COSObject contentProperties = this.simplePDObject.getObject();
-
+		if (contentProperties.getType() != COSObjType.COS_DICT) {
+			return Collections.emptyList();
+		}
 		List<String> names = getDName((COSDictionary) contentProperties.getDirectBase());
 		String[] groupNames = ((PDOptionalContentProperties) this.simplePDObject).getGroupNames();
 		List<String> groupNamesList = Arrays.asList(groupNames == null ?

@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.signature;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDictionary;
+import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDSigRef;
@@ -58,8 +59,8 @@ public class GFPDSigRef extends GFPDObject implements PDSigRef {
 	@Override
 	public Boolean getpermsContainDocMDP() {
 		PDCatalog catalog = StaticResources.getDocument().getCatalog();
-		COSDictionary perms = (COSDictionary) catalog.getKey(ASAtom.PERMS).getDirectBase();
-		if (perms != null) {
+		COSObject perms = catalog.getKey(ASAtom.PERMS);
+		if (perms != null && perms.getType() == COSObjType.COS_DICT) {
 			return perms.knownKey(ASAtom.DOC_MDP);
 		}
 		return Boolean.FALSE;
