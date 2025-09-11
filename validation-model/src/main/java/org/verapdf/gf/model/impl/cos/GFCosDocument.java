@@ -237,11 +237,13 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	public Boolean getMarked() {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
-			if (markInfoObject != null && markInfoObject.getType() == COSObjType.COS_DICT) {
-				return markInfoObject.getBooleanKey(ASAtom.MARKED);
+			if (markInfoObject != null && !markInfoObject.empty()) {
+				if (markInfoObject.getType() == COSObjType.COS_DICT) {
+					return markInfoObject.getBooleanKey(ASAtom.MARKED);
+				}
+				LOGGER.log(Level.WARNING,
+						"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
 			}
-			LOGGER.log(Level.WARNING,
-					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
 			return null;
 		}
 		return null;
@@ -251,11 +253,13 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	public Boolean getDisplayDocTitle() {
 		if (this.catalog != null) {
 			COSObject viewerPrefObject = this.catalog.getKey(ASAtom.VIEWER_PREFERENCES);
-			if (viewerPrefObject != null && viewerPrefObject.getType() == COSObjType.COS_DICT) {
-				return viewerPrefObject.getBooleanKey(ASAtom.DISPLAY_DOC_TITLE);
+			if (viewerPrefObject != null && !viewerPrefObject.empty()) {
+				if (viewerPrefObject.getType() == COSObjType.COS_DICT) {
+					return viewerPrefObject.getBooleanKey(ASAtom.DISPLAY_DOC_TITLE);
+				}
+				LOGGER.log(Level.WARNING,
+						"viewerPref must be a 'COSDictionary' but got: " + viewerPrefObject.getType());
 			}
-			LOGGER.log(Level.WARNING,
-					"viewerPref must be a 'COSDictionary' but got: " + viewerPrefObject.getType());
 			return null;
 		}
 		return null;
@@ -294,11 +298,13 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	public Boolean getSuspects() {
 		if (this.catalog != null) {
 			COSObject markInfoObject = this.catalog.getKey(ASAtom.MARK_INFO);
-			if (markInfoObject != null && markInfoObject.getType() == COSObjType.COS_DICT) {
-				return markInfoObject.getBooleanKey(ASAtom.SUSPECTS);
+			if (markInfoObject != null && !markInfoObject.empty()) {
+				if (markInfoObject.getType() == COSObjType.COS_DICT) {
+					return markInfoObject.getBooleanKey(ASAtom.SUSPECTS);
+				}
+				LOGGER.log(Level.WARNING,
+						"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
 			}
-			LOGGER.log(Level.WARNING,
-					"MarkedInfo must be a 'COSDictionary' but got: " + markInfoObject.getType());
 			return null;
 		}
 		return null;
