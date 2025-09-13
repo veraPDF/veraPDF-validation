@@ -20,7 +20,6 @@
  */
 package org.verapdf.gf.model;
 
-import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSDocument;
 import org.verapdf.extensions.ExtensionObjectType;
 import org.verapdf.gf.model.impl.arlington.*;
@@ -49,7 +48,6 @@ import org.verapdf.metadata.fixer.entity.PDFDocument;
 import org.verapdf.metadata.fixer.gf.impl.model.PDFDocumentImpl;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDMetadata;
-import org.verapdf.pdfa.Foundries;
 import org.verapdf.pdfa.PDFAParser;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
 
@@ -89,7 +87,7 @@ public class GFModelParser implements PDFAParser {
 			initializeStaticResources(password);
 			this.document = new PDDocument(docStream);
 			setFlavours(detectFlavour(this.document, flavour, defaultFlavour));
-			initializeStaticContainers(this.document, enabledExtensions);
+			initializeStaticContainers(this.document, GFAExtensions.getExtensions(this.document, enabledExtensions));
 		} catch (Throwable t) {
 			this.close();
 			throw t;
@@ -104,7 +102,7 @@ public class GFModelParser implements PDFAParser {
 			initializeStaticResources(password);
 			this.document = new PDDocument(pdfFile.getAbsolutePath());
 			setFlavours(detectFlavour(this.document, flavour, defaultFlavour));
-			initializeStaticContainers(this.document, enabledExtensions);
+			initializeStaticContainers(this.document, GFAExtensions.getExtensions(this.document, enabledExtensions));
 		} catch (Throwable t) {
 			this.close();
 			throw t;
