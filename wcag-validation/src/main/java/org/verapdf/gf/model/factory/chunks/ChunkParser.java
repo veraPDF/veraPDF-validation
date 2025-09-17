@@ -27,6 +27,7 @@ import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.cos.*;
 import org.verapdf.operator.Operator;
+import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResource;
@@ -36,6 +37,7 @@ import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
+import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.wcag.algorithms.entities.content.*;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
@@ -101,11 +103,7 @@ public class ChunkParser {
 				processLineArts();
 				Long mcid = getMCID(arguments, resourceHandler);
                 if (StaticStorages.getIsFilterInvisibleLayers()) {
-                    if (getLayerVisibility(arguments, resourceHandler)) {
-                        visibleContentStack.push(true);
-                    } else {
-                        visibleContentStack.push(false);
-                    }
+                    visibleContentStack.push(getLayerVisibility(arguments, resourceHandler));
                 }
 				if (mcid != null) {
 					if (processedMCIDs.contains(mcid)) {
@@ -916,9 +914,6 @@ public class ChunkParser {
 			} else if (lastArg.getType() == COSObjType.COS_NAME && resources != null) {
 				PDResource properties = resources.getProperties(lastArg.getName());
 				if (properties != null) {
-                    COSObject object = properties.getObject();
-                    PDDocument doc = StaticResources.getDocument();
-                    doc.getCatalog().getOCProperties().getGroupNames();
 					COSBase cosProperties = properties.getObject().getDirectBase();
 					if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
 						return cosProperties.getIntegerKey(ASAtom.MCID);
@@ -930,20 +925,24 @@ public class ChunkParser {
 	}
 
     private static boolean getLayerVisibility(List<COSBase> arguments, ResourceHandler resources) {
-        if (!arguments.isEmpty()) {
-            COSBase lastArg = arguments.get(arguments.size() - 1);
-            if (arguments.get(0).getType() == COSObjType.COS_NAME) {
-                if (arguments.get(0).getName().equals(ASAtom.OC)) {
-                    if (lastArg.getType() == COSObjType.COS_NAME && resources != null) {
-                        PDResource properties = resources.getProperties(lastArg.getName());
-                        if (properties != null) {
-                            COSBase cosProperties = properties.getObject().getDirectBase();
-                            if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
-                                String name = cosProperties.getStringKey(ASAtom.NAME);
-                                PDDocument doc = StaticResources.getDocument();
-                                String[] names = doc.getCatalog().getOCProperties().getGroupNames();
-                                if (Arrays.asList(names).contains(name)) {
-                                    return doc.getCatalog().getOCProperties().isVisibleLayer(name);
+        if (arguments != null && !arguments.isEmpty() && resources != null) {
+            if (arguments.get(0).getType() == COSObjType.COS_NAME && arguments.get(0).getName().equals(ASAtom.OC)) {
+                COSBase lastArg = arguments.get(arguments.size() - 1);
+                if (lastArg != null && lastArg.getType() == COSObjType.COS_NAME) {
+                    PDResource properties = resources.getProperties(lastArg.getName());
+                    if (properties != null) {
+                        COSBase cosProperties = properties.getObject().getDirectBase();
+                        if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
+                            String name = cosProperties.getStringKey(ASAtom.NAME);
+                            PDDocument doc = StaticResources.getDocument();
+                            if (doc != null && name != null) {
+                                PDCatalog catalog = doc.getCatalog();
+                                PDOptionalContentProperties optProperties = catalog.getOCProperties();
+                                if (optProperties != null) {
+                                    List<String> names = optProperties.getGroupNames();
+                                    if (names.contains(name)) {
+                                        return optProperties.isVisibleLayer(name);
+                                    }
                                 }
                             }
                         }
@@ -1037,8 +1036,7 @@ public class ChunkParser {
         }
         if (StaticStorages.getIsFilterInvisibleLayers()) {
             return visibleContentStack.isEmpty() || visibleContentStack.peek();
-        } else {
-            return true;
         }
+        return true;
     }
 }
