@@ -27,6 +27,7 @@ import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.cos.*;
 import org.verapdf.operator.Operator;
+import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.PDResource;
 import org.verapdf.pd.colors.PDColorSpace;
@@ -35,6 +36,7 @@ import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
+import org.verapdf.tools.StaticResources;
 import org.verapdf.wcag.algorithms.entities.content.*;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 import org.verapdf.wcag.algorithms.entities.geometry.MultiBoundingBox;
@@ -59,6 +61,7 @@ public class ChunkParser {
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
+    private final Stack<Boolean> visibleContentStack = new Stack<Boolean>();
 
 	private final Set<Long> processedMCIDs = new HashSet<>();
 
@@ -97,6 +100,13 @@ public class ChunkParser {
 			case Operators.BDC:
 				processLineArts();
 				Long mcid = getMCID(arguments, resourceHandler);
+                if (StaticStorages.getIsFilterInvisibleLayers()) {
+                    if (getLayerVisibility(arguments, resourceHandler)) {
+                        visibleContentStack.push(true);
+                    } else {
+                        visibleContentStack.push(false);
+                    }
+                }
 				if (mcid != null) {
 					if (processedMCIDs.contains(mcid)) {
 						mcid = null;
@@ -112,6 +122,9 @@ public class ChunkParser {
                     markedContentStack.pop();
                 } else {
                     LOGGER.log(Level.WARNING, "EMC operator does not have a balancing BMC/BDC operator");
+                }
+                if (!visibleContentStack.isEmpty()) {
+                    visibleContentStack.pop();
                 }
 				break;
 			case Operators.G_FILL: {
@@ -268,6 +281,9 @@ public class ChunkParser {
 				break;
 			case Operators.TJ_SHOW: {
 				processLineArts();
+                if (!processLayers()) {
+                    break;
+                }
 				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
@@ -277,6 +293,9 @@ public class ChunkParser {
 			case Operators.TJ_SHOW_POS: {
 				processLineArts();
 				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW_POS);
+                if (!processLayers()) {
+                    break;
+                }
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -285,6 +304,9 @@ public class ChunkParser {
 			case Operators.QUOTE: {
 				processLineArts();
 				processT_STAR();
+                if (!processLayers()) {
+                    break;
+                }
 				TextChunk textChunk = createTextChunk(arguments, Operators.QUOTE);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
@@ -298,6 +320,9 @@ public class ChunkParser {
 					processDoubleQuote(arguments.get(0).getReal(), arguments.get(1).getReal());
 				}
 				TextChunk textChunk = createTextChunk(arguments, Operators.DOUBLE_QUOTE);
+                if (!processLayers()) {
+                    break;
+                }
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -343,6 +368,9 @@ public class ChunkParser {
 				break;
 			case Operators.BI:
 				processLineArts();
+                if (!processLayers()) {
+                    break;
+                }
 				putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
 				break;
 			case Operators.C_CURVE_TO:
@@ -480,6 +508,9 @@ public class ChunkParser {
 				PDXObject xObject = resourceHandler.getXObject(getLastCOSName(arguments));
 				if (xObject != null) {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
+                        if (!processLayers()) {
+                            break;
+                        }
 						putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
 					} else if (ASAtom.FORM.equals(xObject.getType())) {
 						Long markedContent = getMarkedContent();
@@ -885,6 +916,9 @@ public class ChunkParser {
 			} else if (lastArg.getType() == COSObjType.COS_NAME && resources != null) {
 				PDResource properties = resources.getProperties(lastArg.getName());
 				if (properties != null) {
+                    COSObject object = properties.getObject();
+                    PDDocument doc = StaticResources.getDocument();
+                    doc.getCatalog().getOCProperties().getGroupNames();
 					COSBase cosProperties = properties.getObject().getDirectBase();
 					if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
 						return cosProperties.getIntegerKey(ASAtom.MCID);
@@ -894,6 +928,31 @@ public class ChunkParser {
 		}
 		return null;
 	}
+
+    private static boolean getLayerVisibility(List<COSBase> arguments, ResourceHandler resources) {
+        if (!arguments.isEmpty()) {
+            COSBase lastArg = arguments.get(arguments.size() - 1);
+            if (arguments.get(0).getType() == COSObjType.COS_NAME) {
+                if (arguments.get(0).getName().equals(ASAtom.OC)) {
+                    if (lastArg.getType() == COSObjType.COS_NAME && resources != null) {
+                        PDResource properties = resources.getProperties(lastArg.getName());
+                        if (properties != null) {
+                            COSBase cosProperties = properties.getObject().getDirectBase();
+                            if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
+                                String name = cosProperties.getStringKey(ASAtom.NAME);
+                                PDDocument doc = StaticResources.getDocument();
+                                String[] names = doc.getCatalog().getOCProperties().getGroupNames();
+                                if (Arrays.asList(names).contains(name)) {
+                                    return doc.getCatalog().getOCProperties().isVisibleLayer(name);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
 	private LineChunk transformLineChunk(LineChunk lineChunk, double lineWidth, int lineCap) {
 		return LineChunk.createLineChunk(pageNumber,
@@ -971,4 +1030,15 @@ public class ChunkParser {
 			boundingBoxes.clear();
 		}
 	}
+
+    public boolean processLayers() {
+        if (!StaticContainers.isDataLoader()) {
+            return true;
+        }
+        if (StaticStorages.getIsFilterInvisibleLayers()) {
+            return visibleContentStack.isEmpty() || visibleContentStack.peek();
+        } else {
+            return true;
+        }
+    }
 }
