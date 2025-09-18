@@ -935,7 +935,8 @@ public class ChunkParser {
 
     private static boolean getLayerVisibility(List<COSBase> arguments, ResourceHandler resources) {
         if (arguments != null && !arguments.isEmpty() && resources != null) {
-            if (arguments.get(0).getType() == COSObjType.COS_NAME && arguments.get(0).getName().equals(ASAtom.OC)) {
+            COSBase firstArg = arguments.get(0);
+            if (firstArg.getType() == COSObjType.COS_NAME && firstArg.getName().equals(ASAtom.OC)) {
                 COSBase lastArg = arguments.get(arguments.size() - 1);
                 if (lastArg != null && lastArg.getType() == COSObjType.COS_NAME) {
                     COSBase property = getPropertyByName(lastArg.getName(), resources);
