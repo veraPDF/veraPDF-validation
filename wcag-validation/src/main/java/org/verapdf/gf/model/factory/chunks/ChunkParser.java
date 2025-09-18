@@ -290,10 +290,10 @@ public class ChunkParser {
 			}
 			case Operators.TJ_SHOW_POS: {
 				processLineArts();
-				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW_POS);
                 if (!processLayers()) {
                     break;
                 }
+				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW_POS);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -317,10 +317,10 @@ public class ChunkParser {
 						arguments.get(1).getType().isNumber()) {
 					processDoubleQuote(arguments.get(0).getReal(), arguments.get(1).getReal());
 				}
-				TextChunk textChunk = createTextChunk(arguments, Operators.DOUBLE_QUOTE);
                 if (!processLayers()) {
                     break;
                 }
+				TextChunk textChunk = createTextChunk(arguments, Operators.DOUBLE_QUOTE);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -503,12 +503,12 @@ public class ChunkParser {
 				break;
 			case Operators.DO:
 				processLineArts();
+                if (!processLayers()) {
+                    break;
+                }
 				PDXObject xObject = resourceHandler.getXObject(getLastCOSName(arguments));
 				if (xObject != null) {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
-                        if (!processLayers()) {
-                            break;
-                        }
 						putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
 					} else if (ASAtom.FORM.equals(xObject.getType())) {
 						Long markedContent = getMarkedContent();
@@ -583,6 +583,10 @@ public class ChunkParser {
 	}
 
 	private void processB() {
+        if (!processLayers()) {
+            nonDrawingArtifacts = new ArrayList<>();
+            return;
+        }
 		Long mcid = getMarkedContent();
 		BoundingBox boundingBox = new MultiBoundingBox();
 		for (Object chunk : nonDrawingArtifacts) {
@@ -609,6 +613,10 @@ public class ChunkParser {
 	}
 
 	private void processS() {
+        if (!processLayers()) {
+            nonDrawingArtifacts = new ArrayList<>();
+            return;
+        }
 		Long mcid = getMarkedContent();
 		BoundingBox boundingBox = new MultiBoundingBox();
 		for (Object chunk : nonDrawingArtifacts) {
@@ -645,6 +653,10 @@ public class ChunkParser {
 	}
 
 	private void processf() {
+        if (!processLayers()) {
+            nonDrawingArtifacts = new ArrayList<>();
+            return;
+        }
 		Long mcid = getMarkedContent();
 		BoundingBox boundingBox = new MultiBoundingBox();
 		for (int i = 0; i < nonDrawingArtifacts.size(); i++) {
