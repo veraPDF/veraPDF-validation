@@ -924,9 +924,9 @@ public class ChunkParser {
 			if (lastArg.getType() == COSObjType.COS_DICT) {
 				return lastArg.getIntegerKey(ASAtom.MCID);
 			} else if (lastArg.getType() == COSObjType.COS_NAME && resources != null) {
-                COSBase cosProperties = getPropertyByName(lastArg.getName(), resources);
-                if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
-                    return cosProperties.getIntegerKey(ASAtom.MCID);
+                COSBase property = getPropertyByName(lastArg.getName(), resources);
+                if (property != null && property.getType() == COSObjType.COS_DICT) {
+                    return property.getIntegerKey(ASAtom.MCID);
                 }
 			}
 		}
@@ -938,9 +938,9 @@ public class ChunkParser {
             if (arguments.get(0).getType() == COSObjType.COS_NAME && arguments.get(0).getName().equals(ASAtom.OC)) {
                 COSBase lastArg = arguments.get(arguments.size() - 1);
                 if (lastArg != null && lastArg.getType() == COSObjType.COS_NAME) {
-                    COSBase cosProperties = getPropertyByName(lastArg.getName(), resources);
-                    if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
-                        String name = cosProperties.getStringKey(ASAtom.NAME);
+                    COSBase property = getPropertyByName(lastArg.getName(), resources);
+                    if (property != null && property.getType() == COSObjType.COS_DICT) {
+                        String name = property.getStringKey(ASAtom.NAME);
                         PDDocument doc = StaticResources.getDocument();
                         if (doc != null && name != null) {
                             PDCatalog catalog = doc.getCatalog();
