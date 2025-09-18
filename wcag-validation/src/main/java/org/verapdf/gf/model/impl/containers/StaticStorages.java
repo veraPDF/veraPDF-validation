@@ -58,7 +58,9 @@ public class StaticStorages {
         return isFilterInvisibleLayers.get();
     }
 
-    public static void setIsFilterInvisibleLayers(Boolean isFilterInvisibleLayers) { StaticStorages.isFilterInvisibleLayers.set(isFilterInvisibleLayers);}
+    public static void setIsFilterInvisibleLayers(Boolean isFilterInvisibleLayers) {
+        StaticStorages.isFilterInvisibleLayers.set(isFilterInvisibleLayers);
+    }
 
     public static void setIsIgnoreMCIDs(Boolean isIgnoreMCIDs) {
         StaticStorages.isIgnoreMCIDs.set(isIgnoreMCIDs);

@@ -912,13 +912,10 @@ public class ChunkParser {
 			if (lastArg.getType() == COSObjType.COS_DICT) {
 				return lastArg.getIntegerKey(ASAtom.MCID);
 			} else if (lastArg.getType() == COSObjType.COS_NAME && resources != null) {
-				PDResource properties = resources.getProperties(lastArg.getName());
-				if (properties != null) {
-					COSBase cosProperties = properties.getObject().getDirectBase();
-					if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
-						return cosProperties.getIntegerKey(ASAtom.MCID);
-					}
-				}
+                COSBase cosProperties = getPropertyByName(lastArg.getName(), resources);
+                if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
+                    return cosProperties.getIntegerKey(ASAtom.MCID);
+                }
 			}
 		}
 		return null;
@@ -929,20 +926,17 @@ public class ChunkParser {
             if (arguments.get(0).getType() == COSObjType.COS_NAME && arguments.get(0).getName().equals(ASAtom.OC)) {
                 COSBase lastArg = arguments.get(arguments.size() - 1);
                 if (lastArg != null && lastArg.getType() == COSObjType.COS_NAME) {
-                    PDResource properties = resources.getProperties(lastArg.getName());
-                    if (properties != null) {
-                        COSBase cosProperties = properties.getObject().getDirectBase();
-                        if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
-                            String name = cosProperties.getStringKey(ASAtom.NAME);
-                            PDDocument doc = StaticResources.getDocument();
-                            if (doc != null && name != null) {
-                                PDCatalog catalog = doc.getCatalog();
-                                PDOptionalContentProperties optProperties = catalog.getOCProperties();
-                                if (optProperties != null) {
-                                    List<String> names = optProperties.getGroupNames();
-                                    if (names.contains(name)) {
-                                        return optProperties.isVisibleLayer(name);
-                                    }
+                    COSBase cosProperties = getPropertyByName(lastArg.getName(), resources);
+                    if (cosProperties != null && cosProperties.getType() == COSObjType.COS_DICT) {
+                        String name = cosProperties.getStringKey(ASAtom.NAME);
+                        PDDocument doc = StaticResources.getDocument();
+                        if (doc != null && name != null) {
+                            PDCatalog catalog = doc.getCatalog();
+                            PDOptionalContentProperties optProperties = catalog.getOCProperties();
+                            if (optProperties != null) {
+                                List<String> names = optProperties.getGroupNames();
+                                if (names.contains(name)) {
+                                    return optProperties.isVisibleLayer(name);
                                 }
                             }
                         }
@@ -951,6 +945,14 @@ public class ChunkParser {
             }
         }
         return true;
+    }
+
+    private static COSBase getPropertyByName(ASAtom name, ResourceHandler resources) {
+        PDResource properties = resources.getProperties(name);
+        if (properties != null) {
+            return properties.getObject().getDirectBase();
+        }
+        return null;
     }
 
 	private LineChunk transformLineChunk(LineChunk lineChunk, double lineWidth, int lineCap) {
