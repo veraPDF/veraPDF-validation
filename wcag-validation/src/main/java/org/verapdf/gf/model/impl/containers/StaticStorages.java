@@ -30,11 +30,13 @@ public class StaticStorages {
 	private static final ThreadLocal<ChunkContainer> chunks = new ThreadLocal<>();
     private static final ThreadLocal<Boolean> isIgnoreMCIDs = new ThreadLocal<>();
     private static final ThreadLocal<Boolean> isAddSpacesBetweenTextPieces = new ThreadLocal<>();
+    private static final ThreadLocal<Boolean> isFilterInvisibleLayers = new ThreadLocal<>();
 
 	public static void clearAllContainers() {
 		chunks.set(new ChunkContainer());
         isIgnoreMCIDs.set(false);
         isAddSpacesBetweenTextPieces.set(false);
+        isFilterInvisibleLayers.set(false);
 	}
 
 	public static ChunkContainer getChunks() {
@@ -50,6 +52,14 @@ public class StaticStorages {
     
     public static Boolean getIsIgnoreMCIDs() {
         return isIgnoreMCIDs.get();
+    }
+
+    public static Boolean getIsFilterInvisibleLayers() {
+        return isFilterInvisibleLayers.get();
+    }
+
+    public static void setIsFilterInvisibleLayers(Boolean isFilterInvisibleLayers) {
+        StaticStorages.isFilterInvisibleLayers.set(isFilterInvisibleLayers);
     }
 
     public static void setIsIgnoreMCIDs(Boolean isIgnoreMCIDs) {
