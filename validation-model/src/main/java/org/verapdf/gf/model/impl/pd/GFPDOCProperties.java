@@ -73,11 +73,9 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 		if (contentProperties.getType() == COSObjType.COS_DICT) {
 			COSObject defaultConfig = contentProperties.getKey(ASAtom.D);
 			if (!defaultConfig.empty() && defaultConfig.getType() == COSObjType.COS_DICT) {
-				String[] groupNames = ((PDOptionalContentProperties) this.simplePDObject).getGroupNames();
-				List<String> groupNamesList = Arrays.asList(groupNames == null ?
-						new String[]{} : groupNames);
+				List<String> groupNames = ((PDOptionalContentProperties) this.simplePDObject).getGroupNames();
 
-				PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(defaultConfig), groupNamesList, false);
+				PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(defaultConfig), groupNames, false);
 
 				result.add(pdConfig);
 				return result;
@@ -99,9 +97,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 			return Collections.emptyList();
 		}
 		List<String> names = getDName((COSDictionary) contentProperties.getDirectBase());
-		String[] groupNames = ((PDOptionalContentProperties) this.simplePDObject).getGroupNames();
-		List<String> groupNamesList = Arrays.asList(groupNames == null ?
-				new String[]{} : groupNames);
+        List<String> groupNames = ((PDOptionalContentProperties) this.simplePDObject).getGroupNames();
 
 		COSObject configs = contentProperties.getKey(ASAtom.CONFIGS);
 
@@ -109,7 +105,7 @@ public class GFPDOCProperties extends GFPDObject implements PDOCProperties {
 			List<PDOCConfig> result = new ArrayList<>();
 			for (COSObject config : (COSArray)configs.getDirectBase()) {
 				if (!config.empty() && config.getType() == COSObjType.COS_DICT) {
-					PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(config), groupNamesList, names.contains(config.getStringKey(ASAtom.NAME)));
+					PDOCConfig pdConfig = new GFPDOCConfig(new PDObject(config), groupNames, names.contains(config.getStringKey(ASAtom.NAME)));
 					String name = pdConfig.getName();
 					if (name != null) {
 						names.add(name);
