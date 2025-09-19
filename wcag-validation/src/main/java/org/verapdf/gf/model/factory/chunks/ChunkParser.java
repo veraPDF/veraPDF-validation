@@ -943,13 +943,28 @@ public class ChunkParser {
                     if (property != null && property.getType() == COSObjType.COS_DICT) {
                         String name = property.getStringKey(ASAtom.NAME);
                         PDDocument doc = StaticResources.getDocument();
-                        if (doc != null && name != null) {
+                        if (doc != null) {
                             PDCatalog catalog = doc.getCatalog();
                             PDOptionalContentProperties optProperties = catalog.getOCProperties();
                             if (optProperties != null) {
-                                List<String> names = optProperties.getGroupNames();
-                                if (names.contains(name)) {
-                                    return optProperties.isVisibleLayer(name);
+                                if (name != null) {
+                                    List<String> names = optProperties.getGroupNames();
+                                    if (names.contains(name)) {
+                                        return optProperties.isVisibleLayer(name);
+                                    }
+                                } else {
+                                    if (property.getNameKey(ASAtom.TYPE).equals(ASAtom.OCMD) && property.getKey(ASAtom.OCGS).getType() == COSObjType.COS_ARRAY) {
+                                        COSArray ocgs = (COSArray) property.getKey(ASAtom.OCGS).getDirectBase();
+                                        List<String> ocgsNames = new ArrayList<>();
+                                        for (COSObject obj : ocgs) {
+                                            ocgsNames.add(optProperties.getObjectName(obj));
+                                        }
+                                        List<Boolean> ocgsVisible = new ArrayList<>();
+                                        for (String ocgsName : ocgsNames) {
+                                            ocgsVisible.add(optProperties.isVisibleLayer(ocgsName));
+                                        }
+                                        return isVisibleOCMDByP(property.getNameKey(ASAtom.P), ocgsVisible);
+                                    }
                                 }
                             }
                         }
@@ -957,6 +972,23 @@ public class ChunkParser {
                 }
             }
         }
+        return true;
+    }
+
+    private static boolean isVisibleOCMDByP(ASAtom pValue, List<Boolean> ocgsVisible) {
+        if (pValue == null || pValue.equals(ASAtom.ANY_ON)) {
+            return ocgsVisible.contains(true);
+        }
+        if (pValue.equals(ASAtom.ALL_ON)) {
+            return !ocgsVisible.contains(false);
+        }
+        if (pValue.equals(ASAtom.ALL_OFF)) {
+            return !ocgsVisible.contains(true);
+        }
+        if (pValue.equals(ASAtom.ANY_OFF)) {
+            return ocgsVisible.contains(false);
+        }
+
         return true;
     }
 
