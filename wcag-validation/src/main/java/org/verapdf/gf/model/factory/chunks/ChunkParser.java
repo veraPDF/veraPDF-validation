@@ -37,6 +37,7 @@ import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
+import org.verapdf.pd.optionalcontent.PDOCMDDictionary;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.wcag.algorithms.entities.content.*;
@@ -953,17 +954,9 @@ public class ChunkParser {
                                         return optProperties.isVisibleLayer(name);
                                     }
                                 } else {
-                                    if (property.getNameKey(ASAtom.TYPE).equals(ASAtom.OCMD) && property.getKey(ASAtom.OCGS).getType() == COSObjType.COS_ARRAY) {
-                                        COSArray ocgs = (COSArray) property.getKey(ASAtom.OCGS).getDirectBase();
-                                        List<String> ocgsNames = new ArrayList<>();
-                                        for (COSObject obj : ocgs) {
-                                            ocgsNames.add(optProperties.getObjectName(obj));
-                                        }
-                                        List<Boolean> ocgsVisible = new ArrayList<>();
-                                        for (String ocgsName : ocgsNames) {
-                                            ocgsVisible.add(optProperties.isVisibleLayer(ocgsName));
-                                        }
-                                        return isVisibleOCMDByP(property.getNameKey(ASAtom.P), ocgsVisible);
+                                    COSObject ocgProperty = property.getKey(ASAtom.OCGS);
+                                    if (ASAtom.OCMD.equals(property.getNameKey(ASAtom.TYPE)) && ocgProperty.getType() == COSObjType.COS_ARRAY) {
+                                        return PDOCMDDictionary.isVisibleOCMDByP(property.getNameKey(ASAtom.P), ocgProperty, optProperties);
                                     }
                                 }
                             }
@@ -972,23 +965,6 @@ public class ChunkParser {
                 }
             }
         }
-        return true;
-    }
-
-    private static boolean isVisibleOCMDByP(ASAtom pValue, List<Boolean> ocgsVisible) {
-        if (pValue == null || pValue.equals(ASAtom.ANY_ON)) {
-            return ocgsVisible.contains(true);
-        }
-        if (pValue.equals(ASAtom.ALL_ON)) {
-            return !ocgsVisible.contains(false);
-        }
-        if (pValue.equals(ASAtom.ALL_OFF)) {
-            return !ocgsVisible.contains(true);
-        }
-        if (pValue.equals(ASAtom.ANY_OFF)) {
-            return ocgsVisible.contains(false);
-        }
-
         return true;
     }
 
