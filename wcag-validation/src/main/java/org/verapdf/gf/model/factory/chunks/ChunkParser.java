@@ -37,6 +37,7 @@ import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
+import org.verapdf.pd.optionalcontent.PDOCMDDictionary;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 import org.verapdf.tools.StaticResources;
 import org.verapdf.wcag.algorithms.entities.content.*;
@@ -943,13 +944,18 @@ public class ChunkParser {
                     if (property != null && property.getType() == COSObjType.COS_DICT) {
                         String name = property.getStringKey(ASAtom.NAME);
                         PDDocument doc = StaticResources.getDocument();
-                        if (doc != null && name != null) {
+                        if (doc != null) {
                             PDCatalog catalog = doc.getCatalog();
                             PDOptionalContentProperties optProperties = catalog.getOCProperties();
                             if (optProperties != null) {
-                                List<String> names = optProperties.getGroupNames();
-                                if (names.contains(name)) {
-                                    return optProperties.isVisibleLayer(name);
+                                if (name != null) {
+                                    if (optProperties.isContainsName(name)) {
+                                        return optProperties.isVisibleLayer(name);
+                                    }
+                                } else {
+                                    if (ASAtom.OCMD.equals(property.getNameKey(ASAtom.TYPE))) {
+                                        return PDOCMDDictionary.isVisibleOCMDByP(property, optProperties);
+                                    }
                                 }
                             }
                         }
