@@ -949,14 +949,13 @@ public class ChunkParser {
                             PDOptionalContentProperties optProperties = catalog.getOCProperties();
                             if (optProperties != null) {
                                 if (name != null) {
-                                    List<String> names = optProperties.getGroupNames();
-                                    if (names.contains(name)) {
-                                        return optProperties.isVisibleLayer(name);
-                                    }
+                                    return optProperties.isContainsName(name);
                                 } else {
-                                    COSObject ocgProperty = property.getKey(ASAtom.OCGS);
-                                    if (ASAtom.OCMD.equals(property.getNameKey(ASAtom.TYPE)) && ocgProperty.getType() == COSObjType.COS_ARRAY) {
-                                        return PDOCMDDictionary.isVisibleOCMDByP(property.getNameKey(ASAtom.P), ocgProperty, optProperties);
+                                    if (ASAtom.OCMD.equals(property.getNameKey(ASAtom.TYPE))) {
+                                        COSObject ocgProperty = property.getKey(ASAtom.OCGS);
+                                        if (ocgProperty.getType() == COSObjType.COS_ARRAY) {
+                                            return PDOCMDDictionary.isVisibleOCMDByP(property.getNameKey(ASAtom.P), ocgProperty, optProperties);
+                                        }
                                     }
                                 }
                             }
