@@ -717,21 +717,45 @@ public class ChunkParser {
 					Vertex.areCloseVertexes(line2.getEnd(), line3.getStart()) &&
 					Vertex.areCloseVertexes(line3.getEnd(), line4.getStart()) &&
 					Vertex.areCloseVertexes(line4.getEnd(), line1.getStart())) {
-				if (line1.isHorizontalLine() && line2.isVerticalLine() &&
-						line3.isHorizontalLine() && line4.isVerticalLine()) {
+				if (isHorizontalLine(line1, line2, line3, line4)) {
 					LineChunk line = new LineChunk(pageNumber, line2.getCenterX(), line2.getCenterY(),
 							line4.getCenterX(), line4.getCenterY(), Math.abs(line1.getCenterY() - line3.getCenterY()));
 					return transformLineChunk(line, line.getWidth(), LineChunk.BUTT_CAP_STYLE);
-				} else if (line1.isVerticalLine() && line2.isHorizontalLine() &&
-						line3.isVerticalLine() && line4.isHorizontalLine()) {
+				}
+				if (isVerticalLine(line1, line2, line3, line4)) {
+					LineChunk line = new LineChunk(pageNumber, line2.getCenterX(), line2.getCenterY(),
+							line4.getCenterX(), line4.getCenterY(), Math.abs(line1.getCenterX() - line3.getCenterX()));
+					return transformLineChunk(line, line.getWidth(), LineChunk.BUTT_CAP_STYLE);
+				}
+				if (isHorizontalLine(line2, line1, line4, line3)) {
 					LineChunk line = new LineChunk(pageNumber, line1.getCenterX(), line1.getCenterY(),
 							line3.getCenterX(), line3.getCenterY(), Math.abs(line2.getCenterY() - line4.getCenterY()));
+					return transformLineChunk(line, line.getWidth(), LineChunk.BUTT_CAP_STYLE);
+				}
+				if (isVerticalLine(line2, line1, line4, line3)) {
+					LineChunk line = new LineChunk(pageNumber, line1.getCenterX(), line1.getCenterY(),
+							line3.getCenterX(), line3.getCenterY(), Math.abs(line2.getCenterX() - line4.getCenterX()));
 					return transformLineChunk(line, line.getWidth(), LineChunk.BUTT_CAP_STYLE);
 				}
 			}
 		}
 		return null;
 	}
+	
+	private static boolean isHorizontalLine(LineChunk line1, LineChunk line2, LineChunk line3, LineChunk line4) {
+		return line1.isHorizontalLine() && (line2.isVerticalLine() ||
+				Vertex.areCloseVertexes(line2.getEnd(), line2.getStart())) &&
+				line3.isHorizontalLine() && (line4.isVerticalLine() ||
+				Vertex.areCloseVertexes(line4.getEnd(), line4.getStart()));
+	}
+	
+	private static boolean isVerticalLine(LineChunk line1, LineChunk line2, LineChunk line3, LineChunk line4) {
+		return line1.isVerticalLine() && (line2.isHorizontalLine() ||
+				Vertex.areCloseVertexes(line2.getEnd(), line2.getStart())) &&
+				line3.isVerticalLine() && (line4.isHorizontalLine() ||
+				Vertex.areCloseVertexes(line4.getEnd(), line4.getStart()));
+	}
+	
 
 	private Double getValueOfLastNumber(List<COSBase> arguments) {
 		if (!arguments.isEmpty()) {
