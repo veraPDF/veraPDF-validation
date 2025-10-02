@@ -978,7 +978,7 @@ public class ChunkParser {
                                     }
                                 } else {
                                     if (ASAtom.OCMD.equals(property.getNameKey(ASAtom.TYPE))) {
-                                        return PDOCMDDictionary.isVisibleOCMDByP(property, optProperties);
+                                        return PDOCMDDictionary.isVisibleOCMD(property, optProperties);
                                     }
                                 }
                             }
