@@ -235,4 +235,32 @@ public class GFAActionSubmitForm extends GFAObject implements AActionSubmitForm 
 		return getNameValue(S);
 	}
 
+	@Override
+	public Boolean getcontainsType() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("Type"));
+	}
+
+	public COSObject getTypeValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Type"));
+		return object;
+	}
+
+	@Override
+	public String getTypeType() {
+		COSObject Type = getTypeValue();
+		return getObjectType(Type);
+	}
+
+	@Override
+	public Boolean getTypeHasTypeName() {
+		COSObject Type = getTypeValue();
+		return getHasTypeName(Type);
+	}
+
+	@Override
+	public String getTypeNameValue() {
+		COSObject Type = getTypeValue();
+		return getNameValue(Type);
+	}
+
 }
