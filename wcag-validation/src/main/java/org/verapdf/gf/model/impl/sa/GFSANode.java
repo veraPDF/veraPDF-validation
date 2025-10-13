@@ -46,6 +46,10 @@ public class GFSANode extends SemanticNode {
 		return key != null ? key.getNumber() : null;
 	}
 
+    public GFSAStructElem getStructElem() {
+        return structElem;
+    }
+
 	@Override
 	public List<INode> getChildren() {
 		if (structElem.children == null) {
