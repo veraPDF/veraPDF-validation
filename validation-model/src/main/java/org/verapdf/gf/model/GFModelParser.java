@@ -335,7 +335,7 @@ public class GFModelParser implements PDFAParser {
 		this.flavour = flavours;
 		StaticContainers.setFlavour(flavour);
 		StaticCoreContainers.setFlavour(flavour);
-		StaticResources.setFlavour(Collections.singletonList(PDFFlavour.NO_FLAVOUR));
+		StaticResources.setFlavour(getPDFFlavours(flavours));
 	}
 
 	@Override
