@@ -200,15 +200,7 @@ public class GFModelParser implements PDFAParser {
 		if (document == null) {
 			return getDefaultFlavours(defaultFlavour);
 		}
-		COSDocument cosDocument = document.getDocument();
-		Float version = cosDocument != null ? cosDocument.getHeader().getVersion() : null;
-
-		PDCatalog catalog = document.getCatalog();
-		Float catalogVersion = catalog.getFloatVersion();
-
-		if (catalogVersion != null && (version == null || version < catalogVersion)) {
-			version = catalogVersion;
-		}
+		Float version = document.getVersion();
 		if (version == null) {
 			return getDefaultFlavours(defaultFlavour);
 		}
