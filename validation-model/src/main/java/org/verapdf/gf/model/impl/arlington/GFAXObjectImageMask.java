@@ -1056,9 +1056,9 @@ public class GFAXObjectImageMask extends GFAObject implements AXObjectImageMask 
 	}
 
 	@Override
-	public Boolean getentryIDHasTypeString() {
+	public Boolean getentryIDHasTypeStringByte() {
 		COSObject entryID = getentryIDValue();
-		return getHasTypeString(entryID);
+		return getHasTypeStringByte(entryID);
 	}
 
 	@Override

@@ -1345,6 +1345,12 @@ public class GFACatalog extends GFAObject implements ACatalog {
 	}
 
 	@Override
+	public Boolean getisDPartRootIndirect() {
+		COSObject DPartRoot = getDPartRootValue();
+		return getisIndirect(DPartRoot);
+	}
+
+	@Override
 	public String getDPartRootType() {
 		COSObject DPartRoot = getDPartRootValue();
 		return getObjectType(DPartRoot);
