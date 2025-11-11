@@ -65,7 +65,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Automatic-Module-Name>org.verapdf.metadata.fixer</Automatic-Module-Name>
+                            <Automatic-Module-Name>org.verapdf.arlington.metadata.fixer</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>
