@@ -183,9 +183,6 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 		if (type == null) {
 			return false;
 		}
-		if (PDFFlavours.isWCAGFlavour(StaticContainers.getFlavour()) && ASAtom.TITLE == type.getType()) {
-			return false;
-		}
 		return org.verapdf.pd.structure.PDStructElem.isStandardStructureType(type);
 	}
 
