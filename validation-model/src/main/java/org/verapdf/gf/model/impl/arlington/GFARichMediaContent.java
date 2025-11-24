@@ -162,26 +162,9 @@ public class GFARichMediaContent extends GFAObject implements ARichMediaContent 
 		return getHasTypeNameTree(Assets);
 	}
 
-	@Override
-	public Boolean getcontainsAssetsTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Assets"));
-	}
-
 	public COSObject getAssetsTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Assets"));
 		return object;
-	}
-
-	@Override
-	public String getAssetsTreeNodeType() {
-		COSObject AssetsTreeNode = getAssetsTreeNodeValue();
-		return getObjectType(AssetsTreeNode);
-	}
-
-	@Override
-	public Boolean getAssetsTreeNodeHasTypeNameTree() {
-		COSObject AssetsTreeNode = getAssetsTreeNodeValue();
-		return getHasTypeNameTree(AssetsTreeNode);
 	}
 
 	@Override

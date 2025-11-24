@@ -375,26 +375,9 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return getHasTypeNameTree(IDTree);
 	}
 
-	@Override
-	public Boolean getcontainsIDTreeTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("IDTree"));
-	}
-
 	public COSObject getIDTreeTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDTree"));
 		return object;
-	}
-
-	@Override
-	public String getIDTreeTreeNodeType() {
-		COSObject IDTreeTreeNode = getIDTreeTreeNodeValue();
-		return getObjectType(IDTreeTreeNode);
-	}
-
-	@Override
-	public Boolean getIDTreeTreeNodeHasTypeNameTree() {
-		COSObject IDTreeTreeNode = getIDTreeTreeNodeValue();
-		return getHasTypeNameTree(IDTreeTreeNode);
 	}
 
 	@Override
@@ -491,26 +474,9 @@ public class GFAStructTreeRoot extends GFAObject implements AStructTreeRoot {
 		return getHasTypeInteger(ParentTreeNextKey);
 	}
 
-	@Override
-	public Boolean getcontainsParentTreeTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("ParentTree"));
-	}
-
 	public COSObject getParentTreeTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("ParentTree"));
 		return object;
-	}
-
-	@Override
-	public String getParentTreeTreeNodeType() {
-		COSObject ParentTreeTreeNode = getParentTreeTreeNodeValue();
-		return getObjectType(ParentTreeTreeNode);
-	}
-
-	@Override
-	public Boolean getParentTreeTreeNodeHasTypeNumberTree() {
-		COSObject ParentTreeTreeNode = getParentTreeTreeNodeValue();
-		return getHasTypeNumberTree(ParentTreeTreeNode);
 	}
 
 	@Override

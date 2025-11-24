@@ -1707,26 +1707,9 @@ public class GFACatalog extends GFAObject implements ACatalog {
 		return getHasTypeNumberTree(PageLabels);
 	}
 
-	@Override
-	public Boolean getcontainsPageLabelsTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("PageLabels"));
-	}
-
 	public COSObject getPageLabelsTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("PageLabels"));
 		return object;
-	}
-
-	@Override
-	public String getPageLabelsTreeNodeType() {
-		COSObject PageLabelsTreeNode = getPageLabelsTreeNodeValue();
-		return getObjectType(PageLabelsTreeNode);
-	}
-
-	@Override
-	public Boolean getPageLabelsTreeNodeHasTypeNumberTree() {
-		COSObject PageLabelsTreeNode = getPageLabelsTreeNodeValue();
-		return getHasTypeNumberTree(PageLabelsTreeNode);
 	}
 
 	@Override

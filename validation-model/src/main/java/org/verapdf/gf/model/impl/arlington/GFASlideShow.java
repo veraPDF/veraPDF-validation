@@ -102,26 +102,9 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 		return getHasTypeNameTree(Resources);
 	}
 
-	@Override
-	public Boolean getcontainsResourcesTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
-	}
-
 	public COSObject getResourcesTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
 		return object;
-	}
-
-	@Override
-	public String getResourcesTreeNodeType() {
-		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
-		return getObjectType(ResourcesTreeNode);
-	}
-
-	@Override
-	public Boolean getResourcesTreeNodeHasTypeNameTree() {
-		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
-		return getHasTypeNameTree(ResourcesTreeNode);
 	}
 
 	@Override

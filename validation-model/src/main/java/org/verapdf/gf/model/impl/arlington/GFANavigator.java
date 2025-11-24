@@ -460,26 +460,9 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return getHasTypeNameTree(Resources);
 	}
 
-	@Override
-	public Boolean getcontainsResourcesTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Resources"));
-	}
-
 	public COSObject getResourcesTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Resources"));
 		return object;
-	}
-
-	@Override
-	public String getResourcesTreeNodeType() {
-		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
-		return getObjectType(ResourcesTreeNode);
-	}
-
-	@Override
-	public Boolean getResourcesTreeNodeHasTypeNameTree() {
-		COSObject ResourcesTreeNode = getResourcesTreeNodeValue();
-		return getHasTypeNameTree(ResourcesTreeNode);
 	}
 
 	@Override
@@ -526,26 +509,9 @@ public class GFANavigator extends GFAObject implements ANavigator {
 		return getHasTypeNameTree(Strings);
 	}
 
-	@Override
-	public Boolean getcontainsStringsTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Strings"));
-	}
-
 	public COSObject getStringsTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Strings"));
 		return object;
-	}
-
-	@Override
-	public String getStringsTreeNodeType() {
-		COSObject StringsTreeNode = getStringsTreeNodeValue();
-		return getObjectType(StringsTreeNode);
-	}
-
-	@Override
-	public Boolean getStringsTreeNodeHasTypeNameTree() {
-		COSObject StringsTreeNode = getStringsTreeNodeValue();
-		return getHasTypeNameTree(StringsTreeNode);
 	}
 
 	@Override

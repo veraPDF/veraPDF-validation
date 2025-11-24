@@ -676,26 +676,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(AP);
 	}
 
-	@Override
-	public Boolean getcontainsAPTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AP"));
-	}
-
 	public COSObject getAPTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AP"));
 		return object;
-	}
-
-	@Override
-	public String getAPTreeNodeType() {
-		COSObject APTreeNode = getAPTreeNodeValue();
-		return getObjectType(APTreeNode);
-	}
-
-	@Override
-	public Boolean getAPTreeNodeHasTypeNameTree() {
-		COSObject APTreeNode = getAPTreeNodeValue();
-		return getHasTypeNameTree(APTreeNode);
 	}
 
 	@Override
@@ -720,26 +703,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(AlternatePresentations);
 	}
 
-	@Override
-	public Boolean getcontainsAlternatePresentationsTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("AlternatePresentations"));
-	}
-
 	public COSObject getAlternatePresentationsTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AlternatePresentations"));
 		return object;
-	}
-
-	@Override
-	public String getAlternatePresentationsTreeNodeType() {
-		COSObject AlternatePresentationsTreeNode = getAlternatePresentationsTreeNodeValue();
-		return getObjectType(AlternatePresentationsTreeNode);
-	}
-
-	@Override
-	public Boolean getAlternatePresentationsTreeNodeHasTypeNameTree() {
-		COSObject AlternatePresentationsTreeNode = getAlternatePresentationsTreeNodeValue();
-		return getHasTypeNameTree(AlternatePresentationsTreeNode);
 	}
 
 	@Override
@@ -764,26 +730,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(Dests);
 	}
 
-	@Override
-	public Boolean getcontainsDestsTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Dests"));
-	}
-
 	public COSObject getDestsTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Dests"));
 		return object;
-	}
-
-	@Override
-	public String getDestsTreeNodeType() {
-		COSObject DestsTreeNode = getDestsTreeNodeValue();
-		return getObjectType(DestsTreeNode);
-	}
-
-	@Override
-	public Boolean getDestsTreeNodeHasTypeNameTree() {
-		COSObject DestsTreeNode = getDestsTreeNodeValue();
-		return getHasTypeNameTree(DestsTreeNode);
 	}
 
 	@Override
@@ -808,26 +757,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(EmbeddedFiles);
 	}
 
-	@Override
-	public Boolean getcontainsEmbeddedFilesTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("EmbeddedFiles"));
-	}
-
 	public COSObject getEmbeddedFilesTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("EmbeddedFiles"));
 		return object;
-	}
-
-	@Override
-	public String getEmbeddedFilesTreeNodeType() {
-		COSObject EmbeddedFilesTreeNode = getEmbeddedFilesTreeNodeValue();
-		return getObjectType(EmbeddedFilesTreeNode);
-	}
-
-	@Override
-	public Boolean getEmbeddedFilesTreeNodeHasTypeNameTree() {
-		COSObject EmbeddedFilesTreeNode = getEmbeddedFilesTreeNodeValue();
-		return getHasTypeNameTree(EmbeddedFilesTreeNode);
 	}
 
 	@Override
@@ -852,26 +784,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(IDS);
 	}
 
-	@Override
-	public Boolean getcontainsIDSTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("IDS"));
-	}
-
 	public COSObject getIDSTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("IDS"));
 		return object;
-	}
-
-	@Override
-	public String getIDSTreeNodeType() {
-		COSObject IDSTreeNode = getIDSTreeNodeValue();
-		return getObjectType(IDSTreeNode);
-	}
-
-	@Override
-	public Boolean getIDSTreeNodeHasTypeNameTree() {
-		COSObject IDSTreeNode = getIDSTreeNodeValue();
-		return getHasTypeNameTree(IDSTreeNode);
 	}
 
 	@Override
@@ -896,26 +811,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(JavaScript);
 	}
 
-	@Override
-	public Boolean getcontainsJavaScriptTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("JavaScript"));
-	}
-
 	public COSObject getJavaScriptTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("JavaScript"));
 		return object;
-	}
-
-	@Override
-	public String getJavaScriptTreeNodeType() {
-		COSObject JavaScriptTreeNode = getJavaScriptTreeNodeValue();
-		return getObjectType(JavaScriptTreeNode);
-	}
-
-	@Override
-	public Boolean getJavaScriptTreeNodeHasTypeNameTree() {
-		COSObject JavaScriptTreeNode = getJavaScriptTreeNodeValue();
-		return getHasTypeNameTree(JavaScriptTreeNode);
 	}
 
 	@Override
@@ -940,26 +838,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(Pages);
 	}
 
-	@Override
-	public Boolean getcontainsPagesTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Pages"));
-	}
-
 	public COSObject getPagesTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Pages"));
 		return object;
-	}
-
-	@Override
-	public String getPagesTreeNodeType() {
-		COSObject PagesTreeNode = getPagesTreeNodeValue();
-		return getObjectType(PagesTreeNode);
-	}
-
-	@Override
-	public Boolean getPagesTreeNodeHasTypeNameTree() {
-		COSObject PagesTreeNode = getPagesTreeNodeValue();
-		return getHasTypeNameTree(PagesTreeNode);
 	}
 
 	@Override
@@ -984,26 +865,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(Renditions);
 	}
 
-	@Override
-	public Boolean getcontainsRenditionsTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Renditions"));
-	}
-
 	public COSObject getRenditionsTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Renditions"));
 		return object;
-	}
-
-	@Override
-	public String getRenditionsTreeNodeType() {
-		COSObject RenditionsTreeNode = getRenditionsTreeNodeValue();
-		return getObjectType(RenditionsTreeNode);
-	}
-
-	@Override
-	public Boolean getRenditionsTreeNodeHasTypeNameTree() {
-		COSObject RenditionsTreeNode = getRenditionsTreeNodeValue();
-		return getHasTypeNameTree(RenditionsTreeNode);
 	}
 
 	@Override
@@ -1028,26 +892,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(Templates);
 	}
 
-	@Override
-	public Boolean getcontainsTemplatesTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("Templates"));
-	}
-
 	public COSObject getTemplatesTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("Templates"));
 		return object;
-	}
-
-	@Override
-	public String getTemplatesTreeNodeType() {
-		COSObject TemplatesTreeNode = getTemplatesTreeNodeValue();
-		return getObjectType(TemplatesTreeNode);
-	}
-
-	@Override
-	public Boolean getTemplatesTreeNodeHasTypeNameTree() {
-		COSObject TemplatesTreeNode = getTemplatesTreeNodeValue();
-		return getHasTypeNameTree(TemplatesTreeNode);
 	}
 
 	@Override
@@ -1072,26 +919,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(URLS);
 	}
 
-	@Override
-	public Boolean getcontainsURLSTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("URLS"));
-	}
-
 	public COSObject getURLSTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("URLS"));
 		return object;
-	}
-
-	@Override
-	public String getURLSTreeNodeType() {
-		COSObject URLSTreeNode = getURLSTreeNodeValue();
-		return getObjectType(URLSTreeNode);
-	}
-
-	@Override
-	public Boolean getURLSTreeNodeHasTypeNameTree() {
-		COSObject URLSTreeNode = getURLSTreeNodeValue();
-		return getHasTypeNameTree(URLSTreeNode);
 	}
 
 	@Override
@@ -1116,26 +946,9 @@ public class GFAName extends GFAObject implements AName {
 		return getHasTypeNameTree(XFAResources);
 	}
 
-	@Override
-	public Boolean getcontainsXFAResourcesTreeNode() {
-		return this.baseObject.knownKey(ASAtom.getASAtom("XFAResources"));
-	}
-
 	public COSObject getXFAResourcesTreeNodeValue() {
 		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("XFAResources"));
 		return object;
-	}
-
-	@Override
-	public String getXFAResourcesTreeNodeType() {
-		COSObject XFAResourcesTreeNode = getXFAResourcesTreeNodeValue();
-		return getObjectType(XFAResourcesTreeNode);
-	}
-
-	@Override
-	public Boolean getXFAResourcesTreeNodeHasTypeNameTree() {
-		COSObject XFAResourcesTreeNode = getXFAResourcesTreeNodeValue();
-		return getHasTypeNameTree(XFAResourcesTreeNode);
 	}
 
 }
