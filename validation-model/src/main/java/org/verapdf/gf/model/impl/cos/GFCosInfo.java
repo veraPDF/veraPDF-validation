@@ -203,16 +203,16 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
 
     @Override
     public Boolean getdoCreationDatesMatch() {
+        String creationDate = getCreationDate();
+        if (creationDate == null) {
+            return null;
+        }
         Calendar xmpCreateDate = null;
         if (meta != null) {
             try {
                 xmpCreateDate = meta.getCreateDate();
             } catch (XMPException ignored) {
             }
-        }
-        String creationDate = getCreationDate();
-        if (creationDate == null) {
-            return null;
         }
         if (xmpCreateDate != null) {
             Calendar creationDateCalendar = TypeConverter.parseDate(creationDate);
@@ -223,16 +223,16 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
 
     @Override
     public Boolean getdoModDatesMatch() {
+        String modDate = getModDate();
+        if (modDate == null) {
+            return null;
+        }
         Calendar xmpModifyDate = null;
         if (meta != null) {
             try {
                 xmpModifyDate = meta.getModifyDate();
             } catch (XMPException ignored) {
             }
-        }
-        String modDate = getModDate();
-        if (modDate == null) {
-            return null;
         }
         if (xmpModifyDate != null) {
             Calendar modDateCalendar = TypeConverter.parseDate(modDate);
