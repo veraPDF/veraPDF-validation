@@ -211,11 +211,14 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
             }
         }
         String creationDate = getCreationDate();
-        if (xmpCreateDate != null && creationDate != null) {
+        if (creationDate == null) {
+            return null;
+        }
+        if (xmpCreateDate != null) {
             Calendar creationDateCalendar = TypeConverter.parseDate(creationDate);
             return creationDateCalendar != null && xmpCreateDate.compareTo(creationDateCalendar) == 0;
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -228,11 +231,14 @@ public class GFCosInfo extends GFCosDict implements CosInfo {
             }
         }
         String modDate = getModDate();
-        if (xmpModifyDate != null && modDate != null) {
+        if (modDate == null) {
+            return null;
+        }
+        if (xmpModifyDate != null) {
             Calendar modDateCalendar = TypeConverter.parseDate(modDate);
             return modDateCalendar != null && xmpModifyDate.compareTo(modDateCalendar) == 0;
         }
-        return null;
+        return false;
     }
 
     @Override
