@@ -54,6 +54,11 @@ public class GFPDWidgetAnnot extends GFPDAnnot implements PDWidgetAnnot {
 		return ((PDAnnotation) simplePDObject).getTU();
 	}
 
+	@Override
+	public Boolean getisFieldWidget() {
+		return isField() || ((PDWidgetAnnotation) simplePDObject).getParent() != null;
+	}
+
 	private boolean isField() {
 		return PDFormField.isField(simplePDObject.getObject());
 	}
